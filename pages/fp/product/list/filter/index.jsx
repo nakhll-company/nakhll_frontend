@@ -5,7 +5,7 @@ import useViewport from '../../../../../components/viewPort';
 import MobileHeader from '../../../../../components/mobileHeader';
 import Layout from '../../../../../components/layout/Layout';
 // methods
-import { getFilterData } from './methods/getFilterData';
+import { getFilterData } from '../../../../../utils/methods/getFilterData';
 // scss
 import styles from '../../../../../styles/product/filter.module.scss';
 /**
