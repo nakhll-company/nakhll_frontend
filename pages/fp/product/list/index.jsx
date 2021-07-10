@@ -12,11 +12,6 @@ import MobileHeader from '../../../../components/mobileHeader';
 import Sort from '../../../../containers/product/sort';
 import Edit from '../../../../containers/product/edit';
 import MyLayout from "../../../../components/layout/Layout";
-
-// images
-// import edit from '../../../../public/image/productHeaderLink/edit.svg';
-// import filter from '../../../../public/image/productHeaderLink/filter.svg';
-// import sort from '../../../../public/image/productHeaderLink/sort.svg';
 // styles
 import styles from "../../../../styles/pages/product/list.module.scss";
 
@@ -121,19 +116,19 @@ const Card = () => {
                     <div className={styles.product_header}>
                         <Link href={`/fp/product/list/filter`}>
                             <a className={styles.product_header_link}>
-                                {/* <Image src={filter} alt="filter" className={styles.product_header_link_icon} /> */}
+                                <Image src="/image/product/filter.svg" alt="filter" className={styles.product_header_link_icon} width="15" height="15" />
                                 فیلتر
                             </a>
                         </Link>
                         <span className={styles.product_header_link} onClick={() => {
                             setShowModalSort(showModal => !showModal);
                         }}>
-                            {/* <Image src={sort} alt="sort" className={styles.product_header_link_icon} /> */}
+                            <Image src="/image/product/sort.svg" alt="sort" className={styles.product_header_link_icon} width="15" height="15" />
                             ترتیب نمایش</span>
                         <span className={styles.product_header_link} onClick={() => {
                             setShowModalEdit(showModal => !showModal);
                         }}>
-                            {/* <Image src={edit} alt="edit" className={styles.product_header_link_icon} /> */}
+                            <Image src="/image/product/edit.svg" alt="edit" className={styles.product_header_link_icon} width="15" height="15" />
                             ویرایش گروهی</span>
                     </div>
                     {data.map((value, index) => {

@@ -17,11 +17,11 @@ function MobileHeader({
         <div className={type === "back" ? `${styles.wrapper_header_back}` : `${styles.wrapper_header}`}
             onClick={() => router.back()}
         >
-            {type === "back" && <Image src="/image/mobileHeader/back.svg" alt="header icon" />}
+            {type === "back" && <Image src="/image/mobileHeader/back.svg" alt="header icon" width="17" height="19" />}
             <span className={styles.header_span}>{title}</span>
-            {type === "search" && <Image src="/image/mobileHeader/search.svg" alt="header icon" />}
-            {type === "close" && <Image src="/image/mobileHeader/close.svg" alt="header icon" />}
-            {type === "bascket" && <Image src="/image/mobileHeader/bascket.svg" alt="header icon" />}
+            {type === "search" && <Image src="/image/mobileHeader/search.svg" alt="header icon" width="18" height="18" />}
+            {type === "close" && <Image src="/image/mobileHeader/close.svg" alt="header icon" width="12" height="19" />}
+            {type === "bascket" && <Image src="/image/mobileHeader/bascket.svg" alt="header icon" width="25" height="25" />}
         </div>
     );
 }
