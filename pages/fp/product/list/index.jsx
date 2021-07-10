@@ -4,13 +4,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 // components
-import useViewport from '../../../../components/viewPort';
-import MobileHeader from '../../../../components/mobileHeader';
 import CustomBadge from '../../../../components/custom/customBadge';
 import CustomLabel from '../../../../components/custom/customLabel';
 import CustomModal from '../../../../components/custom/customModal';
-import Sort from '../../../../components/product/sort';
-import Edit from '../../../../components/product/edit';
+import useViewport from '../../../../components/viewPort';
+import MobileHeader from '../../../../components/mobileHeader';
+import Sort from '../../../../containers/product/sort';
+import Edit from '../../../../containers/product/edit';
 import MyLayout from "../../../../components/layout/Layout";
 
 // images
