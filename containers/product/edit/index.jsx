@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 // scss
-import styles from '../../../styles/product/editModal.module.scss';
+import styles from '../../../styles/pages/product/editModal.module.scss';
 // image
 // import tik from '../../../public/image/productHeaderLink/tik.svg';
 

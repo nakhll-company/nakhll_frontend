@@ -1,7 +1,7 @@
 // node
 import Image from 'next/image';
 // scss
-import styles from '../../../styles/product/sortModal.module.scss';
+import styles from '../../../styles/pages/product/sortModal.module.scss';
 // image
 // import tik from '../../../public/image/productHeaderLink/tik.svg';
 const Sort = () => {

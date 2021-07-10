@@ -3,7 +3,7 @@ import Head from 'next/head';
 // components
 import Layout from '../components/layout/Layout';
 // styles
-import styles from "../styles/pages/dashboard.module.scss";
+import styles from "../styles/pages/dashboard/dashboard.module.scss";
 
 
 /**
