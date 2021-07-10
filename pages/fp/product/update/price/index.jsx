@@ -2,7 +2,7 @@
 import Layout from '../../../../../components/layout/Layout';
 import MobileHeader from '../../../../../components/mobileHeader';
 // scss
-import styles from '../../../../../styles/product/price.module.scss';
+import styles from '../../../../../styles/pages/product/editPrice.module.scss';
 
 const Price = () => {
     return (

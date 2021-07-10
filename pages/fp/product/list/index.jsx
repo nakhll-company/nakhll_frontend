@@ -18,7 +18,7 @@ import MyLayout from "../../../../components/layout/Layout";
 // import filter from '../../../../public/image/productHeaderLink/filter.svg';
 // import sort from '../../../../public/image/productHeaderLink/sort.svg';
 // styles
-import styles from "../../../../styles/product/card.module.scss";
+import styles from "../../../../styles/pages/product/list.module.scss";
 
 const Card = () => {
 

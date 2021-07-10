@@ -7,7 +7,7 @@ import Layout from '../../../../../components/layout/Layout';
 // methods
 import { getFilterData } from '../../../../../utils/methods/getFilterData';
 // scss
-import styles from '../../../../../styles/product/filter.module.scss';
+import styles from '../../../../../styles/pages/product/filter.module.scss';
 /**
  * filter product component
  * @param
