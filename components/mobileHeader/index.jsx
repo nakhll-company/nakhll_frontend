@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 // import search from '../../public/image/headerIcon/search.svg';
 // import close from '../../public/image/headerIcon/close.svg';
 // import bascket from '../../public/image/headerIcon/bascket.svg';
-import backIcon from '/image/mobileHeader/back.svg';
+import backIcon from '../../public/back.svg';
 // scss
 import styles from '../../styles/components/mobileHeader/mobileHeader.module.scss';
 /**
