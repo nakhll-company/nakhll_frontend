@@ -1,4 +1,4 @@
-import styles from '../../../styles/custom/label.module.scss';
+import styles from '../../../styles/components/custom/label.module.scss';
 /**
  * component of custom badge
  * @param {string} value => value of label

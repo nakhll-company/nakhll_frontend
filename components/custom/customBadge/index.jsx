@@ -1,4 +1,4 @@
-import styles from '../../../styles/custom/badge.module.scss';
+import styles from '../../../styles/components/custom/badge.module.scss';
 /**
  * component of custom badge
  * @param {string} title => title badge

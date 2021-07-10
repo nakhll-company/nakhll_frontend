@@ -2,10 +2,10 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 // image
-import search from '../../public/assets/image/headerIcon/search.svg';
-import close from '../../public/assets/image/headerIcon/close.svg';
-import bascket from '../../public/assets/image/headerIcon/bascket.svg';
-import back from '../../public/assets/image/headerIcon/back.svg';
+// import search from '../../public/image/headerIcon/search.svg';
+// import close from '../../public/image/headerIcon/close.svg';
+// import bascket from '../../public/image/headerIcon/bascket.svg';
+// import back from '../../public/image/headerIcon/back.svg';
 // scss
 import styles from '../../styles/components/mobileHeader/mobileHeader.module.scss';
 /**
@@ -22,11 +22,11 @@ function MobileHeader({
         <div className={type === "back" ? `${styles.wrapper_header_back}` : `${styles.wrapper_header}`}
             onClick={() => router.back()}
         >
-            {type === "back" && <Image src={back} alt="header icon" />}
+            {/* {type === "back" && <Image src={back} alt="header icon" />} */}
             <span className={styles.header_span}>{title}</span>
-            {type === "search" && <Image src={search} alt="header icon" />}
+            {/* {type === "search" && <Image src={search} alt="header icon" />}
             {type === "close" && <Image src={close} alt="header icon" />}
-            {type === "bascket" && <Image src={bascket} alt="header icon" />}
+            {type === "bascket" && <Image src={bascket} alt="header icon" />} */}
         </div>
     );
 }

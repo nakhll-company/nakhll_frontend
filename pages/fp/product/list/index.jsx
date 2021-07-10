@@ -8,15 +8,15 @@ import useViewport from '../../../../components/viewPort';
 import MobileHeader from '../../../../components/mobileHeader';
 import CustomBadge from '../../../../components/custom/customBadge';
 import CustomLabel from '../../../../components/custom/customLabel';
-import GerenalModal from '../../../../components/generalModal';
+import CustomModal from '../../../../components/custom/customModal';
 import Sort from '../../../../components/product/sort';
 import Edit from '../../../../components/product/edit';
 import MyLayout from "../../../../components/layout/Layout";
 
 // images
-import edit from '../../../../public/assets/image/productHeaderLink/edit.svg';
-import filter from '../../../../public/assets/image/productHeaderLink/filter.svg';
-import sort from '../../../../public/assets/image/productHeaderLink/sort.svg';
+// import edit from '../../../../public/image/productHeaderLink/edit.svg';
+// import filter from '../../../../public/image/productHeaderLink/filter.svg';
+// import sort from '../../../../public/image/productHeaderLink/sort.svg';
 // styles
 import styles from "../../../../styles/product/card.module.scss";
 
@@ -121,19 +121,19 @@ const Card = () => {
                     <div className={styles.product_header}>
                         <Link href={`/fp/product/list/filter`}>
                             <a className={styles.product_header_link}>
-                                <Image src={filter} alt="filter" className={styles.product_header_link_icon} />
+                                {/* <Image src={filter} alt="filter" className={styles.product_header_link_icon} /> */}
                                 فیلتر
                             </a>
                         </Link>
                         <span className={styles.product_header_link} onClick={() => {
                             setShowModalSort(showModal => !showModal);
                         }}>
-                            <Image src={sort} alt="sort" className={styles.product_header_link_icon} />
+                            {/* <Image src={sort} alt="sort" className={styles.product_header_link_icon} /> */}
                             ترتیب نمایش</span>
                         <span className={styles.product_header_link} onClick={() => {
                             setShowModalEdit(showModal => !showModal);
                         }}>
-                            <Image src={edit} alt="edit" className={styles.product_header_link_icon} />
+                            {/* <Image src={edit} alt="edit" className={styles.product_header_link_icon} /> */}
                             ویرایش گروهی</span>
                     </div>
                     {data.map((value, index) => {
@@ -183,10 +183,10 @@ const Card = () => {
 
                 </div>
             }
-            <GerenalModal show={showModalSort} onClose={() => {
+            <CustomModal show={showModalSort} onClose={() => {
                 setShowModalSort(showModal => !showModal);
             }} content={<Sort />} />
-            <GerenalModal show={showModalEdit} onClose={() => {
+            <CustomModal show={showModalEdit} onClose={() => {
                 setShowModalEdit(showModal => !showModal);
             }} content={<Edit />} />
         </>
