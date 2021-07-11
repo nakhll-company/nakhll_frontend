@@ -2,6 +2,7 @@
 import Head from "next/head";
 import Link from 'next/link';
 import Image from 'next/image';
+import { connect } from 'react-redux';
 import { useState } from 'react';
 // components
 import CustomBadge from '../../../../components/custom/customBadge';
@@ -12,16 +13,18 @@ import MobileHeader from '../../../../components/mobileHeader';
 import Sort from '../../../../containers/product/sort';
 import Edit from '../../../../containers/product/edit';
 import MyLayout from "../../../../components/layout/Layout";
+// methods
+import { getProduct } from '../../../../redux/actions/product/getProduct';
 // styles
 import styles from "../../../../styles/pages/product/list.module.scss";
 
-const Card = () => {
+const Card = ({ getProduct }) => {
 
     let [showModalSort, setShowModalSort] = useState(false);
     let [showModalEdit, setShowModalEdit] = useState(false);
     const { width } = useViewport();
     const breakpoint = 620;
-
+    getProduct();
     const data = [
         {
             name: "گل محمدی",
@@ -187,6 +190,8 @@ const Card = () => {
         </>
     );
 };
-export default Card;
+// export
+const connector = connect(null, { getProduct });
+export default connector(Card);
 Card.Layout = MyLayout;
 
