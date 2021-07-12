@@ -20,9 +20,8 @@ const Price = ({ productList }) => {
             <form className={styles.form_edit} onSubmit={(e) => {
                 e.preventDefault();
                 const data = new FormData(e.target);
-                console.log(Object.fromEntries(data.entries()));
             }}>
-                {productList.map((value, index) => {
+                {productList.length > 0 && productList.map((value, index) => {
                     return (
                         <div key={index} className={styles.form_edit_card}>
                             <label className={styles.form_edit_label}>{value.title}</label>
