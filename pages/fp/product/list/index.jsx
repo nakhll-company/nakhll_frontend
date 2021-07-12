@@ -27,8 +27,6 @@ const Card = ({ getProduct, productList }) => {
     const { width } = useViewport();
     const breakpoint = 620;
 
-    console.log(">>>>", productList);
-
     useEffect(() => {
         getProduct();
     }, [getProduct]);
@@ -68,7 +66,7 @@ const Card = ({ getProduct, productList }) => {
                             <Image src="/image/product/edit.svg" alt="edit" className={styles.product_header_link_icon} width="15" height="15" />
                             ویرایش گروهی</span>
                     </div>
-                    {productList.map((value, index) => {
+                    {productList.length > 0 && productList.map((value, index) => {
                         return (
                             <div key={index} className={`${styles.product_card}`}>
                                 <div className={styles.first_row}>
