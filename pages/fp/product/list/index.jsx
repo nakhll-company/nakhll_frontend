@@ -109,7 +109,7 @@ const Card = ({ getProduct, productList }) => {
             }
             <CustomModal show={showModalSort} onClose={() => {
                 setShowModalSort(showModal => !showModal);
-            }} content={<Sort />} />
+            }} content={<Sort setShowModalSort={setShowModalSort} />} />
             <CustomModal show={showModalEdit} onClose={() => {
                 setShowModalEdit(showModal => !showModal);
             }} content={<Edit />} />
