@@ -1,5 +1,5 @@
 // node libraries
-import MyLayout from '../../../component/layout/Layout';
+import MyLayout from '../../../components/layout/Layout';
 
 export default function Store() {
     return (
