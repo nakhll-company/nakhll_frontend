@@ -28,7 +28,7 @@ const Card = ({ getProduct, productList }) => {
     const breakpoint = 620;
 
     useEffect(() => {
-        getProduct();
+        productList.length === 0 && getProduct();
     }, [getProduct]);
 
     return (
