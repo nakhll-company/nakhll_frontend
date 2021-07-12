@@ -8,7 +8,7 @@ function reducer(state = initialize, actions) {
     switch (actions.type) {
         case Types.GET_PRODUCT:
             return {
-                productList: [...state.productList, actions.payload]
+                productList: [...actions.payload]
             }
         default:
             return state;

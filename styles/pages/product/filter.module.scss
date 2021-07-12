@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     font-family: 'vazir';
-    height: 100vh;
+    height: auto;
     // form
     .form{
         background-color: #E5E5E5;
@@ -12,6 +12,7 @@
         flex-direction: column;
         padding: 11px 14px;
         height: 100vh;
+        padding-bottom: 200px !important;
         // card
         .form_card{
             background: #FFFFFF;
@@ -27,6 +28,7 @@
                 font-size: 4.3vw !important;
                 color: #364254;
                 text-align: right;
+                margin: 10px;
             }
             // chaeckbox label
             .form_status{

@@ -3,7 +3,7 @@
   font-family: 'vazir';
   height: auto;
   color: #364254;
-  padding-bottom: 500px !important;
+  padding-bottom: 200px;
   .product_header{
     display: flex;
     align-items: center;
@@ -51,12 +51,13 @@
         align-items: center;
         .name_product{
           font-size: 4.3vw !important;
+          margin: 10px;
         }
         .image_product{
           width: 45px; 
           height: 45px;
           background: #C4C4C4;
-          margin-left: 10px;
+          margin-left: 5px;
         }
       }
       // icon more

@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from 'next/link';
 import Image from 'next/image';
 import { connect } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // components
 import CustomBadge from '../../../../components/custom/customBadge';
 import CustomLabel from '../../../../components/custom/customLabel';
@@ -15,90 +15,24 @@ import Edit from '../../../../containers/product/edit';
 import MyLayout from "../../../../components/layout/Layout";
 // methods
 import { getProduct } from '../../../../redux/actions/product/getProduct';
+import { mapState } from '../../../../containers/product/methods/mapState';
 // styles
 import styles from "../../../../styles/pages/product/list.module.scss";
 
-const Card = ({ getProduct }) => {
+const Card = ({ getProduct, productList }) => {
 
     let [showModalSort, setShowModalSort] = useState(false);
     let [showModalEdit, setShowModalEdit] = useState(false);
+
     const { width } = useViewport();
     const breakpoint = 620;
-    getProduct();
-    const data = [
-        {
-            name: "گل محمدی",
-            shens: "9985",
-            mojadi: "20",
-            price: "200000",
-            eye: "1000",
-            basket: "58",
-            star: "4.2",
-        },
-        {
-            name: "گیلاس",
-            shens: "458",
-            mojadi: "11",
-            price: "50000",
-            eye: "28",
-            basket: "45",
-            star: "3",
-        },
-        {
-            name: "پارچه",
-            shens: "846",
-            mojadi: "84",
-            price: "50000",
-            eye: "8555",
-            basket: "11",
-            star: "4.2",
-        },
-        {
-            name: "لباس",
-            shens: "44",
-            mojadi: "20",
-            price: "200000",
-            eye: "1000",
-            basket: "58",
-            star: "4.2",
-        },
-        {
-            name: "گل محمدی",
-            shens: "15",
-            mojadi: "20",
-            price: "200000",
-            eye: "1000",
-            basket: "58",
-            star: "4.2",
-        },
-        {
-            name: "جوراب",
-            shens: "9985",
-            mojadi: "20",
-            price: "200000",
-            eye: "1000",
-            basket: "58",
-            star: "4.2",
-        },
-        {
-            name: "milad",
-            shens: "9985",
-            mojadi: "20",
-            price: "200000",
-            eye: "1000",
-            basket: "58",
-            star: "4.2",
-        },
-        {
-            name: "milad",
-            shens: "9985",
-            mojadi: "20",
-            price: "200000",
-            eye: "1000",
-            basket: "58",
-            star: "4.2",
-        },
-    ];
+
+    console.log(">>>>", productList);
+
+    useEffect(() => {
+        getProduct();
+    }, [getProduct]);
+
     return (
         <>
             {width < breakpoint &&
@@ -134,38 +68,34 @@ const Card = ({ getProduct }) => {
                             <Image src="/image/product/edit.svg" alt="edit" className={styles.product_header_link_icon} width="15" height="15" />
                             ویرایش گروهی</span>
                     </div>
-                    {data.map((value, index) => {
+                    {productList.map((value, index) => {
                         return (
                             <div key={index} className={`${styles.product_card}`}>
                                 <div className={styles.first_row}>
                                     <div className={styles.product_name_wrapper}>
                                         <div className={`${styles.image_product}`}></div>
-                                        <h6 className={`${styles.name_product}`}>{value.name}</h6>
+                                        <h6 className={`${styles.name_product}`}>{value.title}</h6>
                                     </div>
                                     <i className={`fas fa-ellipsis-v ${styles.icon_more}`}></i>
                                 </div>
                                 <div className={styles.second_row}>
-                                    <CustomLabel value={value.mojadi} label="موجودی" />
+                                    <CustomLabel value={value.inventory} label="موجودی" />
                                     <CustomLabel value={`${value.price}تومان`} label="قیمت" />
                                 </div>
 
                                 <div className={styles.third_row}>
                                     <div>
                                         <span className={styles.icons}>
-                                            {/* <i class="far fa-eye"></i> */}
-                                            5200
-                                        </span>
-                                        <span className={styles.icons}>
                                             <i className="fas fa-shopping-basket"></i>
-                                            50
+                                            {value.total_sell}
                                         </span>
                                         <span className={styles.icons}>
                                             <i className="far fa-star"></i>
-                                            {value.star}(22 نظر)
+                                            {value.star}({value.comments_count} نظر)
                                         </span>
                                     </div>
                                     <CustomBadge
-                                        title="فعال"
+                                        title={value.status}
                                         color="#089319"
                                         backgroundColor="rgba(8, 147, 25, 0.15)"
                                         customBadgeStyle={{
@@ -177,8 +107,6 @@ const Card = ({ getProduct }) => {
                             </div>
                         )
                     })}
-                    <div style={{ marginTop: '200px' }}></div>
-
                 </div>
             }
             <CustomModal show={showModalSort} onClose={() => {
@@ -191,7 +119,7 @@ const Card = ({ getProduct }) => {
     );
 };
 // export
-const connector = connect(null, { getProduct });
+const connector = connect(mapState, { getProduct });
 export default connector(Card);
 Card.Layout = MyLayout;
 
