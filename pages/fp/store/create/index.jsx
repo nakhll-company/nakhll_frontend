@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import MyLayout from '../../../../components/layout/Layout';
 import MobileHeader from '../../../../components/mobileHeader';
 import useViewport from '../../../../components/viewPort';
-import SuccessPage from '../../../../containers/store/successPage';
+import SuccessPage from '../../../../containers/store/successPage/index';
 // methods
 import { getStates } from '../../../../containers/store/methods/getStates';
 import { getBigCities } from '../../../../containers/store/methods/getBigCities';
@@ -19,6 +19,7 @@ export default function NewStore() {
     let [selectState, setSelectState] = useState([]);
     let [selectBigCities, setSelectBigCities] = useState([]);
     let [selectCities, setSelectCities] = useState([]);
+    let [showSuccessPage, setShowSuccessPage] = useState(false);
 
     const { width } = useViewport();
     const breakpoint = 620;
@@ -49,7 +50,9 @@ export default function NewStore() {
                         const data = new FormData(e.target);
                         let body = Object.fromEntries(data.entries());
                         let response = await createStore(body);
-                        (response.status === 201) && <SuccessPage />
+                        if (response.status === 201) {
+                            setShowSuccessPage(showSuccessPage => !showSuccessPage);
+                        }
                     }}>
                         <label className={styles.form_label}>نام حجره</label>
                         <input className={styles.form_input} type="text" name="Title" placeholder="پسته اکبری" />
@@ -97,6 +100,7 @@ export default function NewStore() {
                     </form>
                 </div>
             }
+            {showSuccessPage && <SuccessPage />}
         </>
     );
 }

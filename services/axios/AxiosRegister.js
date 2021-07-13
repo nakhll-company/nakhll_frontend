@@ -7,7 +7,7 @@ export const instanceAxiosWithOutToken = Axios.create({
     headers: {
         'Content-Type': ' application/json',
     },
-    timeout: 18000,
+    timeout: 300000,
 
 });
 
@@ -19,7 +19,7 @@ export const instanceAxiosWithOutToken = Axios.create({
 export const instanceAxiosWithToken = Axios.create({
     withCredentials: true,
     baseURL: "http://localhost:8000",
-    timeout: 18000,
+    timeout: 300000,
     headers: {
         'Content-Type': ' application/json',
     },

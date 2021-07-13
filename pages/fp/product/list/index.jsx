@@ -71,8 +71,8 @@ const Card = ({ getProduct, productList }) => {
                             <div key={index} className={`${styles.product_card}`}>
                                 <div className={styles.first_row}>
                                     <div className={styles.product_name_wrapper}>
-                                        {/* <div className={`${styles.image_product}`}></div> */}
-                                        <Image src={value.image_thumbnail_url.substring(0, value.image_thumbnail_url.length)} alt="sort" width="45" height="45" />
+                                        <div className={`${styles.image_product}`}></div>
+                                        {/* <Image src={value.image_thumbnail_url.substring(0, value.image_thumbnail_url.length)} alt="sort" width="45" height="45" /> */}
                                         <h6 className={`${styles.name_product}`}>{value.title}</h6>
                                     </div>
                                     <i className={`fas fa-ellipsis-v ${styles.icon_more}`}></i>

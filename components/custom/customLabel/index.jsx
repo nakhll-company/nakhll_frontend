@@ -16,12 +16,12 @@ const CustomLabel = ({
 }) => {
     return (
         <div className=
-            {`${styles.label} ${customLabelDiv !== undefined && customLabelDiv}`}
+            {`${styles.label} ${customLabelDiv !== undefined && styles.wrapper_custom_label}`}
         >
-            <span className={`${styles.span_label} ${customLabel !== undefined && customLabel}`}>
+            <span className={`${styles.span_label} ${customLabel !== undefined && styles.customLabel}`}>
                 {label}:
             </span>
-            <span className={`${styles.span_value} ${customValue !== undefined && customValue}`}>
+            <span className={`${styles.span_value} ${customValue !== undefined && styles.customValue}`}>
                 {value}
             </span>
         </div>
