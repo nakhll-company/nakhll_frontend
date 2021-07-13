@@ -19,12 +19,11 @@ const FilterProduct = ({ getProduct }) => {
 
     let [filterData, setFilterData] = useState({
         price_from: 0,
-        price_to: 1000000,
-        // minNumber: 1,
-        // maxNumber: 20,
-        // fromDate: 1,
-        // untilDate: 15,
+        price_to: 0,
+        inventory_from: 0,
+        inventory_to: 0
     });
+
     const { width } = useViewport();
     const breakpoint = 620;
 
@@ -38,7 +37,7 @@ const FilterProduct = ({ getProduct }) => {
                     <form id="formFilter" className={styles.form} onSubmit={(event) => {
                         event.preventDefault();
                         let product_status = document.querySelector('input[type=radio]:checked').value;
-                        getProduct(product_status, filterData.price_from, filterData.price_to, "");
+                        getProduct(product_status, filterData.price_from, filterData.price_to, filterData.inventory_from, filterData.inventory_to, "");
                         router.back();
                     }}>
                         <div className={styles.form_card}>
@@ -114,62 +113,34 @@ const FilterProduct = ({ getProduct }) => {
                                 }}
                             />
                         </div>
-                        {/* <div className={styles.form_card}>
-                            <h6 className={styles.form_header}>زمان آماده سازی :</h6>
-                            <label className={styles.form_card_label}>
-                                از
-                                <input value={filterData.fromDate} className={styles.form_card_input} type="number"
-                                    onChange={(e) => {
-                                        setFilterData((pre) => {
-                                            return {
-                                                ...pre,
-                                                fromDate: e.target.value
-                                            }
-                                        });
-                                    }}
-                                />
-                                روز تا
-                                <input value={filterData.untilDate} className={styles.form_card_input} type="number"
-                                    onChange={(e) => {
-                                        setFilterData((pre) => {
-                                            return {
-                                                ...pre,
-                                                untilDate: e.target.value
-                                            }
-                                        });
-                                    }}
-                                />
-                                روز
-                            </label>
-                        </div> */}
-                        {/* <div className={styles.form_card}>
+                        <div className={styles.form_card}>
                             <h6 className={styles.form_header}>موجودی :</h6>
                             <label className={styles.form_card_label}>
                                 از
-                                <input value={filterData.minNumber} className={styles.form_card_input} type="number"
+                                <input value={filterData.inventory_from} className={styles.form_card_input} type="number"
                                     onChange={(e) => {
                                         setFilterData((pre) => {
                                             return {
                                                 ...pre,
-                                                minNumber: e.target.value
+                                                inventory_from: e.target.value
                                             }
                                         });
                                     }}
                                 />
                                 عدد تا
-                                <input value={filterData.maxNumber} className={styles.form_card_input} type="number"
+                                <input value={filterData.inventory_to} className={styles.form_card_input} type="number"
                                     onChange={(e) => {
                                         setFilterData((pre) => {
                                             return {
                                                 ...pre,
-                                                maxNumber: e.target.value
+                                                inventory_to: e.target.value
                                             }
                                         });
                                     }}
                                 />
                                 عدد
                             </label>
-                        </div> */}
+                        </div>
                         <div className={styles.form_buttons}>
                             <button type="submit" className={styles.form_buttonSubmit}>اعمال فیلترها</button>
                             <button type="reset" className={styles.form_clearFilter} onClick={() => {
@@ -177,10 +148,8 @@ const FilterProduct = ({ getProduct }) => {
                                 setFilterData({
                                     price_from: 0,
                                     price_to: 1000000,
-                                    // minNumber: 1,
-                                    // maxNumber: 20,
-                                    // fromDate: 1,
-                                    // untilDate: 15,
+                                    inventory_from: 1,
+                                    inventory_to: 15
                                 });
                             }}>تنظیم مجدد</button>
                         </div>

@@ -21,7 +21,7 @@ const Price = ({ productList }) => {
                 e.preventDefault();
                 const data = new FormData(e.target);
             }}>
-                {productList.length > 0 && productList.map((value, index) => {
+                {productList.length > 0 ? productList.map((value, index) => {
                     return (
                         <div key={index} className={styles.form_edit_card}>
                             <label className={styles.form_edit_label}>{value.title}</label>
@@ -31,7 +31,7 @@ const Price = ({ productList }) => {
                                 defaultValue={value.price} />
                         </div>
                     )
-                })}
+                }) : <h3 style={{ textAlign: "center" }}>موردی برای نمایش وجود ندارد</h3>}
                 <div className={styles.form_edit_wrapper_button}>
                     <button type="submit" className={styles.form_edit_button}>اعمال تغییرات</button>
                 </div>

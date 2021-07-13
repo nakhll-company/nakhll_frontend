@@ -46,7 +46,7 @@ const OrdersCard = ({ type }) => {
                     <Image src="/image/product/sort.svg" alt="sort" className={styles.header_link_icon} width="15" height="15" />
                     ترتیب نمایش</span>
             </div>
-            {openOrdersList.length > 0 && openOrdersList.map((value, index) => {
+            {openOrdersList.length > 0 ? openOrdersList.map((value, index) => {
                 return (
                     <div key={index} className={styles.card}>
                         <div className={styles.card_header}>
@@ -78,7 +78,7 @@ const OrdersCard = ({ type }) => {
                         {value.order_status === "3" && <button type="button" className={styles.button_ready}>به موقع ارسال میکنم</button>}
                     </div>
                 )
-            })}
+            }) : <h3 style={{ textAlign: "center" }}>موردی برای نمایش وجود ندارد</h3>}
         </div>
     );
 }
