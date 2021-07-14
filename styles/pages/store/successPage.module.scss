@@ -62,3 +62,15 @@
         }
     }
 }
+
+@media only screen and (min-width: 600px) {
+    // wrapper
+    .wrapper{
+        width: 80%;
+        right: 5%;
+        top: 20px;
+        .wrapper_links{
+            width: 30%;
+        }
+    }
+}

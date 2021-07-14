@@ -11,6 +11,14 @@
     color: #364254;
     font-size: 14px;
     padding: 14px;
+    .form_right{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .form_left{
+        display: none;
+    }
     // labels
     .form_label{
         text-align: right;
@@ -41,11 +49,12 @@
         bottom: 0;
         background: #FFFFFF;
         box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.05);
-        width: 92%;
+        width: 95%;
         height: 62px;
         z-index: 2000;
         margin: auto;
         padding: 8px;
+        cursor: pointer;
         // button submit
         .button_submit{
             width: 100%;
@@ -62,4 +71,62 @@
     .form_checkbox{
         margin-left: 10px;
     }
+}
+
+@media only screen and (min-width: 600px) {
+  // form
+.form{
+    position: absolute;
+    top: 30px;
+    right: 10%;
+    z-index: 3000;
+    overflow-y: hidden !important;
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    margin: auto;
+    border: 1px solid #E0E6E9;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+    padding: 10px 20px;
+    // right
+    .form_right{
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        padding: 10px 20px;
+        // button submit
+        .wrapper_submit{
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            float: right !important;
+            position:static;
+            width: 100%;
+            height: 62px;
+            box-shadow: none;
+            // button submit
+            .button_submit{
+                width: 80%;
+                height: 47px;
+                background: #007AFF;
+                border-radius: 5px;
+                color: #FFFFFF;
+                font-size: 15px;
+                text-align: center;
+                border: none;
+                outline: none;
+                cursor: pointer;
+            }
+        }
+    }
+    // right
+    .form_left{
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        padding: 30px 20px;
+    }
+}
 }

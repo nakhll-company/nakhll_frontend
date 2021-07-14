@@ -14,8 +14,15 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>dashboard</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>داشبورد</title>
+        <link
+          rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        />
+        <meta
+          name="viewport"
+          content="initial-scale=1.0, width=device-width"
+        />
       </Head>
       <div dir="rtl" className={styles.left_one}>
         <div className={styles.left_one_1}>
