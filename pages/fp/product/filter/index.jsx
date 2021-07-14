@@ -3,13 +3,13 @@ import { useRouter } from 'next/router';
 import { connect } from 'react-redux';
 import { useState } from 'react';
 // component
-import useViewport from '../../../../../components/viewPort';
-import MobileHeader from '../../../../../components/mobileHeader';
-import Layout from '../../../../../components/layout/Layout';
+import useViewport from '../../../../components/viewPort';
+import MobileHeader from '../../../../components/mobileHeader';
+import Layout from '../../../../components/layout/Layout';
 // methods
-import { getProduct } from '../../../../../redux/actions/product/getProduct';
+import { getProduct } from '../../../../redux/actions/product/getProduct';
 // scss
-import styles from '../../../../../styles/pages/product/filter.module.scss';
+import styles from '../../../../styles/pages/product/filter.module.scss';
 /**
  * filter product component
  * @param
