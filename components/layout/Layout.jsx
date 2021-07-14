@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 // components
 import useViewport from "../viewPort/index";
+import MenuMobile from './MenuMobile';
 // styles
 import styles from "../../styles/components/layout/layout.module.scss";
 
@@ -56,8 +57,8 @@ export default function MyLayout({ children }) {
       <div
         className={`${(width < breakpoint && router.pathname !== "/")
 
-            ? styles.wrapperProduct
-            : styles.wrapper
+          ? styles.wrapperProduct
+          : styles.wrapper
           }`}
       >
         {/* <!-- Right  SideBar--> */}
@@ -126,8 +127,8 @@ export default function MyLayout({ children }) {
                 <Link activeClassName="selectNav" href="/fp/product/list">
                   <span
                     className={`${styles.menu_card_item}   ${router.pathname == "/fp/product/list"
-                        ? styles.selectNav
-                        : ""
+                      ? styles.selectNav
+                      : ""
                       }`}
                   >
                     <span
@@ -207,6 +208,7 @@ export default function MyLayout({ children }) {
         >
           {children}
         </div>
+        <MenuMobile />
       </div>
     </>
   );
