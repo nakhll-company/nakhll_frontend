@@ -68,7 +68,8 @@ export default function Desktop({ productList }) {
                                         backgroundColor="rgba(8, 147, 25, 0.15)"
                                         customBadgeStyle={{
                                             borderRadius: "3px",
-                                            padding: "2px 6px"
+                                            padding: "2px 6px",
+                                            fontSize: "12px"
                                         }}
                                     /></td>
                                     <td></td>

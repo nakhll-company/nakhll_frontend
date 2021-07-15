@@ -1,40 +1,29 @@
 // node
 import Image from 'next/image';
-import Head from "next/head";
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { useEffect } from 'react';
 // components
 import CustomLabel from '../../../components/custom/customLabel';
 import CustomBadge from '../../../components/custom/customBadge';
 // methods
-import { getOpenOrders } from './methods/getOpenOrders';
-import { getCloseOrders } from './methods/getCloseOrders';
+import { mapState } from '../methods/mapState';
+import { mapDispatch } from '../methods/mapDispatch';
 // scss
-import styles from '../../../styles/pages/order/ordersCard.module.scss';
+import styles from '../../../styles/pages/order/mobileOrders.module.scss';
 
 
-const OrdersCard = ({ type }) => {
+const MobileOrders = ({ type, ordersList, getUncompleted, getCompleted }) => {
 
-    let [openOrdersList, setOpenOrdersList] = useState([]);
 
     useEffect(async () => {
-        type === "open" && setOpenOrdersList(await getOpenOrders());
-        type === "close" && setOpenOrdersList(await getCloseOrders());
+        type === "uncompleted" && getUncompleted();
+        type === "completed" && getCompleted();
     }, []);
 
     return (
         <div className={styles.wrapper}>
-            <Head>
-                <title>سفارشات</title>
-                <link
-                    rel="stylesheet"
-                    href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-                />
-                <meta
-                    name="viewport"
-                    content="initial-scale=1.0, width=device-width"
-                />
-            </Head>
+
             <div className={styles.header}>
                 <Link href={`/fp/product/list/filter`}>
                     <a className={styles.header_link}>
@@ -46,7 +35,7 @@ const OrdersCard = ({ type }) => {
                     <Image src="/image/product/sort.svg" alt="sort" className={styles.header_link_icon} width="15" height="15" />
                     ترتیب نمایش</span>
             </div>
-            {openOrdersList.length > 0 ? openOrdersList.map((value, index) => {
+            {ordersList.length > 0 ? ordersList.map((value, index) => {
                 return (
                     <div key={index} className={styles.card}>
                         <div className={styles.card_header}>
@@ -54,7 +43,7 @@ const OrdersCard = ({ type }) => {
                             <CustomBadge title={`${value.factor_status}`} />
                         </div>
                         <CustomLabel value={value.user} label="خریدار" customLabelDiv="wrapper_custom_label" />
-                        <CustomLabel value={`${value.order_date}`} label="ثبت" customLabelDiv="wrapper_custom_label" />
+                        <CustomLabel value={`${new Date(value.order_date).toLocaleDateString('fa-IR')}`} label="ثبت" customLabelDiv="wrapper_custom_label" />
                         <CustomLabel value={`${value.delivery_date}`} label="مهلت" customLabelDiv="wrapper_custom_label" />
                         <div className={styles.card_details}>
                             <li className="fas fa-shopping-basket"></li>
@@ -83,4 +72,5 @@ const OrdersCard = ({ type }) => {
     );
 }
 // export
-export default OrdersCard;
+const connector = connect(mapState, mapDispatch);
+export default connector(MobileOrders);

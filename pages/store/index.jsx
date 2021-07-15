@@ -1,5 +1,4 @@
-// node libraries
-import MyLayout from '../../../components/layout/Layout';
+
 
 export default function Store() {
     return (
@@ -8,4 +7,3 @@ export default function Store() {
         </div>
     );
 }
-Store.Layout = MyLayout;

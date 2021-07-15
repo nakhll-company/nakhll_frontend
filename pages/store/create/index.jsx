@@ -2,17 +2,16 @@
 import Head from "next/head";
 import { useEffect, useState } from 'react';
 // components
-import MyLayout from '../../../../components/layout/Layout';
-import MobileHeader from '../../../../components/mobileHeader';
-import useViewport from '../../../../components/viewPort';
-import SuccessPage from '../../../../containers/store/successPage/index';
+import MobileHeader from '../../../components/mobileHeader';
+import useViewport from '../../../components/viewPort';
+import SuccessPage from '../../../containers/store/successPage';
 // methods
-import { getStates } from '../../../../containers/store/methods/getStates';
-import { getBigCities } from '../../../../containers/store/methods/getBigCities';
-import { getCities } from '../../../../containers/store/methods/getCities';
-import { createStore } from '../../../../containers/store/methods/createStore';
+import { getStates } from '../../../containers/store/methods/getStates';
+import { getBigCities } from '../../../containers/store/methods/getBigCities';
+import { getCities } from '../../../containers/store/methods/getCities';
+import { createStore } from '../../../containers/store/methods/createStore';
 // styles
-import styles from '../../../../styles/pages/store/createStore.module.scss';
+import styles from '../../../styles/pages/store/createStore.module.scss';
 
 export default function NewStore() {
 
@@ -107,4 +106,3 @@ export default function NewStore() {
         </div>
     );
 }
-NewStore.Layout = MyLayout;
