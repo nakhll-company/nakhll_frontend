@@ -35,7 +35,7 @@ function Completed({ ordersList, getCompleted }) {
                         content: <MobileOrders type="completed" />
                     }]} />
                 </div> :
-                <DesktopOrders ordersList={ordersList} />
+                <DesktopOrders ordersList={ordersList} type="completed" />
             }
         </div>
     );

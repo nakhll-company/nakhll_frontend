@@ -35,7 +35,7 @@ function Uncompleted({ ordersList, getUncompleted }) {
                         content: <MobileOrders type="completed" />
                     }]} />
                 </div> :
-                <DesktopOrders ordersList={ordersList} />
+                <DesktopOrders ordersList={ordersList} type="uncompleted" />
             }
         </div>
     );

@@ -4,9 +4,20 @@ import CustomBadge from '../../../components/custom/customBadge';
 import styles from '../../../styles/pages/product/desktopList.module.scss';
 
 export default function Desktop({ productList }) {
+    const productStatus = [
+        { value: "", label: "" },
+        { value: "", label: "آماده در انبار" },
+        { value: "", label: "تولید بعد از سفارش" },
+        { value: "", label: "سفارشی سازی فروش" },
+        { value: "", label: "موجود نیست" },
+    ];
     return (
         <div className={styles.wrapper}>
-            <form className={styles.form_filter}>
+            <form className={styles.form_filter} onSubmit={(e) => {
+                e.preventDefault();
+                const data = new FormData(e.target);
+                console.log(Object.fromEntries(data.entries()));
+            }}>
                 <h3 className={styles.form_title}>فیلترها</h3>
                 <div className={styles.filds_wrapper}>
                     <label className={styles.filds_label}>جستجو در نام محصول<br />
@@ -14,8 +25,9 @@ export default function Desktop({ productList }) {
                     </label>
                     <label className={styles.filds_label}>وضعیت محصول<br />
                         <select name="status" className={styles.filds_input}>
-                            <option value="1">در انبار</option>
-                            <option value="1">در انبار</option>
+                            {productStatus.map((value, index) => {
+                                return <option key={index} value={value.value}>{value.label}</option>
+                            })}
                         </select>
                     </label>
                     <label className={styles.filds_label}>قیمت<br />
@@ -39,7 +51,10 @@ export default function Desktop({ productList }) {
             <div className={styles.product_list}>
                 <div className={styles.product_title}>
                     <span>محصولات</span>
-                    <button className={styles.button_add}>ایجاد کالا جدید</button>
+                    <button className={styles.button_add}>
+                        <i className="fa fa-plus" style={{ marginLeft: "10px" }}></i>
+                        ایجاد کالا جدید
+                    </button>
                 </div>
                 <table className={styles.product_tabel}>
                     <thead>
@@ -72,7 +87,11 @@ export default function Desktop({ productList }) {
                                             fontSize: "12px"
                                         }}
                                     /></td>
-                                    <td></td>
+                                    <td>
+                                        <div className={styles.wrapper_copy}>
+                                            <li className="fa fa-clone"></li>
+                                        </div>
+                                    </td>
                                 </tr>
                             )
                         })}

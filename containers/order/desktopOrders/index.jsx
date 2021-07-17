@@ -4,7 +4,20 @@ import CustomBadge from '../../../components/custom/customBadge';
 // scss
 import styles from '../../../styles/pages/order/desktopOrders.module.scss';
 
-export default function DesktopOrders({ ordersList }) {
+export default function DesktopOrders({ ordersList, type }) {
+    const statusCompleted = [
+        { value: "", label: "" },
+        { value: "", label: "لغو شده" },
+        { value: "", label: "تحویل داده شده" },
+    ];
+
+    const statusUncompleted = [
+        { value: "", label: "" },
+        { value: "", label: "سفارش آماده" },
+        { value: "", label: "ارسال شده" },
+        { value: "", label: "سفارش در حال آماده سازی" },
+        { value: "", label: "منتظر بررسی" },
+    ];
     return (
         <div className={styles.wrapper}>
             <form className={styles.form_filter}>
@@ -15,8 +28,12 @@ export default function DesktopOrders({ ordersList }) {
                     </label>
                     <label className={styles.filds_label}>وضعیت سفارش<br />
                         <select name="status" className={styles.filds_input}>
-                            <option value="1">در انبار</option>
-                            <option value="1">در انبار</option>
+                            {type === "completed" && statusCompleted.map((value, index) => {
+                                return <option key={index} value={value.label}>{value.label}</option>
+                            })}
+                            {type === "uncompleted" && statusUncompleted.map((value, index) => {
+                                return <option key={index} value={value.label}>{value.label}</option>
+                            })}
                         </select>
                     </label>
                     <label className={styles.filds_label}>تاریخ<br />
