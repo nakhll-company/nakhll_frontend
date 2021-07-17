@@ -179,9 +179,9 @@
 .info-card-btn {
   display: -ms-grid;
   display: grid;
-//   -ms-grid-columns: (minmax(76px, 1fr)) [3];
-//   grid-template-columns: repeat(3, minmax(76px, 1fr));
-//   margin-bottom: 2rem;
+  -ms-grid-columns: (minmax(76px, 1fr)) [3];
+  grid-template-columns: repeat(3, minmax(76px, 1fr));
+  margin-bottom: 2rem;
 }
 
 .info-card-btn-one {
@@ -192,14 +192,14 @@
   border-radius: var(--radius);
   display: -ms-grid;
   display: grid;
-//   -ms-grid-rows: (minmax(33px, 1fr)) [2];
-//   grid-template-rows: repeat(2, minmax(33px, 1fr));
-//   justify-items: center;
-//   -webkit-box-align: center;
-//   -ms-flex-align: center;
-//   align-items: center;
-//   margin-right: 0.7rem;
-//   margin-left: 0.7rem;
+  -ms-grid-rows: (minmax(33px, 1fr)) [2];
+  grid-template-rows: repeat(2, minmax(33px, 1fr));
+  justify-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 0.7rem;
+  margin-left: 0.7rem;
 }
 
 .info-card-btn-one :hover {
@@ -270,11 +270,11 @@
 .left_one {
   display: -ms-grid;
   display: grid;
-//   -ms-grid-columns: (1fr) [2];
-//   grid-template-columns: repeat(2, 1fr);
-//   -ms-grid-rows: (1fr) [2];
-//   grid-template-rows: repeat(2, 1fr);
-//   gap: 18px 22px;
+  -ms-grid-columns: (1fr) [2];
+  grid-template-columns: repeat(2, 1fr);
+  -ms-grid-rows: (1fr) [2];
+  grid-template-rows: repeat(2, 1fr);
+  gap: 18px 22px;
 }
 
 .left_one_1 {
@@ -349,12 +349,12 @@
 .left_three_content {
   display: -ms-grid;
   display: grid;
-//   -ms-grid-columns: (1fr) [2];
-//   grid-template-columns: repeat(2, 1fr);
-//   -ms-grid-rows: (minmax(5.8rem, 1fr)) [2];
-//   grid-template-rows: repeat(2, minmax(5.8rem, 1fr));
-//   margin-top: 3.65rem;
-//   margin-right: 1.85rem;
+  -ms-grid-columns: (1fr) [2];
+  grid-template-columns: repeat(2, 1fr);
+  -ms-grid-rows: (minmax(5.8rem, 1fr)) [2];
+  grid-template-rows: repeat(2, minmax(5.8rem, 1fr));
+  margin-top: 3.65rem;
+  margin-right: 1.85rem;
 }
 
 .left_four {
@@ -377,11 +377,11 @@
 .menu_mobile {
   position: fixed;
   display: none;
-//   -ms-grid-columns: (minmax(0, 1fr)) [5];
-//   grid-template-columns: repeat(5, minmax(0, 1fr));
-//   background: #ffffff;
-//   -webkit-box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.05);
-//   box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.05);
-//   width: 100vw;
-//   bottom: 0;
+  -ms-grid-columns: (minmax(0, 1fr)) [5];
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  background: #ffffff;
+  -webkit-box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.05);
+  width: 100vw;
+  bottom: 0;
 }
