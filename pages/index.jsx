@@ -1,29 +1,17 @@
 // node libraries
-import Head from 'next/head';
+import Head from "next/head";
 // components
-import Layout from '../components/layout/Layout';
+import Layout from "../components/layout/Layout";
 // styles
 import styles from "../styles/pages/dashboard/dashboard.module.scss";
 
-
 /**
  * component dashboard
- * @returns 
+ * @returns
  */
 export default function Home() {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>داشبورد</title>
-        <link
-          rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-        />
-        <meta
-          name="viewport"
-          content="initial-scale=1.0, width=device-width"
-        />
-      </Head>
+    <>
       <div dir="rtl" className={styles.left_one}>
         <div className={styles.left_one_1}>
           <i
@@ -56,7 +44,25 @@ export default function Home() {
         </div>
       </div>
       <div dir="rtl" className={styles.left_two}>
-
+        {/* <Swiper
+          pagination={{ clickable: true }}
+          scrollbar={{ draggable: true }}
+          // spaceBetween={50}
+          slidesPerView={1}
+          navigation
+          onSlideChange={() => console.log("slide change")}
+          onSwiper={(swiper) => console.log(swiper)}
+        >
+          <SwiperSlide>
+            <div style={{ background: "red", height: "269px" }}></div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div style={{ background: "blue", height: "269px" }}></div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div style={{ background: "gold", height: "269px" }}></div>
+          </SwiperSlide>
+        </Swiper> */}
       </div>
       <div dir="rtl" className={styles.left_three}>
         <div className={styles.left_three_head}>
@@ -166,7 +172,7 @@ export default function Home() {
       <div dir="rtl" className={styles.left_five}>
         A5
       </div>
-    </div>
-  )
+    </>
+  );
 }
 Home.Layout = Layout;
