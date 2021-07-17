@@ -1,6 +1,6 @@
 // node libraries
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 // methods
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 // components
@@ -292,7 +292,7 @@ function HomePage() {
                 <hr />
                 {data.factor_post.map((e, index) => {
                   return (
-                    <>
+                    <Fragment key={index}>
                       <div className={styles.purchased_good_contentD}>
                         <h3>{index + 1}</h3>
                         <div
@@ -430,7 +430,7 @@ function HomePage() {
                     </div> */}
                         </div>
                       )}
-                    </>
+                    </Fragment>
                   );
                 })}
               </div>

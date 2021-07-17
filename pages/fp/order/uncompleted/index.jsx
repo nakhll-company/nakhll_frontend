@@ -22,7 +22,7 @@ function Uncompleted({ ordersList, getUncompleted }) {
     }, []);
 
     return (
-        <div>
+        <>
             {width < breakpoint ?
                 <div>
                     <MobileHeader title="سفارشات" type="search" />
@@ -37,7 +37,7 @@ function Uncompleted({ ordersList, getUncompleted }) {
                 </div> :
                 <DesktopOrders ordersList={ordersList} type="uncompleted" />
             }
-        </div>
+        </>
     );
 }
 // export

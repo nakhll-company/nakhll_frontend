@@ -21,7 +21,7 @@ const Product = ({ getProduct, productList }) => {
     }, [getProduct]);
 
     return (
-        <div>
+        <>
             <Head>
                 <title>محصولات</title>
                 <link
@@ -34,7 +34,7 @@ const Product = ({ getProduct, productList }) => {
                 />
             </Head>
             {width < breakpoint ? <Mobile productList={productList} /> : <Desktop productList={productList} />}
-        </div>
+        </>
     );
 };
 // export
