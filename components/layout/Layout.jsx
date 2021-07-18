@@ -266,6 +266,7 @@ function MyLayout({ children, getUserInfo, userInfo }) {
                     style={{ marginLeft: "25px" }}
                     className="fas fa-dollar-sign fa-pestehkerman"
                   ></span>
+                  <h2>مالی</h2>
                 </span>
               </Link>
               <Link activeClassName="selectNav" href="/fp/discount">
@@ -278,7 +279,7 @@ function MyLayout({ children, getUserInfo, userInfo }) {
                     style={{ marginLeft: "18px" }}
                     className="fas fa-percent fa-2x"
                   ></span>
-                  <h2>مالی</h2>
+                  <h2>کدتخفیف</h2>
                 </span>
               </Link>
               <Link activeClassName="selectNav" href="/fp/support">
