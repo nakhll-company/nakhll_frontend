@@ -13,11 +13,11 @@ import { ApiRegister } from "../services/apiRegister/ApiRegister";
  * @returns
  */
 export default function Home() {
-  const [isShow, setIsShow] = useState(false);
-  const [dataApi, setDataApi] = useState({});
+  const [api, setApi] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const _handleRequestApi = async () => {
-      let params = { ali: "hosein", adklsjfkl: "sdfsf" };
+      let params = {};
       let loadData = null;
       let dataUrl = "/app/api/v1/dashboard/pestehkerman/";
       let response = await ApiRegister().apiRequest(
@@ -27,19 +27,20 @@ export default function Home() {
         true,
         params
       );
-      console.log("res uncom :", response);
 
-      // setImages(response);//==> output: {}
-      setDataApi(response);
+      setApi(await response);
     };
+
     _handleRequestApi();
-    console.log("dataApi :>> ", dataApi);
 
     //   // toastSuccessMessage('success');
   }, []);
+
+  console.log("api :>> ", api);
+
   return (
     <>
-      {isShow && (
+      {api && (
         <>
           <div dir="rtl" className={styles.left_one}>
             <div className={styles.left_one_1}>
@@ -47,7 +48,8 @@ export default function Home() {
                 className="fas fa-cart-plus fa-3x"
                 style={{ color: "#007aff" }}
               ></i>
-              <h1>{dataApi.uncompleted_fators}</h1>
+              <h1>{api.uncompleted_fators}</h1>
+
               <h4>سفارش ها تکمیل نشده</h4>
             </div>
             <div className={styles.left_one_1}>
@@ -55,7 +57,7 @@ export default function Home() {
                 className="fas fa-user-clock fa-3x"
                 style={{ color: "#007aff" }}
               ></i>
-              <h1>{dataApi.uncomfirmed_factors}</h1>
+              <h1>{api.uncomfirmed_factors}</h1>
               <h4>سفارش های تاییده نشده</h4>
             </div>
             <div className={styles.left_one_1}>
@@ -63,7 +65,7 @@ export default function Home() {
                 className="far fa-comment-alt fa-3x"
                 style={{ color: "#007aff" }}
               ></i>
-              <h1>{dataApi.unread_comments_count}</h1>
+              <h1>{api.unread_comments_count}</h1>
               <h4>دیدگاه های تازه</h4>
             </div>
             <div className={styles.left_one_1}>
@@ -72,13 +74,13 @@ export default function Home() {
                 style={{ color: "#007aff" }}
               ></i>
               <h1>
-                {dataApi.balance} <span>تومان</span>
+                {api.balance} <span>تومان</span>
               </h1>
               <h4>موجودی حساب </h4>
             </div>
           </div>
           <div dir="rtl" className={styles.left_two}>
-            <Swiper
+            {/* <Swiper
               pagination={{ clickable: true }}
               scrollbar={{ draggable: true }}
               // spaceBetween={50}
@@ -96,7 +98,7 @@ export default function Home() {
               <SwiperSlide>
                 <div style={{ background: "gold", height: "269px" }}></div>
               </SwiperSlide>
-            </Swiper>
+            </Swiper> */}
           </div>
           <div dir="rtl" className={styles.left_three}>
             <div className={styles.left_three_head}>
@@ -111,7 +113,7 @@ export default function Home() {
                     marginLeft: "0.5rem",
                   }}
                 >
-                  {dataApi.active_products}
+                  {api.active_products}
                 </h1>
                 <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
                 <h4 style={{ marginTop: "1rem" }}>کالاهای فعال</h4>
@@ -124,7 +126,7 @@ export default function Home() {
                     marginLeft: "0.5rem",
                   }}
                 >
-                  {dataApi.nearly_outofstock_products}
+                  {api.nearly_outofstock_products}
                 </h1>
                 <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
                 <h4 style={{ marginTop: "1rem" }}>کالا های در حال اتمام</h4>
@@ -137,7 +139,7 @@ export default function Home() {
                     marginLeft: "0.5rem",
                   }}
                 >
-                  {dataApi.inactive_products}
+                  {api.inactive_products}
                 </h1>
                 <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
                 <h4 style={{ marginTop: "1rem" }}>کالاهای غیرفعال</h4>
@@ -150,7 +152,7 @@ export default function Home() {
                     marginLeft: "0.5rem",
                   }}
                 >
-                  {dataApi.outofstock_products}
+                  {api.outofstock_products}
                 </h1>
                 <h3 style={{ display: " inline-block", color: "black" }}>
                   عدد
@@ -172,7 +174,9 @@ export default function Home() {
                     marginLeft: "0.5rem",
                   }}
                 >
-                  {dataApi.current_week_total_sell.amont}
+                  {api.current_week_total_sell &&
+                    api.current_week_total_sell.amont &&
+                    "0"}
                 </h1>
                 <h3 style={{ display: "inline-block", color: "black" }}>
                   تومان
@@ -187,7 +191,7 @@ export default function Home() {
                     marginLeft: "0.5rem",
                   }}
                 >
-                  {dataApi.last_month_total_sell.amont}
+                  {api.last_month_total_sell && api.last_month_total_sell.amont}
                 </h1>
                 <h3 style={{ display: "inline-block", color: "black" }}>
                   تومان
@@ -202,7 +206,9 @@ export default function Home() {
                     marginLeft: "0.5rem",
                   }}
                 >
-                  {dataApi.last_week_total_sell.amont}
+                  {(api.last_week_total_sell &&
+                    api.last_week_total_sell.amont) ||
+                    0}
                 </h1>
                 <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
                 <h4 style={{ marginTop: "1rem" }}>فروش هفته گذشته</h4>
