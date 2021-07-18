@@ -16,16 +16,15 @@ function MyLayout({ children, getUserInfo, userInfo }) {
   const router = useRouter();
   const { width } = useViewport();
   const breakpoint = 620;
-  const firstShop = userInfo.shops[0].slug;
 
   useEffect(() => {
     getUserInfo();
   }, []);
   console.log("user :>> ", userInfo);
-  const [selectShop, setselectShop] = useState(firstShop);
+  const [selectShop, setselectShop] = useState("");
   console.log("selectShop :>> ", selectShop);
+  const [isShowOrder, setisShowOrder] = useState(false);
 
-  router.replace(`/?shop=${selectShop}`);
   return (
     <>
       {router.pathname == "/" && (
@@ -121,7 +120,51 @@ function MyLayout({ children, getUserInfo, userInfo }) {
                   <h2>داشبورد</h2>
                 </span>
               </Link>
-              <Link
+              <button
+                className={styles.btnOrder}
+                onClick={() => {
+                  setisShowOrder(!isShowOrder);
+                }}
+              >
+                {isShowOrder ? (
+                  <>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <h2>سفارش ها</h2>
+                      <span
+                        style={{
+                          fontSize: "16px",
+                          marginRight: "10px",
+                        }}
+                        className="fas fa-chevron-up"
+                      ></span>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <h2> سفارش ها</h2>
+                      <span
+                        style={{
+                          fontSize: "16px",
+                          marginRight: "10px",
+                        }}
+                        className="fas fa-chevron-down"
+                      ></span>
+                    </div>
+                  </>
+                )}
+              </button>
+              {/* <Link
                 // activeClassName="selectNav"
                 href={`/fp/order/?shop=${selectShop}`}
               >
@@ -134,9 +177,44 @@ function MyLayout({ children, getUserInfo, userInfo }) {
                     style={{ marginLeft: "18px" }}
                     className={`fas fa-shopping-basket fa-2x`}
                   ></span>
-                  <h2>سفارشات</h2>
+                  <h2>سفارش ها</h2>
                 </span>
-              </Link>
+              </Link> */}
+              {isShowOrder && (
+                <>
+                  <Link href="/fp/product/list">
+                    <span
+                      className={`${styles.subTitleOrder}   ${
+                        router.pathname == "/fp/product/list"
+                          ? styles.selectNav
+                          : ""
+                      }`}
+                    >
+                      <span
+                        style={{ marginLeft: "18px" }}
+                        className={`fas fa-box-open fa-2x `}
+                      ></span>
+                      <h2>تکمیل نشده</h2>
+                    </span>
+                  </Link>
+                  <Link href="/fp/product/list">
+                    <span
+                      className={`${styles.subTitleOrder}   ${
+                        router.pathname == "/fp/product/list"
+                          ? styles.selectNav
+                          : ""
+                      }`}
+                    >
+                      <span
+                        style={{ marginLeft: "18px" }}
+                        className={`fas fa-box-open fa-2x `}
+                      ></span>
+                      <h2>تایید نشده</h2>
+                    </span>
+                  </Link>
+                </>
+              )}
+
               <Link activeClassName="selectNav" href="/fp/product/list">
                 <span
                   className={`${styles.menu_card_item}   ${
@@ -200,7 +278,6 @@ function MyLayout({ children, getUserInfo, userInfo }) {
                     style={{ marginLeft: "18px" }}
                     className="fas fa-percent fa-2x"
                   ></span>
-                  pestehkerman
                 </span>
               </Link>
               <Link activeClassName="selectNav" href="/fp/support">
