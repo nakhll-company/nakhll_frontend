@@ -19,22 +19,25 @@ const Product = ({ getProduct, productList }) => {
     productList.length === 0 && getProduct();
   }, [getProduct]);
 
+  useEffect(() => {
+    productList.length === 0 && getProduct();
+  }, [getProduct]);
+
   return (
-    <div>
+    <>
       <Head>
         <title>محصولات</title>
         <link
           rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
         />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta
+          name="viewport"
+          content="initial-scale=1.0, width=device-width"
+        />
       </Head>
-      {width > breakpoint ? (
-        <Mobile productList={productList} />
-      ) : (
-        <Desktop productList={productList} />
-      )}
-    </div>
+      {width < breakpoint ? <Mobile productList={productList} /> : <Desktop productList={productList} />}
+    </>
   );
 };
 // export

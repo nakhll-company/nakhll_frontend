@@ -22,7 +22,7 @@ function Completed({ ordersList, getCompleted }) {
     }, []);
 
     return (
-        <div>
+        <>
             {width < breakpoint ?
                 <div>
                     <MobileHeader title="سفارشات" type="search" />
@@ -37,7 +37,7 @@ function Completed({ ordersList, getCompleted }) {
                 </div> :
                 <DesktopOrders ordersList={ordersList} type="completed" />
             }
-        </div>
+        </>
     );
 }
 // export
