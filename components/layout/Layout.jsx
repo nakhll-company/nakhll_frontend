@@ -33,7 +33,7 @@ function MyLayout({ children, getUserInfo, userInfo }) {
           rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
           integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
         />
       </Head>
       {router.pathname == "/" && (
@@ -191,8 +191,8 @@ function MyLayout({ children, getUserInfo, userInfo }) {
                   <Link href="/fp/product/list">
                     <span
                       className={`${styles.subTitleOrder}   ${router.pathname == "/fp/product/list"
-                          ? styles.selectNav
-                          : ""
+                        ? styles.selectNav
+                        : ""
                         }`}
                     >
                       <span
@@ -205,8 +205,8 @@ function MyLayout({ children, getUserInfo, userInfo }) {
                   <Link href="/fp/product/list">
                     <span
                       className={`${styles.subTitleOrder}   ${router.pathname == "/fp/product/list"
-                          ? styles.selectNav
-                          : ""
+                        ? styles.selectNav
+                        : ""
                         }`}
                     >
                       <span
