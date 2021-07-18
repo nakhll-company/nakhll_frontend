@@ -15,28 +15,28 @@ import { ApiRegister } from "../services/apiRegister/ApiRegister";
 export default function Home() {
   const [isShow, setIsShow] = useState(false);
   const [dataApi, setDataApi] = useState({});
-  useEffect(() => {
-    const _handleRequestApi = async () => {
-      let params = { ali: "hosein", adklsjfkl: "sdfsf" };
-      let loadData = null;
-      let dataUrl = "/app/api/v1/dashboard/pestehkerman/";
-      let response = await ApiRegister().apiRequest(
-        loadData,
-        "get",
-        dataUrl,
-        true,
-        params
-      );
-      console.log("res uncom :", response);
+  // useEffect(() => {
+  //   const _handleRequestApi = async () => {
+  //     let params = { ali: "hosein", adklsjfkl: "sdfsf" };
+  //     let loadData = null;
+  //     let dataUrl = "/app/api/v1/dashboard/pestehkerman/";
+  //     let response = await ApiRegister().apiRequest(
+  //       loadData,
+  //       "get",
+  //       dataUrl,
+  //       true,
+  //       params
+  //     );
+  //     console.log("res uncom :", response);
 
-      // setImages(response);//==> output: {}
-      setDataApi(response);
-    };
-    _handleRequestApi();
-    console.log("dataApi :>> ", dataApi);
+  //     // setImages(response);//==> output: {}
+  //     setDataApi(response);
+  //   };
+  //   _handleRequestApi();
+  //   console.log("dataApi :>> ", dataApi);
 
-    //   // toastSuccessMessage('success');
-  }, []);
+  //   //   // toastSuccessMessage('success');
+  // }, []);
   return (
     <>
       {isShow && (
