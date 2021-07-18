@@ -13,8 +13,9 @@ import { ApiRegister } from "../services/apiRegister/ApiRegister";
  * @returns
  */
 export default function Home() {
+
   const [api, setApi] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const _handleRequestApi = async () => {
       let params = {};
@@ -33,11 +34,7 @@ export default function Home() {
 
     _handleRequestApi();
 
-    //   // toastSuccessMessage('success');
   }, []);
-
-  console.log("api :>> ", api);
-  // console.log("userInfo :>> ", userInfo);
 
   return (
     <>

@@ -13,6 +13,7 @@ import { getUserInfo } from "../../redux/actions/user/getUserInfo";
 import styles from "../../styles/components/layout/layout.module.scss";
 
 function MyLayout({ children, getUserInfo, userInfo }) {
+
   const router = useRouter();
   const { width } = useViewport();
   const breakpoint = 620;
@@ -21,11 +22,9 @@ function MyLayout({ children, getUserInfo, userInfo }) {
   useEffect(() => {
     getUserInfo();
   }, []);
-  console.log("user :>> ", userInfo);
-  const [selectShop, setselectShop] = useState(firstShop);
-  console.log("selectShop :>> ", selectShop);
 
-  router.replace(`/?shop=${selectShop}`);
+  const [selectShop, setselectShop] = useState(firstShop);
+
   return (
     <>
       {router.pathname == "/" && (
@@ -53,11 +52,10 @@ function MyLayout({ children, getUserInfo, userInfo }) {
         </header>
       )}
       <div
-        className={`${
-          width < breakpoint && router.pathname !== "/"
+        className={`${width < breakpoint && router.pathname !== "/"
             ? styles.wrapperProduct
             : styles.wrapper
-        }`}
+          }`}
       >
         {/* <!-- Right  SideBar--> */}
         {!(width < breakpoint && router.pathname !== "/") && (
@@ -110,9 +108,8 @@ function MyLayout({ children, getUserInfo, userInfo }) {
             <section className={styles.menu_card}>
               <Link href={`/?shop=${selectShop}`}>
                 <span
-                  className={`${styles.menu_card_item}   ${
-                    router.pathname == "/" ? styles.selectNav : ""
-                  }`}
+                  className={`${styles.menu_card_item}   ${router.pathname == "/" ? styles.selectNav : ""
+                    }`}
                 >
                   <span
                     style={{ marginLeft: "18px" }}
@@ -126,9 +123,8 @@ function MyLayout({ children, getUserInfo, userInfo }) {
                 href={`/fp/order/?shop=${selectShop}`}
               >
                 <span
-                  className={`${styles.menu_card_item}   ${
-                    router.pathname == "/fp/order" ? styles.selectNav : ""
-                  }`}
+                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/order" ? styles.selectNav : ""
+                    }`}
                 >
                   <span
                     style={{ marginLeft: "18px" }}
@@ -139,11 +135,10 @@ function MyLayout({ children, getUserInfo, userInfo }) {
               </Link>
               <Link activeClassName="selectNav" href="/fp/product/list">
                 <span
-                  className={`${styles.menu_card_item}   ${
-                    router.pathname == "/fp/product/list"
+                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/product/list"
                       ? styles.selectNav
                       : ""
-                  }`}
+                    }`}
                 >
                   <span
                     style={{ marginLeft: "18px" }}
@@ -154,9 +149,8 @@ function MyLayout({ children, getUserInfo, userInfo }) {
               </Link>
               <Link activeClassName="selectNav" href="/fp/customer">
                 <span
-                  className={`${styles.menu_card_item}   ${
-                    router.pathname == "/fp/customer" ? styles.selectNav : ""
-                  }`}
+                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/customer" ? styles.selectNav : ""
+                    }`}
                 >
                   <span
                     style={{ marginLeft: "18px" }}
@@ -167,9 +161,8 @@ function MyLayout({ children, getUserInfo, userInfo }) {
               </Link>
               <Link activeClassName="selectNav" href="/fp/comments">
                 <span
-                  className={`${styles.menu_card_item}   ${
-                    router.pathname == "/fp/comments" ? styles.selectNav : ""
-                  }`}
+                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/comments" ? styles.selectNav : ""
+                    }`}
                 >
                   <span
                     style={{ marginLeft: "18px" }}
@@ -180,9 +173,8 @@ function MyLayout({ children, getUserInfo, userInfo }) {
               </Link>
               <Link activeClassName="selectNav" href="/fp/financial">
                 <span
-                  className={`${styles.menu_card_item}   ${
-                    router.pathname == "/fp/financial" ? styles.selectNav : ""
-                  }`}
+                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/financial" ? styles.selectNav : ""
+                    }`}
                 >
                   <span
                     style={{ marginLeft: "25px" }}
@@ -192,9 +184,8 @@ function MyLayout({ children, getUserInfo, userInfo }) {
               </Link>
               <Link activeClassName="selectNav" href="/fp/discount">
                 <span
-                  className={`${styles.menu_card_item}   ${
-                    router.pathname == "/fp/discount" ? styles.selectNav : ""
-                  }`}
+                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/discount" ? styles.selectNav : ""
+                    }`}
                 >
                   <span
                     style={{ marginLeft: "18px" }}
@@ -205,9 +196,8 @@ function MyLayout({ children, getUserInfo, userInfo }) {
               </Link>
               <Link activeClassName="selectNav" href="/fp/support">
                 <span
-                  className={`${styles.menu_card_item}   ${
-                    router.pathname == "/fp/support" ? styles.selectNav : ""
-                  }`}
+                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/support" ? styles.selectNav : ""
+                    }`}
                 >
                   <span
                     style={{ marginLeft: "18px" }}
@@ -221,9 +211,8 @@ function MyLayout({ children, getUserInfo, userInfo }) {
         )}
         {/* <!-- Left --> */}
         <div
-          className={`${
-            router.pathname == "/" ? styles.left : styles.leftProduct
-          }`}
+          className={`${router.pathname == "/" ? styles.left : styles.leftProduct
+            }`}
         >
           {children}
         </div>
