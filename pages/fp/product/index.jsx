@@ -19,10 +19,6 @@ const Product = ({ getProduct, productList }) => {
     productList.length === 0 && getProduct();
   }, [getProduct]);
 
-  useEffect(() => {
-    productList.length === 0 && getProduct();
-  }, [getProduct]);
-
   return (
     <>
       <Head>
