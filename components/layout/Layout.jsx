@@ -278,6 +278,7 @@ function MyLayout({ children, getUserInfo, userInfo }) {
                     style={{ marginLeft: "18px" }}
                     className="fas fa-percent fa-2x"
                   ></span>
+                  <h2>مالی</h2>
                 </span>
               </Link>
               <Link activeClassName="selectNav" href="/fp/support">
