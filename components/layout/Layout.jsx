@@ -17,13 +17,12 @@ function MyLayout({ children, getUserInfo, userInfo }) {
   const router = useRouter();
   const { width } = useViewport();
   const breakpoint = 620;
-  const firstShop = userInfo.shops[0].slug;
 
   useEffect(() => {
     getUserInfo();
   }, []);
 
-  const [selectShop, setselectShop] = useState(firstShop);
+  const [selectShop, setselectShop] = useState("");
 
   return (
     <>
@@ -53,8 +52,8 @@ function MyLayout({ children, getUserInfo, userInfo }) {
       )}
       <div
         className={`${width < breakpoint && router.pathname !== "/"
-            ? styles.wrapperProduct
-            : styles.wrapper
+          ? styles.wrapperProduct
+          : styles.wrapper
           }`}
       >
         {/* <!-- Right  SideBar--> */}
@@ -136,8 +135,8 @@ function MyLayout({ children, getUserInfo, userInfo }) {
               <Link activeClassName="selectNav" href="/fp/product/list">
                 <span
                   className={`${styles.menu_card_item}   ${router.pathname == "/fp/product/list"
-                      ? styles.selectNav
-                      : ""
+                    ? styles.selectNav
+                    : ""
                     }`}
                 >
                   <span

@@ -16,25 +16,25 @@ export default function Home() {
 
   const [api, setApi] = useState({});
 
-  useEffect(() => {
-    const _handleRequestApi = async () => {
-      let params = {};
-      let loadData = null;
-      let dataUrl = "/app/api/v1/dashboard/pestehkerman/";
-      let response = await ApiRegister().apiRequest(
-        loadData,
-        "get",
-        dataUrl,
-        true,
-        params
-      );
+  // useEffect(() => {
+  //   const _handleRequestApi = async () => {
+  //     let params = {};
+  //     let loadData = null;
+  //     let dataUrl = "/app/api/v1/dashboard/pestehkerman/";
+  //     let response = await ApiRegister().apiRequest(
+  //       loadData,
+  //       "get",
+  //       dataUrl,
+  //       true,
+  //       params
+  //     );
 
-      setApi(await response);
-    };
+  //     setApi(await response);
+  //   };
 
-    _handleRequestApi();
+  //   _handleRequestApi();
 
-  }, []);
+  // }, []);
 
   return (
     <>
