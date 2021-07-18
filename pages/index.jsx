@@ -37,6 +37,7 @@ export default function Home() {
   }, []);
 
   console.log("api :>> ", api);
+  // console.log("userInfo :>> ", userInfo);
 
   return (
     <>
