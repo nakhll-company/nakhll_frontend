@@ -1,0 +1,53 @@
+.twoCol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 41px;
+    margin-top: 25px;
+    .inputWidRtl {
+        height: 45px;
+        width: 100%;
+        background: #ffffff;
+        border: 1px solid #e0e6e9;
+        box-sizing: border-box;
+        border-radius: 5px;
+        font-size: 15px;
+        color: #364254;
+        padding: 11px;
+        display: flex;
+        justify-content: space-between;
+        button {
+            border: 0;
+            background-color: #fff;
+        }
+        input {
+            border: 0;
+        }
+        input:focus {
+            outline: 0;
+        }
+        .center {
+            display: flex;
+            h4 {
+                color: #364254;
+                font-weight: bold;
+                font-size: 15px;
+            }
+            input {
+                width: 40px;
+                height: 30px;
+                font-size: 15px;
+            }
+        }
+    }
+    .explain {
+        align-items: center;
+        text-align: justify;
+        font-family: IRANSans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 150%;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+}
