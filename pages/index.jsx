@@ -5,173 +5,215 @@ import Layout from "../components/layout/Layout";
 // styles
 import styles from "../styles/pages/dashboard/dashboard.module.scss";
 
+// Hook
+import { useEffect, useState } from "react";
+import { ApiRegister } from "../services/apiRegister/ApiRegister";
 /**
  * component dashboard
  * @returns
  */
 export default function Home() {
+  const [isShow, setIsShow] = useState(false);
+  const [dataApi, setDataApi] = useState({});
+  useEffect(() => {
+    const _handleRequestApi = async () => {
+      let params = { ali: "hosein", adklsjfkl: "sdfsf" };
+      let loadData = null;
+      let dataUrl = "/app/api/v1/dashboard/pestehkerman/";
+      let response = await ApiRegister().apiRequest(
+        loadData,
+        "get",
+        dataUrl,
+        true,
+        params
+      );
+      console.log("res uncom :", response);
+
+      // setImages(response);//==> output: {}
+      setDataApi(response);
+    };
+    _handleRequestApi();
+    console.log("dataApi :>> ", dataApi);
+
+    //   // toastSuccessMessage('success');
+  }, []);
   return (
     <>
-      <div dir="rtl" className={styles.left_one}>
-        <div className={styles.left_one_1}>
-          <i
-            className="fas fa-cart-plus fa-3x"
-            style={{ color: "#007aff" }}
-          ></i>
-          <h1> 8</h1>
-          <h4>سفارش ها تکمیل نشده</h4>
-        </div>
-        <div className={styles.left_one_1}>
-          <i
-            className="fas fa-user-clock fa-3x"
-            style={{ color: "#007aff" }}
-          ></i>
-          <h1>8</h1>
-          <h4>سفارش ها تکمیل نشده</h4>
-        </div>
-        <div className={styles.left_one_1}>
-          <i
-            className="far fa-comment-alt fa-3x"
-            style={{ color: "#007aff" }}
-          ></i>
-          <h1>8</h1>
-          <h4>سفارش ها تکمیل نشده</h4>
-        </div>
-        <div className={styles.left_one_1}>
-          <i className="fas fa-wallet fa-3x" style={{ color: "#007aff" }}></i>
-          <h1>8</h1>
-          <h4>سفارش ها تکمیل نشده</h4>
-        </div>
-      </div>
-      <div dir="rtl" className={styles.left_two}>
-        {/* <Swiper
-          pagination={{ clickable: true }}
-          scrollbar={{ draggable: true }}
-          // spaceBetween={50}
-          slidesPerView={1}
-          navigation
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
-        >
-          <SwiperSlide>
-            <div style={{ background: "red", height: "269px" }}></div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div style={{ background: "blue", height: "269px" }}></div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div style={{ background: "gold", height: "269px" }}></div>
-          </SwiperSlide>
-        </Swiper> */}
-      </div>
-      <div dir="rtl" className={styles.left_three}>
-        <div className={styles.left_three_head}>
-          <h3 style={{ margin: "1.5rem" }}>وضعیت محصول</h3>
-        </div>
-        <div className={styles.left_three_content}>
-          <div className="">
-            <h1
-              style={{
-                display: "inline-block",
-                color: " black",
-                marginLeft: "0.5rem",
-              }}
-            >
-              8
-            </h1>
-            <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
-            <h4 style={{ marginTop: "1rem" }}>کالاهای فعال</h4>
+      {isShow && (
+        <>
+          <div dir="rtl" className={styles.left_one}>
+            <div className={styles.left_one_1}>
+              <i
+                className="fas fa-cart-plus fa-3x"
+                style={{ color: "#007aff" }}
+              ></i>
+              <h1>{dataApi.uncompleted_fators}</h1>
+              <h4>سفارش ها تکمیل نشده</h4>
+            </div>
+            <div className={styles.left_one_1}>
+              <i
+                className="fas fa-user-clock fa-3x"
+                style={{ color: "#007aff" }}
+              ></i>
+              <h1>{dataApi.uncomfirmed_factors}</h1>
+              <h4>سفارش های تاییده نشده</h4>
+            </div>
+            <div className={styles.left_one_1}>
+              <i
+                className="far fa-comment-alt fa-3x"
+                style={{ color: "#007aff" }}
+              ></i>
+              <h1>{dataApi.unread_comments_count}</h1>
+              <h4>دیدگاه های تازه</h4>
+            </div>
+            <div className={styles.left_one_1}>
+              <i
+                className="fas fa-wallet fa-3x"
+                style={{ color: "#007aff" }}
+              ></i>
+              <h1>
+                {dataApi.balance} <span>تومان</span>
+              </h1>
+              <h4>موجودی حساب </h4>
+            </div>
           </div>
-          <div className="">
-            <h1
-              style={{
-                display: "inline-block",
-                color: "black",
-                marginLeft: "0.5rem",
-              }}
+          <div dir="rtl" className={styles.left_two}>
+            <Swiper
+              pagination={{ clickable: true }}
+              scrollbar={{ draggable: true }}
+              // spaceBetween={50}
+              slidesPerView={1}
+              navigation
+              onSlideChange={() => console.log("slide change")}
+              onSwiper={(swiper) => console.log(swiper)}
             >
-              0
-            </h1>
-            <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
-            <h4 style={{ marginTop: "1rem" }}>کالا های در حال اتمام</h4>
+              <SwiperSlide>
+                <div style={{ background: "red", height: "269px" }}></div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div style={{ background: "blue", height: "269px" }}></div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div style={{ background: "gold", height: "269px" }}></div>
+              </SwiperSlide>
+            </Swiper>
           </div>
-          <div className="">
-            <h1
-              style={{
-                display: "inline-block",
-                color: "black",
-                marginLeft: "0.5rem",
-              }}
-            >
-              0
-            </h1>
-            <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
-            <h4 style={{ marginTop: "1rem" }}>کالاهای غیرفعال</h4>
+          <div dir="rtl" className={styles.left_three}>
+            <div className={styles.left_three_head}>
+              <h3 style={{ margin: "1.5rem" }}>وضعیت محصول</h3>
+            </div>
+            <div className={styles.left_three_content}>
+              <div className="">
+                <h1
+                  style={{
+                    display: "inline-block",
+                    color: " black",
+                    marginLeft: "0.5rem",
+                  }}
+                >
+                  {dataApi.active_products}
+                </h1>
+                <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
+                <h4 style={{ marginTop: "1rem" }}>کالاهای فعال</h4>
+              </div>
+              <div className="">
+                <h1
+                  style={{
+                    display: "inline-block",
+                    color: "black",
+                    marginLeft: "0.5rem",
+                  }}
+                >
+                  {dataApi.nearly_outofstock_products}
+                </h1>
+                <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
+                <h4 style={{ marginTop: "1rem" }}>کالا های در حال اتمام</h4>
+              </div>
+              <div className="">
+                <h1
+                  style={{
+                    display: "inline-block",
+                    color: "black",
+                    marginLeft: "0.5rem",
+                  }}
+                >
+                  {dataApi.inactive_products}
+                </h1>
+                <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
+                <h4 style={{ marginTop: "1rem" }}>کالاهای غیرفعال</h4>
+              </div>
+              <div className="">
+                <h1
+                  style={{
+                    display: "inline-block",
+                    color: " black",
+                    marginLeft: "0.5rem",
+                  }}
+                >
+                  {dataApi.outofstock_products}
+                </h1>
+                <h3 style={{ display: " inline-block", color: "black" }}>
+                  عدد
+                </h3>
+                <h4 style={{ marginTop: "1rem" }}>کالاهای ناموجود</h4>
+              </div>
+            </div>
           </div>
-          <div className="">
-            <h1
-              style={{
-                display: "inline-block",
-                color: " black",
-                marginLeft: "0.5rem",
-              }}
-            >
-              0
-            </h1>
-            <h3 style={{ display: " inline-block", color: "black" }}>عدد</h3>
-            <h4 style={{ marginTop: "1rem" }}>کالاهای ناموجود</h4>
+          <div dir="rtl" className={styles.left_three}>
+            <div className={styles.left_three_head}>
+              <h3 style={{ margin: "1.5rem" }}>وضعیت فروش</h3>
+            </div>
+            <div className={styles.left_three_content}>
+              <div className="">
+                <h1
+                  style={{
+                    display: "inline-block",
+                    color: " black",
+                    marginLeft: "0.5rem",
+                  }}
+                >
+                  {dataApi.current_week_total_sell.amont}
+                </h1>
+                <h3 style={{ display: "inline-block", color: "black" }}>
+                  تومان
+                </h3>
+                <h4 style={{ marginTop: "1rem" }}>فروش هفته جاری</h4>
+              </div>
+              <div className="">
+                <h1
+                  style={{
+                    display: " inline-block",
+                    color: "black",
+                    marginLeft: "0.5rem",
+                  }}
+                >
+                  {dataApi.last_month_total_sell.amont}
+                </h1>
+                <h3 style={{ display: "inline-block", color: "black" }}>
+                  تومان
+                </h3>
+                <h4 style={{ marginTop: "1rem" }}>فروش ماه گذشته</h4>
+              </div>
+              <div className="">
+                <h1
+                  style={{
+                    display: "inline-block",
+                    color: "black",
+                    marginLeft: "0.5rem",
+                  }}
+                >
+                  {dataApi.last_week_total_sell.amont}
+                </h1>
+                <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
+                <h4 style={{ marginTop: "1rem" }}>فروش هفته گذشته</h4>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div dir="rtl" className={styles.left_three}>
-        <div className={styles.left_three_head}>
-          <h3 style={{ margin: "1.5rem" }}>وضعیت فروش</h3>
-        </div>
-        <div className={styles.left_three_content}>
-          <div className="">
-            <h1
-              style={{
-                display: "inline-block",
-                color: " black",
-                marginLeft: "0.5rem",
-              }}
-            >
-              8,000,000
-            </h1>
-            <h3 style={{ display: "inline-block", color: "black" }}>تومان</h3>
-            <h4 style={{ marginTop: "1rem" }}>فروش هفته جاری</h4>
+          <div dir="rtl" className={styles.left_five}>
+            A5
           </div>
-          <div className="">
-            <h1
-              style={{
-                display: " inline-block",
-                color: "black",
-                marginLeft: "0.5rem",
-              }}
-            >
-              8,000,000
-            </h1>
-            <h3 style={{ display: "inline-block", color: "black" }}>تومان</h3>
-            <h4 style={{ marginTop: "1rem" }}>فروش ماه گذشته</h4>
-          </div>
-          <div className="">
-            <h1
-              style={{
-                display: "inline-block",
-                color: "black",
-                marginLeft: "0.5rem",
-              }}
-            >
-              8,000,000
-            </h1>
-            <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
-            <h4 style={{ marginTop: "1rem" }}>فروش هفته گذشته</h4>
-          </div>
-        </div>
-      </div>
-      <div dir="rtl" className={styles.left_five}>
-        A5
-      </div>
+        </>
+      )}
     </>
   );
 }
