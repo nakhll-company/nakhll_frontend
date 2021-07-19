@@ -12,14 +12,14 @@ import DesktopOrders from '../../../../containers/order/desktopOrders';
 import { getCompleted } from '../../../../redux/actions/orders/getCompleted';
 import { mapState } from '../../../../containers/order/methods/mapState';
 
-function Completed({ ordersList, getCompleted }) {
+function Completed({ ordersList, activeHojreh, getCompleted }) {
 
     const { width } = useViewport();
     const breakpoint = 620;
 
     useEffect(() => {
-        getCompleted();
-    }, []);
+        activeHojreh.length > 0 && getCompleted(activeHojreh);
+    }, [activeHojreh]);
 
     return (
         <>

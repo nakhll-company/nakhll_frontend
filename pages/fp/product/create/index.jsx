@@ -39,7 +39,9 @@ const HomePage = () => {
           {({ values, errors, touched }) => (
             <Form>
               <Field type="input" name="name" placeholder="nameeee"></Field>
-              {touched.name && errors.name && <div className={styles.error}>{errors.name}</div>}
+              {touched.name && errors.name && (
+                <div className={styles.error}>{errors.name}</div>
+              )}
               <small>{errors.name}</small>
               <Field type="input" name="email" placeholder="Email"></Field>
               <Field name="isMarried" type="checkbox" />

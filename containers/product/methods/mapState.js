@@ -1,5 +1,6 @@
-export function mapState({ Product }) {
+export function mapState({ Product, User }) {
     return {
         productList: Product.productList,
+        activeHojreh: User.activeHojreh,
     }
 }

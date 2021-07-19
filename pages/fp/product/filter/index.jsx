@@ -8,6 +8,7 @@ import MobileHeader from '../../../../components/mobileHeader';
 import Layout from '../../../../components/layout/Layout';
 // methods
 import { getProduct } from '../../../../redux/actions/product/getProduct';
+import { mapState } from '../../../../containers/product/methods/mapState';
 // scss
 import styles from '../../../../styles/pages/product/filter.module.scss';
 /**
@@ -15,7 +16,7 @@ import styles from '../../../../styles/pages/product/filter.module.scss';
  * @param
  * @returns void
  */
-const FilterProduct = ({ getProduct }) => {
+const FilterProduct = ({ getProduct, activeHojreh }) => {
 
     let [filterData, setFilterData] = useState({
         price_from: 0,
@@ -37,7 +38,7 @@ const FilterProduct = ({ getProduct }) => {
                     <form id="formFilter" className={styles.form} onSubmit={(event) => {
                         event.preventDefault();
                         let product_status = document.querySelector('input[type=radio]:checked').value;
-                        getProduct(product_status, filterData.price_from, filterData.price_to, filterData.inventory_from, filterData.inventory_to, "");
+                        getProduct(activeHojreh, product_status, filterData.price_from, filterData.price_to, filterData.inventory_from, filterData.inventory_to, "");
                         router.back();
                     }}>
                         <div className={styles.form_card}>
@@ -160,6 +161,6 @@ const FilterProduct = ({ getProduct }) => {
     );
 }
 // export
-const connector = connect(null, { getProduct });
+const connector = connect(mapState, { getProduct });
 export default connector(FilterProduct);
 FilterProduct.Layout = Layout;

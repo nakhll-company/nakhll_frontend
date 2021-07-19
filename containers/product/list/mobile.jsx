@@ -12,7 +12,7 @@ import Edit from '../edit';
 // styles
 import styles from "../../../styles/pages/product/mobileList.module.scss";
 
-const MobileList = ({ productList }) => {
+const MobileList = ({ productList, activeHojreh }) => {
 
     let [showModalSort, setShowModalSort] = useState(false);
     let [showModalEdit, setShowModalEdit] = useState(false);
@@ -21,21 +21,24 @@ const MobileList = ({ productList }) => {
         <div className={styles.wrapper}>
             <MobileHeader title="لیست محصولات" type="search" />
             <div className={styles.product_header}>
-                <Link href={`/fp/product/list/filter`}>
+                <Link href={`/fp/product/filter`}>
                     <a className={styles.product_header_link}>
-                        <Image src="/image/product/filter.svg" alt="filter" className={styles.product_header_link_icon} width="15" height="15" />
+                        {/* <Image src="/image/product/filter.svg" alt="filter" className={styles.product_header_link_icon} width="15" height="15" /> */}
+                        <i class="fa fa-sliders" aria-hidden="true"></i>
                         فیلتر
                     </a>
                 </Link>
                 <span className={styles.product_header_link} onClick={() => {
                     setShowModalSort(showModal => !showModal);
                 }}>
-                    <Image src="/image/product/sort.svg" alt="sort" className={styles.product_header_link_icon} width="15" height="15" />
+                    {/* <Image src="/image/product/sort.svg" alt="sort" className={styles.product_header_link_icon} width="15" height="15" /> */}
+                    <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>
                     ترتیب نمایش</span>
                 <span className={styles.product_header_link} onClick={() => {
                     setShowModalEdit(showModal => !showModal);
                 }}>
-                    <Image src="/image/product/edit.svg" alt="edit" className={styles.product_header_link_icon} width="15" height="15" />
+                    {/* <Image src="/image/product/edit.svg" alt="edit" className={styles.product_header_link_icon} width="15" height="15" /> */}
+                    <i class="fa fa-list" aria-hidden="true"></i>
                     ویرایش گروهی</span>
             </div>
             {productList.length > 0 ? productList.map((value, index) => {
@@ -80,7 +83,7 @@ const MobileList = ({ productList }) => {
             }) : <h3 style={{ textAlign: "center" }}>موردی برای نمایش وجود ندارد</h3>}
             <CustomModal show={showModalSort} onClose={() => {
                 setShowModalSort(showModal => !showModal);
-            }} content={<Sort setShowModalSort={setShowModalSort} />} />
+            }} content={<Sort setShowModalSort={setShowModalSort} activeHojreh={activeHojreh} />} />
             <CustomModal show={showModalEdit} onClose={() => {
                 setShowModalEdit(showModal => !showModal);
             }} content={<Edit />} />

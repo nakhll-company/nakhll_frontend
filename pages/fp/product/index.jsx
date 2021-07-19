@@ -11,17 +11,13 @@ import Desktop from "../../../containers/product/list/desktop";
 import { getProduct } from "../../../redux/actions/product/getProduct";
 import { mapState } from "../../../containers/product/methods/mapState";
 
-const Product = ({ getProduct, productList }) => {
+const Product = ({ getProduct, productList, activeHojreh }) => {
   const { width } = useViewport();
   const breakpoint = 620;
 
   useEffect(() => {
-    productList.length === 0 && getProduct();
-  }, [getProduct]);
-
-  useEffect(() => {
-    productList.length === 0 && getProduct();
-  }, [getProduct]);
+    productList.length === 0 && getProduct(activeHojreh);
+  }, [getProduct, activeHojreh]);
 
   return (
     <>
@@ -36,7 +32,7 @@ const Product = ({ getProduct, productList }) => {
           content="initial-scale=1.0, width=device-width"
         />
       </Head>
-      {width < breakpoint ? <Mobile productList={productList} /> : <Desktop productList={productList} />}
+      {width < breakpoint ? <Mobile productList={productList} activeHojreh={activeHojreh} /> : <Desktop productList={productList} activeHojreh={activeHojreh} />}
     </>
   );
 };

@@ -74,6 +74,16 @@
 }
 
 @media only screen and (min-width: 600px) {
+    // wrapper
+.mainWrapper{
+    width: 100%;
+    height: 1000px;
+    position: absolute;
+    background-color: #F8F8F8;
+    top: 0;
+    left: 0;
+    overflow-y: hidden !important;
+}
   // form
 .form{
     position: absolute;
