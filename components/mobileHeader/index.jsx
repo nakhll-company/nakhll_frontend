@@ -19,15 +19,15 @@ function MobileHeader({
                 // <Image src="/image/mobileHeader/back.svg" alt="header icon" width="17" height="19"
                 //     onClick={() => router.back()}
                 // />
-                <i class="fa fa-arrow-left" aria-hidden="true" onClick={() => router.back()}></i>
+                <i className="fa fa-arrow-left" aria-hidden="true" onClick={() => router.back()}></i>
             }
             <span className={styles.header_span}>{title}</span>
             {type === "search" &&
-                <i class="fa fa-search" aria-hidden="true"></i>
+                <i className="fa fa-search" aria-hidden="true"></i>
                 // <Image src="/image/mobileHeader/search.svg" alt="header icon" width="18" height="18" />
             }
             {type === "close" &&
-                <i class="fa fa-times" aria-hidden="true"></i>
+                <i className="fa fa-times" aria-hidden="true"></i>
                 // <Image src="/image/mobileHeader/close.svg" alt="header icon" width="12" height="19" />
             }
             {type === "bascket" && <Image src="/image/mobileHeader/bascket.svg" alt="header icon" width="25" height="25" />}

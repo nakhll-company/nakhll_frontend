@@ -26,8 +26,9 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
 
   const [selectShop, setselectShop] = useState("");
   const [isShowOrder, setisShowOrder] = useState(false);
-
-  Object.keys(userInfo).length > 0 && getActiveHojreh(userInfo.shops[0].slug);
+  if (selectShop.length === 0) {
+    Object.keys(userInfo).length > 0 && getActiveHojreh(userInfo.shops[0].slug);
+  }
 
   return (
     <>
@@ -223,9 +224,9 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                 </>
               )}
 
-              <Link activeClassName="selectNav" href="/fp/product/list">
+              <Link activeClassName="selectNav" href="/fp/product">
                 <span
-                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/product/list"
+                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/product"
                     ? styles.selectNav
                     : ""
                     }`}

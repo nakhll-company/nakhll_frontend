@@ -24,19 +24,19 @@ const MobileOrders = ({ type, ordersList, getUncompleted, getCompleted, activeHo
     return (
         <div className={styles.wrapper}>
 
-            <div className={styles.header}>
+            {/* <div className={styles.header}>
                 <Link href={`/fp/product/list/filter`}>
                     <a className={styles.header_link}>
-                        {/* <Image src="/image/product/filter.svg" alt="filter" className={styles.header_link_icon} width="15" height="15" /> */}
-                        <i class="fa fa-sliders" aria-hidden="true"></i>
+                        <Image src="/image/product/filter.svg" alt="filter" className={styles.header_link_icon} width="15" height="15" />
+                        <i className="fa fa-sliders" aria-hidden="true"></i>
                         فیلترها
                     </a>
                 </Link>
                 <span className={styles.header_link}>
-                    {/* <Image src="/image/product/sort.svg" alt="sort" className={styles.header_link_icon} width="15" height="15" /> */}
-                    <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>
+                    <Image src="/image/product/sort.svg" alt="sort" className={styles.header_link_icon} width="15" height="15" />
+                    <i className="fa fa-sort-amount-asc" aria-hidden="true"></i>
                     ترتیب نمایش</span>
-            </div>
+            </div> */}
             {ordersList.length > 0 ? ordersList.map((value, index) => {
                 return (
                     <div key={index} className={styles.card}>

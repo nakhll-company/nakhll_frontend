@@ -3,7 +3,7 @@ import Axios from 'axios';
 //=================================================================\\
 export const instanceAxiosWithOutToken = Axios.create({
     // withCredentials: true,
-    baseURL: "https://nakhll.com/",
+    baseURL: "http://localhost:8000/",
     headers: {
         'Content-Type': ' application/json',
     },
@@ -18,7 +18,7 @@ export const instanceAxiosWithOutToken = Axios.create({
 //=================================================================\\
 export const instanceAxiosWithToken = Axios.create({
     withCredentials: true,
-    baseURL: "https://nakhll.com/",
+    baseURL: "http://localhost:8000/",
     timeout: 300000,
     headers: {
         'Content-Type': ' application/json',
