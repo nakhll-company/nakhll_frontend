@@ -5,7 +5,7 @@
     margin-top: 25px;
     .inputWidRtl {
         height: 45px;
-        input {
+        >* {
             width: 100%;
             background: #ffffff;
             border: 1px solid #e0e6e9;
@@ -15,7 +15,7 @@
             color: #364254;
             padding: 11px;
         }
-        input:focus {
+        >*:focus {
             outline: 0;
         }
     }
