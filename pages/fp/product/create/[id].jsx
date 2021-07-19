@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 
 export const getServerSideProps = ({ params }) => {
-    console.log("params", params);
+    // console.log("params", params);
     // fetch 
     return {
         props: {
@@ -13,7 +13,7 @@ export const getServerSideProps = ({ params }) => {
 
 const Detail = ({ hi }) => {
     const outer = useRouter()
-    console.log(hi)
+    // console.log(hi)
     return (
         <>
             <h1>{outer.route}</h1>

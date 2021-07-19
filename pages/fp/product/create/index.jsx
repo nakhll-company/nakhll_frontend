@@ -10,22 +10,22 @@ import CustomInputWithBtn from "../../../../components/custom/customInputwithBtn
 
 // formik
 
-import { Formik, Form, Field } from "formik";
-import * as yup from "yup";
-const INITIAL_FORM_STATE = {
-  first: "",
-};
+// import { Formik, Form, Field } from "formik";
+// import * as yup from "yup";
+// const INITIAL_FORM_STATE = {
+//   first: "",
+// };
 
-let validationSchema = yup.object().shape({
-  name: yup.string().required(),
-  email: yup.string().email("email ra vared Konid").required(),
-});
+// let validationSchema = yup.object().shape({
+//   name: yup.string().required(),
+//   email: yup.string().email("email ra vared Konid").required(),
+// });
 
 const HomePage = () => {
   return (
     <>
       <div className={styles.wrapper}>
-        <Formik
+        {/* <Formik
           initialValues={{
             name: "",
             email: "",
@@ -54,7 +54,7 @@ const HomePage = () => {
               </div>
             </Form>
           )}
-        </Formik>
+        </Formik> */}
       </div>
     </>
   );
