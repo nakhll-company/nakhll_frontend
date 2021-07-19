@@ -516,6 +516,9 @@
 .selectNav {
     color: #007aff;
     border-left: 2px solid #007aff;
+    * {
+        color: #007aff;
+    }
 }
 
 .btnOrder {
@@ -526,7 +529,7 @@
 }
 
 .subTitleOrder {
-    margin-right: 60px;
+    padding-right: 60px;
     color: rgb(164, 174, 187);
     font-size: 16px;
     margin-top: 0px;
@@ -535,4 +538,33 @@
         margin-top: 0px;
         margin-bottom: 0px;
     }
+}
+
+.subTitleOrder :hover {
+    color: #007aff;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.subTitleOrder:hover .dot {
+    background-color: #007aff;
+    transition: color 0.3s;
+}
+
+.dot:hover .subTitleOrder {
+    color: #007aff;
+    transition: color 0.3s;
+}
+
+.selectNav {
+    color: #007aff;
+    border-left: 2px solid #007aff;
+    * {
+        color: #007aff;
+    }
+}
+
+.selectdot {
+    background-color: #007aff;
 }

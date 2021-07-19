@@ -215,42 +215,55 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
               </Link> */}
               {isShowOrder && (
                 <>
-                  <Link style={{ cursor: "pointer" }} href="/fp/product/list">
+                  <Link
+                    style={{ cursor: "pointer" }}
+                    href="/fp/order/completed"
+                  >
                     <span
                       style={{
                         display: "flex",
                         alignItems: "center",
                         marginTop: "15px",
+                        cursor: "pointer",
                       }}
                       className={`${styles.subTitleOrder}   ${
-                        router.pathname == "/fp/product/list"
+                        router.pathname == "/fp/order/completed"
                           ? styles.selectNav
                           : ""
                       }`}
                     >
                       <span
                         style={{ marginLeft: "18px" }}
-                        className={styles.dot}
+                        className={`${styles.dot}   ${
+                          router.pathname == "/fp/order/completed"
+                            ? styles.selectdot
+                            : ""
+                        }`}
                       ></span>
                       <h2>تکمیل نشده</h2>
                     </span>
                   </Link>
-                  <Link href="/fp/product/list">
+                  <Link href="/fp/order/uncompleted">
                     <span
                       style={{
                         display: "flex",
                         alignItems: "center",
                         marginTop: "15px",
+                        cursor: "pointer",
                       }}
                       className={`${styles.subTitleOrder}   ${
-                        router.pathname == "/fp/product/list"
+                        router.pathname == "/fp/order/uncompleted"
                           ? styles.selectNav
                           : ""
                       }`}
                     >
                       <span
                         style={{ marginLeft: "18px" }}
-                        className={styles.dot}
+                        className={`${styles.dot}   ${
+                          router.pathname == "/fp/order/uncompleted"
+                            ? styles.selectdot
+                            : ""
+                        }`}
                       ></span>
                       <h2>تایید نشده</h2>
                     </span>
