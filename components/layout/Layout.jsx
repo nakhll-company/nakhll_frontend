@@ -25,8 +25,9 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
 
   const [selectShop, setselectShop] = useState("");
   const [isShowOrder, setisShowOrder] = useState(false);
-
-  Object.keys(userInfo).length > 0 && getActiveHojreh(userInfo.shops[0].slug);
+  if (selectShop.length === 0) {
+    Object.keys(userInfo).length > 0 && getActiveHojreh(userInfo.shops[0].slug);
+  }
 
   return (
     <>
@@ -109,11 +110,17 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   <h4 style={{ textAlign: "center" }}>پیام ها</h4>
                 </div>
                 <div className={styles.info_card_btn_one}>
-                  <i className="fas fa-user-cog fa-2x"></i>
+                  <i
+                    style={{ fontSize: "20px" }}
+                    className="fas fa-user-cog fa-2x"
+                  ></i>
                   <h4 style={{ textAlign: "center" }}>تنظیمات</h4>
                 </div>
                 <div className={styles.info_card_btn_one}>
-                  <i className="fas fa-sign-out-alt fa-2x"></i>
+                  <i
+                    style={{ fontSize: "20px" }}
+                    className="fas fa-sign-out-alt "
+                  ></i>
                   <h4 style={{ textAlign: "center" }}>خروج</h4>
                 </div>
               </div>
@@ -126,7 +133,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   }`}
                 >
                   <i
-                    style={{ marginLeft: "18px" }}
+                    style={{ marginLeft: "18px", fontSize: "20px" }}
                     className="fas fa-home fa-2x "
                   ></i>
                   <h2>داشبورد</h2>
@@ -148,14 +155,20 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                         justifyContent: "space-between",
                       }}
                     >
-                      <h2>سفارش ها</h2>
-                      <span
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        <i
+                          style={{ marginLeft: "18px", fontSize: "20px" }}
+                          className="fas fa-shopping-basket"
+                        ></i>
+                        <h2>سفارش ها</h2>
+                      </div>{" "}
+                      <i
                         style={{
-                          fontSize: "16px",
+                          fontSize: "20px",
                           marginRight: "10px",
                         }}
                         className="fas fa-chevron-up"
-                      ></span>
+                      ></i>
                     </div>
                   </>
                 ) : (
@@ -167,14 +180,20 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                         justifyContent: "space-between",
                       }}
                     >
-                      <h2> سفارش ها</h2>
-                      <span
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        <i
+                          style={{ marginLeft: "18px", fontSize: "20px" }}
+                          className="fas fa-shopping-basket"
+                        ></i>
+                        <h2>سفارش ها</h2>
+                      </div>{" "}
+                      <i
                         style={{
-                          fontSize: "16px",
+                          fontSize: "20px",
                           marginRight: "10px",
                         }}
                         className="fas fa-chevron-down"
-                      ></span>
+                      ></i>
                     </div>
                   </>
                 )}
@@ -239,16 +258,14 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                 </>
               )}
 
-              <Link activeClassName="selectNav" href="/fp/product/list">
+              <Link activeClassName="selectNav" href="/fp/product">
                 <span
                   className={`${styles.menu_card_item}   ${
-                    router.pathname == "/fp/product/list"
-                      ? styles.selectNav
-                      : ""
+                    router.pathname == "/fp/product" ? styles.selectNav : ""
                   }`}
                 >
                   <i
-                    style={{ marginLeft: "18px" }}
+                    style={{ marginLeft: "18px", fontSize: "20px" }}
                     className={`fas fa-box-open fa-2x `}
                   ></i>
                   <h2>محصولات</h2>
