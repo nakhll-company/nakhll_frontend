@@ -13,12 +13,12 @@ import { mapDispatch } from '../methods/mapDispatch';
 import styles from '../../../styles/pages/order/mobileOrders.module.scss';
 
 
-const MobileOrders = ({ type, ordersList, getUncompleted, getCompleted }) => {
+const MobileOrders = ({ type, ordersList, getUncompleted, getCompleted, activeHojreh }) => {
 
 
     useEffect(async () => {
-        type === "uncompleted" && getUncompleted();
-        type === "completed" && getCompleted();
+        type === "uncompleted" && getUncompleted(activeHojreh);
+        type === "completed" && getCompleted(activeHojreh);
     }, []);
 
     return (

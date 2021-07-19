@@ -9,22 +9,25 @@ import useViewport from "../viewPort/index";
 import MenuMobile from "./MenuMobile";
 // methods
 import { mapState } from "./methods/mapState";
-import { getUserInfo } from "../../redux/actions/user/getUserInfo";
+import { getUserInfo } from '../../redux/actions/user/getUserInfo';
+import { getActiveHojreh } from '../../redux/actions/user/getActiveHojreh';
 // styles
 import styles from "../../styles/components/layout/layout.module.scss";
 
-function MyLayout({ children, getUserInfo, userInfo }) {
+function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
 
   const router = useRouter();
   const { width } = useViewport();
   const breakpoint = 620;
 
   useEffect(() => {
-    getUserInfo();
+    Object.keys(userInfo).length === 0 && getUserInfo();
   }, []);
 
   const [selectShop, setselectShop] = useState("");
   const [isShowOrder, setisShowOrder] = useState(false);
+
+  Object.keys(userInfo).length > 0 && getActiveHojreh(userInfo.shops[0].slug);
 
   return (
     <>
@@ -87,6 +90,7 @@ function MyLayout({ children, getUserInfo, userInfo }) {
                 <select
                   onChange={(a) => {
                     setselectShop(a.target.value);
+                    getActiveHojreh(a.target.value);
                   }}
                 >
                   {userInfo.shops &&
@@ -309,5 +313,5 @@ function MyLayout({ children, getUserInfo, userInfo }) {
   );
 }
 // export
-const connector = connect(mapState, { getUserInfo });
+const connector = connect(mapState, { getUserInfo, getActiveHojreh });
 export default connector(MyLayout);
