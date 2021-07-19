@@ -159,14 +159,14 @@ function MobileSetting({ activeHojreh }) {
         <div className={styles.header_title}>
           <h1>
             تنظیمات{" "}
-            <span
+            <i
               className="fas fa-chevron-left"
               style={{
                 marginRight: "2px",
                 marginLeft: "2px",
                 display: "inline-block",
               }}
-            ></span>
+            ></i>
           </h1>
           {onMenu == "1" && <h1>حجره</h1>}
           {onMenu == "2" && <h1> حساب بانکی</h1>}
@@ -394,7 +394,7 @@ function MobileSetting({ activeHojreh }) {
         {/* HesabBanki */}
         {onMenu == "2" && (
           <>
-         <form
+            <form
               onSubmit={async (e) => {
                 e.preventDefault();
                 const data = new FormData(e.target);
@@ -405,44 +405,59 @@ function MobileSetting({ activeHojreh }) {
                 // }
               }}
             >
-            <div className={styles.note}>
-              <span className="fas fa-info-circle"></span>
+              <div className={styles.note}>
+                <span className="fas fa-info-circle"></span>
 
-              <h1 className={styles.note_text}>
-                برای ویرایش شماره شبا ابتدا گزینه ویرایش را انتخاب کنید سپس
-                اقدام به ویرایش کنید.
-              </h1>
-            </div>
-
-            <div className={styles.input_setting}>
-              <h2 style={{ marginBottom: "10px", color: "#364254" }}>
-                شماره شبا
-              </h2>
-              <div className={styles.inputWid}>
-                <input type="text" defaultValue="IR-" />
+                <h1 className={styles.note_text}>
+                  برای ویرایش شماره شبا ابتدا گزینه ویرایش را انتخاب کنید سپس
+                  اقدام به ویرایش کنید.
+                </h1>
               </div>
-            </div>
 
-            <div className={styles.input_setting}>
-              <h2 style={{ marginBottom: "10px", color: "#364254" }}>
-                صاحب حساب
-              </h2>
-              <div className={styles.inputWid}>
-                <input type="text" />
+              <div className={styles.input_setting}>
+                <h2 style={{ marginBottom: "10px", color: "#364254" }}>
+                  شماره شبا
+                </h2>
+                <div className={styles.inputWid_withWord}>
+                  <div>
+                    <h2>IR-</h2>
+                  </div>
+                  <input
+                    name="iban"
+                    type="text"
+                    defaultValue={
+                      apiSetting.bank_account && apiSetting.bank_account.iban
+                    }
+                  />
+                </div>
               </div>
-            </div>
-            {/* ‌Buttons */}
 
-            <div className={styles.status_button_one}>
-              <button
-                // onClick={() => {
-                //   setbtnOk(!btnOk);
-                // }}
-                className={`${styles.btn} ${styles.btnSubmit}`}
-              >
-                <h3>به روز رسانی</h3>
-              </button>
-            </div>
+              <div className={styles.input_setting}>
+                <h2 style={{ marginBottom: "10px", color: "#364254" }}>
+                  صاحب حساب
+                </h2>
+                <div className={styles.inputWid}>
+                  <input
+                    name="owner"
+                    type="text"
+                    defaultValue={
+                      apiSetting.bank_account && apiSetting.bank_account.owner
+                    }
+                  />
+                </div>
+              </div>
+              {/* ‌Buttons */}
+
+              <div className={styles.status_button_one}>
+                <button
+                  // onClick={() => {
+                  //   setbtnOk(!btnOk);
+                  // }}
+                  className={`${styles.btn} ${styles.btnSubmit}`}
+                >
+                  <h3>به روز رسانی</h3>
+                </button>
+              </div>
             </form>
           </>
         )}
@@ -450,22 +465,63 @@ function MobileSetting({ activeHojreh }) {
         {/* Telegram */}
         {onMenu == "4" && (
           <>
-            <div className={styles.input_setting}>
-              <h2 style={{ marginBottom: "10px", color: "#364254" }}>
-                آدرس تلگرام
-              </h2>
-              <div className={styles.inputWid}>
-                <input type="text" defaultValue="t.me/" />
+            <form
+              onSubmit={async (e) => {
+                e.preventDefault();
+                const data = new FormData(e.target);
+                let body = Object.fromEntries(data.entries());
+                let response = await linkSetting(body);
+                // if (response.status === 201) {
+                //   setShowSuccessPage((showSuccessPage) => !showSuccessPage);
+                // }
+              }}
+            >
+              <div className={styles.input_setting}>
+                <h2 style={{ marginBottom: "10px", color: "#364254" }}>
+                  آدرس تلگرام
+                </h2>
+                <div className={styles.inputWid_withWord}>
+                  <div>
+                    <h2>t.me/</h2>
+                  </div>
+                  <input
+                    type="text"
+                    name="telegram"
+                    defaultValue={
+                      apiSetting.social_media &&
+                      apiSetting.social_media.telegram
+                    }
+                  />
+                </div>
               </div>
-            </div>
-            <div className={styles.input_setting}>
-              <h2 style={{ marginBottom: "10px", color: "#364254" }}>
-                آدرس اینستاگرام
-              </h2>
-              <div className={styles.inputWid}>
-                <input type="text" defaultValue="instagram.com/" />
+              <div className={styles.input_setting}>
+                <h2 style={{ marginBottom: "10px", color: "#364254" }}>
+                  آدرس اینستاگرام
+                </h2>
+                <div className={styles.inputWid_withWord}>
+                  <div>
+                    <h2>instagram.com/</h2>
+                  </div>
+                  <input
+                    type="text"
+                    name="instagram"
+                    defaultValue={
+                      apiSetting.social_media &&
+                      apiSetting.social_media.instagram
+                    }
+                  />
+                </div>
               </div>
-            </div>
+
+              <div className={styles.status_button_one}>
+                <button
+                  type="submit"
+                  className={`${styles.btn} ${styles.btnSubmit}`}
+                >
+                  <h3>ذخیره اطلاعات </h3>
+                </button>
+              </div>
+            </form>
           </>
         )}
       </div>
