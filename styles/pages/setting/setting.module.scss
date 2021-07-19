@@ -342,8 +342,8 @@
 .hojrehD {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    column-gap: 60px;
+    grid-template-rows: repeat(3, 1fr);
+    column-gap: 10px;
     .explain {
         margin-left: 100px;
         align-items: center;
@@ -423,4 +423,43 @@
         font-size: 14px;
         line-height: 150%;
     }
+}
+
+.form_select {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #e0e6e9;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.form_label {
+    color: #364254;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.inputWid_withWord {
+    display: flex;
+    height: 45px;
+    background: #ffffff;
+    border: 1px solid #e0e6e9;
+    box-sizing: border-box;
+    border-radius: 5px;
+    direction: ltr;
+    font-size: 15px;
+    color: #364254;
+    padding: 11px;
+    align-items: center;
+}
+
+.inputWid_withWord>input {
+    border: 0;
+    width: 100%;
+    font-size: 15px;
+}
+
+.inputWid_withWord>input:focus {
+    outline: 0;
 }

@@ -14,6 +14,13 @@
     text-decoration: none;
   } */
 
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgb(204, 204, 204);
+}
+
 .info_cardH {
     padding-top: 1.7rem;
     text-align: center;
@@ -520,7 +527,7 @@
 }
 
 .subTitleOrder {
-    margin-right: 43px;
+    margin-right: 60px;
     color: rgb(164, 174, 187);
     font-size: 16px;
     margin-top: 0px;

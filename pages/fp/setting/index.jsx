@@ -3,15 +3,13 @@ import Head from "next/head";
 import { connect } from "react-redux";
 // components
 import MyLayout from "../../../components/layout/Layout";
-import useViewport from '../../../components/viewPort';
-import DesktopSettings from '../../../containers/settings/desktop';
-import MobileSettings from '../../../containers/settings/mobile';
+import useViewport from "../../../components/viewPort";
+import DesktopSettings from "../../../containers/settings/desktop";
+import MobileSettings from "../../../containers/settings/mobile";
 // methods
-import { mapState } from '../../../containers/settings/methods/mapState';
-
+import { mapState } from "../../../containers/settings/methods/mapState";
 
 function Settings({ activeHojreh }) {
-
   const { width } = useViewport();
   const breakpoint = 620;
 
@@ -19,16 +17,20 @@ function Settings({ activeHojreh }) {
     <>
       <Head>
         <title>تنظیمات</title>
+
         <link
           rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+          integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
+          crossOrigin="anonymous"
         />
-        <meta
-          name="viewport"
-          content="initial-scale=1.0, width=device-width"
-        />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      {width > breakpoint ? <DesktopSettings activeHojreh={activeHojreh} /> : <MobileSettings activeHojreh={activeHojreh} />}
+      {width > breakpoint ? (
+        <DesktopSettings activeHojreh={activeHojreh} />
+      ) : (
+        <MobileSettings activeHojreh={activeHojreh} />
+      )}
     </>
   );
 }
