@@ -8,6 +8,7 @@ import MobileHeader from '../../../../components/mobileHeader';
 import Layout from '../../../../components/layout/Layout';
 // methods
 import { getProduct } from '../../../../redux/actions/product/getProduct';
+import { mapState } from '../../../../containers/product/methods/mapState';
 // scss
 import styles from '../../../../styles/pages/product/filter.module.scss';
 /**
@@ -15,7 +16,7 @@ import styles from '../../../../styles/pages/product/filter.module.scss';
  * @param
  * @returns void
  */
-const FilterProduct = ({ getProduct }) => {
+const FilterProduct = ({ getProduct, activeHojreh }) => {
 
     let [filterData, setFilterData] = useState({
         price_from: 0,
@@ -37,7 +38,7 @@ const FilterProduct = ({ getProduct }) => {
                     <form id="formFilter" className={styles.form} onSubmit={(event) => {
                         event.preventDefault();
                         let product_status = document.querySelector('input[type=radio]:checked').value;
-                        getProduct(product_status, filterData.price_from, filterData.price_to, filterData.inventory_from, filterData.inventory_to, "");
+                        getProduct(activeHojreh, product_status, filterData.price_from, filterData.price_to, filterData.inventory_from, filterData.inventory_to, "");
                         router.back();
                     }}>
                         <div className={styles.form_card}>
@@ -45,33 +46,23 @@ const FilterProduct = ({ getProduct }) => {
                             <div className={styles.form_status}>
                                 <label className={styles.form_status_checkboxLabel}>
                                     {/* <input className={styles.form_status_checkbox} type="checkbox" name="active" id="active" /> */}
-                                    <input className={styles.form_status_checkbox} type="radio" name="product_status" value="1" />
-                                    فعال
+                                    <input className={styles.form_status_checkbox} type="radio" name="product_status" value={1} />
+                                    آماده در انبار
                                 </label>
                                 <label className={styles.form_status_checkboxLabel}>
                                     {/* <input className={styles.form_status_checkbox} type="checkbox" name="inactive" id="inactive" /> */}
-                                    <input className={styles.form_status_checkbox} type="radio" name="product_status" value="2" />
-                                    غیر فعال
+                                    <input className={styles.form_status_checkbox} type="radio" name="product_status" value={2} />
+                                    تولید بعد از سفارش
                                 </label>
                                 <label className={styles.form_status_checkboxLabel}>
                                     {/* <input className={styles.form_status_checkbox} type="checkbox" name="accepted" id="accepted" /> */}
-                                    <input className={styles.form_status_checkbox} type="radio" name="product_status" value="3" />
-                                    تایید شده
+                                    <input className={styles.form_status_checkbox} type="radio" name="product_status" value={3} />
+                                    سفارش سازی فروش
                                 </label>
                                 <label className={styles.form_status_checkboxLabel}>
                                     {/* <input className={styles.form_status_checkbox} type="checkbox" name="failed" id="failed" /> */}
-                                    <input className={styles.form_status_checkbox} type="radio" name="product_status" value="4" />
-                                    رد شده
-                                </label>
-                                <label className={styles.form_status_checkboxLabel}>
-                                    {/* <input className={styles.form_status_checkbox} type="checkbox" name="productEnd" id="productEnd" /> */}
-                                    <input className={styles.form_status_checkbox} type="radio" name="product_status" value="5" />
-                                    اتمام موجودی
-                                </label>
-                                <label className={styles.form_status_checkboxLabel}>
-                                    {/* <input className={styles.form_status_checkbox} type="checkbox" name="pending" id="pending" /> */}
-                                    <input className={styles.form_status_checkbox} type="radio" name="product_status" value="6" />
-                                    در انتظار تایید
+                                    <input className={styles.form_status_checkbox} type="radio" name="product_status" value={4} />
+                                    موجود نیست
                                 </label>
                             </div>
                         </div>
@@ -160,6 +151,6 @@ const FilterProduct = ({ getProduct }) => {
     );
 }
 // export
-const connector = connect(null, { getProduct });
+const connector = connect(mapState, { getProduct });
 export default connector(FilterProduct);
 FilterProduct.Layout = Layout;

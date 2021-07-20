@@ -3,6 +3,8 @@
     display: flex;
     flex-direction: column;
     font-family: 'vazir';
+    grid-column: 1/-1;
+    grid-row: 1/-1;
     // form
     .form_filter{
         display: flex;
@@ -118,9 +120,12 @@
             padding: 0px 20px;
             margin-bottom: 20px;
             .button_add{
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 width: 131px;
                 height: 33px;
-                background: #007AFF;
+                background: #007AFF !important;
                 border-radius: 5px;
                 text-align: center;
                 color: #fff;
@@ -152,16 +157,15 @@
                 color: #5E7488;
             }
             .wrapper_copy{
-                width: 37px;
-                height: 37px;
-                background: #F9FAFC;
-                border: 1px solid #CED5D8;
-                box-sizing: border-box;
-                border-radius: 5px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                color: #5E7488;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 37px;
+              height: 37px;
+              background: #F9FAFC;
+              border: 1px solid #CED5D8;
+              box-sizing: border-box;
+              border-radius: 5px;
             }
         }
     }

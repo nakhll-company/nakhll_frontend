@@ -6,20 +6,20 @@ import { getProduct } from '../../../redux/actions/product/getProduct';
 // scss
 import styles from '../../../styles/pages/product/sortModal.module.scss';
 
-const Sort = ({ getProduct, setShowModalSort }) => {
+const Sort = ({ getProduct, setShowModalSort, activeHojreh }) => {
     return (
         <div className={styles.wrapper}>
             <header className={styles.header}>ترتیب نمایش</header>
             <div className={styles.sort_item_wrapper}>
                 <span className={styles.sort_item} onClick={() => {
-                    getProduct("", "", "", "", "", "total_sell");
+                    getProduct(activeHojreh, "", "", "", "", "", "total_sell");
                     setShowModalSort(pre => !pre);
                 }}>
                     <Image src="/image/product/tik.svg" alt="tik" width="15" height="15" />
                     تعداد فروش
                 </span>
                 <span className={styles.sort_item} onClick={() => {
-                    getProduct("", "", "", "", "", "title");
+                    getProduct(activeHojreh, "", "", "", "", "", "title");
                     setShowModalSort(pre => !pre);
                 }}>
                     <Image src="/image/product/tik.svg" alt="tik" width="15" height="15" />

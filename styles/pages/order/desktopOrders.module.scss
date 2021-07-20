@@ -3,6 +3,8 @@
     display: flex;
     flex-direction: column;
     font-family: 'vazir';
+    grid-column: 1/-1;
+    grid-row: 1/-1;
     // form
     .form_filter{
         display: flex;

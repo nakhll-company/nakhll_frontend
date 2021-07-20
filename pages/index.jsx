@@ -2,176 +2,28 @@
 import Head from "next/head";
 // components
 import Layout from "../components/layout/Layout";
-// styles
-import styles from "../styles/pages/dashboard/dashboard.module.scss";
+import Dashboard from '../containers/dashboard';
 
 /**
  * component dashboard
  * @returns
  */
 export default function Home() {
+
   return (
     <>
-      <div dir="rtl" className={styles.left_one}>
-        <div className={styles.left_one_1}>
-          <i
-            className="fas fa-cart-plus fa-3x"
-            style={{ color: "#007aff" }}
-          ></i>
-          <h1> 8</h1>
-          <h4>سفارش ها تکمیل نشده</h4>
-        </div>
-        <div className={styles.left_one_1}>
-          <i
-            className="fas fa-user-clock fa-3x"
-            style={{ color: "#007aff" }}
-          ></i>
-          <h1>8</h1>
-          <h4>سفارش ها تکمیل نشده</h4>
-        </div>
-        <div className={styles.left_one_1}>
-          <i
-            className="far fa-comment-alt fa-3x"
-            style={{ color: "#007aff" }}
-          ></i>
-          <h1>8</h1>
-          <h4>سفارش ها تکمیل نشده</h4>
-        </div>
-        <div className={styles.left_one_1}>
-          <i className="fas fa-wallet fa-3x" style={{ color: "#007aff" }}></i>
-          <h1>8</h1>
-          <h4>سفارش ها تکمیل نشده</h4>
-        </div>
-      </div>
-      <div dir="rtl" className={styles.left_two}>
-        {/* <Swiper
-          pagination={{ clickable: true }}
-          scrollbar={{ draggable: true }}
-          // spaceBetween={50}
-          slidesPerView={1}
-          navigation
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
-        >
-          <SwiperSlide>
-            <div style={{ background: "red", height: "269px" }}></div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div style={{ background: "blue", height: "269px" }}></div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div style={{ background: "gold", height: "269px" }}></div>
-          </SwiperSlide>
-        </Swiper> */}
-      </div>
-      <div dir="rtl" className={styles.left_three}>
-        <div className={styles.left_three_head}>
-          <h3 style={{ margin: "1.5rem" }}>وضعیت محصول</h3>
-        </div>
-        <div className={styles.left_three_content}>
-          <div className="">
-            <h1
-              style={{
-                display: "inline-block",
-                color: " black",
-                marginLeft: "0.5rem",
-              }}
-            >
-              8
-            </h1>
-            <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
-            <h4 style={{ marginTop: "1rem" }}>کالاهای فعال</h4>
-          </div>
-          <div className="">
-            <h1
-              style={{
-                display: "inline-block",
-                color: "black",
-                marginLeft: "0.5rem",
-              }}
-            >
-              0
-            </h1>
-            <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
-            <h4 style={{ marginTop: "1rem" }}>کالا های در حال اتمام</h4>
-          </div>
-          <div className="">
-            <h1
-              style={{
-                display: "inline-block",
-                color: "black",
-                marginLeft: "0.5rem",
-              }}
-            >
-              0
-            </h1>
-            <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
-            <h4 style={{ marginTop: "1rem" }}>کالاهای غیرفعال</h4>
-          </div>
-          <div className="">
-            <h1
-              style={{
-                display: "inline-block",
-                color: " black",
-                marginLeft: "0.5rem",
-              }}
-            >
-              0
-            </h1>
-            <h3 style={{ display: " inline-block", color: "black" }}>عدد</h3>
-            <h4 style={{ marginTop: "1rem" }}>کالاهای ناموجود</h4>
-          </div>
-        </div>
-      </div>
-      <div dir="rtl" className={styles.left_three}>
-        <div className={styles.left_three_head}>
-          <h3 style={{ margin: "1.5rem" }}>وضعیت فروش</h3>
-        </div>
-        <div className={styles.left_three_content}>
-          <div className="">
-            <h1
-              style={{
-                display: "inline-block",
-                color: " black",
-                marginLeft: "0.5rem",
-              }}
-            >
-              8,000,000
-            </h1>
-            <h3 style={{ display: "inline-block", color: "black" }}>تومان</h3>
-            <h4 style={{ marginTop: "1rem" }}>فروش هفته جاری</h4>
-          </div>
-          <div className="">
-            <h1
-              style={{
-                display: " inline-block",
-                color: "black",
-                marginLeft: "0.5rem",
-              }}
-            >
-              8,000,000
-            </h1>
-            <h3 style={{ display: "inline-block", color: "black" }}>تومان</h3>
-            <h4 style={{ marginTop: "1rem" }}>فروش ماه گذشته</h4>
-          </div>
-          <div className="">
-            <h1
-              style={{
-                display: "inline-block",
-                color: "black",
-                marginLeft: "0.5rem",
-              }}
-            >
-              8,000,000
-            </h1>
-            <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
-            <h4 style={{ marginTop: "1rem" }}>فروش هفته گذشته</h4>
-          </div>
-        </div>
-      </div>
-      <div dir="rtl" className={styles.left_five}>
-        A5
-      </div>
+      <Head>
+        <title>داشبورد</title>
+        <link
+          rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        />
+        <meta
+          name="viewport"
+          content="initial-scale=1.0, width=device-width"
+        />
+      </Head>
+      <Dashboard />
     </>
   );
 }

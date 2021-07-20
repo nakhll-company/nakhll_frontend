@@ -12,17 +12,17 @@ import DesktopOrders from '../../../../containers/order/desktopOrders';
 import { getUncompleted } from '../../../../redux/actions/orders/getUncompleted';
 import { mapState } from '../../../../containers/order/methods/mapState';
 
-function Uncompleted({ ordersList, getUncompleted }) {
+function Uncompleted({ ordersList, activeHojreh, getUncompleted }) {
 
     const { width } = useViewport();
     const breakpoint = 620;
 
     useEffect(() => {
-        getUncompleted();
-    }, []);
+        activeHojreh.length > 0 && getUncompleted(activeHojreh);
+    }, [activeHojreh]);
 
     return (
-        <div>
+        <>
             {width < breakpoint ?
                 <div>
                     <MobileHeader title="سفارشات" type="search" />
@@ -35,9 +35,13 @@ function Uncompleted({ ordersList, getUncompleted }) {
                         content: <MobileOrders type="completed" />
                     }]} />
                 </div> :
-                <DesktopOrders ordersList={ordersList} type="uncompleted" />
+                <DesktopOrders
+                    activeHojreh={activeHojreh}
+                    ordersList={ordersList}
+                    getUncompleted={getUncompleted}
+                    type="uncompleted" />
             }
-        </div>
+        </>
     );
 }
 // export

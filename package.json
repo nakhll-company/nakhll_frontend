@@ -3,12 +3,13 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "next dev -p 3009",
+        "dev": "next dev -p 3007",
         "build": "next build",
         "start": "next start"
     },
     "dependencies": {
         "axios": "^0.21.1",
+        "formik": "^2.2.9",
         "next": "10.x",
         "react": "17.x",
         "react-dom": "17.x",
@@ -16,6 +17,8 @@
         "redux": "^4.1.0",
         "redux-logger": "^3.0.6",
         "redux-thunk": "^2.3.0",
-        "sass": "^1.35.2"
+        "sass": "^1.35.2",
+        "swiper": "^6.7.5",
+        "yup": "^0.32.9"
     }
 }

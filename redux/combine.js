@@ -2,11 +2,13 @@
 import { combineReducers } from 'redux';
 import Product from './reducers/product';
 import Orders from './reducers/orders';
+import User from './reducers/user';
 
 // object of All reducers
 export const reducerObject = {
     Product,
-    Orders
+    Orders,
+    User
 };
 
 /**
