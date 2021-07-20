@@ -14,6 +14,13 @@
     text-decoration: none;
   } */
 
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgb(204, 204, 204);
+}
+
 .info_cardH {
     padding-top: 1.7rem;
     text-align: center;
@@ -116,8 +123,8 @@
 .wrapper {
     display: -ms-grid;
     display: grid;
-    margin-top: 1.3rem;
-    gap: 10px;
+    margin-top: 2.2rem;
+    gap: 20px;
     -ms-grid-columns: 294px 1fr;
     grid-template-columns: 294px 1fr;
 }
@@ -169,7 +176,6 @@
     display: -ms-grid;
     display: grid;
     gap: 11px;
-    margin: 15px;
 }
 
 @media (max-width: 1100px) {
@@ -251,19 +257,22 @@
 .info_card_btn_one {
     background: #ffffff;
     border: 1px solid #e0e6e9;
-    -webkit-box-shadow: var(--shadow);
-    box-shadow: var(--shadow);
     border-radius: 5px;
     display: -ms-grid;
     display: grid;
-    -ms-grid-rows: (minmax(33px, 1fr)) [2];
-    grid-template-rows: repeat(2, minmax(33px, 1fr));
+    // -ms-grid-rows: (minmax(33px, 1fr)) [2];
+    // grid-template-rows: repeat(2, minmax(33px, 1fr));
+    height: 67px;
     justify-items: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
     margin-right: 0.7rem;
     margin-left: 0.7rem;
+    i {
+        font-size: 20px;
+        color: #ced5d8;
+    }
 }
 
 .info_card_btn_one :hover {
@@ -298,11 +307,11 @@
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    margin-right: 12px;
+    margin-right: 20px;
     text-decoration: none;
     color: #a4aebb;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    // padding-top: 15px;
+    // padding-bottom: 15px;
 }
 
 .menu_card_item:first-child {
@@ -351,8 +360,8 @@
     grid-template-rows: 271px 50fr 50fr;
     row-gap: 15px;
     -webkit-column-gap: 15px;
-    column-gap: 15px;
-    margin: 15px 0 15px;
+    column-gap: 20px;
+    margin: 0px 0 15px;
 }
 
 .leftProduct {
@@ -510,6 +519,9 @@
 .selectNav {
     color: #007aff;
     border-left: 2px solid #007aff;
+    * {
+        color: #007aff;
+    }
 }
 
 .btnOrder {
@@ -520,7 +532,7 @@
 }
 
 .subTitleOrder {
-    margin-right: 43px;
+    padding-right: 60px;
     color: rgb(164, 174, 187);
     font-size: 16px;
     margin-top: 0px;
@@ -529,4 +541,33 @@
         margin-top: 0px;
         margin-bottom: 0px;
     }
+}
+
+.subTitleOrder :hover {
+    color: #007aff;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.subTitleOrder:hover .dot {
+    background-color: #007aff;
+    transition: color 0.3s;
+}
+
+.dot:hover .subTitleOrder {
+    color: #007aff;
+    transition: color 0.3s;
+}
+
+.selectNav {
+    color: #007aff;
+    border-left: 2px solid #007aff;
+    * {
+        color: #007aff;
+    }
+}
+
+.selectdot {
+    background-color: #007aff;
 }

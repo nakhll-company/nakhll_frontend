@@ -9,13 +9,12 @@ import useViewport from "../viewPort/index";
 import MenuMobile from "./MenuMobile";
 // methods
 import { mapState } from "./methods/mapState";
-import { getUserInfo } from '../../redux/actions/user/getUserInfo';
-import { getActiveHojreh } from '../../redux/actions/user/getActiveHojreh';
+import { getUserInfo } from "../../redux/actions/user/getUserInfo";
+import { getActiveHojreh } from "../../redux/actions/user/getActiveHojreh";
 // styles
 import styles from "../../styles/components/layout/layout.module.scss";
 
 function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
-
   const router = useRouter();
   const { width } = useViewport();
   const breakpoint = 620;
@@ -40,34 +39,34 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
           crossOrigin="anonymous"
         />
       </Head>
-      {router.pathname == "/" && (
-        <header>
-          <div className={styles.hedtop}>
-            <span>
-              {/* <Image
+
+      <header>
+        <div className={styles.hedtop}>
+          <span>
+            {/* <Image
               src={nakhll}
               alt="Picture of the author"
             /> */}
-            </span>
+          </span>
 
-            <h1> داشبور مدیریت نخل</h1>
-          </div>
+          <h1> داشبور مدیریت نخل</h1>
+        </div>
 
-          <div className={styles.hedtop_mobile}>
-            <h1>پیشخوان</h1>
-            <span>
-              {/* <Image
+        <div className={styles.hedtop_mobile}>
+          <h1>پیشخوان</h1>
+          <span>
+            {/* <Image
               // src={nakhll}
               alt="Picture of the author"
             /> */}
-            </span>
-          </div>
-        </header>
-      )}
+          </span>
+        </div>
+      </header>
+
       <div
         className={`${width < breakpoint && router.pathname !== "/"
-          ? styles.wrapperProduct
-          : styles.wrapper
+            ? styles.wrapperProduct
+            : styles.wrapper
           }`}
       >
         {/* <!-- Right  SideBar--> */}
@@ -109,12 +108,21 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   <i className="far fa-envelope fa-2x"></i>
                   <h4 style={{ textAlign: "center" }}>پیام ها</h4>
                 </div>
+                <Link href="/fp/setting">
+                  <div className={styles.info_card_btn_one}>
+                    <i
+                      style={{ fontSize: "20px" }}
+                      className="fas fa-user-cog fa-2x"
+                    ></i>
+                    <h4 style={{ textAlign: "center" }}>تنظیمات</h4>
+                  </div>
+                </Link>
+
                 <div className={styles.info_card_btn_one}>
-                  <i className="fas fa-user-cog fa-2x"></i>
-                  <h4 style={{ textAlign: "center" }}>تنظیمات</h4>
-                </div>
-                <div className={styles.info_card_btn_one}>
-                  <i className="fas fa-sign-out-alt fa-2x"></i>
+                  <i
+                    style={{ fontSize: "20px" }}
+                    className="fas fa-sign-out-alt "
+                  ></i>
                   <h4 style={{ textAlign: "center" }}>خروج</h4>
                 </div>
               </div>
@@ -125,14 +133,15 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   className={`${styles.menu_card_item}   ${router.pathname == "/" ? styles.selectNav : ""
                     }`}
                 >
-                  <span
-                    style={{ marginLeft: "18px" }}
+                  <i
+                    style={{ marginLeft: "18px", fontSize: "20px" }}
                     className="fas fa-home fa-2x "
-                  ></span>
+                  ></i>
                   <h2>داشبورد</h2>
                 </span>
               </Link>
               <button
+                style={{ cursor: "pointer" }}
                 className={styles.btnOrder}
                 onClick={() => {
                   setisShowOrder(!isShowOrder);
@@ -144,16 +153,23 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                       style={{
                         display: "flex",
                         alignItems: "center",
+                        justifyContent: "space-between",
                       }}
                     >
-                      <h2>سفارش ها</h2>
-                      <span
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        <i
+                          style={{ marginLeft: "18px", fontSize: "20px" }}
+                          className="fas fa-shopping-basket"
+                        ></i>
+                        <h2>سفارش ها</h2>
+                      </div>{" "}
+                      <i
                         style={{
-                          fontSize: "16px",
+                          fontSize: "20px",
                           marginRight: "10px",
                         }}
                         className="fas fa-chevron-up"
-                      ></span>
+                      ></i>
                     </div>
                   </>
                 ) : (
@@ -162,16 +178,23 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                       style={{
                         display: "flex",
                         alignItems: "center",
+                        justifyContent: "space-between",
                       }}
                     >
-                      <h2> سفارش ها</h2>
-                      <span
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        <i
+                          style={{ marginLeft: "18px", fontSize: "20px" }}
+                          className="fas fa-shopping-basket"
+                        ></i>
+                        <h2>سفارش ها</h2>
+                      </div>{" "}
+                      <i
                         style={{
-                          fontSize: "16px",
+                          fontSize: "20px",
                           marginRight: "10px",
                         }}
                         className="fas fa-chevron-down"
-                      ></span>
+                      ></i>
                     </div>
                   </>
                 )}
@@ -193,30 +216,51 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
               </Link> */}
               {isShowOrder && (
                 <>
-                  <Link href="/fp/product/list">
+                  <Link
+                    style={{ cursor: "pointer" }}
+                    href="/fp/order/completed"
+                  >
                     <span
-                      className={`${styles.subTitleOrder}   ${router.pathname == "/fp/product/list"
-                        ? styles.selectNav
-                        : ""
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        marginTop: "15px",
+                        cursor: "pointer",
+                      }}
+                      className={`${styles.subTitleOrder}   ${router.pathname == "/fp/order/completed"
+                          ? styles.selectNav
+                          : ""
                         }`}
                     >
                       <span
                         style={{ marginLeft: "18px" }}
-                        className={`fas fa-box-open fa-2x `}
+                        className={`${styles.dot}   ${router.pathname == "/fp/order/completed"
+                            ? styles.selectdot
+                            : ""
+                          }`}
                       ></span>
                       <h2>تکمیل نشده</h2>
                     </span>
                   </Link>
-                  <Link href="/fp/product/list">
+                  <Link href="/fp/order/uncompleted">
                     <span
-                      className={`${styles.subTitleOrder}   ${router.pathname == "/fp/product/list"
-                        ? styles.selectNav
-                        : ""
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        marginTop: "15px",
+                        cursor: "pointer",
+                      }}
+                      className={`${styles.subTitleOrder}   ${router.pathname == "/fp/order/uncompleted"
+                          ? styles.selectNav
+                          : ""
                         }`}
                     >
                       <span
                         style={{ marginLeft: "18px" }}
-                        className={`fas fa-box-open fa-2x `}
+                        className={`${styles.dot}   ${router.pathname == "/fp/order/uncompleted"
+                            ? styles.selectdot
+                            : ""
+                          }`}
                       ></span>
                       <h2>تایید نشده</h2>
                     </span>
@@ -226,19 +270,17 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
 
               <Link activeClassName="selectNav" href="/fp/product">
                 <span
-                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/product"
-                    ? styles.selectNav
-                    : ""
+                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/product" ? styles.selectNav : ""
                     }`}
                 >
-                  <span
-                    style={{ marginLeft: "18px" }}
+                  <i
+                    style={{ marginLeft: "18px", fontSize: "20px" }}
                     className={`fas fa-box-open fa-2x `}
-                  ></span>
+                  ></i>
                   <h2>محصولات</h2>
                 </span>
               </Link>
-              <Link activeClassName="selectNav" href="/fp/customer">
+              {/* <Link activeClassName="selectNav" href="/fp/customer">
                 <span
                   className={`${styles.menu_card_item}   ${router.pathname == "/fp/customer" ? styles.selectNav : ""
                     }`}
@@ -297,7 +339,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   ></span>
                   <h2>پشتیبانی</h2>
                 </span>
-              </Link>
+              </Link> */}
             </section>
           </div>
         )}
