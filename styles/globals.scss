@@ -73,3 +73,9 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
     -moz-appearance: textfield;
 }
+
+.container_cropper_product {
+    position: fixed !important;
+    z-index: 999;
+    background: rgba(0, 0, 0, 1.51)
+}

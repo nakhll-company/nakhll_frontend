@@ -1,34 +1,257 @@
 .wrapper {
-    margin-top: 16px;
-    background: #ffffff;
-    border: 1px solid #e0e6e9;
-    box-sizing: border-box;
-    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.05);
-    border-radius: 5px;
-    padding: 22px;
     grid-column: 1/-1;
     grid-row: 1/-1;
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.Header {
+    height: 53px;
+    background: #ffffff;
+    border-bottom: 1px solid #efefef;
+    /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.03); */
+    display: flex;
+    align-items: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn {
+    height: 70px;
+    background: #fff;
+    outline: 0;
+    border: 0;
+    border-bottom: 1px solid #efefef;
+    cursor: pointer;
+}
+
+.in_btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn_icon {
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.markets {
+    display: none;
+}
+
+.wrapperMarkets {
+    display: none;
+}
+
+.wrapper_imageProduct {
+    display: flex;
+    flex-direction: column;
+}
+
+.product_image_container {
+    display: flex;
+}
+
+.add_image_container {
+    border: 1px dashed #2185f8;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: #f3faff;
+    height: 100px;
+    width: 100px;
+    color: #3366FF;
+}
+
+
+/* crop */
+
+.App {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+
+/* .crop_container {
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 80px;
+} */
+
+.controls {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
+    height: 12%;
+    display: flex;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    justify-content: space-around;
+    z-index: 2000;
+}
+
+.button_container {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    justify-content: center;
+    z-index: 2000;
+}
+
+.slider {
+    padding: 22px 0px;
+}
+
+.reactEasyCrop_Container {
+    background-color: red !important;
+}
+
+.wrapperButton {
+    display: flex;
+}
+
+.wrapperIMageProduct {
+    display: none;
+}
+
+.form_buttons {
+    width: 96%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 62px;
+    position: fixed;
+    bottom: 0px;
+    background-color: #fff;
+    box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.05);
+    z-index: 11000;
+}
+
+.wrapper_product {
+    display: flex;
+}
+
+.wrapper_input {
+    display: flex;
+    flex-direction: column;
+}
+
+.lable_product {
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-top: 10px
+}
+
+.input_product {
+    height: 42px;
+    font-size: 15px;
+    outline: unset;
+    border: 1px solid #efefef;
+    border-radius: 5px;
+    color: #303030;
+    width: 100%;
+}
+
+.createProduct_lineRighte {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 10px 20px;
+}
+
+.createProduct_lineLeft {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 10px 20px;
+}
+
+.wrapper_input_suffixText {
+    display: flex;
+    height: 42px;
+    font-size: 15px;
+    outline: unset;
+    border: 1px solid #efefef;
+    border-radius: 5px;
+    color: #303030;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 10px;
 }
 
 .twoCol {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 41px;
-    margin-top: 25px;
+    // display: grid;
+    // grid-template-columns: 1fr 1fr;
+    // column-gap: 41px;
     .inputWidRtl {
         height: 45px;
-        >* {
-            width: 100%;
-            background: #ffffff;
-            border: 1px solid #e0e6e9;
-            box-sizing: border-box;
-            border-radius: 5px;
-            font-size: 15px;
-            color: #364254;
-            padding: 11px;
+        width: 100%;
+        background: #ffffff;
+        border: 1px solid #e0e6e9;
+        box-sizing: border-box;
+        border-radius: 5px;
+        font-size: 15px;
+        color: #364254;
+        padding: 11px;
+        display: flex;
+        justify-content: space-between;
+        button {
+            border: 0;
+            background-color: #fff;
         }
-        >*:focus {
+        input {
+            border: 0;
+        }
+        input:focus {
             outline: 0;
+        }
+        .center {
+            display: flex;
+            h4 {
+                color: #364254;
+                font-weight: bold;
+                font-size: 15px;
+            }
+            input {
+                width: 40px;
+                height: 30px;
+                font-size: 15px;
+            }
         }
     }
     .explain {
