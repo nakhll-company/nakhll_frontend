@@ -235,7 +235,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: azure;
+    // background-color: azure;
     left: 0;
     right: 0;
     top: 0;
@@ -291,6 +291,7 @@
     flex-direction: column;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+    height: 300px;
 }
 
 .menu_card_item {
