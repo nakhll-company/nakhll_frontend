@@ -83,7 +83,9 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
           <div className={styles.Right}>
             <section className={styles.info_card}>
               <div className={styles.info_card_pic}>
-                <div className={styles.info_card_pic_person}></div>
+                <div className={styles.info_card_pic_person}>
+                  <Image src="/image/picprofile.png" layout="fill"></Image>
+                </div>
               </div>
 
               <div className={styles.info_cardH}>
