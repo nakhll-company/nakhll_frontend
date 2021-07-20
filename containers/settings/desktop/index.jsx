@@ -126,20 +126,18 @@ function DesktopSetting({ activeHojreh }) {
       params
     );
   };
-  
+
   const HesabBankiForm = (body) => {
-   
     const dataHesabBankiForSend = {
-      "bank_account": {
-          "iban": body.iban,
-          "owner": body.owner
-      }
-  }
+      bank_account: {
+        iban: body.iban,
+        owner: body.owner,
+      },
+    };
 
     let params = {};
     let loadData = dataHesabBankiForSend;
     let dataUrl = `/api/v1/shop/${activeHojreh}/settings/bank_account/`;
-    
 
     let response = ApiRegister().apiRequest(
       loadData,
@@ -215,18 +213,18 @@ function DesktopSetting({ activeHojreh }) {
 
         {onMenu == "1" && (
           <>
-            <div className={styles.Hojreh_headD}>
+            {/* <div className={styles.Hojreh_headD}>
               <div>
                 <div className={styles.Hojreh_headD_pic}>
-                  {/* <div className={styles.Hojreh_headD_edit_icon_pic}>
+                  <div className={styles.Hojreh_headD_edit_icon_pic}>
                     <span className="fas fa-edit"></span>
-                  </div> */}
+                  </div>
                 </div>
-                {/* <div className={styles.Hojreh_headD_edit_icon}>
+                <div className={styles.Hojreh_headD_edit_icon}>
                   <span className="fas fa-edit"></span>
-                </div> */}
+                </div>
               </div>
-            </div>
+            </div> */}
             {/* <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -547,7 +545,7 @@ function DesktopSetting({ activeHojreh }) {
                       <h2>IR-</h2>
                     </div>
                     <input
-                    name="iban"
+                      name="iban"
                       type="text"
                       defaultValue={
                         apiSetting.bank_account && apiSetting.bank_account.iban
@@ -569,7 +567,7 @@ function DesktopSetting({ activeHojreh }) {
                   </h2>
                   <div className={styles.inputWid}>
                     <input
-                    name="owner"
+                      name="owner"
                       type="text"
                       defaultValue={
                         apiSetting.bank_account && apiSetting.bank_account.owner
