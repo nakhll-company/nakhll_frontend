@@ -92,7 +92,7 @@ const CreateProduct = () => {
         false,
         params
       );
-      console.log("res uncom :", response);
+      // console.log("res uncom :", response);
       const data = response;
       setData(response); //==> output: {}
     };
@@ -109,7 +109,7 @@ const CreateProduct = () => {
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels)
-    console.log("croppedArea, croppedAreaPixels", croppedArea, croppedAreaPixels)
+    // console.log("croppedArea, croppedAreaPixels", croppedArea, croppedAreaPixels)
   }, [])
 
 
@@ -123,9 +123,9 @@ const CreateProduct = () => {
     setDataChoice({ ...dataChoice, title: e.title });
 
     setPage(2);
-    console.log("el :>> ", e);
+    // console.log("el :>> ", e);
     settitle(e.title);
-    console.log("e.title :>> ", e.title);
+    // console.log("e.title :>> ", e.title);
   }
   function finalClick(e) {
     let element = document.getElementById("wrapperMarkets")
@@ -135,7 +135,7 @@ const CreateProduct = () => {
     // let elementProgressbar = document.getElementById("progressbar")
     // elementProgressbar.style.display = "flex"
 
-    console.log("ee :>> ", e);
+    // console.log("ee :>> ", e);
     setDataChoice({ ...dataChoice, submarket: e.title });
     setPlaceholderSubmarckets(e.title)
     // setValueSubMarkets(e.id)
@@ -184,7 +184,7 @@ const CreateProduct = () => {
       const file = e.target.files[0]
       let imageDataUrl = await URL.createObjectURL(file)
       setImageSrc(imageDataUrl)
-      console.log(`imageDataUrl`, imageDataUrl)
+      // console.log(`imageDataUrl`, imageDataUrl)
       let elementImageProduct = document.getElementById("crop_container")
       elementImageProduct.style.display = "block"
       // debugger
@@ -203,7 +203,7 @@ const CreateProduct = () => {
       croppedAreaPixels
     )
     debugger
-    console.log(croppedImage)
+    // console.log(croppedImage)
     setPreviewImage(croppedImage)
     let elementImageProduct = document.getElementById("crop_container")
     elementImageProduct.style.display = "none"
