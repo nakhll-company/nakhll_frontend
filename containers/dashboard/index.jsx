@@ -4,8 +4,6 @@ import { connect } from "react-redux";
 // methods
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { mapState } from "./methods/mapState";
-// styles
-import styles from "../../styles/pages/dashboard/dashboard.module.scss";
 
 // import Swiper core and required modules
 import SwiperCore, {
@@ -19,11 +17,13 @@ import SwiperCore, {
 // swiper
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// image
-import Image from "next/image";
-
 // install Swiper modules
 SwiperCore.use([EffectFade, Autoplay, Navigation, Pagination, Scrollbar, A11y]);
+
+// image
+import Image from "next/image";
+// styles
+import styles from "../../styles/pages/dashboard/dashboard.module.scss";
 
 function Dashboard({ activeHojreh }) {
   const [api, setApi] = useState({});
@@ -101,7 +101,10 @@ function Dashboard({ activeHojreh }) {
               effect={"fade"}
             >
               <SwiperSlide>
-                <div style={{ height: "269px" }}>
+                <div
+                  className={styles.divForSlider}
+                  style={{ height: "269px" }}
+                >
                   <Image
                     src="/image/pic2.jpg"
                     alt="Picture of the author"
@@ -110,7 +113,10 @@ function Dashboard({ activeHojreh }) {
                 </div>
               </SwiperSlide>
               <SwiperSlide>
-                <div style={{ height: "269px" }}>
+                <div
+                  className={styles.divForSlider}
+                  style={{ height: "269px" }}
+                >
                   <Image
                     src="/image/pic1.jpg"
                     alt="Picture of the author"
@@ -119,7 +125,10 @@ function Dashboard({ activeHojreh }) {
                 </div>
               </SwiperSlide>
               <SwiperSlide>
-                <div style={{ height: "269px" }}>
+                <div
+                  className={styles.divForSlider}
+                  style={{ height: "269px" }}
+                >
                   <Image
                     src="/image/pic3.jpg"
                     alt="Picture of the author"

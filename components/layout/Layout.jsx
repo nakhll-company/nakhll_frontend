@@ -64,10 +64,11 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
       </header>
 
       <div
-        className={`${width < breakpoint && router.pathname !== "/"
+        className={`${
+          width < breakpoint && router.pathname !== "/"
             ? styles.wrapperProduct
             : styles.wrapper
-          }`}
+        }`}
       >
         {/* <!-- Right  SideBar--> */}
         {!(width < breakpoint && router.pathname !== "/") && (
@@ -130,8 +131,9 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
             <section className={styles.menu_card}>
               <Link href={`/?shop=${selectShop}`}>
                 <span
-                  className={`${styles.menu_card_item}   ${router.pathname == "/" ? styles.selectNav : ""
-                    }`}
+                  className={`${styles.menu_card_item}   ${
+                    router.pathname == "/" ? styles.selectNav : ""
+                  }`}
                 >
                   <i
                     style={{ marginLeft: "18px", fontSize: "20px" }}
@@ -227,17 +229,19 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                         marginTop: "15px",
                         cursor: "pointer",
                       }}
-                      className={`${styles.subTitleOrder}   ${router.pathname == "/fp/order/completed"
+                      className={`${styles.subTitleOrder}   ${
+                        router.pathname == "/fp/order/completed"
                           ? styles.selectNav
                           : ""
-                        }`}
+                      }`}
                     >
                       <span
                         style={{ marginLeft: "18px" }}
-                        className={`${styles.dot}   ${router.pathname == "/fp/order/completed"
+                        className={`${styles.dot}   ${
+                          router.pathname == "/fp/order/completed"
                             ? styles.selectdot
                             : ""
-                          }`}
+                        }`}
                       ></span>
                       <h2>تکمیل نشده</h2>
                     </span>
@@ -250,17 +254,19 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                         marginTop: "15px",
                         cursor: "pointer",
                       }}
-                      className={`${styles.subTitleOrder}   ${router.pathname == "/fp/order/uncompleted"
+                      className={`${styles.subTitleOrder}   ${
+                        router.pathname == "/fp/order/uncompleted"
                           ? styles.selectNav
                           : ""
-                        }`}
+                      }`}
                     >
                       <span
                         style={{ marginLeft: "18px" }}
-                        className={`${styles.dot}   ${router.pathname == "/fp/order/uncompleted"
+                        className={`${styles.dot}   ${
+                          router.pathname == "/fp/order/uncompleted"
                             ? styles.selectdot
                             : ""
-                          }`}
+                        }`}
                       ></span>
                       <h2>تایید نشده</h2>
                     </span>
@@ -270,8 +276,9 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
 
               <Link activeClassName="selectNav" href="/fp/product">
                 <span
-                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/product" ? styles.selectNav : ""
-                    }`}
+                  className={`${styles.menu_card_item}   ${
+                    router.pathname == "/fp/product" ? styles.selectNav : ""
+                  }`}
                 >
                   <i
                     style={{ marginLeft: "18px", fontSize: "20px" }}
@@ -345,8 +352,9 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
         )}
         {/* <!-- Left --> */}
         <div
-          className={`${router.pathname == "/" ? styles.left : styles.leftProduct
-            }`}
+          className={`${
+            router.pathname == "/" ? styles.left : styles.leftProduct
+          }`}
         >
           {children}
         </div>
