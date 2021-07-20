@@ -147,7 +147,7 @@ const CreateProduct = ({ activeHojreh }) => {
 
 
   useEffect(() => {
-    console.log(`activeHojreh`, activeHojreh)
+    // console.log(`activeHojreh`, activeHojreh)
     const _handleRequestApi = async () => {
       let params = null;
       let loadData = null;

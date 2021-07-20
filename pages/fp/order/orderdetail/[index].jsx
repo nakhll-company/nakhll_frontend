@@ -48,7 +48,7 @@ function HomePage({ id }) {
       );
       setdata(response);
       setisShow(true);
-      console.log("aaaa :>> ", response);
+      // console.log("aaaa :>> ", response);
     };
     _handleRequestApi(id);
   }, []);
@@ -392,9 +392,8 @@ function HomePage({ id }) {
                   <div className={styles.post_informationD_content}>
                     <h4>نام مشتری</h4>
                     <h3 style={{ marginTop: "5px" }}>
-                      {`${data.profile && data.profile.user.first_name}  ${
-                        data.profile && data.profile.user.last_name
-                      }`}
+                      {`${data.profile && data.profile.user.first_name}  ${data.profile && data.profile.user.last_name
+                        }`}
                     </h3>
                   </div>
                   {/* <div className={styles.post_informationD_content}>

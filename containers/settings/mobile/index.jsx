@@ -49,7 +49,7 @@ function MobileSetting({ activeHojreh }) {
   let [selectState, setSelectState] = useState([]);
   let [selectBigCities, setSelectBigCities] = useState([]);
   let [selectCities, setSelectCities] = useState([]);
-  console.log("active :>> ", activeHojreh);
+  // console.log("active :>> ", activeHojreh);
 
   const [apiSetting, setApiSetting] = useState({});
 
@@ -72,10 +72,10 @@ function MobileSetting({ activeHojreh }) {
 
     activeHojreh.length > 0 && _handleRequestApi();
   }, [activeHojreh]);
-  console.log("apiSetting", apiSetting);
+  // console.log("apiSetting", apiSetting);
 
   const setting = (body) => {
-    console.log("body>> ", body);
+    // console.log("body>> ", body);
     const dataForSend = {
       Title: body.Title,
       Slug: body.slug,
@@ -106,7 +106,7 @@ function MobileSetting({ activeHojreh }) {
   };
 
   const linkSetting = (body) => {
-    console.log("linkSetting...>>> ", body);
+    // console.log("linkSetting...>>> ", body);
     const dataForSendLink = {
       social_media: {
         telegram: body.telegram,
@@ -148,7 +148,7 @@ function MobileSetting({ activeHojreh }) {
     );
   };
 
-  console.log("active :>> ", activeHojreh);
+  // console.log("active :>> ", activeHojreh);
 
   const [onMenu, setOnMenu] = useState("1");
 
