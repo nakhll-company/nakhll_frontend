@@ -253,9 +253,9 @@ function Dashboard({ activeHojreh }) {
               </div>
             </div>
           </div>
-          <div dir="rtl" className={styles.left_five}>
+          {/* <div dir="rtl" className={styles.left_five}>
             A5
-          </div>
+          </div> */}
         </>
       )}
     </>

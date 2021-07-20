@@ -3,7 +3,9 @@ import Link from "next/link";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Head from "next/head";
+
 // components
 import useViewport from "../viewPort/index";
 import MenuMobile from "./MenuMobile";
@@ -42,23 +44,27 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
 
       <header>
         <div className={styles.hedtop}>
-          <span>
-            {/* <Image
-              src={nakhll}
+          <sapn style={{ marginRight: "102px" }}>
+            <Image
+              src="/image/LOGO_500.png"
               alt="Picture of the author"
-            /> */}
-          </span>
+              width={60}
+              height={60}
+            />
+          </sapn>
 
           <h1> داشبور مدیریت نخل</h1>
         </div>
 
         <div className={styles.hedtop_mobile}>
           <h1>پیشخوان</h1>
-          <span>
-            {/* <Image
-              // src={nakhll}
+          <span style={{ marginRight: "102px" }}>
+            <Image
+              src="/image/LOGO_500.png"
               alt="Picture of the author"
-            /> */}
+              width={60}
+              height={60}
+            />
           </span>
         </div>
       </header>
@@ -243,7 +249,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                             : ""
                         }`}
                       ></span>
-                      <h2>تکمیل نشده</h2>
+                      <h2>تکمیل شده</h2>
                     </span>
                   </Link>
                   <Link href="/fp/order/uncompleted">
@@ -268,7 +274,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                             : ""
                         }`}
                       ></span>
-                      <h2>تایید نشده</h2>
+                      <h2>تکمیل نشده</h2>
                     </span>
                   </Link>
                 </>
