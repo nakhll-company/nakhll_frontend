@@ -5,6 +5,12 @@ import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 import styles from "../../../../styles/pages/product/create.module.scss";
 import Cropper from 'react-easy-crop'
 import Image from "next/image";
+import useViewport from "../../../../components/viewPort";
+import { value } from "dom7";
+import { connect } from 'react-redux';
+import { mapState } from '../../../../containers/order/methods/mapState';
+
+
 
 
 // component
@@ -55,7 +61,7 @@ async function getCroppedImg(imageSrc, pixelCrop) {
   })
 }
 
-const CreateProduct = () => {
+const CreateProduct = ({ activeHojreh }) => {
 
   const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState("");
   const [page, setPage] = useState(1);
@@ -75,12 +81,20 @@ const CreateProduct = () => {
   const [croppedImage, setCroppedImage] = useState(null);
   const [imageSrc, setImageSrc] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
-  const [Add, setAdd] = useState(20);
+  const [Add, setAdd] = useState(0);
+  const [AddPreparationDays, setAddPreparationDays] = useState(1);
+  const [valueWeight, setValueWeight] = useState(null);
+  const [isErrorWeight, setIsErrorWeight] = useState(false);
+  const [isErrorPrice, setIsErrorPrice] = useState(false);
+  const [dataUser, setDataUser] = useState(false);
+
+
 
 
 
 
   useEffect(() => {
+    console.log(`activeHojreh`, activeHojreh)
     const _handleRequestApi = async () => {
       let params = null;
       let loadData = null;
@@ -92,14 +106,37 @@ const CreateProduct = () => {
         false,
         params
       );
-      // console.log("res uncom :", response);
-      const data = response;
+      // console.log("res uncomsdfsf :", response);
+      // const dataUser = response;
       setData(response); //==> output: {}
     };
     _handleRequestApi();
-  }, []);
+
+    const _handleRequestApiUserInfo = async () => {
+      let params = null;
+      let loadData = null;
+      let dataUrl = "app/api/v1/get-user-info/";
+      let responseUser = await ApiRegister().apiRequest(
+        loadData,
+        "get",
+        dataUrl,
+        true,
+        params
+      );
+      console.log("res uncom :", responseUser);
+      const data = responseUser;
+      setDataUser(responseUser); //==> output: {}
+    };
+    _handleRequestApiUserInfo();
+  }, [activeHojreh]);
+
+
+
 
   const mini = () => {
+    if (Add == 0) {
+      return;
+    }
     setAdd(Add - 1);
   };
   const add = () => {
@@ -107,10 +144,23 @@ const CreateProduct = () => {
   };
 
 
+  const miniPreparationDays = () => {
+    if (AddPreparationDays == 0) {
+      return;
+    }
+    setAddPreparationDays(AddPreparationDays - 1);
+  };
+  const AddPreparationDayss = () => {
+    setAddPreparationDays(AddPreparationDays + 1);
+  };
+
+
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels)
     // console.log("croppedArea, croppedAreaPixels", croppedArea, croppedAreaPixels)
   }, [])
+
+
 
 
 
@@ -211,6 +261,65 @@ const CreateProduct = () => {
   }
 
 
+  const createProducts = async (body) => {
+
+    let product_status = document.querySelector('input[type=radio]:checked').value;
+
+
+
+    let confirm = {
+      Title: body.Title,
+      Inventory: body.Inventory,
+      Slug:"kgkgkgk",
+      Price: body.Price,
+      OldPrice: body.OldPrice,
+      Net_Weight: body.Net_Weight,
+      Weight_With_Packing: body.Weight_With_Packing,
+      Description: body.Description,
+      Status: 1,
+      PostRangeType: 1,
+      PreparationDays: body.PreparationDays,
+      FK_Shop: activeHojreh
+    }
+    debugger
+    let params = {}
+    let loadData = confirm;
+    let dataUrl = '/api/v1/landing/products/';
+    let response = await ApiRegister().apiRequest(loadData, 'post', dataUrl, true, params);
+    return response;
+    debugger
+  }
+
+  const _checkWeight = () => {
+    let Net_Weight = parseInt(document.getElementById("Net_Weight").value)
+    let Weight_With_Packing = parseInt(document.getElementById("Weight_With_Packing").value)
+    debugger
+    if (Net_Weight > Weight_With_Packing && Weight_With_Packing !== NaN && Weight_With_Packing !== undefined) {
+      setIsErrorWeight(true)
+      debugger
+    } else {
+      setIsErrorWeight(false)
+      debugger
+    }
+
+  }
+
+  const _checkPrice = () => {
+    let Price = parseInt(document.getElementById("Price").value)
+    let OldPrice = parseInt(document.getElementById("OldPrice").value)
+
+    if (OldPrice > Price) {
+      setIsErrorPrice(true)
+      debugger
+    } else {
+      setIsErrorPrice(false)
+      debugger
+    }
+
+
+  }
+
+
 
 
 
@@ -227,9 +336,9 @@ const CreateProduct = () => {
       <div className={styles.wrapper}>
         <form onSubmit={async (e) => {
           e.preventDefault();
-          // const data = new FormData(e.target);
-          // let body = Object.fromEntries(data.entries());
-          // let response = await createStore(body);
+          const data = new FormData(e.target);
+          let body = Object.fromEntries(data.entries());
+          let response = await createProducts(body);
           // if (response.status === 201) {
           //   setShowSuccessPage(showSuccessPage => !showSuccessPage);
           // }
@@ -253,7 +362,7 @@ const CreateProduct = () => {
                   id="Title"
                   name="Title"
                   type="text"
-                  placeholder="پسته برادران اکبری"
+                  placeholder="برنج لاشه 10 کیلویی، کشت اول"
 
                 />
               </div>
@@ -333,47 +442,6 @@ const CreateProduct = () => {
               </div>
 
 
-              {/* croperProduct */}
-
-              <div id="crop_container" className={styles.wrapperIMageProduct}>
-                {/* <div className={stylesPage1.button_container} >sdftgrdfhtryhur</div> */}
-                <Cropper
-                  image={imageSrc}
-                  crop={crop}
-                  classes={{ containerClassName: "container_cropper_product", cropAreaClassName: "product_cropArea" }}
-                  // rotation={rotation}
-                  // cropSize={{width: 300, height: 300}}
-                  restrictPosition={true}
-
-
-                  zoom={zoom}
-                  aspect={2 / 2}
-                  onCropChange={setCrop}
-                  // onRotationChange={setRotation}
-                  onCropComplete={onCropComplete}
-                  onZoomChange={setZoom}
-                />
-                <div className={styles.controls}>
-                  <input onChange={(e) => setZoom(e.target.value)}
-                    value={zoom} type="range" step="0.1" max="3" min="1"
-                  />
-                  <div className={styles.wrapperButton}>
-                    <div style={{ marginLeft: "10px" }}>
-                      <button
-                        onClick={showCroppedImage}
-                        className="btn btn-success btn-lg">تایید</button>
-                    </div>
-                    <div>
-                      <button onClick={_onCloseCropper} className="btn btn-secondary btn-lg">
-                        لغو
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-
 
 
 
@@ -389,17 +457,17 @@ const CreateProduct = () => {
               <hr style={{ background: "#007aff", width: "100%" }} />
 
               <div className={styles.wrapper_input}>
-                <label className={styles.lable_product} htmlFor="Title" >
+                <label className={styles.lable_product} htmlFor="Net_Weight" >
                   وزن خالص محصول
                 </label>
                 <div className={styles.wrapper_input_suffixText}
                 >
                   <input
                     style={{ outline: "unset", border: "unset" }}
-                    id="Title"
-                    name="Title"
-                    type="text"
-                    placeholder="پسته برادران اکبری"
+                    id="Net_Weight"
+                    name="Net_Weight"
+                    type="number"
+                    onChange={(e) => _checkWeight(e.target.value)}
 
                   />
                   <div>
@@ -411,17 +479,17 @@ const CreateProduct = () => {
               </div>
 
               <div className={styles.wrapper_input}>
-                <label className={styles.lable_product} htmlFor="Title" >
+                <label className={styles.lable_product} htmlFor="Weight_With_Packing" >
                   وزن با بسته بندی
                 </label>
                 <div className={styles.wrapper_input_suffixText}
                 >
                   <input
                     style={{ outline: "unset", border: "unset" }}
-                    id="Title"
-                    name="Title"
-                    type="text"
-                    placeholder="پسته برادران اکبری"
+                    id="Weight_With_Packing"
+                    name="Weight_With_Packing"
+                    type="number"
+                    onChange={(e) => _checkWeight(e.target.value)}
 
                   />
                   <div>
@@ -429,21 +497,25 @@ const CreateProduct = () => {
                   </div>
 
                 </div>
-
+                {
+                  isErrorWeight &&
+                  <p style={{ color: "red", fontSize: "14px" }} className="text-danger">وزن مشخص شده، می‌بایست بیشتر از وزن خالص محصول باشد
+                  </p>
+                }
               </div>
 
               <div className={styles.wrapper_input}>
-                <label className={styles.lable_product} htmlFor="Title" >
+                <label className={styles.lable_product} htmlFor="Price" >
                   قیمت محصول
                 </label>
                 <div className={styles.wrapper_input_suffixText}
                 >
                   <input
                     style={{ outline: "unset", border: "unset" }}
-                    id="Title"
-                    name="Title"
-                    type="text"
-                    placeholder="پسته برادران اکبری"
+                    id="Price"
+                    name="Price"
+                    type="number"
+                    onChange={(e) => _checkPrice(e.target.value)}
 
                   />
                   <div>
@@ -452,19 +524,21 @@ const CreateProduct = () => {
 
                 </div>
 
+
               </div>
 
               <div className={styles.wrapper_input}>
-                <label className={styles.lable_product} htmlFor="Title" >
+                <label className={styles.lable_product} htmlFor="OldPrice" >
                   قیمت محصول با تخفیف (اختیاری)                </label>
                 <div className={styles.wrapper_input_suffixText}
                 >
                   <input
                     style={{ outline: "unset", border: "unset" }}
-                    id="Title"
-                    name="Title"
-                    type="text"
-                    placeholder="پسته برادران اکبری"
+                    id="OldPrice"
+                    name="OldPrice"
+                    type="number"
+                    onChange={(e) => _checkPrice(e.target.value)}
+
 
                   />
                   <div>
@@ -472,47 +546,37 @@ const CreateProduct = () => {
                   </div>
 
                 </div>
+                {
+                  isErrorPrice &&
+                  <p style={{ color: "red", fontSize: "14px" }} className="text-danger">قیمت مشخص شده برای تخفیف، می‌بایست کمتر از قیمت اصلی باشد</p>
+                }
 
               </div>
 
-              <div className={styles.wrapper_input}>
-                <label className={styles.lable_product} htmlFor="Title" >
-                  موجودی
-                </label>
-                <input
-                  className={styles.input_product}
-                  id="Title"
-                  name="Title"
-                  type="text"
-                  placeholder="پسته برادران اکبری"
-
-                />
-              </div>
 
               <div className={styles.wrapper_input}>
-                <label className={styles.lable_product} htmlFor="Title" >
+                <label className={styles.lable_product} htmlFor="Description" >
                   توضیحات محصول (اختیاری)
                 </label>
                 <textarea
                   className={styles.input_product}
-                  id="Title"
-                  name="Title"
+                  id="Description"
+                  name="Description"
                   type="text"
-                  placeholder="پسته برادران اکبری"
+                  placeholder="توضیحات خود را در صورت تمایل اینجا وارد کنید"
 
                 />
               </div>
 
               <div className={styles.twoCol}>
                 <div>
-                  <h2 style={{ marginBottom: "10px", color: "#364254" }}>hassan</h2>
+                  <p htmlFor="Inventory" style={{ marginBottom: "10px", color: "#364254", fontSize: 14 }}>موجودی</p>
                   <div className={styles.inputWidRtl}>
-                    <button onClick={add}>
+                    <button type="button" onClick={add}>
                       <span className="fas fa-plus"></span>
                     </button>
                     <div className={styles.center}>
                       <input
-                        type="number"
                         type="number"
                         min="0"
                         max="500"
@@ -520,11 +584,13 @@ const CreateProduct = () => {
                         onChange={(e) => {
                           setAdd(e.target.value);
                         }}
+                        id="Inventory"
+                        name="Inventory"
                       />
                       <h4>عدد</h4>
                     </div>
 
-                    <button onClick={mini}>
+                    <button type="button" onClick={mini}>
                       <span className="fas fa-minus"></span>
                     </button>
                   </div>
@@ -545,6 +611,115 @@ const CreateProduct = () => {
               <hr style={{ background: "#007aff", width: "100%" }} />
 
 
+              <div className={styles.twoCol}>
+                <div>
+                  <p htmlFor="PreparationDays" style={{ marginBottom: "10px", color: "#364254", fontSize: 14 }}>زمان آماده سازی</p>
+
+                  <div className={styles.inputWidRtl}>
+                    <button type="button" onClick={AddPreparationDayss}>
+                      <span className="fas fa-plus"></span>
+                    </button>
+                    <div className={styles.center}>
+                      <input
+                        type="number"
+                        min="0"
+                        max="500"
+                        value={AddPreparationDays}
+                        onChange={(e) => {
+                          setAddPreparationDays(e.target.value);
+                        }}
+                        id="PreparationDays"
+                        name="PreparationDays"
+                      />
+                      <h4>عدد</h4>
+                    </div>
+
+                    <button type="button" onClick={miniPreparationDays}>
+                      <span className="fas fa-minus"></span>
+                    </button>
+                  </div>
+                  <p style={{ fontSize: "13px", color: "#5E7488" }}>زمان آماده سازی : آماده برای ارسال بعد از سفارش مستری</p>
+                </div>
+                {/* <div>
+                  <h4 className={styles.explain}>sdfsdf</h4>
+                </div> */}
+              </div>
+
+
+              <div style={{ display: "flex", justifyContent: "center", marginTop: "15px" }}>
+                <label htmlFor="availbe" className="labels activeLabel" onClick={(e) => {
+                  let actives = document.getElementsByClassName("activeLabel");
+                  for (let i = 0; i < actives.length; i++) {
+                    actives[i].classList.remove('activeLabel');
+                  }
+                  e.currentTarget.classList.add("activeLabel");
+                }}>
+                  اماده در انبار                </label>
+                <input checked={true} value={1} type="radio" name="status_product" id="availbe" className="radios" />
+                <label htmlFor="stop" className="labels" onClick={(e) => {
+                  let actives = document.getElementsByClassName("activeLabel");
+                  for (let i = 0; i < actives.length; i++) {
+                    actives[i].classList.remove('activeLabel');
+                  }
+                  e.currentTarget.classList.add("activeLabel");
+                }}>
+                  تولید بعد از سفارش
+                </label>
+                <input value={2} type="radio" name="status_product" id="stop" className="radios" />
+                <label htmlFor="soon" className="labels" onClick={(e) => {
+                  let actives = document.getElementsByClassName("activeLabel");
+                  for (let i = 0; i < actives.length; i++) {
+                    actives[i].classList.remove('activeLabel');
+                  }
+                  e.currentTarget.classList.add("activeLabel");
+                }}>
+                  سفارشی سازی فروش
+                </label>
+                <input value={3} type="radio" name="status_product" id="soon" className="radios" />
+                <style jsx>{`
+                .labels{
+                    background: #FFFFFF;
+                    border: 1px solid #E0E6E9;
+                    box-sizing: border-box;
+                    border-radius: 5px;
+                    width: 250px;
+                    height: 41px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: row;
+                    font-size: 15px;
+                    color: #A4AEBB;
+                    text-align: center;
+                }
+                .radios{
+                    visibility: hidden;
+                }
+                .activeLabel{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: row;
+                    background: #FFFFFF;
+                    border: 1px solid #007AFF;
+                    box-sizing: border-box;
+                    border-radius: 5px;
+                    width: 250px;
+                    height: 41px;
+                    font-size: 15px;
+                    color: #007AFF;
+                }
+            `}</style>
+              </div>
+
+
+
+              <div>
+                <button type="submit" className={styles.form_buttonSubmit}>ثبت محصول</button>
+
+              </div>
+
+
 
 
 
@@ -560,28 +735,21 @@ const CreateProduct = () => {
             <div className={styles.createProduct_lineLeft} >
               <div className="mt-4">
                 <div>
-                  <h5 style={{ color: "#007aff", fontSize: "14px" }} className="mb-0 d-inline mr-20">اطلاعات محصول</h5>
+                  <h5 style={{ color: "#007aff", fontSize: "14px" }} className="mb-0 d-inline mr-20"></h5>
                 </div>
               </div>
               <hr style={{ background: "#007aff" }} />
-              <div className={styles.wrapper_input}>
-                <label className={styles.lable_product} htmlFor="Title" >
-                  نام محصول
-                </label>
-                <input
-                  className={styles.input_product}
-                  name="Title"
-                // id={name}
-                // value={value}
-                // type={type}
-                // className={`${defaultStyle} ${className}`}
-                // maxLength={length}
-                // onChange={handleChange(name)}
-                // onBlur={() => {
-                //   setFieldTouched(name);
-                //   setIsErrorMessageVisible(true);
-                // }}
-                />
+              <div >
+                <p style={{ color: "#5E7488", fontSize: "14px", marginTop: "90px" }}>حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش داده خواهد شد.</p>
+                <p style={{ color: "#5E7488", fontSize: "14px", marginTop: "90px" }}>حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش داده خواهد شد.</p>
+                <p style={{ color: "#5E7488", fontSize: "14px", marginTop: "100px" }}>حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش داده خواهد شد.</p>
+                <p style={{ color: "#5E7488", fontSize: "14px", marginTop: "100px" }}>حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش داده خواهد شد.</p>
+                <p style={{ color: "#5E7488", fontSize: "14px", marginTop: "100px" }}>حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش داده خواهد شد.</p>
+                <p style={{ color: "#5E7488", fontSize: "14px", marginTop: "100px" }}>حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش داده خواهد شد.</p>
+                <p style={{ color: "#5E7488", fontSize: "14px", marginTop: "100px" }}>حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش داده خواهد شد.</p>
+                <p style={{ color: "#5E7488", fontSize: "14px", marginTop: "100px" }}>حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش داده خواهد شد.</p>
+                <p style={{ color: "#5E7488", fontSize: "14px", marginTop: "100px" }}>حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش داده خواهد شد.</p>
+                
               </div>
 
             </div>
@@ -589,29 +757,46 @@ const CreateProduct = () => {
 
 
 
-          <div style={{ position: "relative", gridColumn: "1/-1", gridRow: "1/-1", background: "#ffffff" }}>
-            <div id="wrapperMarkets" className={styles.markets}>
-              <div className={styles.wrapper}>
-                {/* // progress bar */}
-                <div className={styles.Header}>
-                  <button style={{ outline: "unset" }} onClick={GoBack} className={styles.btn_icon}>
-                    <span
-                      className="fas fa-arrow-right "
-                      style={{
-                        fontSize: "15px",
-                        color: "#5E7488",
-                        marginLeft: "20px",
-                        marginRight: "20px",
-                      }}
-                    ></span>
-                  </button>
-                  {page === 1 && <h2>انتخاب دسته بندی</h2>}
-                  {page !== 1 && <h2> انتخاب زیر دسته از {title} </h2>}
-                </div>
-                <div className={styles.content}>
-                  {page === 1 ? data?.map((e) => {
+        </form>
+
+
+
+        <div style={{ position: "relative", gridColumn: "1/-1", gridRow: "1/-1", background: "#ffffff" }}>
+          <div id="wrapperMarkets" className={styles.markets}>
+            <div className={styles.wrapper}>
+              {/* // progress bar */}
+              <div className={styles.Header}>
+                <button style={{ outline: "unset" }} onClick={GoBack} className={styles.btn_icon}>
+                  <span
+                    className="fas fa-arrow-right "
+                    style={{
+                      fontSize: "15px",
+                      color: "#5E7488",
+                      marginLeft: "20px",
+                      marginRight: "20px",
+                    }}
+                  ></span>
+                </button>
+                {page === 1 && <h2>انتخاب دسته بندی</h2>}
+                {page !== 1 && <h2> انتخاب زیر دسته از {title} </h2>}
+              </div>
+              <div className={styles.content}>
+                {page === 1 ? data?.map((e) => {
+                  return (
+                    <button style={{ outline: "unset" }} onClick={() => clickButton(e)} className={styles.btn}>
+                      <div className={styles.in_btn}>
+                        <h2 style={{ marginRight: "14px" }}>{e.title}</h2>
+                        <span
+                          style={{ marginLeft: "14px" }}
+                          className="fas fa-chevron-left fa-2x"
+                        ></span>
+                      </div>
+                    </button>
+                  );
+                }) : page === 2 ? <>
+                  {subMarkets?.map((e) => {
                     return (
-                      <button style={{ outline: "unset" }} onClick={() => clickButton(e)} className={styles.btn}>
+                      <button style={{ outline: "unset" }} onClick={() => finalClick(e)} className={styles.btn}>
                         <div className={styles.in_btn}>
                           <h2 style={{ marginRight: "14px" }}>{e.title}</h2>
                           <span
@@ -621,23 +806,10 @@ const CreateProduct = () => {
                         </div>
                       </button>
                     );
-                  }) : page === 2 ? <>
-                    {subMarkets?.map((e) => {
-                      return (
-                        <button style={{ outline: "unset" }} onClick={() => finalClick(e)} className={styles.btn}>
-                          <div className={styles.in_btn}>
-                            <h2 style={{ marginRight: "14px" }}>{e.title}</h2>
-                            <span
-                              style={{ marginLeft: "14px" }}
-                              className="fas fa-chevron-left fa-2x"
-                            ></span>
-                          </div>
-                        </button>
-                      );
-                    })}
+                  })}
 
-                  </> : null}
-                  {/* {page === 1 &&
+                </> : null}
+                {/* {page === 1 &&
                                       data?.map((e) => {
                                         return (
                                           <button onClick={() => clickButton(e)} className={stylesPage1.btn}>
@@ -652,7 +824,7 @@ const CreateProduct = () => {
                                         );
                                       })
                                       } */}
-                  {/* 
+                {/* 
                                     {page != 1 && (
                                       // <>
                                       //   {subMarkets?.map((e) => {
@@ -671,25 +843,66 @@ const CreateProduct = () => {
 
                                       // </>
                                     )} */}
-                  {/* {page} */}
-                </div>
+                {/* {page} */}
               </div>
-
             </div>
 
           </div>
 
+        </div>
 
 
 
 
-        </form>
+        {/* croperProduct */}
+
+        <div id="crop_container" className={styles.wrapperIMageProduct}>
+          {/* <div className={stylesPage1.button_container} >sdftgrdfhtryhur</div> */}
+          <Cropper
+            image={imageSrc}
+            crop={crop}
+            classes={{ containerClassName: "container_cropper_product", cropAreaClassName: "product_cropArea" }}
+            // rotation={rotation}
+            // cropSize={{width: 300, height: 300}}
+            restrictPosition={true}
+
+
+            zoom={zoom}
+            aspect={2 / 2}
+            onCropChange={setCrop}
+            // onRotationChange={setRotation}
+            onCropComplete={onCropComplete}
+            onZoomChange={setZoom}
+          />
+          <div className={styles.controls}>
+            <input onChange={(e) => setZoom(e.target.value)}
+              value={zoom} type="range" step="0.1" max="3" min="1"
+            />
+            <div className={styles.wrapperButton}>
+              <div style={{ marginLeft: "10px" }}>
+                <button
+                  onClick={showCroppedImage}
+                  className="btn btn-success btn-lg">تایید</button>
+              </div>
+              <div>
+                <button onClick={_onCloseCropper} className="btn btn-secondary btn-lg">
+                  لغو
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
 
       </div>
     </>
   );
 };
-
-export default CreateProduct;
+const connector = connect(mapState);
+export default connector(CreateProduct);
 
 CreateProduct.Layout = MyLayout;
