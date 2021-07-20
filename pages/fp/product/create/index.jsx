@@ -87,9 +87,62 @@ const CreateProduct = ({ activeHojreh }) => {
   const [isErrorWeight, setIsErrorWeight] = useState(false);
   const [isErrorPrice, setIsErrorPrice] = useState(false);
   const [dataUser, setDataUser] = useState(false);
+  let [formInputs, setFormInputs] = useState({
+    Title: "",
+    Inventory: 0,
+    Slug: "",
+    Price: 0,
+    OldPrice: 0,
+    Net_Weight: 0,
+    Weight_With_Packing: 0,
+    Description: "",
+    Status: 0,
+    PostRangeType: 0,
+    PreparationDays: 0,
+    FK_Shop: "",
+    errors: {
+      Title: "",
+      Inventory: 0,
+      Slug: "",
+      Price: 0,
+      OldPrice: 0,
+      Net_Weight: 0,
+      Weight_With_Packing: 0,
+      Description: "",
+      Status: 0,
+      PostRangeType: 0,
+      PreparationDays: 0,
+      FK_Shop: "",
+    }
+  });
+
+  const validateForm = (errors) => {
+    let valid = true;
+    Object.values(errors).forEach(
+      (val) => val.length > 0 && (valid = false)
+    );
+    return valid;
+  }
 
 
+  const handleChange = (event) => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    let errors = formInputs.errors;
 
+    switch (name) {
+      case 'Title':
+        errors.Title =
+          value.length < 5
+            ? 'Full Name must be 5 characters long!'
+            : '';
+        break;
+      default:
+        break;
+    }
+
+    setFormInputs({ errors, [name]: value });
+  }
 
 
 
@@ -123,7 +176,6 @@ const CreateProduct = ({ activeHojreh }) => {
         true,
         params
       );
-      console.log("res uncom :", responseUser);
       const data = responseUser;
       setDataUser(responseUser); //==> output: {}
     };
@@ -263,6 +315,12 @@ const CreateProduct = ({ activeHojreh }) => {
 
   const createProducts = async (body) => {
 
+    if (validateForm(formInputs.errors)) {
+      console.info('Valid Form')
+    } else {
+      console.error('Invalid Form')
+    }
+
     let product_status = document.querySelector('input[type=radio]:checked').value;
 
 
@@ -270,7 +328,7 @@ const CreateProduct = ({ activeHojreh }) => {
     let confirm = {
       Title: body.Title,
       Inventory: body.Inventory,
-      Slug:"kgkgkgk",
+      Slug: "kgkgkgk",
       Price: body.Price,
       OldPrice: body.OldPrice,
       Net_Weight: body.Net_Weight,
@@ -363,8 +421,10 @@ const CreateProduct = ({ activeHojreh }) => {
                   name="Title"
                   type="text"
                   placeholder="برنج لاشه 10 کیلویی، کشت اول"
-
+                  onChange={(e) => { handleChange(e) }}
                 />
+                {formInputs.Title.length > 0 &&
+                  <span className='error'>{formInputs.errors.Title}</span>}
               </div>
 
 
@@ -749,7 +809,7 @@ const CreateProduct = ({ activeHojreh }) => {
                 <p style={{ color: "#5E7488", fontSize: "14px", marginTop: "100px" }}>حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش داده خواهد شد.</p>
                 <p style={{ color: "#5E7488", fontSize: "14px", marginTop: "100px" }}>حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش داده خواهد شد.</p>
                 <p style={{ color: "#5E7488", fontSize: "14px", marginTop: "100px" }}>حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش داده خواهد شد.</p>
-                
+
               </div>
 
             </div>
