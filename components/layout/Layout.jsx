@@ -39,30 +39,30 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
           crossOrigin="anonymous"
         />
       </Head>
-      {router.pathname == "/" && (
-        <header>
-          <div className={styles.hedtop}>
-            <span>
-              {/* <Image
+
+      <header>
+        <div className={styles.hedtop}>
+          <span>
+            {/* <Image
               src={nakhll}
               alt="Picture of the author"
             /> */}
-            </span>
+          </span>
 
-            <h1> داشبور مدیریت نخل</h1>
-          </div>
+          <h1> داشبور مدیریت نخل</h1>
+        </div>
 
-          <div className={styles.hedtop_mobile}>
-            <h1>پیشخوان</h1>
-            <span>
-              {/* <Image
+        <div className={styles.hedtop_mobile}>
+          <h1>پیشخوان</h1>
+          <span>
+            {/* <Image
               // src={nakhll}
               alt="Picture of the author"
             /> */}
-            </span>
-          </div>
-        </header>
-      )}
+          </span>
+        </div>
+      </header>
+
       <div
         className={`${
           width < breakpoint && router.pathname !== "/"
@@ -109,13 +109,16 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   <i className="far fa-envelope fa-2x"></i>
                   <h4 style={{ textAlign: "center" }}>پیام ها</h4>
                 </div>
-                <div className={styles.info_card_btn_one}>
-                  <i
-                    style={{ fontSize: "20px" }}
-                    className="fas fa-user-cog fa-2x"
-                  ></i>
-                  <h4 style={{ textAlign: "center" }}>تنظیمات</h4>
-                </div>
+                <Link href="/fp/setting">
+                  <div className={styles.info_card_btn_one}>
+                    <i
+                      style={{ fontSize: "20px" }}
+                      className="fas fa-user-cog fa-2x"
+                    ></i>
+                    <h4 style={{ textAlign: "center" }}>تنظیمات</h4>
+                  </div>
+                </Link>
+
                 <div className={styles.info_card_btn_one}>
                   <i
                     style={{ fontSize: "20px" }}

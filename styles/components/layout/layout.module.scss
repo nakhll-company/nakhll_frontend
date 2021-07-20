@@ -257,19 +257,22 @@
 .info_card_btn_one {
     background: #ffffff;
     border: 1px solid #e0e6e9;
-    -webkit-box-shadow: var(--shadow);
-    box-shadow: var(--shadow);
     border-radius: 5px;
     display: -ms-grid;
     display: grid;
-    -ms-grid-rows: (minmax(33px, 1fr)) [2];
-    grid-template-rows: repeat(2, minmax(33px, 1fr));
+    // -ms-grid-rows: (minmax(33px, 1fr)) [2];
+    // grid-template-rows: repeat(2, minmax(33px, 1fr));
+    height: 67px;
     justify-items: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
     margin-right: 0.7rem;
     margin-left: 0.7rem;
+    i {
+        font-size: 20px;
+        color: #ced5d8;
+    }
 }
 
 .info_card_btn_one :hover {
