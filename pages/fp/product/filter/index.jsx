@@ -46,33 +46,23 @@ const FilterProduct = ({ getProduct, activeHojreh }) => {
                             <div className={styles.form_status}>
                                 <label className={styles.form_status_checkboxLabel}>
                                     {/* <input className={styles.form_status_checkbox} type="checkbox" name="active" id="active" /> */}
-                                    <input className={styles.form_status_checkbox} type="radio" name="product_status" value="1" />
-                                    فعال
+                                    <input className={styles.form_status_checkbox} type="radio" name="product_status" value={1} />
+                                    آماده در انبار
                                 </label>
                                 <label className={styles.form_status_checkboxLabel}>
                                     {/* <input className={styles.form_status_checkbox} type="checkbox" name="inactive" id="inactive" /> */}
-                                    <input className={styles.form_status_checkbox} type="radio" name="product_status" value="2" />
-                                    غیر فعال
+                                    <input className={styles.form_status_checkbox} type="radio" name="product_status" value={2} />
+                                    تولید بعد از سفارش
                                 </label>
                                 <label className={styles.form_status_checkboxLabel}>
                                     {/* <input className={styles.form_status_checkbox} type="checkbox" name="accepted" id="accepted" /> */}
-                                    <input className={styles.form_status_checkbox} type="radio" name="product_status" value="3" />
-                                    تایید شده
+                                    <input className={styles.form_status_checkbox} type="radio" name="product_status" value={3} />
+                                    سفارش سازی فروش
                                 </label>
                                 <label className={styles.form_status_checkboxLabel}>
                                     {/* <input className={styles.form_status_checkbox} type="checkbox" name="failed" id="failed" /> */}
-                                    <input className={styles.form_status_checkbox} type="radio" name="product_status" value="4" />
-                                    رد شده
-                                </label>
-                                <label className={styles.form_status_checkboxLabel}>
-                                    {/* <input className={styles.form_status_checkbox} type="checkbox" name="productEnd" id="productEnd" /> */}
-                                    <input className={styles.form_status_checkbox} type="radio" name="product_status" value="5" />
-                                    اتمام موجودی
-                                </label>
-                                <label className={styles.form_status_checkboxLabel}>
-                                    {/* <input className={styles.form_status_checkbox} type="checkbox" name="pending" id="pending" /> */}
-                                    <input className={styles.form_status_checkbox} type="radio" name="product_status" value="6" />
-                                    در انتظار تایید
+                                    <input className={styles.form_status_checkbox} type="radio" name="product_status" value={4} />
+                                    موجود نیست
                                 </label>
                             </div>
                         </div>

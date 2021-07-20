@@ -5,10 +5,25 @@ import Layout from '../../../../../components/layout/Layout';
 import MobileHeader from '../../../../../components/mobileHeader';
 // methods
 import { mapState } from '../../../../../containers/product/methods/mapState';
+import { ApiRegister } from '../../../../../services/apiRegister/ApiRegister';
 // scss
 import styles from '../../../../../styles/pages/product/editPrice.module.scss';
 
 const Price = ({ productList }) => {
+
+    const _handleRequestApi = async (data) => {
+        let params = {};
+        let loadData = data;
+        let dataUrl = `/api/v1/shop/multiple-update/price/`;
+        let response = await ApiRegister().apiRequest(
+            loadData,
+            "PATCH",
+            dataUrl,
+            true,
+            params
+        );
+    };
+
     return (
         <div className={styles.wrapper}>
             <MobileHeader title="ویرایش قیمت و تخفیف محصولات" type="back" />
@@ -20,14 +35,24 @@ const Price = ({ productList }) => {
             <form className={styles.form_edit} onSubmit={(e) => {
                 e.preventDefault();
                 const data = new FormData(e.target);
+                const value = Object.fromEntries(data.entries());
+                value.topics = data.getAll("topics");
+                const objArray = [];
+                Object.keys(value).forEach(key => objArray.push({
+                    name: key,
+                    rating: value[key]
+                }));
+                _handleRequestApi(objArray);
+
             }}>
                 {productList.length > 0 ? productList.map((value, index) => {
                     return (
                         <div key={index} className={styles.form_edit_card}>
                             <label className={styles.form_edit_label}>{value.title}</label>
-                            <input className={styles.form_edit_input} type="number" name={`old_price${index}`}
+                            <input type="hidden" name={`Slug${index + 100}`} defaultValue={value.slug} />
+                            <input className={styles.form_edit_input} type="number" name={`Old${index + 100}`}
                                 defaultValue={value.old_price} />
-                            <input className={styles.form_edit_input} type="number" name={`price${index}`}
+                            <input className={styles.form_edit_input} type="number" name={`Price${index + 100}`}
                                 defaultValue={value.price} />
                         </div>
                     )

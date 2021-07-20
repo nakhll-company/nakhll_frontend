@@ -1,23 +1,43 @@
 // node libraries
+import Link from 'next/link';
 // components
 import CustomBadge from '../../../components/custom/customBadge';
+// methods
+import { ApiRegister } from '../../../services/apiRegister/ApiRegister';
 // scss
 import styles from '../../../styles/pages/order/desktopOrders.module.scss';
 
-export default function DesktopOrders({ ordersList, type }) {
+export default function DesktopOrders({ ordersList, type, activeHojreh, getUncompleted }) {
+
     const statusCompleted = [
         { value: "", label: "" },
-        { value: "", label: "لغو شده" },
-        { value: "", label: "تحویل داده شده" },
+        { value: 4, label: "لغو شده" },
+        { value: 0, label: "تحویل داده شده" },
     ];
 
     const statusUncompleted = [
         { value: "", label: "" },
-        { value: "", label: "سفارش آماده" },
-        { value: "", label: "ارسال شده" },
-        { value: "", label: "سفارش در حال آماده سازی" },
-        { value: "", label: "منتظر بررسی" },
+        { value: 1, label: "سفارش آماده است" },
+        { value: 5, label: "ارسال شده" },
+        { value: 2, label: "در حال آماده سازی" },
+        { value: 3, label: "منتظر بررسی" },
     ];
+
+    const _handleRequestApi = async (id) => {
+        let params = {};
+        let loadData = null;
+        let dataUrl = `/app/api/v1/factor/change-status/confirmed/${id}/`;
+        let response = await ApiRegister().apiRequest(
+            loadData,
+            "PUT",
+            dataUrl,
+            true,
+            params
+        );
+
+        response.details === "Done" && getUncompleted(activeHojreh);
+    };
+
     return (
         <div className={styles.wrapper}>
             <form className={styles.form_filter}>
@@ -63,30 +83,65 @@ export default function DesktopOrders({ ordersList, type }) {
                         </tr>
                     </thead>
                     <tbody>
-                        {ordersList.length > 0 && ordersList.map((value, index) => {
+                        {ordersList.length > 0 ? ordersList.map((value, index) => {
                             return (
+
                                 <tr key={index}>
-                                    <td>{index + 1}</td>
-                                    <td>{value.factor_number}</td>
-                                    <td>{value.user}</td>
-                                    <td>{new Date(value.order_date).toLocaleDateString('fa-IR')}</td>
-                                    <td></td>
-                                    <td><CustomBadge
-                                        title={value.factor_status}
-                                        color="#089319"
-                                        backgroundColor="rgba(8, 147, 25, 0.15)"
-                                        customBadgeStyle={{
-                                            borderRadius: "3px",
-                                            padding: "2px 6px",
-                                            fontSize: "12px"
-                                        }}
-                                    /></td>
+                                    <Link href={`/fp/order/orderdetail/${value.id}`}>
+                                        <td>
+                                            {index + 1}
+                                        </td>
+                                    </Link>
+                                    <Link href={`/fp/order/orderdetail/${value.id}`}>
+                                        <td>
+                                            {value.factor_number}
+                                        </td>
+                                    </Link>
+                                    <Link href={`/fp/order/orderdetail/${value.id}`}>
+                                        <td>
+
+                                            {value.user}
+                                        </td>
+                                    </Link>
+                                    <Link href={`/fp/order/orderdetail/${value.id}`}>
+                                        <td>
+                                            {new Date(value.order_date).toLocaleDateString('fa-IR')}
+                                        </td>
+                                    </Link>
+                                    <Link href={`/fp/order/orderdetail/${value.id}`}>
+                                        <td>
+
+                                        </td>
+                                    </Link>
+                                    <Link href={`/fp/order/orderdetail/${value.id}`}>
+                                        <td>
+                                            <CustomBadge
+                                                title={value.factor_status}
+                                                color="#089319"
+                                                backgroundColor="rgba(8, 147, 25, 0.15)"
+                                                customBadgeStyle={{
+                                                    borderRadius: "3px",
+                                                    padding: "2px 6px",
+                                                    fontSize: "12px"
+                                                }}
+                                            />
+                                        </td>
+                                    </Link>
                                     <td>
-                                        {value.order_status === "3" && <button type="button" className={styles.button_ready}>به موقع ارسال میکنم</button>}
+                                        {value.order_status === "3" &&
+                                            <button type="button" className={styles.button_ready} onClick={() => {
+                                                _handleRequestApi(value.id);
+                                            }}>
+                                                به موقع ارسال میکنم
+                                            </button>}
                                     </td>
                                 </tr>
                             )
-                        })}
+                        }) :
+                            <tr>
+                                <td colSpan={7}>موردی برای نمایش موجود نیست</td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>

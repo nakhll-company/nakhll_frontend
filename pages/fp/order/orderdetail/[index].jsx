@@ -9,7 +9,16 @@ import useViewport from "../../../../components/viewPort";
 // sass
 import styles from "../../../../styles/pages/order/orderdetail.module.scss";
 
-function HomePage() {
+export const getServerSideProps = ({ params }) => {
+  // fetch 
+  return {
+    props: {
+      id: params.index
+    }
+  }
+}
+
+function HomePage({ id }) {
 
   const { width } = useViewport();
   const breakpoint = 620;
@@ -20,8 +29,8 @@ function HomePage() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const _handleRequestApi = async () => {
-      let params = { factor_id: "67a7f662-efe8-4634-ae5f-9b60eff8ce97" };
+    const _handleRequestApi = async (id) => {
+      let params = { factor_id: id };
       let loadData = null;
       let dataUrl = "/app/api/v1/get-factor-details/";
       let response = await ApiRegister().apiRequest(
@@ -34,7 +43,7 @@ function HomePage() {
       setdata(response);
       setisShow(true);
     };
-    _handleRequestApi();
+    _handleRequestApi(id);
   }, []);
 
 
@@ -451,7 +460,7 @@ function HomePage() {
                   <div className={styles.final_invoice_content}>
                     <h4>مجموع هزینه ارسال</h4>
                     <h4 style={{ color: "#089319", fontWeight: "bold" }}>
-                      {data.post_details.post_price}+{" "}
+                      {/* {data.post_details.post_price}+{" "} */}
                       <span style={{ color: "#5E7488" }}>تومان</span>
                     </h4>
                   </div>
@@ -718,9 +727,9 @@ function HomePage() {
                     <h3>تعداد سفارش</h3>
                     <h3>قیمت</h3>
                   </div>
-                  {data.factor_post.map((e) => {
+                  {data.factor_post.map((e, index) => {
                     return (
-                      <div className={styles.purchased_good_content}>
+                      <div key={index} className={styles.purchased_good_content}>
                         <div className={styles.purchased_good_one}>
                           <Image
                             src={`${e.product.image_thumbnail_url}`}
@@ -862,9 +871,9 @@ function HomePage() {
                 <div className={styles.purchased_good}>
                   <h1 className={styles.header}>کالاهای خریداری شده</h1>
                   <hr />
-                  {data.factor_post.map((e) => {
+                  {data.factor_post.map((e, index) => {
                     return (
-                      <div className={styles.purchased_good_content}>
+                      <div key={index} className={styles.purchased_good_content}>
                         <div className={styles.purchased_good_one}>
                           <Image
                             src={`${e.product.image_thumbnail_url}`}
@@ -1018,7 +1027,7 @@ function HomePage() {
                   <div className={styles.final_invoice_content}>
                     <h4>مجموع هزینه ارسال</h4>
                     <h4 style={{ color: "#089319", fontWeight: "bold" }}>
-                      {data.post_details.post_price}+{" "}
+                      {/* {data.post_details.post_price}+{" "} */}
                       <span style={{ color: "#5E7488" }}>تومان</span>
                     </h4>
                   </div>

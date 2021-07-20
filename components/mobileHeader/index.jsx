@@ -15,22 +15,22 @@ function MobileHeader({
     const router = useRouter();
     return (
         <div className={type === "back" ? `${styles.wrapper_header_back}` : `${styles.wrapper_header}`}>
-            {type === "back" &&
-                // <Image src="/image/mobileHeader/back.svg" alt="header icon" width="17" height="19"
-                //     onClick={() => router.back()}
-                // />
+            {/* {type === "back" &&
+                <Image src="/image/mobileHeader/back.svg" alt="header icon" width="17" height="19"
+                    onClick={() => router.back()}
+                />
                 <i className="fa fa-arrow-left" aria-hidden="true" onClick={() => router.back()}></i>
-            }
+            } */}
             <span className={styles.header_span}>{title}</span>
-            {type === "search" &&
+            {/* {type === "search" &&
                 <i className="fa fa-search" aria-hidden="true"></i>
-                // <Image src="/image/mobileHeader/search.svg" alt="header icon" width="18" height="18" />
-            }
-            {type === "close" &&
+                <Image src="/image/mobileHeader/search.svg" alt="header icon" width="18" height="18" />
+            } */}
+            {/* {type === "close" &&
                 <i className="fa fa-times" aria-hidden="true"></i>
-                // <Image src="/image/mobileHeader/close.svg" alt="header icon" width="12" height="19" />
-            }
-            {type === "bascket" && <Image src="/image/mobileHeader/bascket.svg" alt="header icon" width="25" height="25" />}
+                <Image src="/image/mobileHeader/close.svg" alt="header icon" width="12" height="19" />
+            } */}
+            {/* {type === "bascket" && <Image src="/image/mobileHeader/bascket.svg" alt="header icon" width="25" height="25" />} */}
         </div>
     );
 }
