@@ -229,7 +229,7 @@ function MobileSetting({ activeHojreh }) {
                 // }
               }}
             >
-              <div className={styles.Hojreh_head}>
+              {/* <div className={styles.Hojreh_head}>
                 <div className={styles.Hojreh_head_pic}>
                   <div className={styles.Hojreh_head_edit_icon_pic}>
                     <span className="fas fa-edit"></span>
@@ -238,7 +238,7 @@ function MobileSetting({ activeHojreh }) {
                 <div className={styles.Hojreh_head_edit_icon}>
                   <span className="fas fa-edit"></span>
                 </div>
-              </div>
+              </div> */}
               <div className={styles.Hojreh_profile}>
                 <div className={styles.HeadName}>
                   <h1>حجره</h1>
