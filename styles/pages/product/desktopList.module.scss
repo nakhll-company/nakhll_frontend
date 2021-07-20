@@ -120,9 +120,12 @@
             padding: 0px 20px;
             margin-bottom: 20px;
             .button_add{
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 width: 131px;
                 height: 33px;
-                background: #007AFF;
+                background: #007AFF !important;
                 border-radius: 5px;
                 text-align: center;
                 color: #fff;

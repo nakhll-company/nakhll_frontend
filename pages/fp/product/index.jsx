@@ -32,7 +32,9 @@ const Product = ({ getProduct, productList, activeHojreh }) => {
           content="initial-scale=1.0, width=device-width"
         />
       </Head>
-      {width < breakpoint ? <Mobile productList={productList} activeHojreh={activeHojreh} /> : <Desktop productList={productList} activeHojreh={activeHojreh} />}
+      {width < breakpoint ?
+        <Mobile productList={productList} activeHojreh={activeHojreh} /> :
+        <Desktop productList={productList} activeHojreh={activeHojreh} getProduct={getProduct} />}
     </>
   );
 };

@@ -9,12 +9,27 @@ import CustomBadge from '../../../components/custom/customBadge';
 // methods
 import { mapState } from '../methods/mapState';
 import { mapDispatch } from '../methods/mapDispatch';
+import { ApiRegister } from '../../../services/apiRegister/ApiRegister';
 // scss
 import styles from '../../../styles/pages/order/mobileOrders.module.scss';
 
 
 const MobileOrders = ({ type, ordersList, getUncompleted, getCompleted, activeHojreh }) => {
 
+    const _handleRequestApi = async (id) => {
+        let params = {};
+        let loadData = null;
+        let dataUrl = `/app/api/v1/factor/change-status/confirmed/${id}/`;
+        let response = await ApiRegister().apiRequest(
+            loadData,
+            "PUT",
+            dataUrl,
+            true,
+            params
+        );
+
+        response.details === "Done" && getUncompleted(activeHojreh);
+    };
 
     useEffect(async () => {
         type === "uncompleted" && getUncompleted(activeHojreh);
@@ -66,7 +81,16 @@ const MobileOrders = ({ type, ordersList, getUncompleted, getCompleted, activeHo
                                 );
                             })}
                         </div>
-                        {value.order_status === "3" && <button type="button" className={styles.button_ready}>به موقع ارسال میکنم</button>}
+                        {value.order_status === "3" &&
+                            <button
+                                type="button"
+                                className={styles.button_ready}
+                                onClick={() => {
+                                    _handleRequestApi(value.id);
+                                }}
+                            >
+                                به موقع ارسال میکنم
+                            </button>}
                     </div>
                 )
             }) : <h3 style={{ textAlign: "center" }}>موردی برای نمایش وجود ندارد</h3>}
