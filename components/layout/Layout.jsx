@@ -116,7 +116,13 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   <h4 style={{ textAlign: "center" }}>پیام ها</h4>
                 </div>
                 <Link href="/fp/setting">
-                  <div className={styles.info_card_btn_one}>
+                  <div
+                    className={`${
+                      router.pathname == "/fp/setting"
+                        ? styles.ActiveMenuBarBig
+                        : ""
+                    }   ${styles.info_card_btn_one} ${styles.forhover}`}
+                  >
                     <i
                       style={{ fontSize: "20px" }}
                       className="fas fa-user-cog fa-2x"

@@ -269,18 +269,11 @@
     align-items: center;
     margin-right: 0.7rem;
     margin-left: 0.7rem;
+    cursor: pointer;
     i {
         font-size: 20px;
         color: #ced5d8;
     }
-}
-
-.info_card_btn_one :hover {
-    color: #007aff;
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
-    -webkit-transform: scale(1.2);
-    transform: scale(1.2);
 }
 
 .menu_card {
@@ -572,4 +565,12 @@
     background-color: #007aff;
 }
 
-.SelectMenu {}
+.ActiveMenuBarBig {
+    background-color: #007aff;
+    i {
+        color: #fff;
+    }
+    h4 {
+        color: #fff;
+    }
+}

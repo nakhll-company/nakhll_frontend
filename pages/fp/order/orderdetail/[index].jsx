@@ -18,6 +18,11 @@ export const getServerSideProps = ({ params }) => {
   };
 };
 
+// details: "Wait for other shops to confirm"
+// POST:
+// {
+//     "barcode": "BARCODE_HERE"
+// }
 function HomePage({ id }) {
   const { width } = useViewport();
   const breakpoint = 620;
@@ -27,6 +32,7 @@ function HomePage({ id }) {
   const [btnOk, setbtnOk] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [configOrder, setconfigOrder] = useState(false);
+  const [codeRahgiri, setcodeRahgiri] = useState("");
 
   useEffect(() => {
     const _handleRequestApi = async (id) => {
@@ -69,6 +75,32 @@ function HomePage({ id }) {
     };
     _handleRequestApi(id);
   };
+
+  // const SendRahgiriCode = () => {
+  //   const codeRahgiri = {
+  //     barcode: codeRahgiri,
+  //   };
+  //   const _handleRequestApi = async (id) => {
+  //     let params = {};
+  //     let loadData = codeRahgiri;
+  //     let dataUrl = `/app/api/v1/factor/change-status/confirmed/${id}/`;
+  //     let response = await ApiRegister().apiRequest(
+  //       loadData,
+  //       "PUT",
+  //       dataUrl,
+  //       true,
+  //       params
+  //     );
+  //     setconfigOrder(response);
+  //     setisShow(true);
+  //     setbtnOk(!btnOk);
+
+  //     if (response.details === "Done") {
+  //       setconfigOrder(true);
+  //     }
+  //   };
+  //   _handleRequestApi(id);
+  // };
 
   return (
     <>
@@ -274,6 +306,10 @@ function HomePage({ id }) {
                           <input
                             className={styles.btn_code}
                             type="number"
+                            value={codeRahgiri}
+                            onChange={(e) => {
+                              setcodeRahgiri(e.target.value);
+                            }}
                             placeholder="کد رهگیری مرسوله"
                           />
                         </div>
@@ -281,6 +317,7 @@ function HomePage({ id }) {
                           <button
                             style={{ cursor: "pointer" }}
                             className={`${styles.btn} ${styles.btnSubmit}`}
+                            // onClick={SendRahgiriCode()}
                           >
                             <h3>ثبت کد رهگیری</h3>
                           </button>
