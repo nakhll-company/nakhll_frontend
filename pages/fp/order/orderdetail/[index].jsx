@@ -76,31 +76,31 @@ function HomePage({ id }) {
     _handleRequestApi(id);
   };
 
-  // const SendRahgiriCode = () => {
-  //   const codeRahgiri = {
-  //     barcode: codeRahgiri,
-  //   };
-  //   const _handleRequestApi = async (id) => {
-  //     let params = {};
-  //     let loadData = codeRahgiri;
-  //     let dataUrl = `/app/api/v1/factor/change-status/confirmed/${id}/`;
-  //     let response = await ApiRegister().apiRequest(
-  //       loadData,
-  //       "PUT",
-  //       dataUrl,
-  //       true,
-  //       params
-  //     );
-  //     setconfigOrder(response);
-  //     setisShow(true);
-  //     setbtnOk(!btnOk);
+  const SendRahgiriCode = () => {
+    const sendData = {
+      barcode: codeRahgiri,
+    };
+    const _handleRequestApi = async (id) => {
+      let params = {};
+      let loadData = sendData;
+      let dataUrl = `/app/api/v1/factor/change-status/sent/${id}/`;
+      let response = await ApiRegister().apiRequest(
+        loadData,
+        "POST",
+        dataUrl,
+        true,
+        params
+      );
+      // setconfigOrder(response);
+      // setisShow(true);
+      // setbtnOk(!btnOk);
 
-  //     if (response.details === "Done") {
-  //       setconfigOrder(true);
-  //     }
-  //   };
-  //   _handleRequestApi(id);
-  // };
+      // if (response.details === "Done") {
+      //   setconfigOrder(true);
+      // }
+    };
+    _handleRequestApi(id);
+  };
 
   return (
     <>
@@ -317,7 +317,9 @@ function HomePage({ id }) {
                           <button
                             style={{ cursor: "pointer" }}
                             className={`${styles.btn} ${styles.btnSubmit}`}
-                            // onClick={SendRahgiriCode()}
+                            onClick={() => {
+                              SendRahgiriCode();
+                            }}
                           >
                             <h3>ثبت کد رهگیری</h3>
                           </button>
@@ -358,6 +360,9 @@ function HomePage({ id }) {
                         <div className={styles.order_statusDcod_button}>
                           <button
                             className={`${styles.btn} ${styles.btnSubmit}`}
+                            onClick={() => {
+                              SendRahgiriCode();
+                            }}
                           >
                             <h3>ثبت کد رهگیری</h3>
                           </button>
@@ -641,7 +646,7 @@ function HomePage({ id }) {
                       <span style={{ color: "#5E7488" }}>تومان</span>
                     </h4>
                   </div>
-                  <div
+                  {/* <div
                     className={styles.final_invoice_content}
                     style={{ marginBottom: "30px" }}
                   >
@@ -649,15 +654,15 @@ function HomePage({ id }) {
                     <h4 style={{ color: "#D14343", fontWeight: "bold" }}>
                       12.000- <span style={{ color: "#5E7488" }}>تومان</span>
                     </h4>
-                  </div>
+                  </div> */}
                 </div>
                 <hr />
-                <div className={styles.final_invoice_content_sub}>
+                {/* <div className={styles.final_invoice_content_sub}>
                   <h3 style={{ color: "#364254" }}>مبلغ قابل تسویه</h3>
                   <h4 style={{ color: "#089319", fontWeight: "bold" }}>
                     12.000+ <span style={{ color: "#5E7488" }}>تومان</span>
                   </h4>
-                </div>
+                </div> */}
               </div>
 
               <div style={{ marginTop: "80px" }}></div>
@@ -801,7 +806,7 @@ function HomePage({ id }) {
                       <div className={styles.order_status_button}>
                         <button
                           onClick={() => {
-                            setbtnOk(!btnOk);
+                            SendRahgiriCode();
                           }}
                           className={`${styles.btn} ${styles.btnSubmit}`}
                         >
@@ -1214,7 +1219,7 @@ function HomePage({ id }) {
                       <span style={{ color: "#5E7488" }}>تومان</span>
                     </h4>
                   </div>
-                  <div
+                  {/* <div
                     className={styles.final_invoice_content}
                     style={{ marginBottom: "30px" }}
                   >
@@ -1222,15 +1227,15 @@ function HomePage({ id }) {
                     <h4 style={{ color: "#D14343", fontWeight: "bold" }}>
                       12.000- <span style={{ color: "#5E7488" }}>تومان</span>
                     </h4>
-                  </div>
+                  </div> */}
                 </div>
                 <hr />
-                <div className={styles.final_invoice_content_sub}>
+                {/* <div className={styles.final_invoice_content_sub}>
                   <h3 style={{ color: "#364254" }}>مبلغ قابل تسویه</h3>
                   <h4 style={{ color: "#089319", fontWeight: "bold" }}>
                     12.000+ <span style={{ color: "#5E7488" }}>تومان</span>
                   </h4>
-                </div>
+                </div> */}
               </div>
 
               <div style={{ marginTop: "80px" }}></div>

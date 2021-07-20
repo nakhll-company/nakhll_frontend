@@ -42,32 +42,34 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
         />
       </Head>
 
-      <header>
-        <div className={styles.hedtop}>
-          <sapn style={{ marginRight: "102px" }}>
-            <Image
-              src="/image/LOGO_500.png"
-              alt="Picture of the author"
-              width={60}
-              height={60}
-            />
-          </sapn>
+      {width > breakpoint && (
+        <header>
+          <div className={styles.hedtop}>
+            <sapn style={{ marginRight: "102px" }}>
+              <Image
+                src="/image/LOGO_500.png"
+                alt="Picture of the author"
+                width={60}
+                height={60}
+              />
+            </sapn>
 
-          <h1> داشبور مدیریت نخل</h1>
-        </div>
+            <h1> داشبور مدیریت نخل</h1>
+          </div>
 
-        <div className={styles.hedtop_mobile}>
-          <h1>پیشخوان</h1>
-          <span style={{ marginRight: "102px" }}>
-            <Image
-              src="/image/LOGO_500.png"
-              alt="Picture of the author"
-              width={60}
-              height={60}
-            />
-          </span>
-        </div>
-      </header>
+          <div className={styles.hedtop_mobile}>
+            <h1>پیشخوان</h1>
+            <span style={{ marginRight: "102px" }}>
+              <Image
+                src="/image/LOGO_500.png"
+                alt="Picture of the author"
+                width={60}
+                height={60}
+              />
+            </span>
+          </div>
+        </header>
+      )}
 
       <div
         className={`${
@@ -141,7 +143,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
               </div>
             </section>
             <section className={styles.menu_card}>
-              <Link href={`/?shop=${selectShop}`}>
+              <Link href={`/fp`}>
                 <span
                   className={`${styles.menu_card_item}   ${
                     router.pathname == "/" ? styles.selectNav : ""
