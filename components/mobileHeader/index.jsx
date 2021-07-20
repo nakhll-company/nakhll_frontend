@@ -27,7 +27,9 @@ function MobileHeader({
                 // <i className="fa fa-search" aria-hidden="true"></i>
             }
             {type === "close" &&
-                <Image src="/image/mobileHeader/close.svg" alt="header icon" width="12" height="19" />
+                <Image src="/image/mobileHeader/close.svg" alt="header icon" width="12" height="19"
+                    onClick={() => router.replace('/fp')}
+                />
                 // <i className="fa fa-times" aria-hidden="true"></i>
             }
             {type === "bascket" && <Image src="/bascket.svg" alt="header icon" width="25" height="25" />}
