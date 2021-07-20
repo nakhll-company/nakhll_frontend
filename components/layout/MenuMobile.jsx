@@ -51,7 +51,10 @@ function MenuMobile() {
             e.currentTarget.classList.add("active");
           }}
         >
-          <i className="fas fa-dollar-sign" style={{ fontSize: "20px" }}></i>
+          <i
+            style={{ fontSize: "20px" }}
+            className="fas fa-user-cog"
+          ></i>
           <h2 style={{ fontSize: "13px" }}>تنظیمات</h2>
         </span>
       </Link>
