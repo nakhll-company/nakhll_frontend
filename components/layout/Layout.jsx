@@ -243,7 +243,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                             : ""
                         }`}
                       ></span>
-                      <h2>تکمیل نشده</h2>
+                      <h2>تکمیل شده</h2>
                     </span>
                   </Link>
                   <Link href="/fp/order/uncompleted">
@@ -268,7 +268,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                             : ""
                         }`}
                       ></span>
-                      <h2>تایید نشده</h2>
+                      <h2>تکمیل نشده</h2>
                     </span>
                   </Link>
                 </>

@@ -10,16 +10,15 @@ import useViewport from "../../../../components/viewPort";
 import styles from "../../../../styles/pages/order/orderdetail.module.scss";
 
 export const getServerSideProps = ({ params }) => {
-  // fetch 
+  // fetch
   return {
     props: {
-      id: params.index
-    }
-  }
-}
+      id: params.index,
+    },
+  };
+};
 
 function HomePage({ id }) {
-
   const { width } = useViewport();
   const breakpoint = 620;
 
@@ -27,6 +26,7 @@ function HomePage({ id }) {
   const [isShow, setisShow] = useState(false);
   const [btnOk, setbtnOk] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
+  const [configOrder, setconfigOrder] = useState(false);
 
   useEffect(() => {
     const _handleRequestApi = async (id) => {
@@ -42,10 +42,33 @@ function HomePage({ id }) {
       );
       setdata(response);
       setisShow(true);
+      console.log("aaaa :>> ", response);
     };
     _handleRequestApi(id);
   }, []);
 
+  const confirmedFactor = () => {
+    const _handleRequestApi = async (id) => {
+      let params = {};
+      let loadData = null;
+      let dataUrl = `/app/api/v1/factor/change-status/confirmed/${id}/`;
+      let response = await ApiRegister().apiRequest(
+        loadData,
+        "PUT",
+        dataUrl,
+        true,
+        params
+      );
+      setconfigOrder(response);
+      setisShow(true);
+      setbtnOk(!btnOk);
+
+      if (response.details === "Done") {
+        setconfigOrder(true);
+      }
+    };
+    _handleRequestApi(id);
+  };
 
   return (
     <>
@@ -63,7 +86,14 @@ function HomePage({ id }) {
                     <div className={styles.title_status}>
                       <h3 style={{ fontSize: "15px", fontWeight: "bold" }}>
                         {data.order_status === "2" && "در انتظار تحویل به پست"}
-                        {data.order_status === "3" && "در انتظار تایید"}
+                        {data.order_status === "3" &&
+                          btnOk &&
+                          "در انتظار تایید"}
+                        {data.order_status === "3" &&
+                          !btnOk &&
+                          "در انتظار تحویل به پست"}
+
+                        {data.order_status === "5" && "سفارش ارسال شده است"}
                       </h3>
                     </div>
                   </div>
@@ -73,7 +103,8 @@ function HomePage({ id }) {
                     {/* تایید سفارش */}
 
                     <div className={styles.order_status_oneLevel}>
-                      {data.order_status === "3" && (
+                      {/* منتظر بررسی */}
+                      {data.order_status === "3" && btnOk && (
                         <div className={styles.place_icon_two}>
                           <span
                             style={{ fontSize: "20px", color: "#fff" }}
@@ -81,7 +112,25 @@ function HomePage({ id }) {
                           ></span>
                         </div>
                       )}
+                      {data.order_status === "3" && !btnOk && (
+                        <div className={styles.place_icon_three}>
+                          <span
+                            style={{ fontSize: "20px", color: "#fff" }}
+                            className="fas fa-clipboard-check "
+                          ></span>
+                        </div>
+                      )}
+                      {/* سفارش در حال اماده سازی */}
                       {data.order_status === "2" && (
+                        <div className={styles.place_icon_three}>
+                          <span
+                            style={{ fontSize: "20px", color: "#fff" }}
+                            className="fas fa-clipboard-check "
+                          ></span>
+                        </div>
+                      )}
+                      {/* سفارش ارسال شده است */}
+                      {data.order_status === "5" && (
                         <div className={styles.place_icon_three}>
                           <span
                             style={{ fontSize: "20px", color: "#fff" }}
@@ -96,7 +145,7 @@ function HomePage({ id }) {
                       >
                         {" "}
                         <h4>تایید سفارش</h4>
-                        <h4 style={{ color: "#000" }}>22 ساعت 10 دقیقه</h4>
+                        {/* <h4 style={{ color: "#000" }}>22 ساعت 10 دقیقه</h4> */}
                       </div>
                     </div>
                     <div
@@ -114,12 +163,38 @@ function HomePage({ id }) {
                     {/* تحویل مرسوله به پست */}
 
                     <div className={styles.order_status_oneLevel}>
-                      <div className={styles.place_icon}>
-                        <span
-                          style={{ fontSize: "20px", color: "#fff" }}
-                          className="fas fa-truck "
-                        ></span>
-                      </div>
+                      {data.order_status === "2" && (
+                        <div className={styles.place_icon}>
+                          <span
+                            style={{ fontSize: "20px", color: "#fff" }}
+                            className="fas fa-truck "
+                          ></span>
+                        </div>
+                      )}
+                      {data.order_status === "3" && btnOk && (
+                        <div className={styles.place_icon}>
+                          <span
+                            style={{ fontSize: "20px", color: "#fff" }}
+                            className="fas fa-truck "
+                          ></span>
+                        </div>
+                      )}
+                      {data.order_status === "3" && !btnOk && (
+                        <div className={styles.place_icon_two}>
+                          <span
+                            style={{ fontSize: "20px", color: "#fff" }}
+                            className="fas fa-truck "
+                          ></span>
+                        </div>
+                      )}
+                      {data.order_status === "5" && (
+                        <div className={styles.place_icon_three}>
+                          <span
+                            style={{ fontSize: "20px", color: "#fff" }}
+                            className="fas fa-truck "
+                          ></span>
+                        </div>
+                      )}
                       <div
                         className={styles.order_status_right_icon}
                         style={{ marginRight: "20px" }}
@@ -147,29 +222,40 @@ function HomePage({ id }) {
                     {/* تایید مشتری */}
 
                     <div className={styles.order_status_oneLevel}>
-                      <div className={styles.place_icon}>
-                        <span
-                          style={{ fontSize: "20px", color: "#fff" }}
-                          className="fas fa-box"
-                        ></span>
-                      </div>
+                      {data.order_status === "0" ? (
+                        <div className={styles.place_icon}>
+                          <span
+                            style={{ fontSize: "20px", color: "#fff" }}
+                            className="fas fa-box"
+                          ></span>
+                        </div>
+                      ) : (
+                        <div className={styles.place_icon}>
+                          <span
+                            style={{ fontSize: "20px", color: "#fff" }}
+                            className="fas fa-box"
+                          ></span>
+                        </div>
+                      )}
                       <div
                         className={styles.order_status_right_icon}
                         style={{ marginRight: "20px" }}
                       >
                         {" "}
                         <h4>تایید مشتری</h4>
-                        <h4 style={{ color: "#000" }}>29/04/1400</h4>
+                        {/* <h4 style={{ color: "#000" }}>29/04/1400</h4> */}
                       </div>
                     </div>
                   </div>
 
-                  {/* ‌Buttons */}
-                  {btnOk ? (
+                  {/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@‌  Buttons  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */}
+
+                  {/*  منتظر بررسی */}
+                  {data.order_status === "3" && btnOk && (
                     <div className={styles.order_statusD_button}>
                       <button
                         onClick={() => {
-                          setbtnOk(!btnOk);
+                          confirmedFactor();
                         }}
                         className={`${styles.btn} ${styles.btnSubmit}`}
                       >
@@ -179,7 +265,9 @@ function HomePage({ id }) {
                         <h3>ثبت مشکل</h3>
                       </button>
                     </div>
-                  ) : (
+                  )}
+
+                  {data.order_status === "3" && !btnOk && (
                     <>
                       <div className={styles.ButtonsGridD}>
                         <div className={styles.order_statusD_code}>
@@ -191,9 +279,47 @@ function HomePage({ id }) {
                         </div>
                         <div className={styles.order_statusDcod_button}>
                           <button
-                            onClick={() => {
-                              setbtnOk(!btnOk);
-                            }}
+                            style={{ cursor: "pointer" }}
+                            className={`${styles.btn} ${styles.btnSubmit}`}
+                          >
+                            <h3>ثبت کد رهگیری</h3>
+                          </button>
+                          <button
+                            className={`${styles.btn} ${styles.btnProblem}`}
+                          >
+                            <h3>ثبت مشکل</h3>
+                          </button>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                  {data.order_status === "5" && (
+                    <>
+                      <div className={styles.ButtonsGridDFinal}>
+                        <div className={styles.order_statusD_code}>
+                          <input
+                            className={styles.btn_code}
+                            type="number"
+                            placeholder="کد رهگیری مرسوله"
+                          />
+                        </div>
+                      </div>
+                    </>
+                  )}
+
+                  {/* سفارش در حال اماده سازی */}
+                  {data.order_status === "2" && (
+                    <>
+                      <div className={styles.ButtonsGridD}>
+                        <div className={styles.order_statusD_code}>
+                          <input
+                            className={styles.btn_code}
+                            type="number"
+                            placeholder="کد رهگیری مرسوله"
+                          />
+                        </div>
+                        <div className={styles.order_statusDcod_button}>
+                          <button
                             className={`${styles.btn} ${styles.btnSubmit}`}
                           >
                             <h3>ثبت کد رهگیری</h3>
@@ -208,6 +334,9 @@ function HomePage({ id }) {
                     </>
                   )}
 
+                  {/* سفارش تحویل داده شده است */}
+                  {data.order_status === "0"}
+
                   {/* Buttons 2 */}
                 </div>
               </div>
@@ -221,7 +350,9 @@ function HomePage({ id }) {
                   <div className={styles.post_informationD_content}>
                     <h4>نام مشتری</h4>
                     <h3 style={{ marginTop: "5px" }}>
-                      {`${data.profile.user.first_name}  ${data.profile.user.last_name}`}
+                      {`${data.profile && data.profile.user.first_name}  ${
+                        data.profile && data.profile.user.last_name
+                      }`}
                     </h3>
                   </div>
                   {/* <div className={styles.post_informationD_content}>
@@ -299,116 +430,125 @@ function HomePage({ id }) {
               <div className={styles.purchased_good}>
                 <h1 className={styles.header}>کالاهای خریداری شده</h1>
                 <hr />
-                {data.factor_post.map((e, index) => {
-                  return (
-                    <Fragment key={index}>
-                      <div className={styles.purchased_good_contentD}>
-                        <h3>{index + 1}</h3>
-                        <div
-                          style={{
-                            backgroundColor: "gold",
-                            width: "50px",
-                            height: "50px",
-                          }}
-                        ></div>
-                        <div className={styles.row}>
-                          <h3 style={{ marginRight: "15px" }}>
-                            {e.product.title}
-                          </h3>
-                        </div>
-
-                        <div style={{ width: "40px" }}>
-                          <h4 style={{ color: "#364254" }}>
-                            {e.ProductCount} <span>عدد</span>
-                          </h4>
-                        </div>
-                        <div style={{ width: "94px", display: "flex" }}>
-                          <h4 style={{ color: "#364254" }}>
-                            {e.product.price}{" "}
-                            <span style={{ color: "#5E7488" }}>تومان</span>
-                          </h4>
-                        </div>
-
-                        <div className={styles.good_four}>
-                          <button
-                            className={styles.btn}
-                            onClick={() => setIsOpen(!isOpen)}
+                {data.factor_post &&
+                  data.factor_post.map((e, index) => {
+                    return (
+                      <Fragment key={index}>
+                        <div className={styles.purchased_good_contentD}>
+                          <h3>{index + 1}</h3>
+                          <div
+                            style={{
+                              backgroundColor: "gold",
+                              width: "50px",
+                              height: "50px",
+                            }}
                           >
-                            {isOpen ? (
-                              <>
-                                <div
-                                  style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                  }}
-                                >
-                                  <h3>جزییات کمتر</h3>
-                                  <span
-                                    style={{
-                                      fontSize: "16px",
-                                      marginRight: "10px",
-                                    }}
-                                    className="fas fa-chevron-up"
-                                  ></span>
-                                </div>
-                              </>
-                            ) : (
-                              <>
-                                <div
-                                  style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                  }}
-                                >
-                                  <h3>جزییات بیشتر</h3>
-                                  <span
-                                    style={{
-                                      fontSize: "16px",
-                                      marginRight: "10px",
-                                    }}
-                                    className="fas fa-chevron-down"
-                                  ></span>
-                                </div>
-                              </>
-                            )}
-                          </button>
-                        </div>
-                      </div>
-                      <div className={styles.lineTable}></div>
-                      {isOpen && (
-                        <div
-                          id={index + 1}
-                          className={styles.purchased_good_threeD}
-                        >
-                          <div className={styles.good_three_content}>
-                            <h4>مجموع هزینه محصول</h4>
-                            <h4
-                              style={{ color: "#089319", fontWeight: "bold" }}
-                            >
-                              {e.get_total_item_price}+{" "}
+                            <Image
+                              src={e.product.image_thumbnail_url}
+                              alt="Picture of the author"
+                              // layout="fill"
+                              width={50}
+                              height={50}
+                            />
+                          </div>
+                          <div className={styles.row}>
+                            <h3 style={{ marginRight: "15px" }}>
+                              {e.product.title}
+                            </h3>
+                          </div>
+
+                          <div style={{ width: "40px" }}>
+                            <h4 style={{ color: "#364254" }}>
+                              {e.ProductCount} <span>عدد</span>
+                            </h4>
+                          </div>
+                          <div style={{ width: "94px", display: "flex" }}>
+                            <h4 style={{ color: "#364254" }}>
+                              {e.product.price}{" "}
                               <span style={{ color: "#5E7488" }}>تومان</span>
                             </h4>
                           </div>
-                          {/* <div className={styles.good_three_content}>
+
+                          <div className={styles.good_four}>
+                            <button
+                              className={styles.btn}
+                              onClick={() => setIsOpen(!isOpen)}
+                            >
+                              {isOpen ? (
+                                <>
+                                  <div
+                                    style={{
+                                      display: "flex",
+                                      alignItems: "center",
+                                    }}
+                                  >
+                                    <h3>جزییات کمتر</h3>
+                                    <span
+                                      style={{
+                                        fontSize: "16px",
+                                        marginRight: "10px",
+                                      }}
+                                      className="fas fa-chevron-up"
+                                    ></span>
+                                  </div>
+                                </>
+                              ) : (
+                                <>
+                                  <div
+                                    style={{
+                                      display: "flex",
+                                      alignItems: "center",
+                                    }}
+                                  >
+                                    <h3>جزییات بیشتر</h3>
+                                    <span
+                                      style={{
+                                        fontSize: "16px",
+                                        marginRight: "10px",
+                                      }}
+                                      className="fas fa-chevron-down"
+                                    ></span>
+                                  </div>
+                                </>
+                              )}
+                            </button>
+                          </div>
+                        </div>
+                        <div className={styles.lineTable}></div>
+                        {isOpen && (
+                          <div
+                            id={index + 1}
+                            className={styles.purchased_good_threeD}
+                          >
+                            <div className={styles.good_three_content}>
+                              <h4>مجموع هزینه محصول</h4>
+                              <h4
+                                style={{ color: "#089319", fontWeight: "bold" }}
+                              >
+                                {e.get_total_item_price}+{" "}
+                                <span style={{ color: "#5E7488" }}>تومان</span>
+                              </h4>
+                            </div>
+                            {/* <div className={styles.good_three_content}>
                       <h4> هزینه ارسال</h4>
                       <h4 style={{ color: "#089319", fontWeight: "bold" }}>
                         12.000+{" "}
                         <span style={{ color: "#5E7488" }}>تومان</span>
                       </h4>
                     </div> */}
-                          <div
-                            className={styles.good_three_content}
-                            style={{ marginBottom: "30px" }}
-                          >
-                            <h4>تخفیف محصول</h4>
-                            <h4
-                              style={{ color: "#D14343", fontWeight: "bold" }}
+                            <div
+                              className={styles.good_three_content}
+                              style={{ marginBottom: "30px" }}
                             >
-                              {e.product.discount}-{" "}
-                              <span style={{ color: "#5E7488" }}>تومان</span>
-                            </h4>
-                          </div>
-                          {/* <div
+                              <h4>تخفیف محصول</h4>
+                              <h4
+                                style={{ color: "#D14343", fontWeight: "bold" }}
+                              >
+                                {e.product.discount}-{" "}
+                                <span style={{ color: "#5E7488" }}>تومان</span>
+                              </h4>
+                            </div>
+                            {/* <div
                       className={styles.good_three_content}
                       style={{ marginBottom: "30px" }}
                     >
@@ -418,7 +558,7 @@ function HomePage({ id }) {
                         <span style={{ color: "#5E7488" }}>تومان</span>
                       </h4>
                     </div> */}
-                          {/* <div
+                            {/* <div
                       className={styles.good_three_content}
                       style={{ marginBottom: "30px" }}
                     >
@@ -427,7 +567,7 @@ function HomePage({ id }) {
                         0- <span style={{ color: "#5E7488" }}>تومان</span>
                       </h4>
                     </div> */}
-                          {/* <div
+                            {/* <div
                       className={styles.good_three_content}
                       style={{ marginBottom: "30px" }}
                     >
@@ -437,11 +577,11 @@ function HomePage({ id }) {
                         <span style={{ color: "#5E7488" }}>تومان</span>
                       </h4>
                     </div> */}
-                        </div>
-                      )}
-                    </Fragment>
-                  );
-                })}
+                          </div>
+                        )}
+                      </Fragment>
+                    );
+                  })}
               </div>
 
               {/* فاکتور نهایی */}
@@ -460,7 +600,7 @@ function HomePage({ id }) {
                   <div className={styles.final_invoice_content}>
                     <h4>مجموع هزینه ارسال</h4>
                     <h4 style={{ color: "#089319", fontWeight: "bold" }}>
-                      {/* {data.post_details.post_price}+{" "} */}
+                      {data.post_details && data.post_details.post_price}+{" "}
                       <span style={{ color: "#5E7488" }}>تومان</span>
                     </h4>
                   </div>
@@ -719,7 +859,7 @@ function HomePage({ id }) {
               {/* کالاهای خریداری شده */}
               {true && (
                 <div className={styles.purchased_good}>
-                  <h1 className={styles.header}>کالاهای خریداریزبب شده</h1>
+                  <h1 className={styles.header}>کالاهای خریداری شده</h1>
                   <hr />
                   <div className={styles.HeaderTableD}>
                     <h3>ردیف</h3>
@@ -729,7 +869,10 @@ function HomePage({ id }) {
                   </div>
                   {data.factor_post.map((e, index) => {
                     return (
-                      <div key={index} className={styles.purchased_good_content}>
+                      <div
+                        key={index}
+                        className={styles.purchased_good_content}
+                      >
                         <div className={styles.purchased_good_one}>
                           <Image
                             src={`${e.product.image_thumbnail_url}`}
@@ -873,7 +1016,10 @@ function HomePage({ id }) {
                   <hr />
                   {data.factor_post.map((e, index) => {
                     return (
-                      <div key={index} className={styles.purchased_good_content}>
+                      <div
+                        key={index}
+                        className={styles.purchased_good_content}
+                      >
                         <div className={styles.purchased_good_one}>
                           <Image
                             src={`${e.product.image_thumbnail_url}`}
