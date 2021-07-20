@@ -5,10 +5,25 @@ import Layout from '../../../../../components/layout/Layout';
 import MobileHeader from '../../../../../components/mobileHeader';
 // methods
 import { mapState } from '../../../../../containers/product/methods/mapState';
+import { ApiRegister } from '../../../../../services/apiRegister/ApiRegister';
 // scss
 import styles from '../../../../../styles/pages/product/editPrice.module.scss';
 
 const Price = ({ productList }) => {
+
+    const _handleRequestApi = async (data) => {
+        let params = {};
+        let loadData = data;
+        let dataUrl = `/api/v1/shop/multiple-update/price/`;
+        let response = await ApiRegister().apiRequest(
+            loadData,
+            "PATCH",
+            dataUrl,
+            true,
+            params
+        );
+    };
+
     return (
         <div className={styles.wrapper}>
             <MobileHeader title="ویرایش قیمت و تخفیف محصولات" type="back" />
@@ -20,61 +35,15 @@ const Price = ({ productList }) => {
             <form className={styles.form_edit} onSubmit={(e) => {
                 e.preventDefault();
                 const data = new FormData(e.target);
-
                 const value = Object.fromEntries(data.entries());
-
                 value.topics = data.getAll("topics");
+                const objArray = [];
+                Object.keys(value).forEach(key => objArray.push({
+                    name: key,
+                    rating: value[key]
+                }));
+                _handleRequestApi(objArray);
 
-                let result = Object.entries(value);
-                let kkkk = [];
-                for (let i = 0; i < result.length; i + 3) {
-                    kkkk.push({
-                        Slug: result[i][1],
-                        OldPrice: result[i + 1][1],
-                        Price: result[i + 2][1]
-                    });
-
-                }
-                // console.log(">>>", kkkk);
-                // const form = new FormData(e.target);
-                // let result = Object.fromEntries(form.entries());
-                // let data = [];
-                // let Slug, OldPrice, Price;
-                // let keys = Object.keys(result);
-                // let keys = Object.values(result);
-                // for (let i = 0; i < keys.length; i + 3) {
-                //     data[i] = {
-                //         Slug: keys[0],
-                //         OldPrice: keys[0 + i],
-                //         Price: keys[0 + i]
-                //     };
-                // for (let j = 0; j < keys.length; j++) {
-                //     if (keys[j].includes(`${i + 100}`)) {
-                //         if (keys[j].includes('i')) {
-                //             Slug = result[`${keys[j]}`];
-                //             data.push(Slug);
-                //         }
-                //         if (keys[j].includes('Old')) {
-                //             OldPrice = result[`${keys[j]}`];
-                //             data.push(OldPrice);
-                //         }
-                //         if (keys[j].includes('Price')) {
-                //             Price = result[`${keys[j]}`];
-                //             data.push(Price);
-                //         }
-                //     }
-                // }
-                // }
-                // let ggg = [];
-                // for (let i = 0; i < 8; i + 3) {
-                //     ggg.push({
-                //         Slug: data[0],
-                //         OldPrice: data[0 + 1],
-                //         Price: data[0 + 2]
-                //     });
-
-                // }
-                // console.log(">>>", data);
             }}>
                 {productList.length > 0 ? productList.map((value, index) => {
                     return (

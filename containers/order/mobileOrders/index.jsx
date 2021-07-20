@@ -54,44 +54,46 @@ const MobileOrders = ({ type, ordersList, getUncompleted, getCompleted, activeHo
             </div> */}
             {ordersList.length > 0 ? ordersList.map((value, index) => {
                 return (
-                    <div key={index} className={styles.card}>
-                        <div className={styles.card_header}>
-                            <CustomLabel value={value.factor_number} label="شماره سفارش" />
-                            <CustomBadge title={`${value.factor_status}`} />
+                    <Link key={index} href={`/fp/order/orderdetail/${value.id}`}>
+                        <div key={index} className={styles.card}>
+                            <div className={styles.card_header}>
+                                <CustomLabel value={value.factor_number} label="شماره سفارش" />
+                                <CustomBadge title={`${value.factor_status}`} />
+                            </div>
+                            <CustomLabel value={value.user} label="خریدار" customLabelDiv="wrapper_custom_label" />
+                            <CustomLabel value={`${new Date(value.order_date).toLocaleDateString('fa-IR')}`} label="ثبت" customLabelDiv="wrapper_custom_label" />
+                            <CustomLabel value={`${value.delivery_date}`} label="مهلت" customLabelDiv="wrapper_custom_label" />
+                            <div className={styles.card_details}>
+                                <li className="fas fa-shopping-basket"></li>
+                                <span className={styles.card_details_span}>
+                                    {value.factor_posts_count} کالا
+                                </span>
+                                <li className="fas fa-map-marker"></li>
+                                <span className={styles.card_details_span}>
+                                    {value.state}-{value.big_city}
+                                </span>
+                            </div>
+                            <div className={styles.card_image_wrapper}>
+                                {value.factor_posts_summary.length > 0 && value.factor_posts_summary.map((value, index) => {
+                                    return (
+                                        <div key={index} className={styles.card_image}>
+                                            <Image src="/image/product/sort.svg" alt="sort" width="45" height="45" />
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                            {value.order_status === "3" &&
+                                <button
+                                    type="button"
+                                    className={styles.button_ready}
+                                    onClick={() => {
+                                        _handleRequestApi(value.id);
+                                    }}
+                                >
+                                    به موقع ارسال میکنم
+                                </button>}
                         </div>
-                        <CustomLabel value={value.user} label="خریدار" customLabelDiv="wrapper_custom_label" />
-                        <CustomLabel value={`${new Date(value.order_date).toLocaleDateString('fa-IR')}`} label="ثبت" customLabelDiv="wrapper_custom_label" />
-                        <CustomLabel value={`${value.delivery_date}`} label="مهلت" customLabelDiv="wrapper_custom_label" />
-                        <div className={styles.card_details}>
-                            <li className="fas fa-shopping-basket"></li>
-                            <span className={styles.card_details_span}>
-                                {value.factor_posts_count} کالا
-                            </span>
-                            <li className="fas fa-map-marker"></li>
-                            <span className={styles.card_details_span}>
-                                {value.state}-{value.big_city}
-                            </span>
-                        </div>
-                        <div className={styles.card_image_wrapper}>
-                            {value.factor_posts_summary.length > 0 && value.factor_posts_summary.map((value, index) => {
-                                return (
-                                    <div key={index} className={styles.card_image}>
-                                        <Image src="/image/product/sort.svg" alt="sort" width="45" height="45" />
-                                    </div>
-                                );
-                            })}
-                        </div>
-                        {value.order_status === "3" &&
-                            <button
-                                type="button"
-                                className={styles.button_ready}
-                                onClick={() => {
-                                    _handleRequestApi(value.id);
-                                }}
-                            >
-                                به موقع ارسال میکنم
-                            </button>}
-                    </div>
+                    </Link>
                 )
             }) : <h3 style={{ textAlign: "center" }}>موردی برای نمایش وجود ندارد</h3>}
         </div>
