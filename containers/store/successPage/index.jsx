@@ -18,7 +18,7 @@ export default function SuccessPage() {
                         ثبت محصول
                     </a>
                 </Link>
-                <Link href={`/`}>
+                <Link href={`/fp`}>
                     <a className={styles.link_dashboard}>
                         مشاهده داشبورد
                     </a>
