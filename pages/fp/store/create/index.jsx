@@ -57,25 +57,24 @@ export default function NewStore() {
                     <label className={styles.form_label}>آدرس اینترنتی حجره</label>
                     <input style={{ textAlign: "left" }} className={styles.form_input} placeholder="/nakhll.com" type="text" name="Slug" />
                     <label className={styles.form_label}>استان</label>
-                    <select className={styles.form_select} name="State" defaultValue="0">
+                    <select className={styles.form_select} name="State" defaultValue="0" onChange={async (e) => {
+                        setSelectBigCities(await getBigCities(e.target.value));
+                    }}>
                         <option value="0" disabled>برای باز شدن لیست کلیک کنید</option>
                         {selectState.map((value, index) => {
                             return (
-                                <option key={index} value={value.id} onClick={async (e) => {
-                                    setSelectBigCities(await getBigCities(e.target.value));
-                                }}>{value.name}</option>
+                                <option key={index} value={value.id}>{value.name}</option>
                             );
                         })}
                     </select>
                     <label className={styles.form_label}>شهرستان</label>
-                    <select className={styles.form_select} name="BigCity" defaultValue="0">
+                    <select className={styles.form_select} name="BigCity" defaultValue="0" onChange={async (e) => {
+                        setSelectCities(await getCities(e.target.value));
+                    }}>
                         <option value="0" disabled>برای باز شدن لیست کلیک کنید</option>
                         {selectBigCities.map((value, index) => {
                             return (
-                                <option key={index} value={value.id} onClick={async (e) => {
-                                    setSelectCities(await getCities(e.target.value));
-                                }}
-                                >{value.name}</option>
+                                <option key={index} value={value.id}>{value.name}</option>
                             );
                         })}
                     </select>
