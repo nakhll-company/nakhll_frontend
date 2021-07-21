@@ -17,6 +17,7 @@ import { getActiveHojreh } from "../../redux/actions/user/getActiveHojreh";
 import styles from "../../styles/components/layout/layout.module.scss";
 
 function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
+
   const router = useRouter();
   const { width } = useViewport();
   const breakpoint = 620;

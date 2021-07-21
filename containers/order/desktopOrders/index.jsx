@@ -1,5 +1,6 @@
 // node libraries
 import Link from 'next/link';
+import Image from 'next/image';
 // components
 import CustomBadge from '../../../components/custom/customBadge';
 // methods
@@ -7,7 +8,7 @@ import { ApiRegister } from '../../../services/apiRegister/ApiRegister';
 // scss
 import styles from '../../../styles/pages/order/desktopOrders.module.scss';
 
-export default function DesktopOrders({ ordersList, type, activeHojreh, getUncompleted }) {
+export default function DesktopOrders({ loading, ordersList, type, activeHojreh, getUncompleted }) {
 
     const statusCompleted = [
         { value: "", label: "" },
@@ -83,64 +84,71 @@ export default function DesktopOrders({ ordersList, type, activeHojreh, getUncom
                         </tr>
                     </thead>
                     <tbody>
-                        {ordersList.length > 0 ? ordersList.map((value, index) => {
-                            return (
-
-                                <tr key={index}>
-                                    <Link href={`/fp/order/orderdetail/${value.id}`}>
-                                        <td>
-                                            {index + 1}
-                                        </td>
-                                    </Link>
-                                    <Link href={`/fp/order/orderdetail/${value.id}`}>
-                                        <td>
-                                            {value.factor_number}
-                                        </td>
-                                    </Link>
-                                    <Link href={`/fp/order/orderdetail/${value.id}`}>
-                                        <td>
-
-                                            {value.user}
-                                        </td>
-                                    </Link>
-                                    <Link href={`/fp/order/orderdetail/${value.id}`}>
-                                        <td>
-                                            {new Date(value.order_date).toLocaleDateString('fa-IR')}
-                                        </td>
-                                    </Link>
-                                    <Link href={`/fp/order/orderdetail/${value.id}`}>
-                                        <td>
-
-                                        </td>
-                                    </Link>
-                                    <Link href={`/fp/order/orderdetail/${value.id}`}>
-                                        <td>
-                                            <CustomBadge
-                                                title={value.factor_status}
-                                                color="#089319"
-                                                backgroundColor="rgba(8, 147, 25, 0.15)"
-                                                customBadgeStyle={{
-                                                    borderRadius: "3px",
-                                                    padding: "2px 6px",
-                                                    fontSize: "12px"
-                                                }}
-                                            />
-                                        </td>
-                                    </Link>
-                                    <td>
-                                        {value.order_status === "3" &&
-                                            <button type="button" className={styles.button_ready} onClick={() => {
-                                                _handleRequestApi(value.id);
-                                            }}>
-                                                به موقع ارسال میکنم
-                                            </button>}
-                                    </td>
-                                </tr>
-                            )
-                        }) :
+                        {loading ?
                             <tr>
-                                <td colSpan={7}>موردی برای نمایش موجود نیست</td>
+                                <td colSpan={7} style={{ textAlign: 'center', margin: '20px 0px' }}>
+                                    <Image src="/loading.svg" alt="loding" width="40" height="40" />
+                                </td>
                             </tr>
+                            :
+                            ordersList.length > 0 ? ordersList.map((value, index) => {
+                                return (
+
+                                    <tr key={index}>
+                                        <Link href={`/fp/order/orderdetail/${value.id}`}>
+                                            <td>
+                                                {index + 1}
+                                            </td>
+                                        </Link>
+                                        <Link href={`/fp/order/orderdetail/${value.id}`}>
+                                            <td>
+                                                {value.factor_number}
+                                            </td>
+                                        </Link>
+                                        <Link href={`/fp/order/orderdetail/${value.id}`}>
+                                            <td>
+
+                                                {value.user}
+                                            </td>
+                                        </Link>
+                                        <Link href={`/fp/order/orderdetail/${value.id}`}>
+                                            <td>
+                                                {new Date(value.order_date).toLocaleDateString('fa-IR')}
+                                            </td>
+                                        </Link>
+                                        <Link href={`/fp/order/orderdetail/${value.id}`}>
+                                            <td>
+
+                                            </td>
+                                        </Link>
+                                        <Link href={`/fp/order/orderdetail/${value.id}`}>
+                                            <td>
+                                                <CustomBadge
+                                                    title={value.factor_status}
+                                                    color="#089319"
+                                                    backgroundColor="rgba(8, 147, 25, 0.15)"
+                                                    customBadgeStyle={{
+                                                        borderRadius: "3px",
+                                                        padding: "2px 6px",
+                                                        fontSize: "12px"
+                                                    }}
+                                                />
+                                            </td>
+                                        </Link>
+                                        <td>
+                                            {value.order_status === "3" &&
+                                                <button type="button" className={styles.button_ready} onClick={() => {
+                                                    _handleRequestApi(value.id);
+                                                }}>
+                                                    به موقع ارسال میکنم
+                                                </button>}
+                                        </td>
+                                    </tr>
+                                )
+                            }) :
+                                <tr>
+                                    <td colSpan={7}>موردی برای نمایش موجود نیست</td>
+                                </tr>
                         }
                     </tbody>
                 </table>

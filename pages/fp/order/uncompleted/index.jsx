@@ -1,5 +1,5 @@
 // node libraries
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 // components
 import MyLayout from '../../../../components/layout/Layout';
@@ -14,12 +14,19 @@ import { mapState } from '../../../../containers/order/methods/mapState';
 
 function Uncompleted({ ordersList, activeHojreh, getUncompleted }) {
 
+    let [loading, setLoading] = useState(true);
     const { width } = useViewport();
     const breakpoint = 620;
 
     useEffect(() => {
-        activeHojreh.length > 0 && getUncompleted(activeHojreh);
-    }, [activeHojreh]);
+        async function getData() {
+            if (activeHojreh.length > 0) {
+                await getUncompleted(activeHojreh);
+            }
+            setLoading(pre => !pre);
+        }
+        getData();
+    }, []);
 
     return (
         <>
@@ -36,6 +43,7 @@ function Uncompleted({ ordersList, activeHojreh, getUncompleted }) {
                     }]} />
                 </div> :
                 <DesktopOrders
+                    loading={loading}
                     activeHojreh={activeHojreh}
                     ordersList={ordersList}
                     getUncompleted={getUncompleted}
