@@ -28,7 +28,9 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
   const [selectShop, setselectShop] = useState("");
   const [isShowOrder, setisShowOrder] = useState(false);
   if (selectShop.length === 0) {
-    Object.keys(userInfo).length > 0 && getActiveHojreh(userInfo.shops[0].slug);
+    Object.keys(userInfo).length > 0 &&
+      userInfo.shops.length > 0 &&
+      getActiveHojreh(userInfo.shops[0].slug);
   }
 
   return (
@@ -45,14 +47,14 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
       {width > breakpoint && (
         <header>
           <div className={styles.hedtop}>
-            <sapn style={{ marginRight: "102px" }}>
+            <span style={{ marginRight: "102px" }}>
               <Image
                 src="/image/LOGO_500.png"
                 alt="Picture of the author"
                 width={60}
                 height={60}
               />
-            </sapn>
+            </span>
 
             <h1> داشبور مدیریت نخل</h1>
           </div>

@@ -14,6 +14,7 @@ export const getUserInfo = () => async dispatch => {
         }
 
         let response = await getProduct();
+
         // dispatch
         dispatch({
             type: Types.USER_INFO,
@@ -21,6 +22,7 @@ export const getUserInfo = () => async dispatch => {
         });
 
     } catch (error) {
-
+        alert("لطفا ابتدا ثبت نام کنید");
+        location.replace("https://www.nakhll.com");
     }
 }

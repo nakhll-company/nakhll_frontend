@@ -46,7 +46,7 @@ const FilterProduct = ({ getProduct, activeHojreh }) => {
                             <div className={styles.form_status}>
                                 <label className={styles.form_status_checkboxLabel}>
                                     {/* <input className={styles.form_status_checkbox} type="checkbox" name="active" id="active" /> */}
-                                    <input className={styles.form_status_checkbox} type="radio" name="product_status" value={1} />
+                                    <input className={styles.form_status_checkbox} type="radio" name="product_status" value={1} checked={true} />
                                     آماده در انبار
                                 </label>
                                 <label className={styles.form_status_checkboxLabel}>
@@ -138,9 +138,9 @@ const FilterProduct = ({ getProduct, activeHojreh }) => {
                                 document.getElementById("formFilter").reset();
                                 setFilterData({
                                     price_from: 0,
-                                    price_to: 1000000,
-                                    inventory_from: 1,
-                                    inventory_to: 15
+                                    price_to: 0,
+                                    inventory_from: 0,
+                                    inventory_to: 0
                                 });
                             }}>تنظیم مجدد</button>
                         </div>

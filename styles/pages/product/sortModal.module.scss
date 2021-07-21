@@ -25,10 +25,15 @@
         line-height: 20px;
         text-align: right;
         color: #364254;
-        cursor: pointer;
         // span
         .sort_item{
             margin-bottom: 21px;
+            border: none;
+            outline: none;
+            background-color: #fff;
+            text-align: right;
+            cursor: pointer;
+            font-family: 'vazir';
         }
     }
 }

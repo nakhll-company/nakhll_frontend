@@ -10,16 +10,16 @@ const Edit = () => {
             <header className={styles.header}>ویرایش گروهی</header>
             <div className={styles.sort_item_wrapper}>
                 <Link href={`/fp/product/update/price`}>
-                    <a className={styles.product_header_link}>
-                        <Image src="/image/product/tik.svg" alt="tik" width="15" height="15" />
+                    <button className={styles.product_header_link}>
+                        {/* <Image src="/image/product/tik.svg" alt="tik" width="15" height="15" /> */}
                         قیمت و تخفیف
-                    </a>
+                    </button>
                 </Link>
                 <Link href={`/fp/product/update/inventory`}>
-                    <a className={styles.product_header_link}>
-                        <Image src="/image/product/tik.svg" alt="tik" width="15" height="15" />
+                    <button className={styles.product_header_link}>
+                        {/* <Image src="/image/product/tik.svg" alt="tik" width="15" height="15" /> */}
                         موجودی
-                    </a>
+                    </button>
                 </Link>
             </div>
         </div>
