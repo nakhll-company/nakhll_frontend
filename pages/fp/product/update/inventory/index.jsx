@@ -35,12 +35,16 @@ const Inventory = ({ productList }) => {
                 e.preventDefault();
                 const data = new FormData(e.target);
                 const value = Object.fromEntries(data.entries());
-                value.topics = data.getAll("topics");
                 const objArray = [];
-                Object.keys(value).forEach(key => objArray.push({
-                    name: key,
-                    rating: value[key]
-                }));
+                let formValues = Object.values(value);
+                Object.keys(value).forEach((key, index) => {
+                    if (index % 2 === 0) {
+                        objArray.push({
+                            Slug: formValues[index + 0],
+                            Inventory: formValues[index + 1],
+                        })
+                    }
+                });
                 _handleRequestApi(objArray);
             }}>
                 {productList.length > 0 ? productList.map((value, index) => {
@@ -48,7 +52,7 @@ const Inventory = ({ productList }) => {
                         <div key={index} className={styles.form_edit_card}>
                             <label className={styles.form_edit_label}>{value.title}</label>
                             <input type="hidden" name={`Slug${index + 100}`} defaultValue={value.slug} />
-                            <input className={styles.form_edit_input} type="number" name={`Inventory${+ 100}`}
+                            <input className={styles.form_edit_input} type="number" name={`Inventory${index + 100}`}
                                 defaultValue={value.inventory} />
                         </div>
                     )

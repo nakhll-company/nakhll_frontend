@@ -36,12 +36,17 @@ const Price = ({ productList }) => {
                 e.preventDefault();
                 const data = new FormData(e.target);
                 const value = Object.fromEntries(data.entries());
-                value.topics = data.getAll("topics");
                 const objArray = [];
-                Object.keys(value).forEach(key => objArray.push({
-                    name: key,
-                    rating: value[key]
-                }));
+                let formValues = Object.values(value);
+                Object.keys(value).forEach((key, index) => {
+                    if (index % 3 === 0) {
+                        objArray.push({
+                            Slug: formValues[index + 0],
+                            OldPrice: formValues[index + 1],
+                            Price: formValues[index + 2]
+                        })
+                    }
+                });
                 _handleRequestApi(objArray);
 
             }}>
