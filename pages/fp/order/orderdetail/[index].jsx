@@ -332,14 +332,16 @@ function HomePage({ id }) {
                       </div>
                     </>
                   )}
+
                   {data.order_status === "5" && (
                     <>
                       <div className={styles.ButtonsGridDFinal}>
                         <div className={styles.order_statusD_code}>
                           <input
+                          disabled
                             className={styles.btn_code}
                             type="number"
-                            placeholder="کد رهگیری مرسوله"
+                            placeholder="2521351888415132132"
                           />
                         </div>
                       </div>

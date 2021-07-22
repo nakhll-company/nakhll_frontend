@@ -458,6 +458,7 @@ function MobileSetting({ activeHojreh }) {
                   <h3>به روز رسانی</h3>
                 </button>
               </div>
+              <div style={{marginTop:"50px"}}></div>
             </form>
           </>
         )}
@@ -521,6 +522,9 @@ function MobileSetting({ activeHojreh }) {
                   <h3>ذخیره اطلاعات </h3>
                 </button>
               </div>
+            
+            
+            <div style={{marginTop:"50px"}}></div>
             </form>
           </>
         )}
