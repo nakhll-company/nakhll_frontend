@@ -81,7 +81,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
           }`}
       >
         {/* <!-- Right  SideBar--> */}
-        {!(width < breakpoint && router.pathname !== "/") && (
+        {!(width < breakpoint && router.pathname !== "/fp") && (
           <div className={styles.Right}>
             <section className={styles.info_card}>
               <div className={styles.info_card_pic}>
