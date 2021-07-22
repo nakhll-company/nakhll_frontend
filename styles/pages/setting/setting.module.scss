@@ -427,18 +427,22 @@
 }
 
 .form_select {
+    height: 43px;
     width: 100%;
     background: #ffffff;
     border: 1px solid #e0e6e9;
     box-sizing: border-box;
     border-radius: 5px;
     margin-top: 10px;
+    margin-bottom: 10px;
+    
 }
 
 .form_label {
-    color: #364254;
-    font-size: 14px;
+    color: hsl(216deg 22% 27%);
+    font-size: 16px;
     margin-top: 10px;
+    font-weight: bold;
 }
 
 .inputWid_withWord {
