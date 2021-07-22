@@ -41,8 +41,9 @@ function Dashboard({ activeHojreh }) {
         true,
         params
       );
-
-      setApi(await response);
+      if (response.status) {
+        setApi(await response.data);
+      }
     };
 
     activeHojreh.length > 0 && _handleRequestApi();
@@ -53,18 +54,18 @@ function Dashboard({ activeHojreh }) {
       {api && (
         <>
           <div dir="rtl" className={styles.left_one}>
-              <Link href="fp/order/uncompleted">
-            <div className={styles.left_one_1}>
-              
+            <Link href="fp/order/uncompleted">
+              <div className={styles.left_one_1}>
+
                 <i
                   className="fas fa-cart-plus fa-3x"
                   style={{ color: "#007aff" }}
                 ></i>
                 <h1>{api.uncompleted_fators}</h1>
                 <h4>سفارش ها تکمیل نشده</h4>
-              
-            </div>
-              </Link>
+
+              </div>
+            </Link>
             <Link href="/fp/order/completed">
               <div className={styles.left_one_1}>
                 <i
