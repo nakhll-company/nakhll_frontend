@@ -453,7 +453,7 @@ function DesktopSetting({ activeHojreh }) {
                   </div>
                   <div className="">
                     <h4 className={styles.explain}>
-                      ذیسذروسیذورذیوذریذرویپبرذتذرتنم
+                     
                     </h4>
                   </div>
                   <div className={styles.input_setting}>

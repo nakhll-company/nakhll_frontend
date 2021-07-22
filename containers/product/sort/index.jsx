@@ -11,20 +11,20 @@ const Sort = ({ getProduct, setShowModalSort, activeHojreh }) => {
         <div className={styles.wrapper}>
             <header className={styles.header}>ترتیب نمایش</header>
             <div className={styles.sort_item_wrapper}>
-                <span className={styles.sort_item} onClick={() => {
+                <button className={styles.sort_item} onClick={() => {
                     getProduct(activeHojreh, "", "", "", "", "", "total_sell");
                     setShowModalSort(pre => !pre);
                 }}>
-                    <Image src="/image/product/tik.svg" alt="tik" width="15" height="15" />
+                    {/* <Image src="/image/product/tik.svg" alt="tik" width="15" height="15" /> */}
                     تعداد فروش
-                </span>
-                <span className={styles.sort_item} onClick={() => {
+                </button>
+                <button className={styles.sort_item} onClick={() => {
                     getProduct(activeHojreh, "", "", "", "", "", "title");
                     setShowModalSort(pre => !pre);
                 }}>
-                    <Image src="/image/product/tik.svg" alt="tik" width="15" height="15" />
+                    {/* <Image src="/image/product/tik.svg" alt="tik" width="15" height="15" /> */}
                     نام محصول
-                </span>
+                </button>
             </div>
         </div>
     );

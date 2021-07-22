@@ -1,11 +1,12 @@
 // node libraries
 import Link from 'next/link';
+import Image from 'next/image';
 // components
 import CustomBadge from '../../../components/custom/customBadge';
 // scss
 import styles from '../../../styles/pages/product/desktopList.module.scss';
 
-export default function Desktop({ productList, activeHojreh, getProduct }) {
+export default function Desktop({ loading, productList, activeHojreh, getProduct }) {
     const productStatus = [
         { value: "", label: "" },
         { value: 1, label: "آماده در انبار" },
@@ -75,34 +76,41 @@ export default function Desktop({ productList, activeHojreh, getProduct }) {
                         </tr>
                     </thead>
                     <tbody>
-                        {productList.length > 0 ? productList.map((value, index) => {
-                            return (
-                                <Link href={`/fp/product/create/${value.id}`} key={index}>
-                                    <tr>
-                                        <td>{index + 1}</td>
-                                        <td>{value.title}</td>
-                                        <td>{value.preparation_days}</td>
-                                        <td>{value.inventory}</td>
-                                        <td>{`${value.price}تومان`}</td>
-                                        <td><CustomBadge
-                                            title={value.status}
-                                            color="#089319"
-                                            backgroundColor="rgba(8, 147, 25, 0.15)"
-                                            customBadgeStyle={{
-                                                borderRadius: "3px",
-                                                padding: "2px 6px",
-                                                fontSize: "12px"
-                                            }}
-                                        /></td>
-                                        <td>
-                                            <div className={styles.wrapper_copy}>
-                                                <li className="fa fa-clone"></li>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </Link>
-                            )
-                        }) : <tr><td colSpan={7}>موردی برای نمایش موجود نیست</td></tr>
+                        {loading ?
+                            <tr>
+                                <td colSpan={7} className={styles.one_colmne}>
+                                    <Image src="/loading.svg" alt="loding" width="40" height="40" />
+                                </td>
+                            </tr>
+                            :
+                            productList.length > 0 ? productList.map((value, index) => {
+                                return (
+                                    <Link href={`/fp/product/create/${value.id}`} key={index}>
+                                        <tr>
+                                            <td>{index + 1}</td>
+                                            <td>{value.title}</td>
+                                            <td>{value.preparation_days}</td>
+                                            <td>{value.inventory}</td>
+                                            <td>{`${value.price}تومان`}</td>
+                                            <td><CustomBadge
+                                                title={value.status}
+                                                color="#089319"
+                                                backgroundColor="rgba(8, 147, 25, 0.15)"
+                                                customBadgeStyle={{
+                                                    borderRadius: "3px",
+                                                    padding: "2px 6px",
+                                                    fontSize: "12px"
+                                                }}
+                                            /></td>
+                                            <td>
+                                                <div className={styles.wrapper_copy}>
+                                                    <li className="fa fa-clone"></li>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </Link>
+                                )
+                            }) : <tr><td colSpan={7} className={styles.one_colmne}>موردی برای نمایش موجود نیست</td></tr>
                         }
                     </tbody>
                 </table>

@@ -17,6 +17,7 @@ import { getActiveHojreh } from "../../redux/actions/user/getActiveHojreh";
 import styles from "../../styles/components/layout/layout.module.scss";
 
 function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
+
   const router = useRouter();
   const { width } = useViewport();
   const breakpoint = 620;
@@ -28,7 +29,9 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
   const [selectShop, setselectShop] = useState("");
   const [isShowOrder, setisShowOrder] = useState(false);
   if (selectShop.length === 0) {
-    Object.keys(userInfo).length > 0 && getActiveHojreh(userInfo.shops[0].slug);
+    Object.keys(userInfo).length > 0 &&
+      userInfo.shops.length > 0 &&
+      getActiveHojreh(userInfo.shops[0].slug);
   }
 
   return (
@@ -45,14 +48,14 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
       {width > breakpoint && (
         <header>
           <div className={styles.hedtop}>
-            <sapn style={{ marginRight: "102px" }}>
+            <span style={{ marginRight: "102px" }}>
               <Image
                 src="/image/LOGO_500.png"
                 alt="Picture of the author"
                 width={60}
                 height={60}
               />
-            </sapn>
+            </span>
 
             <h1> داشبور مدیریت نخل</h1>
           </div>
@@ -78,7 +81,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
           }`}
       >
         {/* <!-- Right  SideBar--> */}
-        {!(width < breakpoint && router.pathname !== "/") && (
+        {!(width < breakpoint && router.pathname !== "/fp") && (
           <div className={styles.Right}>
             <section className={styles.info_card}>
               <div className={styles.info_card_pic}>

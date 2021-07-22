@@ -24,6 +24,7 @@ SwiperCore.use([EffectFade, Autoplay, Navigation, Pagination, Scrollbar, A11y]);
 import Image from "next/image";
 // styles
 import styles from "../../styles/pages/dashboard/dashboard.module.scss";
+import Link from "next/link";
 
 function Dashboard({ activeHojreh }) {
   const [api, setApi] = useState({});
@@ -40,8 +41,9 @@ function Dashboard({ activeHojreh }) {
         true,
         params
       );
-
-      setApi(await response);
+      if (response.status) {
+        setApi(await response.data);
+      }
     };
 
     activeHojreh.length > 0 && _handleRequestApi();
@@ -52,23 +54,28 @@ function Dashboard({ activeHojreh }) {
       {api && (
         <>
           <div dir="rtl" className={styles.left_one}>
-            <div className={styles.left_one_1}>
-              <i
-                className="fas fa-cart-plus fa-3x"
-                style={{ color: "#007aff" }}
-              ></i>
-              <h1>{api.uncompleted_fators}</h1>
+            <Link href="fp/order/uncompleted">
+              <div className={styles.left_one_1}>
 
-              <h4>سفارش ها تکمیل نشده</h4>
-            </div>
-            <div className={styles.left_one_1}>
-              <i
-                className="fas fa-user-clock fa-3x"
-                style={{ color: "#007aff" }}
-              ></i>
-              <h1>{api.uncomfirmed_factors}</h1>
-              <h4>سفارش های تاییده نشده</h4>
-            </div>
+                <i
+                  className="fas fa-cart-plus fa-3x"
+                  style={{ color: "#007aff" }}
+                ></i>
+                <h1>{api.uncompleted_fators}</h1>
+                <h4>سفارش ها تکمیل نشده</h4>
+
+              </div>
+            </Link>
+            <Link href="/fp/order/completed">
+              <div className={styles.left_one_1}>
+                <i
+                  className="fas fa-user-clock fa-3x"
+                  style={{ color: "#007aff" }}
+                ></i>
+                <h1>{api.uncomfirmed_factors}</h1>
+                <h4>سفارش های  تکمیل شده</h4>
+              </div>
+            </Link>
             <div className={styles.left_one_1}>
               <i
                 className="far fa-comment-alt fa-3x"
@@ -256,6 +263,7 @@ function Dashboard({ activeHojreh }) {
           {/* <div dir="rtl" className={styles.left_five}>
             A5
           </div> */}
+          <div style={{marginTop:"70px"}}></div>
         </>
       )}
     </>

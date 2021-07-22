@@ -1,10 +1,9 @@
 // node libraries
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 // components
 import MyLayout from '../../../../components/layout/Layout';
 import useViewport from '../../../../components/viewPort';
-import CustomTab from '../../../../components/custom/customTab';
 import MobileHeader from '../../../../components/mobileHeader';
 import MobileOrders from '../../../../containers/order/mobileOrders';
 import DesktopOrders from '../../../../containers/order/desktopOrders';
@@ -14,28 +13,29 @@ import { mapState } from '../../../../containers/order/methods/mapState';
 
 function Uncompleted({ ordersList, activeHojreh, getUncompleted }) {
 
+    let [loading, setLoading] = useState(true);
     const { width } = useViewport();
     const breakpoint = 620;
 
     useEffect(() => {
-        activeHojreh.length > 0 && getUncompleted(activeHojreh);
-    }, [activeHojreh]);
+        async function getData() {
+            if (activeHojreh.length > 0) {
+                await getUncompleted(activeHojreh);
+            }
+            setLoading(pre => !pre);
+        }
+        getData();
+    }, []);
 
     return (
         <>
             {width < breakpoint ?
                 <div>
-                    <MobileHeader title="سفارشات" type="search" />
-                    <CustomTab tab={[{
-                        title: "سفارشات باز",
-                        content: <MobileOrders type="uncompleted" />
-                    },
-                    {
-                        title: "سفارشات بسته",
-                        content: <MobileOrders type="completed" />
-                    }]} />
+                    <MobileHeader title="سفارشات تکمیل نشده" type="search" />
+                    <MobileOrders ordersList={ordersList} loading={loading} />
                 </div> :
                 <DesktopOrders
+                    loading={loading}
                     activeHojreh={activeHojreh}
                     ordersList={ordersList}
                     getUncompleted={getUncompleted}

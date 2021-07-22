@@ -31,6 +31,7 @@
         box-sizing: border-box;
         border-radius: 5px;
         height: 41px;
+        font-family: 'vazir';
     }
     // select
     .form_select{
@@ -39,6 +40,7 @@
         box-sizing: border-box;
         border-radius: 5px;
         height: 41px;
+        font-family: 'vazir';
     }
     // button submit
     .wrapper_submit{
@@ -66,10 +68,14 @@
             text-align: center;
             border: none;
             outline: none;
+            font-family: 'vazir';
         }
     }
     .form_checkbox{
         margin-left: 10px;
+    }
+    .form_errors{
+        color: red;
     }
 }
 
@@ -83,6 +89,7 @@
     top: 0;
     left: 0;
     overflow-y: hidden !important;
+    font-family: 'vazir';
 }
   // form
 .form{
@@ -100,12 +107,14 @@
     box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.05);
     border-radius: 5px;
     padding: 10px 20px;
+    font-family: 'vazir';
     // right
     .form_right{
         width: 50%;
         display: flex;
         flex-direction: column;
         padding: 10px 20px;
+        font-family: 'vazir';
         // button submit
         .wrapper_submit{
             display: flex;
@@ -128,7 +137,11 @@
                 border: none;
                 outline: none;
                 cursor: pointer;
+                font-family: 'vazir';
             }
+        }
+        .form_errors{
+            color: red;
         }
     }
     // right
@@ -137,6 +150,7 @@
         display: flex;
         flex-direction: column;
         padding: 30px 20px;
+        font-family: 'vazir';
     }
 }
 }
