@@ -9,53 +9,10 @@ import useViewport from "../../../../components/viewPort";
 import { value } from "dom7";
 import { connect } from "react-redux";
 import { mapState } from "../../../../containers/order/methods/mapState";
+import { getCroppedImg } from "../../../../containers/product/create/canvasUtils";
 
 // component
 
-async function getCroppedImg(imageSrc, pixelCrop) {
-  // const image = await createImage(imageSrc)
-  // const xx = await new Image()
-  let img = document.createElement("img");
-  img.src = imageSrc;
-  debugger;
-
-  // console.log(`xx`, xx)  // xx.addEventListener('load', () => resolve(imageSrc))
-
-  // image.addEventListener('load', () => resolve(xx))
-  // setTimeout(() => {
-
-  //   xx.src = imageSrc
-  // }, 3000);
-
-  // const image = imageSrc
-  const canvas = document.createElement("canvas");
-  canvas.width = pixelCrop.width;
-  canvas.height = pixelCrop.height;
-  const ctx = canvas.getContext("2d");
-  debugger;
-
-  ctx.drawImage(
-    img,
-    pixelCrop.x,
-    pixelCrop.y,
-    pixelCrop.width,
-    pixelCrop.height,
-    0,
-    0,
-    pixelCrop.width,
-    pixelCrop.height
-  );
-
-  // As Base64 string
-  // return canvas.toDataURL('image/jpeg');
-
-  // As a blob
-  return new Promise((resolve, reject) => {
-    canvas.toBlob((file) => {
-      resolve(URL.createObjectURL(file));
-    }, "image/jpeg");
-  });
-}
 
 const CreateProduct = ({ activeHojreh }) => {
   const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState("");
@@ -96,7 +53,7 @@ const CreateProduct = ({ activeHojreh }) => {
     PreparationDays: 0,
     FK_Shop: "",
     errors: {
-      Title: "نام حجره باید حداقل 5 حرف باشد",
+      Title: "",
       Inventory: 0,
       Slug: "",
       Price: 0,
@@ -111,29 +68,9 @@ const CreateProduct = ({ activeHojreh }) => {
     },
   });
 
-  const validateForm = (errors) => {
-    let valid = true;
-    Object.values(errors).forEach((val) => val.length > 0 && (valid = false));
-    return valid;
-  };
-
-  const handleChange = (event) => {
-    event.preventDefault();
-    const { name, value } = event.target;
-    let errors = formInputs.errors;
-
-    switch (name) {
-      case "Title":
-        errors.Title = value.length < 5 ? "نام حجره باید حداقل 5 حرف باشد" : "";
-        break;
-      default:
-        break;
-    }
-
-    setFormInputs({ errors, [name]: value });
-  };
-
   useEffect(() => {
+    window.localStorage.setItem("image", JSON.stringify([]));
+
     // console.log(`activeHojreh`, activeHojreh)
     const _handleRequestApi = async () => {
       let params = null;
@@ -148,7 +85,9 @@ const CreateProduct = ({ activeHojreh }) => {
       );
       // console.log("res uncomsdfsf :", response);
       // const dataUser = response;
-      setData(response); //==> output: {}
+      if (response.status === 200) {
+        setData(response.data); //==> output: {}
+      }
     };
     _handleRequestApi();
 
@@ -163,11 +102,13 @@ const CreateProduct = ({ activeHojreh }) => {
         true,
         params
       );
-      const data = responseUser;
-      setDataUser(responseUser); //==> output: {}
+      const data = responseUser.data;
+      setDataUser(responseUser.data); //==> output: {}
     };
     _handleRequestApiUserInfo();
   }, [activeHojreh]);
+
+  // inputButton
 
   const mini = () => {
     if (Add == 0) {
@@ -189,10 +130,7 @@ const CreateProduct = ({ activeHojreh }) => {
     setAddPreparationDays(AddPreparationDays + 1);
   };
 
-  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
-    setCroppedAreaPixels(croppedAreaPixels);
-    // console.log("croppedArea, croppedAreaPixels", croppedArea, croppedAreaPixels)
-  }, []);
+
 
   // submarket
   function clickButton(e) {
@@ -205,6 +143,7 @@ const CreateProduct = ({ activeHojreh }) => {
     settitle(e.title);
     // console.log("e.title :>> ", e.title);
   }
+
   function finalClick(e) {
     let element = document.getElementById("wrapperMarkets");
     element.style.display = "none";
@@ -243,23 +182,33 @@ const CreateProduct = ({ activeHojreh }) => {
 
   // cropper
 
-  const onFileChange = async (e) => {
-    // const res = await readFile(e.target.files[0]);
-    // console.log("sdfsdf", res)
-    // setImageSrc(res)
-    // let elementImageProduct = document.getElementById("crop_container")
-    // elementImageProduct.style.display = "block"
+  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+    setCroppedAreaPixels(croppedAreaPixels);
+  }, []);
 
+  const onFileChange = async (e) => {
     if (e.target.files && e.target.files.length > 0) {
+
       const file = e.target.files[0];
-      let imageDataUrl = await URL.createObjectURL(file);
+      // prev.push(file)
+
+      // let imageDataUrl = await URL.createObjectURL(file);
+      let imageDataUrl = await readFile(file)
+
       setImageSrc(imageDataUrl);
-      // console.log(`imageDataUrl`, imageDataUrl)
       let elementImageProduct = document.getElementById("crop_container");
       elementImageProduct.style.display = "block";
-      // debugger
+      // 
     }
   };
+
+  function readFile(file) {
+    return new Promise((resolve) => {
+      const reader = new FileReader()
+      reader.addEventListener('load', () => resolve(reader.result), false)
+      reader.readAsDataURL(file)
+    })
+  }
 
   const _onCloseCropper = () => {
     let elementImageProduct = document.getElementById("crop_container");
@@ -267,18 +216,116 @@ const CreateProduct = ({ activeHojreh }) => {
     setImageSrc(null);
   };
 
+
+  // let prev = [];
+
+
+  // const xxxxxx = () => {
+  //   return(
+  //     <div>dkjlsfjkdshjgkv</div>
+  //   )
+  // }
+
+  const prevImage = async () => {
+
+    // return (
+
+    prev.map((item) => {
+      debugger
+      return (
+        <>
+          <div>
+            <label style={{ marginRight: 10 }}>
+              <div
+                className={styles.add_image_container}
+              // onClick={onFileChange}
+              >
+                <Image
+                  src={item}
+                  alt="Picture of the author"
+                  width={500}
+                  height={500}
+                />
+              </div>
+            </label>
+          </div>
+
+        </>
+
+      )
+    })
+
+
+
+    // )/
+
+    // return image
+
+
+
+
+  }
+
   const showCroppedImage = async () => {
     const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
-    debugger;
-    // console.log(croppedImage)
-    setPreviewImage(croppedImage);
+    if (croppedImage) {
+      let listImage = window.localStorage.getItem("image");
+      var prev = JSON.parse(listImage)
+      setPreviewImage(prev);
+      debugger
+    }
+
+    // await prevImage()
     let elementImageProduct = document.getElementById("crop_container");
     elementImageProduct.style.display = "none";
-    debugger;
+    debugger
+
+    // const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
+    // if (croppedImage) {
+    //   let listImage2 = window.localStorage.getItem("image");
+    //   var xx = JSON.parse(listImage2)
+    //   setPreviewImage(xx[0]);
+
+
+    //   debugger
+    // }
+    // setTimeout(() => {
+
+    //   prev = [...prev , getCroppedImg(imageSrc, croppedAreaPixels)]
+    // }, 2000);
+    // setTimeout(() => {
+
+    //   console.log("dddd" ,prev)
+    // }, 2500);
+
+
+    // let previmg = prev.map((item) => {
+    //   return (<label style={{ marginRight: 10 }}>
+    //     <div
+    //       className={styles.add_image_container}
+    //     // onClick={onFileChange}
+    //     >
+    //       <Image
+    //         src={item}
+    //         alt="Picture of the author"
+    //         width={500}
+    //         height={500}
+    //       />
+    //     </div>
+    //   </label>)
+
+    // });
+
+
   };
+
+
+
+  // confirm
 
   const createProducts = async (body) => {
     if (validateForm(formInputs.errors)) {
+      handleChange()
       console.info("Valid Form");
     } else {
       console.error("Invalid Form");
@@ -302,7 +349,7 @@ const CreateProduct = ({ activeHojreh }) => {
       PreparationDays: body.PreparationDays,
       FK_Shop: activeHojreh,
     };
-    debugger;
+    ;
     let params = {};
     let loadData = confirm;
     let dataUrl = "/api/v1/landing/products/";
@@ -313,26 +360,27 @@ const CreateProduct = ({ activeHojreh }) => {
       true,
       params
     );
-    return response;
+    return response.data;
     debugger;
   };
+
+
+  // validate
 
   const _checkWeight = () => {
     let Net_Weight = parseInt(document.getElementById("Net_Weight").value);
     let Weight_With_Packing = parseInt(
       document.getElementById("Weight_With_Packing").value
     );
-    debugger;
+    ;
     if (
       Net_Weight > Weight_With_Packing &&
       Weight_With_Packing !== NaN &&
       Weight_With_Packing !== undefined
     ) {
       setIsErrorWeight(true);
-      debugger;
     } else {
       setIsErrorWeight(false);
-      debugger;
     }
   };
 
@@ -342,17 +390,38 @@ const CreateProduct = ({ activeHojreh }) => {
 
     if (OldPrice > Price) {
       setIsErrorPrice(true);
-      debugger;
     } else {
       setIsErrorPrice(false);
-      debugger;
     }
   };
 
-  let sub = null;
-  if (previewImage) {
-    sub = previewImage.substring(26, previewImage.length);
-  }
+
+  const validateForm = (errors) => {
+    let valid = true;
+    Object.values(errors).forEach((val) => val.length > 0 && (valid = false));
+    return valid;
+  };
+
+  const handleChange = (event) => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    let errors = formInputs.errors;
+
+    switch (name) {
+      case "Title":
+        errors.Title = value.length < 5 ? "نام حجره باید حداقل 5 حرف باشد" : "";
+        break;
+      default:
+        break;
+    }
+
+    setFormInputs({ errors, [name]: value });
+  };
+
+
+
+  console.log("dsfdsf", previewImage);
+  // console.log("dsfds00000f", prev);
   return (
     <>
       <div className={styles.wrapper}>
@@ -430,7 +499,6 @@ const CreateProduct = ({ activeHojreh }) => {
                   }}
                   className="mt-3"
                 >
-                  {" "}
                   حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش
                   داده خواهد شد.
                 </div>
@@ -447,49 +515,51 @@ const CreateProduct = ({ activeHojreh }) => {
                         </p>
                       </div>
                     </label>
+
                     <input
                       onChange={onFileChange}
                       name="productImage"
                       id="product-image-upload"
                       type="file"
+                      multiple
                       style={{ width: "0px", height: "0px", opacity: "0px" }}
                     ></input>
+                    {/* {
+                      showCroppedImage
+                    } */}
 
-                    {sub ? (
-                      <label style={{ marginRight: 10 }}>
-                        <div
-                          className={styles.add_image_container}
-                        // onClick={onFileChange}
-                        >
-                          <Image
-                            src={sub}
-                            alt="Picture of the author"
-                            width={500}
-                            height={500}
-                          />
-                          {/* {
-                                          imageSrc ?
-                                          // <Image src={imageSrc} alt="Picture of the author"        width={500}
-                                          height={500}      
-                                          /> : null
-                                        } */}
-                        </div>
-                      </label>
+                    {previewImage ? (
+
+                      previewImage.map((item) => {
+                        debugger
+                        return (
+                          // <>
+                          // <div>
+                          <label style={{ marginRight: 10 }}>
+                            <div
+                              className={styles.add_image_container}
+                            // onClick={onFileChange}
+                            >
+                              <Image
+                                src={item}
+                                alt="Picture of the author"
+                                width={500}
+                                height={500}
+                              />
+                            </div>
+                          </label>
+                          // </div>
+
+                          // </>
+
+                        )
+                      })
                     ) : (
-                      <label style={{ marginRight: 10 }}>
-                        <div
-                          className={styles.add_image_container}
-                        // onClick={onFileChange}
-                        >
-                          {/* {
-                                              imageSrc ?
-                                              <Image src={imageSrc} alt="Picture of the author"        width={500}
-                                              height={500}      
-                                              /> : null
-                                            } */}
-                        </div>
-                      </label>
+                      null
+
                     )}
+
+
                   </div>
                 </div>
               </div>
@@ -1052,7 +1122,7 @@ const CreateProduct = ({ activeHojreh }) => {
             // cropSize={{width: 300, height: 300}}
             restrictPosition={true}
             zoom={zoom}
-            aspect={2 / 2}
+            aspect={1}
             onCropChange={setCrop}
             // onRotationChange={setRotation}
             onCropComplete={onCropComplete}

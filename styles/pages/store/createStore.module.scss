@@ -74,6 +74,9 @@
     .form_checkbox{
         margin-left: 10px;
     }
+    .form_errors{
+        color: red;
+    }
 }
 
 @media only screen and (min-width: 600px) {
@@ -136,6 +139,9 @@
                 cursor: pointer;
                 font-family: 'vazir';
             }
+        }
+        .form_errors{
+            color: red;
         }
     }
     // right

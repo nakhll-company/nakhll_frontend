@@ -20,7 +20,9 @@ const getStates = async () => {
     true,
     params
   );
-  return response;
+  if (response.status === 200) {
+    return response.data;
+  }
 };
 const getBigCities = async (id) => {
   let params = {};
@@ -33,7 +35,9 @@ const getBigCities = async (id) => {
     true,
     params
   );
-  return response;
+  if (response.status === 200) {
+    return response.data;
+  }
 };
 const getCities = async (id) => {
   let params = {};
@@ -46,7 +50,9 @@ const getCities = async (id) => {
     true,
     params
   );
-  return response;
+  if (response.status === 200) {
+    return response.data;
+  }
 };
 // const FORM_VALIDAITIOM = Yup.object().shape({
 //   firstName: Yup.string().required("الزامی"),
@@ -109,7 +115,10 @@ const DesktopSetting = ({ activeHojreh }) => {
         params
       );
 
-      setApiSetting(await response);
+      if (response.status === 200) {
+        setApiSetting(await response.data);
+      }
+
       setSelectState(await getStates());
     };
 

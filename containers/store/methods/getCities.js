@@ -5,5 +5,7 @@ export const getCities = async (id) => {
     let loadData = null;
     let dataUrl = `/app/api/v1/get-cities/?bigcity_id=${id}`;
     let response = await ApiRegister().apiRequest(loadData, 'get', dataUrl, true, params);
-    return response;
+    if (response.status === 200) {
+        return response.data;
+    }
 }

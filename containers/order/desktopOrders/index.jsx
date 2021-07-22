@@ -35,8 +35,9 @@ export default function DesktopOrders({ loading, ordersList, type, activeHojreh,
             true,
             params
         );
-
-        response.details === "Done" && getUncompleted(activeHojreh);
+        if (response.status === 200) {
+            getUncompleted(activeHojreh);
+        }
     };
 
     return (

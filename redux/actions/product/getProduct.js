@@ -21,11 +21,14 @@ export const getProduct = (
                 }
 
                 let response = await getProduct();
-                // dispatch
-                dispatch({
-                    type: Types.GET_PRODUCT,
-                    payload: response
-                });
+
+                if (response.status === 200) {
+                    // dispatch
+                    dispatch({
+                        type: Types.GET_PRODUCT,
+                        payload: response.data
+                    });
+                }
             }
 
         } catch (error) {

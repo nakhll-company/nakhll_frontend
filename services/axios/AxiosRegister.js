@@ -3,7 +3,7 @@ import Axios from "axios";
 //=================================================================\\
 export const instanceAxiosWithOutToken = Axios.create({
     // withCredentials: true,
-    baseURL: "http://localhost:8000/",
+    baseURL: "https://nakhll.com/",
     headers: {
         "Content-Type": " application/json",
     },
@@ -16,7 +16,7 @@ export const instanceAxiosWithOutToken = Axios.create({
 //=================================================================\\
 export const instanceAxiosWithToken = Axios.create({
     withCredentials: true,
-    baseURL: "http://localhost:8000/",
+    baseURL: "https://nakhll.com/",
     timeout: 300000,
     headers: {
         "Content-Type": " application/json",
@@ -27,48 +27,42 @@ export const instanceAxiosWithToken = Axios.create({
 //=================instanceAxiosWithOutToken=======================\\
 //=================================================================\\
 instanceAxiosWithOutToken.interceptors.request.use(
-    function(config) {
+    function (config) {
         return config;
     },
-    function(error) {
+    function (error) {
         return Promise.reject(error);
     }
 );
 
 instanceAxiosWithOutToken.interceptors.response.use(
-    function(response) {
-        if (response.status === 200) {
-            return response.data;
-        } else {
-            return response;
-        }
-    },
-    function(error) {
-        return Promise.reject(error);
+    function (response) {
+        return response;
     }
+    // ,
+    // function(error) {
+    //     return Promise.reject(error);
+    // }
 );
 
 //=================================================================\\
 //=================instanceAxiosWithToken==========================\\
 //=================================================================\\
 instanceAxiosWithToken.interceptors.request.use(
-    function(config) {
+    function (config) {
         return config;
     },
-    function(error) {
+    function (error) {
         return Promise.reject(error);
     }
 );
 
 instanceAxiosWithToken.interceptors.response.use(
-    function(response) {
-        if (response.status === 200) {
-            return response.data;
-        } else {
-            return response;
-        }
-    },
-    function(error) {
-        return Promise.reject(error);
+    function (response) {
+        return response;
     }
+    // ,
+    // function(error) {
+    //     return Promise.reject(error);
+    // }
 );

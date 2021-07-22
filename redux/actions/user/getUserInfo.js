@@ -14,12 +14,13 @@ export const getUserInfo = () => async dispatch => {
         }
 
         let response = await getProduct();
-
-        // dispatch
-        dispatch({
-            type: Types.USER_INFO,
-            payload: response
-        });
+        if (response.status === 200) {
+            // dispatch
+            dispatch({
+                type: Types.USER_INFO,
+                payload: response.data
+            });
+        }
 
     } catch (error) {
         alert("لطفا ابتدا ثبت نام کنید");

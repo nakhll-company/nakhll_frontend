@@ -16,7 +16,9 @@ const getStates = async () => {
     true,
     params
   );
-  return response;
+  if (response.status === 200) {
+    return response.data;
+  }
 };
 const getBigCities = async (id) => {
   let params = {};
@@ -29,7 +31,9 @@ const getBigCities = async (id) => {
     true,
     params
   );
-  return response;
+  if (response.status === 200) {
+    return response.data;
+  }
 };
 const getCities = async (id) => {
   let params = {};
@@ -42,7 +46,9 @@ const getCities = async (id) => {
     true,
     params
   );
-  return response;
+  if (response.status === 200) {
+    return response.data;
+  }
 };
 
 function MobileSetting({ activeHojreh }) {
@@ -65,8 +71,10 @@ function MobileSetting({ activeHojreh }) {
         true,
         params
       );
+      if (response.status === 200) {
+        setApiSetting(await response.data);
+      }
 
-      setApiSetting(await response);
       setSelectState(await getStates());
     };
 
@@ -458,7 +466,7 @@ function MobileSetting({ activeHojreh }) {
                   <h3>به روز رسانی</h3>
                 </button>
               </div>
-              <div style={{marginTop:"50px"}}></div>
+              <div style={{ marginTop: "50px" }}></div>
             </form>
           </>
         )}
@@ -522,9 +530,9 @@ function MobileSetting({ activeHojreh }) {
                   <h3>ذخیره اطلاعات </h3>
                 </button>
               </div>
-            
-            
-            <div style={{marginTop:"50px"}}></div>
+
+
+              <div style={{ marginTop: "50px" }}></div>
             </form>
           </>
         )}

@@ -23,8 +23,9 @@ const MobileOrders = ({ loading, ordersList }) => {
             true,
             params
         );
-
-        response.details === "Done" && getUncompleted(activeHojreh);
+        if (response.status === 200) {
+            getUncompleted(activeHojreh);
+        }
     };
 
     return (
