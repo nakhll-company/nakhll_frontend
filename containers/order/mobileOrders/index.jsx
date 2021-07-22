@@ -1,22 +1,16 @@
 // node
 import Image from 'next/image';
 import Link from 'next/link';
-import { connect } from 'react-redux';
-import { useEffect, useState } from 'react';
 // components
 import CustomLabel from '../../../components/custom/customLabel';
 import CustomBadge from '../../../components/custom/customBadge';
 // methods
-import { mapState } from '../methods/mapState';
-import { mapDispatch } from '../methods/mapDispatch';
 import { ApiRegister } from '../../../services/apiRegister/ApiRegister';
 // scss
 import styles from '../../../styles/pages/order/mobileOrders.module.scss';
 
 
-const MobileOrders = ({ type, ordersList, getUncompleted, getCompleted, activeHojreh }) => {
-
-    let [loading, setLoading] = useState(true);
+const MobileOrders = ({ loading, ordersList }) => {
 
     const _handleRequestApi = async (id) => {
         let params = {};
@@ -32,17 +26,6 @@ const MobileOrders = ({ type, ordersList, getUncompleted, getCompleted, activeHo
 
         response.details === "Done" && getUncompleted(activeHojreh);
     };
-    useEffect(() => {
-        async function getData() {
-            if (type === "uncompleted") {
-                await getUncompleted(activeHojreh);
-            } else {
-                await getCompleted(activeHojreh);
-            }
-            setLoading(pre => !pre);
-        }
-        getData();
-    }, [type]);
 
     return (
         <div className={styles.wrapper}>
@@ -115,5 +98,4 @@ const MobileOrders = ({ type, ordersList, getUncompleted, getCompleted, activeHo
     );
 }
 // export
-const connector = connect(mapState, mapDispatch);
-export default connector(MobileOrders);
+export default MobileOrders;

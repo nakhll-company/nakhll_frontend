@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 // components
 import MyLayout from '../../../../components/layout/Layout';
 import useViewport from '../../../../components/viewPort';
-import CustomTab from '../../../../components/custom/customTab';
 import MobileHeader from '../../../../components/mobileHeader';
 import MobileOrders from '../../../../containers/order/mobileOrders';
 import DesktopOrders from '../../../../containers/order/desktopOrders';
@@ -32,15 +31,8 @@ function Uncompleted({ ordersList, activeHojreh, getUncompleted }) {
         <>
             {width < breakpoint ?
                 <div>
-                    <MobileHeader title="سفارشات" type="search" />
-                    <CustomTab tab={[{
-                        title: "سفارشات باز",
-                        content: <MobileOrders type="uncompleted" />
-                    },
-                    {
-                        title: "سفارشات بسته",
-                        content: <MobileOrders type="completed" />
-                    }]} />
+                    <MobileHeader title="سفارشات تکمیل نشده" type="search" />
+                    <MobileOrders ordersList={ordersList} loading={loading} />
                 </div> :
                 <DesktopOrders
                     loading={loading}
