@@ -14,11 +14,13 @@ export const getCompleted = (activeHojreh) => async dispatch => {
         }
 
         let response = await completed();
-        // dispatch
-        dispatch({
-            type: Types.COMPLETED,
-            payload: response
-        });
+        if (response.status === 200) {
+            // dispatch
+            dispatch({
+                type: Types.COMPLETED,
+                payload: response.data
+            });
+        }
 
     } catch (error) {
 

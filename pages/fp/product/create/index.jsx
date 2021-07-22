@@ -148,7 +148,9 @@ const CreateProduct = ({ activeHojreh }) => {
       );
       // console.log("res uncomsdfsf :", response);
       // const dataUser = response;
-      setData(response); //==> output: {}
+      if (response.status === 200) {
+        setData(response.data); //==> output: {}
+      }
     };
     _handleRequestApi();
 
@@ -163,8 +165,8 @@ const CreateProduct = ({ activeHojreh }) => {
         true,
         params
       );
-      const data = responseUser;
-      setDataUser(responseUser); //==> output: {}
+      const data = responseUser.data;
+      setDataUser(responseUser.data); //==> output: {}
     };
     _handleRequestApiUserInfo();
   }, [activeHojreh]);
@@ -313,7 +315,7 @@ const CreateProduct = ({ activeHojreh }) => {
       true,
       params
     );
-    return response;
+    return response.data;
     debugger;
   };
 

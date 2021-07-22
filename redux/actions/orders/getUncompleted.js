@@ -14,11 +14,13 @@ export const getUncompleted = (activeHojreh) => async dispatch => {
         }
 
         let response = await uncompleted();
-        // dispatch
-        dispatch({
-            type: Types.UNCOMPLETED,
-            payload: response
-        });
+        if (response.status === 200) {
+            // dispatch
+            dispatch({
+                type: Types.UNCOMPLETED,
+                payload: response.data
+            });
+        }
 
     } catch (error) {
 

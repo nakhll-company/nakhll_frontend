@@ -16,7 +16,9 @@ const getStates = async () => {
     true,
     params
   );
-  return response;
+  if (response.status === 200) {
+    return response.data;
+  }
 };
 const getBigCities = async (id) => {
   let params = {};
@@ -29,7 +31,9 @@ const getBigCities = async (id) => {
     true,
     params
   );
-  return response;
+  if (response.status === 200) {
+    return response.data;
+  }
 };
 const getCities = async (id) => {
   let params = {};
@@ -42,7 +46,9 @@ const getCities = async (id) => {
     true,
     params
   );
-  return response;
+  if (response.status === 200) {
+    return response.data;
+  }
 };
 function DesktopSetting({ activeHojreh }) {
   let [selectState, setSelectState] = useState([]);
@@ -66,7 +72,10 @@ function DesktopSetting({ activeHojreh }) {
         params
       );
 
-      setApiSetting(await response);
+      if (response.status === 200) {
+        setApiSetting(await response.data);
+      }
+
       setSelectState(await getStates());
     };
 
@@ -453,7 +462,7 @@ function DesktopSetting({ activeHojreh }) {
                   </div>
                   <div className="">
                     <h4 className={styles.explain}>
-                     
+
                     </h4>
                   </div>
                   <div className={styles.input_setting}>

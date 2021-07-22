@@ -46,7 +46,9 @@ function HomePage({ id }) {
         true,
         params
       );
-      setdata(response);
+      if (response.status === 200) {
+        setdata(response.data);
+      }
       setisShow(true);
       // console.log("aaaa :>> ", response);
     };
@@ -65,11 +67,13 @@ function HomePage({ id }) {
         true,
         params
       );
-      setconfigOrder(response);
+      if (response.status === 200) {
+        setconfigOrder(response.data);
+      }
       setisShow(true);
       setbtnOk(!btnOk);
 
-      if (response.details === "Done") {
+      if (response.status === 200) {
         setconfigOrder(true);
       }
     };
@@ -338,7 +342,7 @@ function HomePage({ id }) {
                       <div className={styles.ButtonsGridDFinal}>
                         <div className={styles.order_statusD_code}>
                           <input
-                          disabled
+                            disabled
                             className={styles.btn_code}
                             type="number"
                             placeholder="2521351888415132132"
