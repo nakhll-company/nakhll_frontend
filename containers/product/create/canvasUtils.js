@@ -22,20 +22,21 @@ export async function getCroppedImg(imageSrc, pixelCrop,) {
   const ctx = canvas.getContext('2d')
 
 
-  canvas.width = 512
-  canvas.height = 512
+    canvas.width = pixelCrop.width,
+    canvas.height = pixelCrop.height,
 
-  ctx.drawImage(
-    image,
-    pixelCrop.x,
-    pixelCrop.y,
-    pixelCrop.width,
-    pixelCrop.height,
-    0,
-    0,
-    pixelCrop.width,
-    pixelCrop.height
-  );
+
+    ctx.drawImage(
+      image,
+      pixelCrop.x,
+      pixelCrop.y,
+      pixelCrop.width,
+      pixelCrop.height,
+      0,
+      0,
+      pixelCrop.width,
+      pixelCrop.height
+    );
 
 
 
@@ -44,11 +45,11 @@ export async function getCroppedImg(imageSrc, pixelCrop,) {
 
   let prev = []
   prev = [...prev, canvas.toDataURL('image/jpeg')]
-  let listImage =window.localStorage.getItem("image");
+  let listImage = window.localStorage.getItem("image");
   let xx = JSON.parse(listImage)
   debugger
   xx.push(canvas.toDataURL('image/jpeg'))
-  window.localStorage.setItem("image" , JSON.stringify(xx));
+  window.localStorage.setItem("image", JSON.stringify(xx));
   debugger
   return true
 
