@@ -75,7 +75,7 @@ const MobileOrders = ({ loading, ordersList }) => {
                                         {value.factor_posts_summary.length > 0 && value.factor_posts_summary.map((value, index) => {
                                             return (
                                                 <div key={index} className={styles.card_image}>
-                                                    <Image src="/image/product/sort.svg" alt="sort" width="45" height="45" />
+                                                    <Image src={value.product_image_thumbnail} alt="sort" width="45" height="45" />
                                                 </div>
                                             );
                                         })}

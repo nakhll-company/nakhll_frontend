@@ -23,22 +23,19 @@ const MobileList = ({ loading, productList, activeHojreh }) => {
             <div className={styles.product_header}>
                 <Link href={`/fp/product/filter`}>
                     <a className={styles.product_header_link}>
-                        {/* <Image src="/image/product/filter.svg" alt="filter" className={styles.product_header_link_icon} width="15" height="15" /> */}
-                        {/* <i className="fa fa-sliders" aria-hidden="true"></i> */}
+                        <Image src="/filter.svg" alt="filter" className={styles.product_header_link_icon} width="15" height="15" />
                         فیلتر
                     </a>
                 </Link>
                 <span className={styles.product_header_link} onClick={() => {
                     setShowModalSort(showModal => !showModal);
                 }}>
-                    {/* <Image src="/image/product/sort.svg" alt="sort" className={styles.product_header_link_icon} width="15" height="15" /> */}
-                    {/* <i className="fa fa-sort-amount-asc" aria-hidden="true"></i> */}
+                    <Image src="/sort.svg" alt="sort" className={styles.product_header_link_icon} width="15" height="15" />
                     ترتیب نمایش</span>
                 <span className={styles.product_header_link} onClick={() => {
                     setShowModalEdit(showModal => !showModal);
                 }}>
-                    {/* <Image src="/image/product/edit.svg" alt="edit" className={styles.product_header_link_icon} width="15" height="15" /> */}
-                    {/* <i className="fa fa-list" aria-hidden="true"></i> */}
+                    <Image src="/edit.svg" alt="edit" className={styles.product_header_link_icon} width="15" height="15" />
                     ویرایش گروهی</span>
             </div>
             {loading ?
@@ -51,8 +48,7 @@ const MobileList = ({ loading, productList, activeHojreh }) => {
                         <div key={index} className={`${styles.product_card}`}>
                             <div className={styles.first_row}>
                                 <div className={styles.product_name_wrapper}>
-                                    {/* <div className={`${styles.image_product}`}></div> */}
-                                    <Image src={value.image_thumbnail_url.substring(0, value.image_thumbnail_url.length)} alt="sort" width="45" height="45" />
+                                    <Image src={value.image_thumbnail_url} alt="sort" width="45" height="45" />
                                     <h6 className={`${styles.name_product}`}>{value.title}</h6>
                                 </div>
                                 <i className={`fas fa-ellipsis-v ${styles.icon_more}`}></i>
@@ -92,6 +88,11 @@ const MobileList = ({ loading, productList, activeHojreh }) => {
             <CustomModal show={showModalEdit} onClose={() => {
                 setShowModalEdit(showModal => !showModal);
             }} content={<Edit />} />
+            <Link href={`/fp/product/create`}>
+                <a className={styles.add_product}>
+                    <i className="fa fa-plus"></i>
+                </a>
+            </Link>
         </div>
     );
 };
