@@ -5,6 +5,11 @@ import styles from "../../../styles/pages/setting/setting.module.scss";
 
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
+import Image from "next/image";
+
+import { Field, Form, Formik } from "formik";
+import * as yup from "yup";
+
 const getStates = async () => {
   let params = {};
   let loadData = null;
@@ -16,7 +21,9 @@ const getStates = async () => {
     true,
     params
   );
-  return response;
+  if (response.status === 200) {
+    return response.data;
+  }
 };
 const getBigCities = async (id) => {
   let params = {};
@@ -29,7 +36,9 @@ const getBigCities = async (id) => {
     true,
     params
   );
-  return response;
+  if (response.status === 200) {
+    return response.data;
+  }
 };
 const getCities = async (id) => {
   let params = {};
@@ -42,16 +51,48 @@ const getCities = async (id) => {
     true,
     params
   );
-  return response;
+  if (response.status === 200) {
+    return response.data;
+  }
 };
 
 function MobileSetting({ activeHojreh }) {
+  const [ChoiceBigCity, setChoiceBigCity] = useState("")
+  const [ChoiceState, setChoiceState] = useState("")
   let [selectState, setSelectState] = useState([]);
   let [selectBigCities, setSelectBigCities] = useState([]);
   let [selectCities, setSelectCities] = useState([]);
+  const [IsLoading, setIsLoading] = useState(false)
+  const [showMessage, setshowMessage] = useState(0);
   // console.log("active :>> ", activeHojreh);
+  const VALIDATION_SCHEMA = yup.object().shape({
+    Title: yup.string().required("نام حجره الزامی می باشد."),
+    slug: yup.string().required("آدرس اینترنتی حجره الزامی می باشد."),
+    Description: yup.string(),
+    NationalCode: yup
+      .number()
+      .integer()
+      .typeError("فقط عدد مجاز است.")
+      // .min(10, "کد ملی ده رقم می باشد.")
+      // .max(10, "کد ملی ده رقم می باشد.")
+      .required("کد ملی الزامی می باشد."),
+    MobileNumber: yup
+      .number()
+      .typeError("فقط عدد مجاز است.")
+      
+      // .min(11, "شماره موبایل 11 رقم می باشد.")
+      // .max(11, "شماره موبایل 11 رقم می باشد.")
+      .required("شماره موبایل الزامی می باشد"),
+    PhoneNumber: yup.number(),
+    
+   
+    Address: yup.string().required("آدرس الزامی می باشد."),
+    ZipCode: yup.number().typeError("فقط عدد مجاز است.").required("کد پستی الزامی می باشد."),
+  });
 
   const [apiSetting, setApiSetting] = useState({});
+  const [onMenu, setOnMenu] = useState("1");
+ 
 
   useEffect(() => {
     const _handleRequestApi = async () => {
@@ -65,8 +106,10 @@ function MobileSetting({ activeHojreh }) {
         true,
         params
       );
+      if (response.status === 200) {
+        setApiSetting(await response.data);
+      }
 
-      setApiSetting(await response);
       setSelectState(await getStates());
     };
 
@@ -150,7 +193,7 @@ function MobileSetting({ activeHojreh }) {
 
   // console.log("active :>> ", activeHojreh);
 
-  const [onMenu, setOnMenu] = useState("1");
+
 
   return (
     <div dir="rtl" className={styles.setting}>
@@ -215,18 +258,76 @@ function MobileSetting({ activeHojreh }) {
       {/* Setting Conttent */}
       <div className={styles.wrapper}>
         {/* Hojreh */}
-
+            {/* TODO      FORM Hi  MILAD  :) */}
         {onMenu == "1" && (
           <>
-            <form
-              onSubmit={async (e) => {
-                e.preventDefault();
-                const data = new FormData(e.target);
-                let body = Object.fromEntries(data.entries());
-                let response = await setting(body);
-                // if (response.status === 201) {
-                //   setShowSuccessPage((showSuccessPage) => !showSuccessPage);
-                // }
+            <Formik
+              enableReinitialize={true}
+              initialValues={{
+                Title: apiSetting.Title,
+                slug: apiSetting.Slug,
+                Description: apiSetting.Description,
+                NationalCode:
+                  apiSetting.FK_ShopManager &&
+                  apiSetting.FK_ShopManager.User_Profile.NationalCode,
+                MobileNumber:
+                  apiSetting.FK_ShopManager &&
+                  apiSetting.FK_ShopManager.User_Profile.MobileNumber,
+                PhoneNumber:
+                  apiSetting.FK_ShopManager &&
+                  apiSetting.FK_ShopManager.User_Profile.PhoneNumber,
+                  
+
+
+                Address:
+                  apiSetting.FK_ShopManager &&
+                  apiSetting.FK_ShopManager.User_Profile.Address,
+                ZipCode:
+                  apiSetting.FK_ShopManager &&
+                  apiSetting.FK_ShopManager.User_Profile.ZipCode,
+              }}
+              validationSchema={VALIDATION_SCHEMA}
+              onSubmit={async(data) => {
+                setshowMessage(0)
+                setIsLoading(true)
+                
+                const dataForSend = {
+                  Title: data.Title,
+                  Slug: data.slug,
+                  Description: data.Description,
+                  FK_ShopManager: {
+                    User_Profile: {
+                      NationalCode: data.NationalCode,
+                      MobileNumber: data.MobileNumber,
+                      PhoneNumber: data.PhoneNumber,
+                      BigCity: ChoiceBigCity,
+                      State: ChoiceState,
+                      Address: data.Address,
+                      ZipCode: data.ZipCode,
+                    },
+                  },
+                };
+                console.log('miii :>> ', dataForSend);
+                let params = {};
+                let loadData = dataForSend;
+                let dataUrl = `/api/v1/shop/${activeHojreh}/settings/`;
+                let response = await ApiRegister().apiRequest(
+                  loadData,
+                  "put",
+                  dataUrl,
+                  true,
+                  params
+                );
+                if(response.status === 200){
+                  
+                  setIsLoading(false)
+                  // good
+                  setshowMessage(1)
+                }else{
+                  // Not Good
+                  setshowMessage(2)
+                }
+                console.log("dataForSend :>> ", dataForSend);
               }}
             >
               {/* <div className={styles.Hojreh_head}>
@@ -239,6 +340,8 @@ function MobileSetting({ activeHojreh }) {
                   <span className="fas fa-edit"></span>
                 </div>
               </div> */}
+              {({ values, errors, touched }) => (
+              <Form>
               <div className={styles.Hojreh_profile}>
                 <div className={styles.HeadName}>
                   <h1>حجره</h1>
@@ -248,35 +351,45 @@ function MobileSetting({ activeHojreh }) {
                     نام حجره
                   </h2>
                   <div className={styles.inputWidRtl}>
-                    <input
+                    <Field
                       name="Title"
                       type="text"
-                      defaultValue={apiSetting.Title}
+                      
                     />
+                    {touched.Title && errors.Title ? (
+                            <small className={styles.error}>
+                              {errors.Title}
+                            </small>
+                          ) : null}
                   </div>
                 </div>
                 <div className={styles.input_setting}>
-                  <h2 style={{ marginBottom: "10px", color: "#364254" }}>
+                  <h2 style={{marginTop:"34px", marginBottom: "10px", color: "#364254" }}>
                     آدرس اینترنتی حجره
                   </h2>
                   <div className={styles.inputWid}>
-                    <input
+                    <Field
                       name="slug"
                       type="text"
-                      defaultValue={apiSetting.Slug}
+                      
                     />
+                    {touched.slug && errors.slug ? (
+                            <small className={styles.error}>
+                              {errors.slug}
+                            </small>
+                          ) : null}
                   </div>
                 </div>
                 <div className={styles.input_setting}>
-                  <h2 style={{ marginBottom: "10px", color: "#364254" }}>
+                  <h2 style={{marginTop:"34px", marginBottom: "10px", color: "#364254" }}>
                     درباره حجره
                   </h2>
                   <div className={styles.inputWidRtlH}>
-                    <textarea
+                    <Field
                       name="Description"
                       rows="4"
                       cols="50"
-                      defaultValue={apiSetting.Description}
+                    
                     />
                   </div>
                 </div>
@@ -289,6 +402,7 @@ function MobileSetting({ activeHojreh }) {
                   </div>
                 </div> */}
               </div>
+              
               <div className={styles.Hojreh_space}>
                 <div className={styles.HeadName}>
                   <h1>مشخصات</h1>
@@ -298,96 +412,214 @@ function MobileSetting({ activeHojreh }) {
                     کد ملی
                   </h2>
                   <div className={styles.inputWid}>
-                    <input
+                    <Field
                       name="NationalCode"
                       type="text"
-                      defaultValue={
-                        apiSetting.FK_ShopManager &&
-                        apiSetting.FK_ShopManager.User_Profile.NationalCode
-                      }
+                     
                     />
+                    {touched.NationalCode && errors.NationalCode ? (
+                            <small className={styles.error}>
+                              {errors.NationalCode}
+                            </small>
+                          ) : null}
                   </div>
                 </div>
 
                 <div className={styles.input_setting}>
-                  <h2 style={{ marginBottom: "10px", color: "#364254" }}>
+                  <h2 style={{marginTop:"34px", marginBottom: "10px", color: "#364254" }}>
                     شماره تماس اصلی
                   </h2>
                   <div className={styles.inputWid}>
-                    <input
+                    <Field
                       name="MobileNumber"
                       type="text"
-                      defaultValue={
-                        apiSetting.FK_ShopManager &&
-                        apiSetting.FK_ShopManager.User_Profile.MobileNumber
-                      }
+                     
                     />
+                    {touched.MobileNumber && errors.MobileNumber ? (
+                            <small className={styles.error}>
+                              {errors.MobileNumber}
+                            </small>
+                          ) : null}
                   </div>
                 </div>
                 <div className={styles.input_setting}>
-                  <h2 style={{ marginBottom: "10px", color: "#364254" }}>
+                  <h2 style={{marginTop:"34px", marginBottom: "10px", color: "#364254" }}>
                     شماره تلفن ثابت
                   </h2>
                   <div className={styles.inputWid}>
-                    <input
+                    <Field
                       name="PhoneNumber"
                       type="text"
-                      defaultValue={
-                        apiSetting.FK_ShopManager &&
-                        apiSetting.FK_ShopManager.User_Profile.PhoneNumber
-                      }
+                      
                     />
                   </div>
                 </div>
               </div>
+              
               <div className={styles.Hojreh_Address}>
                 <div className={styles.HeadName}>
                   <h1>آدرس</h1>
                 </div>
+                
+                <div className={styles.forAddress}>
+                        {/* استان */}
+                        <label className={styles.form_label}>استان</label>
+                        <select
+                        
+                          className={styles.form_select}
+                          name="State"
+                          
+                          onChange={async (event) => {
+                            setSelectBigCities(await getBigCities(event.target.value));
+                            debugger
+                            setChoiceState(event.target.value.name)
+                          }}
+                        >
+                          <option value="" disabled>
+                            برای باز شدن لیست کلیک کنید
+                          </option>
+                          {selectState.map((value, index) => {
+                            return (
+                              <option
+                                key={index}
+                                value={value.id}
+                               
+                              >
+                                {value.name}
+                              </option>
+                            );
+                          })}
+                        </select>
+                        <label className={styles.form_label}>شهرستان</label>
+                        <select
+                        
+                           className={styles.form_select}
+                           name="BigCity"
+                           defaultValue="0"
+                           onChange={async (event) => {
+                             setSelectCities(await getCities(event.target.value));
+                             
+                           }}
+                        >
+                          <option value="" disabled>
+                            برای باز شدن لیست کلیک کنید
+                          </option>
+                          {selectBigCities.map((value, index) => {
+                            return (
+                              <option
+                                key={index}
+                                value={value.id}
+                                
+                              >
+                                {value.name}
+                              </option>
+                            );
+                          })}
+                        </select>
+                        <label className={styles.form_label}>شهر</label>
+                        <select
+                        
+                          className={styles.form_select}
+                          name="City"
+                          defaultValue="0"
+                          onChange={ (event) => {
+                            
+                            setChoiceBigCity(event.target.value)
+                          }}
+                        >
+                          <option value="" disabled>
+                            برای باز شدن لیست کلیک کنید
+                          </option>
+                          {selectCities.map((value, index) => {
+                            return (
+                              <option key={index} value={value.name}>
+                                {value.name}
+                              </option>
+                            );
+                          })}
+                        </select>
+                      </div>
+                      
                 <div className={styles.input_setting}>
                   <h2 style={{ marginBottom: "10px", color: "#364254" }}>
                     آدرس
                   </h2>
                   <div className={styles.inputWidRtlH}>
-                    <textarea
+                    <Field
                       name="Address"
                       rows="4"
                       cols="50"
-                      defaultValue={
-                        apiSetting.FK_ShopManager &&
-                        apiSetting.FK_ShopManager.User_Profile.Address
-                      }
+                      
                     />
+                     {touched.Address && errors.Address ? (
+                            <small className={styles.error}>
+                              {errors.Address}
+                            </small>
+                          ) : null}
                   </div>
                 </div>
                 <div className={styles.input_setting}>
-                  <h2 style={{ marginBottom: "10px", color: "#364254" }}>
+                  <h2 style={{marginTop:"34px", marginBottom: "10px", color: "#364254" }}>
                     کد پستی
                   </h2>
                   <div className={styles.inputWid}>
-                    <input
+                    <Field
                       type="text"
                       name="ZipCode"
-                      defaultValue={
-                        apiSetting.FK_ShopManager &&
-                        apiSetting.FK_ShopManager.User_Profile.ZipCode
-                      }
+                     
                     />
+                    {touched.ZipCode && errors.ZipCode ? (
+                            <small className={styles.error}>
+                              {errors.ZipCode}
+                            </small>
+                          ) : null}
                   </div>
                 </div>
               </div>
+              {IsLoading &&<div style={{marginTop:"15px", display: "flex", alignItems: "center" }}>
+                      <div className={styles.loader}>
+                        <Image
+                          src="/image/LOGO_500.png"
+                          alt="Picture of the author"
+                          width={50}
+                          height={50}
+                        />
+                      </div>
+                      <h3
+                        className={styles.nameLoding}
+                        style={{
+                          fontSize: "15px",
+                          color: "hsl(211deg 100% 50%)",
+                        }}
+                      >
+                        {" "}
+                        در حال بروزرسانی ...
+                      </h3>
+                    </div>}
+                    {showMessage==1 && (<div>
+                      <h3 style={{marginTop:"15px", color:"green"}}>به روز رسانی با موفقیت انجام شد.</h3>
+                    </div>)}
+                    {showMessage==2 && (<div>
+                      <h3 style={{marginTop:"15px",color:"red"}}>عملیات به روز رسانی موفقیت آمیز نبود.لطفا باری  دیگر اقدام کنید.</h3>
+                    </div>)}
+
               <div className={styles.status_button_one}>
                 <button
                   // onClick={() => {
                   //   setbtnOk(!btnOk);
                   // }}
+                  type="submit"
                   className={`${styles.btn} ${styles.btnSubmit}`}
                 >
                   <h3>ذخیره اطلاعات</h3>
                 </button>
               </div>
+              
               <div style={{ marginTop: "80px" }}></div>
-            </form>
+             
+              </Form>
+              )}
+            </Formik>
           </>
         )}
 
@@ -405,14 +637,14 @@ function MobileSetting({ activeHojreh }) {
                 // }
               }}
             >
-              <div className={styles.note}>
+              {/* <div className={styles.note}>
                 <span className="fas fa-info-circle"></span>
 
                 <h1 className={styles.note_text}>
                   برای ویرایش شماره شبا ابتدا گزینه ویرایش را انتخاب کنید سپس
                   اقدام به ویرایش کنید.
                 </h1>
-              </div>
+              </div> */}
 
               <div className={styles.input_setting}>
                 <h2 style={{ marginBottom: "10px", color: "#364254" }}>
@@ -458,7 +690,7 @@ function MobileSetting({ activeHojreh }) {
                   <h3>به روز رسانی</h3>
                 </button>
               </div>
-              <div style={{marginTop:"50px"}}></div>
+              <div style={{ marginTop: "50px" }}></div>
             </form>
           </>
         )}
@@ -522,9 +754,9 @@ function MobileSetting({ activeHojreh }) {
                   <h3>ذخیره اطلاعات </h3>
                 </button>
               </div>
-            
-            
-            <div style={{marginTop:"50px"}}></div>
+
+
+              <div style={{ marginTop: "50px" }}></div>
             </form>
           </>
         )}

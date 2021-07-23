@@ -26,6 +26,9 @@ const Price = ({ productList }) => {
             true,
             params
         );
+        if (response.status === 200) {
+            alert("داده ها با موفقیت ثبت شدند");
+        }
     };
 
     return (
