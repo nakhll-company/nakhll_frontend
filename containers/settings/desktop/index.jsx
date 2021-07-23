@@ -669,7 +669,9 @@ const DesktopSetting = ({ activeHojreh }) => {
                         <h2 style={{ marginBottom: "10px", color: "#364254" }}>
                           آدرس
                         </h2>
+                        
                         <div className={styles.inputWidRtlH}>
+                        
                           <Field
                             name="Address"
                             rows="4"
@@ -685,7 +687,9 @@ const DesktopSetting = ({ activeHojreh }) => {
                             </small>
                           ) : null}
                         </div>
+                        
                       </div>
+                      
                       <div className="">
                         <h4 className={styles.explain}></h4>
                       </div>
