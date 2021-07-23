@@ -189,8 +189,8 @@ function HomePage({ id }) {
                         width: "19px",
                         height: "0px",
                         border: "2px solid #E0E6E9",
-                        marginLeft: "30px",
-                        marginRight: "30px",
+                        marginLeft: "15px",
+                        marginRight: "15px",
                         marginTop: "auto",
                         marginBottom: "auto",
                       }}
@@ -248,8 +248,8 @@ function HomePage({ id }) {
                         width: "19px",
                         height: "0px",
                         border: "2px solid #E0E6E9",
-                        marginLeft: "30px",
-                        marginRight: "30px",
+                        marginLeft: "15px",
+                        marginRight: "15px",
                         marginTop: "auto",
                         marginBottom: "auto",
                       }}
@@ -325,12 +325,12 @@ function HomePage({ id }) {
                               SendRahgiriCode();
                             }}
                           >
-                            <h3>ثبت کد رهگیری</h3>
+                            <h3 style={{fontSize:"12px"}}>ثبت کد رهگیری</h3>
                           </button>
                           <button
                             className={`${styles.btn} ${styles.btnProblem}`}
                           >
-                            <h3>ثبت مشکل</h3>
+                            <h3 style={{fontSize:"12px"}}>ثبت مشکل</h3>
                           </button>
                         </div>
                       </div>
@@ -370,12 +370,12 @@ function HomePage({ id }) {
                               SendRahgiriCode();
                             }}
                           >
-                            <h3>ثبت کد رهگیری</h3>
+                            <h3 style={{fontSize:"12px"}}>ثبت کد رهگیری</h3>
                           </button>
                           <button
                             className={`${styles.btn} ${styles.btnProblem}`}
                           >
-                            <h3>ثبت مشکل</h3>
+                            <h3 style={{fontSize:"12px"}}>ثبت مشکل</h3>
                           </button>
                         </div>
                       </div>
@@ -796,7 +796,7 @@ function HomePage({ id }) {
                         <h3>تایید</h3>
                       </button>
                       <button className={`${styles.btn} ${styles.btnProblem}`}>
-                        <h3>ثبت مشکل</h3>
+                        <h3 style={{fontSize:"12px"}}>ثبت مشکل</h3>
                       </button>
                     </div>
                   ) : (
@@ -815,12 +815,12 @@ function HomePage({ id }) {
                           }}
                           className={`${styles.btn} ${styles.btnSubmit}`}
                         >
-                          <h3>ثبت کد رهگیری</h3>
+                          <h3 style={{fontSize:"12px"}}>ثبت کد رهگیری</h3>
                         </button>
                         <button
                           className={`${styles.btn} ${styles.btnProblem}`}
                         >
-                          <h3>ثبت مشکل</h3>
+                          <h3 style={{fontSize:"12px"}}>ثبت مشکل</h3>
                         </button>
                       </div>
                     </>
