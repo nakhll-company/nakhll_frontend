@@ -342,7 +342,9 @@ const DesktopSetting = ({ activeHojreh }) => {
               }}
               validationSchema={VALIDATION_SCHEMA}
               onSubmit={async(data) => {
+                setshowMessage(0)
                 setIsLoading(true)
+
                 const dataForSend = {
                   Title: data.Title,
                   Slug: data.slug,
@@ -512,11 +514,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                           <Field
                             name="NationalCode"
                             type="text"
-                            defaultValue={
-                              apiSetting.FK_ShopManager &&
-                              apiSetting.FK_ShopManager.User_Profile
-                                .NationalCode
-                            }
+                            
                           />
                           {touched.NationalCode && errors.NationalCode ? (
                             <small className={styles.error}>
@@ -537,11 +535,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                           <Field
                             name="MobileNumber"
                             type="text"
-                            defaultValue={
-                              apiSetting.FK_ShopManager &&
-                              apiSetting.FK_ShopManager.User_Profile
-                                .MobileNumber
-                            }
+                            
                           />
                           {touched.MobileNumber && errors.MobileNumber ? (
                             <small className={styles.error}>
@@ -704,10 +698,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                           <Field
                             type="input"
                             name="ZipCode"
-                            defaultValue={
-                              apiSetting.FK_ShopManager &&
-                              apiSetting.FK_ShopManager.User_Profile.ZipCode
-                            }
+                            
                           />
                           {touched.ZipCode && errors.ZipCode ? (
                             <small className={styles.error}>
