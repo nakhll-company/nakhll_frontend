@@ -327,7 +327,7 @@ function MobileSetting({ activeHojreh }) {
                   // Not Good
                   setshowMessage(2)
                 }
-                console.log("dataForSend :>> ", dataForSend);
+                
               }}
             >
               {/* <div className={styles.Hojreh_head}>
