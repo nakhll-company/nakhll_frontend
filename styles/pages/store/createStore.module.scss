@@ -6,11 +6,11 @@
     background-color: #FFFFFF !important;
     font-family: 'vazir';
     width: 100%;
-    height: 100vh;
+    height: auto;
     font-family: 'vazir';
     color: #364254;
     font-size: 14px;
-    padding: 14px;
+    padding: 14px 14px 100px 14px;
     .form_right{
         width: 100%;
         display: flex;
@@ -56,7 +56,6 @@
         z-index: 2000;
         margin: auto;
         padding: 8px;
-        cursor: pointer;
         // button submit
         .button_submit{
             width: 100%;
@@ -69,6 +68,7 @@
             border: none;
             outline: none;
             font-family: 'vazir';
+            cursor: pointer;
         }
     }
     .form_checkbox{
@@ -138,6 +138,7 @@
                 outline: none;
                 cursor: pointer;
                 font-family: 'vazir';
+                cursor: pointer;
             }
         }
         .form_errors{

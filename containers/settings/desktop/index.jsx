@@ -103,13 +103,13 @@ const DesktopSetting = ({ activeHojreh }) => {
     MobileNumber: yup
       .number()
       .typeError("فقط عدد مجاز است.")
-      
+
       // .min(11, "شماره موبایل 11 رقم می باشد.")
       // .max(11, "شماره موبایل 11 رقم می باشد.")
       .required("شماره موبایل الزامی می باشد"),
     PhoneNumber: yup.number(),
-    
-   
+
+
     Address: yup.string().required("آدرس الزامی می باشد."),
     ZipCode: yup.number().typeError("فقط عدد مجاز است.").required("کد پستی الزامی می باشد."),
   });
@@ -174,7 +174,7 @@ const DesktopSetting = ({ activeHojreh }) => {
       true,
       params
     );
-    console.log("response :>> ", response);
+    // console.log("response :>> ", response);
   };
 
   const linkSetting = (body) => {
@@ -330,7 +330,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                 PhoneNumber:
                   apiSetting.FK_ShopManager &&
                   apiSetting.FK_ShopManager.User_Profile.PhoneNumber,
-                  
+
 
 
                 Address:
@@ -341,7 +341,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                   apiSetting.FK_ShopManager.User_Profile.ZipCode,
               }}
               validationSchema={VALIDATION_SCHEMA}
-              onSubmit={async(data) => {
+              onSubmit={async (data) => {
                 setshowMessage(0)
                 setIsLoading(true)
 
@@ -361,7 +361,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                     },
                   },
                 };
-                console.log('miii :>> ', dataForSend);
+                // console.log('miii :>> ', dataForSend);
                 let params = {};
                 let loadData = dataForSend;
                 let dataUrl = `/api/v1/shop/${activeHojreh}/settings/`;
@@ -372,15 +372,15 @@ const DesktopSetting = ({ activeHojreh }) => {
                   true,
                   params
                 );
-                if(response.status === 200){
+                if (response.status === 200) {
                   setIsLoading(false)
                   // good
                   setshowMessage(1)
-                }else{
+                } else {
                   // Not Good
                   setshowMessage(2)
                 }
-                console.log("dataForSend :>> ", dataForSend);
+                // console.log("dataForSend :>> ", dataForSend);
               }}
             >
               {({ values, errors, touched }) => (
@@ -398,7 +398,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                           <Field
                             name="Title"
                             type="text"
-                            // defaultValue={apiSetting.Title}
+                          // defaultValue={apiSetting.Title}
                           />
                           {touched.Title && errors.Title ? (
                             <small className={styles.error}>
@@ -429,14 +429,14 @@ const DesktopSetting = ({ activeHojreh }) => {
                           <Field
                             name="slug"
                             type="text"
-                            // defaultValue={apiSetting.Slug}
+                          // defaultValue={apiSetting.Slug}
                           />
                           {touched.slug && errors.slug ? (
                             <small className={styles.error}>
                               {errors.slug}
                             </small>
                           ) : null}
-                          
+
                         </div>
                       </div>
                       <div className="">
@@ -458,10 +458,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                         </h2>
                         <div className={styles.inputWidRtlH}>
                           <Field
-                          type="input"
+                            type="input"
                             name="Description"
-                            
-                            
+
+
                           />
 
                         </div>
@@ -514,14 +514,14 @@ const DesktopSetting = ({ activeHojreh }) => {
                           <Field
                             name="NationalCode"
                             type="text"
-                            
+
                           />
                           {touched.NationalCode && errors.NationalCode ? (
                             <small className={styles.error}>
                               {errors.NationalCode}
                             </small>
                           ) : null}
-                          
+
                         </div>
                       </div>
                       <div className="">
@@ -535,7 +535,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                           <Field
                             name="MobileNumber"
                             type="text"
-                            
+
                           />
                           {touched.MobileNumber && errors.MobileNumber ? (
                             <small className={styles.error}>
@@ -565,10 +565,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                           <Field
                             name="PhoneNumber"
                             type="text"
-                            // defaultValue={
-                            //   apiSetting.FK_ShopManager &&
-                            //   apiSetting.FK_ShopManager.User_Profile.PhoneNumber
-                            // }
+                          // defaultValue={
+                          //   apiSetting.FK_ShopManager &&
+                          //   apiSetting.FK_ShopManager.User_Profile.PhoneNumber
+                          // }
                           />
                         </div>
                       </div>
@@ -588,10 +588,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                         {/* استان */}
                         <label className={styles.form_label}>استان</label>
                         <select
-                        
+
                           className={styles.form_select}
                           name="State"
-                          
+
                           onChange={async (event) => {
                             setSelectBigCities(await getBigCities(event.target.value));
                             debugger
@@ -606,7 +606,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                               <option
                                 key={index}
                                 value={value.id}
-                               
+
                               >
                                 {value.name}
                               </option>
@@ -615,14 +615,14 @@ const DesktopSetting = ({ activeHojreh }) => {
                         </select>
                         <label className={styles.form_label}>شهرستان</label>
                         <select
-                        
-                           className={styles.form_select}
-                           name="BigCity"
-                           defaultValue="0"
-                           onChange={async (event) => {
-                             setSelectCities(await getCities(event.target.value));
-                             
-                           }}
+
+                          className={styles.form_select}
+                          name="BigCity"
+                          defaultValue="0"
+                          onChange={async (event) => {
+                            setSelectCities(await getCities(event.target.value));
+
+                          }}
                         >
                           <option value="" disabled>
                             برای باز شدن لیست کلیک کنید
@@ -632,7 +632,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                               <option
                                 key={index}
                                 value={value.id}
-                                
+
                               >
                                 {value.name}
                               </option>
@@ -641,12 +641,12 @@ const DesktopSetting = ({ activeHojreh }) => {
                         </select>
                         <label className={styles.form_label}>شهر</label>
                         <select
-                        
+
                           className={styles.form_select}
                           name="City"
                           defaultValue="0"
-                          onChange={ (event) => {
-                            
+                          onChange={(event) => {
+
                             setChoiceBigCity(event.target.value)
                           }}
                         >
@@ -669,15 +669,17 @@ const DesktopSetting = ({ activeHojreh }) => {
                         <h2 style={{ marginBottom: "10px", color: "#364254" }}>
                           آدرس
                         </h2>
+                        
                         <div className={styles.inputWidRtlH}>
+                        
                           <Field
                             name="Address"
                             rows="4"
                             cols="50"
-                            // defaultValue={
-                            //   apiSetting.FK_ShopManager &&
-                            //   apiSetting.FK_ShopManager.User_Profile.Address
-                            // }
+                          // defaultValue={
+                          //   apiSetting.FK_ShopManager &&
+                          //   apiSetting.FK_ShopManager.User_Profile.Address
+                          // }
                           />
                           {touched.Address && errors.Address ? (
                             <small className={styles.error}>
@@ -685,7 +687,9 @@ const DesktopSetting = ({ activeHojreh }) => {
                             </small>
                           ) : null}
                         </div>
+                        
                       </div>
+                      
                       <div className="">
                         <h4 className={styles.explain}></h4>
                       </div>
@@ -698,7 +702,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                           <Field
                             type="input"
                             name="ZipCode"
-                            
+
                           />
                           {touched.ZipCode && errors.ZipCode ? (
                             <small className={styles.error}>
@@ -711,7 +715,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                         <h4 className={styles.explain}></h4>
                       </div>
                     </div>
-                    {IsLoading &&<div style={{ display: "flex", alignItems: "center" }}>
+                    {IsLoading && <div style={{ display: "flex", alignItems: "center" }}>
                       <div className={styles.loader}>
                         <Image
                           src="/image/LOGO_500.png"
@@ -731,11 +735,11 @@ const DesktopSetting = ({ activeHojreh }) => {
                         در حال بروزرسانی ...
                       </h3>
                     </div>}
-                    {showMessage==1 && (<div>
-                      <h3 style={{color:"green"}}>به روز رسانی با موفقیت انجام شد.</h3>
+                    {showMessage == 1 && (<div>
+                      <h3 style={{ color: "green" }}>به روز رسانی با موفقیت انجام شد.</h3>
                     </div>)}
-                    {showMessage==2 && (<div>
-                      <h3 style={{color:"red"}}>عملیات به روز رسانی موفقیت آمیز نبود.لطفا باری  دیگر اقدام کنید.</h3>
+                    {showMessage == 2 && (<div>
+                      <h3 style={{ color: "red" }}>عملیات به روز رسانی موفقیت آمیز نبود.لطفا باری  دیگر اقدام کنید.</h3>
                     </div>)}
                   </div>
 
@@ -744,7 +748,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                       // onClick={() => {
                       //   setbtnOk(!btnOk);
                       // }}
-                      
+
                       type="submit"
                       className={`${styles.btn} ${styles.btnSubmit}`}
                     >

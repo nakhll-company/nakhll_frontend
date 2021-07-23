@@ -94,5 +94,21 @@
       }
     }
   }
+  // add product
+  .add_product{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 49px;
+    height: 49px;
+    border-radius: 50%;
+    background-color: #007AFF;
+    color: #FFFFFF;
+    position: fixed;
+    bottom: 70px;
+    left: 0px;
+    z-index: 30000;
+    font-size: 4vw;
+  }
 }
 

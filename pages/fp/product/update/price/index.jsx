@@ -51,8 +51,8 @@ const Price = ({ productList }) => {
                             if (index % 3 === 0) {
                                 objArray.push({
                                     Slug: formValues[index + 0],
-                                    OldPrice: formValues[index + 1],
-                                    Price: formValues[index + 2]
+                                    Price: formValues[index + 2],
+                                    OldPrice: formValues[index + 1]
                                 })
                             }
                         });

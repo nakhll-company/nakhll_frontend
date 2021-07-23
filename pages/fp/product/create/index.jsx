@@ -4,36 +4,16 @@ import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 import styles from "../../../../styles/pages/product/create.module.scss";
 import Cropper from "react-easy-crop";
 import Image from "next/image";
-import useViewport from "../../../../components/viewPort";
-import { value } from "dom7";
 import { connect } from "react-redux";
 import { mapState } from "../../../../containers/order/methods/mapState";
 import { getCroppedImg } from "../../../../containers/product/create/canvasUtils";
 import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
-
-
-// component
-
-
-const schema = yup.object().shape({
-  firstName: yup.string().required(),
-  age: yup.number().positive().integer().required(),
-});
 
 
 const CreateProduct = ({ activeHojreh }) => {
 
-  const { register, handleSubmit, formState: { errors } } = useForm({
-    resolver: yupResolver(schema)
-  });
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onSubmit = data => console.log("data", data);
-
-
-
-
-
 
   const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState("");
   const [page, setPage] = useState(1);
@@ -41,54 +21,21 @@ const CreateProduct = ({ activeHojreh }) => {
   const [selectList, setSelectList] = useState("");
   const [title, settitle] = useState("");
   const [subMarkets, setSubMarkets] = useState([]);
-  const [valueSubMarkets, setValueSubMarkets] = useState("");
   const [dataChoice, setDataChoice] = useState({
     title: "",
     submarket: "",
   });
   const [crop, setCrop] = useState({ x: 0, y: 0 });
-  const [email, setEmail] = useState("");
-
   const [zoom, setZoom] = useState(1);
-  // const [image, setImage] = useState("");
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
-  const [croppedImage, setCroppedImage] = useState(null);
   const [imageSrc, setImageSrc] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
   const [Add, setAdd] = useState(0);
   const [AddPreparationDays, setAddPreparationDays] = useState(1);
-  const [valueWeight, setValueWeight] = useState(null);
   const [isErrorWeight, setIsErrorWeight] = useState(false);
   const [isErrorPrice, setIsErrorPrice] = useState(false);
   const [dataUser, setDataUser] = useState(false);
-  let [formInputs, setFormInputs] = useState({
-    Title: "",
-    Inventory: 0,
-    Slug: "",
-    Price: 0,
-    OldPrice: 0,
-    Net_Weight: 0,
-    Weight_With_Packing: 0,
-    Description: "",
-    Status: 0,
-    PostRangeType: 0,
-    PreparationDays: 0,
-    FK_Shop: "",
-    errors: {
-      Title: "",
-      Inventory: 0,
-      Slug: "",
-      Price: 0,
-      OldPrice: 0,
-      Net_Weight: 0,
-      Weight_With_Packing: 0,
-      Description: "",
-      Status: 0,
-      PostRangeType: 0,
-      PreparationDays: 0,
-      FK_Shop: "",
-    },
-  });
+
 
   useEffect(() => {
     window.localStorage.setItem("image", JSON.stringify([]));
@@ -241,15 +188,7 @@ const CreateProduct = ({ activeHojreh }) => {
 
 
 
-  const prevImage = async () => {
-
-
-
-
-
-
-
-  }
+  const prevImage = async () => { }
 
   const showCroppedImage = async () => {
     const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
@@ -314,13 +253,6 @@ const CreateProduct = ({ activeHojreh }) => {
   // confirm
 
   const createProducts = async (body) => {
-    debugger
-    if (validateForm(formInputs.errors)) {
-      handleChange()
-      console.info("Valid Form");
-    } else {
-      console.error("Invalid Form");
-    }
 
     let product_status = document.querySelector(
       "input[type=radio]:checked"
@@ -352,7 +284,6 @@ const CreateProduct = ({ activeHojreh }) => {
       params
     );
     return response.data;
-    debugger;
   };
 
 
@@ -387,47 +318,9 @@ const CreateProduct = ({ activeHojreh }) => {
   };
 
 
-  const validateForm = (errors) => {
-    let valid = true;
-    Object.values(errors).forEach((val) => val.length > 0 && (valid = false));
-    return valid;
-  };
-
-  const handleChange = (event) => {
-    event.preventDefault();
-    const { name, value } = event.target;
-    let errors = formInputs.errors;
-
-    switch (name) {
-      case "Title":
-        errors.Title = value.length < 5 ? "نام حجره باید حداقل 5 حرف باشد" : "";
-        break;
-      default:
-        break;
-    }
-
-    setFormInputs({ errors, [name]: value });
-  };
-
-
-
-  console.log("dsfdsf", previewImage);
-  // console.log("dsfds00000f", prev);
   return (
     <>
       <div className={styles.wrapper}>
-        {/* <form
-          onSubmit={async (e) => {
-            e.preventDefault();
-            const data = new FormData(e.target);
-            let body = Object.fromEntries(data.entries());
-            let response = await createProducts(body);
-            // if (response.status === 201) {
-            //   setShowSuccessPage(showSuccessPage => !showSuccessPage);
-            // }
-          }}
-        > */}
-
         <form onSubmit={handleSubmit(onSubmit)}>
 
           <div id="wrapper_product" className={styles.wrapper_product}>
@@ -443,8 +336,8 @@ const CreateProduct = ({ activeHojreh }) => {
                 </div>
               </div>
               <hr style={{ background: "#007aff", width: "100%" }} />
-              <input {...register("firstName")} />
-              <p>{errors.firstName?.message}</p>
+              <input {...register("firstName", { required: true })} />
+              {errors.firstName && <span style={{ color: "red", fontSize: "14px" }}>لطفا این گزینه را پر کنید</span>}
 
 
               <div className={styles.wrapper_input}>
@@ -454,18 +347,11 @@ const CreateProduct = ({ activeHojreh }) => {
                 <input
                   className={styles.input_product}
                   id="Title"
-                  name="Title"
                   type="text"
                   placeholder="برنج لاشه 10 کیلویی، کشت اول"
-                  onChange={(e) => {
-                    handleChange(e);
-                  }}
+                  {...register("Title", { required: true })}
                 />
-                {formInputs.Title.length > 0 && (
-                  <span className={styles.error}>
-                    {formInputs.errors.Title}
-                  </span>
-                )}
+                {errors.Title && <span style={{ color: "red", fontSize: "14px" }}>لطفا این گزینه را پر کنید</span>}
               </div>
 
               <div className={styles.wrapper_input}>
@@ -552,9 +438,9 @@ const CreateProduct = ({ activeHojreh }) => {
                         )
                       })
                     ) : (
-                        null
+                      null
 
-                      )}
+                    )}
 
 
                   </div>

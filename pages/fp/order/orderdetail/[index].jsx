@@ -9,6 +9,10 @@ import useViewport from "../../../../components/viewPort";
 // sass
 import styles from "../../../../styles/pages/order/orderdetail.module.scss";
 
+// FORM
+import { Formik, Form, Field, FieldArray } from "formik";
+import * as yup from "yup";
+
 export const getServerSideProps = ({ params }) => {
   // fetch
   return {
@@ -24,6 +28,15 @@ export const getServerSideProps = ({ params }) => {
 //     "barcode": "BARCODE_HERE"
 // }
 function HomePage({ id }) {
+
+  const [IsLoading, setIsLoading] = useState(false)
+  const [showMessage, setshowMessage] = useState(0);
+  const VALIDATION_SCHEMA = yup.object().shape({
+    codeRahgiri: yup
+      .number()
+      .typeError("فقط عدد مجاز است.")
+      .required("کد رهگیری الزامی می باشد."),
+  });
   const { width } = useViewport();
   const breakpoint = 620;
 
@@ -305,35 +318,142 @@ function HomePage({ id }) {
 
                   {data.order_status === "3" && !btnOk && (
                     <>
-                      <div className={styles.ButtonsGridD}>
-                        <div className={styles.order_statusD_code}>
-                          <input
-                            className={styles.btn_code}
-                            type="number"
-                            value={codeRahgiri}
-                            onChange={(e) => {
-                              setcodeRahgiri(e.target.value);
-                            }}
-                            placeholder="کد رهگیری مرسوله"
-                          />
-                        </div>
-                        <div className={styles.order_statusDcod_button}>
-                          <button
-                            style={{ cursor: "pointer" }}
-                            className={`${styles.btn} ${styles.btnSubmit}`}
-                            onClick={() => {
-                              SendRahgiriCode();
-                            }}
-                          >
-                            <h3 style={{fontSize:"12px"}}>ثبت کد رهگیری</h3>
-                          </button>
-                          <button
-                            className={`${styles.btn} ${styles.btnProblem}`}
-                          >
-                            <h3 style={{fontSize:"12px"}}>ثبت مشکل</h3>
-                          </button>
-                        </div>
-                      </div>
+                      <Formik
+                        enableReinitialize={true}
+                        initialValues={{
+                          codeRahgiri: "",
+                        }}
+                        validationSchema={VALIDATION_SCHEMA}
+                        onSubmit={async (data) => {
+                          setshowMessage(0)
+                          setIsLoading(true)
+                          const sendData = {
+                            barcode: data.codeRahgiri,
+                          };
+                          const _handleRequestApi = async (id) => {
+                            let params = {};
+                            let loadData = sendData;
+                            let dataUrl = `/app/api/v1/factor/change-status/sent/${id}/`;
+                            let response = await ApiRegister().apiRequest(
+                              loadData,
+                              "POST",
+                              dataUrl,
+                              true,
+                              params
+                            );
+                            // setconfigOrder(response);
+                            // setisShow(true);
+                            // setbtnOk(!btnOk);
+
+                            // if (response.details === "Done") {
+                            //   setconfigOrder(true);
+                            // }
+
+                            if (response.status === 200) {
+                              setshowMessage(1)
+                              setIsLoading(false)
+                            
+                            } else {
+                              setshowMessage(2)
+                              setIsLoading(false)
+                            }
+                          };
+                          _handleRequestApi(id);
+                        }}
+                      >
+                        {({ values, errors, touched }) => (
+                          <Form>
+                            <div className={styles.ButtonsGridD}>
+                              <div className={styles.order_statusD_code}>
+                                <Field
+                                  className={styles.btn_code}
+                                  type="input"
+                                  name="codeRahgiri"
+                                  placeholder="کد رهگیری مرسوله"
+                                />
+                              </div>
+                              <div>
+                                {" "}
+                                {touched.codeRahgiri && errors.codeRahgiri ? (
+                                  <small className={styles.error}>
+                                    {errors.codeRahgiri}
+                                  </small>
+                                ) : null}
+                                {IsLoading && (
+                                  <div
+                                    style={{
+                                      marginTop: "15px",
+                                      display: "flex",
+                                      alignItems: "center",
+                                    }}
+                                  >
+                                    <div className={styles.loader}>
+                                      <Image
+                                        src="/image/LOGO_500.png"
+                                        alt="Picture of the author"
+                                        width={50}
+                                        height={50}
+                                      />
+                                    </div>
+                                    <h3
+                                      className={styles.nameLoding}
+                                      style={{
+                                        fontSize: "15px",
+                                        color: "hsl(211deg 100% 50%)",
+                                      }}
+                                    >
+                                      {" "}
+                                      در حال ثبت ...
+                                    </h3>
+                                  </div>
+                                )}
+                                {showMessage == 1 && (
+                                  <div>
+                                    <h3
+                                      style={{
+                                        fontSize:"14px",
+                                        marginTop: "15px",
+                                        color: "green",
+                                      }}
+                                    >
+                                      به روز رسانی با موفقیت انجام شد.
+                                    </h3>
+                                  </div>
+                                )}
+                                {showMessage == 2 && (
+                                  <div>
+                                    <h3
+                                      style={{
+                                        marginTop: "15px",
+                                        color: "red",
+                                      }}
+                                    >
+                                      عملیات به روز رسانی موفقیت آمیز نبود.لطفا
+                                      باری دیگر اقدام کنید.
+                                    </h3>
+                                  </div>
+                                )}
+                              </div>
+                              <div className={styles.order_statusDcod_button}>
+                                <button
+                                  style={{ cursor: "pointer" }}
+                                  className={`${styles.btn} ${styles.btnSubmit}`}
+                                  type="submit"
+                                >
+                                  <h3 style={{ fontSize: "12px" }}>
+                                    ثبت کد رهگیری
+                                  </h3>
+                                </button>
+                                <button
+                                  className={`${styles.btn} ${styles.btnProblem}`}
+                                >
+                                  <h3 style={{ fontSize: "12px" }}>ثبت مشکل</h3>
+                                </button>
+                              </div>
+                            </div>
+                          </Form>
+                        )}
+                      </Formik>
                     </>
                   )}
 
@@ -355,30 +475,134 @@ function HomePage({ id }) {
                   {/* سفارش در حال اماده سازی */}
                   {data.order_status === "2" && (
                     <>
-                      <div className={styles.ButtonsGridD}>
-                        <div className={styles.order_statusD_code}>
-                          <input
-                            className={styles.btn_code}
-                            type="number"
-                            placeholder="کد رهگیری مرسوله"
-                          />
-                        </div>
-                        <div className={styles.order_statusDcod_button}>
-                          <button
-                            className={`${styles.btn} ${styles.btnSubmit}`}
-                            onClick={() => {
-                              SendRahgiriCode();
-                            }}
-                          >
-                            <h3 style={{fontSize:"12px"}}>ثبت کد رهگیری</h3>
-                          </button>
-                          <button
-                            className={`${styles.btn} ${styles.btnProblem}`}
-                          >
-                            <h3 style={{fontSize:"12px"}}>ثبت مشکل</h3>
-                          </button>
-                        </div>
-                      </div>
+                      <Formik
+                        enableReinitialize={true}
+                        initialValues={{
+                          codeRahgiri: "",
+                        }}
+                        validationSchema={VALIDATION_SCHEMA}
+                        onSubmit={async (data) => {
+                          const sendData = {
+                            barcode: data.codeRahgiri,
+                          };
+                          const _handleRequestApi = async (id) => {
+                            let params = {};
+                            let loadData = sendData;
+                            let dataUrl = `/app/api/v1/factor/change-status/sent/${id}/`;
+                            let response = await ApiRegister().apiRequest(
+                              loadData,
+                              "POST",
+                              dataUrl,
+                              true,
+                              params
+                            );
+                           
+
+                            if (response.status === 200) {
+                              setshowMessage(1)
+                              setIsLoading(false)
+                            
+                            } else {
+                              setshowMessage(2)
+                              setIsLoading(false)
+                            }
+                          };
+                          _handleRequestApi(id);
+                        }}
+                      >
+                        {({ values, errors, touched }) => (
+                          <Form>
+                            <div className={styles.ButtonsGridD}>
+                              <div className={styles.order_statusD_code}>
+                                <Field
+                                  className={styles.btn_code}
+                                  type="input"
+                                  name="codeRahgiri"
+                                  placeholder="کد رهگیری مرسوله"
+                                />
+                              </div>
+                              <div>
+                                {" "}
+                                {touched.codeRahgiri && errors.codeRahgiri ? (
+                                  <small className={styles.error}>
+                                    {errors.codeRahgiri}
+                                  </small>
+                                ) : null}
+                                {IsLoading && (
+                                  <div
+                                    style={{
+                                      marginTop: "15px",
+                                      display: "flex",
+                                      alignItems: "center",
+                                    }}
+                                  >
+                                    <div className={styles.loader}>
+                                      <Image
+                                        src="/image/LOGO_500.png"
+                                        alt="Picture of the author"
+                                        width={50}
+                                        height={50}
+                                      />
+                                    </div>
+                                    <h3
+                                      className={styles.nameLoding}
+                                      style={{
+                                        fontSize: "15px",
+                                        color: "hsl(211deg 100% 50%)",
+                                      }}
+                                    >
+                                      {" "}
+                                      در حال بروزرسانی ...
+                                    </h3>
+                                  </div>
+                                )}
+                                {showMessage == 1 && (
+                                  <div>
+                                    <h3
+                                      style={{
+                                        marginTop: "15px",
+                                        color: "green",
+                                        fontSize:"14px"
+                                      }}
+                                    >
+                                      به روز رسانی با موفقیت انجام شد.
+                                    </h3>
+                                  </div>
+                                )}
+                                {showMessage == 2 && (
+                                  <div>
+                                    <h3
+                                      style={{
+                                        marginTop: "15px",
+                                        color: "red",
+                                      }}
+                                    >
+                                      عملیات به روز رسانی موفقیت آمیز نبود.لطفا
+                                      باری دیگر اقدام کنید.
+                                    </h3>
+                                  </div>
+                                )}
+                              </div>
+                              <div className={styles.order_statusDcod_button}>
+                                <button
+                                  style={{ cursor: "pointer" }}
+                                  className={`${styles.btn} ${styles.btnSubmit}`}
+                                  type="submit"
+                                >
+                                  <h3 style={{ fontSize: "12px" }}>
+                                    ثبت کد رهگیری
+                                  </h3>
+                                </button>
+                                <button
+                                  className={`${styles.btn} ${styles.btnProblem}`}
+                                >
+                                  <h3 style={{ fontSize: "12px" }}>ثبت مشکل</h3>
+                                </button>
+                              </div>
+                            </div>
+                          </Form>
+                        )}
+                      </Formik>
                     </>
                   )}
 
@@ -398,8 +622,9 @@ function HomePage({ id }) {
                   <div className={styles.post_informationD_content}>
                     <h4>نام مشتری</h4>
                     <h3 style={{ marginTop: "5px" }}>
-                      {`${data.profile && data.profile.user.first_name}  ${data.profile && data.profile.user.last_name
-                        }`}
+                      {`${data.profile && data.profile.user.first_name}  ${
+                        data.profile && data.profile.user.last_name
+                      }`}
                     </h3>
                   </div>
                   {/* <div className={styles.post_informationD_content}>
@@ -485,7 +710,6 @@ function HomePage({ id }) {
                           <h3>{index + 1}</h3>
                           <div
                             style={{
-                              backgroundColor: "gold",
                               width: "50px",
                               height: "50px",
                             }}
@@ -506,7 +730,7 @@ function HomePage({ id }) {
 
                           <div style={{ width: "40px" }}>
                             <h4 style={{ color: "#364254" }}>
-                              {e.ProductCount} <span>عدد</span>
+                              {e.product_count} <span>عدد</span>
                             </h4>
                           </div>
                           <div style={{ width: "94px", display: "flex" }}>
@@ -796,7 +1020,7 @@ function HomePage({ id }) {
                         <h3>تایید</h3>
                       </button>
                       <button className={`${styles.btn} ${styles.btnProblem}`}>
-                        <h3 style={{fontSize:"12px"}}>ثبت مشکل</h3>
+                        <h3 style={{ fontSize: "12px" }}>ثبت مشکل</h3>
                       </button>
                     </div>
                   ) : (
@@ -815,12 +1039,12 @@ function HomePage({ id }) {
                           }}
                           className={`${styles.btn} ${styles.btnSubmit}`}
                         >
-                          <h3 style={{fontSize:"12px"}}>ثبت کد رهگیری</h3>
+                          <h3 style={{ fontSize: "12px" }}>ثبت کد رهگیری</h3>
                         </button>
                         <button
                           className={`${styles.btn} ${styles.btnProblem}`}
                         >
-                          <h3 style={{fontSize:"12px"}}>ثبت مشکل</h3>
+                          <h3 style={{ fontSize: "12px" }}>ثبت مشکل</h3>
                         </button>
                       </div>
                     </>
@@ -943,7 +1167,7 @@ function HomePage({ id }) {
                           </div>
                           <div>
                             <h4 style={{ color: "#364254" }}>
-                              {e.ProductCount} <span>عدد</span>
+                              {e.product_count} <span>عدد</span>
                             </h4>
                           </div>
                         </div>
@@ -1090,7 +1314,7 @@ function HomePage({ id }) {
                           </div>
                           <div>
                             <h4 style={{ color: "#364254" }}>
-                              {e.ProductCount} <span>عدد</span>
+                              {e.product_count} <span>عدد</span>
                             </h4>
                           </div>
                         </div>
