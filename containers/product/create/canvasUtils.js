@@ -22,7 +22,7 @@ export async function getCroppedImg(imageSrc, pixelCrop,) {
   const ctx = canvas.getContext('2d')
 
 
-    canvas.width = pixelCrop.width,
+  canvas.width = pixelCrop.width,
     canvas.height = pixelCrop.height,
 
 

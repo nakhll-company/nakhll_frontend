@@ -13,7 +13,40 @@ import { useForm } from "react-hook-form";
 const CreateProduct = ({ activeHojreh }) => {
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const onSubmit = data => console.log("data", data);
+  const onSubmit = async (data)  =>  {
+    console.log("data", data)
+    let product_status = document.querySelector(
+      "input[type=radio]:checked"
+    ).value;
+
+    let confirm = {
+      Title: data.Title,
+      Inventory: data.Inventory,
+      Slug: "kgkgkgk",
+      Price: data.Price,
+      OldPrice: data.OldPrice,
+      Net_Weight: data.Net_Weight,
+      Weight_With_Packing: data.Weight_With_Packing,
+      Description: data.Description,
+      Status: product_status,
+      PostRangeType: 1,
+      PreparationDays: data.PreparationDays,
+      FK_Shop: "pestehkerman",
+    };
+    debugger
+    let params = {};
+    let loadData = confirm;
+    let dataUrl = "/api/v1/landing/products/";
+    let response = await  ApiRegister().apiRequest(
+      loadData,
+      "post",
+      dataUrl,
+      true,
+      params
+    );
+    let result = response.data.ID
+    console.log("rsadjnsa," ,result);
+  };
 
   const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState("");
   const [page, setPage] = useState(1);
@@ -30,7 +63,7 @@ const CreateProduct = ({ activeHojreh }) => {
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const [imageSrc, setImageSrc] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
-  const [Add, setAdd] = useState(0);
+  const [Add, setAdd] = useState(1);
   const [AddPreparationDays, setAddPreparationDays] = useState(1);
   const [isErrorWeight, setIsErrorWeight] = useState(false);
   const [isErrorPrice, setIsErrorPrice] = useState(false);
@@ -272,8 +305,8 @@ const CreateProduct = ({ activeHojreh }) => {
       PreparationDays: body.PreparationDays,
       FK_Shop: activeHojreh,
     };
-    ;
-    let params = {};
+debugger 
+   let params = {};
     let loadData = confirm;
     let dataUrl = "/api/v1/landing/products/";
     let response = await ApiRegister().apiRequest(
@@ -316,6 +349,19 @@ const CreateProduct = ({ activeHojreh }) => {
       setIsErrorPrice(false);
     }
   };
+
+
+  const _removeImage = (item) => {
+    let itemImage = [item]
+    let listRemoveImage = window.localStorage.getItem("image");
+    var removeImage = JSON.parse(listRemoveImage)
+    let list = [...itemImage, ...removeImage]
+    let testt = removeImage.filter((itemRemove) => { return itemRemove.includes(item) ? "" : itemRemove });
+    window.localStorage.setItem("image", JSON.stringify(testt));
+
+    setPreviewImage(testt);
+    debugger
+  }
 
 
   return (
@@ -416,31 +462,23 @@ const CreateProduct = ({ activeHojreh }) => {
                       previewImage.map((item) => {
                         debugger
                         return (
-                          // <>
-                          // <div>
-                          <label style={{ marginRight: 10 }}>
-                            <div
-                              className={styles.add_image_container}
-                            // onClick={onFileChange}
-                            >
-                              <Image
-                                src={item}
-                                alt="Picture of the author"
-                                width={500}
-                                height={500}
-                              />
-                            </div>
-                          </label>
-                          // </div>
 
-                          // </>
+                          <div className={styles.product_image} style={{
+                            backgroundImage: `url(${item})`
+                          }}>
+                            <div onClick={() => _removeImage(item)} className={styles.close_icon_container}>
+                              <i style={{ fontSize: 14 }} class="fas fa-times"></i>
+
+
+                            </div>
+                          </div>
 
                         )
                       })
                     ) : (
-                      null
+                        null
 
-                    )}
+                      )}
 
 
                   </div>
@@ -470,11 +508,15 @@ const CreateProduct = ({ activeHojreh }) => {
                     name="Net_Weight"
                     type="number"
                     onChange={(e) => _checkWeight(e.target.value)}
+                    {...register("Net_Weight", { required: true })}
+
                   />
                   <div>
                     <p>گرم</p>
                   </div>
                 </div>
+                {errors.Net_Weight && <span style={{ color: "red", fontSize: "14px" }}>لطفا این گزینه را پر کنید</span>}
+
               </div>
 
               <div className={styles.wrapper_input}>
@@ -491,11 +533,15 @@ const CreateProduct = ({ activeHojreh }) => {
                     name="Weight_With_Packing"
                     type="number"
                     onChange={(e) => _checkWeight(e.target.value)}
+                    {...register("Weight_With_Packing", { required: true })}
+
                   />
                   <div>
                     <p>گرم</p>
                   </div>
                 </div>
+                {errors.Weight_With_Packing && <span style={{ color: "red", fontSize: "14px" }}>لطفا این گزینه را پر کنید</span>}
+
                 {isErrorWeight && (
                   <p
                     style={{ color: "red", fontSize: "14px" }}
@@ -517,11 +563,15 @@ const CreateProduct = ({ activeHojreh }) => {
                     name="Price"
                     type="number"
                     onChange={(e) => _checkPrice(e.target.value)}
+                    {...register("Price", { required: true })}
+
                   />
                   <div>
                     <p>تومان</p>
                   </div>
                 </div>
+                {errors.Price && <span style={{ color: "red", fontSize: "14px" }}>لطفا این گزینه را پر کنید</span>}
+
               </div>
 
               <div className={styles.wrapper_input}>
@@ -645,7 +695,7 @@ const CreateProduct = ({ activeHojreh }) => {
                         id="PreparationDays"
                         name="PreparationDays"
                       />
-                      <h4>عدد</h4>
+                      <h4>روز</h4>
                     </div>
 
                     <button type="button" onClick={miniPreparationDays}>
