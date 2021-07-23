@@ -6,7 +6,7 @@ import styles from "../../../styles/pages/setting/setting.module.scss";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import Image from "next/image";
 // form
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, FieldArray } from "formik";
 import * as yup from "yup";
 
 const getStates = async () => {
@@ -84,15 +84,34 @@ const getCities = async (id) => {
 // });
 
 const DesktopSetting = ({ activeHojreh }) => {
+  const [ChoiceBigCity, setChoiceBigCity] = useState("")
+  const [ChoiceState, setChoiceState] = useState("")
+  const [IsLoading, setIsLoading] = useState(false)
+  const [showMessage, setshowMessage] = useState(0);
+
   const VALIDATION_SCHEMA = yup.object().shape({
-    Title: yup.string().required("الزامی"),
-    slug: yup.string().required("الزامی"),
-    Description: yup.string().required("الزامی"),
-    NationalCode: yup.number().required("الزامی"),
-    MobileNumber: yup.number().required("الزامی"),
-    PhoneNumber: yup.number().required("الزامی"),
-    Address: yup.string().required("الزامی"),
-    ZipCode: yup.number().required("الزامی"),
+    Title: yup.string().required("نام حجره الزامی می باشد."),
+    slug: yup.string().required("آدرس اینترنتی حجره الزامی می باشد."),
+    Description: yup.string(),
+    NationalCode: yup
+      .number()
+      .integer()
+      .typeError("فقط عدد مجاز است.")
+      // .min(10, "کد ملی ده رقم می باشد.")
+      // .max(10, "کد ملی ده رقم می باشد.")
+      .required("کد ملی الزامی می باشد."),
+    MobileNumber: yup
+      .number()
+      .typeError("فقط عدد مجاز است.")
+      
+      // .min(11, "شماره موبایل 11 رقم می باشد.")
+      // .max(11, "شماره موبایل 11 رقم می باشد.")
+      .required("شماره موبایل الزامی می باشد"),
+    PhoneNumber: yup.number(),
+    
+   
+    Address: yup.string().required("آدرس الزامی می باشد."),
+    ZipCode: yup.number().typeError("فقط عدد مجاز است.").required("کد پستی الزامی می باشد."),
   });
   let [selectState, setSelectState] = useState([]);
   let [selectBigCities, setSelectBigCities] = useState([]);
@@ -311,6 +330,9 @@ const DesktopSetting = ({ activeHojreh }) => {
                 PhoneNumber:
                   apiSetting.FK_ShopManager &&
                   apiSetting.FK_ShopManager.User_Profile.PhoneNumber,
+                  
+
+
                 Address:
                   apiSetting.FK_ShopManager &&
                   apiSetting.FK_ShopManager.User_Profile.Address,
@@ -319,7 +341,8 @@ const DesktopSetting = ({ activeHojreh }) => {
                   apiSetting.FK_ShopManager.User_Profile.ZipCode,
               }}
               validationSchema={VALIDATION_SCHEMA}
-              onSubmit={(data) => {
+              onSubmit={async(data) => {
+                setIsLoading(true)
                 const dataForSend = {
                   Title: data.Title,
                   Slug: data.slug,
@@ -329,17 +352,36 @@ const DesktopSetting = ({ activeHojreh }) => {
                       NationalCode: data.NationalCode,
                       MobileNumber: data.MobileNumber,
                       PhoneNumber: data.PhoneNumber,
-                      BigCity: "",
-                      State: "",
+                      BigCity: ChoiceBigCity,
+                      State: ChoiceState,
                       Address: data.Address,
                       ZipCode: data.ZipCode,
                     },
                   },
                 };
+                console.log('miii :>> ', dataForSend);
+                let params = {};
+                let loadData = dataForSend;
+                let dataUrl = `/api/v1/shop/${activeHojreh}/settings/`;
+                let response = await ApiRegister().apiRequest(
+                  loadData,
+                  "put",
+                  dataUrl,
+                  true,
+                  params
+                );
+                if(response.status === 200){
+                  setIsLoading(false)
+                  // good
+                  setshowMessage(1)
+                }else{
+                  // Not Good
+                  setshowMessage(2)
+                }
                 console.log("dataForSend :>> ", dataForSend);
               }}
             >
-              {({ values, errors }) => (
+              {({ values, errors, touched }) => (
                 <Form>
                   <div className={styles.Hojreh_profile}>
                     <div className={styles.HeadName}>
@@ -356,11 +398,20 @@ const DesktopSetting = ({ activeHojreh }) => {
                             type="text"
                             // defaultValue={apiSetting.Title}
                           />
-                          <small className={styles.error}>{errors.Title}</small>
+                          {touched.Title && errors.Title ? (
+                            <small className={styles.error}>
+                              {errors.Title}
+                            </small>
+                          ) : null}
                         </div>
                       </div>
                       <div className="">
-                        <h4 className={styles.explain} style={{marginTop:"33px"}}>نام حجره:</h4>
+                        <h4
+                          className={styles.explain}
+                          style={{ marginTop: "33px" }}
+                        >
+                          نام حجره:
+                        </h4>
                         <h4 className={styles.explain}>
                           نام حجره خود را به زبان فارسی انتخاب کنید. نام حجره
                           باید مختص شما و جز مالکیت شخص دیگری نشود. سعی شود تا
@@ -378,23 +429,39 @@ const DesktopSetting = ({ activeHojreh }) => {
                             type="text"
                             // defaultValue={apiSetting.Slug}
                           />
+                          {touched.slug && errors.slug ? (
+                            <small className={styles.error}>
+                              {errors.slug}
+                            </small>
+                          ) : null}
+                          
                         </div>
                       </div>
                       <div className="">
-                        <h4 className={styles.explain} style={{marginTop:"33px"}}>آدرس اینترنتی:</h4>
-                        <h4 className={styles.explain}>آدرس اینترنتی، نشانی حجره شما در نخل است. نام حجره خود را ﺑﺎ ﺣﺮوف و اﻋﺪاد اﻧﮕﻠﯿﺴﯽ ﺑﻨﻮﯾﺴﯿﺪ. برای فاصه از (_) استفاده کنید.</h4>
+                        <h4
+                          className={styles.explain}
+                          style={{ marginTop: "33px" }}
+                        >
+                          آدرس اینترنتی:
+                        </h4>
+                        <h4 className={styles.explain}>
+                          آدرس اینترنتی، نشانی حجره شما در نخل است. نام حجره خود
+                          را ﺑﺎ ﺣﺮوف و اﻋﺪاد اﻧﮕﻠﯿﺴﯽ ﺑﻨﻮﯾﺴﯿﺪ. برای فاصه از (_)
+                          استفاده کنید.
+                        </h4>
                       </div>
                       <div className={styles.input_setting}>
                         <h2 style={{ marginBottom: "10px", color: "#364254" }}>
                           درباره حجره
                         </h2>
                         <div className={styles.inputWidRtlH}>
-                          <textarea
+                          <Field
+                          type="input"
                             name="Description"
-                            rows="4"
-                            cols="50"
-                            defaultValue={apiSetting.Description}
+                            
+                            
                           />
+
                         </div>
                       </div>
 
@@ -451,6 +518,12 @@ const DesktopSetting = ({ activeHojreh }) => {
                                 .NationalCode
                             }
                           />
+                          {touched.NationalCode && errors.NationalCode ? (
+                            <small className={styles.error}>
+                              {errors.NationalCode}
+                            </small>
+                          ) : null}
+                          
                         </div>
                       </div>
                       <div className="">
@@ -470,11 +543,21 @@ const DesktopSetting = ({ activeHojreh }) => {
                                 .MobileNumber
                             }
                           />
+                          {touched.MobileNumber && errors.MobileNumber ? (
+                            <small className={styles.error}>
+                              {errors.MobileNumber}
+                            </small>
+                          ) : null}
                         </div>
                       </div>
 
                       <div className="">
-                        <h4 className={styles.explain}>شماره تماس:</h4>
+                        <h4
+                          style={{ marginTop: "33px" }}
+                          className={styles.explain}
+                        >
+                          شماره تماس:
+                        </h4>
                         <h4 className={styles.explain}>
                           پیامک های مهم به این شماره ارسال می‌شوند. جهت تغییر با
                           پشتیبانی تماس بگیرید.
@@ -508,13 +591,20 @@ const DesktopSetting = ({ activeHojreh }) => {
 
                     <div className={styles.AddressGridD}>
                       <div className={styles.forAddress}>
+                        {/* استان */}
                         <label className={styles.form_label}>استان</label>
                         <select
+                        
                           className={styles.form_select}
                           name="State"
-                          defaultValue="0"
+                          
+                          onChange={async (event) => {
+                            setSelectBigCities(await getBigCities(event.target.value));
+                            debugger
+                            setChoiceState(event.target.value.name)
+                          }}
                         >
-                          <option value="0" disabled>
+                          <option value="" disabled>
                             برای باز شدن لیست کلیک کنید
                           </option>
                           {selectState.map((value, index) => {
@@ -522,12 +612,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                               <option
                                 key={index}
                                 value={value.id}
-                                onClick={async (e) => {
-                                  debugger;
-                                  setSelectBigCities(
-                                    await getBigCities(e.target.value)
-                                  );
-                                }}
+                               
                               >
                                 {value.name}
                               </option>
@@ -536,11 +621,16 @@ const DesktopSetting = ({ activeHojreh }) => {
                         </select>
                         <label className={styles.form_label}>شهرستان</label>
                         <select
-                          className={styles.form_select}
-                          name="BigCity"
-                          defaultValue="0"
+                        
+                           className={styles.form_select}
+                           name="BigCity"
+                           defaultValue="0"
+                           onChange={async (event) => {
+                             setSelectCities(await getCities(event.target.value));
+                             
+                           }}
                         >
-                          <option value="0" disabled>
+                          <option value="" disabled>
                             برای باز شدن لیست کلیک کنید
                           </option>
                           {selectBigCities.map((value, index) => {
@@ -548,11 +638,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                               <option
                                 key={index}
                                 value={value.id}
-                                onClick={async (e) => {
-                                  setSelectCities(
-                                    await getCities(e.target.value)
-                                  );
-                                }}
+                                
                               >
                                 {value.name}
                               </option>
@@ -561,16 +647,21 @@ const DesktopSetting = ({ activeHojreh }) => {
                         </select>
                         <label className={styles.form_label}>شهر</label>
                         <select
+                        
                           className={styles.form_select}
                           name="City"
                           defaultValue="0"
+                          onChange={ (event) => {
+                            
+                            setChoiceBigCity(event.target.value)
+                          }}
                         >
-                          <option value="0" disabled>
+                          <option value="" disabled>
                             برای باز شدن لیست کلیک کنید
                           </option>
                           {selectCities.map((value, index) => {
                             return (
-                              <option key={index} value={value.id}>
+                              <option key={index} value={value.name}>
                                 {value.name}
                               </option>
                             );
@@ -585,7 +676,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                           آدرس
                         </h2>
                         <div className={styles.inputWidRtlH}>
-                          <textarea
+                          <Field
                             name="Address"
                             rows="4"
                             cols="50"
@@ -594,6 +685,11 @@ const DesktopSetting = ({ activeHojreh }) => {
                             //   apiSetting.FK_ShopManager.User_Profile.Address
                             // }
                           />
+                          {touched.Address && errors.Address ? (
+                            <small className={styles.error}>
+                              {errors.Address}
+                            </small>
+                          ) : null}
                         </div>
                       </div>
                       <div className="">
@@ -613,13 +709,18 @@ const DesktopSetting = ({ activeHojreh }) => {
                               apiSetting.FK_ShopManager.User_Profile.ZipCode
                             }
                           />
+                          {touched.ZipCode && errors.ZipCode ? (
+                            <small className={styles.error}>
+                              {errors.ZipCode}
+                            </small>
+                          ) : null}
                         </div>
                       </div>
                       <div className="">
                         <h4 className={styles.explain}></h4>
                       </div>
                     </div>
-                    <div style={{ display: "flex", alignItems: "center" }}>
+                    {IsLoading &&<div style={{ display: "flex", alignItems: "center" }}>
                       <div className={styles.loader}>
                         <Image
                           src="/image/LOGO_500.png"
@@ -638,7 +739,13 @@ const DesktopSetting = ({ activeHojreh }) => {
                         {" "}
                         در حال بروزرسانی ...
                       </h3>
-                    </div>
+                    </div>}
+                    {showMessage==1 && (<div>
+                      <h3 style={{color:"green"}}>به روز رسانی با موفقیت انجام شد.</h3>
+                    </div>)}
+                    {showMessage==2 && (<div>
+                      <h3 style={{color:"red"}}>عملیات به روز رسانی موفقیت آمیز نبود.لطفا باری  دیگر اقدام کنید.</h3>
+                    </div>)}
                   </div>
 
                   <div className={styles.status_button_one}>
@@ -646,6 +753,8 @@ const DesktopSetting = ({ activeHojreh }) => {
                       // onClick={() => {
                       //   setbtnOk(!btnOk);
                       // }}
+                      
+                      type="submit"
                       className={`${styles.btn} ${styles.btnSubmit}`}
                     >
                       <h3>ذخیره اطلاعات</h3>
