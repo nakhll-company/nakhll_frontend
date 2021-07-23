@@ -42,7 +42,9 @@ export default function DesktopOrders({ loading, ordersList, type, activeHojreh,
 
     return (
         <div className={styles.wrapper}>
-            <form className={styles.form_filter}>
+            <form id="ordersFilter" className={styles.form_filter} onSubmit={(e) => {
+                e.preventDefault();
+            }}>
                 <h3 className={styles.form_title}>فیلترها</h3>
                 <div className={styles.filds_wrapper}>
                     <label className={styles.filds_label}>جستجو در سفارش<br />
@@ -65,7 +67,9 @@ export default function DesktopOrders({ loading, ordersList, type, activeHojreh,
                 </div>
                 <div className={styles.filds_wrapper}>
                     <button className={styles.button_submit} type="submit">جستجو</button>
-                    <button className={styles.button_reset} type="reset">حذف همه فیلترها</button>
+                    <button className={styles.button_reset} type="reset" onClick={() => {
+                        document.getElementById("ordersFilter").reset();
+                    }}>حذف همه فیلترها</button>
                 </div>
             </form>
             <div className={styles.orders_list}>
