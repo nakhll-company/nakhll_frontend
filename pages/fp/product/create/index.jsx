@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from "react";
-import { number } from "yup";
 import MyLayout from "../../../../components/layout/Layout";
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 import styles from "../../../../styles/pages/product/create.module.scss";
@@ -10,11 +9,32 @@ import { value } from "dom7";
 import { connect } from "react-redux";
 import { mapState } from "../../../../containers/order/methods/mapState";
 import { getCroppedImg } from "../../../../containers/product/create/canvasUtils";
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
+
 
 // component
 
 
+const schema = yup.object().shape({
+  firstName: yup.string().required(),
+  age: yup.number().positive().integer().required(),
+});
+
+
 const CreateProduct = ({ activeHojreh }) => {
+
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(schema)
+  });
+  const onSubmit = data => console.log("data", data);
+
+
+
+
+
+
   const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState("");
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
@@ -27,6 +47,8 @@ const CreateProduct = ({ activeHojreh }) => {
     submarket: "",
   });
   const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [email, setEmail] = useState("");
+
   const [zoom, setZoom] = useState(1);
   // const [image, setImage] = useState("");
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
@@ -217,49 +239,12 @@ const CreateProduct = ({ activeHojreh }) => {
   };
 
 
-  // let prev = [];
 
-
-  // const xxxxxx = () => {
-  //   return(
-  //     <div>dkjlsfjkdshjgkv</div>
-  //   )
-  // }
 
   const prevImage = async () => {
 
-    // return (
-
-    prev.map((item) => {
-      debugger
-      return (
-        <>
-          <div>
-            <label style={{ marginRight: 10 }}>
-              <div
-                className={styles.add_image_container}
-              // onClick={onFileChange}
-              >
-                <Image
-                  src={item}
-                  alt="Picture of the author"
-                  width={500}
-                  height={500}
-                />
-              </div>
-            </label>
-          </div>
-
-        </>
-
-      )
-    })
 
 
-
-    // )/
-
-    // return image
 
 
 
@@ -278,6 +263,11 @@ const CreateProduct = ({ activeHojreh }) => {
     // await prevImage()
     let elementImageProduct = document.getElementById("crop_container");
     elementImageProduct.style.display = "none";
+    // let elementImageProductDisabeld = document.getElementById("product-image-upload");
+    if (prev.length === 5) {
+      document.getElementById("product-image-upload").disabled = true;
+    }
+    // elementImageProduct.style.display = "none";
     debugger
 
     // const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
@@ -324,6 +314,7 @@ const CreateProduct = ({ activeHojreh }) => {
   // confirm
 
   const createProducts = async (body) => {
+    debugger
     if (validateForm(formInputs.errors)) {
       handleChange()
       console.info("Valid Form");
@@ -425,7 +416,7 @@ const CreateProduct = ({ activeHojreh }) => {
   return (
     <>
       <div className={styles.wrapper}>
-        <form
+        {/* <form
           onSubmit={async (e) => {
             e.preventDefault();
             const data = new FormData(e.target);
@@ -435,7 +426,10 @@ const CreateProduct = ({ activeHojreh }) => {
             //   setShowSuccessPage(showSuccessPage => !showSuccessPage);
             // }
           }}
-        >
+        > */}
+
+        <form onSubmit={handleSubmit(onSubmit)}>
+
           <div id="wrapper_product" className={styles.wrapper_product}>
             <div className={styles.createProduct_lineRighte}>
               <div className="mt-4">
@@ -449,6 +443,9 @@ const CreateProduct = ({ activeHojreh }) => {
                 </div>
               </div>
               <hr style={{ background: "#007aff", width: "100%" }} />
+              <input {...register("firstName")} />
+              <p>{errors.firstName?.message}</p>
+
 
               <div className={styles.wrapper_input}>
                 <label className={styles.lable_product} htmlFor="Title">
@@ -555,9 +552,9 @@ const CreateProduct = ({ activeHojreh }) => {
                         )
                       })
                     ) : (
-                      null
+                        null
 
-                    )}
+                      )}
 
 
                   </div>
@@ -912,7 +909,7 @@ const CreateProduct = ({ activeHojreh }) => {
                 >
                   به عنوان مثال : برنج لاشه 10 کیلویی، کشت اول
                 </p>
-                <p
+                {/* <p
                   style={{
                     color: "#5E7488",
                     fontSize: "14px",
@@ -921,8 +918,18 @@ const CreateProduct = ({ activeHojreh }) => {
                 >
                   حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش
                   داده خواهد شد.
-                </p>
-                <p
+                </p> */}
+                {/* <p
+                  style={{
+                    color: "#5E7488",
+                    fontSize: "14px",
+                    marginTop: "100px",
+                  }}
+                >
+                  حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش
+                  داده خواهد شد.
+                </p> */}
+                {/* <p
                   style={{
                     color: "#5E7488",
                     fontSize: "14px",
@@ -982,16 +989,7 @@ const CreateProduct = ({ activeHojreh }) => {
                   حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش
                   داده خواهد شد.
                 </p>
-                <p
-                  style={{
-                    color: "#5E7488",
-                    fontSize: "14px",
-                    marginTop: "100px",
-                  }}
-                >
-                  حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش
-                  داده خواهد شد.
-                </p>
+               */}
               </div>
             </div>
           </div>
