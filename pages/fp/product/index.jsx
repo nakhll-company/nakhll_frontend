@@ -15,13 +15,14 @@ import { mapState } from "../../../containers/product/methods/mapState";
 
 const Product = ({ getProduct, productList, activeHojreh }) => {
 
-  let [loading, setLoading] = useState(true);
+  let [loading, setLoading] = useState(false);
 
   const { width } = useViewport();
   const breakpoint = 620;
 
   useEffect(() => {
     async function getData() {
+      await setLoading(pre => !pre);
       productList.length === 0 && await getProduct(activeHojreh);
       await setLoading(pre => !pre);
     }

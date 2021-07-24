@@ -19,10 +19,11 @@ function Completed({ ordersList, activeHojreh, getCompleted }) {
 
     useEffect(() => {
         async function getData() {
+            await setLoading(pre => !pre);
             if (activeHojreh.length > 0) {
                 await getCompleted(activeHojreh);
             }
-            setLoading(pre => !pre);
+            await setLoading(pre => !pre);
         }
         getData();
     }, []);
