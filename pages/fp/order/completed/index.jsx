@@ -13,20 +13,20 @@ import { mapState } from '../../../../containers/order/methods/mapState';
 
 function Completed({ ordersList, activeHojreh, getCompleted }) {
 
-    let [loading, setLoading] = useState(true);
+    let [loading, setLoading] = useState(false);
     const { width } = useViewport();
     const breakpoint = 620;
 
     useEffect(() => {
         async function getData() {
-            await setLoading(pre => !pre);
+            await setLoading(true);
             if (activeHojreh.length > 0) {
                 await getCompleted(activeHojreh);
             }
-            await setLoading(pre => !pre);
+            await setLoading(false);
         }
         getData();
-    }, []);
+    }, [getCompleted, activeHojreh]);
 
     return (
         <>

@@ -58,7 +58,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
               />
             </span>
 
-            <h1> داشبور مدیریت نخل</h1>
+            <h1> داشبورد مدیریت نخل</h1>
           </div>
 
           <div className={styles.hedtop_mobile}>

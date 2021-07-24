@@ -51,10 +51,7 @@ function MenuMobile() {
             e.currentTarget.classList.add("active");
           }}
         >
-          <i
-            style={{ fontSize: "20px" }}
-            className="fas fa-user-cog"
-          ></i>
+          <i style={{ fontSize: "20px" }} className="fas fa-user-cog"></i>
           <h2 style={{ fontSize: "13px" }}>تنظیمات</h2>
         </span>
       </Link>
@@ -69,7 +66,7 @@ function MenuMobile() {
             e.currentTarget.classList.add("active");
           }}
         >
-          <i className="fab fa-windows" style={{ fontSize: "20px" }}></i>
+          <i className="fas fa-windows" style={{ fontSize: "20px" }}></i>
           <h2 style={{ fontSize: "13px" }}>حجره</h2>
         </span>
       </Link>
