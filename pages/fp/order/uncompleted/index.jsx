@@ -19,10 +19,11 @@ function Uncompleted({ ordersList, activeHojreh, getUncompleted }) {
 
     useEffect(() => {
         async function getData() {
+            await setLoading(pre => !pre);
             if (activeHojreh.length > 0) {
                 await getUncompleted(activeHojreh);
             }
-            setLoading(pre => !pre);
+            await setLoading(pre => !pre);
         }
         getData();
     }, []);
