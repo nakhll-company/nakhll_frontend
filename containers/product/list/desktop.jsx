@@ -1,12 +1,14 @@
 // node libraries
 import Link from 'next/link';
 import Image from 'next/image';
+import { useEffect } from 'react';
 // components
 import CustomBadge from '../../../components/custom/customBadge';
 // scss
 import styles from '../../../styles/pages/product/desktopList.module.scss';
 
 export default function Desktop({ loading, productList, activeHojreh, getProduct }) {
+
     const productStatus = [
         { value: "", label: "" },
         { value: 1, label: "آماده در انبار" },

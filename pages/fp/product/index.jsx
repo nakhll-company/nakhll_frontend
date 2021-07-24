@@ -22,9 +22,9 @@ const Product = ({ getProduct, productList, activeHojreh }) => {
 
   useEffect(() => {
     async function getData() {
-      await setLoading(pre => !pre);
+      await setLoading(true);
       productList.length === 0 && await getProduct(activeHojreh);
-      await setLoading(pre => !pre);
+      await setLoading(false);
     }
     getData();
   }, [getProduct, activeHojreh]);
