@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
-import MyLayout from "../../../../components/layout/Layout";
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
+import MyLayout from "../../../../components/layout/Layout";
+import Loading from "../../../../components/loading/index";
 import styles from "../../../../styles/pages/product/create.module.scss";
 import Cropper from "react-easy-crop";
 import Image from "next/image";
@@ -14,7 +15,7 @@ import { useRouter } from "next/router";
 
 const CreateProduct = ({ activeHojreh }) => {
 
-  const { setValue ,clearErrors, register, setError, handleSubmit, watch, formState: { errors } } = useForm({
+  const { setValue, clearErrors, register, setError, handleSubmit, watch, formState: { errors } } = useForm({
     criteriaMode: 'all',
   });
 
@@ -1208,8 +1209,7 @@ const CreateProduct = ({ activeHojreh }) => {
 
   } else {
     return (
-      <div>lkdjfkldsjkl</div>
-    )
+    <Loading />)
   }
 
 };
