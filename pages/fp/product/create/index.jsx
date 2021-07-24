@@ -22,16 +22,11 @@ const CreateProduct = ({ activeHojreh }) => {
 
   const onSubmit = async (data) => {
     let err = false
-    if (!placeholderSubmarckets && !imageSrc) {
+    if (!placeholderSubmarckets) {
       setError("submark", { type: "focus" }, { shouldFocus: true })
-      // setError("product_image_upload", { type: "focus" }, { shouldFocus: true })
-
     } else {
       err = true
     }
-    // clearErrors("submark")
-
-    console.log("data", data)
     let product_status = document.querySelector(
       "input[type=radio]:checked"
     ).value;
@@ -39,6 +34,8 @@ const CreateProduct = ({ activeHojreh }) => {
 
 
     if (err) {
+      setshowMessage(0);
+      setIsLoading(true);
       let confirm = {
         Title: data.Title,
         Inventory: Add,
@@ -106,8 +103,14 @@ const CreateProduct = ({ activeHojreh }) => {
           paramsImages
         );
         if (responseImages.status === 200) {
+          setIsLoading(false);
+          setshowMessage(1);
+
+          // setIsLoad(false)
           debugger
-          setShowSuccessPage(showSuccessPage => !showSuccessPage);
+          // let element = document.getElementById("wrapper_product");
+          // element.style.display = "none";
+          setShowSuccessPage(true);
         }
         debugger
 
@@ -144,6 +147,8 @@ const CreateProduct = ({ activeHojreh }) => {
   const [submarketId, setSubmarketId] = useState(null);
   const [showSuccessPage, setShowSuccessPage] = useState(false);
   const [isLoad, setIsLoad] = useState(false);
+  const [IsLoading, setIsLoading] = useState(false);
+  const [showMessage, setshowMessage] = useState(0);
   const router = useRouter()
   const { id } = router.query
 
@@ -182,6 +187,9 @@ const CreateProduct = ({ activeHojreh }) => {
 
 
   useEffect(() => {
+    // setShowSuccessPage(false);
+
+
     window.localStorage.setItem("image", JSON.stringify([]));
     if (id) {
       _editProduct();
@@ -198,6 +206,13 @@ const CreateProduct = ({ activeHojreh }) => {
         false,
         params
       );
+      if (response.status === 200) {
+        setIsLoad(true)
+        setData(response.data); //==> output: {}
+
+
+      }
+
       console.log("res uncomsdfsf :", activeHojreh);
       // const dataUser = response;
 
@@ -313,6 +328,7 @@ const CreateProduct = ({ activeHojreh }) => {
     let elementImageProduct = document.getElementById("crop_container");
     elementImageProduct.style.display = "none";
     setImageSrc(null);
+    setValue("product_image_upload", null)
   };
 
 
@@ -456,6 +472,11 @@ const CreateProduct = ({ activeHojreh }) => {
     window.localStorage.setItem("image", JSON.stringify(testt));
 
     setPreviewImage(testt);
+    if (testt.length == 0) {
+      setValue("product_image_upload", null)
+
+    }
+
     debugger
   }
   console.log(`dataUser.Title`, dataUser)
@@ -492,7 +513,7 @@ const CreateProduct = ({ activeHojreh }) => {
                     className={styles.input_product}
                     id="Title"
                     type="text"
-                    placeholder="برنج لاشه 10 کیلویی، کشت اول"
+                    // placeholder="برنج لاشه 10 کیلویی، کشت اول"
                     defaultValue={dataUser.Title}
                     {...register("Title", { required: true })}
                   />
@@ -549,13 +570,12 @@ const CreateProduct = ({ activeHojreh }) => {
                       </label>
 
                       <input
+                        {...register("product_image_upload", { required: true })}
                         onChange={onFileChange}
-                        name="product_image_upload"
+                        // name="product_image_upload"
                         id="product-image-upload"
                         type="file"
-                        multiple
                         style={{ width: "0px", height: "0px", opacity: "0px" }}
-                      // {...register("product_image_upload")}
 
                       ></input>
                       {/* {
@@ -588,7 +608,7 @@ const CreateProduct = ({ activeHojreh }) => {
 
                     </div>
                   </div>
-                  {/* {errors.product_image_upload && <span style={{ color: "red", fontSize: "14px" }}>لطفا این گزینه را پر کنید</span>} */}
+                  {errors.product_image_upload && <span style={{ color: "red", fontSize: "14px" }}>لطفا این گزینه را پر کنید</span>}
 
                 </div>
 
@@ -925,6 +945,44 @@ const CreateProduct = ({ activeHojreh }) => {
                 }
               `}</style>
                 </div>
+                {IsLoading && (
+                  <div
+                    style={{ display: "flex", alignItems: "center" }}
+                  >
+                    <div className={styles.loader}>
+                      <Image
+                        src="/image/LOGO_500.png"
+                        alt="Picture of the author"
+                        width={50}
+                        height={50}
+                      />
+                    </div>
+                    <h3
+                      className={styles.nameLoding}
+                      style={{
+                        fontSize: "15px",
+                        color: "hsl(211deg 100% 50%)",
+                      }}
+                    >
+                      در حال بروزرسانی ...
+                    </h3>
+                  </div>
+                )}
+                {showMessage == 1 && (
+                  <div>
+                    <h3 style={{ color: "green" }}>
+                      به روز رسانی با موفقیت انجام شد.
+                    </h3>
+                  </div>
+                )}
+                {showMessage == 2 && (
+                  <div>
+                    <h3 style={{ color: "red" }}>
+                      عملیات به روز رسانی موفقیت آمیز نبود.لطفا باری
+                      دیگر اقدام کنید.
+                    </h3>
+                  </div>
+                )}
 
                 <div>
                   <button type="submit" className={styles.form_buttonSubmit}>
@@ -1037,7 +1095,6 @@ const CreateProduct = ({ activeHojreh }) => {
                 </div>
               </div>
             </div>
-            {showSuccessPage && <SuccessPageProduct />}
 
           </form>
 
@@ -1202,6 +1259,10 @@ const CreateProduct = ({ activeHojreh }) => {
             </div>
           </div>
         </div>
+
+
+        {showSuccessPage && <SuccessPageProduct />}
+
       </>
 
 
@@ -1209,7 +1270,7 @@ const CreateProduct = ({ activeHojreh }) => {
 
   } else {
     return (
-    <Loading />)
+      <Loading />)
   }
 
 };
