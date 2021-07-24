@@ -3,6 +3,18 @@
 @import "swiper/components/pagination/pagination.scss";
 @import "swiper/components/scrollbar/scrollbar.scss";
 @import "swiper/components/effect-fade/effect-fade.min.css";
+@font-face {
+    font-family: "IRANSansB";
+    src: url("../public/assets/fonts/IRANSansWeb_Bold.eot");
+    /* IE9 Compat Modes */
+    src: url("../public/assets/fonts/IRANSansWeb_Bold.eot") format("embedded-opentype"), /* IE6-IE8 */
+    url("../public/assets/fonts/IRANSansWeb_Bold.woff2") format("woff2"), /* Super Modern Browsers */
+    url("../public/assets/fonts/IRANSansWeb_Bold.woff") format("woff"), /* Pretty Modern Browsers */
+    url("../public/assets/fonts/IRANSansWeb_Bold.ttf") format("truetype");
+    /* Safari, Android, iOS */
+    /*url('webfont.svg#svgFontName') format('svg'); !* Legacy iOS *!*/
+}
+
 :root {
     --background1: #e5e5e5;
     --background2: #ffffff;
@@ -44,8 +56,7 @@ body {
     font-size: 62.5%;
     padding: 0;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    font-family: 'vazir';
+    font-family: "IRANSansB" !important;
     direction: rtl;
     background-color: #f8f8f8;
 }
@@ -78,5 +89,5 @@ input[type="number"] {
 .container_cropper_product {
     position: fixed !important;
     z-index: 999;
-    background: rgba(0, 0, 0, 1.51)
+    background: rgba(0, 0, 0, 1.51);
 }
