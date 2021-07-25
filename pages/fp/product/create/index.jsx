@@ -420,11 +420,8 @@ const CreateProduct = ({ activeHojreh }) => {
     let Weight_With_Packing = parseInt(
       document.getElementById("Weight_With_Packing").value
     );
-    ;
     if (
-      Net_Weight > Weight_With_Packing &&
-      Weight_With_Packing !== NaN &&
-      Weight_With_Packing !== undefined
+      Net_Weight > Weight_With_Packing
     ) {
       setIsErrorWeight(true);
     } else {
@@ -458,7 +455,6 @@ const CreateProduct = ({ activeHojreh }) => {
 
     }
   }
-
 
   if (isLoad) {
     return (
@@ -563,15 +559,15 @@ const CreateProduct = ({ activeHojreh }) => {
 
                       {previewImage ? (
 
-                        previewImage.map((item) => {
+                        previewImage.map((item, index) => {
 
                           return (
 
-                            <div className={styles.product_image} style={{
+                            <div key={index} className={styles.product_image} style={{
                               backgroundImage: `url(${item})`
                             }}>
                               <div onClick={() => _removeImage(item)} className={styles.close_icon_container}>
-                                <i style={{ fontSize: 14 }} class="fas fa-times"></i>
+                                <i style={{ fontSize: 14 }} className="fas fa-times"></i>
 
 
                               </div>
@@ -613,15 +609,21 @@ const CreateProduct = ({ activeHojreh }) => {
                       id="Net_Weight"
                       name="Net_Weight"
                       type="number"
+                      {...register("Net_Weight", {
+                        required: 'لطفا این گزینه را پرنمایید',
+                        min: {
+                          value: 0,
+                          message: 'لطفا اعداد بزرگتر از صفر وارد نمایید'
+                        }
+                      })}
                       onChange={(e) => _checkWeight(e.target.value)}
-                      {...register("Net_Weight", { required: true })}
 
                     />
                     <div>
                       <p>گرم</p>
                     </div>
                   </div>
-                  {errors.Net_Weight && <span style={{ color: "red", fontSize: "14px" }}>لطفا این گزینه را پر کنید</span>}
+                  {errors.Net_Weight && <span style={{ color: "red", fontSize: "14px" }}>{errors.Net_Weight.message}</span>}
 
                 </div>
 
@@ -638,15 +640,21 @@ const CreateProduct = ({ activeHojreh }) => {
                       id="Weight_With_Packing"
                       name="Weight_With_Packing"
                       type="number"
+                      {...register("Weight_With_Packing", {
+                        required: 'لطفا این گزینه را پرنمایید',
+                        min: {
+                          value: 0,
+                          message: 'لطفا اعداد بزرگتر از صفر وارد نمایید'
+                        }
+                      })}
                       onChange={(e) => _checkWeight(e.target.value)}
-                      {...register("Weight_With_Packing", { required: true })}
 
                     />
                     <div>
                       <p>گرم</p>
                     </div>
                   </div>
-                  {errors.Weight_With_Packing && <span style={{ color: "red", fontSize: "14px" }}>لطفا این گزینه را پر کنید</span>}
+                  {errors.Weight_With_Packing && <span style={{ color: "red", fontSize: "14px" }}>{errors.Weight_With_Packing.message}</span>}
 
                   {isErrorWeight && (
                     <p
@@ -668,16 +676,21 @@ const CreateProduct = ({ activeHojreh }) => {
                       id="Price"
                       name="Price"
                       type="number"
+                      {...register("Price", {
+                        required: 'لطفا این گزینه را پرنمایید',
+                        min: {
+                          value: 0,
+                          message: 'لطفا اعداد بزرگتر از صفر وارد نمایید'
+                        }
+                      })}
                       onChange={(e) => _checkPrice(e.target.value)}
-                      {...register("Price", { required: true })}
 
                     />
                     <div>
                       <p>تومان</p>
                     </div>
                   </div>
-                  {errors.Price && <span style={{ color: "red", fontSize: "14px" }}>لطفا این گزینه را پر کنید</span>}
-
+                  {errors.Price && <span style={{ color: "red", fontSize: "14px" }}>{errors.Price.message}</span>}
                 </div>
 
                 <div className={styles.wrapper_input}>
@@ -690,12 +703,19 @@ const CreateProduct = ({ activeHojreh }) => {
                       id="OldPrice"
                       name="OldPrice"
                       type="number"
+                      {...register("OldPrice", {
+                        min: {
+                          value: 0,
+                          message: 'لطفا اعداد بزرگتر از صفر وارد نمایید'
+                        }
+                      })}
                       onChange={(e) => _checkPrice(e.target.value)}
                     />
                     <div>
                       <p>تومان</p>
                     </div>
                   </div>
+                  {errors.OldPrice && <span style={{ color: "red", fontSize: "14px" }}>{errors.OldPrice.message}</span>}
                   {isErrorPrice && (
                     <p
                       style={{ color: "red", fontSize: "14px" }}
@@ -839,7 +859,7 @@ const CreateProduct = ({ activeHojreh }) => {
                     اماده در انبار
                   </label>
                   <input
-                    checked={true}
+                    defaultChecked={true}
                     value={1}
                     type="radio"
                     name="status_product"
@@ -1109,9 +1129,10 @@ const CreateProduct = ({ activeHojreh }) => {
                 </div>
                 <div className={styles.content}>
                   {page === 1 ? (
-                    data?.map((e) => {
+                    data?.map((e, index) => {
                       return (
                         <button
+                          key={index}
                           style={{ outline: "unset" }}
                           onClick={() => clickButton(e)}
                           className={styles.btn}
@@ -1128,9 +1149,10 @@ const CreateProduct = ({ activeHojreh }) => {
                     })
                   ) : page === 2 ? (
                     <>
-                      {subMarkets?.map((e) => {
+                      {subMarkets?.map((e, index) => {
                         return (
                           <button
+                            key={index}
                             style={{ outline: "unset" }}
                             onClick={() => finalClick(e)}
                             className={styles.btn}

@@ -92,14 +92,14 @@ export default function Desktop({ loading, productList, activeHojreh, getProduct
                                             <td>{index + 1}</td>
                                             <td style={{ display: "flex" }}>
                                                 <Image src={value.image_thumbnail_url} alt="product" width="45" height="45" />
-                                                <div>
+                                                <div style={{ margin: "0px 20px" }}>
                                                     {value.title}<br />
                                                     <span className={styles.icons}>
-                                                        <i className="fas fa-shopping-basket"></i>
+                                                        <i className="fas fa-shopping-basket"></i>&nbsp;&nbsp;
                                                         {value.total_sell}
                                                     </span>
                                                     <span className={styles.icons}>
-                                                        <i className="far fa-star"></i>
+                                                        <i className="far fa-star"></i>&nbsp;&nbsp;
                                                         {value.star}({value.comments_count} نظر)
                                                     </span>
                                                 </div>
