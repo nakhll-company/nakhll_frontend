@@ -152,7 +152,7 @@ export default function DesktopOrders({ loading, ordersList, type, activeHojreh,
                                 )
                             }) :
                                 <tr>
-                                    <td colSpan={7}>موردی برای نمایش موجود نیست</td>
+                                    <td colSpan={7} style={{ textAlign: "center" }}>موردی برای نمایش موجود نیست</td>
                                 </tr>
                         }
                     </tbody>
