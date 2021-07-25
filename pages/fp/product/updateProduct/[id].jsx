@@ -30,7 +30,6 @@ const CreateProduct = ({ activeHojreh }) => {
     let product_status = document.querySelector(
       "input[type=radio]:checked"
     ).value;
-    console.log("product_status", product_status)
 
 
     if (err) {
@@ -62,7 +61,6 @@ const CreateProduct = ({ activeHojreh }) => {
         paramsProduct
       );
       var resultId = response.data.ID
-      console.log("rsadjnsa,", resultId);
 
       if (resultId) {
         let idProduct = {
@@ -152,8 +150,6 @@ const CreateProduct = ({ activeHojreh }) => {
   const router = useRouter()
   const { id } = router.query
 
-  console.log(`router`, id)
-
   const _editProduct = async () => {
     let params = null;
     let loadData = null;
@@ -179,7 +175,6 @@ const CreateProduct = ({ activeHojreh }) => {
       setAddPreparationDays(response.data.preparation_days)
 
       // setDa taUser(response.data); //==> output: {}
-      // console.log(`responsedsfds`, response.data)
       setIsLoad(true)
     }
 
@@ -214,7 +209,6 @@ const CreateProduct = ({ activeHojreh }) => {
 
       }
 
-      console.log("res uncomsdfsf :", activeHojreh);
       // const dataUser = response;
 
     };
@@ -254,9 +248,7 @@ const CreateProduct = ({ activeHojreh }) => {
     setDataChoice({ ...dataChoice, title: e.title });
 
     setPage(2);
-    // console.log("el :>> ", e);
     settitle(e.title);
-    // console.log("e.title :>> ", e.title);
   }
 
   function finalClick(e) {
@@ -267,7 +259,6 @@ const CreateProduct = ({ activeHojreh }) => {
     // let elementProgressbar = document.getElementById("progressbar")
     // elementProgressbar.style.display = "flex"
 
-    // console.log("ee :>> ", e);
     setDataChoice({ ...dataChoice, submarket: e.title });
     setPlaceholderSubmarckets(e.title);
     setSubmarketId(e.id)
@@ -294,7 +285,6 @@ const CreateProduct = ({ activeHojreh }) => {
     // let elementProgressbar = document.getElementById("progressbar")
     elementProduct.style.display = "none";
     // elementProgressbar.style.display = "none"
-    // console.log(`element`, element)
   };
 
   // cropper
@@ -368,7 +358,6 @@ const CreateProduct = ({ activeHojreh }) => {
     // }, 2000);
     // setTimeout(() => {
 
-    //   console.log("dddd" ,prev)
     // }, 2500);
 
 
@@ -476,7 +465,6 @@ const CreateProduct = ({ activeHojreh }) => {
     }
 
   }
-  console.log(`dataUser.Title`, dataUser)
 
   if (isLoad) {
     return (

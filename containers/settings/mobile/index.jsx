@@ -68,7 +68,6 @@ function MobileSetting({ activeHojreh }) {
   const [showMessageHesab, setShowMessageHesab] = useState(0);
   const [IsLoadingHesab, setIsLoadingHesab] = useState(false);
   const [MainLoading, setMainLoading] = useState(true);
-  // console.log("active :>> ", activeHojreh);
 
   // Validation for Hojreh
   const VALIDATION_SCHEMA = yup.object().shape({
@@ -139,10 +138,8 @@ function MobileSetting({ activeHojreh }) {
 
     activeHojreh.length > 0 && _handleRequestApi();
   }, [activeHojreh]);
-  // console.log("apiSetting", apiSetting);
 
   const setting = (body) => {
-    // console.log("body>> ", body);
     const dataForSend = {
       Title: body.Title,
       Slug: body.slug,
@@ -173,7 +170,6 @@ function MobileSetting({ activeHojreh }) {
   };
 
   const linkSetting = (body) => {
-    // console.log("linkSetting...>>> ", body);
     const dataForSendLink = {
       social_media: {
         telegram: body.telegram,
@@ -214,8 +210,6 @@ function MobileSetting({ activeHojreh }) {
       params
     );
   };
-
-  // console.log("active :>> ", activeHojreh);
 
   return (
     <div dir="rtl" className={styles.setting}>
@@ -330,7 +324,6 @@ function MobileSetting({ activeHojreh }) {
                       },
                     },
                   };
-                  // console.log('miii :>> ', dataForSend);
                   let params = {};
                   let loadData = dataForSend;
                   let dataUrl = `/api/v1/shop/${activeHojreh}/settings/`;

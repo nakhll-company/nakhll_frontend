@@ -63,7 +63,6 @@ function HomePage({ id }) {
         setdata(response.data);
       }
       setisShow(true);
-      // console.log("aaaa :>> ", response);
     };
     _handleRequestApi(id);
   }, []);
@@ -352,7 +351,7 @@ function HomePage({ id }) {
                             if (response.status === 200) {
                               setshowMessage(1)
                               setIsLoading(false)
-                            
+
                             } else {
                               setshowMessage(2)
                               setIsLoading(false)
@@ -411,7 +410,7 @@ function HomePage({ id }) {
                                   <div>
                                     <h3
                                       style={{
-                                        fontSize:"14px",
+                                        fontSize: "14px",
                                         marginTop: "15px",
                                         color: "green",
                                       }}
@@ -496,12 +495,12 @@ function HomePage({ id }) {
                               true,
                               params
                             );
-                           
+
 
                             if (response.status === 200) {
                               setshowMessage(1)
                               setIsLoading(false)
-                            
+
                             } else {
                               setshowMessage(2)
                               setIsLoading(false)
@@ -562,7 +561,7 @@ function HomePage({ id }) {
                                       style={{
                                         marginTop: "15px",
                                         color: "green",
-                                        fontSize:"14px"
+                                        fontSize: "14px"
                                       }}
                                     >
                                       به روز رسانی با موفقیت انجام شد.
@@ -622,9 +621,8 @@ function HomePage({ id }) {
                   <div className={styles.post_informationD_content}>
                     <h4>نام مشتری</h4>
                     <h3 style={{ marginTop: "5px" }}>
-                      {`${data.profile && data.profile.user.first_name}  ${
-                        data.profile && data.profile.user.last_name
-                      }`}
+                      {`${data.profile && data.profile.user.first_name}  ${data.profile && data.profile.user.last_name
+                        }`}
                     </h3>
                   </div>
                   {/* <div className={styles.post_informationD_content}>
