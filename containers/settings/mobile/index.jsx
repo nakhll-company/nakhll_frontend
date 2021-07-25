@@ -491,7 +491,6 @@ function MobileSetting({ activeHojreh }) {
                             setSelectBigCities(
                               await getBigCities(event.target.value)
                             );
-                            debugger;
                             setChoiceState(event.target.value.name);
                           }}
                         >

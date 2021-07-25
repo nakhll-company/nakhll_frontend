@@ -47,10 +47,8 @@ export async function getCroppedImg(imageSrc, pixelCrop,) {
   prev = [...prev, canvas.toDataURL('image/jpeg')]
   let listImage = window.localStorage.getItem("image");
   let xx = JSON.parse(listImage)
-  debugger
   xx.push(canvas.toDataURL('image/jpeg'))
   window.localStorage.setItem("image", JSON.stringify(xx));
-  debugger
   return true
 
 

@@ -1,4 +1,5 @@
 // node libraries
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 // components
@@ -33,6 +34,24 @@ function Uncompleted({ ordersList, activeHojreh, getUncompleted }) {
             {width < breakpoint ?
                 <div>
                     <MobileHeader title="سفارشات تکمیل نشده" type="search" />
+                    <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                        <Link href="/fp/order/completed">
+                            <a style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                fontSize: "3.5vw",
+                                border: "1px solid #0054dc",
+                                marginTop: "20px",
+                                backgroundColor: "#ffffff",
+                                padding: "10px",
+                                width: "40%",
+                                borderRadius: "0px 50px 50px 0px"
+                            }}>
+                                سفارشات تکمیل شده
+                            </a>
+                        </Link>
+                    </div>
                     <MobileOrders ordersList={ordersList} loading={loading} />
                 </div> :
                 <DesktopOrders

@@ -9,7 +9,6 @@ import { connect } from "react-redux";
 import { mapState } from "../../../../containers/order/methods/mapState";
 import { getCroppedImg } from "../../../../containers/product/create/canvasUtils";
 import { useForm } from "react-hook-form";
-import SuccessPageProduct from "../../../../containers/product/create/sucsses";
 import { useRouter } from "next/router";
 
 
@@ -50,7 +49,6 @@ const CreateProduct = ({ activeHojreh }) => {
         PreparationDays: AddPreparationDays,
         FK_Shop: activeHojreh,
       };
-      debugger
       let paramsProduct = {};
       let loadDataProduct = confirm;
       let dataUrlProduct = "/api/v1/landing/products/";
@@ -82,7 +80,6 @@ const CreateProduct = ({ activeHojreh }) => {
           true,
           paramssubmarkets
         );
-        debugger
 
 
         let imagesProduct = {
@@ -107,12 +104,10 @@ const CreateProduct = ({ activeHojreh }) => {
           setshowMessage(1);
 
           // setIsLoad(false)
-          debugger
           // let element = document.getElementById("wrapper_product");
           // element.style.display = "none";
           setShowSuccessPage(true);
         }
-        debugger
 
 
 
@@ -184,7 +179,9 @@ const CreateProduct = ({ activeHojreh }) => {
 
   }
 
-
+  if (showSuccessPage) {
+    router.replace('/fp/product/create/successPageProduct')
+  }
 
   useEffect(() => {
     // setShowSuccessPage(false);
@@ -303,13 +300,11 @@ const CreateProduct = ({ activeHojreh }) => {
   }, []);
 
   const onFileChange = async (e) => {
-    debugger
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
       // let imageDataUrl = await URL.createObjectURL(file);
       let imageDataUrl = await readFile(file)
       setImageSrc(imageDataUrl);
-      debugger
       let elementImageProduct = document.getElementById("crop_container");
       elementImageProduct.style.display = "block";
       // 
@@ -341,7 +336,7 @@ const CreateProduct = ({ activeHojreh }) => {
       let listImage = window.localStorage.getItem("image");
       var prev = JSON.parse(listImage)
       setPreviewImage(prev);
-      debugger
+
     }
 
     // await prevImage()
@@ -352,7 +347,6 @@ const CreateProduct = ({ activeHojreh }) => {
       document.getElementById("product-image-upload").disabled = true;
     }
     // elementImageProduct.style.display = "none";
-    debugger
 
     // const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
     // if (croppedImage) {
@@ -361,7 +355,7 @@ const CreateProduct = ({ activeHojreh }) => {
     //   setPreviewImage(xx[0]);
 
 
-    //   debugger
+    //   
     // }
     // setTimeout(() => {
 
@@ -417,7 +411,6 @@ const CreateProduct = ({ activeHojreh }) => {
       PreparationDays: body.PreparationDays,
       FK_Shop: activeHojreh,
     };
-    debugger
     let params = {};
     let loadData = confirm;
     let dataUrl = "/api/v1/landing/products/";
@@ -476,8 +469,6 @@ const CreateProduct = ({ activeHojreh }) => {
       setValue("product_image_upload", null)
 
     }
-
-    debugger
   }
   console.log(`dataUser.Title`, dataUser)
 
@@ -585,7 +576,7 @@ const CreateProduct = ({ activeHojreh }) => {
                       {previewImage ? (
 
                         previewImage.map((item) => {
-                          debugger
+
                           return (
 
                             <div className={styles.product_image} style={{
@@ -892,7 +883,7 @@ const CreateProduct = ({ activeHojreh }) => {
                     htmlFor="soon"
                     className="labels"
                     onClick={(e) => {
-                      debugger
+
                       let actives =
                         document.getElementsByClassName("activeLabel");
                       for (let i = 0; i < actives.length; i++) {
@@ -1261,7 +1252,7 @@ const CreateProduct = ({ activeHojreh }) => {
         </div>
 
 
-        {showSuccessPage && <SuccessPageProduct />}
+
 
       </>
 

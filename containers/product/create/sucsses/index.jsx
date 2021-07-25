@@ -10,13 +10,13 @@ export default function SuccessPageProduct() {
         <div className={styles.wrapperProduct}>
             <Image src="/image/store/success.svg" alt="success" width="51" height="51" />
             <h4 className={styles.message_success}>محصول جدید با موفقیت ثبت شد.</h4>
-            <p className={styles.suggesstion_text}>برای بهتر دیده شدن حجره تان می توانید از طریق<br />دکمه زیر محصول خود را ثبت دهید.</p>
+            {/* <p className={styles.suggesstion_text}>برای بهتر دیده شدن حجره تان می توانید از طریق<br />دکمه زیر محصول خود را ثبت دهید.</p> */}
             <div className={styles.wrapper_links}>
-                {/* <Link href={`/fp/product/create`}>
+                <Link href={`/fp/product/create`}>
                     <a className={styles.link_create_product}>
-                        ثبت محصول
+                        ثبت جدید محصول
                     </a>
-                </Link> */}
+                </Link>
                 <Link href={`/fp`}>
                     <a className={styles.link_dashboard}>
                         مشاهده داشبورد

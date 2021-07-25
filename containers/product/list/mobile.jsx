@@ -45,7 +45,7 @@ const MobileList = ({ loading, productList, activeHojreh }) => {
                 :
                 productList.length > 0 ? productList.map((value, index) => {
                     return (
-                        <Link href={`/fp/product/create/updateProduct${value.id}`} key={index}>
+                        <Link href={`/fp/product/updateProduct/${value.id}`} key={index}>
                             <div className={`${styles.product_card}`}>
                                 <div className={styles.first_row}>
                                     <div className={styles.product_name_wrapper}>
@@ -80,6 +80,7 @@ const MobileList = ({ loading, productList, activeHojreh }) => {
                                         }}
                                     />
                                 </div>
+
                             </div>
                         </Link>
                     )
@@ -95,6 +96,7 @@ const MobileList = ({ loading, productList, activeHojreh }) => {
                     <i className="fa fa-plus"></i>
                 </a>
             </Link>
+            {/* <h1 style={{ marginTop: "200px" }}></h1> */}
         </div>
     );
 };
