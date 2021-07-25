@@ -17,6 +17,9 @@ import { getActiveHojreh } from "../../redux/actions/user/getActiveHojreh";
 import styles from "../../styles/components/layout/layout.module.scss";
 
 function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
+  const [selectShop, setselectShop] = useState("");
+  const [isShowOrder, setisShowOrder] = useState(false);
+  const [Title, setTitle] = useState("اشبورد مدیریت");
   const router = useRouter();
   const { width } = useViewport();
   const breakpoint = 620;
@@ -27,17 +30,20 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
     Object.keys(userInfo).length === 0 && getUserInfo();
   }, []);
 
-  const [selectShop, setselectShop] = useState("");
-  const [isShowOrder, setisShowOrder] = useState(false);
   if (selectShop.length === 0) {
     Object.keys(userInfo).length > 0 &&
       userInfo.shops.length > 0 &&
       getActiveHojreh(userInfo.shops[0].slug);
   }
+  const ForHeader = (option) => {
+    console.log("mii :>> ", option.target[option.target.selectedIndex].text);
+    setTitle(option.target[option.target.selectedIndex].text);
+  };
 
   return (
     <>
       <Head>
+        <title>{`حجره ${Title}`}</title>
         <link
           rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
@@ -106,6 +112,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   onChange={(a) => {
                     setselectShop(a.target.value);
                     getActiveHojreh(a.target.value);
+                    ForHeader(a);
                   }}
                 >
                   {userInfo.shops &&
