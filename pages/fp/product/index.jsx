@@ -31,17 +31,6 @@ const Product = ({ getProduct, productList, activeHojreh }) => {
 
   return (
     <>
-      <Head>
-        <title>محصولات</title>
-        <link
-          rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-        />
-        <meta
-          name="viewport"
-          content="initial-scale=1.0, width=device-width"
-        />
-      </Head>
       {width < breakpoint ?
         <Mobile loading={loading} productList={productList} activeHojreh={activeHojreh} /> :
         <Desktop loading={loading} productList={productList} activeHojreh={activeHojreh} getProduct={getProduct} />}

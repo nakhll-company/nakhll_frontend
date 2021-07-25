@@ -155,6 +155,7 @@
             td{
                 font-size: 14px;
                 color: #5E7488;
+                cursor: pointer;
             }
             .wrapper_copy{
               display: flex;
@@ -170,6 +171,15 @@
             .one_colmne{
                 text-align: center;
                 margin: 20px 0px;
+            }
+            .icons{
+                display: inline-block;
+                border: 1px solid #E0E6E9;
+                box-sizing: border-box;
+                border-radius: 3px;
+                margin: 5px 10px;
+                padding: 2px;
+                text-align: center;
             }
         }
     }

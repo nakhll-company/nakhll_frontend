@@ -49,7 +49,7 @@ const MobileList = ({ loading, productList, activeHojreh }) => {
                             <div className={`${styles.product_card}`}>
                                 <div className={styles.first_row}>
                                     <div className={styles.product_name_wrapper}>
-                                        <Image src={value.image_thumbnail_url} alt="sort" width="45" height="45" />
+                                        <Image src={value.image_thumbnail_url} alt="product" width="45" height="45" />
                                         <h6 className={`${styles.name_product}`}>{value.title}</h6>
                                     </div>
                                     <i className={`fas fa-ellipsis-v ${styles.icon_more}`}></i>

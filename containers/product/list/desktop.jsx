@@ -90,7 +90,20 @@ export default function Desktop({ loading, productList, activeHojreh, getProduct
                                     <Link href={`/fp/product/updateProduct/${value.id}`} key={index}>
                                         <tr>
                                             <td>{index + 1}</td>
-                                            <td>{value.title}</td>
+                                            <td style={{ display: "flex" }}>
+                                                <Image src={value.image_thumbnail_url} alt="product" width="45" height="45" />
+                                                <div>
+                                                    {value.title}<br />
+                                                    <span className={styles.icons}>
+                                                        <i className="fas fa-shopping-basket"></i>
+                                                        {value.total_sell}
+                                                    </span>
+                                                    <span className={styles.icons}>
+                                                        <i className="far fa-star"></i>
+                                                        {value.star}({value.comments_count} نظر)
+                                                    </span>
+                                                </div>
+                                            </td>
                                             <td>{value.preparation_days}</td>
                                             <td>{value.inventory}</td>
                                             <td>{`${value.price}تومان`}</td>
