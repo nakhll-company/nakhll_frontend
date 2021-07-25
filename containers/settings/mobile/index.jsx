@@ -487,11 +487,12 @@ function MobileSetting({ activeHojreh }) {
                         <select
                           className={styles.form_select}
                           name="State"
+                          defaultValue=""
                           onChange={async (event) => {
                             setSelectBigCities(
                               await getBigCities(event.target.value)
                             );
-                            debugger;
+
                             setChoiceState(event.target.value.name);
                           }}
                         >
@@ -510,7 +511,7 @@ function MobileSetting({ activeHojreh }) {
                         <select
                           className={styles.form_select}
                           name="BigCity"
-                          defaultValue="0"
+                          defaultValue=""
                           onChange={async (event) => {
                             setSelectCities(
                               await getCities(event.target.value)
@@ -532,7 +533,7 @@ function MobileSetting({ activeHojreh }) {
                         <select
                           className={styles.form_select}
                           name="City"
-                          defaultValue="0"
+                          defaultValue=""
                           onChange={(event) => {
                             setChoiceBigCity(event.target.value);
                           }}
