@@ -40,12 +40,12 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
     setTitle(option.target[option.target.selectedIndex].text);
   };
   if (Object.keys(userInfo).length > 0 && userInfo.shops.length === 0) {
-    toast.error("لطفا ابتدا پروفایل خود را تکمیل کنید", {
+    toast.error("لطفا ابتدا حجره خود را ثبت نمایید", {
       position: "top-right",
       closeOnClick: true,
     });
     setTimeout(() => {
-      router.replace('https://nakhll.com/profile/dashboard/');
+      router.replace('https://nakhll.com/fp/store/create');
     }, 3000);
   }
   return (

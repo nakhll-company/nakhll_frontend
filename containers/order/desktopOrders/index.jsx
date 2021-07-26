@@ -1,6 +1,7 @@
 // node libraries
 import Link from 'next/link';
 import Image from 'next/image';
+import { toast } from "react-toastify";
 // components
 import CustomBadge from '../../../components/custom/customBadge';
 // methods
@@ -37,6 +38,11 @@ export default function DesktopOrders({ loading, ordersList, type, activeHojreh,
         );
         if (response.status === 200) {
             getUncompleted(activeHojreh);
+        } else {
+            toast.error("خطایی در ارسال داده ها پیش آمده است", {
+                position: "top-right",
+                closeOnClick: true,
+            });
         }
     };
 
