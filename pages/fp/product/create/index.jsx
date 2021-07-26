@@ -37,7 +37,7 @@ const CreateProduct = ({ activeHojreh }) => {
       let confirm = {
         Title: data.Title,
         Inventory: Add,
-        Slug: "kgkgkgk",
+        Slug: activeHojreh,
         Price: data.Price,
         OldPrice: data.OldPrice,
         Net_Weight: data.Net_Weight,
@@ -100,21 +100,10 @@ const CreateProduct = ({ activeHojreh }) => {
         if (responseImages.status === 200) {
           setIsLoading(false);
           setshowMessage(1);
-
-          // setIsLoad(false)
-          // let element = document.getElementById("wrapper_product");
-          // element.style.display = "none";
           setShowSuccessPage(true);
         }
-
-
-
       }
-
     }
-
-
-
   };
 
   const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState("");
@@ -252,14 +241,11 @@ const CreateProduct = ({ activeHojreh }) => {
     element.style.display = "none";
     let elementProduct = document.getElementById("wrapper_product");
     elementProduct.style.display = "flex";
-    // let elementProgressbar = document.getElementById("progressbar")
-    // elementProgressbar.style.display = "flex"
     setDataChoice({ ...dataChoice, submarket: e.title });
     setPlaceholderSubmarckets(e.title);
     setSubmarketId(e.id)
     setPage((page) => page - 1);
     clearErrors("submark")
-
   }
 
   function GoBack() {
@@ -420,9 +406,8 @@ const CreateProduct = ({ activeHojreh }) => {
     let Weight_With_Packing = parseInt(
       document.getElementById("Weight_With_Packing").value
     );
-    if (
-      Net_Weight > Weight_With_Packing
-    ) {
+
+    if (Net_Weight >= Weight_With_Packing) {
       setIsErrorWeight(true);
     } else {
       setIsErrorWeight(false);
@@ -679,8 +664,8 @@ const CreateProduct = ({ activeHojreh }) => {
                       {...register("Price", {
                         required: 'لطفا این گزینه را پرنمایید',
                         min: {
-                          value: 0,
-                          message: 'لطفا اعداد بزرگتر از صفر وارد نمایید'
+                          value: 500,
+                          message: 'لطفا اعداد بزرگتر از 500 وارد نمایید'
                         }
                       })}
                       onChange={(e) => _checkPrice(e.target.value)}
@@ -702,6 +687,7 @@ const CreateProduct = ({ activeHojreh }) => {
                       style={{ outline: "unset", border: "unset" }}
                       id="OldPrice"
                       name="OldPrice"
+                      defaultValue={0}
                       type="number"
                       {...register("OldPrice", {
                         min: {
@@ -1010,87 +996,6 @@ const CreateProduct = ({ activeHojreh }) => {
                   >
                     به عنوان مثال : برنج لاشه 10 کیلویی، کشت اول
                   </p>
-                  {/* <p
-                style={{
-                  color: "#5E7488",
-                  fontSize: "14px",
-                  marginTop: "90px",
-                }}
-              >
-                حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش
-                داده خواهد شد.
-              </p> */}
-                  {/* <p
-                style={{
-                  color: "#5E7488",
-                  fontSize: "14px",
-                  marginTop: "100px",
-                }}
-              >
-                حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش
-                داده خواهد شد.
-              </p> */}
-                  {/* <p
-                style={{
-                  color: "#5E7488",
-                  fontSize: "14px",
-                  marginTop: "100px",
-                }}
-              >
-                حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش
-                داده خواهد شد.
-              </p>
-              <p
-                style={{
-                  color: "#5E7488",
-                  fontSize: "14px",
-                  marginTop: "100px",
-                }}
-              >
-                حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش
-                داده خواهد شد.
-              </p>
-              <p
-                style={{
-                  color: "#5E7488",
-                  fontSize: "14px",
-                  marginTop: "100px",
-                }}
-              >
-                حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش
-                داده خواهد شد.
-              </p>
-              <p
-                style={{
-                  color: "#5E7488",
-                  fontSize: "14px",
-                  marginTop: "100px",
-                }}
-              >
-                حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش
-                داده خواهد شد.
-              </p>
-              <p
-                style={{
-                  color: "#5E7488",
-                  fontSize: "14px",
-                  marginTop: "100px",
-                }}
-              >
-                حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش
-                داده خواهد شد.
-              </p>
-              <p
-                style={{
-                  color: "#5E7488",
-                  fontSize: "14px",
-                  marginTop: "100px",
-                }}
-              >
-                حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش
-                داده خواهد شد.
-              </p>
-             */}
                 </div>
               </div>
             </div>
