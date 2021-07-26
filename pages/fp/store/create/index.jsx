@@ -3,6 +3,7 @@ import Head from "next/head";
 import { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
+import { toast } from "react-toastify";
 // components
 import MobileHeader from '../../../../components/mobileHeader';
 import useViewport from '../../../../components/viewPort';
@@ -25,6 +26,11 @@ function NewStore({ getUserInfo, userInfo }) {
         let response = await createStore(data);
         if (response.status === 201) {
             setShowSuccessPage(showSuccessPage => !showSuccessPage);
+        } else {
+            toast.error("خطایی در ایجاد حجره پیش آمده است", {
+                position: "top-right",
+                closeOnClick: true,
+            });
         }
     };
 
