@@ -1,10 +1,12 @@
 .wrapper{
   direction: rtl;
   font-family: 'vazir';
+  grid-column: 1/-1;
+  grid-row: 1/-1;
   height: auto;
   color: #364254;
   background:#F8F8F8;
-  padding-bottom: 200px;
+  padding-bottom: 100px !important;
   .loading_image{
     margin: 20px 0px;
     text-align: center;
@@ -44,6 +46,7 @@
     box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.05);
     border-radius: 5px;
     padding: 9px;
+    cursor: pointer;
     // first row
     .first_row{
       display: flex;

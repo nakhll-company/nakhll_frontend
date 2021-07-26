@@ -139,8 +139,6 @@ const DesktopSetting = ({ activeHojreh }) => {
   let [selectState, setSelectState] = useState([]);
   let [selectBigCities, setSelectBigCities] = useState([]);
   let [selectCities, setSelectCities] = useState([]);
-  // console.log("active :>> ", activeHojreh);
-
   const [onMenu, setOnMenu] = useState("1");
   const [apiSetting, setApiSetting] = useState({});
 
@@ -167,10 +165,8 @@ const DesktopSetting = ({ activeHojreh }) => {
 
     activeHojreh.length > 0 && _handleRequestApi();
   }, [activeHojreh]);
-  // console.log("apiSetting", apiSetting);
 
   const setting = async (body) => {
-    // console.log("body>> ", body);
     const dataForSend = {
       Title: body.Title,
       Slug: body.slug,
@@ -199,11 +195,9 @@ const DesktopSetting = ({ activeHojreh }) => {
       true,
       params
     );
-    // console.log("response :>> ", response);
   };
 
   const linkSetting = (body) => {
-    // console.log("linkSetting...>>> ", body);
     const dataForSendLink = {
       social_media: {
         telegram: body.telegram,
@@ -325,7 +319,6 @@ const DesktopSetting = ({ activeHojreh }) => {
             {/* <form
               onSubmit={(e) => {
                 e.preventDefault();
-                console.log("iiiiii :>> ", e.target);
               }}
             > */}
             {/* <form
@@ -388,8 +381,6 @@ const DesktopSetting = ({ activeHojreh }) => {
                         },
                       },
                     };
-
-                    console.log("miii :>> ", dataForSend);
                     let params = {};
                     let loadData = dataForSend;
                     let dataUrl = `/api/v1/shop/${activeHojreh}/settings/`;

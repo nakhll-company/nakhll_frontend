@@ -22,23 +22,19 @@ const CreateProduct = ({ activeHojreh }) => {
 
   const onSubmit = async (data) => {
     let err = false
-    if (!placeholderSubmarckets && !imageSrc) {
+    if (!placeholderSubmarckets) {
       setError("submark", { type: "focus" }, { shouldFocus: true })
-      // setError("product_image_upload", { type: "focus" }, { shouldFocus: true })
-
     } else {
       err = true
     }
-    // clearErrors("submark")
-
-    console.log("data", data)
     let product_status = document.querySelector(
       "input[type=radio]:checked"
     ).value;
-    console.log("product_status", product_status)
 
 
     if (err) {
+      setshowMessage(0);
+      setIsLoading(true);
       let confirm = {
         Title: data.Title,
         Inventory: Add,
@@ -53,7 +49,7 @@ const CreateProduct = ({ activeHojreh }) => {
         PreparationDays: AddPreparationDays,
         FK_Shop: activeHojreh,
       };
-      debugger
+
       let paramsProduct = {};
       let loadDataProduct = confirm;
       let dataUrlProduct = "/api/v1/landing/products/";
@@ -65,7 +61,6 @@ const CreateProduct = ({ activeHojreh }) => {
         paramsProduct
       );
       var resultId = response.data.ID
-      console.log("rsadjnsa,", resultId);
 
       if (resultId) {
         let idProduct = {
@@ -85,7 +80,7 @@ const CreateProduct = ({ activeHojreh }) => {
           true,
           paramssubmarkets
         );
-        debugger
+
 
 
         let imagesProduct = {
@@ -106,10 +101,16 @@ const CreateProduct = ({ activeHojreh }) => {
           paramsImages
         );
         if (responseImages.status === 200) {
-          debugger
-          setShowSuccessPage(showSuccessPage => !showSuccessPage);
+          setIsLoading(false);
+          setshowMessage(1);
+
+          // setIsLoad(false)
+
+          // let element = document.getElementById("wrapper_product");
+          // element.style.display = "none";
+          setShowSuccessPage(true);
         }
-        debugger
+
 
 
 
@@ -144,10 +145,10 @@ const CreateProduct = ({ activeHojreh }) => {
   const [submarketId, setSubmarketId] = useState(null);
   const [showSuccessPage, setShowSuccessPage] = useState(false);
   const [isLoad, setIsLoad] = useState(false);
+  const [IsLoading, setIsLoading] = useState(false);
+  const [showMessage, setshowMessage] = useState(0);
   const router = useRouter()
   const { id } = router.query
-
-  console.log(`router`, id)
 
   const _editProduct = async () => {
     let params = null;
@@ -162,7 +163,8 @@ const CreateProduct = ({ activeHojreh }) => {
     );
     if (response.status === 200) {
       setValue('Title', response.data.title)
-      // setValue('submark', response.data.category[0].title)
+      setValue('submark', response.data.sub_market.title)
+      setPlaceholderSubmarckets(response.data.sub_market.title)
       setValue('Net_Weight', response.data.net_weight)
       setValue('Weight_With_Packing', response.data.weight_with_packing)
       setValue('Price', response.data.price)
@@ -173,7 +175,6 @@ const CreateProduct = ({ activeHojreh }) => {
       setAddPreparationDays(response.data.preparation_days)
 
       // setDa taUser(response.data); //==> output: {}
-      // console.log(`responsedsfds`, response.data)
       setIsLoad(true)
     }
 
@@ -182,6 +183,9 @@ const CreateProduct = ({ activeHojreh }) => {
 
 
   useEffect(() => {
+    // setShowSuccessPage(false);
+
+
     window.localStorage.setItem("image", JSON.stringify([]));
     if (id) {
       _editProduct();
@@ -198,7 +202,13 @@ const CreateProduct = ({ activeHojreh }) => {
         false,
         params
       );
-      console.log("res uncomsdfsf :", activeHojreh);
+      if (response.status === 200) {
+        setIsLoad(true)
+        setData(response.data); //==> output: {}
+
+
+      }
+
       // const dataUser = response;
 
     };
@@ -238,9 +248,7 @@ const CreateProduct = ({ activeHojreh }) => {
     setDataChoice({ ...dataChoice, title: e.title });
 
     setPage(2);
-    // console.log("el :>> ", e);
     settitle(e.title);
-    // console.log("e.title :>> ", e.title);
   }
 
   function finalClick(e) {
@@ -251,7 +259,6 @@ const CreateProduct = ({ activeHojreh }) => {
     // let elementProgressbar = document.getElementById("progressbar")
     // elementProgressbar.style.display = "flex"
 
-    // console.log("ee :>> ", e);
     setDataChoice({ ...dataChoice, submarket: e.title });
     setPlaceholderSubmarckets(e.title);
     setSubmarketId(e.id)
@@ -278,7 +285,6 @@ const CreateProduct = ({ activeHojreh }) => {
     // let elementProgressbar = document.getElementById("progressbar")
     elementProduct.style.display = "none";
     // elementProgressbar.style.display = "none"
-    // console.log(`element`, element)
   };
 
   // cropper
@@ -288,13 +294,12 @@ const CreateProduct = ({ activeHojreh }) => {
   }, []);
 
   const onFileChange = async (e) => {
-    debugger
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
       // let imageDataUrl = await URL.createObjectURL(file);
       let imageDataUrl = await readFile(file)
       setImageSrc(imageDataUrl);
-      debugger
+
       let elementImageProduct = document.getElementById("crop_container");
       elementImageProduct.style.display = "block";
       // 
@@ -313,6 +318,7 @@ const CreateProduct = ({ activeHojreh }) => {
     let elementImageProduct = document.getElementById("crop_container");
     elementImageProduct.style.display = "none";
     setImageSrc(null);
+    setValue("product_image_upload", null)
   };
 
 
@@ -325,7 +331,7 @@ const CreateProduct = ({ activeHojreh }) => {
       let listImage = window.localStorage.getItem("image");
       var prev = JSON.parse(listImage)
       setPreviewImage(prev);
-      debugger
+
     }
 
     // await prevImage()
@@ -336,7 +342,6 @@ const CreateProduct = ({ activeHojreh }) => {
       document.getElementById("product-image-upload").disabled = true;
     }
     // elementImageProduct.style.display = "none";
-    debugger
 
     // const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
     // if (croppedImage) {
@@ -345,7 +350,7 @@ const CreateProduct = ({ activeHojreh }) => {
     //   setPreviewImage(xx[0]);
 
 
-    //   debugger
+    //
     // }
     // setTimeout(() => {
 
@@ -353,7 +358,6 @@ const CreateProduct = ({ activeHojreh }) => {
     // }, 2000);
     // setTimeout(() => {
 
-    //   console.log("dddd" ,prev)
     // }, 2500);
 
 
@@ -401,7 +405,6 @@ const CreateProduct = ({ activeHojreh }) => {
       PreparationDays: body.PreparationDays,
       FK_Shop: activeHojreh,
     };
-    debugger
     let params = {};
     let loadData = confirm;
     let dataUrl = "/api/v1/landing/products/";
@@ -456,9 +459,12 @@ const CreateProduct = ({ activeHojreh }) => {
     window.localStorage.setItem("image", JSON.stringify(testt));
 
     setPreviewImage(testt);
-    debugger
+    if (testt.length == 0) {
+      setValue("product_image_upload", null)
+
+    }
+
   }
-  console.log(`dataUser.Title`, dataUser)
 
   if (isLoad) {
     return (
@@ -492,7 +498,7 @@ const CreateProduct = ({ activeHojreh }) => {
                     className={styles.input_product}
                     id="Title"
                     type="text"
-                    placeholder="برنج لاشه 10 کیلویی، کشت اول"
+                    // placeholder="برنج لاشه 10 کیلویی، کشت اول"
                     defaultValue={dataUser.Title}
                     {...register("Title", { required: true })}
                   />
@@ -549,13 +555,12 @@ const CreateProduct = ({ activeHojreh }) => {
                       </label>
 
                       <input
+                        {...register("product_image_upload", { required: true })}
                         onChange={onFileChange}
-                        name="product_image_upload"
+                        // name="product_image_upload"
                         id="product-image-upload"
                         type="file"
-                        multiple
                         style={{ width: "0px", height: "0px", opacity: "0px" }}
-                      // {...register("product_image_upload")}
 
                       ></input>
                       {/* {
@@ -565,7 +570,6 @@ const CreateProduct = ({ activeHojreh }) => {
                       {previewImage ? (
 
                         previewImage.map((item) => {
-                          debugger
                           return (
 
                             <div className={styles.product_image} style={{
@@ -588,7 +592,7 @@ const CreateProduct = ({ activeHojreh }) => {
 
                     </div>
                   </div>
-                  {/* {errors.product_image_upload && <span style={{ color: "red", fontSize: "14px" }}>لطفا این گزینه را پر کنید</span>} */}
+                  {errors.product_image_upload && <span style={{ color: "red", fontSize: "14px" }}>لطفا این گزینه را پر کنید</span>}
 
                 </div>
 
@@ -872,7 +876,7 @@ const CreateProduct = ({ activeHojreh }) => {
                     htmlFor="soon"
                     className="labels"
                     onClick={(e) => {
-                      debugger
+
                       let actives =
                         document.getElementsByClassName("activeLabel");
                       for (let i = 0; i < actives.length; i++) {
@@ -925,6 +929,44 @@ const CreateProduct = ({ activeHojreh }) => {
                 }
               `}</style>
                 </div>
+                {IsLoading && (
+                  <div
+                    style={{ display: "flex", alignItems: "center" }}
+                  >
+                    <div className={styles.loader}>
+                      <Image
+                        src="/image/LOGO_500.png"
+                        alt="Picture of the author"
+                        width={50}
+                        height={50}
+                      />
+                    </div>
+                    <h3
+                      className={styles.nameLoding}
+                      style={{
+                        fontSize: "15px",
+                        color: "hsl(211deg 100% 50%)",
+                      }}
+                    >
+                      در حال بروزرسانی ...
+                    </h3>
+                  </div>
+                )}
+                {showMessage == 1 && (
+                  <div>
+                    <h3 style={{ color: "green" }}>
+                      به روز رسانی با موفقیت انجام شد.
+                    </h3>
+                  </div>
+                )}
+                {showMessage == 2 && (
+                  <div>
+                    <h3 style={{ color: "red" }}>
+                      عملیات به روز رسانی موفقیت آمیز نبود.لطفا باری
+                      دیگر اقدام کنید.
+                    </h3>
+                  </div>
+                )}
 
                 <div>
                   <button type="submit" className={styles.form_buttonSubmit}>
@@ -1037,7 +1079,6 @@ const CreateProduct = ({ activeHojreh }) => {
                 </div>
               </div>
             </div>
-            {showSuccessPage && <SuccessPageProduct />}
 
           </form>
 
@@ -1202,6 +1243,10 @@ const CreateProduct = ({ activeHojreh }) => {
             </div>
           </div>
         </div>
+
+
+        {showSuccessPage && <SuccessPageProduct />}
+
       </>
 
 
@@ -1209,7 +1254,7 @@ const CreateProduct = ({ activeHojreh }) => {
 
   } else {
     return (
-    <Loading />)
+      <Loading />)
   }
 
 };

@@ -27,16 +27,16 @@ export const instanceAxiosWithToken = Axios.create({
 //=================instanceAxiosWithOutToken=======================\\
 //=================================================================\\
 instanceAxiosWithOutToken.interceptors.request.use(
-    function(config) {
+    function (config) {
         return config;
     },
-    function(error) {
+    function (error) {
         return Promise.reject(error);
     }
 );
 
 instanceAxiosWithOutToken.interceptors.response.use(
-    function(response) {
+    function (response) {
         return response;
     }
     // ,
@@ -49,16 +49,16 @@ instanceAxiosWithOutToken.interceptors.response.use(
 //=================instanceAxiosWithToken==========================\\
 //=================================================================\\
 instanceAxiosWithToken.interceptors.request.use(
-    function(config) {
+    function (config) {
         return config;
     },
-    function(error) {
+    function (error) {
         return Promise.reject(error);
     }
 );
 
 instanceAxiosWithToken.interceptors.response.use(
-    function(response) {
+    function (response) {
         return response;
     }
     // ,
