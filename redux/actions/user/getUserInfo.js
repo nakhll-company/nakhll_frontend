@@ -28,6 +28,8 @@ export const getUserInfo = () => async dispatch => {
             position: "top-right",
             closeOnClick: true,
         });
-        location.replace("https://www.nakhll.com");
+        setTimeout(() => {
+            location.replace("https://www.nakhll.com");
+        }, 3000);
     }
 }

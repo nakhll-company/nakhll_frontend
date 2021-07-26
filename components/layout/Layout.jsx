@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Head from "next/head";
-
+import { toast } from "react-toastify";
 // components
 import useViewport from "../viewPort/index";
 import MenuMobile from "./MenuMobile";
@@ -39,7 +39,15 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
   const ForHeader = (option) => {
     setTitle(option.target[option.target.selectedIndex].text);
   };
-
+  if (Object.keys(userInfo).length > 0 && userInfo.shops.length === 0) {
+    toast.error("لطفا ابتدا پروفایل خود را تکمیل کنید", {
+      position: "top-right",
+      closeOnClick: true,
+    });
+    setTimeout(() => {
+      router.replace('https://nakhll.com/profile/dashboard/');
+    }, 3000);
+  }
   return (
     <>
       <ToastContainer />
