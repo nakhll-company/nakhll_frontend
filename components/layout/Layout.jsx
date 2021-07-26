@@ -15,6 +15,7 @@ import { getUserInfo } from "../../redux/actions/user/getUserInfo";
 import { getActiveHojreh } from "../../redux/actions/user/getActiveHojreh";
 // styles
 import styles from "../../styles/components/layout/layout.module.scss";
+import { ToastContainer } from "react-toastify";
 
 function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
   const [selectShop, setselectShop] = useState("");
@@ -41,6 +42,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
 
   return (
     <>
+      <ToastContainer />
       <Head>
         <title>{Title ? `حجره ${Title}` : "داشبورد مدیریت"}</title>
         <link

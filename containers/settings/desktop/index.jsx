@@ -87,6 +87,7 @@ const getCities = async (id) => {
 const DesktopSetting = ({ activeHojreh }) => {
   const [ChoiceBigCity, setChoiceBigCity] = useState("");
   const [ChoiceState, setChoiceState] = useState("");
+  const [ChoiceCity, setChoiceCity] = useState("");
   const [IsLoading, setIsLoading] = useState(false);
   const [showMessage, setshowMessage] = useState(0);
   const [showMessageHesab, setShowMessageHesab] = useState(0);
@@ -177,6 +178,7 @@ const DesktopSetting = ({ activeHojreh }) => {
           PhoneNumber: body.PhoneNumber,
           BigCity: "",
           State: "",
+          City: ChoiceCity,
           Address: body.Address,
           ZipCode: body.ZipCode,
         },
@@ -373,6 +375,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                           PhoneNumber: data.PhoneNumber,
                           BigCity: ChoiceBigCity,
                           State: ChoiceState,
+                          City: ChoiceCity,
                           Address: data.Address,
                           ZipCode: data.ZipCode,
                         },
@@ -381,18 +384,20 @@ const DesktopSetting = ({ activeHojreh }) => {
                     let params = {};
                     let loadData = dataForSend;
                     let dataUrl = `/api/v1/shop/${activeHojreh}/settings/`;
-                    let response = await ApiRegister().apiRequest(
-                      loadData,
-                      "put",
-                      dataUrl,
-                      true,
-                      params
-                    );
-                    if (response.status === 200) {
+                    try {
+                      const response = await ApiRegister().apiRequest(
+                        loadData,
+                        "put",
+                        dataUrl,
+                        true,
+                        params
+                      );
+                      if (response.status === 200) {
+                        setIsLoading(false);
+                        setshowMessage(1);
+                      }
+                    } catch (error) {
                       setIsLoading(false);
-                      // good
-                      setshowMessage(1);
-                    } else {
                       // Not Good
                       setshowMessage(2);
                     }
@@ -415,7 +420,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                               <Field
                                 name="Title"
                                 type="text"
-                              // defaultValue={apiSetting.Title}
+                                // defaultValue={apiSetting.Title}
                               />
                               {touched.Title && errors.Title ? (
                                 <small className={styles.error}>
@@ -449,7 +454,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                               <Field
                                 name="slug"
                                 type="text"
-                              // defaultValue={apiSetting.Slug}
+                                // defaultValue={apiSetting.Slug}
                               />
                               {touched.slug && errors.slug ? (
                                 <small className={styles.error}>
@@ -578,10 +583,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                               <Field
                                 name="PhoneNumber"
                                 type="text"
-                              // defaultValue={
-                              //   apiSetting.FK_ShopManager &&
-                              //   apiSetting.FK_ShopManager.User_Profile.PhoneNumber
-                              // }
+                                // defaultValue={
+                                //   apiSetting.FK_ShopManager &&
+                                //   apiSetting.FK_ShopManager.User_Profile.PhoneNumber
+                                // }
                               />
                             </div>
                           </div>
@@ -608,7 +613,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                                 setSelectBigCities(
                                   await getBigCities(event.target.value)
                                 );
-                                setChoiceState(event.target.value.name);
+
+                                setChoiceState(
+                                  event.target[event.target.selectedIndex].text
+                                );
                               }}
                             >
                               <option value="" disabled>
@@ -631,6 +639,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                                 setSelectCities(
                                   await getCities(event.target.value)
                                 );
+
+                                setChoiceBigCity(
+                                  event.target[event.target.selectedIndex].text
+                                );
                               }}
                             >
                               <option value="" disabled>
@@ -650,7 +662,11 @@ const DesktopSetting = ({ activeHojreh }) => {
                               name="City"
                               defaultValue=""
                               onChange={(event) => {
-                                setChoiceBigCity(event.target.value);
+                                setChoiceCity(event.target.value);
+                                console.log(
+                                  "event.target.value :>> ",
+                                  event.target.value
+                                );
                               }}
                             >
                               <option value="" disabled>
@@ -680,10 +696,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                                 name="Address"
                                 rows="4"
                                 cols="50"
-                              // defaultValue={
-                              //   apiSetting.FK_ShopManager &&
-                              //   apiSetting.FK_ShopManager.User_Profile.Address
-                              // }
+                                // defaultValue={
+                                //   apiSetting.FK_ShopManager &&
+                                //   apiSetting.FK_ShopManager.User_Profile.Address
+                                // }
                               />
                               {touched.Address && errors.Address ? (
                                 <small className={styles.error}>
