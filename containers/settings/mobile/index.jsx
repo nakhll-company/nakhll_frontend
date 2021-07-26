@@ -497,7 +497,7 @@ function MobileSetting({ activeHojreh }) {
                           }}
                         >
                           <option value="" disabled>
-                            برای باز شدن لیست کلیک کنید
+                            {apiSetting.FK_ShopManager.User_Profile.State}
                           </option>
                           {selectState.map((value, index) => {
                             return (
@@ -522,7 +522,7 @@ function MobileSetting({ activeHojreh }) {
                           }}
                         >
                           <option value="" disabled>
-                            برای باز شدن لیست کلیک کنید
+                            {apiSetting.FK_ShopManager.User_Profile.BigCity}
                           </option>
                           {selectBigCities.map((value, index) => {
                             return (
@@ -542,7 +542,7 @@ function MobileSetting({ activeHojreh }) {
                           }}
                         >
                           <option value="" disabled>
-                            برای باز شدن لیست کلیک کنید
+                            {apiSetting.FK_ShopManager.User_Profile.City}{" "}
                           </option>
                           {selectCities.map((value, index) => {
                             return (

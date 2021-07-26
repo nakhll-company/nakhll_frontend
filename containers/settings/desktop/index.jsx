@@ -154,6 +154,9 @@ const DesktopSetting = ({ activeHojreh }) => {
         true,
         params
       );
+      setChoiceState(response.data.FK_ShopManager.User_Profile.State);
+      setChoiceBigCity(response.data.FK_ShopManager.User_Profile.BigCity);
+      setChoiceCity(response.data.FK_ShopManager.User_Profile.City);
 
       if (response.status === 200) {
         setApiSetting(await response.data);
@@ -381,6 +384,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                         },
                       },
                     };
+                    console.log(dataForSend);
                     let params = {};
                     let loadData = dataForSend;
                     let dataUrl = `/api/v1/shop/${activeHojreh}/settings/`;
@@ -620,7 +624,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                               }}
                             >
                               <option value="" disabled>
-                                برای باز شدن لیست کلیک کنید
+                                {apiSetting.FK_ShopManager.User_Profile.State}
                               </option>
                               {selectState.map((value, index) => {
                                 return (
@@ -646,7 +650,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                               }}
                             >
                               <option value="" disabled>
-                                برای باز شدن لیست کلیک کنید
+                                {apiSetting.FK_ShopManager.User_Profile.BigCity}
                               </option>
                               {selectBigCities.map((value, index) => {
                                 return (
@@ -666,7 +670,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                               }}
                             >
                               <option value="" disabled>
-                                برای باز شدن لیست کلیک کنید
+                                {apiSetting.FK_ShopManager.User_Profile.City}{" "}
                               </option>
                               {selectCities.map((value, index) => {
                                 return (
