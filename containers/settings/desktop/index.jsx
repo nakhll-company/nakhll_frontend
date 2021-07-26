@@ -85,8 +85,9 @@ const getCities = async (id) => {
 // });
 
 const DesktopSetting = ({ activeHojreh }) => {
-  const [ChoiceBigCity, setChoiceBigCity] = useState(null);
-  const [ChoiceState, setChoiceState] = useState(null);
+  const [ChoiceBigCity, setChoiceBigCity] = useState("");
+  const [ChoiceState, setChoiceState] = useState("");
+  const [ChoiceCity, setChoiceCity] = useState("");
   const [IsLoading, setIsLoading] = useState(false);
   const [showMessage, setshowMessage] = useState(0);
   const [showMessageHesab, setShowMessageHesab] = useState(0);
@@ -181,6 +182,7 @@ const DesktopSetting = ({ activeHojreh }) => {
           PhoneNumber: body.PhoneNumber,
           BigCity: "",
           State: "",
+          City: ChoiceCity,
           Address: body.Address,
           ZipCode: body.ZipCode,
         },
@@ -380,13 +382,14 @@ const DesktopSetting = ({ activeHojreh }) => {
                           PhoneNumber: data.PhoneNumber,
                           BigCity: ChoiceBigCity,
                           State: ChoiceState,
+                          City: ChoiceCity,
                           Address: data.Address,
                           ZipCode: data.ZipCode,
                         },
                       },
                     };
-                    
-                    // console.log('miii :>> ', dataForSend);
+
+                    console.log("miii :>> ", dataForSend);
                     let params = {};
                     let loadData = dataForSend;
                     let dataUrl = `/api/v1/shop/${activeHojreh}/settings/`;
@@ -401,7 +404,6 @@ const DesktopSetting = ({ activeHojreh }) => {
                       if (response.status === 200) {
                         setIsLoading(false);
                         setshowMessage(1);
-                        
                       }
                     } catch (error) {
                       setIsLoading(false);
@@ -668,7 +670,13 @@ const DesktopSetting = ({ activeHojreh }) => {
                               className={styles.form_select}
                               name="City"
                               defaultValue=""
-                              onChange={(event) => {}}
+                              onChange={(event) => {
+                                setChoiceCity(event.target.value);
+                                console.log(
+                                  "event.target.value :>> ",
+                                  event.target.value
+                                );
+                              }}
                             >
                               <option value="" disabled>
                                 برای باز شدن لیست کلیک کنید

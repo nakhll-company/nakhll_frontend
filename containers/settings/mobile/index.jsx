@@ -60,6 +60,7 @@ const getCities = async (id) => {
 function MobileSetting({ activeHojreh }) {
   const [ChoiceBigCity, setChoiceBigCity] = useState(null);
   const [ChoiceState, setChoiceState] = useState(null);
+  const [ChoiceCity, setChoiceCity] = useState(null);
   let [selectState, setSelectState] = useState([]);
   let [selectBigCities, setSelectBigCities] = useState([]);
   let [selectCities, setSelectCities] = useState([]);
@@ -325,6 +326,7 @@ function MobileSetting({ activeHojreh }) {
                         PhoneNumber: data.PhoneNumber,
                         BigCity: ChoiceBigCity,
                         State: ChoiceState,
+                        City: ChoiceCity,
                         Address: data.Address,
                         ZipCode: data.ZipCode,
                       },
@@ -544,7 +546,9 @@ function MobileSetting({ activeHojreh }) {
                           className={styles.form_select}
                           name="City"
                           defaultValue=""
-                          onChange={(event) => {}}
+                          onChange={(event) => {
+                            setChoiceCity(event.target.value);
+                          }}
                         >
                           <option value="" disabled>
                             برای باز شدن لیست کلیک کنید
