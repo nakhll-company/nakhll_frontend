@@ -58,8 +58,8 @@ const getCities = async (id) => {
 };
 
 function MobileSetting({ activeHojreh }) {
-  const [ChoiceBigCity, setChoiceBigCity] = useState("");
-  const [ChoiceState, setChoiceState] = useState("");
+  const [ChoiceBigCity, setChoiceBigCity] = useState(null);
+  const [ChoiceState, setChoiceState] = useState(null);
   let [selectState, setSelectState] = useState([]);
   let [selectBigCities, setSelectBigCities] = useState([]);
   let [selectCities, setSelectCities] = useState([]);
@@ -330,22 +330,27 @@ function MobileSetting({ activeHojreh }) {
                       },
                     },
                   };
+                  console.log("dataForSend :>> ", dataForSend);
+
                   // console.log('miii :>> ', dataForSend);
                   let params = {};
                   let loadData = dataForSend;
                   let dataUrl = `/api/v1/shop/${activeHojreh}/settings/`;
-                  let response = await ApiRegister().apiRequest(
-                    loadData,
-                    "put",
-                    dataUrl,
-                    true,
-                    params
-                  );
-                  if (response.status === 200) {
+                  try {
+                    let response = await ApiRegister().apiRequest(
+                      loadData,
+                      "put",
+                      dataUrl,
+                      true,
+                      params
+                    );
+                    if (response.status === 200) {
+                      setIsLoading(false);
+                      // good
+                      setshowMessage(1);
+                    }
+                  } catch (error) {
                     setIsLoading(false);
-                    // good
-                    setshowMessage(1);
-                  } else {
                     // Not Good
                     setshowMessage(2);
                   }
@@ -493,7 +498,9 @@ function MobileSetting({ activeHojreh }) {
                               await getBigCities(event.target.value)
                             );
 
-                            setChoiceState(event.target.value.name);
+                            setChoiceState(
+                              event.target[event.target.selectedIndex].text
+                            );
                           }}
                         >
                           <option value="" disabled>
@@ -516,6 +523,9 @@ function MobileSetting({ activeHojreh }) {
                             setSelectCities(
                               await getCities(event.target.value)
                             );
+                            setChoiceBigCity(
+                              event.target[event.target.selectedIndex].text
+                            );
                           }}
                         >
                           <option value="" disabled>
@@ -534,9 +544,7 @@ function MobileSetting({ activeHojreh }) {
                           className={styles.form_select}
                           name="City"
                           defaultValue=""
-                          onChange={(event) => {
-                            setChoiceBigCity(event.target.value);
-                          }}
+                          onChange={(event) => {}}
                         >
                           <option value="" disabled>
                             برای باز شدن لیست کلیک کنید
