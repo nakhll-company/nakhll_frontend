@@ -1,5 +1,4 @@
 // node libraries
-import Image from "next/image";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
 import Cropper from "react-easy-crop";
@@ -20,7 +19,7 @@ import styles from "../../../../styles/pages/product/create.module.scss";
  */
 const CreateProduct = ({ activeHojreh }) => {
   // useform
-  const { setValue, clearErrors, register, setError, handleSubmit, watch, formState: { errors } } = useForm({
+  const { setValue, getValues, clearErrors, register, setError, handleSubmit, watch, formState: { errors } } = useForm({
     criteriaMode: 'all',
   });
   // submit
@@ -34,8 +33,6 @@ const CreateProduct = ({ activeHojreh }) => {
     let product_status = document.querySelector("input[type=radio]:checked").value;
 
     if (err) {
-      setshowMessage(0);
-      setIsLoading(true);
       let confirm = {
         Title: data.Title,
         Inventory: Add,
@@ -99,8 +96,6 @@ const CreateProduct = ({ activeHojreh }) => {
           paramsImages
         );
         if (responseImages.status === 200) {
-          setIsLoading(false);
-          setshowMessage(1);
           setShowSuccessPage(true);
         }
       }
@@ -123,13 +118,9 @@ const CreateProduct = ({ activeHojreh }) => {
   const [previewImage, setPreviewImage] = useState(null);
   const [Add, setAdd] = useState(1);
   const [AddPreparationDays, setAddPreparationDays] = useState(1);
-  const [isErrorWeight, setIsErrorWeight] = useState(false);
-  const [isErrorPrice, setIsErrorPrice] = useState(false);
   const [submarketId, setSubmarketId] = useState(null);
   const [showSuccessPage, setShowSuccessPage] = useState(false);
   const [isLoad, setIsLoad] = useState(false);
-  const [IsLoading, setIsLoading] = useState(false);
-  const [showMessage, setshowMessage] = useState(0);
   const router = useRouter()
   const { id } = router.query
   // copy product
@@ -289,26 +280,6 @@ const CreateProduct = ({ activeHojreh }) => {
       document.getElementById("product-image-upload").disabled = true;
     }
   };
-  // validate check Weight
-  const _checkWeight = () => {
-    let Net_Weight = parseInt(document.getElementById("Net_Weight").value);
-    let Weight_With_Packing = parseInt(document.getElementById("Weight_With_Packing").value);
-    if (Net_Weight >= Weight_With_Packing) {
-      setIsErrorWeight(true);
-    } else {
-      setIsErrorWeight(false);
-    }
-  };
-  // validate check price
-  const _checkPrice = () => {
-    let Price = parseInt(document.getElementById("Price").value);
-    let OldPrice = parseInt(document.getElementById("OldPrice").value);
-    if (OldPrice > Price) {
-      setIsErrorPrice(true);
-    } else {
-      setIsErrorPrice(false);
-    }
-  };
   // remove Image
   const _removeImage = (item) => {
     let listRemoveImage = window.localStorage.getItem("image");
@@ -423,7 +394,7 @@ const CreateProduct = ({ activeHojreh }) => {
                   </label>
                   <div className={styles.wrapper_input_suffixText}>
                     <input style={{ outline: "unset", border: "unset" }}
-                      id="Net_Weight" name="Net_Weight" type="number"
+                      id="Net_Weight" type="number"
                       {...register("Net_Weight", {
                         required: 'لطفا این گزینه را پرنمایید',
                         min: {
@@ -431,7 +402,6 @@ const CreateProduct = ({ activeHojreh }) => {
                           message: 'لطفا اعداد بزرگتر از صفر وارد نمایید'
                         }
                       })}
-                      onChange={(e) => _checkWeight(e.target.value)}
                     />
                     <div>
                       <p>گرم</p>
@@ -446,26 +416,21 @@ const CreateProduct = ({ activeHojreh }) => {
                   </label>
                   <div className={styles.wrapper_input_suffixText}>
                     <input style={{ outline: "unset", border: "unset" }}
-                      id="Weight_With_Packing" name="Weight_With_Packing" type="number"
+                      id="Weight_With_Packing" type="number"
                       {...register("Weight_With_Packing", {
                         required: 'لطفا این گزینه را پرنمایید',
                         min: {
                           value: 0,
                           message: 'لطفا اعداد بزرگتر از صفر وارد نمایید'
-                        }
+                        },
+                        validate: value => value > getValues("Net_Weight") || 'وزن با بسته بندی باید بیشتر از وزن  خالص باشد'
                       })}
-                      onChange={(e) => _checkWeight(e.target.value)}
                     />
                     <div>
                       <p>گرم</p>
                     </div>
                   </div>
                   {errors.Weight_With_Packing && <span style={{ color: "red", fontSize: "14px" }}>{errors.Weight_With_Packing.message}</span>}
-                  {isErrorWeight && (
-                    <p style={{ color: "red", fontSize: "14px" }} className="text-danger">
-                      وزن مشخص شده، می‌بایست بیشتر از وزن خالص محصول باشد
-                    </p>
-                  )}
                 </div>
                 {/* price */}
                 <div className={styles.wrapper_input}>
@@ -474,7 +439,7 @@ const CreateProduct = ({ activeHojreh }) => {
                   </label>
                   <div className={styles.wrapper_input_suffixText}>
                     <input style={{ outline: "unset", border: "unset" }} id="Price"
-                      name="Price" type="number"
+                      type="number"
                       {...register("Price", {
                         required: 'لطفا این گزینه را پرنمایید',
                         min: {
@@ -482,7 +447,6 @@ const CreateProduct = ({ activeHojreh }) => {
                           message: 'لطفا اعداد بزرگتر از 500 وارد نمایید'
                         }
                       })}
-                      onChange={(e) => _checkPrice(e.target.value)}
                     />
                     <div>
                       <p>تومان</p>
@@ -497,25 +461,20 @@ const CreateProduct = ({ activeHojreh }) => {
                   </label>
                   <div className={styles.wrapper_input_suffixText}>
                     <input style={{ outline: "unset", border: "unset" }} id="OldPrice"
-                      name="OldPrice" type="number" defaultValue={0}
+                      type="number" defaultValue={0}
                       {...register("OldPrice", {
                         min: {
                           value: 0,
                           message: 'لطفا اعداد بزرگتر از صفر وارد نمایید'
-                        }
+                        },
+                        validate: value => value <= getValues("Price") || 'قیمت با تخفیف باید کمتر از قیمت اصلی باشد'
                       })}
-                      onChange={(e) => _checkPrice(e.target.value)}
                     />
                     <div>
                       <p>تومان</p>
                     </div>
                   </div>
                   {errors.OldPrice && <span style={{ color: "red", fontSize: "14px" }}>{errors.OldPrice.message}</span>}
-                  {isErrorPrice && (
-                    <p style={{ color: "red", fontSize: "14px" }} className="text-danger">
-                      قیمت مشخص شده برای تخفیف، می‌بایست کمتر از قیمت اصلی باشد
-                    </p>
-                  )}
                 </div>
                 {/* discription */}
                 <div className={styles.wrapper_input}>
@@ -674,34 +633,6 @@ const CreateProduct = ({ activeHojreh }) => {
                   `}
                   </style>
                 </div>
-                {/* loading foe send api */}
-                {IsLoading && (<div style={{ display: "flex", alignItems: "center" }}>
-                  <div className={styles.loader}>
-                    <Image src="/image/LOGO_500.png" alt="Picture of the author"
-                      width={50} height={50} />
-                  </div>
-                  <h3 className={styles.nameLoding} style={{ fontSize: "15px", color: "hsl(211deg 100% 50%)" }}>
-                    در حال بروزرسانی ...
-                  </h3>
-                </div>
-                )}
-                {/* success message */}
-                {showMessage == 1 && (
-                  <div>
-                    <h3 style={{ color: "green" }}>
-                      به روز رسانی با موفقیت انجام شد.
-                    </h3>
-                  </div>
-                )}
-                {/* error message */}
-                {showMessage == 2 && (
-                  <div>
-                    <h3 style={{ color: "red" }}>
-                      عملیات به روز رسانی موفقیت آمیز نبود.لطفا باری
-                      دیگر اقدام کنید.
-                    </h3>
-                  </div>
-                )}
                 {/* button submit */}
                 <div>
                   <button type="submit" className={styles.form_buttonSubmit}>

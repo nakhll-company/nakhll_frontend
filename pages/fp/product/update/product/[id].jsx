@@ -94,8 +94,6 @@ const UpdateProduct = ({ activeHojreh }) => {
   const [previewImage, setPreviewImage] = useState(null);
   const [Add, setAdd] = useState(1);
   const [AddPreparationDays, setAddPreparationDays] = useState(1);
-  const [isErrorWeight, setIsErrorWeight] = useState(false);
-  const [isErrorPrice, setIsErrorPrice] = useState(false);
   const [submarketId, setSubmarketId] = useState(null);
   const [isLoad, setIsLoad] = useState(false);
   // get edit date
@@ -256,26 +254,6 @@ const UpdateProduct = ({ activeHojreh }) => {
       document.getElementById("product-image-upload").disabled = true;
     }
   };
-  // check weight
-  const _checkWeight = () => {
-    let Net_Weight = parseInt(document.getElementById("Net_Weight").value);
-    let Weight_With_Packing = parseInt(document.getElementById("Weight_With_Packing").value);
-    if (Net_Weight >= Weight_With_Packing) {
-      setIsErrorWeight(true);
-    } else {
-      setIsErrorWeight(false);
-    }
-  };
-  // check price
-  const _checkPrice = () => {
-    let Price = parseInt(document.getElementById("Price").value);
-    let OldPrice = parseInt(document.getElementById("OldPrice").value);
-    if (OldPrice > Price) {
-      setIsErrorPrice(true);
-    } else {
-      setIsErrorPrice(false);
-    }
-  };
   // function for remove image
   const _removeImage = (item) => {
     let listRemoveImage = window.localStorage.getItem("image");
@@ -371,10 +349,7 @@ const UpdateProduct = ({ activeHojreh }) => {
 
                 <div className="mt-4">
                   <div>
-                    <h5
-                      style={{ color: "#007aff", fontSize: "14px" }}
-                      className="mb-0 d-inline mr-20"
-                    >
+                    <h5 style={{ color: "#007aff", fontSize: "14px" }} className="mb-0 d-inline mr-20">
                       جزئیات محصول
                     </h5>
                   </div>
@@ -386,20 +361,21 @@ const UpdateProduct = ({ activeHojreh }) => {
                     وزن خالص محصول
                   </label>
                   <div className={styles.wrapper_input_suffixText}>
-                    <input
-                      style={{ outline: "unset", border: "unset" }}
-                      id="Net_Weight"
-                      name="Net_Weight"
-                      type="number"
-                      {...register("Net_Weight", { required: true })}
-                      onChange={(e) => _checkWeight(e.target.value)}
-
+                    <input style={{ outline: "unset", border: "unset" }}
+                      id="Net_Weight" type="number"
+                      {...register("Net_Weight", {
+                        required: 'لطفا این گزینه را پرنمایید',
+                        min: {
+                          value: 0,
+                          message: 'لطفا اعداد بزرگتر از صفر وارد نمایید'
+                        }
+                      })}
                     />
                     <div>
                       <p>گرم</p>
                     </div>
                   </div>
-                  {errors.Net_Weight && <span style={{ color: "red", fontSize: "14px" }}>لطفا این گزینه را پر کنید</span>}
+                  {errors.Net_Weight && <span style={{ color: "red", fontSize: "14px" }}>{errors.Net_Weight.message}</span>}
                 </div>
                 {/* wight with packing */}
                 <div className={styles.wrapper_input}>
@@ -407,23 +383,21 @@ const UpdateProduct = ({ activeHojreh }) => {
                     وزن با بسته بندی
                   </label>
                   <div className={styles.wrapper_input_suffixText}>
-                    <input style={{ outline: "unset", border: "unset" }} id="Weight_With_Packing" name="Weight_With_Packing" type="number"
-                      {...register("Weight_With_Packing", { required: true })}
-                      onChange={(e) => _checkWeight(e.target.value)}
+                    <input style={{ outline: "unset", border: "unset" }} id="Weight_With_Packing" type="number"
+                      {...register("Weight_With_Packing", {
+                        required: 'لطفا این گزینه را پرنمایید',
+                        min: {
+                          value: 0,
+                          message: 'لطفا اعداد بزرگتر از صفر وارد نمایید'
+                        },
+                        validate: value => value > getValues("Net_Weight") || 'وزن با بسته بندی باید بیشتر از وزن  خالص باشد'
+                      })}
                     />
                     <div>
                       <p>گرم</p>
                     </div>
                   </div>
-                  {errors.Weight_With_Packing && <span style={{ color: "red", fontSize: "14px" }}>لطفا این گزینه را پر کنید</span>}
-                  {isErrorWeight && (
-                    <p
-                      style={{ color: "red", fontSize: "14px" }}
-                      className="text-danger"
-                    >
-                      وزن مشخص شده، می‌بایست بیشتر از وزن خالص محصول باشد
-                    </p>
-                  )}
+                  {errors.Weight_With_Packing && <span style={{ color: "red", fontSize: "14px" }}>{errors.Weight_With_Packing.message}</span>}
                 </div>
                 {/* price */}
                 <div className={styles.wrapper_input}>
@@ -431,16 +405,21 @@ const UpdateProduct = ({ activeHojreh }) => {
                     قیمت محصول
                   </label>
                   <div className={styles.wrapper_input_suffixText}>
-                    <input style={{ outline: "unset", border: "unset" }} id="Price" name="Price"
+                    <input style={{ outline: "unset", border: "unset" }} id="Price"
                       type="number"
-                      {...register("Price", { required: true })}
-                      onChange={(e) => _checkPrice(e.target.value)}
+                      {...register("Price", {
+                        required: 'لطفا این گزینه را پرنمایید',
+                        min: {
+                          value: 500,
+                          message: 'لطفا اعداد بزرگتر از 500 وارد نمایید'
+                        }
+                      })}
                     />
                     <div>
                       <p>تومان</p>
                     </div>
                   </div>
-                  {errors.Price && <span style={{ color: "red", fontSize: "14px" }}>لطفا این گزینه را پر کنید</span>}
+                  {errors.Price && <span style={{ color: "red", fontSize: "14px" }}>{errors.Price.message}</span>}
                 </div>
                 {/* price with Discount */}
                 <div className={styles.wrapper_input}>
@@ -448,19 +427,20 @@ const UpdateProduct = ({ activeHojreh }) => {
                     قیمت محصول با تخفیف (اختیاری){" "}
                   </label>
                   <div className={styles.wrapper_input_suffixText}>
-                    <input style={{ outline: "unset", border: "unset" }} id="OldPrice" name="OldPrice" type="number"
-                      onChange={(e) => _checkPrice(e.target.value)}
+                    <input style={{ outline: "unset", border: "unset" }} id="OldPrice" type="number"
+                      {...register("OldPrice", {
+                        min: {
+                          value: 0,
+                          message: 'لطفا اعداد بزرگتر از صفر وارد نمایید'
+                        },
+                        validate: value => value <= getValues("Price") || 'قیمت با تخفیف باید کمتر از قیمت اصلی باشد'
+                      })}
                     />
                     <div>
                       <p>تومان</p>
                     </div>
                   </div>
-                  {isErrorPrice && (
-                    <p style={{ color: "red", fontSize: "14px" }} className="text-danger"
-                    >
-                      قیمت مشخص شده برای تخفیف، می‌بایست کمتر از قیمت اصلی باشد
-                    </p>
-                  )}
+                  {errors.OldPrice && <span style={{ color: "red", fontSize: "14px" }}>{errors.OldPrice.message}</span>}
                 </div>
                 {/* discription */}
                 <div className={styles.wrapper_input}>
@@ -529,7 +509,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                       </button>
                     </div>
                     <p style={{ fontSize: "13px", color: "#5E7488" }}>
-                      زمان آماده سازی : آماده برای ارسال بعد از سفارش مستری
+                      زمان آماده سازی : آماده برای ارسال بعد از سفارش مشتری
                     </p>
                   </div>
                 </div>
