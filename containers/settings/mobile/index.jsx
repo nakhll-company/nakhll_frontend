@@ -11,6 +11,12 @@ import { Field, Form, Formik } from "formik";
 import * as yup from "yup";
 import { Loading } from "../../../components/custom/Loading/Loading";
 
+// validation
+import { VALIDATION_SCHEMA, VALIDATION_HESAB } from "../methods/Validation";
+
+// component
+import Headers from "../components/Headers/Headers";
+
 const getStates = async () => {
   let params = {};
   let loadData = null;
@@ -70,50 +76,6 @@ function MobileSetting({ activeHojreh }) {
   const [IsLoadingHesab, setIsLoadingHesab] = useState(false);
   const [MainLoading, setMainLoading] = useState(true);
 
-  // Validation for Hojreh
-  const VALIDATION_SCHEMA = yup.object().shape({
-    Title: yup.string().required("نام حجره الزامی می باشد."),
-    slug: yup.string().required("آدرس اینترنتی حجره الزامی می باشد."),
-    Description: yup.string(),
-    NationalCode: yup
-      .number()
-      .integer()
-      .typeError("فقط عدد مجاز است.")
-      // .min(10, "کد ملی ده رقم می باشد.")
-      // .max(10, "کد ملی ده رقم می باشد.")
-      .required("کد ملی الزامی می باشد."),
-    MobileNumber: yup
-      .number()
-      .typeError("فقط عدد مجاز است.")
-
-      // .min(11, "شماره موبایل 11 رقم می باشد.")
-      // .max(11, "شماره موبایل 11 رقم می باشد.")
-      .required("شماره موبایل الزامی می باشد"),
-    PhoneNumber: yup.number(),
-
-    Address: yup.string().required("آدرس الزامی می باشد."),
-    ZipCode: yup
-      .number()
-      .typeError("فقط عدد مجاز است.")
-      .required("کد پستی الزامی می باشد."),
-  });
-
-  // Validation for HesabBanki
-
-  const VALIDATION_HESAB = yup.object().shape({
-    PhoneNumber: yup.number(),
-
-    iban: yup
-      .number()
-      .integer("فقط عدد مجاز می باشد.")
-      .min(100000000000000000000000, "شماره شبا ۲۴ رقم می باشد.")
-      .max(999999999999999999999999, "شماره شبا ۲۴ رقم می باشد.")
-
-      .required("شماره شبا الزامی می باشد.")
-      .typeError("فقط عدد مجاز است."),
-    owner: yup.string().required("نام صاحب حساب الزامی  می باشد."),
-  });
-
   const [apiSetting, setApiSetting] = useState({});
   const [onMenu, setOnMenu] = useState("1");
 
@@ -140,36 +102,6 @@ function MobileSetting({ activeHojreh }) {
     activeHojreh.length > 0 && _handleRequestApi();
   }, [activeHojreh]);
 
-  const setting = (body) => {
-    const dataForSend = {
-      Title: body.Title,
-      Slug: body.slug,
-      Description: body.Description,
-      FK_ShopManager: {
-        User_Profile: {
-          NationalCode: body.NationalCode,
-          MobileNumber: body.MobileNumber,
-          PhoneNumber: body.PhoneNumber,
-          BigCity: "",
-          State: "",
-          Address: body.Address,
-          ZipCode: body.ZipCode,
-        },
-      },
-    };
-
-    let params = {};
-    let loadData = dataForSend;
-    let dataUrl = `/api/v1/shop/${activeHojreh}/settings/`;
-    let response = ApiRegister().apiRequest(
-      loadData,
-      "put",
-      dataUrl,
-      true,
-      params
-    );
-  };
-
   const linkSetting = (body) => {
     const dataForSendLink = {
       social_media: {
@@ -191,86 +123,12 @@ function MobileSetting({ activeHojreh }) {
     );
   };
 
-  const HesabBankiForm = (body) => {
-    const dataHesabBankiForSend = {
-      bank_account: {
-        iban: body.iban,
-        owner: body.owner,
-      },
-    };
-
-    let params = {};
-    let loadData = dataHesabBankiForSend;
-    let dataUrl = `/api/v1/shop/${activeHojreh}/settings/bank_account/`;
-
-    let response = ApiRegister().apiRequest(
-      loadData,
-      "put",
-      dataUrl,
-      true,
-      params
-    );
-  };
-
   return (
     <div dir="rtl" className={styles.setting}>
       {/* Header Site */}
-      <div className={styles.header}>
-        <div className={styles.header_title}>
-          <h1>
-            تنظیمات{" "}
-            <i
-              className="fas fa-chevron-left"
-              style={{
-                marginRight: "2px",
-                marginLeft: "2px",
-                display: "inline-block",
-              }}
-            ></i>
-          </h1>
-          {onMenu == "1" && <h1>حجره</h1>}
-          {onMenu == "2" && <h1> حساب بانکی</h1>}
-          {onMenu == "3" && <h1> ارسال</h1>}
-          {onMenu == "4" && <h1> لینک ها</h1>}
-        </div>
 
-        {/* Header MenuBar */}
-        <div className={styles.header_menu}>
-          <button
-            onClick={() => {
-              setOnMenu("1");
-            }}
-            className={styles.header_menu_btn}
-          >
-            <h1 className={onMenu == "1" && styles.onBtn}>حجره</h1>
-          </button>
-
-          <button
-            onClick={() => {
-              setOnMenu("2");
-            }}
-            className={styles.header_menu_btn}
-          >
-            <h1 className={onMenu == "2" && styles.onBtn}>حساب بانکی</h1>
-          </button>
-          <button
-            onClick={() => {
-              setOnMenu("3");
-            }}
-            className={styles.header_menu_btn}
-          >
-            <h1 className={onMenu == "3" && styles.onBtn}>ارسال</h1>
-          </button>
-          <button
-            onClick={() => {
-              setOnMenu("4");
-            }}
-            className={styles.header_menu_btn}
-          >
-            <h1 className={onMenu == "4" && styles.onBtn}>لینک ها</h1>
-          </button>
-        </div>
-      </div>
+      {/* Header Site */}
+      <Headers onMenu={onMenu} setOnMenu={setOnMenu}></Headers>
 
       {/* Setting Conttent */}
       <div className={styles.wrapper}>
