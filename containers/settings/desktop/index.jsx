@@ -424,7 +424,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                               <Field
                                 name="Title"
                                 type="text"
-                                // defaultValue={apiSetting.Title}
+                              // defaultValue={apiSetting.Title}
                               />
                               {touched.Title && errors.Title ? (
                                 <small className={styles.error}>
@@ -458,7 +458,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                               <Field
                                 name="slug"
                                 type="text"
-                                // defaultValue={apiSetting.Slug}
+                              // defaultValue={apiSetting.Slug}
                               />
                               {touched.slug && errors.slug ? (
                                 <small className={styles.error}>
@@ -587,10 +587,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                               <Field
                                 name="PhoneNumber"
                                 type="text"
-                                // defaultValue={
-                                //   apiSetting.FK_ShopManager &&
-                                //   apiSetting.FK_ShopManager.User_Profile.PhoneNumber
-                                // }
+                              // defaultValue={
+                              //   apiSetting.FK_ShopManager &&
+                              //   apiSetting.FK_ShopManager.User_Profile.PhoneNumber
+                              // }
                               />
                             </div>
                           </div>
@@ -667,10 +667,6 @@ const DesktopSetting = ({ activeHojreh }) => {
                               defaultValue=""
                               onChange={(event) => {
                                 setChoiceCity(event.target.value);
-                                console.log(
-                                  "event.target.value :>> ",
-                                  event.target.value
-                                );
                               }}
                             >
                               <option value="" disabled>
@@ -700,10 +696,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                                 name="Address"
                                 rows="4"
                                 cols="50"
-                                // defaultValue={
-                                //   apiSetting.FK_ShopManager &&
-                                //   apiSetting.FK_ShopManager.User_Profile.Address
-                                // }
+                              // defaultValue={
+                              //   apiSetting.FK_ShopManager &&
+                              //   apiSetting.FK_ShopManager.User_Profile.Address
+                              // }
                               />
                               {touched.Address && errors.Address ? (
                                 <small className={styles.error}>

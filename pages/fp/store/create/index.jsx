@@ -2,10 +2,14 @@
 import Head from "next/head";
 import { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
+import { connect } from "react-redux";
+import { toast } from "react-toastify";
 // components
 import MobileHeader from '../../../../components/mobileHeader';
 import useViewport from '../../../../components/viewPort';
 import SuccessPage from '../../../../containers/store/successPage';
+import { mapDispatch } from '../../../../containers/store/methods/mapDispatch';
+import { mapState } from '../../../../containers/store/methods/mapState';
 // methods
 import { getStates } from '../../../../containers/store/methods/getStates';
 import { getBigCities } from '../../../../containers/store/methods/getBigCities';
@@ -14,7 +18,7 @@ import { createStore } from '../../../../containers/store/methods/createStore';
 // styles
 import styles from '../../../../styles/pages/store/createStore.module.scss';
 
-export default function NewStore() {
+function NewStore({ getUserInfo, userInfo }) {
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
@@ -22,6 +26,11 @@ export default function NewStore() {
         let response = await createStore(data);
         if (response.status === 201) {
             setShowSuccessPage(showSuccessPage => !showSuccessPage);
+        } else {
+            toast.error("خطایی در ایجاد حجره پیش آمده است", {
+                position: "top-right",
+                closeOnClick: true,
+            });
         }
     };
 
@@ -38,6 +47,7 @@ export default function NewStore() {
     useEffect(async () => {
         // state
         setSelectState(await getStates());
+        Object.keys(userInfo).length === 0 && await getUserInfo();
     }, []);
 
     return (
@@ -54,84 +64,92 @@ export default function NewStore() {
                 />
             </Head>
             {width < breakpoint && <MobileHeader title="ثبت حجره" type="close" />}
+            <h1 className={styles.info_completed}>لطفا ابتدا اطلاعات پروفایل خود را تکمیل کنید</h1>
             {/* form */}
-            <form className={styles.form}
-                onSubmit={handleSubmit(onSubmit)}
-            >
-                <div className={styles.form_right}>
-                    {/* title */}
-                    <label className={styles.form_label}>نام حجره</label>
-                    <input placeholder="پسته کرمان" className={styles.form_input} {...register("Title", { required: true })} />
-                    {errors.Title && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
-                    {/* slug */}
-                    <label className={styles.form_label}>آدرس اینترنتی حجره</label>
-                    <input style={{ textAlign: "left" }} className={styles.form_input}
-                        placeholder="/nakhll.com" {...register("Slug", { required: true })} />
-                    {errors.Slug && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
-                    {/* state */}
-                    <label className={styles.form_label}>استان</label>
-                    <select className={styles.form_select}  {...register("State", { required: true })} onChange={async (event) => {
-                        setSelectBigCities(await getBigCities(event.target.value));
-                    }}>
-                        <option></option>
-                        {selectState.map((value, index) => {
-                            return (
-                                <option key={index} value={value.id}>{value.name}</option>
-                            );
-                        })}
-                    </select>
-                    {errors.State && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
-                    {/* big city */}
-                    <label className={styles.form_label}>شهرستان</label>
-                    <select className={styles.form_select} {...register("BigCity", { required: true })} onChange={async (event) => {
-                        setSelectCities(await getCities(event.target.value));
-                    }}>
-                        <option></option>
-                        {selectBigCities.map((value, index) => {
-                            return (
-                                <option key={index} value={value.id}>{value.name}</option>
-                            );
-                        })}
-                    </select>
-                    {errors.BigCity && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
-                    {/* city */}
-                    <label className={styles.form_label}>شهر</label>
-                    <select className={styles.form_select} {...register("City", { required: true })}>
-                        <option></option>
-                        {selectCities.map((value, index) => {
-                            return (
-                                <option key={index} value={value.id}>{value.name}</option>
-                            );
-                        })}
-                    </select>
-                    {errors.City && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
-                    {/* roles */}
-                    <label className={styles.form_label}>
-                        <input className={styles.form_checkbox} type="checkbox" {...register("roles", { required: true })} />
-                        <a>قوانین</a> را به طور کامل مطالعه کردم و آنها را می پذیرم
-                    </label>
-                    {errors.roles && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
-                    {/* show contact info */}
-                    <label className={styles.form_label}>
-                        <input className={styles.form_checkbox} type="checkbox"  {...register("show_contact_info")} />
-                        مایل به نمایش شماره تماس جهت ارتباط کاربران با خود هستم
-                    </label>
-                    {/* button submit */}
-                    <div className={styles.wrapper_submit}>
-                        <button className={styles.button_submit} type="submit">ثبت حجره</button>
+            {userInfo && userInfo.user && userInfo.user.first_name && userInfo.user.last_name &&
+                userInfo.sex && userInfo.national_code && userInfo.state && userInfo.big_city
+                && userInfo.city && userInfo.zip_code && userInfo.address && userInfo.phone_number &&
+                userInfo.birth_day &&
+                <form className={styles.form}
+                    onSubmit={handleSubmit(onSubmit)}
+                >
+                    <div className={styles.form_right}>
+                        {/* title */}
+                        <label className={styles.form_label}>نام حجره</label>
+                        <input placeholder="پسته کرمان" className={styles.form_input} {...register("Title", { required: true })} />
+                        {errors.Title && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
+                        {/* slug */}
+                        {/* <label className={styles.form_label}>آدرس اینترنتی حجره</label>
+                        <input style={{ textAlign: "left" }} className={styles.form_input}
+                            placeholder="/nakhll.com" {...register("Slug", { required: true })} />
+                        {errors.Slug && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>} */}
+                        {/* state */}
+                        <label className={styles.form_label}>استان</label>
+                        <select className={styles.form_select}  {...register("State", { required: true })} onChange={async (event) => {
+                            setSelectBigCities(await getBigCities(event.target.value));
+                        }}>
+                            <option></option>
+                            {selectState.map((value, index) => {
+                                return (
+                                    <option key={index} value={value.id}>{value.name}</option>
+                                );
+                            })}
+                        </select>
+                        {errors.State && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
+                        {/* big city */}
+                        <label className={styles.form_label}>شهرستان</label>
+                        <select className={styles.form_select} {...register("BigCity", { required: true })} onChange={async (event) => {
+                            setSelectCities(await getCities(event.target.value));
+                        }}>
+                            <option></option>
+                            {selectBigCities.map((value, index) => {
+                                return (
+                                    <option key={index} value={value.id}>{value.name}</option>
+                                );
+                            })}
+                        </select>
+                        {errors.BigCity && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
+                        {/* city */}
+                        <label className={styles.form_label}>شهر</label>
+                        <select className={styles.form_select} {...register("City", { required: true })}>
+                            <option></option>
+                            {selectCities.map((value, index) => {
+                                return (
+                                    <option key={index} value={value.id}>{value.name}</option>
+                                );
+                            })}
+                        </select>
+                        {errors.City && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
+                        {/* roles */}
+                        <label className={styles.form_label}>
+                            <input className={styles.form_checkbox} type="checkbox" {...register("roles", { required: true })} />
+                            <a>قوانین</a> را به طور کامل مطالعه کردم و آنها را می پذیرم
+                        </label>
+                        {errors.roles && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
+                        {/* show contact info */}
+                        <label className={styles.form_label}>
+                            <input className={styles.form_checkbox} type="checkbox"  {...register("show_contact_info")} />
+                            مایل به نمایش شماره تماس جهت ارتباط کاربران با خود هستم
+                        </label>
+                        {/* button submit */}
+                        <div className={styles.wrapper_submit}>
+                            <button className={styles.button_submit} type="submit">ثبت حجره</button>
+                        </div>
                     </div>
-                </div>
-                {/* left side */}
-                <div className={styles.form_left}>
-                    <p>
-                        نام حجره خود را به زبان فارسی انتخاب کنید. نام حجره باید مختص شما و جز مالکیت شخص دیگری نباشد. سعی شود تا نام نامناسب و بیگانه استفاده نباشد. این نام هویت و شخصیت شماست و برای کاربران نمایش داده می شود.
-                    </p>
-                    <p style={{ margin: "0px" }}>
-                        آدرس اینترنتی، نشانی حجره شما در نخل است. نام حجره خود را ﺑﺎ ﺣﺮوف و اﻋﺪاد اﻧﮕﻠﯿﺴﯽ ﺑﻨﻮﯾﺴﯿﺪ. برای فاصه از (_) استفاده کنید.
-                    </p>
-                </div>
-            </form>
+                    {/* left side */}
+                    <div className={styles.form_left}>
+                        <p>
+                            نام حجره خود را به زبان فارسی انتخاب کنید. نام حجره باید مختص شما و جز مالکیت شخص دیگری نباشد. سعی شود تا نام نامناسب و بیگانه استفاده نباشد. این نام هویت و شخصیت شماست و برای کاربران نمایش داده می شود.
+                        </p>
+                        <p style={{ margin: "0px" }}>
+                            آدرس اینترنتی، نشانی حجره شما در نخل است. نام حجره خود را ﺑﺎ ﺣﺮوف و اﻋﺪاد اﻧﮕﻠﯿﺴﯽ ﺑﻨﻮﯾﺴﯿﺪ. برای فاصه از (_) استفاده کنید.
+                        </p>
+                    </div>
+                </form>
+            }
             {showSuccessPage && <SuccessPage />}
         </div>
     );
 }
+const connector = connect(mapState, mapDispatch);
+export default connector(NewStore);

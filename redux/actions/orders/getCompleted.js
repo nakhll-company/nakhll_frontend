@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { ApiRegister } from '../../../services/apiRegister/ApiRegister';
 import * as Types from '../../types/orders'; // constants
 // action of accounting list
@@ -23,6 +24,9 @@ export const getCompleted = (activeHojreh) => async dispatch => {
         }
 
     } catch (error) {
-
+        toast.error("در دریافت داده ها خطایی رخ داده است", {
+            position: "top-right",
+            closeOnClick: true,
+        });
     }
 }

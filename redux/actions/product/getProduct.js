@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { ApiRegister } from '../../../services/apiRegister/ApiRegister';
 import * as Types from '../../types/product'; // constants
 // action of accounting list
@@ -32,6 +33,9 @@ export const getProduct = (
             }
 
         } catch (error) {
-
+            toast.error("در دریافت داده ها خطایی رخ داده است", {
+                position: "top-right",
+                closeOnClick: true,
+            });
         }
     }
