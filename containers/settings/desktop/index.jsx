@@ -384,7 +384,6 @@ const DesktopSetting = ({ activeHojreh }) => {
                         },
                       },
                     };
-                    console.log(dataForSend);
                     let params = {};
                     let loadData = dataForSend;
                     let dataUrl = `/api/v1/shop/${activeHojreh}/settings/`;

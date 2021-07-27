@@ -1,9 +1,9 @@
 // node libraries
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { connect } from "react-redux";
 import Cropper from "react-easy-crop";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import { useCallback, useEffect, useState } from "react";
 // components
 import MyLayout from "../../../../../components/layout/Layout";
@@ -20,11 +20,12 @@ import styles from "../../../../../styles/pages/product/create.module.scss";
  */
 const UpdateProduct = ({ activeHojreh }) => {
 
+  const router = useRouter();
+  const { id } = router.query;
   // react form hook
   const { setValue, clearErrors, register, setError, handleSubmit, watch, formState: { errors } } = useForm({
     criteriaMode: 'all',
   });
-
   // on submit
   const onSubmit = async (data) => {
     let err = false
@@ -33,17 +34,12 @@ const UpdateProduct = ({ activeHojreh }) => {
     } else {
       err = true
     }
-    let product_status = document.querySelector(
-      "input[type=radio]:checked"
-    ).value;
+    let product_status = document.querySelector("input[type=radio]:checked").value;
     // if error is true
     if (err) {
-      setshowMessage(0);
-      setIsLoading(true);
       let confirm = {
         Title: data.Title,
         Inventory: Add,
-        Slug: activeHojreh,
         Price: data.Price,
         OldPrice: data.OldPrice,
         Net_Weight: data.Net_Weight,
@@ -53,65 +49,35 @@ const UpdateProduct = ({ activeHojreh }) => {
         PostRangeType: 1,
         PreparationDays: AddPreparationDays,
         FK_Shop: activeHojreh,
+        FK_SubMarket: submarketId,
+        Product_Banner: previewImage
       };
 
       let paramsProduct = {};
       let loadDataProduct = confirm;
-      let dataUrlProduct = "/api/v1/landing/products/";
+      let dataUrlProduct = `/api/v1/landing/products/${id}/`;
       let response = await ApiRegister().apiRequest(
         loadDataProduct,
-        "post",
+        "PUT",
         dataUrlProduct,
         true,
         paramsProduct
       );
-      var resultId = response.data.ID
-
-      if (resultId) {
-        let idProduct = {
-          "product": resultId,
-          "submarkets": [
-            submarketId
-          ]
-        }
-
-        let paramssubmarkets = {};
-        let loadDatasubmarkets = idProduct;
-        let dataUrlsubmarkets = "/api/v1/product/categories/";
-        let responsesubmarkets = await ApiRegister().apiRequest(
-          loadDatasubmarkets,
-          "post",
-          dataUrlsubmarkets,
-          true,
-          paramssubmarkets
-        );
-
-        let imagesProduct = {
-          "product": resultId,
-          "images":
-            previewImage
-
-        }
-
-        let paramsImages = {};
-        let loadDataImages = imagesProduct;
-        let dataUrlImages = "/api/v1/product/images/";
-        let responseImages = await ApiRegister().apiRequest(
-          loadDataImages,
-          "post",
-          dataUrlImages,
-          true,
-          paramsImages
-        );
-        if (responseImages.status === 200) {
-          setIsLoading(false);
-          setshowMessage(1);
-          setShowSuccessPage(true);
-        }
+      // check status code
+      if (response.status === 200) {
+        toast.success("محصول شما با موفقیت ثبت شد", {
+          position: "top-right",
+          closeOnClick: true,
+        });
+      } else {
+        toast.error("در ویرایش اطلاعات مشکلی پیش آمده است", {
+          position: "top-right",
+          closeOnClick: true,
+        });
       }
     }
   };// close on submit function
-
+  // state
   const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState("");
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
@@ -131,12 +97,7 @@ const UpdateProduct = ({ activeHojreh }) => {
   const [isErrorWeight, setIsErrorWeight] = useState(false);
   const [isErrorPrice, setIsErrorPrice] = useState(false);
   const [submarketId, setSubmarketId] = useState(null);
-  const [showSuccessPage, setShowSuccessPage] = useState(false);
   const [isLoad, setIsLoad] = useState(false);
-  const [IsLoading, setIsLoading] = useState(false);
-  const [showMessage, setshowMessage] = useState(0);
-  const router = useRouter()
-  const { id } = router.query
   // get edit date
   const _editProduct = async () => {
     let params = null;
@@ -209,7 +170,6 @@ const UpdateProduct = ({ activeHojreh }) => {
   const AddPreparationDayss = () => {
     setAddPreparationDays(AddPreparationDays + 1);
   };
-
   // submarket
   function clickButton(e) {
     setSelectList(e.id);
@@ -218,7 +178,7 @@ const UpdateProduct = ({ activeHojreh }) => {
     setPage(2);
     settitle(e.title);
   }
-
+  // finalClick
   function finalClick(e) {
     let element = document.getElementById("wrapperMarkets");
     element.style.display = "none";
@@ -230,7 +190,7 @@ const UpdateProduct = ({ activeHojreh }) => {
     setPage((page) => page - 1);
     clearErrors("submark")
   }
-
+  // GoBack
   function GoBack() {
     if (page === 1) {
       let element = document.getElementById("wrapperMarkets");
@@ -248,12 +208,11 @@ const UpdateProduct = ({ activeHojreh }) => {
     let elementProduct = document.getElementById("wrapper_product");
     elementProduct.style.display = "none";
   };
-
   // cropper
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
-
+  // onFileChange
   const onFileChange = async (e) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
@@ -263,7 +222,7 @@ const UpdateProduct = ({ activeHojreh }) => {
       elementImageProduct.style.display = "block";
     }
   };
-
+  // readFile
   function readFile(file) {
     return new Promise((resolve) => {
       const reader = new FileReader()
@@ -283,8 +242,13 @@ const UpdateProduct = ({ activeHojreh }) => {
     const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
     if (croppedImage) {
       let listImage = window.localStorage.getItem("image");
-      var prev = JSON.parse(listImage)
-      setPreviewImage(prev);
+      var prev = JSON.parse(listImage);
+      let temp = prev.map((value) => {
+        return {
+          image: value
+        }
+      });
+      setPreviewImage(temp);
     }
     let elementImageProduct = document.getElementById("crop_container");
     elementImageProduct.style.display = "none";
@@ -314,10 +278,8 @@ const UpdateProduct = ({ activeHojreh }) => {
   };
   // function for remove image
   const _removeImage = (item) => {
-    let itemImage = [item]
     let listRemoveImage = window.localStorage.getItem("image");
-    var removeImage = JSON.parse(listRemoveImage)
-    let list = [...itemImage, ...removeImage]
+    let removeImage = JSON.parse(listRemoveImage)
     let testt = removeImage.filter((itemRemove) => { return itemRemove.includes(item) ? "" : itemRemove });
     window.localStorage.setItem("image", JSON.stringify(testt));
     setPreviewImage(testt);
@@ -651,34 +613,6 @@ const UpdateProduct = ({ activeHojreh }) => {
                   `}
                   </style>
                 </div>
-                {/* updating */}
-                {IsLoading && (
-                  <div style={{ display: "flex", alignItems: "center" }}>
-                    <div className={styles.loader}>
-                      <Image src="/image/LOGO_500.png" alt="Picture of the author" width={50} height={50} />
-                    </div>
-                    <h3 className={styles.nameLoding} style={{ fontSize: "15px", color: "hsl(211deg 100% 50%)" }}>
-                      در حال بروزرسانی ...
-                    </h3>
-                  </div>
-                )}
-                {/* success updated */}
-                {showMessage == 1 && (
-                  <div>
-                    <h3 style={{ color: "green" }}>
-                      به روز رسانی با موفقیت انجام شد.
-                    </h3>
-                  </div>
-                )}
-                {/* fail */}
-                {showMessage == 2 && (
-                  <div>
-                    <h3 style={{ color: "red" }}>
-                      عملیات به روز رسانی موفقیت آمیز نبود.لطفا باری
-                      دیگر اقدام کنید.
-                    </h3>
-                  </div>
-                )}
                 {/* button update */}
                 <div>
                   <button type="submit" className={styles.form_buttonSubmit}>

@@ -65,13 +65,8 @@ function NewStore({ getUserInfo, userInfo }) {
             </Head>
             {width < breakpoint && <MobileHeader title="ثبت حجره" type="close" />}
             {/* form */}
-            {(userInfo && userInfo.user && userInfo.user.first_name && userInfo.user.last_name &&
-                userInfo.sex && userInfo.national_code && userInfo.state && userInfo.big_city
-                && userInfo.city && userInfo.zip_code && userInfo.address && userInfo.phone_number &&
-                userInfo.birth_day) ?
-                <form className={styles.form}
-                    onSubmit={handleSubmit(onSubmit)}
-                >
+            {(userInfo && userInfo.user && userInfo.user.first_name && userInfo.user.last_name) ?
+                <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
                     <div className={styles.form_right}>
                         {/* title */}
                         <label className={styles.form_label}>نام حجره</label>
@@ -145,7 +140,7 @@ function NewStore({ getUserInfo, userInfo }) {
                         </p> */}
                     </div>
                 </form> :
-                <h1 className={styles.info_completed}>لطفا ابتدا اطلاعات پروفایل خود را تکمیل کنید</h1>
+                <h1 className={styles.info_completed}>لطفا ابتدا نام و نام خانوادگی خود را وارد کنید</h1>
             }
             {showSuccessPage && <SuccessPage />}
         </div>
