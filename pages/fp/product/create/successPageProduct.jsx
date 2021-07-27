@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 // styles
-import styles from '../../../../styles/pages/store/successPage.module.scss';
+import styles from '../../../../styles/pages/product/successPage.module.scss';
 
 export default function SuccessPageProduct() {
     return (

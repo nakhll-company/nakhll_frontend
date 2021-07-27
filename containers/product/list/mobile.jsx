@@ -45,7 +45,7 @@ const MobileList = ({ loading, productList, activeHojreh }) => {
                 :
                 productList.length > 0 ? productList.map((value, index) => {
                     return (
-                        <Link href={`/fp/product/updateProduct/${value.id}`} key={index}>
+                        <Link href={`/fp/product/update/product/${value.id}`} key={index}>
                             <div className={`${styles.product_card}`}>
                                 <div className={styles.first_row}>
                                     <div className={styles.product_name_wrapper}>

@@ -66,7 +66,7 @@ function MenuMobile() {
             e.currentTarget.classList.add("active");
           }}
         >
-          <i className="fas fa-windows" style={{ fontSize: "20px" }}></i>
+          <i className="fas fa-store" style={{ fontSize: "20px" }}></i>
           <h2 style={{ fontSize: "13px" }}>حجره</h2>
         </span>
       </Link>

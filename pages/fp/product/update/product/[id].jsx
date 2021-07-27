@@ -1,20 +1,19 @@
 // node libraries
 import Image from "next/image";
-import Cropper from "react-easy-crop";
 import { useRouter } from "next/router";
 import { connect } from "react-redux";
-import { useCallback, useEffect, useState } from "react";
+import Cropper from "react-easy-crop";
 import { useForm } from "react-hook-form";
+import { useCallback, useEffect, useState } from "react";
 // components
-import MyLayout from "../../../../components/layout/Layout";
-import Loading from "../../../../components/loading/index";
-import SuccessPageProduct from "../../../../containers/product/create/sucsses";
+import MyLayout from "../../../../../components/layout/Layout";
+import Loading from "../../../../../components/loading/index";
 // methods
-import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
-import { mapState } from "../../../../containers/order/methods/mapState";
-import { getCroppedImg } from "../../../../containers/product/create/canvasUtils";
+import { ApiRegister } from "../../../../../services/apiRegister/ApiRegister";
+import { mapState } from "../../../../../containers/product/methods/mapState";
+import { getCroppedImg } from "../../../../../containers/product/create/canvasUtils";
 // styles
-import styles from "../../../../styles/pages/product/create.module.scss";
+import styles from "../../../../../styles/pages/product/create.module.scss";
 /**
  * page update product
  * @param {string} activeHojreh => it has slug name
@@ -779,7 +778,6 @@ const UpdateProduct = ({ activeHojreh }) => {
             </div>
           </div>
         </div>
-        {showSuccessPage && <SuccessPageProduct />}
       </>
     );
   } else {
