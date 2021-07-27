@@ -1,14 +1,23 @@
 // node libraries
 import { useEffect, useState } from "react";
+import Image from "next/image";
+
 // scss
 import styles from "../../../styles/pages/setting/setting.module.scss";
 
+// methods
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-import Image from "next/image";
+
 // form
 import { Formik, Form, Field, FieldArray } from "formik";
 import * as yup from "yup";
+
+// components
 import { Loading } from "../../../components/custom/Loading/Loading";
+import Headers from "../components/Headers/Headers";
+
+// validation
+import { VALIDATION_SCHEMA, VALIDATION_HESAB } from "../methods/Validation";
 
 const getStates = async () => {
   let params = {};
@@ -25,6 +34,7 @@ const getStates = async () => {
     return response.data;
   }
 };
+
 const getBigCities = async (id) => {
   let params = {};
   let loadData = null;
@@ -40,6 +50,7 @@ const getBigCities = async (id) => {
     return response.data;
   }
 };
+
 const getCities = async (id) => {
   let params = {};
   let loadData = null;
@@ -55,92 +66,21 @@ const getCities = async (id) => {
     return response.data;
   }
 };
-// const FORM_VALIDAITIOM = Yup.object().shape({
-//   firstName: Yup.string().required("الزامی"),
-//   lastName: Yup.string().required("الزامی"),
-//   email: Yup.string().email("وجود ندارد").required("الزامی"),
-//   phone: Yup.number()
-//     .integer()
-//     .typeError("مقدار  نامجرا است")
-//     .required("الزامی"),
-//   addressLine1: Yup.string().required("الزامی"),
-//   addressLine2: Yup.string(),
-//   citey: Yup.string().required("الزامی"),
-//   state: Yup.string().required("الزامی"),
-//   countery: Yup.string().required("الزامی"),
-//   arrivelDate: Yup.date().required("الزامی"),
-//   deputureDate: Yup.date().required("الزامی"),
-//   message: Yup.string(),
-//   termsOfService: Yup.boolean()
-//     .oneOf([true], "Ghabool Kardi???")
-//     .required("hatman bayad bezani"),
-//   code:Yup.number().integer().typeError("مقدار نامجزا است").required("الزامی"),
-//   sex:Yup.string().required("الزامی"),
-//   codePosti:Yup.number().integer().typeError("مقدار نامجزا است").required("الزامی"),
-//   telephone:Yup.number()
-//   .integer()
-//   .typeError("type errorr dadai")
-//   .required("الزامی"),
-//   Me:Yup.string(),
-// });
 
 const DesktopSetting = ({ activeHojreh }) => {
+  const [apiSetting, setApiSetting] = useState({});
   const [ChoiceBigCity, setChoiceBigCity] = useState("");
-  const [ChoiceState, setChoiceState] = useState("");
   const [ChoiceCity, setChoiceCity] = useState("");
+  const [ChoiceState, setChoiceState] = useState("");
   const [IsLoading, setIsLoading] = useState(false);
-  const [showMessage, setshowMessage] = useState(0);
-  const [showMessageHesab, setShowMessageHesab] = useState(0);
   const [IsLoadingHesab, setIsLoadingHesab] = useState(false);
   const [MainLoading, setMainLoading] = useState(true);
-
-  // Validation for Hojreh
-  const VALIDATION_SCHEMA = yup.object().shape({
-    Title: yup.string().required("نام حجره الزامی می باشد."),
-    slug: yup.string().required("آدرس اینترنتی حجره الزامی می باشد."),
-    Description: yup.string(),
-    NationalCode: yup
-      .number()
-      .integer()
-      .typeError("فقط عدد مجاز است.")
-      // .min(10, "کد ملی ده رقم می باشد.")
-      // .max(10, "کد ملی ده رقم می باشد.")
-      .required("کد ملی الزامی می باشد."),
-    MobileNumber: yup
-      .number()
-      .typeError("فقط عدد مجاز است.")
-
-      // .min(11, "شماره موبایل 11 رقم می باشد.")
-      // .max(11, "شماره موبایل 11 رقم می باشد.")
-      .required("شماره موبایل الزامی می باشد"),
-    PhoneNumber: yup.number(),
-
-    Address: yup.string().required("آدرس الزامی می باشد."),
-    ZipCode: yup
-      .number()
-      .typeError("فقط عدد مجاز است.")
-      .required("کد پستی الزامی می باشد."),
-  });
-
-  // Validation for HesabBanki
-
-  const VALIDATION_HESAB = yup.object().shape({
-    iban: yup
-      .number()
-      .integer("فقط عدد مجاز می باشد.")
-      .min(100000000000000000000000, "شماره شبا ۲۴ رقم می باشد.")
-      .max(999999999999999999999999, "شماره شبا ۲۴ رقم می باشد.")
-
-      .required("شماره شبا الزامی می باشد.")
-      .typeError("فقط عدد مجاز است."),
-    owner: yup.string().required("نام صاحب حساب الزامی  می باشد."),
-  });
-
-  let [selectState, setSelectState] = useState([]);
-  let [selectBigCities, setSelectBigCities] = useState([]);
-  let [selectCities, setSelectCities] = useState([]);
   const [onMenu, setOnMenu] = useState("1");
-  const [apiSetting, setApiSetting] = useState({});
+  const [selectBigCities, setSelectBigCities] = useState([]);
+  const [selectCities, setSelectCities] = useState([]);
+  const [selectState, setSelectState] = useState([]);
+  const [showMessage, setshowMessage] = useState(0);
+  const [showMessageHesab, setShowMessageHesab] = useState(0);
 
   useEffect(() => {
     const _handleRequestApi = async () => {
@@ -169,37 +109,6 @@ const DesktopSetting = ({ activeHojreh }) => {
     activeHojreh.length > 0 && _handleRequestApi();
   }, [activeHojreh]);
 
-  const setting = async (body) => {
-    const dataForSend = {
-      Title: body.Title,
-      Slug: body.slug,
-      Description: body.Description,
-      FK_ShopManager: {
-        User_Profile: {
-          NationalCode: body.NationalCode,
-          MobileNumber: body.MobileNumber,
-          PhoneNumber: body.PhoneNumber,
-          BigCity: "",
-          State: "",
-          City: ChoiceCity,
-          Address: body.Address,
-          ZipCode: body.ZipCode,
-        },
-      },
-    };
-
-    let params = {};
-    let loadData = dataForSend;
-    let dataUrl = `/api/v1/shop/${activeHojreh}/settings/`;
-    let response = await ApiRegister().apiRequest(
-      loadData,
-      "put",
-      dataUrl,
-      true,
-      params
-    );
-  };
-
   const linkSetting = (body) => {
     const dataForSendLink = {
       social_media: {
@@ -221,90 +130,15 @@ const DesktopSetting = ({ activeHojreh }) => {
     );
   };
 
-  const HesabBankiForm = (body) => {
-    const dataHesabBankiForSend = {
-      bank_account: {
-        iban: body.iban,
-        owner: body.owner,
-      },
-    };
-
-    let params = {};
-    let loadData = dataHesabBankiForSend;
-    let dataUrl = `/api/v1/shop/${activeHojreh}/settings/bank_account/`;
-
-    let response = ApiRegister().apiRequest(
-      loadData,
-      "put",
-      dataUrl,
-      true,
-      params
-    );
-  };
   return (
     <div dir="rtl" className={styles.setting}>
       {/* Header Site */}
-      <div className={styles.header}>
-        <div className={styles.header_title}>
-          <h1>
-            تنظیمات{" "}
-            <i
-              className="fas fa-chevron-left"
-              style={{
-                marginRight: "2px",
-                marginLeft: "4px",
-                display: "inline-block",
-              }}
-            ></i>
-            {onMenu == "1" && <span>حجره</span>}
-            {onMenu == "2" && <span> حساب بانکی</span>}
-            {onMenu == "3" && <span> ارسال</span>}
-            {onMenu == "4" && <span> لینک ها</span>}
-          </h1>
-        </div>
-
-        {/* Header MenuBar */}
-        <div className={styles.header_menu}>
-          <button
-            onClick={() => {
-              setOnMenu("1");
-            }}
-            className={styles.header_menu_btn}
-          >
-            <h1 className={onMenu == "1" && styles.onBtn}>حجره</h1>
-          </button>
-
-          <button
-            onClick={() => {
-              setOnMenu("2");
-            }}
-            className={styles.header_menu_btn}
-          >
-            <h1 className={onMenu == "2" && styles.onBtn}>حساب بانکی</h1>
-          </button>
-          <button
-            onClick={() => {
-              setOnMenu("3");
-            }}
-            className={styles.header_menu_btn}
-          >
-            <h1 className={onMenu == "3" && styles.onBtn}>ارسال</h1>
-          </button>
-          <button
-            onClick={() => {
-              setOnMenu("4");
-            }}
-            className={styles.header_menu_btn}
-          >
-            <h1 className={onMenu == "4" && styles.onBtn}>لینک ها</h1>
-          </button>
-        </div>
-      </div>
+      <Headers onMenu={onMenu} setOnMenu={setOnMenu}></Headers>
 
       {/* Setting Conttent */}
       <div className={styles.wrapper}>
         {/* Hojreh */}
-        {/* TODO  into Formik */}
+
         {onMenu == "1" && (
           <>
             {/* <div className={styles.Hojreh_headD}>
@@ -423,7 +257,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                               <Field
                                 name="Title"
                                 type="text"
-                              // defaultValue={apiSetting.Title}
+                                // defaultValue={apiSetting.Title}
                               />
                               {touched.Title && errors.Title ? (
                                 <small className={styles.error}>
@@ -457,7 +291,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                               <Field
                                 name="slug"
                                 type="text"
-                              // defaultValue={apiSetting.Slug}
+                                // defaultValue={apiSetting.Slug}
                               />
                               {touched.slug && errors.slug ? (
                                 <small className={styles.error}>
@@ -586,10 +420,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                               <Field
                                 name="PhoneNumber"
                                 type="text"
-                              // defaultValue={
-                              //   apiSetting.FK_ShopManager &&
-                              //   apiSetting.FK_ShopManager.User_Profile.PhoneNumber
-                              // }
+                                // defaultValue={
+                                //   apiSetting.FK_ShopManager &&
+                                //   apiSetting.FK_ShopManager.User_Profile.PhoneNumber
+                                // }
                               />
                             </div>
                           </div>
@@ -695,10 +529,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                                 name="Address"
                                 rows="4"
                                 cols="50"
-                              // defaultValue={
-                              //   apiSetting.FK_ShopManager &&
-                              //   apiSetting.FK_ShopManager.User_Profile.Address
-                              // }
+                                // defaultValue={
+                                //   apiSetting.FK_ShopManager &&
+                                //   apiSetting.FK_ShopManager.User_Profile.Address
+                                // }
                               />
                               {touched.Address && errors.Address ? (
                                 <small className={styles.error}>
