@@ -65,9 +65,7 @@ function NewStore({ getUserInfo, userInfo }) {
             </Head>
             {width < breakpoint && <MobileHeader title="ثبت حجره" type="close" />}
             {/* form */}
-            {(userInfo && userInfo.user && userInfo.user.first_name && userInfo.user.last_name
-                && userInfo.sex && userInfo.national_code && userInfo.birth_day && userInfo.state && userInfo.big_city
-                && userInfo.city && userInfo.zip_code && userInfo.address && userInfo.phone_number) ?
+            {(userInfo && userInfo.user && userInfo.user.first_name && userInfo.user.last_name) ?
                 <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
                     <div className={styles.form_right}>
                         {/* title */}
