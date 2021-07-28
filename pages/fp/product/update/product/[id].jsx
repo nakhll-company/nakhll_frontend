@@ -50,7 +50,7 @@ const UpdateProduct = ({ activeHojreh }) => {
         PreparationDays: AddPreparationDays,
         FK_Shop: activeHojreh,
         FK_SubMarket: submarketId,
-        Product_Banner: previewImage
+        // Product_Banner: previewImage
       };
 
       let paramsProduct = {};
@@ -65,7 +65,7 @@ const UpdateProduct = ({ activeHojreh }) => {
       );
       // check status code
       if (response.status === 200) {
-        toast.success("محصول شما با موفقیت ثبت شد", {
+        toast.success("محصول شما با موفقیت ویرایش شد", {
           position: "top-right",
           closeOnClick: true,
         });
@@ -119,7 +119,6 @@ const UpdateProduct = ({ activeHojreh }) => {
       setAddPreparationDays(response.data.preparation_days)
       setIsLoad(true)
       setSubmarketId(response.data.sub_market.id)
-      window.localStorage.setItem("image", [...response.data.banners]);
     }
   }//close edit data
   // use effect
@@ -304,28 +303,28 @@ const UpdateProduct = ({ activeHojreh }) => {
                   <div>
                     <p style={{ fontSize: "14px" }}>تصاویر</p>
                   </div>
-                  <div style={{ color: "#5E7488", fontSize: "14px", marginBottom: "15px" }} className="mt-3">
+                  {/* <div style={{ color: "#5E7488", fontSize: "14px", marginBottom: "15px" }} className="mt-3">
                     حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش
                     داده خواهد شد.
-                  </div>
+                  </div> */}
                   <div className="mt-4" name="mainPhoto">
                     <div className={styles.product_image_container}>
-                      <label style={{ marginTop: 10, marginRight: 10 }} htmlFor="product-image-upload">
+                      {/* <label style={{ marginTop: 10, marginRight: 10 }} htmlFor="product-image-upload">
                         <div className={styles.add_image_container}>
                           <i style={{ fontSize: "25px" }}>+</i>
                           <p style={{ fontSize: "15px" }} className="mt-2">
                             افزودن تصویر
                           </p>
                         </div>
-                      </label>
+                      </label> */}
                       {/* input file */}
-                      <input
+                      {/* <input
                         id="product-image-upload"
                         type="file"
                         style={{ width: "0px", height: "0px", opacity: "0px" }}
                         {...register("product_image_upload", { required: true })}
                         onChange={onFileChange}
-                      ></input>
+                      ></input> */}
                       {/* map image */}
                       {previewImage && (previewImage.map((item, index) => {
                         return (
@@ -363,7 +362,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                       {...register("Net_Weight", {
                         required: 'لطفا این گزینه را پرنمایید',
                         min: {
-                          value: 0,
+                          value: 1,
                           message: 'لطفا اعداد بزرگتر از صفر وارد نمایید'
                         }
                       })}
