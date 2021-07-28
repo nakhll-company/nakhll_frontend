@@ -4,7 +4,6 @@ import Link from "next/link";
 import Head from "next/head";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
-import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 // components
 import useViewport from "../viewPort/index";
@@ -34,29 +33,12 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
         userInfo.shops.length > 0 &&
         getActiveHojreh(userInfo.shops[0].slug);
     }
-    if (userInfo.shops && userInfo.shops.length === 0) {
-      toast.error("لطفا ابتدا حجره خود را ثبت نمایید", {
-        position: "top-right",
-        closeOnClick: true,
-      });
-      setTimeout(() => {
-        router.replace('https://nakhll.com/profile/dashboard/');
-      }, 3000);
-    }
-  }, [userInfo.shops]);
+  }, []);
 
   const ForHeader = (option) => {
     setTitle(option.target[option.target.selectedIndex].text);
   };
-  if (Object.keys(userInfo).length > 0 && userInfo.shops.length === 0) {
-    toast.error("لطفا ابتدا حجره خود را ثبت نمایید", {
-      position: "top-right",
-      closeOnClick: true,
-    });
-    setTimeout(() => {
-      router.replace("https://nakhll.com/fp/store/create");
-    }, 3000);
-  }
+
   return (
     <>
       <ToastContainer />
@@ -100,11 +82,10 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
       )}
 
       <div
-        className={`${
-          width < breakpoint && router.pathname !== "/"
-            ? styles.wrapperProduct
-            : styles.wrapper
-        }`}
+        className={`${width < breakpoint && router.pathname !== "/"
+          ? styles.wrapperProduct
+          : styles.wrapper
+          }`}
       >
         {/* <!-- Right  SideBar--> */}
         {!(width < breakpoint && router.pathname !== "/fp") && (
@@ -157,11 +138,10 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                 </div>
                 <Link href="/fp/setting">
                   <div
-                    className={`${
-                      router.pathname == "/fp/setting"
-                        ? styles.ActiveMenuBarBig
-                        : ""
-                    }   ${styles.info_card_btn_one} ${styles.forhover}`}
+                    className={`${router.pathname == "/fp/setting"
+                      ? styles.ActiveMenuBarBig
+                      : ""
+                      }   ${styles.info_card_btn_one} ${styles.forhover}`}
                   >
                     <i
                       style={{ fontSize: "20px" }}
@@ -188,9 +168,8 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
             <section className={styles.menu_card}>
               <Link href={`/fp`}>
                 <span
-                  className={`${styles.menu_card_item}   ${
-                    router.pathname == "/" ? styles.selectNav : ""
-                  }`}
+                  className={`${styles.menu_card_item}   ${router.pathname == "/" ? styles.selectNav : ""
+                    }`}
                 >
                   <i
                     style={{ marginLeft: "18px", fontSize: "20px" }}
@@ -271,19 +250,17 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                         marginTop: "15px",
                         cursor: "pointer",
                       }}
-                      className={`${styles.subTitleOrder}   ${
-                        router.pathname == "/fp/order/completed"
-                          ? styles.selectNav
-                          : ""
-                      }`}
+                      className={`${styles.subTitleOrder}   ${router.pathname == "/fp/order/completed"
+                        ? styles.selectNav
+                        : ""
+                        }`}
                     >
                       <span
                         style={{ marginLeft: "18px" }}
-                        className={`${styles.dot}   ${
-                          router.pathname == "/fp/order/completed"
-                            ? styles.selectdot
-                            : ""
-                        }`}
+                        className={`${styles.dot}   ${router.pathname == "/fp/order/completed"
+                          ? styles.selectdot
+                          : ""
+                          }`}
                       ></span>
                       <h2>تکمیل شده</h2>
                     </span>
@@ -296,19 +273,17 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                         marginTop: "15px",
                         cursor: "pointer",
                       }}
-                      className={`${styles.subTitleOrder}   ${
-                        router.pathname == "/fp/order/uncompleted"
-                          ? styles.selectNav
-                          : ""
-                      }`}
+                      className={`${styles.subTitleOrder}   ${router.pathname == "/fp/order/uncompleted"
+                        ? styles.selectNav
+                        : ""
+                        }`}
                     >
                       <span
                         style={{ marginLeft: "18px" }}
-                        className={`${styles.dot}   ${
-                          router.pathname == "/fp/order/uncompleted"
-                            ? styles.selectdot
-                            : ""
-                        }`}
+                        className={`${styles.dot}   ${router.pathname == "/fp/order/uncompleted"
+                          ? styles.selectdot
+                          : ""
+                          }`}
                       ></span>
                       <h2>تکمیل نشده</h2>
                     </span>
@@ -318,9 +293,8 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
 
               <Link activeClassName="selectNav" href="/fp/product">
                 <span
-                  className={`${styles.menu_card_item}   ${
-                    router.pathname == "/fp/product" ? styles.selectNav : ""
-                  }`}
+                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/product" ? styles.selectNav : ""
+                    }`}
                 >
                   <i
                     style={{ marginLeft: "18px", fontSize: "20px" }}
@@ -334,9 +308,8 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
         )}
         {/* <!-- Left --> */}
         <div
-          className={`${
-            router.pathname == "/" ? styles.left : styles.leftProduct
-          }`}
+          className={`${router.pathname == "/" ? styles.left : styles.leftProduct
+            }`}
         >
           {children}
         </div>

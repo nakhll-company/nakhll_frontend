@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { toast } from "react-toastify";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useRouter } from "next/router";
 import SwiperCore, {
   EffectFade,
   Autoplay,
@@ -25,6 +26,7 @@ SwiperCore.use([EffectFade, Autoplay, Navigation, Pagination, Scrollbar, A11y]);
  * @param {string} activeHojreh
  */
 function Dashboard({ activeHojreh }) {
+  const router = useRouter();
   //  state
   const [api, setApi] = useState({});
   // useeffect
@@ -57,6 +59,16 @@ function Dashboard({ activeHojreh }) {
     };
 
     activeHojreh.length > 0 && _handleRequestApi();
+
+    if (activeHojreh.length === 0) {
+      toast.error("لطفا ابتدا حجره خود را ثبت نمایید", {
+        position: "top-right",
+        closeOnClick: true,
+      });
+      setTimeout(() => {
+        router.replace("https://nakhll.com/fp/store/create");
+      }, 3000);
+    }
   }, [activeHojreh]);
 
   return (
