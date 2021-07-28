@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { useRouter } from "next/router";
 import Cropper from "react-easy-crop";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import { useCallback, useEffect, useState } from "react";
 // components
 import MyLayout from "../../../../components/layout/Layout";
@@ -59,6 +60,12 @@ const CreateProduct = ({ activeHojreh }) => {
         true,
         paramsProduct
       );
+      if (response.status !== 200) {
+        toast.error("خطایی در ایجاد محصول پیش آمده است", {
+          position: "top-right",
+          closeOnClick: true,
+        });
+      }
       var resultId = response.data.ID
 
       if (resultId) {
@@ -80,6 +87,13 @@ const CreateProduct = ({ activeHojreh }) => {
           paramssubmarkets
         );
 
+        if (responsesubmarkets.status !== 200) {
+          toast.error("خطایی در ایجاد محصول پیش آمده است", {
+            position: "top-right",
+            closeOnClick: true,
+          });
+        }
+
         let imagesProduct = {
           "product": resultId,
           "images":
@@ -99,10 +113,15 @@ const CreateProduct = ({ activeHojreh }) => {
         );
         if (responseImages.status === 200) {
           setShowSuccessPage(true);
+        } else {
+          toast.error("خطایی در ایجاد محصول پیش آمده است", {
+            position: "top-right",
+            closeOnClick: true,
+          });
         }
-        document.getElementById("sumbitButton").disabled = false;
-        document.getElementById("sumbitButton").style.backgroundColor = "rgb(0, 122, 255)";
       }
+      document.getElementById("sumbitButton").disabled = false;
+      document.getElementById("sumbitButton").style.backgroundColor = "rgb(0, 122, 255)";
     }
   };
   // states
