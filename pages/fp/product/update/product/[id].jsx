@@ -1,31 +1,31 @@
 // node libraries
-import Image from "next/image";
-import Cropper from "react-easy-crop";
 import { useRouter } from "next/router";
 import { connect } from "react-redux";
-import { useCallback, useEffect, useState } from "react";
+import Cropper from "react-easy-crop";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { useCallback, useEffect, useState } from "react";
 // components
-import MyLayout from "../../../../components/layout/Layout";
-import Loading from "../../../../components/loading/index";
-import SuccessPageProduct from "../../../../containers/product/create/sucsses";
+import MyLayout from "../../../../../components/layout/Layout";
+import Loading from "../../../../../components/loading/index";
 // methods
-import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
-import { mapState } from "../../../../containers/order/methods/mapState";
-import { getCroppedImg } from "../../../../containers/product/create/canvasUtils";
+import { ApiRegister } from "../../../../../services/apiRegister/ApiRegister";
+import { mapState } from "../../../../../containers/product/methods/mapState";
+import { getCroppedImg } from "../../../../../containers/product/create/canvasUtils";
 // styles
-import styles from "../../../../styles/pages/product/create.module.scss";
+import styles from "../../../../../styles/pages/product/create.module.scss";
 /**
  * page update product
  * @param {string} activeHojreh => it has slug name
  */
 const UpdateProduct = ({ activeHojreh }) => {
 
+  const router = useRouter();
+  const { id } = router.query;
   // react form hook
   const { setValue, clearErrors, register, setError, handleSubmit, watch, formState: { errors } } = useForm({
     criteriaMode: 'all',
   });
-
   // on submit
   const onSubmit = async (data) => {
     let err = false
@@ -34,17 +34,12 @@ const UpdateProduct = ({ activeHojreh }) => {
     } else {
       err = true
     }
-    let product_status = document.querySelector(
-      "input[type=radio]:checked"
-    ).value;
+    let product_status = document.querySelector("input[type=radio]:checked").value;
     // if error is true
     if (err) {
-      setshowMessage(0);
-      setIsLoading(true);
       let confirm = {
         Title: data.Title,
         Inventory: Add,
-        Slug: activeHojreh,
         Price: data.Price,
         OldPrice: data.OldPrice,
         Net_Weight: data.Net_Weight,
@@ -54,65 +49,35 @@ const UpdateProduct = ({ activeHojreh }) => {
         PostRangeType: 1,
         PreparationDays: AddPreparationDays,
         FK_Shop: activeHojreh,
+        FK_SubMarket: submarketId,
+        Product_Banner: previewImage
       };
 
       let paramsProduct = {};
       let loadDataProduct = confirm;
-      let dataUrlProduct = "/api/v1/landing/products/";
+      let dataUrlProduct = `/api/v1/landing/products/${id}/`;
       let response = await ApiRegister().apiRequest(
         loadDataProduct,
-        "post",
+        "PUT",
         dataUrlProduct,
         true,
         paramsProduct
       );
-      var resultId = response.data.ID
-
-      if (resultId) {
-        let idProduct = {
-          "product": resultId,
-          "submarkets": [
-            submarketId
-          ]
-        }
-
-        let paramssubmarkets = {};
-        let loadDatasubmarkets = idProduct;
-        let dataUrlsubmarkets = "/api/v1/product/categories/";
-        let responsesubmarkets = await ApiRegister().apiRequest(
-          loadDatasubmarkets,
-          "post",
-          dataUrlsubmarkets,
-          true,
-          paramssubmarkets
-        );
-
-        let imagesProduct = {
-          "product": resultId,
-          "images":
-            previewImage
-
-        }
-
-        let paramsImages = {};
-        let loadDataImages = imagesProduct;
-        let dataUrlImages = "/api/v1/product/images/";
-        let responseImages = await ApiRegister().apiRequest(
-          loadDataImages,
-          "post",
-          dataUrlImages,
-          true,
-          paramsImages
-        );
-        if (responseImages.status === 200) {
-          setIsLoading(false);
-          setshowMessage(1);
-          setShowSuccessPage(true);
-        }
+      // check status code
+      if (response.status === 200) {
+        toast.success("محصول شما با موفقیت ثبت شد", {
+          position: "top-right",
+          closeOnClick: true,
+        });
+      } else {
+        toast.error("در ویرایش اطلاعات مشکلی پیش آمده است", {
+          position: "top-right",
+          closeOnClick: true,
+        });
       }
     }
   };// close on submit function
-
+  // state
   const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState("");
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
@@ -129,15 +94,8 @@ const UpdateProduct = ({ activeHojreh }) => {
   const [previewImage, setPreviewImage] = useState(null);
   const [Add, setAdd] = useState(1);
   const [AddPreparationDays, setAddPreparationDays] = useState(1);
-  const [isErrorWeight, setIsErrorWeight] = useState(false);
-  const [isErrorPrice, setIsErrorPrice] = useState(false);
   const [submarketId, setSubmarketId] = useState(null);
-  const [showSuccessPage, setShowSuccessPage] = useState(false);
   const [isLoad, setIsLoad] = useState(false);
-  const [IsLoading, setIsLoading] = useState(false);
-  const [showMessage, setshowMessage] = useState(0);
-  const router = useRouter()
-  const { id } = router.query
   // get edit date
   const _editProduct = async () => {
     let params = null;
@@ -210,7 +168,6 @@ const UpdateProduct = ({ activeHojreh }) => {
   const AddPreparationDayss = () => {
     setAddPreparationDays(AddPreparationDays + 1);
   };
-
   // submarket
   function clickButton(e) {
     setSelectList(e.id);
@@ -219,7 +176,7 @@ const UpdateProduct = ({ activeHojreh }) => {
     setPage(2);
     settitle(e.title);
   }
-
+  // finalClick
   function finalClick(e) {
     let element = document.getElementById("wrapperMarkets");
     element.style.display = "none";
@@ -231,7 +188,7 @@ const UpdateProduct = ({ activeHojreh }) => {
     setPage((page) => page - 1);
     clearErrors("submark")
   }
-
+  // GoBack
   function GoBack() {
     if (page === 1) {
       let element = document.getElementById("wrapperMarkets");
@@ -249,12 +206,11 @@ const UpdateProduct = ({ activeHojreh }) => {
     let elementProduct = document.getElementById("wrapper_product");
     elementProduct.style.display = "none";
   };
-
   // cropper
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
-
+  // onFileChange
   const onFileChange = async (e) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
@@ -264,7 +220,7 @@ const UpdateProduct = ({ activeHojreh }) => {
       elementImageProduct.style.display = "block";
     }
   };
-
+  // readFile
   function readFile(file) {
     return new Promise((resolve) => {
       const reader = new FileReader()
@@ -284,8 +240,13 @@ const UpdateProduct = ({ activeHojreh }) => {
     const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
     if (croppedImage) {
       let listImage = window.localStorage.getItem("image");
-      var prev = JSON.parse(listImage)
-      setPreviewImage(prev);
+      var prev = JSON.parse(listImage);
+      let temp = prev.map((value) => {
+        return {
+          image: value
+        }
+      });
+      setPreviewImage(temp);
     }
     let elementImageProduct = document.getElementById("crop_container");
     elementImageProduct.style.display = "none";
@@ -293,32 +254,10 @@ const UpdateProduct = ({ activeHojreh }) => {
       document.getElementById("product-image-upload").disabled = true;
     }
   };
-  // check weight
-  const _checkWeight = () => {
-    let Net_Weight = parseInt(document.getElementById("Net_Weight").value);
-    let Weight_With_Packing = parseInt(document.getElementById("Weight_With_Packing").value);
-    if (Net_Weight >= Weight_With_Packing) {
-      setIsErrorWeight(true);
-    } else {
-      setIsErrorWeight(false);
-    }
-  };
-  // check price
-  const _checkPrice = () => {
-    let Price = parseInt(document.getElementById("Price").value);
-    let OldPrice = parseInt(document.getElementById("OldPrice").value);
-    if (OldPrice > Price) {
-      setIsErrorPrice(true);
-    } else {
-      setIsErrorPrice(false);
-    }
-  };
   // function for remove image
   const _removeImage = (item) => {
-    let itemImage = [item]
     let listRemoveImage = window.localStorage.getItem("image");
-    var removeImage = JSON.parse(listRemoveImage)
-    let list = [...itemImage, ...removeImage]
+    let removeImage = JSON.parse(listRemoveImage)
     let testt = removeImage.filter((itemRemove) => { return itemRemove.includes(item) ? "" : itemRemove });
     window.localStorage.setItem("image", JSON.stringify(testt));
     setPreviewImage(testt);
@@ -410,10 +349,7 @@ const UpdateProduct = ({ activeHojreh }) => {
 
                 <div className="mt-4">
                   <div>
-                    <h5
-                      style={{ color: "#007aff", fontSize: "14px" }}
-                      className="mb-0 d-inline mr-20"
-                    >
+                    <h5 style={{ color: "#007aff", fontSize: "14px" }} className="mb-0 d-inline mr-20">
                       جزئیات محصول
                     </h5>
                   </div>
@@ -425,20 +361,21 @@ const UpdateProduct = ({ activeHojreh }) => {
                     وزن خالص محصول
                   </label>
                   <div className={styles.wrapper_input_suffixText}>
-                    <input
-                      style={{ outline: "unset", border: "unset" }}
-                      id="Net_Weight"
-                      name="Net_Weight"
-                      type="number"
-                      {...register("Net_Weight", { required: true })}
-                      onChange={(e) => _checkWeight(e.target.value)}
-
+                    <input style={{ outline: "unset", border: "unset" }}
+                      id="Net_Weight" type="number"
+                      {...register("Net_Weight", {
+                        required: 'لطفا این گزینه را پرنمایید',
+                        min: {
+                          value: 0,
+                          message: 'لطفا اعداد بزرگتر از صفر وارد نمایید'
+                        }
+                      })}
                     />
                     <div>
                       <p>گرم</p>
                     </div>
                   </div>
-                  {errors.Net_Weight && <span style={{ color: "red", fontSize: "14px" }}>لطفا این گزینه را پر کنید</span>}
+                  {errors.Net_Weight && <span style={{ color: "red", fontSize: "14px" }}>{errors.Net_Weight.message}</span>}
                 </div>
                 {/* wight with packing */}
                 <div className={styles.wrapper_input}>
@@ -446,23 +383,21 @@ const UpdateProduct = ({ activeHojreh }) => {
                     وزن با بسته بندی
                   </label>
                   <div className={styles.wrapper_input_suffixText}>
-                    <input style={{ outline: "unset", border: "unset" }} id="Weight_With_Packing" name="Weight_With_Packing" type="number"
-                      {...register("Weight_With_Packing", { required: true })}
-                      onChange={(e) => _checkWeight(e.target.value)}
+                    <input style={{ outline: "unset", border: "unset" }} id="Weight_With_Packing" type="number"
+                      {...register("Weight_With_Packing", {
+                        required: 'لطفا این گزینه را پرنمایید',
+                        min: {
+                          value: 0,
+                          message: 'لطفا اعداد بزرگتر از صفر وارد نمایید'
+                        },
+                        validate: value => value > getValues("Net_Weight") || 'وزن با بسته بندی باید بیشتر از وزن  خالص باشد'
+                      })}
                     />
                     <div>
                       <p>گرم</p>
                     </div>
                   </div>
-                  {errors.Weight_With_Packing && <span style={{ color: "red", fontSize: "14px" }}>لطفا این گزینه را پر کنید</span>}
-                  {isErrorWeight && (
-                    <p
-                      style={{ color: "red", fontSize: "14px" }}
-                      className="text-danger"
-                    >
-                      وزن مشخص شده، می‌بایست بیشتر از وزن خالص محصول باشد
-                    </p>
-                  )}
+                  {errors.Weight_With_Packing && <span style={{ color: "red", fontSize: "14px" }}>{errors.Weight_With_Packing.message}</span>}
                 </div>
                 {/* price */}
                 <div className={styles.wrapper_input}>
@@ -470,16 +405,21 @@ const UpdateProduct = ({ activeHojreh }) => {
                     قیمت محصول
                   </label>
                   <div className={styles.wrapper_input_suffixText}>
-                    <input style={{ outline: "unset", border: "unset" }} id="Price" name="Price"
+                    <input style={{ outline: "unset", border: "unset" }} id="Price"
                       type="number"
-                      {...register("Price", { required: true })}
-                      onChange={(e) => _checkPrice(e.target.value)}
+                      {...register("Price", {
+                        required: 'لطفا این گزینه را پرنمایید',
+                        min: {
+                          value: 500,
+                          message: 'لطفا اعداد بزرگتر از 500 وارد نمایید'
+                        }
+                      })}
                     />
                     <div>
                       <p>تومان</p>
                     </div>
                   </div>
-                  {errors.Price && <span style={{ color: "red", fontSize: "14px" }}>لطفا این گزینه را پر کنید</span>}
+                  {errors.Price && <span style={{ color: "red", fontSize: "14px" }}>{errors.Price.message}</span>}
                 </div>
                 {/* price with Discount */}
                 <div className={styles.wrapper_input}>
@@ -487,19 +427,20 @@ const UpdateProduct = ({ activeHojreh }) => {
                     قیمت محصول با تخفیف (اختیاری){" "}
                   </label>
                   <div className={styles.wrapper_input_suffixText}>
-                    <input style={{ outline: "unset", border: "unset" }} id="OldPrice" name="OldPrice" type="number"
-                      onChange={(e) => _checkPrice(e.target.value)}
+                    <input style={{ outline: "unset", border: "unset" }} id="OldPrice" type="number"
+                      {...register("OldPrice", {
+                        min: {
+                          value: 0,
+                          message: 'لطفا اعداد بزرگتر از صفر وارد نمایید'
+                        },
+                        validate: value => value <= getValues("Price") || 'قیمت با تخفیف باید کمتر از قیمت اصلی باشد'
+                      })}
                     />
                     <div>
                       <p>تومان</p>
                     </div>
                   </div>
-                  {isErrorPrice && (
-                    <p style={{ color: "red", fontSize: "14px" }} className="text-danger"
-                    >
-                      قیمت مشخص شده برای تخفیف، می‌بایست کمتر از قیمت اصلی باشد
-                    </p>
-                  )}
+                  {errors.OldPrice && <span style={{ color: "red", fontSize: "14px" }}>{errors.OldPrice.message}</span>}
                 </div>
                 {/* discription */}
                 <div className={styles.wrapper_input}>
@@ -568,7 +509,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                       </button>
                     </div>
                     <p style={{ fontSize: "13px", color: "#5E7488" }}>
-                      زمان آماده سازی : آماده برای ارسال بعد از سفارش مستری
+                      زمان آماده سازی : آماده برای ارسال بعد از سفارش مشتری
                     </p>
                   </div>
                 </div>
@@ -652,34 +593,6 @@ const UpdateProduct = ({ activeHojreh }) => {
                   `}
                   </style>
                 </div>
-                {/* updating */}
-                {IsLoading && (
-                  <div style={{ display: "flex", alignItems: "center" }}>
-                    <div className={styles.loader}>
-                      <Image src="/image/LOGO_500.png" alt="Picture of the author" width={50} height={50} />
-                    </div>
-                    <h3 className={styles.nameLoding} style={{ fontSize: "15px", color: "hsl(211deg 100% 50%)" }}>
-                      در حال بروزرسانی ...
-                    </h3>
-                  </div>
-                )}
-                {/* success updated */}
-                {showMessage == 1 && (
-                  <div>
-                    <h3 style={{ color: "green" }}>
-                      به روز رسانی با موفقیت انجام شد.
-                    </h3>
-                  </div>
-                )}
-                {/* fail */}
-                {showMessage == 2 && (
-                  <div>
-                    <h3 style={{ color: "red" }}>
-                      عملیات به روز رسانی موفقیت آمیز نبود.لطفا باری
-                      دیگر اقدام کنید.
-                    </h3>
-                  </div>
-                )}
                 {/* button update */}
                 <div>
                   <button type="submit" className={styles.form_buttonSubmit}>
@@ -779,7 +692,6 @@ const UpdateProduct = ({ activeHojreh }) => {
             </div>
           </div>
         </div>
-        {showSuccessPage && <SuccessPageProduct />}
       </>
     );
   } else {

@@ -87,7 +87,7 @@ export default function Desktop({ loading, productList, activeHojreh, getProduct
                             :
                             productList.length > 0 ? productList.map((value, index) => {
                                 return (
-                                    <Link href={`/fp/product/updateProduct/${value.id}`} key={index}>
+                                    <Link href={`/fp/product/update/product/${value.id}`} key={index}>
                                         <tr>
                                             <td>{index + 1}</td>
                                             <td style={{ display: "flex" }}>

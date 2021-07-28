@@ -14,6 +14,15 @@
     /* Safari, Android, iOS */
     /*url('webfont.svg#svgFontName') format('svg'); !* Legacy iOS *!*/
 }
+@font-face {
+  font-family: 'vazir';
+  src:  url('../public/assets/fonts/Vazir.eot') format('eot'),
+        url('../public/assets/fonts/Vazir.woff') format('woff'),
+        url('../public/assets/fonts/Vazir.woff2') format('woff2'),
+        url('../public/assets/fonts/Vazir.ttf') format('ttf');
+  font-style: normal;
+  font-display: fallback;
+}
 
 :root {
     --background1: #e5e5e5;

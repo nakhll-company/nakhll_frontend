@@ -1,11 +1,11 @@
 // node libraries
+import Image from "next/image";
 import Link from "next/link";
+import Head from "next/head";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import Head from "next/head";
 import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
 // components
 import useViewport from "../viewPort/index";
 import MenuMobile from "./MenuMobile";
@@ -29,25 +29,26 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
   };
   useEffect(() => {
     Object.keys(userInfo).length === 0 && getUserInfo();
-  }, []);
+    if (selectShop.length === 0) {
+      Object.keys(userInfo).length > 0 &&
+        userInfo.shops.length > 0 &&
+        getActiveHojreh(userInfo.shops[0].slug);
+    }
+    if (userInfo.shops && userInfo.shops.length === 0) {
+      toast.error("لطفا ابتدا حجره خود را ثبت نمایید", {
+        position: "top-right",
+        closeOnClick: true,
+      });
+      setTimeout(() => {
+        router.replace('https://nakhll.com/profile/dashboard/');
+      }, 3000);
+    }
+  }, [userInfo.shops]);
 
-  if (selectShop.length === 0) {
-    Object.keys(userInfo).length > 0 &&
-      userInfo.shops.length > 0 &&
-      getActiveHojreh(userInfo.shops[0].slug);
-  }
   const ForHeader = (option) => {
     setTitle(option.target[option.target.selectedIndex].text);
   };
-  if (Object.keys(userInfo).length > 0 && userInfo.shops.length === 0) {
-    toast.error("لطفا ابتدا حجره خود را ثبت نمایید", {
-      position: "top-right",
-      closeOnClick: true,
-    });
-    setTimeout(() => {
-      router.replace('https://nakhll.com/fp/store/create');
-    }, 3000);
-  }
+
   return (
     <>
       <ToastContainer />
@@ -248,21 +249,6 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   </>
                 )}
               </button>
-              {/* <Link
-                // activeClassName="selectNav"
-                href={`/fp/order/?shop=${selectShop}`}
-              >
-                <span
-                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/order" ? styles.selectNav : ""
-                    }`}
-                >
-                  <span
-                    style={{ marginLeft: "18px" }}
-                    className={`fas fa-shopping-basket fa-2x`}
-                  ></span>
-                  <h2>سفارش ها</h2>
-                </span>
-              </Link> */}
               {isShowOrder && (
                 <>
                   <Link
@@ -334,66 +320,6 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   <h2>محصولات</h2>
                 </span>
               </Link>
-              {/* <Link activeClassName="selectNav" href="/fp/customer">
-                <span
-                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/customer" ? styles.selectNav : ""
-                    }`}
-                >
-                  <span
-                    style={{ marginLeft: "18px" }}
-                    className="fas fa-users fa-2x"
-                  ></span>
-                  <h2>لیست مشتریان</h2>
-                </span>
-              </Link>
-              <Link activeClassName="selectNav" href="/fp/comments">
-                <span
-                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/comments" ? styles.selectNav : ""
-                    }`}
-                >
-                  <span
-                    style={{ marginLeft: "18px" }}
-                    className="far fa-comment-dots fa-2x"
-                  ></span>
-                  <h2>دیدگاه ها</h2>
-                </span>
-              </Link>
-              <Link activeClassName="selectNav" href="/fp/financial">
-                <span
-                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/financial" ? styles.selectNav : ""
-                    }`}
-                >
-                  <span
-                    style={{ marginLeft: "25px" }}
-                    className="fas fa-dollar-sign fa-pestehkerman"
-                  ></span>
-                  <h2>مالی</h2>
-                </span>
-              </Link>
-              <Link activeClassName="selectNav" href="/fp/discount">
-                <span
-                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/discount" ? styles.selectNav : ""
-                    }`}
-                >
-                  <span
-                    style={{ marginLeft: "18px" }}
-                    className="fas fa-percent fa-2x"
-                  ></span>
-                  <h2>کدتخفیف</h2>
-                </span>
-              </Link>
-              <Link activeClassName="selectNav" href="/fp/support">
-                <span
-                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/support" ? styles.selectNav : ""
-                    }`}
-                >
-                  <span
-                    style={{ marginLeft: "18px" }}
-                    className="fas fa-life-ring fa-2x"
-                  ></span>
-                  <h2>پشتیبانی</h2>
-                </span>
-              </Link> */}
             </section>
           </div>
         )}

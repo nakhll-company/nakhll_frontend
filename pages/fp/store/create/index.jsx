@@ -64,15 +64,9 @@ function NewStore({ getUserInfo, userInfo }) {
                 />
             </Head>
             {width < breakpoint && <MobileHeader title="ثبت حجره" type="close" />}
-            <h1 className={styles.info_completed}>لطفا ابتدا اطلاعات پروفایل خود را تکمیل کنید</h1>
             {/* form */}
-            {userInfo && userInfo.user && userInfo.user.first_name && userInfo.user.last_name &&
-                userInfo.sex && userInfo.national_code && userInfo.state && userInfo.big_city
-                && userInfo.city && userInfo.zip_code && userInfo.address && userInfo.phone_number &&
-                userInfo.birth_day &&
-                <form className={styles.form}
-                    onSubmit={handleSubmit(onSubmit)}
-                >
+            {(userInfo && userInfo.user && userInfo.user.first_name && userInfo.user.last_name) ?
+                <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
                     <div className={styles.form_right}>
                         {/* title */}
                         <label className={styles.form_label}>نام حجره</label>
@@ -141,11 +135,12 @@ function NewStore({ getUserInfo, userInfo }) {
                         <p>
                             نام حجره خود را به زبان فارسی انتخاب کنید. نام حجره باید مختص شما و جز مالکیت شخص دیگری نباشد. سعی شود تا نام نامناسب و بیگانه استفاده نباشد. این نام هویت و شخصیت شماست و برای کاربران نمایش داده می شود.
                         </p>
-                        <p style={{ margin: "0px" }}>
+                        {/* <p style={{ margin: "0px" }}>
                             آدرس اینترنتی، نشانی حجره شما در نخل است. نام حجره خود را ﺑﺎ ﺣﺮوف و اﻋﺪاد اﻧﮕﻠﯿﺴﯽ ﺑﻨﻮﯾﺴﯿﺪ. برای فاصه از (_) استفاده کنید.
-                        </p>
+                        </p> */}
                     </div>
-                </form>
+                </form> :
+                <h1 className={styles.info_completed}>لطفا ابتدا نام و نام خانوادگی خود را وارد کنید</h1>
             }
             {showSuccessPage && <SuccessPage />}
         </div>

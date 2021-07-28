@@ -7,8 +7,6 @@ const createImage = (url) =>
     image.src = url
   })
 
-
-
 /**
 * This function was adapted from the one in the ReadMe of https://github.com/DominicTobias/react-image-crop
 * @param {File} image - Image File url
@@ -21,11 +19,8 @@ export async function getCroppedImg(imageSrc, pixelCrop,) {
   const canvas = document.createElement('canvas')
   const ctx = canvas.getContext('2d')
 
-
   canvas.width = pixelCrop.width,
     canvas.height = pixelCrop.height,
-
-
     ctx.drawImage(
       image,
       pixelCrop.x,
@@ -38,11 +33,6 @@ export async function getCroppedImg(imageSrc, pixelCrop,) {
       pixelCrop.height
     );
 
-
-
-
-
-
   let prev = []
   prev = [...prev, canvas.toDataURL('image/jpeg')]
   let listImage = window.localStorage.getItem("image");
@@ -50,30 +40,7 @@ export async function getCroppedImg(imageSrc, pixelCrop,) {
   xx.push(canvas.toDataURL('image/jpeg'))
   window.localStorage.setItem("image", JSON.stringify(xx));
   return true
-
-
-  // debugger
-
-
-  // As Base64 string
-  // return canvas.toDataURL('image/jpeg');
-
-  // As a blob
-  // return new Promise((resolve) => {
-  //     debugger
-  //   canvas.toBlob((file) => {
-  //     resolve(URL.createObjectURL(file))
-  //   }, 'image/png')
-  // })
 }
 
-
-// export function getCroppedImg2(){
-
-//   let prev = []
-//   prev= [...prev , canvas.toDataURL('image/jpeg')]
-//   debugger
-//   return prev
-// }
 
 
