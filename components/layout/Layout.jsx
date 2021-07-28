@@ -48,7 +48,15 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
   const ForHeader = (option) => {
     setTitle(option.target[option.target.selectedIndex].text);
   };
-
+  if (Object.keys(userInfo).length > 0 && userInfo.shops.length === 0) {
+    toast.error("لطفا ابتدا حجره خود را ثبت نمایید", {
+      position: "top-right",
+      closeOnClick: true,
+    });
+    setTimeout(() => {
+      router.replace("https://nakhll.com/fp/store/create");
+    }, 3000);
+  }
   return (
     <>
       <ToastContainer />
@@ -103,6 +111,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
           <div className={styles.Right}>
             <section className={styles.info_card}>
               <div className={styles.info_card_pic}>
+                {/* <Image src={userInfo.shops.image_thumbnail_url} layout="fill"></Image> */}
                 <div className={styles.info_card_pic_person}>
                   <Image src="/image/picprofile.png" layout="fill"></Image>
                 </div>

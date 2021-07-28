@@ -1,6 +1,7 @@
 // node libraries
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import ReactCrop from "react-image-crop";
 
 // scss
 import styles from "../../../styles/pages/setting/setting.module.scss";
@@ -82,6 +83,12 @@ const DesktopSetting = ({ activeHojreh }) => {
   const [showMessage, setshowMessage] = useState(0);
   const [showMessageHesab, setShowMessageHesab] = useState(0);
 
+  // state For save picture
+  const [selectImageAvatar, setSelectImageAvatar] = useState(null);
+  const [ImageA, setImage] = useState(null);
+  const [crop, setCrop] = useState({ aspect: 1 / 1 });
+  const [result, setResult] = useState(null);
+
   useEffect(() => {
     const _handleRequestApi = async () => {
       let params = {};
@@ -130,6 +137,68 @@ const DesktopSetting = ({ activeHojreh }) => {
     );
   };
 
+  // For pic Avatar
+  const handelPicAvatar = (e) => {
+    console.log("e.target.files[0] :>> ", e.target.files[0]);
+    console.log(
+      "e.target.files[0] :>> ",
+      URL.createObjectURL(e.target.files[0])
+    );
+    setSelectImageAvatar(URL.createObjectURL(e.target.files[0]));
+  };
+
+  function getCroppedImg() {
+    const canvas = document.createElement("canvas");
+    const scaleX = ImageA.naturalWidth / ImageA.width;
+    const scaleY = ImageA.naturalHeight / ImageA.height;
+    canvas.width = crop.width;
+    canvas.height = crop.height;
+    const ctx = canvas.getContext("2d");
+
+    ctx.drawImage(
+      ImageA,
+      crop.x * scaleX,
+      crop.y * scaleY,
+      crop.width * scaleX,
+      crop.height * scaleY,
+      0,
+      0,
+      crop.width,
+      crop.height
+    );
+    const base64Image = canvas.toDataURL("image/jpeg");
+    console.log("base64Image :>> ", base64Image);
+    setResult(base64Image);
+    const StructurePicAvatar = {
+      image: base64Image,
+    };
+    // Send Avatar Pic to Server
+    const _sendPicAvatar = async (id) => {
+      let params = {};
+      let loadData = StructurePicAvatar;
+
+      let dataUrl = `/api/v1/profile/image/`;
+      let response = await ApiRegister().apiRequest(
+        loadData,
+        "PUT",
+        dataUrl,
+        true,
+        params
+      );
+      if (response.status === 200) {
+        getUncompleted(activeHojreh);
+      } else {
+        toast.error("خطایی در ارسال داده ها پیش آمده است", {
+          position: "top-right",
+          closeOnClick: true,
+        });
+      }
+    };
+    _sendPicAvatar();
+
+    setSelectImageAvatar(null);
+  }
+
   return (
     <div dir="rtl" className={styles.setting}>
       {/* Header Site */}
@@ -141,18 +210,52 @@ const DesktopSetting = ({ activeHojreh }) => {
 
         {onMenu == "1" && (
           <>
-            {/* <div className={styles.Hojreh_headD}>
+            <div className={styles.Hojreh_headD}>
               <div>
                 <div className={styles.Hojreh_headD_pic}>
+                  {result && (
+                    <Image src={result} width={100} height={100}></Image>
+                  )}
                   <div className={styles.Hojreh_headD_edit_icon_pic}>
-                    <span className="fas fa-edit"></span>
+                    <label htmlFor="file_pic_avatar">
+                      <span
+                        style={{ fontSize: "20px", cursor: "pointer" }}
+                        className="fas fa-edit"
+                      ></span>
+                    </label>
+                    <input
+                      id="file_pic_avatar"
+                      type="file"
+                      accept="image/*"
+                      onChange={handelPicAvatar}
+                    />
                   </div>
                 </div>
                 <div className={styles.Hojreh_headD_edit_icon}>
                   <span className="fas fa-edit"></span>
                 </div>
               </div>
-            </div> */}
+            </div>
+            {selectImageAvatar && (
+              <div
+                style={{
+                  height: "400px",
+                  backgroundColor: "gold",
+                  marginBottom: "15px",
+                }}
+              >
+                <div style={{ marginBottom: "10px" }}>
+                  <button onClick={getCroppedImg}>Save</button>
+                </div>
+                <ReactCrop
+                  src={selectImageAvatar}
+                  onImageLoaded={setImage}
+                  crop={crop}
+                  onChange={setCrop}
+                />
+              </div>
+            )}
+
             {/* <form
               onSubmit={(e) => {
                 e.preventDefault();
