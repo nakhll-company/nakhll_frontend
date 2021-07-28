@@ -41,6 +41,23 @@
     height: 40px;
 }
 
+.btn_For_save {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: center;
+    button {
+        border: 0px;
+        background-color: #dc3545;
+        border-radius: 5px;
+        font-size: 15px;
+        padding: 10px 15px;
+        color: #fff;
+        font-weight: 900;
+        cursor: pointer;
+    }
+}
+
 .status_button {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -288,7 +305,7 @@
 .Hojreh_headD {
     height: 135px;
     border-radius: 5px;
-    background-color: blue;
+    // background-color: blue;
     margin-top: 20px;
     position: relative;
     display: grid;
@@ -296,7 +313,7 @@
     &_pic {
         width: 100px;
         height: 100px;
-        background-color: rgb(245, 95, 9);
+        background-color: rgb(168, 128, 107);
         border-radius: 100%;
         position: absolute;
         left: 0;

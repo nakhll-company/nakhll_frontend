@@ -2,13 +2,15 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import ReactCrop from "react-image-crop";
+import { connect } from "react-redux";
 
 // scss
 import styles from "../../../styles/pages/setting/setting.module.scss";
 
 // methods
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-
+import { mapState } from "../methods/mapState";
+import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
 // form
 import { Formik, Form, Field, FieldArray } from "formik";
 import * as yup from "yup";
@@ -19,6 +21,9 @@ import Headers from "../components/Headers/Headers";
 
 // validation
 import { VALIDATION_SCHEMA, VALIDATION_HESAB } from "../methods/Validation";
+
+// Toast
+import { toast } from "react-toastify";
 
 const getStates = async () => {
   let params = {};
@@ -68,7 +73,7 @@ const getCities = async (id) => {
   }
 };
 
-const DesktopSetting = ({ activeHojreh }) => {
+const DesktopSetting = ({ activeHojreh, userInfo }) => {
   const [apiSetting, setApiSetting] = useState({});
   const [ChoiceBigCity, setChoiceBigCity] = useState("");
   const [ChoiceCity, setChoiceCity] = useState("");
@@ -163,25 +168,28 @@ const DesktopSetting = ({ activeHojreh }) => {
     );
     const base64Image = canvas.toDataURL("image/jpeg");
     setResult(base64Image);
-    const StructurePicAvatar = {
-      image: base64Image,
-    };
-    // Send Avatar Pic to Server
-    const _sendPicAvatar = async (id) => {
-      let params = {};
-      let loadData = StructurePicAvatar;
 
-      let dataUrl = `/api/v1/profile/image/`;
-      let response = await ApiRegister().apiRequest(
-        loadData,
-        "PUT",
-        dataUrl,
-        true,
-        params
-      );
-      if (response.status === 200) {
-        getUncompleted(activeHojreh);
-      } else {
+    // Send Avatar Pic to Server
+    const _sendPicAvatar = async () => {
+      let params = {};
+      let loadData = { image: ` ${base64Image}` };
+
+      let dataUrl = `/api/v1/shop/${activeHojreh}/settings/avatar/`;
+      try {
+        let response = await ApiRegister().apiRequest(
+          loadData,
+          "PUT",
+          dataUrl,
+          true,
+          params
+        );
+        if (response.status === 200) {
+          toast.success("عکس پروفایل به روز رسانی شد", {
+            position: "top-right",
+            closeOnClick: true,
+          });
+        }
+      } catch (e) {
         toast.error("خطایی در ارسال داده ها پیش آمده است", {
           position: "top-right",
           closeOnClick: true,
@@ -200,62 +208,73 @@ const DesktopSetting = ({ activeHojreh }) => {
 
       {/* Setting Conttent */}
       <div className={styles.wrapper}>
-        {/* Hojreh */}
-
-        {onMenu == "1" && (
+        {MainLoading ? (
+          <Loading />
+        ) : (
           <>
-            <div className={styles.Hojreh_headD}>
-              <div>
-                <div className={styles.Hojreh_headD_pic}>
-                  {result && (
-                    <Image src={result} width={100} height={100}></Image>
-                  )}
-                  <div className={styles.Hojreh_headD_edit_icon_pic}>
-                    <label htmlFor="file_pic_avatar">
-                      <span
-                        style={{ fontSize: "20px", cursor: "pointer" }}
-                        className="fas fa-edit"
-                      ></span>
-                    </label>
-                    <input
-                      id="file_pic_avatar"
-                      type="file"
-                      accept="image/*"
-                      onChange={handelPicAvatar}
-                    />
+            {/* Hojreh */}
+
+            {onMenu == "1" && (
+              <>
+                <div className={styles.Hojreh_headD}>
+                  <div>
+                    <div className={styles.Hojreh_headD_pic}>
+                      {apiSetting.image_thumbnail_url && !result && (
+                        <Image
+                          src={apiSetting.image_thumbnail_url}
+                          width={100}
+                          height={100}
+                        ></Image>
+                      )}
+                      {result && (
+                        <Image src={result} width={100} height={100}></Image>
+                      )}
+                      <div className={styles.Hojreh_headD_edit_icon_pic}>
+                        <label htmlFor="file_pic_avatar">
+                          <span
+                            style={{ fontSize: "20px", cursor: "pointer" }}
+                            className="fas fa-edit"
+                          ></span>
+                        </label>
+                        <input
+                          id="file_pic_avatar"
+                          type="file"
+                          accept="image/*"
+                          onChange={handelPicAvatar}
+                        />
+                      </div>
+                    </div>
+                    <div className={styles.Hojreh_headD_edit_icon}>
+                      {/* <span className="fas fa-edit"></span> */}
+                    </div>
                   </div>
                 </div>
-                <div className={styles.Hojreh_headD_edit_icon}>
-                  <span className="fas fa-edit"></span>
-                </div>
-              </div>
-            </div>
-            {selectImageAvatar && (
-              <div
-                style={{
-                  height: "400px",
-                  backgroundColor: "gold",
-                  marginBottom: "15px",
-                }}
-              >
-                <div style={{ marginBottom: "10px" }}>
-                  <button onClick={getCroppedImg}>Save</button>
-                </div>
-                <ReactCrop
-                  src={selectImageAvatar}
-                  onImageLoaded={setImage}
-                  crop={crop}
-                  onChange={setCrop}
-                />
-              </div>
-            )}
+                {selectImageAvatar && (
+                  <div
+                    style={{
+                      height: "400px",
 
-            {/* <form
+                      marginBottom: "15px",
+                    }}
+                  >
+                    <div className={styles.btn_For_save}>
+                      <button onClick={getCroppedImg}>ویرایش تصویر </button>
+                    </div>
+                    <ReactCrop
+                      src={selectImageAvatar}
+                      onImageLoaded={setImage}
+                      crop={crop}
+                      onChange={setCrop}
+                    />
+                  </div>
+                )}
+
+                {/* <form
               onSubmit={(e) => {
                 e.preventDefault();
               }}
             > */}
-            {/* <form
+                {/* <form
               onSubmit={async (e) => {
                 e.preventDefault();
                 const data = new FormData(e.target);
@@ -266,10 +285,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                 // }
               }}
             > */}
-            {MainLoading ? (
-              <Loading />
-            ) : (
-              <>
+
                 <Formik
                   enableReinitialize={true}
                   initialValues={{
@@ -346,7 +362,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                         <div className={styles.hojrehD}>
                           <div className={styles.input_setting}>
                             <h2
-                              style={{ marginBottom: "10px", color: "#364254" }}
+                              style={{
+                                marginBottom: "10px",
+                                color: "#364254",
+                              }}
                             >
                               نام حجره
                             </h2>
@@ -378,9 +397,13 @@ const DesktopSetting = ({ activeHojreh }) => {
                               شود.
                             </h4>
                           </div>
+
                           <div className={styles.input_setting}>
                             <h2
-                              style={{ marginBottom: "10px", color: "#364254" }}
+                              style={{
+                                marginBottom: "10px",
+                                color: "#364254",
+                              }}
                             >
                               آدرس اینترنتی حجره
                             </h2>
@@ -410,9 +433,13 @@ const DesktopSetting = ({ activeHojreh }) => {
                               از (_) استفاده کنید.
                             </h4>
                           </div>
+
                           <div className={styles.input_setting}>
                             <h2
-                              style={{ marginBottom: "10px", color: "#364254" }}
+                              style={{
+                                marginBottom: "10px",
+                                color: "#364254",
+                              }}
                             >
                               درباره حجره
                             </h2>
@@ -463,7 +490,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                         <div className={styles.spaceGridD}>
                           <div className={styles.input_setting}>
                             <h2
-                              style={{ marginBottom: "10px", color: "#364254" }}
+                              style={{
+                                marginBottom: "10px",
+                                color: "#364254",
+                              }}
                             >
                               کد ملی
                             </h2>
@@ -481,7 +511,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                           </div>
                           <div className={styles.input_setting}>
                             <h2
-                              style={{ marginBottom: "10px", color: "#364254" }}
+                              style={{
+                                marginBottom: "10px",
+                                color: "#364254",
+                              }}
                             >
                               شماره تماس اصلی
                             </h2>
@@ -509,7 +542,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                           </div>
                           <div className={styles.input_setting}>
                             <h2
-                              style={{ marginBottom: "10px", color: "#364254" }}
+                              style={{
+                                marginBottom: "10px",
+                                color: "#364254",
+                              }}
                             >
                               شماره تلفن ثابت
                             </h2>
@@ -616,7 +652,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                           </div>
                           <div className={styles.input_setting}>
                             <h2
-                              style={{ marginBottom: "10px", color: "#364254" }}
+                              style={{
+                                marginBottom: "10px",
+                                color: "#364254",
+                              }}
                             >
                               آدرس
                             </h2>
@@ -645,7 +684,10 @@ const DesktopSetting = ({ activeHojreh }) => {
 
                           <div className={styles.input_setting}>
                             <h2
-                              style={{ marginBottom: "10px", color: "#364254" }}
+                              style={{
+                                marginBottom: "10px",
+                                color: "#364254",
+                              }}
                             >
                               کد پستی
                             </h2>
@@ -664,7 +706,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                         </div>
                         {IsLoading && (
                           <div
-                            style={{ display: "flex", alignItems: "center" }}
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                            }}
                           >
                             <div className={styles.loader}>
                               <Image
@@ -724,15 +769,9 @@ const DesktopSetting = ({ activeHojreh }) => {
                 <div style={{ marginTop: "80px" }}></div>
               </>
             )}
-          </>
-        )}
 
-        {/* HesabBanki */}
-        {onMenu == "2" && (
-          <>
-            {MainLoading ? (
-              <Loading />
-            ) : (
+            {/* HesabBanki */}
+            {onMenu == "2" && (
               <>
                 <Formik
                   enableReinitialize={true}
@@ -788,7 +827,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                       <div className={styles.HesabBankiGridD}>
                         <div className={styles.input_setting}>
                           <h2
-                            style={{ marginBottom: "10px", color: "#364254" }}
+                            style={{
+                              marginBottom: "10px",
+                              color: "#364254",
+                            }}
                           >
                             شماره شبا
                           </h2>
@@ -832,7 +874,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                         </div>
                         <div className={styles.input_setting}>
                           <h2
-                            style={{ marginBottom: "10px", color: "#364254" }}
+                            style={{
+                              marginBottom: "10px",
+                              color: "#364254",
+                            }}
                           >
                             صاحب حساب
                           </h2>
@@ -908,78 +953,74 @@ const DesktopSetting = ({ activeHojreh }) => {
                 </Formik>
               </>
             )}
-          </>
-        )}
 
-        {/* Links */}
-        {onMenu == "4" && (
-          <>
-            {MainLoading ? (
-              <Loading />
-            ) : (
-              <form
-                onSubmit={async (e) => {
-                  e.preventDefault();
-                  const data = new FormData(e.target);
-                  let body = Object.fromEntries(data.entries());
-                  let response = await linkSetting(body);
-                  // if (response.status === 201) {
-                  //   setShowSuccessPage((showSuccessPage) => !showSuccessPage);
-                  // }
-                }}
-              >
-                <div className={styles.LinksGridD}>
-                  <div className={styles.input_setting}>
-                    <h2 style={{ marginBottom: "10px", color: "#364254" }}>
-                      آدرس تلگرام
-                    </h2>
-                    <div className={styles.inputWid_withWord}>
-                      <div>
-                        <h2>t.me/</h2>
+            {/* Links */}
+            {onMenu == "4" && (
+              <>
+                <form
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    const data = new FormData(e.target);
+                    let body = Object.fromEntries(data.entries());
+                    let response = await linkSetting(body);
+                    // if (response.status === 201) {
+                    //   setShowSuccessPage((showSuccessPage) => !showSuccessPage);
+                    // }
+                  }}
+                >
+                  <div className={styles.LinksGridD}>
+                    <div className={styles.input_setting}>
+                      <h2 style={{ marginBottom: "10px", color: "#364254" }}>
+                        آدرس تلگرام
+                      </h2>
+                      <div className={styles.inputWid_withWord}>
+                        <div>
+                          <h2>t.me/</h2>
+                        </div>
+                        <input
+                          type="text"
+                          name="telegram"
+                          defaultValue={
+                            apiSetting.social_media &&
+                            apiSetting.social_media.telegram
+                          }
+                        />
                       </div>
-                      <input
-                        type="text"
-                        name="telegram"
-                        defaultValue={
-                          apiSetting.social_media &&
-                          apiSetting.social_media.telegram
-                        }
-                      />
+                    </div>
+                    <div className="">
+                      <h4 className={styles.explain}></h4>
+                    </div>
+                    <div className={styles.input_setting}>
+                      <h2 style={{ marginBottom: "10px", color: "#364254" }}>
+                        آدرس اینستاگرام
+                      </h2>
+                      <div className={styles.inputWid_withWord}>
+                        <div>
+                          <h2>instagram.com/</h2>
+                        </div>
+                        <input
+                          type="text"
+                          name="instagram"
+                          defaultValue={
+                            apiSetting.social_media &&
+                            apiSetting.social_media.instagram
+                          }
+                        />
+                      </div>
                     </div>
                   </div>
-                  <div className="">
-                    <h4 className={styles.explain}></h4>
-                  </div>
-                  <div className={styles.input_setting}>
-                    <h2 style={{ marginBottom: "10px", color: "#364254" }}>
-                      آدرس اینستاگرام
-                    </h2>
-                    <div className={styles.inputWid_withWord}>
-                      <div>
-                        <h2>instagram.com/</h2>
-                      </div>
-                      <input
-                        type="text"
-                        name="instagram"
-                        defaultValue={
-                          apiSetting.social_media &&
-                          apiSetting.social_media.instagram
-                        }
-                      />
-                    </div>
-                  </div>
-                </div>
-                {/* ‌Buttons */}
+                  {/* ‌Buttons */}
 
-                <div className={styles.status_button_one}>
-                  <button
-                    type="submit"
-                    className={`${styles.btn} ${styles.btnSubmit}`}
-                  >
-                    <h3>ذخیره اطلاعات </h3>
-                  </button>
-                </div>
-              </form>
+                  <div className={styles.status_button_one}>
+                    <button
+                      type="submit"
+                      className={`${styles.btn} ${styles.btnSubmit}`}
+                    >
+                      <h3>ذخیره اطلاعات </h3>
+                    </button>
+                  </div>
+                </form>
+              </>
             )}
           </>
         )}
@@ -987,5 +1028,7 @@ const DesktopSetting = ({ activeHojreh }) => {
     </div>
   );
 };
+
 // export
-export default DesktopSetting;
+const connector = connect(mapState, { getUserInfo });
+export default connector(DesktopSetting);
