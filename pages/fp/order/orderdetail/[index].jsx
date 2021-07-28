@@ -349,7 +349,6 @@ function HomePage({ id }) {
                                 setIsLoading(false);
                               }
                             } catch (e) {
-                              console.log("e :>> ", e);
                               setshowMessage(2);
                               setIsLoading(false);
                             }
@@ -619,9 +618,8 @@ function HomePage({ id }) {
                   <div className={styles.post_informationD_content}>
                     <h4>نام مشتری</h4>
                     <h3 style={{ marginTop: "5px" }}>
-                      {`${data.profile && data.profile.user.first_name}  ${
-                        data.profile && data.profile.user.last_name
-                      }`}
+                      {`${data.profile && data.profile.user.first_name}  ${data.profile && data.profile.user.last_name
+                        }`}
                     </h3>
                   </div>
                   {/* <div className={styles.post_informationD_content}>

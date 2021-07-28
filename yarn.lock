@@ -1603,6 +1603,14 @@ react-hook-form@^7.11.1:
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.11.1.tgz#936f8a14bdf02b0791c2130d7c78c49c10e6de09"
   integrity sha512-lBt428oU03dNUF5qZy5xqEdANaH3L/ilKWQS2t8wD6zF7FypOv46kEkZmg+oHf3n2xgeGYJgbMIGtYExsfKJ8A==
 
+react-image-crop@^8.6.12:
+  version "8.6.12"
+  resolved "https://registry.yarnpkg.com/react-image-crop/-/react-image-crop-8.6.12.tgz#fb57e17c3b56ac0a52ba1967c108975b1f132dcd"
+  integrity sha512-3CNz1xfsRRSH/iH023IDMXxzsb1M6RTHHUVsVcb8uFPcjGiA9WisvQ24G1eRDf2j4NlybupOEEdfK2vT0etN6A==
+  dependencies:
+    clsx "^1.1.1"
+    prop-types "^15.7.2"
+
 react-is@16.13.1, react-is@^16.13.1, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"

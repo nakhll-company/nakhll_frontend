@@ -83,10 +83,7 @@ const UpdateProduct = ({ activeHojreh }) => {
   const [data, setData] = useState([]);
   const [title, settitle] = useState("");
   const [subMarkets, setSubMarkets] = useState([]);
-  const [dataChoice, setDataChoice] = useState({
-    title: "",
-    submarket: "",
-  });
+  const [dataChoice, setDataChoice] = useState({ title: "", submarket: "" });
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
@@ -122,11 +119,11 @@ const UpdateProduct = ({ activeHojreh }) => {
       setAddPreparationDays(response.data.preparation_days)
       setIsLoad(true)
       setSubmarketId(response.data.sub_market.id)
+      window.localStorage.setItem("image", [...response.data.banners]);
     }
   }//close edit data
   // use effect
   useEffect(() => {
-    window.localStorage.setItem("image", JSON.stringify([]));
     if (id) {
       _editProduct();
     }

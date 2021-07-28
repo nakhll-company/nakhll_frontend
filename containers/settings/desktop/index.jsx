@@ -139,11 +139,6 @@ const DesktopSetting = ({ activeHojreh }) => {
 
   // For pic Avatar
   const handelPicAvatar = (e) => {
-    console.log("e.target.files[0] :>> ", e.target.files[0]);
-    console.log(
-      "e.target.files[0] :>> ",
-      URL.createObjectURL(e.target.files[0])
-    );
     setSelectImageAvatar(URL.createObjectURL(e.target.files[0]));
   };
 
@@ -167,7 +162,6 @@ const DesktopSetting = ({ activeHojreh }) => {
       crop.height
     );
     const base64Image = canvas.toDataURL("image/jpeg");
-    console.log("base64Image :>> ", base64Image);
     setResult(base64Image);
     const StructurePicAvatar = {
       image: base64Image,
@@ -360,7 +354,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                               <Field
                                 name="Title"
                                 type="text"
-                                // defaultValue={apiSetting.Title}
+                              // defaultValue={apiSetting.Title}
                               />
                               {touched.Title && errors.Title ? (
                                 <small className={styles.error}>
@@ -394,7 +388,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                               <Field
                                 name="slug"
                                 type="text"
-                                // defaultValue={apiSetting.Slug}
+                              // defaultValue={apiSetting.Slug}
                               />
                               {touched.slug && errors.slug ? (
                                 <small className={styles.error}>
@@ -523,10 +517,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                               <Field
                                 name="PhoneNumber"
                                 type="text"
-                                // defaultValue={
-                                //   apiSetting.FK_ShopManager &&
-                                //   apiSetting.FK_ShopManager.User_Profile.PhoneNumber
-                                // }
+                              // defaultValue={
+                              //   apiSetting.FK_ShopManager &&
+                              //   apiSetting.FK_ShopManager.User_Profile.PhoneNumber
+                              // }
                               />
                             </div>
                           </div>
@@ -632,10 +626,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                                 name="Address"
                                 rows="4"
                                 cols="50"
-                                // defaultValue={
-                                //   apiSetting.FK_ShopManager &&
-                                //   apiSetting.FK_ShopManager.User_Profile.Address
-                                // }
+                              // defaultValue={
+                              //   apiSetting.FK_ShopManager &&
+                              //   apiSetting.FK_ShopManager.User_Profile.Address
+                              // }
                               />
                               {touched.Address && errors.Address ? (
                                 <small className={styles.error}>
