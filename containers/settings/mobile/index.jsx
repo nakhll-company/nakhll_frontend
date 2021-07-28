@@ -1,11 +1,11 @@
 // node libraries
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import ReactCrop from "react-image-crop";
 // scss
 import styles from "../../../styles/pages/setting/setting.module.scss";
 
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-
-import Image from "next/image";
 
 import { Field, Form, Formik } from "formik";
 import * as yup from "yup";
@@ -16,6 +16,9 @@ import { VALIDATION_SCHEMA, VALIDATION_HESAB } from "../methods/Validation";
 
 // component
 import Headers from "../components/Headers/Headers";
+
+// Toast
+import { toast } from "react-toastify";
 
 const getStates = async () => {
   let params = {};
@@ -79,6 +82,12 @@ function MobileSetting({ activeHojreh }) {
   const [apiSetting, setApiSetting] = useState({});
   const [onMenu, setOnMenu] = useState("1");
 
+  // state For save picture
+  const [selectImageAvatar, setSelectImageAvatar] = useState(null);
+  const [ImageA, setImage] = useState(null);
+  const [crop, setCrop] = useState({ aspect: 1 / 1 });
+  const [result, setResult] = useState(null);
+
   useEffect(() => {
     const _handleRequestApi = async () => {
       let params = {};
@@ -122,6 +131,70 @@ function MobileSetting({ activeHojreh }) {
       params
     );
   };
+  // For pic Avatar
+  const handelPicAvatar = (e) => {
+    console.log("e.target.files[0] :>> ", e.target.files[0]);
+    console.log(
+      "e.target.files[0] :>> ",
+      URL.createObjectURL(e.target.files[0])
+    );
+    setSelectImageAvatar(URL.createObjectURL(e.target.files[0]));
+  };
+
+  function getCroppedImg() {
+    const canvas = document.createElement("canvas");
+    const scaleX = ImageA.naturalWidth / ImageA.width;
+    const scaleY = ImageA.naturalHeight / ImageA.height;
+    canvas.width = crop.width;
+    canvas.height = crop.height;
+    const ctx = canvas.getContext("2d");
+
+    ctx.drawImage(
+      ImageA,
+      crop.x * scaleX,
+      crop.y * scaleY,
+      crop.width * scaleX,
+      crop.height * scaleY,
+      0,
+      0,
+      crop.width,
+      crop.height
+    );
+    const base64Image = canvas.toDataURL("image/jpeg");
+    console.log("base64Image :>> ", base64Image);
+    setResult(base64Image);
+
+    // Send Avatar Pic to Server
+    const _sendPicAvatar = async () => {
+      let params = {};
+      let loadData = { image: ` ${base64Image}` };
+
+      let dataUrl = `/api/v1/shop/${activeHojreh}/settings/avatar/`;
+      try {
+        let response = await ApiRegister().apiRequest(
+          loadData,
+          "PUT",
+          dataUrl,
+          true,
+          params
+        );
+        if (response.status === 200) {
+          toast.success("عکس پروفایل به روز رسانی شد", {
+            position: "top-right",
+            closeOnClick: true,
+          });
+        }
+      } catch (e) {
+        toast.error("خطایی در ارسال داده ها پیش آمده است", {
+          position: "top-right",
+          closeOnClick: true,
+        });
+      }
+    };
+    _sendPicAvatar();
+
+    setSelectImageAvatar(null);
+  }
 
   return (
     <div dir="rtl" className={styles.setting}>
@@ -136,6 +209,58 @@ function MobileSetting({ activeHojreh }) {
         {/* TODO      FORM Hi  MILAD  :) */}
         {onMenu == "1" && (
           <>
+            <div className={styles.Hojreh_headD}>
+              <div>
+                <div className={styles.Hojreh_headD_pic}>
+                  {apiSetting.image_thumbnail_url && !result && (
+                    <Image
+                      src={apiSetting.image_thumbnail_url}
+                      width={100}
+                      height={100}
+                    ></Image>
+                  )}
+                  {result && (
+                    <Image src={result} width={100} height={100}></Image>
+                  )}
+                  <div className={styles.Hojreh_headD_edit_icon_pic}>
+                    <label htmlFor="file_pic_avatar">
+                      <span
+                        style={{ fontSize: "20px", cursor: "pointer" }}
+                        className="fas fa-edit"
+                      ></span>
+                    </label>
+                    <input
+                      id="file_pic_avatar"
+                      type="file"
+                      accept="image/*"
+                      onChange={handelPicAvatar}
+                    />
+                  </div>
+                </div>
+                <div className={styles.Hojreh_headD_edit_icon}>
+                  {/* <span className="fas fa-edit"></span> */}
+                </div>
+              </div>
+            </div>
+            {selectImageAvatar && (
+              <div
+                style={{
+                  height: "400px",
+
+                  marginBottom: "15px",
+                }}
+              >
+                <div className={styles.btn_For_save}>
+                  <button onClick={getCroppedImg}>ویرایش تصویر </button>
+                </div>
+                <ReactCrop
+                  src={selectImageAvatar}
+                  onImageLoaded={setImage}
+                  crop={crop}
+                  onChange={setCrop}
+                />
+              </div>
+            )}
             {MainLoading ? (
               <Loading />
             ) : (
