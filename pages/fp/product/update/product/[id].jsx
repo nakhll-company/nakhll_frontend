@@ -28,6 +28,8 @@ const UpdateProduct = ({ activeHojreh }) => {
   });
   // on submit
   const onSubmit = async (data) => {
+    document.querySelector("#submitButton").disabled = true;
+    document.querySelector("#submitButton").style.backgroundColor = "gray";
     let err = false
     if (!placeholderSubmarckets) {
       setError("submark", { type: "focus" }, { shouldFocus: true })
@@ -75,8 +77,10 @@ const UpdateProduct = ({ activeHojreh }) => {
           closeOnClick: true,
         });
       }
+      document.querySelector("#submitButton").disabled = false;
+      document.querySelector("#submitButton").style.backgroundColor = "rgb(0, 122, 255)";
     }
-  };// close on submit function
+  };
   // state
   const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState("");
   const [page, setPage] = useState(1);
@@ -591,7 +595,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                 </div>
                 {/* button update */}
                 <div>
-                  <button type="submit" className={styles.form_buttonSubmit}>
+                  <button type="submit" id="submitButton" className={styles.form_buttonSubmit}>
                     ویرایش محصول
                   </button>
                 </div>

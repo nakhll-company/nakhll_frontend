@@ -44,7 +44,7 @@ function Dashboard({ activeHojreh }) {
         params
       );
       // check status code
-      if (response.status === 200) {
+      if (response.status) {
         setApi(await response.data);
         toast.success(" به حجره خود خوش آمدید.", {
           position: "top-right",
@@ -60,15 +60,6 @@ function Dashboard({ activeHojreh }) {
 
     activeHojreh.length > 0 && _handleRequestApi();
 
-    if (activeHojreh.length === 0) {
-      toast.error("لطفا ابتدا حجره خود را ثبت نمایید", {
-        position: "top-right",
-        closeOnClick: true,
-      });
-      setTimeout(() => {
-        router.replace("https://nakhll.com/fp/store/create");
-      }, 3000);
-    }
   }, [activeHojreh]);
 
   return (

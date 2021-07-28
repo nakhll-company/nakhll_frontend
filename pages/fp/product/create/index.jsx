@@ -24,6 +24,8 @@ const CreateProduct = ({ activeHojreh }) => {
   });
   // submit
   const onSubmit = async (data) => {
+    document.getElementById("sumbitButton").disabled = true;
+    document.getElementById("sumbitButton").style.backgroundColor = "gray";
     let err = false
     if (!placeholderSubmarckets) {
       setError("submark", { type: "focus" }, { shouldFocus: true })
@@ -98,6 +100,8 @@ const CreateProduct = ({ activeHojreh }) => {
         if (responseImages.status === 200) {
           setShowSuccessPage(true);
         }
+        document.getElementById("sumbitButton").disabled = false;
+        document.getElementById("sumbitButton").style.backgroundColor = "rgb(0, 122, 255)";
       }
     }
   };
@@ -635,7 +639,7 @@ const CreateProduct = ({ activeHojreh }) => {
                 </div>
                 {/* button submit */}
                 <div>
-                  <button type="submit" className={styles.form_buttonSubmit}>
+                  <button type="submit" id="sumbitButton" className={styles.form_buttonSubmit}>
                     ثبت محصول
                   </button>
                 </div>

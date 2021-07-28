@@ -33,7 +33,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
         userInfo.shops.length > 0 &&
         getActiveHojreh(userInfo.shops[0].slug);
     }
-  }, []);
+  }, [userInfo.shops]);
 
   const ForHeader = (option) => {
     setTitle(option.target[option.target.selectedIndex].text);
