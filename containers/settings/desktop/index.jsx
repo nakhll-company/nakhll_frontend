@@ -2,13 +2,15 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import ReactCrop from "react-image-crop";
+import { connect } from "react-redux";
 
 // scss
 import styles from "../../../styles/pages/setting/setting.module.scss";
 
 // methods
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-
+import { mapState } from "../methods/mapState";
+import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
 // form
 import { Formik, Form, Field, FieldArray } from "formik";
 import * as yup from "yup";
@@ -19,6 +21,9 @@ import Headers from "../components/Headers/Headers";
 
 // validation
 import { VALIDATION_SCHEMA, VALIDATION_HESAB } from "../methods/Validation";
+
+// Toast
+import { toast } from "react-toastify";
 
 const getStates = async () => {
   let params = {};
@@ -68,7 +73,7 @@ const getCities = async (id) => {
   }
 };
 
-const DesktopSetting = ({ activeHojreh }) => {
+const DesktopSetting = ({ activeHojreh, userInfo }) => {
   const [apiSetting, setApiSetting] = useState({});
   const [ChoiceBigCity, setChoiceBigCity] = useState("");
   const [ChoiceCity, setChoiceCity] = useState("");
@@ -169,25 +174,28 @@ const DesktopSetting = ({ activeHojreh }) => {
     const base64Image = canvas.toDataURL("image/jpeg");
     console.log("base64Image :>> ", base64Image);
     setResult(base64Image);
-    const StructurePicAvatar = {
-      image: base64Image,
-    };
-    // Send Avatar Pic to Server
-    const _sendPicAvatar = async (id) => {
-      let params = {};
-      let loadData = StructurePicAvatar;
 
-      let dataUrl = `/api/v1/profile/image/`;
-      let response = await ApiRegister().apiRequest(
-        loadData,
-        "PUT",
-        dataUrl,
-        true,
-        params
-      );
-      if (response.status === 200) {
-        getUncompleted(activeHojreh);
-      } else {
+    // Send Avatar Pic to Server
+    const _sendPicAvatar = async () => {
+      let params = {};
+      let loadData = { image: ` ${base64Image}` };
+
+      let dataUrl = `/api/v1/shop/${activeHojreh}/settings/avatar/`;
+      try {
+        let response = await ApiRegister().apiRequest(
+          loadData,
+          "PUT",
+          dataUrl,
+          true,
+          params
+        );
+        if (response.status === 200) {
+          toast.success("عکس پروفایل به روز رسانی شد", {
+            position: "top-right",
+            closeOnClick: true,
+          });
+        }
+      } catch (e) {
         toast.error("خطایی در ارسال داده ها پیش آمده است", {
           position: "top-right",
           closeOnClick: true,
@@ -213,6 +221,13 @@ const DesktopSetting = ({ activeHojreh }) => {
             <div className={styles.Hojreh_headD}>
               <div>
                 <div className={styles.Hojreh_headD_pic}>
+                  {apiSetting.image_thumbnail_url && !result && (
+                    <Image
+                      src={apiSetting.image_thumbnail_url}
+                      width={100}
+                      height={100}
+                    ></Image>
+                  )}
                   {result && (
                     <Image src={result} width={100} height={100}></Image>
                   )}
@@ -232,7 +247,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                   </div>
                 </div>
                 <div className={styles.Hojreh_headD_edit_icon}>
-                  <span className="fas fa-edit"></span>
+                  {/* <span className="fas fa-edit"></span> */}
                 </div>
               </div>
             </div>
@@ -240,12 +255,12 @@ const DesktopSetting = ({ activeHojreh }) => {
               <div
                 style={{
                   height: "400px",
-                  backgroundColor: "gold",
+
                   marginBottom: "15px",
                 }}
               >
-                <div style={{ marginBottom: "10px" }}>
-                  <button onClick={getCroppedImg}>Save</button>
+                <div className={styles.btn_For_save}>
+                  <button onClick={getCroppedImg}>ویرایش تصویر </button>
                 </div>
                 <ReactCrop
                   src={selectImageAvatar}
@@ -993,5 +1008,7 @@ const DesktopSetting = ({ activeHojreh }) => {
     </div>
   );
 };
+
 // export
-export default DesktopSetting;
+const connector = connect(mapState, { getUserInfo });
+export default connector(DesktopSetting);
