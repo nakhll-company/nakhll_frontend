@@ -23,7 +23,7 @@ const UpdateProduct = ({ activeHojreh }) => {
   const router = useRouter();
   const { id } = router.query;
   // react form hook
-  const { setValue, clearErrors, register, setError, handleSubmit, watch, formState: { errors } } = useForm({
+  const { setValue, clearErrors, getValues, register, setError, handleSubmit, watch, formState: { errors } } = useForm({
     criteriaMode: 'all',
   });
   // on submit
