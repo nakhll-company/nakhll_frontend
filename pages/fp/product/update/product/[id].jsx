@@ -390,7 +390,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                           value: 0,
                           message: 'لطفا اعداد بزرگتر از صفر وارد نمایید'
                         },
-                        validate: value => value > getValues("Net_Weight") || 'وزن با بسته بندی باید بیشتر از وزن  خالص باشد'
+                        validate: value => parseInt(value) > parseInt(getValues("Net_Weight")) || 'وزن با بسته بندی باید بیشتر از وزن  خالص باشد'
                       })}
                     />
                     <div>
@@ -433,7 +433,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                           value: 0,
                           message: 'لطفا اعداد بزرگتر از صفر وارد نمایید'
                         },
-                        validate: value => value <= getValues("Price") || 'قیمت با تخفیف باید کمتر از قیمت اصلی باشد'
+                        validate: value => parseInt(value) <= parseInt(getValues("Price")) || 'قیمت با تخفیف باید کمتر از قیمت اصلی باشد'
                       })}
                     />
                     <div>
