@@ -111,8 +111,13 @@ const UpdateProduct = ({ activeHojreh }) => {
       setPlaceholderSubmarckets(response.data.sub_market.title)
       setValue('Net_Weight', response.data.net_weight)
       setValue('Weight_With_Packing', response.data.weight_with_packing)
-      setValue('Price', response.data.price / 10)
-      setValue('OldPrice', response.data.old_price / 10)
+      if (response.data.price > response.data.old_price) {
+        setValue('Price', response.data.price / 10)
+        setValue('OldPrice', response.data.old_price / 10)
+      } else {
+        setValue('Price', response.data.old_price / 10)
+        setValue('OldPrice', response.data.price / 10)
+      }
       setValue('Description', response.data.description)
       setPreviewImage(response.data.banners)
       setAdd(response.data.inventory)
