@@ -28,8 +28,6 @@ const UpdateProduct = ({ activeHojreh }) => {
   });
   // on submit
   const onSubmit = async (data) => {
-    document.querySelector("#submitButton").disabled = true;
-    document.querySelector("#submitButton").style.backgroundColor = "gray";
     let err = false
     if (!placeholderSubmarckets) {
       setError("submark", { type: "focus" }, { shouldFocus: true })
@@ -77,8 +75,6 @@ const UpdateProduct = ({ activeHojreh }) => {
           closeOnClick: true,
         });
       }
-      document.querySelector("#submitButton").disabled = false;
-      document.querySelector("#submitButton").style.backgroundColor = "rgb(0, 122, 255)";
     }
   };
   // state
@@ -170,7 +166,7 @@ const UpdateProduct = ({ activeHojreh }) => {
   };
   // submarket
   function clickButton(e) {
-    setSelectList(e.id);
+    // setSelectList(e.id);
     setSubMarkets(e.submarkets);
     setDataChoice({ ...dataChoice, title: e.title });
     setPage(2);

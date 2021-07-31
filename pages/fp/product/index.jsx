@@ -1,5 +1,4 @@
 // next libraries
-import Head from "next/head";
 import { connect } from "react-redux";
 import { useEffect } from "react";
 // node libraries

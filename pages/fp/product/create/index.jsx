@@ -25,8 +25,6 @@ const CreateProduct = ({ activeHojreh }) => {
   });
   // submit
   const onSubmit = async (data) => {
-    document.getElementById("sumbitButton").disabled = true;
-    document.getElementById("sumbitButton").style.backgroundColor = "gray";
     let err = false
     if (!placeholderSubmarckets) {
       setError("submark", { type: "focus" }, { shouldFocus: true })
@@ -60,7 +58,7 @@ const CreateProduct = ({ activeHojreh }) => {
         true,
         paramsProduct
       );
-      if (response.status !== 200) {
+      if (response.status !== 201) {
         toast.error("خطایی در ایجاد محصول پیش آمده است", {
           position: "top-right",
           closeOnClick: true,
@@ -120,8 +118,6 @@ const CreateProduct = ({ activeHojreh }) => {
           });
         }
       }
-      document.getElementById("sumbitButton").disabled = false;
-      document.getElementById("sumbitButton").style.backgroundColor = "rgb(0, 122, 255)";
     }
   };
   // states

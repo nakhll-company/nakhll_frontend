@@ -12,7 +12,6 @@ export default function DashboardMain() {
   return (
     <>
       <Head>
-        {/* <title>داشبورد</title> */}
         <link
           rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"

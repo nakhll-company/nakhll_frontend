@@ -1,7 +1,6 @@
 // node libraries
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect } from 'react';
 // components
 import CustomBadge from '../../../components/custom/customBadge';
 // scss

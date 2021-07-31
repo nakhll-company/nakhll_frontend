@@ -140,7 +140,7 @@ function NewStore({ getUserInfo, userInfo }) {
                         </p> */}
                     </div>
                 </form> :
-                <h1 className={styles.info_completed}>لطفا ابتدا پروفایل خود را تکمیل کنید</h1>
+                <h1 className={styles.info_completed}>لطفا ابتدا نام و نام خانوادگی خود را در صفحه پروفایل وارد نمایید</h1>
             }
             {showSuccessPage && <SuccessPage />}
         </div>

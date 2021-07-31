@@ -17,6 +17,8 @@ import SwiperCore, {
 // methods
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { mapState } from "./methods/mapState";
+// components
+import Loading from '../../components/loading';
 // styles
 import styles from "../../styles/pages/dashboard/dashboard.module.scss";
 // import Swiper core and required modules
@@ -29,8 +31,10 @@ function Dashboard({ activeHojreh }) {
   const router = useRouter();
   //  state
   const [api, setApi] = useState({});
+  let [loading, setLoading] = useState(false);
   // useeffect
-  useEffect(() => {
+  useEffect(async () => {
+    await setLoading(true);
     // api dashboard data
     const _handleRequestApi = async () => {
       let params = {};
@@ -44,218 +48,219 @@ function Dashboard({ activeHojreh }) {
         params
       );
       // check status code
-      if (response.status) {
+      if (response.status === 200) {
         setApi(await response.data);
-        toast.success(" به حجره خود خوش آمدید.", {
-          position: "top-right",
-          closeOnClick: true,
-        });
       } else {
         toast.error(" خطایی رخ داده است.", {
           position: "top-right",
           closeOnClick: true,
         });
       }
+      await setLoading(false);
     };
 
     activeHojreh.length > 0 && _handleRequestApi();
-
   }, [activeHojreh]);
 
   return (
     <>
-      {/* information store */}
-      <div dir="rtl" className={styles.left_one}>
-        <Link href="fp/order/uncompleted">
-          <div className={styles.left_one_1}>
-            <i
-              className="fas fa-cart-plus fa-3x"
-              style={{ color: "#007aff" }}
-            ></i>
-            <h1>{api.uncompleted_fators}</h1>
-            <h4>سفارش ها تکمیل نشده</h4>
-          </div>
-        </Link>
-        <Link href="/fp/order/completed">
-          <div className={styles.left_one_1}>
-            <i
-              className="fas fa-user-clock fa-3x"
-              style={{ color: "#007aff" }}
-            ></i>
-            <h1>{api.uncomfirmed_factors}</h1>
-            <h4>سفارش های تکمیل شده</h4>
-          </div>
-        </Link>
-        <div className={styles.left_one_1}>
-          <i
-            className="far fa-comment-alt fa-3x"
-            style={{ color: "#007aff" }}
-          ></i>
-          <h1>{api.unread_comments_count}</h1>
-          <h4>دیدگاه های تازه</h4>
-        </div>
-        <div className={styles.left_one_1}>
-          <i className="fas fa-wallet fa-3x" style={{ color: "#007aff" }}></i>
-          <h1>
-            {api.balance} <span>تومان</span>
-          </h1>
-          <h4>موجودی حساب </h4>
-        </div>
-      </div>
-      {/* slider */}
-      <div dir="rtl" className={styles.left_two}>
-        <Swiper
-          slidesPerView={1}
-          navigation
-          //   scrollbar={{ draggable: true }}
-          pagination={{ clickable: true }}
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
-          }}
-          effect={"fade"}
-        >
-          <SwiperSlide>
-            <div className={styles.divForSlider} style={{ height: "269px" }}>
-              <Image
-                src="/image/pic2.jpg"
-                alt="Picture of the author"
-                layout="fill"
-              />
+      {loading ?
+        <Loading />
+        :
+        <>
+          <div dir="rtl" className={styles.left_one}>
+            <Link href="fp/order/uncompleted">
+              <div className={styles.left_one_1}>
+                <i
+                  className="fas fa-cart-plus fa-3x"
+                  style={{ color: "#007aff" }}
+                ></i>
+                <h1>{api.uncompleted_fators}</h1>
+                <h4>سفارش ها تکمیل نشده</h4>
+              </div>
+            </Link>
+            <Link href="/fp/order/completed">
+              <div className={styles.left_one_1}>
+                <i
+                  className="fas fa-user-clock fa-3x"
+                  style={{ color: "#007aff" }}
+                ></i>
+                <h1>{api.uncomfirmed_factors}</h1>
+                <h4>سفارش های تکمیل شده</h4>
+              </div>
+            </Link>
+            <div className={styles.left_one_1}>
+              <i
+                className="far fa-comment-alt fa-3x"
+                style={{ color: "#007aff" }}
+              ></i>
+              <h1>{api.unread_comments_count}</h1>
+              <h4>دیدگاه های تازه</h4>
             </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className={styles.divForSlider} style={{ height: "269px" }}>
-              <Image
-                src="/image/pic1.jpg"
-                alt="Picture of the author"
-                layout="fill"
-              />
+            <div className={styles.left_one_1}>
+              <i className="fas fa-wallet fa-3x" style={{ color: "#007aff" }}></i>
+              <h1>
+                {api.balance} <span>تومان</span>
+              </h1>
+              <h4>موجودی حساب </h4>
             </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className={styles.divForSlider} style={{ height: "269px" }}>
-              <Image
-                src="/image/pic3.jpg"
-                alt="Picture of the author"
-                layout="fill"
-              />
+          </div>
+          {/* slider */}
+          <div dir="rtl" className={styles.left_two}>
+            <Swiper
+              slidesPerView={1}
+              navigation
+              //   scrollbar={{ draggable: true }}
+              pagination={{ clickable: true }}
+              autoplay={{
+                delay: 5000,
+                disableOnInteraction: false,
+              }}
+              effect={"fade"}
+            >
+              <SwiperSlide>
+                <div className={styles.divForSlider} style={{ height: "269px" }}>
+                  <Image
+                    src="/image/pic2.jpg"
+                    alt="Picture of the author"
+                    layout="fill"
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className={styles.divForSlider} style={{ height: "269px" }}>
+                  <Image
+                    src="/image/pic1.jpg"
+                    alt="Picture of the author"
+                    layout="fill"
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className={styles.divForSlider} style={{ height: "269px" }}>
+                  <Image
+                    src="/image/pic3.jpg"
+                    alt="Picture of the author"
+                    layout="fill"
+                  />
+                </div>
+              </SwiperSlide>
+            </Swiper>
+          </div>
+          {/* product status */}
+          <div dir="rtl" className={styles.left_three}>
+            <div className={styles.left_three_head}>
+              <h3 style={{ margin: "1.5rem" }}>وضعیت محصول</h3>
             </div>
-          </SwiperSlide>
-        </Swiper>
-      </div>
-      {/* product status */}
-      <div dir="rtl" className={styles.left_three}>
-        <div className={styles.left_three_head}>
-          <h3 style={{ margin: "1.5rem" }}>وضعیت محصول</h3>
-        </div>
-        <div className={styles.left_three_content}>
-          <div className="">
-            <h1
-              style={{
-                display: "inline-block",
-                color: " black",
-                marginLeft: "0.5rem",
-              }}
-            >
-              {api.active_products}
-            </h1>
-            <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
-            <h4 style={{ marginTop: "1rem" }}>کالاهای فعال</h4>
+            <div className={styles.left_three_content}>
+              <div className="">
+                <h1
+                  style={{
+                    display: "inline-block",
+                    color: " black",
+                    marginLeft: "0.5rem",
+                  }}
+                >
+                  {api.active_products}
+                </h1>
+                <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
+                <h4 style={{ marginTop: "1rem" }}>کالاهای فعال</h4>
+              </div>
+              <div className="">
+                <h1
+                  style={{
+                    display: "inline-block",
+                    color: "black",
+                    marginLeft: "0.5rem",
+                  }}
+                >
+                  {api.nearly_outofstock_products}
+                </h1>
+                <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
+                <h4 style={{ marginTop: "1rem" }}>کالا های در حال اتمام</h4>
+              </div>
+              <div className="">
+                <h1
+                  style={{
+                    display: "inline-block",
+                    color: "black",
+                    marginLeft: "0.5rem",
+                  }}
+                >
+                  {api.inactive_products}
+                </h1>
+                <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
+                <h4 style={{ marginTop: "1rem" }}>کالاهای غیرفعال</h4>
+              </div>
+              <div className="">
+                <h1
+                  style={{
+                    display: "inline-block",
+                    color: " black",
+                    marginLeft: "0.5rem",
+                  }}
+                >
+                  {api.outofstock_products}
+                </h1>
+                <h3 style={{ display: " inline-block", color: "black" }}>عدد</h3>
+                <h4 style={{ marginTop: "1rem" }}>کالاهای ناموجود</h4>
+              </div>
+            </div>
           </div>
-          <div className="">
-            <h1
-              style={{
-                display: "inline-block",
-                color: "black",
-                marginLeft: "0.5rem",
-              }}
-            >
-              {api.nearly_outofstock_products}
-            </h1>
-            <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
-            <h4 style={{ marginTop: "1rem" }}>کالا های در حال اتمام</h4>
+          {/* sell status */}
+          <div dir="rtl" className={styles.left_three}>
+            <div className={styles.left_three_head}>
+              <h3 style={{ margin: "1.5rem" }}>وضعیت فروش</h3>
+            </div>
+            <div className={styles.left_three_content}>
+              <div className="">
+                <h1
+                  style={{
+                    display: "inline-block",
+                    color: " black",
+                    marginLeft: "0.5rem",
+                  }}
+                >
+                  {api.current_week_total_sell &&
+                    api.current_week_total_sell.amont &&
+                    "0"}
+                </h1>
+                <h3 style={{ display: "inline-block", color: "black" }}>تومان</h3>
+                <h4 style={{ marginTop: "1rem" }}>فروش هفته جاری</h4>
+              </div>
+              <div className="">
+                <h1
+                  style={{
+                    display: " inline-block",
+                    color: "black",
+                    marginLeft: "0.5rem",
+                  }}
+                >
+                  {api.last_month_total_sell && api.last_month_total_sell.amont}
+                </h1>
+                <h3 style={{ display: "inline-block", color: "black" }}>تومان</h3>
+                <h4 style={{ marginTop: "1rem" }}>فروش ماه گذشته</h4>
+              </div>
+              <div className="">
+                <h1
+                  style={{
+                    display: "inline-block",
+                    color: "black",
+                    marginLeft: "0.5rem",
+                  }}
+                >
+                  {(api.last_week_total_sell && api.last_week_total_sell.amont) ||
+                    0}
+                </h1>
+                <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
+                <h4 style={{ marginTop: "1rem" }}>فروش هفته گذشته</h4>
+              </div>
+            </div>
           </div>
-          <div className="">
-            <h1
-              style={{
-                display: "inline-block",
-                color: "black",
-                marginLeft: "0.5rem",
-              }}
-            >
-              {api.inactive_products}
-            </h1>
-            <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
-            <h4 style={{ marginTop: "1rem" }}>کالاهای غیرفعال</h4>
-          </div>
-          <div className="">
-            <h1
-              style={{
-                display: "inline-block",
-                color: " black",
-                marginLeft: "0.5rem",
-              }}
-            >
-              {api.outofstock_products}
-            </h1>
-            <h3 style={{ display: " inline-block", color: "black" }}>عدد</h3>
-            <h4 style={{ marginTop: "1rem" }}>کالاهای ناموجود</h4>
-          </div>
-        </div>
-      </div>
-      {/* sell status */}
-      <div dir="rtl" className={styles.left_three}>
-        <div className={styles.left_three_head}>
-          <h3 style={{ margin: "1.5rem" }}>وضعیت فروش</h3>
-        </div>
-        <div className={styles.left_three_content}>
-          <div className="">
-            <h1
-              style={{
-                display: "inline-block",
-                color: " black",
-                marginLeft: "0.5rem",
-              }}
-            >
-              {api.current_week_total_sell &&
-                api.current_week_total_sell.amont &&
-                "0"}
-            </h1>
-            <h3 style={{ display: "inline-block", color: "black" }}>تومان</h3>
-            <h4 style={{ marginTop: "1rem" }}>فروش هفته جاری</h4>
-          </div>
-          <div className="">
-            <h1
-              style={{
-                display: " inline-block",
-                color: "black",
-                marginLeft: "0.5rem",
-              }}
-            >
-              {api.last_month_total_sell && api.last_month_total_sell.amont}
-            </h1>
-            <h3 style={{ display: "inline-block", color: "black" }}>تومان</h3>
-            <h4 style={{ marginTop: "1rem" }}>فروش ماه گذشته</h4>
-          </div>
-          <div className="">
-            <h1
-              style={{
-                display: "inline-block",
-                color: "black",
-                marginLeft: "0.5rem",
-              }}
-            >
-              {(api.last_week_total_sell && api.last_week_total_sell.amont) ||
-                0}
-            </h1>
-            <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
-            <h4 style={{ marginTop: "1rem" }}>فروش هفته گذشته</h4>
-          </div>
-        </div>
-      </div>
-      {/* form MARGINNNNNNNNNNNNNNN----------->    :) */}
-      <div style={{ marginTop: "70px" }}></div>
+          {/* form MARGINNNNNNNNNNNNNNN----------->    :) */}
+          <div style={{ marginTop: "70px" }}></div>
+        </>
+      }
     </>
   );
 }
