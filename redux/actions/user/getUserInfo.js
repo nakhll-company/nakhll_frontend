@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { ApiRegister } from '../../../services/apiRegister/ApiRegister';
 import * as Types from '../../types/user'; // constants
 // action of accounting list
@@ -23,7 +24,12 @@ export const getUserInfo = () => async dispatch => {
         }
 
     } catch (error) {
-        alert("لطفا ابتدا ثبت نام کنید");
-        location.replace("https://www.nakhll.com");
+        toast.error("لطفا ابتدا وارد سایت شوید", {
+            position: "top-right",
+            closeOnClick: true,
+        });
+        setTimeout(() => {
+            location.replace("https://www.nakhll.com");
+        }, 3000);
     }
 }

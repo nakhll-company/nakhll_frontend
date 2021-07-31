@@ -2,6 +2,9 @@
 .wrapper{
     padding: 14px;
     background: #F8F8F8;
+    grid-column: 1/-1;
+    grid-row: 1/-1;
+    padding-bottom: 100px !important;
     // header
     .header{
         display: flex;

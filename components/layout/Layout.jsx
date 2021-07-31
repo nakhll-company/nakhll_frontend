@@ -1,11 +1,10 @@
 // node libraries
+import Image from "next/image";
 import Link from "next/link";
+import Head from "next/head";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Image from "next/image";
-import Head from "next/head";
-
 // components
 import useViewport from "../viewPort/index";
 import MenuMobile from "./MenuMobile";
@@ -15,8 +14,12 @@ import { getUserInfo } from "../../redux/actions/user/getUserInfo";
 import { getActiveHojreh } from "../../redux/actions/user/getActiveHojreh";
 // styles
 import styles from "../../styles/components/layout/layout.module.scss";
+import { ToastContainer } from "react-toastify";
 
 function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
+  const [selectShop, setselectShop] = useState("");
+  const [isShowOrder, setisShowOrder] = useState(false);
+  const [Title, setTitle] = useState("");
   const router = useRouter();
   const { width } = useViewport();
   const breakpoint = 620;
@@ -25,19 +28,22 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
   };
   useEffect(() => {
     Object.keys(userInfo).length === 0 && getUserInfo();
-  }, []);
+    if (selectShop.length === 0) {
+      Object.keys(userInfo).length > 0 &&
+        userInfo.shops.length > 0 &&
+        getActiveHojreh(userInfo.shops[0].slug);
+    }
+  }, [userInfo.shops]);
 
-  const [selectShop, setselectShop] = useState("");
-  const [isShowOrder, setisShowOrder] = useState(false);
-  if (selectShop.length === 0) {
-    Object.keys(userInfo).length > 0 &&
-      userInfo.shops.length > 0 &&
-      getActiveHojreh(userInfo.shops[0].slug);
-  }
+  const ForHeader = (option) => {
+    setTitle(option.target[option.target.selectedIndex].text);
+  };
 
   return (
     <>
+      <ToastContainer />
       <Head>
+        <title>{Title ? `حجره ${Title}` : "داشبورد مدیریت"}</title>
         <link
           rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
@@ -76,17 +82,17 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
       )}
 
       <div
-        className={`${
-          width < breakpoint && router.pathname !== "/"
-            ? styles.wrapperProduct
-            : styles.wrapper
-        }`}
+        className={`${width < breakpoint && router.pathname !== "/"
+          ? styles.wrapperProduct
+          : styles.wrapper
+          }`}
       >
         {/* <!-- Right  SideBar--> */}
         {!(width < breakpoint && router.pathname !== "/fp") && (
           <div className={styles.Right}>
             <section className={styles.info_card}>
               <div className={styles.info_card_pic}>
+                {/* <Image src={userInfo.shops.image_thumbnail_url} layout="fill"></Image> */}
                 <div className={styles.info_card_pic_person}>
                   <Image src="/image/picprofile.png" layout="fill"></Image>
                 </div>
@@ -102,10 +108,17 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                 >
                   حجره طلاسازی
                 </h1> */}
+                <label htmlFor="select-shop" style={{ fontSize: "15px" }}>
+                  {" "}
+                  حجره های شما:
+                  {"     "}‌
+                </label>
                 <select
+                  id="select-shop"
                   onChange={(a) => {
                     setselectShop(a.target.value);
                     getActiveHojreh(a.target.value);
+                    ForHeader(a);
                   }}
                 >
                   {userInfo.shops &&
@@ -125,11 +138,10 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                 </div>
                 <Link href="/fp/setting">
                   <div
-                    className={`${
-                      router.pathname == "/fp/setting"
-                        ? styles.ActiveMenuBarBig
-                        : ""
-                    }   ${styles.info_card_btn_one} ${styles.forhover}`}
+                    className={`${router.pathname == "/fp/setting"
+                      ? styles.ActiveMenuBarBig
+                      : ""
+                      }   ${styles.info_card_btn_one} ${styles.forhover}`}
                   >
                     <i
                       style={{ fontSize: "20px" }}
@@ -156,9 +168,8 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
             <section className={styles.menu_card}>
               <Link href={`/fp`}>
                 <span
-                  className={`${styles.menu_card_item}   ${
-                    router.pathname == "/" ? styles.selectNav : ""
-                  }`}
+                  className={`${styles.menu_card_item}   ${router.pathname == "/" ? styles.selectNav : ""
+                    }`}
                 >
                   <i
                     style={{ marginLeft: "18px", fontSize: "20px" }}
@@ -226,21 +237,6 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   </>
                 )}
               </button>
-              {/* <Link
-                // activeClassName="selectNav"
-                href={`/fp/order/?shop=${selectShop}`}
-              >
-                <span
-                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/order" ? styles.selectNav : ""
-                    }`}
-                >
-                  <span
-                    style={{ marginLeft: "18px" }}
-                    className={`fas fa-shopping-basket fa-2x`}
-                  ></span>
-                  <h2>سفارش ها</h2>
-                </span>
-              </Link> */}
               {isShowOrder && (
                 <>
                   <Link
@@ -254,19 +250,17 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                         marginTop: "15px",
                         cursor: "pointer",
                       }}
-                      className={`${styles.subTitleOrder}   ${
-                        router.pathname == "/fp/order/completed"
-                          ? styles.selectNav
-                          : ""
-                      }`}
+                      className={`${styles.subTitleOrder}   ${router.pathname == "/fp/order/completed"
+                        ? styles.selectNav
+                        : ""
+                        }`}
                     >
                       <span
                         style={{ marginLeft: "18px" }}
-                        className={`${styles.dot}   ${
-                          router.pathname == "/fp/order/completed"
-                            ? styles.selectdot
-                            : ""
-                        }`}
+                        className={`${styles.dot}   ${router.pathname == "/fp/order/completed"
+                          ? styles.selectdot
+                          : ""
+                          }`}
                       ></span>
                       <h2>تکمیل شده</h2>
                     </span>
@@ -279,19 +273,17 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                         marginTop: "15px",
                         cursor: "pointer",
                       }}
-                      className={`${styles.subTitleOrder}   ${
-                        router.pathname == "/fp/order/uncompleted"
-                          ? styles.selectNav
-                          : ""
-                      }`}
+                      className={`${styles.subTitleOrder}   ${router.pathname == "/fp/order/uncompleted"
+                        ? styles.selectNav
+                        : ""
+                        }`}
                     >
                       <span
                         style={{ marginLeft: "18px" }}
-                        className={`${styles.dot}   ${
-                          router.pathname == "/fp/order/uncompleted"
-                            ? styles.selectdot
-                            : ""
-                        }`}
+                        className={`${styles.dot}   ${router.pathname == "/fp/order/uncompleted"
+                          ? styles.selectdot
+                          : ""
+                          }`}
                       ></span>
                       <h2>تکمیل نشده</h2>
                     </span>
@@ -301,9 +293,8 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
 
               <Link activeClassName="selectNav" href="/fp/product">
                 <span
-                  className={`${styles.menu_card_item}   ${
-                    router.pathname == "/fp/product" ? styles.selectNav : ""
-                  }`}
+                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/product" ? styles.selectNav : ""
+                    }`}
                 >
                   <i
                     style={{ marginLeft: "18px", fontSize: "20px" }}
@@ -312,74 +303,13 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   <h2>محصولات</h2>
                 </span>
               </Link>
-              {/* <Link activeClassName="selectNav" href="/fp/customer">
-                <span
-                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/customer" ? styles.selectNav : ""
-                    }`}
-                >
-                  <span
-                    style={{ marginLeft: "18px" }}
-                    className="fas fa-users fa-2x"
-                  ></span>
-                  <h2>لیست مشتریان</h2>
-                </span>
-              </Link>
-              <Link activeClassName="selectNav" href="/fp/comments">
-                <span
-                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/comments" ? styles.selectNav : ""
-                    }`}
-                >
-                  <span
-                    style={{ marginLeft: "18px" }}
-                    className="far fa-comment-dots fa-2x"
-                  ></span>
-                  <h2>دیدگاه ها</h2>
-                </span>
-              </Link>
-              <Link activeClassName="selectNav" href="/fp/financial">
-                <span
-                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/financial" ? styles.selectNav : ""
-                    }`}
-                >
-                  <span
-                    style={{ marginLeft: "25px" }}
-                    className="fas fa-dollar-sign fa-pestehkerman"
-                  ></span>
-                  <h2>مالی</h2>
-                </span>
-              </Link>
-              <Link activeClassName="selectNav" href="/fp/discount">
-                <span
-                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/discount" ? styles.selectNav : ""
-                    }`}
-                >
-                  <span
-                    style={{ marginLeft: "18px" }}
-                    className="fas fa-percent fa-2x"
-                  ></span>
-                  <h2>کدتخفیف</h2>
-                </span>
-              </Link>
-              <Link activeClassName="selectNav" href="/fp/support">
-                <span
-                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/support" ? styles.selectNav : ""
-                    }`}
-                >
-                  <span
-                    style={{ marginLeft: "18px" }}
-                    className="fas fa-life-ring fa-2x"
-                  ></span>
-                  <h2>پشتیبانی</h2>
-                </span>
-              </Link> */}
             </section>
           </div>
         )}
         {/* <!-- Left --> */}
         <div
-          className={`${
-            router.pathname == "/" ? styles.left : styles.leftProduct
-          }`}
+          className={`${router.pathname == "/" ? styles.left : styles.leftProduct
+            }`}
         >
           {children}
         </div>

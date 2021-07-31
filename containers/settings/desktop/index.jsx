@@ -1,14 +1,29 @@
 // node libraries
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import ReactCrop from "react-image-crop";
+import { connect } from "react-redux";
+
 // scss
 import styles from "../../../styles/pages/setting/setting.module.scss";
 
+// methods
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-import Image from "next/image";
+import { mapState } from "../methods/mapState";
+import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
 // form
 import { Formik, Form, Field, FieldArray } from "formik";
 import * as yup from "yup";
+
+// components
 import { Loading } from "../../../components/custom/Loading/Loading";
+import Headers from "../components/Headers/Headers";
+
+// validation
+import { VALIDATION_SCHEMA, VALIDATION_HESAB } from "../methods/Validation";
+
+// Toast
+import { toast } from "react-toastify";
 
 const getStates = async () => {
   let params = {};
@@ -25,6 +40,7 @@ const getStates = async () => {
     return response.data;
   }
 };
+
 const getBigCities = async (id) => {
   let params = {};
   let loadData = null;
@@ -40,6 +56,7 @@ const getBigCities = async (id) => {
     return response.data;
   }
 };
+
 const getCities = async (id) => {
   let params = {};
   let loadData = null;
@@ -55,93 +72,27 @@ const getCities = async (id) => {
     return response.data;
   }
 };
-// const FORM_VALIDAITIOM = Yup.object().shape({
-//   firstName: Yup.string().required("الزامی"),
-//   lastName: Yup.string().required("الزامی"),
-//   email: Yup.string().email("وجود ندارد").required("الزامی"),
-//   phone: Yup.number()
-//     .integer()
-//     .typeError("مقدار  نامجرا است")
-//     .required("الزامی"),
-//   addressLine1: Yup.string().required("الزامی"),
-//   addressLine2: Yup.string(),
-//   citey: Yup.string().required("الزامی"),
-//   state: Yup.string().required("الزامی"),
-//   countery: Yup.string().required("الزامی"),
-//   arrivelDate: Yup.date().required("الزامی"),
-//   deputureDate: Yup.date().required("الزامی"),
-//   message: Yup.string(),
-//   termsOfService: Yup.boolean()
-//     .oneOf([true], "Ghabool Kardi???")
-//     .required("hatman bayad bezani"),
-//   code:Yup.number().integer().typeError("مقدار نامجزا است").required("الزامی"),
-//   sex:Yup.string().required("الزامی"),
-//   codePosti:Yup.number().integer().typeError("مقدار نامجزا است").required("الزامی"),
-//   telephone:Yup.number()
-//   .integer()
-//   .typeError("type errorr dadai")
-//   .required("الزامی"),
-//   Me:Yup.string(),
-// });
 
-const DesktopSetting = ({ activeHojreh }) => {
+const DesktopSetting = ({ activeHojreh, userInfo }) => {
+  const [apiSetting, setApiSetting] = useState({});
   const [ChoiceBigCity, setChoiceBigCity] = useState("");
+  const [ChoiceCity, setChoiceCity] = useState("");
   const [ChoiceState, setChoiceState] = useState("");
   const [IsLoading, setIsLoading] = useState(false);
-  const [showMessage, setshowMessage] = useState(0);
-  const [showMessageHesab, setShowMessageHesab] = useState(0);
   const [IsLoadingHesab, setIsLoadingHesab] = useState(false);
   const [MainLoading, setMainLoading] = useState(true);
-
-  // Validation for Hojreh
-  const VALIDATION_SCHEMA = yup.object().shape({
-    Title: yup.string().required("نام حجره الزامی می باشد."),
-    slug: yup.string().required("آدرس اینترنتی حجره الزامی می باشد."),
-    Description: yup.string(),
-    NationalCode: yup
-      .number()
-      .integer()
-      .typeError("فقط عدد مجاز است.")
-      // .min(10, "کد ملی ده رقم می باشد.")
-      // .max(10, "کد ملی ده رقم می باشد.")
-      .required("کد ملی الزامی می باشد."),
-    MobileNumber: yup
-      .number()
-      .typeError("فقط عدد مجاز است.")
-
-      // .min(11, "شماره موبایل 11 رقم می باشد.")
-      // .max(11, "شماره موبایل 11 رقم می باشد.")
-      .required("شماره موبایل الزامی می باشد"),
-    PhoneNumber: yup.number(),
-
-    Address: yup.string().required("آدرس الزامی می باشد."),
-    ZipCode: yup
-      .number()
-      .typeError("فقط عدد مجاز است.")
-      .required("کد پستی الزامی می باشد."),
-  });
-
-  // Validation for HesabBanki
-
-  const VALIDATION_HESAB = yup.object().shape({
-    iban: yup
-      .number()
-      .integer("فقط عدد مجاز می باشد.")
-      .min(100000000000000000000000, "شماره شبا ۲۴ رقم می باشد.")
-      .max(999999999999999999999999, "شماره شبا ۲۴ رقم می باشد.")
-
-      .required("شماره شبا الزامی می باشد.")
-      .typeError("فقط عدد مجاز است."),
-    owner: yup.string().required("نام صاحب حساب الزامی  می باشد."),
-  });
-
-  let [selectState, setSelectState] = useState([]);
-  let [selectBigCities, setSelectBigCities] = useState([]);
-  let [selectCities, setSelectCities] = useState([]);
-  // console.log("active :>> ", activeHojreh);
-
   const [onMenu, setOnMenu] = useState("1");
-  const [apiSetting, setApiSetting] = useState({});
+  const [selectBigCities, setSelectBigCities] = useState([]);
+  const [selectCities, setSelectCities] = useState([]);
+  const [selectState, setSelectState] = useState([]);
+  const [showMessage, setshowMessage] = useState(0);
+  const [showMessageHesab, setShowMessageHesab] = useState(0);
+
+  // state For save picture
+  const [selectImageAvatar, setSelectImageAvatar] = useState(null);
+  const [ImageA, setImage] = useState(null);
+  const [crop, setCrop] = useState({ aspect: 1 / 1 });
+  const [result, setResult] = useState(null);
 
   useEffect(() => {
     const _handleRequestApi = async () => {
@@ -155,6 +106,9 @@ const DesktopSetting = ({ activeHojreh }) => {
         true,
         params
       );
+      setChoiceState(response.data.FK_ShopManager.User_Profile.State);
+      setChoiceBigCity(response.data.FK_ShopManager.User_Profile.BigCity);
+      setChoiceCity(response.data.FK_ShopManager.User_Profile.City);
 
       if (response.status === 200) {
         setApiSetting(await response.data);
@@ -166,42 +120,8 @@ const DesktopSetting = ({ activeHojreh }) => {
 
     activeHojreh.length > 0 && _handleRequestApi();
   }, [activeHojreh]);
-  // console.log("apiSetting", apiSetting);
-
-  const setting = async (body) => {
-    // console.log("body>> ", body);
-    const dataForSend = {
-      Title: body.Title,
-      Slug: body.slug,
-      Description: body.Description,
-      FK_ShopManager: {
-        User_Profile: {
-          NationalCode: body.NationalCode,
-          MobileNumber: body.MobileNumber,
-          PhoneNumber: body.PhoneNumber,
-          BigCity: "",
-          State: "",
-          Address: body.Address,
-          ZipCode: body.ZipCode,
-        },
-      },
-    };
-
-    let params = {};
-    let loadData = dataForSend;
-    let dataUrl = `/api/v1/shop/${activeHojreh}/settings/`;
-    let response = await ApiRegister().apiRequest(
-      loadData,
-      "put",
-      dataUrl,
-      true,
-      params
-    );
-    // console.log("response :>> ", response);
-  };
 
   const linkSetting = (body) => {
-    // console.log("linkSetting...>>> ", body);
     const dataForSendLink = {
       social_media: {
         telegram: body.telegram,
@@ -222,111 +142,139 @@ const DesktopSetting = ({ activeHojreh }) => {
     );
   };
 
-  const HesabBankiForm = (body) => {
-    const dataHesabBankiForSend = {
-      bank_account: {
-        iban: body.iban,
-        owner: body.owner,
-      },
-    };
-
-    let params = {};
-    let loadData = dataHesabBankiForSend;
-    let dataUrl = `/api/v1/shop/${activeHojreh}/settings/bank_account/`;
-
-    let response = ApiRegister().apiRequest(
-      loadData,
-      "put",
-      dataUrl,
-      true,
-      params
-    );
+  // For pic Avatar
+  const handelPicAvatar = (e) => {
+    setSelectImageAvatar(URL.createObjectURL(e.target.files[0]));
   };
+
+  function getCroppedImg() {
+    const canvas = document.createElement("canvas");
+    const scaleX = ImageA.naturalWidth / ImageA.width;
+    const scaleY = ImageA.naturalHeight / ImageA.height;
+    canvas.width = crop.width;
+    canvas.height = crop.height;
+    const ctx = canvas.getContext("2d");
+
+    ctx.drawImage(
+      ImageA,
+      crop.x * scaleX,
+      crop.y * scaleY,
+      crop.width * scaleX,
+      crop.height * scaleY,
+      0,
+      0,
+      crop.width,
+      crop.height
+    );
+    const base64Image = canvas.toDataURL("image/jpeg");
+    setResult(base64Image);
+
+    // Send Avatar Pic to Server
+    const _sendPicAvatar = async () => {
+      let params = {};
+      let loadData = { image: ` ${base64Image}` };
+
+      let dataUrl = `/api/v1/shop/${activeHojreh}/settings/avatar/`;
+      try {
+        let response = await ApiRegister().apiRequest(
+          loadData,
+          "PUT",
+          dataUrl,
+          true,
+          params
+        );
+        if (response.status === 200) {
+          toast.success("عکس پروفایل به روز رسانی شد", {
+            position: "top-right",
+            closeOnClick: true,
+          });
+        }
+      } catch (e) {
+        toast.error("خطایی در ارسال داده ها پیش آمده است", {
+          position: "top-right",
+          closeOnClick: true,
+        });
+      }
+    };
+    _sendPicAvatar();
+
+    setSelectImageAvatar(null);
+  }
+
   return (
     <div dir="rtl" className={styles.setting}>
       {/* Header Site */}
-      <div className={styles.header}>
-        <div className={styles.header_title}>
-          <h1>
-            تنظیمات{" "}
-            <i
-              className="fas fa-chevron-left"
-              style={{
-                marginRight: "2px",
-                marginLeft: "4px",
-                display: "inline-block",
-              }}
-            ></i>
-            {onMenu == "1" && <span>حجره</span>}
-            {onMenu == "2" && <span> حساب بانکی</span>}
-            {onMenu == "3" && <span> ارسال</span>}
-            {onMenu == "4" && <span> لینک ها</span>}
-          </h1>
-        </div>
-
-        {/* Header MenuBar */}
-        <div className={styles.header_menu}>
-          <button
-            onClick={() => {
-              setOnMenu("1");
-            }}
-            className={styles.header_menu_btn}
-          >
-            <h1 className={onMenu == "1" && styles.onBtn}>حجره</h1>
-          </button>
-
-          <button
-            onClick={() => {
-              setOnMenu("2");
-            }}
-            className={styles.header_menu_btn}
-          >
-            <h1 className={onMenu == "2" && styles.onBtn}>حساب بانکی</h1>
-          </button>
-          <button
-            onClick={() => {
-              setOnMenu("3");
-            }}
-            className={styles.header_menu_btn}
-          >
-            <h1 className={onMenu == "3" && styles.onBtn}>ارسال</h1>
-          </button>
-          <button
-            onClick={() => {
-              setOnMenu("4");
-            }}
-            className={styles.header_menu_btn}
-          >
-            <h1 className={onMenu == "4" && styles.onBtn}>لینک ها</h1>
-          </button>
-        </div>
-      </div>
+      <Headers onMenu={onMenu} setOnMenu={setOnMenu}></Headers>
 
       {/* Setting Conttent */}
       <div className={styles.wrapper}>
-        {/* Hojreh */}
-        {/* TODO  into Formik */}
-        {onMenu == "1" && (
+        {MainLoading ? (
+          <Loading />
+        ) : (
           <>
-            {/* <div className={styles.Hojreh_headD}>
-              <div>
-                <div className={styles.Hojreh_headD_pic}>
-                  <div className={styles.Hojreh_headD_edit_icon_pic}>
-                    <span className="fas fa-edit"></span>
+            {/* Hojreh */}
+
+            {onMenu == "1" && (
+              <>
+                <div className={styles.Hojreh_headD}>
+                  <div>
+                    <div className={styles.Hojreh_headD_pic}>
+                      {apiSetting.image_thumbnail_url && !result && (
+                        <Image
+                          src={apiSetting.image_thumbnail_url}
+                          width={100}
+                          height={100}
+                        ></Image>
+                      )}
+                      {result && (
+                        <Image src={result} width={100} height={100}></Image>
+                      )}
+                      <div className={styles.Hojreh_headD_edit_icon_pic}>
+                        <label htmlFor="file_pic_avatar">
+                          <span
+                            style={{ fontSize: "20px", cursor: "pointer" }}
+                            className="fas fa-edit"
+                          ></span>
+                        </label>
+                        <input
+                          id="file_pic_avatar"
+                          type="file"
+                          accept="image/*"
+                          onChange={handelPicAvatar}
+                        />
+                      </div>
+                    </div>
+                    <div className={styles.Hojreh_headD_edit_icon}>
+                      {/* <span className="fas fa-edit"></span> */}
+                    </div>
                   </div>
                 </div>
-                <div className={styles.Hojreh_headD_edit_icon}>
-                  <span className="fas fa-edit"></span>
-                </div>
-              </div>
-            </div> */}
-            {/* <form
+                {selectImageAvatar && (
+                  <div
+                    style={{
+                      height: "400px",
+
+                      marginBottom: "15px",
+                    }}
+                  >
+                    <div className={styles.btn_For_save}>
+                      <button onClick={getCroppedImg}>ویرایش تصویر </button>
+                    </div>
+                    <ReactCrop
+                      src={selectImageAvatar}
+                      onImageLoaded={setImage}
+                      crop={crop}
+                      onChange={setCrop}
+                    />
+                  </div>
+                )}
+
+                {/* <form
               onSubmit={(e) => {
                 e.preventDefault();
-                console.log("iiiiii :>> ", e.target);
               }}
             > */}
-            {/* <form
+                {/* <form
               onSubmit={async (e) => {
                 e.preventDefault();
                 const data = new FormData(e.target);
@@ -337,10 +285,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                 // }
               }}
             > */}
-            {MainLoading ? (
-              <Loading />
-            ) : (
-              <>
+
                 <Formik
                   enableReinitialize={true}
                   initialValues={{
@@ -380,31 +325,32 @@ const DesktopSetting = ({ activeHojreh }) => {
                           PhoneNumber: data.PhoneNumber,
                           BigCity: ChoiceBigCity,
                           State: ChoiceState,
+                          City: ChoiceCity,
                           Address: data.Address,
                           ZipCode: data.ZipCode,
                         },
                       },
                     };
-                    // console.log('miii :>> ', dataForSend);
                     let params = {};
                     let loadData = dataForSend;
                     let dataUrl = `/api/v1/shop/${activeHojreh}/settings/`;
-                    let response = await ApiRegister().apiRequest(
-                      loadData,
-                      "put",
-                      dataUrl,
-                      true,
-                      params
-                    );
-                    if (response.status === 200) {
+                    try {
+                      const response = await ApiRegister().apiRequest(
+                        loadData,
+                        "put",
+                        dataUrl,
+                        true,
+                        params
+                      );
+                      if (response.status === 200) {
+                        setIsLoading(false);
+                        setshowMessage(1);
+                      }
+                    } catch (error) {
                       setIsLoading(false);
-                      // good
-                      setshowMessage(1);
-                    } else {
                       // Not Good
                       setshowMessage(2);
                     }
-                    // console.log("dataForSend :>> ", dataForSend);
                   }}
                 >
                   {({ values, errors, touched }) => (
@@ -416,7 +362,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                         <div className={styles.hojrehD}>
                           <div className={styles.input_setting}>
                             <h2
-                              style={{ marginBottom: "10px", color: "#364254" }}
+                              style={{
+                                marginBottom: "10px",
+                                color: "#364254",
+                              }}
                             >
                               نام حجره
                             </h2>
@@ -424,7 +373,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                               <Field
                                 name="Title"
                                 type="text"
-                                // defaultValue={apiSetting.Title}
+                              // defaultValue={apiSetting.Title}
                               />
                               {touched.Title && errors.Title ? (
                                 <small className={styles.error}>
@@ -448,9 +397,13 @@ const DesktopSetting = ({ activeHojreh }) => {
                               شود.
                             </h4>
                           </div>
+
                           <div className={styles.input_setting}>
                             <h2
-                              style={{ marginBottom: "10px", color: "#364254" }}
+                              style={{
+                                marginBottom: "10px",
+                                color: "#364254",
+                              }}
                             >
                               آدرس اینترنتی حجره
                             </h2>
@@ -458,7 +411,7 @@ const DesktopSetting = ({ activeHojreh }) => {
                               <Field
                                 name="slug"
                                 type="text"
-                                // defaultValue={apiSetting.Slug}
+                              // defaultValue={apiSetting.Slug}
                               />
                               {touched.slug && errors.slug ? (
                                 <small className={styles.error}>
@@ -480,9 +433,13 @@ const DesktopSetting = ({ activeHojreh }) => {
                               از (_) استفاده کنید.
                             </h4>
                           </div>
+
                           <div className={styles.input_setting}>
                             <h2
-                              style={{ marginBottom: "10px", color: "#364254" }}
+                              style={{
+                                marginBottom: "10px",
+                                color: "#364254",
+                              }}
                             >
                               درباره حجره
                             </h2>
@@ -533,7 +490,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                         <div className={styles.spaceGridD}>
                           <div className={styles.input_setting}>
                             <h2
-                              style={{ marginBottom: "10px", color: "#364254" }}
+                              style={{
+                                marginBottom: "10px",
+                                color: "#364254",
+                              }}
                             >
                               کد ملی
                             </h2>
@@ -551,7 +511,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                           </div>
                           <div className={styles.input_setting}>
                             <h2
-                              style={{ marginBottom: "10px", color: "#364254" }}
+                              style={{
+                                marginBottom: "10px",
+                                color: "#364254",
+                              }}
                             >
                               شماره تماس اصلی
                             </h2>
@@ -579,7 +542,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                           </div>
                           <div className={styles.input_setting}>
                             <h2
-                              style={{ marginBottom: "10px", color: "#364254" }}
+                              style={{
+                                marginBottom: "10px",
+                                color: "#364254",
+                              }}
                             >
                               شماره تلفن ثابت
                             </h2>
@@ -587,10 +553,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                               <Field
                                 name="PhoneNumber"
                                 type="text"
-                                // defaultValue={
-                                //   apiSetting.FK_ShopManager &&
-                                //   apiSetting.FK_ShopManager.User_Profile.PhoneNumber
-                                // }
+                              // defaultValue={
+                              //   apiSetting.FK_ShopManager &&
+                              //   apiSetting.FK_ShopManager.User_Profile.PhoneNumber
+                              // }
                               />
                             </div>
                           </div>
@@ -612,16 +578,19 @@ const DesktopSetting = ({ activeHojreh }) => {
                             <select
                               className={styles.form_select}
                               name="State"
+                              defaultValue=""
                               onChange={async (event) => {
                                 setSelectBigCities(
                                   await getBigCities(event.target.value)
                                 );
-                                debugger;
-                                setChoiceState(event.target.value.name);
+
+                                setChoiceState(
+                                  event.target[event.target.selectedIndex].text
+                                );
                               }}
                             >
                               <option value="" disabled>
-                                برای باز شدن لیست کلیک کنید
+                                {apiSetting.FK_ShopManager.User_Profile.State}
                               </option>
                               {selectState.map((value, index) => {
                                 return (
@@ -635,15 +604,19 @@ const DesktopSetting = ({ activeHojreh }) => {
                             <select
                               className={styles.form_select}
                               name="BigCity"
-                              defaultValue="0"
+                              defaultValue=""
                               onChange={async (event) => {
                                 setSelectCities(
                                   await getCities(event.target.value)
                                 );
+
+                                setChoiceBigCity(
+                                  event.target[event.target.selectedIndex].text
+                                );
                               }}
                             >
                               <option value="" disabled>
-                                برای باز شدن لیست کلیک کنید
+                                {apiSetting.FK_ShopManager.User_Profile.BigCity}
                               </option>
                               {selectBigCities.map((value, index) => {
                                 return (
@@ -657,13 +630,13 @@ const DesktopSetting = ({ activeHojreh }) => {
                             <select
                               className={styles.form_select}
                               name="City"
-                              defaultValue="0"
+                              defaultValue=""
                               onChange={(event) => {
-                                setChoiceBigCity(event.target.value);
+                                setChoiceCity(event.target.value);
                               }}
                             >
                               <option value="" disabled>
-                                برای باز شدن لیست کلیک کنید
+                                {apiSetting.FK_ShopManager.User_Profile.City}{" "}
                               </option>
                               {selectCities.map((value, index) => {
                                 return (
@@ -679,7 +652,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                           </div>
                           <div className={styles.input_setting}>
                             <h2
-                              style={{ marginBottom: "10px", color: "#364254" }}
+                              style={{
+                                marginBottom: "10px",
+                                color: "#364254",
+                              }}
                             >
                               آدرس
                             </h2>
@@ -689,10 +665,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                                 name="Address"
                                 rows="4"
                                 cols="50"
-                                // defaultValue={
-                                //   apiSetting.FK_ShopManager &&
-                                //   apiSetting.FK_ShopManager.User_Profile.Address
-                                // }
+                              // defaultValue={
+                              //   apiSetting.FK_ShopManager &&
+                              //   apiSetting.FK_ShopManager.User_Profile.Address
+                              // }
                               />
                               {touched.Address && errors.Address ? (
                                 <small className={styles.error}>
@@ -708,7 +684,10 @@ const DesktopSetting = ({ activeHojreh }) => {
 
                           <div className={styles.input_setting}>
                             <h2
-                              style={{ marginBottom: "10px", color: "#364254" }}
+                              style={{
+                                marginBottom: "10px",
+                                color: "#364254",
+                              }}
                             >
                               کد پستی
                             </h2>
@@ -727,7 +706,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                         </div>
                         {IsLoading && (
                           <div
-                            style={{ display: "flex", alignItems: "center" }}
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                            }}
                           >
                             <div className={styles.loader}>
                               <Image
@@ -787,15 +769,9 @@ const DesktopSetting = ({ activeHojreh }) => {
                 <div style={{ marginTop: "80px" }}></div>
               </>
             )}
-          </>
-        )}
 
-        {/* HesabBanki */}
-        {onMenu == "2" && (
-          <>
-            {MainLoading ? (
-              <Loading />
-            ) : (
+            {/* HesabBanki */}
+            {onMenu == "2" && (
               <>
                 <Formik
                   enableReinitialize={true}
@@ -851,7 +827,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                       <div className={styles.HesabBankiGridD}>
                         <div className={styles.input_setting}>
                           <h2
-                            style={{ marginBottom: "10px", color: "#364254" }}
+                            style={{
+                              marginBottom: "10px",
+                              color: "#364254",
+                            }}
                           >
                             شماره شبا
                           </h2>
@@ -895,7 +874,10 @@ const DesktopSetting = ({ activeHojreh }) => {
                         </div>
                         <div className={styles.input_setting}>
                           <h2
-                            style={{ marginBottom: "10px", color: "#364254" }}
+                            style={{
+                              marginBottom: "10px",
+                              color: "#364254",
+                            }}
                           >
                             صاحب حساب
                           </h2>
@@ -971,78 +953,78 @@ const DesktopSetting = ({ activeHojreh }) => {
                 </Formik>
               </>
             )}
-          </>
-        )}
 
-        {/* Links */}
-        {onMenu == "4" && (
-          <>
-            {MainLoading ? (
-              <Loading />
-            ) : (
-              <form
-                onSubmit={async (e) => {
-                  e.preventDefault();
-                  const data = new FormData(e.target);
-                  let body = Object.fromEntries(data.entries());
-                  let response = await linkSetting(body);
-                  // if (response.status === 201) {
-                  //   setShowSuccessPage((showSuccessPage) => !showSuccessPage);
-                  // }
-                }}
-              >
-                <div className={styles.LinksGridD}>
-                  <div className={styles.input_setting}>
-                    <h2 style={{ marginBottom: "10px", color: "#364254" }}>
-                      آدرس تلگرام
-                    </h2>
-                    <div className={styles.inputWid_withWord}>
-                      <div>
-                        <h2>t.me/</h2>
+
+
+
+            {/* Links */}
+            
+            {onMenu == "4" && (
+              <>
+                <form
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    const data = new FormData(e.target);
+                    let body = Object.fromEntries(data.entries());
+                    let response = await linkSetting(body);
+                    // if (response.status === 201) {
+                    //   setShowSuccessPage((showSuccessPage) => !showSuccessPage);
+                    // }
+                  }}
+                >
+                  <div className={styles.LinksGridD}>
+                    <div className={styles.input_setting}>
+                      <h2 style={{ marginBottom: "10px", color: "#364254" }}>
+                        آدرس تلگرام
+                      </h2>
+                      <div className={styles.inputWid_withWord}>
+                        <div>
+                          <h2>t.me/</h2>
+                        </div>
+                        <input
+                          type="text"
+                          name="telegram"
+                          defaultValue={
+                            apiSetting.social_media &&
+                            apiSetting.social_media.telegram
+                          }
+                        />
                       </div>
-                      <input
-                        type="text"
-                        name="telegram"
-                        defaultValue={
-                          apiSetting.social_media &&
-                          apiSetting.social_media.telegram
-                        }
-                      />
+                    </div>
+                    <div className="">
+                      <h4 className={styles.explain}></h4>
+                    </div>
+                    <div className={styles.input_setting}>
+                      <h2 style={{ marginBottom: "10px", color: "#364254" }}>
+                        آدرس اینستاگرام
+                      </h2>
+                      <div className={styles.inputWid_withWord}>
+                        <div>
+                          <h2>instagram.com/</h2>
+                        </div>
+                        <input
+                          type="text"
+                          name="instagram"
+                          defaultValue={
+                            apiSetting.social_media &&
+                            apiSetting.social_media.instagram
+                          }
+                        />
+                      </div>
                     </div>
                   </div>
-                  <div className="">
-                    <h4 className={styles.explain}></h4>
-                  </div>
-                  <div className={styles.input_setting}>
-                    <h2 style={{ marginBottom: "10px", color: "#364254" }}>
-                      آدرس اینستاگرام
-                    </h2>
-                    <div className={styles.inputWid_withWord}>
-                      <div>
-                        <h2>instagram.com/</h2>
-                      </div>
-                      <input
-                        type="text"
-                        name="instagram"
-                        defaultValue={
-                          apiSetting.social_media &&
-                          apiSetting.social_media.instagram
-                        }
-                      />
-                    </div>
-                  </div>
-                </div>
-                {/* ‌Buttons */}
+                  {/* ‌Buttons */}
 
-                <div className={styles.status_button_one}>
-                  <button
-                    type="submit"
-                    className={`${styles.btn} ${styles.btnSubmit}`}
-                  >
-                    <h3>ذخیره اطلاعات </h3>
-                  </button>
-                </div>
-              </form>
+                  <div className={styles.status_button_one}>
+                    <button
+                      type="submit"
+                      className={`${styles.btn} ${styles.btnSubmit}`}
+                    >
+                      <h3>ذخیره اطلاعات </h3>
+                    </button>
+                  </div>
+                </form>
+              </>
             )}
           </>
         )}
@@ -1050,5 +1032,7 @@ const DesktopSetting = ({ activeHojreh }) => {
     </div>
   );
 };
+
 // export
-export default DesktopSetting;
+const connector = connect(mapState, { getUserInfo });
+export default connector(DesktopSetting);

@@ -28,8 +28,7 @@ export const getServerSideProps = ({ params }) => {
 //     "barcode": "BARCODE_HERE"
 // }
 function HomePage({ id }) {
-
-  const [IsLoading, setIsLoading] = useState(false)
+  const [IsLoading, setIsLoading] = useState(false);
   const [showMessage, setshowMessage] = useState(0);
   const VALIDATION_SCHEMA = yup.object().shape({
     codeRahgiri: yup
@@ -63,7 +62,6 @@ function HomePage({ id }) {
         setdata(response.data);
       }
       setisShow(true);
-      // console.log("aaaa :>> ", response);
     };
     _handleRequestApi(id);
   }, []);
@@ -250,10 +248,6 @@ function HomePage({ id }) {
                       >
                         {" "}
                         <h4>تحویل مرسوله به پست</h4>
-                        {data.order_status === "3" && ""}
-                        {data.order_status === "2" && (
-                          <h4 style={{ color: "#000" }}>22/04/1400</h4>
-                        )}
                       </div>
                     </div>
                     <div
@@ -325,39 +319,41 @@ function HomePage({ id }) {
                         }}
                         validationSchema={VALIDATION_SCHEMA}
                         onSubmit={async (data) => {
-                          setshowMessage(0)
-                          setIsLoading(true)
+                          setshowMessage(0);
+                          setIsLoading(true);
                           const sendData = {
                             barcode: data.codeRahgiri,
                           };
                           const _handleRequestApi = async (id) => {
-                            let params = {};
-                            let loadData = sendData;
-                            let dataUrl = `/app/api/v1/factor/change-status/sent/${id}/`;
-                            let response = await ApiRegister().apiRequest(
-                              loadData,
-                              "POST",
-                              dataUrl,
-                              true,
-                              params
-                            );
-                            // setconfigOrder(response);
-                            // setisShow(true);
-                            // setbtnOk(!btnOk);
+                            try {
+                              let params = {};
+                              let loadData = sendData;
+                              let dataUrl = `/app/api/v1/factor/change-status/sent/${id}/`;
+                              let response = await ApiRegister().apiRequest(
+                                loadData,
+                                "POST",
+                                dataUrl,
+                                true,
+                                params
+                              );
+                              // setconfigOrder(response);
+                              // setisShow(true);
+                              // setbtnOk(!btnOk);
 
-                            // if (response.details === "Done") {
-                            //   setconfigOrder(true);
-                            // }
+                              // if (response.details === "Done") {
+                              //   setconfigOrder(true);
+                              // }
 
-                            if (response.status === 200) {
-                              setshowMessage(1)
-                              setIsLoading(false)
-                            
-                            } else {
-                              setshowMessage(2)
-                              setIsLoading(false)
+                              if (response.status === 200) {
+                                setshowMessage(1);
+                                setIsLoading(false);
+                              }
+                            } catch (e) {
+                              setshowMessage(2);
+                              setIsLoading(false);
                             }
                           };
+
                           _handleRequestApi(id);
                         }}
                       >
@@ -411,7 +407,7 @@ function HomePage({ id }) {
                                   <div>
                                     <h3
                                       style={{
-                                        fontSize:"14px",
+                                        fontSize: "14px",
                                         marginTop: "15px",
                                         color: "green",
                                       }}
@@ -486,25 +482,25 @@ function HomePage({ id }) {
                             barcode: data.codeRahgiri,
                           };
                           const _handleRequestApi = async (id) => {
-                            let params = {};
-                            let loadData = sendData;
-                            let dataUrl = `/app/api/v1/factor/change-status/sent/${id}/`;
-                            let response = await ApiRegister().apiRequest(
-                              loadData,
-                              "POST",
-                              dataUrl,
-                              true,
-                              params
-                            );
-                           
+                            try {
+                              let params = {};
+                              let loadData = sendData;
+                              let dataUrl = `/app/api/v1/factor/change-status/sent/${id}/`;
+                              let response = await ApiRegister().apiRequest(
+                                loadData,
+                                "POST",
+                                dataUrl,
+                                true,
+                                params
+                              );
 
-                            if (response.status === 200) {
-                              setshowMessage(1)
-                              setIsLoading(false)
-                            
-                            } else {
-                              setshowMessage(2)
-                              setIsLoading(false)
+                              if (response.status === 200) {
+                                setshowMessage(1);
+                                setIsLoading(false);
+                              }
+                            } catch (e) {
+                              setshowMessage(2);
+                              setIsLoading(false);
                             }
                           };
                           _handleRequestApi(id);
@@ -562,7 +558,7 @@ function HomePage({ id }) {
                                       style={{
                                         marginTop: "15px",
                                         color: "green",
-                                        fontSize:"14px"
+                                        fontSize: "14px",
                                       }}
                                     >
                                       به روز رسانی با موفقیت انجام شد.
@@ -622,9 +618,8 @@ function HomePage({ id }) {
                   <div className={styles.post_informationD_content}>
                     <h4>نام مشتری</h4>
                     <h3 style={{ marginTop: "5px" }}>
-                      {`${data.profile && data.profile.user.first_name}  ${
-                        data.profile && data.profile.user.last_name
-                      }`}
+                      {`${data.profile && data.profile.user.first_name}  ${data.profile && data.profile.user.last_name
+                        }`}
                     </h3>
                   </div>
                   {/* <div className={styles.post_informationD_content}>
@@ -911,7 +906,14 @@ function HomePage({ id }) {
                     <div className={styles.title_status}>
                       <h3 style={{ fontSize: "15px", fontWeight: "bold" }}>
                         {data.order_status === "2" && "در انتظار تحویل به پست"}
-                        {data.order_status === "3" && "در انتظار تایید"}
+                        {data.order_status === "3" &&
+                          btnOk &&
+                          "در انتظار تایید"}
+                        {data.order_status === "3" &&
+                          !btnOk &&
+                          "در انتظار تحویل به پست"}
+
+                        {data.order_status === "5" && "سفارش ارسال شده است"}
                       </h3>
                     </div>
                   </div>
@@ -919,7 +921,8 @@ function HomePage({ id }) {
                     {/* تایید سفارش */}
 
                     <div className={styles.order_status_oneLevel}>
-                      {data.order_status === "3" && (
+                      {/* منتظر بررسی */}
+                      {data.order_status === "3" && btnOk && (
                         <div className={styles.place_icon_two}>
                           <span
                             style={{ fontSize: "20px", color: "#fff" }}
@@ -927,7 +930,25 @@ function HomePage({ id }) {
                           ></span>
                         </div>
                       )}
+                      {data.order_status === "3" && !btnOk && (
+                        <div className={styles.place_icon_three}>
+                          <span
+                            style={{ fontSize: "20px", color: "#fff" }}
+                            className="fas fa-clipboard-check "
+                          ></span>
+                        </div>
+                      )}
+                      {/* سفارش در حال اماده سازی */}
                       {data.order_status === "2" && (
+                        <div className={styles.place_icon_three}>
+                          <span
+                            style={{ fontSize: "20px", color: "#fff" }}
+                            className="fas fa-clipboard-check "
+                          ></span>
+                        </div>
+                      )}
+                      {/* سفارش ارسال شده است */}
+                      {data.order_status === "5" && (
                         <div className={styles.place_icon_three}>
                           <span
                             style={{ fontSize: "20px", color: "#fff" }}
@@ -942,7 +963,6 @@ function HomePage({ id }) {
                       >
                         {" "}
                         <h4>تایید سفارش</h4>
-                        <h4 style={{ color: "#000" }}>22 ساعت 10 دقیقه</h4>
                       </div>
                     </div>
                     <div
@@ -959,22 +979,44 @@ function HomePage({ id }) {
                     {/* تحویل مرسوله به پست */}
 
                     <div className={styles.order_status_oneLevel}>
-                      <div className={styles.place_icon}>
-                        <span
-                          style={{ fontSize: "20px", color: "#fff" }}
-                          className="fas fa-truck "
-                        ></span>
-                      </div>
+                      {data.order_status === "2" && (
+                        <div className={styles.place_icon}>
+                          <span
+                            style={{ fontSize: "20px", color: "#fff" }}
+                            className="fas fa-truck "
+                          ></span>
+                        </div>
+                      )}
+                      {data.order_status === "3" && btnOk && (
+                        <div className={styles.place_icon}>
+                          <span
+                            style={{ fontSize: "20px", color: "#fff" }}
+                            className="fas fa-truck "
+                          ></span>
+                        </div>
+                      )}
+                      {data.order_status === "3" && !btnOk && (
+                        <div className={styles.place_icon_two}>
+                          <span
+                            style={{ fontSize: "20px", color: "#fff" }}
+                            className="fas fa-truck "
+                          ></span>
+                        </div>
+                      )}
+                      {data.order_status === "5" && (
+                        <div className={styles.place_icon_three}>
+                          <span
+                            style={{ fontSize: "20px", color: "#fff" }}
+                            className="fas fa-truck "
+                          ></span>
+                        </div>
+                      )}
                       <div
                         className={styles.order_status_right_icon}
                         style={{ marginRight: "20px" }}
                       >
                         {" "}
                         <h4>تحویل مرسوله به پست</h4>
-                        {data.order_status === "3" && ""}
-                        {data.order_status === "2" && (
-                          <h4 style={{ color: "#000" }}>22/04/1400</h4>
-                        )}
                       </div>
                     </div>
                     <div
@@ -991,64 +1033,343 @@ function HomePage({ id }) {
                     {/* تایید مشتری */}
 
                     <div className={styles.order_status_oneLevel}>
-                      <div className={styles.place_icon}>
-                        <span
-                          style={{ fontSize: "20px", color: "#fff" }}
-                          className="fas fa-box"
-                        ></span>
-                      </div>
+                      {data.order_status === "0" ? (
+                        <div className={styles.place_icon}>
+                          <span
+                            style={{ fontSize: "20px", color: "#fff" }}
+                            className="fas fa-box"
+                          ></span>
+                        </div>
+                      ) : (
+                        <div className={styles.place_icon}>
+                          <span
+                            style={{ fontSize: "20px", color: "#fff" }}
+                            className="fas fa-box"
+                          ></span>
+                        </div>
+                      )}
                       <div
                         className={styles.order_status_right_icon}
                         style={{ marginRight: "20px" }}
                       >
                         {" "}
                         <h4>تایید مشتری</h4>
-                        <h4 style={{ color: "#000" }}>29/04/1400</h4>
                       </div>
                     </div>
                   </div>
 
-                  {/* ‌Buttons */}
-                  {btnOk ? (
+                  {/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@‌  Buttons  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */}
+
+                  {/*  منتظر بررسی */}
+                  {data.order_status === "3" && btnOk && (
                     <div className={styles.order_status_button}>
                       <button
                         onClick={() => {
-                          setbtnOk(!btnOk);
+                          confirmedFactor();
                         }}
                         className={`${styles.btn} ${styles.btnSubmit}`}
                       >
                         <h3>تایید</h3>
                       </button>
                       <button className={`${styles.btn} ${styles.btnProblem}`}>
-                        <h3 style={{ fontSize: "12px" }}>ثبت مشکل</h3>
+                        <h3>ثبت مشکل</h3>
                       </button>
                     </div>
-                  ) : (
+                  )}
+
+                  {data.order_status === "3" && !btnOk && (
                     <>
-                      <div className={styles.order_status_code}>
-                        <input
-                          className={styles.btn_code}
-                          type="number"
-                          placeholder="کد رهگیری مرسوله"
-                        />
-                      </div>
-                      <div className={styles.order_status_button}>
-                        <button
-                          onClick={() => {
-                            SendRahgiriCode();
-                          }}
-                          className={`${styles.btn} ${styles.btnSubmit}`}
-                        >
-                          <h3 style={{ fontSize: "12px" }}>ثبت کد رهگیری</h3>
-                        </button>
-                        <button
-                          className={`${styles.btn} ${styles.btnProblem}`}
-                        >
-                          <h3 style={{ fontSize: "12px" }}>ثبت مشکل</h3>
-                        </button>
+                      <Formik
+                        enableReinitialize={true}
+                        initialValues={{
+                          codeRahgiri: "",
+                        }}
+                        validationSchema={VALIDATION_SCHEMA}
+                        onSubmit={async (data) => {
+                          setshowMessage(0);
+                          setIsLoading(true);
+                          const sendData = {
+                            barcode: data.codeRahgiri,
+                          };
+                          const _handleRequestApi = async (id) => {
+                            try {
+                              let params = {};
+                              let loadData = sendData;
+                              let dataUrl = `/app/api/v1/factor/change-status/sent/${id}/`;
+                              let response = await ApiRegister().apiRequest(
+                                loadData,
+                                "POST",
+                                dataUrl,
+                                true,
+                                params
+                              );
+                              // setconfigOrder(response);
+                              // setisShow(true);
+                              // setbtnOk(!btnOk);
+
+                              // if (response.details === "Done") {
+                              //   setconfigOrder(true);
+                              // }
+
+                              if (response.status === 200) {
+                                setshowMessage(1);
+                                setIsLoading(false);
+                              }
+                            } catch (err) {
+                              setshowMessage(2);
+                              setIsLoading(false);
+                            }
+                          };
+                          _handleRequestApi(id);
+                        }}
+                      >
+                        {({ values, errors, touched }) => (
+                          <Form>
+                            <div className={styles.ButtonsGrid}>
+                              <div className={styles.order_status_code}>
+                                <Field
+                                  className={styles.btn_code}
+                                  type="input"
+                                  name="codeRahgiri"
+                                  placeholder="کد رهگیری مرسوله"
+                                />
+                              </div>
+                              <div>
+                                {" "}
+                                {touched.codeRahgiri && errors.codeRahgiri ? (
+                                  <small className={styles.error}>
+                                    {errors.codeRahgiri}
+                                  </small>
+                                ) : null}
+                                {IsLoading && (
+                                  <div
+                                    style={{
+                                      marginTop: "15px",
+                                      display: "flex",
+                                      alignItems: "center",
+                                    }}
+                                  >
+                                    <div className={styles.loader}>
+                                      <Image
+                                        src="/image/LOGO_500.png"
+                                        alt="Picture of the author"
+                                        width={50}
+                                        height={50}
+                                      />
+                                    </div>
+                                    <h3
+                                      className={styles.nameLoding}
+                                      style={{
+                                        fontSize: "15px",
+                                        color: "hsl(211deg 100% 50%)",
+                                      }}
+                                    >
+                                      {" "}
+                                      در حال ثبت ...
+                                    </h3>
+                                  </div>
+                                )}
+                                {showMessage == 1 && (
+                                  <div>
+                                    <h3
+                                      style={{
+                                        fontSize: "14px",
+                                        marginTop: "15px",
+                                        color: "green",
+                                      }}
+                                    >
+                                      به روز رسانی با موفقیت انجام شد.
+                                    </h3>
+                                  </div>
+                                )}
+                                {showMessage == 2 && (
+                                  <div>
+                                    <h3
+                                      style={{
+                                        marginTop: "15px",
+                                        color: "red",
+                                      }}
+                                    >
+                                      عملیات به روز رسانی موفقیت آمیز نبود.لطفا
+                                      باری دیگر اقدام کنید.
+                                    </h3>
+                                  </div>
+                                )}
+                              </div>
+                              <div className={styles.order_statusDcod_button}>
+                                <button
+                                  style={{ cursor: "pointer" }}
+                                  className={`${styles.btn} ${styles.btnSubmit}`}
+                                  type="submit"
+                                >
+                                  <h3 style={{ fontSize: "12px" }}>
+                                    ثبت کد رهگیری
+                                  </h3>
+                                </button>
+                                <button
+                                  className={`${styles.btn} ${styles.btnProblem}`}
+                                >
+                                  <h3 style={{ fontSize: "12px" }}>ثبت مشکل</h3>
+                                </button>
+                              </div>
+                            </div>
+                          </Form>
+                        )}
+                      </Formik>
+                    </>
+                  )}
+
+                  {data.order_status === "5" && (
+                    <>
+                      <div className={styles.ButtonsGridDFinal}>
+                        <div className={styles.order_status_code}>
+                          <input
+                            disabled
+                            className={styles.btn_code}
+                            type="number"
+                            placeholder="2521351888415132132"
+                          />
+                        </div>
                       </div>
                     </>
                   )}
+
+                  {/* سفارش در حال اماده سازی */}
+                  {data.order_status === "2" && (
+                    <>
+                      <Formik
+                        enableReinitialize={true}
+                        initialValues={{
+                          codeRahgiri: "",
+                        }}
+                        validationSchema={VALIDATION_SCHEMA}
+                        onSubmit={async (data) => {
+                          const sendData = {
+                            barcode: data.codeRahgiri,
+                          };
+                          const _handleRequestApi = async (id) => {
+                            try {
+                              let params = {};
+                              let loadData = sendData;
+                              let dataUrl = `/app/api/v1/factor/change-status/sent/${id}/`;
+                              let response = await ApiRegister().apiRequest(
+                                loadData,
+                                "POST",
+                                dataUrl,
+                                true,
+                                params
+                              );
+
+                              if (response.status === 200) {
+                                setshowMessage(1);
+                                setIsLoading(false);
+                              }
+                            } catch (err) {
+                              setshowMessage(2);
+                              setIsLoading(false);
+                            }
+                          };
+                          _handleRequestApi(id);
+                        }}
+                      >
+                        {({ values, errors, touched }) => (
+                          <Form>
+                            <div className={styles.ButtonsGrid}>
+                              <div className={styles.order_status_code}>
+                                <Field
+                                  className={styles.btn_code}
+                                  type="input"
+                                  name="codeRahgiri"
+                                  placeholder="کد رهگیری مرسوله"
+                                />
+                              </div>
+                              <div>
+                                {" "}
+                                {touched.codeRahgiri && errors.codeRahgiri ? (
+                                  <small className={styles.error}>
+                                    {errors.codeRahgiri}
+                                  </small>
+                                ) : null}
+                                {IsLoading && (
+                                  <div
+                                    style={{
+                                      marginTop: "15px",
+                                      display: "flex",
+                                      alignItems: "center",
+                                    }}
+                                  >
+                                    <div className={styles.loader}>
+                                      <Image
+                                        src="/image/LOGO_500.png"
+                                        alt="Picture of the author"
+                                        width={50}
+                                        height={50}
+                                      />
+                                    </div>
+                                    <h3
+                                      className={styles.nameLoding}
+                                      style={{
+                                        fontSize: "15px",
+                                        color: "hsl(211deg 100% 50%)",
+                                      }}
+                                    >
+                                      {" "}
+                                      در حال بروزرسانی ...
+                                    </h3>
+                                  </div>
+                                )}
+                                {showMessage == 1 && (
+                                  <div>
+                                    <h3
+                                      style={{
+                                        marginTop: "15px",
+                                        color: "green",
+                                        fontSize: "14px",
+                                      }}
+                                    >
+                                      به روز رسانی با موفقیت انجام شد.
+                                    </h3>
+                                  </div>
+                                )}
+                                {showMessage == 2 && (
+                                  <div>
+                                    <h3
+                                      style={{
+                                        marginTop: "15px",
+                                        color: "red",
+                                      }}
+                                    >
+                                      عملیات به روز رسانی موفقیت آمیز نبود.لطفا
+                                      باری دیگر اقدام کنید.
+                                    </h3>
+                                  </div>
+                                )}
+                              </div>
+                              <div className={styles.order_statusDcod_button}>
+                                <button
+                                  style={{ cursor: "pointer" }}
+                                  className={`${styles.btn} ${styles.btnSubmit}`}
+                                  type="submit"
+                                >
+                                  <h3 style={{ fontSize: "12px" }}>
+                                    ثبت کد رهگیری
+                                  </h3>
+                                </button>
+                                <button
+                                  className={`${styles.btn} ${styles.btnProblem}`}
+                                >
+                                  <h3 style={{ fontSize: "12px" }}>ثبت مشکل</h3>
+                                </button>
+                              </div>
+                            </div>
+                          </Form>
+                        )}
+                      </Formik>
+                    </>
+                  )}
+
+                  {/* سفارش تحویل داده شده است */}
+                  {data.order_status === "0"}
 
                   {/* Buttons 2 */}
                 </div>
@@ -1132,12 +1453,7 @@ function HomePage({ id }) {
                 <div className={styles.purchased_good}>
                   <h1 className={styles.header}>کالاهای خریداری شده</h1>
                   <hr />
-                  <div className={styles.HeaderTableD}>
-                    <h3>ردیف</h3>
-                    <h3>نام محصول</h3>
-                    <h3>تعداد سفارش</h3>
-                    <h3>قیمت</h3>
-                  </div>
+
                   {data.factor_post.map((e, index) => {
                     return (
                       <div

@@ -1,12 +1,14 @@
 // node libraries
 import Link from 'next/link';
 import Image from 'next/image';
+import { useEffect } from 'react';
 // components
 import CustomBadge from '../../../components/custom/customBadge';
 // scss
 import styles from '../../../styles/pages/product/desktopList.module.scss';
 
 export default function Desktop({ loading, productList, activeHojreh, getProduct }) {
+
     const productStatus = [
         { value: "", label: "" },
         { value: 1, label: "آماده در انبار" },
@@ -85,10 +87,23 @@ export default function Desktop({ loading, productList, activeHojreh, getProduct
                             :
                             productList.length > 0 ? productList.map((value, index) => {
                                 return (
-                                    <Link href={`/fp/product/create/${value.id}`} key={index}>
+                                    <Link href={`/fp/product/update/product/${value.id}`} key={index}>
                                         <tr>
                                             <td>{index + 1}</td>
-                                            <td>{value.title}</td>
+                                            <td style={{ display: "flex" }}>
+                                                <Image src={value.image_thumbnail_url} alt="product" width="45" height="45" />
+                                                <div style={{ margin: "0px 20px" }}>
+                                                    {value.title}<br />
+                                                    <span className={styles.icons}>
+                                                        <i className="fas fa-shopping-basket"></i>&nbsp;&nbsp;
+                                                        {value.total_sell}
+                                                    </span>
+                                                    <span className={styles.icons}>
+                                                        <i className="far fa-star"></i>&nbsp;&nbsp;
+                                                        {value.star}({value.comments_count} نظر)
+                                                    </span>
+                                                </div>
+                                            </td>
                                             <td>{value.preparation_days}</td>
                                             <td>{value.inventory}</td>
                                             <td>{`${value.price}تومان`}</td>

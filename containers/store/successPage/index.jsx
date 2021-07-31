@@ -1,8 +1,6 @@
 // node libraries
 import Image from 'next/image';
 import Link from 'next/link';
-// components
-import MobileHeader from '../../../components/mobileHeader';
 // styles
 import styles from '../../../styles/pages/store/successPage.module.scss';
 

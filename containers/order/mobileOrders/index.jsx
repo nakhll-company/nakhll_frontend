@@ -25,6 +25,11 @@ const MobileOrders = ({ loading, ordersList }) => {
         );
         if (response.status === 200) {
             getUncompleted(activeHojreh);
+        } else {
+            toast.error("خطایی در ارسال داده ها پیش آمده است", {
+                position: "top-right",
+                closeOnClick: true,
+            });
         }
     };
 

@@ -41,6 +41,23 @@
     height: 40px;
 }
 
+.btn_For_save {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: center;
+    button {
+        border: 0px;
+        background-color: #dc3545;
+        border-radius: 5px;
+        font-size: 15px;
+        padding: 10px 15px;
+        color: #fff;
+        font-weight: 900;
+        cursor: pointer;
+    }
+}
+
 .status_button {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -286,9 +303,9 @@
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // Styles For Desktop
 .Hojreh_headD {
-    height: 100px;
+    height: 135px;
     border-radius: 5px;
-    background-color: blue;
+    // background-color: blue;
     margin-top: 20px;
     position: relative;
     display: grid;
@@ -307,6 +324,9 @@
         margin-bottom: auto;
         margin-right: auto;
         margin-left: auto;
+        * {
+            border-radius: 50%;
+        }
         .Hojreh_headD_edit_icon_pic {
             display: flex;
             background-color: #fff;
@@ -318,6 +338,9 @@
             justify-content: center;
             bottom: -6px;
             right: -10px;
+            input {
+                display: none;
+            }
         }
     }
     &_edit_icon {
