@@ -34,6 +34,7 @@ const CreateProduct = ({ activeHojreh }) => {
     let product_status = document.querySelector("input[type=radio]:checked").value;
 
     if (err) {
+      setIsLoad(false)
       let confirm = {
         Title: data.Title,
         Inventory: Add,
@@ -111,6 +112,8 @@ const CreateProduct = ({ activeHojreh }) => {
         );
         if (responseImages.status === 200) {
           setShowSuccessPage(true);
+          // setIsLoad(false)
+
         } else {
           toast.error("خطایی در ایجاد محصول پیش آمده است", {
             position: "top-right",
