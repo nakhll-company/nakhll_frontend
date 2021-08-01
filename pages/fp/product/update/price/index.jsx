@@ -1,5 +1,6 @@
 // node libraries
 import { connect } from 'react-redux';
+import { toast } from "react-toastify";
 // component
 import Layout from '../../../../../components/layout/Layout';
 import MobileHeader from '../../../../../components/mobileHeader';
@@ -27,7 +28,15 @@ const Price = ({ productList }) => {
             params
         );
         if (response.status === 200) {
-            alert("داده ها با موفقیت ثبت شدند");
+            toast.success("داده ها با موفقیت ثبت شده اند", {
+                position: "top-right",
+                closeOnClick: true,
+            });
+        } else {
+            toast.error(" خطایی در ویرایش گروهی رخ داده است.", {
+                position: "top-right",
+                closeOnClick: true,
+            });
         }
     };
 
@@ -64,10 +73,10 @@ const Price = ({ productList }) => {
                                 <div key={index} className={styles.form_edit_card}>
                                     <label className={styles.form_edit_label}>{value.title}</label>
                                     <input type="hidden" name={`Slug${index + 100}`} defaultValue={value.slug} />
-                                    <input className={styles.form_edit_input} type="number" name={`Old${index + 100}`}
-                                        defaultValue={value.old_price} />
                                     <input className={styles.form_edit_input} type="number" name={`Price${index + 100}`}
-                                        defaultValue={value.price} />
+                                        defaultValue={value.price > value.old_price ? value.price : value.old_price} />
+                                    <input className={styles.form_edit_input} type="number" name={`Old${index + 100}`}
+                                        defaultValue={value.price > value.old_price ? value.old_price : value.price} />
                                 </div>
                             )
                         }) : <h3 style={{ textAlign: "center" }}>موردی برای نمایش وجود ندارد</h3>}
