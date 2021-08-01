@@ -119,15 +119,23 @@ const UpdateProduct = ({ activeHojreh }) => {
         setValue('OldPrice', response.data.price / 10)
       }
       setValue('Description', response.data.description)
-      setPreviewImage(response.data.banners)
+      let peree = response.data.banners.map((item) => {
+        return item.image
+      })
+      console.log(`peree`, peree)
+      setPreviewImage(peree)
+      window.localStorage.setItem("image", JSON.stringify(peree));
       setAdd(response.data.inventory)
       setAddPreparationDays(response.data.preparation_days)
       setIsLoad(true)
       setSubmarketId(response.data.sub_market.id)
+
     }
   }//close edit data
   // use effect
   useEffect(() => {
+    window.localStorage.setItem("image", JSON.stringify([]));
+
     if (id) {
       _editProduct();
     }
