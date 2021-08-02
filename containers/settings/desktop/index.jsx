@@ -24,6 +24,8 @@ import { VALIDATION_SCHEMA, VALIDATION_HESAB } from "../methods/Validation";
 
 // Toast
 import { toast } from "react-toastify";
+import Select from "../../orderdetail/desktop/Select";
+import Modal from "../../../components/custom/customModal";
 
 const getStates = async () => {
   let params = {};
@@ -87,6 +89,16 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
   const [selectState, setSelectState] = useState([]);
   const [showMessage, setshowMessage] = useState(0);
   const [showMessageHesab, setShowMessageHesab] = useState(0);
+
+  // Change Page in select city
+
+  const [showState, setshowState] = useState(false);
+  const [showBigcity, setshowBigcity] = useState(false);
+  const [SaveBigCity, setSaveBigCity] = useState([]);
+  const [SaveCity, setSaveCity] = useState([]);
+  const [showCity, setshowCity] = useState(false);
+  const [SavaAllCity, setSavaAllCity] = useState([]);
+  const [checkAll, setCheckAll] = useState(false);
 
   // state For save picture
   const [selectImageAvatar, setSelectImageAvatar] = useState(null);
@@ -200,6 +212,183 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
 
     setSelectImageAvatar(null);
   }
+
+  // modal Select City For Send
+
+  const SetDataInModal = () => {
+    return (
+      <div className={styles.content}>
+        {selectState?.map((e, index) => {
+          return (
+            <button
+              key={index}
+              style={{ outline: "unset" }}
+              onClick={() => clickButton(e)}
+              className={styles.btn}
+            >
+              <div className={styles.in_btn}>
+                <h2 style={{ marginRight: "14px" }}>{e.name}</h2>
+                <span
+                  style={{ marginLeft: "14px" }}
+                  className="fas fa-chevron-left fa-2x"
+                ></span>
+              </div>
+            </button>
+          );
+        })}
+      </div>
+    );
+  };
+
+  const SetDataBigCity = () => {
+    return (
+      <div className={styles.content}>
+        {SaveBigCity?.map((e, index) => {
+          return (
+            <button
+              key={index}
+              style={{ outline: "unset" }}
+              onClick={() => clickButtonBigCity(e)}
+              className={styles.btn}
+            >
+              <div className={styles.in_btn}>
+                <h2 style={{ marginRight: "14px" }}>{e.name}</h2>
+                <span
+                  style={{ marginLeft: "14px" }}
+                  className="fas fa-chevron-left fa-2x"
+                ></span>
+              </div>
+            </button>
+          );
+        })}
+      </div>
+    );
+  };
+  // const SubmitCity = (event) => {
+  //   debugger;
+  //   event.preventDefault();
+  //   console.log("last :>> ", event);
+  // };
+
+  const SetDataCity = () => {
+    console.log(">>>", SavaAllCity);
+    return (
+      <div className={styles.content}>
+        <form>
+          {/* <input
+            id="all"
+            type="checkbox"
+            checked={checkAll}
+            onClick={handelSelectAllState}
+          />
+          <label htmlFor="all">انتخاب تمام شهر ها</label> */}
+          {SaveCity?.map((e, index) => {
+            return (
+              <div key={index}>
+                <input
+                  type="checkbox"
+                  defaultChecked={false}
+                  id={e.id}
+                  value={e.id}
+                  onChange={(event) => {
+                    if (event.target.checked) {
+                      setSavaAllCity([
+                        ...SavaAllCity,
+                        { id: e.id, name: e.name },
+                      ]);
+                    } else {
+                      const allSelectState = [...SavaAllCity];
+                      const DeleteAllSelectState = allSelectState.filter(
+                        (element) => element.id !== e.id
+                      );
+                      setSavaAllCity(DeleteAllSelectState);
+                    }
+                  }}
+                />
+                <label for={e.id}>{e.name}</label>
+                <br />
+              </div>
+            );
+          })}
+          <button
+            onClick={() => {
+              setshowCity(false);
+            }}
+          >
+            تایید
+          </button>
+        </form>
+      </div>
+    );
+  };
+
+  const clickButton = async (e) => {
+    console.log("e :>> ", e);
+    setshowState(false);
+
+    let params = {};
+    let loadData = null;
+    let dataUrl = `/app/api/v1/get-big-cities/?state_id=${e.id}`;
+    let response = await ApiRegister().apiRequest(
+      loadData,
+      "get",
+      dataUrl,
+      true,
+      params
+    );
+    setSaveBigCity(response.data);
+    setshowBigcity(true);
+  };
+
+  const clickButtonBigCity = async (e) => {
+    let params = {};
+    let loadData = null;
+    let dataUrl = `/app/api/v1/get-cities/?bigcity_id=${e.id}`;
+    let response = await ApiRegister().apiRequest(
+      loadData,
+      "get",
+      dataUrl,
+      true,
+      params
+    );
+    setSaveCity(response.data);
+    setshowBigcity(false);
+    setshowCity(true);
+  };
+
+  // Delet The State
+
+  const handelDeletState = (id) => {
+    const copyState = [...SavaAllCity];
+    const ArrayDeleteState = copyState.filter((s) => s.id !== id);
+    setSavaAllCity(ArrayDeleteState);
+  };
+
+  // -------------------- Handel Select All States ----------------------------
+
+  const handelSelectAllState = () => {
+    setCheckAll(!checkAll);
+    let jjj = document.querySelectorAll("input[type=checkbox]");
+
+    for (let checkbox of jjj) {
+      if (checkbox.value !== "on") {
+        if (checkbox.checked) {
+          checkbox.checked = false;
+        } else {
+          checkbox.checked = true;
+        }
+      }
+    }
+    if (!checkAll) {
+      console.log('"hi" :>> ', "hi");
+      SaveCity.map((e) => console.log("e :>> ", e));
+    }
+
+    SaveCity?.map((e) => {
+      console.log("e :>> ", e);
+      setSavaAllCity([...SavaAllCity, { id: e.id, name: e.name }]);
+    });
+  };
 
   return (
     <div dir="rtl" className={styles.setting}>
@@ -373,7 +562,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                               <Field
                                 name="Title"
                                 type="text"
-                              // defaultValue={apiSetting.Title}
+                                // defaultValue={apiSetting.Title}
                               />
                               {touched.Title && errors.Title ? (
                                 <small className={styles.error}>
@@ -411,7 +600,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                               <Field
                                 name="slug"
                                 type="text"
-                              // defaultValue={apiSetting.Slug}
+                                // defaultValue={apiSetting.Slug}
                               />
                               {touched.slug && errors.slug ? (
                                 <small className={styles.error}>
@@ -553,10 +742,10 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                               <Field
                                 name="PhoneNumber"
                                 type="text"
-                              // defaultValue={
-                              //   apiSetting.FK_ShopManager &&
-                              //   apiSetting.FK_ShopManager.User_Profile.PhoneNumber
-                              // }
+                                // defaultValue={
+                                //   apiSetting.FK_ShopManager &&
+                                //   apiSetting.FK_ShopManager.User_Profile.PhoneNumber
+                                // }
                               />
                             </div>
                           </div>
@@ -665,10 +854,10 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                                 name="Address"
                                 rows="4"
                                 cols="50"
-                              // defaultValue={
-                              //   apiSetting.FK_ShopManager &&
-                              //   apiSetting.FK_ShopManager.User_Profile.Address
-                              // }
+                                // defaultValue={
+                                //   apiSetting.FK_ShopManager &&
+                                //   apiSetting.FK_ShopManager.User_Profile.Address
+                                // }
                               />
                               {touched.Address && errors.Address ? (
                                 <small className={styles.error}>
@@ -703,7 +892,104 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                           <div className="">
                             <h4 className={styles.explain}></h4>
                           </div>
+
+                          {/* Select List */}
+
+                          <div className={styles.SelectAnother}>
+                            {/* <form>
+                              <div class="form-check">
+                                <input
+                                  class="form-check-input"
+                                  type="radio"
+                                  name="flexRadioDefault"
+                                  id="flexRadioDefault1"
+                                  checked
+                                />
+                                <label
+                                  class="form-check-label"
+                                  for="flexRadioDefault1"
+                                >
+                                  به سراسر ایران
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input
+                                  class="form-check-input"
+                                  type="radio"
+                                  name="flexRadioDefault"
+                                  id="flexRadioDefault2"
+                                  onClick={() => {
+                                    setshowState(true);
+                                  }}
+                                />
+                                <label
+                                  class="form-check-label"
+                                  for="flexRadioDefault2"
+                                >
+                                  انتخاب شهرها
+                                </label>
+                              </div>
+                            </form> */}
+                            {showState && (
+                              <Modal
+                                show={true}
+                                onClose={() => {}}
+                                content={SetDataInModal()}
+                              />
+                            )}
+                            {showBigcity && (
+                              <Modal
+                                show={true}
+                                onClose={() => {}}
+                                content={SetDataBigCity()}
+                              />
+                            )}
+                            {showCity && (
+                              <Modal
+                                show={true}
+                                onClose={() => {}}
+                                content={SetDataCity()}
+                              />
+                            )}
+                          </div>
+
+                          <div
+                            style={{
+                              display: "flex",
+                              height: "40px",
+                              flexWrap: "wrap",
+                            }}
+                          >
+                            {SavaAllCity.map((e) => (
+                              <div key={e.id} style={{ display: "flex" }}>
+                                <h4
+                                  style={{
+                                    backgroundColor: "gray",
+                                    padding: "2px 10px",
+                                    color: "#fff",
+                                    margin: "0px",
+                                    marginLeft: "1px",
+                                    borderRadius: "2px",
+                                    marginTop: "10px",
+                                  }}
+                                  className={styles.explain}
+                                >
+                                  {e.name}
+                                </h4>
+                                <i
+                                  style={{
+                                    fontSize: "15px",
+                                    marginLeft: "5px",
+                                    cursor: "pointer",
+                                  }}
+                                  onClick={() => handelDeletState(e.id)}
+                                  className="fas fa-times"
+                                ></i>
+                              </div>
+                            ))}
+                          </div>
                         </div>
+
                         {IsLoading && (
                           <div
                             style={{
@@ -954,11 +1240,8 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
               </>
             )}
 
-
-
-
             {/* Links */}
-            
+
             {onMenu == "4" && (
               <>
                 <form
