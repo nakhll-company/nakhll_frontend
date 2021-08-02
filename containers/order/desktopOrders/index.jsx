@@ -129,7 +129,7 @@ export default function DesktopOrders({ loading, ordersList, type, activeHojreh,
                                         </Link>
                                         <Link href={`/fp/order/orderdetail/${value.id}`}>
                                             <td>
-                                                {value.max_due_date}
+                                                {new Date(value.max_due_date).toLocaleDateString('fa-IR')}
                                             </td>
                                         </Link>
                                         <Link href={`/fp/order/orderdetail/${value.id}`}>
