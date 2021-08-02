@@ -2164,3 +2164,8 @@ yup@^0.32.9:
     nanoclone "^0.2.1"
     property-expr "^2.0.4"
     toposort "^2.0.2"
+
+zaravand-assistent-number@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/zaravand-assistent-number/-/zaravand-assistent-number-1.1.0.tgz#3c02a9a09fe523ea8a6ffef6098433b1b35828fd"
+  integrity sha512-SdYmcXnCDX86Y/yviPUAFRgsM1PqftxcnIVHNbYZcnA6gU2e9pE7pYenxbp3rcD7+OhZTxk8Xib4NMBv+z3ctA==

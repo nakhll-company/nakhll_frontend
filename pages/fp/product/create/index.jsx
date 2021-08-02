@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Cropper from "react-easy-crop";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import Assistent from "zaravand-assistent-number";
 import { useCallback, useEffect, useState } from "react";
 // components
 import MyLayout from "../../../../components/layout/Layout";
@@ -19,6 +20,7 @@ import styles from "../../../../styles/pages/product/create.module.scss";
  * @param {string} activeHojreh => it has slug of product
  */
 const CreateProduct = ({ activeHojreh }) => {
+  const _asist = new Assistent();
   // useform
   const { setValue, getValues, clearErrors, register, setError, handleSubmit, watch, formState: { errors } } = useForm({
     criteriaMode: 'all', mode: 'all'
@@ -32,7 +34,6 @@ const CreateProduct = ({ activeHojreh }) => {
       err = true
     }
     let product_status = document.querySelector("input[type=radio]:checked").value;
-
     if (err) {
       setIsLoad(false)
       let confirm = {
@@ -143,6 +144,8 @@ const CreateProduct = ({ activeHojreh }) => {
   const [submarketId, setSubmarketId] = useState(null);
   const [showSuccessPage, setShowSuccessPage] = useState(false);
   const [isLoad, setIsLoad] = useState(false);
+  let [stringPrice, setStringPrice] = useState("");
+  let [stringOldPrice, setStringOldPrice] = useState("");
   const router = useRouter()
   const { id } = router.query
   // copy product
@@ -469,11 +472,15 @@ const CreateProduct = ({ activeHojreh }) => {
                           message: 'لطفا اعداد بزرگتر از 500 وارد نمایید'
                         }
                       })}
+                      onChange={(e) => {
+                        setStringPrice(_asist.word(e.target.value));
+                      }}
                     />
                     <div>
                       <p>تومان</p>
                     </div>
                   </div>
+                  <span style={{ fontSize: "12px", color: "rgb(0, 122, 255)", paddingRight: "20px" }}>{stringPrice}</span>
                   {errors.Price && <span style={{ color: "red", fontSize: "14px" }}>{errors.Price.message}</span>}
                 </div>
                 {/* price with discount */}
@@ -491,11 +498,15 @@ const CreateProduct = ({ activeHojreh }) => {
                         },
                         validate: value => parseInt(value) <= parseInt(getValues("Price")) || 'قیمت با تخفیف باید کمتر از قیمت اصلی باشد'
                       })}
+                      onChange={(e) => {
+                        setStringOldPrice(_asist.word(e.target.value));
+                      }}
                     />
                     <div>
                       <p>تومان</p>
                     </div>
                   </div>
+                  <span style={{ fontSize: "12px", color: "rgb(0, 122, 255)", paddingRight: "20px" }}>{stringOldPrice}</span>
                   {errors.OldPrice && <span style={{ color: "red", fontSize: "14px" }}>{errors.OldPrice.message}</span>}
                 </div>
                 {/* discription */}
