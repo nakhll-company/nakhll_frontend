@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Cropper from "react-easy-crop";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import Assistent from "zaravand-assistent-number";
 import { useCallback, useEffect, useState } from "react";
 // components
 import MyLayout from "../../../../../components/layout/Layout";
@@ -19,6 +20,8 @@ import styles from "../../../../../styles/pages/product/create.module.scss";
  * @param {string} activeHojreh => it has slug name
  */
 const UpdateProduct = ({ activeHojreh }) => {
+
+  const _asist = new Assistent();
 
   const router = useRouter();
   const { id } = router.query;
@@ -93,6 +96,8 @@ const UpdateProduct = ({ activeHojreh }) => {
   const [AddPreparationDays, setAddPreparationDays] = useState(1);
   const [submarketId, setSubmarketId] = useState(null);
   const [isLoad, setIsLoad] = useState(false);
+  let [stringPrice, setStringPrice] = useState("");
+  let [stringOldPrice, setStringOldPrice] = useState("");
   // get edit date
   const _editProduct = async () => {
     let params = null;
@@ -114,22 +119,24 @@ const UpdateProduct = ({ activeHojreh }) => {
       if (response.data.price > response.data.old_price) {
         setValue('Price', response.data.price / 10)
         setValue('OldPrice', response.data.old_price / 10)
+        setStringPrice(_asist.word(response.data.price / 10));
+        setStringOldPrice(_asist.word(response.data.old_price / 10));
       } else {
         setValue('Price', response.data.old_price / 10)
         setValue('OldPrice', response.data.price / 10)
+        setStringPrice(_asist.word(response.data.old_price / 10));
+        setStringOldPrice(_asist.word(response.data.price / 10));
       }
       setValue('Description', response.data.description)
       let peree = response.data.banners.map((item) => {
         return item.image
       })
-      console.log(`peree`, peree)
       setPreviewImage(peree)
       window.localStorage.setItem("image", JSON.stringify(peree));
       setAdd(response.data.inventory)
       setAddPreparationDays(response.data.preparation_days)
       setIsLoad(true)
       setSubmarketId(response.data.sub_market.id)
-
     }
   }//close edit data
   // use effect
@@ -423,11 +430,15 @@ const UpdateProduct = ({ activeHojreh }) => {
                           message: 'لطفا اعداد بزرگتر از 500 وارد نمایید'
                         }
                       })}
+                      onChange={(e) => {
+                        setStringPrice(_asist.word(e.target.value));
+                      }}
                     />
                     <div>
                       <p>تومان</p>
                     </div>
                   </div>
+                  <span style={{ fontSize: "12px", color: "rgb(0, 122, 255)", paddingRight: "20px" }}>{stringPrice}</span>
                   {errors.Price && <span style={{ color: "red", fontSize: "14px" }}>{errors.Price.message}</span>}
                 </div>
                 {/* price with Discount */}
@@ -444,11 +455,15 @@ const UpdateProduct = ({ activeHojreh }) => {
                         },
                         validate: value => parseInt(value) <= parseInt(getValues("Price")) || 'قیمت با تخفیف باید کمتر از قیمت اصلی باشد'
                       })}
+                      onChange={(e) => {
+                        setStringOldPrice(_asist.word(e.target.value));
+                      }}
                     />
                     <div>
                       <p>تومان</p>
                     </div>
                   </div>
+                  <span style={{ fontSize: "12px", color: "rgb(0, 122, 255)", paddingRight: "20px" }}>{stringOldPrice}</span>
                   {errors.OldPrice && <span style={{ color: "red", fontSize: "14px" }}>{errors.OldPrice.message}</span>}
                 </div>
                 {/* discription */}
