@@ -56,7 +56,14 @@ const MobileList = ({ loading, productList, activeHojreh }) => {
                                 </div>
                                 <div className={styles.second_row}>
                                     <CustomLabel value={value.inventory} label="موجودی" />
-                                    <CustomLabel value={`${value.price}تومان`} label="قیمت" />
+                                    {value.old_price !== 0 && value.price < value.old_price ?
+                                        <>
+                                            <CustomLabel value={`${value.old_price / 10}تومان`} label="قیمت" />
+                                            <CustomLabel value={`${value.price / 10}تومان`} label="" />
+                                        </>
+                                        :
+                                        <CustomLabel value={`${value.price / 10}تومان`} label="قیمت" />
+                                    }
                                 </div>
 
                                 <div className={styles.third_row}>

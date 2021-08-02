@@ -24,7 +24,7 @@ const UpdateProduct = ({ activeHojreh }) => {
   const { id } = router.query;
   // react form hook
   const { setValue, clearErrors, getValues, register, setError, handleSubmit, watch, formState: { errors } } = useForm({
-    criteriaMode: 'all',
+    criteriaMode: 'all', mode: 'all'
   });
   // on submit
   const onSubmit = async (data) => {
@@ -458,6 +458,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                   </label>
                   <textarea className={styles.input_product} id="Description" name="Description" type="text"
                     placeholder="توضیحات خود را در صورت تمایل اینجا وارد کنید"
+                    {...register("Description")}
                   />
                 </div>
                 {/* inventory */}

@@ -105,7 +105,16 @@ export default function Desktop({ loading, productList, activeHojreh, getProduct
                                             </td>
                                             <td>{value.preparation_days}</td>
                                             <td>{value.inventory}</td>
-                                            <td>{`${value.price}تومان`}</td>
+                                            <td>{value.old_price !== 0 && value.price < value.old_price ?
+                                                <>
+                                                    <del>{value.price / 10}</del><br />
+                                                    <b>{value.old_price / 10}تومان</b>
+                                                </>
+                                                :
+                                                <>
+                                                    <b>{value.price / 10} تومان</b>
+                                                </>
+                                            }</td>
                                             <td><CustomBadge
                                                 title={value.status}
                                                 color="#089319"
