@@ -55,15 +55,9 @@ const MobileList = ({ loading, productList, activeHojreh }) => {
                                     <i className={`fas fa-ellipsis-v ${styles.icon_more}`}></i>
                                 </div>
                                 <div className={styles.second_row}>
-                                    <CustomLabel value={value.inventory} label="موجودی" />
-                                    {value.old_price !== 0 && value.price < value.old_price ?
-                                        <>
-                                            <CustomLabel value={`${value.old_price / 10}تومان`} label="قیمت" />
-                                            <CustomLabel value={`${value.price / 10}تومان`} label="" />
-                                        </>
-                                        :
-                                        <CustomLabel value={`${value.price / 10}تومان`} label="قیمت" />
-                                    }
+                                    <CustomLabel type="normal" value={value.inventory} label="موجودی" />
+                                    {value.old_price === 0 && <CustomLabel type="normal" value={`${value.price / 10}تومان`} label="قیمت" />}
+                                    {value.old_price !== 0 && <CustomLabel type="price" valuePrice={value.old_price / 10} valueOldPrice={`${value.price / 10}تومان`} label="قیمت" />}
                                 </div>
 
                                 <div className={styles.third_row}>

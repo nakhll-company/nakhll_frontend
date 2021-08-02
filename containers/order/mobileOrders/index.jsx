@@ -60,12 +60,12 @@ const MobileOrders = ({ loading, ordersList }) => {
                                 <a>
 
                                     <div className={styles.card_header}>
-                                        <CustomLabel value={value.factor_number} label="شماره سفارش" />
+                                        <CustomLabel type="normal" value={value.factor_number} label="شماره سفارش" />
                                         <CustomBadge title={`${value.factor_status}`} />
                                     </div>
-                                    <CustomLabel value={value.user} label="خریدار" customLabelDiv="wrapper_custom_label" />
-                                    <CustomLabel value={`${new Date(value.order_date).toLocaleDateString('fa-IR')}`} label="ثبت" customLabelDiv="wrapper_custom_label" />
-                                    <CustomLabel value={`${value.delivery_date}`} label="مهلت" customLabelDiv="wrapper_custom_label" />
+                                    <CustomLabel type="normal" value={value.user} label="خریدار" customLabelDiv="wrapper_custom_label" />
+                                    <CustomLabel type="normal" value={`${new Date(value.order_date).toLocaleDateString('fa-IR')}`} label="ثبت" customLabelDiv="wrapper_custom_label" />
+                                    <CustomLabel type="normal" value={`${value.delivery_date}`} label="مهلت" customLabelDiv="wrapper_custom_label" />
                                     <div className={styles.card_details}>
                                         <li className="fas fa-shopping-basket"></li>
                                         <span className={styles.card_details_span}>
