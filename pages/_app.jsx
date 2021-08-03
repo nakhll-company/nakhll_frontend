@@ -12,23 +12,20 @@ function MyApp({ Component, pageProps }) {
 
   const router = useRouter();
 
-  const LayoutFrontPanel = Component.Layout ? MyLayout : <div>Layout app store</div>;
-  const LayoutCart = Component.Layout ? ShopLayout : <div>Layout Cart</div>;
-
   if (router.pathname.startsWith("/fp")) {
     return (
       <Provider store={Store}>
-        <LayoutFrontPanel>
+        <MyLayout>
           <Component {...pageProps} />
-        </LayoutFrontPanel>
+        </MyLayout>
       </Provider>
     )
   } else {
     return (
       <Provider store={Store}>
-        <LayoutCart>
+        <ShopLayout>
           <Component {...pageProps} />
-        </LayoutCart>
+        </ShopLayout>
       </Provider>
     )
   }
