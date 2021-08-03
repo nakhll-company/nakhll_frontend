@@ -515,11 +515,15 @@ const CreateProduct = ({ activeHojreh }) => {
                   </div>
                   <span style={{ fontSize: "12px", color: "rgb(0, 122, 255)", paddingRight: "20px" }}>{stringOldPrice.length !== 0 && `${stringOldPrice} تومان`}</span>
                   {errors.OldPrice && <span style={{ color: "red", fontSize: "14px" }}>{errors.OldPrice.message}</span>}
-                  <div className={styles.previewPrice}>
-                    <span>پیش نمایش :</span>
-                    <del style={{ fontSize: "12px", paddingRight: "20px" }}>{sepratorePrice}</del>
-                    <b style={{ fontSize: "12px", paddingRight: "20px" }}>{sepratoreOldPrice}</b>
-                  </div>
+                  {sepratoreOldPrice.length > 0 &&
+                    <div className={styles.previewPrice}>
+                      <span>پیش نمایش :</span>
+                      <span dir="rtl">
+                        <del dir="rtl" style={{ color: "#a3a3a3" }}>{sepratorePrice}</del><br />
+                        <b dir="rtl">{sepratoreOldPrice}تومان</b>
+                      </span>
+                    </div>
+                  }
                 </div>
                 {/* discription */}
                 <div className={styles.wrapper_input}>

@@ -12,8 +12,7 @@ import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import { mapState } from "../methods/mapState";
 import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
 // form
-import { Formik, Form, Field, FieldArray } from "formik";
-import * as yup from "yup";
+import { Formik, Form, Field } from "formik";
 
 // components
 import { Loading } from "../../../components/custom/Loading/Loading";
@@ -24,7 +23,6 @@ import { VALIDATION_SCHEMA, VALIDATION_HESAB } from "../methods/Validation";
 
 // Toast
 import { toast } from "react-toastify";
-import Select from "../../orderdetail/desktop/Select";
 import Modal from "../../../components/custom/customModal";
 
 const getStates = async () => {
@@ -562,7 +560,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                               <Field
                                 name="Title"
                                 type="text"
-                                // defaultValue={apiSetting.Title}
+                              // defaultValue={apiSetting.Title}
                               />
                               {touched.Title && errors.Title ? (
                                 <small className={styles.error}>
@@ -600,7 +598,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                               <Field
                                 name="slug"
                                 type="text"
-                                // defaultValue={apiSetting.Slug}
+                              // defaultValue={apiSetting.Slug}
                               />
                               {touched.slug && errors.slug ? (
                                 <small className={styles.error}>
@@ -742,10 +740,10 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                               <Field
                                 name="PhoneNumber"
                                 type="text"
-                                // defaultValue={
-                                //   apiSetting.FK_ShopManager &&
-                                //   apiSetting.FK_ShopManager.User_Profile.PhoneNumber
-                                // }
+                              // defaultValue={
+                              //   apiSetting.FK_ShopManager &&
+                              //   apiSetting.FK_ShopManager.User_Profile.PhoneNumber
+                              // }
                               />
                             </div>
                           </div>
@@ -854,10 +852,10 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                                 name="Address"
                                 rows="4"
                                 cols="50"
-                                // defaultValue={
-                                //   apiSetting.FK_ShopManager &&
-                                //   apiSetting.FK_ShopManager.User_Profile.Address
-                                // }
+                              // defaultValue={
+                              //   apiSetting.FK_ShopManager &&
+                              //   apiSetting.FK_ShopManager.User_Profile.Address
+                              // }
                               />
                               {touched.Address && errors.Address ? (
                                 <small className={styles.error}>
@@ -933,21 +931,21 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                             {showState && (
                               <Modal
                                 show={true}
-                                onClose={() => {}}
+                                onClose={() => { }}
                                 content={SetDataInModal()}
                               />
                             )}
                             {showBigcity && (
                               <Modal
                                 show={true}
-                                onClose={() => {}}
+                                onClose={() => { }}
                                 content={SetDataBigCity()}
                               />
                             )}
                             {showCity && (
                               <Modal
                                 show={true}
-                                onClose={() => {}}
+                                onClose={() => { }}
                                 content={SetDataCity()}
                               />
                             )}

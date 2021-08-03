@@ -8,7 +8,6 @@ import styles from "../../../styles/pages/setting/setting.module.scss";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
 import { Field, Form, Formik } from "formik";
-import * as yup from "yup";
 import { Loading } from "../../../components/custom/Loading/Loading";
 
 // validation
