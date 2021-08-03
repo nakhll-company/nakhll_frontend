@@ -145,7 +145,9 @@ const CreateProduct = ({ activeHojreh }) => {
   const [showSuccessPage, setShowSuccessPage] = useState(false);
   const [isLoad, setIsLoad] = useState(false);
   let [stringPrice, setStringPrice] = useState("");
+  let [sepratorePrice, setSepratorePrice] = useState("");
   let [stringOldPrice, setStringOldPrice] = useState("");
+  let [sepratoreOldPrice, setSepratoreOldPrice] = useState("");
   const router = useRouter()
   const { id } = router.query
   // copy product
@@ -203,7 +205,6 @@ const CreateProduct = ({ activeHojreh }) => {
     };
     _handleRequestApi();
   }, [activeHojreh]);
-
   // inputButton
   const mini = () => {
     if (Add == 0) {
@@ -316,6 +317,10 @@ const CreateProduct = ({ activeHojreh }) => {
       setValue("product_image_upload", null)
     }
   }
+  // sepratore in numbers
+  const numberSeparateUtils = (number) => {
+    return number !== undefined ? number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : null;
+  };
 
   if (isLoad) {
     return (
@@ -474,13 +479,14 @@ const CreateProduct = ({ activeHojreh }) => {
                       })}
                       onChange={(e) => {
                         setStringPrice(_asist.word(e.target.value));
+                        setSepratorePrice(numberSeparateUtils(e.target.value));
                       }}
                     />
                     <div>
                       <p>تومان</p>
                     </div>
                   </div>
-                  <span style={{ fontSize: "12px", color: "rgb(0, 122, 255)", paddingRight: "20px" }}>{stringPrice}</span>
+                  <span style={{ fontSize: "12px", color: "rgb(0, 122, 255)", paddingRight: "20px" }}>{stringPrice.length !== 0 && `${stringPrice} تومان`}</span>
                   {errors.Price && <span style={{ color: "red", fontSize: "14px" }}>{errors.Price.message}</span>}
                 </div>
                 {/* price with discount */}
@@ -500,14 +506,20 @@ const CreateProduct = ({ activeHojreh }) => {
                       })}
                       onChange={(e) => {
                         setStringOldPrice(_asist.word(e.target.value));
+                        setSepratoreOldPrice(numberSeparateUtils(e.target.value));
                       }}
                     />
                     <div>
                       <p>تومان</p>
                     </div>
                   </div>
-                  <span style={{ fontSize: "12px", color: "rgb(0, 122, 255)", paddingRight: "20px" }}>{stringOldPrice}</span>
+                  <span style={{ fontSize: "12px", color: "rgb(0, 122, 255)", paddingRight: "20px" }}>{stringOldPrice.length !== 0 && `${stringOldPrice} تومان`}</span>
                   {errors.OldPrice && <span style={{ color: "red", fontSize: "14px" }}>{errors.OldPrice.message}</span>}
+                  <div className={styles.previewPrice}>
+                    <span>پیش نمایش :</span>
+                    <del style={{ fontSize: "12px", paddingRight: "20px" }}>{sepratorePrice}</del>
+                    <b style={{ fontSize: "12px", paddingRight: "20px" }}>{sepratoreOldPrice}</b>
+                  </div>
                 </div>
                 {/* discription */}
                 <div className={styles.wrapper_input}>
