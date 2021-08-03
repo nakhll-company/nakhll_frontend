@@ -3,8 +3,8 @@ import Head from "next/head";
 import ListCardBuy from "../../containers/card/ListCardBuy";
 import MiniCardBuy from "../../containers/card/MiniCardBuy";
 import SumBuy from "../../containers/card/SumBuy";
-import ShopLayout from "../../components/shopLayout"
-export default function index() {
+import ShopLayout from "../../components/shopLayout";
+export default function Cart() {
   return (
     <div className="all">
       <Head>
@@ -27,5 +27,5 @@ export default function index() {
     </div>
   );
 }
-export default Cart;
-Cart.Layout =ShopLayout;
+
+Cart.Layout = ShopLayout;
