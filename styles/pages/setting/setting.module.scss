@@ -311,9 +311,9 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     &_pic {
-        width: 100px;
-        height: 100px;
-        background-color: rgb(168, 128, 107);
+        width: 71px;
+        height: 71px;
+        background-color: rgb(245, 95, 9);
         border-radius: 100%;
         position: absolute;
         left: 0;
@@ -399,7 +399,7 @@
 .AddressGridD {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr 150px 150px 60px;
+    grid-template-rows: 1fr 150px 150px 150px;
     column-gap: 60px;
     .explain {
         margin-left: 100px;
@@ -560,4 +560,60 @@
     font-size: 15px;
     color: red;
     margin-top: 10px;
+}
+
+// Select for state
+// Modallllll
+.SelectAnother {
+    * {
+        margin-top: 10px;
+    }
+    label {
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+    input {
+        cursor: pointer;
+    }
+}
+
+.ModalSelect {
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    background: red;
+    left: 10px;
+    top: 100px;
+    z-index: 100000000;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn {
+    height: 70px;
+    background: #fff;
+    outline: 0;
+    border: 0;
+    border-bottom: 1px solid #efefef;
+    cursor: pointer;
+}
+
+.in_btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn_icon {
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.btnModal {
+    background: blue;
 }
