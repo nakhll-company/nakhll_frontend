@@ -14,7 +14,7 @@ export default function ListCardBuy() {
               محصولات علمی و فرهنگی و طبیعی
             </a>
           </div>
-
+          
           <div className="p-3 mt-2 cart-product-item">
             <div className="spinner spinner--medium"></div>
             <div className="d-flex flex-wrap justify-content-between">
@@ -48,11 +48,14 @@ export default function ListCardBuy() {
                     >
                       <div
                         className="quantity-box input-group input-group-sm"
-                        style={{ width: "7rem" }}
+                        style={{ width: "7rem", alignItems: "center" }}
                       >
                         <div className="input-group-prepend">
-                          <button className="btn btn-outline-transparent plus-minus-icon">
-                            <i className="bi bi-plus"></i>
+                          <button className="btn  plus-minus-icon">
+                            <i
+                              style={{ fontSize: "25px", color: "#00c09d " }}
+                              className="fas fa-plus-square"
+                            ></i>
                           </button>
                         </div>
                         <input
@@ -63,8 +66,11 @@ export default function ListCardBuy() {
                           className="bg-white border-0 font-size1-2 font-weight-bold form-control mt-1 px-1 text-center"
                         />
                         <div className="input-group-append">
-                          <button className="btn btn-outline-transparent plus-minus-icon">
-                            <i className="bi bi-minus"></i>
+                          <button className="btn  plus-minus-icon">
+                            <i
+                              style={{ fontSize: "25px", color: "#dc3755 " }}
+                              className="fas fa-minus-square"
+                            ></i>
                           </button>
                         </div>
                       </div>
@@ -78,7 +84,7 @@ export default function ListCardBuy() {
                         42,000
                       </span>{" "}
                       <span className="font-weight-bold">24,000</span>{" "}
-                      <i className="bi bi-toman font-size1-5 font-weight-500"></i>
+                      <span>تومان</span>
                     </div>
                   </div>
                 </div>
@@ -88,6 +94,7 @@ export default function ListCardBuy() {
             <div className="v-portal" style={{ display: "none" }}></div>
           </div>
         </div>
+
         <div className="cart-product-group bg-white">
           <div className="pt-3 pb-1 px-3">
             <span className="font-size1">از غرفه: </span>{" "}
@@ -242,58 +249,6 @@ export default function ListCardBuy() {
             </div>
 
             <div className="v-portal" style={{ display: "none" }}></div>
-          </div>
-        </div>
-      </div>
-      <div className="cart-items mt-2" style={{ display: "none" }}>
-        <div>
-          <div className="cart-product-group bg-white">
-            <div className="p-3 mt-2 cart-product-item">
-              <div className="spinner spinner--medium"></div>
-              <div className="cart-item">
-                <div className="cart-item-product">
-                  <a
-                    href="/logistic/product/62606?from=cart&amp;component=saved_cart"
-                    className="product-link"
-                  >
-                    <img
-                      src="https://statics.basalam.com/public/users/jloB/2010/mXKbEMIev5t2DuV2FKsQjd6nvKLVX87ZK1ZZfBPC.jpeg_256X256X70.jpeg"
-                      alt="کارتن سایز 1 یک - سه لایه طراحی ویژه باسلام به قیمت عمده"
-                      width="100"
-                      height="100"
-                      className="cart-item-product-img"
-                    />
-                  </a>
-                  <div className="d-flex flex-column justify-content-between mr-3 w-100">
-                    <a
-                      href="/logistic/product/62606?from=cart&amp;component=saved_cart"
-                      className="cart-item-product-info-name"
-                    >
-                      کارتن سایز 1 یک - سه لایه طراحی ویژه باسلام به قیمت عمده
-                    </a>
-                    <div>
-                      <div className="d-flex justify-content-end"></div>
-                      <div className="d-flex mb-1">
-                        <div className="cart-item-product-info-buttons">
-                          <button className="cart-item-product-info-buttons-box-btn delete">
-                            {" "}
-                            حذف؟{" "}
-                          </button>{" "}
-                          <button className="cart-item-product-info-buttons-box-btn">
-                            <span>افزودن به سبد خرید</span>
-                          </button>
-                        </div>
-                        <div className="mr-auto">
-                          <span className="font-weight-bold">2,000</span>{" "}
-                          <i className="bi bi-toman font-size1-5 font-weight-500"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="v-portal" style={{ display: "none" }}></div>
-            </div>
           </div>
         </div>
       </div>

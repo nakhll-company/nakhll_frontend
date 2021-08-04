@@ -11,7 +11,7 @@ export default function MiniCardBuy() {
           </span>{" "}
           <span className="mr-lg-auto text-teal-dark font-size-sm  w-lg-auto my-2">
             <i className="bi bi-info"></i>
-            قابل پرداخت تا 4 ساعت و 44 دقیقه دیگر
+            {/* قابل پرداخت تا 4 ساعت و 44 دقیقه دیگر */}
           </span>{" "}
           <a
             href="/account/invoices/d43PO"
