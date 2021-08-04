@@ -1,24 +1,71 @@
-.headerWrapper{
+.headerWrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 110px;
     background-color: #fff;
-    box-shadow: 0 2px 12px 0 hsla(0,0%,44.3%,.14);
+    box-shadow: 0 2px 12px 0 hsla(0, 0%, 44.3%, 0.14);
 }
 
-.mainContent{
+.mainContent {
     background-color: #f5f5f5;
 }
 
-.footerWrapper{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.footerWrapper {
     height: 200px;
     background-color: #f5f5f5;
-    color: #515151;
-    font-size: 14px;
-    border-top: 1px solid #e7e7e7;
+    &_content {
+        &_info {
+            padding-top: 20px;
+            border-top: 1px solid #e7e7e7;
+            &_container {
+                max-width: 750px;
+                margin: 0 auto;
+                .footer_col {
+                    width: calc(50% - 4px);
+                    text-align: center;
+                    font-size: 15px;
+                    font-weight: 500;
+                    font-style: normal;
+                    font-stretch: normal;
+                    line-height: normal;
+                    letter-spacing: 0.4px;
+                    display: inline-block;
+                    color: #535353;
+                    margin-bottom: 27px;
+                    height: 26px;
+                    &_icon {
+                        i {
+                            font-size: 20px;
+                            position: relative;
+                            top: 7px;
+                            margin-left: 15px;
+                        }
+                    }
+                }
+                .footer_subtitle {
+                    font-size: 13px;
+                    font-weight: 400;
+                    font-style: normal;
+                    font-stretch: normal;
+                    line-height: normal;
+                    letter-spacing: -0.5px;
+                    text-align: center;
+                    color: #7f7f7f;
+                    margin-bottom: 22px;
+                }
+                .footer_copyright {
+                    color: #b0b0b0;
+                    font-size: 13px;
+                    font-weight: 400;
+                    font-style: normal;
+                    font-stretch: normal;
+                    line-height: normal;
+                    letter-spacing: -0.5px;
+                    text-align: center;
+                }
+            }
+        }
+    }
 }
