@@ -1,5 +1,6 @@
 // node libraies
 import Head from "next/head";
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
@@ -8,6 +9,7 @@ import { toast } from "react-toastify";
 import MobileHeader from '../../../../components/mobileHeader';
 import useViewport from '../../../../components/viewPort';
 import SuccessPage from '../../../../containers/store/successPage';
+import Loading from '../../../../components/loading';
 import { mapDispatch } from '../../../../containers/store/methods/mapDispatch';
 import { mapState } from '../../../../containers/store/methods/mapState';
 // methods
@@ -23,9 +25,18 @@ function NewStore({ getUserInfo, userInfo }) {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
     const onSubmit = async (data) => {
+        setShowSuccessPage(prev => {
+            return {
+                ...prev,
+                loading: "true"
+            }
+        });
         let response = await createStore(data);
         if (response.status === 201) {
-            setShowSuccessPage(showSuccessPage => !showSuccessPage);
+            setShowSuccessPage({
+                loading: "false",
+                success: "true"
+            });
         } else {
             toast.error("خطایی در ایجاد حجره پیش آمده است", {
                 position: "top-right",
@@ -37,7 +48,10 @@ function NewStore({ getUserInfo, userInfo }) {
     let [selectState, setSelectState] = useState([]);
     let [selectBigCities, setSelectBigCities] = useState([]);
     let [selectCities, setSelectCities] = useState([]);
-    let [showSuccessPage, setShowSuccessPage] = useState(false);
+    let [showSuccessPage, setShowSuccessPage] = useState({
+        loading: "false",
+        success: "false"
+    });
 
 
 
@@ -142,7 +156,11 @@ function NewStore({ getUserInfo, userInfo }) {
                 </form> :
                 <h1 className={styles.info_completed}>لطفا ابتدا نام و نام خانوادگی خود را در صفحه پروفایل وارد نمایید</h1>
             }
-            {showSuccessPage && <SuccessPage />}
+            {showSuccessPage.loading === "true" && <div className={styles.loading}>
+                <h1>لطفا منتظر بمانید</h1>
+                <Image src="/loading.svg" width="45" height="45" />
+            </div>}
+            {showSuccessPage.success === "true" && <SuccessPage />}
         </div>
     );
 }
