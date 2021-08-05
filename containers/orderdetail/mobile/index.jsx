@@ -1,10 +1,19 @@
 import React from "react";
 import Image from "next/image";
+// FORM
+import { Formik, Form, Field, FieldArray } from "formik";
+import * as yup from "yup";
 
 // Sasss
 import styles from "../../../styles/pages/order/orderdetail.module.scss";
 
-export default function OrderDetailMobile({ data, btnOk, setbtnOk, isOpen }) {
+export default function OrderDetailMobile({ data, btnOk, setbtnOk, isOpen, IsLoading, setIsLoading, showMessage, setshowMessage }) {
+  const VALIDATION_SCHEMA = yup.object().shape({
+    codeRahgiri: yup
+      .number()
+      .typeError("فقط عدد مجاز است.")
+      .required("کد رهگیری الزامی می باشد."),
+  });
   return (
     <div className={styles.wrapper}>
       {/* وضعیت سفارش */}
@@ -184,7 +193,7 @@ export default function OrderDetailMobile({ data, btnOk, setbtnOk, isOpen }) {
                 <h3>تایید</h3>
               </button>
               <button className={`${styles.btn} ${styles.btnProblem}`}>
-                <h3>ثبت مشکل</h3>
+                <h3 >ثبت مشکل</h3>
               </button>
             </div>
           )}

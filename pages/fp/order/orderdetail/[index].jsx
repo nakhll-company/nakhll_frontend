@@ -124,10 +124,15 @@ function HomePage({ id }) {
       {isShow && (
         <>
           {width >= breakpoint ? (
+            // showMessage, setshowMessage
             <OrderDetailDesktop
               isOpen={isOpen}
               btnOk={btnOk}
               setbtnOk={setbtnOk}
+              IsLoading={IsLoading}
+              setIsLoading={setIsLoading}
+              showMessage={showMessage}
+              setshowMessage={setshowMessage}
               data={data}
             />
           ) : (
@@ -136,6 +141,10 @@ function HomePage({ id }) {
               btnOk={btnOk}
               setbtnOk={setbtnOk}
               data={data}
+              IsLoading={IsLoading}
+              setIsLoading={setIsLoading}
+              showMessage={showMessage}
+              setshowMessage={setshowMessage}
             />
           )}
         </>
