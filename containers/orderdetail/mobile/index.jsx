@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 // Sasss
 import styles from "../../../styles/pages/order/orderdetail.module.scss";
@@ -499,8 +500,8 @@ export default function OrderDetailMobile({ data, btnOk, setbtnOk, isOpen }) {
       <h3 className={styles.post_information_h3}>محمدرضا محمودی</h3>
     </div> */}
           <div className={styles.post_information_content}>
-            <h4>{data.profile.user.username}</h4>
-            <h3 className={styles.post_information_h3}>09139939426</h3>
+            <h4>موبایل :</h4>
+            <h3 className={styles.post_information_h3}>{data.profile.mobile_number}</h3>
           </div>
           <div className={styles.post_information_content}>
             <h4>آدرس</h4>

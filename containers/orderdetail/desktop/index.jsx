@@ -496,9 +496,8 @@ export default function OrderDetailDesktop({ data, btnOk, setbtnOk, isOpen }) {
           <div className={styles.post_informationD_content}>
             <h4>نام مشتری</h4>
             <h3 style={{ marginTop: "5px" }}>
-              {`${data.profile && data.profile.user.first_name}  ${
-                data.profile && data.profile.user.last_name
-              }`}
+              {`${data.profile && data.profile.user.first_name}  ${data.profile && data.profile.user.last_name
+                }`}
             </h3>
           </div>
           {/* <div className={styles.post_informationD_content}>
@@ -507,7 +506,7 @@ export default function OrderDetailDesktop({ data, btnOk, setbtnOk, isOpen }) {
     </div> */}
           <div className={styles.post_informationD_content}>
             <h4>شماره تماس</h4>
-            <h3 className={styles.post_information_h3}>09139939426</h3>
+            <h3 className={styles.post_information_h3}>{data.profile.mobile_number}</h3>
           </div>
           <div></div>
           <div className={styles.post_informationD_content}>
