@@ -19,8 +19,8 @@
 // Cart Page
 @import "../styles/pages/cart/cart.scss";
 @font-face {
-    font-family: 'vazir';
-    src: url('../public/assets/fonts/Vazir.eot') format('eot'), url('../public/assets/fonts/Vazir.woff') format('woff'), url('../public/assets/fonts/Vazir.woff2') format('woff2'), url('../public/assets/fonts/Vazir.ttf') format('ttf');
+    font-family: "vazir";
+    src: url("../public/assets/fonts/Vazir.eot") format("eot"), url("../public/assets/fonts/Vazir.woff") format("woff"), url("../public/assets/fonts/Vazir.woff2") format("woff2"), url("../public/assets/fonts/Vazir.ttf") format("ttf");
     font-style: normal;
     font-display: fallback;
 }
@@ -63,7 +63,7 @@ h4 {
 
 html,
 body {
-    // font-size: 62.5%;
+    font-size: 62.5%;
     padding: 0;
     margin: 0;
     font-family: "IRANSansB" !important;
