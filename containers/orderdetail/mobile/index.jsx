@@ -3,7 +3,7 @@ import React from "react";
 // Sasss
 import styles from "../../../styles/pages/order/orderdetail.module.scss";
 
-export default function OrderDetailMobile({ data }) {
+export default function OrderDetailMobile({ data, btnOk, setbtnOk, isOpen }) {
   return (
     <div className={styles.wrapper}>
       {/* وضعیت سفارش */}

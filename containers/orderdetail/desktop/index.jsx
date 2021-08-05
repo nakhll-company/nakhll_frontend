@@ -6,7 +6,7 @@ import { Fragment, useEffect, useState } from "react";
 // Sasss
 import styles from "../../../styles/pages/order/orderdetail.module.scss";
 
-export default function OrderDetailDesktop({ data }) {
+export default function OrderDetailDesktop({ data, btnOk, setbtnOk, isOpen }) {
   return (
     <div className={styles.wrapper}>
       {/* وضعیت سفارش */}
@@ -19,10 +19,8 @@ export default function OrderDetailDesktop({ data }) {
             <div className={styles.title_status}>
               <h3 style={{ fontSize: "15px", fontWeight: "bold" }}>
                 {data.order_status === "2" && "در انتظار تحویل به پست"}
-                {data.order_status === "3" && btnOk && "در انتظار تایید"}
-                {data.order_status === "3" &&
-                  !btnOk &&
-                  "در انتظار تحویل به پست"}
+                {data.order_status === "3" && "در انتظار تایید"}
+                {data.order_status === "3" && "در انتظار تحویل به پست"}
 
                 {data.order_status === "5" && "سفارش ارسال شده است"}
               </h3>

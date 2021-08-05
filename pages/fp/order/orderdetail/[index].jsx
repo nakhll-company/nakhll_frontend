@@ -124,9 +124,19 @@ function HomePage({ id }) {
       {isShow && (
         <>
           {width >= breakpoint ? (
-            <OrderDetailDesktop data={data} />
+            <OrderDetailDesktop
+              isOpen={isOpen}
+              btnOk={btnOk}
+              setbtnOk={setbtnOk}
+              data={data}
+            />
           ) : (
-            <OrderDetailMobile data={data} />
+            <OrderDetailMobile
+              isOpen={isOpen}
+              btnOk={btnOk}
+              setbtnOk={setbtnOk}
+              data={data}
+            />
           )}
         </>
       )}
