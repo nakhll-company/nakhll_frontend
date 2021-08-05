@@ -9,13 +9,46 @@ import * as yup from "yup";
 // Sasss
 import styles from "../../../styles/pages/order/orderdetail.module.scss";
 
-export default function OrderDetailDesktop({ data, btnOk, setbtnOk, isOpen, IsLoading, setIsLoading, showMessage, setshowMessage }) {
+export default function OrderDetailDesktop({
+  data,
+  btnOk,
+  setbtnOk,
+  isOpen,
+  IsLoading,
+  setIsLoading,
+  showMessage,
+  setshowMessage,
+}) {
   const VALIDATION_SCHEMA = yup.object().shape({
     codeRahgiri: yup
       .number()
       .typeError("فقط عدد مجاز است.")
       .required("کد رهگیری الزامی می باشد."),
   });
+  const confirmedFactor = () => {
+    const _handleRequestApi = async (id) => {
+      let params = {};
+      let loadData = null;
+      let dataUrl = `/app/api/v1/factor/change-status/confirmed/${id}/`;
+      let response = await ApiRegister().apiRequest(
+        loadData,
+        "PUT",
+        dataUrl,
+        true,
+        params
+      );
+      if (response.status === 200) {
+        setconfigOrder(response.data);
+      }
+      setisShow(true);
+      setbtnOk(!btnOk);
+
+      if (response.status === 200) {
+        setconfigOrder(true);
+      }
+    };
+    _handleRequestApi(id);
+  };
   return (
     <div className={styles.wrapper}>
       {/* وضعیت سفارش */}
@@ -29,7 +62,9 @@ export default function OrderDetailDesktop({ data, btnOk, setbtnOk, isOpen, IsLo
               <h3 style={{ fontSize: "15px", fontWeight: "bold" }}>
                 {data.order_status === "2" && "در انتظار تحویل به پست"}
                 {data.order_status === "3" && "در انتظار تایید"}
-                {data.order_status === "3" && "در انتظار تحویل به پست"}
+                {data.order_status === "3" &&
+                  !btnOk &&
+                  "در انتظار تحویل به پست"}
 
                 {data.order_status === "5" && "سفارش ارسال شده است"}
               </h3>
@@ -505,8 +540,9 @@ export default function OrderDetailDesktop({ data, btnOk, setbtnOk, isOpen, IsLo
           <div className={styles.post_informationD_content}>
             <h4>نام مشتری</h4>
             <h3 style={{ marginTop: "5px" }}>
-              {`${data.profile && data.profile.user.first_name}  ${data.profile && data.profile.user.last_name
-                }`}
+              {`${data.profile && data.profile.user.first_name}  ${
+                data.profile && data.profile.user.last_name
+              }`}
             </h3>
           </div>
           {/* <div className={styles.post_informationD_content}>
@@ -515,7 +551,9 @@ export default function OrderDetailDesktop({ data, btnOk, setbtnOk, isOpen, IsLo
     </div> */}
           <div className={styles.post_informationD_content}>
             <h4>شماره تماس</h4>
-            <h3 className={styles.post_information_h3}>{data.profile.mobile_number}</h3>
+            <h3 className={styles.post_information_h3}>
+              {data.profile.mobile_number}
+            </h3>
           </div>
           <div></div>
           <div className={styles.post_informationD_content}>
