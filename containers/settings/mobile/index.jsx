@@ -66,9 +66,9 @@ const getCities = async (id) => {
 };
 
 function MobileSetting({ activeHojreh }) {
-  const [ChoiceBigCity, setChoiceBigCity] = useState(null);
-  const [ChoiceState, setChoiceState] = useState(null);
-  const [ChoiceCity, setChoiceCity] = useState(null);
+  const [ChoiceBigCity, setChoiceBigCity] = useState("");
+  const [ChoiceState, setChoiceState] = useState("");
+  const [ChoiceCity, setChoiceCity] = useState("");
   let [selectState, setSelectState] = useState([]);
   let [selectBigCities, setSelectBigCities] = useState([]);
   let [selectCities, setSelectCities] = useState([]);
@@ -99,6 +99,10 @@ function MobileSetting({ activeHojreh }) {
         true,
         params
       );
+      setChoiceState(response.data.FK_ShopManager.User_Profile.State);
+      setChoiceBigCity(response.data.FK_ShopManager.User_Profile.BigCity);
+      setChoiceCity(response.data.FK_ShopManager.User_Profile.City);
+
       if (response.status === 200) {
         setApiSetting(await response.data);
         setMainLoading(false);
