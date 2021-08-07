@@ -23,7 +23,7 @@ export default function Cart() {
         ></link>
       </Head>
       <section className="container container--mob pb-5 position-relative">
-        <CheckOutSteps />
+        <CheckOutSteps step="2" />
         <MiniCardBuy />
 
         <div className="row mx-auto" style={{ maxWidth: "72rem" }}>
