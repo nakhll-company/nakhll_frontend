@@ -88,6 +88,9 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
   const [showMessage, setshowMessage] = useState(0);
   const [showMessageHesab, setShowMessageHesab] = useState(0);
 
+  // for btn  when click call api again
+  const [clicked, setClicked] = useState(false);
+
   // Change Page in select city
 
   const [showState, setshowState] = useState(false);
@@ -129,7 +132,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
     };
 
     activeHojreh.length > 0 && _handleRequestApi();
-  }, [activeHojreh]);
+  }, [activeHojreh, clicked]);
 
   const linkSetting = (body) => {
     const dataForSendLink = {
@@ -532,7 +535,8 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                       if (response.status === 200) {
                         setIsLoading(false);
                         setshowMessage(1);
-                        location.replace("https://nakhll.com/fp/setting");
+                        // location.replace("https://nakhll.com/fp/setting");
+                        setClicked((pre) => !pre);
                       }
                     } catch (error) {
                       setIsLoading(false);
@@ -1092,7 +1096,8 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                     if (response.status == 200) {
                       setIsLoadingHesab(false);
                       setShowMessageHesab(1);
-                      location.replace("https://nakhll.com/fp/setting");
+                      // location.replace("https://nakhll.com/fp/setting");
+                      setClicked((pre) => !pre);
                     } else {
                       setIsLoadingHesab(false);
                       setShowMessageHesab(2);
@@ -1258,7 +1263,8 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                       position: "top-right",
                       closeOnClick: true,
                     });
-                    location.replace("https://nakhll.com/fp/setting");
+                    // location.replace("https://nakhll.com/fp/setting");
+                    setClicked((pre) => !pre);
                   }}
                 >
                   <div className={styles.LinksGridD}>
