@@ -760,6 +760,10 @@ function MobileSetting({ activeHojreh }) {
                     // if (response.status === 201) {
                     //   setShowSuccessPage((showSuccessPage) => !showSuccessPage);
                     // }
+                    toast.success("اطلاعات با موفقیت به روز رسانی شد", {
+                      position: "top-right",
+                      closeOnClick: true,
+                    });
                   }}
                 >
                   <div className={styles.input_setting}>
