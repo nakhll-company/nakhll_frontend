@@ -9,7 +9,6 @@ import { toast } from "react-toastify";
 import MobileHeader from '../../../../components/mobileHeader';
 import useViewport from '../../../../components/viewPort';
 import SuccessPage from '../../../../containers/store/successPage';
-import Loading from '../../../../components/loading';
 import { mapDispatch } from '../../../../containers/store/methods/mapDispatch';
 import { mapState } from '../../../../containers/store/methods/mapState';
 // methods
@@ -33,6 +32,7 @@ function NewStore({ getUserInfo, userInfo }) {
         });
         let response = await createStore(data);
         if (response.status === 201) {
+            getUserInfo();
             setShowSuccessPage({
                 loading: "false",
                 success: "true"
