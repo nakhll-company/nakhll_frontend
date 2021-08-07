@@ -329,6 +329,7 @@ function MobileSetting({ activeHojreh }) {
                         setIsLoading(false);
                         // good
                         setshowMessage(1);
+                        location.replace("https://nakhll.com/fp/setting");
                       }
                     } catch (error) {
                       setIsLoading(false);
@@ -681,6 +682,7 @@ function MobileSetting({ activeHojreh }) {
                     if (response.status == 200) {
                       setIsLoadingHesab(false);
                       setShowMessageHesab(1);
+                      location.replace("https://nakhll.com/fp/setting");
                     } else {
                       setIsLoadingHesab(false);
                       setShowMessageHesab(2);
@@ -764,6 +766,7 @@ function MobileSetting({ activeHojreh }) {
                       position: "top-right",
                       closeOnClick: true,
                     });
+                    location.replace("https://nakhll.com/fp/setting");
                   }}
                 >
                   <div className={styles.input_setting}>

@@ -532,6 +532,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                       if (response.status === 200) {
                         setIsLoading(false);
                         setshowMessage(1);
+                        location.replace("https://nakhll.com/fp/setting");
                       }
                     } catch (error) {
                       setIsLoading(false);
@@ -1091,6 +1092,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                     if (response.status == 200) {
                       setIsLoadingHesab(false);
                       setShowMessageHesab(1);
+                      location.replace("https://nakhll.com/fp/setting");
                     } else {
                       setIsLoadingHesab(false);
                       setShowMessageHesab(2);
@@ -1251,10 +1253,12 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                     // if (response.status === 201) {
                     //   setShowSuccessPage((showSuccessPage) => !showSuccessPage);
                     // }
+
                     toast.success("اطلاعات با موفقیت به روز رسانی شد", {
                       position: "top-right",
                       closeOnClick: true,
                     });
+                    location.replace("https://nakhll.com/fp/setting");
                   }}
                 >
                   <div className={styles.LinksGridD}>
