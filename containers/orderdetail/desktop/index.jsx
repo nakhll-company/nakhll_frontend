@@ -2,11 +2,53 @@
 import React from "react";
 import Image from "next/image";
 import { Fragment, useEffect, useState } from "react";
+// FORM
+import { Formik, Form, Field, FieldArray } from "formik";
+import * as yup from "yup";
 
 // Sasss
 import styles from "../../../styles/pages/order/orderdetail.module.scss";
 
-export default function OrderDetailDesktop({ data }) {
+export default function OrderDetailDesktop({
+  data,
+  btnOk,
+  setbtnOk,
+  isOpen,
+  IsLoading,
+  setIsLoading,
+  showMessage,
+  setshowMessage,
+}) {
+  const VALIDATION_SCHEMA = yup.object().shape({
+    codeRahgiri: yup
+      .number()
+      .typeError("فقط عدد مجاز است.")
+      .required("کد رهگیری الزامی می باشد."),
+  });
+  const confirmedFactor = () => {
+    const _handleRequestApi = async (id) => {
+      let params = {};
+      let loadData = null;
+      let dataUrl = `/app/api/v1/factor/change-status/confirmed/${id}/`;
+      let response = await ApiRegister().apiRequest(
+        loadData,
+        "PUT",
+        dataUrl,
+        true,
+        params
+      );
+      if (response.status === 200) {
+        setconfigOrder(response.data);
+      }
+      setisShow(true);
+      setbtnOk(!btnOk);
+
+      if (response.status === 200) {
+        setconfigOrder(true);
+      }
+    };
+    _handleRequestApi(id);
+  };
   return (
     <div className={styles.wrapper}>
       {/* وضعیت سفارش */}
@@ -19,7 +61,7 @@ export default function OrderDetailDesktop({ data }) {
             <div className={styles.title_status}>
               <h3 style={{ fontSize: "15px", fontWeight: "bold" }}>
                 {data.order_status === "2" && "در انتظار تحویل به پست"}
-                {data.order_status === "3" && btnOk && "در انتظار تایید"}
+                {data.order_status === "3" && "در انتظار تایید"}
                 {data.order_status === "3" &&
                   !btnOk &&
                   "در انتظار تحویل به پست"}
@@ -189,7 +231,7 @@ export default function OrderDetailDesktop({ data }) {
                 <h3>تایید</h3>
               </button>
               <button className={`${styles.btn} ${styles.btnProblem}`}>
-                <h3>ثبت مشکل</h3>
+                <h3 style={{ fontSize: "9px" }}>ثبت مشکل</h3>
               </button>
             </div>
           )}
@@ -320,12 +362,12 @@ export default function OrderDetailDesktop({ data }) {
                           className={`${styles.btn} ${styles.btnSubmit}`}
                           type="submit"
                         >
-                          <h3 style={{ fontSize: "12px" }}>ثبت کد رهگیری</h3>
+                          <h3 style={{ fontSize: "9px" }}>ثبت کد رهگیری</h3>
                         </button>
                         <button
                           className={`${styles.btn} ${styles.btnProblem}`}
                         >
-                          <h3 style={{ fontSize: "12px" }}>ثبت مشکل</h3>
+                          <h3 style={{ fontSize: "9px" }}>ثبت مشکل</h3>
                         </button>
                       </div>
                     </div>
@@ -467,12 +509,12 @@ export default function OrderDetailDesktop({ data }) {
                           className={`${styles.btn} ${styles.btnSubmit}`}
                           type="submit"
                         >
-                          <h3 style={{ fontSize: "12px" }}>ثبت کد رهگیری</h3>
+                          <h3 style={{ fontSize: "9px" }}>ثبت کد رهگیری</h3>
                         </button>
                         <button
                           className={`${styles.btn} ${styles.btnProblem}`}
                         >
-                          <h3 style={{ fontSize: "12px" }}>ثبت مشکل</h3>
+                          <h3 style={{ fontSize: "9px" }}>ثبت مشکل</h3>
                         </button>
                       </div>
                     </div>
@@ -509,7 +551,9 @@ export default function OrderDetailDesktop({ data }) {
     </div> */}
           <div className={styles.post_informationD_content}>
             <h4>شماره تماس</h4>
-            <h3 className={styles.post_information_h3}>09139939426</h3>
+            <h3 className={styles.post_information_h3}>
+              {data.profile.mobile_number}
+            </h3>
           </div>
           <div></div>
           <div className={styles.post_informationD_content}>

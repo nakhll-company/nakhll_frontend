@@ -81,80 +81,94 @@
 
 @media only screen and (min-width: 600px) {
     // wrapper
-.mainWrapper{
-    width: 100%;
-    height: 100vh;
-    position: absolute;
-    background-color: #F8F8F8;
-    top: 0;
-    left: 0;
-    overflow-y: hidden !important;
-    font-family: 'vazir';
-    z-index: 30000;
-}
-  // form
-.form{
-    position: absolute;
-    top: 30px;
-    right: 10%;
-    z-index: 3000;
-    overflow-y: hidden !important;
-    display: flex;
-    flex-direction: row;
-    width: 80%;
-    margin: auto;
-    border: 1px solid #E0E6E9;
-    box-sizing: border-box;
-    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.05);
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-family: 'vazir';
-    // right
-    .form_right{
-        width: 50%;
+    .mainWrapper{
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        background-color: #F8F8F8;
+        top: 0;
+        left: 0;
+        overflow-y: hidden !important;
+        font-family: 'vazir';
+        z-index: 30000;
+    }
+    // form
+    .form{
+        position: absolute;
+        top: 30px;
+        right: 10%;
+        z-index: 3000;
+        overflow-y: hidden !important;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        width: 80%;
+        margin: auto;
+        border: 1px solid #E0E6E9;
+        box-sizing: border-box;
+        box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.05);
+        border-radius: 5px;
         padding: 10px 20px;
         font-family: 'vazir';
-        // button submit
-        .wrapper_submit{
+        // right
+        .form_right{
+            width: 50%;
             display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            float: right !important;
-            position:static;
-            width: 100%;
-            height: 62px;
-            box-shadow: none;
+            flex-direction: column;
+            padding: 10px 20px;
+            font-family: 'vazir';
             // button submit
-            .button_submit{
-                width: 80%;
-                height: 47px;
-                background: #007AFF;
-                border-radius: 5px;
-                color: #FFFFFF;
-                font-size: 15px;
-                text-align: center;
-                border: none;
-                outline: none;
-                cursor: pointer;
-                font-family: 'vazir';
-                cursor: pointer;
+            .wrapper_submit{
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                float: right !important;
+                position:static;
+                width: 100%;
+                height: 62px;
+                box-shadow: none;
+                // button submit
+                .button_submit{
+                    width: 80%;
+                    height: 47px;
+                    background: #007AFF;
+                    border-radius: 5px;
+                    color: #FFFFFF;
+                    font-size: 15px;
+                    text-align: center;
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                    font-family: 'vazir';
+                    cursor: pointer;
+                }
+            }
+            .form_errors{
+                color: red;
             }
         }
-        .form_errors{
-            color: red;
+        // right
+        .form_left{
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            padding: 30px 20px;
+            font-family: 'vazir';
         }
     }
-    // right
-    .form_left{
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        padding: 30px 20px;
-        font-family: 'vazir';
-    }
 }
+.loading{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    top: 0px;
+    left: 0px;
+    font-family: 'vazir';
+    background-color: #FFFFFF;
+    z-index: 40000;
 }
 .info_completed{
     display: flex;
@@ -162,3 +176,4 @@
     justify-content: center;
     margin-top: 100px;
 }
+
