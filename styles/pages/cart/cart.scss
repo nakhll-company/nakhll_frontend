@@ -402,3 +402,22 @@ img {
 .button:focus {
     outline: none;
 }
+
+@media (max-width: 767.98px) {
+    html {
+        font-size: 0.875rem;
+    }
+    .container--mob {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .container--mob>.row {
+        margin-right: 0;
+        margin-left: 0;
+    }
+    .container--mob>.row>.col,
+    .container--mob>.row>[class*="col-"] {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}

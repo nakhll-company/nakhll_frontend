@@ -1,0 +1,17 @@
+.checkout_steps {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    left: 50%;
+    top: 50px;
+    z-index: 10001;
+}
+
+.step_item {
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    text-align: center;
+    background-color: #d0d0d0;
+}
