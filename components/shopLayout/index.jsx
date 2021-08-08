@@ -8,10 +8,10 @@ function ShopLayout({ children }) {
     <div>
       <header className={styles.headerWrapper}>
         <Image
-          src="/logoCart.png"
+          src="/image/LOGO_500.png"
           alt="logo nakhll"
-          width="400px"
-          height="110px"
+          width="100px"
+          height="100px"
         />
       </header>
       <main className={styles.mainContent}>{children}</main>

@@ -1,0 +1,65 @@
+.checkout_steps {
+    list-style: none;
+    display: flex;
+    direction: rtl;
+    z-index: 10001;
+    align-items: center;
+    justify-content: center;
+}
+
+.step_item {
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    text-align: center;
+    background-color: #d0d0d0;
+    position: relative;
+    .titleInStep {
+        position: absolute;
+        top: -37px;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        content: attr(data-title);
+        white-space: nowrap;
+        font-size: 15px;
+    }
+}
+
+.line {
+    width: 372px;
+    height: 3px;
+    border-radius: 3.5px;
+    background-color: #d0d0d0;
+    top: 50%;
+    left: 10px;
+    z-index: 0;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.road {
+    height: 3px;
+    width: 100%;
+    background-color: #00bfd6;
+}
+
+.active {
+    animation: DanceColor 2s linear infinite;
+    background-color: #00bfd6;
+    * {
+        color: #00bfd6;
+    }
+}
+
+@keyframes DanceColor {
+    0% {
+        background-color: #00bfd6;
+        box-shadow: 0px 0px 10px 10px #16c3ee;
+        border: 0px;
+    }
+    100% {
+        background-color: #16c3ee;
+        box-shadow: none;
+    }
+}

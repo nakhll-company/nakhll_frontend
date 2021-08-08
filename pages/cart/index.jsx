@@ -4,6 +4,7 @@ import ListCardBuy from "../../containers/card/ListCardBuy";
 import MiniCardBuy from "../../containers/card/MiniCardBuy";
 import SumBuy from "../../containers/card/SumBuy";
 import ShopLayout from "../../components/shopLayout";
+import CheckOutSteps from "../../components/CheckOutSteps/CheckOutSteps";
 export default function Cart() {
   return (
     <div className="all">
@@ -16,6 +17,7 @@ export default function Cart() {
         ></link>
       </Head>
       <section className="container container--mob pb-5 position-relative">
+        <CheckOutSteps step="2" />
         <MiniCardBuy />
 
         <div className="row mx-auto" style={{ maxWidth: "72rem" }}>

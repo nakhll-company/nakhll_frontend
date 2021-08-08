@@ -194,17 +194,17 @@ img {
     font-size: 0.8rem;
 }
 
-.bslm-label.teaberry-light {
+.nakhl-label.teaberry-light {
     color: #dc3755;
     background: #fcecef;
 }
 
-.bslm-label.small {
+.nakhl-label.small {
     font-size: 0.9rem;
     padding: 0.2rem 0.5rem;
 }
 
-.bslm-label {
+.nakhl-label {
     text-align: center;
     border-radius: 0.4rem;
 }
@@ -401,4 +401,23 @@ img {
 
 .button:focus {
     outline: none;
+}
+
+@media (max-width: 767.98px) {
+    html {
+        font-size: 0.875rem;
+    }
+    .container--mob {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .container--mob>.row {
+        margin-right: 0;
+        margin-left: 0;
+    }
+    .container--mob>.row>.col,
+    .container--mob>.row>[class*="col-"] {
+        padding-right: 0;
+        padding-left: 0;
+    }
 }
