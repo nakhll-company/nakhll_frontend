@@ -5,6 +5,10 @@
     z-index: 10001;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    top: -8px;
+    left: 15%;
+    right: 15%;
 }
 
 .step_item {
@@ -16,7 +20,8 @@
     position: relative;
     .titleInStep {
         position: absolute;
-        top: -37px;
+        color: #c1c1c1;
+        top: -25px;
         left: 50%;
         -webkit-transform: translateX(-50%);
         transform: translateX(-50%);
@@ -45,11 +50,17 @@
 }
 
 .active {
-    animation: DanceColor 2s linear infinite;
     background-color: #00bfd6;
     * {
         color: #00bfd6;
     }
+    .titleInStep {
+        color: #00bfd6;
+    }
+}
+
+.animationStep {
+    animation: DanceColor 2s linear infinite;
 }
 
 @keyframes DanceColor {

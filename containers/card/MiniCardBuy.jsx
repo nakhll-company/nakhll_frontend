@@ -1,7 +1,7 @@
 export default function MiniCardBuy() {
   return (
     <div className="col-12 mx-auto" style={{ maxWidth: "72rem" }}>
-      <div className="mt-3">شما یک سفارش در انتظار پرداخت دارید:</div>
+      <div className="pt-4">شما یک سفارش در انتظار پرداخت دارید:</div>
       <div>
         <div className="py-2 px-3 mt-2 border rounded bg-gray-100 d-flex flex-wrap align-items-center">
           <span className="text-secondary font-size-sm">736810</span>{" "}

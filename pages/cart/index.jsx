@@ -22,8 +22,11 @@ export default function Cart() {
           crossorigin="anonymous"
         ></link>
       </Head>
-      <section className="container container--mob pb-5 position-relative">
-        <CheckOutSteps step="2" />
+      <section
+        style={{ position: "relative" }}
+        className="container container--mob pb-5 position-relative"
+      >
+        <CheckOutSteps step="1" />
         <MiniCardBuy />
 
         <div className="row mx-auto" style={{ maxWidth: "72rem" }}>
