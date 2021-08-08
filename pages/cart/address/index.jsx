@@ -2,6 +2,8 @@
 import Head from "next/head";
 import Link from 'next/link';
 import Assistent from "zaravand-assistent-number";
+// componentes
+import Steps from '../../../components/CheckOutSteps/CheckOutSteps';
 // styles
 import styles from '../../../styles/pages/cart/address.module.scss';
 /**
@@ -20,7 +22,9 @@ const Address = () => {
                     crossOrigin="anonymous"
                 ></link>
             </Head>
+            <Steps step="2" />
             <div className={`col-12 col-lg-5 ${styles.wrapper}`}>
+
                 <header className={styles.header}>
                     <Link href="/cart">
                         <a className={styles.header_back_link}>
