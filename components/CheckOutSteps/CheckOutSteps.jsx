@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import styles from "./CheckOutSteps.module.scss";
 /**
@@ -33,11 +34,15 @@ export default function CheckOutSteps({ step }) {
   return (
     <div className={styles.checkout_steps}>
       {/* LEVEL ONE */}
-      <a href="">
-        <div className={`${styles.step_item}  ${step1} `}>
+
+      <Link style={{ cursor: "pointer" }} href="/cart">
+        <div
+          className={`${styles.step_item}  ${step1} `}
+          style={{ cursor: "pointer" }}
+        >
           <span className={`${styles.titleInStep}`}>اطلاعات ارسال</span>
         </div>
-      </a>
+      </Link>
       {/* ^^^^^^^^^^ LEVEL ONE ^^^^^^^^^^ */}
 
       {/* LINE 1 */}
@@ -46,13 +51,16 @@ export default function CheckOutSteps({ step }) {
       </div>
 
       {/* LEVEL TWO */}
-      <a href="">
-        <div className={`${styles.step_item} ${step2}`}>
+      <Link href="/cart/address" style={{ cursor: "pointer" }}>
+        <div
+          style={{ cursor: "pointer" }}
+          className={`${styles.step_item} ${step2}`}
+        >
           <div className={styles.titleInStep}>
             <span>پرداخت</span>
           </div>
         </div>
-      </a>
+      </Link>
 
       {/* ^^^^^^^^^^ LEVEL TWO ^^^^^^^^^^ */}
 

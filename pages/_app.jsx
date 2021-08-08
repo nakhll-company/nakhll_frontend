@@ -1,17 +1,16 @@
 // node libraries
-import { Provider } from 'react-redux';
-import { Store } from '../redux/store';
+import { Provider } from "react-redux";
+import { Store } from "../redux/store";
 // components
-import MyLayout from '../components/layout/Layout';
-import ShopLayout from '../components/shopLayout';
+import MyLayout from "../components/layout/Layout";
+import ShopLayout from "../components/shopLayout";
 // scss
-// add bootstrap css 
-import 'bootstrap/dist/css/bootstrap.css';
-import '../styles/globals.scss';
-import { useRouter } from 'next/router';
+// add bootstrap css
+import "bootstrap/dist/css/bootstrap.css";
+import "../styles/globals.scss";
+import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }) {
-
   const router = useRouter();
 
   if (router.pathname.startsWith("/fp")) {
@@ -21,7 +20,7 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps} />
         </MyLayout>
       </Provider>
-    )
+    );
   } else {
     return (
       <Provider store={Store}>
@@ -29,10 +28,8 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps} />
         </ShopLayout>
       </Provider>
-    )
+    );
   }
-
-
 }
 
 export default MyApp;

@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: -8px;
+    top: -9px;
     left: 15%;
     right: 15%;
 }
@@ -29,6 +29,11 @@
         white-space: nowrap;
         font-size: 15px;
     }
+}
+
+.step_item:hover {
+    background-color: rgb(12, 162, 248);
+    box-shadow: 0 50px 80px rgba(0, 0, 0, 0.19), 0 3px 3px rgba(59, 11, 231, 0.23);
 }
 
 .line {

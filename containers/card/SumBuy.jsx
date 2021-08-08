@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 export default function SumBuy() {
@@ -30,9 +31,11 @@ export default function SumBuy() {
           </span>
         </div>
         <div>
-          <button className="btn btn-tprimary p-2 rounded-pill w-100">
-            ادامه خرید از 2 غرفه
-          </button>
+          <Link href="/cart/address">
+            <button className="btn btn-tprimary p-2 rounded-pill w-100">
+              ادامه خرید از 2 غرفه
+            </button>
+          </Link>
         </div>
         <div className="cart-invoice-subtitle">
           <i className="bi bi-tick-circle"></i>
