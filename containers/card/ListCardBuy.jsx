@@ -14,7 +14,28 @@ export default function ListCardBuy() {
               محصولات علمی و فرهنگی و طبیعی
             </a>
           </div>
-          
+
+          {/*</mnbvcxz> IF CHANGE IN PRODUCT IN LIST */}
+
+          <div class="align-items-center nakhl-label d-flex justify-content-between mt-3 p-2 rounded teaberry-light">
+            <div class="mb-0 pr-2 font-size-sm">
+              <div style={{ fontSize: "15px", fontWeight: "400" }}>
+                از محصول روان نویس (خودکار) یونیکورن (اسب تک شاخ)به اندازه کافی
+                موجود نمی‌باشد
+              </div>
+              <div>قیمت محصول تغییر کرده است</div>
+            </div>{" "}
+            <span class="dd-flex align-items-center mr-2 pointer font-size-sm text-nowrap">
+              حذف
+              <i
+                class="fas fa-times-circle"
+                style={{ fontSize: "20px", marginRight: "5px" }}
+              ></i>
+            </span>
+          </div>
+
+          {/*^^^^^^^^^^^ IF CHANGE IN PRODUCT IN LIST ^^^^^^^^^^^*/}
+
           <div className="p-3 mt-2 cart-product-item">
             <div className="spinner spinner--medium"></div>
             <div className="d-flex flex-wrap justify-content-between">
@@ -38,7 +59,7 @@ export default function ListCardBuy() {
                     </a>
                   </div>
                   <div className="cart-product-item-remain-stock"></div>
-                  <div className="bslm-label mr-auto small teaberry-light">
+                  <div className="nakhl-label mr-auto small teaberry-light">
                     43%
                   </div>
                   <div className="d-flex align-items-center">
@@ -129,7 +150,7 @@ export default function ListCardBuy() {
                     </a>
                   </div>
                   <div className="cart-product-item-remain-stock"></div>
-                  <div className="bslm-label mr-auto small teaberry-light">
+                  <div className="nakhl-label mr-auto small teaberry-light">
                     21%
                   </div>
                   <div className="d-flex align-items-center">
@@ -201,7 +222,7 @@ export default function ListCardBuy() {
                     </a>
                   </div>
                   <div className="cart-product-item-remain-stock"></div>
-                  <div className="bslm-label mr-auto small teaberry-light">
+                  <div className="nakhl-label mr-auto small teaberry-light">
                     26%
                   </div>
                   <div className="d-flex align-items-center">
