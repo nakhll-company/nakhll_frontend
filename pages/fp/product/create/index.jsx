@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Cropper from "react-easy-crop";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+
 import Assistent from "zaravand-assistent-number";
 import { useCallback, useEffect, useState } from "react";
 // components
@@ -22,20 +23,32 @@ import styles from "../../../../styles/pages/product/create.module.scss";
 const CreateProduct = ({ activeHojreh }) => {
   const _asist = new Assistent();
   // useform
-  const { setValue, getValues, clearErrors, register, setError, handleSubmit, watch, formState: { errors } } = useForm({
-    criteriaMode: 'all', mode: 'all'
+  const {
+    setValue,
+    getValues,
+    clearErrors,
+    register,
+    setError,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm({
+    criteriaMode: "all",
+    mode: "all",
   });
   // submit
   const onSubmit = async (data) => {
-    let err = false
+    let err = false;
     if (!placeholderSubmarckets) {
-      setError("submark", { type: "focus" }, { shouldFocus: true })
+      setError("submark", { type: "focus" }, { shouldFocus: true });
     } else {
-      err = true
+      err = true;
     }
-    let product_status = document.querySelector("input[type=radio]:checked").value;
+    let product_status = document.querySelector(
+      "input[type=radio]:checked"
+    ).value;
     if (err) {
-      setIsLoad(false)
+      setIsLoad(false);
       let confirm = {
         Title: data.Title,
         Inventory: Add,
@@ -66,15 +79,13 @@ const CreateProduct = ({ activeHojreh }) => {
           closeOnClick: true,
         });
       }
-      var resultId = response.data.ID
+      var resultId = response.data.ID;
 
       if (resultId) {
         let idProduct = {
-          "product": resultId,
-          "submarkets": [
-            submarketId
-          ]
-        }
+          product: resultId,
+          submarkets: [submarketId],
+        };
 
         let paramssubmarkets = {};
         let loadDatasubmarkets = idProduct;
@@ -95,11 +106,9 @@ const CreateProduct = ({ activeHojreh }) => {
         }
 
         let imagesProduct = {
-          "product": resultId,
-          "images":
-            previewImage
-
-        }
+          product: resultId,
+          images: previewImage,
+        };
 
         let paramsImages = {};
         let loadDataImages = imagesProduct;
@@ -114,7 +123,6 @@ const CreateProduct = ({ activeHojreh }) => {
         if (responseImages.status === 200) {
           setShowSuccessPage(true);
           // setIsLoad(false)
-
         } else {
           toast.error("خطایی در ایجاد محصول پیش آمده است", {
             position: "top-right",
@@ -148,8 +156,8 @@ const CreateProduct = ({ activeHojreh }) => {
   let [sepratorePrice, setSepratorePrice] = useState("");
   let [stringOldPrice, setStringOldPrice] = useState("");
   let [sepratoreOldPrice, setSepratoreOldPrice] = useState("");
-  const router = useRouter()
-  const { id } = router.query
+  const router = useRouter();
+  const { id } = router.query;
   // copy product
   const _editProduct = async () => {
     let params = null;
@@ -163,25 +171,24 @@ const CreateProduct = ({ activeHojreh }) => {
       params
     );
     if (response.status === 200) {
-      setValue('Title', response.data.title)
-      setValue('Net_Weight', response.data.net_weight)
-      setValue('Weight_With_Packing', response.data.weight_with_packing)
-      setValue('Price', response.data.price)
-      setValue('OldPrice', response.data.old_price)
-      setValue('Description', response.data.description)
-      setPreviewImage(response.data.banners)
-      setAdd(response.data.inventory)
-      setAddPreparationDays(response.data.preparation_days)
-      setIsLoad(true)
+      setValue("Title", response.data.title);
+      setValue("Net_Weight", response.data.net_weight);
+      setValue("Weight_With_Packing", response.data.weight_with_packing);
+      setValue("Price", response.data.price);
+      setValue("OldPrice", response.data.old_price);
+      setValue("Description", response.data.description);
+      setPreviewImage(response.data.banners);
+      setAdd(response.data.inventory);
+      setAddPreparationDays(response.data.preparation_days);
+      setIsLoad(true);
     }
-  }
+  };
   // show success page
   if (showSuccessPage) {
-    router.replace('/fp/product/create/successPageProduct')
+    router.replace("/fp/product/create/successPageProduct");
   }
   // use effect
   useEffect(() => {
-
     window.localStorage.setItem("image", JSON.stringify([]));
     if (id) {
       _editProduct();
@@ -199,7 +206,7 @@ const CreateProduct = ({ activeHojreh }) => {
         params
       );
       if (response.status === 200) {
-        setIsLoad(true)
+        setIsLoad(true);
         setData(response.data); //==> output: {}
       }
     };
@@ -241,9 +248,9 @@ const CreateProduct = ({ activeHojreh }) => {
     elementProduct.style.display = "flex";
     setDataChoice({ ...dataChoice, submarket: e.title });
     setPlaceholderSubmarckets(e.title);
-    setSubmarketId(e.id)
+    setSubmarketId(e.id);
     setPage((page) => page - 1);
-    clearErrors("submark")
+    clearErrors("submark");
   }
   // Go Back
   function GoBack() {
@@ -271,7 +278,7 @@ const CreateProduct = ({ activeHojreh }) => {
   const onFileChange = async (e) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
-      let imageDataUrl = await readFile(file)
+      let imageDataUrl = await readFile(file);
       setImageSrc(imageDataUrl);
       let elementImageProduct = document.getElementById("crop_container");
       elementImageProduct.style.display = "block";
@@ -280,24 +287,24 @@ const CreateProduct = ({ activeHojreh }) => {
   // read File
   function readFile(file) {
     return new Promise((resolve) => {
-      const reader = new FileReader()
-      reader.addEventListener('load', () => resolve(reader.result), false)
-      reader.readAsDataURL(file)
-    })
+      const reader = new FileReader();
+      reader.addEventListener("load", () => resolve(reader.result), false);
+      reader.readAsDataURL(file);
+    });
   }
   // on Close Cropper
   const _onCloseCropper = () => {
     let elementImageProduct = document.getElementById("crop_container");
     elementImageProduct.style.display = "none";
     setImageSrc(null);
-    setValue("product_image_upload", null)
+    setValue("product_image_upload", null);
   };
   // show Cropped Image
   const showCroppedImage = async () => {
     const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
     if (croppedImage) {
       let listImage = window.localStorage.getItem("image");
-      var prev = JSON.parse(listImage)
+      var prev = JSON.parse(listImage);
       setPreviewImage(prev);
     }
     let elementImageProduct = document.getElementById("crop_container");
@@ -309,17 +316,21 @@ const CreateProduct = ({ activeHojreh }) => {
   // remove Image
   const _removeImage = (item) => {
     let listRemoveImage = window.localStorage.getItem("image");
-    let removeImage = JSON.parse(listRemoveImage)
-    let testt = removeImage.filter((itemRemove) => { return itemRemove.includes(item) ? "" : itemRemove });
+    let removeImage = JSON.parse(listRemoveImage);
+    let testt = removeImage.filter((itemRemove) => {
+      return itemRemove.includes(item) ? "" : itemRemove;
+    });
     window.localStorage.setItem("image", JSON.stringify(testt));
     setPreviewImage(testt);
     if (testt.length == 0) {
-      setValue("product_image_upload", null)
+      setValue("product_image_upload", null);
     }
-  }
+  };
   // sepratore in numbers
   const numberSeparateUtils = (number) => {
-    return number !== undefined ? number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : null;
+    return number !== undefined
+      ? number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      : null;
   };
 
   if (isLoad) {
@@ -331,7 +342,10 @@ const CreateProduct = ({ activeHojreh }) => {
               <div className={styles.createProduct_lineRighte}>
                 <div className="mt-4">
                   <div>
-                    <h5 style={{ color: "#007aff", fontSize: "14px" }} className="mb-0 d-inline mr-20">
+                    <h5
+                      style={{ color: "#007aff", fontSize: "14px" }}
+                      className="mb-0 d-inline mr-20"
+                    >
                       اطلاعات محصول
                     </h5>
                   </div>
@@ -348,25 +362,43 @@ const CreateProduct = ({ activeHojreh }) => {
                     type="text"
                     {...register("Title", { required: true })}
                   />
-                  {errors.Title && <span style={{ color: "red", fontSize: "14px" }}>لطفا این گزینه را پر کنید</span>}
+                  {errors.Title && (
+                    <span style={{ color: "red", fontSize: "14px" }}>
+                      لطفا این گزینه را پر کنید
+                    </span>
+                  )}
                 </div>
                 {/* category */}
                 <div className={styles.wrapper_input}>
                   <label className={styles.lable_product} htmlFor="Title">
                     دسته بندی
                   </label>
-                  <input className={styles.input_product} value={placeholderSubmarckets}
-                    id="submark" name="submark" type="text" onClick={_selectSubmarket}
+                  <input
+                    className={styles.input_product}
+                    value={placeholderSubmarckets}
+                    id="submark"
+                    name="submark"
+                    type="text"
+                    onClick={_selectSubmarket}
                     {...register("submark")}
                   />
-                  {errors.submark && <span style={{ color: "red", fontSize: "14px" }}>لطفا این گزینه را پر کنید</span>}
+                  {errors.submark && (
+                    <span style={{ color: "red", fontSize: "14px" }}>
+                      لطفا این گزینه را پر کنید
+                    </span>
+                  )}
                 </div>
                 {/* image */}
                 <div id="imageProduct">
                   <div>
                     <p style={{ fontSize: "14px" }}>تصاویر</p>
                   </div>
-                  <div style={{ color: "#5E7488", fontSize: "14px", marginBottom: "15px" }}
+                  <div
+                    style={{
+                      color: "#5E7488",
+                      fontSize: "14px",
+                      marginBottom: "15px",
+                    }}
                     className="mt-3"
                   >
                     حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش
@@ -374,7 +406,10 @@ const CreateProduct = ({ activeHojreh }) => {
                   </div>
                   <div className="mt-4" name="mainPhoto">
                     <div className={styles.product_image_container}>
-                      <label style={{ marginTop: 10, marginRight: 10 }} htmlFor="product-image-upload">
+                      <label
+                        style={{ marginTop: 10, marginRight: 10 }}
+                        htmlFor="product-image-upload"
+                      >
                         <div className={styles.add_image_container}>
                           <i style={{ fontSize: "25px" }}>+</i>
                           <p style={{ fontSize: "15px" }} className="mt-2">
@@ -383,27 +418,45 @@ const CreateProduct = ({ activeHojreh }) => {
                         </div>
                       </label>
                       {/* input file */}
-                      <input style={{ width: "0px", height: "0px", opacity: "0px" }}
-                        type="file" id="product-image-upload"
-                        {...register("product_image_upload", { required: true })}
+                      <input
+                        style={{ width: "0px", height: "0px", opacity: "0px" }}
+                        type="file"
+                        id="product-image-upload"
+                        {...register("product_image_upload", {
+                          required: true,
+                        })}
                         onChange={onFileChange}
                       ></input>
                       {/* preview image */}
-                      {previewImage && (previewImage.map((item, index) => {
-                        return (
-                          <div key={index} className={styles.product_image} style={{
-                            backgroundImage: `url(${item})`
-                          }}>
-                            <div onClick={() => _removeImage(item)} className={styles.close_icon_container}>
-                              <i style={{ fontSize: 14 }} className="fas fa-times"></i>
+                      {previewImage &&
+                        previewImage.map((item, index) => {
+                          return (
+                            <div
+                              key={index}
+                              className={styles.product_image}
+                              style={{
+                                backgroundImage: `url(${item})`,
+                              }}
+                            >
+                              <div
+                                onClick={() => _removeImage(item)}
+                                className={styles.close_icon_container}
+                              >
+                                <i
+                                  style={{ fontSize: 14 }}
+                                  className="fas fa-times"
+                                ></i>
+                              </div>
                             </div>
-                          </div>
-                        )
-                      })
-                      )}
+                          );
+                        })}
                     </div>
                   </div>
-                  {errors.product_image_upload && <span style={{ color: "red", fontSize: "14px" }}>لطفا این گزینه را پر کنید</span>}
+                  {errors.product_image_upload && (
+                    <span style={{ color: "red", fontSize: "14px" }}>
+                      لطفا این گزینه را پر کنید
+                    </span>
+                  )}
                 </div>
                 {/* product detail */}
                 <div className="mt-4">
@@ -423,44 +476,61 @@ const CreateProduct = ({ activeHojreh }) => {
                     وزن خالص محصول
                   </label>
                   <div className={styles.wrapper_input_suffixText}>
-                    <input style={{ outline: "unset", border: "unset" }}
-                      id="Net_Weight" type="number"
+                    <input
+                      style={{ outline: "unset", border: "unset" }}
+                      id="Net_Weight"
+                      type="number"
                       {...register("Net_Weight", {
-                        required: 'لطفا این گزینه را پرنمایید',
+                        required: "لطفا این گزینه را پرنمایید",
                         min: {
                           value: 0,
-                          message: 'لطفا اعداد بزرگتر از صفر وارد نمایید'
-                        }
+                          message: "لطفا اعداد بزرگتر از صفر وارد نمایید",
+                        },
                       })}
                     />
                     <div>
                       <p>گرم</p>
                     </div>
                   </div>
-                  {errors.Net_Weight && <span style={{ color: "red", fontSize: "14px" }}>{errors.Net_Weight.message}</span>}
+                  {errors.Net_Weight && (
+                    <span style={{ color: "red", fontSize: "14px" }}>
+                      {errors.Net_Weight.message}
+                    </span>
+                  )}
                 </div>
                 {/* weight with packing */}
                 <div className={styles.wrapper_input}>
-                  <label className={styles.lable_product} htmlFor="Weight_With_Packing">
+                  <label
+                    className={styles.lable_product}
+                    htmlFor="Weight_With_Packing"
+                  >
                     وزن با بسته بندی
                   </label>
                   <div className={styles.wrapper_input_suffixText}>
-                    <input style={{ outline: "unset", border: "unset" }}
-                      id="Weight_With_Packing" type="number"
+                    <input
+                      style={{ outline: "unset", border: "unset" }}
+                      id="Weight_With_Packing"
+                      type="number"
                       {...register("Weight_With_Packing", {
-                        required: 'لطفا این گزینه را پرنمایید',
+                        required: "لطفا این گزینه را پرنمایید",
                         min: {
                           value: 0,
-                          message: 'لطفا اعداد بزرگتر از صفر وارد نمایید'
+                          message: "لطفا اعداد بزرگتر از صفر وارد نمایید",
                         },
-                        validate: value => parseInt(value) > parseInt(getValues("Net_Weight")) || 'وزن با بسته بندی باید بیشتر از وزن  خالص باشد'
+                        validate: (value) =>
+                          parseInt(value) > parseInt(getValues("Net_Weight")) ||
+                          "وزن با بسته بندی باید بیشتر از وزن  خالص باشد",
                       })}
                     />
                     <div>
                       <p>گرم</p>
                     </div>
                   </div>
-                  {errors.Weight_With_Packing && <span style={{ color: "red", fontSize: "14px" }}>{errors.Weight_With_Packing.message}</span>}
+                  {errors.Weight_With_Packing && (
+                    <span style={{ color: "red", fontSize: "14px" }}>
+                      {errors.Weight_With_Packing.message}
+                    </span>
+                  )}
                 </div>
                 {/* price */}
                 <div className={styles.wrapper_input}>
@@ -468,14 +538,16 @@ const CreateProduct = ({ activeHojreh }) => {
                     قیمت محصول
                   </label>
                   <div className={styles.wrapper_input_suffixText}>
-                    <input style={{ outline: "unset", border: "unset" }} id="Price"
+                    <input
+                      style={{ outline: "unset", border: "unset" }}
+                      id="Price"
                       type="number"
                       {...register("Price", {
-                        required: 'لطفا این گزینه را پرنمایید',
+                        required: "لطفا این گزینه را پرنمایید",
                         min: {
                           value: 500,
-                          message: 'لطفا اعداد بزرگتر از 500 وارد نمایید'
-                        }
+                          message: "لطفا اعداد بزرگتر از 500 وارد نمایید",
+                        },
                       })}
                       onChange={(e) => {
                         setStringPrice(_asist.word(e.target.value));
@@ -486,8 +558,20 @@ const CreateProduct = ({ activeHojreh }) => {
                       <p>تومان</p>
                     </div>
                   </div>
-                  <span style={{ fontSize: "12px", color: "rgb(0, 122, 255)", paddingRight: "20px" }}>{stringPrice.length !== 0 && `${stringPrice} تومان`}</span>
-                  {errors.Price && <span style={{ color: "red", fontSize: "14px" }}>{errors.Price.message}</span>}
+                  <span
+                    style={{
+                      fontSize: "12px",
+                      color: "rgb(0, 122, 255)",
+                      paddingRight: "20px",
+                    }}
+                  >
+                    {stringPrice.length !== 0 && `${stringPrice} تومان`}
+                  </span>
+                  {errors.Price && (
+                    <span style={{ color: "red", fontSize: "14px" }}>
+                      {errors.Price.message}
+                    </span>
+                  )}
                 </div>
                 {/* price with discount */}
                 <div className={styles.wrapper_input}>
@@ -495,43 +579,68 @@ const CreateProduct = ({ activeHojreh }) => {
                     قیمت محصول با تخفیف (اختیاری){" "}
                   </label>
                   <div className={styles.wrapper_input_suffixText}>
-                    <input style={{ outline: "unset", border: "unset" }} id="OldPrice"
-                      type="number" defaultValue={0}
+                    <input
+                      style={{ outline: "unset", border: "unset" }}
+                      id="OldPrice"
+                      type="number"
+                      defaultValue={0}
                       {...register("OldPrice", {
                         min: {
                           value: 0,
-                          message: 'لطفا اعداد بزرگتر از صفر وارد نمایید'
+                          message: "لطفا اعداد بزرگتر از صفر وارد نمایید",
                         },
-                        validate: value => parseInt(value) <= parseInt(getValues("Price")) || 'قیمت با تخفیف باید کمتر از قیمت اصلی باشد'
+                        validate: (value) =>
+                          parseInt(value) <= parseInt(getValues("Price")) ||
+                          "قیمت با تخفیف باید کمتر از قیمت اصلی باشد",
                       })}
                       onChange={(e) => {
                         setStringOldPrice(_asist.word(e.target.value));
-                        setSepratoreOldPrice(numberSeparateUtils(e.target.value));
+                        setSepratoreOldPrice(
+                          numberSeparateUtils(e.target.value)
+                        );
                       }}
                     />
                     <div>
                       <p>تومان</p>
                     </div>
                   </div>
-                  <span style={{ fontSize: "12px", color: "rgb(0, 122, 255)", paddingRight: "20px" }}>{stringOldPrice.length !== 0 && `${stringOldPrice} تومان`}</span>
-                  {errors.OldPrice && <span style={{ color: "red", fontSize: "14px" }}>{errors.OldPrice.message}</span>}
-                  {sepratoreOldPrice.length > 0 &&
+                  <span
+                    style={{
+                      fontSize: "12px",
+                      color: "rgb(0, 122, 255)",
+                      paddingRight: "20px",
+                    }}
+                  >
+                    {stringOldPrice.length !== 0 && `${stringOldPrice} تومان`}
+                  </span>
+                  {errors.OldPrice && (
+                    <span style={{ color: "red", fontSize: "14px" }}>
+                      {errors.OldPrice.message}
+                    </span>
+                  )}
+                  {sepratoreOldPrice.length > 0 && (
                     <div className={styles.previewPrice}>
                       <span>پیش نمایش :</span>
                       <span dir="rtl">
-                        <del dir="rtl" style={{ color: "#a3a3a3" }}>{sepratorePrice}</del><br />
+                        <del dir="rtl" style={{ color: "#a3a3a3" }}>
+                          {sepratorePrice}
+                        </del>
+                        <br />
                         <b dir="rtl">{sepratoreOldPrice}تومان</b>
                       </span>
                     </div>
-                  }
+                  )}
                 </div>
                 {/* discription */}
                 <div className={styles.wrapper_input}>
                   <label className={styles.lable_product} htmlFor="Description">
                     توضیحات محصول (اختیاری)
                   </label>
-                  <textarea className={styles.input_product} id="Description"
-                    name="Description" type="text"
+                  <textarea
+                    className={styles.input_product}
+                    id="Description"
+                    name="Description"
+                    type="text"
                     placeholder="توضیحات خود را در صورت تمایل اینجا وارد کنید"
                     {...register("Description")}
                   />
@@ -539,10 +648,13 @@ const CreateProduct = ({ activeHojreh }) => {
                 {/* inventory */}
                 <div className={styles.twoCol}>
                   <div>
-                    <p htmlFor="Inventory" style={{
-                      marginBottom: "10px", color: "#364254",
-                      fontSize: 14
-                    }}
+                    <p
+                      htmlFor="Inventory"
+                      style={{
+                        marginBottom: "10px",
+                        color: "#364254",
+                        fontSize: 14,
+                      }}
                     >
                       موجودی
                     </p>
@@ -551,7 +663,13 @@ const CreateProduct = ({ activeHojreh }) => {
                         <span className="fas fa-plus"></span>
                       </button>
                       <div className={styles.center}>
-                        <input type="number" min="0" max="500" value={Add} id="Inventory" name="Inventory"
+                        <input
+                          type="number"
+                          min="0"
+                          max="500"
+                          value={Add}
+                          id="Inventory"
+                          name="Inventory"
                           onChange={(e) => {
                             setAdd(e.target.value);
                           }}
@@ -567,7 +685,10 @@ const CreateProduct = ({ activeHojreh }) => {
                 {/* information  */}
                 <div className="mt-4">
                   <div>
-                    <h5 style={{ color: "#007aff", fontSize: "14px" }} className="mb-0 d-inline mr-20">
+                    <h5
+                      style={{ color: "#007aff", fontSize: "14px" }}
+                      className="mb-0 d-inline mr-20"
+                    >
                       اطلاعات ارسال
                     </h5>
                   </div>
@@ -576,10 +697,14 @@ const CreateProduct = ({ activeHojreh }) => {
                 {/* Preparation Days */}
                 <div className={styles.twoCol}>
                   <div>
-                    <p htmlFor="PreparationDays" style={{
-                      marginBottom: "10px", color: "#364254",
-                      fontSize: 14
-                    }}>
+                    <p
+                      htmlFor="PreparationDays"
+                      style={{
+                        marginBottom: "10px",
+                        color: "#364254",
+                        fontSize: 14,
+                      }}
+                    >
                       زمان آماده سازی
                     </p>
                     <div className={styles.inputWidRtl}>
@@ -587,8 +712,13 @@ const CreateProduct = ({ activeHojreh }) => {
                         <span className="fas fa-plus"></span>
                       </button>
                       <div className={styles.center}>
-                        <input type="number" min="0" max="500" value={AddPreparationDays}
-                          id="PreparationDays" name="PreparationDays"
+                        <input
+                          type="number"
+                          min="0"
+                          max="500"
+                          value={AddPreparationDays}
+                          id="PreparationDays"
+                          name="PreparationDays"
                           onChange={(e) => {
                             setAddPreparationDays(e.target.value);
                           }}
@@ -605,11 +735,20 @@ const CreateProduct = ({ activeHojreh }) => {
                   </div>
                 </div>
                 {/* product status */}
-                <div style={{ display: "flex", justifyContent: "center", marginTop: "15px" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: "15px",
+                  }}
+                >
                   {/* Ready in stock */}
-                  <label htmlFor="availbe" className="labels activeLabel"
+                  <label
+                    htmlFor="availbe"
+                    className="labels activeLabel"
                     onClick={(e) => {
-                      let actives = document.getElementsByClassName("activeLabel");
+                      let actives =
+                        document.getElementsByClassName("activeLabel");
                       for (let i = 0; i < actives.length; i++) {
                         actives[i].classList.remove("activeLabel");
                       }
@@ -618,12 +757,21 @@ const CreateProduct = ({ activeHojreh }) => {
                   >
                     اماده در انبار
                   </label>
-                  <input defaultChecked={true} value={1} type="radio" name="status_product"
-                    id="availbe" className="radios" />
+                  <input
+                    defaultChecked={true}
+                    value={1}
+                    type="radio"
+                    name="status_product"
+                    id="availbe"
+                    className="radios"
+                  />
                   {/* Post ready production */}
-                  <label htmlFor="stop" className="labels"
+                  <label
+                    htmlFor="stop"
+                    className="labels"
                     onClick={(e) => {
-                      let actives = document.getElementsByClassName("activeLabel");
+                      let actives =
+                        document.getElementsByClassName("activeLabel");
                       for (let i = 0; i < actives.length; i++) {
                         actives[i].classList.remove("activeLabel");
                       }
@@ -632,11 +780,20 @@ const CreateProduct = ({ activeHojreh }) => {
                   >
                     تولید بعد از سفارش
                   </label>
-                  <input value={2} type="radio" name="status_product" id="stop" className="radios" />
+                  <input
+                    value={2}
+                    type="radio"
+                    name="status_product"
+                    id="stop"
+                    className="radios"
+                  />
                   {/* Ordering */}
-                  <label htmlFor="soon" className="labels"
+                  <label
+                    htmlFor="soon"
+                    className="labels"
                     onClick={(e) => {
-                      let actives = document.getElementsByClassName("activeLabel");
+                      let actives =
+                        document.getElementsByClassName("activeLabel");
                       for (let i = 0; i < actives.length; i++) {
                         actives[i].classList.remove("activeLabel");
                       }
@@ -645,47 +802,58 @@ const CreateProduct = ({ activeHojreh }) => {
                   >
                     سفارشی سازی فروش
                   </label>
-                  <input value={3} type="radio" name="status_product" id="soon" className="radios" />
+                  <input
+                    value={3}
+                    type="radio"
+                    name="status_product"
+                    id="soon"
+                    className="radios"
+                  />
                   {/* styles label */}
-                  <style jsx>{`
-                    .labels {
-                      background: #ffffff;
-                      border: 1px solid #e0e6e9;
-                      box-sizing: border-box;
-                      border-radius: 5px;
-                      width: 250px;
-                      height: 41px;
-                      display: flex;
-                      align-items: center;
-                      justify-content: center;
-                      flex-direction: row;
-                      font-size: 15px;
-                      color: #a4aebb;
-                      text-align: center;
-                    }
-                    .radios {
-                      visibility: hidden;
-                    }
-                    .activeLabel {
-                      display: flex;
-                      align-items: center;
-                      justify-content: center;
-                      flex-direction: row;
-                      background: #ffffff;
-                      border: 1px solid #007aff;
-                      box-sizing: border-box;
-                      border-radius: 5px;
-                      width: 250px;
-                      height: 41px;
-                      font-size: 15px;
-                      color: #007aff;
-                    }
-                  `}
+                  <style jsx>
+                    {`
+                      .labels {
+                        background: #ffffff;
+                        border: 1px solid #e0e6e9;
+                        box-sizing: border-box;
+                        border-radius: 5px;
+                        width: 250px;
+                        height: 41px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex-direction: row;
+                        font-size: 15px;
+                        color: #a4aebb;
+                        text-align: center;
+                      }
+                      .radios {
+                        visibility: hidden;
+                      }
+                      .activeLabel {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex-direction: row;
+                        background: #ffffff;
+                        border: 1px solid #007aff;
+                        box-sizing: border-box;
+                        border-radius: 5px;
+                        width: 250px;
+                        height: 41px;
+                        font-size: 15px;
+                        color: #007aff;
+                      }
+                    `}
                   </style>
                 </div>
                 {/* button submit */}
                 <div>
-                  <button type="submit" id="sumbitButton" className={styles.form_buttonSubmit}>
+                  <button
+                    type="submit"
+                    id="sumbitButton"
+                    className={styles.form_buttonSubmit}
+                  >
                     ثبت محصول
                   </button>
                 </div>
@@ -694,12 +862,21 @@ const CreateProduct = ({ activeHojreh }) => {
               <div className={styles.createProduct_lineLeft}>
                 <div className="mt-4">
                   <div>
-                    <h5 style={{ color: "#007aff", fontSize: "14px" }} className="mb-0 d-inline mr-20"></h5>
+                    <h5
+                      style={{ color: "#007aff", fontSize: "14px" }}
+                      className="mb-0 d-inline mr-20"
+                    ></h5>
                   </div>
                 </div>
                 <hr style={{ background: "#007aff" }} />
                 <div>
-                  <p style={{ color: "#5E7488", fontSize: "14px", marginTop: "90px" }}>
+                  <p
+                    style={{
+                      color: "#5E7488",
+                      fontSize: "14px",
+                      marginTop: "90px",
+                    }}
+                  >
                     به عنوان مثال : برنج لاشه 10 کیلویی، کشت اول
                   </p>
                 </div>
@@ -707,38 +884,70 @@ const CreateProduct = ({ activeHojreh }) => {
             </div>
           </form>
           {/* category page */}
-          <div style={{ position: "relative", gridColumn: "1/-1", gridRow: "1/-1", background: "#ffffff" }}>
+          <div
+            style={{
+              position: "relative",
+              gridColumn: "1/-1",
+              gridRow: "1/-1",
+              background: "#ffffff",
+            }}
+          >
             <div id="wrapperMarkets" className={styles.markets}>
               <div className={styles.wrapper}>
                 <div className={styles.Header}>
-                  <button style={{ outline: "unset" }} onClick={GoBack} className={styles.btn_icon}>
-                    <span className="fas fa-arrow-right"
-                      style={{ fontSize: "15px", color: "#5E7488", marginLeft: "20px", marginRight: "20px" }}
+                  <button
+                    style={{ outline: "unset" }}
+                    onClick={GoBack}
+                    className={styles.btn_icon}
+                  >
+                    <span
+                      className="fas fa-arrow-right"
+                      style={{
+                        fontSize: "15px",
+                        color: "#5E7488",
+                        marginLeft: "20px",
+                        marginRight: "20px",
+                      }}
                     ></span>
                   </button>
                   {page === 1 && <h2>انتخاب دسته بندی</h2>}
                   {page !== 1 && <h2> انتخاب زیر دسته از {title} </h2>}
                 </div>
                 <div className={styles.content}>
-                  {page === 1 ? (data?.map((e, index) => {
-                    return (
-                      <button key={index} style={{ outline: "unset" }} onClick={() => clickButton(e)} className={styles.btn}>
-                        <div className={styles.in_btn}>
-                          <h2 style={{ marginRight: "14px" }}>{e.title}</h2>
-                          <span style={{ marginLeft: "14px" }} className="fas fa-chevron-left fa-2x"></span>
-                        </div>
-                      </button>
-                    );
-                  })
+                  {page === 1 ? (
+                    data?.map((e, index) => {
+                      return (
+                        <button
+                          key={index}
+                          style={{ outline: "unset" }}
+                          onClick={() => clickButton(e)}
+                          className={styles.btn}
+                        >
+                          <div className={styles.in_btn}>
+                            <h2 style={{ marginRight: "14px" }}>{e.title}</h2>
+                            <span
+                              style={{ marginLeft: "14px" }}
+                              className="fas fa-chevron-left fa-2x"
+                            ></span>
+                          </div>
+                        </button>
+                      );
+                    })
                   ) : page === 2 ? (
                     <>
                       {subMarkets?.map((e, index) => {
                         return (
-                          <button key={index} style={{ outline: "unset" }} onClick={() => finalClick(e)}
-                            className={styles.btn}>
+                          <button
+                            key={index}
+                            style={{ outline: "unset" }}
+                            onClick={() => finalClick(e)}
+                            className={styles.btn}
+                          >
                             <div className={styles.in_btn}>
                               <h2 style={{ marginRight: "14px" }}>{e.title}</h2>
-                              <span style={{ marginLeft: "14px" }} className="fas fa-chevron-left fa-2x"
+                              <span
+                                style={{ marginLeft: "14px" }}
+                                className="fas fa-chevron-left fa-2x"
                               ></span>
                             </div>
                           </button>
@@ -752,26 +961,43 @@ const CreateProduct = ({ activeHojreh }) => {
           </div>
           {/* croperProduct modal*/}
           <div id="crop_container" className={styles.wrapperIMageProduct}>
-            <Cropper image={imageSrc} crop={crop} restrictPosition={true}
-              zoom={zoom} aspect={1}
+            <Cropper
+              image={imageSrc}
+              crop={crop}
+              restrictPosition={true}
+              zoom={zoom}
+              aspect={1}
               classes={{
                 containerClassName: "container_cropper_product",
                 cropAreaClassName: "product_cropArea",
               }}
-              onCropChange={setCrop} onCropComplete={onCropComplete} onZoomChange={setZoom}
+              onCropChange={setCrop}
+              onCropComplete={onCropComplete}
+              onZoomChange={setZoom}
             />
             <div className={styles.controls}>
-              <input value={zoom} type="range" step="0.1" max="3" min="1"
+              <input
+                value={zoom}
+                type="range"
+                step="0.1"
+                max="3"
+                min="1"
                 onChange={(e) => setZoom(e.target.value)}
               />
               <div className={styles.wrapperButton}>
                 <div style={{ marginLeft: "10px" }}>
-                  <button onClick={showCroppedImage} className="btn btn-success btn-lg">
+                  <button
+                    onClick={showCroppedImage}
+                    className="btn btn-success btn-lg"
+                  >
                     تایید
                   </button>
                 </div>
                 <div>
-                  <button onClick={_onCloseCropper} className="btn btn-secondary btn-lg">
+                  <button
+                    onClick={_onCloseCropper}
+                    className="btn btn-secondary btn-lg"
+                  >
                     لغو
                   </button>
                 </div>
@@ -782,8 +1008,7 @@ const CreateProduct = ({ activeHojreh }) => {
       </>
     );
   } else {
-    return (
-      <Loading />)
+    return <Loading />;
   }
 };
 // exports
