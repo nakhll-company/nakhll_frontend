@@ -5,7 +5,7 @@ import Assistent from "zaravand-assistent-number";
 // styles
 import styles from '../../../styles/pages/cart/address.module.scss';
 /**
- * component address cart
+ * component address cart 
  * @param {}  => 
  */
 const _asist = new Assistent();
@@ -44,15 +44,30 @@ const Address = () => {
                         <label htmlFor="addressId" className={styles.address_items_label}>
                             <div className={styles.address_item_circle}></div>
                             <div className={styles.address_item_detail}>
-                                <b className="px-3">پسته خندون</b> <span>موبایل:</span> <b>{_asist.number('09137552590')}</b><br />
-                                <b className="px-3">زرند</b><span> / {_asist.number('خیابان فردوس کوچه 1 پلاک 87')}</span>
+                                <b>پسته خندون</b> <span>موبایل:</span> <b>{_asist.number('09137552590')}</b>
+                                <br />
+                                <b>زرند</b><span>/{_asist.number('خیابان فردوس کوچه 1 پلاک 87')}</span>
                             </div>
                             <div className={styles.address_item_icons}>
-                                <i class="far fa-edit 3x mx-3"></i>
-                                <i class="far fa-trash-alt"></i>
+                                <i className="far fa-edit mx-3"></i>
+                                <i className="far fa-trash-alt"></i>
                             </div>
                             <input id="addressId" type="radio" name="addressId" value="1" />
                         </label>
+                        <label htmlFor="addressId" className={styles.address_items_label}>
+                            <div className={styles.address_item_circle}></div>
+                            <div className={styles.address_item_detail}>
+                                <b>پسته خندون</b> <span>موبایل:</span> <b>{_asist.number('09137552590')}</b>
+                                <br />
+                                <b>زرند</b><span>/{_asist.number('خیابان فردوس کوچه 1 پلاک 87')}</span>
+                            </div>
+                            <div className={styles.address_item_icons}>
+                                <i className="far fa-edit mx-3"></i>
+                                <i className="far fa-trash-alt"></i>
+                            </div>
+                            <input id="addressId" type="radio" name="addressId" value="1" />
+                        </label>
+                        <button type="submit" className={`${styles.button_submit} w-100`}>ادامه و تایید نشانی</button>
                     </form>
                 </section>
             </div>
