@@ -1,5 +1,8 @@
 import Link from "next/link";
-import React from "react";
+
+import Assistent from "zaravand-assistent-number";
+
+const _asist = new Assistent();
 
 export default function SumBuy() {
   return (
@@ -8,38 +11,44 @@ export default function SumBuy() {
         <div className="cart-invoice-primary-price">
           <span>قیمت محصولات:</span>{" "}
           <span>
-            449,000
+            {_asist.PSeparator(449000)}
+
             <i className="bi bi-toman font-size1-5 font-weight-500"></i>
           </span>
         </div>
         <div className="cart-invoice-discount-price">
           <span>تخفیف محصولات:</span>{" "}
           <span>
-            120,000
+            {_asist.number(120000)}
+
             <i className="bi bi-toman font-size1-5 font-weight-500"></i>
           </span>
         </div>
         <div className="cart-invoice-shipping-price">
-          <div>هزینه ارسال (از 2 غرفه)</div>
+          <div>{_asist.number(`هزینه ارسال (از 2 غرفه)`)}</div>
           <div> وابسته به آدرس </div>
         </div>
         <div className="cart-invoice-total-price">
           <span>مبلغ قابل پرداخت</span>{" "}
           <span className="font-weight-500">
-            329,000
+            {_asist.number(329000)}
+
             <i className="bi bi-toman font-size1-5 font-weight-500"></i>
           </span>
         </div>
         <div>
           <Link href="/cart/address">
             <button className="btn btn-tprimary p-2 rounded-pill w-100">
-              ادامه خرید از 2 غرفه
+              {_asist.number(` ادامه خرید از 2 غرفه`)}
             </button>
           </Link>
         </div>
         <div className="cart-invoice-subtitle">
           <i className="bi bi-tick-circle"></i>
-          تضمین رضایت: بازگشت کالا و پول شما تا 7 روز
+          {_asist.number(`     تضمین رضایت: بازگشت کالا و پول شما تا 7 روز`)}
+        </div>
+        <div class="border border-danger text-danger p-2 mt-3 rounded">
+          محصولی در سبد خرید تغییر کرده است. برای ادامه وضعیت آن را مشخص کنید.
         </div>
       </div>
     </div>

@@ -1,4 +1,7 @@
 import React from "react";
+import Assistent from "zaravand-assistent-number";
+
+const _asist = new Assistent();
 
 export default function ListCardBuy() {
   return (
@@ -17,7 +20,7 @@ export default function ListCardBuy() {
 
           {/*</mnbvcxz> IF CHANGE IN PRODUCT IN LIST */}
 
-          <div class="align-items-center nakhl-label d-flex justify-content-between mt-3 p-2 rounded teaberry-light">
+          <div class="align-items-center nakhl-label d-flex justify-content-between mx-3 mt-3 p-2 rounded teaberry-light">
             <div class="mb-0 pr-2 font-size-sm">
               <div style={{ fontSize: "15px", fontWeight: "400" }}>
                 از محصول روان نویس (خودکار) یونیکورن (اسب تک شاخ)به اندازه کافی
@@ -55,12 +58,14 @@ export default function ListCardBuy() {
                       href="/ali_goharrizi/product/746256?from=cart&amp;component=cart"
                       className="product-link d-block font-size1 link-body font-weight-bold text-truncate"
                     >
+                      {_asist.number(`
                       قاووت خانگی اصیل 40 گیاه
+                      `)}
                     </a>
                   </div>
                   <div className="cart-product-item-remain-stock"></div>
                   <div className="nakhl-label mr-auto small teaberry-light">
-                    43%
+                    {_asist.number(`43%`)}
                   </div>
                   <div className="d-flex align-items-center">
                     <div
@@ -83,7 +88,7 @@ export default function ListCardBuy() {
                           min="0"
                           type="text"
                           disabled="disabled"
-                          value="1"
+                          value={_asist.number(`1`)}
                           className="bg-white border-0 font-size1-2 font-weight-bold form-control mt-1 px-1 text-center"
                         />
                         <div className="input-group-append">
@@ -102,9 +107,11 @@ export default function ListCardBuy() {
                     </div>
                     <div className="mr-auto">
                       <span className="cart-product-item-primary-price">
-                        42,000
+                        {_asist.number(42000)}
                       </span>{" "}
-                      <span className="font-weight-bold">24,000</span>{" "}
+                      <span className="font-weight-bold">
+                        {_asist.number(24000)}
+                      </span>{" "}
                       <span>تومان</span>
                     </div>
                   </div>

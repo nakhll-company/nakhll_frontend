@@ -1,13 +1,18 @@
+import Assistent from "zaravand-assistent-number";
+
+const _asist = new Assistent();
 export default function MiniCardBuy() {
   return (
-    <div className="col-12 mx-auto" style={{ maxWidth: "72rem" }}>
+    <div className="col-12 mx-auto " style={{ maxWidth: "72rem" }}>
       <div className="pt-4">شما یک سفارش در انتظار پرداخت دارید:</div>
       <div>
-        <div className="py-2 px-3 mt-2 border rounded bg-gray-100 d-flex flex-wrap align-items-center">
-          <span className="text-secondary font-size-sm">736810</span>{" "}
+        <div className="py-2 px-3 mt-4 border rounded bg-gray-100 d-flex flex-wrap align-items-center">
+          <span className="text-secondary font-size-sm">
+            {_asist.number(736810)}
+          </span>{" "}
           <span className="mr-3">مبلغ کل:</span>{" "}
           <span className="mr-2">
-            690,000 <small>تومان</small>
+            {_asist.number(690000)} <small>تومان</small>
           </span>{" "}
           <span className="mr-lg-auto text-teal-dark font-size-sm  w-lg-auto my-2">
             <i className="bi bi-info"></i>

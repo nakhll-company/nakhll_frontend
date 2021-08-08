@@ -26,7 +26,7 @@ export default function Cart() {
         <CheckOutSteps step="1" />
         <MiniCardBuy />
 
-        <div className="row mx-auto" style={{ maxWidth: "72rem" }}>
+        <div className="row mx-auto mt-4" style={{ maxWidth: "72rem" }}>
           <ListCardBuy />
           <SumBuy />
         </div>
