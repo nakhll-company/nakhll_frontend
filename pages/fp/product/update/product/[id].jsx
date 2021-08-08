@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import Cropper from "react-easy-crop";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import Assistent from "zaravand-assistent-number";
 import { useCallback, useEffect, useState } from "react";
 // components
 import MyLayout from "../../../../../components/layout/Layout";
@@ -21,13 +20,11 @@ import styles from "../../../../../styles/pages/product/create.module.scss";
  */
 const UpdateProduct = ({ activeHojreh }) => {
 
-  const _asist = new Assistent();
-
   const router = useRouter();
   const { id } = router.query;
   // react form hook
   const { setValue, clearErrors, getValues, register, setError, handleSubmit, watch, formState: { errors } } = useForm({
-    criteriaMode: 'all', mode: 'all'
+    criteriaMode: 'all',
   });
   // on submit
   const onSubmit = async (data) => {
@@ -51,8 +48,10 @@ const UpdateProduct = ({ activeHojreh }) => {
         Status: product_status,
         PostRangeType: 1,
         PreparationDays: AddPreparationDays,
-        FK_Shop: activeHojreh,
+        // FK_Shop: activeHojreh,
         FK_SubMarket: submarketId,
+        Product_Banner: idImage
+
         // Product_Banner: previewImage
       };
 
@@ -61,7 +60,7 @@ const UpdateProduct = ({ activeHojreh }) => {
       let dataUrlProduct = `/api/v1/landing/products/${id}/`;
       let response = await ApiRegister().apiRequest(
         loadDataProduct,
-        "PUT",
+        "PATCH",
         dataUrlProduct,
         true,
         paramsProduct
@@ -96,8 +95,7 @@ const UpdateProduct = ({ activeHojreh }) => {
   const [AddPreparationDays, setAddPreparationDays] = useState(1);
   const [submarketId, setSubmarketId] = useState(null);
   const [isLoad, setIsLoad] = useState(false);
-  let [stringPrice, setStringPrice] = useState("");
-  let [stringOldPrice, setStringOldPrice] = useState("");
+  const [idImage, setIdImage] = useState(false);
   // get edit date
   const _editProduct = async () => {
     let params = null;
@@ -119,24 +117,26 @@ const UpdateProduct = ({ activeHojreh }) => {
       if (response.data.price > response.data.old_price) {
         setValue('Price', response.data.price / 10)
         setValue('OldPrice', response.data.old_price / 10)
-        setStringPrice(_asist.word(response.data.price / 10));
-        setStringOldPrice(_asist.word(response.data.old_price / 10));
       } else {
         setValue('Price', response.data.old_price / 10)
         setValue('OldPrice', response.data.price / 10)
-        setStringPrice(_asist.word(response.data.old_price / 10));
-        setStringOldPrice(_asist.word(response.data.price / 10));
       }
       setValue('Description', response.data.description)
       let peree = response.data.banners.map((item) => {
         return item.image
       })
-      setPreviewImage(peree)
+
+      setPreviewImage(response.data.banners)
       window.localStorage.setItem("image", JSON.stringify(peree));
       setAdd(response.data.inventory)
       setAddPreparationDays(response.data.preparation_days)
       setIsLoad(true)
       setSubmarketId(response.data.sub_market.id)
+      let idImage = response.data.banners.map((item) => {
+        return item.id
+      })
+      setIdImage(idImage)
+      let test = response.data.banners
     }
   }//close edit data
   // use effect
@@ -262,20 +262,55 @@ const UpdateProduct = ({ activeHojreh }) => {
           image: value
         }
       });
-      setPreviewImage(temp);
+      let sendImage = {
+        FK_Product: id,
+        Image: imageSrc
+      }
+      let params = null;
+      let loadData = sendImage;
+      let dataUrl = "/api/v1/landing/product_banner/";
+      let response = await ApiRegister().apiRequest(
+        loadData,
+        "post",
+        dataUrl,
+        true,
+        params
+      );
+
+      let prevImg = {
+        image: imageSrc,
+        id: response.data.id
+      }
+
+      let prevStateImage = previewImage
+      prevStateImage.push(prevImg)
+
+      let imageIddd = idImage
+      imageIddd.push(response.data.id)
+      setIdImage(imageIddd)
+      setTimeout(() => {
+        setPreviewImage(prevStateImage);
+      }, 200);
     }
     let elementImageProduct = document.getElementById("crop_container");
     elementImageProduct.style.display = "none";
     if (prev.length === 5) {
       document.getElementById("product-image-upload").disabled = true;
+    } else {
+      document.getElementById("product-image-upload").disabled = false;
+
     }
   };
   // function for remove image
-  const _removeImage = (item) => {
+  const _removeImage = (item, id) => {
     let listRemoveImage = window.localStorage.getItem("image");
     let removeImage = JSON.parse(listRemoveImage)
     let testt = removeImage.filter((itemRemove) => { return itemRemove.includes(item) ? "" : itemRemove });
     window.localStorage.setItem("image", JSON.stringify(testt));
+    let idd = idImage
+    let removeId = idd.filter((itemRemoveId) => { return itemRemoveId === id ? "" : itemRemoveId });
+    setIdImage(removeId)
+
     setPreviewImage(testt);
     if (testt.length == 0) {
       setValue("product_image_upload", null)
@@ -351,7 +386,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                           <div key={index} className={styles.product_image} style={{
                             backgroundImage: `${item.image ? `url(${item.image})` : `url(${item})`} `
                           }}>
-                            <div onClick={() => _removeImage(item)} className={styles.close_icon_container}>
+                            <div onClick={() => _removeImage(item, item.id)} className={styles.close_icon_container}>
                               <i style={{ fontSize: 14 }} className="fas fa-times"></i>
                             </div>
                           </div>
@@ -430,15 +465,11 @@ const UpdateProduct = ({ activeHojreh }) => {
                           message: 'لطفا اعداد بزرگتر از 500 وارد نمایید'
                         }
                       })}
-                      onChange={(e) => {
-                        setStringPrice(_asist.word(e.target.value));
-                      }}
                     />
                     <div>
                       <p>تومان</p>
                     </div>
                   </div>
-                  <span style={{ fontSize: "12px", color: "rgb(0, 122, 255)", paddingRight: "20px" }}>{stringPrice}</span>
                   {errors.Price && <span style={{ color: "red", fontSize: "14px" }}>{errors.Price.message}</span>}
                 </div>
                 {/* price with Discount */}
@@ -455,15 +486,11 @@ const UpdateProduct = ({ activeHojreh }) => {
                         },
                         validate: value => parseInt(value) <= parseInt(getValues("Price")) || 'قیمت با تخفیف باید کمتر از قیمت اصلی باشد'
                       })}
-                      onChange={(e) => {
-                        setStringOldPrice(_asist.word(e.target.value));
-                      }}
                     />
                     <div>
                       <p>تومان</p>
                     </div>
                   </div>
-                  <span style={{ fontSize: "12px", color: "rgb(0, 122, 255)", paddingRight: "20px" }}>{stringOldPrice}</span>
                   {errors.OldPrice && <span style={{ color: "red", fontSize: "14px" }}>{errors.OldPrice.message}</span>}
                 </div>
                 {/* discription */}
@@ -473,7 +500,6 @@ const UpdateProduct = ({ activeHojreh }) => {
                   </label>
                   <textarea className={styles.input_product} id="Description" name="Description" type="text"
                     placeholder="توضیحات خود را در صورت تمایل اینجا وارد کنید"
-                    {...register("Description")}
                   />
                 </div>
                 {/* inventory */}
