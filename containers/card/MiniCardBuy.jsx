@@ -20,14 +20,14 @@ export default function MiniCardBuy() {
           </span>{" "}
           <a
             href="/account/invoices/d43PO"
-            onclick="gtag('event', 'failed-invoice-detail-btn', { 'event_category': 'engagement' })"
+            onClick={() => {}}
             className="btn btn-outline-teal mr-auto mr-lg-3 order-lg-1"
           >
             جزئیات
           </a>{" "}
           <a
             href="https://payment.basalam.com/payment/3362/do/736810?callback=cart/payment/result"
-            onclick="gtag('event', 'failed-invoice-pay-btn', { 'event_category': 'engagement' })"
+            onClick={() => {}}
             className="btn btn-teal mr-3 order-lg-1"
           >
             پرداخت
