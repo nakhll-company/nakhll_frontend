@@ -14,6 +14,7 @@ import { Formik, Form, Field, FieldArray } from "formik";
 import * as yup from "yup";
 import OrderDetailDesktop from "../../../../containers/orderdetail/desktop";
 import OrderDetailMobile from "../../../../containers/orderdetail/mobile";
+import { toast } from "react-toastify";
 
 export const getServerSideProps = ({ params }) => {
   // fetch
@@ -352,6 +353,16 @@ function HomePage({ id }) {
                                 setIsLoading(false);
                               }
                             } catch (e) {
+                              let masage = e.response.data.barcode[0];
+                              {
+                                masage &&
+                                  toast.error(masage, {
+                                    position: "top-center",
+                                    closeOnClick: true,
+                                  });
+                              }
+
+                              console.log("e :>> ", e.response.data.barcode[0]);
                               setshowMessage(2);
                               setIsLoading(false);
                             }
