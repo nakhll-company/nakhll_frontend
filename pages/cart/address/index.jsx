@@ -24,7 +24,6 @@ const Address = () => {
             </Head>
             <Steps step="2" />
             <div className={`col-12 col-lg-5 ${styles.wrapper}`}>
-
                 <header className={styles.header}>
                     <Link href="/cart">
                         <a className={styles.header_back_link}>
@@ -37,7 +36,7 @@ const Address = () => {
                 <section className={styles.body_address}>
                     <div className={styles.address_head}>
                         <span>می خواهید سفارش شما به کدام نشانی ارسال شود :</span>
-                        <Link href="/cart/address/new">
+                        <Link href="/cart/address/add">
                             <a className={styles.address_head_link}>
                                 <i className="fas fa-plus px-2"></i>
                                 یک نشانی جدید اضافه کنید
