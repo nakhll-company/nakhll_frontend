@@ -48,8 +48,15 @@ const Address = () => {
                         </Link>
                     </div>
                     <form className={styles.address_items_form} onSubmit={(event) => { event.preventDefault() }}>
-                        <label htmlFor="addressId" className={styles.address_items_label}>
-                            <div className={styles.address_item_circle}></div>
+                        <label htmlFor="addressId1" className={styles.address_items_label} onClick={(event) => {
+                            event.currentTarget.style.backgroundColor = "#f0fefc";
+                            event.currentTarget.style.border = "1px solid #005e58";
+                            document.getElementById("firstCircle").style.backgroundColor = "#005e58";
+                            document.getElementById("secondCircle").style.display = "block";
+                        }}>
+                            <div id="firstCircle" className={styles.address_item_circle}>
+                                <div id="secondCircle" className={styles.address_item_embeded_circle}></div>
+                            </div>
                             <div className={styles.address_item_detail}>
                                 <b>پسته خندون</b> <span>موبایل:</span> <b>{_asist.number('09137552590')}</b>
                                 <br />
@@ -61,7 +68,7 @@ const Address = () => {
                             </div>
                             <input id="addressId" type="radio" name="addressId" value="1" />
                         </label>
-                        <label htmlFor="addressId" className={styles.address_items_label}>
+                        <label htmlFor="addressId2" className={styles.address_items_label}>
                             <div className={styles.address_item_circle}></div>
                             <div className={styles.address_item_detail}>
                                 <b>پسته خندون</b> <span>موبایل:</span> <b>{_asist.number('09137552590')}</b>
