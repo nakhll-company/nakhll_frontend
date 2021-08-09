@@ -500,6 +500,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                   </label>
                   <textarea className={styles.input_product} id="Description" name="Description" type="text"
                     placeholder="توضیحات خود را در صورت تمایل اینجا وارد کنید"
+                    {...register("Description")}
                   />
                 </div>
                 {/* inventory */}
