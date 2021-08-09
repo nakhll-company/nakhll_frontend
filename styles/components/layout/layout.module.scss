@@ -18,7 +18,7 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: rgb(204, 204, 204);
+    background-color: #1b3e68;
 }
 
 .info_cardH {
@@ -52,6 +52,7 @@
     top: 0;
     display: -webkit-box;
     display: -ms-flexbox;
+    justify-content: space-between;
     display: flex;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -214,7 +215,7 @@
     -o-object-position: center;
     object-position: center;
     background-repeat: no-repeat;
-    background-color: #007aff;
+    background-color: #91a6c1;
     /* background: url(./back.jpg); */
     border: 1px solid #e0e6e9;
     -webkit-box-sizing: border-box;
@@ -272,7 +273,10 @@
     cursor: pointer;
     i {
         font-size: 20px;
-        color: #ced5d8;
+        color: #1b3e68;
+    }
+    * {
+        color: #1b3e68;
     }
 }
 
@@ -303,7 +307,7 @@
     align-items: center;
     margin-right: 20px;
     text-decoration: none;
-    color: #a4aebb;
+    color: #1b3e68;
     // padding-top: 15px;
     // padding-bottom: 15px;
 }
@@ -321,11 +325,11 @@
 }
 
 .menu_card_item i:hover {
-    color: #007aff;
+    color: #007aff !important;
 }
 
 .menu_card_item:hover {
-    color: #007aff;
+    color: #007aff !important;
     cursor: pointer;
     text-decoration: none;
 }
@@ -512,7 +516,7 @@
 
 .selectNav {
     color: #007aff;
-    border-left: 2px solid #007aff;
+    border-left: 2px solid #1b3e68;
     * {
         color: #007aff;
     }
@@ -538,32 +542,32 @@
 }
 
 .subTitleOrder :hover {
-    color: #007aff;
+    color: #007aff !important;
     cursor: pointer;
     text-decoration: none;
     transition: color 0.3s;
 }
 
 .subTitleOrder:hover .dot {
-    background-color: #007aff;
+    background-color: #007aff !important;
     transition: color 0.3s;
 }
 
 .dot:hover .subTitleOrder {
-    color: #007aff;
+    color: #007aff !important;
     transition: color 0.3s;
 }
 
 .selectNav {
     color: #007aff;
-    border-left: 2px solid #007aff;
+    border-left: 2px solid #1b3e68;
     * {
         color: #007aff;
     }
 }
 
 .selectdot {
-    background-color: #007aff;
+    background-color: #1b3e68;
 }
 
 .ActiveMenuBarBig {

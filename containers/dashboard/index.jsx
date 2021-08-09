@@ -76,7 +76,7 @@ function Dashboard({ activeHojreh }) {
               <div className={styles.left_one_1}>
                 <i
                   className="fas fa-cart-plus fa-3x"
-                  style={{ color: "#007aff" }}
+                  style={{ color: "#1b3e68" }}
                 ></i>
                 <h1>{_asist.number(api.uncompleted_fators)}</h1>
                 <h4>سفارش ها تکمیل نشده</h4>
@@ -86,7 +86,7 @@ function Dashboard({ activeHojreh }) {
               <div className={styles.left_one_1}>
                 <i
                   className="fas fa-user-clock fa-3x"
-                  style={{ color: "#007aff" }}
+                  style={{ color: "#1b3e68" }}
                 ></i>
                 <h1>{_asist.number(api.uncomfirmed_factors)}</h1>
                 <h4>سفارش های تکمیل شده</h4>
@@ -95,7 +95,7 @@ function Dashboard({ activeHojreh }) {
             <div className={styles.left_one_1}>
               <i
                 className="far fa-comment-alt fa-3x"
-                style={{ color: "#007aff" }}
+                style={{ color: "#1b3e68" }}
               ></i>
               <h1>{_asist.number(api.unread_comments_count)}</h1>
               <h4>دیدگاه های تازه</h4>
@@ -103,7 +103,7 @@ function Dashboard({ activeHojreh }) {
             <div className={styles.left_one_1}>
               <i
                 className="fas fa-wallet fa-3x"
-                style={{ color: "#007aff" }}
+                style={{ color: "#1b3e68" }}
               ></i>
               <h1>
                 {_asist.number(api.balance)}
@@ -166,7 +166,9 @@ function Dashboard({ activeHojreh }) {
           {/* product status */}
           <div dir="rtl" className={styles.left_three}>
             <div className={styles.left_three_head}>
-              <h3 style={{ margin: "1.5rem" }}>وضعیت محصول</h3>
+              <h3 style={{ margin: "1.5rem", color: "#91a6c1" }}>
+                وضعیت محصول
+              </h3>
             </div>
             <div className={styles.left_three_content}>
               <div className="">
@@ -228,7 +230,7 @@ function Dashboard({ activeHojreh }) {
           {/* sell status */}
           <div dir="rtl" className={styles.left_three}>
             <div className={styles.left_three_head}>
-              <h3 style={{ margin: "1.5rem" }}>وضعیت فروش</h3>
+              <h3 style={{ margin: "1.5rem", color: "#91a6c1" }}>وضعیت فروش</h3>
             </div>
             <div className={styles.left_three_content}>
               <div className="">
