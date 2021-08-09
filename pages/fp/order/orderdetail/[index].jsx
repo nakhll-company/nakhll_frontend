@@ -362,7 +362,7 @@ function HomePage({ id }) {
                                   });
                               }
 
-                              console.log("e :>> ", e.response.data.barcode[0]);
+                              
                               setshowMessage(2);
                               setIsLoading(false);
                             }
@@ -1134,6 +1134,14 @@ function HomePage({ id }) {
                                 setbtnOk(!btnOk);
                               }
                             } catch (err) {
+                              let masage = err.response.data.barcode[0];
+                              {
+                                masage &&
+                                  toast.error(masage, {
+                                    position: "top-center",
+                                    closeOnClick: true,
+                                  });
+                              }
                               setshowMessage(2);
                               setIsLoading(false);
                             }
