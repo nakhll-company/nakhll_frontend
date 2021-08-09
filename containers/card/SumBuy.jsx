@@ -47,7 +47,7 @@ export default function SumBuy() {
           <i className="bi bi-tick-circle"></i>
           {_asist.number(`     تضمین رضایت: بازگشت کالا و پول شما تا 7 روز`)}
         </div>
-        <div class="border border-danger text-danger p-2 mt-3 rounded">
+        <div className="border border-danger text-danger p-2 mt-3 rounded">
           محصولی در سبد خرید تغییر کرده است. برای ادامه وضعیت آن را مشخص کنید.
         </div>
       </div>

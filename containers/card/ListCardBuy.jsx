@@ -20,18 +20,18 @@ export default function ListCardBuy() {
 
           {/*</mnbvcxz> IF CHANGE IN PRODUCT IN LIST */}
 
-          <div class="align-items-center nakhl-label d-flex justify-content-between mx-3 mt-3 p-2 rounded teaberry-light">
-            <div class="mb-0 pr-2 font-size-sm">
+          <div className="align-items-center nakhl-label d-flex justify-content-between mx-3 mt-3 p-2 rounded teaberry-light">
+            <div className="mb-0 pr-2 font-size-sm">
               <div style={{ fontSize: "15px", fontWeight: "400" }}>
                 از محصول روان نویس (خودکار) یونیکورن (اسب تک شاخ)به اندازه کافی
                 موجود نمی‌باشد
               </div>
               <div>قیمت محصول تغییر کرده است</div>
             </div>{" "}
-            <span class="dd-flex align-items-center mr-2 pointer font-size-sm text-nowrap">
+            <span className="dd-flex align-items-center mr-2 pointer font-size-sm text-nowrap">
               حذف
               <i
-                class="fas fa-times-circle"
+                className="fas fa-times-circle"
                 style={{ fontSize: "20px", marginRight: "5px" }}
               ></i>
             </span>
