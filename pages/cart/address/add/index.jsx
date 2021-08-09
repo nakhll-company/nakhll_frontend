@@ -1,9 +1,14 @@
 // node libraries
 import Head from "next/head";
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 // componentes
 import Steps from '../../../../components/CheckOutSteps/CheckOutSteps';
+// methods
+import { getStates } from '../../../../containers/store/methods/getStates';
+import { getBigCities } from '../../../../containers/store/methods/getBigCities';
+import { getCities } from '../../../../containers/store/methods/getCities';
 // styles
 import styles from '../../../../styles/pages/cart/newAddress.module.scss';
 /**
@@ -18,6 +23,14 @@ const NewAddress = () => {
         console.log(">>>", data);
     };
 
+    let [selectState, setSelectState] = useState([]);
+    let [selectBigCities, setSelectBigCities] = useState([]);
+    let [selectCities, setSelectCities] = useState([]);
+
+    useEffect(async () => {
+        // state
+        setSelectState(await getStates());
+    }, []);
 
     return (
         <>
@@ -50,23 +63,42 @@ const NewAddress = () => {
                         </div>
                         <div className={styles.form_group}>
                             <label htmlFor="state">انتخاب استان:</label>
-                            <select className="form-control" {...register("state", { required: true })}>
-                                <option value="" disabled="disabled" />
+                            <select className="form-control" {...register("state", { required: true })} onChange={async (event) => {
+                                setSelectBigCities(await getBigCities(event.target.value));
+                            }}>
+                                <option></option>
+                                {selectState.map((value, index) => {
+                                    return (
+                                        <option key={index} value={value.id}>{value.name}</option>
+                                    );
+                                })}
                             </select>
                             {errors.state && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
                         </div>
                         <div className={styles.form_row}>
                             <div className={`${styles.form_group} col-md-6 col-sm-12`}>
                                 <label htmlFor="bigCity">انتخاب شهرستان:</label>
-                                <select className="form-control col-sm-12" {...register("bigCity", { required: true })}>
-                                    <option value="" disabled="disabled" />
+                                <select className="form-control col-sm-12" {...register("bigCity", { required: true })} onChange={async (event) => {
+                                    setSelectCities(await getCities(event.target.value));
+                                }}>
+                                    <option></option>
+                                    {selectBigCities.map((value, index) => {
+                                        return (
+                                            <option key={index} value={value.id}>{value.name}</option>
+                                        );
+                                    })}
                                 </select>
                                 {errors.bigCity && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
                             </div>
                             <div className={`${styles.form_group} col-md-6 col-sm-12`}>
                                 <label htmlFor="city">انتخاب شهر:</label>
                                 <select className="form-control col-sm-12" {...register("city", { required: true })}>
-                                    <option value="" disabled="disabled"></option>
+                                    <option></option>
+                                    {selectCities.map((value, index) => {
+                                        return (
+                                            <option key={index} value={value.id}>{value.name}</option>
+                                        );
+                                    })}
                                 </select>
                                 {errors.city && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
                             </div>
