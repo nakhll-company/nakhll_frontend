@@ -12,7 +12,7 @@ export default function MiniCardBuy() {
           </span>{" "}
           <span className="mr-3">مبلغ کل:</span>{" "}
           <span className="mr-2">
-            {_asist.number(690000)} <small>تومان</small>
+            {_asist.PSeparator(690000)} <small>تومان</small>
           </span>{" "}
           <span className="mr-lg-auto text-teal-dark font-size-sm  w-lg-auto my-2">
             <i className="bi bi-info"></i>

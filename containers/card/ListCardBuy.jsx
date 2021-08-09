@@ -107,10 +107,10 @@ export default function ListCardBuy() {
                     </div>
                     <div className="mr-auto">
                       <span className="cart-product-item-primary-price">
-                        {_asist.number(42000)}
+                        {_asist.PSeparator(42000)}
                       </span>{" "}
                       <span className="font-weight-bold">
-                        {_asist.number(24000)}
+                        {_asist.PSeparator(24000)}
                       </span>{" "}
                       <span>تومان</span>
                     </div>

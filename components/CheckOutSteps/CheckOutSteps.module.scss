@@ -1,81 +1,81 @@
 .checkout_steps {
-    list-style: none;
-    display: flex;
-    direction: rtl;
-    z-index: 10001;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: -9px;
-    left: 15%;
-    right: 15%;
+  list-style: none;
+  display: flex;
+  direction: rtl;
+  z-index: 10001;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -9px;
+  left: 15%;
+  right: 15%;
 }
 
 .step_item {
-    width: 20px;
-    height: 20px;
-    border-radius: 100%;
-    text-align: center;
-    background-color: #d0d0d0;
-    position: relative;
-    .titleInStep {
-        position: absolute;
-        color: #c1c1c1;
-        top: -25px;
-        left: 50%;
-        -webkit-transform: translateX(-50%);
-        transform: translateX(-50%);
-        content: attr(data-title);
-        white-space: nowrap;
-        font-size: 15px;
-    }
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  text-align: center;
+  background-color: #d0d0d0;
+  position: relative;
+  .titleInStep {
+    position: absolute;
+    color: #c1c1c1;
+    top: -25px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    content: attr(data-title);
+    white-space: nowrap;
+    font-size: 15px;
+  }
 }
 
 .step_item:hover {
-    background-color: rgb(12, 162, 248);
-    box-shadow: 0 50px 80px rgba(0, 0, 0, 0.19), 0 3px 3px rgba(59, 11, 231, 0.23);
+  background-color: rgb(12, 162, 248);
+  box-shadow: 0 50px 80px rgba(0, 0, 0, 0.19), 0 3px 3px rgba(59, 11, 231, 0.23);
 }
 
 .line {
-    width: 372px;
-    height: 3px;
-    border-radius: 3.5px;
-    background-color: #d0d0d0;
-    top: 50%;
-    left: 10px;
-    z-index: 0;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
+  width: calc(30vw);
+  height: 3px;
+  border-radius: 3.5px;
+  background-color: #d0d0d0;
+  top: 50%;
+  left: 10px;
+  z-index: 0;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .road {
-    height: 3px;
-    width: 100%;
-    background-color: #00bfd6;
+  height: 3px;
+  width: 100%;
+  background-color: #00bfd6;
 }
 
 .active {
-    background-color: #00bfd6;
-    * {
-        color: #00bfd6;
-    }
-    .titleInStep {
-        color: #00bfd6;
-    }
+  background-color: #00bfd6;
+  * {
+    color: #00bfd6;
+  }
+  .titleInStep {
+    color: #00bfd6;
+  }
 }
 
 .animationStep {
-    animation: DanceColor 2s linear infinite;
+  animation: DanceColor 2s linear infinite;
 }
 
 @keyframes DanceColor {
-    0% {
-        background-color: #00bfd6;
-        box-shadow: 0px 0px 10px 10px #16c3ee;
-        border: 0px;
-    }
-    100% {
-        background-color: #16c3ee;
-        box-shadow: none;
-    }
+  0% {
+    background-color: #00bfd6;
+    box-shadow: 0px 0px 10px 10px #16c3ee;
+    border: 0px;
+  }
+  100% {
+    background-color: #16c3ee;
+    box-shadow: none;
+  }
 }

@@ -19,7 +19,7 @@ export default function SumBuy() {
         <div className="cart-invoice-discount-price">
           <span>تخفیف محصولات:</span>{" "}
           <span>
-            {_asist.number(120000)}
+            {_asist.PSeparator(120000)}
 
             <i className="bi bi-toman font-size1-5 font-weight-500"></i>
           </span>
@@ -31,7 +31,7 @@ export default function SumBuy() {
         <div className="cart-invoice-total-price">
           <span>مبلغ قابل پرداخت</span>{" "}
           <span className="font-weight-500">
-            {_asist.number(329000)}
+            {_asist.PSeparator(329000)}
 
             <i className="bi bi-toman font-size1-5 font-weight-500"></i>
           </span>
