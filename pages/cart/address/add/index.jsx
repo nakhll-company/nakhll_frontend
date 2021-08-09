@@ -1,6 +1,7 @@
 // node libraries
 import Head from "next/head";
 import Link from 'next/link';
+import { useForm } from "react-hook-form";
 // componentes
 import Steps from '../../../../components/CheckOutSteps/CheckOutSteps';
 // styles
@@ -10,6 +11,14 @@ import styles from '../../../../styles/pages/cart/newAddress.module.scss';
  * @param {}  => 
  */
 const NewAddress = () => {
+
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+
+    const onSubmit = async (data) => {
+        console.log(">>>", data);
+    };
+
+
     return (
         <>
             <Head>
@@ -32,44 +41,51 @@ const NewAddress = () => {
                     <h2 className={styles.header_title}>افزودن نشانی</h2>
                 </header>
                 <section className={styles.body_address}>
-                    <form className={styles.address_items_form}>
+                    <form className={styles.address_items_form} onSubmit={handleSubmit(onSubmit)}>
                         <div className={styles.form_group}>
                             <label htmlFor="name">نام و نام‌خانوادگی گیرندۀ سفارش:</label>
-                            <input id="name" type="text" name="name" className="form-control" />
-                            <small className="form-text text-muted">همخوان با کارت ملی</small>
+                            <input type="text" className="form-control" {...register("name", { required: true })} />
+                            <small className="form-text text-muted">همخوان با کارت ملی</small><br />
+                            {errors.name && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
                         </div>
                         <div className={styles.form_group}>
                             <label htmlFor="state">انتخاب استان:</label>
-                            <select id="state" name="state" className="form-control">
+                            <select className="form-control" {...register("state", { required: true })}>
                                 <option value="" disabled="disabled" />
                             </select>
+                            {errors.state && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
                         </div>
                         <div className={styles.form_row}>
                             <div className={`${styles.form_group} col-md-6 col-sm-12`}>
                                 <label htmlFor="bigCity">انتخاب شهرستان:</label>
-                                <select id="bigCity" name="bigCity" className="form-control col-sm-12">
+                                <select className="form-control col-sm-12" {...register("bigCity", { required: true })}>
                                     <option value="" disabled="disabled" />
                                 </select>
+                                {errors.bigCity && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
                             </div>
                             <div className={`${styles.form_group} col-md-6 col-sm-12`}>
                                 <label htmlFor="city">انتخاب شهر:</label>
-                                <select id="city" name="city" className="form-control col-sm-12">
+                                <select className="form-control col-sm-12" {...register("city", { required: true })}>
                                     <option value="" disabled="disabled"></option>
                                 </select>
+                                {errors.city && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
                             </div>
                         </div>
                         <div className={styles.form_group}>
                             <label htmlFor="address">نشانی دقیق پستی:</label>
-                            <textarea rows="4" cols="30" id="address" name="address" className="form-control"></textarea>
+                            <textarea rows="4" cols="30" className="form-control" {...register("address", { required: true })}></textarea>
+                            {errors.address && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
                         </div>
                         <div className={styles.form_row}>
                             <div className={`${styles.form_group} col-md-6 col-sm-12`}>
                                 <label htmlFor="postalCode">کد پستی:</label>
-                                <input id="postalCode" name="postalCode" type="text" className="form-control input--left-align" />
+                                <input type="text" className="form-control" {...register("postalCode", { required: true })} />
+                                {errors.postalCode && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
                             </div>
                             <div className={`${styles.form_group} col-md-6 col-sm-12`}>
                                 <label htmlFor="mobile">موبایل گیرندۀ سفارش:</label>
-                                <input id="mobile" name="mobile" type="text" className="form-control input--left-align" />
+                                <input type="text" className="form-control" {...register("mobile", { required: true })} />
+                                {errors.mobile && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
                             </div>
                         </div>
                         <div className={styles.form_row}>

@@ -59,8 +59,12 @@
             }
             // form group
             .form_group{
-                margin-bottom: 1rem;
                 padding: 8px;
+            }
+            // errors
+            .form_errors{
+                font-size: small;
+                color: red;
             }
         }
     }
