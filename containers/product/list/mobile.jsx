@@ -97,7 +97,6 @@ const MobileList = ({ loading, productList, activeHojreh }) => {
                     <i className="fa fa-plus"></i>
                 </a>
             </Link>
-            {/* <h1 style={{ marginTop: "200px" }}></h1> */}
         </div>
     );
 };

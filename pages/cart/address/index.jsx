@@ -2,7 +2,10 @@
 import Head from "next/head";
 import Link from 'next/link';
 import Assistent from "zaravand-assistent-number";
+import { useState } from 'react';
 // componentes
+import CustomModal from '../../../components/custom/customModal';
+import DeleteAddress from '../../../containers/cartAddress/deleteAddress';
 import Steps from '../../../components/CheckOutSteps/CheckOutSteps';
 // styles
 import styles from '../../../styles/pages/cart/address.module.scss';
@@ -12,6 +15,7 @@ import styles from '../../../styles/pages/cart/address.module.scss';
  */
 const _asist = new Assistent();
 const Address = () => {
+    let [showModal, setShowModal] = useState(false);
     return (
         <>
             <Head>
@@ -43,7 +47,7 @@ const Address = () => {
                             </a>
                         </Link>
                     </div>
-                    <form className={styles.address_items_form}>
+                    <form className={styles.address_items_form} onSubmit={(event) => { event.preventDefault() }}>
                         <label htmlFor="addressId" className={styles.address_items_label}>
                             <div className={styles.address_item_circle}></div>
                             <div className={styles.address_item_detail}>
@@ -66,7 +70,7 @@ const Address = () => {
                             </div>
                             <div className={styles.address_item_icons}>
                                 <i className="far fa-edit mx-3"></i>
-                                <i className="far fa-trash-alt"></i>
+                                <i className="far fa-trash-alt" onClick={() => { setShowModal(showModal => !showModal); }}></i>
                             </div>
                             <input id="addressId" type="radio" name="addressId" value="1" />
                         </label>
@@ -74,6 +78,9 @@ const Address = () => {
                     </form>
                 </section>
             </div>
+            <CustomModal show={showModal} onClose={() => {
+                setShowModal(showModal => !showModal);
+            }} content={<DeleteAddress onClose={() => { setShowModal(showModal => !showModal); }} />} />
         </>
     );
 }
