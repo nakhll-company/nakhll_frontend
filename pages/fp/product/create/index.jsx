@@ -590,7 +590,7 @@ const CreateProduct = ({ activeHojreh }) => {
                           message: "لطفا اعداد بزرگتر از صفر وارد نمایید",
                         },
                         validate: (value) =>
-                          parseInt(value) <= parseInt(getValues("Price")) ||
+                          parseInt(value) < parseInt(getValues("Price")) ||
                           "قیمت با تخفیف باید کمتر از قیمت اصلی باشد",
                       })}
                       onChange={(e) => {
