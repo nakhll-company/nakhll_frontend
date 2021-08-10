@@ -14,6 +14,7 @@ import { mapState } from "../../../../../containers/product/methods/mapState";
 import { getCroppedImg } from "../../../../../containers/product/create/canvasUtils";
 // styles
 import styles from "../../../../../styles/pages/product/create.module.scss";
+import { val, value } from "dom7";
 /**
  * page update product
  * @param {string} activeHojreh => it has slug name
@@ -122,21 +123,25 @@ const UpdateProduct = ({ activeHojreh }) => {
         setValue('OldPrice', response.data.price / 10)
       }
       setValue('Description', response.data.description)
+
       let peree = response.data.banners.map((item) => {
         return item.image
       })
-
       setPreviewImage(response.data.banners)
+
       window.localStorage.setItem("image", JSON.stringify(peree));
+
       setAdd(response.data.inventory)
       setAddPreparationDays(response.data.preparation_days)
       setIsLoad(true)
       setSubmarketId(response.data.sub_market.id)
+
       let idImage = response.data.banners.map((item) => {
         return item.id
       })
       setIdImage(idImage)
-      let test = response.data.banners
+
+
     }
   }//close edit data
   // use effect
@@ -257,11 +262,13 @@ const UpdateProduct = ({ activeHojreh }) => {
     if (croppedImage) {
       let listImage = window.localStorage.getItem("image");
       var prev = JSON.parse(listImage);
+
       let temp = prev.map((value) => {
         return {
           image: value
         }
       });
+
       let sendImage = {
         FK_Product: id,
         Image: imageSrc
@@ -278,19 +285,19 @@ const UpdateProduct = ({ activeHojreh }) => {
       );
 
       let prevImg = {
-        image: imageSrc,
+        image: response.data.Image,
         id: response.data.id
       }
 
-      let prevStateImage = previewImage
-      prevStateImage.push(prevImg)
+      // let prevStateImage = previewImage
+      // prevStateImage.push(prevImg)
 
-      let imageIddd = idImage
-      imageIddd.push(response.data.id)
-      setIdImage(imageIddd)
-      setTimeout(() => {
-        setPreviewImage(prevStateImage);
-      }, 200);
+      // let imageIddd = idImage
+      // imageIddd.push(response.data.id)
+      setIdImage([...idImage, response.data.id])
+
+      setPreviewImage([...previewImage, prevImg]);
+
     }
     let elementImageProduct = document.getElementById("crop_container");
     elementImageProduct.style.display = "none";
@@ -307,11 +314,14 @@ const UpdateProduct = ({ activeHojreh }) => {
     let removeImage = JSON.parse(listRemoveImage)
     let testt = removeImage.filter((itemRemove) => { return itemRemove.includes(item) ? "" : itemRemove });
     window.localStorage.setItem("image", JSON.stringify(testt));
-    let idd = idImage
-    let removeId = idd.filter((itemRemoveId) => { return itemRemoveId === id ? "" : itemRemoveId });
-    setIdImage(removeId)
+    // let idd = idImage
+    // let removeId = idd.filter((itemRemoveId) => { return itemRemoveId !== id ? "" : itemRemoveId });
+    let removeId = idImage.filter((value) => { return value !== id ? value : null });
+    setIdImage([...removeId])
+    let filter = previewImage.filter((value) => { return value.id !== id ? value : null })
 
-    setPreviewImage(testt);
+    setPreviewImage([...filter]);
+
     if (testt.length == 0) {
       setValue("product_image_upload", null)
     }
@@ -358,28 +368,29 @@ const UpdateProduct = ({ activeHojreh }) => {
                   <div>
                     <p style={{ fontSize: "14px" }}>تصاویر</p>
                   </div>
-                  {/* <div style={{ color: "#5E7488", fontSize: "14px", marginBottom: "15px" }} className="mt-3">
+                  <div style={{ color: "#5E7488", fontSize: "14px", marginBottom: "15px" }} className="mt-3">
                     حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش
                     داده خواهد شد.
-                  </div> */}
+                  </div>
                   <div className="mt-4" name="mainPhoto">
                     <div className={styles.product_image_container}>
-                      {/* <label style={{ marginTop: 10, marginRight: 10 }} htmlFor="product-image-upload">
+                      <label style={{ marginTop: 10, marginRight: 10 }} htmlFor="product-image-upload">
                         <div className={styles.add_image_container}>
                           <i style={{ fontSize: "25px" }}>+</i>
                           <p style={{ fontSize: "15px" }} className="mt-2">
                             افزودن تصویر
                           </p>
                         </div>
-                      </label> */}
+                      </label>
                       {/* input file */}
-                      {/* <input
+                      <input
                         id="product-image-upload"
                         type="file"
+                        accept="image/*"
                         style={{ width: "0px", height: "0px", opacity: "0px" }}
-                        {...register("product_image_upload", { required: true })}
+                        {...register("product_image_upload")}
                         onChange={onFileChange}
-                      ></input> */}
+                      />
                       {/* map image */}
                       {previewImage && (previewImage.map((item, index) => {
                         return (
@@ -484,7 +495,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                           value: 0,
                           message: 'لطفا اعداد بزرگتر از صفر وارد نمایید'
                         },
-                        validate: value => parseInt(value) <= parseInt(getValues("Price")) || 'قیمت با تخفیف باید کمتر از قیمت اصلی باشد'
+                        validate: value => parseInt(value) < parseInt(getValues("Price")) || 'قیمت با تخفیف باید کمتر از قیمت اصلی باشد'
                       })}
                     />
                     <div>
@@ -500,7 +511,6 @@ const UpdateProduct = ({ activeHojreh }) => {
                   </label>
                   <textarea className={styles.input_product} id="Description" name="Description" type="text"
                     placeholder="توضیحات خود را در صورت تمایل اینجا وارد کنید"
-                    {...register("Description")}
                   />
                 </div>
                 {/* inventory */}
