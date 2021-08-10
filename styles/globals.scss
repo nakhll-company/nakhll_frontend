@@ -20,8 +20,8 @@
 @import "../styles/pages/cart/cart.scss";
 @import "../styles/pages/cart/payment/payment.scss";
 @font-face {
-    font-family: 'vazir';
-    src: url('../public/assets/fonts/Vazir.eot') format('eot'), url('../public/assets/fonts/Vazir.woff') format('woff'), url('../public/assets/fonts/Vazir.woff2') format('woff2'), url('../public/assets/fonts/Vazir.ttf') format('ttf');
+    font-family: "vazir";
+    src: url("../public/assets/fonts/Vazir.eot") format("eot"), url("../public/assets/fonts/Vazir.woff") format("woff"), url("../public/assets/fonts/Vazir.woff2") format("woff2"), url("../public/assets/fonts/Vazir.ttf") format("ttf");
     font-style: normal;
     font-display: fallback;
 }
@@ -35,26 +35,6 @@
     --color1: #5e7488;
     --color2: #364254;
     --hover: #007aff;
-}
-
-h1 {
-    font-size: 1.8rem;
-    margin: 0;
-}
-
-h2 {
-    font-size: 1.6rem;
-}
-
-h3 {
-    font-size: 1.5rem;
-    margin: 0;
-}
-
-h4 {
-    font-size: 1.4rem;
-    margin: 0;
-    color: #a4aebb;
 }
 
 ::placeholder {

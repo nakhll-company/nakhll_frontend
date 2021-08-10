@@ -88,6 +88,9 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
   const [showMessage, setshowMessage] = useState(0);
   const [showMessageHesab, setShowMessageHesab] = useState(0);
 
+  // for btn  when click call api again
+  const [clicked, setClicked] = useState(false);
+
   // Change Page in select city
 
   const [showState, setshowState] = useState(false);
@@ -129,7 +132,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
     };
 
     activeHojreh.length > 0 && _handleRequestApi();
-  }, [activeHojreh]);
+  }, [activeHojreh, clicked]);
 
   const linkSetting = (body) => {
     const dataForSendLink = {
@@ -532,6 +535,8 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                       if (response.status === 200) {
                         setIsLoading(false);
                         setshowMessage(1);
+                        // location.replace("https://nakhll.com/fp/setting");
+                        setClicked((pre) => !pre);
                       }
                     } catch (error) {
                       setIsLoading(false);
@@ -560,7 +565,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                               <Field
                                 name="Title"
                                 type="text"
-                              // defaultValue={apiSetting.Title}
+                                // defaultValue={apiSetting.Title}
                               />
                               {touched.Title && errors.Title ? (
                                 <small className={styles.error}>
@@ -598,7 +603,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                               <Field
                                 name="slug"
                                 type="text"
-                              // defaultValue={apiSetting.Slug}
+                                // defaultValue={apiSetting.Slug}
                               />
                               {touched.slug && errors.slug ? (
                                 <small className={styles.error}>
@@ -740,10 +745,10 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                               <Field
                                 name="PhoneNumber"
                                 type="text"
-                              // defaultValue={
-                              //   apiSetting.FK_ShopManager &&
-                              //   apiSetting.FK_ShopManager.User_Profile.PhoneNumber
-                              // }
+                                // defaultValue={
+                                //   apiSetting.FK_ShopManager &&
+                                //   apiSetting.FK_ShopManager.User_Profile.PhoneNumber
+                                // }
                               />
                             </div>
                           </div>
@@ -852,10 +857,10 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                                 name="Address"
                                 rows="4"
                                 cols="50"
-                              // defaultValue={
-                              //   apiSetting.FK_ShopManager &&
-                              //   apiSetting.FK_ShopManager.User_Profile.Address
-                              // }
+                                // defaultValue={
+                                //   apiSetting.FK_ShopManager &&
+                                //   apiSetting.FK_ShopManager.User_Profile.Address
+                                // }
                               />
                               {touched.Address && errors.Address ? (
                                 <small className={styles.error}>
@@ -931,21 +936,21 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                             {showState && (
                               <Modal
                                 show={true}
-                                onClose={() => { }}
+                                onClose={() => {}}
                                 content={SetDataInModal()}
                               />
                             )}
                             {showBigcity && (
                               <Modal
                                 show={true}
-                                onClose={() => { }}
+                                onClose={() => {}}
                                 content={SetDataBigCity()}
                               />
                             )}
                             {showCity && (
                               <Modal
                                 show={true}
-                                onClose={() => { }}
+                                onClose={() => {}}
                                 content={SetDataCity()}
                               />
                             )}
@@ -1091,6 +1096,8 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                     if (response.status == 200) {
                       setIsLoadingHesab(false);
                       setShowMessageHesab(1);
+                      // location.replace("https://nakhll.com/fp/setting");
+                      setClicked((pre) => !pre);
                     } else {
                       setIsLoadingHesab(false);
                       setShowMessageHesab(2);
@@ -1251,6 +1258,13 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                     // if (response.status === 201) {
                     //   setShowSuccessPage((showSuccessPage) => !showSuccessPage);
                     // }
+
+                    toast.success("اطلاعات با موفقیت به روز رسانی شد", {
+                      position: "top-right",
+                      closeOnClick: true,
+                    });
+                    // location.replace("https://nakhll.com/fp/setting");
+                    setClicked((pre) => !pre);
                   }}
                 >
                   <div className={styles.LinksGridD}>

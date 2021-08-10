@@ -118,7 +118,6 @@ export default function DesktopOrders({ loading, ordersList, type, activeHojreh,
                                         </Link>
                                         <Link href={`/fp/order/orderdetail/${value.id}`}>
                                             <td>
-
                                                 {value.user}
                                             </td>
                                         </Link>

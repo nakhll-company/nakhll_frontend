@@ -10,6 +10,7 @@
     "dependencies": {
         "@hookform/resolvers": "^2.6.1",
         "axios": "^0.21.1",
+        "bootstrap": "^5.0.0-beta3",
         "dom7": "^3.0.0",
         "formik": "^2.2.9",
         "lodash": "^4.17.21",
