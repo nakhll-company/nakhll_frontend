@@ -70,13 +70,16 @@ export default function CheckOutSteps({ step }) {
       </div>
 
       {/* LEVEL THREE */}
-      <a href="">
-        <div className={`${styles.step_item} ${step3}`}>
+      <Link href="/cart/payment" style={{ cursor: "pointer" }}>
+        <div
+          style={{ cursor: "pointer" }}
+          className={`${styles.step_item} ${step3}`}
+        >
           <div className={styles.titleInStep}>
             <span>اتمام خرید </span>
           </div>
         </div>
-      </a>
+      </Link>
     </div>
   );
 }
