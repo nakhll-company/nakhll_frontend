@@ -1,6 +1,9 @@
 import Head from "next/head";
 
 import ShopLayout from "../../../components/shopLayout";
+import Steps from '../../../components/CheckOutSteps/CheckOutSteps';
+import Link from "next/link";
+
 
 export default function Cart() {
     return (
@@ -17,17 +20,24 @@ export default function Cart() {
                     href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
                 />
             </Head>
+            <Steps step="3" />
+
 
             <div className="col-12 col-lg-5 px-0 mb-3">
                 <div className="box box-sm bg-white" style={{ minHeight: "14rem" }}>
                     <div className="cart-head d-flex align-items-center py-3 px-3 text-right mb-0 bg-gray-100" style={{ borderRadius: "5px 5px 0px 0px" }}>
-                        <a className="font-size-8 text-muted" style={{ flexBasis: "43.33%" }}>
-                            <i class="bi fas fa-arrow-right" style={{ marginLeft: "10px" }}></i>
-                            بازگشت
-                        </a>
+                        <Link href="/cart/address">
+                            <a className="font-size-8 text-muted" style={{ flexBasis: "43.33%" }}>
+                                <i class="bi fas fa-arrow-right" style={{ marginLeft: "10px" }}></i>
+                                بازگشت
+                            </a>
+                        </Link>
+
                         <h2 className="font-weight-bold font-size-lg m-0"> پرداخت </h2>
                     </div>
                     <div className="steps-body">
+                        
+                        {/* کد تخفیف */}
                         <div>
                             <h3 class="font-size1 text-dark">کد تخفیف</h3>
                             <form class="input-group input-group--box">
@@ -37,7 +47,8 @@ export default function Cart() {
                             </form>
                         </div>
 
-                        <div className="mt-3">
+                        {/* استفاده از اعتبار*/}
+                        {/* <div className="mt-3">
                             <div className="use-credit-box">
                                 <div className="toggle-btn">
                                     <label data-v-25adc6c0 className="vue-js-switch">
@@ -64,13 +75,12 @@ export default function Cart() {
                                                 }}
                                             />
                                         </div>
-                                        {/**/}
                                     </label>
                                     <span className="toggle-btn-text pointer">استفاده از اعتبار</span>
                                 </div>
                                 <span className="text-success mr-auto">اعتبار شما 11,000 تومان</span>
                             </div>
-                        </div>
+                        </div> */}
 
                         <h3 class="font-size1 text-dark mt-3">فاکتور سفارش</h3>
 
