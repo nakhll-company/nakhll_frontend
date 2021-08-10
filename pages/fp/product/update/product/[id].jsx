@@ -14,7 +14,6 @@ import { mapState } from "../../../../../containers/product/methods/mapState";
 import { getCroppedImg } from "../../../../../containers/product/create/canvasUtils";
 // styles
 import styles from "../../../../../styles/pages/product/create.module.scss";
-import { val, value } from "dom7";
 /**
  * page update product
  * @param {string} activeHojreh => it has slug name
@@ -259,6 +258,7 @@ const UpdateProduct = ({ activeHojreh }) => {
   // show croped image
   const showCroppedImage = async () => {
     const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
+
     if (croppedImage) {
       let listImage = window.localStorage.getItem("image");
       var prev = JSON.parse(listImage);
@@ -271,8 +271,9 @@ const UpdateProduct = ({ activeHojreh }) => {
 
       let sendImage = {
         FK_Product: id,
-        Image: imageSrc
+        Image: croppedImage
       }
+
       let params = null;
       let loadData = sendImage;
       let dataUrl = "/api/v1/landing/product_banner/";
@@ -289,14 +290,10 @@ const UpdateProduct = ({ activeHojreh }) => {
         id: response.data.id
       }
 
-      // let prevStateImage = previewImage
-      // prevStateImage.push(prevImg)
-
-      // let imageIddd = idImage
-      // imageIddd.push(response.data.id)
       setIdImage([...idImage, response.data.id])
 
       setPreviewImage([...previewImage, prevImg]);
+
 
     }
     let elementImageProduct = document.getElementById("crop_container");
