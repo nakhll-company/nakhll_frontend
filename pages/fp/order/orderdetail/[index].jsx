@@ -362,7 +362,7 @@ function HomePage({ id }) {
                                   });
                               }
 
-                              
+
                               setshowMessage(2);
                               setIsLoading(false);
                             }
@@ -632,9 +632,8 @@ function HomePage({ id }) {
                   <div className={styles.post_informationD_content}>
                     <h4>نام مشتری</h4>
                     <h3 style={{ marginTop: "5px" }}>
-                      {`${data.profile && data.profile.user.first_name}  ${
-                        data.profile && data.profile.user.last_name
-                      }`}
+                      {`${data.profile && data.profile.user.first_name}  ${data.profile && data.profile.user.last_name
+                        }`}
                     </h3>
                   </div>
                   {/* <div className={styles.post_informationD_content}>
@@ -691,7 +690,7 @@ function HomePage({ id }) {
                     <h4>هزینه ارسال پرداخت شده</h4>
                     <h4>
                       {" "}
-                      {data.post_price} <span>هزار تومان</span>
+                      {data.post_price / 10} <span>هزار تومان</span>
                     </h4>
                   </div>
                   {/* <div className={styles.post_details_content}>
@@ -747,7 +746,7 @@ function HomePage({ id }) {
                           </div>
                           <div style={{ width: "94px", display: "flex" }}>
                             <h4 style={{ color: "#364254" }}>
-                              {e.product.price}{" "}
+                              {e.product.price / 10}{" "}
                               <span style={{ color: "#5E7488" }}>تومان</span>
                             </h4>
                           </div>
@@ -808,7 +807,7 @@ function HomePage({ id }) {
                               <h4
                                 style={{ color: "#089319", fontWeight: "bold" }}
                               >
-                                {e.get_total_item_price}+{" "}
+                                {e.get_total_item_price / 10}+{" "}
                                 <span style={{ color: "#5E7488" }}>تومان</span>
                               </h4>
                             </div>
@@ -827,7 +826,7 @@ function HomePage({ id }) {
                               <h4
                                 style={{ color: "#D14343", fontWeight: "bold" }}
                               >
-                                {e.product.discount}-{" "}
+                                {e.product.discount / 10}-{" "}
                                 <span style={{ color: "#5E7488" }}>تومان</span>
                               </h4>
                             </div>
@@ -876,14 +875,14 @@ function HomePage({ id }) {
                   <div className={styles.final_invoice_content}>
                     <h4>مجموع قیمت محصولات</h4>
                     <h4 style={{ color: "#089319", fontWeight: "bold" }}>
-                      {data.total_price}+{" "}
+                      {data.total_price / 10}+{" "}
                       <span style={{ color: "#5E7488" }}>تومان</span>
                     </h4>
                   </div>
                   <div className={styles.final_invoice_content}>
                     <h4>مجموع هزینه ارسال</h4>
                     <h4 style={{ color: "#089319", fontWeight: "bold" }}>
-                      {data.post_details && data.post_details.post_price}+{" "}
+                      {data.post_details && data.post_details.post_price / 10}+{" "}
                       <span style={{ color: "#5E7488" }}>تومان</span>
                     </h4>
                   </div>
@@ -1466,7 +1465,7 @@ function HomePage({ id }) {
                     <h4>هزینه ارسال پرداخت شده</h4>
                     <h4>
                       {" "}
-                      {data.post_price} <span>هزار تومان</span>
+                      {data.post_price / 10} <span> تومان</span>
                     </h4>
                   </div>
                   {/* <div className={styles.post_details_content}>
@@ -1505,7 +1504,7 @@ function HomePage({ id }) {
                           <div style={{ display: "flex" }}>
                             <h4>قیمت :</h4>
                             <h4 style={{ color: "#364254" }}>
-                              {e.product.price}{" "}
+                              {e.product.price / 10}{" "}
                               <span style={{ color: "#5E7488" }}>تومان</span>
                             </h4>
                           </div>
@@ -1522,7 +1521,7 @@ function HomePage({ id }) {
                               <h4
                                 style={{ color: "#089319", fontWeight: "bold" }}
                               >
-                                {e.get_total_item_price}+{" "}
+                                {e.get_total_item_price / 10}+{" "}
                                 <span style={{ color: "#5E7488" }}>تومان</span>
                               </h4>
                             </div>
@@ -1541,7 +1540,7 @@ function HomePage({ id }) {
                               <h4
                                 style={{ color: "#D14343", fontWeight: "bold" }}
                               >
-                                {e.product.discount}-{" "}
+                                {e.product.discount / 10}-{" "}
                                 <span style={{ color: "#5E7488" }}>تومان</span>
                               </h4>
                             </div>
@@ -1652,7 +1651,7 @@ function HomePage({ id }) {
                           <div style={{ display: "flex" }}>
                             <h4>قیمت :</h4>
                             <h4 style={{ color: "#364254" }}>
-                              {e.product.price}{" "}
+                              {e.product.price / 10}{" "}
                               <span style={{ color: "#5E7488" }}>تومان</span>
                             </h4>
                           </div>
@@ -1669,7 +1668,7 @@ function HomePage({ id }) {
                               <h4
                                 style={{ color: "#089319", fontWeight: "bold" }}
                               >
-                                {e.get_total_item_price}+{" "}
+                                {e.get_total_item_price / 10}+{" "}
                                 <span style={{ color: "#5E7488" }}>تومان</span>
                               </h4>
                             </div>
@@ -1688,7 +1687,7 @@ function HomePage({ id }) {
                               <h4
                                 style={{ color: "#D14343", fontWeight: "bold" }}
                               >
-                                {e.product.discount}-{" "}
+                                {e.product.discount / 10}-{" "}
                                 <span style={{ color: "#5E7488" }}>تومان</span>
                               </h4>
                             </div>
@@ -1781,7 +1780,7 @@ function HomePage({ id }) {
                   <div className={styles.final_invoice_content}>
                     <h4>مجموع قیمت محصولات</h4>
                     <h4 style={{ color: "#089319", fontWeight: "bold" }}>
-                      {data.total_price}+{" "}
+                      {data.total_price / 10}+{" "}
                       <span style={{ color: "#5E7488" }}>تومان</span>
                     </h4>
                   </div>
