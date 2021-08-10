@@ -37,6 +37,7 @@ const UpdateProduct = ({ activeHojreh }) => {
     let product_status = document.querySelector("input[type=radio]:checked").value;
     // if error is true
     if (err) {
+      setIsLoad(false)
       let confirm = {
         Title: data.Title,
         Inventory: Add,
@@ -67,10 +68,12 @@ const UpdateProduct = ({ activeHojreh }) => {
       );
       // check status code
       if (response.status === 200) {
-        toast.success("محصول شما با موفقیت ویرایش شد", {
-          position: "top-right",
-          closeOnClick: true,
-        });
+        setShowSuccessPage(true);
+        // toast.success("محصول شما با موفقیت ویرایش شد", {
+        //   position: "top-right",
+        //   closeOnClick: true,
+        // });
+        // setIsLoad(true)
       } else {
         toast.error("در ویرایش اطلاعات مشکلی پیش آمده است", {
           position: "top-right",
@@ -96,6 +99,18 @@ const UpdateProduct = ({ activeHojreh }) => {
   const [submarketId, setSubmarketId] = useState(null);
   const [isLoad, setIsLoad] = useState(false);
   const [idImage, setIdImage] = useState(false);
+  const [showSuccessPage, setShowSuccessPage] = useState(false);
+
+
+
+  if (showSuccessPage) {
+    router.replace("/fp/product/update/product/successPageEditProduct");
+  }
+
+
+
+
+
   // get edit date
   const _editProduct = async () => {
     let params = null;
