@@ -1,0 +1,15 @@
+// div wrapper
+.wrapper{
+    background-color: #fff;
+    // bread crumb
+    .bread_crumb{
+        display: flex;
+        align-items: center;
+        padding: 1rem 0;
+        font-size: .8rem;
+        color: #7d7d7d;
+        border-radius: 0;
+        background-color: transparent;
+        font-weight: lighter;
+    }
+}
