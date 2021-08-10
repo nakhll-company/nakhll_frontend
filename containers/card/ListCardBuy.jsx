@@ -78,7 +78,13 @@ export default function ListCardBuy() {
                         </a>
                         <i
                           className="fas fa-times-circle"
-                          style={{ fontSize: "20px", marginRight: "5px" }}
+                          style={{
+                            fontSize: "20px",
+                            marginRight: "5px",
+                            fontSize: "25px",
+                            color: "#1b3e68",
+                            cursor: "pointer",
+                          }}
                           onClick={() =>
                             handel_DeleteProductFromList(El.product.id)
                           }

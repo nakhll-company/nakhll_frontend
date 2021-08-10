@@ -21,20 +21,29 @@ function ShopLayout({ children }) {
           <div className={styles.footerWrapper_content_info}>
             <div className={styles.footerWrapper_content_info_container}>
               <div className={styles.footer_col}>
-                <div className={styles.footer_col_icon}>
+                <div
+                  className={styles.footer_col_icon}
+                  style={{ color: "#00171f" }}
+                >
                   <i></i>
                   شماره تماس :<a href="tel: +983432476561">32476561 -034</a>
                 </div>
               </div>
               <div className={styles.footer_col}>
-                <div className={styles.footer_col_icon}>
+                <div
+                  className={styles.footer_col_icon}
+                  style={{ color: "#00171f" }}
+                >
                   <i></i>
                   آدرس ایمیل :
                   <a href="mailto:info@nakhll.com">info@nakhll.com</a>
                 </div>
               </div>
               <div className={styles.footer_subtitle}></div>
-              <div className={styles.footer_copyright}>
+              <div
+                className={styles.footer_copyright}
+                style={{ color: "#91a6c1" }}
+              >
                 Copyright © Nakhll.com
               </div>
             </div>
