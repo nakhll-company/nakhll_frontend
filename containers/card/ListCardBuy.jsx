@@ -11,8 +11,9 @@ export default function ListCardBuy() {
     All_product_list_buy,
     handel_AddProductTOList,
     handel_DeleteProductFromList,
+    handel_ReduceProductFromList,
   } = useContext(ContextProduct);
- 
+
   return (
     <div className="col-12 col-lg-8 mb-3 my-md-3 my-lg-0 order-1 order-md-1 order-lg-0">
       <div className="cart-items mt-2">
@@ -120,7 +121,7 @@ export default function ListCardBuy() {
                               min="0"
                               type="text"
                               disabled="disabled"
-                              value={_asist.number(`1`)}
+                              value={_asist.number(El.count)}
                               className="bg-white border-0 font-size1-2 font-weight-bold form-control mt-1 px-1 text-center"
                             />
                             <div className="input-group-append">
@@ -131,6 +132,9 @@ export default function ListCardBuy() {
                                     color: "#91a6c1 ",
                                   }}
                                   className="fas fa-minus-square"
+                                  onClick={() =>
+                                    handel_ReduceProductFromList(El.id)
+                                  }
                                 ></i>
                               </button>
                             </div>

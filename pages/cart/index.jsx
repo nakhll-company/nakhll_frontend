@@ -11,15 +11,18 @@ import CheckOutSteps from "../../components/CheckOutSteps/CheckOutSteps";
 // metods
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import ContextProduct from "./Context/context";
+import { CustomToast } from "../../components/custom/customToast/CustomToast";
+
+// LIBRARY
+import { ToastContainer, toast } from "react-toastify";
 
 export default function Cart() {
   // STATE FOR SAVE PRODUCTS
   const [All_product_list_buy, setAll_product_list_buy] = useState([]);
 
-  // CALL API  &  GET PRODUCT LIST  & SET DATA IN "All_product_list_buy"
-
-  useEffect(() => {
-    const _handleRequestApi = async () => {
+  // FUNCTION FOR GET ALL DATA FOR CARTS
+  const _handleRequestApiAll = async () => {
+    try {
       let params = {};
       let loadData = null;
       let dataUrl = `/cart2/api/carts/my/`;
@@ -30,18 +33,17 @@ export default function Cart() {
         true,
         params
       );
+      setAll_product_list_buy(await response.data);
+    } catch (e) {
+      console.log("e :>> ", e);
+    }
+  };
 
-      if (response.status === 200) {
-        setAll_product_list_buy(await response.data);
-        console.log("response.data :>> ", response.data);
-      }
+  // CALL API  &  GET PRODUCT LIST  & SET DATA IN "All_product_list_buy"
 
-      // setSelectState(await getStates());
-    };
-
-    _handleRequestApi();
+  useEffect(() => {
+    _handleRequestApiAll();
   }, []);
-  console.log("All_product_list_buy :>> ", All_product_list_buy);
 
   //  FUNCTION FOR ADD PRODUCT TO LIST  WHEN CLICKED ON PLUS BUTTON
   const handel_AddProductTOList = (id) => {
@@ -56,17 +58,43 @@ export default function Cart() {
         true,
         params
       );
-
-      if (response.status === 200) {
-        console.log("Hamehchiokkkk :>> ", " Hamehchiokkkk");
-      }
+      _handleRequestApiAll();
+      // if (response.status === 200) {
+      toast.success("داده ها با موفقیت ثبت شده اند", {
+        position: "top-right",
+        closeOnClick: true,
+      });
+      // }
     };
 
     _handleRequestApi();
   };
 
   // FUNCTION FOR REDUCE PRODUCT FROM LIST WHEN CLICKED ON MINIMUS BUTTON
-  const handel_ReduceProductFromList = (id) => {};
+  const handel_ReduceProductFromList = (id) => {
+    const _handleRequestApi = async () => {
+      let params = {};
+      let loadData = null;
+
+      let dataUrl = `/cart2/api/cart_items/${id}/remove/`;
+      let response = await ApiRegister().apiRequest(
+        loadData,
+        "DELETE",
+        dataUrl,
+        true,
+        params
+      );
+      _handleRequestApiAll();
+      // if (response.status === 200) {
+      toast.success("داده ها با موفقیت ثبت شده اند", {
+        position: "top-right",
+        closeOnClick: true,
+      });
+      // }
+    };
+
+    _handleRequestApi();
+  };
 
   // FUNCTION FOR DELETE PRODUCT FROM LIST WHEN CLICKED ON DELETE BUTTON
 
@@ -83,8 +111,7 @@ export default function Cart() {
         params
       );
 
-      if (response.status === 200) {
-      }
+      _handleRequestApiAll();
     };
 
     _handleRequestApi();
@@ -123,6 +150,7 @@ export default function Cart() {
             <SumBuy />
           </div>
         </section>
+        <ToastContainer />
       </div>
     </ContextProduct.Provider>
   );
