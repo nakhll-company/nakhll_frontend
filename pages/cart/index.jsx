@@ -46,75 +46,68 @@ export default function Cart() {
   }, []);
 
   //  FUNCTION FOR ADD PRODUCT TO LIST  WHEN CLICKED ON PLUS BUTTON
-  const handel_AddProductTOList = (id) => {
-    const _handleRequestApi = async () => {
-      let params = {};
-      let loadData = null;
-      let dataUrl = `/cart2/api/cart_items/${id}/add/`;
-      let response = await ApiRegister().apiRequest(
-        loadData,
-        "get",
-        dataUrl,
-        true,
-        params
-      );
-      _handleRequestApiAll();
-      // if (response.status === 200) {
-      toast.success("داده ها با موفقیت ثبت شده اند", {
-        position: "top-right",
-        closeOnClick: true,
-      });
-      // }
-    };
-
-    _handleRequestApi();
+  const handel_AddProductTOList = async (id) => {
+    let params = {};
+    let loadData = null;
+    let dataUrl = `/cart2/api/cart_items/${id}/add/`;
+    let response = await ApiRegister().apiRequest(
+      loadData,
+      "get",
+      dataUrl,
+      true,
+      params
+    );
+    console.log("response :>> ", response);
+    setAll_product_list_buy(await response.data);
+    // if (response.status === 200) {
+    toast.success("داده ها با موفقیت ثبت شده اند", {
+      position: "top-right",
+      closeOnClick: true,
+    });
+    // }
   };
 
   // FUNCTION FOR REDUCE PRODUCT FROM LIST WHEN CLICKED ON MINIMUS BUTTON
-  const handel_ReduceProductFromList = (id) => {
-    const _handleRequestApi = async () => {
-      let params = {};
-      let loadData = null;
+  const handel_ReduceProductFromList = async (id) => {
+    let params = {};
+    let loadData = null;
 
-      let dataUrl = `/cart2/api/cart_items/${id}/remove/`;
-      let response = await ApiRegister().apiRequest(
-        loadData,
-        "DELETE",
-        dataUrl,
-        true,
-        params
-      );
-      _handleRequestApiAll();
-      // if (response.status === 200) {
-      toast.success("داده ها با موفقیت ثبت شده اند", {
-        position: "top-right",
-        closeOnClick: true,
-      });
-      // }
-    };
-
-    _handleRequestApi();
+    let dataUrl = `/cart2/api/cart_items/${id}/remove/`;
+    let response = await ApiRegister().apiRequest(
+      loadData,
+      "get",
+      dataUrl,
+      true,
+      params
+    );
+    console.log("minis :>> ", response.data);
+    setAll_product_list_buy(await response.data);
+    // if (response.status === 200) {
+    toast.success("داده ها با موفقیت ثبت شده اند", {
+      position: "top-right",
+      closeOnClick: true,
+    });
+    // }
   };
 
   // FUNCTION FOR DELETE PRODUCT FROM LIST WHEN CLICKED ON DELETE BUTTON
 
-  const handel_DeleteProductFromList = (id) => {
-    const _handleRequestApi = async () => {
-      let params = {};
-      let loadData = null;
-      let dataUrl = `/cart2/api/cart_items/${id}/`;
-      let response = await ApiRegister().apiRequest(
-        loadData,
-        "DELETE",
-        dataUrl,
-        true,
-        params
-      );
-
-      _handleRequestApiAll();
-    };
-
-    _handleRequestApi();
+  const handel_DeleteProductFromList = async (id) => {
+    let params = {};
+    let loadData = null;
+    let dataUrl = `/cart2/api/cart_items/${id}/`;
+    let response = await ApiRegister().apiRequest(
+      loadData,
+      "get",
+      dataUrl,
+      true,
+      params
+    );
+    console.log("delete :>> ", response.data);
+    toast.success("داده ها با موفقیت ثبت شده اند", {
+      position: "top-right",
+      closeOnClick: true,
+    });
   };
 
   return (

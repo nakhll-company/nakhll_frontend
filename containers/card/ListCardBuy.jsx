@@ -146,10 +146,10 @@ export default function ListCardBuy() {
                         </div>
                         <div className="mr-auto">
                           <span className="cart-product-item-primary-price">
-                            {_asist.PSeparator(El.product.old_price)}
+                            {_asist.PSeparator(El.total_old_price/10)}
                           </span>{" "}
                           <span className="font-weight-bold">
-                            {_asist.PSeparator(El.product.price)}
+                            {_asist.PSeparator(El.total_price/10)}
                           </span>{" "}
                           <span>تومان</span>
                         </div>
