@@ -1,13 +1,32 @@
 // node libraries
 import Head from "next/head";
 import Link from "next/link";
+import axios from 'axios';
 import Image from "next/image";
+// methods
+import { ApiRegister } from '../../services/apiRegister/ApiRegister';
 // styles
 import styles from '../../styles/pages/productDetail/productDetail.module.scss';
 /**
  * component detail 
  */
-const ProductDetail = () => {
+const fetchData = async (id) => {
+
+    let response = await ApiRegister().apiRequest(
+        null,
+        "get",
+        `http://localhost:8000/api/v1/product-page/details/${id}/`,
+        true,
+        ""
+    );
+    if (response.status === 200) {
+        return response.data;
+    } else {
+        return false;
+    }
+};
+
+const ProductDetail = ({ data }) => {
     return (
         <div className={styles.wrapper}>
             <Head>
@@ -45,3 +64,14 @@ const ProductDetail = () => {
 }
 
 export default ProductDetail;
+
+
+// function server side
+export async function getServerSideProps(context) {
+
+    const data = await fetchData(context.params.id);
+
+    return {
+        props: { data },
+    };
+}
