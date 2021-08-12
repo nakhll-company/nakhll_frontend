@@ -19,19 +19,24 @@ import { ToastContainer } from "react-toastify";
 function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
   const [selectShop, setselectShop] = useState("");
   const [isShowOrder, setisShowOrder] = useState(false);
+  
   const [Title, setTitle] = useState("");
   const router = useRouter();
   const { width } = useViewport();
+  // STATE FOR SET LINK SHOP
+  const [slugHojreh, setSlugHojreh] = useState("")
   const breakpoint = 620;
   const ExitDash = () => {
     location.replace("https://www.nakhll.com");
   };
   useEffect(() => {
     Object.keys(userInfo).length === 0 && getUserInfo();
-    if (selectShop.length === 0) {
-      Object.keys(userInfo).length > 0 &&
-        userInfo.shops.length > 0 &&
-        getActiveHojreh(userInfo.shops[0].slug);
+    if (selectShop.length === 0 && Object.keys(userInfo).length > 0 && userInfo.shops.length > 0 ) {
+      
+        getActiveHojreh(userInfo.shops[0].slug)
+        setSlugHojreh(userInfo.shops[0].slug)
+       
+        
     }
   }, [userInfo.shops]);
 
@@ -80,7 +85,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   alt="Picture of the author"
                   width={60}
                   height={60}
-                  onClick={() => location.replace("https://nakhll.com/")}
+                  onClick={() => {slugHojreh !=="" && location.replace(`https://nakhll.com/${slugHojreh}/`)}}
                   data-toggle="tooltip"
                   data-placement="bottom"
                   title="حجره"
@@ -179,6 +184,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   id="select-shop"
                   onChange={(a) => {
                     setselectShop(a.target.value);
+                    setSlugHojreh(a.target.value);
                     getActiveHojreh(a.target.value);
                     ForHeader(a);
                   }}
