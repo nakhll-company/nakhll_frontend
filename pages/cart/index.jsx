@@ -10,7 +10,7 @@ import ShopLayout from "../../components/shopLayout";
 import CheckOutSteps from "../../components/CheckOutSteps/CheckOutSteps";
 // metods
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
-import ContextProduct from "./Context/context";
+import ContextProduct from "../../containers/card/Context/context";
 import { CustomToast } from "../../components/custom/customToast/CustomToast";
 
 // LIBRARY
@@ -57,8 +57,8 @@ export default function Cart() {
       true,
       params
     );
-    console.log("response :>> ", response);
     setAll_product_list_buy(await response.data);
+    console.log("Pluse :>> ", response);
     // if (response.status === 200) {
     toast.success("داده ها با موفقیت ثبت شده اند", {
       position: "top-right",
@@ -80,8 +80,9 @@ export default function Cart() {
       true,
       params
     );
-    console.log("minis :>> ", response.data);
     setAll_product_list_buy(await response.data);
+
+    console.log("Reduc :>> ", response);
     // if (response.status === 200) {
     toast.success("داده ها با موفقیت ثبت شده اند", {
       position: "top-right",
