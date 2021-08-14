@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useContext } from "react";
 
 import Assistent from "zaravand-assistent-number";
-import ContextProduct from "../../pages/cart/Context/context";
+import ContextProduct from "./Context/context";
 
 const _asist = new Assistent();
 
