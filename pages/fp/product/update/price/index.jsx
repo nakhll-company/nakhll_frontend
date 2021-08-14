@@ -1,8 +1,9 @@
 // node libraries
 import { connect } from 'react-redux';
 import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
+import { ErrorMessage } from '@hookform/error-message';
 // component
-import Layout from '../../../../../components/layout/Layout';
 import MobileHeader from '../../../../../components/mobileHeader';
 import useViewport from "../../../../../components/viewPort";
 // methods
@@ -13,19 +14,25 @@ import styles from '../../../../../styles/pages/product/editPrice.module.scss';
 
 const Price = ({ productList }) => {
 
+    const { register, handleSubmit, getValues, formState: { errors } } = useForm();
+
     const { width } = useViewport();
     const breakpoint = 620;
 
-    const _handleRequestApi = async (data) => {
-        let params = {};
-        let loadData = data;
-        let dataUrl = `/api/v1/shop/multiple-update/price/`;
-        let response = await ApiRegister().apiRequest(
-            loadData,
-            "PATCH",
-            dataUrl,
-            true,
-            params
+    const onSubmit = async (data) => {
+        const objArray = [];
+        let formValues = Object.values(data);
+        Object.keys(data).forEach((key, index) => {
+            if (index % 3 === 0) {
+                objArray.push({
+                    Slug: formValues[index + 0],
+                    Price: formValues[index + 2],
+                    OldPrice: formValues[index + 1]
+                })
+            }
+        });
+        let response = await ApiRegister().apiRequest(objArray, "PATCH",
+            `/api/v1/shop/multiple-update/price/`, true, {}
         );
         if (response.status === 200) {
             toast.success("داده ها با موفقیت ثبت شده اند", {
@@ -50,33 +57,44 @@ const Price = ({ productList }) => {
                         <span>قیمت</span>
                         <span>قیمت با تخفیف</span>
                     </div>
-                    <form className={styles.form_edit} onSubmit={(e) => {
-                        e.preventDefault();
-                        const data = new FormData(e.target);
-                        const value = Object.fromEntries(data.entries());
-                        const objArray = [];
-                        let formValues = Object.values(value);
-                        Object.keys(value).forEach((key, index) => {
-                            if (index % 3 === 0) {
-                                objArray.push({
-                                    Slug: formValues[index + 0],
-                                    Price: formValues[index + 2],
-                                    OldPrice: formValues[index + 1]
-                                })
-                            }
-                        });
-                        _handleRequestApi(objArray);
-
-                    }}>
+                    <form className={styles.form_edit} onSubmit={handleSubmit(onSubmit)}>
                         {productList.length > 0 ? productList.map((value, index) => {
                             return (
                                 <div key={index} className={styles.form_edit_card}>
+                                    {/* slug */}
                                     <label className={styles.form_edit_label}>{value.title}</label>
-                                    <input type="hidden" name={`Slug${index + 100}`} defaultValue={value.slug} />
-                                    <input className={styles.form_edit_input} type="number" name={`Price${index + 100}`}
-                                        defaultValue={value.price > value.old_price ? value.price : value.old_price} />
-                                    <input className={styles.form_edit_input} type="number" name={`Old${index + 100}`}
-                                        defaultValue={value.price > value.old_price ? value.old_price : value.price} />
+                                    <input type="hidden" defaultValue={value.slug} {...register(`Slug${index + 100}`)} />
+                                    {/* price */}
+                                    <input className={styles.form_edit_input} type="number" {...register(`Price${index + 100}`, {
+                                        required: "لطفا این گزینه را پر نمایید"
+                                    })}
+                                        defaultValue={value.price > value.old_price ? value.price / 10 : value.old_price / 10} />
+                                    <ErrorMessage errors={errors} name={`Price${index + 100}`}>
+                                        {({ messages }) =>
+                                            messages &&
+                                            Object.entries(messages).map(([type, message]) => (
+                                                <p key={type}>{message}</p>
+                                            ))
+                                        }
+                                    </ErrorMessage>
+                                    {/* old price */}
+                                    <input className={styles.form_edit_input} type="number" {...register(`Old${index + 100}`, {
+                                        required: "لطفا این گزینه را پر نمایید",
+                                        min: {
+                                            value: 0,
+                                            message: 'لطفا اعداد بزرگتر از صفر وارد نمایید'
+                                        },
+                                        validate: value => parseInt(value) <= parseInt(getValues(`Price${index + 100}`)) || 'لطفا قیمت با تخفیف را کمتر از قیمت اصلی وارد نمایید'
+                                    })}
+                                        defaultValue={value.price > value.old_price ? value.old_price / 10 : value.price / 10} />
+                                    <ErrorMessage errors={errors} name={`Old${index + 100}`}>
+                                        {({ messages }) =>
+                                            messages &&
+                                            Object.entries(messages).map(([type, message]) => (
+                                                <p key={type}>{message}</p>
+                                            ))
+                                        }
+                                    </ErrorMessage>
                                 </div>
                             )
                         }) : <h3 style={{ textAlign: "center" }}>موردی برای نمایش وجود ندارد</h3>}
@@ -92,4 +110,3 @@ const Price = ({ productList }) => {
 // export
 const connector = connect(mapState);
 export default connector(Price);
-Price.Layout = Layout;

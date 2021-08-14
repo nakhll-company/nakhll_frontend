@@ -1,5 +1,8 @@
 // node libraries
 import { connect } from 'react-redux';
+import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
+import { ErrorMessage } from '@hookform/error-message';
 // component
 import Layout from '../../../../../components/layout/Layout';
 import MobileHeader from '../../../../../components/mobileHeader';
@@ -12,24 +15,38 @@ import styles from '../../../../../styles/pages/product/editInventory.module.scs
 
 const Inventory = ({ productList }) => {
 
+    const { register, handleSubmit, formState: { errors } } = useForm();
+
     const { width } = useViewport();
     const breakpoint = 620;
 
-    const _handleRequestApi = async (data) => {
-        let params = {};
-        let loadData = data;
-        let dataUrl = `/api/v1/shop/multiple-update/inventory/`;
-        let response = await ApiRegister().apiRequest(
-            loadData,
-            "PATCH",
-            dataUrl,
-            true,
-            params
+    const onSubmit = async (data) => {
+        const objArray = [];
+        let formValues = Object.values(data);
+        Object.keys(data).forEach((key, index) => {
+            if (index % 2 === 0) {
+                objArray.push({
+                    Slug: formValues[index + 0],
+                    Inventory: formValues[index + 1],
+                })
+            }
+        });
+
+        let response = await ApiRegister().apiRequest(objArray, "PATCH",
+            `/api/v1/shop/multiple-update/inventory/`, true, {}
         );
         if (response.status === 200) {
-            alert('داده ها با موفقیت ثبت شدند');
+            toast.success("داده ها با موفقیت ثبت شده اند", {
+                position: "top-right",
+                closeOnClick: true,
+            });
+        } else {
+            toast.error(" خطایی در ویرایش گروهی رخ داده است.", {
+                position: "top-right",
+                closeOnClick: true,
+            });
         }
-    };
+    }
 
     return (
         <>
@@ -40,29 +57,24 @@ const Inventory = ({ productList }) => {
                         <span className={styles.header_first_child}>عنوان محصول</span>
                         <span className={styles.header_last_child}>موجودی</span>
                     </div>
-                    <form className={styles.form_edit} onSubmit={(e) => {
-                        e.preventDefault();
-                        const data = new FormData(e.target);
-                        const value = Object.fromEntries(data.entries());
-                        const objArray = [];
-                        let formValues = Object.values(value);
-                        Object.keys(value).forEach((key, index) => {
-                            if (index % 2 === 0) {
-                                objArray.push({
-                                    Slug: formValues[index + 0],
-                                    Inventory: formValues[index + 1],
-                                })
-                            }
-                        });
-                        _handleRequestApi(objArray);
-                    }}>
+                    <form className={styles.form_edit} onSubmit={handleSubmit(onSubmit)}>
                         {productList.length > 0 ? productList.map((value, index) => {
                             return (
                                 <div key={index} className={styles.form_edit_card}>
                                     <label className={styles.form_edit_label}>{value.title}</label>
                                     <input type="hidden" name={`Slug${index + 100}`} defaultValue={value.slug} />
-                                    <input className={styles.form_edit_input} type="number" name={`Inventory${index + 100}`}
-                                        defaultValue={value.inventory} />
+                                    <input className={styles.form_edit_input} type="number"
+                                        defaultValue={value.inventory} {...register(`Inventory${index + 100}`, {
+                                            required: "لطفا این گزینه را پر نمایید"
+                                        })} />
+                                    <ErrorMessage errors={errors} name={`Inventory${index + 100}`}>
+                                        {({ messages }) =>
+                                            messages &&
+                                            Object.entries(messages).map(([type, message]) => (
+                                                <p key={type}>{message}</p>
+                                            ))
+                                        }
+                                    </ErrorMessage>
                                 </div>
                             )
                         }) : <h3 style={{ textAlign: "center" }}>موردی برای نمایش وجود ندارد</h3>}
