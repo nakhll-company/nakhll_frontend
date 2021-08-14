@@ -121,10 +121,6 @@
     font-weight: 700 !important;
 }
 
-.cart-product-item {
-    border-bottom: 1px solid #eee;
-}
-
 .cart-product-item .full-loading:before,
 .cart-product-item .spinner {
     display: none;
@@ -408,6 +404,10 @@ img {
 
 .button:focus {
     outline: none;
+}
+
+.opacity_none {
+    opacity: 0;
 }
 
 @media (max-width: 767.98px) {
