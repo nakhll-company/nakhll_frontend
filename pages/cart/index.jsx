@@ -104,6 +104,7 @@ export default function Cart() {
       true,
       params
     );
+    setAll_product_list_buy(await response.data);
     console.log("delete :>> ", response.data);
     toast.success("داده ها با موفقیت ثبت شده اند", {
       position: "top-right",
