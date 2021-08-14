@@ -64,8 +64,8 @@ const MobileOrders = ({ loading, ordersList }) => {
                                         <CustomBadge title={`${value.factor_status}`} customBadgeStyle={{ fontSize: "12px" }} />
                                     </div>
                                     <CustomLabel type="normal" value={value.user} label="خریدار" customLabelDiv="wrapper_custom_label" />
-                                    <CustomLabel type="normal" value={`${new Date(value.order_date).toLocaleDateString('fa-IR')}`} label="ثبت" customLabelDiv="wrapper_custom_label" />
-                                    <CustomLabel type="normal" value={`${new Date(value.max_due_date).toLocaleDateString('fa-IR')}`} label="مهلت" customLabelDiv="wrapper_custom_label" />
+                                    <CustomLabel type="normal" value={`${value.order_date}`} label="ثبت" customLabelDiv="wrapper_custom_label" />
+                                    <CustomLabel type="normal" value={`${value.max_due_date}`} label="مهلت" customLabelDiv="wrapper_custom_label" />
                                     <div className={styles.card_details}>
                                         <li className="fas fa-shopping-basket"></li>
                                         <span className={styles.card_details_span}>
