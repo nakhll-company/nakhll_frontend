@@ -32,7 +32,7 @@ export default function ListCardBuy() {
 
               {/*</mnbvcxz> IF CHANGE IN PRODUCT IN LIST */}
 
-              <div className="align-items-center nakhl-label d-flex justify-content-between mx-3 mt-3 p-2 rounded  border border-danger text-danger">
+              {/* <div className="align-items-center nakhl-label d-flex justify-content-between mx-3 mt-3 p-2 rounded  border border-danger text-danger">
                 <div className="mb-0 pr-2 font-size-sm">
                   <div style={{ fontSize: "15px", fontWeight: "400" }}>
                     از محصول روان نویس (خودکار) یونیکورن (اسب تک شاخ)به اندازه
@@ -47,7 +47,7 @@ export default function ListCardBuy() {
                     style={{ fontSize: "20px", marginRight: "5px" }}
                   ></i>
                 </span>
-              </div>
+              </div> */}
 
               {/*^^^^^^^^^^^ IF CHANGE IN PRODUCT IN LIST ^^^^^^^^^^^*/}
 
@@ -90,7 +90,11 @@ export default function ListCardBuy() {
                         ></i>
                       </div>
                       <div className="cart-product-item-remain-stock"></div>
-                      <div className="nakhl-label mr-auto small teaberry-light">
+                      <div
+                        className={`nakhl-label mr-auto small teaberry-light ${
+                          El.product.discount == 0 && "opacity_none"
+                        }`}
+                      >
                         {_asist.number(El.product.discount)}
                         <span> %</span>
                       </div>
@@ -145,11 +149,15 @@ export default function ListCardBuy() {
                           </span>
                         </div>
                         <div className="mr-auto">
-                          <span className="cart-product-item-primary-price">
-                            {_asist.PSeparator(El.product.old_price)}
+                          <span
+                            className={`cart-product-item-primary-price ${
+                              El.product.discount == 0 && "opacity_none"
+                            }`}
+                          >
+                            {_asist.PSeparator(El.total_old_price / 10)}
                           </span>{" "}
                           <span className="font-weight-bold">
-                            {_asist.PSeparator(El.product.price)}
+                            {_asist.PSeparator(El.total_price / 10)}
                           </span>{" "}
                           <span>تومان</span>
                         </div>
