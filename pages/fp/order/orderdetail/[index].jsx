@@ -28,11 +28,21 @@ export const getServerSideProps = ({ params }) => {
   };
 };
 
-// details: "Wait for other shops to confirm"
-// POST:
-// {
-//     "barcode": "BARCODE_HERE"
-// }
+const ORDER_STATUS = [
+  { 0: "سفارش تحویل داده شده است" },
+  { 1: "سفارش آماده است" },
+  { 2: "سفارش در حال آماده سازی است" },
+  { 3: "منتظر بررسی" },
+  { 4: "سفارش لغو شده است" },
+  { 5: "سفارش  ارسال شده است" },
+];
+
+const NEW_SYSTEM_STATUS = [
+  { 3: "منتظر بررسی" },
+  { 2: "سفارش در حال آماده سازی است" },
+  { 5: "سفارش  ارسال شده است" },
+];
+
 function HomePage({ id }) {
   const [IsLoading, setIsLoading] = useState(false);
   const [showMessage, setshowMessage] = useState(0);
@@ -93,32 +103,6 @@ function HomePage({ id }) {
       if (response.status === 200) {
         setconfigOrder(true);
       }
-    };
-    _handleRequestApi(id);
-  };
-
-  const SendRahgiriCode = () => {
-    const sendData = {
-      barcode: codeRahgiri,
-    };
-    const _handleRequestApi = async (id) => {
-      let params = {};
-      let loadData = sendData;
-      let dataUrl = `/app/api/v1/factor/change-status/sent/${id}/`;
-      let response = await ApiRegister().apiRequest(
-        loadData,
-        "POST",
-        dataUrl,
-        true,
-        params
-      );
-      // setconfigOrder(response);
-      // setisShow(true);
-      // setbtnOk(!btnOk);
-
-      // if (response.details === "Done") {
-      //   setconfigOrder(true);
-      // }
     };
     _handleRequestApi(id);
   };
@@ -1500,85 +1484,79 @@ function HomePage({ id }) {
               </div>
 
               {/* کالاهای خریداری شده */}
-              {true && (
-                <div className={styles.purchased_good}>
-                  <h1 className={styles.header}>کالاهای خریداری شده</h1>
-                  <hr />
 
-                  {data.factor_post.map((e, index) => {
-                    return (
+              <div className={styles.purchased_good}>
+                <h1 className={styles.header}>کالاهای خریداری شده</h1>
+                <hr />
+
+                {data.factor_post.map((e, index) => {
+                  return (
+                    <div key={index} className={styles.purchased_good_content}>
+                      <div className={styles.purchased_good_one}>
+                        <Image
+                          src={`${e.product.image_thumbnail_url}`}
+                          width={45}
+                          height={45}
+                        />
+                        <h3 style={{ marginRight: "15px" }}>
+                          {_asist.number(e.product.title)}
+                        </h3>
+                      </div>
                       <div
-                        key={index}
-                        className={styles.purchased_good_content}
+                        className={styles.purchased_good_two}
+                        style={{ marginTop: "16px" }}
                       >
-                        <div className={styles.purchased_good_one}>
-                          <Image
-                            src={`${e.product.image_thumbnail_url}`}
-                            width={45}
-                            height={45}
-                          />
-                          <h3 style={{ marginRight: "15px" }}>
-                            {_asist.number(e.product.title)}
-                          </h3>
+                        <div style={{ display: "flex" }}>
+                          <h4>قیمت :</h4>
+                          <h4 style={{ color: "#364254" }}>
+                            {_asist.PSeparator(e.product.price / 10)}{" "}
+                            <span style={{ color: "#5E7488" }}>تومان</span>
+                          </h4>
                         </div>
-                        <div
-                          className={styles.purchased_good_two}
-                          style={{ marginTop: "16px" }}
-                        >
-                          <div style={{ display: "flex" }}>
-                            <h4>قیمت :</h4>
-                            <h4 style={{ color: "#364254" }}>
-                              {_asist.PSeparator(e.product.price / 10)}{" "}
+                        <div>
+                          <h4 style={{ color: "#364254" }}>
+                            {_asist.number(e.product_count)} <span>عدد</span>
+                          </h4>
+                        </div>
+                      </div>
+                      {isOpen && (
+                        <div className={styles.purchased_good_three}>
+                          <div className={styles.good_three_content}>
+                            <h4>مجموع هزینه محصول</h4>
+                            <h4
+                              style={{ color: "#089319", fontWeight: "bold" }}
+                            >
+                              {_asist.PSeparator(e.get_total_item_price / 10)}+{" "}
                               <span style={{ color: "#5E7488" }}>تومان</span>
                             </h4>
                           </div>
-                          <div>
-                            <h4 style={{ color: "#364254" }}>
-                              {_asist.number(e.product_count)} <span>عدد</span>
-                            </h4>
-                          </div>
-                        </div>
-                        {isOpen && (
-                          <div className={styles.purchased_good_three}>
-                            <div className={styles.good_three_content}>
-                              <h4>مجموع هزینه محصول</h4>
-                              <h4
-                                style={{ color: "#089319", fontWeight: "bold" }}
-                              >
-                                {_asist.PSeparator(e.get_total_item_price / 10)}
-                                +{" "}
-                                <span style={{ color: "#5E7488" }}>تومان</span>
-                              </h4>
-                            </div>
-                            {/* <div className={styles.good_three_content}>
+                          {/* <div className={styles.good_three_content}>
               <h4> هزینه ارسال</h4>
               <h4 style={{ color: "#089319", fontWeight: "bold" }}>
                 12.000+{" "}
                 <span style={{ color: "#5E7488" }}>تومان</span>
               </h4>
             </div> */}
-                            {e.product.old_price !== 0 && (
-                              <div
-                                className={styles.good_three_content}
-                                style={{ marginBottom: "30px" }}
+                          {e.product.old_price !== 0 && (
+                            <div
+                              className={styles.good_three_content}
+                              style={{ marginBottom: "30px" }}
+                            >
+                              <h4>تخفیف محصول</h4>
+                              <h4
+                                style={{
+                                  color: "#D14343",
+                                  fontWeight: "bold",
+                                }}
                               >
-                                <h4>تخفیف محصول</h4>
-                                <h4
-                                  style={{
-                                    color: "#D14343",
-                                    fontWeight: "bold",
-                                  }}
-                                >
-                                  {_asist.PSeparator(
-                                    (e.product.old_price - e.product.price) / 10
-                                  )}
-                                  <span style={{ color: "#5E7488" }}>
-                                    تومان
-                                  </span>
-                                </h4>
-                              </div>
-                            )}
-                            {/* <div
+                                {_asist.PSeparator(
+                                  (e.product.old_price - e.product.price) / 10
+                                )}
+                                <span style={{ color: "#5E7488" }}>تومان</span>
+                              </h4>
+                            </div>
+                          )}
+                          {/* <div
               className={styles.good_three_content}
               style={{ marginBottom: "30px" }}
             >
@@ -1588,7 +1566,7 @@ function HomePage({ id }) {
                 <span style={{ color: "#5E7488" }}>تومان</span>
               </h4>
             </div> */}
-                            {/* <div
+                          {/* <div
               className={styles.good_three_content}
               style={{ marginBottom: "30px" }}
             >
@@ -1597,7 +1575,7 @@ function HomePage({ id }) {
                 0- <span style={{ color: "#5E7488" }}>تومان</span>
               </h4>
             </div> */}
-                            {/* <div
+                          {/* <div
               className={styles.good_three_content}
               style={{ marginBottom: "30px" }}
             >
@@ -1607,57 +1585,56 @@ function HomePage({ id }) {
                 <span style={{ color: "#5E7488" }}>تومان</span>
               </h4>
             </div> */}
-                          </div>
-                        )}
-                        <div className={styles.good_four}>
-                          <button
-                            className={styles.btn}
-                            onClick={() => setIsOpen(!isOpen)}
-                          >
-                            {isOpen ? (
-                              <>
-                                <div
-                                  style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                  }}
-                                >
-                                  <h3>جزییات کمتر</h3>
-                                  <span
-                                    style={{
-                                      fontSize: "16px",
-                                      marginRight: "10px",
-                                    }}
-                                    className="fas fa-chevron-up"
-                                  ></span>
-                                </div>
-                              </>
-                            ) : (
-                              <>
-                                <div
-                                  style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                  }}
-                                >
-                                  <h3>جزییات بیشتر</h3>
-                                  <span
-                                    style={{
-                                      fontSize: "16px",
-                                      marginRight: "10px",
-                                    }}
-                                    className="fas fa-chevron-down"
-                                  ></span>
-                                </div>
-                              </>
-                            )}
-                          </button>
                         </div>
+                      )}
+                      <div className={styles.good_four}>
+                        <button
+                          className={styles.btn}
+                          onClick={() => setIsOpen(!isOpen)}
+                        >
+                          {isOpen ? (
+                            <>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                }}
+                              >
+                                <h3>جزییات کمتر</h3>
+                                <span
+                                  style={{
+                                    fontSize: "16px",
+                                    marginRight: "10px",
+                                  }}
+                                  className="fas fa-chevron-up"
+                                ></span>
+                              </div>
+                            </>
+                          ) : (
+                            <>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                }}
+                              >
+                                <h3>جزییات بیشتر</h3>
+                                <span
+                                  style={{
+                                    fontSize: "16px",
+                                    marginRight: "10px",
+                                  }}
+                                  className="fas fa-chevron-down"
+                                ></span>
+                              </div>
+                            </>
+                          )}
+                        </button>
                       </div>
-                    );
-                  })}
-                </div>
-              )}
+                    </div>
+                  );
+                })}
+              </div>
 
               {/* فاکتور نهایی */}
 
