@@ -60,7 +60,7 @@ export default function ListCardBuy() {
                       className="product-link"
                     >
                       <img
-                        src="https://statics.basalam.com/public/users/13no0/2011/lW23nVJv4TiBsDxfJEKruxOpDVze1bTQSAHtqjHg.jpeg_256X256X70.jpeg"
+                        src={El.product.image_thumbnail_url}
                         className="cart-product-item-img rounded"
                       />
                     </a>
