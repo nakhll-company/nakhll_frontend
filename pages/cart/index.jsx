@@ -15,10 +15,11 @@ import { CustomToast } from "../../components/custom/customToast/CustomToast";
 
 // LIBRARY
 import { ToastContainer, toast } from "react-toastify";
+import { LoadingDelet } from "../../components/custom/Loading/LoadingDelet/LoadingDelet";
 
 export default function Cart() {
   // STATE FOR SAVE PRODUCTS
-  const [All_product_list_buy, setAll_product_list_buy] = useState([]);
+  const [All_product_list_buy, setAll_product_list_buy] = useState({});
 
   // FUNCTION FOR GET ALL DATA FOR CARTS
   const _handleRequestApiAll = async () => {
@@ -47,24 +48,33 @@ export default function Cart() {
 
   //  FUNCTION FOR ADD PRODUCT TO LIST  WHEN CLICKED ON PLUS BUTTON
   const handel_AddProductTOList = async (id) => {
-    let params = {};
-    let loadData = null;
-    let dataUrl = `/cart2/api/cart_items/${id}/add/`;
-    let response = await ApiRegister().apiRequest(
-      loadData,
-      "get",
-      dataUrl,
-      true,
-      params
-    );
-    setAll_product_list_buy(await response.data);
-    // console.log("Pluse :>> ", response);
-    // if (response.status === 200) {
-    toast.success("داده ها با موفقیت ثبت شده اند", {
-      position: "top-right",
-      closeOnClick: true,
-    });
-    // }
+    try {
+      let params = {};
+      let loadData = null;
+      let dataUrl = `/cart2/api/cart_items/${id}/add/`;
+      let response = await ApiRegister().apiRequest(
+        loadData,
+        "get",
+        dataUrl,
+        true,
+        params
+      );
+      setAll_product_list_buy(await response.data);
+      console.log("Pluse :>> ", response);
+      // if (response.status === 200) {
+      toast.success("داده ها با موفقیت ثبت شده اند", {
+        position: "top-right",
+        closeOnClick: true,
+      });
+      // }
+    } catch (e) {
+      console.log("error :>> ", e.response.data[0]);
+      const error = e.response.data[0];
+      toast.error(error, {
+        position: "top-center",
+        closeOnClick: true,
+      });
+    }
   };
 
   // FUNCTION FOR REDUCE PRODUCT FROM LIST WHEN CLICKED ON MINIMUS BUTTON
