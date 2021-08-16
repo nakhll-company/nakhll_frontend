@@ -126,7 +126,8 @@ export default function ListCardBuy() {
                         .slug
                   )
                     ? { position: "relative" }
-                    : { position: "relative", marginTop: "-27px" }
+                    : { position: "relative", marginTop: "-12px",borderTop:"2px dashed hsl(213deg 59% 26%)",
+                  borderTopLeftRadius:"inherit",borderTopRightRadius:"inherit" }
                 }
               >
                 {!(
