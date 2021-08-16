@@ -108,7 +108,8 @@ export default function Cart() {
   const handel_DeleteProductFromList = async (id) => {
     let params = {};
     let loadData = null;
-    let dataUrl = `/cart2/api/cart_items/${id}/`;
+    
+    let dataUrl = `/cart2/api/cart_items/${id}/delete/`;
     let response = await ApiRegister().apiRequest(
       loadData,
       "get",
