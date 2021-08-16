@@ -9,6 +9,7 @@ import Steps from '../../../../components/CheckOutSteps/CheckOutSteps';
 import { getStates } from '../../../../containers/store/methods/getStates';
 import { getBigCities } from '../../../../containers/store/methods/getBigCities';
 import { getCities } from '../../../../containers/store/methods/getCities';
+import { postAddress } from "../../../../containers/cartAddress/methods/postAddress";
 // styles
 import styles from '../../../../styles/pages/cart/newAddress.module.scss';
 /**
@@ -20,7 +21,7 @@ const NewAddress = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = async (data) => {
-        // console.log(">>>", data);
+        postAddress(data);
     };
 
     let [selectState, setSelectState] = useState([]);
@@ -56,20 +57,21 @@ const NewAddress = () => {
                 <section className={styles.body_address}>
                     <form className={styles.address_items_form} onSubmit={handleSubmit(onSubmit)}>
                         <div className={styles.form_group}>
-                            <label htmlFor="name">نام و نام‌خانوادگی گیرندۀ سفارش:</label>
-                            <input type="text" className="form-control" {...register("name", { required: true })} />
+                            <label>نام و نام‌خانوادگی گیرندۀ سفارش:</label>
+                            <input type="text" className="form-control" {...register("receiver_full_name", { required: true })} />
                             <small className="form-text text-muted">همخوان با کارت ملی</small>
-                            {errors.name && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
+                            {errors.receiver_full_name && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
                         </div>
                         <div className={styles.form_group}>
-                            <label htmlFor="state">انتخاب استان:</label>
+                            <label>انتخاب استان:</label>
                             <select className="form-control" {...register("state", { required: true })} onChange={async (event) => {
-                                setSelectBigCities(await getBigCities(event.target.value));
+                                let optionsArray = Object.values(event.target.options);
+                                setSelectBigCities(await getBigCities(optionsArray[event.target.options.selectedIndex].id));
                             }}>
                                 <option></option>
                                 {selectState.map((value, index) => {
                                     return (
-                                        <option key={index} value={value.id}>{value.name}</option>
+                                        <option key={index} value={value.name} id={value.id}>{value.name}</option>
                                     );
                                 })}
                             </select>
@@ -77,26 +79,27 @@ const NewAddress = () => {
                         </div>
                         <div className={styles.form_row}>
                             <div className={`${styles.form_group} col-md-6 col-sm-12`}>
-                                <label htmlFor="bigCity">انتخاب شهرستان:</label>
-                                <select className="form-control col-sm-12" {...register("bigCity", { required: true })} onChange={async (event) => {
-                                    setSelectCities(await getCities(event.target.value));
+                                <label>انتخاب شهرستان:</label>
+                                <select className="form-control col-sm-12" {...register("big_city", { required: true })} onChange={async (event) => {
+                                    let optionsArray = Object.values(event.target.options);
+                                    setSelectCities(await getCities(optionsArray[event.target.options.selectedIndex].id));
                                 }}>
                                     <option></option>
                                     {selectBigCities.map((value, index) => {
                                         return (
-                                            <option key={index} value={value.id}>{value.name}</option>
+                                            <option key={index} value={value.name} id={value.id}>{value.name}</option>
                                         );
                                     })}
                                 </select>
-                                {errors.bigCity && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
+                                {errors.big_city && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
                             </div>
                             <div className={`${styles.form_group} col-md-6 col-sm-12`}>
-                                <label htmlFor="city">انتخاب شهر:</label>
+                                <label>انتخاب شهر:</label>
                                 <select className="form-control col-sm-12" {...register("city", { required: true })}>
                                     <option></option>
                                     {selectCities.map((value, index) => {
                                         return (
-                                            <option key={index} value={value.id}>{value.name}</option>
+                                            <option key={index} value={value.name}>{value.name}</option>
                                         );
                                     })}
                                 </select>
@@ -104,20 +107,20 @@ const NewAddress = () => {
                             </div>
                         </div>
                         <div className={styles.form_group}>
-                            <label htmlFor="address">نشانی دقیق پستی:</label>
+                            <label>نشانی دقیق پستی:</label>
                             <textarea rows="4" cols="30" className="form-control" {...register("address", { required: true })}></textarea>
                             {errors.address && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
                         </div>
                         <div className={styles.form_row}>
                             <div className={`${styles.form_group} col-md-6 col-sm-12`}>
-                                <label htmlFor="postalCode">کد پستی:</label>
-                                <input type="text" className="form-control" {...register("postalCode", { required: true })} />
-                                {errors.postalCode && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
+                                <label>کد پستی:</label>
+                                <input type="text" className="form-control" {...register("zip_code", { required: true })} />
+                                {errors.zip_code && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
                             </div>
                             <div className={`${styles.form_group} col-md-6 col-sm-12`}>
-                                <label htmlFor="mobile">موبایل گیرندۀ سفارش:</label>
-                                <input type="text" className="form-control" {...register("mobile", { required: true })} />
-                                {errors.mobile && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
+                                <label>موبایل گیرندۀ سفارش:</label>
+                                <input type="text" className="form-control" {...register("receiver_mobile_number", { required: true })} />
+                                {errors.receiver_mobile_number && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
                             </div>
                         </div>
                         <div className={`${styles.form_row} pt-3`}>

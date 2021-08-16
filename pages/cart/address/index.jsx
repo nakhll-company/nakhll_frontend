@@ -67,7 +67,7 @@ const Address = () => {
                                         <div id={`secondCircle${index}`} className={styles.address_item_embeded_circle}></div>
                                     </div>
                                     <div className={styles.address_item_detail}>
-                                        <b>{value.user.first_name} {value.user.last_name}</b> <span>موبایل:</span> <b>{_asist.number(`${value.phone_number}`)}</b>
+                                        <b>{value.receiver_full_name}</b> <span>موبایل:</span> <b>{_asist.number(`${value.receiver_mobile_number}`)}</b>
                                         <br />
                                         <b>{value.big_city}</b><span>/ {_asist.number(`${value.city} ${value.address}`)}</span>
                                     </div>

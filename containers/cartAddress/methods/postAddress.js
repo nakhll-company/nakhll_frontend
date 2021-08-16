@@ -1,10 +1,10 @@
 import { ApiRegister } from '../../../services/apiRegister/ApiRegister';
 import { toast } from "react-toastify";
 // get address of user
-export async function getAddress() {
+export async function postAddress(data) {
     let response = await ApiRegister().apiRequest(
-        null,
-        "get",
+        data,
+        "POST",
         "/logistic/api/address/",
         true,
         ""

@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 export async function getAddress(setAddress) {
     let response = await ApiRegister().apiRequest(
         null,
-        "POST",
+        "GET",
         "/logistic/api/address/",
         true,
         ""
