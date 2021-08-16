@@ -1,6 +1,7 @@
 // node libraries
 import { Provider } from "react-redux";
 import { Store } from "../redux/store";
+import { useRouter } from "next/router";
 // components
 import MyLayout from "../components/layout/Layout";
 import ShopLayout from "../components/shopLayout";
@@ -8,7 +9,6 @@ import ShopLayout from "../components/shopLayout";
 // add bootstrap css
 import "bootstrap/dist/css/bootstrap.css";
 import "../styles/globals.scss";
-import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();

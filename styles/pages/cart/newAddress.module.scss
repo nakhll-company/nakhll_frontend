@@ -12,6 +12,7 @@
     text-align: right;
     direction: rtl;
     margin: auto;
+    padding: 0px !important;
     // header
     .header{
         display: flex;
@@ -53,18 +54,24 @@
                 margin-right: -5px;
                 margin-left: -5px;
                 @media (max-width:767px) {
-                    flex-direction: column;
-                    
+                    flex-direction: column;  
                 }
             }
             // form group
             .form_group{
+                // display: flex;
+                // flex-direction: column;
                 padding: 8px;
             }
             // errors
             .form_errors{
                 font-size: small;
                 color: red;
+            }
+            // buttons
+            .buttons_form{
+                margin-left: -2px;
+                margin-right: -2px;
             }
         }
     }

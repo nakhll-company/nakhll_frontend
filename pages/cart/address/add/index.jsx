@@ -17,10 +17,10 @@ import styles from '../../../../styles/pages/cart/newAddress.module.scss';
  */
 const NewAddress = () => {
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = async (data) => {
-        console.log(">>>", data);
+        // console.log(">>>", data);
     };
 
     let [selectState, setSelectState] = useState([]);
@@ -58,7 +58,7 @@ const NewAddress = () => {
                         <div className={styles.form_group}>
                             <label htmlFor="name">نام و نام‌خانوادگی گیرندۀ سفارش:</label>
                             <input type="text" className="form-control" {...register("name", { required: true })} />
-                            <small className="form-text text-muted">همخوان با کارت ملی</small><br />
+                            <small className="form-text text-muted">همخوان با کارت ملی</small>
                             {errors.name && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
                         </div>
                         <div className={styles.form_group}>
@@ -120,14 +120,14 @@ const NewAddress = () => {
                                 {errors.mobile && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
                             </div>
                         </div>
-                        <div className={styles.form_row}>
-                            <div className="col">
+                        <div className={`${styles.form_row} pt-3`}>
+                            <div className={`col-md-6 ${styles.buttons_form}`}>
                                 <button type="submit" className="btn btn-primary w-100 d-flex justify-content-center align-items-center">تایید</button>
                             </div>
                             &nbsp;
-                            <div className="col">
+                            <div className={`col-md-6 ${styles.buttons_form}`}>
                                 <Link href="/cart/address">
-                                    <a className="btn btn-secondary w-100 nuxt-link-active"> بازگشت </a>
+                                    <a className="btn btn-secondary w-100"> بازگشت </a>
                                 </Link>
                             </div>
                         </div>

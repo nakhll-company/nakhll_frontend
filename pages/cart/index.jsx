@@ -35,7 +35,7 @@ export default function Cart() {
       );
       setAll_product_list_buy(await response.data);
     } catch (e) {
-      console.log("e :>> ", e);
+      // console.log("e :>> ", e);
     }
   };
 
@@ -58,7 +58,7 @@ export default function Cart() {
       params
     );
     setAll_product_list_buy(await response.data);
-    console.log("Pluse :>> ", response);
+    // console.log("Pluse :>> ", response);
     // if (response.status === 200) {
     toast.success("داده ها با موفقیت ثبت شده اند", {
       position: "top-right",
@@ -82,7 +82,7 @@ export default function Cart() {
     );
     setAll_product_list_buy(await response.data);
 
-    console.log("Reduc :>> ", response);
+    // console.log("Reduc :>> ", response);
     // if (response.status === 200) {
     toast.success("داده ها با موفقیت ثبت شده اند", {
       position: "top-right",
@@ -105,7 +105,7 @@ export default function Cart() {
       params
     );
     setAll_product_list_buy(await response.data);
-    console.log("delete :>> ", response.data);
+    // console.log("delete :>> ", response.data);
     toast.success("داده ها با موفقیت ثبت شده اند", {
       position: "top-right",
       closeOnClick: true,
@@ -127,13 +127,13 @@ export default function Cart() {
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-            crossorigin="anonymous"
+            crossOrigin="anonymous"
           />
           <link
             rel="stylesheet"
             href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
             integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
-            crossorigin="anonymous"
+            crossOrigin="anonymous"
           ></link>
         </Head>
         <section className="container container--mob pb-5 ">
