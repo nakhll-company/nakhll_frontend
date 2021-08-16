@@ -126,7 +126,7 @@ export default function ListCardBuy() {
                         .slug
                   )
                     ? { position: "relative" }
-                    : { position: "relative", marginTop: "-32px" }
+                    : { position: "relative", marginTop: "-27px" }
                 }
               >
                 {!(
@@ -265,6 +265,7 @@ export default function ListCardBuy() {
                           </div>
                           <div className="mr-auto">
                             <span
+                            style={{display:"block"}}
                               className={`cart-product-item-primary-price ${
                                 El.product.discount == 0 && "opacity_none"
                               }`}
