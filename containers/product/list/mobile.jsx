@@ -27,16 +27,16 @@ const MobileList = ({ loading, productList, activeHojreh }) => {
                         فیلتر
                     </a>
                 </Link>
-                <span className={styles.product_header_link} onClick={() => {
+                <a className={styles.product_header_link} onClick={() => {
                     setShowModalSort(showModal => !showModal);
                 }}>
                     <Image src="/sort.svg" alt="sort" className={styles.product_header_link_icon} width="15" height="15" />
-                    ترتیب نمایش</span>
-                <span className={styles.product_header_link} onClick={() => {
+                    ترتیب نمایش</a>
+                <a className={styles.product_header_link} onClick={() => {
                     setShowModalEdit(showModal => !showModal);
                 }}>
                     <Image src="/edit.svg" alt="edit" className={styles.product_header_link_icon} width="15" height="15" />
-                    ویرایش گروهی</span>
+                    ویرایش گروهی</a>
             </div>
             {loading ?
                 <div className={styles.loading_image}>

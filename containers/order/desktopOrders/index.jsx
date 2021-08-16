@@ -107,29 +107,19 @@ export default function DesktopOrders({ loading, ordersList, type, activeHojreh,
 
                                     <tr key={index}>
                                         <Link href={`/fp/order/orderdetail/${value.id}`}>
-                                            <td>
-                                                {index + 1}
-                                            </td>
+                                            <td>{index + 1}</td>
                                         </Link>
                                         <Link href={`/fp/order/orderdetail/${value.id}`}>
-                                            <td>
-                                                {value.factor_number}
-                                            </td>
+                                            <td>{value.factor_number}</td>
                                         </Link>
                                         <Link href={`/fp/order/orderdetail/${value.id}`}>
-                                            <td>
-                                                {value.user}
-                                            </td>
+                                            <td>{value.user}</td>
                                         </Link>
                                         <Link href={`/fp/order/orderdetail/${value.id}`}>
-                                            <td>
-                                                {new Date(value.order_date).toLocaleDateString('fa-IR')}
-                                            </td>
+                                            <td>{value.order_date}</td>
                                         </Link>
                                         <Link href={`/fp/order/orderdetail/${value.id}`}>
-                                            <td>
-                                                {new Date(value.max_due_date).toLocaleDateString('fa-IR')}
-                                            </td>
+                                            <td>{value.max_due_date}</td>
                                         </Link>
                                         <Link href={`/fp/order/orderdetail/${value.id}`}>
                                             <td>

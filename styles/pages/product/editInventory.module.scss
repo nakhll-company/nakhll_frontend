@@ -38,6 +38,11 @@
         padding-bottom: 62px !important;
         // items
         .form_edit_card{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-align: center;
+            flex-wrap: wrap;
             height: 62px;
             background: #FFFFFF;
             border: 1px solid #E0E6E9;
@@ -46,16 +51,13 @@
             border-radius: 5px;
             font-weight: normal;
             font-size: 13px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            text-align: center;
-            color: #364254;
             padding: 14px;
             margin: 0px 15px;
             margin-bottom: 10px;
+            color: red;
             // label
             .form_edit_label{
+                color: #364254;
                 width:70%;
                 white-space: nowrap; 
                 overflow: hidden;

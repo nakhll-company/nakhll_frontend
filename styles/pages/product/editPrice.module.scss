@@ -31,7 +31,12 @@
         padding-bottom: 62px !important;
         // items
         .form_edit_card{
-            height: 62px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            text-align: center;
+            min-height: 62px;
             background: #FFFFFF;
             border: 1px solid #E0E6E9;
             box-sizing: border-box;
@@ -39,11 +44,7 @@
             border-radius: 5px;
             font-weight: normal;
             font-size: 13px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            text-align: center;
-            color: #364254;
+            color: red;
             padding: 14px;
             margin: 0px 15px;
             margin-bottom: 10px;
@@ -51,9 +52,9 @@
             .form_edit_label{
                 width:25%;
                 white-space: nowrap; 
-                // width: 50px; 
                 overflow: hidden;
                 text-overflow: ellipsis;
+                color:#364254;
             }
             // input
             .form_edit_input{

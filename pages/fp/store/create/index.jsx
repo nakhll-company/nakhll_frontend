@@ -53,8 +53,6 @@ function NewStore({ getUserInfo, userInfo }) {
         success: "false"
     });
 
-
-
     const { width } = useViewport();
     const breakpoint = 620;
 
@@ -68,17 +66,17 @@ function NewStore({ getUserInfo, userInfo }) {
         <div className={styles.mainWrapper}>
             <Head>
                 <title>ثبت حجره</title>
-                <link
-                    rel="stylesheet"
-                    href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-                />
-                <meta
-                    name="viewport"
-                    content="initial-scale=1.0, width=device-width"
-                />
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" />
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             {width < breakpoint && <MobileHeader title="ثبت حجره" type="close" />}
             {/* form */}
+            {Object.keys(userInfo).length === 0 &&
+                <div className={styles.loading}>
+                    <h1>لطفا منتظر بمانید</h1>
+                    <Image src="/loading.svg" width="45" height="45" />
+                </div>
+            }
             {(userInfo && userInfo.user && userInfo.user.first_name && userInfo.user.last_name) ?
                 <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
                     <div className={styles.form_right}>
@@ -86,11 +84,6 @@ function NewStore({ getUserInfo, userInfo }) {
                         <label className={styles.form_label}>نام حجره</label>
                         <input placeholder="پسته کرمان" className={styles.form_input} {...register("Title", { required: true })} />
                         {errors.Title && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
-                        {/* slug */}
-                        {/* <label className={styles.form_label}>آدرس اینترنتی حجره</label>
-                        <input style={{ textAlign: "left" }} className={styles.form_input}
-                            placeholder="/nakhll.com" {...register("Slug", { required: true })} />
-                        {errors.Slug && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>} */}
                         {/* state */}
                         <label className={styles.form_label}>استان</label>
                         <select className={styles.form_select}  {...register("State", { required: true })} onChange={async (event) => {
@@ -149,20 +142,22 @@ function NewStore({ getUserInfo, userInfo }) {
                         <p>
                             نام حجره خود را به زبان فارسی انتخاب کنید. نام حجره باید مختص شما و جز مالکیت شخص دیگری نباشد. سعی شود تا نام نامناسب و بیگانه استفاده نباشد. این نام هویت و شخصیت شماست و برای کاربران نمایش داده می شود.
                         </p>
-                        {/* <p style={{ margin: "0px" }}>
-                            آدرس اینترنتی، نشانی حجره شما در نخل است. نام حجره خود را ﺑﺎ ﺣﺮوف و اﻋﺪاد اﻧﮕﻠﯿﺴﯽ ﺑﻨﻮﯾﺴﯿﺪ. برای فاصه از (_) استفاده کنید.
-                        </p> */}
                     </div>
                 </form> :
                 <h1 className={styles.info_completed}>لطفا ابتدا نام و نام خانوادگی خود را در صفحه پروفایل وارد نمایید</h1>
             }
-            {showSuccessPage.loading === "true" && <div className={styles.loading}>
-                <h1>لطفا منتظر بمانید</h1>
-                <Image src="/loading.svg" width="45" height="45" />
-            </div>}
+            {/* loading */}
+            {showSuccessPage.loading === "true" &&
+                <div className={styles.loading}>
+                    <h1>لطفا منتظر بمانید</h1>
+                    <Image src="/loading.svg" width="45" height="45" />
+                </div>
+            }
+            {/* success page */}
             {showSuccessPage.success === "true" && <SuccessPage />}
         </div>
     );
 }
+// export
 const connector = connect(mapState, mapDispatch);
 export default connector(NewStore);
