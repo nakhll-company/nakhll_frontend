@@ -150,7 +150,7 @@ export default function Cart() {
         </Head>
         <section className="container container--mob pb-5 ">
           <CheckOutSteps step="1" />
-          <MiniCardBuy />
+          
 
           <div className="row mx-auto mt-4" style={{ maxWidth: "72rem" }}>
             <ListCardBuy />
