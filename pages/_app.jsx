@@ -6,7 +6,7 @@ import MyLayout from "../components/layout/Layout";
 import ShopLayout from "../components/shopLayout";
 // scss
 // add bootstrap css
-import "bootstrap/dist/css/bootstrap.css";
+// import "bootstrap/dist/css/bootstrap.css";
 import "../styles/globals.scss";
 import { useRouter } from "next/router";
 
