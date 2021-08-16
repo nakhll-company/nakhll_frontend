@@ -10,6 +10,8 @@ import ContextProduct from "./Context/context";
 export const MenuMobile = () => {
   const { All_product_list_buy } = useContext(ContextProduct);
   return (
+      <>
+      {Object.keys(All_product_list_buy).length>0 &&
     <div className={styles.fix_bottom}>
       <div>
         <Link href="/cart/address">
@@ -43,5 +45,7 @@ export const MenuMobile = () => {
         </div>
       </div>
     </div>
+}
+</>
   );
 };
