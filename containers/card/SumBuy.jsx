@@ -17,7 +17,7 @@ export default function SumBuy() {
             <div className="cart-invoice-primary-price">
               <span>قیمت محصولات:</span>{" "}
               <span>
-                {_asist.PSeparator(All_product_list_buy.total_old_price)}
+                {_asist.PSeparator(All_product_list_buy.total_old_price/10)}
 
                 <i className="bi bi-toman font-size1-5 font-weight-500"></i>
               </span>
@@ -26,8 +26,8 @@ export default function SumBuy() {
               <span>تخفیف محصولات:</span>{" "}
               <span>
                 {_asist.PSeparator(
-                  All_product_list_buy.total_old_price -
-                    All_product_list_buy.total_price
+                  (All_product_list_buy.total_old_price -
+                    All_product_list_buy.total_price)/10
                 )}
 
                 <i className="bi bi-toman font-size1-5 font-weight-500"></i>
@@ -40,7 +40,7 @@ export default function SumBuy() {
             <div className="cart-invoice-total-price">
               <span>مبلغ قابل پرداخت</span>{" "}
               <span className="font-weight-500">
-                {_asist.PSeparator(All_product_list_buy.total_price)}
+                {_asist.PSeparator(All_product_list_buy.total_price/10)}
 
                 <i className="bi bi-toman font-size1-5 font-weight-500"></i>
               </span>

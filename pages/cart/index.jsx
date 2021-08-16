@@ -16,6 +16,7 @@ import { CustomToast } from "../../components/custom/customToast/CustomToast";
 // LIBRARY
 import { ToastContainer, toast } from "react-toastify";
 import { LoadingDelet } from "../../components/custom/Loading/LoadingDelet/LoadingDelet";
+import { MenuMobile } from "../../containers/card/MenuMobile";
 
 export default function Cart() {
   // STATE FOR SAVE PRODUCTS
@@ -91,6 +92,7 @@ export default function Cart() {
       params
     );
     setAll_product_list_buy(await response.data);
+    console.log("MInis :>> ", response.data);
 
     // console.log("Reduc :>> ", response);
     // if (response.status === 200) {
@@ -115,7 +117,7 @@ export default function Cart() {
       params
     );
     setAll_product_list_buy(await response.data);
-    // console.log("delete :>> ", response.data);
+    console.log("delete :>> ", response.data);
     toast.success("داده ها با موفقیت ثبت شده اند", {
       position: "top-right",
       closeOnClick: true,
@@ -155,6 +157,8 @@ export default function Cart() {
             <SumBuy />
           </div>
         </section>
+
+        <MenuMobile/>
         <ToastContainer />
       </div>
     </ContextProduct.Provider>

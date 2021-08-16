@@ -26,7 +26,7 @@ export default function MiniCardBuy() {
             جزئیات
           </a>{" "} */}
           <a
-            href="https://payment.basalam.com/payment/3362/do/736810?callback=cart/payment/result"
+            href="#"
             onClick={() => {}}
             style={{ backgroundColor: "1b3e68" }}
             className="btn btn-buy mr-3 order-lg-1"
