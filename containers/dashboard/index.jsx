@@ -78,7 +78,8 @@ function Dashboard({ activeHojreh }) {
                   className="fas fa-cart-plus fa-3x"
                   style={{ color: "#1b3e68" }}
                 ></i>
-                <h1>{_asist.number(api.uncompleted_fators)}</h1>
+                <h1 style={{
+                    fontSize:"18px"}}>{_asist.number(api.uncompleted_fators)}</h1>
                 <h4>سفارش ها تکمیل نشده</h4>
               </div>
             </Link>
@@ -88,7 +89,8 @@ function Dashboard({ activeHojreh }) {
                   className="fas fa-user-clock fa-3x"
                   style={{ color: "#1b3e68" }}
                 ></i>
-                <h1>{_asist.number(api.uncomfirmed_factors)}</h1>
+                <h1 style={{
+                    fontSize:"18px"}}>{_asist.number(api.uncomfirmed_factors)}</h1>
                 <h4>سفارش های تکمیل شده</h4>
               </div>
             </Link>
@@ -97,7 +99,8 @@ function Dashboard({ activeHojreh }) {
                 className="far fa-comment-alt fa-3x"
                 style={{ color: "#1b3e68" }}
               ></i>
-              <h1>{_asist.number(api.unread_comments_count)}</h1>
+              <h1 style={{
+                    fontSize:"18px"}}>{_asist.number(api.unread_comments_count)}</h1>
               <h4>دیدگاه های تازه</h4>
             </div>
             <div className={styles.left_one_1}>
@@ -105,7 +108,8 @@ function Dashboard({ activeHojreh }) {
                 className="fas fa-wallet fa-3x"
                 style={{ color: "#1b3e68" }}
               ></i>
-              <h1>
+              <h1 style={{
+                    fontSize:"18px"}}>
                 {_asist.number(api.balance)}
                 <span style={{ marginRight: "5px" }}>تومان</span>
               </h1>
@@ -176,7 +180,8 @@ function Dashboard({ activeHojreh }) {
                   style={{
                     display: "inline-block",
                     color: " black",
-                    marginLeft: "0.5rem",
+                    marginLeft: "5px",
+                    fontSize:"18px"
                   }}
                 >
                   {_asist.number(api.active_products)}
@@ -189,7 +194,8 @@ function Dashboard({ activeHojreh }) {
                   style={{
                     display: "inline-block",
                     color: "black",
-                    marginLeft: "0.5rem",
+                    marginLeft: "5px",
+                    fontSize:"18px"
                   }}
                 >
                   {_asist.number(api.nearly_outofstock_products)}
@@ -202,7 +208,8 @@ function Dashboard({ activeHojreh }) {
                   style={{
                     display: "inline-block",
                     color: "black",
-                    marginLeft: "0.5rem",
+                    marginLeft: "5px",
+                    fontSize:"18px"
                   }}
                 >
                   {_asist.number(api.inactive_products)}
@@ -215,7 +222,8 @@ function Dashboard({ activeHojreh }) {
                   style={{
                     display: "inline-block",
                     color: " black",
-                    marginLeft: "0.5rem",
+                    marginLeft: "5px",
+                    fontSize:"18px"
                   }}
                 >
                   {_asist.number(api.outofstock_products)}
@@ -238,7 +246,8 @@ function Dashboard({ activeHojreh }) {
                   style={{
                     display: "inline-block",
                     color: " black",
-                    marginLeft: "0.5rem",
+                    marginLeft: "5px",
+                    fontSize:"18px"
                   }}
                 >
                   {api.current_week_total_sell &&
@@ -258,7 +267,8 @@ function Dashboard({ activeHojreh }) {
                   style={{
                     display: " inline-block",
                     color: "black",
-                    marginLeft: "0.5rem",
+                    marginLeft: "5px",
+                    fontSize:"18px"
                   }}
                 >
                   {api.last_month_total_sell &&
@@ -278,7 +288,8 @@ function Dashboard({ activeHojreh }) {
                   style={{
                     display: "inline-block",
                     color: "black",
-                    marginLeft: "0.5rem",
+                    marginLeft: "5px",
+                    fontSize:"18px"
                   }}
                 >
                   {_asist.number(
