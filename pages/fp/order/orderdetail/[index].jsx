@@ -1135,7 +1135,7 @@ function HomePage({ id }) {
                               if (response.status === 200) {
                                 setshowMessage(1);
                                 setIsLoading(false);
-                                setbtnOk(!btnOk);
+                                
                               }
                             } catch (err) {
                               let masage = err.response.data.barcode[0];
