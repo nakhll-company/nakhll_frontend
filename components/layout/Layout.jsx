@@ -19,24 +19,25 @@ import { ToastContainer } from "react-toastify";
 function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
   const [selectShop, setselectShop] = useState("");
   const [isShowOrder, setisShowOrder] = useState(false);
-  
+
   const [Title, setTitle] = useState("");
   const router = useRouter();
   const { width } = useViewport();
   // STATE FOR SET LINK SHOP
-  const [slugHojreh, setSlugHojreh] = useState("")
+  const [slugHojreh, setSlugHojreh] = useState("");
   const breakpoint = 620;
   const ExitDash = () => {
     location.replace("https://www.nakhll.com");
   };
   useEffect(() => {
     Object.keys(userInfo).length === 0 && getUserInfo();
-    if (selectShop.length === 0 && Object.keys(userInfo).length > 0 && userInfo.shops.length > 0 ) {
-      
-        getActiveHojreh(userInfo.shops[0].slug)
-        setSlugHojreh(userInfo.shops[0].slug)
-       
-        
+    if (
+      selectShop.length === 0 &&
+      Object.keys(userInfo).length > 0 &&
+      userInfo.shops.length > 0
+    ) {
+      getActiveHojreh(userInfo.shops[0].slug);
+      setSlugHojreh(userInfo.shops[0].slug);
     }
   }, [userInfo.shops]);
 
@@ -85,7 +86,10 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   alt="Picture of the author"
                   width={60}
                   height={60}
-                  onClick={() => {slugHojreh !=="" && location.replace(`https://nakhll.com/${slugHojreh}/`)}}
+                  onClick={() => {
+                    slugHojreh !== "" &&
+                      location.replace(`https://nakhll.com/${slugHojreh}/`);
+                  }}
                   data-toggle="tooltip"
                   data-placement="bottom"
                   title="حجره"
@@ -114,7 +118,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
               <span
                 style={{
                   marginRight: "0",
-                  marginLeft: "90px",
+                  marginLeft: "110px",
                   cursor: "pointer",
                 }}
               >
@@ -132,16 +136,72 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
               </span>
             </div>
           </div>
-
+        </header>
+      )}
+      {width < breakpoint && (
+        <header>
           <div className={styles.hedtop_mobile}>
             <h1>پیشخوان</h1>
-            <span style={{ marginRight: "102px" }}>
-              <Image
-                src="/image/LOGO_500.png"
-                alt="Picture of the author"
-                width={60}
-                height={60}
-              />
+            <span >
+            <span
+                className={styles.icons}
+                style={{
+                  
+                  cursor: "pointer",
+                }}
+              >
+                <Image
+                  src="/icons/Hojreh.png"
+                  alt="Picture of the author"
+                  width={30}
+                  height={30}
+                  onClick={() => {
+                    slugHojreh !== "" &&
+                      location.replace(`https://nakhll.com/${slugHojreh}/`);
+                  }}
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  title="حجره"
+                />{" "}
+              </span>
+              <span
+                style={{
+                  
+                  cursor: "pointer",
+                }}
+              >
+                <Image
+                  src="/icons/iconpro.png"
+                  alt="Picture of the author"
+                  width={30}
+                  height={30}
+                  onClick={() =>
+                    location.replace("https://nakhll.com/profile/dashboard/")
+                  }
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  title="پروفایل"
+                />{" "}
+              </span>
+              <span
+                style={{
+                  
+                  cursor: "pointer",
+                }}
+              >
+                {" "}
+                <Image
+                  src="/icons/Nakhll.png"
+                  alt="Picture of the author"
+                  width={30}
+                  height={30}
+                  onClick={() => location.replace("https://nakhll.com/")}
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  title="نخل"
+                />
+              </span>
+           
             </span>
           </div>
         </header>
