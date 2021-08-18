@@ -17,6 +17,7 @@
         "lodash": "^4.17.21",
         "next": "10.x",
         "react": "17.x",
+        "react-confetti": "^6.0.1",
         "react-dom": "17.x",
         "react-easy-crop": "^3.5.2",
         "react-hook-form": "^7.11.1",
