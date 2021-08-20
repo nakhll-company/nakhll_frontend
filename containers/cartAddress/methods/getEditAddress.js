@@ -1,19 +1,16 @@
 import { ApiRegister } from '../../../services/apiRegister/ApiRegister';
 import { toast } from "react-toastify";
 // get address of user
-export async function postAddress(data) {
+export async function getEditAddress(id, setEditAddressData) {
     let response = await ApiRegister().apiRequest(
-        data,
-        "POST",
-        "/logistic/api/address/",
+        null,
+        "GET",
+        `/logistic/api/address/${id}/`,
         true,
         ""
     );
-    if (response.status === 201) {
-        toast.success("آدرس مورد نظر با موفقیت اضافه شد", {
-            position: "top-right",
-            closeOnClick: true,
-        });
+    if (response.status === 200) {
+        setEditAddressData(response.data);
     } else {
         toast.error("خطایی در دریافت داده ها پیش آمده است", {
             position: "top-right",

@@ -1,6 +1,7 @@
 // node libraries
 import Head from "next/head";
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Assistent from "zaravand-assistent-number";
 import { useState, useEffect } from 'react';
 // componentes
@@ -9,6 +10,7 @@ import DeleteAddress from '../../../containers/cartAddress/deleteAddress';
 import Steps from '../../../components/CheckOutSteps/CheckOutSteps';
 // methods
 import { getAddress } from '../../../containers/cartAddress/methods/getAddress';
+import { checkUserLogin } from '../../../containers/cartAddress/methods/checkUserLogin';
 // styles
 import styles from '../../../styles/pages/cart/address.module.scss';
 /**
@@ -18,14 +20,17 @@ import styles from '../../../styles/pages/cart/address.module.scss';
 const _asist = new Assistent();
 const Address = () => {
 
+    const router = useRouter();
+
     let [showModal, setShowModal] = useState({
         show: false,
         id: 0
     });
     let [address, setAddress] = useState([]);
 
-    useEffect(() => {
-        getAddress(setAddress);
+    useEffect(async () => {
+        await checkUserLogin();
+        await getAddress(setAddress);
     }, []);
 
     return (
@@ -62,9 +67,20 @@ const Address = () => {
                     <form className={styles.address_items_form} onSubmit={(event) => { event.preventDefault() }}>
                         {address.map((value, index) => {
                             return (
-                                <label key={index} className={styles.address_items_label}>
+                                <label key={index} className={styles.address_items_label} onClick={(event) => {
+                                    let activeLabels = document.querySelectorAll(`.${styles.active_address}`);
+                                    let activeCircles = document.querySelectorAll(`.${styles.active_circle}`);
+                                    activeLabels.forEach((value) => {
+                                        value.classList.remove(`${styles.active_address}`);
+                                    });
+                                    activeCircles.forEach((value) => {
+                                        value.classList.remove(`${styles.active_circle}`);
+                                    });
+                                    event.currentTarget.classList.add(`${styles.active_address}`);
+                                    document.getElementById(`firstCircle${index}`).classList.add(`${styles.active_circle}`);
+                                }}>
                                     <div id={`firstCircle${index}`} className={styles.address_item_circle}>
-                                        <div id={`secondCircle${index}`} className={styles.address_item_embeded_circle}></div>
+                                        <div className={styles.address_item_embeded_circle}></div>
                                     </div>
                                     <div className={styles.address_item_detail}>
                                         <b>{value.receiver_full_name}</b> <span>موبایل:</span> <b>{_asist.number(`${value.receiver_mobile_number}`)}</b>
@@ -72,7 +88,9 @@ const Address = () => {
                                         <b>{value.big_city}</b><span>/ {_asist.number(`${value.city} ${value.address}`)}</span>
                                     </div>
                                     <div className={styles.address_item_icons}>
-                                        <i className="far fa-edit mx-3"></i>
+                                        <i className="far fa-edit mx-3" onClick={() => {
+                                            router.push(`/cart/address/update/${value.id}`)
+                                        }}></i>
                                         <i className="far fa-trash-alt" onClick={(e) => {
                                             e.stopPropagation();
                                             setShowModal({

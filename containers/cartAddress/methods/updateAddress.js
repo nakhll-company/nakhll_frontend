@@ -1,16 +1,16 @@
 import { ApiRegister } from '../../../services/apiRegister/ApiRegister';
 import { toast } from "react-toastify";
 // get address of user
-export async function postAddress(data) {
+export async function deleteAddress(id) {
     let response = await ApiRegister().apiRequest(
-        data,
-        "POST",
-        "/logistic/api/address/",
+        null,
+        "PUT",
+        `/logistic/api/address/${id}/`,
         true,
         ""
     );
-    if (response.status === 201) {
-        toast.success("آدرس مورد نظر با موفقیت اضافه شد", {
+    if (response.status === 200) {
+        toast.success("آدرس مورد نظر حذف شد", {
             position: "top-right",
             closeOnClick: true,
         });
