@@ -438,3 +438,46 @@ img {
 .margin_top_zero {
   margin-top: 0 !important;
 }
+
+.rainbow {
+  background-color: #343a40;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  padding: 8px 16px;
+}
+
+.rainbow-1:hover {
+  background-image: linear-gradient(
+    90deg,
+    #00c0ff 0%,
+    #ffcf00 49%,
+    #fc4f4f 80%,
+    #00c0ff 100%
+  );
+  animation: slidebg 5s linear infinite;
+}
+
+@keyframes slidebg {
+  to {
+    background-position: 20vw;
+  }
+}
+
+.raise:hover,
+.raise:focus {
+  box-shadow: 0 0.8px 0.8px -0.5px #1b3e68;
+  transform: translateY(-0.25em);
+}
+
+.btnplus {
+  background-color: rgb(255, 255, 255);
+  outline: 0px;
+  border: 0px;
+}
+
+.btnminus {
+  background-color: rgb(255, 255, 255);
+  outline: 0px;
+  border: 0px;
+}

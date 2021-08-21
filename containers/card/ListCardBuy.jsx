@@ -12,97 +12,97 @@ export default function ListCardBuy() {
   const [correctStructureProduct, setCorrectStructureProduct] = useState([]);
   const [helper_for_product, setHelper_for_product] = useState({});
 
-  const TrueStructure = [
-    {
-      shop: "pestehKerman",
-      slug: "",
-      url: "www",
-      product: [
-        {
-          id: 12,
-          img: "",
-          imgUrl: "",
-          total_old_price: "",
-          total_price: "",
-          title: "pestehAkbari",
-          count: 3,
-          id: "",
-          discount: 14,
-        },
-        {
-          id: 12,
-          img: "",
-          imgUrl: "",
-          total_old_price: "",
-          total_price: "",
-          title: "pestehAkbari",
-          count: 3,
-          id: "",
-          discount: 14,
-        },
-        {
-          id: 12,
-          img: "",
-          imgUrl: "",
-          total_old_price: "",
-          total_price: "",
-          title: "pestehAkbari",
-          count: 3,
-          id: "",
-          discount: 14,
-        },
-        {
-          id: 12,
-          img: "",
-          imgUrl: "",
-          total_old_price: "",
-          total_price: "",
-          title: "pestehAkbari",
-          count: 3,
-          id: "",
-          discount: 14,
-        },
-        {
-          id: 12,
-          img: "",
-          imgUrl: "",
-          total_old_price: "",
-          total_price: "",
-          title: "pestehAkbari",
-          count: 3,
-          id: "",
-          discount: 14,
-        },
-        {
-          id: 12,
-          img: "",
-          imgUrl: "",
-          total_old_price: "",
-          total_price: "",
-          title: "pestehAkbari",
-          count: 3,
-          id: "",
-          discount: 14,
-        },
-      ],
-    },
-    {
-      id: 12,
-      img: "",
-      imgUrl: "",
-      total_old_price: "",
-      total_price: "",
-      title: "pestehAkbari",
-      count: 3,
-      id: "",
-      discount: 14,
-      product: [{}, {}],
-    },
-    {
-      product: [{}],
-    },
-    {},
-  ];
+  // const TrueStructure = [
+  //   {
+  //     shop: "pestehKerman",
+  //     slug: "",
+  //     url: "www",
+  //     product: [
+  //       {
+  //         id: 12,
+  //         img: "",
+  //         imgUrl: "",
+  //         total_old_price: "",
+  //         total_price: "",
+  //         title: "pestehAkbari",
+  //         count: 3,
+  //         id: "",
+  //         discount: 14,
+  //       },
+  //       {
+  //         id: 12,
+  //         img: "",
+  //         imgUrl: "",
+  //         total_old_price: "",
+  //         total_price: "",
+  //         title: "pestehAkbari",
+  //         count: 3,
+  //         id: "",
+  //         discount: 14,
+  //       },
+  //       {
+  //         id: 12,
+  //         img: "",
+  //         imgUrl: "",
+  //         total_old_price: "",
+  //         total_price: "",
+  //         title: "pestehAkbari",
+  //         count: 3,
+  //         id: "",
+  //         discount: 14,
+  //       },
+  //       {
+  //         id: 12,
+  //         img: "",
+  //         imgUrl: "",
+  //         total_old_price: "",
+  //         total_price: "",
+  //         title: "pestehAkbari",
+  //         count: 3,
+  //         id: "",
+  //         discount: 14,
+  //       },
+  //       {
+  //         id: 12,
+  //         img: "",
+  //         imgUrl: "",
+  //         total_old_price: "",
+  //         total_price: "",
+  //         title: "pestehAkbari",
+  //         count: 3,
+  //         id: "",
+  //         discount: 14,
+  //       },
+  //       {
+  //         id: 12,
+  //         img: "",
+  //         imgUrl: "",
+  //         total_old_price: "",
+  //         total_price: "",
+  //         title: "pestehAkbari",
+  //         count: 3,
+  //         id: "",
+  //         discount: 14,
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     id: 12,
+  //     img: "",
+  //     imgUrl: "",
+  //     total_old_price: "",
+  //     total_price: "",
+  //     title: "pestehAkbari",
+  //     count: 3,
+  //     id: "",
+  //     discount: 14,
+  //     product: [{}, {}],
+  //   },
+  //   {
+  //     product: [{}],
+  //   },
+  //   {},
+  // ];
   const {
     All_product_list_buy,
     handel_AddProductTOList,
@@ -126,8 +126,13 @@ export default function ListCardBuy() {
                         .slug
                   )
                     ? { position: "relative" }
-                    : { position: "relative", marginTop: "-12px",borderTop:"2px dashed hsl(213deg 59% 26%)",
-                  borderTopLeftRadius:"inherit",borderTopRightRadius:"inherit" }
+                    : {
+                        position: "relative",
+                        marginTop: "-12px",
+                        borderTop: "2px dashed hsl(213deg 59% 26%)",
+                        borderTopLeftRadius: "inherit",
+                        borderTopRightRadius: "inherit",
+                      }
                 }
               >
                 {!(
@@ -202,7 +207,12 @@ export default function ListCardBuy() {
                               color: "#1b3e68",
                               cursor: "pointer",
                             }}
-                            onClick={() => handel_DeleteProductFromList(El.id)}
+                            onClick={() =>
+                              handel_DeleteProductFromList(
+                                El.id,
+                                El.product.title
+                              )
+                            }
                           ></i>
                         </div>
                         <div className="cart-product-item-remain-stock"></div>
@@ -223,8 +233,8 @@ export default function ListCardBuy() {
                               className="quantity-box input-group input-group-sm"
                               style={{ width: "7rem", alignItems: "center" }}
                             >
-                              <div className="input-group-prepend">
-                                <button className="btn  plus-minus-icon">
+                              <div className="input-group-prepend ">
+                                <button className="btnplus  plus-minus-icon raise">
                                   <i
                                     style={{
                                       fontSize: "25px",
@@ -245,7 +255,13 @@ export default function ListCardBuy() {
                                 className="bg-white border-0 font-size1-2 font-weight-bold form-control mt-1 px-1 text-center"
                               />
                               <div className="input-group-append">
-                                <button className="btn  plus-minus-icon">
+                                <button
+                                  className="btnminus  plus-minus-icon raise"
+                                  style={{
+                                    backgroundColor: "#fff",
+                                    outline: "none",
+                                  }}
+                                >
                                   <i
                                     style={{
                                       fontSize: "25px",
@@ -266,7 +282,7 @@ export default function ListCardBuy() {
                           </div>
                           <div className="mr-auto">
                             <span
-                            style={{display:"block"}}
+                              style={{ display: "block" }}
                               className={`cart-product-item-primary-price ${
                                 El.product.discount == 0 && "opacity_none"
                               }`}
