@@ -5,7 +5,7 @@ export const Empty = () => {
   return (
     <>
       <div className={styles.seaContainer}>
-        <div className={styles.textEmpty}> . سبد خرید شما خالی است</div>
+        <div className={styles.textEmpty}> سبد خرید شما خالی است .</div>
         <div className={styles.submarine__container}>
           <div className={styles.light}></div>
           <div className={styles.submarine__periscope}></div>
