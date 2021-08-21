@@ -24,6 +24,9 @@ export default function Cart() {
   // STATE FOR SAVE PRODUCTS
   const [All_product_list_buy, setAll_product_list_buy] = useState({});
 
+  // STATE FOR SHOW LOADING
+  const [showLoading, setShowLoading] = useState(true);
+
   // FUNCTION FOR GET ALL DATA FOR CARTS
   const _handleRequestApiAll = async () => {
     try {
@@ -38,6 +41,7 @@ export default function Cart() {
         params
       );
       setAll_product_list_buy(await response.data);
+      setShowLoading(false);
     } catch (e) {
       // console.log("e :>> ", e);
     }
@@ -154,14 +158,22 @@ export default function Cart() {
             crossOrigin="anonymous"
           ></link>
         </Head>
-        <section className="container container--mob pb-5 ">
+
+        {showLoading ? (
+          <div style={{ backgroundColor: "#fff" }}>
+            <Loading />
+          </div>
+        ) : (
+          All_product_list_buy.ordered_items.length > 0 ? <section className="container container--mob pb-5 ">
           <CheckOutSteps step="1" />
 
           <div className="row mx-auto mt-4" style={{ maxWidth: "72rem" }}>
             <ListCardBuy />
             <SumBuy />
           </div>
-        </section>
+        </section> :<Empty />
+          
+        )}
 
         <MenuMobile />
         <ToastContainer />
