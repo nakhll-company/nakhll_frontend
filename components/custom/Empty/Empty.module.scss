@@ -5,13 +5,13 @@ $lightShadowColor: #ef689e;
 $lightShadowColor2: #c6003d;
 $lightShadowColor3: #e92d77;
 $darkShadowColor: #a10532;
-$periscopeColor: #F0F78B;
+$periscopeColor: #f0f78b;
 $propellerColor: #f7e349;
 $propellerColor2: #f7ac08;
 $windowLightColor: #c9e5d9;
-$lightColor: #817E97;
-$seaGroundColor1:#0c0051;
-$seaGroundColor2:#08003b;
+$lightColor: #817e97;
+$seaGroundColor1: #0c0051;
+$seaGroundColor2: #08003b;
 //sizes
 // html,
 // body {
@@ -26,6 +26,12 @@ $seaGroundColor2:#08003b;
     height: 70vh;
     background: #130560;
     overflow: hidden;
+}
+
+.textEmpty {
+    text-align: center;
+    color: red;
+    margin-top: 40px;
 }
 
 .submarine__container {
@@ -80,7 +86,7 @@ $seaGroundColor2:#08003b;
 .darkOne {
     top: 0%;
     background: $propellerColor2;
-    transform: rotateY(180deg)rotateX(225deg)
+    transform: rotateY(180deg) rotateX(225deg);
 }
 
 .lightOne {
@@ -241,11 +247,11 @@ $seaGroundColor2:#08003b;
 $bubble_class: bubble;
 @for $i from 1 through 4 {
     .#{$bubble_class}_#{$i} {
-        top: 15%*($i+1-1);
+        top: 15% * ($i + 1-1);
         left: 1%;
         opacity: 0;
         animation: move-right 1s infinite linear;
-        animation-delay: 0.25s*$i;
+        animation-delay: 0.25s * $i;
     }
 }
 
@@ -295,9 +301,9 @@ $bubble_class: bubble;
 $ground-class: up;
 @for $i from 1 through 20 {
     .#{$ground-class}_#{$i} {
-        left: -10%*($i+-1);
-        top: -20px*($i*0.10);
-        animation: moveThegroundRight $i+2s infinite linear;
+        left: -10% * ($i + -1);
+        top: -20px * ($i * 0.1);
+        animation: moveThegroundRight $i + 2s infinite linear;
     }
 }
 
@@ -305,19 +311,19 @@ $ground-class: up;
 @keyframes shadow-change {
     0%,
     100% {
-        background-image: linear-gradient(45deg, $windowLightColor 0%, $windowLightColor 20%, #fff 21%, #fff 39%, $windowLightColor 40%, #fff 41%, #fff 59%, $windowLightColor 60%);
+        background-image: linear-gradient( 45deg, $windowLightColor 0%, $windowLightColor 20%, #fff 21%, #fff 39%, $windowLightColor 40%, #fff 41%, #fff 59%, $windowLightColor 60%);
     }
     20% {
-        background-image: linear-gradient(45deg, $windowLightColor 20%, $windowLightColor 40%, #fff 41%, #fff 59%, $windowLightColor 60%, #fff 61%, #fff 79%, $windowLightColor 80%);
+        background-image: linear-gradient( 45deg, $windowLightColor 20%, $windowLightColor 40%, #fff 41%, #fff 59%, $windowLightColor 60%, #fff 61%, #fff 79%, $windowLightColor 80%);
     }
     40% {
-        background-image: linear-gradient(45deg, $windowLightColor 40%, $windowLightColor 60%, #fff 61%, #fff 79%, $windowLightColor 80%, #fff 81%, #fff 99%, $windowLightColor 0%);
+        background-image: linear-gradient( 45deg, $windowLightColor 40%, $windowLightColor 60%, #fff 61%, #fff 79%, $windowLightColor 80%, #fff 81%, #fff 99%, $windowLightColor 0%);
     }
     60% {
-        background-image: linear-gradient(45deg, $windowLightColor 60%, $windowLightColor 80%, #fff 81%, #fff 99%, $windowLightColor 0%, #fff 1%, #fff 19%, $windowLightColor 20%);
+        background-image: linear-gradient( 45deg, $windowLightColor 60%, $windowLightColor 80%, #fff 81%, #fff 99%, $windowLightColor 0%, #fff 1%, #fff 19%, $windowLightColor 20%);
     }
     80% {
-        background-image: linear-gradient(45deg, $windowLightColor 80%, $windowLightColor 0%, #fff 1%, #fff 19%, $windowLightColor 20%, #fff 21%, #fff 39%, $windowLightColor 40%);
+        background-image: linear-gradient( 45deg, $windowLightColor 80%, $windowLightColor 0%, #fff 1%, #fff 19%, $windowLightColor 20%, #fff 21%, #fff 39%, $windowLightColor 40%);
     }
 }
 
