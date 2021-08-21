@@ -17,6 +17,8 @@ import { CustomToast } from "../../components/custom/customToast/CustomToast";
 import { ToastContainer, toast } from "react-toastify";
 import { LoadingDelet } from "../../components/custom/Loading/LoadingDelet/LoadingDelet";
 import { MenuMobile } from "../../containers/card/MenuMobile";
+import { Loading } from "../../components/custom/Loading/Loading";
+import { Empty } from "../../components/custom/Empty/Empty";
 
 export default function Cart() {
   // STATE FOR SAVE PRODUCTS
@@ -108,7 +110,7 @@ export default function Cart() {
   const handel_DeleteProductFromList = async (id) => {
     let params = {};
     let loadData = null;
-    
+
     let dataUrl = `/cart2/api/cart_items/${id}/delete/`;
     let response = await ApiRegister().apiRequest(
       loadData,
@@ -134,6 +136,9 @@ export default function Cart() {
         handel_DeleteProductFromList: handel_DeleteProductFromList,
       }}
     >
+      {/* <Loading /> */}
+      {/* <Empty /> */}
+
       <div className="all">
         <Head>
           <link
@@ -151,7 +156,6 @@ export default function Cart() {
         </Head>
         <section className="container container--mob pb-5 ">
           <CheckOutSteps step="1" />
-          
 
           <div className="row mx-auto mt-4" style={{ maxWidth: "72rem" }}>
             <ListCardBuy />
@@ -159,7 +163,7 @@ export default function Cart() {
           </div>
         </section>
 
-        <MenuMobile/>
+        <MenuMobile />
         <ToastContainer />
       </div>
     </ContextProduct.Provider>

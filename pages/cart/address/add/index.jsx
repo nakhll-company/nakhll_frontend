@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
+import { ToastContainer } from "react-toastify";
 // componentes
 import Steps from '../../../../components/CheckOutSteps/CheckOutSteps';
 // methods
@@ -44,6 +45,7 @@ const NewAddress = () => {
                 ></link>
             </Head>
             <Steps step="2" />
+            <ToastContainer />
             <div className={`col-12 col-lg-5 ${styles.wrapper}`}>
                 <header className={styles.header}>
                     <Link href="/cart/address">

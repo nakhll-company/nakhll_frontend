@@ -1,36 +1,42 @@
-import React from 'react'
-import styles from './Empty.module.scss'
+import React from "react";
+import styles from "./Empty.module.scss";
 
 export const Empty = () => {
-    return (
-        <>
-        <div className={styles.seaContainer}>
+  return (
+    <>
+      <div className={styles.seaContainer}>
+        <div className={styles.textEmpty}> . سبد خرید شما خالی است</div>
         <div className={styles.submarine__container}>
           <div className={styles.light}></div>
           <div className={styles.submarine__periscope}></div>
           <div className={styles.submarine__periscope_glass}></div>
           <div className={styles.submarine__sail}>
-            <div className={`${styles.submarine__sail_shadow} ${styles.dark1}`}>
-            </div>
-            <div className={`${styles.submarine__sail_shadow} ${styles.light1}`}></div>
-            <div className={`${styles.submarine__sail_shadow} ${styles.dark2}`}></div>
+            <div
+              className={`${styles.submarine__sail_shadow} ${styles.dark1}`}
+            ></div>
+            <div
+              className={`${styles.submarine__sail_shadow} ${styles.light1}`}
+            ></div>
+            <div
+              className={`${styles.submarine__sail_shadow} ${styles.dark2}`}
+            ></div>
           </div>
           <div className={styles.submarine__body}>
-            <div className={`${styles.submarine__window} ${styles.one}`}>
-      
-            </div>
-            <div className={`${styles.submarine__window} ${styles.two}`}>
-      
-            </div>
+            <div className={`${styles.submarine__window} ${styles.one}`}></div>
+            <div className={`${styles.submarine__window} ${styles.two}`}></div>
             <div className={styles.submarine__shadow_dark}></div>
             <div className={styles.submarine__shadow_light}></div>
             <div className={styles.submarine__shadow_arcLight}></div>
           </div>
           <div className={styles.submarine__propeller}>
             <div className={styles.propeller__perspective}>
-            <div className={`${styles.submarine__propeller_parts} ${styles.darkOne}`}></div>
-            <div className={`${styles.submarine__propeller_parts} ${styles.lightOne}`}></div>
-            </div>        
+              <div
+                className={`${styles.submarine__propeller_parts} ${styles.darkOne}`}
+              ></div>
+              <div
+                className={`${styles.submarine__propeller_parts} ${styles.lightOne}`}
+              ></div>
+            </div>
           </div>
         </div>
         <div className={styles.bubbles__container}>
@@ -76,6 +82,6 @@ export const Empty = () => {
           </div>
         </div>
       </div>
-      </>
-    )
-}
+    </>
+  );
+};

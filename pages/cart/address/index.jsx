@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Assistent from "zaravand-assistent-number";
 import { useState, useEffect } from 'react';
+import { ToastContainer } from "react-toastify";
 // componentes
 import CustomModal from '../../../components/custom/customModal';
 import DeleteAddress from '../../../containers/cartAddress/deleteAddress';
@@ -11,6 +12,7 @@ import Steps from '../../../components/CheckOutSteps/CheckOutSteps';
 // methods
 import { getAddress } from '../../../containers/cartAddress/methods/getAddress';
 import { checkUserLogin } from '../../../containers/cartAddress/methods/checkUserLogin';
+import { sendUserAddress } from '../../../containers/cartAddress/methods/sendUserAddress';
 // styles
 import styles from '../../../styles/pages/cart/address.module.scss';
 /**
@@ -44,6 +46,7 @@ const Address = () => {
                 />
             </Head>
             <Steps step="2" />
+            <ToastContainer />
             <div className={`col-12 col-lg-5 ${styles.wrapper}`}>
                 <header className={styles.header}>
                     <Link href="/cart">
@@ -64,10 +67,17 @@ const Address = () => {
                             </a>
                         </Link>
                     </div>
-                    <form className={styles.address_items_form} onSubmit={(event) => { event.preventDefault() }}>
+                    <form className={styles.address_items_form} onSubmit={(event) => {
+                        event.preventDefault();
+                        let selectedAddressId = document.querySelector('input[type=radio]:checked').value;
+                        let data = {
+                            address: selectedAddressId
+                        };
+                        sendUserAddress(data);
+                    }}>
                         {address.map((value, index) => {
                             return (
-                                <label key={index} className={styles.address_items_label} onClick={(event) => {
+                                <label key={index} className={`${styles.address_items_label} ${index === 0 && styles.active_address}`} onClick={(event) => {
                                     let activeLabels = document.querySelectorAll(`.${styles.active_address}`);
                                     let activeCircles = document.querySelectorAll(`.${styles.active_circle}`);
                                     activeLabels.forEach((value) => {
@@ -79,7 +89,7 @@ const Address = () => {
                                     event.currentTarget.classList.add(`${styles.active_address}`);
                                     document.getElementById(`firstCircle${index}`).classList.add(`${styles.active_circle}`);
                                 }}>
-                                    <div id={`firstCircle${index}`} className={styles.address_item_circle}>
+                                    <div id={`firstCircle${index}`} className={`${styles.address_item_circle} ${index === 0 && styles.active_circle}`}>
                                         <div className={styles.address_item_embeded_circle}></div>
                                     </div>
                                     <div className={styles.address_item_detail}>
@@ -99,7 +109,7 @@ const Address = () => {
                                             });
                                         }}></i>
                                     </div>
-                                    <input id="addressId" type="radio" name="addressId" value="1" />
+                                    <input id={`addressId${index}`} type="radio" name="addressId" value={value.id} defaultChecked={index === 0 && true} />
                                 </label>
                             )
                         })}
