@@ -136,10 +136,10 @@ export default function Cart() {
         handel_DeleteProductFromList: handel_DeleteProductFromList,
       }}
     >
-      <Loading />
+      {/* <Loading /> */}
       {/* <Empty /> */}
 
-      {/* <div className="all">
+      <div className="all">
         <Head>
           <link
             rel="stylesheet"
@@ -166,7 +166,6 @@ export default function Cart() {
         <MenuMobile />
         <ToastContainer />
       </div>
-     */}
     </ContextProduct.Provider>
   );
 }
