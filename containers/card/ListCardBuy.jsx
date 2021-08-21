@@ -207,7 +207,12 @@ export default function ListCardBuy() {
                               color: "#1b3e68",
                               cursor: "pointer",
                             }}
-                            onClick={() => handel_DeleteProductFromList(El.id)}
+                            onClick={() =>
+                              handel_DeleteProductFromList(
+                                El.id,
+                                El.product.title
+                              )
+                            }
                           ></i>
                         </div>
                         <div className="cart-product-item-remain-stock"></div>

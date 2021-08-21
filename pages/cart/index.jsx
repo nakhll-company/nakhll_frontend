@@ -111,7 +111,7 @@ export default function Cart() {
 
   // FUNCTION FOR DELETE PRODUCT FROM LIST WHEN CLICKED ON DELETE BUTTON
 
-  const handel_DeleteProductFromList = async (id) => {
+  const handel_DeleteProductFromList = async (id, title) => {
     let params = {};
     let loadData = null;
 
@@ -125,7 +125,7 @@ export default function Cart() {
     );
     setAll_product_list_buy(await response.data);
     console.log("delete :>> ", response.data);
-    toast.success("داده ها با موفقیت ثبت شده اند", {
+    toast.error(` محصول  ${title}  حذف شد . `, {
       position: "top-right",
       closeOnClick: true,
     });
@@ -163,16 +163,17 @@ export default function Cart() {
           <div style={{ backgroundColor: "#fff" }}>
             <Loading />
           </div>
-        ) : (
-          All_product_list_buy.ordered_items.length > 0 ? <section className="container container--mob pb-5 ">
-          <CheckOutSteps step="1" />
+        ) : All_product_list_buy.ordered_items.length > 0 ? (
+          <section className="container container--mob pb-5 ">
+            <CheckOutSteps step="1" />
 
-          <div className="row mx-auto mt-4" style={{ maxWidth: "72rem" }}>
-            <ListCardBuy />
-            <SumBuy />
-          </div>
-        </section> :<Empty />
-          
+            <div className="row mx-auto mt-4" style={{ maxWidth: "72rem" }}>
+              <ListCardBuy />
+              <SumBuy />
+            </div>
+          </section>
+        ) : (
+          <Empty />
         )}
 
         <MenuMobile />
