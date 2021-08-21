@@ -17,9 +17,9 @@ export default function SumBuy() {
             <div className="cart-invoice-primary-price">
               <span>قیمت محصولات:</span>{" "}
               <span>
-                {_asist.PSeparator(All_product_list_buy.total_old_price/10)}
+                {_asist.PSeparator(All_product_list_buy.total_old_price / 10)}
 
-                <span style={{marginRight:"5px"}}>تومان</span>
+                <span style={{ marginRight: "5px" }}>تومان</span>
               </span>
             </div>
             <div className="cart-invoice-discount-price">
@@ -27,10 +27,11 @@ export default function SumBuy() {
               <span>
                 {_asist.PSeparator(
                   (All_product_list_buy.total_old_price -
-                    All_product_list_buy.total_price)/10
+                    All_product_list_buy.total_price) /
+                    10
                 )}
 
-                <span style={{marginRight:"5px"}}>تومان</span>
+                <span style={{ marginRight: "5px" }}>تومان</span>
               </span>
             </div>
             <div className="cart-invoice-shipping-price">
@@ -40,14 +41,14 @@ export default function SumBuy() {
             <div className="cart-invoice-total-price">
               <span>مبلغ قابل پرداخت</span>{" "}
               <span className="font-weight-500">
-                {_asist.PSeparator(All_product_list_buy.total_price/10)}
+                {_asist.PSeparator(All_product_list_buy.total_price / 10)}
 
-                <span style={{marginRight:"5px"}}>تومان</span>
+                <span style={{ marginRight: "5px" }}>تومان</span>
               </span>
             </div>
             <div>
               <Link href="/cart/address">
-                <button className="btn btn-Buy p-2 rounded-pill w-100">
+                <button className="btn btn-Buy p-2 rounded-pill w-100 rainbow rainbow-1">
                   {_asist.number(`ادامه خرید `)}
                 </button>
               </Link>

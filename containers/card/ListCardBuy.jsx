@@ -126,8 +126,13 @@ export default function ListCardBuy() {
                         .slug
                   )
                     ? { position: "relative" }
-                    : { position: "relative", marginTop: "-12px",borderTop:"2px dashed hsl(213deg 59% 26%)",
-                  borderTopLeftRadius:"inherit",borderTopRightRadius:"inherit" }
+                    : {
+                        position: "relative",
+                        marginTop: "-12px",
+                        borderTop: "2px dashed hsl(213deg 59% 26%)",
+                        borderTopLeftRadius: "inherit",
+                        borderTopRightRadius: "inherit",
+                      }
                 }
               >
                 {!(
@@ -224,7 +229,7 @@ export default function ListCardBuy() {
                               style={{ width: "7rem", alignItems: "center" }}
                             >
                               <div className="input-group-prepend">
-                                <button className="btn  plus-minus-icon">
+                                <button className="btn  plus-minus-icon raise">
                                   <i
                                     style={{
                                       fontSize: "25px",
@@ -245,7 +250,7 @@ export default function ListCardBuy() {
                                 className="bg-white border-0 font-size1-2 font-weight-bold form-control mt-1 px-1 text-center"
                               />
                               <div className="input-group-append">
-                                <button className="btn  plus-minus-icon">
+                                <button className="btn  plus-minus-icon raise">
                                   <i
                                     style={{
                                       fontSize: "25px",
@@ -266,7 +271,7 @@ export default function ListCardBuy() {
                           </div>
                           <div className="mr-auto">
                             <span
-                            style={{display:"block"}}
+                              style={{ display: "block" }}
                               className={`cart-product-item-primary-price ${
                                 El.product.discount == 0 && "opacity_none"
                               }`}
