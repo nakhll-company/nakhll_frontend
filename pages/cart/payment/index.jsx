@@ -19,6 +19,9 @@ export default function Cart() {
     const [logisticPrice, setLogisticPrice] = useState(null)
     const [totalPrice, setTotalPrice] = useState(null)
     const [finalPrice, setFinalPrice] = useState(null)
+    const [addressReceiver, setAddressReceiver] = useState({})
+    const [resultCoupon, setResultCoupon] = useState(null)
+    // const [listMsgCoupon, setlistMsgCoupon] = useState(null)
 
 
     let item = [
@@ -108,6 +111,11 @@ export default function Cart() {
             setLogisticPrice(data.logistic_price)
             setTotalPrice(data.cart.total_price)
             setFinalPrice(data.final_price)
+            setAddressReceiver(data.address)
+            setResultCoupon(data.coupon && _asist.PSeparator(data.coupon_details.result / 10))
+            setMsgCoupon(data.coupon && `کوپن شما با مبلغ ${data.coupon_details.result / 10} تومان برای شما فعال گردید.`)
+
+
             setIsLoadInvoice(false)
         }
     }
@@ -116,25 +124,49 @@ export default function Cart() {
 
     const _addCoupon = async (e) => {
         e.preventDefault();
-        setIsLoadInvoice(true)
         console.log(`e.target[0].value`, e.target[0].value)
         let valueCoupon = e.target[0].value
         if (valueCoupon) {
-            let params = {};
-            let loadData = { coupon: valueCoupon };
-            let dataUrl = `/accounting_new/api/invoice/set_coupon/`;
-            let response = await ApiRegister().apiRequest(
-                loadData,
-                "PATCH",
-                dataUrl,
-                true,
-                params
-            );
-            let data = response.data
-            if (response.status === 200) {
-                setIsLoadInvoice(false)
-                setMsgCoupon(data[0].title)
+            try {
+                setIsLoadInvoice(true)
+                let params = {};
+                let loadData = { coupon: valueCoupon };
+                let dataUrl = `/accounting_new/api/invoice/set_coupon/`;
+                let response = await ApiRegister().apiRequest(
+                    loadData,
+                    "PATCH",
+                    dataUrl,
+                    true,
+                    params
+                );
+                let data = response.data
+                if (response.status === 200) {
+                    if (data.result) {
+                        setMsgCoupon(`کوپن شما با مبلغ ${data.result / 10} تومان برای شما فعال گردید.`)
+                        setResultCoupon(_asist.PSeparator(data.result / 10))
+
+                    } else {
+
+                        data.errors.map((item) => {
+                            setMsgCoupon(item)
+
+                        })
+
+                    }
+                    setIsLoadInvoice(false)
+
+
+                } else if (response.status === 400) {
+                    console.log(`e>>>>>>>`, "fdghfdjkgj")
+                    debugger
+                }
+            } catch (error) {
+                // console.log(`e>>>>>>>`, response.error)
+                debugger
+                setMsgCoupon("adkaslkdjksa")
+
             }
+
         }
 
 
@@ -150,7 +182,7 @@ export default function Cart() {
 
 
 
-    console.log(`listInvoice`, listInvoice)
+    // console.log(`addressReceiver.receiver_full_name`, addressReceiver.receiver_full_name)
     return (
         <div className="steps-wrapper ">
             <Head>
@@ -194,8 +226,8 @@ export default function Cart() {
                             </form>
                             {msgCoupon !== "" &&
                                 <div className="border border-success bg-white font-size-9 py-2 pr-3 mt-3 rounded d-flex flex-wrap justify-content-between align-items-center">
-                                    <span className="text-dark ml-3">{msgCoupon}</span>
-                                    <strong className="text-success ml-3">61,000 تومان</strong>
+                                    <span className=" text-success ml-3">{msgCoupon}</span>
+                                    {/* <strong className="text-success ml-3">61,000 تومان</strong> */}
                                     <button className="btn btn-link text-danger btn-sm mr-auto">
                                         <i className="fas fa-times" onClick={_deleteCoupon}></i>
                                     </button>
@@ -327,7 +359,13 @@ export default function Cart() {
                                 <div className="d-flex py-1">
                                     <span>هزینه ارسال:</span> <span className="mr-auto">{_asist.PSeparator(logisticPrice / 10)} تومان</span>
                                 </div>
-                                {/**/} {/**/} {/**/}
+                                {msgCoupon !== "" &&
+                                    <div className="d-flex py-1 text-danger">
+                                        <span>تخفیف قیمت محصولات (-) :</span>
+                                        <span className="mr-auto">{resultCoupon} تومان</span>
+                                    </div>
+                                }
+                                {/**/} {/**/}
                                 <div className="d-flex py-1 font-weight-500 text-success">
                                     <span>مبلغ قابل پرداخت:</span>
                                     <span className="mr-auto">{_asist.PSeparator(finalPrice / 10)} تومان</span>
@@ -338,20 +376,19 @@ export default function Cart() {
                         <div className="mt-3 p-3 border rounded font-size-sm my-3 line-height-normal">
                             <div className="mx-auto text-justify">
                                 تمامی بسته‌های پستی به آقا/خانم
-                                <strong>سید حسن مهدوی</strong>
+                                <strong> {addressReceiver.receiver_full_name} </strong>
                                 به آدرس
-                                <strong className="font-size-8">
-                                    خیابان فردوس - کوچه فردوس 1 - پلاک 87 - کد پستی 7761615759
-                                </strong>
+                                <strong className="font-size-8"> {addressReceiver.address} </strong>
                                 تحویل داده می‌شوند.
                             </div>
                             <div className="text-left line-height-1">
-                                <a
-                                    href="/cart/address/update/4?prev=payment"
+                                <Link
+
+                                    href={`/cart/address/update/${addressReceiver.id}?prev=payment`}
                                     className="font-size-8 link-body"
                                 >
                                     ویرایش
-                                </a>
+                                </Link>
                             </div>
                             {/* <div className="toggle-btn mt-2">
                                 <label data-v-25adc6c0 className="vue-js-switch toggled">
@@ -418,7 +455,7 @@ export default function Cart() {
             </div>
 
 
-        </div>
+        </div >
     );
 }
 
