@@ -20193,19 +20193,6 @@ button.header-icon:hover {
     -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
 }
 
-.cart-fixed-bottom-wrapper {
-    right: 0;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    z-index: 300;
-    display: block;
-    position: fixed;
-    padding: 0.5rem;
-    background-color: #fff;
-    border-top: 1px solid #dfdfdf !important;
-}
-
 .quantity-box--disabled {
     opacity: 0.5;
     pointer-events: none;
@@ -20269,7 +20256,7 @@ button.header-icon:hover {
     }
     .steps-wrapper {
         margin-top: 0;
-        padding-bottom: 85px;
+        // padding-bottom: 85px;
     }
     .cart-basket-title {
         display: none;
@@ -20280,6 +20267,18 @@ button.header-icon:hover {
     }
     .cart-head img {
         width: 95%;
+    }
+    .buttonPayment {
+        right: 0;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        z-index: 300;
+        display: block;
+        position: fixed;
+        padding: 0.5rem;
+        background-color: #fff;
+        border-top: 1px solid #dfdfdf !important;
     }
 }
 
