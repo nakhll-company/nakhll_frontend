@@ -35,7 +35,7 @@ export default function CheckOutSteps({ step }) {
     <div className={styles.checkout_steps}>
       {/* LEVEL ONE */}
 
-      <Link style={{ cursor: "pointer" }} href="/cart">
+      <Link style={{ cursor: "pointer" }} href="">
         <div
           className={`${styles.step_item}  ${step1} `}
           style={{ cursor: "pointer" }}
@@ -51,7 +51,7 @@ export default function CheckOutSteps({ step }) {
       </div>
 
       {/* LEVEL TWO */}
-      <Link href="/cart/address" style={{ cursor: "pointer" }}>
+      <Link href="" style={{ cursor: "pointer" }}>
         <div
           style={{ cursor: "pointer" }}
           className={`${styles.step_item} ${step2}`}
@@ -70,7 +70,7 @@ export default function CheckOutSteps({ step }) {
       </div>
 
       {/* LEVEL THREE */}
-      <Link href="/cart/payment" style={{ cursor: "pointer" }}>
+      <Link href="" style={{ cursor: "pointer" }}>
         <div
           style={{ cursor: "pointer" }}
           className={`${styles.step_item} ${step3}`}
