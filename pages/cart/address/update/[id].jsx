@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { ToastContainer } from "react-toastify";
 // componentes
 import Steps from "../../../../components/CheckOutSteps/CheckOutSteps";
 // methods
@@ -21,7 +22,7 @@ import styles from "../../../../styles/pages/cart/newAddress.module.scss";
 const UpdateAddress = () => {
 
     const router = useRouter();
-    const { id } = router.query;
+    const { id, prev } = router.query;
 
     const { register, handleSubmit, setValue, formState: { errors } } = useForm();
 
@@ -51,9 +52,10 @@ const UpdateAddress = () => {
                 ></link>
             </Head>
             <Steps step="2" />
+            <ToastContainer />
             <div className={`col-12 col-lg-5 ${styles.wrapper}`}>
                 <header className={styles.header}>
-                    <Link href="/cart/address">
+                    <Link href={prev ? "/cart/payment" : "/cart/address"}>
                         <a className={styles.header_back_link}>
                             <i className="fas fa-arrow-right px-2"></i>
                             بازگشت
@@ -136,7 +138,7 @@ const UpdateAddress = () => {
                             </div>
                             &nbsp;
                             <div className={`col-md-6 ${styles.buttons_form}`}>
-                                <Link href="/cart/address">
+                                <Link href={prev ? "/cart/payment" : "/cart/address"}>
                                     <a className="btn btn-secondary w-100"> بازگشت </a>
                                 </Link>
                             </div>
