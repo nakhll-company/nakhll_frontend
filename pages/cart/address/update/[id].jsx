@@ -10,7 +10,7 @@ import Steps from "../../../../components/CheckOutSteps/CheckOutSteps";
 import { getStates } from "../../../../containers/store/methods/getStates";
 import { getBigCities } from "../../../../containers/store/methods/getBigCities";
 import { getCities } from "../../../../containers/store/methods/getCities";
-import { postAddress } from "../../../../containers/cartAddress/methods/postAddress";
+import { updateAddress } from "../../../../containers/cartAddress/methods/updateAddress";
 import { getEditAddress } from "../../../../containers/cartAddress/methods/getEditAddress";
 // styles
 import styles from "../../../../styles/pages/cart/newAddress.module.scss";
@@ -23,10 +23,10 @@ const UpdateAddress = () => {
     const router = useRouter();
     const { id } = router.query;
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm();
 
     const onSubmit = async (data) => {
-        postAddress(data);
+        updateAddress(id, data);
     };
 
     let [editAddressData, setEditAddressData] = useState({});
@@ -35,7 +35,7 @@ const UpdateAddress = () => {
     let [selectCities, setSelectCities] = useState([]);
 
     useEffect(async () => {
-        await getEditAddress(id, setEditAddressData);
+        await getEditAddress(id, setValue, setEditAddressData);
         // state
         setSelectState(await getStates());
     }, []);
@@ -65,7 +65,7 @@ const UpdateAddress = () => {
                     <form className={styles.address_items_form} onSubmit={handleSubmit(onSubmit)}>
                         <div className={styles.form_group}>
                             <label>نام و نام‌خانوادگی گیرندۀ سفارش:</label>
-                            <input type="text" className="form-control" defaultValue={editAddressData.receiver_full_name} {...register("receiver_full_name", { required: true })} />
+                            <input type="text" className="form-control" {...register("receiver_full_name", { required: true })} />
                             <small className="form-text text-muted">همخوان با کارت ملی</small>
                             {errors.receiver_full_name && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
                         </div>
@@ -75,10 +75,10 @@ const UpdateAddress = () => {
                                 let optionsArray = Object.values(event.target.options);
                                 setSelectBigCities(await getBigCities(optionsArray[event.target.options.selectedIndex].id));
                             }}>
-                                <option></option>
+                                <option value={editAddressData.state}>{editAddressData.state}</option>
                                 {selectState.map((value, index) => {
                                     return (
-                                        <option key={index} value={value.name} id={value.id} selected={editAddressData.state === value.name ? true : false}>{value.name}</option>
+                                        <option key={index} value={value.name} id={value.id}>{value.name}</option>
                                     );
                                 })}
                             </select>
@@ -91,10 +91,10 @@ const UpdateAddress = () => {
                                     let optionsArray = Object.values(event.target.options);
                                     setSelectCities(await getCities(optionsArray[event.target.options.selectedIndex].id));
                                 }}>
-                                    <option></option>
+                                    <option value={editAddressData.big_city}>{editAddressData.big_city}</option>
                                     {selectBigCities.map((value, index) => {
                                         return (
-                                            <option key={index} value={value.name} id={value.id} selected={editAddressData.big_city === value.name ? true : false}>{value.name}</option>
+                                            <option key={index} value={value.name} id={value.id}>{value.name}</option>
                                         );
                                     })}
                                 </select>
@@ -103,10 +103,10 @@ const UpdateAddress = () => {
                             <div className={`${styles.form_group} col-md-6 col-sm-12`}>
                                 <label>انتخاب شهر:</label>
                                 <select className="form-control col-sm-12" {...register("city", { required: true })}>
-                                    <option></option>
+                                    <option value={editAddressData.city}>{editAddressData.city}</option>
                                     {selectCities.map((value, index) => {
                                         return (
-                                            <option key={index} value={value.name} selected={editAddressData.city === value.name ? true : false}>{value.name}</option>
+                                            <option key={index} value={value.name}>{value.name}</option>
                                         );
                                     })}
                                 </select>
@@ -115,18 +115,18 @@ const UpdateAddress = () => {
                         </div>
                         <div className={styles.form_group}>
                             <label>نشانی دقیق پستی:</label>
-                            <textarea rows="4" cols="30" className="form-control" defaultValue={editAddressData.address} {...register("address", { required: true })}></textarea>
+                            <textarea rows="4" cols="30" className="form-control" {...register("address", { required: true })}></textarea>
                             {errors.address && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
                         </div>
                         <div className={styles.form_row}>
                             <div className={`${styles.form_group} col-md-6 col-sm-12`}>
                                 <label>کد پستی:</label>
-                                <input type="text" className="form-control" defaultValue={editAddressData.zip_code} {...register("zip_code", { required: true })} />
+                                <input type="text" className="form-control" {...register("zip_code", { required: true })} />
                                 {errors.zip_code && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
                             </div>
                             <div className={`${styles.form_group} col-md-6 col-sm-12`}>
                                 <label>موبایل گیرندۀ سفارش:</label>
-                                <input type="text" className="form-control" defaultValue={editAddressData.receiver_mobile_number} {...register("receiver_mobile_number", { required: true })} />
+                                <input type="text" className="form-control" {...register("receiver_mobile_number", { required: true })} />
                                 {errors.receiver_mobile_number && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
                             </div>
                         </div>

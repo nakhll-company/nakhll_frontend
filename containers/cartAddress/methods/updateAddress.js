@@ -1,9 +1,9 @@
 import { ApiRegister } from '../../../services/apiRegister/ApiRegister';
 import { toast } from "react-toastify";
 // get address of user
-export async function deleteAddress(id) {
+export async function updateAddress(id, data) {
     let response = await ApiRegister().apiRequest(
-        null,
+        data,
         "PUT",
         `/logistic/api/address/${id}/`,
         true,
