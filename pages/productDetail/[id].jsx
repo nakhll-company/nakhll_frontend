@@ -2,31 +2,31 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { EffectFade, Autoplay, Navigation, Pagination, Scrollbar, A11y } from "swiper";
 // components
 import CustomLabel from '../../components/custom/customLabel';
 // methods
 import { ApiRegister } from '../../services/apiRegister/ApiRegister';
 // styles
 import styles from '../../styles/pages/productDetail/productDetail.module.scss';
-/**
- * component detail 
- */
+// import Swiper core and required modules
+SwiperCore.use([EffectFade, Autoplay, Navigation, Pagination, Scrollbar, A11y]);
+// fetch data
 const fetchData = async (id) => {
-
     let response = await ApiRegister().apiRequest(
-        null,
-        "get",
+        null, "get",
         `/api/v1/product-page/details/${id}/`,
-        true,
-        ""
-    );
+        true, "");
     if (response.status === 200) {
         return response.data;
     } else {
         return false;
     }
 };
-
+/**
+ * component detail 
+*/
 const ProductDetail = ({ data }) => {
     return (
         <div className={styles.wrapper}>
@@ -113,7 +113,7 @@ const ProductDetail = ({ data }) => {
                                 </div>
                             </Link>
                         </div>
-                        <div className="row pt-5">
+                        <div className={`row pt-5 ${styles.wrapper_product_property}`}>
                             <h2>ویژگی های محصول</h2>
                             <CustomLabel type="normal" value={data.attributes[0].value} label="رنگ" />
                             <CustomLabel type="normal" value={data.attributes[1].value} label="نوع اتصال" />
@@ -131,8 +131,37 @@ const ProductDetail = ({ data }) => {
                                     <a>همه ی محصولات</a>
                                 </Link>
                             </div>
+                            <div className="col-12">
+                                {/* <Swiper slidesPerView={1} navigation
+                                    effect={"fade"} pagination={{ clickable: true }}
+                                    autoplay={{
+                                        delay: 5000,
+                                        disableOnInteraction: false,
+                                    }}
+                                >
+                                    <SwiperSlide>
+                                        {data.related_products.map((value, index) => {
+                                            return (
+                                                <div key={index} className="d-flex col-2">
+                                                    <Image src={value.image_thumbnail_url} width="100" height="100" />
+                                                </div>
+                                            )
+                                        })}
+                                    </SwiperSlide>
+                                </Swiper> */}
+                            </div>
                         </div>
                         <hr className="" />
+                        <section className="col-12">
+                            <h3>نظر مشتریان({data.comments.length} نظر)</h3>
+                            {data.comments.map((value, index) => {
+                                return (
+                                    <div>
+
+                                    </div>
+                                );
+                            })}
+                        </section>
                     </div>
                 </div>
             </div>

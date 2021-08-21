@@ -71,6 +71,11 @@
             text-align: center;
         }
     }
+    // wrapper product Property
+    .wrapper_product_property{
+        display: flex;
+        flex-direction: column;
+    }
     // product links
     .product_links{
         display: flex;
