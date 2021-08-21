@@ -54,7 +54,10 @@ export default function SumBuy() {
               </Link>
             </div>
             <div className="cart-invoice-subtitle">
-              <i className="bi bi-tick-circle"></i>
+              <i
+                className="fas fa-exchange-alt"
+                style={{ marginLeft: "5px" }}
+              ></i>
               {_asist.number(
                 `     تضمین رضایت: بازگشت کالا و پول شما تا 7 روز`
               )}
