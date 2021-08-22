@@ -19,24 +19,25 @@ import { ToastContainer } from "react-toastify";
 function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
   const [selectShop, setselectShop] = useState("");
   const [isShowOrder, setisShowOrder] = useState(false);
-  
+
   const [Title, setTitle] = useState("");
   const router = useRouter();
   const { width } = useViewport();
   // STATE FOR SET LINK SHOP
-  const [slugHojreh, setSlugHojreh] = useState("")
+  const [slugHojreh, setSlugHojreh] = useState("");
   const breakpoint = 620;
   const ExitDash = () => {
     location.replace("https://www.nakhll.com");
   };
   useEffect(() => {
     Object.keys(userInfo).length === 0 && getUserInfo();
-    if (selectShop.length === 0 && Object.keys(userInfo).length > 0 && userInfo.shops.length > 0 ) {
-      
-        getActiveHojreh(userInfo.shops[0].slug)
-        setSlugHojreh(userInfo.shops[0].slug)
-       
-        
+    if (
+      selectShop.length === 0 &&
+      Object.keys(userInfo).length > 0 &&
+      userInfo.shops.length > 0
+    ) {
+      getActiveHojreh(userInfo.shops[0].slug);
+      setSlugHojreh(userInfo.shops[0].slug);
     }
   }, [userInfo.shops]);
 
@@ -69,7 +70,9 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   height={60}
                 /> */}
               </span>
-              <h1 style={{ color: "#224d82" }}>داشبورد حجره</h1>
+              <h1 style={{ color: "#224d82", fontSize: "18px", margin: "0px" }}>
+                داشبورد حجره
+              </h1>
             </div>
             <div style={{ display: "flex" }}>
               <span
@@ -85,7 +88,10 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   alt="Picture of the author"
                   width={60}
                   height={60}
-                  onClick={() => {slugHojreh !=="" && location.replace(`https://nakhll.com/${slugHojreh}/`)}}
+                  onClick={() => {
+                    slugHojreh !== "" &&
+                      location.replace(`https://nakhll.com/${slugHojreh}/`);
+                  }}
                   data-toggle="tooltip"
                   data-placement="bottom"
                   title="حجره"
@@ -202,7 +208,16 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
               <div className={styles.info_card_btn}>
                 <div className={styles.info_card_btn_one}>
                   <i className="far fa-envelope fa-2x"></i>
-                  <h4 style={{ textAlign: "center" }}>پیام ها</h4>
+                  <h4
+                    style={{
+                      textAlign: "center",
+                      fontSize: "14px",
+                      color: "#a4aebb",
+                      margin: "0px",
+                    }}
+                  >
+                    پیام ها
+                  </h4>
                 </div>
                 <Link href="/fp/setting">
                   <div
@@ -216,7 +231,16 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                       style={{ fontSize: "20px" }}
                       className="fas fa-user-cog fa-2x"
                     ></i>
-                    <h4 style={{ textAlign: "center" }}>تنظیمات</h4>
+                    <h4
+                      style={{
+                        textAlign: "center",
+                        fontSize: "14px",
+                        color: "#a4aebb",
+                        margin: "0px",
+                      }}
+                    >
+                      تنظیمات
+                    </h4>
                   </div>
                 </Link>
 
@@ -228,7 +252,16 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                     style={{ fontSize: "20px" }}
                     className="fas fa-sign-out-alt "
                   ></i>
-                  <h4 style={{ textAlign: "center" }}>خروج</h4>
+                  <h4
+                    style={{
+                      textAlign: "center",
+                      fontSize: "14px",
+                      color: "#a4aebb",
+                      margin: "0px",
+                    }}
+                  >
+                    خروج
+                  </h4>
                 </button>
               </div>
             </section>
@@ -246,7 +279,14 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                     }}
                     className="fas fa-home  "
                   ></i>
-                  <h2>داشبورد</h2>
+                  <h2
+                    style={{
+                     
+                      fontSize: "16px",
+                    }}
+                  >
+                    داشبورد
+                  </h2>
                 </span>
               </Link>
               <button
@@ -274,7 +314,15 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                           }}
                           className="fas fa-shopping-basket"
                         ></i>
-                        <h2 style={{ color: "#1b3e68" }}>سفارش ها</h2>
+                        <h2
+                          style={{
+                            color: "#1b3e68",
+                           
+                            fontSize: "16px",
+                          }}
+                        >
+                          سفارش ها
+                        </h2>
                       </div>{" "}
                       <i
                         style={{
@@ -304,7 +352,15 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                           }}
                           className="fas fa-shopping-basket"
                         ></i>
-                        <h2 style={{ color: "#1b3e68" }}>سفارش ها</h2>
+                        <h2
+                          style={{
+                            color: "#1b3e68",
+                          
+                            fontSize: "16px",
+                          }}
+                        >
+                          سفارش ها
+                        </h2>
                       </div>{" "}
                       <i
                         style={{
@@ -345,7 +401,15 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                             : ""
                         }`}
                       ></span>
-                      <h2 style={{ color: "#1b3e68" }}>تکمیل شده</h2>
+                      <h2
+                        style={{
+                          color: "#1b3e68",
+                          
+                          fontSize: "16px",
+                        }}
+                      >
+                        تکمیل شده
+                      </h2>
                     </span>
                   </Link>
                   <Link href="/fp/order/uncompleted">
@@ -370,7 +434,15 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                             : ""
                         }`}
                       ></span>
-                      <h2 style={{ color: "#1b3e68" }}>تکمیل نشده</h2>
+                      <h2
+                        style={{
+                          color: "#1b3e68",
+                        
+                          fontSize: "16px",
+                        }}
+                      >
+                        تکمیل نشده
+                      </h2>
                     </span>
                   </Link>
                 </>
@@ -389,7 +461,16 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                     }}
                     className="fas fa-box-open"
                   ></i>
-                  <h2 style={{ color: "#1b3e68" }}> محصولات</h2>
+                  <h2
+                    style={{
+                      color: "#1b3e68",
+                      
+                      fontSize: "16px",
+                    }}
+                  >
+                    {" "}
+                    محصولات
+                  </h2>
                 </span>
               </Link>
             </section>
