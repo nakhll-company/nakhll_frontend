@@ -3,6 +3,7 @@ import { useContext } from "react";
 import Assistent from "zaravand-assistent-number";
 import ContextProduct from "./Context/context";
 import Loading from "../../components/loading";
+import { LoadingDelet } from "../../components/custom/Loading/LoadingDelet/LoadingDelet";
 
 const _asist = new Assistent();
 
@@ -121,12 +122,15 @@ export default function ListCardBuy() {
                                   color: "#1b3e68",
                                   cursor: "pointer",
                                 }}
-                                onClick={() =>
-                                  handel_DeleteProductFromList(
+                                onClick={async () => {
+                                  await setProductId(El.product.id);
+                                  await setLoading(true);
+                                  await handel_DeleteProductFromList(
                                     El.id,
                                     El.product.title
-                                  )
-                                }
+                                  );
+                                  await setLoading(true);
+                                }}
                               ></i>
                             </div>
                             <div className="cart-product-item-remain-stock"></div>
