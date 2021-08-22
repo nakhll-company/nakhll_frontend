@@ -10,7 +10,7 @@ export async function sendUserAddress(data) {
         ""
     );
     if (response.status === 200) {
-        window.location.replace("/cart/payment");
+        return true;
     } else {
         toast.error("خطایی در دریافت داده ها پیش آمده است", {
             position: "top-right",
