@@ -75,45 +75,117 @@ function Dashboard({ activeHojreh }) {
             <Link href="fp/order/uncompleted">
               <div className={styles.left_one_1}>
                 <i
-                  className="fas fa-cart-plus fa-3x"
-                  style={{ color: "#1b3e68" }}
+                  className="fas fa-cart-plus "
+                  style={{ color: "#1b3e68", fontSize: "20px" }}
                 ></i>
-                <h1 style={{
-                    fontSize:"18px"}}>{_asist.number(api.uncompleted_fators)}</h1>
-                <h4>سفارش ها تکمیل نشده</h4>
+                <h1
+                  style={{
+                    fontSize: "18px",
+                    marginTop: "0px",
+                    marginBottom: "0px",
+                  }}
+                >
+                  {_asist.number(api.uncompleted_fators)}
+                </h1>
+                <h4
+                  style={{
+                    fontSize: "14px",
+                    color: "#a4aebb",
+                    marginTop: "0px",
+                    marginBottom: "0px",
+                  }}
+                >
+                  سفارش ها تکمیل نشده
+                </h4>
               </div>
             </Link>
             <Link href="/fp/order/completed">
               <div className={styles.left_one_1}>
                 <i
-                  className="fas fa-user-clock fa-3x"
-                  style={{ color: "#1b3e68" }}
+                  className="fas fa-user-clock "
+                  style={{ color: "#1b3e68", fontSize: "20px" }}
                 ></i>
-                <h1 style={{
-                    fontSize:"18px"}}>{_asist.number(api.uncomfirmed_factors)}</h1>
-                <h4>سفارش های تکمیل شده</h4>
+                <h1
+                  style={{
+                    fontSize: "18px",
+                    marginTop: "0px",
+                    marginBottom: "0px",
+                  }}
+                >
+                  {_asist.number(api.uncomfirmed_factors)}
+                </h1>
+                <h4
+                  style={{
+                    fontSize: "14px",
+                    color: "#a4aebb",
+                    marginTop: "0px",
+                    marginBottom: "0px",
+                  }}
+                >
+                  سفارش های تکمیل شده
+                </h4>
               </div>
             </Link>
             <div className={styles.left_one_1}>
               <i
-                className="far fa-comment-alt fa-3x"
-                style={{ color: "#1b3e68" }}
+                className="far fa-comment-alt "
+                style={{ color: "#1b3e68", fontSize: "20px" }}
               ></i>
-              <h1 style={{
-                    fontSize:"18px"}}>{_asist.number(api.unread_comments_count)}</h1>
-              <h4>دیدگاه های تازه</h4>
+              <h1
+                style={{
+                  fontSize: "18px",
+                  marginTop: "0px",
+                  marginBottom: "0px",
+                }}
+              >
+                {_asist.number(api.unread_comments_count)}
+              </h1>
+              <h4
+                style={{
+                  fontSize: "14px",
+                  color: "#a4aebb",
+                  marginTop: "0px",
+                  marginBottom: "0px",
+                }}
+              >
+                دیدگاه های تازه
+              </h4>
             </div>
             <div className={styles.left_one_1}>
               <i
-                className="fas fa-wallet fa-3x"
-                style={{ color: "#1b3e68" }}
+                className="fas fa-wallet "
+                style={{ color: "#1b3e68", fontSize: "20px" }}
               ></i>
-              <h1 style={{
-                    fontSize:"18px"}}>
+              <h1
+                style={{
+                  fontSize: "18px",
+
+                  marginTop: "0px",
+                  marginBottom: "0px",
+                }}
+              >
                 {_asist.number(api.balance)}
-                <span style={{ marginRight: "5px" }}>تومان</span>
+                <span
+                  style={{
+                    marginRight: "5px",
+                    marginTop: "0px",
+                    marginBottom: "0px",
+                    fontSize: "14px",
+                  }}
+                >
+                  تومان
+                </span>
               </h1>
-              <h4>موجودی حساب </h4>
+              <h4
+                style={{
+                  fontSize: "14px",
+                  color: "#a4aebb",
+                  marginTop: "0px",
+                  marginBottom: "0px",
+                }}
+              >
+                موجودی حساب{" "}
+              </h4>
             </div>
           </div>
           {/* slider */}
@@ -170,7 +242,9 @@ function Dashboard({ activeHojreh }) {
           {/* product status */}
           <div dir="rtl" className={styles.left_three}>
             <div className={styles.left_three_head}>
-              <h3 style={{ margin: "1.5rem", color: "#91a6c1" }}>
+              <h3
+                style={{ margin: "15px", color: "#91a6c1", fontSize: "15px" }}
+              >
                 وضعیت محصول
               </h3>
             </div>
@@ -181,13 +255,33 @@ function Dashboard({ activeHojreh }) {
                     display: "inline-block",
                     color: " black",
                     marginLeft: "5px",
-                    fontSize:"18px"
+                    fontSize: "18px",
+                    marginTop: "0px",
+                    marginBottom: "0px",
                   }}
                 >
                   {_asist.number(api.active_products)}
                 </h1>
-                <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
-                <h4 style={{ marginTop: "1rem" }}>کالاهای فعال</h4>
+                <h3
+                  style={{
+                    display: "inline-block",
+                    color: "black",
+                    marginTop: "0px",
+                    marginBottom: "0px",
+                    fontSize: "14px",
+                  }}
+                >
+                  عدد
+                </h3>
+                <h4
+                  style={{
+                    marginTop: "10px",
+                    fontSize: "14px",
+                    color: "#a4aebb",
+                  }}
+                >
+                  کالاهای فعال
+                </h4>
               </div>
               <div className="">
                 <h1
@@ -195,13 +289,33 @@ function Dashboard({ activeHojreh }) {
                     display: "inline-block",
                     color: "black",
                     marginLeft: "5px",
-                    fontSize:"18px"
+                    fontSize: "18px",
+                    marginTop: "0px",
+                    marginBottom: "0px",
                   }}
                 >
                   {_asist.number(api.nearly_outofstock_products)}
                 </h1>
-                <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
-                <h4 style={{ marginTop: "1rem" }}>کالا های در حال اتمام</h4>
+                <h3
+                  style={{
+                    display: "inline-block",
+                    color: "black",
+                    marginTop: "0px",
+                    marginBottom: "0px",
+                    fontSize: "14px",
+                  }}
+                >
+                  عدد
+                </h3>
+                <h4
+                  style={{
+                    marginTop: "10px",
+                    fontSize: "14px",
+                    color: "#a4aebb",
+                  }}
+                >
+                  کالا های در حال اتمام
+                </h4>
               </div>
               <div className="">
                 <h1
@@ -209,13 +323,33 @@ function Dashboard({ activeHojreh }) {
                     display: "inline-block",
                     color: "black",
                     marginLeft: "5px",
-                    fontSize:"18px"
+                    fontSize: "18px",
+                    marginTop: "0px",
+                    marginBottom: "0px",
                   }}
                 >
                   {_asist.number(api.inactive_products)}
                 </h1>
-                <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
-                <h4 style={{ marginTop: "1rem" }}>کالاهای غیرفعال</h4>
+                <h3
+                  style={{
+                    display: "inline-block",
+                    color: "black",
+                    marginTop: "0px",
+                    marginBottom: "0px",
+                    fontSize: "14px",
+                  }}
+                >
+                  عدد
+                </h3>
+                <h4
+                  style={{
+                    marginTop: "10px",
+                    fontSize: "14px",
+                    color: "#a4aebb",
+                  }}
+                >
+                  کالاهای غیرفعال
+                </h4>
               </div>
               <div className="">
                 <h1
@@ -223,22 +357,44 @@ function Dashboard({ activeHojreh }) {
                     display: "inline-block",
                     color: " black",
                     marginLeft: "5px",
-                    fontSize:"18px"
+                    fontSize: "18px",
+                    marginTop: "0px",
+                    marginBottom: "0px",
                   }}
                 >
                   {_asist.number(api.outofstock_products)}
                 </h1>
-                <h3 style={{ display: " inline-block", color: "black" }}>
+                <h3
+                  style={{
+                    display: " inline-block",
+                    color: "black",
+                    marginTop: "0px",
+                    marginBottom: "0px",
+                    fontSize: "14px",
+                  }}
+                >
                   عدد
                 </h3>
-                <h4 style={{ marginTop: "1rem" }}>کالاهای ناموجود</h4>
+                <h4
+                  style={{
+                    marginTop: "10px",
+                    fontSize: "14px",
+                    color: "#a4aebb",
+                  }}
+                >
+                  کالاهای ناموجود
+                </h4>
               </div>
             </div>
           </div>
           {/* sell status */}
           <div dir="rtl" className={styles.left_three}>
             <div className={styles.left_three_head}>
-              <h3 style={{ margin: "1.5rem", color: "#91a6c1" }}>وضعیت فروش</h3>
+              <h3
+                style={{ margin: "15px", color: "#91a6c1", fontSize: "15px" }}
+              >
+                وضعیت فروش
+              </h3>
             </div>
             <div className={styles.left_three_content}>
               <div className="">
@@ -247,7 +403,9 @@ function Dashboard({ activeHojreh }) {
                     display: "inline-block",
                     color: " black",
                     marginLeft: "5px",
-                    fontSize:"18px"
+                    fontSize: "18px",
+                    marginTop: "0px",
+                    marginBottom: "0px",
                   }}
                 >
                   {api.current_week_total_sell &&
@@ -257,10 +415,26 @@ function Dashboard({ activeHojreh }) {
                         : api.current_week_total_sell.amont
                     )}
                 </h1>
-                <h3 style={{ display: "inline-block", color: "black" }}>
+                <h3
+                  style={{
+                    display: "inline-block",
+                    color: "black",
+                    marginTop: "0px",
+                    marginBottom: "0px",
+                    fontSize: "14px",
+                  }}
+                >
                   تومان
                 </h3>
-                <h4 style={{ marginTop: "1rem" }}>فروش هفته جاری</h4>
+                <h4
+                  style={{
+                    marginTop: "10px",
+                    fontSize: "14px",
+                    color: "#a4aebb",
+                  }}
+                >
+                  فروش هفته جاری
+                </h4>
               </div>
               <div className="">
                 <h1
@@ -268,7 +442,9 @@ function Dashboard({ activeHojreh }) {
                     display: " inline-block",
                     color: "black",
                     marginLeft: "5px",
-                    fontSize:"18px"
+                    fontSize: "18px",
+                    marginTop: "0px",
+                    marginBottom: "0px",
                   }}
                 >
                   {api.last_month_total_sell &&
@@ -278,10 +454,26 @@ function Dashboard({ activeHojreh }) {
                         : api.last_month_total_sell.amont
                     )}
                 </h1>
-                <h3 style={{ display: "inline-block", color: "black" }}>
+                <h3
+                  style={{
+                    display: "inline-block",
+                    color: "black",
+                    marginTop: "0px",
+                    marginBottom: "0px",
+                    fontSize: "14px",
+                  }}
+                >
                   تومان
                 </h3>
-                <h4 style={{ marginTop: "1rem" }}>فروش ماه گذشته</h4>
+                <h4
+                  style={{
+                    marginTop: "10px",
+                    fontSize: "14px",
+                    color: "#a4aebb",
+                  }}
+                >
+                  فروش ماه گذشته
+                </h4>
               </div>
               <div className="">
                 <h1
@@ -289,7 +481,9 @@ function Dashboard({ activeHojreh }) {
                     display: "inline-block",
                     color: "black",
                     marginLeft: "5px",
-                    fontSize:"18px"
+                    fontSize: "18px",
+                    marginTop: "0px",
+                    marginBottom: "0px",
                   }}
                 >
                   {_asist.number(
@@ -298,8 +492,26 @@ function Dashboard({ activeHojreh }) {
                       0
                   )}
                 </h1>
-                <h3 style={{ display: "inline-block", color: "black" }}>عدد</h3>
-                <h4 style={{ marginTop: "1rem" }}>فروش هفته گذشته</h4>
+                <h3
+                  style={{
+                    display: "inline-block",
+                    color: "black",
+                    marginTop: "0px",
+                    marginBottom: "0px",
+                    fontSize: "14px",
+                  }}
+                >
+                  عدد
+                </h3>
+                <h4
+                  style={{
+                    marginTop: "10px",
+                    fontSize: "14px",
+                    color: "#a4aebb",
+                  }}
+                >
+                  فروش هفته گذشته
+                </h4>
               </div>
             </div>
           </div>

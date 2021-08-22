@@ -75,13 +75,16 @@ const Address = () => {
                                 </a>
                             </Link>
                         </div>
-                        <form className={styles.address_items_form} onSubmit={(event) => {
+                        <form className={styles.address_items_form} onSubmit={async (event) => {
                             event.preventDefault();
                             let selectedAddressId = document.querySelector('input[type=radio]:checked').value;
                             let data = {
                                 address: selectedAddressId
                             };
-                            sendUserAddress(data);
+                            await setLoading(true);
+                            let response = await sendUserAddress(data);
+                            await setLoading(false);
+                            response === true && router.push("/cart/payment");
                         }}>
                             {address.map((value, index) => {
                                 return (

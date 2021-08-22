@@ -28,7 +28,9 @@ const UpdateAddress = () => {
     const { register, handleSubmit, setValue, formState: { errors } } = useForm();
 
     const onSubmit = async (data) => {
-        updateAddress(id, data);
+        await setLoading(true);
+        await updateAddress(id, data);
+        router.push("/cart/address");
     };
 
     let [editAddressData, setEditAddressData] = useState({});
@@ -51,12 +53,12 @@ const UpdateAddress = () => {
                     href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
                     integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
                     crossOrigin="anonymous"
-                ></link>
+                />
             </Head>
             <Steps step="2" />
             <ToastContainer />
             {loading ?
-                <div className={`col-12 col-lg-5 py-5 my-2 ${styles.wrapper}`}>
+                <div className={`col-12 col-lg-5 py-5 ${styles.wrapper}`} style={{ padding: "50px 0px !important" }}>
                     <Loading />
                 </div>
                 :

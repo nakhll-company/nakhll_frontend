@@ -4,7 +4,7 @@ export default Headers = ({ onMenu, setOnMenu }) => {
   return (
     <div className={styles.header}>
       <div className={styles.header_title}>
-        <h1>
+        <h1 style={{ margin: "0px", fontSize: "18px" }}>
           تنظیمات{" "}
           <i
             className="fas fa-chevron-left"
@@ -12,6 +12,7 @@ export default Headers = ({ onMenu, setOnMenu }) => {
               marginRight: "2px",
               marginLeft: "4px",
               display: "inline-block",
+              fontSize: "18px",
             }}
           ></i>
           {onMenu == "1" && <span>حجره</span>}
@@ -29,7 +30,12 @@ export default Headers = ({ onMenu, setOnMenu }) => {
           }}
           className={styles.header_menu_btn}
         >
-          <h1 className={onMenu == "1" && styles.onBtn}>حجره</h1>
+          <h1
+            style={{ margin: "0px", fontSize: "18px" }}
+            className={onMenu == "1" && styles.onBtn}
+          >
+            حجره
+          </h1>
         </button>
 
         <button
@@ -38,7 +44,12 @@ export default Headers = ({ onMenu, setOnMenu }) => {
           }}
           className={styles.header_menu_btn}
         >
-          <h1 className={onMenu == "2" && styles.onBtn}>حساب بانکی</h1>
+          <h1
+            style={{ margin: "0px", fontSize: "18px" }}
+            className={onMenu == "2" && styles.onBtn}
+          >
+            حساب بانکی
+          </h1>
         </button>
         <button
           onClick={() => {
@@ -46,7 +57,12 @@ export default Headers = ({ onMenu, setOnMenu }) => {
           }}
           className={styles.header_menu_btn}
         >
-          <h1 className={onMenu == "3" && styles.onBtn}>ارسال</h1>
+          <h1
+            style={{ margin: "0px", fontSize: "18px" }}
+            className={onMenu == "3" && styles.onBtn}
+          >
+            ارسال
+          </h1>
         </button>
         <button
           onClick={() => {
@@ -54,7 +70,12 @@ export default Headers = ({ onMenu, setOnMenu }) => {
           }}
           className={styles.header_menu_btn}
         >
-          <h1 className={onMenu == "4" && styles.onBtn}>لینک ها</h1>
+          <h1
+            style={{ margin: "0px", fontSize: "18px" }}
+            className={onMenu == "4" && styles.onBtn}
+          >
+            لینک ها
+          </h1>
         </button>
       </div>
     </div>
