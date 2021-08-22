@@ -170,6 +170,7 @@ function Dashboard({ activeHojreh }) {
                     marginRight: "5px",
                     marginTop: "0px",
                     marginBottom: "0px",
+                    fontSize: "14px",
                   }}
                 >
                   تومان
@@ -267,6 +268,7 @@ function Dashboard({ activeHojreh }) {
                     color: "black",
                     marginTop: "0px",
                     marginBottom: "0px",
+                    fontSize: "14px",
                   }}
                 >
                   عدد
@@ -300,6 +302,7 @@ function Dashboard({ activeHojreh }) {
                     color: "black",
                     marginTop: "0px",
                     marginBottom: "0px",
+                    fontSize: "14px",
                   }}
                 >
                   عدد
@@ -333,6 +336,7 @@ function Dashboard({ activeHojreh }) {
                     color: "black",
                     marginTop: "0px",
                     marginBottom: "0px",
+                    fontSize: "14px",
                   }}
                 >
                   عدد
@@ -366,6 +370,7 @@ function Dashboard({ activeHojreh }) {
                     color: "black",
                     marginTop: "0px",
                     marginBottom: "0px",
+                    fontSize: "14px",
                   }}
                 >
                   عدد
@@ -416,6 +421,7 @@ function Dashboard({ activeHojreh }) {
                     color: "black",
                     marginTop: "0px",
                     marginBottom: "0px",
+                    fontSize: "14px",
                   }}
                 >
                   تومان
@@ -454,6 +460,7 @@ function Dashboard({ activeHojreh }) {
                     color: "black",
                     marginTop: "0px",
                     marginBottom: "0px",
+                    fontSize: "14px",
                   }}
                 >
                   تومان
@@ -491,6 +498,7 @@ function Dashboard({ activeHojreh }) {
                     color: "black",
                     marginTop: "0px",
                     marginBottom: "0px",
+                    fontSize: "14px",
                   }}
                 >
                   عدد
