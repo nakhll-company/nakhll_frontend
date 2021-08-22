@@ -1,6 +1,7 @@
 // node libraries
 import Head from "next/head";
 import Link from 'next/link';
+import { useRouter } from "next/router";
 import { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { ToastContainer } from "react-toastify";
@@ -20,11 +21,16 @@ import styles from '../../../../styles/pages/cart/newAddress.module.scss';
  */
 const NewAddress = () => {
 
+    const router = useRouter();
+
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = async (data) => {
         await setLoading(true);
-        await postAddress(data);
+        let response = await postAddress(data);
+        if (response === true) {
+            router.push("/cart/address");
+        }
         await setLoading(false);
     };
 

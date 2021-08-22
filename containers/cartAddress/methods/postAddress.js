@@ -10,10 +10,7 @@ export async function postAddress(data) {
         ""
     );
     if (response.status === 201) {
-        toast.success("آدرس مورد نظر با موفقیت اضافه شد", {
-            position: "top-right",
-            closeOnClick: true,
-        });
+        return true;
     } else {
         toast.error("خطایی در دریافت داده ها پیش آمده است", {
             position: "top-right",
