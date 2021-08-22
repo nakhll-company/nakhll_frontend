@@ -66,14 +66,20 @@ export default function Cart() {
         true,
         params
       );
-      setAll_product_list_buy(await response.data);
-      console.log("Pluse :>> ", response);
-      // if (response.status === 200) {
-      toast.success("داده ها با موفقیت ثبت شده اند", {
-        position: "top-right",
-        closeOnClick: true,
-      });
-      // }
+
+      console.log("Pluse :>> ", response.status);
+      if (response.status === 201) {
+        setAll_product_list_buy(await response.data);
+        toast.success("داده ها با موفقیت ثبت شده اند", {
+          position: "top-right",
+          closeOnClick: true,
+        });
+      } else {
+        toast.error("موجودی کافی نمی باشد.", {
+          position: "top-center",
+          closeOnClick: true,
+        });
+      }
     } catch (e) {
       console.log("error :>> ", e.response.data[0]);
       const error = e.response.data[0];
@@ -163,7 +169,8 @@ export default function Cart() {
           <div style={{ backgroundColor: "#fff" }}>
             <Loading />
           </div>
-        ) : All_product_list_buy.ordered_items.length > 0 ? (
+        ) : All_product_list_buy &&
+          All_product_list_buy.ordered_items.length > 0 ? (
           <section className="container container--mob pb-5 ">
             <CheckOutSteps step="1" />
 

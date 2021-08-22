@@ -1086,7 +1086,9 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                           type="submit"
                           className={`${styles.btn} ${styles.btnSubmit}`}
                         >
-                          <h3 style={{ margin: "0px" }}>ذخیره اطلاعات</h3>
+                          <h3 style={{ margin: "0px", fontSize: "15px" }}>
+                            ذخیره اطلاعات
+                          </h3>
                         </button>
                       </div>
                     </Form>
@@ -1281,7 +1283,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                           type="submit"
                           className={`${styles.btn} ${styles.btnSubmit}`}
                         >
-                          <h3 style={{ margin: "0px" }}>به روز رسانی</h3>
+                          <h3 style={{ margin: "0px",fontSize:"15px" }}>به روز رسانی</h3>
                         </button>
                       </div>
                     </Form>
@@ -1372,7 +1374,9 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                       type="submit"
                       className={`${styles.btn} ${styles.btnSubmit}`}
                     >
-                      <h3 style={{ margin: "0px" }}>ذخیره اطلاعات </h3>
+                      <h3 style={{ margin: "0px", fontSize: "15px" }}>
+                        ذخیره اطلاعات{" "}
+                      </h3>
                     </button>
                   </div>
                 </form>
