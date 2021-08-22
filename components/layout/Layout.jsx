@@ -154,11 +154,10 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
       )}
 
       <div
-        className={`${
-          width < breakpoint && router.pathname !== "/"
-            ? styles.wrapperProduct
-            : styles.wrapper
-        }`}
+        className={`${width < breakpoint && router.pathname !== "/"
+          ? styles.wrapperProduct
+          : styles.wrapper
+          }`}
       >
         {/* <!-- Right  SideBar--> */}
         {!(width < breakpoint && router.pathname !== "/fp") && (
@@ -221,11 +220,10 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                 </div>
                 <Link href="/fp/setting">
                   <div
-                    className={`${
-                      router.pathname == "/fp/setting"
-                        ? styles.ActiveMenuBarBig
-                        : ""
-                    }   ${styles.info_card_btn_one} ${styles.forhover}`}
+                    className={`${router.pathname == "/fp/setting"
+                      ? styles.ActiveMenuBarBig
+                      : ""
+                      }   ${styles.info_card_btn_one} ${styles.forhover}`}
                   >
                     <i
                       style={{ fontSize: "20px" }}
@@ -268,9 +266,8 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
             <section className={styles.menu_card}>
               <Link href={`/fp`}>
                 <span
-                  className={`${styles.menu_card_item}   ${
-                    router.pathname == "/" ? styles.selectNav : ""
-                  }`}
+                  className={`${styles.menu_card_item} ${router.pathname == "/" ? styles.selectNav : ""
+                    } mt-5 mb-4`}
                 >
                   <i
                     style={{
@@ -281,7 +278,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   ></i>
                   <h2
                     style={{
-                     
+
                       fontSize: "16px",
                     }}
                   >
@@ -290,7 +287,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                 </span>
               </Link>
               <button
-                style={{ cursor: "pointer" }}
+                style={{ cursor: "pointer", marginBottom: "20px" }}
                 className={styles.btnOrder}
                 onClick={() => {
                   setisShowOrder(!isShowOrder);
@@ -317,7 +314,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                         <h2
                           style={{
                             color: "#1b3e68",
-                           
+
                             fontSize: "16px",
                           }}
                         >
@@ -355,7 +352,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                         <h2
                           style={{
                             color: "#1b3e68",
-                          
+
                             fontSize: "16px",
                           }}
                         >
@@ -384,27 +381,24 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                       style={{
                         display: "flex",
                         alignItems: "center",
-                        marginTop: "15px",
                         cursor: "pointer",
                       }}
-                      className={`${styles.subTitleOrder}   ${
-                        router.pathname == "/fp/order/completed"
-                          ? styles.selectNav
-                          : ""
-                      }`}
+                      className={`${styles.subTitleOrder}   ${router.pathname == "/fp/order/completed"
+                        ? styles.selectNav
+                        : ""
+                        }`}
                     >
                       <span
                         style={{ marginLeft: "18px" }}
-                        className={`${styles.dot}   ${
-                          router.pathname == "/fp/order/completed"
-                            ? styles.selectdot
-                            : ""
-                        }`}
+                        className={`${styles.dot}   ${router.pathname == "/fp/order/completed"
+                          ? styles.selectdot
+                          : ""
+                          }`}
                       ></span>
                       <h2
                         style={{
                           color: "#1b3e68",
-                          
+
                           fontSize: "16px",
                         }}
                       >
@@ -418,26 +412,25 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                         display: "flex",
                         alignItems: "center",
                         marginTop: "15px",
+                        marginBottom: "25px",
                         cursor: "pointer",
                       }}
-                      className={`${styles.subTitleOrder}   ${
-                        router.pathname == "/fp/order/uncompleted"
-                          ? styles.selectNav
-                          : ""
-                      }`}
+                      className={`${styles.subTitleOrder}   ${router.pathname == "/fp/order/uncompleted"
+                        ? styles.selectNav
+                        : ""
+                        }`}
                     >
                       <span
                         style={{ marginLeft: "18px" }}
-                        className={`${styles.dot}   ${
-                          router.pathname == "/fp/order/uncompleted"
-                            ? styles.selectdot
-                            : ""
-                        }`}
+                        className={`${styles.dot}   ${router.pathname == "/fp/order/uncompleted"
+                          ? styles.selectdot
+                          : ""
+                          }`}
                       ></span>
                       <h2
                         style={{
                           color: "#1b3e68",
-                        
+
                           fontSize: "16px",
                         }}
                       >
@@ -450,9 +443,8 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
 
               <Link activeClassName="selectNav" href="/fp/product">
                 <span
-                  className={`${styles.menu_card_item}   ${
-                    router.pathname == "/fp/product" ? styles.selectNav : ""
-                  }`}
+                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/product" ? styles.selectNav : ""
+                    }`}
                 >
                   <i
                     style={{
@@ -464,7 +456,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   <h2
                     style={{
                       color: "#1b3e68",
-                      
+
                       fontSize: "16px",
                     }}
                   >
@@ -478,9 +470,8 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
         )}
         {/* <!-- Left --> */}
         <div
-          className={`${
-            router.pathname == "/" ? styles.left : styles.leftProduct
-          }`}
+          className={`${router.pathname == "/" ? styles.left : styles.leftProduct
+            }`}
         >
           {children}
         </div>
