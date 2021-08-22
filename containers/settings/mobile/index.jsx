@@ -355,11 +355,15 @@ function MobileSetting({ activeHojreh }) {
                     <Form>
                       <div className={styles.Hojreh_profile}>
                         <div className={styles.HeadName}>
-                          <h1>حجره</h1>
+                          <h1 style={{ margin: "0px" }}>حجره</h1>
                         </div>
                         <div className={styles.input_setting}>
                           <h2
-                            style={{ marginBottom: "10px", color: "#364254" }}
+                            style={{
+                              marginBottom: "10px",
+                              color: "#364254",
+                              fontSize: "16px",
+                            }}
                           >
                             نام حجره
                           </h2>
@@ -378,6 +382,7 @@ function MobileSetting({ activeHojreh }) {
                               marginTop: "34px",
                               marginBottom: "10px",
                               color: "#364254",
+                              fontSize: "16px",
                             }}
                           >
                             آدرس اینترنتی حجره
@@ -397,6 +402,7 @@ function MobileSetting({ activeHojreh }) {
                               marginTop: "34px",
                               marginBottom: "10px",
                               color: "#364254",
+                              fontSize: "16px",
                             }}
                           >
                             درباره حجره
@@ -417,11 +423,15 @@ function MobileSetting({ activeHojreh }) {
 
                       <div className={styles.Hojreh_space}>
                         <div className={styles.HeadName}>
-                          <h1>مشخصات</h1>
+                          <h1 style={{ margin: "0px" }}>مشخصات</h1>
                         </div>
                         <div className={styles.input_setting}>
                           <h2
-                            style={{ marginBottom: "10px", color: "#364254" }}
+                            style={{
+                              marginBottom: "10px",
+                              color: "#364254",
+                              fontSize: "16px",
+                            }}
                           >
                             کد ملی
                           </h2>
@@ -441,6 +451,7 @@ function MobileSetting({ activeHojreh }) {
                               marginTop: "34px",
                               marginBottom: "10px",
                               color: "#364254",
+                              fontSize: "16px",
                             }}
                           >
                             شماره تماس اصلی
@@ -460,6 +471,7 @@ function MobileSetting({ activeHojreh }) {
                               marginTop: "34px",
                               marginBottom: "10px",
                               color: "#364254",
+                              fontSize: "16px",
                             }}
                           >
                             شماره تلفن ثابت
@@ -472,7 +484,7 @@ function MobileSetting({ activeHojreh }) {
 
                       <div className={styles.Hojreh_Address}>
                         <div className={styles.HeadName}>
-                          <h1>آدرس</h1>
+                          <h1 style={{ margin: "0px" }}>آدرس</h1>
                         </div>
 
                         <div className={styles.forAddress}>
@@ -552,7 +564,11 @@ function MobileSetting({ activeHojreh }) {
 
                         <div className={styles.input_setting}>
                           <h2
-                            style={{ marginBottom: "10px", color: "#364254" }}
+                            style={{
+                              marginBottom: "10px",
+                              color: "#364254",
+                              fontSize: "16px",
+                            }}
                           >
                             آدرس
                           </h2>
@@ -571,6 +587,7 @@ function MobileSetting({ activeHojreh }) {
                               marginTop: "34px",
                               marginBottom: "10px",
                               color: "#364254",
+                              fontSize: "16px",
                             }}
                           >
                             کد پستی
@@ -637,7 +654,7 @@ function MobileSetting({ activeHojreh }) {
                           type="submit"
                           className={`${styles.btn} ${styles.btnSubmit}`}
                         >
-                          <h3>ذخیره اطلاعات</h3>
+                          <h3 style={{ margin: "0px" }}>ذخیره اطلاعات</h3>
                         </button>
                       </div>
 
@@ -705,12 +722,18 @@ function MobileSetting({ activeHojreh }) {
               </div> */}
 
                       <div className={styles.input_setting}>
-                        <h2 style={{ marginBottom: "10px", color: "#364254" }}>
+                        <h2
+                          style={{
+                            marginBottom: "10px",
+                            color: "#364254",
+                            fontSize: "16px",
+                          }}
+                        >
                           شماره شبا
                         </h2>
                         <div className={styles.inputWid_withWord}>
                           <div>
-                            <h2>IR-</h2>
+                            <h2 style={{ fontSize: "16px" }}>IR-</h2>
                           </div>
                           <Field name="iban" type="text" />
                         </div>
@@ -720,7 +743,13 @@ function MobileSetting({ activeHojreh }) {
                       </div>
 
                       <div className={styles.input_setting}>
-                        <h2 style={{ marginBottom: "10px", color: "#364254" }}>
+                        <h2
+                          style={{
+                            marginBottom: "10px",
+                            color: "#364254",
+                            fontSize: "16px",
+                          }}
+                        >
                           صاحب حساب
                         </h2>
                         <div className={styles.inputWid}>
@@ -744,7 +773,7 @@ function MobileSetting({ activeHojreh }) {
                           // }}
                           className={`${styles.btn} ${styles.btnSubmit}`}
                         >
-                          <h3>به روز رسانی</h3>
+                          <h3 style={{ margin: "0px" }}>به روز رسانی</h3>
                         </button>
                       </div>
                       <div style={{ marginTop: "50px" }}></div>
@@ -775,12 +804,18 @@ function MobileSetting({ activeHojreh }) {
                   }}
                 >
                   <div className={styles.input_setting}>
-                    <h2 style={{ marginBottom: "10px", color: "#364254" }}>
+                    <h2
+                      style={{
+                        marginBottom: "10px",
+                        color: "#364254",
+                        fontSize: "16px",
+                      }}
+                    >
                       آدرس تلگرام
                     </h2>
                     <div className={styles.inputWid_withWord}>
                       <div>
-                        <h2>t.me/</h2>
+                        <h2 style={{ fontSize: "16px" }}>t.me/</h2>
                       </div>
                       <input
                         type="text"
@@ -793,12 +828,18 @@ function MobileSetting({ activeHojreh }) {
                     </div>
                   </div>
                   <div className={styles.input_setting}>
-                    <h2 style={{ marginBottom: "10px", color: "#364254" }}>
+                    <h2
+                      style={{
+                        marginBottom: "10px",
+                        color: "#364254",
+                        fontSize: "16px",
+                      }}
+                    >
                       آدرس اینستاگرام
                     </h2>
                     <div className={styles.inputWid_withWord}>
                       <div>
-                        <h2>instagram.com/</h2>
+                        <h2 style={{ fontSize: "16px" }}>instagram.com/</h2>
                       </div>
                       <input
                         type="text"
@@ -816,7 +857,7 @@ function MobileSetting({ activeHojreh }) {
                       type="submit"
                       className={`${styles.btn} ${styles.btnSubmit}`}
                     >
-                      <h3>ذخیره اطلاعات </h3>
+                      <h3 style={{ margin: "0px" }}>ذخیره اطلاعات </h3>
                     </button>
                   </div>
 
