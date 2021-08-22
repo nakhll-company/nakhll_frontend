@@ -1,108 +1,16 @@
 import React, { useState } from "react";
-import { useEffect } from "react";
 import { useContext } from "react";
 import Assistent from "zaravand-assistent-number";
-import { LoadingDelet } from "../../components/custom/Loading/LoadingDelet/LoadingDelet";
 import ContextProduct from "./Context/context";
+import Loading from '../../components/loading';
 
 const _asist = new Assistent();
 
 export default function ListCardBuy() {
-  // GET "All_product_list_buy" FROM PARENT COMPONENT
-  const [correctStructureProduct, setCorrectStructureProduct] = useState([]);
-  const [helper_for_product, setHelper_for_product] = useState({});
 
-  // const TrueStructure = [
-  //   {
-  //     shop: "pestehKerman",
-  //     slug: "",
-  //     url: "www",
-  //     product: [
-  //       {
-  //         id: 12,
-  //         img: "",
-  //         imgUrl: "",
-  //         total_old_price: "",
-  //         total_price: "",
-  //         title: "pestehAkbari",
-  //         count: 3,
-  //         id: "",
-  //         discount: 14,
-  //       },
-  //       {
-  //         id: 12,
-  //         img: "",
-  //         imgUrl: "",
-  //         total_old_price: "",
-  //         total_price: "",
-  //         title: "pestehAkbari",
-  //         count: 3,
-  //         id: "",
-  //         discount: 14,
-  //       },
-  //       {
-  //         id: 12,
-  //         img: "",
-  //         imgUrl: "",
-  //         total_old_price: "",
-  //         total_price: "",
-  //         title: "pestehAkbari",
-  //         count: 3,
-  //         id: "",
-  //         discount: 14,
-  //       },
-  //       {
-  //         id: 12,
-  //         img: "",
-  //         imgUrl: "",
-  //         total_old_price: "",
-  //         total_price: "",
-  //         title: "pestehAkbari",
-  //         count: 3,
-  //         id: "",
-  //         discount: 14,
-  //       },
-  //       {
-  //         id: 12,
-  //         img: "",
-  //         imgUrl: "",
-  //         total_old_price: "",
-  //         total_price: "",
-  //         title: "pestehAkbari",
-  //         count: 3,
-  //         id: "",
-  //         discount: 14,
-  //       },
-  //       {
-  //         id: 12,
-  //         img: "",
-  //         imgUrl: "",
-  //         total_old_price: "",
-  //         total_price: "",
-  //         title: "pestehAkbari",
-  //         count: 3,
-  //         id: "",
-  //         discount: 14,
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     id: 12,
-  //     img: "",
-  //     imgUrl: "",
-  //     total_old_price: "",
-  //     total_price: "",
-  //     title: "pestehAkbari",
-  //     count: 3,
-  //     id: "",
-  //     discount: 14,
-  //     product: [{}, {}],
-  //   },
-  //   {
-  //     product: [{}],
-  //   },
-  //   {},
-  // ];
+  let [loading, setLoading] = useState(false);
+  let [productId, setProductId] = useState(0);
+
   const {
     All_product_list_buy,
     handel_AddProductTOList,
@@ -122,35 +30,35 @@ export default function ListCardBuy() {
                   !(
                     index > 0 &&
                     El.product.shop.slug ==
-                      All_product_list_buy.ordered_items[index - 1].product.shop
-                        .slug
+                    All_product_list_buy.ordered_items[index - 1].product.shop
+                      .slug
                   )
                     ? { position: "relative" }
                     : {
-                        position: "relative",
-                        marginTop: "-12px",
-                        borderTop: "2px dashed hsl(213deg 59% 26%)",
-                        borderTopLeftRadius: "inherit",
-                        borderTopRightRadius: "inherit",
-                      }
+                      position: "relative",
+                      marginTop: "-12px",
+                      borderTop: "2px dashed hsl(213deg 59% 26%)",
+                      borderTopLeftRadius: "inherit",
+                      borderTopRightRadius: "inherit",
+                    }
                 }
               >
                 {!(
                   index > 0 &&
                   El.product.shop.slug ==
-                    All_product_list_buy.ordered_items[index - 1].product.shop
-                      .slug
+                  All_product_list_buy.ordered_items[index - 1].product.shop
+                    .slug
                 ) && (
-                  <div className="pt-3 pb-1 px-3">
-                    <span className="font-size1">از غرفه: </span>{" "}
-                    <a
-                      href={El.product.shop.url}
-                      className="vendor-link font-size1 font-weight-bold link-body font-weight-normal txtcut"
-                    >
-                      {El.product.shop.title}
-                    </a>
-                  </div>
-                )}
+                    <div className="pt-3 pb-1 px-3">
+                      <span className="font-size1">از غرفه: </span>{" "}
+                      <a
+                        href={El.product.shop.url}
+                        className="vendor-link font-size1 font-weight-bold link-body font-weight-normal txtcut"
+                      >
+                        {El.product.shop.title}
+                      </a>
+                    </div>
+                  )}
                 {/*</mnbvcxz> IF CHANGE IN PRODUCT IN LIST */}
 
                 {/* <div className="align-items-center nakhl-label d-flex justify-content-between mx-3 mt-3 p-2 rounded  border border-danger text-danger">
@@ -173,133 +81,140 @@ export default function ListCardBuy() {
                 {/*^^^^^^^^^^^ IF CHANGE IN PRODUCT IN LIST ^^^^^^^^^^^*/}
 
                 <div className="p-3 mt-2 cart-product-item">
-                  <div className="spinner spinner--medium"></div>
-                  <div className="d-flex flex-wrap justify-content-between">
-                    <div className="d-flex w-100">
-                      <a
-                        href="/ali_goharrizi/product/746256?from=cart&amp;component=cart"
-                        className="product-link"
-                      >
-                        <img
-                          src={El.product.image_thumbnail_url}
-                          className="cart-product-item-img rounded"
-                        />
-                      </a>
-                      <div className="d-flex flex-column justify-content-between mr-3 w-100 overflow-hidden">
-                        <div
-                          style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                          }}
-                        >
+                  {loading && productId === El.product.id ?
+                    <div>
+                      <Loading />
+                    </div> :
+                    <>
+                      <div className="spinner spinner--medium"></div>
+                      <div className="d-flex flex-wrap justify-content-between">
+                        <div className="d-flex w-100">
                           <a
-                            href={El.product.url}
-                            className="product-link d-block font-size1 link-body font-weight-bold text-truncate"
+                            href="/ali_goharrizi/product/746256?from=cart&amp;component=cart"
+                            className="product-link"
                           >
-                            {_asist.number(El.product.title)}
+                            <img
+                              src={El.product.image_thumbnail_url}
+                              className="cart-product-item-img rounded"
+                            />
                           </a>
-                          <i
-                            className="fas fa-times-circle"
-                            style={{
-                              fontSize: "20px",
-                              marginRight: "5px",
-                              fontSize: "25px",
-                              color: "#1b3e68",
-                              cursor: "pointer",
-                            }}
-                            onClick={() =>
-                              handel_DeleteProductFromList(
-                                El.id,
-                                El.product.title
-                              )
-                            }
-                          ></i>
-                        </div>
-                        <div className="cart-product-item-remain-stock"></div>
-                        <div
-                          className={`nakhl-label mr-auto small teaberry-light ${
-                            El.product.discount == 0 && "opacity_none"
-                          }`}
-                        >
-                          {_asist.number(El.product.discount)}
-                          <span> %</span>
-                        </div>
-                        <div className="d-flex align-items-center">
-                          <div
-                            className="mt-2 d-flex align-items-center"
-                            style={{ witheSpace: "nowrap" }}
-                          >
+                          <div className="d-flex flex-column justify-content-between mr-3 w-100 overflow-hidden">
                             <div
-                              className="quantity-box input-group input-group-sm"
-                              style={{ width: "7rem", alignItems: "center" }}
+                              style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                              }}
                             >
-                              <div className="input-group-prepend ">
-                                <button className="btnplus  plus-minus-icon raise">
-                                  <i
-                                    style={{
-                                      fontSize: "25px",
-                                      color: "#1b3e68 ",
-                                    }}
-                                    className="fas fa-plus-square"
-                                    onClick={() =>
-                                      handel_AddProductTOList(El.product.id)
-                                    }
-                                  ></i>
-                                </button>
-                              </div>
-                              <input
-                                min="0"
-                                type="text"
-                                disabled="disabled"
-                                value={_asist.number(El.count)}
-                                className="bg-white border-0 font-size1-2 font-weight-bold form-control mt-1 px-1 text-center"
-                              />
-                              <div className="input-group-append">
-                                <button
-                                  className="btnminus  plus-minus-icon raise"
-                                  style={{
-                                    backgroundColor: "#fff",
-                                    outline: "none",
-                                  }}
+                              <a
+                                href={El.product.url}
+                                className="product-link d-block font-size1 link-body font-weight-bold text-truncate"
+                              >
+                                {_asist.number(El.product.title)}
+                              </a>
+                              <i
+                                className="fas fa-times-circle"
+                                style={{
+                                  fontSize: "20px",
+                                  marginRight: "5px",
+                                  fontSize: "25px",
+                                  color: "#1b3e68",
+                                  cursor: "pointer",
+                                }}
+                                onClick={() =>
+                                  handel_DeleteProductFromList(
+                                    El.id,
+                                    El.product.title
+                                  )
+                                }
+                              ></i>
+                            </div>
+                            <div className="cart-product-item-remain-stock"></div>
+                            <div
+                              className={`nakhl-label mr-auto small teaberry-light ${El.product.discount == 0 && "opacity_none"
+                                }`}
+                            >
+                              {_asist.number(El.product.discount)}
+                              <span> %</span>
+                            </div>
+                            <div className="d-flex align-items-center">
+                              <div
+                                className="mt-2 d-flex align-items-center"
+                                style={{ witheSpace: "nowrap" }}
+                              >
+                                <div
+                                  className="quantity-box input-group input-group-sm"
+                                  style={{ width: "7rem", alignItems: "center" }}
                                 >
-                                  <i
-                                    style={{
-                                      fontSize: "25px",
-                                      color: "#91a6c1 ",
-                                    }}
-                                    className="fas fa-minus-square"
-                                    onClick={() =>
-                                      handel_ReduceProductFromList(El.id)
-                                    }
-                                  ></i>
-                                </button>
+                                  <div className="input-group-prepend ">
+                                    <button className="btnplus  plus-minus-icon raise">
+                                      <i
+                                        style={{
+                                          fontSize: "25px",
+                                          color: "#1b3e68 ",
+                                        }}
+                                        className="fas fa-plus-square"
+                                        onClick={async () => {
+                                          await setProductId(El.product.id);
+                                          await setLoading(true);
+                                          await handel_AddProductTOList(El.product.id);
+                                          await setLoading(false);
+                                        }}></i>
+                                    </button>
+                                  </div>
+                                  <input
+                                    min="0"
+                                    type="text"
+                                    disabled="disabled"
+                                    value={_asist.number(El.count)}
+                                    className="bg-white border-0 font-size1-2 font-weight-bold form-control mt-1 px-1 text-center"
+                                  />
+                                  <div className="input-group-append">
+                                    <button
+                                      className="btnminus  plus-minus-icon raise"
+                                      style={{
+                                        backgroundColor: "#fff",
+                                        outline: "none",
+                                      }}
+                                    >
+                                      <i
+                                        style={{
+                                          fontSize: "25px",
+                                          color: "#91a6c1 ",
+                                        }}
+                                        className="fas fa-minus-square"
+                                        onClick={() =>
+                                          handel_ReduceProductFromList(El.id)
+                                        }
+                                      ></i>
+                                    </button>
+                                  </div>
+                                </div>
+                                <span className="d-inline-block font-size-9 mr-3 pointer">
+                                  {" "}
+                                  {/* حذف؟{" "} */}
+                                </span>
+                              </div>
+                              <div className="mr-auto">
+                                <span
+                                  style={{ display: "block" }}
+                                  className={`cart-product-item-primary-price ${El.product.discount == 0 && "opacity_none"
+                                    }`}
+                                >
+                                  {_asist.PSeparator(El.total_old_price / 10)}
+                                </span>{" "}
+                                <span className="font-weight-bold">
+                                  {_asist.PSeparator(El.total_price / 10)}
+                                </span>{" "}
+                                <span>تومان</span>
                               </div>
                             </div>
-                            <span className="d-inline-block font-size-9 mr-3 pointer">
-                              {" "}
-                              {/* حذف؟{" "} */}
-                            </span>
-                          </div>
-                          <div className="mr-auto">
-                            <span
-                              style={{ display: "block" }}
-                              className={`cart-product-item-primary-price ${
-                                El.product.discount == 0 && "opacity_none"
-                              }`}
-                            >
-                              {_asist.PSeparator(El.total_old_price / 10)}
-                            </span>{" "}
-                            <span className="font-weight-bold">
-                              {_asist.PSeparator(El.total_price / 10)}
-                            </span>{" "}
-                            <span>تومان</span>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
 
-                  <div className="v-portal" style={{ display: "none" }}></div>
+                      <div className="v-portal" style={{ display: "none" }}></div>
+                    </>
+                  }
                 </div>
                 {/* <div className="p-3 mt-2 cart-product-item">
                 <div className="spinner spinner--medium"></div>
@@ -524,8 +439,8 @@ export default function ListCardBuy() {
               {false &&
                 index !== 0 &&
                 El.product.shop.slug ==
-                  All_product_list_buy.ordered_items[index - 1].product.shop
-                    .slug && (
+                All_product_list_buy.ordered_items[index - 1].product.shop
+                  .slug && (
                   <div
                     className="mt-0 cart-product-group bg-white"
                     style={{ position: "relative" }}
@@ -593,9 +508,8 @@ export default function ListCardBuy() {
                             </div>
                             <div className="cart-product-item-remain-stock"></div>
                             <div
-                              className={`nakhl-label mr-auto small teaberry-light ${
-                                El.product.discount == 0 && "opacity_none"
-                              }`}
+                              className={`nakhl-label mr-auto small teaberry-light ${El.product.discount == 0 && "opacity_none"
+                                }`}
                             >
                               {_asist.number(El.product.discount)}
                               <span> %</span>
@@ -655,9 +569,8 @@ export default function ListCardBuy() {
                               </div>
                               <div className="mr-auto">
                                 <span
-                                  className={`cart-product-item-primary-price ${
-                                    El.product.discount == 0 && "opacity_none"
-                                  }`}
+                                  className={`cart-product-item-primary-price ${El.product.discount == 0 && "opacity_none"
+                                    }`}
                                 >
                                   {_asist.PSeparator(El.total_old_price / 10)}
                                 </span>{" "}
