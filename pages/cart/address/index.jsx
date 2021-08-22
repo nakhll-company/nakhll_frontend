@@ -84,7 +84,7 @@ const Address = () => {
                                 };
                                 await setLoading(true);
                                 let response = await sendUserAddress(data);
-                                response === true && router.push("/cart/payment");
+                                await (response === true && router.push("/cart/payment"));
                                 await setLoading(false);
                             } else {
                                 toast.error("لطفا ادرس خود را وارد نمایید", {
