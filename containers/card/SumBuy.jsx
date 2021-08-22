@@ -48,7 +48,7 @@ export default function SumBuy() {
             </div>
             <div>
               <Link href="/cart/address">
-                <button className="btn btn-Buy p-2 rounded-pill w-100 rainbow rainbow-1">
+                <button className="btn btn-Buy p-2 rounded-pill w-100 ">
                   {_asist.number(`ادامه خرید `)}
                 </button>
               </Link>
