@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Assistent from "zaravand-assistent-number";
 import { useState, useEffect } from 'react';
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 // componentes
 import CustomModal from '../../../components/custom/customModal';
 import DeleteAddress from '../../../containers/cartAddress/deleteAddress';
@@ -77,14 +77,21 @@ const Address = () => {
                         </div>
                         <form className={styles.address_items_form} onSubmit={async (event) => {
                             event.preventDefault();
-                            let selectedAddressId = document.querySelector('input[type=radio]:checked').value;
-                            let data = {
-                                address: selectedAddressId
-                            };
-                            await setLoading(true);
-                            let response = await sendUserAddress(data);
-                            await setLoading(false);
-                            response === true && router.push("/cart/payment");
+                            if (document.querySelector('input[type=radio]:checked') !== null) {
+                                let selectedAddressId = document.querySelector('input[type=radio]:checked').value;
+                                let data = {
+                                    address: selectedAddressId
+                                };
+                                await setLoading(true);
+                                let response = await sendUserAddress(data);
+                                response === true && router.push("/cart/payment");
+                                await setLoading(false);
+                            } else {
+                                toast.error("لطفا ادرس خود را وارد نمایید", {
+                                    position: "top-right",
+                                    closeOnClick: true,
+                                });
+                            }
                         }}>
                             {address.map((value, index) => {
                                 return (

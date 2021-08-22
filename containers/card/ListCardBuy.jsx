@@ -25,6 +25,7 @@ export default function ListCardBuy() {
           All_product_list_buy.ordered_items.map((El, index) => (
             <>
               <div
+                key={index + 10}
                 className="cart-product-group bg-white"
                 style={
                   !(

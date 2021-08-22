@@ -9,7 +9,7 @@ export async function deleteAddress(id) {
         true,
         ""
     );
-    if (response.status === 200) {
+    if (response.status === 204) {
         toast.success("آدرس مورد نظر حذف شد", {
             position: "top-right",
             closeOnClick: true,
