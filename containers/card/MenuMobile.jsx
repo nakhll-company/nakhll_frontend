@@ -9,6 +9,7 @@ import ContextProduct from "./Context/context";
 
 export const MenuMobile = () => {
   const { All_product_list_buy } = useContext(ContextProduct);
+  console.log("iii :>> ", All_product_list_buy);
   return (
     <>
       {Object.keys(All_product_list_buy).length > 0 && (
@@ -35,7 +36,9 @@ export const MenuMobile = () => {
                   marginLeft: "5px",
                 }}
               >
-                {_asist.PSeparator(All_product_list_buy.total_old_price / 10)}
+                {All_product_list_buy.total_old_price !==
+                  All_product_list_buy.total_price &&
+                  _asist.PSeparator(All_product_list_buy.total_old_price / 10)}
               </span>
 
               <span className="font-weight-500" style={{ marginLeft: "5px" }}>

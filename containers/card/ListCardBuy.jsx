@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import Assistent from "zaravand-assistent-number";
 import ContextProduct from "./Context/context";
-import Loading from '../../components/loading';
+import Loading from "../../components/loading";
+import { LoadingDelet } from "../../components/custom/Loading/LoadingDelet/LoadingDelet";
 
 const _asist = new Assistent();
 
 export default function ListCardBuy() {
-
   let [loading, setLoading] = useState(false);
   let [productId, setProductId] = useState(0);
 
@@ -31,35 +31,35 @@ export default function ListCardBuy() {
                   !(
                     index > 0 &&
                     El.product.shop.slug ==
-                    All_product_list_buy.ordered_items[index - 1].product.shop
-                      .slug
+                      All_product_list_buy.ordered_items[index - 1].product.shop
+                        .slug
                   )
                     ? { position: "relative" }
                     : {
-                      position: "relative",
-                      marginTop: "-12px",
-                      borderTop: "2px dashed hsl(213deg 59% 26%)",
-                      borderTopLeftRadius: "inherit",
-                      borderTopRightRadius: "inherit",
-                    }
+                        position: "relative",
+                        marginTop: "-12px",
+                        borderTop: "2px dashed hsl(213deg 59% 26%)",
+                        borderTopLeftRadius: "inherit",
+                        borderTopRightRadius: "inherit",
+                      }
                 }
               >
                 {!(
                   index > 0 &&
                   El.product.shop.slug ==
-                  All_product_list_buy.ordered_items[index - 1].product.shop
-                    .slug
+                    All_product_list_buy.ordered_items[index - 1].product.shop
+                      .slug
                 ) && (
-                    <div className="pt-3 pb-1 px-3">
-                      <span className="font-size1">از غرفه: </span>{" "}
-                      <a
-                        href={El.product.shop.url}
-                        className="vendor-link font-size1 font-weight-bold link-body font-weight-normal txtcut"
-                      >
-                        {El.product.shop.title}
-                      </a>
-                    </div>
-                  )}
+                  <div className="pt-3 pb-1 px-3">
+                    <span className="font-size1">از غرفه: </span>{" "}
+                    <a
+                      href={El.product.shop.url}
+                      className="vendor-link font-size1 font-weight-bold link-body font-weight-normal txtcut"
+                    >
+                      {El.product.shop.title}
+                    </a>
+                  </div>
+                )}
                 {/*</mnbvcxz> IF CHANGE IN PRODUCT IN LIST */}
 
                 {/* <div className="align-items-center nakhl-label d-flex justify-content-between mx-3 mt-3 p-2 rounded  border border-danger text-danger">
@@ -82,10 +82,11 @@ export default function ListCardBuy() {
                 {/*^^^^^^^^^^^ IF CHANGE IN PRODUCT IN LIST ^^^^^^^^^^^*/}
 
                 <div className="p-3 mt-2 cart-product-item">
-                  {loading && productId === El.product.id ?
+                  {loading && productId === El.product.id ? (
                     <div>
                       <Loading />
-                    </div> :
+                    </div>
+                  ) : (
                     <>
                       <div className="spinner spinner--medium"></div>
                       <div className="d-flex flex-wrap justify-content-between">
@@ -121,18 +122,22 @@ export default function ListCardBuy() {
                                   color: "#1b3e68",
                                   cursor: "pointer",
                                 }}
-                                onClick={() =>
-                                  handel_DeleteProductFromList(
+                                onClick={async () => {
+                                  await setProductId(El.product.id);
+                                  await setLoading(true);
+                                  await handel_DeleteProductFromList(
                                     El.id,
                                     El.product.title
-                                  )
-                                }
+                                  );
+                                  await setLoading(true);
+                                }}
                               ></i>
                             </div>
                             <div className="cart-product-item-remain-stock"></div>
                             <div
-                              className={`nakhl-label mr-auto small teaberry-light ${El.product.discount == 0 && "opacity_none"
-                                }`}
+                              className={`nakhl-label mr-auto small teaberry-light ${
+                                El.product.discount == 0 && "opacity_none"
+                              }`}
                             >
                               {_asist.number(El.product.discount)}
                               <span> %</span>
@@ -144,7 +149,10 @@ export default function ListCardBuy() {
                               >
                                 <div
                                   className="quantity-box input-group input-group-sm"
-                                  style={{ width: "7rem", alignItems: "center" }}
+                                  style={{
+                                    width: "7rem",
+                                    alignItems: "center",
+                                  }}
                                 >
                                   <div className="input-group-prepend ">
                                     <button className="btnplus  plus-minus-icon raise">
@@ -157,9 +165,12 @@ export default function ListCardBuy() {
                                         onClick={async () => {
                                           await setProductId(El.product.id);
                                           await setLoading(true);
-                                          await handel_AddProductTOList(El.product.id);
+                                          await handel_AddProductTOList(
+                                            El.product.id
+                                          );
                                           await setLoading(false);
-                                        }}></i>
+                                        }}
+                                      ></i>
                                     </button>
                                   </div>
                                   <input
@@ -183,9 +194,14 @@ export default function ListCardBuy() {
                                           color: "#91a6c1 ",
                                         }}
                                         className="fas fa-minus-square"
-                                        onClick={() =>
-                                          handel_ReduceProductFromList(El.id)
-                                        }
+                                        onClick={async () => {
+                                          await setProductId(El.product.id);
+                                          await setLoading(true);
+                                          await handel_ReduceProductFromList(
+                                            El.id
+                                          );
+                                          await setLoading(false);
+                                        }}
                                       ></i>
                                     </button>
                                   </div>
@@ -198,8 +214,9 @@ export default function ListCardBuy() {
                               <div className="mr-auto">
                                 <span
                                   style={{ display: "block" }}
-                                  className={`cart-product-item-primary-price ${El.product.discount == 0 && "opacity_none"
-                                    }`}
+                                  className={`cart-product-item-primary-price ${
+                                    El.product.discount == 0 && "opacity_none"
+                                  }`}
                                 >
                                   {_asist.PSeparator(El.total_old_price / 10)}
                                 </span>{" "}
@@ -213,9 +230,12 @@ export default function ListCardBuy() {
                         </div>
                       </div>
 
-                      <div className="v-portal" style={{ display: "none" }}></div>
+                      <div
+                        className="v-portal"
+                        style={{ display: "none" }}
+                      ></div>
                     </>
-                  }
+                  )}
                 </div>
                 {/* <div className="p-3 mt-2 cart-product-item">
                 <div className="spinner spinner--medium"></div>
@@ -440,8 +460,8 @@ export default function ListCardBuy() {
               {false &&
                 index !== 0 &&
                 El.product.shop.slug ==
-                All_product_list_buy.ordered_items[index - 1].product.shop
-                  .slug && (
+                  All_product_list_buy.ordered_items[index - 1].product.shop
+                    .slug && (
                   <div
                     className="mt-0 cart-product-group bg-white"
                     style={{ position: "relative" }}
@@ -509,8 +529,9 @@ export default function ListCardBuy() {
                             </div>
                             <div className="cart-product-item-remain-stock"></div>
                             <div
-                              className={`nakhl-label mr-auto small teaberry-light ${El.product.discount == 0 && "opacity_none"
-                                }`}
+                              className={`nakhl-label mr-auto small teaberry-light ${
+                                El.product.discount == 0 && "opacity_none"
+                              }`}
                             >
                               {_asist.number(El.product.discount)}
                               <span> %</span>
@@ -570,8 +591,9 @@ export default function ListCardBuy() {
                               </div>
                               <div className="mr-auto">
                                 <span
-                                  className={`cart-product-item-primary-price ${El.product.discount == 0 && "opacity_none"
-                                    }`}
+                                  className={`cart-product-item-primary-price ${
+                                    El.product.discount == 0 && "opacity_none"
+                                  }`}
                                 >
                                   {_asist.PSeparator(El.total_old_price / 10)}
                                 </span>{" "}
