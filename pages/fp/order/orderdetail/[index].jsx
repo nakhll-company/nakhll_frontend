@@ -618,9 +618,8 @@ function HomePage({ id }) {
                   <div className={styles.post_informationD_content}>
                     <h4>نام مشتری</h4>
                     <h3 style={{ marginTop: "5px" }}>
-                      {`${data.profile && data.profile.user.first_name}  ${
-                        data.profile && data.profile.user.last_name
-                      }`}
+                      {`${data.profile && data.profile.user.first_name}  ${data.profile && data.profile.user.last_name
+                        }`}
                     </h3>
                   </div>
                   {/* <div className={styles.post_informationD_content}>
@@ -825,7 +824,7 @@ function HomePage({ id }) {
                                   >
                                     {_asist.PSeparator(
                                       (e.product.old_price - e.product.price) /
-                                        10
+                                      10
                                     )}
                                     -{" "}
                                     <span style={{ color: "#5E7488" }}>
@@ -880,7 +879,7 @@ function HomePage({ id }) {
                   <div className={styles.final_invoice_content}>
                     <h4>مجموع قیمت محصولات</h4>
                     <h4 style={{ color: "#089319", fontWeight: "bold" }}>
-                      {_asist.PSeparator(data.total_user_price / 10)}+{" "}
+                      {_asist.PSeparator(data.total_price / 10)}+{" "}
                       <span style={{ color: "#5E7488" }}>تومان</span>
                     </h4>
                   </div>
@@ -1135,7 +1134,7 @@ function HomePage({ id }) {
                               if (response.status === 200) {
                                 setshowMessage(1);
                                 setIsLoading(false);
-                                
+
                               }
                             } catch (err) {
                               let masage = err.response.data.barcode[0];
@@ -1645,7 +1644,7 @@ function HomePage({ id }) {
                   <div className={styles.final_invoice_content}>
                     <h4>مجموع قیمت محصولات</h4>
                     <h4 style={{ color: "#089319", fontWeight: "bold" }}>
-                      {_asist.PSeparator(data.total_user_price / 10)}+{" "}
+                      {_asist.PSeparator(data.total_price / 10)}+{" "}
                       <span style={{ color: "#5E7488" }}>تومان</span>
                     </h4>
                   </div>
