@@ -228,7 +228,9 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
               className={styles.btn}
             >
               <div className={styles.in_btn}>
-                <h2 style={{ marginRight: "14px" }}>{e.name}</h2>
+                <h2 style={{ marginRight: "14px", fontSize: "16px" }}>
+                  {e.name}
+                </h2>
                 <span
                   style={{ marginLeft: "14px" }}
                   className="fas fa-chevron-left fa-2x"
@@ -253,7 +255,9 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
               className={styles.btn}
             >
               <div className={styles.in_btn}>
-                <h2 style={{ marginRight: "14px" }}>{e.name}</h2>
+                <h2 style={{ marginRight: "14px", fontSize: "16px" }}>
+                  {e.name}
+                </h2>
                 <span
                   style={{ marginLeft: "14px" }}
                   className="fas fa-chevron-left fa-2x"
@@ -549,7 +553,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                     <Form>
                       <div className={styles.Hojreh_profile}>
                         <div className={styles.HeadName}>
-                          <h1>حجره</h1>
+                          <h1 style={{ margin: "0px" }}>حجره</h1>
                         </div>
                         <div className={styles.hojrehD}>
                           <div className={styles.input_setting}>
@@ -557,6 +561,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                               style={{
                                 marginBottom: "10px",
                                 color: "#364254",
+                                fontSize: "16px",
                               }}
                             >
                               نام حجره
@@ -577,11 +582,18 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                           <div className="">
                             <h4
                               className={styles.explain}
-                              style={{ marginTop: "33px" }}
+                              style={{
+                                marginTop: "33px",
+                                fontSize: "14px",
+                                color: "#a4aebb",
+                              }}
                             >
                               نام حجره:
                             </h4>
-                            <h4 className={styles.explain}>
+                            <h4
+                              className={styles.explain}
+                              style={{ fontSize: "14px", color: "#a4aebb" }}
+                            >
                               نام حجره خود را به زبان فارسی انتخاب کنید. نام
                               حجره باید مختص شما و جز مالکیت شخص دیگری نشود. سعی
                               شود تا نام نامناسب و بیگانه استفاده نباشد. این نام
@@ -595,6 +607,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                               style={{
                                 marginBottom: "10px",
                                 color: "#364254",
+                                fontSize: "16px",
                               }}
                             >
                               آدرس اینترنتی حجره
@@ -615,11 +628,18 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                           <div className="">
                             <h4
                               className={styles.explain}
-                              style={{ marginTop: "33px" }}
+                              style={{
+                                marginTop: "33px",
+                                fontSize: "14px",
+                                color: "#a4aebb",
+                              }}
                             >
                               آدرس اینترنتی:
                             </h4>
-                            <h4 className={styles.explain}>
+                            <h4
+                              className={styles.explain}
+                              style={{ fontSize: "14px", color: "#a4aebb" }}
+                            >
                               آدرس اینترنتی، نشانی حجره شما در نخل است. نام حجره
                               خود را ﺑﺎ ﺣﺮوف و اﻋﺪاد اﻧﮕﻠﯿﺴﯽ ﺑﻨﻮﯾﺴﯿﺪ. برای فاصه
                               از (_) استفاده کنید.
@@ -631,6 +651,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                               style={{
                                 marginBottom: "10px",
                                 color: "#364254",
+                                fontSize: "16px",
                               }}
                             >
                               درباره حجره
@@ -643,11 +664,18 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                           <div className="">
                             <h4
                               className={styles.explain}
-                              style={{ marginTop: "33px" }}
+                              style={{
+                                marginTop: "33px",
+                                fontSize: "14px",
+                                color: "#a4aebb",
+                              }}
                             >
                               درباره حجره:
                             </h4>
-                            <h4 className={styles.explain}>
+                            <h4
+                              className={styles.explain}
+                              style={{ fontSize: "14px", color: "#a4aebb" }}
+                            >
                               به عنوان مثال: کتاب غذای روح است.هر کس با کتاب
                               آرامش یابد هیچ آرامشی را از دست ندهد. اینجا
                               نمایشگاه کتاب ... است.گامی در جهت تحول فرهنگ
@@ -676,7 +704,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
 
                       <div className={styles.Hojreh_space}>
                         <div className={styles.HeadName}>
-                          <h1>مشخصات</h1>
+                          <h1 style={{ margin: "0px" }}>مشخصات</h1>
                         </div>
 
                         <div className={styles.spaceGridD}>
@@ -685,6 +713,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                               style={{
                                 marginBottom: "10px",
                                 color: "#364254",
+                                fontSize: "16px",
                               }}
                             >
                               کد ملی
@@ -706,6 +735,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                               style={{
                                 marginBottom: "10px",
                                 color: "#364254",
+                                fontSize: "16px",
                               }}
                             >
                               شماره تماس اصلی
@@ -722,12 +752,19 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
 
                           <div className="">
                             <h4
-                              style={{ marginTop: "33px" }}
+                              style={{
+                                marginTop: "33px",
+                                fontSize: "14px",
+                                color: "#a4aebb",
+                              }}
                               className={styles.explain}
                             >
                               شماره تماس:
                             </h4>
-                            <h4 className={styles.explain}>
+                            <h4
+                              className={styles.explain}
+                              style={{ fontSize: "14px", color: "#a4aebb" }}
+                            >
                               پیامک های مهم به این شماره ارسال می‌شوند. جهت
                               تغییر با پشتیبانی تماس بگیرید.
                             </h4>
@@ -737,6 +774,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                               style={{
                                 marginBottom: "10px",
                                 color: "#364254",
+                                fontSize: "16px",
                               }}
                             >
                               شماره تلفن ثابت
@@ -760,7 +798,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
 
                       <div className={styles.Hojreh_Address}>
                         <div className={styles.HeadName}>
-                          <h1>آدرس</h1>
+                          <h1 style={{ margin: "0px" }}>آدرس</h1>
                         </div>
 
                         <div className={styles.AddressGridD}>
@@ -847,6 +885,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                               style={{
                                 marginBottom: "10px",
                                 color: "#364254",
+                                fontSize: "16px",
                               }}
                             >
                               آدرس
@@ -879,6 +918,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                               style={{
                                 marginBottom: "10px",
                                 color: "#364254",
+                                fontSize: "16px",
                               }}
                             >
                               کد پستی
@@ -1046,7 +1086,9 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                           type="submit"
                           className={`${styles.btn} ${styles.btnSubmit}`}
                         >
-                          <h3>ذخیره اطلاعات</h3>
+                          <h3 style={{ margin: "0px", fontSize: "15px" }}>
+                            ذخیره اطلاعات
+                          </h3>
                         </button>
                       </div>
                     </Form>
@@ -1121,13 +1163,14 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                             style={{
                               marginBottom: "10px",
                               color: "#364254",
+                              fontSize: "16px",
                             }}
                           >
                             شماره شبا
                           </h2>
                           <div className={styles.inputWid_withWord}>
                             <div>
-                              <h2>IR-</h2>
+                              <h2 style={{ fontSize: "16px" }}>IR-</h2>
                             </div>
                             <Field name="iban" type="text" />
                           </div>
@@ -1138,27 +1181,30 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                           ) : null}
                         </div>
                         <div className={styles.fatherExp}>
-                          <h4 className={styles.explain}>
+                          <h4
+                            style={{ color: "#a4aebb" }}
+                            className={styles.explain}
+                          >
                             شماره شبا جهت تسویه حساب مالی با شما لازم است. با
                             مراجعه به سایت بانک خودتان می‌توانید شماره شبا خود
                             را دریافت کنید.
                           </h4>
                           <h4
                             className={styles.explain}
-                            style={{ marginTop: "10px" }}
+                            style={{ marginTop: "10px", color: "#a4aebb" }}
                           >
                             شماره شبا یک عدد ۲۴ رقمی است که با IR شروع می‌شود.
                           </h4>
                           <h4
                             className={styles.explain}
-                            style={{ marginTop: "10px" }}
+                            style={{ marginTop: "10px", color: "#a4aebb" }}
                           >
                             شماره 24 رقمی شبا خود را جهت تسویه حساب مالی وارد
                             کنید.
                           </h4>
                           <h4
                             className={styles.explain}
-                            style={{ marginTop: "10px" }}
+                            style={{ marginTop: "10px", color: "#a4aebb" }}
                           >
                             مثلا : IR 1233 4455 6677 8811 4466 22
                           </h4>
@@ -1168,6 +1214,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                             style={{
                               marginBottom: "10px",
                               color: "#364254",
+                              fontSize: "16px",
                             }}
                           >
                             صاحب حساب
@@ -1236,7 +1283,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                           type="submit"
                           className={`${styles.btn} ${styles.btnSubmit}`}
                         >
-                          <h3>به روز رسانی</h3>
+                          <h3 style={{ margin: "0px",fontSize:"15px" }}>به روز رسانی</h3>
                         </button>
                       </div>
                     </Form>
@@ -1269,12 +1316,18 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                 >
                   <div className={styles.LinksGridD}>
                     <div className={styles.input_setting}>
-                      <h2 style={{ marginBottom: "10px", color: "#364254" }}>
+                      <h2
+                        style={{
+                          marginBottom: "10px",
+                          color: "#364254",
+                          fontSize: "16px",
+                        }}
+                      >
                         آدرس تلگرام
                       </h2>
                       <div className={styles.inputWid_withWord}>
                         <div>
-                          <h2>t.me/</h2>
+                          <h2 style={{ fontSize: "16px" }}>t.me/</h2>
                         </div>
                         <input
                           type="text"
@@ -1290,12 +1343,18 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                       <h4 className={styles.explain}></h4>
                     </div>
                     <div className={styles.input_setting}>
-                      <h2 style={{ marginBottom: "10px", color: "#364254" }}>
+                      <h2
+                        style={{
+                          marginBottom: "10px",
+                          color: "#364254",
+                          fontSize: "16px",
+                        }}
+                      >
                         آدرس اینستاگرام
                       </h2>
                       <div className={styles.inputWid_withWord}>
                         <div>
-                          <h2>instagram.com/</h2>
+                          <h2 style={{ fontSize: "16px" }}>instagram.com/</h2>
                         </div>
                         <input
                           type="text"
@@ -1315,7 +1374,9 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                       type="submit"
                       className={`${styles.btn} ${styles.btnSubmit}`}
                     >
-                      <h3>ذخیره اطلاعات </h3>
+                      <h3 style={{ margin: "0px", fontSize: "15px" }}>
+                        ذخیره اطلاعات{" "}
+                      </h3>
                     </button>
                   </div>
                 </form>

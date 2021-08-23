@@ -1,0 +1,87 @@
+// wrapper
+.wrapper{
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #dfdfdf;
+    box-shadow: 0 1px 4px rgba(0,0,0,.25);
+    font-family: 'vazir';
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #3e3e3e;
+    text-align: right;
+    direction: rtl;
+    margin: auto;
+    padding: 0px !important;
+    // header
+    .header{
+        display: flex;
+        align-items: center;
+        border-radius: 5px 5px 0px 0px;
+        background: #f8f8f8 !important;
+        height: 66px;
+        // title header
+        .header_title{
+            font-size: 1.25rem;
+            font-weight: 700 !important;
+        }
+        // back link header
+        .header_back_link{
+            display: flex;
+            align-items: center;
+            font-size: .8rem !important;
+            color: #7d7d7d !important;
+            flex-basis: 43.33%;
+            padding: 0px 10px;
+        }
+    }
+    // body
+    .body_address{
+        padding: 10px;
+        // address item form
+        .address_items_form{
+            display: flex;
+            flex-direction: column;
+            // label
+            label {
+                display: inline-block;
+                margin-bottom: .5rem;
+            }
+            // form row
+            .form_row{
+                display: flex;
+                flex-wrap: wrap;
+                margin-right: -5px;
+                margin-left: -5px;
+                @media (max-width:767px) {
+                    flex-direction: column;  
+                }
+            }
+            // form group
+            .form_group{
+                // display: flex;
+                // flex-direction: column;
+                padding: 8px;
+            }
+            // errors
+            .form_errors{
+                font-size: small;
+                color: red;
+            }
+            // buttons
+            .buttons_form{
+                margin-left: -2px;
+                margin-right: -2px;
+            }
+        }
+    }
+}
+// media
+// @media only screen and (max-width: 767px) {
+//     #bigCity{
+//         width: 100%;
+//     }
+//     #city{
+//         width: 100%;
+//     }
+// }

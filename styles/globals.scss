@@ -15,14 +15,14 @@
     /* Safari, Android, iOS */
     /*url('webfont.svg#svgFontName') format('svg'); !* Legacy iOS *!*/
 }
+
+// Cart Page
+@import "../styles/pages/cart/cart.scss";
 @font-face {
-  font-family: 'vazir';
-  src:  url('../public/assets/fonts/Vazir.eot') format('eot'),
-        url('../public/assets/fonts/Vazir.woff') format('woff'),
-        url('../public/assets/fonts/Vazir.woff2') format('woff2'),
-        url('../public/assets/fonts/Vazir.ttf') format('ttf');
-  font-style: normal;
-  font-display: fallback;
+    font-family: "vazir";
+    src: url("../public/assets/fonts/Vazir.eot") format("eot"), url("../public/assets/fonts/Vazir.woff") format("woff"), url("../public/assets/fonts/Vazir.woff2") format("woff2"), url("../public/assets/fonts/Vazir.ttf") format("ttf");
+    font-style: normal;
+    font-display: fallback;
 }
 
 :root {
@@ -36,26 +36,6 @@
     --hover: #007aff;
 }
 
-h1 {
-    font-size: 1.8rem;
-    margin: 0;
-}
-
-h2 {
-    font-size: 1.6rem;
-}
-
-h3 {
-    font-size: 1.5rem;
-    margin: 0;
-}
-
-h4 {
-    font-size: 1.4rem;
-    margin: 0;
-    color: #a4aebb;
-}
-
 ::placeholder {
     font-size: 14px;
     color: #a4aebb;
@@ -63,17 +43,18 @@ h4 {
 
 html,
 body {
-    font-size: 62.5%;
+    // font-size: 62.5%;
     padding: 0;
     margin: 0;
     font-family: "IRANSansB" !important;
     direction: rtl;
     background-color: #f8f8f8;
+    text-align: right;
 }
 
 a {
     color: inherit;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 * {
@@ -700,5 +681,3 @@ input[type="number"] {
 
 
 /*# sourceMappingURL=ReactToastify.css.map */
-
-//   End Toastify
