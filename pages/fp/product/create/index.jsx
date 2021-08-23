@@ -480,6 +480,7 @@ const CreateProduct = ({ activeHojreh }) => {
                       style={{ outline: "unset", border: "unset" }}
                       id="Net_Weight"
                       type="number"
+                      onWheel={(event) => { event.currentTarget.blur() }}
                       {...register("Net_Weight", {
                         required: "لطفا این گزینه را پرنمایید",
                         min: {
@@ -511,6 +512,7 @@ const CreateProduct = ({ activeHojreh }) => {
                       style={{ outline: "unset", border: "unset" }}
                       id="Weight_With_Packing"
                       type="number"
+                      onWheel={(event) => { event.currentTarget.blur() }}
                       {...register("Weight_With_Packing", {
                         required: "لطفا این گزینه را پرنمایید",
                         min: {
@@ -542,6 +544,7 @@ const CreateProduct = ({ activeHojreh }) => {
                       style={{ outline: "unset", border: "unset" }}
                       id="Price"
                       type="number"
+                      onWheel={(event) => { event.currentTarget.blur() }}
                       {...register("Price", {
                         required: "لطفا این گزینه را پرنمایید",
                         min: {
@@ -583,6 +586,7 @@ const CreateProduct = ({ activeHojreh }) => {
                       style={{ outline: "unset", border: "unset" }}
                       id="OldPrice"
                       type="number"
+                      onWheel={(event) => { event.currentTarget.blur() }}
                       defaultValue={0}
                       {...register("OldPrice", {
                         min: {
@@ -670,6 +674,7 @@ const CreateProduct = ({ activeHojreh }) => {
                           value={Add}
                           id="Inventory"
                           name="Inventory"
+                          onWheel={(event) => { event.currentTarget.blur() }}
                           onChange={(e) => {
                             setAdd(e.target.value);
                           }}
@@ -716,6 +721,7 @@ const CreateProduct = ({ activeHojreh }) => {
                           type="number"
                           min="0"
                           max="500"
+                          onWheel={(event) => { event.currentTarget.blur() }}
                           value={AddPreparationDays}
                           id="PreparationDays"
                           name="PreparationDays"

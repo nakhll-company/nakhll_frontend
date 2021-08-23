@@ -436,6 +436,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                   </label>
                   <div className={styles.wrapper_input_suffixText}>
                     <input style={{ outline: "unset", border: "unset" }}
+                      onWheel={(event) => { event.currentTarget.blur() }}
                       id="Net_Weight" type="number"
                       {...register("Net_Weight", {
                         required: 'لطفا این گزینه را پرنمایید',
@@ -458,6 +459,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                   </label>
                   <div className={styles.wrapper_input_suffixText}>
                     <input style={{ outline: "unset", border: "unset" }} id="Weight_With_Packing" type="number"
+                      onWheel={(event) => { event.currentTarget.blur() }}
                       {...register("Weight_With_Packing", {
                         required: 'لطفا این گزینه را پرنمایید',
                         min: {
@@ -481,6 +483,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                   <div className={styles.wrapper_input_suffixText}>
                     <input style={{ outline: "unset", border: "unset" }} id="Price"
                       type="number"
+                      onWheel={(event) => { event.currentTarget.blur() }}
                       {...register("Price", {
                         required: 'لطفا این گزینه را پرنمایید',
                         min: {
@@ -502,6 +505,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                   </label>
                   <div className={styles.wrapper_input_suffixText}>
                     <input style={{ outline: "unset", border: "unset" }} id="OldPrice" type="number"
+                      onWheel={(event) => { event.currentTarget.blur() }}
                       {...register("OldPrice", {
                         min: {
                           value: 0,
@@ -537,6 +541,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                       </button>
                       <div className={styles.center}>
                         <input type="number" min="0" max="500" value={Add} id="Inventory" name="Inventory"
+                          onWheel={(event) => { event.currentTarget.blur() }}
                           onChange={(e) => {
                             setAdd(e.target.value);
                           }}
@@ -574,6 +579,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                       <div className={styles.center}>
                         <input type="number" min="0" max="500" value={AddPreparationDays}
                           id="PreparationDays" name="PreparationDays"
+                          onWheel={(event) => { event.currentTarget.blur() }}
                           onChange={(e) => { setAddPreparationDays(e.target.value); }}
                         />
                         <h4>روز</h4>
