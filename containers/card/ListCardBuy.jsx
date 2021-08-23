@@ -3,8 +3,7 @@ import { useContext } from "react";
 import Assistent from "zaravand-assistent-number";
 import ContextProduct from "./Context/context";
 import Loading from "../../components/loading";
-import { LoadingDelet } from "../../components/custom/Loading/LoadingDelet/LoadingDelet";
-
+import styles from "../../styles/pages/cart/cart.module.scss";
 const _asist = new Assistent();
 
 export default function ListCardBuy() {
@@ -26,7 +25,7 @@ export default function ListCardBuy() {
             <>
               <div
                 key={index + 10}
-                className="cart-product-group bg-white"
+                className={`${styles.cart_product_group} bg-white`}
                 style={
                   !(
                     index > 0 &&
@@ -88,16 +87,15 @@ export default function ListCardBuy() {
                     </div>
                   ) : (
                     <>
-                      <div className="spinner spinner--medium"></div>
                       <div className="d-flex flex-wrap justify-content-between">
                         <div className="d-flex w-100">
                           <a
-                            href="/ali_goharrizi/product/746256?from=cart&amp;component=cart"
+                            href="#"
                             className="product-link"
                           >
                             <img
                               src={El.product.image_thumbnail_url}
-                              className="cart-product-item-img rounded"
+                              className={`${styles.cart_product_item_img} ${styles.rounded}`}
                             />
                           </a>
                           <div className="d-flex flex-column justify-content-between mr-3 w-100 overflow-hidden">
@@ -133,7 +131,9 @@ export default function ListCardBuy() {
                                 }}
                               ></i>
                             </div>
-                            <div className="cart-product-item-remain-stock"></div>
+                            <div
+                              className={styles.cart_product_item_remain_stock}
+                            ></div>
                             <div
                               className={`nakhl-label mr-auto small teaberry-light ${
                                 El.product.discount == 0 && "opacity_none"
@@ -155,7 +155,9 @@ export default function ListCardBuy() {
                                   }}
                                 >
                                   <div className="input-group-prepend ">
-                                    <button className="btnplus  plus-minus-icon raise">
+                                    <button
+                                      className={`${styles.btnplus}   ${styles.raise}`}
+                                    >
                                       <i
                                         style={{
                                           fontSize: "25px",
@@ -182,7 +184,7 @@ export default function ListCardBuy() {
                                   />
                                   <div className="input-group-append">
                                     <button
-                                      className="btnminus  plus-minus-icon raise"
+                                      className={`${styles.btnminus}   ${styles.raise}`}
                                       style={{
                                         backgroundColor: "#fff",
                                         outline: "none",
@@ -214,7 +216,9 @@ export default function ListCardBuy() {
                               <div className="mr-auto">
                                 <span
                                   style={{ display: "block" }}
-                                  className={`cart-product-item-primary-price ${
+                                  className={`${
+                                    styles.cart_product_item_primary_price
+                                  } ${
                                     El.product.discount == 0 && "opacity_none"
                                   }`}
                                 >
@@ -247,7 +251,7 @@ export default function ListCardBuy() {
                     >
                       <img
                         src="https://statics.basalam.com/public/users/j2ggy/1911/9eAmvLJvRqGiTkECMFyKyCDMWf5MYdaMNfglHT0f.jpeg_256X256X70.jpeg"
-                        className="cart-product-item-img rounded"
+                        className="cart_product_item_img rounded"
                       />
                     </a>
                     <div className="d-flex flex-column justify-content-between mr-3 w-100 overflow-hidden">
@@ -321,7 +325,7 @@ export default function ListCardBuy() {
                     >
                       <img
                         src="https://statics.basalam.com/public/users/j2ggy/1911/9eAmvLJvRqGiTkECMFyKyCDMWf5MYdaMNfglHT0f.jpeg_256X256X70.jpeg"
-                        className="cart-product-item-img rounded"
+                        className="cart_product_item_img rounded"
                       />
                     </a>
                     <div className="d-flex flex-column justify-content-between mr-3 w-100 overflow-hidden">
@@ -362,7 +366,7 @@ export default function ListCardBuy() {
                     >
                       <img
                         src="https://statics.basalam.com/public/users/j2ggy/1911/9eAmvLJvRqGiTkECMFyKyCDMWf5MYdaMNfglHT0f.jpeg_256X256X70.jpeg"
-                        className="cart-product-item-img rounded"
+                        className="cart_product_item_img rounded"
                       />
                     </a>
                     <div className="d-flex flex-column justify-content-between mr-3 w-100 overflow-hidden">
@@ -488,16 +492,12 @@ export default function ListCardBuy() {
                     {/*^^^^^^^^^^^ IF CHANGE IN PRODUCT IN LIST ^^^^^^^^^^^*/}
 
                     <div className="p-3  cart-product-item margin_top_zero">
-                      <div className="spinner spinner--medium"></div>
                       <div className="d-flex flex-wrap justify-content-between">
                         <div className="d-flex w-100">
-                          <a
-                            href="/ali_goharrizi/product/746256?from=cart&amp;component=cart"
-                            className="product-link"
-                          >
+                          <a href="#" className="product-link">
                             <img
                               src={El.product.image_thumbnail_url}
-                              className="cart-product-item-img rounded"
+                              className={`${styles.cart_product_item_img} ${styles.rounded}`}
                             />
                           </a>
                           <div className="d-flex flex-column justify-content-between mr-3 w-100 overflow-hidden">
@@ -591,7 +591,9 @@ export default function ListCardBuy() {
                               </div>
                               <div className="mr-auto">
                                 <span
-                                  className={`cart-product-item-primary-price ${
+                                  className={`${
+                                    styles.cart_product_item_primary_price
+                                  } ${
                                     El.product.discount == 0 && "opacity_none"
                                   }`}
                                 >
@@ -622,7 +624,7 @@ export default function ListCardBuy() {
                     >
                       <img
                         src="https://statics.basalam.com/public/users/j2ggy/1911/9eAmvLJvRqGiTkECMFyKyCDMWf5MYdaMNfglHT0f.jpeg_256X256X70.jpeg"
-                        className="cart-product-item-img rounded"
+                        className="cart_product_item_img rounded"
                       />
                     </a>
                     <div className="d-flex flex-column justify-content-between mr-3 w-100 overflow-hidden">
@@ -696,7 +698,7 @@ export default function ListCardBuy() {
                     >
                       <img
                         src="https://statics.basalam.com/public/users/j2ggy/1911/9eAmvLJvRqGiTkECMFyKyCDMWf5MYdaMNfglHT0f.jpeg_256X256X70.jpeg"
-                        className="cart-product-item-img rounded"
+                        className="cart_product_item_img rounded"
                       />
                     </a>
                     <div className="d-flex flex-column justify-content-between mr-3 w-100 overflow-hidden">
@@ -737,7 +739,7 @@ export default function ListCardBuy() {
                     >
                       <img
                         src="https://statics.basalam.com/public/users/j2ggy/1911/9eAmvLJvRqGiTkECMFyKyCDMWf5MYdaMNfglHT0f.jpeg_256X256X70.jpeg"
-                        className="cart-product-item-img rounded"
+                        className="cart_product_item_img rounded"
                       />
                     </a>
                     <div className="d-flex flex-column justify-content-between mr-3 w-100 overflow-hidden">

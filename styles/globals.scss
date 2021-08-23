@@ -17,7 +17,7 @@
 }
 
 // Cart Page
-@import "../styles/pages/cart/cart.scss";
+// @import "../styles/pages/cart/cart.module.scss";
 @font-face {
     font-family: "vazir";
     src: url("../public/assets/fonts/Vazir.eot") format("eot"), url("../public/assets/fonts/Vazir.woff") format("woff"), url("../public/assets/fonts/Vazir.woff2") format("woff2"), url("../public/assets/fonts/Vazir.ttf") format("ttf");
@@ -681,3 +681,44 @@ input[type="number"] {
 
 
 /*# sourceMappingURL=ReactToastify.css.map */
+
+.nakhl-label.teaberry-light {
+    color: #dc3755;
+    background: #fcecef;
+}
+
+.nakhl-label.small {
+    font-size: 0.9rem;
+    padding: 0.2rem 0.5rem;
+}
+
+.nakhl-label {
+    text-align: center;
+    border-radius: 0.4rem;
+}
+
+.opacity_none {
+    opacity: 0;
+}
+
+@media (max-width: 767.98px) {
+    html {
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .container_mob {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .container_mob>.row {
+        margin-right: 0;
+        margin-left: 0;
+    }
+    .container_mob>.row>.col,
+    .container_mob>.row>[class*="col-"] {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}

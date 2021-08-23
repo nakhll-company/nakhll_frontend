@@ -20,6 +20,9 @@ import { MenuMobile } from "../../containers/card/MenuMobile";
 import { Loading } from "../../components/custom/Loading/Loading";
 import { Empty } from "../../components/custom/Empty/Empty";
 
+// Styles
+import styles from "../../styles/pages/cart/cart.module.scss";
+
 export default function Cart() {
   // STATE FOR SAVE PRODUCTS
   const [All_product_list_buy, setAll_product_list_buy] = useState({});
@@ -171,7 +174,7 @@ export default function Cart() {
           </div>
         ) : All_product_list_buy &&
           All_product_list_buy.ordered_items.length > 0 ? (
-          <section className="container container--mob pb-5 ">
+          <section className="container container_mob pb-5 ">
             <CheckOutSteps step="1" />
 
             <div className="row mx-auto mt-4" style={{ maxWidth: "72rem" }}>
