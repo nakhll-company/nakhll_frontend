@@ -640,8 +640,8 @@ function HomePage({ id }) {
                 <hr />
                 <div className={styles.contentinfD}>
                   <div className={styles.post_informationD_content}>
-                    <h4 style={{ fontSize: "14px" }}> نام مشتری</h4>
-                    <h3 style={{ marginTop: "5px", fontSize: "15px" }}>
+                    <h4>نام مشتری</h4>
+                    <h3 style={{ marginTop: "5px" }}>
                       {`${data.profile && data.profile.user.first_name}  ${data.profile && data.profile.user.last_name
                         }`}
                     </h3>
@@ -948,15 +948,9 @@ function HomePage({ id }) {
                 <hr />
                 <div className={styles.content}>
                   <div className={styles.final_invoice_content}>
-                    <h4 style={{ fontSize: "14px" }}> مجموع قیمت محصولات</h4>
-                    <h4
-                      style={{
-                        color: "#089319",
-                        fontWeight: "bold",
-                        fontSize: "14px",
-                      }}
-                    >
-                      {_asist.PSeparator(data.total_user_price / 10)}+{" "}
+                    <h4>مجموع قیمت محصولات</h4>
+                    <h4 style={{ color: "#089319", fontWeight: "bold" }}>
+                      {_asist.PSeparator(data.total_price / 10)}+{" "}
                       <span style={{ color: "#5E7488" }}>تومان</span>
                     </h4>
                   </div>
@@ -1770,15 +1764,9 @@ function HomePage({ id }) {
                 <hr />
                 <div className={styles.content}>
                   <div className={styles.final_invoice_content}>
-                    <h4 style={{ fontSize: "14px" }}> مجموع قیمت محصولات</h4>
-                    <h4
-                      style={{
-                        color: "#089319",
-                        fontWeight: "bold",
-                        fontSize: "14px",
-                      }}
-                    >
-                      {_asist.PSeparator(data.total_user_price / 10)}+{" "}
+                    <h4>مجموع قیمت محصولات</h4>
+                    <h4 style={{ color: "#089319", fontWeight: "bold" }}>
+                      {_asist.PSeparator(data.total_price / 10)}+{" "}
                       <span style={{ color: "#5E7488" }}>تومان</span>
                     </h4>
                   </div>
