@@ -2,7 +2,7 @@
     display: none;
 }
 
-@media (max-width:767px) {
+@media (max-width: 767px) {
     .fix_bottom {
         position: fixed;
         bottom: 0;
@@ -17,4 +17,16 @@
         align-items: center;
         padding: 8px;
     }
+}
+
+.btn_Buy {
+    color: #fff;
+    background-color: #1b3e68;
+    border-color: #1b3e68;
+}
+
+.btn_Buy:hover {
+    color: #1b3e68;
+    background-color: #fff;
+    border-color: #1b3e68;
 }
