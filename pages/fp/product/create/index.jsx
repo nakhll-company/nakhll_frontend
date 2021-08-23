@@ -730,7 +730,7 @@ const CreateProduct = ({ activeHojreh }) => {
                       </button>
                     </div>
                     <p style={{ fontSize: "13px", color: "#5E7488" }}>
-                      زمان آماده سازی : آماده برای ارسال بعد از سفارش مستری
+                      زمان آماده سازی : آماده برای ارسال بعد از سفارش مشتری
                     </p>
                   </div>
                 </div>

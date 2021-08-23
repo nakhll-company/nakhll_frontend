@@ -13,7 +13,7 @@ export default function SuccessPageProduct() {
             <div className={styles.wrapper_links}>
                 <Link href={`/fp/product/create`}>
                     <a className={styles.link_create_product}>
-                        ثبت جدید محصول
+                        ثبت محصول جدید
                     </a>
                 </Link>
                 <Link href={`/fp`}>
