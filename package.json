@@ -13,6 +13,7 @@
         "axios": "^0.21.1",
         "bootstrap": "^5.0.0-beta3",
         "dom7": "^3.0.0",
+        "fontawesome": "^5.6.3",
         "formik": "^2.2.9",
         "lodash": "^4.17.21",
         "next": "10.x",
@@ -28,7 +29,6 @@
         "redux-logger": "^3.0.6",
         "redux-thunk": "^2.3.0",
         "sass": "^1.35.2",
-        "swiper": "^6.7.5",
         "yup": "^0.32.9",
         "zaravand-assistent-number": "^1.1.0"
     }
