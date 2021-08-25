@@ -1,6 +1,6 @@
 import React from "react";
 import ProductCard from "../../components/ProductCart/ProductCard";
-
+import Head from "next/head";
 const index = () => {
   let product = {
     imageUrl: "/image/faile.webp",
@@ -18,10 +18,26 @@ const index = () => {
   };
   return (
     <>
-      <div className="container p-2 row">
-        <ProductCard product={product} />
-        <ProductCard product={product} />
-        <ProductCard product={product} />
+      <Head>
+        <link
+          rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+          integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
+          crossOrigin="anonymous"
+        ></link>
+      </Head>
+      <div className="container p-2 ">
+        <div className="row">
+          <ProductCard product={product} />
+          <ProductCard product={product} />
+          <ProductCard product={product} />
+        </div>
       </div>
     </>
   );

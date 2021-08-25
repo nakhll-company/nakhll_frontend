@@ -23,6 +23,9 @@ import { Empty } from "../../components/custom/Empty/Empty";
 // Styles
 import styles from "../../styles/pages/cart/cart.module.scss";
 
+// Redux
+import {useDispatch,useSelector} from "react-redux"
+
 export default function Cart() {
   // STATE FOR SAVE PRODUCTS
   const [All_product_list_buy, setAll_product_list_buy] = useState({});
