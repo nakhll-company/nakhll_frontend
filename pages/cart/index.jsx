@@ -64,59 +64,8 @@ export default function Cart() {
     dispatch(getProducts());
   }, []);
 
-  // FUNCTION FOR REDUCE PRODUCT FROM LIST WHEN CLICKED ON MINIMUS BUTTON
-  const handel_ReduceProductFromList = async (id) => {
-    let params = {};
-    let loadData = null;
-
-    let dataUrl = `/cart2/api/cart_items/${id}/remove/`;
-    let response = await ApiRegister().apiRequest(
-      loadData,
-      "get",
-      dataUrl,
-      true,
-      params
-    );
-    setAll_product_list_buy(await response.data);
-    console.log("MInis :>> ", response.data);
-
-    // console.log("Reduc :>> ", response);
-    // if (response.status === 200) {
-    toast.success("داده ها با موفقیت ثبت شده اند", {
-      position: "top-right",
-      closeOnClick: true,
-    });
-    // }
-  };
-
-  // FUNCTION FOR DELETE PRODUCT FROM LIST WHEN CLICKED ON DELETE BUTTON
-
-  const handel_DeleteProductFromList = async (id, title) => {
-    let params = {};
-    let loadData = null;
-
-    let dataUrl = `/cart2/api/cart_items/${id}/delete/`;
-    let response = await ApiRegister().apiRequest(
-      loadData,
-      "get",
-      dataUrl,
-      true,
-      params
-    );
-    setAll_product_list_buy(await response.data);
-    console.log("delete :>> ", response.data);
-    toast.error(` محصول  ${title}  حذف شد . `, {
-      position: "top-right",
-      closeOnClick: true,
-    });
-  };
-
   return (
-    <ContextProduct.Provider
-      value={{
-        handel_DeleteProductFromList: handel_DeleteProductFromList,
-      }}
-    >
+    <ContextProduct.Provider value={{}}>
       {/* <Loading /> */}
       {/* <Empty /> */}
 
