@@ -8,7 +8,7 @@ const reducer = (state = initialize, actions) => {
       return {
         allProduct: { ...actions.payload },
       };
-    case "َUPDATE_PRODUCT":
+    case "ADD_PRODUCT":
       return {
         allProduct: { ...actions.payload },
       };

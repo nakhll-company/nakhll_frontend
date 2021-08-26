@@ -6,12 +6,19 @@ import Loading from "../../components/loading";
 import styles from "../../styles/pages/cart/cart.module.scss";
 const _asist = new Assistent();
 
+// REDUX
+
+import { useDispatch, useSelector } from "react-redux";
+import { _addProduct } from "../../redux/actions/cart/_addProduct";
+
 export default function ListCardBuy() {
+  const dispatch = useDispatch();
+  const All_product_list_buy = useSelector((state) => state.Cart.allProduct);
+
   let [loading, setLoading] = useState(false);
   let [productId, setProductId] = useState(0);
 
   const {
-    All_product_list_buy,
     handel_AddProductTOList,
     handel_DeleteProductFromList,
     handel_ReduceProductFromList,
@@ -89,10 +96,7 @@ export default function ListCardBuy() {
                     <>
                       <div className="d-flex flex-wrap justify-content-between">
                         <div className="d-flex w-100">
-                          <a
-                            href="#"
-                            className="product-link"
-                          >
+                          <a href="#" className="product-link">
                             <img
                               src={El.product.image_thumbnail_url}
                               className={`${styles.cart_product_item_img} ${styles.rounded}`}
@@ -167,9 +171,12 @@ export default function ListCardBuy() {
                                         onClick={async () => {
                                           await setProductId(El.product.id);
                                           await setLoading(true);
-                                          await handel_AddProductTOList(
-                                            El.product.id
+                                          await dispatch(
+                                            _addProduct(El.product.id)
                                           );
+                                          // await handel_AddProductTOList(
+                                          //   El.product.id
+                                          // );
                                           await setLoading(false);
                                         }}
                                       ></i>

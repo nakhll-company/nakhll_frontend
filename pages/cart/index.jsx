@@ -29,6 +29,8 @@ import { getProducts } from "../../redux/actions/cart/getProducts";
 
 export default function Cart() {
   const dispatch = useDispatch();
+  const AllProduct = useSelector((state) => state.Cart.allProduct);
+  console.log("AllProduct :>> ", AllProduct);
   // STATE FOR SAVE PRODUCTS
   const [All_product_list_buy, setAll_product_list_buy] = useState({});
 
