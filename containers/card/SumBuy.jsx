@@ -9,9 +9,11 @@ import styles from "../../styles/pages/cart/cart.module.scss";
 
 const _asist = new Assistent();
 
+// REDUX
+import { useSelector } from "react-redux";
+
 export default function SumBuy() {
-  // GET "All_product_list_buy" FROM PARENT COMPONENT
-  const { All_product_list_buy } = useContext(ContextProduct);
+  const All_product_list_buy = useSelector((state) => state.Cart.allProduct);
   return (
     <>
       {All_product_list_buy.total_old_price && (

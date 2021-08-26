@@ -10,6 +10,7 @@ const _asist = new Assistent();
 
 import { useDispatch, useSelector } from "react-redux";
 import { _addProduct } from "../../redux/actions/cart/_addProduct";
+import { _reduceProduct } from "../../redux/actions/cart/_reduceProduct";
 
 export default function ListCardBuy() {
   const dispatch = useDispatch();
@@ -18,11 +19,7 @@ export default function ListCardBuy() {
   let [loading, setLoading] = useState(false);
   let [productId, setProductId] = useState(0);
 
-  const {
-    handel_AddProductTOList,
-    handel_DeleteProductFromList,
-    handel_ReduceProductFromList,
-  } = useContext(ContextProduct);
+  const { handel_DeleteProductFromList } = useContext(ContextProduct);
 
   return (
     <div className="col-12 col-lg-8 mb-3 my-md-3 my-lg-0 order-1 order-md-1 order-lg-0">
@@ -206,9 +203,8 @@ export default function ListCardBuy() {
                                         onClick={async () => {
                                           await setProductId(El.product.id);
                                           await setLoading(true);
-                                          await handel_ReduceProductFromList(
-                                            El.id
-                                          );
+                                          await dispatch(_reduceProduct(El.id));
+
                                           await setLoading(false);
                                         }}
                                       ></i>

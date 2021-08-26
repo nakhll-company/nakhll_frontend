@@ -64,43 +64,6 @@ export default function Cart() {
     dispatch(getProducts());
   }, []);
 
-  //  FUNCTION FOR ADD PRODUCT TO LIST  WHEN CLICKED ON PLUS BUTTON
-  const handel_AddProductTOList = async (id) => {
-    try {
-      let params = {};
-      let loadData = null;
-      let dataUrl = `/cart2/api/cart_items/${id}/add/`;
-      let response = await ApiRegister().apiRequest(
-        loadData,
-        "get",
-        dataUrl,
-        true,
-        params
-      );
-
-      console.log("Pluse :>> ", response.status);
-      if (response.status === 201) {
-        setAll_product_list_buy(await response.data);
-        toast.success("داده ها با موفقیت ثبت شده اند", {
-          position: "top-right",
-          closeOnClick: true,
-        });
-      } else {
-        toast.error("موجودی کافی نمی باشد.", {
-          position: "top-center",
-          closeOnClick: true,
-        });
-      }
-    } catch (e) {
-      console.log("error :>> ", e.response.data[0]);
-      const error = e.response.data[0];
-      toast.error(error, {
-        position: "top-center",
-        closeOnClick: true,
-      });
-    }
-  };
-
   // FUNCTION FOR REDUCE PRODUCT FROM LIST WHEN CLICKED ON MINIMUS BUTTON
   const handel_ReduceProductFromList = async (id) => {
     let params = {};
@@ -151,9 +114,6 @@ export default function Cart() {
   return (
     <ContextProduct.Provider
       value={{
-        All_product_list_buy: All_product_list_buy,
-        handel_AddProductTOList: handel_AddProductTOList,
-        handel_ReduceProductFromList: handel_ReduceProductFromList,
         handel_DeleteProductFromList: handel_DeleteProductFromList,
       }}
     >
