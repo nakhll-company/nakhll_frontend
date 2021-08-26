@@ -24,9 +24,11 @@ import { Empty } from "../../components/custom/Empty/Empty";
 import styles from "../../styles/pages/cart/cart.module.scss";
 
 // Redux
-import {useDispatch,useSelector} from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../../redux/actions/cart/getProducts";
 
 export default function Cart() {
+  const dispatch = useDispatch();
   // STATE FOR SAVE PRODUCTS
   const [All_product_list_buy, setAll_product_list_buy] = useState({});
 
@@ -57,6 +59,7 @@ export default function Cart() {
 
   useEffect(() => {
     _handleRequestApiAll();
+    dispatch(getProducts());
   }, []);
 
   //  FUNCTION FOR ADD PRODUCT TO LIST  WHEN CLICKED ON PLUS BUTTON

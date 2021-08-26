@@ -1,14 +1,16 @@
 // node libraries
-import { combineReducers } from 'redux';
-import Product from './reducers/product';
-import Orders from './reducers/orders';
-import User from './reducers/user';
+import { combineReducers } from "redux";
+import Product from "./reducers/product";
+import Orders from "./reducers/orders";
+import User from "./reducers/user";
+import Cart from "./reducers/cart";
 
 // object of All reducers
 export const reducerObject = {
     Product,
     Orders,
-    User
+    User,
+    Cart,
 };
 
 /**
