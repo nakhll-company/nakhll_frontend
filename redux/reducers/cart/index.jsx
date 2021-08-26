@@ -18,7 +18,7 @@ const reducer = (state = initialize, actions) => {
         allProduct: { ...actions.payload },
       };
 
-    case "َUPDATE_PRODUCT":
+    case "DELETE_PRODUCT":
       return {
         allProduct: { ...actions.payload },
       };
