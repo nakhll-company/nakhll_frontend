@@ -1,5 +1,9 @@
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-import { toast } from "react-toastify";
+
+import {
+  errorMessage,
+  successMessage,
+} from "../../../containers/utils/message";
 export const _addProduct = (productId) => {
   return async (dispatch) => {
     try {
@@ -19,23 +23,13 @@ export const _addProduct = (productId) => {
           type: "ADD_PRODUCT",
           payload: response.data,
         });
-
-        toast.success("داده ها با موفقیت ثبت شده اند", {
-          position: "top-right",
-          closeOnClick: true,
-        });
+        successMessage("داده ها با موفقیت ثبت شده اند");
       } else {
-        toast.error("موجودی کافی نمی باشد.", {
-          position: "top-center",
-          closeOnClick: true,
-        });
+        errorMessage("موجودی کافی نمی باشد.");
       }
     } catch (e) {
       const error = e.response.data[0];
-      toast.error(error, {
-        position: "top-center",
-        closeOnClick: true,
-      });
+      errorMessage(error);
     }
   };
 };

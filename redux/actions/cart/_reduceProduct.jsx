@@ -1,4 +1,4 @@
-import { toast } from "react-toastify";
+import { successMessage } from "../../../containers/utils/message";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
 export const _reduceProduct = (productId) => {
@@ -19,9 +19,6 @@ export const _reduceProduct = (productId) => {
 
     // console.log("Reduc :>> ", response);
     // if (response.status === 200) {
-    toast.success("داده ها با موفقیت ثبت شده اند", {
-      position: "top-right",
-      closeOnClick: true,
-    });
+    successMessage("داده ها با موفقیت ثبت شده اند");
   };
 };

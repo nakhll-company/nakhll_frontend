@@ -1,4 +1,5 @@
 import { toast } from "react-toastify";
+import { errorMessage } from "../../../containers/utils/message";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
 export const _deleteProduct = (productId, productTitle) => {
@@ -16,9 +17,6 @@ export const _deleteProduct = (productId, productTitle) => {
     );
     await dispatch({ type: "DELETE_PRODUCT", payload: response.data });
 
-    toast.error(` محصول  ${productTitle}  حذف شد . `, {
-      position: "top-right",
-      closeOnClick: true,
-    });
+    errorMessage(` محصول  ${productTitle}  حذف شد . `);
   };
 };

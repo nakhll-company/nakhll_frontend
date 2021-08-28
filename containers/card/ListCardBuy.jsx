@@ -13,6 +13,9 @@ import { _addProduct } from "../../redux/actions/cart/_addProduct";
 import { _reduceProduct } from "../../redux/actions/cart/_reduceProduct";
 import { _deleteProduct } from "../../redux/actions/cart/_deleteProduct";
 
+// LODASH
+import { isElement, isEmpty } from "lodash";
+
 export default function ListCardBuy() {
   const dispatch = useDispatch();
   const All_product_list_buy = useSelector((state) => state.Cart.allProduct);
@@ -25,7 +28,7 @@ export default function ListCardBuy() {
   return (
     <div className="col-12 col-lg-8 mb-3 my-md-3 my-lg-0 order-1 order-md-1 order-lg-0">
       <div className="cart-items mt-2">
-        {All_product_list_buy.ordered_items &&
+        {!isEmpty(All_product_list_buy) &&
           All_product_list_buy.ordered_items.map((El, index) => (
             <>
               <div
