@@ -266,13 +266,15 @@
 
 .contentD {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
 }
 
 .order_status_allD {
     display: flex;
-    margin-right: 24px;
+    min-height: 100px;
+    align-items: center;
 }
 
 .order_statusD_button {
@@ -318,6 +320,7 @@
     display: grid;
     grid-template-rows: 1fr;
     // margin-top: 30px;
+    width: 30vw;
     height: 40px;
     margin-left: 15px;
     margin-top: 11px;
@@ -327,8 +330,8 @@
 .ButtonsGridD {
     display: grid;
     grid-template-columns: 1fr;
+    row-gap: 5px;
     grid-template-rows: repeat(3, 1fr, 50px, 1fr);
-    margin-right: 15px;
 }
 
 .order_statusDcod_button {

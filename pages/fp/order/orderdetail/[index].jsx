@@ -460,8 +460,7 @@ function HomePage({ id }) {
                           <input
                             disabled
                             className={styles.btn_code}
-                            type="number"
-                            placeholder="2521351888415132132"
+                            placeholder="محصول ارسال شده است"
                           />
                         </div>
                       </div>
@@ -602,9 +601,6 @@ function HomePage({ id }) {
                     </>
                   )}
 
-                  {/* سفارش تحویل داده شده است */}
-                  {data.order_status === "0"}
-
                   {/* Buttons 2 */}
                 </div>
               </div>
@@ -618,8 +614,9 @@ function HomePage({ id }) {
                   <div className={styles.post_informationD_content}>
                     <h4>نام مشتری</h4>
                     <h3 style={{ marginTop: "5px" }}>
-                      {`${data.profile && data.profile.user.first_name}  ${data.profile && data.profile.user.last_name
-                        }`}
+                      {`${data.profile && data.profile.user.first_name}  ${
+                        data.profile && data.profile.user.last_name
+                      }`}
                     </h3>
                   </div>
                   {/* <div className={styles.post_informationD_content}>
@@ -824,7 +821,7 @@ function HomePage({ id }) {
                                   >
                                     {_asist.PSeparator(
                                       (e.product.old_price - e.product.price) /
-                                      10
+                                        10
                                     )}
                                     -{" "}
                                     <span style={{ color: "#5E7488" }}>
@@ -1134,7 +1131,6 @@ function HomePage({ id }) {
                               if (response.status === 200) {
                                 setshowMessage(1);
                                 setIsLoading(false);
-
                               }
                             } catch (err) {
                               let masage = err.response.data.barcode[0];
@@ -1255,8 +1251,7 @@ function HomePage({ id }) {
                           <input
                             disabled
                             className={styles.btn_code}
-                            type="number"
-                            placeholder="2521351888415132132"
+                            placeholder="محصول ارسال شده است."
                           />
                         </div>
                       </div>
