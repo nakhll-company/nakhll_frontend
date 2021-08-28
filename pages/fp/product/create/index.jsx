@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { useRouter } from "next/router";
 import Cropper from "react-easy-crop";
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
 
 import Assistent from "zaravand-assistent-number";
 import { useCallback, useEffect, useState } from "react";
@@ -16,6 +15,7 @@ import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 import { mapState } from "../../../../containers/product/methods/mapState";
 // styles
 import styles from "../../../../styles/pages/product/create.module.scss";
+import { errorMessage } from "../../../../containers/utils/message";
 /**
  * component create product
  * @param {string} activeHojreh => it has slug of product
@@ -74,10 +74,7 @@ const CreateProduct = ({ activeHojreh }) => {
         paramsProduct
       );
       if (response.status !== 201) {
-        toast.error("خطایی در ایجاد محصول پیش آمده است", {
-          position: "top-right",
-          closeOnClick: true,
-        });
+        errorMessage("خطایی در ایجاد محصول پیش آمده است");
       }
       var resultId = response.data.ID;
 
@@ -99,10 +96,7 @@ const CreateProduct = ({ activeHojreh }) => {
         );
 
         if (responsesubmarkets.status !== 200) {
-          toast.error("خطایی در ایجاد محصول پیش آمده است", {
-            position: "top-right",
-            closeOnClick: true,
-          });
+          errorMessage("خطایی در ایجاد محصول پیش آمده است");
         }
 
         let imagesProduct = {
@@ -124,10 +118,7 @@ const CreateProduct = ({ activeHojreh }) => {
           setShowSuccessPage(true);
           // setIsLoad(false)
         } else {
-          toast.error("خطایی در ایجاد محصول پیش آمده است", {
-            position: "top-right",
-            closeOnClick: true,
-          });
+          errorMessage("خطایی در ایجاد محصول پیش آمده است");
         }
       }
     }

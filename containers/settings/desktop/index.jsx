@@ -22,8 +22,9 @@ import Headers from "../components/Headers/Headers";
 import { VALIDATION_SCHEMA, VALIDATION_HESAB } from "../methods/Validation";
 
 // Toast
-import { toast } from "react-toastify";
+
 import Modal from "../../../components/custom/customModal";
+import { errorMessage, successMessage } from "../../utils/message";
 
 const getStates = async () => {
   let params = {};
@@ -197,16 +198,10 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
           params
         );
         if (response.status === 200) {
-          toast.success("عکس پروفایل به روز رسانی شد", {
-            position: "top-right",
-            closeOnClick: true,
-          });
+          successMessage("عکس پروفایل به روز رسانی شد");
         }
       } catch (e) {
-        toast.error("خطایی در ارسال داده ها پیش آمده است", {
-          position: "top-right",
-          closeOnClick: true,
-        });
+        errorMessage("خطایی در ارسال داده ها پیش آمده است");
       }
     };
     _sendPicAvatar();
@@ -1283,7 +1278,9 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                           type="submit"
                           className={`${styles.btn} ${styles.btnSubmit}`}
                         >
-                          <h3 style={{ margin: "0px",fontSize:"15px" }}>به روز رسانی</h3>
+                          <h3 style={{ margin: "0px", fontSize: "15px" }}>
+                            به روز رسانی
+                          </h3>
                         </button>
                       </div>
                     </Form>
@@ -1305,11 +1302,8 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                     // if (response.status === 201) {
                     //   setShowSuccessPage((showSuccessPage) => !showSuccessPage);
                     // }
+                    successMessage("اطلاعات با موفقیت به روز رسانی شد");
 
-                    toast.success("اطلاعات با موفقیت به روز رسانی شد", {
-                      position: "top-right",
-                      closeOnClick: true,
-                    });
                     // location.replace("https://nakhll.com/fp/setting");
                     setClicked((pre) => !pre);
                   }}

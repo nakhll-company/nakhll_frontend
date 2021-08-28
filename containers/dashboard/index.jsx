@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Image from "next/image";
 import Link from "next/link";
-import { toast } from "react-toastify";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useRouter } from "next/router";
 import Assistent from "zaravand-assistent-number";
@@ -24,6 +24,7 @@ import { mapState } from "./methods/mapState";
 import Loading from "../../components/loading";
 // styles
 import styles from "../../styles/pages/dashboard/dashboard.module.scss";
+import { errorMessage } from "../utils/message";
 // import Swiper core and required modules
 SwiperCore.use([EffectFade, Autoplay, Navigation, Pagination, Scrollbar, A11y]);
 /**
@@ -54,10 +55,7 @@ function Dashboard({ activeHojreh }) {
       if (response.status === 200) {
         setApi(await response.data);
       } else {
-        toast.error(" خطایی رخ داده است.", {
-          position: "top-right",
-          closeOnClick: true,
-        });
+        errorMessage(" خطایی رخ داده است.");
       }
       await setLoading(false);
     };

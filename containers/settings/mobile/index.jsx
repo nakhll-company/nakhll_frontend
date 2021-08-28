@@ -16,8 +16,7 @@ import { VALIDATION_SCHEMA, VALIDATION_HESAB } from "../methods/Validation";
 // component
 import Headers from "../components/Headers/Headers";
 
-// Toast
-import { toast } from "react-toastify";
+import { errorMessage, successMessage } from "../../utils/message";
 
 const getStates = async () => {
   let params = {};
@@ -184,16 +183,10 @@ function MobileSetting({ activeHojreh }) {
           params
         );
         if (response.status === 200) {
-          toast.success("عکس پروفایل به روز رسانی شد", {
-            position: "top-right",
-            closeOnClick: true,
-          });
+          successMessage("عکس پروفایل به روز رسانی شد");
         }
       } catch (e) {
-        toast.error("خطایی در ارسال داده ها پیش آمده است", {
-          position: "top-right",
-          closeOnClick: true,
-        });
+        errorMessage("خطایی در ارسال داده ها پیش آمده است");
       }
     };
     _sendPicAvatar();
@@ -795,10 +788,8 @@ function MobileSetting({ activeHojreh }) {
                     // if (response.status === 201) {
                     //   setShowSuccessPage((showSuccessPage) => !showSuccessPage);
                     // }
-                    toast.success("اطلاعات با موفقیت به روز رسانی شد", {
-                      position: "top-right",
-                      closeOnClick: true,
-                    });
+                    successMessage("اطلاعات با موفقیت به روز رسانی شد");
+
                     // location.replace("https://nakhll.com/fp/setting");
                     setClicked((pre) => !pre);
                   }}

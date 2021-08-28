@@ -14,30 +14,41 @@ import { mapState } from "../../../../../containers/product/methods/mapState";
 import { getCroppedImg } from "../../../../../containers/product/create/canvasUtils";
 // styles
 import styles from "../../../../../styles/pages/product/create.module.scss";
+import { errorMessage } from "../../../../../containers/utils/message";
 /**
  * page update product
  * @param {string} activeHojreh => it has slug name
  */
 const UpdateProduct = ({ activeHojreh }) => {
-
   const router = useRouter();
   const { id } = router.query;
   // react form hook
-  const { setValue, clearErrors, getValues, register, setError, handleSubmit, watch, formState: { errors } } = useForm({
-    criteriaMode: 'all',
+  const {
+    setValue,
+    clearErrors,
+    getValues,
+    register,
+    setError,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm({
+    criteriaMode: "all",
   });
   // on submit
   const onSubmit = async (data) => {
-    let err = false
+    let err = false;
     if (!placeholderSubmarckets) {
-      setError("submark", { type: "focus" }, { shouldFocus: true })
+      setError("submark", { type: "focus" }, { shouldFocus: true });
     } else {
-      err = true
+      err = true;
     }
-    let product_status = document.querySelector("input[type=radio]:checked").value;
+    let product_status = document.querySelector(
+      "input[type=radio]:checked"
+    ).value;
     // if error is true
     if (err) {
-      setIsLoad(false)
+      setIsLoad(false);
       let confirm = {
         Title: data.Title,
         Inventory: Add,
@@ -51,7 +62,7 @@ const UpdateProduct = ({ activeHojreh }) => {
         PreparationDays: AddPreparationDays,
         // FK_Shop: activeHojreh,
         FK_SubMarket: submarketId,
-        Product_Banner: idImage
+        Product_Banner: idImage,
 
         // Product_Banner: previewImage
       };
@@ -69,16 +80,8 @@ const UpdateProduct = ({ activeHojreh }) => {
       // check status code
       if (response.status === 200) {
         setShowSuccessPage(true);
-        // toast.success("محصول شما با موفقیت ویرایش شد", {
-        //   position: "top-right",
-        //   closeOnClick: true,
-        // });
-        // setIsLoad(true)
       } else {
-        toast.error("در ویرایش اطلاعات مشکلی پیش آمده است", {
-          position: "top-right",
-          closeOnClick: true,
-        });
+        errorMessage("در ویرایش اطلاعات مشکلی پیش آمده است");
       }
     }
   };
@@ -101,15 +104,9 @@ const UpdateProduct = ({ activeHojreh }) => {
   const [idImage, setIdImage] = useState(false);
   const [showSuccessPage, setShowSuccessPage] = useState(false);
 
-
-
   if (showSuccessPage) {
     router.replace("/fp/product/update/product/successPageEditProduct");
   }
-
-
-
-
 
   // get edit date
   const _editProduct = async () => {
@@ -124,40 +121,38 @@ const UpdateProduct = ({ activeHojreh }) => {
       params
     );
     if (response.status === 200) {
-      setValue('Title', response.data.title)
-      setValue('submark', response.data.sub_market.title)
-      setPlaceholderSubmarckets(response.data.sub_market.title)
-      setValue('Net_Weight', response.data.net_weight)
-      setValue('Weight_With_Packing', response.data.weight_with_packing)
+      setValue("Title", response.data.title);
+      setValue("submark", response.data.sub_market.title);
+      setPlaceholderSubmarckets(response.data.sub_market.title);
+      setValue("Net_Weight", response.data.net_weight);
+      setValue("Weight_With_Packing", response.data.weight_with_packing);
       if (response.data.price > response.data.old_price) {
-        setValue('Price', response.data.price / 10)
-        setValue('OldPrice', response.data.old_price / 10)
+        setValue("Price", response.data.price / 10);
+        setValue("OldPrice", response.data.old_price / 10);
       } else {
-        setValue('Price', response.data.old_price / 10)
-        setValue('OldPrice', response.data.price / 10)
+        setValue("Price", response.data.old_price / 10);
+        setValue("OldPrice", response.data.price / 10);
       }
-      setValue('Description', response.data.description)
+      setValue("Description", response.data.description);
 
       let peree = response.data.banners.map((item) => {
-        return item.image
-      })
-      setPreviewImage(response.data.banners)
+        return item.image;
+      });
+      setPreviewImage(response.data.banners);
 
       window.localStorage.setItem("image", JSON.stringify(peree));
 
-      setAdd(response.data.inventory)
-      setAddPreparationDays(response.data.preparation_days)
-      setIsLoad(true)
-      setSubmarketId(response.data.sub_market.id)
+      setAdd(response.data.inventory);
+      setAddPreparationDays(response.data.preparation_days);
+      setIsLoad(true);
+      setSubmarketId(response.data.sub_market.id);
 
       let idImage = response.data.banners.map((item) => {
-        return item.id
-      })
-      setIdImage(idImage)
-
-
+        return item.id;
+      });
+      setIdImage(idImage);
     }
-  }//close edit data
+  }; //close edit data
   // use effect
   useEffect(() => {
     window.localStorage.setItem("image", JSON.stringify([]));
@@ -177,12 +172,12 @@ const UpdateProduct = ({ activeHojreh }) => {
         params
       );
       if (response.status === 200) {
-        setIsLoad(true)
+        setIsLoad(true);
         setData(response.data);
       }
     };
     _handleRequestApi();
-  }, [activeHojreh]);//close use effect
+  }, [activeHojreh]); //close use effect
 
   const mini = () => {
     if (Add == 0) {
@@ -219,9 +214,9 @@ const UpdateProduct = ({ activeHojreh }) => {
     elementProduct.style.display = "flex";
     setDataChoice({ ...dataChoice, submarket: e.title });
     setPlaceholderSubmarckets(e.title);
-    setSubmarketId(e.id)
+    setSubmarketId(e.id);
     setPage((page) => page - 1);
-    clearErrors("submark")
+    clearErrors("submark");
   }
   // GoBack
   function GoBack() {
@@ -249,7 +244,7 @@ const UpdateProduct = ({ activeHojreh }) => {
   const onFileChange = async (e) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
-      let imageDataUrl = await readFile(file)
+      let imageDataUrl = await readFile(file);
       setImageSrc(imageDataUrl);
       let elementImageProduct = document.getElementById("crop_container");
       elementImageProduct.style.display = "block";
@@ -258,17 +253,17 @@ const UpdateProduct = ({ activeHojreh }) => {
   // readFile
   function readFile(file) {
     return new Promise((resolve) => {
-      const reader = new FileReader()
-      reader.addEventListener('load', () => resolve(reader.result), false)
-      reader.readAsDataURL(file)
-    })
+      const reader = new FileReader();
+      reader.addEventListener("load", () => resolve(reader.result), false);
+      reader.readAsDataURL(file);
+    });
   }
   // close crop image
   const _onCloseCropper = () => {
     let elementImageProduct = document.getElementById("crop_container");
     elementImageProduct.style.display = "none";
     setImageSrc(null);
-    setValue("product_image_upload", null)
+    setValue("product_image_upload", null);
   };
   // show croped image
   const showCroppedImage = async () => {
@@ -280,14 +275,14 @@ const UpdateProduct = ({ activeHojreh }) => {
 
       let temp = prev.map((value) => {
         return {
-          image: value
-        }
+          image: value,
+        };
       });
 
       let sendImage = {
         FK_Product: id,
-        Image: croppedImage
-      }
+        Image: croppedImage,
+      };
 
       let params = null;
       let loadData = sendImage;
@@ -302,14 +297,12 @@ const UpdateProduct = ({ activeHojreh }) => {
 
       let prevImg = {
         image: response.data.Image,
-        id: response.data.id
-      }
+        id: response.data.id,
+      };
 
-      setIdImage([...idImage, response.data.id])
+      setIdImage([...idImage, response.data.id]);
 
       setPreviewImage([...previewImage, prevImg]);
-
-
     }
     let elementImageProduct = document.getElementById("crop_container");
     elementImageProduct.style.display = "none";
@@ -317,27 +310,32 @@ const UpdateProduct = ({ activeHojreh }) => {
       document.getElementById("product-image-upload").disabled = true;
     } else {
       document.getElementById("product-image-upload").disabled = false;
-
     }
   };
   // function for remove image
   const _removeImage = (item, id) => {
     let listRemoveImage = window.localStorage.getItem("image");
-    let removeImage = JSON.parse(listRemoveImage)
-    let testt = removeImage.filter((itemRemove) => { return itemRemove.includes(item) ? "" : itemRemove });
+    let removeImage = JSON.parse(listRemoveImage);
+    let testt = removeImage.filter((itemRemove) => {
+      return itemRemove.includes(item) ? "" : itemRemove;
+    });
     window.localStorage.setItem("image", JSON.stringify(testt));
     // let idd = idImage
     // let removeId = idd.filter((itemRemoveId) => { return itemRemoveId !== id ? "" : itemRemoveId });
-    let removeId = idImage.filter((value) => { return value !== id ? value : null });
-    setIdImage([...removeId])
-    let filter = previewImage.filter((value) => { return value.id !== id ? value : null })
+    let removeId = idImage.filter((value) => {
+      return value !== id ? value : null;
+    });
+    setIdImage([...removeId]);
+    let filter = previewImage.filter((value) => {
+      return value.id !== id ? value : null;
+    });
 
     setPreviewImage([...filter]);
 
     if (testt.length == 0) {
-      setValue("product_image_upload", null)
+      setValue("product_image_upload", null);
     }
-  }
+  };
 
   if (isLoad) {
     return (
@@ -348,7 +346,10 @@ const UpdateProduct = ({ activeHojreh }) => {
               <div className={styles.createProduct_lineRighte}>
                 <div className="mt-4">
                   <div>
-                    <h5 style={{ color: "#007aff", fontSize: "14px" }} className="mb-0 d-inline mr-20">
+                    <h5
+                      style={{ color: "#007aff", fontSize: "14px" }}
+                      className="mb-0 d-inline mr-20"
+                    >
                       اطلاعات محصول
                     </h5>
                   </div>
@@ -359,34 +360,60 @@ const UpdateProduct = ({ activeHojreh }) => {
                   <label className={styles.lable_product} htmlFor="Title">
                     نام محصول
                   </label>
-                  <input className={styles.input_product} id="Title" type="text"
+                  <input
+                    className={styles.input_product}
+                    id="Title"
+                    type="text"
                     {...register("Title", { required: true })}
                   />
-                  {errors.Title && <span style={{ color: "red", fontSize: "14px" }}>لطفا این گزینه را پر کنید</span>}
+                  {errors.Title && (
+                    <span style={{ color: "red", fontSize: "14px" }}>
+                      لطفا این گزینه را پر کنید
+                    </span>
+                  )}
                 </div>
                 {/* categories */}
                 <div className={styles.wrapper_input}>
                   <label className={styles.lable_product} htmlFor="Title">
                     دسته بندی
                   </label>
-                  <input className={styles.input_product} value={placeholderSubmarckets} id="submark" name="submark" type="text"
+                  <input
+                    className={styles.input_product}
+                    value={placeholderSubmarckets}
+                    id="submark"
+                    name="submark"
+                    type="text"
                     onClick={_selectSubmarket}
                     {...register("submark")}
                   />
-                  {errors.submark && <span style={{ color: "red", fontSize: "14px" }}>لطفا این گزینه را پر کنید</span>}
+                  {errors.submark && (
+                    <span style={{ color: "red", fontSize: "14px" }}>
+                      لطفا این گزینه را پر کنید
+                    </span>
+                  )}
                 </div>
                 {/* image */}
                 <div id="imageProduct">
                   <div>
                     <p style={{ fontSize: "14px" }}>تصاویر</p>
                   </div>
-                  <div style={{ color: "#5E7488", fontSize: "14px", marginBottom: "15px" }} className="mt-3">
+                  <div
+                    style={{
+                      color: "#5E7488",
+                      fontSize: "14px",
+                      marginBottom: "15px",
+                    }}
+                    className="mt-3"
+                  >
                     حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش
                     داده خواهد شد.
                   </div>
                   <div className="mt-4" name="mainPhoto">
                     <div className={styles.product_image_container}>
-                      <label style={{ marginTop: 10, marginRight: 10 }} htmlFor="product-image-upload">
+                      <label
+                        style={{ marginTop: 10, marginRight: 10 }}
+                        htmlFor="product-image-upload"
+                      >
                         <div className={styles.add_image_container}>
                           <i style={{ fontSize: "25px" }}>+</i>
                           <p style={{ fontSize: "15px" }} className="mt-2">
@@ -404,26 +431,47 @@ const UpdateProduct = ({ activeHojreh }) => {
                         onChange={onFileChange}
                       />
                       {/* map image */}
-                      {previewImage && (previewImage.map((item, index) => {
-                        return (
-                          <div key={index} className={styles.product_image} style={{
-                            backgroundImage: `${item.image ? `url(${item.image})` : `url(${item})`} `
-                          }}>
-                            <div onClick={() => _removeImage(item, item.id)} className={styles.close_icon_container}>
-                              <i style={{ fontSize: 14 }} className="fas fa-times"></i>
+                      {previewImage &&
+                        previewImage.map((item, index) => {
+                          return (
+                            <div
+                              key={index}
+                              className={styles.product_image}
+                              style={{
+                                backgroundImage: `${
+                                  item.image
+                                    ? `url(${item.image})`
+                                    : `url(${item})`
+                                } `,
+                              }}
+                            >
+                              <div
+                                onClick={() => _removeImage(item, item.id)}
+                                className={styles.close_icon_container}
+                              >
+                                <i
+                                  style={{ fontSize: 14 }}
+                                  className="fas fa-times"
+                                ></i>
+                              </div>
                             </div>
-                          </div>
-                        )
-                      })
-                      )}
+                          );
+                        })}
                     </div>
                   </div>
-                  {errors.product_image_upload && <span style={{ color: "red", fontSize: "14px" }}>لطفا این گزینه را پر کنید</span>}
+                  {errors.product_image_upload && (
+                    <span style={{ color: "red", fontSize: "14px" }}>
+                      لطفا این گزینه را پر کنید
+                    </span>
+                  )}
                 </div>
 
                 <div className="mt-4">
                   <div>
-                    <h5 style={{ color: "#007aff", fontSize: "14px" }} className="mb-0 d-inline mr-20">
+                    <h5
+                      style={{ color: "#007aff", fontSize: "14px" }}
+                      className="mb-0 d-inline mr-20"
+                    >
                       جزئیات محصول
                     </h5>
                   </div>
@@ -435,43 +483,61 @@ const UpdateProduct = ({ activeHojreh }) => {
                     وزن خالص محصول
                   </label>
                   <div className={styles.wrapper_input_suffixText}>
-                    <input style={{ outline: "unset", border: "unset" }}
-                      id="Net_Weight" type="number"
+                    <input
+                      style={{ outline: "unset", border: "unset" }}
+                      id="Net_Weight"
+                      type="number"
                       {...register("Net_Weight", {
-                        required: 'لطفا این گزینه را پرنمایید',
+                        required: "لطفا این گزینه را پرنمایید",
                         min: {
                           value: 1,
-                          message: 'لطفا اعداد بزرگتر از صفر وارد نمایید'
-                        }
+                          message: "لطفا اعداد بزرگتر از صفر وارد نمایید",
+                        },
                       })}
                     />
                     <div>
                       <p>گرم</p>
                     </div>
                   </div>
-                  {errors.Net_Weight && <span style={{ color: "red", fontSize: "14px" }}>{errors.Net_Weight.message}</span>}
+                  {errors.Net_Weight && (
+                    <span style={{ color: "red", fontSize: "14px" }}>
+                      {errors.Net_Weight.message}
+                    </span>
+                  )}
                 </div>
                 {/* wight with packing */}
                 <div className={styles.wrapper_input}>
-                  <label className={styles.lable_product} htmlFor="Weight_With_Packing">
+                  <label
+                    className={styles.lable_product}
+                    htmlFor="Weight_With_Packing"
+                  >
                     وزن با بسته بندی
                   </label>
                   <div className={styles.wrapper_input_suffixText}>
-                    <input style={{ outline: "unset", border: "unset" }} id="Weight_With_Packing" type="number"
+                    <input
+                      style={{ outline: "unset", border: "unset" }}
+                      id="Weight_With_Packing"
+                      type="number"
                       {...register("Weight_With_Packing", {
-                        required: 'لطفا این گزینه را پرنمایید',
+                        required: "لطفا این گزینه را پرنمایید",
                         min: {
                           value: 0,
-                          message: 'لطفا اعداد بزرگتر از صفر وارد نمایید'
+                          message: "لطفا اعداد بزرگتر از صفر وارد نمایید",
                         },
-                        validate: value => parseInt(value) > parseInt(getValues("Net_Weight")) || 'وزن با بسته بندی باید بیشتر از وزن  خالص باشد'
+                        validate: (value) =>
+                          parseInt(value) > parseInt(getValues("Net_Weight")) ||
+                          "وزن با بسته بندی باید بیشتر از وزن  خالص باشد",
                       })}
                     />
                     <div>
                       <p>گرم</p>
                     </div>
                   </div>
-                  {errors.Weight_With_Packing && <span style={{ color: "red", fontSize: "14px" }}>{errors.Weight_With_Packing.message}</span>}
+                  {errors.Weight_With_Packing && (
+                    <span style={{ color: "red", fontSize: "14px" }}>
+                      {errors.Weight_With_Packing.message}
+                    </span>
+                  )}
                 </div>
                 {/* price */}
                 <div className={styles.wrapper_input}>
@@ -479,21 +545,27 @@ const UpdateProduct = ({ activeHojreh }) => {
                     قیمت محصول
                   </label>
                   <div className={styles.wrapper_input_suffixText}>
-                    <input style={{ outline: "unset", border: "unset" }} id="Price"
+                    <input
+                      style={{ outline: "unset", border: "unset" }}
+                      id="Price"
                       type="number"
                       {...register("Price", {
-                        required: 'لطفا این گزینه را پرنمایید',
+                        required: "لطفا این گزینه را پرنمایید",
                         min: {
                           value: 500,
-                          message: 'لطفا اعداد بزرگتر از 500 وارد نمایید'
-                        }
+                          message: "لطفا اعداد بزرگتر از 500 وارد نمایید",
+                        },
                       })}
                     />
                     <div>
                       <p>تومان</p>
                     </div>
                   </div>
-                  {errors.Price && <span style={{ color: "red", fontSize: "14px" }}>{errors.Price.message}</span>}
+                  {errors.Price && (
+                    <span style={{ color: "red", fontSize: "14px" }}>
+                      {errors.Price.message}
+                    </span>
+                  )}
                 </div>
                 {/* price with Discount */}
                 <div className={styles.wrapper_input}>
@@ -501,34 +573,54 @@ const UpdateProduct = ({ activeHojreh }) => {
                     قیمت محصول با تخفیف (اختیاری){" "}
                   </label>
                   <div className={styles.wrapper_input_suffixText}>
-                    <input style={{ outline: "unset", border: "unset" }} id="OldPrice" type="number"
+                    <input
+                      style={{ outline: "unset", border: "unset" }}
+                      id="OldPrice"
+                      type="number"
                       {...register("OldPrice", {
                         min: {
                           value: 0,
-                          message: 'لطفا اعداد بزرگتر از صفر وارد نمایید'
+                          message: "لطفا اعداد بزرگتر از صفر وارد نمایید",
                         },
-                        validate: value => parseInt(value) < parseInt(getValues("Price")) || 'قیمت با تخفیف باید کمتر از قیمت اصلی باشد'
+                        validate: (value) =>
+                          parseInt(value) < parseInt(getValues("Price")) ||
+                          "قیمت با تخفیف باید کمتر از قیمت اصلی باشد",
                       })}
                     />
                     <div>
                       <p>تومان</p>
                     </div>
                   </div>
-                  {errors.OldPrice && <span style={{ color: "red", fontSize: "14px" }}>{errors.OldPrice.message}</span>}
+                  {errors.OldPrice && (
+                    <span style={{ color: "red", fontSize: "14px" }}>
+                      {errors.OldPrice.message}
+                    </span>
+                  )}
                 </div>
                 {/* discription */}
                 <div className={styles.wrapper_input}>
                   <label className={styles.lable_product} htmlFor="Description">
                     توضیحات محصول (اختیاری)
                   </label>
-                  <textarea className={styles.input_product} id="Description" name="Description" type="text"
+                  <textarea
+                    className={styles.input_product}
+                    id="Description"
+                    name="Description"
+                    type="text"
                     placeholder="توضیحات خود را در صورت تمایل اینجا وارد کنید"
                   />
                 </div>
                 {/* inventory */}
                 <div className={styles.twoCol}>
                   <div>
-                    <p htmlFor="Inventory" style={{ marginBottom: "10px", color: "#364254", fontSize: 14 }}>
+                    <p
+                      htmlFor="Inventory"
+                      style={{
+                        marginBottom: "10px",
+                        color: "#364254",
+                        fontSize: 14,
+                      }}
+                    >
                       موجودی
                     </p>
                     <div className={styles.inputWidRtl}>
@@ -536,7 +628,13 @@ const UpdateProduct = ({ activeHojreh }) => {
                         <span className="fas fa-plus"></span>
                       </button>
                       <div className={styles.center}>
-                        <input type="number" min="0" max="500" value={Add} id="Inventory" name="Inventory"
+                        <input
+                          type="number"
+                          min="0"
+                          max="500"
+                          value={Add}
+                          id="Inventory"
+                          name="Inventory"
                           onChange={(e) => {
                             setAdd(e.target.value);
                           }}
@@ -564,7 +662,14 @@ const UpdateProduct = ({ activeHojreh }) => {
                 {/* time inventory */}
                 <div className={styles.twoCol}>
                   <div>
-                    <p htmlFor="PreparationDays" style={{ marginBottom: "10px", color: "#364254", fontSize: 14 }}>
+                    <p
+                      htmlFor="PreparationDays"
+                      style={{
+                        marginBottom: "10px",
+                        color: "#364254",
+                        fontSize: 14,
+                      }}
+                    >
                       زمان آماده سازی
                     </p>
                     <div className={styles.inputWidRtl}>
@@ -572,9 +677,16 @@ const UpdateProduct = ({ activeHojreh }) => {
                         <span className="fas fa-plus"></span>
                       </button>
                       <div className={styles.center}>
-                        <input type="number" min="0" max="500" value={AddPreparationDays}
-                          id="PreparationDays" name="PreparationDays"
-                          onChange={(e) => { setAddPreparationDays(e.target.value); }}
+                        <input
+                          type="number"
+                          min="0"
+                          max="500"
+                          value={AddPreparationDays}
+                          id="PreparationDays"
+                          name="PreparationDays"
+                          onChange={(e) => {
+                            setAddPreparationDays(e.target.value);
+                          }}
                         />
                         <h4>روز</h4>
                       </div>
@@ -588,9 +700,17 @@ const UpdateProduct = ({ activeHojreh }) => {
                   </div>
                 </div>
                 {/* product status */}
-                <div style={{ display: "flex", justifyContent: "center", marginTop: "15px" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: "15px",
+                  }}
+                >
                   {/* availble */}
-                  <label htmlFor="availbe" className="labels activeLabel"
+                  <label
+                    htmlFor="availbe"
+                    className="labels activeLabel"
                     onClick={(e) => {
                       let actives =
                         document.getElementsByClassName("activeLabel");
@@ -603,8 +723,17 @@ const UpdateProduct = ({ activeHojreh }) => {
                     اماده در انبار
                   </label>
                   {/* Post after order production  */}
-                  <input defaultChecked={true} value={1} type="radio" name="status_product" id="availbe" className="radios" />
-                  <label htmlFor="stop" className="labels"
+                  <input
+                    defaultChecked={true}
+                    value={1}
+                    type="radio"
+                    name="status_product"
+                    id="availbe"
+                    className="radios"
+                  />
+                  <label
+                    htmlFor="stop"
+                    className="labels"
                     onClick={(e) => {
                       let actives =
                         document.getElementsByClassName("activeLabel");
@@ -616,9 +745,17 @@ const UpdateProduct = ({ activeHojreh }) => {
                   >
                     تولید بعد از سفارش
                   </label>
-                  <input value={2} type="radio" name="status_product" id="stop" className="radios" />
+                  <input
+                    value={2}
+                    type="radio"
+                    name="status_product"
+                    id="stop"
+                    className="radios"
+                  />
                   {/* Ordering */}
-                  <label htmlFor="soon" className="labels"
+                  <label
+                    htmlFor="soon"
+                    className="labels"
                     onClick={(e) => {
                       let actives =
                         document.getElementsByClassName("activeLabel");
@@ -630,46 +767,57 @@ const UpdateProduct = ({ activeHojreh }) => {
                   >
                     سفارشی سازی فروش
                   </label>
-                  <input value={3} type="radio" name="status_product" id="soon" className="radios" />
-                  <style jsx>{`
-                    .labels {
-                      background: #ffffff;
-                      border: 1px solid #e0e6e9;
-                      box-sizing: border-box;
-                      border-radius: 5px;
-                      width: 250px;
-                      height: 41px;
-                      display: flex;
-                      align-items: center;
-                      justify-content: center;
-                      flex-direction: row;
-                      font-size: 15px;
-                      color: #a4aebb;
-                      text-align: center;
-                    }
-                    .radios {
-                      visibility: hidden;
-                    }
-                    .activeLabel {
-                      display: flex;
-                      align-items: center;
-                      justify-content: center;
-                      flex-direction: row;
-                      background: #ffffff;
-                      border: 1px solid #007aff;
-                      box-sizing: border-box;
-                      border-radius: 5px;
-                      width: 250px;
-                      height: 41px;
-                      font-size: 15px;
-                      color: #007aff;
-                    }
-                  `}
+                  <input
+                    value={3}
+                    type="radio"
+                    name="status_product"
+                    id="soon"
+                    className="radios"
+                  />
+                  <style jsx>
+                    {`
+                      .labels {
+                        background: #ffffff;
+                        border: 1px solid #e0e6e9;
+                        box-sizing: border-box;
+                        border-radius: 5px;
+                        width: 250px;
+                        height: 41px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex-direction: row;
+                        font-size: 15px;
+                        color: #a4aebb;
+                        text-align: center;
+                      }
+                      .radios {
+                        visibility: hidden;
+                      }
+                      .activeLabel {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex-direction: row;
+                        background: #ffffff;
+                        border: 1px solid #007aff;
+                        box-sizing: border-box;
+                        border-radius: 5px;
+                        width: 250px;
+                        height: 41px;
+                        font-size: 15px;
+                        color: #007aff;
+                      }
+                    `}
                   </style>
                 </div>
                 {/* button update */}
                 <div>
-                  <button type="submit" id="submitButton" className={styles.form_buttonSubmit}>
+                  <button
+                    type="submit"
+                    id="submitButton"
+                    className={styles.form_buttonSubmit}
+                  >
                     ویرایش محصول
                   </button>
                 </div>
@@ -678,12 +826,21 @@ const UpdateProduct = ({ activeHojreh }) => {
               <div className={styles.createProduct_lineLeft}>
                 <div className="mt-4">
                   <div>
-                    <h5 style={{ color: "#007aff", fontSize: "14px" }} className="mb-0 d-inline mr-20"></h5>
+                    <h5
+                      style={{ color: "#007aff", fontSize: "14px" }}
+                      className="mb-0 d-inline mr-20"
+                    ></h5>
                   </div>
                 </div>
                 <hr style={{ background: "#007aff" }} />
                 <div>
-                  <p style={{ color: "#5E7488", fontSize: "14px", marginTop: "90px" }}>
+                  <p
+                    style={{
+                      color: "#5E7488",
+                      fontSize: "14px",
+                      marginTop: "90px",
+                    }}
+                  >
                     به عنوان مثال : برنج لاشه 10 کیلویی، کشت اول
                   </p>
                 </div>
@@ -691,14 +848,31 @@ const UpdateProduct = ({ activeHojreh }) => {
             </div>
           </form>
           {/* categories */}
-          <div style={{ position: "relative", gridColumn: "1/-1", gridRow: "1/-1", background: "#ffffff" }}>
+          <div
+            style={{
+              position: "relative",
+              gridColumn: "1/-1",
+              gridRow: "1/-1",
+              background: "#ffffff",
+            }}
+          >
             <div id="wrapperMarkets" className={styles.markets}>
               <div className={styles.wrapper}>
                 {/* // progress bar */}
                 <div className={styles.Header}>
-                  <button style={{ outline: "unset" }} onClick={GoBack} className={styles.btn_icon}>
-                    <span className="fas fa-arrow-right"
-                      style={{ fontSize: "15px", color: "#5E7488", marginLeft: "20px", marginRight: "20px" }}
+                  <button
+                    style={{ outline: "unset" }}
+                    onClick={GoBack}
+                    className={styles.btn_icon}
+                  >
+                    <span
+                      className="fas fa-arrow-right"
+                      style={{
+                        fontSize: "15px",
+                        color: "#5E7488",
+                        marginLeft: "20px",
+                        marginRight: "20px",
+                      }}
                     ></span>
                   </button>
                   {page === 1 && <h2>انتخاب دسته بندی</h2>}
@@ -708,12 +882,17 @@ const UpdateProduct = ({ activeHojreh }) => {
                   {page === 1 ? (
                     data?.map((e, index) => {
                       return (
-                        <button key={index} style={{ outline: "unset" }} className={styles.btn}
+                        <button
+                          key={index}
+                          style={{ outline: "unset" }}
+                          className={styles.btn}
                           onClick={() => clickButton(e)}
                         >
                           <div className={styles.in_btn}>
                             <h2 style={{ marginRight: "14px" }}>{e.title}</h2>
-                            <span style={{ marginLeft: "14px" }} className="fas fa-chevron-left fa-2x"
+                            <span
+                              style={{ marginLeft: "14px" }}
+                              className="fas fa-chevron-left fa-2x"
                             ></span>
                           </div>
                         </button>
@@ -723,12 +902,17 @@ const UpdateProduct = ({ activeHojreh }) => {
                     <>
                       {subMarkets?.map((e, index) => {
                         return (
-                          <button key={index} style={{ outline: "unset" }} className={styles.btn}
+                          <button
+                            key={index}
+                            style={{ outline: "unset" }}
+                            className={styles.btn}
                             onClick={() => finalClick(e)}
                           >
                             <div className={styles.in_btn}>
                               <h2 style={{ marginRight: "14px" }}>{e.title}</h2>
-                              <span style={{ marginLeft: "14px" }} className="fas fa-chevron-left fa-2x"
+                              <span
+                                style={{ marginLeft: "14px" }}
+                                className="fas fa-chevron-left fa-2x"
                               ></span>
                             </div>
                           </button>
@@ -742,23 +926,43 @@ const UpdateProduct = ({ activeHojreh }) => {
           </div>
           {/* croperProduct */}
           <div id="crop_container" className={styles.wrapperIMageProduct}>
-            <Cropper image={imageSrc} crop={crop} restrictPosition={true} zoom={zoom}
-              aspect={1} onCropChange={setCrop} onCropComplete={onCropComplete}
+            <Cropper
+              image={imageSrc}
+              crop={crop}
+              restrictPosition={true}
+              zoom={zoom}
+              aspect={1}
+              onCropChange={setCrop}
+              onCropComplete={onCropComplete}
               onZoomChange={setZoom}
-              classes={{ containerClassName: "container_cropper_product", cropAreaClassName: "product_cropArea" }}
+              classes={{
+                containerClassName: "container_cropper_product",
+                cropAreaClassName: "product_cropArea",
+              }}
             />
             <div className={styles.controls}>
-              <input value={zoom} type="range" step="0.1" max="3" min="1"
+              <input
+                value={zoom}
+                type="range"
+                step="0.1"
+                max="3"
+                min="1"
                 onChange={(e) => setZoom(e.target.value)}
               />
               <div className={styles.wrapperButton}>
                 <div style={{ marginLeft: "10px" }}>
-                  <button onClick={showCroppedImage} className="btn btn-success btn-lg">
+                  <button
+                    onClick={showCroppedImage}
+                    className="btn btn-success btn-lg"
+                  >
                     تایید
                   </button>
                 </div>
                 <div>
-                  <button onClick={_onCloseCropper} className="btn btn-secondary btn-lg">
+                  <button
+                    onClick={_onCloseCropper}
+                    className="btn btn-secondary btn-lg"
+                  >
                     لغو
                   </button>
                 </div>
@@ -769,8 +973,7 @@ const UpdateProduct = ({ activeHojreh }) => {
       </>
     );
   } else {
-    return (
-      <Loading />)
+    return <Loading />;
   }
 };
 // export
