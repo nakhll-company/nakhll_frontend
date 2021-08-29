@@ -621,9 +621,6 @@ function HomePage({ id }) {
                     </>
                   )}
 
-                  {/* سفارش تحویل داده شده است */}
-                  {data.order_status === "0"}
-
                   {/* Buttons 2 */}
                 </div>
               </div>
@@ -1225,7 +1222,6 @@ function HomePage({ id }) {
                               if (response.status === 200) {
                                 setshowMessage(1);
                                 setIsLoading(false);
-
                               }
                             } catch (err) {
                               let masage = err.response.data.barcode[0];
