@@ -10,6 +10,10 @@ import "bootstrap/dist/css/bootstrap.css";
 // scss
 import "../styles/globals.scss";
 
+// font-awesome
+
+import "../styles/General/font-awesome/css/font-awesome.css";
+
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
 

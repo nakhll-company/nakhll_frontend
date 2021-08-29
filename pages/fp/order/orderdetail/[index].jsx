@@ -14,9 +14,10 @@ import { Formik, Form, Field, FieldArray } from "formik";
 import * as yup from "yup";
 import OrderDetailDesktop from "../../../../containers/orderdetail/desktop";
 import OrderDetailMobile from "../../../../containers/orderdetail/mobile";
-import { toast } from "react-toastify";
+
 // for persian number
 import Assistent from "zaravand-assistent-number";
+import { errorMessage } from "../../../../containers/utils/message";
 
 const _asist = new Assistent();
 export const getServerSideProps = ({ params }) => {
@@ -358,11 +359,7 @@ function HomePage({ id }) {
                             } catch (e) {
                               let masage = e.response.data.barcode[0];
                               {
-                                masage &&
-                                  toast.error(masage, {
-                                    position: "top-center",
-                                    closeOnClick: true,
-                                  });
+                                masage && errorMessage(masage);
                               }
 
                               setshowMessage(2);
@@ -1226,11 +1223,7 @@ function HomePage({ id }) {
                             } catch (err) {
                               let masage = err.response.data.barcode[0];
                               {
-                                masage &&
-                                  toast.error(masage, {
-                                    position: "top-center",
-                                    closeOnClick: true,
-                                  });
+                                masage && errorMessage(masage);
                               }
                               setshowMessage(2);
                               setIsLoading(false);

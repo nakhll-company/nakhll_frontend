@@ -806,6 +806,11 @@ follow-redirects@^1.10.0:
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.1.tgz#d9114ded0a1cfdd334e164e6662ad02bfd91ff43"
   integrity sha512-HWqDgT7ZEkqRzBvc2s64vSZ/hfOceEol3ac/7tKwzuvEyWx3/4UegXh5oBOIotkGsObyk3xznnSRVADBgWSQVg==
 
+fontawesome@^5.6.3:
+  version "5.6.3"
+  resolved "https://registry.yarnpkg.com/fontawesome/-/fontawesome-5.6.3.tgz#73f0b865fa2b0b384e69d531c05a02c643b72f95"
+  integrity sha512-FCc+CawwsJWWprVEg9X14yI7zI+l9YVAyhzgu70qwGeDn0tLLDH/dVfqgij72g4BBGgLGfK2qnvFGAmYUkhaWg==
+
 foreach@^2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/foreach/-/foreach-2.0.5.tgz#0bee005018aeb260d0a3af3ae658dd0136ec1b99"
@@ -1701,6 +1706,11 @@ readdirp@~3.6.0:
   dependencies:
     picomatch "^2.2.1"
 
+redux-devtools-extension@^2.13.9:
+  version "2.13.9"
+  resolved "https://registry.yarnpkg.com/redux-devtools-extension/-/redux-devtools-extension-2.13.9.tgz#6b764e8028b507adcb75a1cae790f71e6be08ae7"
+  integrity sha512-cNJ8Q/EtjhQaZ71c8I9+BPySIBVEKssbPpskBfsXqb8HJ002A3KRVHfeRzwRo6mGPqsm7XuHTqNSNeS1Khig0A==
+
 redux-logger@^3.0.6:
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/redux-logger/-/redux-logger-3.0.6.tgz#f7555966f3098f3c88604c449cf0baf5778274bf"
@@ -1963,10 +1973,10 @@ supports-color@^8.0.0:
   dependencies:
     has-flag "^4.0.0"
 
-swiper@^6.7.5:
-  version "6.7.5"
-  resolved "https://registry.yarnpkg.com/swiper/-/swiper-6.7.5.tgz#8f150c7281919b7d6bea00889e9dc16448e92986"
-  integrity sha512-KaTjO93tZyMpxWHaey+T+H/JeePMZV/joZWhZaor76Xk+rPGmjOz1S8mXSyrRkaW0p0LOJYeWGB8d0gYxSSV/Q==
+swiper@^6.8.4:
+  version "6.8.4"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-6.8.4.tgz#938fed4144f4d7952fbf9c44e5832d133a4de794"
+  integrity sha512-O+buF9Q+sMA0H7luMS8R59hCaJKlpo8PXhQ6ZYu6Rn2v9OsFd4d1jmrv14QvxtQpKAvL/ZiovEeANI/uDGet7g==
   dependencies:
     dom7 "^3.0.0"
     ssr-window "^3.0.0"

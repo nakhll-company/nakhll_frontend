@@ -1,5 +1,6 @@
-import { ApiRegister } from '../../../services/apiRegister/ApiRegister';
-import { toast } from "react-toastify";
+import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+
+import { errorMessage } from "../../utils/message";
 // get address of user
 export async function getEditAddress(id, setValue, setEditAddressData) {
     let response = await ApiRegister().apiRequest(
@@ -19,9 +20,6 @@ export async function getEditAddress(id, setValue, setEditAddressData) {
         setValue("zip_code", response.data.zip_code);
         setValue("receiver_mobile_number", response.data.receiver_mobile_number);
     } else {
-        toast.error("خطایی در دریافت داده ها پیش آمده است", {
-            position: "top-right",
-            closeOnClick: true,
-        });
+        errorMessage("خطایی در دریافت داده ها پیش آمده است");
     }
 }

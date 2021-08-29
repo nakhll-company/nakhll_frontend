@@ -6,21 +6,29 @@ import Loading from "../../components/loading";
 import styles from "../../styles/pages/cart/cart.module.scss";
 const _asist = new Assistent();
 
+// REDUX
+
+import { useDispatch, useSelector } from "react-redux";
+import { _addProduct } from "../../redux/actions/cart/_addProduct";
+import { _reduceProduct } from "../../redux/actions/cart/_reduceProduct";
+import { _deleteProduct } from "../../redux/actions/cart/_deleteProduct";
+
+// LODASH
+import { isElement, isEmpty } from "lodash";
+
 export default function ListCardBuy() {
+  const dispatch = useDispatch();
+  const All_product_list_buy = useSelector((state) => state.Cart.allProduct);
+
   let [loading, setLoading] = useState(false);
   let [productId, setProductId] = useState(0);
 
-  const {
-    All_product_list_buy,
-    handel_AddProductTOList,
-    handel_DeleteProductFromList,
-    handel_ReduceProductFromList,
-  } = useContext(ContextProduct);
+  const { handel_DeleteProductFromList } = useContext(ContextProduct);
 
   return (
     <div className="col-12 col-lg-8 mb-3 my-md-3 my-lg-0 order-1 order-md-1 order-lg-0">
       <div className="cart-items mt-2">
-        {All_product_list_buy.ordered_items &&
+        {!isEmpty(All_product_list_buy) &&
           All_product_list_buy.ordered_items.map((El, index) => (
             <>
               <div
@@ -89,10 +97,7 @@ export default function ListCardBuy() {
                     <>
                       <div className="d-flex flex-wrap justify-content-between">
                         <div className="d-flex w-100">
-                          <a
-                            href="#"
-                            className="product-link"
-                          >
+                          <a href="#" className="product-link">
                             <img
                               src={El.product.image_thumbnail_url}
                               className={`${styles.cart_product_item_img} ${styles.rounded}`}
@@ -123,10 +128,10 @@ export default function ListCardBuy() {
                                 onClick={async () => {
                                   await setProductId(El.product.id);
                                   await setLoading(true);
-                                  await handel_DeleteProductFromList(
-                                    El.id,
-                                    El.product.title
+                                  dispatch(
+                                    _deleteProduct(El.id, El.product.title)
                                   );
+
                                   await setLoading(true);
                                 }}
                               ></i>
@@ -167,9 +172,12 @@ export default function ListCardBuy() {
                                         onClick={async () => {
                                           await setProductId(El.product.id);
                                           await setLoading(true);
-                                          await handel_AddProductTOList(
-                                            El.product.id
+                                          await dispatch(
+                                            _addProduct(El.product.id)
                                           );
+                                          // await handel_AddProductTOList(
+                                          //   El.product.id
+                                          // );
                                           await setLoading(false);
                                         }}
                                       ></i>
@@ -199,9 +207,8 @@ export default function ListCardBuy() {
                                         onClick={async () => {
                                           await setProductId(El.product.id);
                                           await setLoading(true);
-                                          await handel_ReduceProductFromList(
-                                            El.id
-                                          );
+                                          await dispatch(_reduceProduct(El.id));
+
                                           await setLoading(false);
                                         }}
                                       ></i>

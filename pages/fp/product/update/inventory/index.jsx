@@ -1,92 +1,118 @@
 // node libraries
-import { connect } from 'react-redux';
-import { toast } from "react-toastify";
+import { connect } from "react-redux";
+
 import { useForm } from "react-hook-form";
-import { ErrorMessage } from '@hookform/error-message';
+import { ErrorMessage } from "@hookform/error-message";
 // component
-import Layout from '../../../../../components/layout/Layout';
-import MobileHeader from '../../../../../components/mobileHeader';
+import Layout from "../../../../../components/layout/Layout";
+import MobileHeader from "../../../../../components/mobileHeader";
 import useViewport from "../../../../../components/viewPort";
 // methods
-import { mapState } from '../../../../../containers/product/methods/mapState';
-import { ApiRegister } from '../../../../../services/apiRegister/ApiRegister';
+import { mapState } from "../../../../../containers/product/methods/mapState";
+import { ApiRegister } from "../../../../../services/apiRegister/ApiRegister";
 // scss
-import styles from '../../../../../styles/pages/product/editInventory.module.scss';
+import styles from "../../../../../styles/pages/product/editInventory.module.scss";
+import {
+  errorMessage,
+  successMessage,
+} from "../../../../../containers/utils/message";
 
 const Inventory = ({ productList }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+  const { width } = useViewport();
+  const breakpoint = 620;
 
-    const { width } = useViewport();
-    const breakpoint = 620;
-
-    const onSubmit = async (data) => {
-        const objArray = [];
-        let formValues = Object.values(data);
-        Object.keys(data).forEach((key, index) => {
-            if (index % 2 === 0) {
-                objArray.push({
-                    Slug: formValues[index + 0],
-                    Inventory: formValues[index + 1],
-                })
-            }
+  const onSubmit = async (data) => {
+    const objArray = [];
+    let formValues = Object.values(data);
+    Object.keys(data).forEach((key, index) => {
+      if (index % 2 === 0) {
+        objArray.push({
+          Slug: formValues[index + 0],
+          Inventory: formValues[index + 1],
         });
+      }
+    });
 
-        let response = await ApiRegister().apiRequest(objArray, "PATCH",
-            `/api/v1/shop/multiple-update/inventory/`, true, {}
-        );
-        if (response.status === 200) {
-            toast.success("داده ها با موفقیت ثبت شده اند", {
-                position: "top-right",
-                closeOnClick: true,
-            });
-        } else {
-            toast.error(" خطایی در ویرایش گروهی رخ داده است.", {
-                position: "top-right",
-                closeOnClick: true,
-            });
-        }
-    }
-
-    return (
-        <>
-            {width < breakpoint &&
-                <div className={styles.wrapper}>
-                    <MobileHeader title="ویرایش موجودی محصولات" type="back" />
-                    <div className={styles.header}>
-                        <span className={styles.header_first_child}>عنوان محصول</span>
-                        <span className={styles.header_last_child}>موجودی</span>
-                    </div>
-                    <form className={styles.form_edit} onSubmit={handleSubmit(onSubmit)}>
-                        {productList.length > 0 ? productList.map((value, index) => {
-                            return (
-                                <div key={index} className={styles.form_edit_card}>
-                                    <label className={styles.form_edit_label}>{value.title}</label>
-                                    <input type="hidden" name={`Slug${index + 100}`} defaultValue={value.slug} />
-                                    <input className={styles.form_edit_input} type="number"
-                                        defaultValue={value.inventory} {...register(`Inventory${index + 100}`, {
-                                            required: "لطفا این گزینه را پر نمایید"
-                                        })} />
-                                    <ErrorMessage errors={errors} name={`Inventory${index + 100}`}>
-                                        {({ messages }) =>
-                                            messages &&
-                                            Object.entries(messages).map(([type, message]) => (
-                                                <p key={type}>{message}</p>
-                                            ))
-                                        }
-                                    </ErrorMessage>
-                                </div>
-                            )
-                        }) : <h3 style={{ textAlign: "center" }}>موردی برای نمایش وجود ندارد</h3>}
-                        <div className={styles.form_edit_wrapper_button}>
-                            <button type="submit" className={styles.form_edit_button}>اعمال تغییرات</button>
-                        </div>
-                    </form>
-                </div>
-            }
-        </>
+    let response = await ApiRegister().apiRequest(
+      objArray,
+      "PATCH",
+      `/api/v1/shop/multiple-update/inventory/`,
+      true,
+      {}
     );
-}
+    if (response.status === 200) {
+      successMessage("داده ها با موفقیت ثبت شده اند");
+    } else {
+      errorMessage(" خطایی در ویرایش گروهی رخ داده است.");
+    }
+  };
+
+  return (
+    <>
+      {width < breakpoint && (
+        <div className={styles.wrapper}>
+          <MobileHeader title="ویرایش موجودی محصولات" type="back" />
+          <div className={styles.header}>
+            <span className={styles.header_first_child}>عنوان محصول</span>
+            <span className={styles.header_last_child}>موجودی</span>
+          </div>
+          <form className={styles.form_edit} onSubmit={handleSubmit(onSubmit)}>
+            {productList.length > 0 ? (
+              productList.map((value, index) => {
+                return (
+                  <div key={index} className={styles.form_edit_card}>
+                    <label className={styles.form_edit_label}>
+                      {value.title}
+                    </label>
+                    <input
+                      type="hidden"
+                      name={`Slug${index + 100}`}
+                      defaultValue={value.slug}
+                    />
+                    <input
+                      className={styles.form_edit_input}
+                      type="number"
+                      defaultValue={value.inventory}
+                      {...register(`Inventory${index + 100}`, {
+                        required: "لطفا این گزینه را پر نمایید",
+                      })}
+                    />
+                    <ErrorMessage
+                      errors={errors}
+                      name={`Inventory${index + 100}`}
+                    >
+                      {({ messages }) =>
+                        messages &&
+                        Object.entries(messages).map(([type, message]) => (
+                          <p key={type}>{message}</p>
+                        ))
+                      }
+                    </ErrorMessage>
+                  </div>
+                );
+              })
+            ) : (
+              <h3 style={{ textAlign: "center" }}>
+                موردی برای نمایش وجود ندارد
+              </h3>
+            )}
+            <div className={styles.form_edit_wrapper_button}>
+              <button type="submit" className={styles.form_edit_button}>
+                اعمال تغییرات
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
+    </>
+  );
+};
 // export
 const connector = connect(mapState);
 export default connector(Inventory);

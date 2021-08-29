@@ -23,7 +23,14 @@ import { Empty } from "../../components/custom/Empty/Empty";
 // Styles
 import styles from "../../styles/pages/cart/cart.module.scss";
 
+// Redux
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../../redux/actions/cart/getProducts";
+
 export default function Cart() {
+  const dispatch = useDispatch();
+  const AllProduct = useSelector((state) => state.Cart.allProduct);
+  console.log("AllProduct :>> ", AllProduct);
   // STATE FOR SAVE PRODUCTS
   const [All_product_list_buy, setAll_product_list_buy] = useState({});
 
@@ -54,101 +61,11 @@ export default function Cart() {
 
   useEffect(() => {
     _handleRequestApiAll();
+    dispatch(getProducts());
   }, []);
 
-  //  FUNCTION FOR ADD PRODUCT TO LIST  WHEN CLICKED ON PLUS BUTTON
-  const handel_AddProductTOList = async (id) => {
-    try {
-      let params = {};
-      let loadData = null;
-      let dataUrl = `/cart2/api/cart_items/${id}/add/`;
-      let response = await ApiRegister().apiRequest(
-        loadData,
-        "get",
-        dataUrl,
-        true,
-        params
-      );
-
-      console.log("Pluse :>> ", response.status);
-      if (response.status === 201) {
-        setAll_product_list_buy(await response.data);
-        toast.success("داده ها با موفقیت ثبت شده اند", {
-          position: "top-right",
-          closeOnClick: true,
-        });
-      } else {
-        toast.error("موجودی کافی نمی باشد.", {
-          position: "top-center",
-          closeOnClick: true,
-        });
-      }
-    } catch (e) {
-      console.log("error :>> ", e.response.data[0]);
-      const error = e.response.data[0];
-      toast.error(error, {
-        position: "top-center",
-        closeOnClick: true,
-      });
-    }
-  };
-
-  // FUNCTION FOR REDUCE PRODUCT FROM LIST WHEN CLICKED ON MINIMUS BUTTON
-  const handel_ReduceProductFromList = async (id) => {
-    let params = {};
-    let loadData = null;
-
-    let dataUrl = `/cart2/api/cart_items/${id}/remove/`;
-    let response = await ApiRegister().apiRequest(
-      loadData,
-      "get",
-      dataUrl,
-      true,
-      params
-    );
-    setAll_product_list_buy(await response.data);
-    console.log("MInis :>> ", response.data);
-
-    // console.log("Reduc :>> ", response);
-    // if (response.status === 200) {
-    toast.success("داده ها با موفقیت ثبت شده اند", {
-      position: "top-right",
-      closeOnClick: true,
-    });
-    // }
-  };
-
-  // FUNCTION FOR DELETE PRODUCT FROM LIST WHEN CLICKED ON DELETE BUTTON
-
-  const handel_DeleteProductFromList = async (id, title) => {
-    let params = {};
-    let loadData = null;
-
-    let dataUrl = `/cart2/api/cart_items/${id}/delete/`;
-    let response = await ApiRegister().apiRequest(
-      loadData,
-      "get",
-      dataUrl,
-      true,
-      params
-    );
-    setAll_product_list_buy(await response.data);
-    console.log("delete :>> ", response.data);
-    toast.error(` محصول  ${title}  حذف شد . `, {
-      position: "top-right",
-      closeOnClick: true,
-    });
-  };
-
   return (
-    <ContextProduct.Provider
-      value={{
-        All_product_list_buy: All_product_list_buy,
-        handel_AddProductTOList: handel_AddProductTOList,
-        handel_ReduceProductFromList: handel_ReduceProductFromList,
-        handel_DeleteProductFromList: handel_DeleteProductFromList,
-      }}
-    >
+    <ContextProduct.Provider value={{}}>
       {/* <Loading /> */}
       {/* <Empty /> */}
 
