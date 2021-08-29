@@ -1,20 +1,27 @@
+//////////////////////////////////////// AddAddress /////////////////////////////////////////////////////////
+// In this page user can add new address                                                                   //
+// Data that we get from user: reciver full name, state, big city, city, zipe code, address, mobile number //
+// All fileds are necessary                                                                                //
+// Check validation page with package react form hook                                                      //
+// programmer : sahar shafiee                                                                              //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // node libraries
 import Head from "next/head";
-import Link from 'next/link';
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { ToastContainer } from "react-toastify";
 // componentes
-import Steps from '../../../../components/CheckOutSteps/CheckOutSteps';
-import Loading from '../../../../components/loading';
+import Steps from "../../../../components/CheckOutSteps/CheckOutSteps";
+import Loading from "../../../../components/loading";
 // methods
-import { getStates } from '../../../../containers/store/methods/getStates';
-import { getBigCities } from '../../../../containers/store/methods/getBigCities';
-import { getCities } from '../../../../containers/store/methods/getCities';
+import { getStates } from "../../../../containers/store/methods/getStates";
+import { getBigCities } from "../../../../containers/store/methods/getBigCities";
+import { getCities } from "../../../../containers/store/methods/getCities";
 import { postAddress } from "../../../../containers/cartAddress/methods/postAddress";
 // styles
-import styles from '../../../../styles/pages/cart/newAddress.module.scss';
+import styles from "../../../../styles/pages/cart/newAddress.module.scss";
 /**
  * component new address 
  * @param {}  => 
