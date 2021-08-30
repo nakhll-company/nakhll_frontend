@@ -1,6 +1,7 @@
 import React from "react";
 import ProductCard from "../../components/ProductCart/ProductCard";
 import Head from "next/head";
+import CustomSlider from "../../components/custom/customSlider";
 const index = () => {
   let product = {
     imageUrl: "/image/faile.webp",
@@ -13,7 +14,7 @@ const index = () => {
     discount: 25,
     price: 107000,
     discountNumber: 190000,
-    sales: 52,
+    // sales: 52,
     city: "کرمان",
   };
   return (
@@ -32,11 +33,41 @@ const index = () => {
           crossOrigin="anonymous"
         ></link>
       </Head>
+
+
       <div className="container p-2 ">
         <div className="row">
-          <ProductCard product={product} />
-          <ProductCard product={product} />
-          <ProductCard product={product} />
+        <CustomSlider
+        // model="navigation"
+        slides1200={6}
+          data={[
+            <ProductCard col="12" product={product} />,
+            <ProductCard col="12" product={product} />,
+            <ProductCard col="12" product={product} />,
+            <ProductCard col="12" product={product} />,
+            <ProductCard col="12" product={product} />,
+            <ProductCard col="12" product={product} />,
+            <ProductCard col="12" product={product} />,
+            <ProductCard col="12" product={product} />,
+            <ProductCard col="12" product={product} />,
+            <ProductCard col="12" product={product} />,
+            <ProductCard col="12" product={product} />,
+            <ProductCard col="12" product={product} />,
+            <ProductCard col="12" product={product} />,
+            <ProductCard col="12" product={product} />,
+            <ProductCard col="12" product={product} />,
+            <ProductCard col="12" product={product} />,
+          ]}
+        />
+
+
+          <ProductCard product={product} xl="3" />
+          <ProductCard product={product} xl="3" />
+          <ProductCard product={product} xl="3" />
+          <ProductCard product={product} xl="3" />
+          <ProductCard product={product} xl="3" />
+          <ProductCard product={product} xl="3" />
+          <ProductCard product={product} xl="3" />
         </div>
       </div>
     </>

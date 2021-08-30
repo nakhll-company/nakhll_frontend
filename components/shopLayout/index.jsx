@@ -1,22 +1,25 @@
 // node libraries
-import Image from "next/image";
+// components
+import Header from './header';
+import Footer from './footer';
 // style
 import styles from "../../styles/components/shopLayout/shopLayout.module.scss";
 
 function ShopLayout({ children }) {
   return (
     <div>
-      <header className={styles.headerWrapper}>
+      {/* <header className={styles.headerWrapper}>
         <Image
           src="/image/LOGO_500.png"
           alt="logo nakhll"
           width="100px"
           height="100px"
         />
-      </header>
+      </header> */}
+      <Header />
       <main className={styles.mainContent}>{children}</main>
-
-      <footer className={styles.footerWrapper}>
+      <Footer />
+      {/* <footer className={styles.footerWrapper}>
         <div className={styles.footerWrapper_content}>
           <div className={styles.footerWrapper_content_info}>
             <div className={styles.footerWrapper_content_info_container}>
@@ -49,7 +52,7 @@ function ShopLayout({ children }) {
             </div>
           </div>
         </div>
-      </footer>
+      </footer> */}
     </div>
   );
 }
