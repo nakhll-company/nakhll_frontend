@@ -1,5 +1,7 @@
 import { Link } from "next";
+import Assistent from "zaravand-assistent-number";
 
+const _asist = new Assistent();
 const ProductCard = ({
   sm = 6,
   md = 5,
@@ -12,7 +14,7 @@ const ProductCard = ({
 }) => {
   let cardBadge = (
     <>
-    {/* <div class="_product_card_special_sale">تخفیف هیجان انگیز</div> */}
+      {/* <div class="_product_card_special_sale">تخفیف هیجان انگیز</div> */}
       <div
         className="_product_card_badge"
         type="button"
@@ -37,7 +39,6 @@ const ProductCard = ({
   );
 
   return (
-    
     <div
       className={`${
         col
