@@ -1,10 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import ProductCard from "../../components/ProductCart/ProductCard";
 import styles from "../../styles/pages/testProduct/product.module.scss";
 import { productForList } from "../../public/dataForProduct/data";
+import { orderBy } from "lodash";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const index = () => {
+  const [listProducts, setlistProducts] = useState([]);
+  const [witchItem, setWitchItem] = useState("1");
+  useEffect(() => {
+    setlistProducts(productForList);
+  }, []);
+  const selectItem = (id) => {
+    setWitchItem(id);
+  };
+
+  const sortPorductDes = () => {
+    setlistProducts(orderBy(listProducts, "current_price", "desc"));
+  };
+
+  const sortPorductAsc = () => {
+    setlistProducts(orderBy(listProducts, "current_price", "asc"));
+  };
+  const sortBestsellingProduct = () => {
+    setlistProducts(orderBy(listProducts, "discount", "desc"));
+  };
+
   let product = {
     imageUrl: "/image/faile.webp",
     url: "/hamzeh",
@@ -324,20 +347,70 @@ const index = () => {
                       </span>
                     </div>{" "}
                     <ul>
-                      <li className="sort-item active ">
-                        <a>مرتبط‌ترین</a>
+                      <li
+                        className={`sort-item  ${
+                          "1" === witchItem ? " active" : ""
+                        } `}
+                      >
+                        <a id={"1"} onClick={() => setWitchItem("1")}>
+                          مرتبط‌ترین
+                        </a>
                       </li>
-                      <li className="sort-item">
-                        <a>ارزان‌تر</a>
+                      <li
+                        className={`sort-item  ${
+                          "2" === witchItem ? " active" : ""
+                        } `}
+                      >
+                        <a
+                          onClick={() => {
+                            sortPorductAsc();
+                            setWitchItem("2");
+                          }}
+                        >
+                          ارزان‌تر
+                        </a>
                       </li>
-                      <li className="sort-item">
-                        <a>گران‌تر</a>
+                      <li
+                        id={"3"}
+                        className={`sort-item  ${
+                          "3" === witchItem ? " active" : ""
+                        } `}
+                      >
+                        <a
+                          onClick={() => {
+                            sortPorductDes();
+                            setWitchItem("3");
+                          }}
+                        >
+                          گران‌تر
+                        </a>
                       </li>
-                      <li className="sort-item">
-                        <a>پرفروش‌ها</a>
+                      <li
+                        className={`sort-item  ${
+                          "4" === witchItem ? " active" : ""
+                        } `}
+                      >
+                        <a
+                          onClick={() => {
+                            sortBestsellingProduct();
+                            setWitchItem("4");
+                          }}
+                        >
+                          پرفروش‌ها
+                        </a>
                       </li>
-                      <li className="sort-item">
-                        <a>تازه‌ها</a>
+                      <li
+                        className={`sort-item  ${
+                          "5" === witchItem ? " active" : ""
+                        } `}
+                      >
+                        <a
+                          onClick={() => {
+                            setWitchItem("5");
+                          }}
+                        >
+                          تازه‌ها
+                        </a>
                       </li>
                     </ul>
                   </div>
@@ -358,7 +431,7 @@ const index = () => {
               </div>{" "}
             </div>{" "}
             <div className="mx-auto row">
-              {productForList.map((oneProduct) => (
+              {listProducts.map((oneProduct) => (
                 <ProductCard
                   padding={1}
                   product={{
