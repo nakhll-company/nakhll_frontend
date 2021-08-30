@@ -1,6 +1,24 @@
 import React from "react";
 import Head from "next/head";
+import ProductCard from "../../components/ProductCart/ProductCard";
+import styles from "../../styles/pages/testProduct/product.module.scss";
+import { productForList } from "../../public/dataForProduct/data";
+
 const index = () => {
+  let product = {
+    imageUrl: "/image/faile.webp",
+    url: "/hamzeh",
+    title: "نبات گیاهی متبرک مشهد با نی چوبی 1 کیلویی برکت هشتم",
+    chamberTitle: "گالری سنگ و نقره شاپرک",
+    chamberUrl: "/azizzadeh",
+    rate: 10,
+    commentCount: 102,
+    discount: 25,
+    price: 107000,
+    discountNumber: 190000,
+    sales: 52,
+    city: "کرمان",
+  };
   return (
     <>
       <Head>
@@ -17,7 +35,7 @@ const index = () => {
           crossOrigin="anonymous"
         ></link>
       </Head>
-      <div className="container">
+      <div className="container_N">
         <div className="row sidebar-parent">
           <div className="d-none d-lg-block col-lg-3">
             <div id="sidebar">
@@ -326,46 +344,26 @@ const index = () => {
                 <div className="v-portal" style={{ display: "none" }}></div>
               </div>{" "}
             </div>{" "}
-            <div className="mx-auto">
-              {" "}
-              <div className="infinite-loading-container">
-                <div
-                  className="infinite-status-prompt"
-                  style={{ display: "none" }}
-                >
-                  <div className="d-inline-block spinner spinner--medium spinner--tprimary mx-auto"></div>
-                </div>{" "}
-                <div
-                  className="infinite-status-prompt"
-                  style={{
-                    color: "rgb(102, 102, 102)",
-                    fontSize: "14px",
-                    padding: "10px 0px",
-                    display: "none",
+            <div className="mx-auto row">
+              {productForList.map((oneProduct) => (
+                <ProductCard
+                  padding={1}
+                  product={{
+                    imageUrl: oneProduct.image_link,
+                    url: oneProduct.page_url,
+                    title: oneProduct.title,
+                    chamberTitle: "گالری سنگ و نقره شاپرک",
+                    chamberUrl: "/azizzadeh",
+                    rate: 10,
+                    commentCount: 102,
+                    discount: 25,
+                    price: oneProduct.current_price,
+                    discountNumber: oneProduct.old_price,
+                    sales: 52,
+                    city: oneProduct.city,
                   }}
-                >
-                  No results :(
-                </div>{" "}
-                <div
-                  className="infinite-status-prompt"
-                  style={{
-                    color: "rgb(102, 102, 102)",
-                    fontSize: "14px",
-                    padding: "10px 0px",
-                    display: "none",
-                  }}
-                >
-                  No more data :)
-                </div>{" "}
-                <div
-                  className="infinite-status-prompt"
-                  style={{
-                    color: "rgb(102, 102, 102)",
-                    fontSize: "14px",
-                    padding: " 10px 0px",
-                  }}
-                ></div>
-              </div>{" "}
+                />
+              ))}
             </div>
           </div>
         </div>

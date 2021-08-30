@@ -1,4 +1,6 @@
 import { Link } from "next";
+import Assistent from "zaravand-assistent-number";
+const _asist = new Assistent();
 
 const ProductCard = ({
   sm = 6,
@@ -6,6 +8,7 @@ const ProductCard = ({
   lg = 4,
   xl = 3,
   col,
+  padding,
 
   _blank = false,
   product,
@@ -36,13 +39,12 @@ const ProductCard = ({
   );
 
   return (
-    
     <div
       className={`${
         col
           ? `col-${col}`
           : `col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
-      } mb-3`}
+      } ${padding ? `px-${padding}` : ""} mb-3`}
     >
       <div className="card _product_card _product_card_rounded p-2">
         {cardBadge}
@@ -127,17 +129,21 @@ const ProductCard = ({
               {product.rate && (
                 <>
                   <i className="fa fa-star _product_card_star_icon"></i>
-                  <span className="font-weight-bold ml-1">{product.rate}</span>
+                  <span className="font-weight-bold ml-1">
+                    {_asist.PSeparator(product.rate)}
+                  </span>
                   {product.commentCount && (
                     <span className="text-secondary">
-                      ({product.commentCount} نظر)
+                      ({_asist.number(product.commentCount)} نظر)
                     </span>
                   )}
                 </>
               )}
             </div>
             {product.discount && (
-              <div className="_product_card_discount">{product.discount}%</div>
+              <div className="_product_card_discount">
+                {_asist.number(product.discount)}%
+              </div>
             )}
           </div>
           <div className="_product_card_price mb-2">
@@ -152,11 +158,11 @@ const ProductCard = ({
               ) : (
                 <>
                   <span className="_product_card_orginal_number">
-                    {product.price}
+                    {_asist.PSeparator(product.price)}
                   </span>
                   {product.discountNumber && (
                     <span className="_product_card_discount_number">
-                      {product.discountNumber}
+                      {_asist.PSeparator(product.discountNumber)}
                     </span>
                   )}
                   <span style={{ fontSize: ".75rem" }}>تومان</span>
@@ -175,7 +181,7 @@ const ProductCard = ({
                 </div>
                 <div className="mt-1">
                   <p className="_sales_progressbar_text">
-                    %{product.sales} فروش رفته
+                    %{_asist.number(product.sales)} فروش رفته
                   </p>
                 </div>
               </>
