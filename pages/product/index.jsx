@@ -347,7 +347,10 @@ const index = () => {
                   >
                     {" "}
                     تعداد کالا:
-                    <span className="Blazing"> {productForList.length}</span>
+                    <span className="Blazing" style={{ marginRight: "10px" }}>
+                      {" "}
+                      {productForList.length}
+                    </span>
                   </span>
                 </div>{" "}
                 <div className="v-portal" style={{ display: "none" }}></div>{" "}
