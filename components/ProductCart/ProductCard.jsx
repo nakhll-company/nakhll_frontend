@@ -140,7 +140,7 @@ const ProductCard = ({
                 </>
               )}
             </div>
-            {product.discount && (
+            {product.discountNumber !== 0 && (
               <div className="_product_card_discount">
                 {_asist.number(product.discount)}%
               </div>
@@ -160,7 +160,7 @@ const ProductCard = ({
                   <span className="_product_card_orginal_number">
                     {_asist.PSeparator(product.price)}
                   </span>
-                  {product.discountNumber && (
+                  {product.discountNumber !== 0 && (
                     <span className="_product_card_discount_number">
                       {_asist.PSeparator(product.discountNumber)}
                     </span>
@@ -171,7 +171,7 @@ const ProductCard = ({
             </div>
           </div>
           <div className="_product_card_progressbar">
-            {product.sales && (
+            {product.sales !== 0 && (
               <>
                 <div className="_sales_progressbar">
                   <div

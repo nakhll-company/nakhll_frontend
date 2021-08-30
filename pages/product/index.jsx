@@ -314,31 +314,41 @@ const index = () => {
                     <span>(1)</span>
                   </span>
                 </div>{" "}
-                <div className="search-sorts mb-0">
-                  <div className="title">
-                    <i className="bi bi-sort"></i>{" "}
-                    <span className="d-none d-lg-block">
-                      {" "}
-                      مرتب‌سازی براساس:{" "}
-                    </span>
-                  </div>{" "}
-                  <ul>
-                    <li className="sort-item active">
-                      <a>مرتبط‌ترین</a>
-                    </li>
-                    <li className="sort-item">
-                      <a>ارزان‌تر</a>
-                    </li>
-                    <li className="sort-item">
-                      <a>گران‌تر</a>
-                    </li>
-                    <li className="sort-item">
-                      <a>پرفروش‌ها</a>
-                    </li>
-                    <li className="sort-item">
-                      <a>تازه‌ها</a>
-                    </li>
-                  </ul>
+                <div className="search-sorts mb-0 ">
+                  <div className="d-flex align-items-center">
+                    <div className="title">
+                      <i className="bi bi-sort"></i>{" "}
+                      <span className="d-none d-lg-block">
+                        {" "}
+                        مرتب‌سازی براساس:{" "}
+                      </span>
+                    </div>{" "}
+                    <ul>
+                      <li className="sort-item active ">
+                        <a>مرتبط‌ترین</a>
+                      </li>
+                      <li className="sort-item">
+                        <a>ارزان‌تر</a>
+                      </li>
+                      <li className="sort-item">
+                        <a>گران‌تر</a>
+                      </li>
+                      <li className="sort-item">
+                        <a>پرفروش‌ها</a>
+                      </li>
+                      <li className="sort-item">
+                        <a>تازه‌ها</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <span
+                    className="d-none d-lg-block "
+                    style={{ marginLeft: "20px" }}
+                  >
+                    {" "}
+                    تعداد کالا:
+                    <span className="Blazing"> {productForList.length}</span>
+                  </span>
                 </div>{" "}
                 <div className="v-portal" style={{ display: "none" }}></div>{" "}
                 <div className="v-portal" style={{ display: "none" }}></div>
@@ -352,14 +362,17 @@ const index = () => {
                     imageUrl: oneProduct.image_link,
                     url: oneProduct.page_url,
                     title: oneProduct.title,
-                    chamberTitle: "گالری سنگ و نقره شاپرک",
-                    chamberUrl: "/azizzadeh",
+                    chamberTitle: oneProduct.shop,
+                    chamberUrl: oneProduct.page_url,
                     rate: 10,
                     commentCount: 102,
-                    discount: 25,
+                    discount: Math.ceil(
+                      (1 - oneProduct.current_price / oneProduct.old_price) *
+                        100
+                    ),
                     price: oneProduct.current_price,
                     discountNumber: oneProduct.old_price,
-                    sales: 52,
+                    sales: oneProduct.discount,
                     city: oneProduct.city,
                   }}
                 />
