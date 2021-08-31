@@ -134,3 +134,20 @@ input[type="number"] {
         padding-left: 0;
     }
 }
+
+.accordion-button::after {
+    margin-left: 0px !important;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #000;
+    background-color: #fff;
+}
+
+.accordion-button:focus {
+    z-index: 3;
+    border-color: #fff;
+    outline: 0 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}

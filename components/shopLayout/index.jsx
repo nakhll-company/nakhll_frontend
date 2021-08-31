@@ -1,7 +1,7 @@
 // node libraries
 // components
-import Header from './header';
-import Footer from './footer';
+import Header from "./header";
+import Footer from "./footer";
 // style
 import styles from "../../styles/components/shopLayout/shopLayout.module.scss";
 
@@ -17,7 +17,12 @@ function ShopLayout({ children }) {
         />
       </header> */}
       <Header />
-      <main className={styles.mainContent}>{children}</main>
+      <main
+        style={{ backgroundColor: "#00171f" }}
+        className={styles.mainContent}
+      >
+        {children}
+      </main>
       <Footer />
       {/* <footer className={styles.footerWrapper}>
         <div className={styles.footerWrapper_content}>

@@ -7,6 +7,9 @@ import { orderBy } from "lodash";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+import { Html } from "next/document";
+import CustomAccordion from "../../components/custom/customAccordion";
+
 const index = () => {
   const [listProducts, setlistProducts] = useState([]);
   const [witchItem, setWitchItem] = useState("1");
@@ -45,12 +48,23 @@ const index = () => {
   return (
     <>
       <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-          crossOrigin="anonymous"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous"
         />
+        <script
+          src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+          integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+          crossorigin="anonymous"
+        ></script>
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+          integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+          crossorigin="anonymous"
+        ></script>
         <link
           rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
@@ -58,10 +72,23 @@ const index = () => {
           crossOrigin="anonymous"
         ></link>
       </Head>
-      <div className="container_N">
+      <div className="container_N" style={{ backgroundColor: "#00171f" }}>
         <div className="row sidebar-parent">
           <div className="d-none d-lg-block col-lg-3">
             <div id="sidebar">
+              <CustomAccordion title="دسته بندی" item="1">
+                <div>اینجا اطلاعات قرار می گیره</div>
+              </CustomAccordion>
+              <CustomAccordion title="امتیاز محصول" item="2">
+                <div>اینجا اطلاعات قرار می گیره</div>
+              </CustomAccordion>
+
+              <CustomAccordion title="محدوده قیمت" item="3">
+                <div>اینجا اطلاعات قرار می گیره</div>
+              </CustomAccordion>
+              <CustomAccordion title="استان و شهر غرفه دار" item="4">
+                <div>اینجا اطلاعات قرار می گیره</div>
+              </CustomAccordion>
               <div className="search-body-filter">
                 <div className="d-lg-none more-fliters-header ev-cancel-filter">
                   <h3 className="font-size1-1 m-0">فیلترها</h3>{" "}
@@ -70,154 +97,6 @@ const index = () => {
                   </div>
                 </div>{" "}
                 <div className="modal-body" style={{ msOverflowX: "hidden" }}>
-                  {" "}
-                  <div className="facet-filter-item">
-                    <div>
-                      <div className="collapse-title filters-title">
-                        <div className="title">
-                          <span className="title">دسته‌بندی‌ها</span>{" "}
-                          <div className="toggle-angle">
-                            <i className="bi bi-angle-down"></i>
-                          </div>
-                        </div>{" "}
-                        <div className="font-size-sm text-secondary"></div>
-                      </div>{" "}
-                    </div>
-                  </div>{" "}
-                  <div className="filter-box collapser">
-                    <div className="title-section filters-title collapsable">
-                      <div className="title">
-                        امتیاز محصول
-                        <i className="bi bi-angle-down"></i>
-                      </div>{" "}
-                    </div>{" "}
-                  </div>{" "}
-                  <div className="filter-box collapser">
-                    <div className="title-section filters-title">
-                      <div className="title">
-                        محدوده قیمت
-                        <i className="bi bi-angle-up"></i>
-                      </div>{" "}
-                    </div>{" "}
-                    <div className="w-100 is-active">
-                      <div className="filter-wrapper pb-3">
-                        <div className="row tiny-gutters align-items-center mb-3 price-filter">
-                          <span className="col col-auto">از</span>{" "}
-                          <div className="col">
-                            <span className="form-control input-gray px-1 text-center">
-                              2,000
-                            </span>
-                          </div>{" "}
-                          <span className="col-auto">تا</span>{" "}
-                          <div className="col">
-                            <span className="form-control input-gray px-1 text-center">
-                              155,000,000
-                            </span>
-                          </div>{" "}
-                          <span className="col-auto">تومان</span>
-                        </div>{" "}
-                        <div className="price-filter">
-                          <vue-slider
-                            tooltip="none"
-                            direction="rtl"
-                            silent="true"
-                            min="20000"
-                            max="1550000000"
-                            interval="10000"
-                            height="3"
-                            value="20000,1550000000"
-                            className="ev-search-filter-price-slider ev-price-filter px-3 vue-slider vue-slider-rtl"
-                            style={{
-                              padding: "7px 0px",
-                              width: "auto",
-                              height: "3px",
-                            }}
-                          >
-                            <div className="vue-slider-rail">
-                              <div
-                                className="vue-slider-process"
-                                style={{
-                                  height: "100%",
-                                  top: "0px",
-                                  right: "0%",
-                                  width: "100%",
-                                  transitionProperty: "width, right",
-                                  transitionDuration: "0.5s",
-                                }}
-                              ></div>
-                              <div
-                                aria-valuetext="20000"
-                                className="vue-slider-dot"
-                                role="slider"
-                                aria-valuenow="20000"
-                                aria-valuemin="20000"
-                                aria-valuemax="1550000000"
-                                aria-orientation="horizontal"
-                                tabindex="0"
-                                style={{
-                                  width: "14px",
-                                  height: "14px",
-                                  transform: "translate(50%, -50%)",
-                                  top: "50%",
-                                  right: "0%",
-                                  transition: "right 0.5s ease 0s",
-                                }}
-                              >
-                                <div className="vue-slider-dot-handle"></div>
-                              </div>
-                              <div
-                                aria-valuetext="1550000000"
-                                className="vue-slider-dot"
-                                role="slider"
-                                aria-valuenow="1550000000"
-                                aria-valuemin="20000"
-                                aria-valuemax="1550000000"
-                                aria-orientation="horizontal"
-                                tabindex="0"
-                                style={{
-                                  width: "14px",
-                                  height: "14px",
-                                  transform: "translate(50%, -50%)",
-                                  top: " 50%",
-                                  right: "100%",
-                                  transition: "right 0.5s ease 0s",
-                                }}
-                              >
-                                <div className="vue-slider-dot-handle"></div>
-                              </div>
-                            </div>
-                          </vue-slider>{" "}
-                          <div className="btn-section">
-                            <button
-                              className="btn btn-transparent"
-                              style={{
-                                padding: "0 !important",
-                                marginLeft: "0.5rem",
-                              }}
-                            >
-                              حالت پیش‌فرض
-                            </button>{" "}
-                            <button className="btn btn-outline-silver submit-filter">
-                              اعمال محدوده قیمت
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>{" "}
-                  <div className="facet-filter-item">
-                    <div>
-                      <div className="collapse-title filters-title">
-                        <div className="title">
-                          <span className="title">استان و شهر غرفه‌دار</span>{" "}
-                          <div className="toggle-angle">
-                            <i className="bi bi-angle-down"></i>
-                          </div>
-                        </div>{" "}
-                        <div className="font-size-sm text-secondary"></div>
-                      </div>{" "}
-                    </div>
-                  </div>{" "}
                   <div className="filter-box pb">
                     <div className="custom-switch d-flex align-items-center ev-yekase-filter">
                       <input

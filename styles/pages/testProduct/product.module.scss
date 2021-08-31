@@ -729,7 +729,6 @@
 
 .modal-body {
     overflow: visible;
-    border-top: 1px solid #dfdfdf;
 }
 
 // ANIMATION BLAZING
@@ -759,4 +758,14 @@
     100% {
         text-shadow: 0 3px 20px red, 0 0 20px red, 0 0 10px orange, 0 0 0 yellow, 0 0 5px yellow, -2px -5px 5px yellow, 4px -10px 10px yellow;
     }
+}
+
+.body_filter {
+    width: 100%;
+    background: #fff;
+    padding: 1rem;
+    border-radius: 1.2rem;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
 }
