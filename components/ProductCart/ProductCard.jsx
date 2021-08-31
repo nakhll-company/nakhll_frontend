@@ -33,7 +33,7 @@ const ProductCard = ({
   let cardImg = (
     <img
       src={product.imageUrl}
-      className={`card-img-top _product_card_rounded ${
+      className={`card-img-top _product_card_rounded animationCart ${
         product.unavailable && "_unavailable_product"
       }`}
       alt={product.title}
@@ -42,7 +42,7 @@ const ProductCard = ({
 
   return (
     <div
-      className={`${
+      className={`animationCartParent ${
         col
           ? `col-${col}`
           : `col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`

@@ -13,6 +13,7 @@ import CustomSwitch from "../../components/custom/customSwitch";
 import { CustomCard } from "../../components/custom/customCard";
 import { SidBar } from "../../containers/listProduct/SidBar";
 import ContextListProductPage from "../../containers/listProduct/Context/context";
+import { Bigger } from "../../components/custom/kh/biggerProduct/Bigger";
 
 const index = () => {
   const [listProducts, setlistProducts] = useState([]);
