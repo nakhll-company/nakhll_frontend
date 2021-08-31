@@ -1,5 +1,7 @@
 import { Link } from "next";
+
 import Assistent from "zaravand-assistent-number";
+import { CustomCard } from "../custom/customCard";
 const _asist = new Assistent();
 
 const ProductCard = ({
