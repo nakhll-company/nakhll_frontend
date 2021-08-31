@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 
 import { Html } from "next/document";
 import CustomAccordion from "../../components/custom/customAccordion";
+import CustomSwitch from "../../components/custom/customSwitch";
 
 const index = () => {
   const [listProducts, setlistProducts] = useState([]);
@@ -89,119 +90,17 @@ const index = () => {
               <CustomAccordion title="استان و شهر غرفه دار" item="4">
                 <div>اینجا اطلاعات قرار می گیره</div>
               </CustomAccordion>
+
               <div className="search-body-filter">
-                <div className="d-lg-none more-fliters-header ev-cancel-filter">
-                  <h3 className="font-size1-1 m-0">فیلترها</h3>{" "}
-                  <div className="d-flex">
-                    <i className="bi bi-close pointer font-size2"></i>
-                  </div>
-                </div>{" "}
                 <div className="modal-body" style={{ msOverflowX: "hidden" }}>
-                  <div className="filter-box pb">
-                    <div className="custom-switch d-flex align-items-center ev-yekase-filter">
-                      <input
-                        type="checkbox"
-                        id="free-shipping-filter"
-                        className="custom-switch__input"
-                      />{" "}
-                      <label
-                        for="free-shipping-filter"
-                        className="custom-switch__label"
-                      >
-                        <span className="circle"></span>
-                      </label>
-                    </div>{" "}
-                    <label
-                      for="free-shipping-filter"
-                      className="filter-box-title"
-                    >
-                      <span className="d-block font-size-9 m-0">
-                        ارسال رایگان
-                      </span>
-                    </label>
-                  </div>{" "}
-                  <div className="filter-box pb">
-                    <div className="custom-switch d-flex align-items-center ev-same-city-filter">
-                      <input
-                        type="checkbox"
-                        id="same-city-filter"
-                        className="custom-switch__input"
-                      />{" "}
-                      <label
-                        for="same-city-filter"
-                        className="custom-switch__label"
-                      >
-                        <span className="circle"></span>
-                      </label>
-                    </div>{" "}
-                    <label for="same-city-filter" className="filter-box-title">
-                      <span className="d-block font-size-9 m-0">همشهری</span>
-                    </label>
-                  </div>{" "}
-                  <div className="filter-box pb">
-                    <div className="custom-switch d-flex align-items-center ev-exist-filter">
-                      <input
-                        type="checkbox"
-                        id="exist-filter"
-                        checked="checked"
-                        className="custom-switch__input"
-                      />{" "}
-                      <label
-                        for="exist-filter"
-                        className="custom-switch__label"
-                      >
-                        <span className="circle"></span>
-                      </label>
-                    </div>{" "}
-                    <label for="exist-filter" className="filter-box-title">
-                      <span className="d-block font-size-9 m-0">
-                        فقط کالاهای موجود
-                      </span>
-                    </label>
-                  </div>{" "}
-                  <div className="filter-box pb">
-                    <div className="custom-switch d-flex align-items-center ev-ready-filter">
-                      <input
-                        type="checkbox"
-                        id="ready-filter"
-                        className="custom-switch__input"
-                      />{" "}
-                      <label
-                        for="ready-filter"
-                        className="custom-switch__label"
-                      >
-                        <span className="circle"></span>
-                      </label>
-                    </div>{" "}
-                    <label for="ready-filter" className="filter-box-title">
-                      <span className="d-block font-size-9 m-0">
-                        آماده‌ ارسال
-                      </span>
-                    </label>
-                  </div>{" "}
-                  <div className="filter-box pb">
-                    <div className="custom-switch d-flex align-items-center ev-discount-filter">
-                      <input
-                        type="checkbox"
-                        id="discount-filter"
-                        className="custom-switch__input"
-                      />{" "}
-                      <label
-                        for="discount-filter"
-                        className="custom-switch__label"
-                      >
-                        <span className="circle"></span>
-                      </label>
-                    </div>{" "}
-                    <label for="discount-filter" className="filter-box-title">
-                      <span className="d-block font-size-9 m-0">
-                        تخفیف‌دارها
-                      </span>
-                    </label>
-                  </div>{" "}
-                  <div className="product-count d-block d-lg-none fixed-bottom">
-                    <span>مشاهده 3638 محصول</span>
-                  </div>
+                  <CustomSwitch title="ارسال رایگان" id="free" />
+                  <CustomSwitch title="همشهری" id="fellow-citizen" />
+                  <CustomSwitch
+                    title="فقط کالاهای موجود"
+                    id="Available_goods"
+                  />
+                  <CustomSwitch title="آماده ارسال" id="Ready_to_send" />
+                  <CustomSwitch title="تخفیف دارها" id="Discounted" />
                 </div>
               </div>
             </div>
