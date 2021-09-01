@@ -17,6 +17,7 @@ import { Bigger } from "../../components/custom/kh/biggerProduct/Bigger";
 import { TopBar } from "../../containers/listProduct/TopBar";
 
 const index = () => {
+  const _ = require("lodash");
   const [mainList, setmainList] = useState([]);
   const [listProducts, setlistProducts] = useState([]);
   const [filtersListProducts, setFiltersListProducts] = useState([]);
@@ -25,6 +26,59 @@ const index = () => {
   // FILTERS
   const [filterDiscount, setFilterDiscount] = useState({});
   const [filterFellowCitizen, setFilterFellowCitizen] = useState({});
+
+  // FIlters NEW ################################################3
+
+  const [listWithFilter, setListWithFilter] = useState(productForList);
+  const [isFree, setIsFree] = useState(false);
+
+  const handelFilterFree = () => {
+    setIsFree(!isFree);
+    if (!isFree) {
+      if (productForList.length == listWithFilter.length) {
+        setListWithFilter(_.filter(listProducts, { discount: 0 }));
+      } else {
+        setListWithFilter(_.filter(listWithFilter, { discount: 0 }));
+      }
+
+      console.log("miladdddd :>> ", "miladdddd");
+    } else {
+      setListWithFilter(productForList);
+    }
+  };
+
+  const [isfellowCitizen, setIsfellowCitizen] = useState(false);
+
+  const handelFilterFellowCitizen = () => {
+    setIsfellowCitizen(!isfellowCitizen);
+    if (!isfellowCitizen) {
+      if (productForList.length == listWithFilter.length) {
+        setListWithFilter(_.filter(listProducts, { city: "کرمان" }));
+      } else {
+        setListWithFilter(_.filter(listWithFilter, { city: "کرمان" }));
+      }
+
+      console.log("miladdddd :>> ", "miladdddd");
+    } else {
+      setListWithFilter(productForList);
+    }
+  };
+
+  const handel_all_filter = () => {
+    let copyList = [...listProducts];
+    let newlist = [];
+    if (isFree) {
+      copyList = _.filter(copyList, { discount: 0 });
+      // setListWithFilter(_.filter(listWithFilter, { discount: 0 }));
+    }
+
+    if (isfellowCitizen) {
+      copyList = _.filter(copyList, { city: "کرمان" });
+      // setListWithFilter(_.filter(listProducts, { city: "کرمان" }))
+    }
+    setListWithFilter(copyList);
+  };
+
   const structure = [
     { whichFilter: "free", status: true, witchValue: "discount", value: 0 },
     { whichFilter: "fellow-citizen", status: true },
@@ -82,6 +136,7 @@ const index = () => {
           sortProductAsc: sortProductAsc,
           sortProductDes: sortProductDes,
           setItemInFilterList: setItemInFilterList,
+          listWithFilter: listWithFilter,
         }}
       >
         <Head>
@@ -129,17 +184,80 @@ const index = () => {
 
                 <div className="search-body-filter">
                   <div className="modal-body" style={{ msOverflowX: "hidden" }}>
-                    <CustomSwitch
+                    <div className="filter-box pb">
+                      <div className="custom-switch d-flex align-items-center ev-yekase-filter">
+                        <input
+                          type="checkbox"
+                          id="switch__discount"
+                          className="custom-switch__input"
+                          checked={isFree}
+                          onChange={ () => {
+                             setIsFree( isFree=>!isFree);
+                             handel_all_filter();
+                          }}
+                        />{" "}
+                        <label
+                          htmlFor="switch__discount"
+                          className="custom-switch__label"
+                        >
+                          <span className="circle"></span>
+                        </label>
+                      </div>{" "}
+                      <label
+                        htmlFor="switch__discount"
+                        className="filter-box-title"
+                      >
+                        <span className="d-block font-size-9 m-0">
+                          ارسال رایگان
+                        </span>
+                      </label>
+                    </div>
+
+                    <div className="filter-box pb">
+                      <div className="custom-switch d-flex align-items-center ev-yekase-filter">
+                        <input
+                          type="checkbox"
+                          id="switch__fellowCitizen"
+                          className="custom-switch__input"
+                          checked={isfellowCitizen}
+                          onChange={ () => {
+                             setIsfellowCitizen(isfellowCitizen=> !isfellowCitizen);
+                             handel_all_filter();
+                          }}
+                        />{" "}
+                        <label
+                          htmlFor="switch__fellowCitizen"
+                          className="custom-switch__label"
+                        >
+                          <span className="circle"></span>
+                        </label>
+                      </div>{" "}
+                      <label
+                        htmlFor="switch__fellowCitizen"
+                        className="filter-box-title"
+                      >
+                        <span className="d-block font-size-9 m-0">همشهری</span>
+                      </label>
+                    </div>
+
+                    {/* <CustomSwitch
                       title="ارسال رایگان"
                       id="discount"
                       valueFilter="0"
+                      checked={isFree}
+                      onChange={async()=>{await setIsFree(!isFree);
+                       await handel_all_filter ()}}
                     />
                     <CustomSwitch
                       title="همشهری"
                       id="fellowCitizen"
                       valueFilter="کرمان"
-                    />
-                    <CustomSwitch
+                      checked={isfellowCitizen}
+                      onChange={async()=>{
+                       await  setIsfellowCitizen(!isfellowCitizen);
+                       await handel_all_filter ()}}
+                    /> */}
+                    {/* <CustomSwitch
                       title="فقط کالاهای موجود"
                       id="Available_goods"
                     />
@@ -148,7 +266,7 @@ const index = () => {
                       title="تخفیف دارها"
                       id="discounted"
                       valueFilter="0"
-                    />
+                    /> */}
                   </div>
                 </div>
               </div>
@@ -156,7 +274,7 @@ const index = () => {
             <div className="col-12 col-lg-9">
               <TopBar />
               <div className="mx-auto row">
-                {listProducts.map((oneProduct, index) => (
+                {listWithFilter.map((oneProduct, index) => (
                   <ProductCard
                     key={index}
                     padding={1}

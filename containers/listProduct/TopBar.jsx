@@ -5,6 +5,7 @@ import { productForList } from "../../public/dataForProduct/data";
 export const TopBar = () => {
   const [witchItem, setWitchItem] = useState("1");
   const {
+    listWithFilter,
     sortProductAsc,
     sortProductDes,
     sortBestsellingProduct,
@@ -100,7 +101,7 @@ export const TopBar = () => {
               تعداد کالا:
               <span className="Blazing" style={{ marginRight: "10px" }}>
                 {" "}
-                {listProducts.length}
+                { listWithFilter.length}
               </span>
             </span>
           </div>{" "}
