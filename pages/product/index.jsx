@@ -11,50 +11,77 @@ import { Html } from "next/document";
 import CustomAccordion from "../../components/custom/customAccordion";
 import CustomSwitch from "../../components/custom/customSwitch";
 import { CustomCard } from "../../components/custom/customCard";
-import { SidBar } from "../../containers/listProduct/SidBar";
+
 import ContextListProductPage from "../../containers/listProduct/Context/context";
 import { Bigger } from "../../components/custom/kh/biggerProduct/Bigger";
+import { TopBar } from "../../containers/listProduct/TopBar";
 
 const index = () => {
+  const [mainList, setmainList] = useState([]);
   const [listProducts, setlistProducts] = useState([]);
+  const [filtersListProducts, setFiltersListProducts] = useState([]);
+  const [listFilters, setListFilters] = useState({});
 
+  // FILTERS
+  const [filterDiscount, setFilterDiscount] = useState({});
+  const [filterFellowCitizen, setFilterFellowCitizen] = useState({});
+  const structure = [
+    { whichFilter: "free", status: true, witchValue: "discount", value: 0 },
+    { whichFilter: "fellow-citizen", status: true },
+    { whichFilter: "Available_goods", status: true },
+    { whichFilter: "Discounted", status: true },
+  ];
   useEffect(() => {
     setlistProducts(productForList);
+    setmainList(productForList);
+    console.log("mainList :>> ", mainList);
   }, []);
 
-  const sortPorductDes = () => {
+  const sortProductDes = () => {
     setlistProducts(orderBy(listProducts, "current_price", "desc"));
   };
 
-  const sortPorductAsc = () => {
+  const sortProductAsc = () => {
     setlistProducts(orderBy(listProducts, "current_price", "asc"));
   };
   const sortBestsellingProduct = () => {
     setlistProducts(orderBy(listProducts, "discount", "desc"));
   };
 
-  let product = {
-    imageUrl: "/image/faile.webp",
-    url: "/hamzeh",
-    title: "نبات گیاهی متبرک مشهد با نی چوبی 1 کیلویی برکت هشتم",
-    chamberTitle: "گالری سنگ و نقره شاپرک",
-    chamberUrl: "/azizzadeh",
-    rate: 10,
-    commentCount: 102,
-    discount: 25,
-    price: 107000,
-    discountNumber: 190000,
-    sales: 52,
-    city: "کرمان",
+  const setItemInFilterList = (id, checked, valueFilter) => {
+    switch (id) {
+      case "discount":
+        setFilterDiscount({ id, checked, valueFilter });
+
+      case "fellowCitizen":
+        setFilterFellowCitizen({ id, checked, valueFilter });
+    }
+
+    console.log("iiii :>> ", filterDiscount);
+    console.log("iiii :>> ", filterFellowCitizen);
   };
+
+  // const filterListProduct=([{},{},{},{},{}])=>{
+  //   e.map()=>{
+  //     if(e.status){
+  //     _filter()
+  //     }
+  //   }
+  // }
+
   return (
     <>
       <ContextListProductPage.Provider
         value={{
+          listFilters: listFilters,
+          setListFilters: setListFilters,
           listProducts: listProducts,
+          setlistProducts: setlistProducts,
+          filtersListProducts: filtersListProducts,
           sortBestsellingProduct: sortBestsellingProduct,
-          sortPorductAsc: sortPorductAsc,
-          sortPorductDes: sortPorductDes,
+          sortProductAsc: sortProductAsc,
+          sortProductDes: sortProductDes,
+          setItemInFilterList: setItemInFilterList,
         }}
       >
         <Head>
@@ -102,23 +129,36 @@ const index = () => {
 
                 <div className="search-body-filter">
                   <div className="modal-body" style={{ msOverflowX: "hidden" }}>
-                    <CustomSwitch title="ارسال رایگان" id="free" />
-                    <CustomSwitch title="همشهری" id="fellow-citizen" />
+                    <CustomSwitch
+                      title="ارسال رایگان"
+                      id="discount"
+                      valueFilter="0"
+                    />
+                    <CustomSwitch
+                      title="همشهری"
+                      id="fellowCitizen"
+                      valueFilter="کرمان"
+                    />
                     <CustomSwitch
                       title="فقط کالاهای موجود"
                       id="Available_goods"
                     />
                     <CustomSwitch title="آماده ارسال" id="Ready_to_send" />
-                    <CustomSwitch title="تخفیف دارها" id="Discounted" />
+                    <CustomSwitch
+                      title="تخفیف دارها"
+                      id="discounted"
+                      valueFilter="0"
+                    />
                   </div>
                 </div>
               </div>
             </div>{" "}
             <div className="col-12 col-lg-9">
-              <SidBar />
+              <TopBar />
               <div className="mx-auto row">
-                {listProducts.map((oneProduct) => (
+                {listProducts.map((oneProduct, index) => (
                   <ProductCard
+                    key={index}
                     padding={1}
                     product={{
                       imageUrl: oneProduct.image_link,

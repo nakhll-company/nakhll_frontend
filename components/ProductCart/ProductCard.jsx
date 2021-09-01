@@ -24,8 +24,12 @@ const ProductCard = ({
       >
         <i className="far fa-bookmark" />
       </div>
-      <div class="_product_card_badge" type="button" style={{ top: "3.3rem" }}>
-        <i class="fas fa-share-alt"></i>
+      <div
+        className="_product_card_badge"
+        type="button"
+        style={{ top: "3.3rem" }}
+      >
+        <i className="fas fa-share-alt"></i>
       </div>
     </>
   );
@@ -73,7 +77,7 @@ const ProductCard = ({
             <a
               href={product.url}
               target={_blank && "_blank"}
-              className="_product_card_title text-truncate"
+              className="_product_card_title text-truncate "
             >
               {product.title}
             </a>

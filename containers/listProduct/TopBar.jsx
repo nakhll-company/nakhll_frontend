@@ -2,11 +2,11 @@ import React, { useState, useContext } from "react";
 import ContextListProductPage from "./Context/context";
 import { productForList } from "../../public/dataForProduct/data";
 
-export const SidBar = () => {
+export const TopBar = () => {
   const [witchItem, setWitchItem] = useState("1");
   const {
-    sortPorductAsc,
-    sortPorductDes,
+    sortProductAsc,
+    sortProductDes,
     sortBestsellingProduct,
     listProducts,
   } = useContext(ContextListProductPage);
@@ -44,7 +44,7 @@ export const SidBar = () => {
                 >
                   <a
                     onClick={() => {
-                      sortPorductAsc();
+                      sortProductAsc();
                       setWitchItem("2");
                     }}
                   >
@@ -59,7 +59,7 @@ export const SidBar = () => {
                 >
                   <a
                     onClick={() => {
-                      sortPorductDes();
+                      sortProductDes();
                       setWitchItem("3");
                     }}
                   >
@@ -100,7 +100,7 @@ export const SidBar = () => {
               تعداد کالا:
               <span className="Blazing" style={{ marginRight: "10px" }}>
                 {" "}
-                {productForList.length}
+                {listProducts.length}
               </span>
             </span>
           </div>{" "}

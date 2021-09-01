@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import ContextListProductPage from "../../../containers/listProduct/Context/context";
 
-const CustomSwitch = ({ title, id }) => {
+const CustomSwitch = ({ title, id, valueFilter }) => {
+  const { listProducts, setlistProducts, mainList, setItemInFilterList } =
+    useContext(ContextListProductPage);
+  const _ = require("lodash");
+  const [checked, setChecked] = useState(false);
+  const copyList = _.filter(listProducts, { discount: 0 });
+
   return (
     <div className="filter-box pb">
       <div className="custom-switch d-flex align-items-center ev-yekase-filter">
@@ -8,12 +15,18 @@ const CustomSwitch = ({ title, id }) => {
           type="checkbox"
           id={`switch__${id}`}
           className="custom-switch__input"
+          checked={checked}
+          onClick={(e) => {
+            setChecked(!checked);
+            console.log("e.target.value:>> ", e.target.value);
+            setItemInFilterList(id, checked, valueFilter);
+          }}
         />{" "}
-        <label for={`switch__${id}`} className="custom-switch__label">
+        <label htmlFor={`switch__${id}`} className="custom-switch__label">
           <span className="circle"></span>
         </label>
       </div>{" "}
-      <label for={`switch__${id}`} className="filter-box-title">
+      <label htmlFor={`switch__${id}`} className="filter-box-title">
         <span className="d-block font-size-9 m-0">{title}</span>
       </label>
     </div>
