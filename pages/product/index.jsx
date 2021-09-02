@@ -92,14 +92,14 @@ const index = () => {
   }, []);
 
   const sortProductDes = () => {
-    setlistProducts(orderBy(listProducts, "current_price", "desc"));
+    setListWithFilter(orderBy(listWithFilter, "current_price", "desc"));
   };
 
   const sortProductAsc = () => {
-    setlistProducts(orderBy(listProducts, "current_price", "asc"));
+    setListWithFilter(orderBy(listWithFilter, "current_price", "asc"));
   };
   const sortBestsellingProduct = () => {
-    setlistProducts(orderBy(listProducts, "discount", "desc"));
+    setListWithFilter(orderBy(listWithFilter, "discount", "desc"));
   };
 
   const setItemInFilterList = (id, checked, valueFilter) => {
@@ -191,9 +191,9 @@ const index = () => {
                           id="switch__discount"
                           className="custom-switch__input"
                           checked={isFree}
-                          onChange={ () => {
-                             setIsFree( isFree=>!isFree);
-                             handel_all_filter();
+                          onChange={() => {
+                            setIsFree((isFree) => !isFree);
+                            handel_all_filter();
                           }}
                         />{" "}
                         <label
@@ -220,9 +220,11 @@ const index = () => {
                           id="switch__fellowCitizen"
                           className="custom-switch__input"
                           checked={isfellowCitizen}
-                          onChange={ () => {
-                             setIsfellowCitizen(isfellowCitizen=> !isfellowCitizen);
-                             handel_all_filter();
+                          onChange={() => {
+                            setIsfellowCitizen(
+                              (isfellowCitizen) => !isfellowCitizen
+                            );
+                            handel_all_filter();
                           }}
                         />{" "}
                         <label
