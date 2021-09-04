@@ -37,28 +37,29 @@ const index = () => {
 
       <div className="container p-2 ">
         <div className="row">
-        <CustomSlider
-        // model="navigation"
-        slides1200={6}
-          data={[
-            <ProductCard col="12" product={product} />,
-            <ProductCard col="12" product={product} />,
-            <ProductCard col="12" product={product} />,
-            <ProductCard col="12" product={product} />,
-            <ProductCard col="12" product={product} />,
-            <ProductCard col="12" product={product} />,
-            <ProductCard col="12" product={product} />,
-            <ProductCard col="12" product={product} />,
-            <ProductCard col="12" product={product} />,
-            <ProductCard col="12" product={product} />,
-            <ProductCard col="12" product={product} />,
-            <ProductCard col="12" product={product} />,
-            <ProductCard col="12" product={product} />,
-            <ProductCard col="12" product={product} />,
-            <ProductCard col="12" product={product} />,
-            <ProductCard col="12" product={product} />,
-          ]}
-        />
+          <CustomSlider
+            // model="navigation"
+            slides1200={6}
+            data={[
+
+              <ProductCard col="12" product={product} />,
+              <ProductCard col="12" product={product} />,
+              <ProductCard col="12" product={product} />,
+              <ProductCard col="12" product={product} />,
+              <ProductCard col="12" product={product} />,
+              <ProductCard col="12" product={product} />,
+              <ProductCard col="12" product={product} />,
+              <ProductCard col="12" product={product} />,
+              <ProductCard col="12" product={product} />,
+              <ProductCard col="12" product={product} />,
+              <ProductCard col="12" product={product} />,
+              <ProductCard col="12" product={product} />,
+              <ProductCard col="12" product={product} />,
+              <ProductCard col="12" product={product} />,
+              <ProductCard col="12" product={product} />,
+              <ProductCard col="12" product={product} />,
+            ]}
+          />
 
 
           <ProductCard product={product} xl="3" />

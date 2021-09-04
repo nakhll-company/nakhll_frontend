@@ -21,6 +21,44 @@
         cursor: pointer;
         border-radius: .5rem;
     }
+    // store wrapper
+    .store_wrapper{
+        position: sticky;
+        top: 1rem;
+        // report wrapper
+        .report_wrapper{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #f2af29;
+            font-size: 1.5rem !important;
+            margin: 10px 0px;
+            i{
+                cursor: pointer;
+                color: #3629f2;
+            }
+        }
+        // store section
+        .store_section{
+            h2{
+                font-size: 1rem;
+                margin-bottom: 1rem;
+                font-weight: 700;
+            }
+            // store detail
+            .store_detail{
+                display: flex;
+                align-items: center;
+                .store_image{
+                    display: flex;
+                    justify-content: center;
+                    border-radius: 50%;
+                    width: auto;
+                    overflow: hidden;
+                }
+            }
+        }
+    }
     // title product
     .title_product{
         font-size: 1.5rem;
@@ -96,6 +134,67 @@
         font-weight: 700;
         a{
             color: #224D82;
+        }
+    }
+    // comments header
+    .comments_header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #3629f2;
+        font-size: 14px;
+        h3{
+            color: #000;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+    }
+    // comments wrapper
+    .comments_wrapper{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 100px;
+        .avatar_wrapper{
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .comments_detail{
+            display: flex;
+            flex-direction: column;
+            .rating_wrapper{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                font-size: 8px;
+                color: #f2af29;
+            }
+            span{
+                font-size: 12px;
+            }
+            .likes_icons_wrapper{
+                display: flex;
+                align-items: center;
+                color: #224D82;
+                span{
+                    width: 40px;
+                    height: 25px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border: 1px solid #3629f2;
+                    border-radius: 25px;
+                    margin: 0 .5rem;
+                }
+                span:hover{
+                    background-color: #3629f2;
+                    color: #fff;
+                    cursor: pointer;
+                }
+            }
         }
     }
 }

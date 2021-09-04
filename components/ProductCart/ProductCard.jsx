@@ -12,7 +12,7 @@ const ProductCard = ({
 }) => {
   let cardBadge = (
     <>
-    {/* <div class="_product_card_special_sale">تخفیف هیجان انگیز</div> */}
+      {/* <div className="_product_card_special_sale">تخفیف هیجان انگیز</div> */}
       <div
         className="_product_card_badge"
         type="button"
@@ -20,8 +20,8 @@ const ProductCard = ({
       >
         <i className="far fa-bookmark" />
       </div>
-      <div class="_product_card_badge" type="button" style={{ top: "3.3rem" }}>
-        <i class="fas fa-share-alt"></i>
+      <div className="_product_card_badge" type="button" style={{ top: "3.3rem" }}>
+        <i className="fas fa-share-alt"></i>
       </div>
     </>
   );
@@ -29,47 +29,43 @@ const ProductCard = ({
   let cardImg = (
     <img
       src={product.imageUrl}
-      className={`card-img-top _product_card_rounded ${
-        product.unavailable && "_unavailable_product"
-      }`}
+      className={`card-img-top _product_card_rounded ${product.unavailable && "_unavailable_product"
+        }`}
       alt={product.title}
     />
   );
 
   return (
-    
+
     <div
-      className={`${
-        col
-          ? `col-${col}`
-          : `col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
-      } mb-3`}
+      className={`${col
+        ? `col-${col}`
+        : `col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
+        } mb-3`}
     >
       <div className="card _product_card _product_card_rounded p-2">
         {cardBadge}
 
-        <a href={product.url} target={_blank && "_blank"}>
+        <a href={product.url}>
           {cardImg}
         </a>
         {/* {linkType === "anchor" ? (
-          <a href={product.url} target={_blank && "_blank"}>
+          <a href={product.url}>
             {cardImg}
           </a>
         ) : (
-          <Link to={product.url} target={_blank && "_blank"}>
+          <Link to={product.url}>
             {cardImg}
           </Link>
         )} */}
 
         <div
-          className={`card-body mt-2 p-1 ${
-            product.unavailable && "_unavailable_product"
-          }`}
+          className={`card-body mt-2 p-1 ${product.unavailable && "_unavailable_product"
+            }`}
         >
           <div className=" mb-3">
             <a
               href={product.url}
-              target={_blank && "_blank"}
               className="_product_card_title text-truncate"
             >
               {product.title}
@@ -77,7 +73,6 @@ const ProductCard = ({
             {/* {linkType === "anchor" ? (
               <a
                 href={product.url}
-                target={_blank && "_blank"}
                 className="_product_card_title text-truncate"
               >
                 {product.title}
@@ -85,7 +80,6 @@ const ProductCard = ({
             ) : (
               <Link
                 to={product.url}
-                target={_blank && "_blank"}
                 className="_product_card_title text-truncate"
               >
                 {product.title}
@@ -98,7 +92,6 @@ const ProductCard = ({
             <a
               title={product.chamberTitle}
               href={product.chamberUrl}
-              target={_blank && "_blank"}
               className="_product_card_subtitle"
             >
               {product.chamberTitle}
@@ -107,7 +100,6 @@ const ProductCard = ({
               <a
                 title={product.chamberTitle}
                 href={product.chamberUrl}
-                target={_blank && "_blank"}
                 className="_product_card_subtitle"
               >
                 {product.chamberTitle}
@@ -116,7 +108,6 @@ const ProductCard = ({
               <Link
                 title={product.chamberTitle}
                 to={product.chamberUrl}
-                target={_blank && "_blank"}
                 className="_product_card_subtitle"
               >
                 {product.chamberTitle}
