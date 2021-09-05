@@ -17,6 +17,7 @@ import { Bigger } from "../../components/custom/kh/biggerProduct/Bigger";
 import { TopBar } from "../../containers/listProduct/TopBar";
 
 const index = () => {
+  const [isFree, setIsFree] = useState(false);
   const _ = require("lodash");
   const [mainList, setmainList] = useState([]);
   const [listProducts, setlistProducts] = useState([]);
@@ -30,39 +31,8 @@ const index = () => {
   // FIlters NEW ################################################3
 
   const [listWithFilter, setListWithFilter] = useState(productForList);
-  const [isFree, setIsFree] = useState(false);
-
-  const handelFilterFree = () => {
-    setIsFree(!isFree);
-    if (!isFree) {
-      if (productForList.length == listWithFilter.length) {
-        setListWithFilter(_.filter(listProducts, { discount: 0 }));
-      } else {
-        setListWithFilter(_.filter(listWithFilter, { discount: 0 }));
-      }
-
-      console.log("miladdddd :>> ", "miladdddd");
-    } else {
-      setListWithFilter(productForList);
-    }
-  };
 
   const [isfellowCitizen, setIsfellowCitizen] = useState(false);
-
-  const handelFilterFellowCitizen = () => {
-    setIsfellowCitizen(!isfellowCitizen);
-    if (!isfellowCitizen) {
-      if (productForList.length == listWithFilter.length) {
-        setListWithFilter(_.filter(listProducts, { city: "کرمان" }));
-      } else {
-        setListWithFilter(_.filter(listWithFilter, { city: "کرمان" }));
-      }
-
-      console.log("miladdddd :>> ", "miladdddd");
-    } else {
-      setListWithFilter(productForList);
-    }
-  };
 
   const handel_all_filter = () => {
     let copyList = [...listProducts];
@@ -77,6 +47,10 @@ const index = () => {
       // setListWithFilter(_.filter(listProducts, { city: "کرمان" }))
     }
     setListWithFilter(copyList);
+  };
+  const handel_free_filter = () => {
+    setIsFree(true);
+    console.log("isFree:>> ", isFree);
   };
 
   const structure = [
@@ -191,10 +165,7 @@ const index = () => {
                           id="switch__discount"
                           className="custom-switch__input"
                           checked={isFree}
-                          onChange={() => {
-                            setIsFree((isFree) => !isFree);
-                            handel_all_filter();
-                          }}
+                          onClick={handel_free_filter}
                         />{" "}
                         <label
                           htmlFor="switch__discount"
