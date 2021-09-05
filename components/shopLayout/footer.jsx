@@ -11,7 +11,7 @@ const Footer = () => {
         <>
             {!router.pathname.startsWith("/cart") &&
                 <>
-                    <div className={styles.wrapper}>
+                    <div style={{display:"none"}} className={styles.wrapper}>
                         <div className={`col-6 ${styles.links_wrapper}`}>
                             <div className="col-4 col-4 d-flex flex-column">
                                 <Link href="/">
