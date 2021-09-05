@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
 import ContextListProductPage from "../../../containers/listProduct/Context/context";
 
-const CustomSwitch = ({ title, id, valueFilter ,checked,onChange}) => {
+const CustomSwitch = ({ id, title, onChange }) => {
   const { listProducts, setlistProducts, mainList, setItemInFilterList } =
     useContext(ContextListProductPage);
   const _ = require("lodash");
-  
+
   const copyList = _.filter(listProducts, { discount: 0 });
 
   return (
@@ -15,9 +15,7 @@ const CustomSwitch = ({ title, id, valueFilter ,checked,onChange}) => {
           type="checkbox"
           id={`switch__${id}`}
           className="custom-switch__input"
-          checked={checked}
-          onClick={onChange}
-          
+          onChange={onChange}
         />{" "}
         <label htmlFor={`switch__${id}`} className="custom-switch__label">
           <span className="circle"></span>
