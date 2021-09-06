@@ -1,17 +1,15 @@
 import { createContext } from "react";
 
 const ContextListProductPage = createContext({
-  mainList: [],
   listProducts: [],
-  filtersListProducts: [],
-  listFilters: {},
-  setListFilters: () => {},
-  setItemInFilterList: () => {},
-  setFiltersListProducts: () => {},
+
+  setIsFree: () => {},
+  setIsFellowCitizen: () => {},
 
   sortProductDes: () => {},
   sortProductAsc: () => {},
   sortBestsellingProduct: () => {},
+  handel_filterModal: () => {},
 });
 
 export default ContextListProductPage;

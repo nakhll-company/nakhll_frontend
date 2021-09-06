@@ -2,25 +2,33 @@ import React, { useState, useContext } from "react";
 import ContextListProductPage from "./Context/context";
 import { productForList } from "../../public/dataForProduct/data";
 
-export const TopBar = () => {
+export const TopBar = ({ handel_filterModal }) => {
   const [witchItem, setWitchItem] = useState("1");
   const {
     listWithFilter,
     sortProductAsc,
     sortProductDes,
     sortBestsellingProduct,
-    listProducts,
   } = useContext(ContextListProductPage);
   return (
     <>
       <div>
         <div className="items-slider product-filters mb-4">
-          <div className="product-filters-item--active d-lg-none product-filters-item ev-more-filters">
-            <i className="bi bi-filter"></i>{" "}
-            <span>
-              فیلترها
-              <span>(1)</span>
-            </span>
+          <div
+            style={{
+              cursor: "pointer",
+              backgroundColor: "#fff",
+              padding: "5px",
+            }}
+            className="product-filters-item--active d-lg-none product-filters-item ev-more-filters"
+          >
+            <i className="fas fa-filter"></i>{" "}
+            <button className="btn" onClick={handel_filterModal}>
+              <span>
+                فیلترها
+                <span></span>
+              </span>
+            </button>
           </div>{" "}
           <div className="search-sorts mb-0 ">
             <div className="d-flex align-items-center">
@@ -101,7 +109,7 @@ export const TopBar = () => {
               تعداد کالا:
               <span className="Blazing" style={{ marginRight: "10px" }}>
                 {" "}
-                { listWithFilter.length}
+                {listWithFilter.length}
               </span>
             </span>
           </div>{" "}

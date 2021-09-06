@@ -2,8 +2,7 @@ import React, { useContext, useState } from "react";
 import ContextListProductPage from "../../../containers/listProduct/Context/context";
 
 const CustomSwitch = ({ id, title, onChange }) => {
-  const { listProducts, setlistProducts, mainList, setItemInFilterList } =
-    useContext(ContextListProductPage);
+  const { listProducts } = useContext(ContextListProductPage);
   const _ = require("lodash");
 
   const copyList = _.filter(listProducts, { discount: 0 });

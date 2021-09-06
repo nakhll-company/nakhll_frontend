@@ -15,21 +15,16 @@ import { CustomCard } from "../../components/custom/customCard";
 import ContextListProductPage from "../../containers/listProduct/Context/context";
 import { Bigger } from "../../components/custom/kh/biggerProduct/Bigger";
 import { TopBar } from "../../containers/listProduct/TopBar";
+import MenuMobile from "../../components/layout/MenuMobile";
+import { modalFilter } from "../../containers/productLis/modalFilter";
 
 const index = () => {
+  const _ = require("lodash");
   const [isFree, setIsFree] = useState(false);
   const [isFellowCitizen, setIsFellowCitizen] = useState(false);
-  
-  const _ = require("lodash");
-
   const [listProducts, setlistProducts] = useState(productForList);
-  const [filtersListProducts, setFiltersListProducts] = useState([]);
-  const [listFilters, setListFilters] = useState({});
-
-  // FIlters NEW ################################################3
-
   const [listWithFilter, setListWithFilter] = useState(productForList);
-
+  const [isOpenModal, setIsOpenModal] = useState(false);
   useEffect(() => {
     let copyList = [...listProducts];
 
@@ -57,18 +52,22 @@ const index = () => {
     setListWithFilter(orderBy(listWithFilter, "discount", "desc"));
   };
 
+  const handel_filterModal = () => {
+    setIsOpenModal(!isOpenModal);
+  };
+
   return (
     <>
       <ContextListProductPage.Provider
         value={{
-          listFilters: listFilters,
-          setListFilters: setListFilters,
           listProducts: listProducts,
-          setlistProducts: setlistProducts,
-          filtersListProducts: filtersListProducts,
+          setIsFree: setIsFree,
+          setIsFellowCitizen: setIsFellowCitizen,
+
           sortBestsellingProduct: sortBestsellingProduct,
           sortProductAsc: sortProductAsc,
           sortProductDes: sortProductDes,
+          handel_filterModal: handel_filterModal,
 
           listWithFilter: listWithFilter,
         }}
@@ -144,7 +143,7 @@ const index = () => {
               </div>
             </div>{" "}
             <div className="col-12 col-lg-9">
-              <TopBar />
+              <TopBar handel_filterModal={handel_filterModal} />
               <div className="mx-auto row">
                 {listWithFilter.map((oneProduct, index) => (
                   <ProductCard
@@ -173,50 +172,82 @@ const index = () => {
             </div>
           </div>
         </div>
-        
-        {/* modalll */}
-        <div className="modal_filter_products d-none d-lg-block ">
-          <div id="sidebar">
-            <CustomAccordion title="دسته بندی" item="1">
-              <div>اینجا اطلاعات قرار می گیره</div>
-            </CustomAccordion>
-            <CustomAccordion title="امتیاز محصول" item="2">
-              <div>اینجا اطلاعات قرار می گیره</div>
-            </CustomAccordion>
 
-            <CustomAccordion title="محدوده قیمت" item="3">
-              <div>اینجا اطلاعات قرار می گیره</div>
-            </CustomAccordion>
-            <CustomAccordion title="استان و شهر غرفه دار" item="4">
-              <div>اینجا اطلاعات قرار می گیره</div>
-            </CustomAccordion>
+        {/* modalFilter start*/}
+        {isOpenModal && (
+          <div className="modal_filter_products d-none d-lg-block ">
+            <div id="sidebar">
+              <CustomAccordion title="دسته بندی" item="1">
+                <div>اینجا اطلاعات قرار می گیره</div>
+              </CustomAccordion>
+              <CustomAccordion title="امتیاز محصول" item="2">
+                <div>اینجا اطلاعات قرار می گیره</div>
+              </CustomAccordion>
 
-            <div className="search-body-filter">
-              <div className="modal-body" style={{ msOverflowX: "hidden" }}>
-                <CustomSwitch
-                  title="ارسال رایگان"
-                  id="discount"
-                  onChange={(e) => {
-                    setIsFree(e.target.checked);
-                  }}
-                />
-                <CustomSwitch
-                  title="همشهری"
-                  id="fellowCitizen"
-                  onChange={(e) => {
-                    setIsFellowCitizen(e.target.checked);
-                  }}
-                />
+              <CustomAccordion title="محدوده قیمت" item="3">
+                <div>اینجا اطلاعات قرار می گیره</div>
+              </CustomAccordion>
+              <CustomAccordion title="استان و شهر غرفه دار" item="4">
+                <div>اینجا اطلاعات قرار می گیره</div>
+              </CustomAccordion>
 
-                <CustomSwitch title="فقط کالاهای موجود" id="Available_goods" />
-                <CustomSwitch title="آماده ارسال" id="Ready_to_send" />
-                <CustomSwitch title="تخفیف دارها" id="discounted" />
+              <div className="search-body-filter">
+                <div className="modal-body" style={{ msOverflowX: "hidden" }}>
+                  <CustomSwitch
+                    title="ارسال رایگان"
+                    id="discount_mobile"
+                    onChange={(e) => {
+                      setIsFree(e.target.checked);
+                    }}
+                  />
+                  <CustomSwitch
+                    title="همشهری"
+                    id="fellowCitizen_mobile"
+                    onChange={(e) => {
+                      setIsFellowCitizen(e.target.checked);
+                    }}
+                  />
+
+                  <CustomSwitch
+                    title="فقط کالاهای موجود"
+                    id="Available_goods_mobile"
+                  />
+                  <CustomSwitch title="آماده ارسال" id="Ready_to_send_mobile" />
+                  <CustomSwitch title="تخفیف دارها" id="discounted_mobile" />
+                </div>
               </div>
             </div>
+            <div
+              style={{
+                position: "fixed",
+                bottom: "0",
+                left: "0",
+                right: "0",
+                textAlign: "center",
+                marginTop: "20px",
+                zIndex: "99999",
+                backgroundColor: "#fff",
+                padding: "5px",
+              }}
+            >
+              <button
+                onClick={handel_filterModal}
+                className="btn btn-dark"
+                style={{ width: "90vw", fontSize: "14px" }}
+              >
+                {" "}
+                تایید
+              </button>
+            </div>
+            <div style={{ paddingBottom: "80px" }}></div>
           </div>
-        </div>
+        )}
+        {/* modalFilter end*/}
 
         {/* END MODAL */}
+
+        {/* MenuMobile */}
+        <MenuMobile />
       </ContextListProductPage.Provider>
     </>
   );
