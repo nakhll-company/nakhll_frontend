@@ -17,6 +17,7 @@ import { Bigger } from "../../components/custom/kh/biggerProduct/Bigger";
 import { TopBar } from "../../containers/listProduct/TopBar";
 import MenuMobile from "../../components/layout/MenuMobile";
 import { modalFilter } from "../../containers/productLis/modalFilter";
+import MultiRangeSlider from "../../components/custom/customMultiRangeSlider/MultiRangeSlider";
 
 const index = () => {
   const _ = require("lodash");
@@ -109,7 +110,15 @@ const index = () => {
                 </CustomAccordion>
 
                 <CustomAccordion title="محدوده قیمت" item="3">
-                  <div>اینجا اطلاعات قرار می گیره</div>
+                  <div style={{ direction: "ltr" }}>
+                    <MultiRangeSlider
+                      min={100}
+                      max={1000}
+                      onChange={({ min, max }) =>
+                        console.log(`min = ${min}, max = ${max}`)
+                      }
+                    />
+                  </div>
                 </CustomAccordion>
                 <CustomAccordion title="استان و شهر غرفه دار" item="4">
                   <div>اینجا اطلاعات قرار می گیره</div>
@@ -185,7 +194,13 @@ const index = () => {
               </CustomAccordion>
 
               <CustomAccordion title="محدوده قیمت" item="3">
-                <div>اینجا اطلاعات قرار می گیره</div>
+                <MultiRangeSlider
+                  min={100}
+                  max={1000}
+                  onChange={({ min, max }) =>
+                    console.log(`min = ${min}, max = ${max}`)
+                  }
+                />
               </CustomAccordion>
               <CustomAccordion title="استان و شهر غرفه دار" item="4">
                 <div>اینجا اطلاعات قرار می گیره</div>
