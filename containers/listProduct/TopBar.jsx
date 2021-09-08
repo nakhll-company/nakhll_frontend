@@ -6,6 +6,7 @@ export const TopBar = ({ handel_filterModal }) => {
   const [witchItem, setWitchItem] = useState("1");
   const {
     listWithFilter,
+    totalcount,
     sortProductAsc,
     sortProductDes,
     sortBestsellingProduct,
@@ -109,7 +110,7 @@ export const TopBar = ({ handel_filterModal }) => {
               تعداد کالا:
               <span className="Blazing" style={{ marginRight: "10px" }}>
                 {" "}
-                {listWithFilter.length}
+                {totalcount}
               </span>
             </span>
           </div>{" "}

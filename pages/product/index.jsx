@@ -18,14 +18,49 @@ import { TopBar } from "../../containers/listProduct/TopBar";
 import MenuMobile from "../../components/layout/MenuMobile";
 import { modalFilter } from "../../containers/productLis/modalFilter";
 import MultiRangeSlider from "../../components/custom/customMultiRangeSlider/MultiRangeSlider";
+import { errorMessage, successMessage } from "../../containers/utils/message";
+import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 
 const index = () => {
   const _ = require("lodash");
   const [isFree, setIsFree] = useState(false);
   const [isFellowCitizen, setIsFellowCitizen] = useState(false);
-  const [listProducts, setlistProducts] = useState(productForList);
-  const [listWithFilter, setListWithFilter] = useState(productForList);
+  const [listProducts, setlistProducts] = useState([]);
+  const [listWithFilter, setListWithFilter] = useState([]);
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [totalcount, setTotalcount] = useState("");
+
+  useEffect(async () => {
+    try {
+      // , page_size: 2
+      let params = { search: "لباس", page_size: 10 };
+      let loadData = null;
+      let dataUrl = `/api/v1/products/`;
+      let response = await ApiRegister().apiRequest(
+        loadData,
+        "get",
+        dataUrl,
+        true,
+        params
+      );
+
+      if (response.status === 200) {
+        successMessage("داده ها با موفقیت ثبت شده اند");
+        console.log("object sss:>> ", response.data);
+        setlistProducts(response.data.results);
+        setListWithFilter(response.data.results);
+        setTotalcount(response.data.total_count);
+      } else {
+        errorMessage("موجودی کافی نمی باشد.");
+        console.log("object :>> ", response);
+      }
+    } catch (e) {
+      // const error = e.response.data[0];
+      errorMessage("error");
+      console.log("object :>> ", e);
+    }
+  }, []);
+
   useEffect(() => {
     let copyList = [...listProducts];
 
@@ -64,7 +99,7 @@ const index = () => {
           listProducts: listProducts,
           setIsFree: setIsFree,
           setIsFellowCitizen: setIsFellowCitizen,
-
+          totalcount: totalcount,
           sortBestsellingProduct: sortBestsellingProduct,
           sortProductAsc: sortProductAsc,
           sortProductDes: sortProductDes,
@@ -159,21 +194,17 @@ const index = () => {
                     key={index}
                     padding={1}
                     product={{
-                      imageUrl: oneProduct.image_link,
-                      url: oneProduct.page_url,
+                      imageUrl: oneProduct.image_thumbnail_url,
+                      url: oneProduct.image_thumbnail_url,
                       title: oneProduct.title,
-                      chamberTitle: oneProduct.shop,
-                      chamberUrl: oneProduct.page_url,
-                      rate: 10,
-                      commentCount: 102,
-                      discount: Math.ceil(
-                        (1 - oneProduct.current_price / oneProduct.old_price) *
-                          100
-                      ),
-                      price: oneProduct.current_price,
-                      discountNumber: oneProduct.old_price,
-                      sales: oneProduct.discount,
-                      city: oneProduct.city,
+                      chamberTitle: oneProduct.shop.title,
+                      // chamberUrl: oneProduct.page_url,
+
+                      discount: oneProduct.discount,
+                      price: oneProduct.price / 10,
+                      discountNumber: oneProduct.old_price / 10,
+
+                      city: oneProduct.shop.state,
                     }}
                   />
                 ))}

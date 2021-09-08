@@ -37,25 +37,25 @@ const ProductCard = ({
   let cardImg = (
     <img
       src={product.imageUrl}
-      className={`card-img-top _product_card_rounded animationCart ${product.unavailable && "_unavailable_product"
-        }`}
+      className={`card-img-top _product_card_rounded animationCart ${
+        product.unavailable && "_unavailable_product"
+      }`}
       alt={product.title}
     />
   );
 
   return (
     <div
-      className={`animationCartParent ${col
+      className={`animationCartParent ${
+        col
           ? `col-${col}`
           : `col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
-        } ${padding ? `px-${padding}` : ""} mb-3`}
+      } ${padding ? `px-${padding}` : ""} mb-3`}
     >
       <div className="card _product_card _product_card_rounded p-2">
         {cardBadge}
 
-        <a href={product.url}>
-          {cardImg}
-        </a>
+        <a href={product.url}>{cardImg}</a>
         {/* {linkType === "anchor" ? (
           <a href={product.url}>
             {cardImg}
@@ -67,8 +67,9 @@ const ProductCard = ({
         )} */}
 
         <div
-          className={`card-body mt-2 p-1 ${product.unavailable && "_unavailable_product"
-            }`}
+          className={`card-body mt-2 p-1 ${
+            product.unavailable && "_unavailable_product"
+          }`}
         >
           <div className=" mb-3">
             <a
@@ -168,8 +169,8 @@ const ProductCard = ({
               )}
             </div>
           </div>
-          <div className="_product_card_progressbar">
-            {product.sales !== 0 && (
+          {false && (
+            <div className="_product_card_progressbar">
               <>
                 <div className="_sales_progressbar">
                   <div
@@ -183,8 +184,8 @@ const ProductCard = ({
                   </p>
                 </div>
               </>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
