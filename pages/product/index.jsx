@@ -21,6 +21,23 @@ import MultiRangeSlider from "../../components/custom/customMultiRangeSlider/Mul
 import { errorMessage, successMessage } from "../../containers/utils/message";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 
+//Search:
+//  1- Add search phrase to search params
+
+//Filter:
+//  1- min_price= [Number]
+//  2- max_price= [Number]
+//  3- ready= [Boolean]
+//  4- available= [Boolean]
+//  5- category= [ID]
+//  6- city= [ID]
+
+//Ordering:
+//  1- Title or -Title
+//  2- Price or -Price
+//  3- DiscountPercentage or -DiscountPercentage
+//  4- DateCreate or -DateCreate
+
 const index = () => {
   const _ = require("lodash");
   const [isFree, setIsFree] = useState(false);
@@ -29,6 +46,13 @@ const index = () => {
   const [listWithFilter, setListWithFilter] = useState([]);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [totalcount, setTotalcount] = useState("");
+
+  // state for on filter
+  const [isDiscountPercentage, setIsDiscountPercentage] = useState(false);
+  const [isreadyForSend, setisreadyForSend] = useState(false)
+
+  // state for save all of filters
+  const [listActiveFilters, setListActiveFilters] = useState({});
 
   useEffect(async () => {
     try {
@@ -61,28 +85,52 @@ const index = () => {
     }
   }, []);
 
-  useEffect(() => {
-    let copyList = [...listProducts];
-
-    if (isFree) {
-      copyList = _.filter(copyList, { discount: 0 });
-      // setListWithFilter(_.filter(listWithFilter, { discount: 0 }));
-    }
-
-    if (isFellowCitizen) {
-      copyList = _.filter(copyList, { city: "کرمان" });
-      // setListWithFilter(_.filter(listProducts, { city: "کرمان" }))
-    }
-
-    setListWithFilter(copyList);
-  }, [isFree, isFellowCitizen]);
-
-  const sortProductDes = () => {
-    setListWithFilter(orderBy(listWithFilter, "current_price", "desc"));
+  const _handel_filters = async (witchFilter) => {
+    let response = await ApiRegister().apiRequest(
+      null,
+      "get",
+      `/api/v1/products/`,
+      true,
+      { witchFilter }
+    );
+    setListWithFilter(response.data.results);
+    console.log("response.data.results :>> ", response.data.results);
   };
 
-  const sortProductAsc = () => {
-    setListWithFilter(orderBy(listWithFilter, "current_price", "asc"));
+  useEffect(async () => {
+    // let copyList = [...listProducts];
+
+    // if (isFree) {
+    //   copyList = _.filter(copyList, { discount: 0 });
+    //   // setListWithFilter(_.filter(listWithFilter, { discount: 0 }));
+    // }
+
+    // if (isFellowCitizen) {
+    //   copyList = _.filter(copyList, { city: "کرمان" });
+    //   // setListWithFilter(_.filter(listProducts, { city: "کرمان" }))
+    // }
+    if (isDiscountPercentage) {
+      setListActiveFilters({
+        ...listActiveFilters,
+        Ordering: "DiscountPercentage",
+      });
+    }
+  }, [isFree, isFellowCitizen, isDiscountPercentage]);
+
+  useEffect(() => {
+    _handel_filters(listActiveFilters);
+  }, [listActiveFilters]);
+
+  const sortProductDes = (witchFilter) => {
+    _handel_filters(witchFilter);
+
+    // setListWithFilter(orderBy(listWithFilter, "current_price", "desc"));
+  };
+
+  const sortProductAsc = (witchFilter) => {
+    _handel_filters(witchFilter);
+
+    // setListWithFilter(orderBy(listWithFilter, "current_price", "asc"));
   };
   const sortBestsellingProduct = () => {
     setListWithFilter(orderBy(listWithFilter, "discount", "desc"));
@@ -161,7 +209,7 @@ const index = () => {
 
                 <div className="search-body-filter">
                   <div className="modal-body" style={{ msOverflowX: "hidden" }}>
-                    <CustomSwitch
+                    {/* <CustomSwitch
                       title="ارسال رایگان"
                       id="discount"
                       onChange={(e) => {
@@ -174,14 +222,20 @@ const index = () => {
                       onChange={(e) => {
                         setIsFellowCitizen(e.target.checked);
                       }}
-                    />
+                    /> */}
 
                     <CustomSwitch
                       title="فقط کالاهای موجود"
                       id="Available_goods"
                     />
                     <CustomSwitch title="آماده ارسال" id="Ready_to_send" />
-                    <CustomSwitch title="تخفیف دارها" id="discounted" />
+                    <CustomSwitch
+                      title="تخفیف دارها"
+                      id="discounted"
+                      onChange={(e) => {
+                        setIsDiscountPercentage(e.target.checked);
+                      }}
+                    />
                   </div>
                 </div>
               </div>

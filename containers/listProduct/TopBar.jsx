@@ -54,7 +54,7 @@ export const TopBar = ({ handel_filterModal }) => {
                 >
                   <a
                     onClick={() => {
-                      sortProductAsc();
+                      sortProductAsc({ ordering: "Price" });
                       setWitchItem("2");
                     }}
                   >
@@ -69,7 +69,7 @@ export const TopBar = ({ handel_filterModal }) => {
                 >
                   <a
                     onClick={() => {
-                      sortProductDes();
+                      sortProductDes({ ordering: "-Price" });
                       setWitchItem("3");
                     }}
                   >
