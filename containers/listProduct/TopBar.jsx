@@ -4,13 +4,9 @@ import { productForList } from "../../public/dataForProduct/data";
 
 export const TopBar = ({ handel_filterModal }) => {
   const [witchItem, setWitchItem] = useState("1");
-  const {
-    listWithFilter,
-    totalcount,
-    sortProductAsc,
-    sortProductDes,
-    sortBestsellingProduct,
-  } = useContext(ContextListProductPage);
+  const { _handel_filters, listWithFilter, totalcount } = useContext(
+    ContextListProductPage
+  );
   return (
     <>
       <div>
@@ -54,7 +50,8 @@ export const TopBar = ({ handel_filterModal }) => {
                 >
                   <a
                     onClick={() => {
-                      sortProductAsc({ ordering: "Price" });
+                      _handel_filters({ ordering: "Price" });
+
                       setWitchItem("2");
                     }}
                   >
@@ -69,7 +66,7 @@ export const TopBar = ({ handel_filterModal }) => {
                 >
                   <a
                     onClick={() => {
-                      sortProductDes({ ordering: "-Price" });
+                      _handel_filters({ ordering: "-Price" });
                       setWitchItem("3");
                     }}
                   >
@@ -83,11 +80,12 @@ export const TopBar = ({ handel_filterModal }) => {
                 >
                   <a
                     onClick={() => {
-                      sortBestsellingProduct();
+                      _handel_filters({ ordering: "-DiscountPercentage" });
+
                       setWitchItem("4");
                     }}
                   >
-                    پرفروش‌ها
+                    بیشترین تخفیف
                   </a>
                 </li>
                 <li
@@ -97,6 +95,7 @@ export const TopBar = ({ handel_filterModal }) => {
                 >
                   <a
                     onClick={() => {
+                      _handel_filters({ ordering: "-DateCreate" });
                       setWitchItem("5");
                     }}
                   >

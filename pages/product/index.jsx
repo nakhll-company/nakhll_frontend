@@ -20,6 +20,7 @@ import { modalFilter } from "../../containers/productLis/modalFilter";
 import MultiRangeSlider from "../../components/custom/customMultiRangeSlider/MultiRangeSlider";
 import { errorMessage, successMessage } from "../../containers/utils/message";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { Loading } from "../../components/custom/Loading/Loading";
 
 //Search:
 //  1- Add search phrase to search params
@@ -39,20 +40,39 @@ import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 //  4- DateCreate or -DateCreate
 
 const index = () => {
-  const _ = require("lodash");
-  const [isFree, setIsFree] = useState(false);
-  const [isFellowCitizen, setIsFellowCitizen] = useState(false);
   const [listProducts, setlistProducts] = useState([]);
   const [listWithFilter, setListWithFilter] = useState([]);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [totalcount, setTotalcount] = useState("");
+  // state for show loading
+  const [isLoading, setIsLoading] = useState(true);
 
   // state for on filter
   const [isDiscountPercentage, setIsDiscountPercentage] = useState(false);
-  const [isreadyForSend, setisreadyForSend] = useState(false)
+  const [isReadyForSend, setIsReadyForSend] = useState(false);
+  const [isAvailableGoods, setIsAvailableGoods] = useState(false);
 
   // state for save all of filters
   const [listActiveFilters, setListActiveFilters] = useState({});
+
+  const _handel_filters = async (witchFilter) => {
+    console.log("witchFilter:>> ", witchFilter);
+    setIsLoading(true);
+    try {
+      let response = await ApiRegister().apiRequest(
+        null,
+        "get",
+        `/api/v1/products/`,
+        true,
+        { ...witchFilter, search: "لباس" }
+      );
+      if (response.status === 200) {
+        setListWithFilter(response.data.results);
+        console.log("show products :>> ", response.data.results);
+        setIsLoading(false);
+      }
+    } catch (e) {}
+  };
 
   useEffect(async () => {
     try {
@@ -70,10 +90,11 @@ const index = () => {
 
       if (response.status === 200) {
         successMessage("داده ها با موفقیت ثبت شده اند");
-        console.log("object sss:>> ", response.data);
+
         setlistProducts(response.data.results);
         setListWithFilter(response.data.results);
         setTotalcount(response.data.total_count);
+        setIsLoading(false);
       } else {
         errorMessage("موجودی کافی نمی باشد.");
         console.log("object :>> ", response);
@@ -85,56 +106,24 @@ const index = () => {
     }
   }, []);
 
-  const _handel_filters = async (witchFilter) => {
-    let response = await ApiRegister().apiRequest(
-      null,
-      "get",
-      `/api/v1/products/`,
-      true,
-      { witchFilter }
-    );
-    setListWithFilter(response.data.results);
-    console.log("response.data.results :>> ", response.data.results);
-  };
+  // START
+  // for filters in sidebar
 
   useEffect(async () => {
-    // let copyList = [...listProducts];
+    setListActiveFilters({
+      search: "لباس",
+      ready: isReadyForSend,
+      available: isAvailableGoods,
+      discounted: isDiscountPercentage,
+    });
+  }, [isAvailableGoods, isReadyForSend, isDiscountPercentage]);
 
-    // if (isFree) {
-    //   copyList = _.filter(copyList, { discount: 0 });
-    //   // setListWithFilter(_.filter(listWithFilter, { discount: 0 }));
-    // }
-
-    // if (isFellowCitizen) {
-    //   copyList = _.filter(copyList, { city: "کرمان" });
-    //   // setListWithFilter(_.filter(listProducts, { city: "کرمان" }))
-    // }
-    if (isDiscountPercentage) {
-      setListActiveFilters({
-        ...listActiveFilters,
-        Ordering: "DiscountPercentage",
-      });
-    }
-  }, [isFree, isFellowCitizen, isDiscountPercentage]);
+  // for filters in sidebar
+  // END
 
   useEffect(() => {
     _handel_filters(listActiveFilters);
   }, [listActiveFilters]);
-
-  const sortProductDes = (witchFilter) => {
-    _handel_filters(witchFilter);
-
-    // setListWithFilter(orderBy(listWithFilter, "current_price", "desc"));
-  };
-
-  const sortProductAsc = (witchFilter) => {
-    _handel_filters(witchFilter);
-
-    // setListWithFilter(orderBy(listWithFilter, "current_price", "asc"));
-  };
-  const sortBestsellingProduct = () => {
-    setListWithFilter(orderBy(listWithFilter, "discount", "desc"));
-  };
 
   const handel_filterModal = () => {
     setIsOpenModal(!isOpenModal);
@@ -145,13 +134,11 @@ const index = () => {
       <ContextListProductPage.Provider
         value={{
           listProducts: listProducts,
-          setIsFree: setIsFree,
-          setIsFellowCitizen: setIsFellowCitizen,
+
           totalcount: totalcount,
-          sortBestsellingProduct: sortBestsellingProduct,
-          sortProductAsc: sortProductAsc,
-          sortProductDes: sortProductDes,
+
           handel_filterModal: handel_filterModal,
+          _handel_filters: _handel_filters,
 
           listWithFilter: listWithFilter,
         }}
@@ -188,11 +175,9 @@ const index = () => {
                 <CustomAccordion title="دسته بندی" item="1">
                   <div>اینجا اطلاعات قرار می گیره</div>
                 </CustomAccordion>
-                <CustomAccordion title="امتیاز محصول" item="2">
-                  <div>اینجا اطلاعات قرار می گیره</div>
-                </CustomAccordion>
+                
 
-                <CustomAccordion title="محدوده قیمت" item="3">
+                <CustomAccordion title="محدوده قیمت" item="2">
                   <div style={{ direction: "ltr" }}>
                     <MultiRangeSlider
                       min={100}
@@ -203,7 +188,7 @@ const index = () => {
                     />
                   </div>
                 </CustomAccordion>
-                <CustomAccordion title="استان و شهر غرفه دار" item="4">
+                <CustomAccordion title="استان و شهر غرفه دار" item="3">
                   <div>اینجا اطلاعات قرار می گیره</div>
                 </CustomAccordion>
 
@@ -227,8 +212,17 @@ const index = () => {
                     <CustomSwitch
                       title="فقط کالاهای موجود"
                       id="Available_goods"
+                      onChange={(e) => {
+                        setIsAvailableGoods(e.target.checked);
+                      }}
                     />
-                    <CustomSwitch title="آماده ارسال" id="Ready_to_send" />
+                    <CustomSwitch
+                      title="آماده ارسال"
+                      id="Ready_to_send"
+                      onChange={(e) => {
+                        setIsReadyForSend(e.target.checked);
+                      }}
+                    />
                     <CustomSwitch
                       title="تخفیف دارها"
                       id="discounted"
@@ -243,25 +237,29 @@ const index = () => {
             <div className="col-12 col-lg-9">
               <TopBar handel_filterModal={handel_filterModal} />
               <div className="mx-auto row">
-                {listWithFilter.map((oneProduct, index) => (
-                  <ProductCard
-                    key={index}
-                    padding={1}
-                    product={{
-                      imageUrl: oneProduct.image_thumbnail_url,
-                      url: oneProduct.image_thumbnail_url,
-                      title: oneProduct.title,
-                      chamberTitle: oneProduct.shop.title,
-                      // chamberUrl: oneProduct.page_url,
+                {isLoading ? (
+                  <Loading />
+                ) : (
+                  listWithFilter.map((oneProduct, index) => (
+                    <ProductCard
+                      key={index}
+                      padding={1}
+                      product={{
+                        imageUrl: oneProduct.image_thumbnail_url,
+                        url: oneProduct.image_thumbnail_url,
+                        title: oneProduct.title,
+                        chamberTitle: oneProduct.shop.title,
+                        // chamberUrl: oneProduct.page_url,
 
-                      discount: oneProduct.discount,
-                      price: oneProduct.price / 10,
-                      discountNumber: oneProduct.old_price / 10,
+                        discount: oneProduct.discount,
+                        price: oneProduct.price / 10,
+                        discountNumber: oneProduct.old_price / 10,
 
-                      city: oneProduct.shop.state,
-                    }}
-                  />
-                ))}
+                        city: oneProduct.shop.state,
+                      }}
+                    />
+                  ))
+                )}
               </div>
             </div>
           </div>
@@ -298,13 +296,6 @@ const index = () => {
                     id="discount_mobile"
                     onChange={(e) => {
                       setIsFree(e.target.checked);
-                    }}
-                  />
-                  <CustomSwitch
-                    title="همشهری"
-                    id="fellowCitizen_mobile"
-                    onChange={(e) => {
-                      setIsFellowCitizen(e.target.checked);
                     }}
                   />
 
