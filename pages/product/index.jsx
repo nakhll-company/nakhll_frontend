@@ -21,6 +21,7 @@ import MultiRangeSlider from "../../components/custom/customMultiRangeSlider/Mul
 import { errorMessage, successMessage } from "../../containers/utils/message";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { Loading } from "../../components/custom/Loading/Loading";
+import CheckboxTree from "react-checkbox-tree";
 
 //Search:
 //  1- Add search phrase to search params
@@ -54,6 +55,10 @@ const index = () => {
 
   // state for save all of filters
   const [listActiveFilters, setListActiveFilters] = useState({});
+
+  // for checkbox tree
+  const [checked, setChecked] = useState([]);
+  const [expand, setExpand] = useState([]);
 
   const _handel_filters = async (witchFilter) => {
     console.log("witchFilter:>> ", witchFilter);
@@ -128,6 +133,16 @@ const index = () => {
   const handel_filterModal = () => {
     setIsOpenModal(!isOpenModal);
   };
+  const nodes = [
+    {
+      value: "mars",
+      label: "Mars",
+      children: [
+        { value: "phobos", label: "Phobos" },
+        { value: "deimos", label: "Deimos" },
+      ],
+    },
+  ];
 
   return (
     <>
@@ -173,9 +188,15 @@ const index = () => {
             <div className="d-none d-lg-block col-lg-3">
               <div id="sidebar">
                 <CustomAccordion title="دسته بندی" item="1">
-                  <div>اینجا اطلاعات قرار می گیره</div>
+                  <CheckboxTree
+                    direction="rtl"
+                    nodes={nodes}
+                    checked={checked}
+                    expanded={expand}
+                    onCheck={(e) => setChecked(e)}
+                    onExpand={(e) => setExpand(e)}
+                  />
                 </CustomAccordion>
-                
 
                 <CustomAccordion title="محدوده قیمت" item="2">
                   <div style={{ direction: "ltr" }}>
