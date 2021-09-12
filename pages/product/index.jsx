@@ -23,6 +23,7 @@ import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { Loading } from "../../components/custom/Loading/Loading";
 import CheckboxTree from "react-checkbox-tree";
 import { BeautyLoading } from "../../components/custom/Loading/beautyLoading/BeautyLoading";
+import { allCites } from "../../components/custom/data/data";
 
 //Search:
 //  1- Add search phrase to search params
@@ -198,7 +199,7 @@ const index = () => {
             <div className="d-none d-lg-block col-lg-3">
               <div id="sidebar">
                 <CustomAccordion title="دسته بندی" item="1">
-                  <CheckboxTree
+                  {/* <CheckboxTree
                     // direction="rtl"
                     icons={{
                       expandClose: (
@@ -207,13 +208,14 @@ const index = () => {
                           style={{ fontSize: "15px" }}
                         />
                       ),
+                      parentClose: <span />,
                     }}
-                    nodes={nodes}
+                    nodes={allCites}
                     checked={checked}
                     expanded={expand}
                     onCheck={(e) => setChecked(e)}
                     onExpand={(e) => setExpand(e)}
-                  />
+                  /> */}
                 </CustomAccordion>
 
                 <CustomAccordion title="محدوده قیمت" item="2">
@@ -228,7 +230,23 @@ const index = () => {
                   </div>
                 </CustomAccordion>
                 <CustomAccordion title="استان و شهر غرفه دار" item="3">
-                  <div>اینجا اطلاعات قرار می گیره</div>
+                  <CheckboxTree
+                    // direction="rtl"
+                    icons={{
+                      expandClose: (
+                        <span
+                          className="fas fa-angle-left"
+                          style={{ fontSize: "15px" }}
+                        />
+                      ),
+                      parentClose: <span />,
+                    }}
+                    nodes={allCites}
+                    checked={checked}
+                    expanded={expand}
+                    onCheck={(e) => setChecked(e)}
+                    onExpand={(e) => setExpand(e)}
+                  />
                 </CustomAccordion>
 
                 <div className="search-body-filter">
