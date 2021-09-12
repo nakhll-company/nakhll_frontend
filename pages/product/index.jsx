@@ -24,6 +24,7 @@ import { Loading } from "../../components/custom/Loading/Loading";
 import CheckboxTree from "react-checkbox-tree";
 import { BeautyLoading } from "../../components/custom/Loading/beautyLoading/BeautyLoading";
 import { allCites } from "../../components/custom/data/data";
+import { market } from "../../components/custom/data/market";
 
 //Search:
 //  1- Add search phrase to search params
@@ -199,7 +200,7 @@ const index = () => {
             <div className="d-none d-lg-block col-lg-3">
               <div id="sidebar">
                 <CustomAccordion title="دسته بندی" item="1">
-                  {/* <CheckboxTree
+                  <CheckboxTree
                     // direction="rtl"
                     icons={{
                       expandClose: (
@@ -210,12 +211,12 @@ const index = () => {
                       ),
                       parentClose: <span />,
                     }}
-                    nodes={allCites}
+                    nodes={market}
                     checked={checked}
                     expanded={expand}
                     onCheck={(e) => setChecked(e)}
                     onExpand={(e) => setExpand(e)}
-                  /> */}
+                  />
                 </CustomAccordion>
 
                 <CustomAccordion title="محدوده قیمت" item="2">

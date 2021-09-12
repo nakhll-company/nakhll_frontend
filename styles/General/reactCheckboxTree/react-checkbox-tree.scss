@@ -20,9 +20,12 @@ $rct-clickable-focus: rgba($rct-icon-color, 0.2) !default;
   ol {
     margin: 0;
     padding-left: 0;
+    padding-right: 5px;
     list-style-type: none;
     ol {
-      padding-left: 24px;
+      // padding-left: 24px;
+      white-space: nowrap;
+      padding-right: 20px;
     }
   }
   button {
