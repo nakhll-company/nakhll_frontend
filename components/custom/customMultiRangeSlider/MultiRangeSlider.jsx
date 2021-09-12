@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import styles from "./multiRangeSlider.module.css";
+import Assistent from "zaravand-assistent-number";
+const _asist = new Assistent();
 
 const MultiRangeSlider = ({ min, max, onChange }) => {
   const [minVal, setMinVal] = useState(min);
@@ -72,8 +74,12 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
       <div className={styles.slider}>
         <div className={styles.slider__track} />
         <div ref={range} className={styles.slider__range} />
-        <div className={styles.slider__left_value}>{minVal}</div>
-        <div className={styles.slider__right_value}>{maxVal}</div>
+        <div className={styles.slider__left_value} style={{ color: "#000" }}>
+          {_asist.PSeparator(minVal)}
+        </div>
+        <div className={styles.slider__right_value} style={{ color: "#000" }}>
+          {_asist.PSeparator(maxVal)}
+        </div>
       </div>
     </div>
   );

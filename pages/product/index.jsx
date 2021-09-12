@@ -63,6 +63,10 @@ const index = () => {
   const [checked, setChecked] = useState([]);
   const [expand, setExpand] = useState([]);
 
+  // stat for Range
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+
   const _handel_filters = async (witchFilter) => {
     console.log("witchFilter:>> ", witchFilter);
     setIsLoading(true);
@@ -222,12 +226,27 @@ const index = () => {
                 <CustomAccordion title="محدوده قیمت" item="2">
                   <div style={{ direction: "ltr" }}>
                     <MultiRangeSlider
-                      min={100}
-                      max={1000}
-                      onChange={({ min, max }) =>
-                        console.log(`min = ${min}, max = ${max}`)
-                      }
+                      min={0}
+                      max={10000000}
+                      onChange={({ min, max }) => {
+                        setMinPrice(min);
+                        setMaxPrice(max);
+                      }}
                     />
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                      <button
+                        className="btn btn-dark "
+                        onClick={() =>
+                          _handel_filters({
+                            min_price: minPrice * 10,
+                            max_price: maxPrice * 10,
+                          })
+                        }
+                      >
+                        {" "}
+                        اعمال فیلتر
+                      </button>
+                    </div>
                   </div>
                 </CustomAccordion>
                 <CustomAccordion title="استان و شهر غرفه دار" item="3">
