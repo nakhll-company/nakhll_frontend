@@ -22,6 +22,7 @@ import { errorMessage, successMessage } from "../../containers/utils/message";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { Loading } from "../../components/custom/Loading/Loading";
 import CheckboxTree from "react-checkbox-tree";
+import { BeautyLoading } from "../../components/custom/Loading/beautyLoading/BeautyLoading";
 
 //Search:
 //  1- Add search phrase to search params
@@ -136,10 +137,19 @@ const index = () => {
   const nodes = [
     {
       value: "mars",
-      label: "Mars",
+      label: "کرمان",
       children: [
-        { value: "phobos", label: "Phobos" },
-        { value: "deimos", label: "Deimos" },
+        {
+          value: "phobos",
+          label: "رفسنجان",
+          children: [
+            { value: "phobosa", label: "رفسنجان" },
+            { value: "phobossa", label: "رفسنجان" },
+            { value: "phoboscc", label: "رفسنجان" },
+            { value: "phobosasa", label: "رفسنجان" },
+          ],
+        },
+        { value: "deimos", label: "زرند" },
       ],
     },
   ];
@@ -189,7 +199,15 @@ const index = () => {
               <div id="sidebar">
                 <CustomAccordion title="دسته بندی" item="1">
                   <CheckboxTree
-                    direction="rtl"
+                    // direction="rtl"
+                    icons={{
+                      expandClose: (
+                        <span
+                          className="fas fa-angle-left"
+                          style={{ fontSize: "15px" }}
+                        />
+                      ),
+                    }}
                     nodes={nodes}
                     checked={checked}
                     expanded={expand}
@@ -259,7 +277,8 @@ const index = () => {
               <TopBar handel_filterModal={handel_filterModal} />
               <div className="mx-auto row">
                 {isLoading ? (
-                  <Loading />
+                  // <Loading />
+                  <BeautyLoading />
                 ) : (
                   listWithFilter.map((oneProduct, index) => (
                     <ProductCard
