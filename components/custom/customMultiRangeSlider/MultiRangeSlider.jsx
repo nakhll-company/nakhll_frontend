@@ -75,10 +75,10 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
         <div className={styles.slider__track} />
         <div ref={range} className={styles.slider__range} />
         <div className={styles.slider__left_value} style={{ color: "#000" }}>
-          {_asist.PSeparator(minVal)}
+          {_asist.PSeparator(minVal * 1000)}
         </div>
         <div className={styles.slider__right_value} style={{ color: "#000" }}>
-          {_asist.PSeparator(maxVal)}
+          {_asist.PSeparator(maxVal * 1000)}
         </div>
       </div>
     </div>

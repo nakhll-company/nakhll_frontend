@@ -63,6 +63,11 @@ const index = () => {
   const [checked, setChecked] = useState([]);
   const [expand, setExpand] = useState([]);
 
+  const [checkedCity, setCheckedCity] = useState([]);
+  const [expandCity, setExpandCity] = useState([]);
+
+  // checkedddddd
+
   // stat for Range
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
@@ -75,7 +80,14 @@ const index = () => {
         "get",
         `/api/v1/products/`,
         true,
-        { ...witchFilter, search: "لباس" }
+        {
+          ...witchFilter,
+          search: "لباس",
+          city: checkedCity,
+          ready: isReadyForSend,
+          available: isAvailableGoods,
+          discounted: isDiscountPercentage,
+        }
       );
       if (response.status === 200) {
         setListWithFilter(response.data.results);
@@ -85,6 +97,10 @@ const index = () => {
       }
     } catch (e) {}
   };
+
+  useEffect(() => {
+    _handel_filters({ city: checkedCity });
+  }, [checkedCity]);
 
   useEffect(async () => {
     try {
@@ -138,25 +154,6 @@ const index = () => {
   const handel_filterModal = () => {
     setIsOpenModal(!isOpenModal);
   };
-  const nodes = [
-    {
-      value: "mars",
-      label: "کرمان",
-      children: [
-        {
-          value: "phobos",
-          label: "رفسنجان",
-          children: [
-            { value: "phobosa", label: "رفسنجان" },
-            { value: "phobossa", label: "رفسنجان" },
-            { value: "phoboscc", label: "رفسنجان" },
-            { value: "phobosasa", label: "رفسنجان" },
-          ],
-        },
-        { value: "deimos", label: "زرند" },
-      ],
-    },
-  ];
 
   return (
     <>
@@ -225,7 +222,7 @@ const index = () => {
                   <div style={{ direction: "ltr" }}>
                     <MultiRangeSlider
                       min={0}
-                      max={10000000}
+                      max={10000}
                       onChange={({ min, max }) => {
                         setMinPrice(min);
                         setMaxPrice(max);
@@ -236,8 +233,8 @@ const index = () => {
                         className="btn btn-dark "
                         onClick={() =>
                           _handel_filters({
-                            min_price: minPrice * 10,
-                            max_price: maxPrice * 10,
+                            min_price: minPrice / 100,
+                            max_price: maxPrice / 100,
                           })
                         }
                       >
@@ -260,10 +257,10 @@ const index = () => {
                       parentClose: <span />,
                     }}
                     nodes={allCites}
-                    checked={checked}
-                    expanded={expand}
-                    onCheck={(e) => setChecked(e)}
-                    onExpand={(e) => setExpand(e)}
+                    checked={checkedCity}
+                    expanded={expandCity}
+                    onCheck={(e) => setCheckedCity(e)}
+                    onExpand={(e) => setExpandCity(e)}
                   />
                 </CustomAccordion>
 
