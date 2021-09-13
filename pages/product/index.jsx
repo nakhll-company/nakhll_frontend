@@ -81,12 +81,12 @@ const index = () => {
         `/api/v1/products/`,
         true,
         {
-          ...witchFilter,
+          ...(witchFilter ? witchFilter : null),
           search: "لباس",
-          city: checkedCity,
           ready: isReadyForSend,
           available: isAvailableGoods,
           discounted: isDiscountPercentage,
+          city: checkedCity.toString(),
         }
       );
       if (response.status === 200) {
@@ -97,10 +97,6 @@ const index = () => {
       }
     } catch (e) {}
   };
-
-  useEffect(() => {
-    _handel_filters({ city: checkedCity });
-  }, [checkedCity]);
 
   useEffect(async () => {
     try {
@@ -136,20 +132,12 @@ const index = () => {
   // for filters in sidebar
 
   useEffect(async () => {
-    setListActiveFilters({
-      search: "لباس",
-      ready: isReadyForSend,
-      available: isAvailableGoods,
-      discounted: isDiscountPercentage,
-    });
-  }, [isAvailableGoods, isReadyForSend, isDiscountPercentage]);
+    _handel_filters();
+    console.log("checkedCity :>> ", checkedCity.toString());
+  }, [isAvailableGoods, isReadyForSend, isDiscountPercentage, checkedCity]);
 
   // for filters in sidebar
   // END
-
-  useEffect(() => {
-    _handel_filters(listActiveFilters);
-  }, [listActiveFilters]);
 
   const handel_filterModal = () => {
     setIsOpenModal(!isOpenModal);
@@ -160,12 +148,9 @@ const index = () => {
       <ContextListProductPage.Provider
         value={{
           listProducts: listProducts,
-
           totalcount: totalcount,
-
           handel_filterModal: handel_filterModal,
           _handel_filters: _handel_filters,
-
           listWithFilter: listWithFilter,
         }}
       >
