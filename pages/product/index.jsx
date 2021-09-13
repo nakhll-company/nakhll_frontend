@@ -68,7 +68,6 @@ const index = () => {
   const [maxPrice, setMaxPrice] = useState("");
 
   const _handel_filters = async (witchFilter) => {
-    console.log("witchFilter:>> ", witchFilter);
     setIsLoading(true);
     try {
       let response = await ApiRegister().apiRequest(
@@ -80,7 +79,8 @@ const index = () => {
       );
       if (response.status === 200) {
         setListWithFilter(response.data.results);
-        console.log("show products :>> ", response.data.results);
+        setTotalcount(response.data.results.length);
+
         setIsLoading(false);
       }
     } catch (e) {}
@@ -109,12 +109,10 @@ const index = () => {
         setIsLoading(false);
       } else {
         errorMessage("موجودی کافی نمی باشد.");
-        console.log("object :>> ", response);
       }
     } catch (e) {
       // const error = e.response.data[0];
       errorMessage("error");
-      console.log("object :>> ", e);
     }
   }, []);
 
@@ -358,9 +356,7 @@ const index = () => {
                 <MultiRangeSlider
                   min={100}
                   max={1000}
-                  onChange={({ min, max }) =>
-                    console.log(`min = ${min}, max = ${max}`)
-                  }
+                  onChange={({ min, max }) => null}
                 />
               </CustomAccordion>
               <CustomAccordion title="استان و شهر غرفه دار" item="4">

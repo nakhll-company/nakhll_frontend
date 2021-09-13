@@ -39,7 +39,13 @@ export const TopBar = ({ handel_filterModal }) => {
                     "1" === witchItem ? " active" : ""
                   } `}
                 >
-                  <a id={"1"} onClick={() => setWitchItem("1")}>
+                  <a
+                    id={"1"}
+                    onClick={() => {
+                      _handel_filters({ ordering: "" });
+                      setWitchItem("1");
+                    }}
+                  >
                     مرتبط‌ترین
                   </a>
                 </li>
