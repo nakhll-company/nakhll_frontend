@@ -25,6 +25,7 @@ import CheckboxTree from "react-checkbox-tree";
 import { BeautyLoading } from "../../components/custom/Loading/beautyLoading/BeautyLoading";
 import { allCites } from "../../components/custom/data/data";
 import { market } from "../../components/custom/data/market";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 //Search:
 //  1- Add search phrase to search params
@@ -66,11 +67,14 @@ const index = () => {
   const [checkedCity, setCheckedCity] = useState([]);
   const [expandCity, setExpandCity] = useState([]);
 
-  // checkedddddd
+  // state for handel pagination in api
+  const [pageApi, setPageApi] = useState(2);
+  const [hasMore, setHasMore] = useState(true);
 
   // stat for Range
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+  const wordSearch = "پ";
 
   const _handel_filters = async (witchFilter) => {
     setIsLoading(true);
@@ -82,50 +86,66 @@ const index = () => {
         true,
         {
           ...(witchFilter ? witchFilter : null),
-          search: "لباس",
+          search: wordSearch,
+
           ready: isReadyForSend,
           available: isAvailableGoods,
           discounted: isDiscountPercentage,
           city: checkedCity.toString(),
+          page_size: 50,
         }
       );
       if (response.status === 200) {
         setListWithFilter(response.data.results);
-        setTotalcount(response.data.results.length);
+        console.log(response.data);
+        if (
+          response.data.results.length === 0 ||
+          response.data.results.length < 50
+        ) {
+          setHasMore(false);
+        }
+
+        setTotalcount(response.data.total_count);
 
         setIsLoading(false);
       }
     } catch (e) {}
   };
 
-  useEffect(async () => {
+  const _handel_call_another_page_api = async (witchFilter) => {
     try {
-      // , page_size: 2
-      let params = { search: "لباس", page_size: 10 };
-      let loadData = null;
-      let dataUrl = `/api/v1/products/`;
       let response = await ApiRegister().apiRequest(
-        loadData,
+        null,
         "get",
-        dataUrl,
+        `/api/v1/products/`,
         true,
-        params
+        {
+          ...(witchFilter ? witchFilter : null),
+          search: wordSearch,
+          page: pageApi,
+          ready: isReadyForSend,
+          available: isAvailableGoods,
+          discounted: isDiscountPercentage,
+          city: checkedCity.toString(),
+          page_size: 50,
+        }
       );
-
       if (response.status === 200) {
-        successMessage("داده ها با موفقیت ثبت شده اند");
+        const ContinueList = response.data.results;
 
-        setlistProducts(response.data.results);
-        setListWithFilter(response.data.results);
-        setTotalcount(response.data.total_count);
-        setIsLoading(false);
-      } else {
-        errorMessage("موجودی کافی نمی باشد.");
+        setListWithFilter([...listWithFilter, ...ContinueList]);
+
+        if (ContinueList.length === 0 || ContinueList.length < 50) {
+          setHasMore(false);
+        }
+
+        setPageApi(pageApi + 1);
       }
-    } catch (e) {
-      // const error = e.response.data[0];
-      errorMessage("error");
-    }
+    } catch (e) {}
+  };
+
+  useEffect(async () => {
+    _handel_filters();
   }, []);
 
   // START
@@ -298,25 +318,54 @@ const index = () => {
                   // <Loading />
                   <BeautyLoading />
                 ) : (
-                  listWithFilter.map((oneProduct, index) => (
-                    <ProductCard
-                      key={index}
-                      padding={1}
-                      product={{
-                        imageUrl: oneProduct.image_thumbnail_url,
-                        url: oneProduct.image_thumbnail_url,
-                        title: oneProduct.title,
-                        chamberTitle: oneProduct.shop.title,
-                        // chamberUrl: oneProduct.page_url,
-
-                        discount: oneProduct.discount,
-                        price: oneProduct.price / 10,
-                        discountNumber: oneProduct.old_price / 10,
-
-                        city: oneProduct.shop.state,
-                      }}
-                    />
-                  ))
+                  // listWithFilter.map((oneProduct, index) => (
+                  //   <ProductCard
+                  //     key={index}
+                  //     padding={1}
+                  //     product={{
+                  //       imageUrl: oneProduct.image_thumbnail_url,
+                  //       url: oneProduct.image_thumbnail_url,
+                  //       title: oneProduct.title,
+                  //       chamberTitle: oneProduct.shop.title,
+                  //       // chamberUrl: oneProduct.page_url,
+                  //       discount: oneProduct.discount,
+                  //       price: oneProduct.price / 10,
+                  //       discountNumber: oneProduct.old_price / 10,
+                  //       city: oneProduct.shop.state,
+                  //     }}
+                  //   />
+                  // ))
+                  <InfiniteScroll
+                    className="mx-auto row"
+                    dataLength={listWithFilter.length} //This is important field to render the next data
+                    next={_handel_call_another_page_api}
+                    hasMore={hasMore}
+                    loader={<h4>کمی صبر...</h4>}
+                    endMessage={
+                      <p style={{ textAlign: "center" }}>
+                        <b>به پایان رسیدیم...</b>
+                      </p>
+                    }
+                  >
+                    {listWithFilter.map((oneProduct, index) => (
+                      <ProductCard
+                        key={index}
+                        padding={1}
+                        product={{
+                          imageUrl: oneProduct.image_thumbnail_url,
+                          url: oneProduct.image_thumbnail_url,
+                          title: oneProduct.title,
+                          chamberTitle:
+                            oneProduct.shop && oneProduct.shop.title,
+                          // chamberUrl: oneProduct.page_url,
+                          discount: oneProduct.discount,
+                          price: oneProduct.price / 10,
+                          discountNumber: oneProduct.old_price / 10,
+                          city: oneProduct.shop && oneProduct.shop.state,
+                        }}
+                      />
+                    ))}
+                  </InfiniteScroll>
                 )}
               </div>
             </div>
