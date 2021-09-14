@@ -51,6 +51,8 @@ const index = () => {
   const [totalcount, setTotalcount] = useState("");
   // state for show loading
   const [isLoading, setIsLoading] = useState(true);
+  // state for ordering
+  const [whichOrdering, setWhichOrdering] = useState("");
 
   // state for on filter
   const [isDiscountPercentage, setIsDiscountPercentage] = useState(false);
@@ -61,8 +63,8 @@ const index = () => {
   const [listActiveFilters, setListActiveFilters] = useState({});
 
   // for checkbox tree
-  const [checked, setChecked] = useState([]);
-  const [expand, setExpand] = useState([]);
+  const [checkedCategory, setCheckedCategory] = useState([]);
+  const [expandCategory, setExpandCategory] = useState([]);
 
   const [checkedCity, setCheckedCity] = useState([]);
   const [expandCity, setExpandCity] = useState([]);
@@ -74,7 +76,7 @@ const index = () => {
   // stat for Range
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
-  const wordSearch = "پ";
+  const wordSearch = "لباس";
 
   const _handel_filters = async (witchFilter) => {
     setIsLoading(true);
@@ -92,6 +94,7 @@ const index = () => {
           available: isAvailableGoods,
           discounted: isDiscountPercentage,
           city: checkedCity.toString(),
+          category: checkedCategory.toString(),
           page_size: 50,
         }
       );
@@ -147,6 +150,9 @@ const index = () => {
   useEffect(async () => {
     _handel_filters();
   }, []);
+  useEffect(() => {
+    console.log("checkedCategory :>> ", checkedCategory);
+  }, [checkedCategory]);
 
   // START
   // for filters in sidebar
@@ -154,7 +160,13 @@ const index = () => {
   useEffect(async () => {
     _handel_filters();
     console.log("checkedCity :>> ", checkedCity.toString());
-  }, [isAvailableGoods, isReadyForSend, isDiscountPercentage, checkedCity]);
+  }, [
+    isAvailableGoods,
+    isReadyForSend,
+    isDiscountPercentage,
+    checkedCity,
+    checkedCategory,
+  ]);
 
   // for filters in sidebar
   // END
@@ -199,30 +211,35 @@ const index = () => {
             crossOrigin="anonymous"
           ></link>
         </Head>
-        <div className="container_N" style={{ backgroundColor: "#00171f" }}>
+        <div className="container_N">
           <div className="row sidebar-parent">
             <div className="d-none d-lg-block col-lg-3">
               <div id="sidebar">
-                <CustomAccordion title="دسته بندی" item="1">
-                  <CheckboxTree
-                    // direction="rtl"
-                    icons={{
-                      expandClose: (
-                        <span
-                          className="fas fa-angle-left"
-                          style={{ fontSize: "15px" }}
-                        />
-                      ),
-                      parentClose: <span />,
-                    }}
-                    nodes={market}
-                    checked={checked}
-                    expanded={expand}
-                    onCheck={(e) => setChecked(e)}
-                    onExpand={(e) => setExpand(e)}
-                  />
-                </CustomAccordion>
-
+                <div className="search-body-filter">
+                  <div className="modal-body" style={{ msOverflowX: "hidden" }}>
+                    <CustomSwitch
+                      title="فقط کالاهای موجود"
+                      id="Available_goods"
+                      onChange={(e) => {
+                        setIsAvailableGoods(e.target.checked);
+                      }}
+                    />
+                    <CustomSwitch
+                      title="آماده ارسال"
+                      id="Ready_to_send"
+                      onChange={(e) => {
+                        setIsReadyForSend(e.target.checked);
+                      }}
+                    />
+                    <CustomSwitch
+                      title="تخفیف دارها"
+                      id="discounted"
+                      onChange={(e) => {
+                        setIsDiscountPercentage(e.target.checked);
+                      }}
+                    />
+                  </div>
+                </div>
                 <CustomAccordion title="محدوده قیمت" item="2">
                   <div style={{ direction: "ltr" }}>
                     <MultiRangeSlider
@@ -249,6 +266,25 @@ const index = () => {
                     </div>
                   </div>
                 </CustomAccordion>
+                <CustomAccordion title="دسته بندی" item="1">
+                  <CheckboxTree
+                    icons={{
+                      expandClose: (
+                        <span
+                          className="fas fa-angle-left"
+                          style={{ fontSize: "15px" }}
+                        />
+                      ),
+                      parentClose: <span />,
+                    }}
+                    nodes={market}
+                    checked={checkedCategory}
+                    expanded={expandCategory}
+                    onCheck={(e) => setCheckedCategory(e)}
+                    onExpand={(e) => setExpandCategory(e)}
+                  />
+                </CustomAccordion>
+
                 <CustomAccordion title="استان و شهر غرفه دار" item="3">
                   <CheckboxTree
                     // direction="rtl"
@@ -268,47 +304,6 @@ const index = () => {
                     onExpand={(e) => setExpandCity(e)}
                   />
                 </CustomAccordion>
-
-                <div className="search-body-filter">
-                  <div className="modal-body" style={{ msOverflowX: "hidden" }}>
-                    {/* <CustomSwitch
-                      title="ارسال رایگان"
-                      id="discount"
-                      onChange={(e) => {
-                        setIsFree(e.target.checked);
-                      }}
-                    />
-                    <CustomSwitch
-                      title="همشهری"
-                      id="fellowCitizen"
-                      onChange={(e) => {
-                        setIsFellowCitizen(e.target.checked);
-                      }}
-                    /> */}
-
-                    <CustomSwitch
-                      title="فقط کالاهای موجود"
-                      id="Available_goods"
-                      onChange={(e) => {
-                        setIsAvailableGoods(e.target.checked);
-                      }}
-                    />
-                    <CustomSwitch
-                      title="آماده ارسال"
-                      id="Ready_to_send"
-                      onChange={(e) => {
-                        setIsReadyForSend(e.target.checked);
-                      }}
-                    />
-                    <CustomSwitch
-                      title="تخفیف دارها"
-                      id="discounted"
-                      onChange={(e) => {
-                        setIsDiscountPercentage(e.target.checked);
-                      }}
-                    />
-                  </div>
-                </div>
               </div>
             </div>{" "}
             <div className="col-12 col-lg-9">

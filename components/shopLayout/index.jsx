@@ -17,12 +17,7 @@ function ShopLayout({ children }) {
         />
       </header> */}
       <Header />
-      <main
-        style={{ backgroundColor: "#00171f" }}
-        className={styles.mainContent}
-      >
-        {children}
-      </main>
+      <main className={styles.mainContent}>{children}</main>
       <Footer />
       {/* <footer className={styles.footerWrapper}>
         <div className={styles.footerWrapper_content}>
