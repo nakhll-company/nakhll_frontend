@@ -26,6 +26,7 @@ import { BeautyLoading } from "../../components/custom/Loading/beautyLoading/Bea
 import { allCites } from "../../components/custom/data/data";
 import { market } from "../../components/custom/data/market";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { WoLoading } from "../../components/custom/Loading/woLoading/WoLoading";
 
 //Search:
 //  1- Add search phrase to search params
@@ -317,8 +318,10 @@ const index = () => {
               <div className="mx-auto row">
                 {isLoading ? (
                   // <Loading />
-                  <BeautyLoading />
+                  // isLoading
+                  <WoLoading />
                 ) : (
+                  // <BeautyLoading />
                   // listWithFilter.map((oneProduct, index) => (
                   //   <ProductCard
                   //     key={index}
