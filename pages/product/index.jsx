@@ -2,18 +2,10 @@ import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import ProductCard from "../../components/ProductCart/ProductCard";
 import styles from "../../styles/pages/testProduct/product.module.scss";
-import { productForList } from "../../public/dataForProduct/data";
-import { orderBy } from "lodash";
-import Link from "next/link";
 import { useRouter } from "next/router";
-
-import { Html } from "next/document";
 import CustomAccordion from "../../components/custom/customAccordion";
 import CustomSwitch from "../../components/custom/customSwitch";
-import { CustomCard } from "../../components/custom/customCard";
-
 import ContextListProductPage from "../../containers/listProduct/Context/context";
-import { Bigger } from "../../components/custom/kh/biggerProduct/Bigger";
 import { TopBar } from "../../containers/listProduct/TopBar";
 import MenuMobile from "../../components/layout/MenuMobile";
 import { modalFilter } from "../../containers/productLis/modalFilter";
@@ -28,24 +20,9 @@ import { market } from "../../components/custom/data/market";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { WoLoading } from "../../components/custom/Loading/woLoading/WoLoading";
 
-//Search:
-//  1- Add search phrase to search params
+const product = () => {
+  const wordSearch = "ل";
 
-//Filter:
-//  1- min_price= [Number]
-//  2- max_price= [Number]
-//  3- ready= [Boolean]
-//  4- available= [Boolean]
-//  5- category= [ID]
-//  6- city= [ID]
-
-//Ordering:
-//  1- Title or -Title
-//  2- Price or -Price
-//  3- DiscountPercentage or -DiscountPercentage
-//  4- DateCreate or -DateCreate
-
-const index = () => {
   const [listProducts, setlistProducts] = useState([]);
   const [listWithFilter, setListWithFilter] = useState([]);
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -77,9 +54,9 @@ const index = () => {
   // stat for Range
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
-  const wordSearch = "لباس";
 
   const _handel_filters = async (witchFilter) => {
+    setHasMore(true);
     setIsLoading(true);
     try {
       let response = await ApiRegister().apiRequest(
@@ -101,7 +78,7 @@ const index = () => {
       );
       if (response.status === 200) {
         setListWithFilter(response.data.results);
-        console.log(response.data);
+
         if (
           response.data.results.length === 0 ||
           response.data.results.length < 50
@@ -153,9 +130,6 @@ const index = () => {
   useEffect(async () => {
     _handel_filters();
   }, []);
-  useEffect(() => {
-    console.log("checkedCategory :>> ", checkedCategory);
-  }, [checkedCategory]);
 
   // START
   // for filters in sidebar
@@ -321,24 +295,6 @@ const index = () => {
                   // isLoading
                   <WoLoading />
                 ) : (
-                  // <BeautyLoading />
-                  // listWithFilter.map((oneProduct, index) => (
-                  //   <ProductCard
-                  //     key={index}
-                  //     padding={1}
-                  //     product={{
-                  //       imageUrl: oneProduct.image_thumbnail_url,
-                  //       url: oneProduct.image_thumbnail_url,
-                  //       title: oneProduct.title,
-                  //       chamberTitle: oneProduct.shop.title,
-                  //       // chamberUrl: oneProduct.page_url,
-                  //       discount: oneProduct.discount,
-                  //       price: oneProduct.price / 10,
-                  //       discountNumber: oneProduct.old_price / 10,
-                  //       city: oneProduct.shop.state,
-                  //     }}
-                  //   />
-                  // ))
                   <InfiniteScroll
                     className="mx-auto row"
                     dataLength={listWithFilter.length} //This is important field to render the next data
@@ -507,4 +463,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default product;
