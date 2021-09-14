@@ -22,6 +22,20 @@
     box-shadow: -8px -8px 15px rgba(255, 255, 255, 1), 8px 8px 15px rgba(0, 0, 0, 0.2), inset 3px 3px 5px rgba(0, 0, 0, 0.1), inset -1px -1px 5px rgba(255, 255, 255, 1);
 }
 
+@media (max-width: 536px) {
+    .loader span {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media (max-width: 376px) {
+    .loader span {
+        width: 20px;
+        height: 20px;
+    }
+}
+
 .loader span::before {
     content: "";
     position: absolute;

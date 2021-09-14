@@ -125,11 +125,13 @@ const index = () => {
         {
           ...(witchFilter ? witchFilter : null),
           search: wordSearch,
+          ordering: whichOrdering,
           page: pageApi,
           ready: isReadyForSend,
           available: isAvailableGoods,
           discounted: isDiscountPercentage,
           city: checkedCity.toString(),
+          category: checkedCategory.toString(),
           page_size: 50,
         }
       );
@@ -375,42 +377,95 @@ const index = () => {
         {isOpenModal && (
           <div className="modal_filter_products d-none d-lg-block ">
             <div id="sidebar">
-              <CustomAccordion title="دسته بندی" item="1">
-                <div>اینجا اطلاعات قرار می گیره</div>
-              </CustomAccordion>
-              <CustomAccordion title="امتیاز محصول" item="2">
-                <div>اینجا اطلاعات قرار می گیره</div>
-              </CustomAccordion>
-
-              <CustomAccordion title="محدوده قیمت" item="3">
-                <MultiRangeSlider
-                  min={100}
-                  max={1000}
-                  onChange={({ min, max }) => null}
-                />
-              </CustomAccordion>
-              <CustomAccordion title="استان و شهر غرفه دار" item="4">
-                <div>اینجا اطلاعات قرار می گیره</div>
-              </CustomAccordion>
-
               <div className="search-body-filter">
                 <div className="modal-body" style={{ msOverflowX: "hidden" }}>
                   <CustomSwitch
-                    title="ارسال رایگان"
-                    id="discount_mobile"
-                    onChange={(e) => {
-                      setIsFree(e.target.checked);
-                    }}
-                  />
-
-                  <CustomSwitch
                     title="فقط کالاهای موجود"
                     id="Available_goods_mobile"
+                    onChange={(e) => {
+                      setIsAvailableGoods(e.target.checked);
+                    }}
                   />
-                  <CustomSwitch title="آماده ارسال" id="Ready_to_send_mobile" />
-                  <CustomSwitch title="تخفیف دارها" id="discounted_mobile" />
+                  <CustomSwitch
+                    title="آماده ارسال"
+                    id="Ready_to_send_mobile"
+                    onChange={(e) => {
+                      setIsReadyForSend(e.target.checked);
+                    }}
+                  />
+                  <CustomSwitch
+                    title="تخفیف دارها"
+                    id="discounted_mobile"
+                    onChange={(e) => {
+                      setIsDiscountPercentage(e.target.checked);
+                    }}
+                  />
                 </div>
               </div>
+              <CustomAccordion title="محدوده قیمت" item="2mobile">
+                <div style={{ direction: "ltr" }}>
+                  <MultiRangeSlider
+                    min={0}
+                    max={10000}
+                    onChange={({ min, max }) => {
+                      setMinPrice(min);
+                      setMaxPrice(max);
+                    }}
+                  />
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <button
+                      className="btn btn-dark "
+                      onClick={() =>
+                        _handel_filters({
+                          min_price: minPrice / 100,
+                          max_price: maxPrice / 100,
+                        })
+                      }
+                    >
+                      {" "}
+                      اعمال فیلتر
+                    </button>
+                  </div>
+                </div>
+              </CustomAccordion>
+              <CustomAccordion title="دسته بندی" item="1mobile">
+                <CheckboxTree
+                  icons={{
+                    expandClose: (
+                      <span
+                        className="fas fa-angle-left"
+                        style={{ fontSize: "15px" }}
+                      />
+                    ),
+                    parentClose: <span />,
+                  }}
+                  nodes={market}
+                  checked={checkedCategory}
+                  expanded={expandCategory}
+                  onCheck={(e) => setCheckedCategory(e)}
+                  onExpand={(e) => setExpandCategory(e)}
+                />
+              </CustomAccordion>
+
+              <CustomAccordion title="استان و شهر غرفه دار" item="3mobile">
+                <CheckboxTree
+                  // direction="rtl"
+                  icons={{
+                    expandClose: (
+                      <span
+                        className="fas fa-angle-left"
+                        style={{ fontSize: "15px" }}
+                      />
+                    ),
+                    parentClose: <span />,
+                  }}
+                  nodes={allCites}
+                  checked={checkedCity}
+                  expanded={expandCity}
+                  onCheck={(e) => setCheckedCity(e)}
+                  onExpand={(e) => setExpandCity(e)}
+                />
+              </CustomAccordion>
             </div>
             <div
               style={{
