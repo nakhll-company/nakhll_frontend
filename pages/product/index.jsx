@@ -89,7 +89,7 @@ const index = () => {
         {
           ...(witchFilter ? witchFilter : null),
           search: wordSearch,
-
+          ordering: whichOrdering,
           ready: isReadyForSend,
           available: isAvailableGoods,
           discounted: isDiscountPercentage,
@@ -166,6 +166,7 @@ const index = () => {
     isDiscountPercentage,
     checkedCity,
     checkedCategory,
+    whichOrdering,
   ]);
 
   // for filters in sidebar
@@ -307,7 +308,10 @@ const index = () => {
               </div>
             </div>{" "}
             <div className="col-12 col-lg-9">
-              <TopBar handel_filterModal={handel_filterModal} />
+              <TopBar
+                handel_filterModal={handel_filterModal}
+                setWhichOrdering={setWhichOrdering}
+              />
               <div className="mx-auto row">
                 {isLoading ? (
                   // <Loading />
@@ -439,6 +443,7 @@ const index = () => {
 
         {/* MenuMobile */}
         <MenuMobile />
+        {/* MenuMobile */}
       </ContextListProductPage.Provider>
     </>
   );

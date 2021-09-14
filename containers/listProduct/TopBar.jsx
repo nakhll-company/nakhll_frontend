@@ -2,11 +2,9 @@ import React, { useState, useContext } from "react";
 import ContextListProductPage from "./Context/context";
 import { productForList } from "../../public/dataForProduct/data";
 
-export const TopBar = ({ handel_filterModal }) => {
+export const TopBar = ({ handel_filterModal, setWhichOrdering }) => {
   const [witchItem, setWitchItem] = useState("1");
-  const { _handel_filters, listWithFilter, totalcount } = useContext(
-    ContextListProductPage
-  );
+  const { totalcount } = useContext(ContextListProductPage);
   return (
     <>
       <div>
@@ -42,7 +40,7 @@ export const TopBar = ({ handel_filterModal }) => {
                   <a
                     id={"1"}
                     onClick={() => {
-                      _handel_filters({ ordering: "" });
+                      setWhichOrdering("");
                       setWitchItem("1");
                     }}
                   >
@@ -56,7 +54,7 @@ export const TopBar = ({ handel_filterModal }) => {
                 >
                   <a
                     onClick={() => {
-                      _handel_filters({ ordering: "Price" });
+                      setWhichOrdering("Price");
 
                       setWitchItem("2");
                     }}
@@ -72,7 +70,8 @@ export const TopBar = ({ handel_filterModal }) => {
                 >
                   <a
                     onClick={() => {
-                      _handel_filters({ ordering: "-Price" });
+                      setWhichOrdering("-Price");
+
                       setWitchItem("3");
                     }}
                   >
@@ -86,8 +85,7 @@ export const TopBar = ({ handel_filterModal }) => {
                 >
                   <a
                     onClick={() => {
-                      _handel_filters({ ordering: "-DiscountPercentage" });
-
+                      setWhichOrdering("-DiscountPercentage");
                       setWitchItem("4");
                     }}
                   >
@@ -101,7 +99,7 @@ export const TopBar = ({ handel_filterModal }) => {
                 >
                   <a
                     onClick={() => {
-                      _handel_filters({ ordering: "-DateCreate" });
+                      setWhichOrdering("-DateCreate");
                       setWitchItem("5");
                     }}
                   >
