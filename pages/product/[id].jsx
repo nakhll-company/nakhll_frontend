@@ -21,7 +21,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { WoLoading } from "../../components/custom/Loading/woLoading/WoLoading";
 
 const fetchData = async (id) => {
-  
   try {
     let response = await ApiRegister().apiRequest(
       null,
@@ -41,8 +40,6 @@ const fetchData = async (id) => {
 };
 
 const product = ({ dataFirst, searchWord }) => {
-  
-
   const [listProducts, setlistProducts] = useState([]);
   const [listWithFilter, setListWithFilter] = useState([]);
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -74,6 +71,7 @@ const product = ({ dataFirst, searchWord }) => {
   // stat for Range
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+  const [clickOnRange, setClickOnRange] = useState(1);
 
   const _handel_filters = async (witchFilter) => {
     setHasMore(true);
@@ -94,6 +92,8 @@ const product = ({ dataFirst, searchWord }) => {
           city: checkedCity.toString(),
           category: checkedCategory.toString(),
           page_size: 50,
+          min_price: minPrice,
+          max_price: maxPrice,
         }
       );
       if (response.status === 200) {
@@ -133,6 +133,8 @@ const product = ({ dataFirst, searchWord }) => {
           city: checkedCity.toString(),
           category: checkedCategory.toString(),
           page_size: 50,
+          min_price: minPrice,
+          max_price: maxPrice,
         }
       );
       if (response.status === 200) {
@@ -165,6 +167,7 @@ const product = ({ dataFirst, searchWord }) => {
     checkedCity,
     checkedCategory,
     whichOrdering,
+    clickOnRange,
   ]);
 
   // for filters in sidebar
@@ -245,19 +248,15 @@ const product = ({ dataFirst, searchWord }) => {
                       min={0}
                       max={10000}
                       onChange={({ min, max }) => {
-                        setMinPrice(min);
-                        setMaxPrice(max);
+                        console.log("min :>> ", min);
+                        setMinPrice(min * 10000);
+                        setMaxPrice(max * 10000);
                       }}
                     />
                     <div style={{ display: "flex", justifyContent: "center" }}>
                       <button
                         className="btn btn-dark "
-                        onClick={() =>
-                          _handel_filters({
-                            min_price: minPrice / 100,
-                            max_price: maxPrice / 100,
-                          })
-                        }
+                        onClick={() => setClickOnRange(clickOnRange + 1)}
                       >
                         {" "}
                         اعمال فیلتر
@@ -390,19 +389,14 @@ const product = ({ dataFirst, searchWord }) => {
                     min={0}
                     max={10000}
                     onChange={({ min, max }) => {
-                      setMinPrice(min);
-                      setMaxPrice(max);
+                      setMinPrice(min * 10000);
+                      setMaxPrice(max * 10000);
                     }}
                   />
                   <div style={{ display: "flex", justifyContent: "center" }}>
                     <button
                       className="btn btn-dark "
-                      onClick={() =>
-                        _handel_filters({
-                          min_price: minPrice / 100,
-                          max_price: maxPrice / 100,
-                        })
-                      }
+                      onClick={() => setClickOnRange(clickOnRange + 1)}
                     >
                       {" "}
                       اعمال فیلتر
