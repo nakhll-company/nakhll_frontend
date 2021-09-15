@@ -13,6 +13,13 @@
     align-items: center;
 }
 
+@media (max-width: 768px) {
+    .parent_loading {
+        width: 150px;
+        height: 150px;
+    }
+}
+
 .parent_loading span {
     position: absolute;
     top: 0;

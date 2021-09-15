@@ -20,15 +20,35 @@ import { market } from "../../components/custom/data/market";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { WoLoading } from "../../components/custom/Loading/woLoading/WoLoading";
 
-const product = () => {
-  const wordSearch = "ل";
+const fetchData = async (id) => {
+  
+  try {
+    let response = await ApiRegister().apiRequest(
+      null,
+      "get",
+      `/api/v1/products/`,
+      true,
+      {
+        search: id,
+        page_size: 50,
+      }
+    );
+
+    if (response.status === 200) {
+      return response.data;
+    }
+  } catch (e) {}
+};
+
+const product = ({ dataFirst, searchWord }) => {
+  
 
   const [listProducts, setlistProducts] = useState([]);
   const [listWithFilter, setListWithFilter] = useState([]);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [totalcount, setTotalcount] = useState("");
   // state for show loading
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   // state for ordering
   const [whichOrdering, setWhichOrdering] = useState("");
 
@@ -49,7 +69,7 @@ const product = () => {
 
   // state for handel pagination in api
   const [pageApi, setPageApi] = useState(2);
-  const [hasMore, setHasMore] = useState(true);
+  const [hasMore, setHasMore] = useState(false);
 
   // stat for Range
   const [minPrice, setMinPrice] = useState("");
@@ -66,7 +86,7 @@ const product = () => {
         true,
         {
           ...(witchFilter ? witchFilter : null),
-          search: wordSearch,
+          search: searchWord,
           ordering: whichOrdering,
           ready: isReadyForSend,
           available: isAvailableGoods,
@@ -90,7 +110,9 @@ const product = () => {
 
         setIsLoading(false);
       }
-    } catch (e) {}
+    } catch (e) {
+      setIsLoading(false);
+    }
   };
 
   const _handel_call_another_page_api = async (witchFilter) => {
@@ -102,7 +124,7 @@ const product = () => {
         true,
         {
           ...(witchFilter ? witchFilter : null),
-          search: wordSearch,
+          search: searchWord,
           ordering: whichOrdering,
           page: pageApi,
           ready: isReadyForSend,
@@ -127,16 +149,15 @@ const product = () => {
     } catch (e) {}
   };
 
-  useEffect(async () => {
-    _handel_filters();
-  }, []);
+  // useEffect(async () => {
+  //   _handel_filters();
+  // }, []);
 
   // START
   // for filters in sidebar
 
   useEffect(async () => {
     _handel_filters();
-    console.log("checkedCity :>> ", checkedCity.toString());
   }, [
     isAvailableGoods,
     isReadyForSend,
@@ -292,9 +313,11 @@ const product = () => {
               <div className="mx-auto row">
                 {isLoading ? (
                   // <Loading />
-                  // isLoading
+                  // <BeautyLoading />
                   <WoLoading />
                 ) : (
+                  // isLoading
+                  // <WoLoading />
                   <InfiniteScroll
                     className="mx-auto row"
                     dataLength={listWithFilter.length} //This is important field to render the next data
@@ -464,3 +487,15 @@ const product = () => {
 };
 
 export default product;
+
+// function server side
+export async function getServerSideProps(context) {
+  const dataFirst = await fetchData(context.params.id);
+
+  return {
+    props: {
+      dataFirst: dataFirst || null,
+      searchWord: context.params.id || null,
+    },
+  };
+}
