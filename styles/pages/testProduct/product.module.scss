@@ -655,12 +655,12 @@
 }
 
 .custom-switch__input:checked+.custom-switch__label {
-    background-color: rgba(113, 220, 199, 0.501961);
+    background-color: rgba(28, 236, 63, 0.502);
 }
 
 .custom-switch__input:checked+.custom-switch__label .circle {
     left: 16px;
-    background-color: var(--teal);
+    background-color: rgb(56, 245, 9);
 }
 
 .discount-modal .modal-body {
@@ -797,7 +797,7 @@
     position: fixed;
     display: none;
     top: 0;
-    background-color: #ffffff;
+    background-color: #fff;
     z-index: 999;
     overflow-y: auto;
 }

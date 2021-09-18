@@ -27,9 +27,25 @@ export const TopBar = ({ handel_filterModal, setWhichOrdering }) => {
           </div>{" "}
           <div className="search-sorts mb-0 ">
             <div className="d-flex align-items-center">
-              <div className="title">
-                <i className="bi bi-sort"></i>{" "}
-                <span className="d-none d-lg-block"> مرتب‌سازی براساس: </span>
+              <div
+                className="title"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  color: "rgb(138 137 137)",
+                }}
+              >
+                <i
+                  className="fas fa-sort-amount-down-alt"
+                  style={{ fontSize: "18px" }}
+                ></i>{" "}
+                <span
+                  className="d-none d-lg-block"
+                  style={{ color: "rgb(138 137 137)" }}
+                >
+                  {" "}
+                  مرتب‌سازی براساس :{" "}
+                </span>
               </div>{" "}
               <ul>
                 <li
