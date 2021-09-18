@@ -54,9 +54,6 @@ const product = ({ dataFirst, searchWord }) => {
   const [isReadyForSend, setIsReadyForSend] = useState(false);
   const [isAvailableGoods, setIsAvailableGoods] = useState(false);
 
-  // state for save all of filters
-  const [listActiveFilters, setListActiveFilters] = useState({});
-
   // for checkbox tree
   const [checkedCategory, setCheckedCategory] = useState([]);
   const [expandCategory, setExpandCategory] = useState([]);
@@ -151,10 +148,6 @@ const product = ({ dataFirst, searchWord }) => {
     } catch (e) {}
   };
 
-  // useEffect(async () => {
-  //   _handel_filters();
-  // }, []);
-
   // START
   // for filters in sidebar
 
@@ -217,6 +210,71 @@ const product = ({ dataFirst, searchWord }) => {
           <div className="row sidebar-parent">
             <div className="d-none d-lg-block col-lg-3">
               <div id="sidebar">
+                <CustomAccordion title="دسته بندی" item="1">
+                  <CheckboxTree
+                    icons={{
+                      expandClose: (
+                        <span
+                          className="fas fa-angle-left"
+                          style={{ fontSize: "15px" }}
+                        />
+                      ),
+                      parentClose: <span />,
+                    }}
+                    nodes={market}
+                    checked={checkedCategory}
+                    expanded={expandCategory}
+                    onCheck={(e) => setCheckedCategory(e)}
+                    onExpand={(e) => setExpandCategory(e)}
+                  />
+                </CustomAccordion>
+                <CustomAccordion title="محدوده قیمت" item="2" close={true}>
+                  <div style={{ direction: "ltr" }}>
+                    <MultiRangeSlider
+                      min={0}
+                      max={10000}
+                      onChange={({ min, max }) => {
+                        console.log("min :>> ", min);
+                        setMinPrice(min * 10000);
+                        setMaxPrice(max * 10000);
+                      }}
+                    />
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                      <button
+                        className="btn btn-dark "
+                        onClick={() => setClickOnRange(clickOnRange + 1)}
+                      >
+                        {" "}
+                        اعمال فیلتر
+                      </button>
+                    </div>
+                  </div>
+                </CustomAccordion>
+
+                <CustomAccordion
+                  title="استان و شهر غرفه دار"
+                  item="3"
+                  close={true}
+                >
+                  <CheckboxTree
+                    // direction="rtl"
+                    icons={{
+                      expandClose: (
+                        <span
+                          className="fas fa-angle-left"
+                          style={{ fontSize: "15px" }}
+                        />
+                      ),
+                      parentClose: <span />,
+                    }}
+                    nodes={allCites}
+                    checked={checkedCity}
+                    expanded={expandCity}
+                    onCheck={(e) => setCheckedCity(e)}
+                    onExpand={(e) => setExpandCity(e)}
+                  />
+                </CustomAccordion>
+
                 <div className="search-body-filter">
                   <div className="modal-body" style={{ msOverflowX: "hidden" }}>
                     <CustomSwitch
@@ -242,66 +300,6 @@ const product = ({ dataFirst, searchWord }) => {
                     />
                   </div>
                 </div>
-                <CustomAccordion title="محدوده قیمت" item="2">
-                  <div style={{ direction: "ltr" }}>
-                    <MultiRangeSlider
-                      min={0}
-                      max={10000}
-                      onChange={({ min, max }) => {
-                        console.log("min :>> ", min);
-                        setMinPrice(min * 10000);
-                        setMaxPrice(max * 10000);
-                      }}
-                    />
-                    <div style={{ display: "flex", justifyContent: "center" }}>
-                      <button
-                        className="btn btn-dark "
-                        onClick={() => setClickOnRange(clickOnRange + 1)}
-                      >
-                        {" "}
-                        اعمال فیلتر
-                      </button>
-                    </div>
-                  </div>
-                </CustomAccordion>
-                <CustomAccordion title="دسته بندی" item="1">
-                  <CheckboxTree
-                    icons={{
-                      expandClose: (
-                        <span
-                          className="fas fa-angle-left"
-                          style={{ fontSize: "15px" }}
-                        />
-                      ),
-                      parentClose: <span />,
-                    }}
-                    nodes={market}
-                    checked={checkedCategory}
-                    expanded={expandCategory}
-                    onCheck={(e) => setCheckedCategory(e)}
-                    onExpand={(e) => setExpandCategory(e)}
-                  />
-                </CustomAccordion>
-
-                <CustomAccordion title="استان و شهر غرفه دار" item="3">
-                  <CheckboxTree
-                    // direction="rtl"
-                    icons={{
-                      expandClose: (
-                        <span
-                          className="fas fa-angle-left"
-                          style={{ fontSize: "15px" }}
-                        />
-                      ),
-                      parentClose: <span />,
-                    }}
-                    nodes={allCites}
-                    checked={checkedCity}
-                    expanded={expandCity}
-                    onCheck={(e) => setCheckedCity(e)}
-                    onExpand={(e) => setExpandCity(e)}
-                  />
-                </CustomAccordion>
               </div>
             </div>{" "}
             <div className="col-12 col-lg-9">

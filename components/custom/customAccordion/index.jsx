@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./customAccordion.module.scss";
-export const CustomAccordion = ({ children, title, item }) => {
+export const CustomAccordion = ({ children, title, item,close }) => {
   return (
     <div
       className="accordion"
@@ -37,7 +37,7 @@ export const CustomAccordion = ({ children, title, item }) => {
         </h2>
         <div
           id={`panelsStayOpen-${item}`}
-          className="accordion-collapse collapse show"
+          className={`accordion-collapse collapse ${close ? " " : "show"}`}
           aria-labelledby={`#panelsStayOpen-${item}`}
         >
           <div className="accordion-body ">{children}</div>
