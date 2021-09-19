@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { useRouter } from "next/router";
 import Cropper from "react-easy-crop";
 import { useForm } from "react-hook-form";
+import CheckboxTree from "react-checkbox-tree";
 
 import Assistent from "zaravand-assistent-number";
 import { useCallback, useEffect, useState } from "react";
@@ -16,6 +17,8 @@ import { mapState } from "../../../../containers/product/methods/mapState";
 // styles
 import styles from "../../../../styles/pages/product/create.module.scss";
 import { errorMessage } from "../../../../containers/utils/message";
+
+import { allCites } from "../../../../components/custom/data/data";
 /**
  * component create product
  * @param {string} activeHojreh => it has slug of product
@@ -147,6 +150,79 @@ const CreateProduct = ({ activeHojreh }) => {
   let [sepratorePrice, setSepratorePrice] = useState("");
   let [stringOldPrice, setStringOldPrice] = useState("");
   let [sepratoreOldPrice, setSepratoreOldPrice] = useState("");
+
+  // STATE FOR SHOW MODAL
+  const [showModal, setShowModal] = useState(false);
+
+  // ############################################
+
+  // START THREE
+
+  // ###########################################
+
+  // for checkbox *tree
+
+  const [checkedCity, setCheckedCity] = useState([]);
+  const [expandCity, setExpandCity] = useState([]);
+  const [checkedCityWithLabel, setCheckedCityWithLabel] = useState([]);
+  const [allOfCity, setAllOfCity] = useState([]);
+
+  // function for add state and label
+
+  const _handel_Add_state = (target) => {
+    if (target.checked) {
+      setCheckedCityWithLabel([...checkedCityWithLabel, target]);
+    } else {
+      const copyState = [...checkedCityWithLabel];
+      const newState = copyState.filter((e) => e.value !== target.value);
+      setCheckedCityWithLabel(newState);
+    }
+  };
+
+  // function for Delete The State
+
+  const _handel_Delete_State = (id) => {
+    setCheckedCityWithLabel;
+    const copyState = [...allOfCity];
+    const ArrayDeleteState = copyState.filter((e) => e.value !== id);
+
+    const stateWithoutLabel = ArrayDeleteState.map((item) => item.value);
+
+    setAllOfCity(ArrayDeleteState);
+    setCheckedCity(stateWithoutLabel);
+
+    // setCheckedCity(ArrayDeleteState);
+  };
+
+  const _handel_for_show_all_city = () => {
+    if (checkedCityWithLabel.length < 1) {
+      setAllOfCity([]);
+    }
+    checkedCityWithLabel.map((check) => {
+      if (!check.isChild) {
+        let forSaveCity = [];
+        check.children.map((BigCity) => {
+          BigCity.children.map(
+            (city) => (forSaveCity = [...forSaveCity, city])
+          );
+        });
+        setAllOfCity(forSaveCity);
+      }
+    });
+  };
+
+  useEffect(() => {
+    console.log("object :>> ", checkedCityWithLabel);
+    console.log("object :>> ", checkedCity);
+    _handel_for_show_all_city();
+  }, [checkedCityWithLabel]);
+
+  // ############################################
+
+  // END THREE
+
+  // ###########################################
+
   const router = useRouter();
   const { id } = router.query;
   // copy product
@@ -174,6 +250,7 @@ const CreateProduct = ({ activeHojreh }) => {
       setIsLoad(true);
     }
   };
+
   // show success page
   if (showSuccessPage) {
     router.replace("/fp/product/create/successPageProduct");
@@ -471,7 +548,9 @@ const CreateProduct = ({ activeHojreh }) => {
                       style={{ outline: "unset", border: "unset" }}
                       id="Net_Weight"
                       type="number"
-                      onWheel={(event) => { event.currentTarget.blur() }}
+                      onWheel={(event) => {
+                        event.currentTarget.blur();
+                      }}
                       {...register("Net_Weight", {
                         required: "لطفا این گزینه را پرنمایید",
                         min: {
@@ -503,7 +582,9 @@ const CreateProduct = ({ activeHojreh }) => {
                       style={{ outline: "unset", border: "unset" }}
                       id="Weight_With_Packing"
                       type="number"
-                      onWheel={(event) => { event.currentTarget.blur() }}
+                      onWheel={(event) => {
+                        event.currentTarget.blur();
+                      }}
                       {...register("Weight_With_Packing", {
                         required: "لطفا این گزینه را پرنمایید",
                         min: {
@@ -535,7 +616,9 @@ const CreateProduct = ({ activeHojreh }) => {
                       style={{ outline: "unset", border: "unset" }}
                       id="Price"
                       type="number"
-                      onWheel={(event) => { event.currentTarget.blur() }}
+                      onWheel={(event) => {
+                        event.currentTarget.blur();
+                      }}
                       {...register("Price", {
                         required: "لطفا این گزینه را پرنمایید",
                         min: {
@@ -577,7 +660,9 @@ const CreateProduct = ({ activeHojreh }) => {
                       style={{ outline: "unset", border: "unset" }}
                       id="OldPrice"
                       type="number"
-                      onWheel={(event) => { event.currentTarget.blur() }}
+                      onWheel={(event) => {
+                        event.currentTarget.blur();
+                      }}
                       defaultValue={0}
                       {...register("OldPrice", {
                         min: {
@@ -665,7 +750,9 @@ const CreateProduct = ({ activeHojreh }) => {
                           value={Add}
                           id="Inventory"
                           name="Inventory"
-                          onWheel={(event) => { event.currentTarget.blur() }}
+                          onWheel={(event) => {
+                            event.currentTarget.blur();
+                          }}
                           onChange={(e) => {
                             setAdd(e.target.value);
                           }}
@@ -712,7 +799,9 @@ const CreateProduct = ({ activeHojreh }) => {
                           type="number"
                           min="0"
                           max="500"
-                          onWheel={(event) => { event.currentTarget.blur() }}
+                          onWheel={(event) => {
+                            event.currentTarget.blur();
+                          }}
                           value={AddPreparationDays}
                           id="PreparationDays"
                           name="PreparationDays"
@@ -845,6 +934,125 @@ const CreateProduct = ({ activeHojreh }) => {
                   </style>
                 </div>
                 {/* button submit */}
+                <div className="mt-4">
+                  <div>
+                    <h5
+                      style={{ color: "#007aff", fontSize: "14px" }}
+                      className="mb-0 d-inline mr-20"
+                    >
+                      محدوده ارسال
+                    </h5>
+                  </div>
+                </div>
+                <hr style={{ background: "#007aff", width: "100%" }} />
+                <form>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="flexRadioDefault"
+                      id="flexRadioDefault1"
+                      checked
+                    />
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      به سراسر ایران
+                    </label>
+                  </div>
+                  <div class="form-check" style={{ position: "relative" }}>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="flexRadioDefault"
+                      id="flexRadioDefault2"
+                      onClick={() => {
+                        setShowModal(true);
+                      }}
+                    />
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      انتخاب شهرها
+                    </label>
+                  </div>
+                </form>
+
+                {showModal && (
+                  <div
+                    style={{
+                      position: "sticky",
+                      display: "flex",
+                      flexDirection: "column",
+                      backgroundColor: "#e0e0e0",
+                      marginTop: "15px",
+                      overflowY: "auto",
+                      padding: "15px",
+                      borderRadius: "20px",
+                    }}
+                  >
+                    <div style={{ marginRight: "20px" }}>
+                      <CheckboxTree
+                        // direction="rtl"
+                        icons={{
+                          expandClose: (
+                            <span
+                              className="fas fa-angle-left"
+                              style={{ fontSize: "15px" }}
+                            />
+                          ),
+                          parentClose: <span />,
+                        }}
+                        nodes={allCites}
+                        checked={checkedCity}
+                        expanded={expandCity}
+                        onCheck={(e, targetNode) => {
+                          setCheckedCity(e);
+                          _handel_Add_state(targetNode);
+                        }}
+                        onExpand={(e) => setExpandCity(e)}
+                      />
+                    </div>
+                  </div>
+                )}
+                <div
+                  style={{
+                    display: "flex",
+
+                    flexWrap: "wrap",
+                  }}
+                >
+                  {allOfCity.map((e) => (
+                    <>
+                      <div key={e.value} style={{ display: "flex" }}>
+                        {/* {e.children.length &&} */}
+
+                        <>
+                          <h4
+                            style={{
+                              backgroundColor: "#d144f5",
+                              padding: "2px 10px",
+                              color: "#fff",
+                              margin: "0px",
+                              marginLeft: "1px",
+                              borderRadius: "2px",
+                              marginTop: "10px",
+                              fontSize: "15px",
+                            }}
+                          >
+                            {e.label}
+                          </h4>
+                          <i
+                            style={{
+                              fontSize: "15px",
+                              marginLeft: "5px",
+                              cursor: "pointer",
+                            }}
+                            onClick={() => _handel_Delete_State(e.value)}
+                            className="fas fa-times"
+                          ></i>
+                        </>
+                      </div>
+                    </>
+                  ))}
+                </div>
+
                 <div>
                   <button
                     type="submit"
