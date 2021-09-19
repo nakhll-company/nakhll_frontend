@@ -182,7 +182,6 @@ const CreateProduct = ({ activeHojreh }) => {
   // function for Delete The State
 
   const _handel_Delete_State = (id) => {
-    setCheckedCityWithLabel;
     const copyState = [...allOfCity];
     const ArrayDeleteState = copyState.filter((e) => e.value !== id);
 
@@ -206,14 +205,27 @@ const CreateProduct = ({ activeHojreh }) => {
             (city) => (forSaveCity = [...forSaveCity, city])
           );
         });
-        setAllOfCity(forSaveCity);
+
+        setAllOfCity([...allOfCity, ...forSaveCity]);
+      }
+
+      if (check.isChild && !check.isLeaf) {
+        const forSaveCity = check.children.map((city) => city);
+
+        setAllOfCity([...allOfCity, ...forSaveCity]);
+      }
+
+      if (check.isLeaf) {
+        const forSaveCity = check;
+
+        setAllOfCity([...allOfCity, forSaveCity]);
       }
     });
   };
 
   useEffect(() => {
     console.log("object :>> ", checkedCityWithLabel);
-    console.log("object :>> ", checkedCity);
+
     _handel_for_show_all_city();
   }, [checkedCityWithLabel]);
 
