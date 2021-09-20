@@ -170,13 +170,16 @@ const CreateProduct = ({ activeHojreh }) => {
   // function for add state and label
 
   const _handel_Add_state = (target) => {
-    if (target.checked) {
-      setCheckedCityWithLabel([...checkedCityWithLabel, target]);
-    } else {
-      const copyState = [...checkedCityWithLabel];
-      const newState = copyState.filter((e) => e.value !== target.value);
-      setCheckedCityWithLabel(newState);
-    }
+    setCheckedCityWithLabel([...checkedCityWithLabel, target]);
+    console.log("checkedCityWithLabel :>> ", checkedCityWithLabel);
+
+    // if (target.checked) {
+    //   setCheckedCityWithLabel([...checkedCityWithLabel, target]);
+    // } else {
+    //   const copyState = [...checkedCityWithLabel];
+    //   const newState = copyState.filter((e) => e.value !== target.value);
+    //   setCheckedCityWithLabel(newState);
+    // }
   };
 
   // function for Delete The State
@@ -965,6 +968,11 @@ const CreateProduct = ({ activeHojreh }) => {
                       name="flexRadioDefault"
                       id="flexRadioDefault1"
                       checked
+                      onClick={() => {
+                        setShowModal(false);
+                        setAllOfCity([]);
+                      }}
+                      style={{ cursor: "pointer" }}
                     />
                     <label class="form-check-label" for="flexRadioDefault1">
                       به سراسر ایران
@@ -979,6 +987,7 @@ const CreateProduct = ({ activeHojreh }) => {
                       onClick={() => {
                         setShowModal(true);
                       }}
+                      style={{ cursor: "pointer" }}
                     />
                     <label class="form-check-label" for="flexRadioDefault2">
                       انتخاب شهرها
