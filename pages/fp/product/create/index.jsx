@@ -166,7 +166,7 @@ const CreateProduct = ({ activeHojreh }) => {
 
   const [checkedCity, setCheckedCity] = useState([]);
   const [expandCity, setExpandCity] = useState([]);
-  const [checkedCityWithLabel, setCheckedCityWithLabel] = useState([]);
+
   const [allOfCity, setAllOfCity] = useState([]);
   const [isCheckedAllCities, setIsCheckedAllCities] = useState(true);
 
@@ -222,6 +222,9 @@ const CreateProduct = ({ activeHojreh }) => {
     //   setCheckedCityWithLabel(newState);
     // }
   };
+  useEffect(() => {
+    console.log("selectState :>> ", selectState);
+  }, [selectState]);
 
   // function for show all city
   const _handel_for_show_all_city = () => {
@@ -283,8 +286,6 @@ const CreateProduct = ({ activeHojreh }) => {
   };
 
   useEffect(() => {
-    console.log("miii :>> ", checkedCityWithLabel);
-
     _handel_for_show_all_city();
   }, [selectState, selectBigCity, selectCity]);
 
@@ -1042,6 +1043,7 @@ const CreateProduct = ({ activeHojreh }) => {
                         setIsCheckedAllCities(true);
                         setShowModal(false);
                         setAllOfCity([]);
+                        setSelectState([]);
                       }}
                       style={{ cursor: "pointer" }}
                     />
@@ -1058,8 +1060,6 @@ const CreateProduct = ({ activeHojreh }) => {
                       onClick={() => {
                         setShowModal(true);
                         setIsCheckedAllCities(false);
-                        setCheckedCity([]);
-                        setCheckedCityWithLabel([]);
                       }}
                       style={{ cursor: "pointer" }}
                     />
