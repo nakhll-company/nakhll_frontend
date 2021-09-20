@@ -61,6 +61,9 @@ const product = ({ dataFirst, searchWord }) => {
   const [checkedCity, setCheckedCity] = useState([]);
   const [expandCity, setExpandCity] = useState([]);
 
+  
+
+
   // state for handel pagination in api
   const [pageApi, setPageApi] = useState(2);
   const [hasMore, setHasMore] = useState(false);

@@ -18,6 +18,8 @@ import { mapState } from "../../../../containers/product/methods/mapState";
 import styles from "../../../../styles/pages/product/create.module.scss";
 import { errorMessage } from "../../../../containers/utils/message";
 
+const _asist = new Assistent();
+
 import { allCites } from "../../../../components/custom/data/data";
 /**
  * component create product
@@ -168,11 +170,49 @@ const CreateProduct = ({ activeHojreh }) => {
   const [allOfCity, setAllOfCity] = useState([]);
   const [isCheckedAllCities, setIsCheckedAllCities] = useState(true);
 
+  // State for save  State  && BigCity && City
+  const [selectState, setSelectState] = useState([]);
+  const [selectBigCity, setSelectBigCity] = useState([]);
+  const [selectCity, setSelectCity] = useState([]);
+
   // function for add state and label
 
   const _handel_Add_state = (target) => {
-    setCheckedCityWithLabel([...checkedCityWithLabel, target]);
-    console.log("checkedCityWithLabel :>> ", checkedCityWithLabel);
+    // setCheckedCityWithLabel([...checkedCityWithLabel, target]);
+
+    // he click on State
+    if (!target.isChild) {
+      if (target.checked) {
+        setSelectState([...selectState, target]);
+      } else {
+        const copyState = [...selectState];
+        const newState = copyState.filter((e) => e.value !== target.value);
+        setSelectState(newState);
+      }
+    }
+
+    // he click on BigCity
+
+    if (target.isChild && !target.isLeaf) {
+      const copyBigCity = [...selectBigCity];
+      const newBigCity = copyBigCity.filter((el) => el.value !== target.value);
+      if (copyBigCity.length == newBigCity.length) {
+        setSelectBigCity([...selectBigCity, target]);
+      } else {
+        setSelectBigCity(newBigCity);
+      }
+    }
+
+    // he click on City
+    if (target.isLeaf) {
+      const copyCity = [...selectCity];
+      const newCity = copyCity.filter((el) => el.value !== target.value);
+      if (copyCity.length == newCity.length) {
+        setSelectCity([...selectCity, target]);
+      } else {
+        setSelectCity(newCity);
+      }
+    }
 
     // if (target.checked) {
     //   setCheckedCityWithLabel([...checkedCityWithLabel, target]);
@@ -182,6 +222,71 @@ const CreateProduct = ({ activeHojreh }) => {
     //   setCheckedCityWithLabel(newState);
     // }
   };
+
+  // function for show all city
+  const _handel_for_show_all_city = () => {
+    let finalCities = [];
+    let cities_from_stat = [];
+    let false_cities_from_BigCity = [];
+    let true_cities_from_BigCity = [];
+    let false_cities_from_cities = [];
+    let true_cities_from_cities = [];
+
+    selectState.map((stats) => {
+      stats.children.map((BigCity) =>
+        BigCity.children.map(
+          (city) => (cities_from_stat = [...cities_from_stat, city])
+        )
+      );
+    });
+
+    selectBigCity.map((bigCity) => {
+      if (bigCity.checked) {
+        let trueCopyArray = bigCity.children.map((city) => city);
+        true_cities_from_BigCity = [
+          ...true_cities_from_BigCity,
+          ...trueCopyArray,
+        ];
+      } else {
+        let falseCopyArray = bigCity.children.map((city) => city);
+        false_cities_from_BigCity = [
+          ...false_cities_from_BigCity,
+          ...falseCopyArray,
+        ];
+      }
+    });
+
+    selectCity.map((city) => {
+      if (city.checked) {
+        true_cities_from_cities = [...true_cities_from_BigCity, city];
+      } else {
+        false_cities_from_cities = [...false_cities_from_cities, city];
+      }
+    });
+
+    // MIXING ALL STATE
+    let combineTrueCities = [
+      ...cities_from_stat,
+      ...true_cities_from_BigCity,
+      ...true_cities_from_cities,
+    ];
+    let combineFalseCities = [
+      ...false_cities_from_BigCity,
+      ...false_cities_from_cities,
+    ];
+
+    finalCities = combineTrueCities.filter(
+      (el) => !combineFalseCities.includes(el)
+    );
+
+    setAllOfCity(finalCities);
+  };
+
+  useEffect(() => {
+    console.log("miii :>> ", checkedCityWithLabel);
+
+    _handel_for_show_all_city();
+  }, [selectState, selectBigCity, selectCity]);
 
   // function for Delete The State
 
@@ -196,42 +301,6 @@ const CreateProduct = ({ activeHojreh }) => {
 
     // setCheckedCity(ArrayDeleteState);
   };
-
-  const _handel_for_show_all_city = () => {
-    if (checkedCityWithLabel.length < 1) {
-      setAllOfCity([]);
-    }
-    checkedCityWithLabel.map((check) => {
-      if (!check.isChild) {
-        let forSaveCity = [];
-        check.children.map((BigCity) => {
-          BigCity.children.map(
-            (city) => (forSaveCity = [...forSaveCity, city])
-          );
-        });
-
-        setAllOfCity([...allOfCity, ...forSaveCity]);
-      }
-
-      if (check.isChild && !check.isLeaf) {
-        const forSaveCity = check.children.map((city) => city);
-
-        setAllOfCity([...allOfCity, ...forSaveCity]);
-      }
-
-      if (check.isLeaf) {
-        const forSaveCity = check;
-
-        setAllOfCity([...allOfCity, forSaveCity]);
-      }
-    });
-  };
-
-  useEffect(() => {
-    console.log("object :>> ", checkedCityWithLabel);
-
-    _handel_for_show_all_city();
-  }, [checkedCityWithLabel]);
 
   // ############################################
 
@@ -990,6 +1059,7 @@ const CreateProduct = ({ activeHojreh }) => {
                         setShowModal(true);
                         setIsCheckedAllCities(false);
                         setCheckedCity([]);
+                        setCheckedCityWithLabel([]);
                       }}
                       style={{ cursor: "pointer" }}
                     />
@@ -1034,6 +1104,62 @@ const CreateProduct = ({ activeHojreh }) => {
                         onExpand={(e) => setExpandCity(e)}
                       />
                     </div>
+                  </div>
+                )}
+                {selectState.length > 0 && (
+                  <div
+                    style={{
+                      display: "block",
+                      marginBottom: "5px",
+                      marginTop: "15px",
+                    }}
+                  >
+                    {selectState.length == 1 ? "استان " : "استان های "}(
+                    {_asist.PSeparator(selectState.length)}):
+                  </div>
+                )}
+                <div
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    borderBottom: "2ps solid #ccc",
+                  }}
+                >
+                  {selectState.map((e) => (
+                    <>
+                      <div key={e.value} style={{ display: "flex" }}>
+                        {/* {e.children.length &&} */}
+
+                        <>
+                          <h4
+                            style={{
+                              backgroundColor: "#d14666",
+                              padding: "2px 10px",
+                              color: "#fff",
+                              margin: "0px",
+                              marginLeft: "1px",
+                              borderRadius: "2px",
+                              marginTop: "10px",
+                              fontSize: "15px",
+                            }}
+                          >
+                            {e.label}
+                          </h4>
+                        </>
+                      </div>
+                    </>
+                  ))}
+                </div>
+                {/* Show City */}
+                {allOfCity.length > 0 && (
+                  <div
+                    style={{
+                      display: "block",
+                      marginBottom: "5px",
+                      marginTop: "15px",
+                    }}
+                  >
+                    شهر های ( {_asist.PSeparator(allOfCity.length)}) :
                   </div>
                 )}
                 <div
