@@ -1044,6 +1044,7 @@ const CreateProduct = ({ activeHojreh }) => {
                         setShowModal(false);
                         setAllOfCity([]);
                         setSelectState([]);
+                        setCheckedCity([]);
                       }}
                       style={{ cursor: "pointer" }}
                     />
@@ -1159,7 +1160,7 @@ const CreateProduct = ({ activeHojreh }) => {
                       marginTop: "15px",
                     }}
                   >
-                    شهر های ( {_asist.PSeparator(allOfCity.length)}) :
+                    شهرهای انتخابی ( {_asist.PSeparator(allOfCity.length)}) :{" "}
                   </div>
                 )}
                 <div
