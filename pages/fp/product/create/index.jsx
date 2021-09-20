@@ -166,6 +166,7 @@ const CreateProduct = ({ activeHojreh }) => {
   const [expandCity, setExpandCity] = useState([]);
   const [checkedCityWithLabel, setCheckedCityWithLabel] = useState([]);
   const [allOfCity, setAllOfCity] = useState([]);
+  const [isCheckedAllCities, setIsCheckedAllCities] = useState(true);
 
   // function for add state and label
 
@@ -967,8 +968,9 @@ const CreateProduct = ({ activeHojreh }) => {
                       type="radio"
                       name="flexRadioDefault"
                       id="flexRadioDefault1"
-                      checked
+                      checked={isCheckedAllCities}
                       onClick={() => {
+                        setIsCheckedAllCities(true);
                         setShowModal(false);
                         setAllOfCity([]);
                       }}
@@ -986,6 +988,8 @@ const CreateProduct = ({ activeHojreh }) => {
                       id="flexRadioDefault2"
                       onClick={() => {
                         setShowModal(true);
+                        setIsCheckedAllCities(false);
+                        setCheckedCity([]);
                       }}
                       style={{ cursor: "pointer" }}
                     />
