@@ -15,6 +15,7 @@ import { getCroppedImg } from "../../../../../containers/product/create/canvasUt
 // styles
 import styles from "../../../../../styles/pages/product/create.module.scss";
 import { errorMessage } from "../../../../../containers/utils/message";
+import CheckboxTreeCities from "../../../../../components/CheckboxTree/CheckboxTree";
 /**
  * page update product
  * @param {string} activeHojreh => it has slug name
@@ -103,6 +104,13 @@ const UpdateProduct = ({ activeHojreh }) => {
   const [isLoad, setIsLoad] = useState(false);
   const [idImage, setIdImage] = useState(false);
   const [showSuccessPage, setShowSuccessPage] = useState(false);
+
+  // for Save cities
+  const [checkedCities, setCheckedCities] = useState([]);
+
+  useEffect(() => {
+    console.log("checkedCities :>> ", checkedCities);
+  }, [checkedCities]);
 
   if (showSuccessPage) {
     router.replace("/fp/product/update/product/successPageEditProduct");
@@ -438,10 +446,11 @@ const UpdateProduct = ({ activeHojreh }) => {
                               key={index}
                               className={styles.product_image}
                               style={{
-                                backgroundImage: `${item.image
+                                backgroundImage: `${
+                                  item.image
                                     ? `url(${item.image})`
                                     : `url(${item})`
-                                  } `,
+                                } `,
                               }}
                             >
                               <div
@@ -482,9 +491,13 @@ const UpdateProduct = ({ activeHojreh }) => {
                     وزن خالص محصول
                   </label>
                   <div className={styles.wrapper_input_suffixText}>
-                    <input style={{ outline: "unset", border: "unset" }}
-                      onWheel={(event) => { event.currentTarget.blur() }}
-                      id="Net_Weight" type="number"
+                    <input
+                      style={{ outline: "unset", border: "unset" }}
+                      onWheel={(event) => {
+                        event.currentTarget.blur();
+                      }}
+                      id="Net_Weight"
+                      type="number"
                       {...register("Net_Weight", {
                         required: "لطفا این گزینه را پرنمایید",
                         min: {
@@ -512,8 +525,13 @@ const UpdateProduct = ({ activeHojreh }) => {
                     وزن با بسته بندی
                   </label>
                   <div className={styles.wrapper_input_suffixText}>
-                    <input style={{ outline: "unset", border: "unset" }} id="Weight_With_Packing" type="number"
-                      onWheel={(event) => { event.currentTarget.blur() }}
+                    <input
+                      style={{ outline: "unset", border: "unset" }}
+                      id="Weight_With_Packing"
+                      type="number"
+                      onWheel={(event) => {
+                        event.currentTarget.blur();
+                      }}
                       {...register("Weight_With_Packing", {
                         required: "لطفا این گزینه را پرنمایید",
                         min: {
@@ -545,7 +563,9 @@ const UpdateProduct = ({ activeHojreh }) => {
                       style={{ outline: "unset", border: "unset" }}
                       id="Price"
                       type="number"
-                      onWheel={(event) => { event.currentTarget.blur() }}
+                      onWheel={(event) => {
+                        event.currentTarget.blur();
+                      }}
                       {...register("Price", {
                         required: "لطفا این گزینه را پرنمایید",
                         min: {
@@ -570,8 +590,13 @@ const UpdateProduct = ({ activeHojreh }) => {
                     قیمت محصول با تخفیف (اختیاری){" "}
                   </label>
                   <div className={styles.wrapper_input_suffixText}>
-                    <input style={{ outline: "unset", border: "unset" }} id="OldPrice" type="number"
-                      onWheel={(event) => { event.currentTarget.blur() }}
+                    <input
+                      style={{ outline: "unset", border: "unset" }}
+                      id="OldPrice"
+                      type="number"
+                      onWheel={(event) => {
+                        event.currentTarget.blur();
+                      }}
                       {...register("OldPrice", {
                         min: {
                           value: 0,
@@ -623,8 +648,16 @@ const UpdateProduct = ({ activeHojreh }) => {
                         <span className="fas fa-plus"></span>
                       </button>
                       <div className={styles.center}>
-                        <input type="number" min="0" max="500" value={Add} id="Inventory" name="Inventory"
-                          onWheel={(event) => { event.currentTarget.blur() }}
+                        <input
+                          type="number"
+                          min="0"
+                          max="500"
+                          value={Add}
+                          id="Inventory"
+                          name="Inventory"
+                          onWheel={(event) => {
+                            event.currentTarget.blur();
+                          }}
                           onChange={(e) => {
                             setAdd(e.target.value);
                           }}
@@ -667,10 +700,19 @@ const UpdateProduct = ({ activeHojreh }) => {
                         <span className="fas fa-plus"></span>
                       </button>
                       <div className={styles.center}>
-                        <input type="number" min="0" max="500" value={AddPreparationDays}
-                          id="PreparationDays" name="PreparationDays"
-                          onWheel={(event) => { event.currentTarget.blur() }}
-                          onChange={(e) => { setAddPreparationDays(e.target.value); }}
+                        <input
+                          type="number"
+                          min="0"
+                          max="500"
+                          value={AddPreparationDays}
+                          id="PreparationDays"
+                          name="PreparationDays"
+                          onWheel={(event) => {
+                            event.currentTarget.blur();
+                          }}
+                          onChange={(e) => {
+                            setAddPreparationDays(e.target.value);
+                          }}
                         />
                         <h4>روز</h4>
                       </div>
@@ -795,6 +837,12 @@ const UpdateProduct = ({ activeHojreh }) => {
                     `}
                   </style>
                 </div>
+
+                <CheckboxTreeCities
+                  checkedCity={checkedCities}
+                  setCheckedCity={setCheckedCities}
+                />
+
                 {/* button update */}
                 <div>
                   <button
