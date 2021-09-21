@@ -61,9 +61,6 @@ const product = ({ dataFirst, searchWord }) => {
   const [checkedCity, setCheckedCity] = useState([]);
   const [expandCity, setExpandCity] = useState([]);
 
-  
-
-
   // state for handel pagination in api
   const [pageApi, setPageApi] = useState(2);
   const [hasMore, setHasMore] = useState(false);
@@ -358,6 +355,24 @@ const product = ({ dataFirst, searchWord }) => {
         {/* modalFilter start*/}
         {isOpenModal && (
           <div className="modal_filter_products d-none d-lg-block ">
+            <div
+              style={{
+                position: "fixed",
+                top: "10px",
+                left: "10px",
+                zIndex: "10000",
+              }}
+            >
+              <i
+                onClick={handel_filterModal}
+                className="far fa-times-circle"
+                style={{
+                  fontSize: "25px",
+                  marginTop: "5px",
+                  marginLeft: "10px",
+                }}
+              ></i>
+            </div>
             <div id="sidebar">
               <div className="search-body-filter">
                 <div className="modal-body" style={{ msOverflowX: "hidden" }}>

@@ -5,14 +5,18 @@ import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import Steps from "../../../components/CheckOutSteps/CheckOutSteps";
 import Assistent from "zaravand-assistent-number";
 
+
+
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "../../../styles/pages/cart/payment/payment.module.scss";
+import { errorMessage } from "../../../containers/utils/message";
 
 const _asist = new Assistent();
 
 export default function Cart() {
-  const [msgCoupon, setMsgCoupon] = useState("");
+  const [msgCoupon, setMsgCoupon] = useState([]);
   const [isLoadInvoice, setIsLoadInvoice] = useState(true);
   const [listInvoice, setListInvoice] = useState([]);
   const [logisticPrice, setLogisticPrice] = useState(null);
@@ -108,15 +112,23 @@ export default function Cart() {
       setTotalPrice(data.cart.total_price);
       setFinalPrice(data.final_price);
       setAddressReceiver(data.address);
-      setResultCoupon(
-        data.coupon && _asist.PSeparator(data.coupon_details.result / 10)
-      );
-      setMsgCoupon(
-        data.coupon &&
-        `کوپن شما با مبلغ ${data.coupon_details.result / 10
-        } تومان برای شما فعال گردید.`
-      );
+      setResultCoupon(data.coupons_total_price);
+      let listCouponsUsages = []
+      data.coupon_usages.map((item) => {
+        listCouponsUsages.push(item.price_applied)
+      })
 
+      // listCouponsUsages.map((item) => {
+
+      // })
+
+      // setMsgCoupon(
+      //   data.coupon_usages &&
+      //   `کوپن شما با مبلغ ${data.coupon_details.result / 10
+      //   } تومان برای شما فعال گردید.`
+      // );
+
+      setMsgCoupon(listCouponsUsages);
       setIsLoadInvoice(false);
     }
   };
@@ -141,16 +153,18 @@ export default function Cart() {
         let data = response.data;
         if (response.status === 200) {
           if (data.result) {
-            setMsgCoupon(
-              `کوپن شما با مبلغ ${data.result / 10} تومان برای شما فعال گردید.`
-            );
-            setResultCoupon(_asist.PSeparator(data.result / 10));
+            setMsgCoupon([...msgCoupon, data.result]);
+            // setResultCoupon(_asist.PSeparator(data.result / 10));
+            _getListInvoice()
           } else {
-            data.errors.map((item) => {
-              setMsgCoupon(item);
-            });
+            debugger
+            // data.errors.map((item) => {
+              errorMessage(data.errors);
+              setIsLoadInvoice(false);
+
+            // });
           }
-          setIsLoadInvoice(false);
+           setIsLoadInvoice(false);
         } else if (response.status === 400) {
           console.log(`e>>>>>>>`, "fdghfdjkgj");
           debugger;
@@ -158,13 +172,13 @@ export default function Cart() {
       } catch (error) {
         // console.log(`e>>>>>>>`, response.error)
         debugger;
-        setMsgCoupon("adkaslkdjksa");
+        // setMsgCoupon("adkaslkdjksa");
       }
     }
   };
 
   const _deleteCoupon = () => {
-    setMsgCoupon("");
+    setMsgCoupon([]);
   };
 
   // console.log(`addressReceiver.receiver_full_name`, addressReceiver.receiver_full_name)
@@ -253,18 +267,24 @@ export default function Cart() {
                     }}
                   >
                     بررسی
-                    </button>
+                  </button>
                 </div>
                 <div className={`${styles.input_group_bg} rounded-pill`}></div>
               </form>
-              {msgCoupon !== "" && (
-                <div className="border border-success bg-white font-size-9 py-2 pr-3 mt-3 rounded d-flex flex-wrap justify-content-between align-items-center">
-                  <span className=" text-success ml-3">{msgCoupon}</span>
-                  {/* <strong className="text-success ml-3">61,000 تومان</strong> */}
-                  <button className="btn btn-link text-danger btn-sm mr-auto">
-                    <i className="fas fa-times" onClick={_deleteCoupon}></i>
-                  </button>
-                </div>
+              {msgCoupon && (
+                msgCoupon.map((item) => {
+                  return (
+                    <div className="border border-success bg-white font-size-9 py-2 pr-3 mt-3 rounded d-flex flex-wrap justify-content-between align-items-center">
+                      <span className=" text-success ml-3">کوپن شما با مبلغ {item / 10
+                      } تومان برای شما فعال گردید.</span>
+                      {/* <strong className="text-success ml-3">61,000 تومان</strong> */}
+                      <button className="btn btn-link text-danger btn-sm mr-auto">
+                        <i className="fas fa-times" onClick={_deleteCoupon}></i>
+                      </button>
+                    </div>
+                  )
+                })
+
               )}
             </div>
 
@@ -337,7 +357,7 @@ export default function Cart() {
                             />
                           </a>
                         </div>
-                        <div className="mr-3" style={{ minWidth: "1%" , marginRight:"1rem" }}>
+                        <div className="mr-3" style={{ minWidth: "1%", marginRight: "1rem" }}>
                           <a
                             href={itemProduct.product.url}
                             className="link-body"
@@ -346,7 +366,7 @@ export default function Cart() {
                           </a>
                           <div className="mt-2">{itemProduct.count}عدد</div>
                         </div>
-                        <div className="mr-auto" style={{ marginRight:"auto" }}>
+                        <div className="mr-auto" style={{ marginRight: "auto" }}>
                           {_asist.PSeparator(itemProduct.total_price / 10)}{" "}
                           تومان
                         </div>
@@ -400,20 +420,20 @@ export default function Cart() {
               <div className="font-size-sm border-bottom py-3">
                 <div className="d-flex py-1">
                   <span>جمع بهای سفارش:</span>
-                  <span className="mr-auto" style={{marginRight:"auto"}}>
+                  <span className="mr-auto" style={{ marginRight: "auto" }}>
                     {_asist.PSeparator(totalPrice / 10)} تومان
                   </span>
                 </div>
                 <div className="d-flex py-1">
                   <span>هزینه ارسال:</span>{" "}
-                  <span className="mr-auto" style={{marginRight:"auto"}}>
+                  <span className="mr-auto" style={{ marginRight: "auto" }}>
                     {_asist.PSeparator(logisticPrice / 10)} تومان
                   </span>
                 </div>
-                {msgCoupon !== "" && (
+                {msgCoupon && (
                   <div className="d-flex py-1 text-danger">
                     <span>تخفیف قیمت محصولات (-) :</span>
-                    <span className="mr-auto" style={{marginRight:"auto"}}>{resultCoupon} تومان</span>
+                    <span className="mr-auto" style={{ marginRight: "auto" }}>{_asist.PSeparator(resultCoupon / 10)} تومان</span>
                   </div>
                 )}
                 {/**/} {/**/}
@@ -421,7 +441,7 @@ export default function Cart() {
                   <span style={{ color: "rgb(27,62,104)" }}>
                     مبلغ قابل پرداخت:
                   </span>
-                  <span className="mr-auto" style={{ color: "rgb(27,62,104)" , marginRight:"auto" }}>
+                  <span className="mr-auto" style={{ color: "rgb(27,62,104)", marginRight: "auto" }}>
                     {_asist.PSeparator(finalPrice / 10)} تومان
                   </span>
                 </div>
@@ -429,13 +449,11 @@ export default function Cart() {
             </div>
 
             <div className="mt-3 p-3 border rounded font-size-sm my-3 line-height-normal">
-              <div className="mx-auto" style={{textAlign:"center"}}>
+              <div className="mx-auto" style={{ textAlign: "center" }}>
                 تمامی بسته‌های پستی به آقا/خانم
                 <strong> {addressReceiver.receiver_full_name} </strong>
                 به آدرس
-                <strong className="font-size-8">
-                  {addressReceiver.address}
-                </strong>
+                <strong className="font-size-8"> {addressReceiver.address} </strong>
                 تحویل داده می‌شوند.
               </div>
               <div className="text-left line-height-1">
