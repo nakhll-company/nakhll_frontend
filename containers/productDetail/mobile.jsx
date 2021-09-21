@@ -329,7 +329,7 @@ const ProductDetailMobile = ({ data }) => {
 
 
 
-            {/* <div className={`${styles.product_purchase} container py-3`}>
+            <div className={`${styles.product_purchase} container py-3`}>
                 <div className="ml-2">
                     <div className={styles.price_mobile}>
                         <span>89000</span>
@@ -340,7 +340,7 @@ const ProductDetailMobile = ({ data }) => {
                     </div>
                 </div>
                 <button className={`${styles.product_btn_mobile} btn btn-tprimary rounded-pill font-weight-bold font-size1-5 px-6 py-2 ev-add-to-cart`}>خرید</button>
-            </div> */}
+            </div> 
 
 
         </div>

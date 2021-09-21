@@ -14,6 +14,7 @@ import { getCroppedImg } from "../../../../containers/product/create/canvasUtils
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 import { mapState } from "../../../../containers/product/methods/mapState";
 // styles
+
 import styles from "../../../../styles/pages/product/create.module.scss";
 import { errorMessage } from "../../../../containers/utils/message";
 /**
