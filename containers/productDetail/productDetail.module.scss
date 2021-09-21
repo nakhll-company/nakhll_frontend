@@ -171,8 +171,13 @@
         font-size: 1rem;
         margin-top: 5rem;
         font-weight: 700;
+        h2{
+            font-size: 1rem;
+            font-weight: 700;
+        }
         a {
             color: #224D82;
+            font-size: 12px;
         }
     }
     // comments header
@@ -195,8 +200,8 @@
         align-items: center;
         height: 100px;
         .avatar_wrapper {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             text-align: center;
             flex-shrink: 0;
         }
@@ -251,7 +256,7 @@
         .price_mobile {
             font-size: 1.5rem;
             line-height: 1;
-            color: #dc3755;
+            color: #224D82;
             font-weight: 700;
             margin-left: .5rem;
             display: inline-block;
@@ -264,8 +269,8 @@
         }
         .product_btn_mobile {
             color: #fff;
-            background-color: #dc3755;
-            border-color: #dc3755;
+            background-color: #224D82;
+            border-color: #224D82;
             font-size: 1.5rem;
             padding-left: 4rem;
             padding-right: 4rem;

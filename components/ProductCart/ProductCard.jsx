@@ -11,7 +11,6 @@ const ProductCard = ({
   xl = 3,
   col,
   padding,
-
   _blank = false,
   product,
 }) => {
@@ -37,20 +36,18 @@ const ProductCard = ({
   let cardImg = (
     <img
       src={product.imageUrl}
-      className={`card-img-top _product_card_rounded animationCart ${
-        product.unavailable && "_unavailable_product"
-      }`}
+      className={`card-img-top _product_card_rounded animationCart ${product.unavailable && "_unavailable_product"
+        }`}
       alt={product.title}
     />
   );
 
   return (
     <div
-      className={`animationCartParent ${
-        col
-          ? `col-${col}`
-          : `col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
-      } ${padding ? `px-${padding}` : ""} mb-3`}
+      className={`animationCartParent ${col
+        ? `col-${col}`
+        : `col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
+        } ${padding ? `px-${padding}` : ""} mb-3`}
     >
       <div className="card _product_card _product_card_rounded p-2">
         {cardBadge}
@@ -67,14 +64,13 @@ const ProductCard = ({
         )} */}
 
         <div
-          className={`card-body mt-2 p-1 ${
-            product.unavailable && "_unavailable_product"
-          }`}
+          className={`card-body mt-2 p-1 ${product.unavailable && "_unavailable_product"
+            }`}
         >
           <div className=" mb-3">
             <a
               href={product.url}
-              target={_blank && "_blank"}
+              // target={_blank && "_blank"}
               className="_product_card_title text-truncate "
             >
               {product.title}

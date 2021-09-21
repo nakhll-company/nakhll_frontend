@@ -39,7 +39,8 @@ const index = () => {
         <div className="row">
           <CustomSlider
             // model="navigation"
-            slides1200={6}
+            slides1200={2}
+            slides576={4}
             data={[
 
               <ProductCard col="12" product={product} />,
@@ -60,15 +61,6 @@ const index = () => {
               <ProductCard col="12" product={product} />,
             ]}
           />
-
-
-          <ProductCard product={product} xl="3" />
-          <ProductCard product={product} xl="3" />
-          <ProductCard product={product} xl="3" />
-          <ProductCard product={product} xl="3" />
-          <ProductCard product={product} xl="3" />
-          <ProductCard product={product} xl="3" />
-          <ProductCard product={product} xl="3" />
         </div>
       </div>
     </>
