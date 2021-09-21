@@ -61,7 +61,7 @@
 }
 
 ._product_card_add_to_cart i {
-  background: #dc3755;
+  background: #224D82;
   border: 1px solid #fff;
   border-radius: 50%;
   color: #fff;
@@ -77,9 +77,9 @@
 
 ._product_card_add_to_cart:hover i {
   background: #fff;
-  color: #dc3755;
+  color: #224D82;
   transition: all 0.5s;
-  border: 1px solid #dc3755;
+  border: 1px solid #224D82;
 }
 
 ._product_card_price_number {
@@ -328,7 +328,7 @@ input:checked + .slider:before {
 
 .product_row {
   // display: flex;
-  margin: 2rem 0;
+  margin: 1rem 0;
   // align-items: center;
 }
 

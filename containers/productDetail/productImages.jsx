@@ -32,7 +32,7 @@ const ProductImages = ({
                         largeImage(event.target.id);
                     }}
                 />
-                {thumbnailImages && thumbnailImages.length > 0 && thumbnailImages.map((value, index) => {
+                {thumbnailImages.length > 0 && thumbnailImages.map((value, index) => {
                     return (
                         <img key={index} id={`image${index}`} src={`${value.image}`} alt={`${productTitle}`}
                             onClick={(event) => {

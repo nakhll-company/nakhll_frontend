@@ -97,6 +97,10 @@
         flex-grow: 1 1 0%;
         font-weight: 400;
         align-items: center;
+        border-radius: 50%;
+    }
+    .shop_image{
+        border-radius: 50% !important;
     }
     // title product
     .title_product {
@@ -171,8 +175,13 @@
         font-size: 1rem;
         margin-top: 5rem;
         font-weight: 700;
+        h2{
+            font-size: 1rem;
+            font-weight: 700;
+        }
         a {
             color: #224D82;
+            font-size: 12px;
         }
     }
     // comments header
@@ -193,23 +202,32 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        height: 100px;
+        // height: 100px;
         .avatar_wrapper {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             text-align: center;
             flex-shrink: 0;
+            .comments_avatar{
+                width: 70px;
+                height: 70px;
+            }
         }
         .comments_detail {
             display: flex;
             flex-direction: column;
             .rating_wrapper {
                 display: flex;
-                justify-content: space-between;
+                justify-content: flex-end;
                 align-items: center;
-                width: 100%;
+                width: 600px;
                 font-size: 8px;
                 color: #f2af29;
+            }
+            @media screen and (max-width: 480px) {
+                .rating_wrapper {
+                    width: 250px;
+                }
             }
             span {
                 font-size: 12px;
@@ -251,7 +269,7 @@
         .price_mobile {
             font-size: 1.5rem;
             line-height: 1;
-            color: #dc3755;
+            color: #224D82;
             font-weight: 700;
             margin-left: .5rem;
             display: inline-block;
@@ -264,8 +282,8 @@
         }
         .product_btn_mobile {
             color: #fff;
-            background-color: #dc3755;
-            border-color: #dc3755;
+            background-color: #224D82;
+            border-color: #224D82;
             font-size: 1.5rem;
             padding-left: 4rem;
             padding-right: 4rem;

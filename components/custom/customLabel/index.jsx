@@ -26,7 +26,7 @@ const CustomLabel = ({
                     {`${styles.label} ${customLabelDiv !== undefined && styles.wrapper_custom_label}`}
                 >
                     <span className={`${styles.span_label} ${customLabel !== undefined && styles.customLabel}`}>
-                        {label}:
+                        {label !== "" && `${label}:`}
                     </span>
                     <span className={`${styles.span_value} ${customValue !== undefined && styles.customValue}`}>
                         {value}
