@@ -2,6 +2,8 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import Assistent from "zaravand-assistent-number";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Fragment, useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -22,7 +24,11 @@ SwiperCore.use([Navigation, Thumbs]);
 /**
  * component detail 
 */
+const _asist = new Assistent();
 const ProductDetailDesktop = ({ data }) => {
+
+    const router = useRouter();
+    const { id } = router.query;
 
     let product = {
         imageUrl: "/image/faile.webp",
@@ -44,6 +50,7 @@ const ProductDetailDesktop = ({ data }) => {
     const detail = data.detail;
     const comments = data.comments;
     const relatedProduct = data.relatedProduct;
+    const shopProduct = data.shopProduct;
 
     const [posts, setPosts] = useState([]);
     const [pageApi, setPageApi] = useState(1);
@@ -54,7 +61,7 @@ const ProductDetailDesktop = ({ data }) => {
 
     const getMoreProduct = async () => {
         let moreProduct = await ApiRegister().apiRequest(
-            null, "GET", `/api/v1/product-page/related_products/giunup/`, true, {
+            null, "GET", `/api/v1/product-page/related_products/${id}/`, true, {
             page: pageApi,
             page_size: 10,
         });
@@ -155,7 +162,7 @@ const ProductDetailDesktop = ({ data }) => {
                                         <div className={` ${styles.avatar} mx-auto mb-2`}>
                                             <Link href={`${detail.shop.url}`}>
                                                 <a>
-                                                    <Image src={detail.shop.image_thumbnail_url} alt="store image" width="100%" height="100%" />
+                                                    <Image src={detail.shop.image_thumbnail_url} className={styles.shop_image} alt="store image" width="100%" height="100%" />
                                                 </a>
                                             </Link>
                                         </div>
@@ -167,7 +174,7 @@ const ProductDetailDesktop = ({ data }) => {
                                             </div>
                                             <div>
                                                 <Link href={`${detail.shop.url}`}>
-                                                    <span style={{ fontSize: ".8rem", color: "#3e3e3e" }} className="mb-0">{parseInt(detail.shop.registered_months) > 1 ? detail.shop.registered_months : 1} ماه در نخل &nbsp;&nbsp;&nbsp;&nbsp;{detail.shop.total_products} محصول </span>
+                                                    <span style={{ fontSize: ".8rem", color: "#3e3e3e" }} className="mb-0">{parseInt(detail.shop.registered_months) > 1 ? _asist.PSeparator(detail.shop.registered_months) : _asist.PSeparator(1)} ماه در نخل &nbsp;&nbsp;&nbsp;&nbsp;{_asist.PSeparator(detail.shop.total_products)} محصول </span>
                                                 </Link>
                                             </div>
                                         </div>
@@ -204,15 +211,15 @@ const ProductDetailDesktop = ({ data }) => {
                             <div style={{ width: "33.33rem", maxWidth: "100%" }} className="d-flex align-items-center my-4 ">
                                 <div style={{ flexBasis: "50%" }} className="ms-5 ps-4">
                                     <div className={styles.primary_price}>
-                                        <del style={{ fontSize: "1.25rem" }} className={styles.old_price}>{detail.old_price && detail.price / 10}</del>
+                                        <del style={{ fontSize: "1.25rem" }} className={styles.old_price}>{detail.old_price && _asist.PSeparator(detail.price / 10)}</del>
                                     </div>
                                     <div className={`${styles.price} d-inline-block  ms-2 `}>
-                                        <span>{detail.old_price ? detail.old_price / 10 : detail.price / 10}</span>
+                                        <span>{detail.old_price ? _asist.PSeparator(detail.old_price / 10) : _asist.PSeparator(detail.price / 10)}</span>
                                         <span>  تومان  </span>
                                     </div>
                                     <div style={{ fontSize: ".7rem" }}>
                                         {detail.inventory > 0 && detail.inventory < 10 &&
-                                            `فقط ${detail.inventory} عدد باقی مانده`}
+                                            `فقط ${_asist.PSeparator(detail.inventory)} عدد باقی مانده`}
                                     </div>
                                 </div>
                                 <div style={{ flex: "0 0 44%" }} className="d-flex flex-column">
@@ -245,13 +252,13 @@ const ProductDetailDesktop = ({ data }) => {
                         <section className="mb-4">
                             <h2 className={styles.product_section_title}>ویژگی‌های محصول</h2>
                             <div className={styles.product_attributes}>
-                                <CustomLabel type="normal" value={detail.net_weight} label="وزن خالص" />
-                                <CustomLabel type="normal" value={detail.weight_with_packing} label="وزن خالص با بسته بندی" />
-                                {detail.length_with_packing && <CustomLabel type="normal" value={`${detail.length_with_packing} * ${detail.height_with_packaging}`} label="سایز" />}
+                                <CustomLabel type="normal" value={_asist.PSeparator(detail.net_weight)} label="وزن خالص" />
+                                <CustomLabel type="normal" value={_asist.PSeparator(detail.weight_with_packing)} label="وزن خالص با بسته بندی" />
+                                {detail.length_with_packing && <CustomLabel type="normal" value={`${_asist.PSeparator(detail.length_with_packing)} * ${_asist.PSeparator(detail.height_with_packaging)}`} label="سایز" />}
                                 {detail.attributes.length > 0 && detail.attributes.map((value, index) => {
                                     return (
                                         <div key={index}>
-                                            <CustomLabel type="normal" value={value.value} label={value.FK_Attribute.title} />
+                                            <CustomLabel type="normal" value={_asist.PSeparator(value.value)} label={value.FK_Attribute.title} />
                                         </div>
                                     )
                                 })}
@@ -273,37 +280,28 @@ const ProductDetailDesktop = ({ data }) => {
                         <div className="row">
                             <CustomSlider
                                 slides1200={4}
-                                data={[
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                ]}
+                                // data={[
+                                //     <ProductCard col="12" product={product} />
+                                // ]}
+                                // injaaaaaaaaa
+                                data={
+                                    [shopProduct.map((value, index) => (
+
+                                        <ProductCard
+                                            col="12"
+                                            product={{
+                                                // imageUrl: value.image_thumbnail_url,
+                                                // url: value.url,
+                                                title: value.title,
+                                                // chamberTitle: value.shop.title,
+                                                // chamberUrl: value.shop.url,
+                                                // discount: value.discount !== 0 ? _asist.PSeparator(value.discount) : "",
+                                                // price: _asist.PSeparator(value.price),
+                                                // discountNumber: value.discount !== 0 ? _asist.PSeparator(value.old_price) : "",
+                                                // city: value.shop.city,
+                                            }} key={index} />)
+
+                                    )]}
                             />
                         </div>
                         <hr className="my-5" />
@@ -320,7 +318,7 @@ const ProductDetailDesktop = ({ data }) => {
                                     <Fragment key={index}>
                                         <div className={styles.comments_wrapper}>
                                             <div className={styles.avatar_wrapper}>
-                                                <Image src="/productDetail/avatar.png" alt="avatar" width="70" height="70" />
+                                                <Image src="/productDetail/avatar.png" alt="avatar" width="60" height="60" />
                                             </div>
                                             <div className={styles.comments_detail}>
                                                 <span>{value.user.first_name} {value.user.last_name}</span>
@@ -343,13 +341,13 @@ const ProductDetailDesktop = ({ data }) => {
                                             return (
                                                 <div className={`${styles.comments_wrapper} me-5`} key={index}>
                                                     <div className={`${styles.avatar_wrapper} pt-3`}>
-                                                        <Image src="/productDetail/avatar.png" alt="avatar" width="70" height="70" />
+                                                        <Image src="/productDetail/avatar.png" alt="avatar" width="60" height="60" />
                                                     </div>
                                                     <div className={styles.comments_detail}>
                                                         <span>{value.user.first_name} {value.user.last_name}</span>
-                                                        {/* <div className={styles.rating_wrapper}>
+                                                        <div className={styles.rating_wrapper} style={{ width: "550px" }}>
                                                             <span className="text-muted" style={{ fontSize: "13px" }}>{value.date_create}</span>
-                                                        </div> */}
+                                                        </div>
                                                         <span>{value.description}</span>
                                                     </div>
                                                 </div>)
@@ -370,6 +368,7 @@ const ProductDetailDesktop = ({ data }) => {
                                 hasMore={hasMore}
                                 loader={<h3> منتظر بمانید...</h3>}
                                 endMessage={<h4>پایان</h4>}
+                                style={{ overflow: "hidden", padding: "10px" }}
                             >
                                 <div className="row">
                                     {posts.map((value, index) => (
@@ -379,9 +378,9 @@ const ProductDetailDesktop = ({ data }) => {
                                             title: value.title,
                                             chamberTitle: value.shop.title,
                                             chamberUrl: value.shop.url,
-                                            discount: value.discount !== 0 ? value.discount : "",
-                                            price: value.price,
-                                            discountNumber: value.discount !== 0 ? value.old_price : "",
+                                            discount: value.discount !== 0 ? _asist.PSeparator(value.discount) : "",
+                                            price: _asist.PSeparator(value.price),
+                                            discountNumber: value.discount !== 0 ? _asist.PSeparator(value.old_price) : "",
                                             city: value.shop.city,
                                         }} key={index} />
                                     ))}

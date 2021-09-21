@@ -2,12 +2,12 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import Assistent from "zaravand-assistent-number";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Fragment, useState, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 // components
-import ProductImages from "./productImages";
 import CustomLabel from "../../components/custom/customLabel";
 import ProductCard from "../../components/ProductCart/ProductCard";
 import CustomSlider from '../../components/custom/customSlider';
@@ -28,6 +28,9 @@ SwiperCore.use([EffectCube, Pagination]);
 const _asist = new Assistent();
 const ProductDetailMobile = ({ data }) => {
 
+    const router = useRouter();
+    const { id } = router.query;
+
     let product = {
         imageUrl: "/image/faile.webp",
         url: "/hamzeh",
@@ -42,16 +45,19 @@ const ProductDetailMobile = ({ data }) => {
         // sales: 52,
         city: "کرمان",
     };
+
     const detail = data.detail;
     const comments = data.comments;
     const relatedProduct = data.relatedProduct;
+    const shopProduct = data.shopProduct;
     const [hasMore, setHasMore] = useState(true);
     const [pageApi, setPageApi] = useState(1);
     const [posts, setPosts] = useState([...relatedProduct.results]);
     let thumblineImage = [{ image: detail.shop.image_thumbnail_url, id: 0 }, ...detail.banners];
+
     const getMoreProduct = async () => {
         let moreProduct = await ApiRegister().apiRequest(
-            null, "GET", `/api/v1/product-page/related_products/giunup/`, true, {
+            null, "GET", `/api/v1/product-page/related_products/${id}/`, true, {
             page: pageApi,
             page_size: 10,
         }
@@ -241,13 +247,14 @@ const ProductDetailMobile = ({ data }) => {
                             </div>
                         </div>
                         {/* <hr /> */}
-                        <div className={`col-12 ${styles.other_product} m-0`}>
+                        <div className={`col-12 ${styles.other_product} mt-5`}>
                             <h2>محصولات دیگر {detail.shop.title}</h2>
                             <Link href={`${detail.shop.url}`}>
                                 <a>همه ی محصولات</a>
                             </Link>
                         </div>
                         <div className="row">
+                            {/* hassani */}
                             <CustomSlider
                                 slides320={2}
                                 data={[
@@ -289,15 +296,15 @@ const ProductDetailMobile = ({ data }) => {
                             {comments.length > 0 && comments.map((value, index) => {
                                 return (
                                     <Fragment key={index}>
-                                        <div className={styles.comments_wrapper}>
+                                        <div className={`${styles.comments_wrapper} mt-2 `}>
                                             <div className={`${styles.avatar_wrapper} pt-2`}>
-                                                <Image src="/productDetail/avatar.png" alt="avatar" width="70" height="70" />
+                                                <Image src="/productDetail/avatar.png" alt="avatar" width="50" height="50" />
                                             </div>
                                             <div className={styles.comments_detail}>
                                                 <span>{value.user.first_name} {value.user.last_name}</span>
-                                                {/* <div className={styles.rating_wrapper}>
+                                                <div className={styles.rating_wrapper}>
                                                     <span className="text-muted" style={{ fontSize: "13px" }}>{value.date_create}</span>
-                                                </div> */}
+                                                </div>
                                                 <span>{value.description}</span>
                                                 {/* <div className={styles.likes_icons_wrapper}>
                                                     <span>
@@ -312,15 +319,15 @@ const ProductDetailMobile = ({ data }) => {
                                         </div>
                                         {value.comment_replies.length > 0 && value.comment_replies.map((value, index) => {
                                             return (
-                                                <div className={`${styles.comments_wrapper} me-5 mb-3`} key={index}>
+                                                <div className={`${styles.comments_wrapper} me-5 mb-3 mt-2`} key={index}>
                                                     <div className={`${styles.avatar_wrapper} pt-3`}>
-                                                        <Image src="/productDetail/avatar.png" alt="avatar" width="70" height="70" />
+                                                        <Image src="/productDetail/avatar.png" alt="avatar" width="50" height="50" />
                                                     </div>
-                                                    <div className={styles.comments_detail}>
+                                                    <div className={`${styles.comments_detail}`}>
                                                         <span>{value.user.first_name} {value.user.last_name}</span>
-                                                        {/* <div className={styles.rating_wrapper}>
+                                                        <div className={styles.rating_wrapper} style={{ width: "200px" }}>
                                                             <span className="text-muted" style={{ fontSize: "13px" }}>{value.date_create}</span>
-                                                        </div> */}
+                                                        </div>
                                                         <span>{value.description}</span>
                                                     </div>
                                                 </div>)
@@ -339,8 +346,9 @@ const ProductDetailMobile = ({ data }) => {
                                 dataLength={posts.length}
                                 next={getMoreProduct}
                                 hasMore={hasMore}
-                                loader={<h3> Loading...</h3>}
-                                endMessage={<h4>Nothing more to show</h4>}
+                                loader={<h3> منتظر بمانید ....</h3>}
+                                endMessage={<h4>پایان</h4>}
+                                style={{ overflow: "hidden" }}
                             >
                                 <div className="row d-flex">
                                     {posts.map((value, index) => (
@@ -374,7 +382,7 @@ const ProductDetailMobile = ({ data }) => {
                 </div>
                 <button className={`${styles.product_btn_mobile} btn btn-tprimary rounded-pill font-weight-bold font-size1-5 px-6 py-2 ev-add-to-cart`}>خرید</button>
             </div>
-        </div>
+        </div >
     );
 }
 

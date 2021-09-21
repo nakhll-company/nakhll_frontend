@@ -18,11 +18,15 @@ const fetchData = async (id) => {
     let relatedProduct = await ApiRegister().apiRequest(
         null, "GET", `/api/v1/product-page/related_products/${id}/?page_size=10`, true, ""
     );
+    let shopProduct = await ApiRegister().apiRequest(
+        null, "GET", `/api/v1/landing/shop_products/${id}/`, true, ""
+    );
     if (response.status === 200) {
         return {
             detail: response.data,
             comments: comments.data,
-            relatedProduct: relatedProduct.data
+            relatedProduct: relatedProduct.data,
+            shopProduct: shopProduct.data
         };
     } else {
         return false;
