@@ -4,10 +4,14 @@ import Header from "./header";
 import Footer from "./footer";
 // style
 import styles from "../../styles/components/shopLayout/shopLayout.module.scss";
+import { ToastContainer } from "react-toastify";
 
 function ShopLayout({ children }) {
   return (
+
     <div>
+      <ToastContainer />
+
       {/* <header className={styles.headerWrapper}>
         <Image
           src="/image/LOGO_500.png"
