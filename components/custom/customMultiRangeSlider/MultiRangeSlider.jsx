@@ -74,11 +74,28 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
       <div className={styles.slider}>
         <div className={styles.slider__track} />
         <div ref={range} className={styles.slider__range} />
-        <div className={styles.slider__left_value} style={{ color: "#000" }}>
-          {_asist.PSeparator(minVal * 1000)}
+        <div
+          className={styles.slider__left_value}
+          style={{ color: "#000", direction: "rtl" }}
+        >
+          <span>{_asist.PSeparator(minVal * 1000)}</span>
+          <span
+            style={{
+              fontSize: "12px",
+              marginRight: "5px",
+              position: "absolute",
+              left: "-35px",
+            }}
+          >
+            تومان
+          </span>
         </div>
-        <div className={styles.slider__right_value} style={{ color: "#000" }}>
-          {_asist.PSeparator(maxVal * 1000)}
+        <div
+          className={styles.slider__right_value}
+          style={{ color: "#000", direction: "rtl" }}
+        >
+          <span>{_asist.PSeparator(maxVal * 1000)}</span>
+          <span style={{ fontSize: "12px", marginRight: "5px" }}>تومان</span>
         </div>
       </div>
     </div>
