@@ -342,7 +342,7 @@ const product = ({ dataFirst, searchWord }) => {
                         padding={1}
                         product={{
                           imageUrl: oneProduct.image_thumbnail_url,
-                          url: oneProduct.image_thumbnail_url,
+                          url: `/productDetail/${oneProduct.slug}/`,
                           title: oneProduct.title,
                           chamberTitle:
                             oneProduct.shop && oneProduct.shop.title,
