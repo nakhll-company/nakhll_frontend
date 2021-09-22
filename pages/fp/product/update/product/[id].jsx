@@ -64,6 +64,7 @@ const UpdateProduct = ({ activeHojreh }) => {
         // FK_Shop: activeHojreh,
         FK_SubMarket: submarketId,
         Product_Banner: idImage,
+        Post_range: checkedCities,
 
         // Product_Banner: previewImage
       };

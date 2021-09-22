@@ -2,7 +2,12 @@ import React, { useState, useContext } from "react";
 import ContextListProductPage from "./Context/context";
 import { productForList } from "../../public/dataForProduct/data";
 
-export const TopBar = ({ handel_filterModal, setWhichOrdering }) => {
+export const TopBar = ({
+  handel_filterModal,
+  setWhichOrdering,
+  handel_OrderingModal,
+  whichOrdering,
+}) => {
   const [witchItem, setWitchItem] = useState("1");
   const { totalcount } = useContext(ContextListProductPage);
   return (
@@ -15,17 +20,38 @@ export const TopBar = ({ handel_filterModal, setWhichOrdering }) => {
               backgroundColor: "#fff",
               padding: "5px",
             }}
-            className="product-filters-item--active d-lg-none product-filters-item ev-more-filters"
+            className=" d-lg-none  "
           >
             <i className="fas fa-filter"></i>{" "}
             <button className="btn" onClick={handel_filterModal}>
-              <span>
+              <span style={{ marginLeft: "10px" }}>
                 فیلترها
                 <span></span>
               </span>
             </button>
+            <i className="fas fa-sort-amount-down-alt"></i>{" "}
+            <button className="btn" onClick={handel_OrderingModal}>
+              <span>
+                مرتب سازی:
+                <span
+                  style={{
+                    fontSize: "12px",
+                    color: "red",
+                    marginRight: "5px",
+                  }}
+                >
+                  {whichOrdering == "" && "مرتبط‌ترین"}
+                  {whichOrdering == "Price" && "ارزانتر"}
+                  {whichOrdering == "-Price" && "گرانتر"}
+
+                  {whichOrdering == "DiscountPrecentage" && "بیشترین تخفیف"}
+                  {whichOrdering == "-DateCreate" && "تازه ها"}
+                </span>
+                <span></span>
+              </span>
+            </button>
           </div>{" "}
-          <div className="search-sorts mb-0 ">
+          <div className="search-sorts mb-0  productPage_top_filter">
             <div className="d-flex align-items-center">
               <div
                 className="title"
@@ -101,7 +127,7 @@ export const TopBar = ({ handel_filterModal, setWhichOrdering }) => {
                 >
                   <a
                     onClick={() => {
-                      setWhichOrdering("-DiscountPercentage");
+                      setWhichOrdering("DiscountPrecentage");
                       setWitchItem("4");
                     }}
                   >
@@ -124,7 +150,7 @@ export const TopBar = ({ handel_filterModal, setWhichOrdering }) => {
                 </li>
               </ul>
             </div>
-            <span className="d-none d-lg-block " style={{ marginLeft: "20px" }}>
+            <span className="  " style={{ marginLeft: "20px" }}>
               {" "}
               تعداد کالا:
               <span className="Blazing" style={{ marginRight: "10px" }}>
@@ -133,10 +159,8 @@ export const TopBar = ({ handel_filterModal, setWhichOrdering }) => {
               </span>
             </span>
           </div>{" "}
-          <div className="v-portal" style={{ display: "none" }}></div>{" "}
-          <div className="v-portal" style={{ display: "none" }}></div>
-        </div>{" "}
-      </div>{" "}
+        </div>
+      </div>
     </>
   );
 };
