@@ -121,42 +121,42 @@ export default function Cart() {
 
   const _addCoupon = async (e) => {
     e.preventDefault();
-    console.log(`e.target[0].value`, e.target[0].value);
     let valueCoupon = e.target[0].value;
     if (valueCoupon) {
       setIsLoadInvoice(true);
       let params = {};
       let loadData = { coupon: valueCoupon };
       let dataUrl = `/accounting_new/api/invoice/set_coupon/`;
-      // try {
-      let response = await ApiRegister().apiRequest(
-        loadData,
-        "PATCH",
-        dataUrl,
-        true,
-        params
-      );
-      let data = response.data;
-      if (response.status === 200) {
-        if (data.result) {
-          await _getListInvoice()
-          setIsLoadInvoice(false);
-        } else {
-          data.errors.map((item) => {
-            errorMessage(item);
-          });
-          setIsLoadInvoice(false);
+      try {
+        let response = await ApiRegister().apiRequest(
+          loadData,
+          "PATCH",
+          dataUrl,
+          true,
+          params
+        );
+        let data = response.data;
+        if (response.status === 200) {
+          if (data.result) {
+            await _getListInvoice()
+            setIsLoadInvoice(false);
+
+          } else {
+            data.errors.map((item) => {
+              errorMessage(item);
+            });
+            setIsLoadInvoice(false);
+          }
+          // setIsLoadInvoice(false);
         }
-        // setIsLoadInvoice(false);
-      } else if (response.status === 400) {
-        console.log(`e>>>>>>>`, "fdghfdjkgj");
-        debugger;
+      } catch (e) {
+        console.log(`error>>>>>>>>>>>>>>>>>>`, e.response)
+        let errorData = e.response.data
+        errorData.coupon.map((item) => {
+          errorMessage(item);
+        });
+        // setMsgCoupon("adkaslkdjksa");
       }
-      // } catch (error) {
-      //   console.log(`e>>>>>>>`, response.error)
-      //   debugger;
-      //   // setMsgCoupon("adkaslkdjksa");
-      // }
     }
   };
 
