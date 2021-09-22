@@ -1,17 +1,18 @@
+import { useEffect, useState } from "react";
 import Head from "next/head";
+import Link from "next/link";
 
+import styles from "../../../styles/pages/cart/payment/payment.module.scss";
 import ShopLayout from "../../../components/shopLayout";
+
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import Steps from "../../../components/CheckOutSteps/CheckOutSteps";
+import { errorMessage } from "../../../containers/utils/message";
 import Assistent from "zaravand-assistent-number";
 
 
 
 
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import styles from "../../../styles/pages/cart/payment/payment.module.scss";
-import { errorMessage } from "../../../containers/utils/message";
 
 const _asist = new Assistent();
 
@@ -113,22 +114,7 @@ export default function Cart() {
       setFinalPrice(data.final_price);
       setAddressReceiver(data.address);
       setResultCoupon(data.coupons_total_price);
-      let listCouponsUsages = []
-      data.coupon_usages.map((item) => {
-        listCouponsUsages.push(item.price_applied)
-      })
-
-      // listCouponsUsages.map((item) => {
-
-      // })
-
-      // setMsgCoupon(
-      //   data.coupon_usages &&
-      //   `کوپن شما با مبلغ ${data.coupon_details.result / 10
-      //   } تومان برای شما فعال گردید.`
-      // );
-
-      setMsgCoupon(listCouponsUsages);
+      setMsgCoupon(data.coupon_usages);
       setIsLoadInvoice(false);
     }
   };
@@ -138,50 +124,86 @@ export default function Cart() {
     console.log(`e.target[0].value`, e.target[0].value);
     let valueCoupon = e.target[0].value;
     if (valueCoupon) {
-      try {
-        setIsLoadInvoice(true);
-        let params = {};
-        let loadData = { coupon: valueCoupon };
-        let dataUrl = `/accounting_new/api/invoice/set_coupon/`;
-        let response = await ApiRegister().apiRequest(
-          loadData,
-          "PATCH",
-          dataUrl,
-          true,
-          params
-        );
-        let data = response.data;
-        if (response.status === 200) {
-          if (data.result) {
-            setMsgCoupon([...msgCoupon, data.result]);
-            // setResultCoupon(_asist.PSeparator(data.result / 10));
-            _getListInvoice()
-          } else {
-            debugger
-            // data.errors.map((item) => {
-              errorMessage(data.errors);
-              setIsLoadInvoice(false);
-
-            // });
-          }
-           setIsLoadInvoice(false);
-        } else if (response.status === 400) {
-          console.log(`e>>>>>>>`, "fdghfdjkgj");
-          debugger;
+      setIsLoadInvoice(true);
+      let params = {};
+      let loadData = { coupon: valueCoupon };
+      let dataUrl = `/accounting_new/api/invoice/set_coupon/`;
+      // try {
+      let response = await ApiRegister().apiRequest(
+        loadData,
+        "PATCH",
+        dataUrl,
+        true,
+        params
+      );
+      let data = response.data;
+      if (response.status === 200) {
+        if (data.result) {
+          await _getListInvoice()
+          setIsLoadInvoice(false);
+        } else {
+          data.errors.map((item) => {
+            errorMessage(item);
+          });
+          setIsLoadInvoice(false);
         }
-      } catch (error) {
-        // console.log(`e>>>>>>>`, response.error)
+        // setIsLoadInvoice(false);
+      } else if (response.status === 400) {
+        console.log(`e>>>>>>>`, "fdghfdjkgj");
         debugger;
-        // setMsgCoupon("adkaslkdjksa");
       }
+      // } catch (error) {
+      //   console.log(`e>>>>>>>`, response.error)
+      //   debugger;
+      //   // setMsgCoupon("adkaslkdjksa");
+      // }
     }
   };
 
-  const _deleteCoupon = () => {
-    setMsgCoupon([]);
+  const _deleteCoupon = async (coupon) => {
+    setIsLoadInvoice(true);
+    let params = {};
+    let loadData = { coupon };
+    let dataUrl = `/accounting_new/api/invoice/unset_coupon/`;
+    let response = await ApiRegister().apiRequest(
+      loadData,
+      "PATCH",
+      dataUrl,
+      true,
+      params
+    );
+    if (response.status === 200) {
+      await _getListInvoice()
+      setIsLoadInvoice(false);
+    }
+
   };
 
-  // console.log(`addressReceiver.receiver_full_name`, addressReceiver.receiver_full_name)
+  const invoicePay = async () => {
+    try {
+      setIsLoadInvoice(true);
+      let params = {};
+      let loadData = null;
+      let dataUrl = `/accounting_new/api/invoice/pay/`;
+      let response = await ApiRegister().apiRequest(
+        loadData,
+        "GET",
+        dataUrl,
+        true,
+        params
+      );
+      let data = response.data;
+      if (response.status === 200) {
+        debugger
+      }
+
+
+    } catch (error) {
+      debugger;
+    }
+  }
+
+  console.log(`addressReceiver.receiver_full_name`, resultCoupon)
   return (
     <div className={styles.steps_wrapper}>
       <Head>
@@ -275,11 +297,11 @@ export default function Cart() {
                 msgCoupon.map((item) => {
                   return (
                     <div className="border border-success bg-white font-size-9 py-2 pr-3 mt-3 rounded d-flex flex-wrap justify-content-between align-items-center">
-                      <span className=" text-success ml-3">کوپن شما با مبلغ {item / 10
+                      <span className=" text-success ml-3">کوپن شما با مبلغ {item.price_applied / 10
                       } تومان برای شما فعال گردید.</span>
                       {/* <strong className="text-success ml-3">61,000 تومان</strong> */}
-                      <button className="btn btn-link text-danger btn-sm mr-auto">
-                        <i className="fas fa-times" onClick={_deleteCoupon}></i>
+                      <button onClick={() => _deleteCoupon(item.coupon)} className="btn btn-link text-danger btn-sm mr-auto">
+                        <i className="fas fa-times" ></i>
                       </button>
                     </div>
                   )
@@ -372,50 +394,11 @@ export default function Cart() {
                         </div>
                       </div>
 
-                      {/* <div className="d-flex align-items-center mt-3">
-                                            <div className="avatar avatar-square">
-                                                <a href="/pestehkerman/product/175905" className>
-                                                    <img
-                                                        src="https://statics.basalam.com/public/users/j2ggy/1911/9eAmvLJvRqGiTkECMFyKyCDMWf5MYdaMNfglHT0f.jpeg_256X256X70.jpeg"
-                                                        alt="پسته فندقی خام تازه و امسالی کرمان ارسال رایگان(500 گرم)"
-                                                    />
-                                                </a>
-                                            </div>
-                                            <div className="mr-3" style={{ minWidth: "1%" }}>
-                                                <a href="/pestehkerman/product/175905" className="link-body">
-                                                    پسته فندقی خام تازه و امسالی کرمان ارسال رایگان(500 گرم)
-                                                </a>
-                                                <div className="mt-2">2 عدد</div>
-                                            </div>
-                                            <div className="mr-auto">230,000 تومان</div>
-                                        </div>
-                                    */}
+
                     </div>
                   );
                 })}
 
-              {/* <div className="font-size-sm border-bottom pb-3 mt-3">
-                                <div className="title font-weight-500">
-                                    از غرفه محصولات علمی و فرهنگی و طبیعی
-                                </div>
-                                <div className="d-flex align-items-center mt-3">
-                                    <div className="avatar avatar-square">
-                                        <a href="/ali_goharrizi/product/746256" className>
-                                            <img
-                                                src="https://statics.basalam.com/public/users/13no0/2011/lW23nVJv4TiBsDxfJEKruxOpDVze1bTQSAHtqjHg.jpeg_256X256X70.jpeg"
-                                                alt="قاووت خانگی اصیل 40 گیاه"
-                                            />
-                                        </a>
-                                    </div>
-                                    <div className="mr-3" style={{ minWidth: "1%" }}>
-                                        <a href="/ali_goharrizi/product/746256" className="link-body">
-                                            قاووت خانگی اصیل 40 گیاه
-                                        </a>
-                                        <div className="mt-2">2 عدد</div>
-                                    </div>
-                                    <div className="mr-auto">48,000 تومان</div>
-                                </div>
-                            </div> */}
 
               <div className="font-size-sm border-bottom py-3">
                 <div className="d-flex py-1">
@@ -430,7 +413,7 @@ export default function Cart() {
                     {_asist.PSeparator(logisticPrice / 10)} تومان
                   </span>
                 </div>
-                {msgCoupon && (
+                {resultCoupon !== 0 && (
                   <div className="d-flex py-1 text-danger">
                     <span>تخفیف قیمت محصولات (-) :</span>
                     <span className="mr-auto" style={{ marginRight: "auto" }}>{_asist.PSeparator(resultCoupon / 10)} تومان</span>
@@ -456,7 +439,7 @@ export default function Cart() {
                 <strong className="font-size-8"> {addressReceiver.address} </strong>
                 تحویل داده می‌شوند.
               </div>
-              <div className="text-left line-height-1">
+              <div className="text-left line-height-1 mb-5 mb-md-0">
                 <Link
                   href={`/cart/address/update/${addressReceiver.id}?prev=payment`}
                   className="font-size-8 link-body"
@@ -533,6 +516,7 @@ export default function Cart() {
               <button
                 style={{ backgroundColor: "rgb(27,62,104)", color: "#fff" }}
                 className={`${styles.cart_button} btn w-100 d-flex justify-content-between align-items-center px-4`}
+                onClick={invoicePay}
               >
                 <span className="d-inline-block w-100 text-center font-size1">
                   پرداخت آنلاین
@@ -542,6 +526,7 @@ export default function Cart() {
           </div>
         </div>
       </div>
+
     </div>
   );
 }
