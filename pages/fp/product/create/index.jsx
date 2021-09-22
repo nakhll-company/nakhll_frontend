@@ -69,7 +69,7 @@ const CreateProduct = ({ activeHojreh }) => {
         PostRangeType: 1,
         PreparationDays: AddPreparationDays,
         FK_Shop: activeHojreh,
-        Post_range: checkedCities,
+        post_range: checkedCities,
       };
       let paramsProduct = {};
       let loadDataProduct = confirm;

@@ -239,7 +239,7 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity }) {
           </div>
         </div>
       )}
-      {selectState.length > 0 && (
+      {/* {selectState.length > 0 && (
         <div
           style={{
             display: "block",
@@ -250,7 +250,7 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity }) {
           {selectState.length == 1 ? "استان " : "استان های "}(
           {_asist.PSeparator(selectState.length)}):
         </div>
-      )}
+      )} */}
       <div
         style={{
           display: "flex",
@@ -258,30 +258,31 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity }) {
           borderBottom: "2ps solid #ccc",
         }}
       >
-        {selectState.map((e) => (
-          <>
-            <div key={e.value} style={{ display: "flex" }}>
-              {/* {e.children.length &&} */}
+        {false &&
+          selectState.map((e) => (
+            <>
+              <div key={e.value} style={{ display: "flex" }}>
+                {/* {e.children.length &&} */}
 
-              <>
-                <h4
-                  style={{
-                    backgroundColor: "#d14666",
-                    padding: "2px 10px",
-                    color: "#fff",
-                    margin: "0px",
-                    marginLeft: "1px",
-                    borderRadius: "2px",
-                    marginTop: "10px",
-                    fontSize: "15px",
-                  }}
-                >
-                  {e.label}
-                </h4>
-              </>
-            </div>
-          </>
-        ))}
+                <>
+                  <h4
+                    style={{
+                      backgroundColor: "#d14666",
+                      padding: "2px 10px",
+                      color: "#fff",
+                      margin: "0px",
+                      marginLeft: "1px",
+                      borderRadius: "2px",
+                      marginTop: "10px",
+                      fontSize: "15px",
+                    }}
+                  >
+                    {e.label}
+                  </h4>
+                </>
+              </div>
+            </>
+          ))}
       </div>
       {/* Show City */}
       {allOfCity.length > 0 && (

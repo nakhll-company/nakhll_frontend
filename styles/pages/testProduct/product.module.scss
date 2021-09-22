@@ -826,3 +826,9 @@
         display: block !important;
     }
 }
+
+@media (max-width: 769px) {
+    .productPage_top_filter {
+        display: none;
+    }
+}

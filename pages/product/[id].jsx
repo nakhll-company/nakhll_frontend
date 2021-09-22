@@ -42,7 +42,9 @@ const fetchData = async (id) => {
 const product = ({ dataFirst, searchWord }) => {
   const [listProducts, setlistProducts] = useState([]);
   const [listWithFilter, setListWithFilter] = useState([]);
+  // state for  show Ordering Modal in mobile
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenOrderingModal, setIsOpenOrderingModal] = useState(false);
   const [totalcount, setTotalcount] = useState("");
   // state for show loading
   const [isLoading, setIsLoading] = useState(false);
@@ -168,6 +170,11 @@ const product = ({ dataFirst, searchWord }) => {
 
   const handel_filterModal = () => {
     setIsOpenModal(!isOpenModal);
+  };
+
+  // function for open OrderingModal in mobile
+  const handel_OrderingModal = () => {
+    setIsOpenOrderingModal(!isOpenOrderingModal);
   };
 
   return (
@@ -304,8 +311,10 @@ const product = ({ dataFirst, searchWord }) => {
             </div>{" "}
             <div className="col-12 col-lg-9">
               <TopBar
+                whichOrdering={whichOrdering}
                 handel_filterModal={handel_filterModal}
                 setWhichOrdering={setWhichOrdering}
+                handel_OrderingModal={handel_OrderingModal}
               />
               <div className="mx-auto row">
                 {isLoading ? (
@@ -333,11 +342,11 @@ const product = ({ dataFirst, searchWord }) => {
                         padding={1}
                         product={{
                           imageUrl: oneProduct.image_thumbnail_url,
-                          url: oneProduct.image_thumbnail_url,
+                          url: `/productDetail/${oneProduct.slug}/`,
                           title: oneProduct.title,
                           chamberTitle:
                             oneProduct.shop && oneProduct.shop.title,
-                          // chamberUrl: oneProduct.page_url,
+                          chamberUrl: oneProduct.shop.url,
                           discount: oneProduct.discount,
                           price: oneProduct.price / 10,
                           discountNumber: oneProduct.old_price / 10,
@@ -485,6 +494,203 @@ const product = ({ dataFirst, searchWord }) => {
           </div>
         )}
         {/* modalFilter end*/}
+
+        {/* ModalOrdering Strat */}
+        {isOpenOrderingModal && (
+          <div className="modal_filter_products d-none d-lg-block ">
+            <div
+              style={{
+                position: "fixed",
+                top: "10px",
+                left: "10px",
+                zIndex: "10000",
+              }}
+            >
+              <i
+                onClick={handel_OrderingModal}
+                className="far fa-times-circle"
+                style={{
+                  fontSize: "25px",
+                  marginTop: "5px",
+                  marginLeft: "10px",
+                }}
+              ></i>
+            </div>
+            <div id="sidebar">
+              <div className="search-body-filter">
+                <div className="modal-body" style={{ msOverflowX: "hidden" }}>
+                  <div
+                    style={{
+                      padding: "5px",
+                      paddingBottom: "10px",
+                      paddingTop: "20px",
+                      borderBottom: "1px solid gray",
+                    }}
+                    onClick={() => {
+                      setWhichOrdering("");
+                      setIsOpenOrderingModal(false);
+                    }}
+                  >
+                    <span>مرتبط ترین</span>
+                  </div>
+                  <div
+                    style={{
+                      padding: "5px",
+                      paddingBottom: "10px",
+                      paddingTop: "20px",
+                      borderBottom: "1px solid gray",
+                    }}
+                    onClick={() => {
+                      setWhichOrdering("Price");
+                      setIsOpenOrderingModal(false);
+                    }}
+                  >
+                    <span>ارزانتر</span>
+                  </div>
+                  <div
+                    style={{
+                      padding: "5px",
+                      paddingBottom: "10px",
+                      paddingTop: "20px",
+                      borderBottom: "1px solid gray",
+                    }}
+                    onClick={() => {
+                      setWhichOrdering("-Price");
+                      setIsOpenOrderingModal(false);
+                    }}
+                  >
+                    <span>گرانتر</span>
+                  </div>
+                  <div
+                    style={{
+                      padding: "5px",
+                      paddingBottom: "10px",
+                      paddingTop: "20px",
+                      borderBottom: "1px solid gray",
+                    }}
+                    onClick={() => {
+                      setWhichOrdering("DiscountPrecentage");
+                      setIsOpenOrderingModal(false);
+                    }}
+                  >
+                    <span>بیشترین تخفیف</span>
+                  </div>
+                  <div
+                    style={{
+                      padding: "5px",
+                      paddingBottom: "10px",
+                      paddingTop: "20px",
+                      borderBottom: "1px solid gray",
+                    }}
+                    onClick={() => {
+                      setWhichOrdering("-DateCreate");
+                      setIsOpenOrderingModal(false);
+                    }}
+                  >
+                    <span>تازه ها</span>
+                  </div>
+                  {/* <ul>
+                    <li className={`sort-item   `}>
+                      <a
+                        id={"1"}
+                        onClick={() => {
+                          setWhichOrdering("");
+                          setWitchItem("1");
+                        }}
+                      >
+                        مرتبط‌ترین
+                      </a>
+                    </li>
+                    <li
+                      className={`sort-item  ${
+                        "2" === witchItem ? " active" : ""
+                      } `}
+                    >
+                      <a
+                        onClick={() => {
+                          setWhichOrdering("Price");
+
+                          setWitchItem("2");
+                        }}
+                      >
+                        ارزان‌تر
+                      </a>
+                    </li>
+                    <li
+                      id={"3"}
+                      className={`sort-item  ${
+                        "3" === witchItem ? " active" : ""
+                      } `}
+                    >
+                      <a
+                        onClick={() => {
+                          setWhichOrdering("-Price");
+
+                          setWitchItem("3");
+                        }}
+                      >
+                        گران‌تر
+                      </a>
+                    </li>
+                    <li
+                      className={`sort-item  ${
+                        "4" === witchItem ? " active" : ""
+                      } `}
+                    >
+                      <a
+                        onClick={() => {
+                          setWhichOrdering("DiscountPrecentage");
+                          setWitchItem("4");
+                        }}
+                      >
+                        بیشترین تخفیف
+                      </a>
+                    </li>
+                    <li
+                      className={`sort-item  ${
+                        "5" === witchItem ? " active" : ""
+                      } `}
+                    >
+                      <a
+                        onClick={() => {
+                          setWhichOrdering("-DateCreate");
+                          setWitchItem("5");
+                        }}
+                      >
+                        تازه‌ها
+                      </a>
+                    </li>
+                  </ul> */}
+                </div>
+              </div>
+            </div>
+            <div
+              style={{
+                position: "fixed",
+                bottom: "0",
+                left: "0",
+                right: "0",
+                textAlign: "center",
+                marginTop: "20px",
+                zIndex: "99999",
+                backgroundColor: "#fff",
+                padding: "5px",
+              }}
+            >
+              <button
+                onClick={handel_filterModal}
+                className="btn btn-dark"
+                style={{ width: "90vw", fontSize: "14px" }}
+              >
+                {" "}
+                تایید
+              </button>
+            </div>
+            <div style={{ paddingBottom: "80px" }}></div>
+          </div>
+        )}
+
+        {/* ModalOrdering End */}
 
         {/* END MODAL */}
 
