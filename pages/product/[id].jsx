@@ -346,7 +346,7 @@ const product = ({ dataFirst, searchWord }) => {
                           title: oneProduct.title,
                           chamberTitle:
                             oneProduct.shop && oneProduct.shop.title,
-                          // chamberUrl: oneProduct.page_url,
+                          chamberUrl: oneProduct.shop.url,
                           discount: oneProduct.discount,
                           price: oneProduct.price / 10,
                           discountNumber: oneProduct.old_price / 10,
