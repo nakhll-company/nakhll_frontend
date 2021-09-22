@@ -226,7 +226,7 @@ const ProductDetailMobile = ({ data }) => {
                                         <div className={` ${styles.avatar} mx-auto mb-2`}>
                                             <Link href={detail.shop.url} passHref>
                                                 <a>
-                                                    <Image src={detail.shop.image_thumbnail_url} alt="store image" width="100%" height="100%" />
+                                                    <Image src={detail.shop.image_thumbnail_url} className={styles.shop_image} alt="store image" width="100%" height="100%" />
                                                 </a>
                                             </Link>
                                         </div>
@@ -254,35 +254,20 @@ const ProductDetailMobile = ({ data }) => {
                             </Link>
                         </div>
                         <div className="row">
-                            {/* hassani */}
                             <CustomSlider
-                                slides320={2}
-                                data={[
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />,
-                                    <ProductCard col="12" product={product} />
-                                ]}
-                            />
+                                slides1200={4}
+                                data={shopProduct.map((value, index) => (<ProductCard col="12" product={{
+                                    imageUrl: value.image_thumbnail_url,
+                                    url: value.url,
+                                    title: value.title,
+                                    chamberTitle: value.shop.title,
+                                    chamberUrl: value.shop.url,
+                                    discount: value.discount !== 0 ? _asist.PSeparator(value.discount) : "",
+                                    price: _asist.PSeparator(value.price),
+                                    discountNumber: value.discount !== 0 ? _asist.PSeparator(value.old_price) : "",
+                                    city: value.shop.city,
+                                }} key={index} />))
+                                } />
                         </div>
                         <hr />
                         {/* comments */}

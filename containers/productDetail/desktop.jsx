@@ -82,7 +82,6 @@ const ProductDetailDesktop = ({ data }) => {
         getMoreProduct();
     }, []);
 
-
     return (
         <div className={styles.wrapper}>
             <Head>
@@ -280,29 +279,18 @@ const ProductDetailDesktop = ({ data }) => {
                         <div className="row">
                             <CustomSlider
                                 slides1200={4}
-                                // data={[
-                                //     <ProductCard col="12" product={product} />
-                                // ]}
-                                // injaaaaaaaaa
-                                data={
-                                    [shopProduct.map((value, index) => (
-
-                                        <ProductCard
-                                            col="12"
-                                            product={{
-                                                // imageUrl: value.image_thumbnail_url,
-                                                // url: value.url,
-                                                title: value.title,
-                                                // chamberTitle: value.shop.title,
-                                                // chamberUrl: value.shop.url,
-                                                // discount: value.discount !== 0 ? _asist.PSeparator(value.discount) : "",
-                                                // price: _asist.PSeparator(value.price),
-                                                // discountNumber: value.discount !== 0 ? _asist.PSeparator(value.old_price) : "",
-                                                // city: value.shop.city,
-                                            }} key={index} />)
-
-                                    )]}
-                            />
+                                data={shopProduct.map((value, index) => (<ProductCard col="12" product={{
+                                    imageUrl: value.image_thumbnail_url,
+                                    url: value.url,
+                                    title: value.title,
+                                    chamberTitle: value.shop.title,
+                                    chamberUrl: value.shop.url,
+                                    discount: value.discount !== 0 ? _asist.PSeparator(value.discount) : "",
+                                    price: _asist.PSeparator(value.price),
+                                    discountNumber: value.discount !== 0 ? _asist.PSeparator(value.old_price) : "",
+                                    city: value.shop.city,
+                                }} key={index} />))
+                                } />
                         </div>
                         <hr className="my-5" />
                         {/* comments */}

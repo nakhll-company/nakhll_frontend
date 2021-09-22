@@ -69,6 +69,7 @@ const CreateProduct = ({ activeHojreh }) => {
         PostRangeType: 1,
         PreparationDays: AddPreparationDays,
         FK_Shop: activeHojreh,
+        Post_range: checkedCities,
       };
       let paramsProduct = {};
       let loadDataProduct = confirm;
@@ -80,6 +81,7 @@ const CreateProduct = ({ activeHojreh }) => {
         true,
         paramsProduct
       );
+
       if (response.status !== 201) {
         errorMessage("خطایی در ایجاد محصول پیش آمده است");
       }
@@ -880,7 +882,7 @@ const CreateProduct = ({ activeHojreh }) => {
                 />
 
                 {/* button submit */}
-               
+
                 <div>
                   <button
                     type="submit"
