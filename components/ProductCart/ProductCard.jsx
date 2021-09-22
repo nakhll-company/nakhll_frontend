@@ -93,7 +93,7 @@ const ProductCard = ({
           </div>
           <div className="_product_card_city text-truncate mb-3">
             <span className="_product_card_subtitle">{product.city}</span>
-            <i className="fa fa-angle-left px-1"></i>
+            {product.city && <i className="fa fa-angle-left px-1"></i>}
             <a
               title={product.chamberTitle}
               href={product.chamberUrl}

@@ -2,7 +2,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
 import Assistent from "zaravand-assistent-number";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Fragment, useEffect, useState } from 'react';
@@ -30,34 +30,29 @@ const ProductDetailDesktop = ({ data }) => {
     const router = useRouter();
     const { id } = router.query;
 
-    let product = {
-        imageUrl: "/image/faile.webp",
-        url: "/hamzeh",
-        title: "نبات گیاهی متبرک مشهد با نی چوبی 1 کیلویی برکت هشتم",
-        chamberTitle: "گالری سنگ و نقره شاپرک",
-        chamberUrl: "/azizzadeh",
-        // rate: 10,
-        // commentCount: 102,
-        discount: 25,
-        price: 107000,
-        discountNumber: 190000,
-        // sales: 52,
-        city: "کرمان",
-    };
-
     // State for contorol page
 
     const detail = data.detail;
     const comments = data.comments;
     const relatedProduct = data.relatedProduct;
-    const shopProduct = data.shopProduct;
 
     const [posts, setPosts] = useState([]);
     const [pageApi, setPageApi] = useState(1);
     const [hasMore, setHasMore] = useState(true);
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
+    const [productShop, setProductShop] = useState([]);
 
     let thumblineImage = [{ image: detail.shop.image_thumbnail_url, id: 0 }, ...detail.banners];
+    async function fetchProductShop() {
+        let response = await ApiRegister().apiRequest(
+            null, "GET", `/api/v1/landing/shop_products/${detail.shop.slug}/`, true, ""
+        );
+        if (response.status === 200) {
+            setProductShop(response.data);
+        } else {
+            return false;
+        }
+    }
 
     const getMoreProduct = async () => {
         let moreProduct = await ApiRegister().apiRequest(
@@ -80,6 +75,7 @@ const ProductDetailDesktop = ({ data }) => {
 
     useEffect(async () => {
         getMoreProduct();
+        fetchProductShop();
     }, []);
 
     return (
@@ -279,16 +275,16 @@ const ProductDetailDesktop = ({ data }) => {
                         <div className="row">
                             <CustomSlider
                                 slides1200={4}
-                                data={shopProduct.map((value, index) => (<ProductCard col="12" product={{
+                                data={productShop.map((value, index) => (<ProductCard col="12" product={{
                                     imageUrl: value.image_thumbnail_url,
-                                    url: value.url,
+                                    url: `/productDetail/${value.slug}`,
                                     title: value.title,
-                                    chamberTitle: value.shop.title,
-                                    chamberUrl: value.shop.url,
+                                    // chamberTitle: value.shop.title,
+                                    // chamberUrl: value.shop.url,
                                     discount: value.discount !== 0 ? _asist.PSeparator(value.discount) : "",
                                     price: _asist.PSeparator(value.price),
                                     discountNumber: value.discount !== 0 ? _asist.PSeparator(value.old_price) : "",
-                                    city: value.shop.city,
+                                    // city: value.shop.city,
                                 }} key={index} />))
                                 } />
                         </div>
@@ -362,7 +358,7 @@ const ProductDetailDesktop = ({ data }) => {
                                     {posts.map((value, index) => (
                                         <ProductCard col="3" padding={1} product={{
                                             imageUrl: value.image_thumbnail_url,
-                                            url: value.url,
+                                            url: `/productDetail/${value.slug}`,
                                             title: value.title,
                                             chamberTitle: value.shop.title,
                                             chamberUrl: value.shop.url,
