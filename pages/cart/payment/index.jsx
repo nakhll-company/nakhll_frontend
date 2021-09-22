@@ -194,12 +194,10 @@ export default function Cart() {
       );
       let data = response.data;
       if (response.status === 200) {
-        debugger
       }
 
 
     } catch (error) {
-      debugger;
     }
   }
 
@@ -374,8 +372,8 @@ export default function Cart() {
                         <div className={`${styles.picItemInvoice}`}>
                           <a href="/pestehkerman/product/175903" className>
                             <img
-                              src="https://statics.basalam.com/public/users/j2ggy/1911/n41s9awDlcLoiKAF6oWQwo3MopX4cnDJzZHgE3Do.jpeg_256X256X70.jpeg"
-                              alt="پسته فندقی خام تازه و امسالی کرمان (250گرمی)"
+                              src={itemProduct.product.image_thumbnail_url}
+                              alt={itemProduct.product.title}
                             />
                           </a>
                         </div>
