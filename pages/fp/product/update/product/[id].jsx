@@ -64,7 +64,7 @@ const UpdateProduct = ({ activeHojreh }) => {
         // FK_Shop: activeHojreh,
         FK_SubMarket: submarketId,
         Product_Banner: idImage,
-        Post_range: checkedCities,
+        post_range: checkedCities,
 
         // Product_Banner: previewImage
       };
@@ -105,6 +105,7 @@ const UpdateProduct = ({ activeHojreh }) => {
   const [isLoad, setIsLoad] = useState(false);
   const [idImage, setIdImage] = useState(false);
   const [showSuccessPage, setShowSuccessPage] = useState(false);
+  const [citiesInput, setCitiesInput] = useState([]);
 
   // for Save cities
   const [checkedCities, setCheckedCities] = useState([]);
@@ -112,6 +113,9 @@ const UpdateProduct = ({ activeHojreh }) => {
   useEffect(() => {
     console.log("checkedCities :>> ", checkedCities);
   }, [checkedCities]);
+  useEffect(() => {
+    console.log("iii :>> ", citiesInput);
+  }, [citiesInput]);
 
   if (showSuccessPage) {
     router.replace("/fp/product/update/product/successPageEditProduct");
@@ -130,6 +134,8 @@ const UpdateProduct = ({ activeHojreh }) => {
       params
     );
     if (response.status === 200) {
+      setCitiesInput(response.data.post_range_cities);
+
       setValue("Title", response.data.title);
       setValue("submark", response.data.sub_market.title);
       setPlaceholderSubmarckets(response.data.sub_market.title);
@@ -838,11 +844,13 @@ const UpdateProduct = ({ activeHojreh }) => {
                     `}
                   </style>
                 </div>
-
-                <CheckboxTreeCities
-                  checkedCity={checkedCities}
-                  setCheckedCity={setCheckedCities}
-                />
+                {citiesInput.length > 1 && (
+                  <CheckboxTreeCities
+                    checkedCity={checkedCities}
+                    setCheckedCity={setCheckedCities}
+                    citiesInput={citiesInput}
+                  />
+                )}
 
                 {/* button update */}
                 <div>

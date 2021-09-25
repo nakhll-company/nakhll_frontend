@@ -4,9 +4,10 @@ import { allCites } from "./data";
 import Assistent from "zaravand-assistent-number";
 const _asist = new Assistent();
 
-function CheckboxTreeCities({ checkedCity, setCheckedCity }) {
+function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
   // STATE FOR SHOW MODAL
   const [showModal, setShowModal] = useState(false);
+  const [forDontRunFirst, setForDontRunFirst] = useState(1);
 
   // ############################################
 
@@ -64,9 +65,6 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity }) {
       }
     }
   };
-  useEffect(() => {
-    console.log("selectState :>> ", selectState);
-  }, [selectState]);
 
   // function for show all city
   const _handel_for_show_all_city = () => {
@@ -123,8 +121,12 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity }) {
     finalCities = combineTrueCities.filter(
       (el) => !combineFalseCities.includes(el)
     );
-
-    setAllOfCity(finalCities);
+    if (forDontRunFirst > 1) {
+      setAllOfCity(finalCities);
+    } else {
+      setAllOfCity(citiesInput || []);
+    }
+    setForDontRunFirst(2);
   };
 
   useEffect(() => {
@@ -217,7 +219,9 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity }) {
         >
           <div style={{ marginRight: "20px" }}>
             <CheckboxTree
+              nativeCheckboxes={true}
               // direction="rtl"
+
               icons={{
                 expandClose: (
                   <span
