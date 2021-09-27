@@ -5,10 +5,10 @@ import Footer from "./footer";
 // style
 import styles from "../../styles/components/shopLayout/shopLayout.module.scss";
 import { ToastContainer } from "react-toastify";
+import Header2 from "./header2/header2";
 
 function ShopLayout({ children }) {
   return (
-
     <div>
       <ToastContainer />
 
@@ -20,7 +20,7 @@ function ShopLayout({ children }) {
           height="100px"
         />
       </header> */}
-      <Header />
+      <Header2 />
       <main className={styles.mainContent}>{children}</main>
       <Footer />
       {/* <footer className={styles.footerWrapper}>
