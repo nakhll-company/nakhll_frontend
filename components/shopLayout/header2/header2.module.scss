@@ -1,6 +1,63 @@
+// Variable
+$color1: #00171f;
+$color2: #1b3e68;
+$color3: #224d82;
+$color4: #597ba1;
+$color5: #91a6c1;
+$color6: #d4d8e1;
+// mixin
+@mixin flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// header
 .header {
     padding: 10px;
-    height: 200px;
-    background-color: red;
+    background-color: $color6;
     display: flex;
+    flex-direction: column;
+    background: rgb(0, 23, 31);
+    background: linear-gradient( 130deg, rgba(0, 23, 31, 1) 0%, rgba(27, 62, 104, 1) 27%, rgba(34, 77, 130, 1) 42%, rgba(89, 123, 161, 1) 59%, rgba(145, 166, 193, 1) 84%, rgba(212, 216, 225, 1) 98%);
+    // box-shadow: inset 7px 7px 40px #55565a, inset -7px -7px 40px #ffffff;
+    // box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    .logo {
+        display: flex;
+        h1 {
+            font-size: 20px;
+            align-self: center;
+            margin: 0;
+            color: $color3;
+        }
+    }
+    // search
+    .search {
+        @include flexCenter;
+        margin-right: 10px;
+        margin-left: 10px;
+        margin-top: 5px;
+        input {
+            border-radius: 15px;
+            outline: none;
+            border: none;
+            padding: 10px;
+            margin-right: 18px;
+            margin-bottom: 10px;
+            width: 100%;
+            border-radius: 50px;
+            border-radius: 50px;
+            border-radius: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.8);
+            background: linear-gradient(145deg, #e3e7f1, #bfc2cb);
+            // box-shadow: 7px 7px 40px #55565a, -7px -7px 40px #ffffff;
+            font-size: 14px;
+            &::placeholder {
+                color: $color2;
+                padding-right: 18px;
+            }
+        }
+    }
 }

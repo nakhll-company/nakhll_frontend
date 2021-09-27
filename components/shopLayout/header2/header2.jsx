@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./header2.module.scss";
 import Head from "next/head";
+import Image from "next/image";
 function Header2(props) {
   return (
     <>
@@ -20,7 +21,19 @@ function Header2(props) {
       </Head>
       <header>
         <div className={styles.header}>
-            <div className={styles.logo}></div>
+          <div className={styles.logo}>
+            <Image
+              src="/image/LOGO_500.png"
+              alt="Picture of the author"
+              width={50}
+              height={50}
+            />
+            <h1>بازار نخل</h1>
+          </div>
+          <div className={styles.search}>
+            <input  type="text" placeholder="جست و جو" />
+          </div>
+          
         </div>
       </header>
     </>
