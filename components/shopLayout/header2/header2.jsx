@@ -38,7 +38,7 @@ function Header2(props) {
           </div>
 
           <div className={styles.search}>
-            <input type="text" placeholder="جست و جو" />
+            <input type="text" placeholder=" جست و جو در بازار نخل" />
             <i className="fas fa-search"></i>
           </div>
           <div className={styles.icons}>

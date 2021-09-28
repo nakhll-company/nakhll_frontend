@@ -1,10 +1,12 @@
 // Variable
 $color1: #00171f;
 $color2: #1b3e68;
-$color3: #224d82;
+$color3: #597ba1;
 $color4: #597ba1;
 $color5: #91a6c1;
 $color6: #d4d8e1;
+$color_tel_search: rgb(244, 244, 245);
+$color_tel_word: rgb(162, 172, 182);
 // mixin
 @mixin flexCenter {
     display: flex;
@@ -17,7 +19,7 @@ $color6: #d4d8e1;
     display: flex;
     flex-wrap: wrap;
     backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.7);
+    background: #fff;
     /* fallback for old browsers */
     // background: -webkit-linear-gradient(to right, #e2e2e2, #c9d6ff);
     // /* Chrome 10-25, Safari 5.1-6 */
@@ -52,18 +54,18 @@ $color6: #d4d8e1;
             border-radius: 15px;
             outline: none;
             border: none;
-            padding: 10px;
+            padding: 6px 10px;
             min-width: 90vw;
             // margin-right: 18px;
             margin-bottom: 10px;
             width: 100%;
             border-radius: 15px;
             border-top: 1px solid rgba(255, 255, 255, 0.8);
-            background: linear-gradient(145deg, #e3e7f1, #bfc2cb);
+            background: $color_tel_search;
             // box-shadow: 7px 7px 40px #55565a, -7px -7px 40px #ffffff;
             font-size: 14px;
             &::placeholder {
-                color: $color2;
+                color: $color_tel_word;
                 padding-right: 2px;
                 font-size: 12px;
             }
@@ -71,8 +73,8 @@ $color6: #d4d8e1;
         i {
             position: absolute;
             left: 10px;
-            top: 12px;
-            color: $color2;
+            top: 10px;
+            color: $color_tel_word;
             font-size: 15px;
         }
     }
