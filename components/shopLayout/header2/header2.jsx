@@ -12,6 +12,12 @@ function Header2(props) {
           integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
           crossorigin="anonymous"
         />
+        <link
+          rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+          crossorigin="anonymous"
+        />
 
         <script
           src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
@@ -30,10 +36,15 @@ function Header2(props) {
             />
             <h1>بازار نخل</h1>
           </div>
+
           <div className={styles.search}>
-            <input  type="text" placeholder="جست و جو" />
+            <input type="text" placeholder="جست و جو" />
+            <i className="fas fa-search"></i>
           </div>
-          
+          <div className={styles.icons}>
+            <i className={`fas fa-user-circle ${styles.icon}`}></i>
+            <i className={`fab fa-opencart ${styles.icon}`}></i>
+          </div>
         </div>
       </header>
     </>

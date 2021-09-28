@@ -12,22 +12,29 @@ $color6: #d4d8e1;
     align-items: center;
 }
 
-// header
 .header {
     padding: 10px;
-    background-color: $color6;
     display: flex;
-    flex-direction: column;
-    background: rgb(0, 23, 31);
-    background: linear-gradient( 130deg, rgba(0, 23, 31, 1) 0%, rgba(27, 62, 104, 1) 27%, rgba(34, 77, 130, 1) 42%, rgba(89, 123, 161, 1) 59%, rgba(145, 166, 193, 1) 84%, rgba(212, 216, 225, 1) 98%);
+    flex-wrap: wrap;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.7);
+    /* fallback for old browsers */
+    // background: -webkit-linear-gradient(to right, #e2e2e2, #c9d6ff);
+    // /* Chrome 10-25, Safari 5.1-6 */
+    // background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    // background: rgb(0, 23, 31);
+    // background: linear-gradient( 130deg, rgba(0, 23, 31, 1) 0%, rgba(27, 62, 104, 1) 27%, rgba(34, 77, 130, 1) 42%, rgba(89, 123, 161, 1) 59%, rgba(145, 166, 193, 1) 84%, rgba(212, 216, 225, 1) 98%);
     // box-shadow: inset 7px 7px 40px #55565a, inset -7px -7px 40px #ffffff;
     // box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    // border-bottom: 3px solid rgba(151, 156, 156, 0.5);
+    -webkit-clip-path: polygon( 100% 0%, 0% 0%, 0% 99%, 18% 94%, 25% 94%, 33% 94%, 42% 97%, 51% 96%, 63% 95%, 65% 98%, 77% 97%, 88% 92%, 95% 97%, 100% 100%);
+    clip-path: polygon( 100% 0%, 0% 0%, 0% 99%, 18% 94%, 25% 94%, 33% 94%, 42% 97%, 51% 96%, 63% 95%, 65% 98%, 77% 97%, 88% 92%, 95% 97%, 100% 100%);
     .logo {
         display: flex;
+        order: 1;
         h1 {
-            font-size: 20px;
+            font-size: 16px;
             align-self: center;
             margin: 0;
             color: $color3;
@@ -35,29 +42,51 @@ $color6: #d4d8e1;
     }
     // search
     .search {
+        order: 3;
         @include flexCenter;
-        margin-right: 10px;
-        margin-left: 10px;
+        margin-right: auto;
+        margin-left: auto;
         margin-top: 5px;
+        position: relative;
         input {
             border-radius: 15px;
             outline: none;
             border: none;
             padding: 10px;
-            margin-right: 18px;
+            min-width: 90vw;
+            // margin-right: 18px;
             margin-bottom: 10px;
             width: 100%;
-            border-radius: 50px;
-            border-radius: 50px;
-            border-radius: 50px;
+            border-radius: 15px;
             border-top: 1px solid rgba(255, 255, 255, 0.8);
             background: linear-gradient(145deg, #e3e7f1, #bfc2cb);
             // box-shadow: 7px 7px 40px #55565a, -7px -7px 40px #ffffff;
             font-size: 14px;
             &::placeholder {
                 color: $color2;
-                padding-right: 18px;
+                padding-right: 2px;
+                font-size: 12px;
             }
+        }
+        i {
+            position: absolute;
+            left: 10px;
+            top: 12px;
+            color: $color2;
+            font-size: 15px;
+        }
+    }
+    // icons
+    .icons {
+        order: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $color3;
+        font-size: 25px;
+        margin-right: auto;
+        .icon {
+            margin-left: 10px;
         }
     }
 }
