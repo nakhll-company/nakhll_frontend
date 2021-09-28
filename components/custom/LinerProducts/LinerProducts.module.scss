@@ -1,0 +1,39 @@
+// Variable
+$color1: #00171f;
+$color2: #1b3e68;
+$color3: #224d82;
+$color4: #597ba1;
+$color5: #91a6c1;
+$color6: #d4d8e1;
+.lineProduct {
+    margin-top: 20px;
+    overflow: hidden;
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        .title {
+            h1 {
+                font-size: 18px;
+                margin-bottom: 13px;
+            }
+            h5 {
+                font-size: 14px;
+                color: rgb(125, 125, 125);
+            }
+        }
+        .Button {
+            button {
+                border: 1px solid $color2;
+                border-radius: 10px;
+                padding: 6px 20px;
+                color: $color2;
+                &:hover {
+                    background: $color2;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}

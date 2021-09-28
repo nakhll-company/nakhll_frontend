@@ -5,27 +5,8 @@ $color3: #224d82;
 $color4: #597ba1;
 $color5: #91a6c1;
 $color6: #d4d8e1;
-.slide {
-    .righter {
-        height: 435px;
-        position: relative;
-        object-fit: fill;
-        img {
-            width: 100%;
-            border-radius: 15px;
-            margin-top: 15px;
-        }
-    }
-    .lefter {
-        img {
-            width: 100%;
-            border-radius: 15px;
-            margin-top: 15px;
-        }
-    }
-}
-
 .linearBg {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     cursor: pointer;
     height: 350px;
     width: 100%;

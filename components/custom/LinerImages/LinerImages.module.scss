@@ -1,0 +1,19 @@
+.linearImages {
+    .righter {
+        height: 220px;
+        overflow: hidden;
+        img {
+            object-fit: contain;
+            width: 100%;
+            border-radius: 15px;
+        }
+    }
+    .lefter {
+        height: 220px;
+        overflow: hidden;
+        img {
+            width: 100%;
+            border-radius: 15px;
+        }
+    }
+}

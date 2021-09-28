@@ -3,6 +3,10 @@ import ProductCard from "../../components/ProductCart/ProductCard";
 import Head from "next/head";
 import CustomSlider from "../../components/custom/customSlider";
 import styles from "./landing.module.scss";
+import LinerProducts from "../../components/custom/LinerProducts";
+import LinearImages from "../../components/custom/LinerImages";
+import LinerProductsBg from "../../components/custom/LinerProductsBg";
+
 const index = () => {
   let product = {
     imageUrl: "/image/faile.webp",
@@ -57,18 +61,18 @@ const index = () => {
           </div>
         </div>
       </div>
-      <div className={`container ${styles.lineProduct}`}>
-        <div className={styles.header}>
-          <div className={styles.title}>
-            <h1>فرش و قالیچه</h1>
-            <h5>منتخب سردبیر</h5>
-          </div>
-          <div className={styles.Button}>
-            <button>مشاهده همه</button>
-          </div>
-        </div>
-        <div className={styles.products}></div>
-      </div>
+
+      <LinerProducts title="فرش و قالیچه" subTitle="منتخب میلاد" />
+      <LinerProducts title="نشان شده های" subTitle="مورد توجه کاربران" />
+
+      <LinearImages />
+      <LinerProducts title="نشان شده های" subTitle="مورد توجه کاربران" />
+
+      <LinerProductsBg />
+
+      <LinerProducts title="نشان شده های" subTitle="منتخب مدیر عامل" />
+      <LinerProducts title="نشان شده های" subTitle="منتخب مدیر عامل" />
+      <LinerProductsBg />
     </>
   );
 };
