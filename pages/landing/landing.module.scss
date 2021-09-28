@@ -1,0 +1,58 @@
+// Variable
+$color1: #00171f;
+$color2: #1b3e68;
+$color3: #224d82;
+$color4: #597ba1;
+$color5: #91a6c1;
+$color6: #d4d8e1;
+.slide {
+    .righter {
+        height: 435px;
+        position: relative;
+        object-fit: fill;
+        img {
+            width: 100%;
+            border-radius: 15px;
+            margin-top: 15px;
+        }
+    }
+    .lefter {
+        img {
+            width: 100%;
+            border-radius: 15px;
+            margin-top: 15px;
+        }
+    }
+}
+
+.lineProduct {
+    margin-top: 20px;
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        .title {
+            h1 {
+                font-size: 18px;
+                margin-bottom: 13px;
+            }
+            h5 {
+                font-size: 14px;
+                color: rgb(125, 125, 125);
+            }
+        }
+        .Button {
+            button {
+                border: 1px solid $color2;
+                border-radius: 10px;
+                padding: 6px 20px;
+                color: $color2;
+                &:hover {
+                    background: $color2;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
