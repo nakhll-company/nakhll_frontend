@@ -3,7 +3,15 @@ import ProductCard from "../../../components/ProductCart/ProductCard";
 
 import styles from "./LinerProducts.module.scss";
 
-function LinerProducts({ title, subTitle, products = [] }) {
+function LinerProducts({
+  num = 6,
+  title,
+  subTitle,
+  products = [],
+  xl = 2,
+  md = 6,
+  lg = 6,
+}) {
   let product = {
     imageUrl: "/image/faile.webp",
     url: "/hamzeh",
@@ -32,12 +40,11 @@ function LinerProducts({ title, subTitle, products = [] }) {
         </div>
       )}
       <div className={`${styles.products} row`}>
-        {products.slice(0, 6).map((product) => (
+        {products.slice(0, num).map((product) => (
           <ProductCard
-            xl={6}
-            md={6}
-            lg={6}
-            xl={2}
+            xl={xl}
+            md={md}
+            lg={lg}
             key={1}
             padding={1}
             product={{

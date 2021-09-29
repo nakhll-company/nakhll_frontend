@@ -11,6 +11,7 @@ import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 
 const index = () => {
   const [products, setProducts] = useState([]);
+  const [lastDiscount, setLastDiscount] = useState([]);
   const _Call_Products = async () => {
     try {
       let response = await ApiRegister().apiRequest(
@@ -28,24 +29,28 @@ const index = () => {
       console.log("rrrr :>> ", e);
     }
   };
+  const _Call_last_discount = async () => {
+    try {
+      let response = await ApiRegister().apiRequest(
+        null,
+        "get",
+        `/api/v1/landing/last-created-discounted-products/`,
+        true,
+        {}
+      );
+      if (response.status === 200) {
+        console.log("response.data :>> ", response.data);
+        setLastDiscount(response.data);
+      }
+    } catch (e) {
+      console.log("rrrr :>> ", e);
+    }
+  };
   useEffect(() => {
     _Call_Products();
+    _Call_last_discount();
   }, []);
 
-  let product = {
-    imageUrl: "/image/faile.webp",
-    url: "/hamzeh",
-    title: "نبات گیاهی متبرک مشهد با نی چوبی 1 کیلویی برکت هشتم",
-    chamberTitle: "گالری سنگ و نقره شاپرک",
-    chamberUrl: "/azizzadeh",
-    rate: 10,
-    commentCount: 102,
-    discount: 25,
-    price: 107000,
-    discountNumber: 190000,
-    // sales: 52,
-    city: "کرمان",
-  };
   return (
     <>
       <Head>
@@ -84,7 +89,7 @@ const index = () => {
       <LinearImages />
       <LinerProducts title="نشان شده های" subTitle="مورد توجه کاربران" />
 
-      <LinerProductsBg />
+      {lastDiscount && <LinerProductsBg num={4} xl={3} products={lastDiscount} />}
 
       <LinerProducts title="نشان شده های" subTitle="منتخب مدیر عامل" />
       <LinerProducts title="نشان شده های" subTitle="منتخب مدیر عامل" />

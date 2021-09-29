@@ -7,7 +7,7 @@ function HeroSlides(props) {
         <div className={`col-md-8 ${styles.righter}`}>
           <img src="/image/slide/slid1.jpg" alt="" />
         </div>
-        <div className={`col-md-4  ${styles.lefter} `}>
+        <div className={`col-md-4  ${styles.lefter}  d-none d-md-block`}>
           <img src="/image/slide/slideLeft2.jpg" alt="" />
           <img src="/image/slide/slidLeft.jpg" alt="" />
         </div>
