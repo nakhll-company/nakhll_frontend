@@ -6,6 +6,7 @@ import styles from "./landing.module.scss";
 import LinerProducts from "../../containers/LandingPage/LinerProducts";
 import LinerProductsBg from "../../containers/LandingPage/LinerProductsBg";
 import LinearImages from "../../containers/LandingPage/LinerImages";
+import HeroSlides from "../../containers/LandingPage/HeroSlides";
 
 const index = () => {
   let product = {
@@ -50,18 +51,7 @@ const index = () => {
         ></link>
       </Head>
 
-      <div className="container p-2 ">
-        <div className={`row ${styles.slide}`}>
-          <div className={`col-md-8 ${styles.righter}`}>
-            <img src="/image/slide/slid1.jpg" alt="" />
-          </div>
-          <div className={`col-md-4  ${styles.lefter} `}>
-            <img src="/image/slide/slideLeft2.jpg" alt="" />
-            <img src="/image/slide/slidLeft.jpg" alt="" />
-          </div>
-        </div>
-      </div>
-
+      <HeroSlides />
       <LinerProducts title="فرش و قالیچه" subTitle="منتخب میلاد" />
       <LinerProducts title="نشان شده های" subTitle="مورد توجه کاربران" />
 
