@@ -7,7 +7,6 @@ $color5: #91a6c1;
 $color6: #d4d8e1;
 .lineProduct {
     margin-top: 20px;
-    overflow: hidden;
     .header {
         display: flex;
         justify-content: space-between;
@@ -35,5 +34,10 @@ $color6: #d4d8e1;
                 }
             }
         }
+    }
+    .products {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
     }
 }

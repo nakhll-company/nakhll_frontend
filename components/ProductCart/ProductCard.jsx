@@ -36,23 +36,30 @@ const ProductCard = ({
   let cardImg = (
     <img
       src={product.imageUrl}
-      className={`card-img-top _product_card_rounded animationCart ${product.unavailable && "_unavailable_product"
-        }`}
+      className={`card-img-top _product_card_rounded animationCart ${
+        product.unavailable && "_unavailable_product"
+      }`}
       alt={product.title}
     />
   );
 
   return (
     <div
-      className={`animationCartParent ${col
-        ? `col-${col}`
-        : `col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
-        } ${padding ? `px-${padding}` : ""} mb-3`}
+      className={`animationCartParent ${
+        col
+          ? `col-${col}`
+          : `col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
+      } ${padding ? `px-${padding}` : ""} mb-3`}
     >
-      <div className="card _product_card _product_card_rounded p-2">
+      <div
+        style={{ minHeight: "228px" }}
+        className="card _product_card _product_card_rounded p-2"
+      >
         {cardBadge}
 
-        <a href={product.url}>{cardImg}</a>
+        <div style={{ minHeight: "230px" }}>
+          <a href={product.url}>{cardImg}</a>
+        </div>
         {/* {linkType === "anchor" ? (
           <a href={product.url}>
             {cardImg}
@@ -64,8 +71,9 @@ const ProductCard = ({
         )} */}
 
         <div
-          className={`card-body mt-2 p-1 ${product.unavailable && "_unavailable_product"
-            }`}
+          className={`card-body mt-2 p-1 ${
+            product.unavailable && "_unavailable_product"
+          }`}
         >
           <div className=" mb-3">
             <a

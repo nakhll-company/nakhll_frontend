@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Head from "next/head";
 
@@ -7,8 +7,31 @@ import LinerProducts from "../../containers/LandingPage/LinerProducts";
 import LinerProductsBg from "../../containers/LandingPage/LinerProductsBg";
 import LinearImages from "../../containers/LandingPage/LinerImages";
 import HeroSlides from "../../containers/LandingPage/HeroSlides";
+import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 
 const index = () => {
+  const [products, setProducts] = useState([]);
+  const _Call_Products = async () => {
+    try {
+      let response = await ApiRegister().apiRequest(
+        null,
+        "get",
+        `/api/v1/landing/last-created-products/`,
+        true,
+        {}
+      );
+      if (response.status === 200) {
+        console.log("response.data :>> ", response.data);
+        setProducts(response.data);
+      }
+    } catch (e) {
+      console.log("rrrr :>> ", e);
+    }
+  };
+  useEffect(() => {
+    _Call_Products();
+  }, []);
+
   let product = {
     imageUrl: "/image/faile.webp",
     url: "/hamzeh",
@@ -52,7 +75,10 @@ const index = () => {
       </Head>
 
       <HeroSlides />
-      <LinerProducts title="فرش و قالیچه" subTitle="منتخب میلاد" />
+      {products && (
+        <LinerProducts products={products} title="جدیدترین محصولات" />
+      )}
+
       <LinerProducts title="نشان شده های" subTitle="مورد توجه کاربران" />
 
       <LinearImages />

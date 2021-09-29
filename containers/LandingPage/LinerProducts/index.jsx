@@ -3,7 +3,7 @@ import ProductCard from "../../../components/ProductCart/ProductCard";
 
 import styles from "./LinerProducts.module.scss";
 
-function LinerProducts({ title, subTitle }) {
+function LinerProducts({ title, subTitle, products = [] }) {
   let product = {
     imageUrl: "/image/faile.webp",
     url: "/hamzeh",
@@ -32,21 +32,24 @@ function LinerProducts({ title, subTitle }) {
         </div>
       )}
       <div className={`${styles.products} row`}>
-        {[1, 2, 3, 4, 5, 6].map((e) => (
+        {products.slice(0, 6).map((product) => (
           <ProductCard
-            col={2}
-            key={e}
+            xl={6}
+            md={6}
+            lg={6}
+            xl={2}
+            key={1}
             padding={1}
             product={{
-              imageUrl: product.imageUrl,
-              url: "",
+              imageUrl: product.image_thumbnail_url,
+              url: `/productDetail/${product.slug}/`,
               title: product.title,
-              chamberTitle: product.chamberTitle,
-              chamberUrl: "#",
+              chamberTitle: product.shop.title,
+              chamberUrl: product.shop.url,
               discount: product.discount,
               price: product.price / 10,
               discountNumber: product.old_price / 10,
-              city: product.city,
+              city: product.shop.state,
             }}
           />
         ))}
