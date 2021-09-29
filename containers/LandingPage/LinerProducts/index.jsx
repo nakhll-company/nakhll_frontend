@@ -1,5 +1,6 @@
 import React from "react";
-import ProductCard from "../../ProductCart/ProductCard";
+import ProductCard from "../../../components/ProductCart/ProductCard";
+
 import styles from "./LinerProducts.module.scss";
 
 function LinerProducts({ title, subTitle }) {

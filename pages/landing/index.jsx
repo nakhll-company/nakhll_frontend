@@ -1,11 +1,11 @@
 import React from "react";
-import ProductCard from "../../components/ProductCart/ProductCard";
+
 import Head from "next/head";
-import CustomSlider from "../../components/custom/customSlider";
+
 import styles from "./landing.module.scss";
-import LinerProducts from "../../components/custom/LinerProducts";
-import LinearImages from "../../components/custom/LinerImages";
-import LinerProductsBg from "../../components/custom/LinerProductsBg";
+import LinerProducts from "../../containers/LandingPage/LinerProducts";
+import LinerProductsBg from "../../containers/LandingPage/LinerProductsBg";
+import LinearImages from "../../containers/LandingPage/LinerImages";
 
 const index = () => {
   let product = {
