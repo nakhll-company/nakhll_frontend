@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-x: auto;
 }
 
 .loader {
@@ -21,7 +22,7 @@
         justify-content: center;
         align-items: center;
     }
-    span {
+    .part_icon {
         position: relative;
         width: 170px;
         height: 170px;
@@ -88,5 +89,19 @@
     }
     100% {
         transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 375px) {
+    .loader {
+        margin: 1px;
+        margin-bottom: 40px;
+    }
+    .part_icon {
+        width: 20px;
+        height: 20px;
+        &::after {
+            inset: 1px;
+        }
     }
 }

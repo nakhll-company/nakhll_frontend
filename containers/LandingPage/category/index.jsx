@@ -4,12 +4,12 @@ function Category(props) {
   let root = [
     { pos: "arayesh.svg", title: "آرایشی" },
     { pos: "atari.svg", title: "عطاری" },
-    ,
+
     { pos: "farhangi.svg", title: "فرهنگی" },
-    ,
+
     { pos: "khaneh.svg", title: "خانه" },
     { pos: "lebas.svg", title: "لباس" },
-    ,
+
     { pos: "sanaieh.svg", title: "صنایع دستی" },
   ];
   return (
@@ -23,7 +23,7 @@ function Category(props) {
               className={styles.img_Category}
             />
           </div>
-          <span>
+          <span className={styles.part_icon}>
             <i className={styles.between}></i>
           </span>
           <div className={styles.title}>
