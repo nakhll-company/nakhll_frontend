@@ -8,6 +8,7 @@ import LinerProductsBg from "../../containers/LandingPage/LinerProductsBg";
 import LinearImages from "../../containers/LandingPage/LinerImages";
 import HeroSlides from "../../containers/LandingPage/HeroSlides";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import Category from "../../containers/LandingPage/category";
 
 const index = () => {
   const [products, setProducts] = useState([]);
@@ -103,9 +104,16 @@ const index = () => {
       {products && (
         <LinerProducts products={products} title="جدیدترین محصولات" />
       )}
+      <Category />
 
       <LinearImages />
-
+      {mostDiscount && (
+        <LinerProducts
+          products={mostDiscount}
+          title="بیشترین تخفیفات"
+          subTitle=""
+        />
+      )}
       {lastDiscount && (
         <LinerProductsBg num={4} xl={3} products={lastDiscount} />
       )}

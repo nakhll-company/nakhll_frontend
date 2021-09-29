@@ -1,0 +1,92 @@
+.category {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    margin: 20px;
+    margin-bottom: 40px;
+    position: relative;
+    display: flex;
+    .icon {
+        position: absolute;
+        cursor: pointer;
+        inset: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    span {
+        position: relative;
+        width: 170px;
+        height: 170px;
+        background: #eaeef0;
+        border: 6px solid #eaeef0;
+        border-radius: 50%;
+        overflow: hidden;
+        cursor: pointer;
+        box-shadow: -8px -8px 15px rgba(255, 255, 255, 1), 8px 8px 25px rgba(0, 0, 0, 0.15);
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            box-shadow: inset 10px 10px 20px rgba(0, 0, 0, 0.5), inset -5px -5px 15px rgba(255, 255, 255, 1);
+        }
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 10px;
+            border: 3px solid #eaeef0;
+            background: #eaeef0;
+            border-radius: 50%;
+            box-shadow: -8px -8px 25px rgba(255, 255, 255, 1), 8px 8px 25px rgba(0, 0, 0, 0.25), inset 3px 3px 10px rgba(0, 0, 0, 0.15), inset -1px -1px 15px rgba(255, 255, 255, 1);
+        }
+        &:hover {
+            i {
+                background: linear-gradient(#42abff, #694fff, #3bffe5ea);
+            }
+        }
+        i {
+            filter: blur(5px);
+            position: absolute;
+            inset: 0;
+            // background: linear-gradient(#42abff, #ff4f8b, #ffeb3b);
+            border-radius: 50%;
+            animation: animate 1s infinite linear;
+            &:hover {
+                background: linear-gradient(#42abff, #ff4f8b, #ffeb3b);
+            }
+        }
+    }
+}
+
+.title {
+    position: absolute;
+    bottom: -40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    right: 0;
+    .subtitle {
+        text-align: center;
+        font-size: 16px;
+        color: #3d3d3d;
+        text-transform: uppercase;
+    }
+}
+
+@keyframes animate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

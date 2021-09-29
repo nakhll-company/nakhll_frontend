@@ -18,6 +18,10 @@ $color6: #d4d8e1;
         justify-content: center;
         margin-bottom: 15px;
         margin-top: auto;
+        .Button {
+            display: flex;
+            justify-content: center;
+        }
     }
     .lefter {}
     &:hover {
