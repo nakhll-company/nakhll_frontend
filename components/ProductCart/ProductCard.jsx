@@ -2,6 +2,7 @@ import { Link } from "next";
 
 import Assistent from "zaravand-assistent-number";
 import { CustomCard } from "../custom/customCard";
+import styles from "./ProductCard.module.scss";
 const _asist = new Assistent();
 
 const ProductCard = ({
@@ -48,16 +49,16 @@ const ProductCard = ({
       className={`animationCartParent ${
         col
           ? `col-${col}`
-          : `col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
+          : `col-6 col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
       } ${padding ? `px-${padding}` : ""} mb-3`}
     >
       <div
-        style={{ minHeight: "228px" }}
+        // style={{ minHeight: "170px" }}
         className="card _product_card _product_card_rounded p-2"
       >
         {cardBadge}
 
-        <div style={{ minHeight: "230px" }}>
+        <div className={styles.paterImage}>
           <a href={product.url}>{cardImg}</a>
         </div>
         {/* {linkType === "anchor" ? (

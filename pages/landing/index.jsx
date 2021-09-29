@@ -104,17 +104,11 @@ const index = () => {
         <LinerProducts products={products} title="جدیدترین محصولات" />
       )}
 
-      <LinerProducts title="نشان شده های" subTitle="مورد توجه کاربران" />
-
       <LinearImages />
-
-      <LinerProducts title="نشان شده های" subTitle="مورد توجه کاربران" />
 
       {lastDiscount && (
         <LinerProductsBg num={4} xl={3} products={lastDiscount} />
       )}
-
-      <LinerProducts title="نشان شده های" subTitle="منتخب مدیر عامل" />
 
       {mostDiscount && (
         <LinerProducts
@@ -123,8 +117,6 @@ const index = () => {
           subTitle=""
         />
       )}
-
-      <LinerProductsBg />
     </>
   );
 };

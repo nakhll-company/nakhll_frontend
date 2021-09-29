@@ -9,8 +9,9 @@ function LinerProducts({
   subTitle,
   products = [],
   xl = 2,
-  md = 6,
-  lg = 6,
+  md = 4,
+  lg = 3,
+  sm = 6,
 }) {
   let product = {
     imageUrl: "/image/faile.webp",
@@ -45,6 +46,7 @@ function LinerProducts({
             xl={xl}
             md={md}
             lg={lg}
+            sm={sm}
             key={1}
             padding={1}
             product={{
