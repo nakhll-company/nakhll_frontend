@@ -12,6 +12,7 @@ import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 const index = () => {
   const [products, setProducts] = useState([]);
   const [lastDiscount, setLastDiscount] = useState([]);
+  const [mostDiscount, setMostDiscount] = useState([]);
   const _Call_Products = async () => {
     try {
       let response = await ApiRegister().apiRequest(
@@ -46,9 +47,28 @@ const index = () => {
       console.log("rrrr :>> ", e);
     }
   };
+  const _Call_most_discount = async () => {
+    try {
+      let response = await ApiRegister().apiRequest(
+        null,
+        "get",
+        `/api/v1/landing/most-discount-prec-products/`,
+        true,
+        {}
+      );
+      if (response.status === 200) {
+        console.log("response.data :>> ", response.data);
+        setMostDiscount(response.data);
+      }
+    } catch (e) {
+      console.log("rrrr :>> ", e);
+    }
+  };
+
   useEffect(() => {
     _Call_Products();
     _Call_last_discount();
+    _Call_most_discount();
   }, []);
 
   return (
@@ -87,12 +107,23 @@ const index = () => {
       <LinerProducts title="نشان شده های" subTitle="مورد توجه کاربران" />
 
       <LinearImages />
+
       <LinerProducts title="نشان شده های" subTitle="مورد توجه کاربران" />
 
-      {lastDiscount && <LinerProductsBg num={4} xl={3} products={lastDiscount} />}
+      {lastDiscount && (
+        <LinerProductsBg num={4} xl={3} products={lastDiscount} />
+      )}
 
       <LinerProducts title="نشان شده های" subTitle="منتخب مدیر عامل" />
-      <LinerProducts title="نشان شده های" subTitle="منتخب مدیر عامل" />
+
+      {mostDiscount && (
+        <LinerProducts
+          products={mostDiscount}
+          title="بیشترین تخفیفات"
+          subTitle=""
+        />
+      )}
+
       <LinerProductsBg />
     </>
   );

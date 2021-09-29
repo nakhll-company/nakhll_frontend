@@ -1,18 +1,25 @@
 .linearImages {
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
     .righter {
-        height: 220px;
-        overflow: hidden;
+        position: relative;
+        margin-bottom: 10px;
         img {
-            object-fit: contain;
+            aspect-ratio: 3/1.2;
             width: 100%;
-            border-radius: 15px;
+            height: auto;
+            border-radius: 20px;
         }
     }
     .lefter {
-        height: 220px;
-        overflow: hidden;
+        margin-bottom: 10px;
+        position: relative;
         img {
+            display: block;
+            aspect-ratio: 3/1.2;
             width: 100%;
+            height: auto;
             border-radius: 15px;
         }
     }
