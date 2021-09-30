@@ -14,8 +14,14 @@ function Category(props) {
   ];
   return (
     <div className={styles.category}>
+      <span className={styles.mar}></span>
       {root.map((item, index) => (
         <div className={styles.loader}>
+          <span className={styles.part_icon}>
+            <i className={styles.between}></i>
+          </span>
+
+          {/* image */}
           <div className={styles.icon}>
             <img
               onClick={() => alert("hi")}
@@ -23,9 +29,9 @@ function Category(props) {
               className={styles.img_Category}
             />
           </div>
-          <span className={styles.part_icon}>
-            <i className={styles.between}></i>
-          </span>
+
+          {/* title */}
+
           <div className={styles.title}>
             <h1 className={styles.subtitle}>{item.title}</h1>
           </div>
