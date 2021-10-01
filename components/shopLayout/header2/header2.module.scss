@@ -7,88 +7,158 @@ $color5: #91a6c1;
 $color6: #d4d8e1;
 $color_tel_search: rgb(244, 244, 245);
 $color_tel_word: rgb(162, 172, 182);
-// mixin
-@mixin flexCenter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-.header {
-    padding: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    backdrop-filter: blur(10px);
-    background: #fff;
-    /* fallback for old browsers */
-    // background: -webkit-linear-gradient(to right, #e2e2e2, #c9d6ff);
-    // /* Chrome 10-25, Safari 5.1-6 */
-    // background: linear-gradient(to right, #e2e2e2, #c9d6ff);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    // background: rgb(0, 23, 31);
-    // background: linear-gradient( 130deg, rgba(0, 23, 31, 1) 0%, rgba(27, 62, 104, 1) 27%, rgba(34, 77, 130, 1) 42%, rgba(89, 123, 161, 1) 59%, rgba(145, 166, 193, 1) 84%, rgba(212, 216, 225, 1) 98%);
-    // box-shadow: inset 7px 7px 40px #55565a, inset -7px -7px 40px #ffffff;
-    // box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-    // border-bottom: 3px solid rgba(151, 156, 156, 0.5);
-    -webkit-clip-path: polygon( 100% 0%, 0% 0%, 0% 99%, 18% 94%, 25% 94%, 33% 94%, 42% 97%, 51% 96%, 63% 95%, 65% 98%, 77% 97%, 88% 92%, 95% 97%, 100% 100%);
-    clip-path: polygon( 100% 0%, 0% 0%, 0% 99%, 18% 94%, 25% 94%, 33% 94%, 42% 97%, 51% 96%, 63% 95%, 65% 98%, 77% 97%, 88% 92%, 95% 97%, 100% 100%);
-    .logo {
-        display: flex;
-        order: 1;
-        h1 {
-            font-size: 16px;
-            align-self: center;
-            margin: 0;
-            color: $color3;
-        }
-    }
-    // search
-    .search {
-        order: 3;
-        @include flexCenter;
-        margin-right: auto;
-        margin-left: auto;
-        margin-top: 5px;
-        position: relative;
-        input {
-            border-radius: 15px;
-            outline: none;
-            border: none;
-            padding: 6px 10px;
-            min-width: 90vw;
-            // margin-right: 18px;
-            margin-bottom: 10px;
-            width: 100%;
-            border-radius: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.8);
-            background: $color_tel_search;
-            // box-shadow: 7px 7px 40px #55565a, -7px -7px 40px #ffffff;
-            font-size: 14px;
-            &::placeholder {
-                color: $color_tel_word;
-                padding-right: 2px;
-                font-size: 12px;
-            }
-        }
+.mobile_header {
+    background-color: #fff;
+  .header_holder {
+    border-bottom: 1px solid #f5f5f5;
+
+    .inner_header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5px 0;
+      height: 48px;
+      box-sizing: border-box;
+      position: relative;
+
+      .menu_Hamburger {
+        padding-top: 8px;
         i {
+          font-size: 20px;
+        }
+      }
+
+      .logo {
+        position: absolute;
+        right: 48px;
+        top: 14px;
+      }
+      .left_side {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        .profile_btn {
+          color: #595959;
+          font-size: 24px;
+          line-height: 0;
+        }
+        .bascket_btn {
+          margin-right: 32px;
+          position: relative;
+          color: #595959;
+          font-size: 24px;
+          line-height: 0;
+        }
+      }
+    }
+  }
+
+
+  .search_header{
+    border-bottom: 1px solid #f5f5f5;
+    padding: 8px 0;
+
+
+    .search_box{
+
+        width: 100%;
+        height: 40px;
+        background: #f5f5f5;
+        border-radius: 5px;
+        box-sizing: border-box;
+        position: relative;
+
+        input{
+            border: 1px solid transparent;
+            height: 40px;
+            line-height: 40px;
+            width: 100%;
+            background: transparent;
+            font-size: 14px;
+            
+            padding: 0 10px 0 40px;
+            position: relative;
+            z-index: 3;
+        }
+
+        i{
             position: absolute;
             left: 10px;
-            top: 10px;
-            color: $color_tel_word;
-            font-size: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8c8c8c;
+            font-size: 20px;
+            z-index: 3;
+            cursor: pointer;
         }
     }
-    // icons
-    .icons {
-        order: 2;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: $color3;
-        font-size: 25px;
-        margin-right: auto;
-        .icon {
-            margin-left: 10px;
+
+  }
+
+
+  .menu_holder{
+
+    
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+
+    .mobile_menu{
+        position: absolute;
+        top: 0;
+        // iiii
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        background: #fff;
+        box-shadow: 0 0 7px 7px hsla(0,0%,80.8%,.5);
+        overflow-y: scroll;
+        transition: all .3s ease-out;
+        padding: 24px 16px;
+
+
+        .head_menu{
+            position: relative;
+            padding-bottom: 24px;
+
+
+            .menu_logo{    display: inline-block;
+                padding: 8px 0;
+            img{
+                width: 77px;
+            }
+            
+            
+            }
+
+            .close_menu{
+                color: #595959;
+                font-size: 16px;
+                background: #f5f5f5;
+                border-radius: 50%;
+                display: inline-block;
+                width: 32px;
+                height: 32px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+        }
+
+
+
+
+        .top_menu{
+            
         }
     }
+  }
 }
