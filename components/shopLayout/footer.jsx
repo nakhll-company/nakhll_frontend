@@ -39,18 +39,18 @@ const Footer = () => {
         <>
 
           <div className="container">
-            <div class="row d-none d-lg-flex pt-4">
-              <div class="col-6">
-                <div class="row">
-                  <div class="col-4 col-4 d-flex flex-column">
-                    <div class="font-lg-size1-1 font-weight-500 pb-4">نخل</div>{" "}
+            <div className="row d-none d-lg-flex pt-4">
+              <div className="col-6">
+                <div className="row">
+                  <div className="col-4 col-4 d-flex flex-column">
+                    <div className="font-lg-size1-1 font-weight-500 pb-4">نخل</div>{" "}
                     <div>
-                      <a href="/about/about-us" class={styles.footer_items}>
+                      <a href="/about/about-us" className={styles.footer_items}>
                         داستان نخل
                       </a>
                     </div>
                     <div>
-                      <a href="/about/contact-us" class={styles.footer_items}>
+                      <a href="/about/contact-us" className={styles.footer_items}>
                         تماس با ما
                       </a>
                     </div>
@@ -58,7 +58,7 @@ const Footer = () => {
                       <a
                         to="https://jobs.basalam.com/"
                         href="https://jobs.basalam.com/"
-                        class={styles.footer_items}
+                        className={styles.footer_items}
                       >
                         فرصت‌های شغلی
                       </a>
@@ -67,7 +67,7 @@ const Footer = () => {
                       <a
                         to="/guides/how-it-works"
                         href="/guides/how-it-works"
-                        class={styles.footer_items}
+                        className={styles.footer_items}
                       >
                         نخل چطور کار می‌کند؟
                       </a>
@@ -76,12 +76,12 @@ const Footer = () => {
                       <a
                         to="/about/terms-of-use"
                         href="/about/terms-of-use"
-                        class={styles.footer_items}
+                        className={styles.footer_items}
                       >
                         قوانین و شرایط استفاده
                       </a>
                     </div>{" "}
-                    <div class={styles.footer_social_icon}>
+                    <div className={styles.footer_social_icon}>
                       <div>
                         <a
                           href="https://www.linkedin.com/company/basalam"
@@ -89,7 +89,7 @@ const Footer = () => {
                           target="_blank"
                           aria-label="لینکدین"
                         >
-                          <i class="fas fa-linkedin"></i>
+                          <i className="fas fa-linkedin"></i>
                         </a>
                       </div>{" "}
                       <div>
@@ -99,7 +99,7 @@ const Footer = () => {
                           target="_blank"
                           aria-label="توییتر"
                         >
-                          <i class="bi bi-twitter"></i>
+                          <i className="bi bi-twitter"></i>
                         </a>
                       </div>{" "}
                       <div>
@@ -109,41 +109,41 @@ const Footer = () => {
                           target="_blank"
                           aria-label="اینستاگرام"
                         >
-                          <i class="bi bi-instagram"></i>
+                          <i className="bi bi-instagram"></i>
                         </a>
                       </div>
                     </div>
                   </div>
-                  <div class="col-4 col-4 d-flex flex-column">
-                    <div class="font-lg-size1-1 font-weight-500 pb-4">
+                  <div className="col-4 col-4 d-flex flex-column">
+                    <div className="font-lg-size1-1 font-weight-500 pb-4">
                       پشتیبانی
                     </div>{" "}
                     <div>
                       <a
                         to="tel://025-31075"
                         href="tel://025-31075"
-                        class={styles.footer_items}
+                        className={styles.footer_items}
                       >
                         تلفن تماس:
-                        <span class="d-inline-block">025-31075</span>
+                        <span className="d-inline-block">025-31075</span>
                       </a>
                     </div>
                     <div>
                       <a
                         to="https://help.basalam.com/"
                         href="https://help.basalam.com/"
-                        class={styles.footer_items}
+                        className={styles.footer_items}
                       >
                         پشتیبانی آنلاین
                       </a>
                     </div>
                     <div>
-                      <a href="/account/orders" class={styles.footer_items}>
+                      <a href="/account/orders" className={styles.footer_items}>
                         پیگیری سفارشات
                       </a>
                     </div>
                     <div>
-                      <a href="/guides/return-policy" class={styles.footer_items}>
+                      <a href="/guides/return-policy" className={styles.footer_items}>
                         بازگشت کالا
                       </a>
                     </div>
@@ -151,7 +151,7 @@ const Footer = () => {
                       <a
                         to="https://help.basalam.com/"
                         href="https://help.basalam.com/"
-                        class={styles.footer_items}
+                        className={styles.footer_items}
                       >
                         گزارش تخلف
                       </a>
@@ -160,26 +160,26 @@ const Footer = () => {
                       <a
                         to="/guides/customer-satisfaction"
                         href="/guides/customer-satisfaction"
-                        class={styles.footer_items}
+                        className={styles.footer_items}
                       >
                         تضمین رضایت مشتری
                       </a>
                     </div>
                     <div>
-                      <a href="/help" class={styles.footer_items}>
+                      <a href="/help" className={styles.footer_items}>
                         پاسخ به سوالات پرتکرار
                       </a>
                     </div>{" "}
                   </div>
-                  <div class="col-4 col-4 d-flex flex-column">
-                    <div class="font-lg-size1-1 font-weight-500 pb-4">
+                  <div className="col-4 col-4 d-flex flex-column">
+                    <div className="font-lg-size1-1 font-weight-500 pb-4">
                       خرید و فروش
                     </div>{" "}
                     <div>
                       <a
                         to="/landing/create-vendor"
                         href="/landing/create-vendor"
-                        class={styles.footer_items}
+                        className={styles.footer_items}
                       >
                         فروش در نخل
                       </a>
@@ -187,13 +187,13 @@ const Footer = () => {
                     <div>
                       <a
                         href="/account/invite"
-                        class="footer-items font-weight-bold"
+                        className="footer-items font-weight-bold"
                       >
                         100 هزار تومان هدیه
                       </a>
                     </div>
                     <div>
-                      <a href="/account/credit" class={styles.footer_items}>
+                      <a href="/account/credit" className={styles.footer_items}>
                         کیف پول من
                       </a>
                     </div>
@@ -201,7 +201,7 @@ const Footer = () => {
                       <a
                         to="https://vendor.basalam.com"
                         href="https://vendor.basalam.com"
-                        class={styles.footer_items}
+                        className={styles.footer_items}
                       >
                         مدیریت غرفه
                       </a>
@@ -209,19 +209,19 @@ const Footer = () => {
                   </div>
                 </div>
               </div>{" "}
-              <div class="col-6">
-                <div class="row">
-                  <div class="col-xx-3"></div>{" "}
-                  <div class="col-12 col-xx-9 footer-top-part1">
-                    <div class="pb-3">
+              <div className="col-6">
+                <div className="row">
+                  <div className="col-xx-3"></div>{" "}
+                  <div className="col-12 col-xx-9 footer-top-part1">
+                    <div className="pb-3">
                       <a
                         href="/dl-app"
-                        class={`${styles.footer_items} font-lg-size1-1 font-weight-500 m-0`}
+                        className={`${styles.footer_items} font-lg-size1-1 font-weight-500 m-0`}
                       >
                         دانلود اپلیکیشن
                       </a>
                     </div>{" "}
-                    <div class={styles.footer_form_wrapper}>
+                    <div className={styles.footer_form_wrapper}>
                       <form
                         action="https://app.mailerlite.com/webforms/submit/k2y8b4"
                         method="POST"
@@ -235,7 +235,7 @@ const Footer = () => {
                         <button type="submit">اشتراک</button>
                       </form>
                     </div>{" "}
-                    <div class={styles.footer_downloadApp}>
+                    <div className={styles.footer_downloadApp}>
                       <a href="https://basalam.com/dl/cafebazzar">
                         <img
                           src="https://cdn.basalam.com/assets/17543/img/cafe-bazar-black.755828a.png"
@@ -259,9 +259,9 @@ const Footer = () => {
                         />
                       </a>
                     </div>{" "}
-                    <div class="row mt-5">
-                      <div class="col-6 col-md-3 mb-2 mt-3 pr-0">
-                        <div class="d-flex justify-content-center">
+                    <div className="row mt-5">
+                      <div className="col-6 col-md-3 mb-2 mt-3 pr-0">
+                        <div className="d-flex justify-content-center">
                           <a
                             referrerpolicy="origin"
                             target="_blank"
@@ -273,49 +273,49 @@ const Footer = () => {
                               alt="نماد اعتماد الکترونیکی"
                               title="نماد اعتماد الکترونیکی"
                               id="6iQN5yCbmti3PrU4cINp"
-                              class="footer-namad"
+                              className="footer-namad"
                               style={{ cursor: "pointer" }}
                             />
                           </a>
                         </div>
                       </div>{" "}
-                      <div class="col-6 col-md-3 mb-2 mt-3">
-                        <div class="d-flex justify-content-center mt-1">
+                      <div className="col-6 col-md-3 mb-2 mt-3">
+                        <div className="d-flex justify-content-center mt-1">
                           <a
                             href="http://www.qomstp.ir/"
                             rel="noopener noreferrer nofollow"
                             target="_blank"
-                            class="w-100"
+                            className="w-100"
                           >
                             <img
                               alt="پارک علم و فناوری قم"
                               title="پارک علم و فناوری قم"
                               src="https://statics.basalam.com/public/photo/explore/bx3V8/06-12/XQY1TLwetRvzVEbz3eJaq90hrTdZnyrYAup92cSq7mKZUC40Ex.png"
-                              class="footer-namad"
+                              className="footer-namad"
                             />
                           </a>
                         </div>
                       </div>{" "}
-                      <div class="col-6 col-md-3 mb-2 mt-3">
-                        <div class="d-flex justify-content-center">
+                      <div className="col-6 col-md-3 mb-2 mt-3">
+                        <div className="d-flex justify-content-center">
                           <img
                             alt="ستاد ساماندهی پایگاه‌های اینترنتی"
                             title="ستاد ساماندهی پایگاه‌های اینترنتی"
                             id="jxlzwlaorgvjrgvjfukzfukz"
                             src="https://statics.basalam.com/public/admin/2gEJ/08-29/HJi1gnRO7aeh22JmOQe3ip64Lo002IKiL7ihlHmrfBwfcvsQL2.png"
                             onclick="window.open('https://logo.samandehi.ir/Verify.aspx?id=143366&amp;p=rfthaodsxlaoxlaogvkagvka', 'Popup','toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30')"
-                            class="footer-namad"
+                            className="footer-namad"
                           />
                         </div>
                       </div>{" "}
-                      <div class="col-6 col-md-3 mb-2 mt-3">
-                        <div class="d-flex justify-content-center">
+                      <div className="col-6 col-md-3 mb-2 mt-3">
+                        <div className="d-flex justify-content-center">
                           <img
                             alt="انجمن کسب و کار های اینترنتی"
                             title="انجمن کسب و کار های اینترنتی"
                             src="https://statics.basalam.com/public/photo/explore/bx3V8/06-12/IIe9258erPuTim4DEaH2iWRQobRqYydLbaztyiUZ2CAdV35kui.png"
                             onclick="window.open('https://ecunion.ir/verify/basalam.com?token=43445575c7a0a8344a6b', 'Popup','toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30')"
-                            class="footer-namad"
+                            className="footer-namad"
                           />
                         </div>
                       </div>
@@ -324,28 +324,28 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-            <div class="d-block d-lg-none">
-              <div class="border-bottom border-gray py-3">
+            <div className="d-block d-lg-none">
+              <div className="border-bottom border-gray py-3">
                 <div>
-                  <div class="d-flex justify-content-between">
-                    <div class="font-weight-500">نخل</div>{" "}
-                    <i class="bi bi-angle-up"></i>
+                  <div className="d-flex justify-content-between">
+                    <div className="font-weight-500">نخل</div>{" "}
+                    <i className="bi bi-angle-up"></i>
                   </div>
                 </div>{" "}
                 <div
                   data-old-padding-top=""
                   data-old-padding-bottom=""
-                  class="is-active"
+                  className="is-active"
                   // style="animation-fill-mode: both; animation-timing-function: ease-out;"
                   data-old-overflow=""
                 >
                   <div>
-                    <a href="/about/about-us" class={styles.footer_items}>
+                    <a href="/about/about-us" className={styles.footer_items}>
                       داستان نخل
                     </a>
                   </div>
                   <div>
-                    <a href="/about/contact-us" class={styles.footer_items}>
+                    <a href="/about/contact-us" className={styles.footer_items}>
                       تماس با ما
                     </a>
                   </div>
@@ -353,7 +353,7 @@ const Footer = () => {
                     <a
                       to="https://jobs.basalam.com/"
                       href="https://jobs.basalam.com/"
-                      class={styles.footer_items}
+                      className={styles.footer_items}
                     >
                       فرصت‌های شغلی
                     </a>
@@ -362,7 +362,7 @@ const Footer = () => {
                     <a
                       to="/guides/how-it-works"
                       href="/guides/how-it-works"
-                      class={styles.footer_items}
+                      className={styles.footer_items}
                     >
                       نخل چطور کار می‌کند؟
                     </a>
@@ -371,24 +371,24 @@ const Footer = () => {
                     <a
                       to="/about/terms-of-use"
                       href="/about/terms-of-use"
-                      class={styles.footer_items}
+                      className={styles.footer_items}
                     >
                       قوانین و شرایط استفاده
                     </a>
                   </div>
                 </div>
               </div>
-              <div class="border-bottom border-gray py-3">
+              <div className="border-bottom border-gray py-3">
                 <div>
-                  <div class="d-flex justify-content-between">
-                    <div class="font-weight-500">پشتیبانی</div>{" "}
-                    <i class="bi bi-angle-up"></i>
+                  <div className="d-flex justify-content-between">
+                    <div className="font-weight-500">پشتیبانی</div>{" "}
+                    <i className="bi bi-angle-up"></i>
                   </div>
                 </div>{" "}
                 <div
                   data-old-padding-top=""
                   data-old-padding-bottom=""
-                  class="is-active"
+                  className="is-active"
                   data-old-overflow=""
                   // style="animation-fill-mode: both; animation-timing-function: ease-out;"
                 >
@@ -396,14 +396,14 @@ const Footer = () => {
                     <div
                       to="tel://025-31075"
                       href="tel://025-31075"
-                      class={styles.footer_items}
+                      className={styles.footer_items}
                     >
                       تلفن تماس:
-                      <a href="tel://025-31075" class="d-inline-block">
+                      <a href="tel://025-31075" className="d-inline-block">
                         025-31075
                       </a>{" "}
                       <span>و</span>{" "}
-                      <a href="tel://025-91003175" class="d-inline-block">
+                      <a href="tel://025-91003175" className="d-inline-block">
                         025-91003175
                       </a>
                     </div>
@@ -412,18 +412,18 @@ const Footer = () => {
                     <a
                       to="https://help.basalam.com/"
                       href="https://help.basalam.com/"
-                      class={styles.footer_items}
+                      className={styles.footer_items}
                     >
                       پشتیبانی آنلاین
                     </a>
                   </div>
                   <div>
-                    <a href="/account/orders" class={styles.footer_items}>
+                    <a href="/account/orders" className={styles.footer_items}>
                       پیگیری سفارشات
                     </a>
                   </div>
                   <div>
-                    <a href="/guides/return-policy" class={styles.footer_items}>
+                    <a href="/guides/return-policy" className={styles.footer_items}>
                       بازگشت کالا
                     </a>
                   </div>
@@ -431,7 +431,7 @@ const Footer = () => {
                     <a
                       to="https://help.basalam.com/"
                       href="https://help.basalam.com/"
-                      class={styles.footer_items}
+                      className={styles.footer_items}
                     >
                       گزارش تخلف
                     </a>
@@ -440,29 +440,29 @@ const Footer = () => {
                     <a
                       to="/guides/customer-satisfaction"
                       href="/guides/customer-satisfaction"
-                      class={styles.footer_items}
+                      className={styles.footer_items}
                     >
                       تضمین رضایت مشتری
                     </a>
                   </div>
                   <div>
-                    <a href="/help" class={styles.footer_items}>
+                    <a href="/help" className={styles.footer_items}>
                       پاسخ به سوالات پرتکرار
                     </a>
                   </div>
                 </div>
               </div>
-              <div class="border-bottom border-gray py-3">
+              <div className="border-bottom border-gray py-3">
                 <div>
-                  <div class="d-flex justify-content-between">
-                    <div class="font-weight-500">خرید و فروش</div>{" "}
-                    <i class="bi bi-angle-up"></i>
+                  <div className="d-flex justify-content-between">
+                    <div className="font-weight-500">خرید و فروش</div>{" "}
+                    <i className="bi bi-angle-up"></i>
                   </div>
                 </div>{" "}
                 <div
                   data-old-padding-top=""
                   data-old-padding-bottom=""
-                  class="is-active"
+                  className="is-active"
                   data-old-overflow=""
                   // style="animation-fill-mode: both; animation-timing-function: ease-out;"
                 >
@@ -470,7 +470,7 @@ const Footer = () => {
                     <a
                       to="/landing/create-vendor"
                       href="/landing/create-vendor"
-                      class={styles.footer_items}
+                      className={styles.footer_items}
                     >
                       فروش در نخل
                     </a>
@@ -478,13 +478,13 @@ const Footer = () => {
                   <div>
                     <a
                       href="/account/invite"
-                      class="footer-items font-weight-bold"
+                      className="footer-items font-weight-bold"
                     >
                       100 هزار تومان هدیه
                     </a>
                   </div>
                   <div>
-                    <a href="/account/credit" class={styles.footer_items}>
+                    <a href="/account/credit" className={styles.footer_items}>
                       کیف پول من
                     </a>
                   </div>
@@ -492,22 +492,22 @@ const Footer = () => {
                     <a
                       to="https://vendor.basalam.com"
                       href="https://vendor.basalam.com"
-                      class={styles.footer_items}
+                      className={styles.footer_items}
                     >
                       مدیریت غرفه
                     </a>
                   </div>
                 </div>
               </div>{" "}
-              <div class="align-items-center d-flex justify-content-between mt-3">
+              <div className="align-items-center d-flex justify-content-between mt-3">
                 <div>
                   <a href="https://basalam.com/dl/direct">
-                    <button class="btn rounded-pill border-black">
+                    <button className="btn rounded-pill border-black">
                       دانلود اپلیکیشن
                     </button>
                   </a>
                 </div>{" "}
-                <div class={styles.footer_social_icon}>
+                <div className={styles.footer_social_icon}>
                   <div>
                     <a
                       href="https://www.linkedin.com/company/basalam"
@@ -515,7 +515,7 @@ const Footer = () => {
                       target="_blank"
                       aria-label="لینکدین"
                     >
-                      <i class="bi bi-linkedin"></i>
+                      <i className="bi bi-linkedin"></i>
                     </a>
                   </div>{" "}
                   <div>
@@ -525,7 +525,7 @@ const Footer = () => {
                       target="_blank"
                       aria-label="توییتر"
                     >
-                      <i class="bi bi-twitter-outline"></i>
+                      <i className="bi bi-twitter-outline"></i>
                     </a>
                   </div>{" "}
                   <div>
@@ -535,14 +535,14 @@ const Footer = () => {
                       target="_blank"
                       aria-label="اینستاگرام"
                     >
-                      <i class="bi bi-instagram"></i>
+                      <i className="bi bi-instagram"></i>
                     </a>
                   </div>
                 </div>
               </div>{" "}
-              <div class="row align-items-center d-flex justify-content-between mt-5 row">
-                <div class="col-3 col-md-2">
-                  <div class="d-flex justify-content-center">
+              <div className="row align-items-center d-flex justify-content-between mt-5 row">
+                <div className="col-3 col-md-2">
+                  <div className="d-flex justify-content-center">
                     <a
                       referrerpolicy="origin"
                       target="_blank"
@@ -554,14 +554,14 @@ const Footer = () => {
                         alt="نماد اعتماد الکترونیکی"
                         title="نماد اعتماد الکترونیکی"
                         id="6iQN5yCbmti3PrU4cINp"
-                        class="w-100"
+                        className="w-100"
                         // style="cursor: pointer;"
                       />
                     </a>
                   </div>
                 </div>{" "}
-                <div class="col-3 col-md-2">
-                  <div class="d-flex justify-content-center mt-1">
+                <div className="col-3 col-md-2">
+                  <div className="d-flex justify-content-center mt-1">
                     <a
                       href="http://www.qomstp.ir/"
                       rel="noopener noreferrer nofollow"
@@ -571,46 +571,46 @@ const Footer = () => {
                         alt="پارک علم و فناوری قم"
                         title="پارک علم و فناوری قم"
                         src="https://statics.basalam.com/public/photo/explore/bx3V8/06-12/XQY1TLwetRvzVEbz3eJaq90hrTdZnyrYAup92cSq7mKZUC40Ex.png"
-                        class="w-100"
+                        className="w-100"
                       />
                     </a>
                   </div>
                 </div>{" "}
-                <div class="col-3 col-md-2">
-                  <div class="d-flex justify-content-center">
+                <div className="col-3 col-md-2">
+                  <div className="d-flex justify-content-center">
                     <img
                       alt="ستاد ساماندهی پایگاه‌های اینترنتی"
                       title="ستاد ساماندهی پایگاه‌های اینترنتی"
                       id="jxlzwlaorgvjrgvjfukzfukz"
                       src="https://statics.basalam.com/public/photo/explore/bx3V8/06-12/ItxiSGJ2SKnErTyX4sDp2EEfDApfmsoQrtiVxR4lIeEJ7tcCcB.png"
                       onclick="window.open('https://logo.samandehi.ir/Verify.aspx?id=143366&amp;p=rfthaodsxlaoxlaogvkagvka', 'Popup','toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30')"
-                      class="w-100"
+                      className="w-100"
                     />
                   </div>
                 </div>{" "}
-                <div class="col-3 col-md-2">
-                  <div class="d-flex justify-content-center">
+                <div className="col-3 col-md-2">
+                  <div className="d-flex justify-content-center">
                     <img
                       alt="انجمن کسب و کار های اینترنتی"
                       title="انجمن کسب و کار های اینترنتی"
                       src="https://statics.basalam.com/public/photo/explore/bx3V8/06-12/IIe9258erPuTim4DEaH2iWRQobRqYydLbaztyiUZ2CAdV35kui.png"
                       onclick="window.open('https://ecunion.ir/verify/basalam.com?token=43445575c7a0a8344a6b', 'Popup','toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30')"
-                      class="w-100"
+                      className="w-100"
                     />
                   </div>
                 </div>
               </div>
             </div>
-            <div class=" pt-3">
-              <div class="container pb-5">
-                <hr class="mt-0" />{" "}
-                <div class="footer-seo">
-                  <div class="font-weight-bold pt-3">
+            <div className=" pt-3">
+              <div className="container pb-5">
+                <hr className="mt-0" />{" "}
+                <div className="footer-seo">
+                  <div className="font-weight-bold pt-3">
                     نخل، بازار اجتماعی آنلاین
                   </div>{" "}
                   <div>
-                    <div class={`${styles.footer_seo_container} show-all-seo-text`}>
-                      <div class={styles.footer_seo_text}>
+                    <div className={`${styles.footer_seo_container} show-all-seo-text`}>
+                      <div className={styles.footer_seo_text}>
                         نخل آنلاین است و تمام آنچه را كاربر از یک فضای آنلاين
                         انتظار دارد به‌خوبی برآورده می‌کند. کاربری آسان، پرداخت
                         امن از درگاه‌های بانکی، نماد اعتماد الکترونیک، ضمانت
@@ -912,12 +912,12 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-            <div class="bg-black text-white py-3">
-              <div class="container font-size-sm">
+            <div className="bg-black text-white py-3">
+              <div className="container font-size-sm">
                 کلیه حقوق مادی و معنوی برای «توسعه و تدبیر جوامع سلام»، بازار
                 اجتماعی آنلاین، محفوظ است.
               </div>{" "}
-              <div class="mt-5 mt-lg-0 pt-4 pt-lg-0"></div>
+              <div className="mt-5 mt-lg-0 pt-4 pt-lg-0"></div>
             </div>
           </div>
         </>
