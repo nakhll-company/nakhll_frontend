@@ -34,6 +34,11 @@ $color_tel_word: rgb(162, 172, 182);
   position: relative;
   z-index: 101;
   background: #fff;
+  display: none;
+  @media (min-width:"768px") {
+    display: block;
+    
+  }
 
   .top_header {
     padding: 12px 0;
@@ -41,10 +46,18 @@ $color_tel_word: rgb(162, 172, 182);
     align-items: center;
     justify-content: space-between;
 
+    @media (max-width: 1199px)
+ {
+    display: block;
+}
+
     &_rightside {
       display: flex;
       align-items: center;
       justify-content: flex-start;
+      @media (max-width: 1199px){
+        justify-content: space-between;
+      }
 
       .h_logo {
         width: 154px;
@@ -65,7 +78,12 @@ $color_tel_word: rgb(162, 172, 182);
           box-sizing: border-box;
           margin-right: 24px;
           position: relative;
-          @media (max-width: 1399px) {
+          
+          @media (max-width: 1199px){
+            height: 40px;
+            width: 320px;
+          }
+          @media (max-width: 1399px){
             width: 430px;
           }
 
@@ -80,6 +98,10 @@ $color_tel_word: rgb(162, 172, 182);
             padding: 0 10px 0 40px;
             position: relative;
             z-index: 3;
+            @media (max-width: 1199px){
+              height: 40px;
+              line-height: 40px;
+            }
           }
         }
 
@@ -101,6 +123,11 @@ $color_tel_word: rgb(162, 172, 182);
       align-items: center;
       justify-content: flex-end;
       color: #141414;
+
+      @media (max-width: 1199px){
+        margin-top: 16px;
+      }
+
 
       div {
         padding: 0 16px;
@@ -179,7 +206,26 @@ $color_tel_word: rgb(162, 172, 182);
 
   nav {
     border-bottom: 1px solid #d9d9d9;
+
+    
     .nav_row {
+      height: 48px;
+    margin-top: 8px;
+
+      @media (max-width: 1199px){
+        height: auto;
+        margin-top: -36px;
+        margin-bottom: 8px;
+      }
+
+      .menu_collaps{
+        display: none;
+        @media (max-width: 1199px){
+          display: block;
+        }
+        span{    font-size: 24px;
+          color: #141414;}
+      }
       ul {
         list-style-type: none;
         margin: 0px;
@@ -190,6 +236,9 @@ $color_tel_word: rgb(162, 172, 182);
         display: flex;
         align-items: center;
         justify-content: flex-start;
+        @media (max-width: 1199px){
+          display: none;
+        }
 
         .nav_item {
           margin-left: 48px;
@@ -301,6 +350,11 @@ $color_tel_word: rgb(162, 172, 182);
 }
 
 .mobile_header {
+  @media (min-width:"767px") {
+    display: none;
+    
+  }
+
   background-color: #fff;
   .header_holder {
     border-bottom: 1px solid #f5f5f5;
@@ -323,8 +377,8 @@ $color_tel_word: rgb(162, 172, 182);
 
       .logo {
         position: absolute;
-        right: 48px;
-        top: 14px;
+        right: 40px;
+        top: 5px;
       }
       .left_side {
         display: flex;
@@ -358,6 +412,7 @@ $color_tel_word: rgb(162, 172, 182);
       border-radius: 5px;
       box-sizing: border-box;
       position: relative;
+     
 
       input {
         border: 1px solid transparent;
@@ -370,6 +425,8 @@ $color_tel_word: rgb(162, 172, 182);
         padding: 0 10px 0 40px;
         position: relative;
         z-index: 3;
+
+        
       }
 
       i {
@@ -405,6 +462,7 @@ $color_tel_word: rgb(162, 172, 182);
       overflow-y: scroll;
       transition: all 0.3s ease-out;
       padding: 24px 16px;
+      
 
       .head_menu {
         position: relative;
@@ -530,5 +588,6 @@ $color_tel_word: rgb(162, 172, 182);
         }
       }
     }
+    
   }
 }

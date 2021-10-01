@@ -100,7 +100,7 @@ const index = () => {
         ></link>
       </Head>
 
-      <div className={styles.test}></div>
+      
       <HeroSlides />
       {products && (
         <LinerProducts products={products} title="جدیدترین محصولات" />

@@ -5,15 +5,3 @@ $color3: #224d82;
 $color4: #597ba1;
 $color5: #91a6c1;
 $color6: #d4d8e1;
-
-.test{
-    height: 200px;
-    background-color: red;
-}
-
-@media (max-width:"360px") {
-    .test{
-        background-color: green;
-    }
-    
-}
