@@ -3,6 +3,7 @@ import styles from "./header2.module.scss";
 import Head from "next/head";
 import Image from "next/image";
 function Header2(props) {
+  const [inputSearch, setInputSearch] = useState("");
   return (
     <>
       <Head>
@@ -52,9 +53,13 @@ function Header2(props) {
                     type="text"
                     className="form-control"
                     placeholder="جستجو در نخل ..."
-                    value=""
+                    onChange={(e) => setInputSearch(e.target.value)}
+                    value={inputSearch}
                   />
-                  <i className="fas fa-search"></i>
+
+                  <a href={`/product/${inputSearch}`}>
+                    <i className="fas fa-search"></i>
+                  </a>
                   {/* <i className="fas fa-close"></i> */}
                   <div className="result_search">
                     <div className="search_history"></div>
@@ -66,7 +71,7 @@ function Header2(props) {
               <div className={styles.be_seller}>
                 <a href="/landing/seller">در نخل بفروش!</a>
               </div>
-              <div className={styles.shahneshin}>
+              {/* <div className={styles.shahneshin}>
                 <a title="شاه نشین" href="/page/shahneshin">
                   <img
                     src="https://images.timcheh.com/1/fill/18/14/sm/true/plain/https://static.timcheh.com/uploads/manual/images/others/shahneshin.svg"
@@ -74,8 +79,8 @@ function Header2(props) {
                     className="icon-shahneshin"
                   />
                 </a>
-              </div>
-              <div className={styles.help_link}>
+              </div> */}
+              {/* <div className={styles.help_link}>
                 <a
                   target="_blank"
                   title="کارت هدیه"
@@ -87,10 +92,10 @@ function Header2(props) {
                     className="icon-shahneshin"
                   />
                 </a>
-              </div>
+              </div> */}
               <div className={styles.help_link}>
-                <a title="راهنمای نخل" href="/help">
-                  <i className="icon icon-QuestionCircle"></i>
+                <a title="راهنمای نخل" href="">
+                  {/* <i className="icon icon-QuestionCircle"></i> */}
                 </a>
               </div>
               <a className={styles.nav_item_link_login} href="/auth/login">
@@ -3416,10 +3421,14 @@ function Header2(props) {
               <input
                 type="text"
                 className="form-control"
-                value=""
+                onChange={(e) => setInputSearch(e.target.value)}
+                value={inputSearch}
                 placeholder="جستجو در نخل ..."
               />
-              <i className="fas fa-search"></i>
+
+              <a href={`/product/${inputSearch}`}>
+                <i className="fas fa-search"></i>
+              </a>
               {/* <i className="fas fa-times"></i> */}
             </div>
           </div>
@@ -3468,7 +3477,7 @@ function Header2(props) {
                   </div>
                   <div className="txt">دفترچه راهنما</div>
                 </a>
-                <a
+                {/* <a
                   className={styles.btn_link_box}
                   href="/search/category-timcheh-gift-card"
                 >
@@ -3479,8 +3488,8 @@ function Header2(props) {
                     />
                   </div>
                   <div className="txt">کارت هدیه</div>
-                </a>
-                <a className={styles.btn_link_box} href="/page/shahneshin">
+                </a> */}
+                {/* <a className={styles.btn_link_box} href="/page/shahneshin">
                   <div className={styles.icon_holder}>
                     <img
                       src="https://images.timcheh.com/1/fill/18/14/sm/true/plain/https://static.timcheh.com/uploads/manual/images/others/shahneshin.svg"
@@ -3488,7 +3497,7 @@ function Header2(props) {
                     />
                   </div>
                   <div className="txt">شاه‌نشین</div>
-                </a>
+                </a> */}
                 <a className={styles.btn_link_box} href="/landing/seller">
                   <div className={styles.icon_holder}>
                     <img
