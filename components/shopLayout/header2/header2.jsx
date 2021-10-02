@@ -40,14 +40,9 @@ function Header2(props) {
                   }}
                 >
                   <img
-                    src="/icons/logo_Nakhl.png"
+                    src="/icons/logo_Nakhl.svg"
                     alt="فروشگاه اینترنتی نخل"
-                    style={{ cursor: "pointer", maxHeight: "36px" }}
-                  />
-                  <img
-                    src="/icons/Name_Nakhl.png"
-                    alt="فروشگاه اینترنتی نخل"
-                    style={{ cursor: "pointer", maxHeight: "30px" }}
+                    style={{ cursor: "pointer", maxHeight: "42px" }}
                   />
                 </a>
               </div>
@@ -102,7 +97,13 @@ function Header2(props) {
                 ورود/ثبت نام
               </a>
               <a className={styles.bascket_btn} rel="nofollow" href="/cart">
-                <i className="fas fa-shopping-cart"></i>
+                <i>
+                  <img
+                    style={{ width: "24px" }}
+                    src="/icons/sabad.svg"
+                    alt=""
+                  />
+                </i>
                 <span className={styles.counter_cart}>0</span>
               </a>
             </div>
@@ -3381,9 +3382,9 @@ function Header2(props) {
               <div className={styles.logo}>
                 <a href="/">
                   <img
-                    src="/icons/logo_Nakhl.png"
+                    src="/icons/logo_Nakhl.svg"
                     alt="فروشگاه اینترنتی نخل"
-                    style={{ cursor: "pointer", maxHeight: "37px" }}
+                    style={{ cursor: "pointer", maxHeight: "42px" }}
                   />
                 </a>
               </div>
@@ -3392,7 +3393,13 @@ function Header2(props) {
                   <i className="far fa-user"></i>
                 </a>
                 <a className={styles.bascket_btn} href="/cart">
-                  <i className="fas fa-shopping-cart"></i>
+                  <i>
+                    <img
+                      style={{ width: "24px" }}
+                      src="/icons/sabad.svg"
+                      alt=""
+                    />
+                  </i>
                 </a>
               </div>
             </div>
@@ -3423,7 +3430,7 @@ function Header2(props) {
               <a href="#" className={styles.menu_logo}>
                 <img
                   style={{ maxHeight: "30px", maxWidth: "30px" }}
-                  src="/icons/logo_Nakhl.png"
+                  src="/icons/logo_Nakhl.svg"
                   alt=""
                 />
               </a>
