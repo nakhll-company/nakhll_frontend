@@ -336,6 +336,7 @@ const ProductDetailMobile = ({ data }) => {
                                 <div className="row d-flex">
                                     {posts.map((value, index) => (
                                         <ProductCard col="6" product={{
+                                            id: value.id,
                                             imageUrl: value.image_thumbnail_url,
                                             url: `/productDetail/${value.slug}`,
                                             title: value.title,

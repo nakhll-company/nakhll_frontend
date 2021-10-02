@@ -36,6 +36,7 @@ function LinerProducts({
             key={1}
             padding={1}
             product={{
+              id: product.id,
               imageUrl: product.image_thumbnail_url,
               url: `/productDetail/${product.slug}/`,
               title: product.title,

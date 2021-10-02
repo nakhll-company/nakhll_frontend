@@ -124,7 +124,7 @@ function ListProduct({ dataFirst, searchWord = "", shop_products }) {
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   // START
@@ -321,6 +321,7 @@ function ListProduct({ dataFirst, searchWord = "", shop_products }) {
                         key={index}
                         padding={1}
                         product={{
+                          id: oneProduct.id,
                           imageUrl: oneProduct.image_thumbnail_url,
                           url: `/productDetail/${oneProduct.slug}/`,
                           title: oneProduct.title,
