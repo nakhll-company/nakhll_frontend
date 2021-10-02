@@ -80,6 +80,7 @@ const ProductCard = ({
             <a
               href={product.url}
               // target={_blank && "_blank"}
+              style={{ fontWeight: "bold" }}
               className="_product_card_title text-truncate "
             >
               {product.title}
@@ -128,7 +129,15 @@ const ProductCard = ({
               </Link>
             )} */}
           </div>
-          <div className="mb-2 _product_card_rate">
+          {product.discountNumber !== 0 && (
+            <div className={`_product_card_discount  ${styles.discount_badge}`}>
+              {_asist.number(product.discount)}%
+            </div>
+          )}
+
+          <div className={styles.Ads_badge}>آگهی</div>
+
+          {/* <div className="mb-2 _product_card_rate">
             <div>
               {product.rate && (
                 <>
@@ -145,15 +154,18 @@ const ProductCard = ({
               )}
             </div>
             {product.discountNumber !== 0 && (
-              <div className="_product_card_discount">
+              <div
+                className={`_product_card_discount  ${styles.discount_badge}`}
+              >
                 {_asist.number(product.discount)}%
               </div>
             )}
-          </div>
+          </div> */}
+          <hr style={{ marginBottom: "5px" }} />
           <div className="_product_card_price mb-2">
             <div>
-              <button className="btn _product_card_add_to_cart">
-                <i className="fa fa-plus" />
+              <button className={`btn ${styles._product_card_add_to_cart}`}>
+                <i className="fas fa-plus" />
               </button>
             </div>
             <div className="_product_card_price_number">

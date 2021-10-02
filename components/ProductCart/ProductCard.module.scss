@@ -13,3 +13,52 @@
         min-height: 130px;
     }
 }
+
+.discount_badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-weight: bold;
+}
+
+.Ads_badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #161515;
+    font-size: 0.8rem;
+    line-height: 1.1rem;
+    border-radius: 4px;
+    padding: 0.125rem 0.25rem;
+    background-color: #eeeede;
+}
+
+._product_card_add_to_cart {
+    background: none;
+    width: 2.1rem;
+    height: 2.1rem;
+    padding: 0;
+    position: relative;
+    i {
+        background: #fff;
+        border: 1.5px solid #224d82;
+        border-radius: 50%;
+        color: #224d82;
+        padding: 0;
+        font-size: 1.2rem;
+        transition: all 0.5s;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &:hover {
+        i {
+            background: #224d82;
+            border: 1px solid #fff;
+            color: #fff;
+            transition: all 0.5s;
+        }
+    }
+}
