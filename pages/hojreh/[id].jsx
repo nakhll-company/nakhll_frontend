@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import Head from "next/head";
 
 import styles from "./hojreh.module.scss";
@@ -7,7 +8,10 @@ import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 
 import ListProduct from "../../containers/listProduct";
 
-const Hojreh = ({ id = "golestansupermarket" }) => {
+const Hojreh = () => {
+  const router = useRouter();
+  let id = "";
+
   const [informationShop, setInformationShop] = useState({});
   const _Call_shop = async () => {
     try {
@@ -27,6 +31,7 @@ const Hojreh = ({ id = "golestansupermarket" }) => {
     }
   };
   useEffect(() => {
+    id = router.query.id;
     _Call_shop();
   }, []);
 
@@ -89,7 +94,7 @@ const Hojreh = ({ id = "golestansupermarket" }) => {
         <div className={styles.sub_line}></div>
       </div>
 
-      <ListProduct shop={id} />
+      <ListProduct shop={router.query.id} />
     </>
   );
 };
