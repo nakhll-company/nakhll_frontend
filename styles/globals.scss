@@ -10,14 +10,18 @@
 @import "../styles/Toastify/Toastify.scss";
 // swiper
 @import "../styles/swiper/swiper.scss";
+// test for product page
+@import "../styles/pages/testProduct/product.module.scss";
+// REACT CHECKBOX STYLE
+@import "../styles/General/reactCheckboxTree/react-checkbox-tree.scss";
 @font-face {
     font-family: "IRANSansB";
-    src: url("../public/assets/fonts/IRANSansWeb_Bold.eot");
+    src: url("../public/assets/fonts/Shabnam.eot");
     /* IE9 Compat Modes */
-    src: url("../public/assets/fonts/IRANSansWeb_Bold.eot") format("embedded-opentype"), /* IE6-IE8 */
-    url("../public/assets/fonts/IRANSansWeb_Bold.woff2") format("woff2"), /* Super Modern Browsers */
-    url("../public/assets/fonts/IRANSansWeb_Bold.woff") format("woff"), /* Pretty Modern Browsers */
-    url("../public/assets/fonts/IRANSansWeb_Bold.ttf") format("truetype");
+    src: url("../public/assets/fonts/Shabnam.eot") format("embedded-opentype"), /* IE6-IE8 */
+    url("../public/assets/fonts/Shabnam.woff2") format("woff2"), /* Super Modern Browsers */
+    url("../public/assets/fonts/Shabnam.woff") format("woff"), /* Pretty Modern Browsers */
+    url("../public/assets/fonts/Shabnam.ttf") format("truetype");
     /* Safari, Android, iOS */
     /*url('webfont.svg#svgFontName') format('svg'); !* Legacy iOS *!*/
 }
@@ -52,6 +56,7 @@ body {
     // font-size: 62.5%;
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
     font-family: "IRANSansB" !important;
     direction: rtl;
     background-color: #f8f8f8;
@@ -131,4 +136,58 @@ input[type="number"] {
         padding-right: 0;
         padding-left: 0;
     }
+}
+
+.accordion-button::after {
+    margin-left: 0px !important;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #000;
+    background-color: #fff;
+}
+
+.accordion-button:focus {
+    z-index: 3;
+    border-color: #fff;
+    outline: 0 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+// FOR ANIMATION CART IN CART
+.animationCartParent:hover .animationCart {
+    transform: translateY(-10px) scale(1.08) rotate(1deg);
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 200;
+}
+
+// .animationCartParent:hover {
+//   transform: translateY(0px) rotate(-2deg);
+//   transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+// }
+
+
+// for menuMobile 
+
+.mobile_menu {
+    position: absolute;
+    top: 0;
+    // iiii
+    // right: -100%;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0 0 7px 7px hsla(0, 0%, 80.8%, 0.5);
+    overflow-y: scroll;
+    transition: all 0.3s ease-out;
+    padding: 24px 16px;}
+
+.mobile_menu_show{
+    right: 0 !important;
+  }
+
+
+.mobile_menu_dont_show{
+    right: -100%;
 }

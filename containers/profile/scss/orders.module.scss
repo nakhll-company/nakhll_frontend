@@ -1,0 +1,40 @@
+.main_wrapper{
+    margin: 0px 10px;
+    padding: 20px;
+    font-size: 1rem;
+    background: #fff;
+    border-radius: .3125rem;
+    box-shadow: 0 1px 2px rgba(0,0,0,.19);
+    font-family: 'vazir';
+    h1{
+        font-size: 1.2rem;
+        font-weight: 400;
+        margin-bottom: 25px;
+    }
+    table {
+        border-collapse: collapse;
+        border-radius: 1em;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #ddd; 
+    }
+    th{
+        background-color: #f2f2f2;
+        color: #7d7d7d;
+        font-size: 14px;
+    }
+
+    table:last-child{
+        td{
+            border: none;
+        }
+    }
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+}

@@ -1,18 +1,23 @@
+import { useEffect, useState } from "react";
 import Head from "next/head";
+import Link from "next/link";
 
+import styles from "../../../styles/pages/cart/payment/payment.module.scss";
 import ShopLayout from "../../../components/shopLayout";
+
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import Steps from "../../../components/CheckOutSteps/CheckOutSteps";
+import { errorMessage } from "../../../containers/utils/message";
 import Assistent from "zaravand-assistent-number";
 
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import styles from "../../../styles/pages/cart/payment/payment.module.scss";
+
+
+
 
 const _asist = new Assistent();
 
 export default function Cart() {
-  const [msgCoupon, setMsgCoupon] = useState("");
+  const [msgCoupon, setMsgCoupon] = useState([]);
   const [isLoadInvoice, setIsLoadInvoice] = useState(true);
   const [listInvoice, setListInvoice] = useState([]);
   const [logisticPrice, setLogisticPrice] = useState(null);
@@ -108,29 +113,21 @@ export default function Cart() {
       setTotalPrice(data.cart.total_price);
       setFinalPrice(data.final_price);
       setAddressReceiver(data.address);
-      setResultCoupon(
-        data.coupon && _asist.PSeparator(data.coupon_details.result / 10)
-      );
-      setMsgCoupon(
-        data.coupon &&
-        `کوپن شما با مبلغ ${data.coupon_details.result / 10
-        } تومان برای شما فعال گردید.`
-      );
-
+      setResultCoupon(data.coupons_total_price);
+      setMsgCoupon(data.coupon_usages);
       setIsLoadInvoice(false);
     }
   };
 
   const _addCoupon = async (e) => {
     e.preventDefault();
-    console.log(`e.target[0].value`, e.target[0].value);
     let valueCoupon = e.target[0].value;
     if (valueCoupon) {
+      setIsLoadInvoice(true);
+      let params = {};
+      let loadData = { coupon: valueCoupon };
+      let dataUrl = `/accounting_new/api/invoice/set_coupon/`;
       try {
-        setIsLoadInvoice(true);
-        let params = {};
-        let loadData = { coupon: valueCoupon };
-        let dataUrl = `/accounting_new/api/invoice/set_coupon/`;
         let response = await ApiRegister().apiRequest(
           loadData,
           "PATCH",
@@ -141,33 +138,70 @@ export default function Cart() {
         let data = response.data;
         if (response.status === 200) {
           if (data.result) {
-            setMsgCoupon(
-              `کوپن شما با مبلغ ${data.result / 10} تومان برای شما فعال گردید.`
-            );
-            setResultCoupon(_asist.PSeparator(data.result / 10));
+            await _getListInvoice()
+            setIsLoadInvoice(false);
+
           } else {
             data.errors.map((item) => {
-              setMsgCoupon(item);
+              errorMessage(item);
             });
+            setIsLoadInvoice(false);
           }
-          setIsLoadInvoice(false);
-        } else if (response.status === 400) {
-          console.log(`e>>>>>>>`, "fdghfdjkgj");
-          debugger;
+          // setIsLoadInvoice(false);
         }
-      } catch (error) {
-        // console.log(`e>>>>>>>`, response.error)
-        debugger;
-        setMsgCoupon("adkaslkdjksa");
+      } catch (e) {
+        console.log(`error>>>>>>>>>>>>>>>>>>`, e.response)
+        let errorData = e.response.data
+        errorData.coupon.map((item) => {
+          errorMessage(item);
+        });
+        // setMsgCoupon("adkaslkdjksa");
       }
     }
   };
 
-  const _deleteCoupon = () => {
-    setMsgCoupon("");
+  const _deleteCoupon = async (coupon) => {
+    setIsLoadInvoice(true);
+    let params = {};
+    let loadData = { coupon };
+    let dataUrl = `/accounting_new/api/invoice/unset_coupon/`;
+    let response = await ApiRegister().apiRequest(
+      loadData,
+      "PATCH",
+      dataUrl,
+      true,
+      params
+    );
+    if (response.status === 200) {
+      await _getListInvoice()
+      setIsLoadInvoice(false);
+    }
+
   };
 
-  // console.log(`addressReceiver.receiver_full_name`, addressReceiver.receiver_full_name)
+  const invoicePay = async () => {
+    try {
+      setIsLoadInvoice(true);
+      let params = {};
+      let loadData = null;
+      let dataUrl = `/accounting_new/api/invoice/pay/`;
+      let response = await ApiRegister().apiRequest(
+        loadData,
+        "GET",
+        dataUrl,
+        true,
+        params
+      );
+      let data = response.data;
+      if (response.status === 200) {
+      }
+
+
+    } catch (error) {
+    }
+  }
+
+  console.log(`addressReceiver.receiver_full_name`, resultCoupon)
   return (
     <div className={styles.steps_wrapper}>
       <Head>
@@ -253,18 +287,24 @@ export default function Cart() {
                     }}
                   >
                     بررسی
-                    </button>
+                  </button>
                 </div>
                 <div className={`${styles.input_group_bg} rounded-pill`}></div>
               </form>
-              {msgCoupon !== "" && (
-                <div className="border border-success bg-white font-size-9 py-2 pr-3 mt-3 rounded d-flex flex-wrap justify-content-between align-items-center">
-                  <span className=" text-success ml-3">{msgCoupon}</span>
-                  {/* <strong className="text-success ml-3">61,000 تومان</strong> */}
-                  <button className="btn btn-link text-danger btn-sm mr-auto">
-                    <i className="fas fa-times" onClick={_deleteCoupon}></i>
-                  </button>
-                </div>
+              {msgCoupon && (
+                msgCoupon.map((item) => {
+                  return (
+                    <div className="border border-success bg-white font-size-9 py-2 pr-3 mt-3 rounded d-flex flex-wrap justify-content-between align-items-center">
+                      <span className=" text-success ml-3">کوپن شما با مبلغ {item.price_applied / 10
+                      } تومان برای شما فعال گردید.</span>
+                      {/* <strong className="text-success ml-3">61,000 تومان</strong> */}
+                      <button onClick={() => _deleteCoupon(item.coupon)} className="btn btn-link text-danger btn-sm mr-auto">
+                        <i className="fas fa-times" ></i>
+                      </button>
+                    </div>
+                  )
+                })
+
               )}
             </div>
 
@@ -332,12 +372,12 @@ export default function Cart() {
                         <div className={`${styles.picItemInvoice}`}>
                           <a href="/pestehkerman/product/175903" className>
                             <img
-                              src="https://statics.basalam.com/public/users/j2ggy/1911/n41s9awDlcLoiKAF6oWQwo3MopX4cnDJzZHgE3Do.jpeg_256X256X70.jpeg"
-                              alt="پسته فندقی خام تازه و امسالی کرمان (250گرمی)"
+                              src={itemProduct.product.image_thumbnail_url}
+                              alt={itemProduct.product.title}
                             />
                           </a>
                         </div>
-                        <div className="mr-3" style={{ minWidth: "1%" , marginRight:"1rem" }}>
+                        <div className="mr-3" style={{ minWidth: "1%", marginRight: "1rem" }}>
                           <a
                             href={itemProduct.product.url}
                             className="link-body"
@@ -346,74 +386,35 @@ export default function Cart() {
                           </a>
                           <div className="mt-2">{itemProduct.count}عدد</div>
                         </div>
-                        <div className="mr-auto" style={{ marginRight:"auto" }}>
+                        <div className="mr-auto" style={{ marginRight: "auto" }}>
                           {_asist.PSeparator(itemProduct.total_price / 10)}{" "}
                           تومان
                         </div>
                       </div>
 
-                      {/* <div className="d-flex align-items-center mt-3">
-                                            <div className="avatar avatar-square">
-                                                <a href="/pestehkerman/product/175905" className>
-                                                    <img
-                                                        src="https://statics.basalam.com/public/users/j2ggy/1911/9eAmvLJvRqGiTkECMFyKyCDMWf5MYdaMNfglHT0f.jpeg_256X256X70.jpeg"
-                                                        alt="پسته فندقی خام تازه و امسالی کرمان ارسال رایگان(500 گرم)"
-                                                    />
-                                                </a>
-                                            </div>
-                                            <div className="mr-3" style={{ minWidth: "1%" }}>
-                                                <a href="/pestehkerman/product/175905" className="link-body">
-                                                    پسته فندقی خام تازه و امسالی کرمان ارسال رایگان(500 گرم)
-                                                </a>
-                                                <div className="mt-2">2 عدد</div>
-                                            </div>
-                                            <div className="mr-auto">230,000 تومان</div>
-                                        </div>
-                                    */}
+
                     </div>
                   );
                 })}
 
-              {/* <div className="font-size-sm border-bottom pb-3 mt-3">
-                                <div className="title font-weight-500">
-                                    از غرفه محصولات علمی و فرهنگی و طبیعی
-                                </div>
-                                <div className="d-flex align-items-center mt-3">
-                                    <div className="avatar avatar-square">
-                                        <a href="/ali_goharrizi/product/746256" className>
-                                            <img
-                                                src="https://statics.basalam.com/public/users/13no0/2011/lW23nVJv4TiBsDxfJEKruxOpDVze1bTQSAHtqjHg.jpeg_256X256X70.jpeg"
-                                                alt="قاووت خانگی اصیل 40 گیاه"
-                                            />
-                                        </a>
-                                    </div>
-                                    <div className="mr-3" style={{ minWidth: "1%" }}>
-                                        <a href="/ali_goharrizi/product/746256" className="link-body">
-                                            قاووت خانگی اصیل 40 گیاه
-                                        </a>
-                                        <div className="mt-2">2 عدد</div>
-                                    </div>
-                                    <div className="mr-auto">48,000 تومان</div>
-                                </div>
-                            </div> */}
 
               <div className="font-size-sm border-bottom py-3">
                 <div className="d-flex py-1">
                   <span>جمع بهای سفارش:</span>
-                  <span className="mr-auto" style={{marginRight:"auto"}}>
+                  <span className="mr-auto" style={{ marginRight: "auto" }}>
                     {_asist.PSeparator(totalPrice / 10)} تومان
                   </span>
                 </div>
                 <div className="d-flex py-1">
                   <span>هزینه ارسال:</span>{" "}
-                  <span className="mr-auto" style={{marginRight:"auto"}}>
+                  <span className="mr-auto" style={{ marginRight: "auto" }}>
                     {_asist.PSeparator(logisticPrice / 10)} تومان
                   </span>
                 </div>
-                {msgCoupon !== "" && (
+                {resultCoupon !== 0 && (
                   <div className="d-flex py-1 text-danger">
                     <span>تخفیف قیمت محصولات (-) :</span>
-                    <span className="mr-auto" style={{marginRight:"auto"}}>{resultCoupon} تومان</span>
+                    <span className="mr-auto" style={{ marginRight: "auto" }}>{_asist.PSeparator(resultCoupon / 10)} تومان</span>
                   </div>
                 )}
                 {/**/} {/**/}
@@ -421,7 +422,7 @@ export default function Cart() {
                   <span style={{ color: "rgb(27,62,104)" }}>
                     مبلغ قابل پرداخت:
                   </span>
-                  <span className="mr-auto" style={{ color: "rgb(27,62,104)" , marginRight:"auto" }}>
+                  <span className="mr-auto" style={{ color: "rgb(27,62,104)", marginRight: "auto" }}>
                     {_asist.PSeparator(finalPrice / 10)} تومان
                   </span>
                 </div>
@@ -429,16 +430,14 @@ export default function Cart() {
             </div>
 
             <div className="mt-3 p-3 border rounded font-size-sm my-3 line-height-normal">
-              <div className="mx-auto" style={{textAlign:"center"}}>
+              <div className="mx-auto" style={{ textAlign: "center" }}>
                 تمامی بسته‌های پستی به آقا/خانم
                 <strong> {addressReceiver.receiver_full_name} </strong>
                 به آدرس
-                <strong className="font-size-8">
-                  {addressReceiver.address}
-                </strong>
+                <strong className="font-size-8"> {addressReceiver.address} </strong>
                 تحویل داده می‌شوند.
               </div>
-              <div className="text-left line-height-1">
+              <div className="text-left line-height-1 mb-5 mb-md-0">
                 <Link
                   href={`/cart/address/update/${addressReceiver.id}?prev=payment`}
                   className="font-size-8 link-body"
@@ -515,6 +514,7 @@ export default function Cart() {
               <button
                 style={{ backgroundColor: "rgb(27,62,104)", color: "#fff" }}
                 className={`${styles.cart_button} btn w-100 d-flex justify-content-between align-items-center px-4`}
+                onClick={invoicePay}
               >
                 <span className="d-inline-block w-100 text-center font-size1">
                   پرداخت آنلاین
@@ -524,6 +524,7 @@ export default function Cart() {
           </div>
         </div>
       </div>
+
     </div>
   );
 }

@@ -933,8 +933,8 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
 
                           {/* Select List */}
 
-                          <div className={styles.SelectAnother}>
-                            {/* <form>
+                          {/* <div className={styles.SelectAnother}>
+                            <form>
                               <div class="form-check">
                                 <input
                                   class="form-check-input"
@@ -967,7 +967,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                                   انتخاب شهرها
                                 </label>
                               </div>
-                            </form> */}
+                            </form>
                             {showState && (
                               <Modal
                                 show={true}
@@ -989,7 +989,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                                 content={SetDataCity()}
                               />
                             )}
-                          </div>
+                          </div> */}
 
                           <div
                             style={{
@@ -1009,6 +1009,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                                     marginLeft: "1px",
                                     borderRadius: "2px",
                                     marginTop: "10px",
+                                    fontSize: "10px",
                                   }}
                                   className={styles.explain}
                                 >

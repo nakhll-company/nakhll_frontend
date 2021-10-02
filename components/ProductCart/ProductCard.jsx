@@ -1,4 +1,11 @@
-import { Link } from "next";
+// node libraries
+import Assistent from "zaravand-assistent-number";
+// methods
+import { addToFavoritesList } from "./methods/addToFavotitesList";
+// scss
+import styles from "./ProductCard.module.scss";
+
+const _asist = new Assistent();
 
 const ProductCard = ({
   sm = 6,
@@ -6,7 +13,7 @@ const ProductCard = ({
   lg = 4,
   xl = 3,
   col,
-
+  padding,
   _blank = false,
   product,
 }) => {
@@ -16,11 +23,18 @@ const ProductCard = ({
         className="_product_card_badge"
         type="button"
         style={{ top: ".75rem" }}
+        onClick={() => {
+          addToFavoritesList(product.id);
+        }}
       >
         <i className="far fa-bookmark" />
       </div>
-      <div class="_product_card_badge" type="button" style={{ top: "3.3rem" }}>
-        <i class="fas fa-share-alt"></i>
+      <div
+        className="_product_card_badge"
+        type="button"
+        style={{ top: "3.3rem" }}
+      >
+        <i className="fas fa-share-alt"></i>
       </div>
     </>
   );
@@ -28,7 +42,7 @@ const ProductCard = ({
   let cardImg = (
     <img
       src={product.imageUrl}
-      className={`card-img-top _product_card_rounded ${
+      className={`card-img-top _product_card_rounded animationCart ${
         product.unavailable && "_unavailable_product"
       }`}
       alt={product.title}
@@ -36,26 +50,28 @@ const ProductCard = ({
   );
 
   return (
-    
     <div
-      className={`${
+      className={`animationCartParent ${
         col
           ? `col-${col}`
-          : `col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
-      } mb-3`}
+          : `col-6 col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
+      } ${padding ? `px-${padding}` : ""} mb-3`}
     >
-      <div className="card _product_card _product_card_rounded p-2">
+      <div
+        // style={{ minHeight: "170px" }}
+        className="card _product_card _product_card_rounded p-2"
+      >
         {cardBadge}
 
-        <a href={product.url} target={_blank && "_blank"}>
-          {cardImg}
-        </a>
+        <div className={styles.paterImage}>
+          <a href={product.url}>{cardImg}</a>
+        </div>
         {/* {linkType === "anchor" ? (
-          <a href={product.url} target={_blank && "_blank"}>
+          <a href={product.url}>
             {cardImg}
           </a>
         ) : (
-          <Link to={product.url} target={_blank && "_blank"}>
+          <Link to={product.url}>
             {cardImg}
           </Link>
         )} */}
@@ -68,15 +84,15 @@ const ProductCard = ({
           <div className=" mb-3">
             <a
               href={product.url}
-              target={_blank && "_blank"}
-              className="_product_card_title text-truncate"
+              // target={_blank && "_blank"}
+              style={{ fontWeight: "bold" }}
+              className="_product_card_title text-truncate "
             >
               {product.title}
             </a>
             {/* {linkType === "anchor" ? (
               <a
                 href={product.url}
-                target={_blank && "_blank"}
                 className="_product_card_title text-truncate"
               >
                 {product.title}
@@ -84,7 +100,6 @@ const ProductCard = ({
             ) : (
               <Link
                 to={product.url}
-                target={_blank && "_blank"}
                 className="_product_card_title text-truncate"
               >
                 {product.title}
@@ -93,11 +108,10 @@ const ProductCard = ({
           </div>
           <div className="_product_card_city text-truncate mb-3">
             <span className="_product_card_subtitle">{product.city}</span>
-            <i className="fa fa-angle-left px-1"></i>
+            {product.city && <i className="fa fa-angle-left px-1"></i>}
             <a
               title={product.chamberTitle}
               href={product.chamberUrl}
-              target={_blank && "_blank"}
               className="_product_card_subtitle"
             >
               {product.chamberTitle}
@@ -106,7 +120,6 @@ const ProductCard = ({
               <a
                 title={product.chamberTitle}
                 href={product.chamberUrl}
-                target={_blank && "_blank"}
                 className="_product_card_subtitle"
               >
                 {product.chamberTitle}
@@ -115,35 +128,50 @@ const ProductCard = ({
               <Link
                 title={product.chamberTitle}
                 to={product.chamberUrl}
-                target={_blank && "_blank"}
                 className="_product_card_subtitle"
               >
                 {product.chamberTitle}
               </Link>
             )} */}
           </div>
-          <div className="mb-2 _product_card_rate">
+          {product.discountNumber !== 0 && (
+            <div className={`_product_card_discount  ${styles.discount_badge}`}>
+              {_asist.number(product.discount)}%
+            </div>
+          )}
+          {product.is_advertisement && (
+            <div className={styles.Ads_badge}>آگهی</div>
+          )}
+
+          {/* <div className="mb-2 _product_card_rate">
             <div>
               {product.rate && (
                 <>
                   <i className="fa fa-star _product_card_star_icon"></i>
-                  <span className="font-weight-bold ml-1">{product.rate}</span>
+                  <span className="font-weight-bold ml-1">
+                    {_asist.PSeparator(product.rate)}
+                  </span>
                   {product.commentCount && (
                     <span className="text-secondary">
-                      ({product.commentCount} نظر)
+                      ({_asist.number(product.commentCount)} نظر)
                     </span>
                   )}
                 </>
               )}
             </div>
-            {product.discount && (
-              <div className="_product_card_discount">{product.discount}%</div>
+            {product.discountNumber !== 0 && (
+              <div
+                className={`_product_card_discount  ${styles.discount_badge}`}
+              >
+                {_asist.number(product.discount)}%
+              </div>
             )}
-          </div>
+          </div> */}
+          <hr style={{ marginBottom: "5px" }} />
           <div className="_product_card_price mb-2">
             <div>
-              <button className="btn _product_card_add_to_cart">
-                <i className="fa fa-plus" />
+              <button className={`btn ${styles._product_card_add_to_cart}`}>
+                <i className="fas fa-plus" />
               </button>
             </div>
             <div className="_product_card_price_number">
@@ -152,11 +180,11 @@ const ProductCard = ({
               ) : (
                 <>
                   <span className="_product_card_orginal_number">
-                    {product.price}
+                    {_asist.PSeparator(product.price)}
                   </span>
-                  {product.discountNumber && (
+                  {product.discountNumber !== 0 && (
                     <span className="_product_card_discount_number">
-                      {product.discountNumber}
+                      {_asist.PSeparator(product.discountNumber)}
                     </span>
                   )}
                   <span style={{ fontSize: ".75rem" }}>تومان</span>
@@ -164,8 +192,8 @@ const ProductCard = ({
               )}
             </div>
           </div>
-          <div className="_product_card_progressbar">
-            {product.sales && (
+          {false && (
+            <div className="_product_card_progressbar">
               <>
                 <div className="_sales_progressbar">
                   <div
@@ -175,12 +203,12 @@ const ProductCard = ({
                 </div>
                 <div className="mt-1">
                   <p className="_sales_progressbar_text">
-                    %{product.sales} فروش رفته
+                    %{_asist.number(product.sales)} فروش رفته
                   </p>
                 </div>
               </>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

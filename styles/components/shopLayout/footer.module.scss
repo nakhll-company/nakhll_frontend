@@ -1,0 +1,76 @@
+.footer_items {
+  font-size: 0.9rem;
+  color: hsl(0deg 0% 24%);
+  display: inline-block;
+  margin: 10px 0;
+}
+.footer_social_icon {
+  display: flex;
+  flex-grow: 1;
+  align-items: flex-end;
+}
+
+
+.footer-namad {
+    cursor: pointer;
+    width: 100%
+}
+
+.footer_form_wrapper {
+    margin: 20px 0 0
+}
+
+.footer_form_wrapper form {
+    border-radius: 100px;
+    border: 1px solid #dfdfdf;
+    display: flex
+}
+
+.footer_form_wrapper form input {
+    border: none;
+    font-size: 12px;
+    color: #303030;
+    outline: 0;
+    flex-grow: 10;
+    padding: 10px 15px;
+    border-radius: 100px;
+}
+
+.footer_form_wrapper form button {
+    border: 0;
+    background-color: #ed1943;
+    border-radius: 100px;
+    color: #fff;
+    flex-grow: 2;
+    margin: 2px;
+    padding: 0 15px;
+    cursor: pointer;
+    outline: 0;
+    font-size: 12px
+}
+
+.footer_downloadApp{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    a{
+        display: block;
+    margin: 20px 0 0;
+    }
+}
+
+.footer_seo_container  {
+    .footer_seo_text{
+
+
+        font-size: .875rem;
+        color: hsl(0deg 0% 49%);
+        line-height: 1.5rem;
+        margin-top: 1rem;
+        // height: 10rem;
+        overflow: hidden;
+        transition: all 1s ease-in-out;
+
+    }
+}

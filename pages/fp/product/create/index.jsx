@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { useRouter } from "next/router";
 import Cropper from "react-easy-crop";
 import { useForm } from "react-hook-form";
+import CheckboxTree from "react-checkbox-tree";
 
 import Assistent from "zaravand-assistent-number";
 import { useCallback, useEffect, useState } from "react";
@@ -14,8 +15,14 @@ import { getCroppedImg } from "../../../../containers/product/create/canvasUtils
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 import { mapState } from "../../../../containers/product/methods/mapState";
 // styles
+
 import styles from "../../../../styles/pages/product/create.module.scss";
 import { errorMessage } from "../../../../containers/utils/message";
+
+const _asist = new Assistent();
+
+import { allCites } from "../../../../components/custom/data/data";
+import CheckboxTreeCities from "../../../../components/CheckboxTree/CheckboxTree";
 /**
  * component create product
  * @param {string} activeHojreh => it has slug of product
@@ -62,6 +69,7 @@ const CreateProduct = ({ activeHojreh }) => {
         PostRangeType: 1,
         PreparationDays: AddPreparationDays,
         FK_Shop: activeHojreh,
+        post_range: checkedCities,
       };
       let paramsProduct = {};
       let loadDataProduct = confirm;
@@ -73,6 +81,7 @@ const CreateProduct = ({ activeHojreh }) => {
         true,
         paramsProduct
       );
+
       if (response.status !== 201) {
         errorMessage("خطایی در ایجاد محصول پیش آمده است");
       }
@@ -147,6 +156,14 @@ const CreateProduct = ({ activeHojreh }) => {
   let [sepratorePrice, setSepratorePrice] = useState("");
   let [stringOldPrice, setStringOldPrice] = useState("");
   let [sepratoreOldPrice, setSepratoreOldPrice] = useState("");
+
+  // for Save cities
+  const [checkedCities, setCheckedCities] = useState([]);
+
+  useEffect(() => {
+    console.log("checkedCities :>> ", checkedCities);
+  }, [checkedCities]);
+
   const router = useRouter();
   const { id } = router.query;
   // copy product
@@ -174,6 +191,7 @@ const CreateProduct = ({ activeHojreh }) => {
       setIsLoad(true);
     }
   };
+
   // show success page
   if (showSuccessPage) {
     router.replace("/fp/product/create/successPageProduct");
@@ -471,7 +489,9 @@ const CreateProduct = ({ activeHojreh }) => {
                       style={{ outline: "unset", border: "unset" }}
                       id="Net_Weight"
                       type="number"
-                      onWheel={(event) => { event.currentTarget.blur() }}
+                      onWheel={(event) => {
+                        event.currentTarget.blur();
+                      }}
                       {...register("Net_Weight", {
                         required: "لطفا این گزینه را پرنمایید",
                         min: {
@@ -503,7 +523,9 @@ const CreateProduct = ({ activeHojreh }) => {
                       style={{ outline: "unset", border: "unset" }}
                       id="Weight_With_Packing"
                       type="number"
-                      onWheel={(event) => { event.currentTarget.blur() }}
+                      onWheel={(event) => {
+                        event.currentTarget.blur();
+                      }}
                       {...register("Weight_With_Packing", {
                         required: "لطفا این گزینه را پرنمایید",
                         min: {
@@ -535,7 +557,9 @@ const CreateProduct = ({ activeHojreh }) => {
                       style={{ outline: "unset", border: "unset" }}
                       id="Price"
                       type="number"
-                      onWheel={(event) => { event.currentTarget.blur() }}
+                      onWheel={(event) => {
+                        event.currentTarget.blur();
+                      }}
                       {...register("Price", {
                         required: "لطفا این گزینه را پرنمایید",
                         min: {
@@ -577,7 +601,9 @@ const CreateProduct = ({ activeHojreh }) => {
                       style={{ outline: "unset", border: "unset" }}
                       id="OldPrice"
                       type="number"
-                      onWheel={(event) => { event.currentTarget.blur() }}
+                      onWheel={(event) => {
+                        event.currentTarget.blur();
+                      }}
                       defaultValue={0}
                       {...register("OldPrice", {
                         min: {
@@ -665,7 +691,9 @@ const CreateProduct = ({ activeHojreh }) => {
                           value={Add}
                           id="Inventory"
                           name="Inventory"
-                          onWheel={(event) => { event.currentTarget.blur() }}
+                          onWheel={(event) => {
+                            event.currentTarget.blur();
+                          }}
                           onChange={(e) => {
                             setAdd(e.target.value);
                           }}
@@ -712,7 +740,9 @@ const CreateProduct = ({ activeHojreh }) => {
                           type="number"
                           min="0"
                           max="500"
-                          onWheel={(event) => { event.currentTarget.blur() }}
+                          onWheel={(event) => {
+                            event.currentTarget.blur();
+                          }}
                           value={AddPreparationDays}
                           id="PreparationDays"
                           name="PreparationDays"
@@ -844,7 +874,15 @@ const CreateProduct = ({ activeHojreh }) => {
                     `}
                   </style>
                 </div>
+
+                {/* with Componetn */}
+                <CheckboxTreeCities
+                  checkedCity={checkedCities}
+                  setCheckedCity={setCheckedCities}
+                />
+
                 {/* button submit */}
+
                 <div>
                   <button
                     type="submit"
