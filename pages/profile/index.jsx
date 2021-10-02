@@ -5,6 +5,7 @@ import { useState } from 'react';
 // components
 import EditProfile from '../../containers/profile/editProfile';
 import Oredrs from '../../containers/profile/orders';
+import FavoritesList from '../../containers/profile/favoritesList';
 // scss
 import styles from './profile.module.scss';
 /**
@@ -65,7 +66,15 @@ const Profile = () => {
                             <i className="fas fa-box-open ms-2"></i>
                             پیگیری سفارشات
                         </li>
-                        <li className="d-flex align-items-center mb-3" onClick={(event) => { activeLink(event) }}>
+                        <li className="d-flex align-items-center mb-3" onClick={(event) => {
+                            activeLink(event);
+                            setProfilePages((pre) => {
+                                return {
+                                    ...pre,
+                                    favoritesList: true
+                                }
+                            });
+                        }}>
                             <i className="far fa-bookmark ms-2"></i>
                             لیست علاقمندی ها
                         </li>
@@ -82,6 +91,7 @@ const Profile = () => {
                 <div className={`col-9`}>
                     {profilePages.editProfile && <EditProfile />}
                     {profilePages.ordersPage && <Oredrs />}
+                    {profilePages.favoritesList && <FavoritesList />}
                 </div>
             </div>
         </div>
