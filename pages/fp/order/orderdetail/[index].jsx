@@ -944,7 +944,7 @@ function HomePage({ id }) {
                   <div className={styles.final_invoice_content}>
                     <h4>مجموع قیمت محصولات</h4>
                     <h4 style={{ color: "#089319", fontWeight: "bold" }}>
-                      {_asist.PSeparator(data.total_price / 10)}+{" "}
+                      {_asist.PSeparator(data.total_user_price / 10)}+{" "}
                       <span style={{ color: "#5E7488" }}>تومان</span>
                     </h4>
                   </div>
