@@ -38,7 +38,9 @@ const Profile = () => {
                                 activeLink(event);
                                 setProfilePages((pre) => {
                                     return {
-                                        ...pre,
+                                        ordersPage: false,
+                                        favoritesList: false,
+                                        shoppingExperiences: false,
                                         editProfile: true
                                     }
                                 });
@@ -58,7 +60,9 @@ const Profile = () => {
                             activeLink(event);
                             setProfilePages((pre) => {
                                 return {
-                                    ...pre,
+                                    editProfile: false,
+                                    favoritesList: false,
+                                    shoppingExperiences: false,
                                     ordersPage: true
                                 }
                             });
@@ -70,7 +74,9 @@ const Profile = () => {
                             activeLink(event);
                             setProfilePages((pre) => {
                                 return {
-                                    ...pre,
+                                    editProfile: false,
+                                    ordersPage: false,
+                                    shoppingExperiences: false,
                                     favoritesList: true
                                 }
                             });

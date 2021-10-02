@@ -36,7 +36,7 @@ const fetchData = async (id) => {
     if (response.status === 200) {
       return response.data;
     }
-  } catch (e) {}
+  } catch (e) { }
 };
 
 const product = ({ dataFirst, searchWord }) => {
@@ -147,7 +147,7 @@ const product = ({ dataFirst, searchWord }) => {
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   // START
@@ -341,6 +341,7 @@ const product = ({ dataFirst, searchWord }) => {
                         key={index}
                         padding={1}
                         product={{
+                          id: oneProduct.id,
                           imageUrl: oneProduct.image_thumbnail_url,
                           url: `/productDetail/${oneProduct.slug}/`,
                           title: oneProduct.title,

@@ -1,8 +1,10 @@
-import { Link } from "next";
-
+// node libraries
 import Assistent from "zaravand-assistent-number";
-import { CustomCard } from "../custom/customCard";
+// methods
+import { addToFavoritesList } from './methods/addToFavotitesList';
+// scss
 import styles from "./ProductCard.module.scss";
+
 const _asist = new Assistent();
 
 const ProductCard = ({
@@ -13,7 +15,7 @@ const ProductCard = ({
   col,
   padding,
   _blank = false,
-  product,
+  product
 }) => {
   let cardBadge = (
     <>
@@ -21,6 +23,9 @@ const ProductCard = ({
         className="_product_card_badge"
         type="button"
         style={{ top: ".75rem" }}
+        onClick={() => {
+          addToFavoritesList(product.id);
+        }}
       >
         <i className="far fa-bookmark" />
       </div>
@@ -37,20 +42,18 @@ const ProductCard = ({
   let cardImg = (
     <img
       src={product.imageUrl}
-      className={`card-img-top _product_card_rounded animationCart ${
-        product.unavailable && "_unavailable_product"
-      }`}
+      className={`card-img-top _product_card_rounded animationCart ${product.unavailable && "_unavailable_product"
+        }`}
       alt={product.title}
     />
   );
 
   return (
     <div
-      className={`animationCartParent ${
-        col
+      className={`animationCartParent ${col
           ? `col-${col}`
           : `col-6 col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
-      } ${padding ? `px-${padding}` : ""} mb-3`}
+        } ${padding ? `px-${padding}` : ""} mb-3`}
     >
       <div
         // style={{ minHeight: "170px" }}
@@ -72,9 +75,8 @@ const ProductCard = ({
         )} */}
 
         <div
-          className={`card-body mt-2 p-1 ${
-            product.unavailable && "_unavailable_product"
-          }`}
+          className={`card-body mt-2 p-1 ${product.unavailable && "_unavailable_product"
+            }`}
         >
           <div className=" mb-3">
             <a
