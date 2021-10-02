@@ -81,7 +81,7 @@ const Profile = () => {
                 </div>
                 <div className={`col-9`}>
                     {profilePages.editProfile && <EditProfile />}
-                    {profilePages.ordersPage && <ordersPage />}
+                    {profilePages.ordersPage && <Oredrs />}
                 </div>
             </div>
         </div>

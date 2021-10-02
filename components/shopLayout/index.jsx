@@ -5,22 +5,22 @@ import Footer from "./footer";
 // style
 import styles from "../../styles/components/shopLayout/shopLayout.module.scss";
 import { ToastContainer } from "react-toastify";
-import Header2 from "./header2/header2";
+// import Header2 from "./header2/header2";
 
 function ShopLayout({ children }) {
   return (
     <div>
       <ToastContainer />
 
-      {/* <header className={styles.headerWrapper}>
-        <Image
+      <header className={styles.headerWrapper}>
+        {/* <Image
           src="/image/LOGO_500.png"
           alt="logo nakhll"
           width="100px"
           height="100px"
-        />
-      </header> */}
-      <Header2 />
+        /> */}
+      </header>
+      {/* <Header2 /> */}
       <main className={styles.mainContent}>{children}</main>
       <Footer />
       {/* <footer className={styles.footerWrapper}>

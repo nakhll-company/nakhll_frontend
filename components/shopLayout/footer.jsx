@@ -16,17 +16,17 @@ const Footer = () => {
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
         />
         <script
           src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
           integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
         ></script>
         <script
           src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
           integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
         ></script>
         <link
           rel="stylesheet"
@@ -263,12 +263,12 @@ const Footer = () => {
                       <div className="col-6 col-md-3 mb-2 mt-3 pr-0">
                         <div className="d-flex justify-content-center">
                           <a
-                            referrerpolicy="origin"
+                            referrerPolicy="origin"
                             target="_blank"
                             href="https://trustseal.enamad.ir/?id=116503&amp;Code=6iQN5yCbmti3PrU4cINp"
                           >
                             <img
-                              referrerpolicy="origin"
+                              referrerPolicy="origin"
                               src="https://Trustseal.eNamad.ir/logo.aspx?id=116503&amp;Code=6iQN5yCbmti3PrU4cINp"
                               alt="نماد اعتماد الکترونیکی"
                               title="نماد اعتماد الکترونیکی"
@@ -303,7 +303,7 @@ const Footer = () => {
                             title="ستاد ساماندهی پایگاه‌های اینترنتی"
                             id="jxlzwlaorgvjrgvjfukzfukz"
                             src="https://statics.basalam.com/public/admin/2gEJ/08-29/HJi1gnRO7aeh22JmOQe3ip64Lo002IKiL7ihlHmrfBwfcvsQL2.png"
-                            onclick="window.open('https://logo.samandehi.ir/Verify.aspx?id=143366&amp;p=rfthaodsxlaoxlaogvkagvka', 'Popup','toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30')"
+                            onClick="window.open('https://logo.samandehi.ir/Verify.aspx?id=143366&amp;p=rfthaodsxlaoxlaogvkagvka', 'Popup','toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30')"
                             className="footer-namad"
                           />
                         </div>
@@ -314,7 +314,7 @@ const Footer = () => {
                             alt="انجمن کسب و کار های اینترنتی"
                             title="انجمن کسب و کار های اینترنتی"
                             src="https://statics.basalam.com/public/photo/explore/bx3V8/06-12/IIe9258erPuTim4DEaH2iWRQobRqYydLbaztyiUZ2CAdV35kui.png"
-                            onclick="window.open('https://ecunion.ir/verify/basalam.com?token=43445575c7a0a8344a6b', 'Popup','toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30')"
+                            onClick="window.open('https://ecunion.ir/verify/basalam.com?token=43445575c7a0a8344a6b', 'Popup','toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30')"
                             className="footer-namad"
                           />
                         </div>
@@ -390,7 +390,7 @@ const Footer = () => {
                   data-old-padding-bottom=""
                   className="is-active"
                   data-old-overflow=""
-                  // style="animation-fill-mode: both; animation-timing-function: ease-out;"
+                // style="animation-fill-mode: both; animation-timing-function: ease-out;"
                 >
                   <div>
                     <div
@@ -464,7 +464,7 @@ const Footer = () => {
                   data-old-padding-bottom=""
                   className="is-active"
                   data-old-overflow=""
-                  // style="animation-fill-mode: both; animation-timing-function: ease-out;"
+                // style="animation-fill-mode: both; animation-timing-function: ease-out;"
                 >
                   <div>
                     <a
@@ -544,18 +544,18 @@ const Footer = () => {
                 <div className="col-3 col-md-2">
                   <div className="d-flex justify-content-center">
                     <a
-                      referrerpolicy="origin"
+                      referrerPolicy="origin"
                       target="_blank"
                       href="https://trustseal.enamad.ir/?id=116503&amp;Code=6iQN5yCbmti3PrU4cINp"
                     >
                       <img
-                        referrerpolicy="origin"
+                        referrerPolicy="origin"
                         src="https://Trustseal.eNamad.ir/logo.aspx?id=116503&amp;Code=6iQN5yCbmti3PrU4cINp"
                         alt="نماد اعتماد الکترونیکی"
                         title="نماد اعتماد الکترونیکی"
                         id="6iQN5yCbmti3PrU4cINp"
                         className="w-100"
-                        // style="cursor: pointer;"
+                      // style="cursor: pointer;"
                       />
                     </a>
                   </div>
@@ -583,7 +583,7 @@ const Footer = () => {
                       title="ستاد ساماندهی پایگاه‌های اینترنتی"
                       id="jxlzwlaorgvjrgvjfukzfukz"
                       src="https://statics.basalam.com/public/photo/explore/bx3V8/06-12/ItxiSGJ2SKnErTyX4sDp2EEfDApfmsoQrtiVxR4lIeEJ7tcCcB.png"
-                      onclick="window.open('https://logo.samandehi.ir/Verify.aspx?id=143366&amp;p=rfthaodsxlaoxlaogvkagvka', 'Popup','toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30')"
+                      onClick="window.open('https://logo.samandehi.ir/Verify.aspx?id=143366&amp;p=rfthaodsxlaoxlaogvkagvka', 'Popup','toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30')"
                       className="w-100"
                     />
                   </div>
@@ -594,7 +594,7 @@ const Footer = () => {
                       alt="انجمن کسب و کار های اینترنتی"
                       title="انجمن کسب و کار های اینترنتی"
                       src="https://statics.basalam.com/public/photo/explore/bx3V8/06-12/IIe9258erPuTim4DEaH2iWRQobRqYydLbaztyiUZ2CAdV35kui.png"
-                      onclick="window.open('https://ecunion.ir/verify/basalam.com?token=43445575c7a0a8344a6b', 'Popup','toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30')"
+                      onClick="window.open('https://ecunion.ir/verify/basalam.com?token=43445575c7a0a8344a6b', 'Popup','toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30')"
                       className="w-100"
                     />
                   </div>
@@ -652,7 +652,7 @@ const Footer = () => {
                         ، ملزومات
                         <a
                           href="/category/cultural-educational-entertainment"
-                          
+
                         >
                           فرهنگی و آموزشی و سرگرمی
                         </a>{" "}
@@ -768,7 +768,7 @@ const Footer = () => {
                         ،
                         <a
                           href="/category/bathroom-and-toilet-accessories"
-                          
+
                         >
                           لوازم حمام و دستشویی
                         </a>
@@ -781,7 +781,7 @@ const Footer = () => {
                         در زیبایی و اصالت صنایع دستی ایرانی شکی نیست. از
                         <a
                           href="/category/knitting-fabrics-and-embroidery"
-                          
+
                         >
                           بافتنی
                         </a>{" "}
@@ -808,7 +808,7 @@ const Footer = () => {
                         و
                         <a
                           href="/search?q=%DA%86%D8%B1%D9%85&amp;cat=138"
-                          
+
                         >
                           چرم
                         </a>{" "}
@@ -821,7 +821,7 @@ const Footer = () => {
                         استقبال از عطاری‌ها روزبه‌روز بیشتر می‌شود.
                         <a
                           href="/category/medicines-and-therapeutic-oils"
-                          
+
                         >
                           روغن‌های درمانی
                         </a>{" "}
@@ -864,21 +864,21 @@ const Footer = () => {
                         می‌دهد.
                         <a
                           href="/category/graphics-design-and-photography"
-                          
+
                         >
                           گرافیک
                         </a>
                         ،
                         <a
                           href="/category/graphics-design-and-photography"
-                          
+
                         >
                           عکاسی
                         </a>
                         ،
                         <a
                           href="/category/graphics-design-and-photography"
-                          
+
                         >
                           طراحی
                         </a>
@@ -906,7 +906,7 @@ const Footer = () => {
                         <br />
                         انگار همه چیز با سلام آغاز می‌شود.
                       </div>{" "}
-                      
+
                     </div>
                   </div>
                 </div>
