@@ -1,7 +1,7 @@
 // node libraries
 import Assistent from "zaravand-assistent-number";
 // methods
-import { addToFavoritesList } from './methods/addToFavotitesList';
+import { addToFavoritesList } from "./methods/addToFavotitesList";
 // scss
 import styles from "./ProductCard.module.scss";
 
@@ -15,7 +15,7 @@ const ProductCard = ({
   col,
   padding,
   _blank = false,
-  product
+  product,
 }) => {
   let cardBadge = (
     <>
@@ -42,18 +42,20 @@ const ProductCard = ({
   let cardImg = (
     <img
       src={product.imageUrl}
-      className={`card-img-top _product_card_rounded animationCart ${product.unavailable && "_unavailable_product"
-        }`}
+      className={`card-img-top _product_card_rounded animationCart ${
+        product.unavailable && "_unavailable_product"
+      }`}
       alt={product.title}
     />
   );
 
   return (
     <div
-      className={`animationCartParent ${col
+      className={`animationCartParent ${
+        col
           ? `col-${col}`
           : `col-6 col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
-        } ${padding ? `px-${padding}` : ""} mb-3`}
+      } ${padding ? `px-${padding}` : ""} mb-3`}
     >
       <div
         // style={{ minHeight: "170px" }}
@@ -75,8 +77,9 @@ const ProductCard = ({
         )} */}
 
         <div
-          className={`card-body mt-2 p-1 ${product.unavailable && "_unavailable_product"
-            }`}
+          className={`card-body mt-2 p-1 ${
+            product.unavailable && "_unavailable_product"
+          }`}
         >
           <div className=" mb-3">
             <a
@@ -136,8 +139,9 @@ const ProductCard = ({
               {_asist.number(product.discount)}%
             </div>
           )}
-
-          <div className={styles.Ads_badge}>آگهی</div>
+          {product.is_advertisement && (
+            <div className={styles.Ads_badge}>آگهی</div>
+          )}
 
           {/* <div className="mb-2 _product_card_rate">
             <div>

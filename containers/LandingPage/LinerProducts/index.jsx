@@ -46,6 +46,7 @@ function LinerProducts({
               price: product.price / 10,
               discountNumber: product.old_price / 10,
               city: product.shop.state,
+              is_advertisement: product.is_advertisement,
             }}
           />
         ))}

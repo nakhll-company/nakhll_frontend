@@ -36,7 +36,7 @@ const fetchData = async (id) => {
     if (response.status === 200) {
       return response.data;
     }
-  } catch (e) { }
+  } catch (e) {}
 };
 
 const product = ({ dataFirst, searchWord }) => {
@@ -147,7 +147,7 @@ const product = ({ dataFirst, searchWord }) => {
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   // START
@@ -347,11 +347,12 @@ const product = ({ dataFirst, searchWord }) => {
                           title: oneProduct.title,
                           chamberTitle:
                             oneProduct.shop && oneProduct.shop.title,
-                          chamberUrl: oneProduct.shop.url,
+                          chamberUrl: `/hojreh/${oneProduct.shop.slug} `,
                           discount: oneProduct.discount,
                           price: oneProduct.price / 10,
                           discountNumber: oneProduct.old_price / 10,
                           city: oneProduct.shop && oneProduct.shop.state,
+                          is_advertisement: oneProduct.is_advertisement,
                         }}
                       />
                     ))}

@@ -32,11 +32,12 @@ const FavoritesList = () => {
                             url: `/productDetail/${value.slug}`,
                             title: value.title,
                             chamberTitle: value.shop.title,
-                            chamberUrl: value.shop.url,
-                            discount: value.discount !== 0 ? _asist.PSeparator(value.discount) : 0,
-                            price: _asist.PSeparator(value.price),
-                            discountNumber: value.discount !== 0 ? _asist.PSeparator(value.old_price) : "",
+                            chamberUrl: `/hojreh/${value.shop.slug} `,
+                            discount: value.discount ,
+                            price: value.price / 10,
+                            discountNumber: value.old_price / 10,
                             city: value.shop.city,
+                            is_advertisement: value.is_advertisement,
                         }} />
                     );
                 })}

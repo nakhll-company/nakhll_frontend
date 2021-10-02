@@ -124,7 +124,7 @@ function ListProduct({ dataFirst, searchWord = "", shop_products }) {
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   // START
@@ -327,11 +327,12 @@ function ListProduct({ dataFirst, searchWord = "", shop_products }) {
                           title: oneProduct.title,
                           chamberTitle:
                             oneProduct.shop && oneProduct.shop.title,
-                          chamberUrl: oneProduct.shop.url,
+                          chamberUrl: `/hojreh/${oneProduct.shop.slug} `,
                           discount: oneProduct.discount,
                           price: oneProduct.price / 10,
                           discountNumber: oneProduct.old_price / 10,
                           city: oneProduct.shop && oneProduct.shop.state,
+                          is_advertisement: oneProduct.is_advertisement,
                         }}
                       />
                     ))}
