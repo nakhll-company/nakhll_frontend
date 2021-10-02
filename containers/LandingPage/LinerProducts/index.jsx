@@ -13,20 +13,6 @@ function LinerProducts({
   lg = 3,
   sm = 6,
 }) {
-  let product = {
-    imageUrl: "/image/faile.webp",
-    url: "/hamzeh",
-    title: "نبات گیاهی متبرک مشهد با نی چوبی 1 کیلویی برکت هشتم",
-    chamberTitle: "گالری سنگ و نقره شاپرک",
-    chamberUrl: "/azizzadeh",
-    rate: 10,
-    commentCount: 102,
-    discount: 25,
-    price: 107000,
-    discountNumber: 190000,
-    // sales: 52,
-    city: "کرمان",
-  };
   return (
     <div className={`container ${styles.lineProduct}`}>
       {title && (
@@ -54,7 +40,7 @@ function LinerProducts({
               url: `/productDetail/${product.slug}/`,
               title: product.title,
               chamberTitle: product.shop.title,
-              chamberUrl: product.shop.url,
+              chamberUrl: `/hojreh/${product.shop.slug} `,
               discount: product.discount,
               price: product.price / 10,
               discountNumber: product.old_price / 10,

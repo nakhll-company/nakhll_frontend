@@ -8,32 +8,28 @@ import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 
 import ListProduct from "../../containers/listProduct";
 
-const Hojreh = () => {
-  const router = useRouter();
-  let id = "";
+// fetch data
+const fetchData = async (id) => {
+  let response = await ApiRegister().apiRequest(
+    null,
+    "GET",
+    `/api/v1/shop/${id}/`,
+    true,
+    ""
+  );
 
-  const [informationShop, setInformationShop] = useState({});
-  const _Call_shop = async () => {
-    try {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        `http://localhost:8000/api/v1/shop/${id}/`,
-        true,
-        {}
-      );
-      if (response.status === 200) {
-        console.log("iii :>> ", response.data);
-        setInformationShop(response.data);
-      }
-    } catch (e) {
-      console.log("rrrr :>> ", e);
-    }
-  };
-  useEffect(() => {
-    id = router.query.id;
-    _Call_shop();
-  }, []);
+  if (response.status === 200) {
+    return response.data;
+  } else {
+    return false;
+  }
+};
+
+const Hojreh = ({ dataShop }) => {
+  const [informationShop, setInformationShop] = useState(dataShop);
+  const router = useRouter();
+
+  const id_Hojreh = router.query.id;
 
   return (
     <>
@@ -94,9 +90,20 @@ const Hojreh = () => {
         <div className={styles.sub_line}></div>
       </div>
 
-      <ListProduct shop={router.query.id} />
+      <ListProduct shop_products={dataShop.slug} />
     </>
   );
 };
 
 export default Hojreh;
+
+// function server side
+export async function getServerSideProps(context) {
+  const dataShop = await fetchData(context.params.id);
+
+  return {
+    props: {
+      dataShop,
+    },
+  };
+}

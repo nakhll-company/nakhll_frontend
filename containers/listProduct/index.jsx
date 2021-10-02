@@ -13,7 +13,8 @@ import MenuMobile from "../../components/layout/MenuMobile";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { WoLoading } from "../../components/custom/Loading/woLoading/WoLoading";
 import ProductCard from "../../components/ProductCart/ProductCard";
-function ListProduct({ dataFirst, searchWord = "", shop }) {
+function ListProduct({ dataFirst, searchWord = "", shop_products }) {
+  console.log("shop_products :>> ", shop_products);
   const [listProducts, setlistProducts] = useState([]);
   const [listWithFilter, setListWithFilter] = useState([]);
   // state for  show Ordering Modal in mobile
@@ -67,7 +68,7 @@ function ListProduct({ dataFirst, searchWord = "", shop }) {
           page_size: 50,
           min_price: minPrice,
           max_price: maxPrice,
-          shop: shop,
+          shop: shop_products,
         }
       );
       if (response.status === 200) {
@@ -109,7 +110,7 @@ function ListProduct({ dataFirst, searchWord = "", shop }) {
           page_size: 50,
           min_price: minPrice,
           max_price: maxPrice,
-          shop: shop,
+          shop: shop_products,
         }
       );
       if (response.status === 200) {
