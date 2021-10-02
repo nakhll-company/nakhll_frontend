@@ -21,7 +21,29 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { WoLoading } from "../../components/custom/Loading/woLoading/WoLoading";
 import ListProduct from "../../containers/listProduct";
 
-const product = ({ dataFirst, searchWord = "لباس" }) => {
+const Hojreh = ({ id = "golestansupermarket" }) => {
+  const [informationShop, setInformationShop] = useState({});
+  const _Call_shop = async () => {
+    try {
+      let response = await ApiRegister().apiRequest(
+        null,
+        "get",
+        `http://localhost:8000/api/v1/shop/${id}/`,
+        true,
+        {}
+      );
+      if (response.status === 200) {
+        console.log("iii :>> ", response.data);
+        setInformationShop(response.data);
+      }
+    } catch (e) {
+      console.log("rrrr :>> ", e);
+    }
+  };
+  useEffect(() => {
+    _Call_shop();
+  }, []);
+
   return (
     <>
       <Head>
@@ -49,6 +71,7 @@ const product = ({ dataFirst, searchWord = "لباس" }) => {
           crossOrigin="anonymous"
         ></link>
       </Head>
+
       <div className={styles.topHoj}>
         <div className={styles.liner}>
           <span>خانه</span>
@@ -81,4 +104,4 @@ const product = ({ dataFirst, searchWord = "لباس" }) => {
   );
 };
 
-export default product;
+export default Hojreh;
