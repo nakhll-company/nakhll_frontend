@@ -387,17 +387,17 @@ $color_tel_word: rgb(162, 172, 182);
         }
     }
     .menu_holder {
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 0;
-        bottom: 0;
-        z-index: 1000;
+        // position: fixed;
+        // top: 0;
+        // right: -500px;
+        // left: 0;
+        // bottom: 0;
+        // z-index: 1000;
         .mobile_menu {
             position: absolute;
             top: 0;
             // iiii
-            right: -100%;
+            right: -500px;
             bottom: 0;
             width: 100%;
             background: #fff;
@@ -405,6 +405,7 @@ $color_tel_word: rgb(162, 172, 182);
             overflow-y: scroll;
             transition: all 0.3s ease-out;
             padding: 24px 16px;
+            z-index: 1000;
             .head_menu {
                 position: relative;
                 padding-bottom: 24px;
