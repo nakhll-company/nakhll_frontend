@@ -3376,10 +3376,12 @@ function Header2(props) {
         <div className={styles.header_holder}>
           <div className="container">
             <div className={styles.inner_header}>
-              <div className={styles.menu_Hamburger} onClick={() => {
-                console.log(">>>", "hi");
-                document.getElementById("testsss").style.right = "0px";
-              }}>
+              <div
+                className={styles.menu_Hamburger}
+                onClick={() => {
+                  document.getElementById("SlideMenu").style.right = "0px";
+                }}
+              >
                 <i className="fas fa-bars"></i>
               </div>
               <div className={styles.logo}>
@@ -3428,7 +3430,7 @@ function Header2(props) {
           switch-adjust-element-width="30"
           switch-left-popup-id="31"
         >
-          <div className={styles.mobile_menu} id="testsss">
+          <div className={styles.mobile_menu} id="SlideMenu">
             <div className={styles.head_menu}>
               <a href="#" className={styles.menu_logo}>
                 <img
@@ -3437,7 +3439,12 @@ function Header2(props) {
                   alt=""
                 />
               </a>
-              <span className={styles.close_menu}>
+              <span
+                className={styles.close_menu}
+                onClick={() => {
+                  document.getElementById("SlideMenu").style.right = "-100%";
+                }}
+              >
                 <i className="fas fa-times"></i>
               </span>
             </div>

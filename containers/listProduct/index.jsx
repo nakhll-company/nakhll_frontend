@@ -10,7 +10,10 @@ import CustomSwitch from "../../components/custom/customSwitch";
 import { TopBar } from "./TopBar";
 import InfiniteScroll from "react-infinite-scroll-component";
 import MenuMobile from "../../components/layout/MenuMobile";
-function ListProduct({ dataFirst, searchWord }) {
+import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { WoLoading } from "../../components/custom/Loading/woLoading/WoLoading";
+import ProductCard from "../../components/ProductCart/ProductCard";
+function ListProduct({ dataFirst, searchWord = "", shop }) {
   const [listProducts, setlistProducts] = useState([]);
   const [listWithFilter, setListWithFilter] = useState([]);
   // state for  show Ordering Modal in mobile
@@ -64,6 +67,7 @@ function ListProduct({ dataFirst, searchWord }) {
           page_size: 50,
           min_price: minPrice,
           max_price: maxPrice,
+          shop: shop,
         }
       );
       if (response.status === 200) {
@@ -105,6 +109,7 @@ function ListProduct({ dataFirst, searchWord }) {
           page_size: 50,
           min_price: minPrice,
           max_price: maxPrice,
+          shop: shop,
         }
       );
       if (response.status === 200) {
@@ -135,6 +140,9 @@ function ListProduct({ dataFirst, searchWord }) {
     whichOrdering,
     clickOnRange,
   ]);
+  useEffect(() => {
+    _handel_filters();
+  }, []);
 
   // for filters in sidebar
   // END

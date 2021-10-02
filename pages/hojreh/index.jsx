@@ -1,24 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
-import ProductCard from "../../components/ProductCart/ProductCard";
+
 import styles from "./hojreh.module.scss";
-import { useRouter } from "next/router";
-import CustomAccordion from "../../components/custom/customAccordion";
-import CustomSwitch from "../../components/custom/customSwitch";
-import ContextListProductPage from "../../containers/listProduct/Context/context";
-import { TopBar } from "../../containers/listProduct/TopBar";
-import MenuMobile from "../../components/layout/MenuMobile";
-import { modalFilter } from "../../containers/productLis/modalFilter";
-import MultiRangeSlider from "../../components/custom/customMultiRangeSlider/MultiRangeSlider";
-import { errorMessage, successMessage } from "../../containers/utils/message";
+
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
-import { Loading } from "../../components/custom/Loading/Loading";
-import CheckboxTree from "react-checkbox-tree";
-import { BeautyLoading } from "../../components/custom/Loading/beautyLoading/BeautyLoading";
-import { allCites } from "../../components/custom/data/data";
-import { market } from "../../components/custom/data/market";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { WoLoading } from "../../components/custom/Loading/woLoading/WoLoading";
+
 import ListProduct from "../../containers/listProduct";
 
 const Hojreh = ({ id = "golestansupermarket" }) => {
@@ -76,30 +62,34 @@ const Hojreh = ({ id = "golestansupermarket" }) => {
         <div className={styles.liner}>
           <span>خانه</span>
           <i className="fas fa-angle-left"></i>
-          <span>غرفه ها</span>
+          <span> حجره ها</span>
           <i className="fas fa-angle-left"></i>
-          <span>حجره پسته</span>
+          <span>{informationShop.title}</span>
         </div>
         <div className={styles.slide}>
           <div className="">
             <img className={styles.imgslid} src="/image/back.jpeg" alt="" />
           </div>
           <div className={styles.profile}>
-            <img className={styles.img_profile} src="/image/milad.jpg" alt="" />
+            <img
+              className={styles.img_profile}
+              src={informationShop.image_thumbnail_url}
+              alt=""
+            />
             <div className={styles.information}>
-              <h1>میلاد حسنی</h1>
-              <h5>حجره پسته</h5>
+              <h1>{informationShop.title}</h1>
+              <h5>{informationShop.title}</h5>
             </div>
             <i className="fas fa-share-alt-square"></i>
           </div>
         </div>
         <div className={styles.title}>
-          <span> محصولات</span>
+          <span> محصولات حجره</span>
         </div>
         <div className={styles.sub_line}></div>
       </div>
 
-      <ListProduct />
+      <ListProduct shop={id} />
     </>
   );
 };
