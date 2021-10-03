@@ -651,7 +651,10 @@ const Footer = () => {
                     <div
                       className={`${styles.footer_seo_container} show-all-seo-text`}
                     >
-                      <div className={styles.footer_seo_text}>
+                      <div
+                        className={styles.footer_seo_text}
+                        style={{ textAlign: "justify" }}
+                      >
                         نخل آنلاین است و تمام آنچه را كاربر از یک فضای آنلاين
                         انتظار دارد به‌خوبی برآورده می‌کند. کاربری آسان، پرداخت
                         امن از درگاه‌های بانکی، نماد اعتماد الکترونیک، ضمانت
