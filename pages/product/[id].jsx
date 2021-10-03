@@ -21,6 +21,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { WoLoading } from "../../components/custom/Loading/woLoading/WoLoading";
 
 const fetchData = async (id) => {
+  console.log("id :>> ", id);
   try {
     let response = await ApiRegister().apiRequest(
       null,
@@ -708,7 +709,9 @@ export default product;
 
 // function server side
 export async function getServerSideProps(context) {
-  const dataFirst = await fetchData(context.params.id);
+  console.log("hiiiiiiiiiiiiiiii :>> ", "hiiiiiiiiiiiiiiii");
+  console.log("context :>> ", context.params);
+  const dataFirst = await fetchData(context.params);
 
   return {
     props: {
