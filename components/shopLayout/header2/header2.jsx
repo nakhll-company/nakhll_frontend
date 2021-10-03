@@ -68,13 +68,13 @@ function Header2(props) {
               </div>
             </div>
             <div className={styles.top_header_leftside}>
-              <div className={styles.be_seller}>
+              {/* <div className={styles.be_seller}>
                 <a href="/landing/seller">در نخل بفروش!</a>
-              </div>
+              </div> */}
               {/* <div className={styles.shahneshin}>
                 <a title="شاه نشین" href="/page/shahneshin">
                   <img
-                    src="https://images.timcheh.com/1/fill/18/14/sm/true/plain/https://static.timcheh.com/uploads/manual/images/others/shahneshin.svg"
+                    src=""
                     alt="شاه نشین"
                     className="icon-shahneshin"
                   />
@@ -84,10 +84,10 @@ function Header2(props) {
                 <a
                   target="_blank"
                   title="کارت هدیه"
-                  href="/search/category-timcheh-gift-card"
+                  href=""
                 >
                   <img
-                    src="https://images.timcheh.com/1/fill/24/24/sm/true/plain/https://static.timcheh.com/uploads/manual/images/others/card_giftcard.svg"
+                    src=""
                     alt="کارت هدیه"
                     className="icon-shahneshin"
                   />
@@ -98,7 +98,10 @@ function Header2(props) {
                   {/* <i className="icon icon-QuestionCircle"></i> */}
                 </a>
               </div>
-              <a className={styles.nav_item_link_login} href="/auth/login">
+              <a
+                className={styles.nav_item_link_login}
+                href="/accounts/get-phone/"
+              >
                 ورود/ثبت نام
               </a>
               <a className={styles.bascket_btn} rel="nofollow" href="/cart">
@@ -3443,7 +3446,7 @@ function Header2(props) {
             <div className={styles.head_menu}>
               <a href="#" className={styles.menu_logo}>
                 <img
-                  style={{ maxHeight: "30px", maxWidth: "30px" }}
+                  style={{ maxHeight: "50px" }}
                   src="/icons/logo_Nakhl.svg"
                   alt=""
                 />
