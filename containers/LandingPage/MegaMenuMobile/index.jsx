@@ -2,6 +2,18 @@ import React, { useEffect, useState } from "react";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import styles from "./MegaMenuMobile.module.scss";
 function MegaMenuMobile(props) {
+  const _handel_according = (accord, icon) => {
+    let element = document.getElementById(accord);
+    if (element.style.height == "0px") {
+      element.style.height = "unset";
+      document.getElementById(icon).className = "fas fa-angle-down";
+    } else {
+      element.style.height = "0";
+      element.style.overflow = "hidden";
+      document.getElementById(icon).className = "fas fa-angle-up";
+    }
+  };
+
   const [category, setCategory] = useState([]);
   const _call_Category = async () => {
     try {
@@ -26,13 +38,22 @@ function MegaMenuMobile(props) {
 
   return (
     <ul className={styles.ul}>
-      {category.map((element) => (
+      {category.map((element, index) => (
         <li>
-          <a href="javascript:void(0);">
+          <a
+            href="javascript:void(0);"
+            onClick={() =>
+              _handel_according(`according_${index}`, `icon_${index}`)
+            }
+          >
             {element.title}
-            <i className="fas fa-angle-down"></i>
+            <i id={`icon_${index}`} className="fas fa-angle-up"></i>
           </a>
-          <ul className={styles.submenu}>
+          <ul
+            id={`according_${index}`}
+            className={styles.submenu}
+            style={{ height: "0", overflow: "hidden" }}
+          >
             <li>
               <a href={`/product/search?word=&cat=${element.id}`}>
                 مشاهده همه موارد این دسته
