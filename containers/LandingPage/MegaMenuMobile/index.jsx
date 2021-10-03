@@ -34,11 +34,15 @@ function MegaMenuMobile(props) {
           </a>
           <ul className={styles.submenu}>
             <li>
-              <a href={`/product/${element.id}`}>مشاهده همه موارد این دسته</a>
+              <a href={`/product/search?word=&cat=${element.id}`}>
+                مشاهده همه موارد این دسته
+              </a>
             </li>
             {element.submarkets.map((subElement) => (
               <li>
-                <a>{subElement.title}</a>
+                <a href={`/product/search?word=&cat=${subElement.id}`}>
+                  {subElement.title}
+                </a>
               </li>
             ))}
           </ul>

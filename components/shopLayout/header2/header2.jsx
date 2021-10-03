@@ -59,7 +59,7 @@ function Header2(props) {
                     value={inputSearch}
                   />
 
-                  <a href={`/product/${inputSearch}`}>
+                  <a href={`/product/search?word=${inputSearch}&cat=`}>
                     <i className="fas fa-search"></i>
                   </a>
                   {/* <i className="fas fa-close"></i> */}
@@ -180,7 +180,7 @@ function Header2(props) {
                 placeholder="جستجو در نخل ..."
               />
 
-              <a href={`/product/${inputSearch}`}>
+              <a href={`/product/search?word=${inputSearch}&cat=`}>
                 <i className="fas fa-search"></i>
               </a>
               {/* <i className="fas fa-times"></i> */}
