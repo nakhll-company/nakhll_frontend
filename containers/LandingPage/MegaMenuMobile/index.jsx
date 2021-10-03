@@ -52,12 +52,16 @@ function MegaMenuMobile(props) {
           <ul
             id={`according_${index}`}
             className={styles.submenu}
-            style={{ height: "0", overflow: "hidden" }}
+            style={{
+              height: "0",
+              overflow: "hidden",
+              transition: "all 1s ease",
+            }}
           >
             <li>
-              <a href={`/product/search?word=&cat=${element.id}`}>
+              {/* <a href={`/product/search?word=&cat=${element.id}`}>
                 مشاهده همه موارد این دسته
-              </a>
+              </a> */}
             </li>
             {element.submarkets.map((subElement) => (
               <li>
