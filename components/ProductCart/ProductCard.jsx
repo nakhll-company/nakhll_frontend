@@ -191,7 +191,7 @@ const ProductCard = ({
                       {_asist.PSeparator(product.discountNumber)}
                     </span>
                   )}
-                  <span style={{ fontSize: ".75rem" }}>تومان</span>
+                  <span className="_product_card_toman" style={{ fontSize: ".75rem" }}>تومان</span>
                 </>
               )}
             </div>

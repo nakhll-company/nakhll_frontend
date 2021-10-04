@@ -7,6 +7,18 @@ import { useRouter } from "next/router";
 import styles from "../../styles/components/shopLayout/footer.module.scss";
 
 const Footer = () => {
+  const _handel_according = (accord, icon) => {
+    let element = document.getElementById(accord);
+    if (element.style.height == "0px") {
+      element.style.height = "unset";
+      document.getElementById(icon).className = "fas fa-angle-down";
+    } else {
+      element.style.height = "0";
+      element.style.overflow = "hidden";
+      document.getElementById(icon).className = "fas fa-angle-up";
+    }
+  };
+
   const router = useRouter();
   return (
     <>
@@ -37,20 +49,24 @@ const Footer = () => {
       </Head>
       {!router.pathname.startsWith("/cart") && (
         <>
-
           <div className="container">
             <div className="row d-none d-lg-flex pt-4">
               <div className="col-6">
                 <div className="row">
                   <div className="col-4 col-4 d-flex flex-column">
-                    <div className="font-lg-size1-1 font-weight-500 pb-4">نخل</div>{" "}
+                    <div className="font-lg-size1-1 font-weight-500 pb-4">
+                      نخل
+                    </div>{" "}
                     <div>
                       <a href="/about/about-us" className={styles.footer_items}>
                         داستان نخل
                       </a>
                     </div>
                     <div>
-                      <a href="/about/contact-us" className={styles.footer_items}>
+                      <a
+                        href="/about/contact-us"
+                        className={styles.footer_items}
+                      >
                         تماس با ما
                       </a>
                     </div>
@@ -143,7 +159,10 @@ const Footer = () => {
                       </a>
                     </div>
                     <div>
-                      <a href="/guides/return-policy" className={styles.footer_items}>
+                      <a
+                        href="/guides/return-policy"
+                        className={styles.footer_items}
+                      >
                         بازگشت کالا
                       </a>
                     </div>
@@ -236,7 +255,7 @@ const Footer = () => {
                       </form>
                     </div>{" "}
                     <div className={styles.footer_downloadApp}>
-                      <a href="https://basalam.com/dl/cafebazzar">
+                      <a href="">
                         <img
                           src="https://cdn.basalam.com/assets/17543/img/cafe-bazar-black.755828a.png"
                           alt="دانلود اپ نخل از کافه بازار"
@@ -326,18 +345,24 @@ const Footer = () => {
             </div>
             <div className="d-block d-lg-none">
               <div className="border-bottom border-gray py-3">
-                <div>
+                <div
+                  onClick={() => {
+                    _handel_according("part_one", "icon");
+                  }}
+                >
                   <div className="d-flex justify-content-between">
                     <div className="font-weight-500">نخل</div>{" "}
-                    <i className="bi bi-angle-up"></i>
+                    <i id="icon" className="fas fa-angle-up"></i>
                   </div>
                 </div>{" "}
                 <div
-                  data-old-padding-top=""
-                  data-old-padding-bottom=""
+                  id="part_one"
+                  style={{
+                    transition: "all 1s ease-out",
+                    height: "0",
+                    overflow: "hidden",
+                  }}
                   className="is-active"
-                  // style="animation-fill-mode: both; animation-timing-function: ease-out;"
-                  data-old-overflow=""
                 >
                   <div>
                     <a href="/about/about-us" className={styles.footer_items}>
@@ -379,18 +404,24 @@ const Footer = () => {
                 </div>
               </div>
               <div className="border-bottom border-gray py-3">
-                <div>
+                <div
+                  onClick={() => {
+                    _handel_according("part_two", "part_two_icon");
+                  }}
+                >
                   <div className="d-flex justify-content-between">
                     <div className="font-weight-500">پشتیبانی</div>{" "}
-                    <i className="bi bi-angle-up"></i>
+                    <i id="part_two_icon" className="fas fa-angle-up"></i>
                   </div>
                 </div>{" "}
                 <div
-                  data-old-padding-top=""
-                  data-old-padding-bottom=""
+                  style={{
+                    transition: "all 1s ease-out",
+                    height: "0",
+                    overflow: "hidden",
+                  }}
+                  id="part_two"
                   className="is-active"
-                  data-old-overflow=""
-                // style="animation-fill-mode: both; animation-timing-function: ease-out;"
                 >
                   <div>
                     <div
@@ -423,7 +454,10 @@ const Footer = () => {
                     </a>
                   </div>
                   <div>
-                    <a href="/guides/return-policy" className={styles.footer_items}>
+                    <a
+                      href="/guides/return-policy"
+                      className={styles.footer_items}
+                    >
                       بازگشت کالا
                     </a>
                   </div>
@@ -453,18 +487,23 @@ const Footer = () => {
                 </div>
               </div>
               <div className="border-bottom border-gray py-3">
-                <div>
+                <div
+                  onClick={() => {
+                    _handel_according("part_three", "part_three_icon");
+                  }}
+                >
                   <div className="d-flex justify-content-between">
                     <div className="font-weight-500">خرید و فروش</div>{" "}
-                    <i className="bi bi-angle-up"></i>
+                    <i id="part_three_icon" className="fas fa-angle-up"></i>
                   </div>
                 </div>{" "}
                 <div
-                  data-old-padding-top=""
-                  data-old-padding-bottom=""
-                  className="is-active"
-                  data-old-overflow=""
-                // style="animation-fill-mode: both; animation-timing-function: ease-out;"
+                  id="part_three"
+                  style={{
+                    transition: "all 1s ease-out",
+                    height: "0",
+                    overflow: "hidden",
+                  }}
                 >
                   <div>
                     <a
@@ -555,7 +594,7 @@ const Footer = () => {
                         title="نماد اعتماد الکترونیکی"
                         id="6iQN5yCbmti3PrU4cINp"
                         className="w-100"
-                      // style="cursor: pointer;"
+                        // style="cursor: pointer;"
                       />
                     </a>
                   </div>
@@ -609,8 +648,13 @@ const Footer = () => {
                     نخل، بازار اجتماعی آنلاین
                   </div>{" "}
                   <div>
-                    <div className={`${styles.footer_seo_container} show-all-seo-text`}>
-                      <div className={styles.footer_seo_text}>
+                    <div
+                      className={`${styles.footer_seo_container} show-all-seo-text`}
+                    >
+                      <div
+                        className={styles.footer_seo_text}
+                        style={{ textAlign: "justify" }}
+                      >
                         نخل آنلاین است و تمام آنچه را كاربر از یک فضای آنلاين
                         انتظار دارد به‌خوبی برآورده می‌کند. کاربری آسان، پرداخت
                         امن از درگاه‌های بانکی، نماد اعتماد الکترونیک، ضمانت
@@ -626,287 +670,183 @@ const Footer = () => {
                         نخل بازار است، با تمام ویژگی‌های یک بازار بزرگ و تودرتو
                         ولی با یک تفاوت ارزشمند: تمام راسته‌های این بازار یک‌جا
                         پیش چشم شما هستند.{" "}
-                        <a href="/category/food" >
-                          مواد غذایی
-                        </a>
-                        ،
-                        <a href="/category/apparel" >
-                          مد و پوشاک
-                        </a>
-                        ،
-                        <a href="/category/home-kitchen" >
-                          خانه و آشپزخانه
-                        </a>
-                        ،
-                        <a href="/category/handicrafts" >
-                          صنایع دستی
-                        </a>
-                        ،
-                        <a href="/category/herbal" >
-                          عطاری
-                        </a>
-                        ،
-                        <a href="/category/beauty-health-personal-care" >
+                        <a href="/category/food">مواد غذایی</a>،
+                        <a href="/category/apparel">مد و پوشاک</a>،
+                        <a href="/category/home-kitchen">خانه و آشپزخانه</a>،
+                        <a href="/category/handicrafts">صنایع دستی</a>،
+                        <a href="/category/herbal">عطاری</a>،
+                        <a href="/category/beauty-health-personal-care">
                           آرایشی و بهداشتی
                         </a>
                         ، ملزومات
-                        <a
-                          href="/category/cultural-educational-entertainment"
-
-                        >
+                        <a href="/category/cultural-educational-entertainment">
                           فرهنگی و آموزشی و سرگرمی
                         </a>{" "}
-                        و
-                        <a href="/category/sport-travel" >
-                          ورزش و سفر
-                        </a>
-                        ، حتی
-                        <a href="/category/business-services" >
-                          خدمات کسب‌وکار
-                        </a>
+                        و<a href="/category/sport-travel">ورزش و سفر</a>، حتی
+                        <a href="/category/business-services">خدمات کسب‌وکار</a>
                         .
                         <br />
                         وقتی از مواد غذایی حرف می‌زنیم، از چه حرف می‌زنیم؟ چای و
                         قهوه و دم‌نوش و
-                        <a href="/category/drinks" >
-                          انواع نوشیدنی
-                        </a>
-                        ،
-                        <a href="/category/protein-products" >
+                        <a href="/category/drinks">انواع نوشیدنی</a>،
+                        <a href="/category/protein-products">
                           محصولات پروتئینی
                         </a>
                         ،
-                        <a href="/category/honey-and-honey-products" >
+                        <a href="/category/honey-and-honey-products">
                           عسل و فرآورده‌های عسل
                         </a>
-                        ،
-                        <a href="/category/dairy" >
-                          لبنیات
-                        </a>
-                        ،
-                        <a href="/category/sesame-flour-and-products" >
+                        ،<a href="/category/dairy">لبنیات</a>،
+                        <a href="/category/sesame-flour-and-products">
                           ارده و فرآورده‌های کنجد
                         </a>
                         ،
-                        <a href="/category/spices-and-condiments" >
+                        <a href="/category/spices-and-condiments">
                           ادویه و چاشنی
                         </a>
                         ،
-                        <a href="/category/fresh-fruits-and-vegetables" >
+                        <a href="/category/fresh-fruits-and-vegetables">
                           میوه و سبزیجات تازه
                         </a>
                         ،
-                        <a href="/category/sweets-nuts-and-dried-fruits" >
+                        <a href="/category/sweets-nuts-and-dried-fruits">
                           شیرینی و آجیل و خشکبار
                         </a>
-                        ،
-                        <a href="/category/pickles-and-salt" >
-                          ترشی و شور
-                        </a>
-                        ، انواع
-                        <a href="/category/food-and-times" >
+                        ،<a href="/category/pickles-and-salt">ترشی و شور</a>،
+                        انواع
+                        <a href="/category/food-and-times">
                           خواربار و غلات و حبوبات
                         </a>
                         . سبد خریدی خالی می‌ماند؟
                         <br />
                         راستۀ مد و پوشاک پر است از{" "}
-                        <a href="/category/female" >
-                          لباس‌ زنانه
-                        </a>{" "}
-                        و
-                        <a href="/category/men" >
-                          مردانه
-                        </a>{" "}
-                        و{" "}
-                        <a href="/category/childish" >
-                          بچگانه
-                        </a>{" "}
-                        و زیورآلات و کیف و کفش و اکسسوری. رسیدگی‌های آرایشی و
-                        بهداشتی هم در کنار پوشش بسیار مهم است.
-                        <a href="/category/skin-and-body-care" >
+                        <a href="/category/female">لباس‌ زنانه</a> و
+                        <a href="/category/men">مردانه</a> و{" "}
+                        <a href="/category/childish">بچگانه</a> و زیورآلات و کیف
+                        و کفش و اکسسوری. رسیدگی‌های آرایشی و بهداشتی هم در کنار
+                        پوشش بسیار مهم است.
+                        <a href="/category/skin-and-body-care">
                           مراقبت از پوست و مو و بدن
                         </a>
                         ،
-                        <a href="/category/cosmetics-&amp;-beauty" >
+                        <a href="/category/cosmetics-&amp;-beauty">
                           ابزار آرایشی و بهداشتی
                         </a>{" "}
                         باکیفیت هم می‌خواهد؛ محصولاتی برای{" "}
-                        <a href="/category/personal-hygiene" >
-                          بهداشت شخصی
-                        </a>{" "}
+                        <a href="/category/personal-hygiene">بهداشت شخصی</a>{" "}
                         مانند شامپو و رنگ مو و مسواک و{" "}
-                        <a href="/category/perfumes-colognes-and-sprays" >
+                        <a href="/category/perfumes-colognes-and-sprays">
                           عطر ادکلن و اسپری
                         </a>{" "}
                         برای کمک به شما آماده‌اند. نگران ظاهرتان نباشید.
                         <br />
-                        اگر برای خانه یا آشپزخانه‌تان دنبال وسیله می‌گردید، بدانید
-                        که اینجا یک خانۀ خالی را می‌توان پر کرد.
-                        <a href="/category/carpets-and-tablecloths" >
+                        اگر برای خانه یا آشپزخانه‌تان دنبال وسیله می‌گردید،
+                        بدانید که اینجا یک خانۀ خالی را می‌توان پر کرد.
+                        <a href="/category/carpets-and-tablecloths">
                           فرش و تابلوفرش
                         </a>
-                        ،
-                        <a href="/category/decorative" >
-                          دکوری و تزئینی
-                        </a>
-                        ،
-                        <a href="/category/curtains-and-furniture" >
+                        ،<a href="/category/decorative">دکوری و تزئینی</a>،
+                        <a href="/category/curtains-and-furniture">
                           پرده و مبلمان
                         </a>
                         ،
-                        <a href="/category/light-and-brightness" >
+                        <a href="/category/light-and-brightness">
                           نور و روشنایی
                         </a>
-                        ،
-                        <a href="/category/sleeping-goods" >
-                          کالای خواب
-                        </a>
-                        ،
-                        <a href="/category/flowers-and-plants" >
-                          گل و گیاه
-                        </a>
-                        ،
-                        <a
-                          href="/category/bathroom-and-toilet-accessories"
-
-                        >
+                        ،<a href="/category/sleeping-goods">کالای خواب</a>،
+                        <a href="/category/flowers-and-plants">گل و گیاه</a>،
+                        <a href="/category/bathroom-and-toilet-accessories">
                           لوازم حمام و دستشویی
                         </a>
                         ،
-                        <a href="/category/tools-and-detergents" >
+                        <a href="/category/tools-and-detergents">
                           ابزار و مواد شوینده
                         </a>{" "}
                         برای نظافت و هر چه در آشپزخانه لازمتان می‌شود.
                         <br />
                         در زیبایی و اصالت صنایع دستی ایرانی شکی نیست. از
-                        <a
-                          href="/category/knitting-fabrics-and-embroidery"
-
-                        >
+                        <a href="/category/knitting-fabrics-and-embroidery">
                           بافتنی
                         </a>{" "}
                         و کار روی پارچه و
-                        <a href="/category/wood-and-wicker-products" >
+                        <a href="/category/wood-and-wicker-products">
                           محصولات چوبی و فلزی و حصیری
                         </a>{" "}
                         و
-                        <a href="/category/pottery-tiles-and-porcelain" >
+                        <a href="/category/pottery-tiles-and-porcelain">
                           سفالی
                         </a>{" "}
                         و
-                        <a href="/category/glass-and-glass-industries" >
+                        <a href="/category/glass-and-glass-industries">
                           شیشه‌ای
                         </a>{" "}
                         بگیر تا
-                        <a href="/category/stone-products" >
-                          سنگ
-                        </a>{" "}
-                        و
-                        <a href="/category/pottery-tiles-and-porcelain" >
+                        <a href="/category/stone-products">سنگ</a> و
+                        <a href="/category/pottery-tiles-and-porcelain">
                           کاشی و چینی
                         </a>{" "}
                         و
-                        <a
-                          href="/search?q=%DA%86%D8%B1%D9%85&amp;cat=138"
-
-                        >
+                        <a href="/search?q=%DA%86%D8%B1%D9%85&amp;cat=138">
                           چرم
                         </a>{" "}
-                        و
-                        <a href="/category/metal-products" >
-                          فلز
-                        </a>
+                        و<a href="/category/metal-products">فلز</a>
                         . همه در برابر شماست، ببینید.
                         <br />
                         استقبال از عطاری‌ها روزبه‌روز بیشتر می‌شود.
-                        <a
-                          href="/category/medicines-and-therapeutic-oils"
-
-                        >
+                        <a href="/category/medicines-and-therapeutic-oils">
                           روغن‌های درمانی
                         </a>{" "}
-                        و
-                        <a href="/category/medicinal-plants" >
-                          گیاهان دارویی
-                        </a>
-                        ،
-                        <a href="/category/sweat-and-rose" >
+                        و<a href="/category/medicinal-plants">گیاهان دارویی</a>،
+                        <a href="/category/sweat-and-rose">
                           عرقیات گیاهی و گلاب
                         </a>
-                        ،
-                        <a href="/search?cat=1343" >
-                          سویق و قاووت
-                        </a>{" "}
-                        جای خود را در سبد خرید خانواده‌ها پیدا کرده‌اند.
+                        ،<a href="/search?cat=1343">سویق و قاووت</a> جای خود را
+                        در سبد خرید خانواده‌ها پیدا کرده‌اند.
                         <br />
                         معمولاً برای گذراندن اوقات خوش و
-                        <a href="/category/games-and-entertainment" >
+                        <a href="/category/games-and-entertainment">
                           بازی و سرگرمی
                         </a>{" "}
                         سراغ چه ابزارها یا
-                        <a href="/category/cultural-and-educational" >
+                        <a href="/category/cultural-and-educational">
                           محصولات فرهنگی و آموزشی
                         </a>{" "}
-                        می‌روید؟ مثلاً کتاب چاپی و صوتی و الکترونیک، لوازم تحریر،
-                        اسباب‌بازی، عروسک، کاردستی، ماکت؟ یا اهل بیرون رفتن از
-                        خانه هستید و وسایل{" "}
-                        <a href="/category/sports" >
-                          ورزشی
-                        </a>{" "}
-                        و
-                        <a href="/category/travel" >
-                          سفر
-                        </a>{" "}
-                        (ساک، کوله‌پشتی، چمدان) بیشتر به کارتان می‌آید؟ هر چه
-                        باشد، دست‌خالی برنمی‌گردید.
+                        می‌روید؟ مثلاً کتاب چاپی و صوتی و الکترونیک، لوازم
+                        تحریر، اسباب‌بازی، عروسک، کاردستی، ماکت؟ یا اهل بیرون
+                        رفتن از خانه هستید و وسایل{" "}
+                        <a href="/category/sports">ورزشی</a> و
+                        <a href="/category/travel">سفر</a> (ساک، کوله‌پشتی،
+                        چمدان) بیشتر به کارتان می‌آید؟ هر چه باشد، دست‌خالی
+                        برنمی‌گردید.
                         <br />
                         نخل فقط بازار محصولات نیست، خدمات بسیاری را هم پوشش
                         می‌دهد.
-                        <a
-                          href="/category/graphics-design-and-photography"
-
-                        >
+                        <a href="/category/graphics-design-and-photography">
                           گرافیک
                         </a>
                         ،
-                        <a
-                          href="/category/graphics-design-and-photography"
-
-                        >
+                        <a href="/category/graphics-design-and-photography">
                           عکاسی
                         </a>
                         ،
-                        <a
-                          href="/category/graphics-design-and-photography"
-
-                        >
+                        <a href="/category/graphics-design-and-photography">
                           طراحی
                         </a>
-                        ،
-                        <a href="/category/video-and-animation" >
-                          ساخت ویدئو
-                        </a>
-                        ،
-                        <a href="/category/content-and-translation" >
-                          نوشتن
-                        </a>
-                        ، ویرایش،
-                        <a href="/category/content-and-translation" >
-                          ترجمه
-                        </a>
-                        ،
-                        <a href="/category/packaging-and-transportation" >
+                        ،<a href="/category/video-and-animation">ساخت ویدئو</a>،
+                        <a href="/category/content-and-translation">نوشتن</a>،
+                        ویرایش،
+                        <a href="/category/content-and-translation">ترجمه</a>،
+                        <a href="/category/packaging-and-transportation">
                           بسته‌بندی
                         </a>
                         ،
-                        <a href="/category/packaging-and-transportation" >
+                        <a href="/category/packaging-and-transportation">
                           حمل‌ونقل
                         </a>{" "}
                         و هر ایدۀ دیگری که به ذهن غرفه‌داران می‌رسد.
                         <br />
                         انگار همه چیز با سلام آغاز می‌شود.
                       </div>{" "}
-
                     </div>
                   </div>
                 </div>
