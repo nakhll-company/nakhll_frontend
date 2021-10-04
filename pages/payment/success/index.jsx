@@ -2,23 +2,21 @@ import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Confetti from "react-confetti";
 // styles
-import styles from "../../../styles/pages/cart/success/success.module.scss";
+import styles from "./success.module.scss";
 
 const success = () => {
   const [height, setHeight] = useState(null);
   const [width, setWidth] = useState(null);
   const confettiRef = useRef(null);
   useEffect(() => {
-    setHeight(confettiRef.current.clientHeight)
-    setWidth(confettiRef.current.clientWidth)
-  }, [])
+    setHeight(confettiRef.current.clientHeight);
+    setWidth(confettiRef.current.clientWidth);
+  }, []);
 
   return (
     <>
-      
-
       <div className={styles.container} ref={confettiRef}>
-        <div className={styles.content} >
+        <div className={styles.content}>
           <Image
             src="/image/sucsses.webp"
             alt="Picture of the author"

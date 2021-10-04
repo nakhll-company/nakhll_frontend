@@ -9,7 +9,6 @@ function LinerTwoImg({}) {
       <aside className={styles.section}>
         <a
           href=""
-          className="c-adplacement__item js-banner-impression-adro"
           data-observed="0"
           target="_blank"
           data-id="82998"
