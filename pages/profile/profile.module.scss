@@ -6,6 +6,10 @@
         background: #fff;
         border-radius: .3125rem;
         box-shadow: 0 1px 2px rgba(0,0,0,.19);
+        // image profile
+        .imageProfile{
+            border-radius: 50% !important;
+        }
         // active link
         .active_link{
             background-color: #597ba1;
