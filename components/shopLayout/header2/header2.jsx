@@ -154,12 +154,12 @@ function Header2(props) {
               </div>
               <div className={styles.left_side}>
                 <a className={styles.profile_btn} href="/dashboard">
-                  <i className="far fa-user"></i>
+                  <i className="fas fa-user-circle"></i>
                 </a>
                 <a className={styles.bascket_btn} href="/cart">
                   <i>
                     <img
-                      style={{ width: "24px" }}
+                      style={{ width: "24px", marginLeft: "12px" }}
                       src="/icons/sabad.svg"
                       alt=""
                     />
