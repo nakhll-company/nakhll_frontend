@@ -8,7 +8,6 @@ import { ToastContainer } from "react-toastify";
 // componentes
 import CustomModal from "../../../components/custom/customModal";
 import DeleteAddress from "../../../containers/cartAddress/deleteAddress";
-import Steps from "../../../components/CheckOutSteps/CheckOutSteps";
 import Loading from "../../../components/loading";
 // methods
 import { getAddress } from "../../../containers/cartAddress/methods/getAddress";
@@ -48,7 +47,6 @@ const Address = () => {
           crossOrigin="anonymous"
         />
       </Head>
-      <Steps step="2" />
       <ToastContainer />
       {loading ? (
         <div className={`col-12 col-lg-5 py-5 my-2 ${styles.wrapper}`}>
@@ -101,9 +99,8 @@ const Address = () => {
                 return (
                   <label
                     key={index}
-                    className={`${styles.address_items_label} ${
-                      index === 0 && styles.active_address
-                    }`}
+                    className={`${styles.address_items_label} ${index === 0 && styles.active_address
+                      }`}
                     onClick={(event) => {
                       let activeLabels = document.querySelectorAll(
                         `.${styles.active_address}`
@@ -127,9 +124,8 @@ const Address = () => {
                   >
                     <div
                       id={`firstCircle${index}`}
-                      className={`${styles.address_item_circle} ${
-                        index === 0 && styles.active_circle
-                      }`}
+                      className={`${styles.address_item_circle} ${index === 0 && styles.active_circle
+                        }`}
                     >
                       <div className={styles.address_item_embeded_circle}></div>
                     </div>

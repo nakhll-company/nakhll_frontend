@@ -5,11 +5,29 @@
     background: #fff;
     border-radius: .3125rem;
     box-shadow: 0 1px 2px rgba(0,0,0,.19);
+    // errors
+    .form_errors{
+        color: red;
+        padding: 10px 10px;
+    }
+    // image profile
+    .imageProfile{
+        border-radius: 50% !important;
+    }
     // save button
     .save_btn{
         color: #fff;
-        background-color: #018ac0;
-        border:1px solid #008ac0;
+        background-color: #1B3E68;
+        border:1px solid #1B3E68;
         outline: none;
+    }
+    // select
+    select{
+        font-family: 'vazir';
+        color: #555555;
+    }
+    // label
+    input{
+        color: #555555;
     }
 }

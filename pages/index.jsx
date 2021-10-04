@@ -4,8 +4,11 @@ import Head from "next/head";
 import HeroSlides from "../containers/LandingPage/HeroSlides";
 import LinerProducts from "../containers/LandingPage/LinerProducts";
 import LinearImages from "../containers/LandingPage/LinerImages";
+
 import LinerProductsBg from "../containers/LandingPage/LinerProductsBg";
 import { ApiRegister } from "../services/apiRegister/ApiRegister";
+import SuggestedValue from "../containers/LandingPage/SuggestedValue";
+import LinerTwoImg from "../containers/LandingPage/LinerTwoImg";
 
 const index = () => {
   const [products, setProducts] = useState([]);
@@ -101,9 +104,12 @@ const index = () => {
       {products && (
         <LinerProducts products={products} title="جدیدترین محصولات" />
       )}
+
+      <SuggestedValue />
       {/* <Category /> */}
 
       <LinearImages />
+      <LinerTwoImg />
       {mostDiscount && (
         <LinerProducts
           products={mostDiscount}

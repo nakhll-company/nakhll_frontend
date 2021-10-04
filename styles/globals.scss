@@ -166,10 +166,7 @@ input[type="number"] {
 //   transform: translateY(0px) rotate(-2deg);
 //   transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
 // }
-
-
-// for menuMobile 
-
+// for menuMobile
 .mobile_menu {
     position: absolute;
     top: 0;
@@ -181,13 +178,13 @@ input[type="number"] {
     box-shadow: 0 0 7px 7px hsla(0, 0%, 80.8%, 0.5);
     overflow-y: scroll;
     transition: all 0.3s ease-out;
-    padding: 24px 16px;}
+    padding: 24px 16px;
+}
 
-.mobile_menu_show{
+.mobile_menu_show {
     right: 0 !important;
-  }
+}
 
-
-.mobile_menu_dont_show{
+.mobile_menu_dont_show {
     right: -100%;
 }

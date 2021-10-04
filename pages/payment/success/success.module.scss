@@ -1,0 +1,43 @@
+.container {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.content {
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 5px 5px rgba(0, 98, 90, 0.4), 10px 10px rgba(0, 98, 90, 0.3), 15px 15px rgba(0, 98, 90, 0.2), 20px 20px rgba(0, 98, 90, 0.1), 25px 25px rgba(0, 98, 90, 0.05);
+}
+
+.text {
+    color: rgb(1, 255, 213);
+    text-align: center;
+}
+
+.tex_sub {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+.btn_Buy {
+    color: #fff;
+    background-color: #1b3e68;
+    border-color: #1b3e68;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.btn_Buy:hover {
+    color: #1b3e68;
+    background-color: #fff;
+    border-color: #1b3e68;
+}
+
+.hol_cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

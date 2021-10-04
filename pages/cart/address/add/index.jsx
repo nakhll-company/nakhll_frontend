@@ -13,7 +13,6 @@ import { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { ToastContainer } from "react-toastify";
 // componentes
-import Steps from "../../../../components/CheckOutSteps/CheckOutSteps";
 import Loading from "../../../../components/loading";
 // methods
 import { getStates } from "../../../../containers/store/methods/getStates";
@@ -61,7 +60,6 @@ const NewAddress = () => {
                     crossOrigin="anonymous"
                 ></link>
             </Head>
-            <Steps step="2" />
             <ToastContainer />
             {loading ?
                 <div className={`col-12 col-lg-5 py-5 ${styles.wrapper}`} style={{ padding: "20px!important" }}>

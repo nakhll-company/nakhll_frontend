@@ -1,0 +1,96 @@
+.nav_list {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    @media (max-width: 1199px) {
+        display: none;
+    }
+    .nav_item {
+        margin-left: 48px;
+        flex-shrink: 0;
+        @media (max-width: 1399px) {
+            margin-left: 20px;
+        }
+        &:hover {
+            .nav_submenu {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+        .nav_item_link {
+            color: #141414;
+            font-size: 13px;
+            display: inline-block;
+            padding: 16px 4px;
+            position: relative;
+            @media (max-width: 1399px) {
+                font-size: 12px;
+                padding-left: 24px;
+            }
+            i {
+                color: #141414;
+                font-size: 10px;
+                position: absolute;
+                left: -10px;
+                margin-top: -4px;
+                top: 50%;
+                transition: all 0.3s ease;
+            }
+        }
+        .nav_submenu {
+            background: #fff;
+            position: absolute;
+            right: 0;
+            left: 0;
+            top: 46px;
+            opacity: 0;
+            height: 0;
+            visibility: hidden;
+            transition: all 0.2s ease-out;
+            .nav_cols_holder {
+                display: flex;
+                align-items: flex-start;
+                justify-content: flex-start;
+                .nav_submenu_col {
+                    background: rgb(246, 246, 246);
+                    &:nth-child(odd) {
+                        background: #fff;
+                    }
+                    &:first-child {
+                        padding-right: 10px;
+                    }
+                    align-self: stretch;
+                    padding: 24px 32px;
+                    .nav_submenu_cat {
+                        padding: 10px 0 8px;
+                        .nav_submenu_col_title {
+                            a {
+                                color: #141414;
+                                margin: 0 0 16px;
+                                i {
+                                    font-size: 10px;
+                                    margin-right: 6px;
+                                    color: #141414;
+                                    display: inline-block;
+                                    vertical-align: middle;
+                                }
+                            }
+                        }
+                        li {
+                            a {
+                                color: #8c8c8c;
+                                font-size: 14px;
+                                display: inline-block;
+                                vertical-align: middle;
+                                margin-bottom: 8px;
+                                line-height: 20px;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

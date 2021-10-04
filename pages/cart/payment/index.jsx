@@ -6,7 +6,6 @@ import styles from "../../../styles/pages/cart/payment/payment.module.scss";
 import ShopLayout from "../../../components/shopLayout";
 
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-import Steps from "../../../components/CheckOutSteps/CheckOutSteps";
 import { errorMessage } from "../../../containers/utils/message";
 import Assistent from "zaravand-assistent-number";
 
@@ -216,7 +215,6 @@ export default function Cart() {
           href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
         />
       </Head>
-      <Steps step="3" />
 
       <div className="col-12 col-lg-5 px-0 mb-3">
         <div className="box box-sm bg-white" style={{ minHeight: "14rem" }}>

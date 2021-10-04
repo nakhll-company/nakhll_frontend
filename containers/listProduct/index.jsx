@@ -13,8 +13,12 @@ import MenuMobile from "../../components/layout/MenuMobile";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { WoLoading } from "../../components/custom/Loading/woLoading/WoLoading";
 import ProductCard from "../../components/ProductCart/ProductCard";
-function ListProduct({ dataFirst, searchWord = "", shop_products }) {
-  console.log("shop_products :>> ", shop_products);
+function ListProduct({
+  dataFirst,
+  searchWord = "",
+  shop_products = "",
+  categoryIn = "",
+}) {
   const [listProducts, setlistProducts] = useState([]);
   const [listWithFilter, setListWithFilter] = useState([]);
   // state for  show Ordering Modal in mobile
@@ -50,26 +54,31 @@ function ListProduct({ dataFirst, searchWord = "", shop_products }) {
   const _handel_filters = async (witchFilter) => {
     setHasMore(true);
     setIsLoading(true);
+
+    let params = {
+      ...(witchFilter ? witchFilter : null),
+      search: searchWord,
+      ordering: whichOrdering,
+      ready: isReadyForSend,
+      available: isAvailableGoods,
+      discounted: isDiscountPercentage,
+      city: checkedCity.toString(),
+      ...(categoryIn.length !== 0 && { category: categoryIn }),
+      // "5f239daf-9984-477a-aacd-fc3a2f8b76cb"
+      page_size: 50,
+      min_price: minPrice,
+      max_price: maxPrice,
+      shop: shop_products,
+    };
+    console.log("params :>> ", params);
+
     try {
       let response = await ApiRegister().apiRequest(
         null,
         "get",
         `/api/v1/products/`,
         true,
-        {
-          ...(witchFilter ? witchFilter : null),
-          search: searchWord,
-          ordering: whichOrdering,
-          ready: isReadyForSend,
-          available: isAvailableGoods,
-          discounted: isDiscountPercentage,
-          city: checkedCity.toString(),
-          category: checkedCategory.toString(),
-          page_size: 50,
-          min_price: minPrice,
-          max_price: maxPrice,
-          shop: shop_products,
-        }
+        params
       );
       if (response.status === 200) {
         setListWithFilter(response.data.results);
@@ -106,7 +115,7 @@ function ListProduct({ dataFirst, searchWord = "", shop_products }) {
           available: isAvailableGoods,
           discounted: isDiscountPercentage,
           city: checkedCity.toString(),
-          category: checkedCategory.toString(),
+          ...(categoryIn !== "" && { category: categoryIn }),
           page_size: 50,
           min_price: minPrice,
           max_price: maxPrice,

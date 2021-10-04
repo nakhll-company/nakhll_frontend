@@ -1,67 +1,136 @@
+// node libraries
 import Image from 'next/image';
+import { useForm } from "react-hook-form";
+import { useState, useEffect } from 'react';
+import { ToastContainer } from "react-toastify";
+// methods
+import { Day, Months, Year } from '../../utils/staticDate';
+import { getStates } from './methods/getStates';
+import { getBigCities } from './methods/getBigCities';
+import { getCities } from './methods/getCities';
+import { updatUserProfile } from './methods/updateUserProfile';
 // scss
 import styles from './scss/editProfile.module.scss';
 /**
  * edit profile
  */
-const EditProfile = () => {
+const EditProfile = ({ dataProfile }) => {
+
+    const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const onSubmit = async (data) => {
+        data.FK_User = {
+            first_name: data.first_name,
+            last_name: data.last_name
+        }
+        data.BrithDay = `${data.year}-${data.month}-${data.day}`;
+        data.Image = dataProfile.Image;
+        updatUserProfile(data);
+    };
+
+    let [selectState, setSelectState] = useState([]);
+    let [selectBigCities, setSelectBigCities] = useState([]);
+    let [selectCities, setSelectCities] = useState([]);
+
+    useEffect(async () => {
+        // state
+        setSelectState(await getStates());
+    }, []);
+
     return (
-        <form className={styles.form}>
-            <div className="d-flex justify-content-center">
-                <Image src="/productDetail/avatar.png" width="80" height="80" />
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+            <ToastContainer />
+            <div className="d-flex justify-content-center mt-3">
+                <Image src={Object.keys(dataProfile).length > 0 ? dataProfile.Image : "/productDetail/avatar.png"} width="80" height="80" className={styles.imageProfile} />
             </div>
-            <div className="form-group">
-                <label className="d-block m-0 my-1 font-size-8 text-gray-800">نام و نام خانوادگی</label>
-                <input type="text" id="name" name="name" defaultValue="پسته خندون" className="form-control p-2 font-size-9 text-gray-900" />
-            </div>
-            <div className="form-group">
-                <label htmlFor="city_field" className="d-block m-0 my-1 font-size-8 text-gray-800">محل سکونت</label>
-                <div className="d-flex">
-                    <select name="state" id="state" className="form-control">
-                        <option value="2597">کرمان</option>
-                    </select>
-                    <select name="bigCity" id="bigCity" className="form-control">
-                        <option value="2597">کرمان</option>
-                    </select>
-                    <select name="city" id="city" className="form-control">
-                        <option value="2597">کرمان</option>
-                    </select>
+            <div className="form-group d-flex mt-4">
+                <div className="col ps-3">
+                    <label className="d-block m-0 my-1 font-size-8 text-gray-800">نام</label>
+                    <input type="text" {...register("first_name", { required: true })} defaultValue={dataProfile.FK_User.first_name} className="form-control p-2 font-size-9 text-gray-900" />
+                    {errors.first_name && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
+                </div>
+                <div className="col">
+                    <label className="d-block m-0 my-1 font-size-8 text-gray-800">نام خانوادگی</label>
+                    <input type="text" {...register("last_name", { required: true })} defaultValue={dataProfile.FK_User.last_name} className="form-control p-2 font-size-9 text-gray-900" />
+                    {errors.last_name && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
                 </div>
             </div>
-            <div className="form-group">
+            <div className="form-group mt-3">
+                <label htmlFor="city_field" className="d-block m-0 my-1 font-size-8 text-gray-800">محل سکونت</label>
+                <div className="d-flex">
+                    <select {...register("State", { required: true })} className="form-control ms-2" onChange={async (event) => {
+                        let optionsArray = Object.values(event.target.options);
+                        setSelectBigCities(await getBigCities(optionsArray[event.target.options.selectedIndex].id));
+                    }}>
+                        <option value={dataProfile.State}>{dataProfile.State}</option>
+                        {selectState.map((value, index) => {
+                            return (
+                                <option key={index} value={value.name} id={value.id}>{value.name}</option>
+                            );
+                        })}
+                    </select>
+                    {errors.State && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
+                    <select {...register("BigCity", { required: true })} className="form-control ms-2" onChange={async (event) => {
+                        let optionsArray = Object.values(event.target.options);
+                        setSelectCities(await getCities(optionsArray[event.target.options.selectedIndex].id));
+                    }}>
+                        <option value={dataProfile.BigCity}>{dataProfile.BigCity}</option>
+                        {selectBigCities.map((value, index) => {
+                            return (
+                                <option key={index} value={value.name} id={value.id}>{value.name}</option>
+                            );
+                        })}
+                    </select>
+                    {errors.BigCity && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
+                    <select {...register("City", { required: true })} className="form-control">
+                        <option value={dataProfile.City}>{dataProfile.City}</option>
+                        {selectCities.map((value, index) => {
+                            return (
+                                <option key={index} value={value.name}>{value.name}</option>
+                            );
+                        })}
+                    </select>
+                    {errors.City && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
+                </div>
+            </div>
+            <div className="form-group mt-3">
                 <label className="d-block m-0 my-1 font-size-8 text-gray-800">درباره‌ی من</label>
-                <textarea rows="4" id="bio" name="bio" className="form-control p-2 font-size-9 text-gray-800"></textarea>
-                <div id="bio-error" className="input-error-message d-none font-size-7 mt-1 text-danger"></div>
+                <textarea rows="4" {...register("Bio", { required: true })} defaultValue={dataProfile.Bio} className="form-control p-2 font-size-9 text-gray-800"></textarea>
+                {errors.Bio && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
             </div>
-            <div className="form-group">
+            <div className="form-group mt-3">
                 <label className="d-block m-0 my-1 font-size-8 text-gray-800">جنسیت</label>
-                <select name="gender" defaultValue="MEN" id="gender" className="form-control p-2 font-size-9 text-gray-800">
+                <select {...register("Sex", { required: true })} defaultValue={dataProfile.Sex} id="gender" className="form-control p-2 font-size-9 text-gray-800">
                     <option value="">انتخاب کنید</option>
-                    <option value="MEN">آقا</option>
-                    <option value="WOMEN">خانم</option>
+                    <option value="2">آقا</option>
+                    <option value="1">خانم</option>
                 </select>
+                {errors.Sex && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
             </div>
-            <div className="form-group">
+            <div className="form-group mt-3">
                 <label className="d-block m-0 my-1 font-size-8 text-gray-800">تاریخ تولد</label>
                 <div className="d-flex">
-                    <select name="birthday-year" id="birthday-year" defaultValue="1371" className="form-control p-2 font-size-9 text-gray-800 ml-2">
-                        <option value="">سال</option>
-                        <option value="1300">1300</option>
-                        <option value="1301">1301</option>
-                    </select>
-                    <select name="birthday-month" id="birthday-month" defaultValue="06" className="form-control p-2 font-size-9 text-gray-800 ml-2">
-                        <option value="">ماه</option>
-                        <option value="01">فروردین</option>
-                        <option value="02">اردیبهشت</option>
-                        <option value="03">خرداد</option>
-                        <option value="04">تیر</option>
-                        <option value="05">مرداد</option>
-                    </select>
-                    <select name="birthday-day" id="birthday-day" defaultValue="12" className="form-control p-2 font-size-9 text-gray-800">
+                    <select {...register("day", { required: true })} defaultValue={dataProfile.BrithDay.slice(8, 10)} className="form-control p-2 font-size-9 text-gray-800 ms-2">
                         <option value="">روز</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
+                        {Day.map((value, index) => (
+                            <option value={value} key={index}>{value}</option>
+                        ))}
                     </select>
+                    {errors.day && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
+                    <select {...register("month", { required: true })} defaultValue={dataProfile.BrithDay.slice(5, 7)} className="form-control p-2 font-size-9 text-gray-800 ms-2">
+                        <option value="">ماه</option>
+                        {Months.map((value, index) => (
+                            <option value={value.value} key={index}>{value.label}</option>
+                        ))}
+                    </select>
+                    {errors.month && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
+                    <select {...register("year", { required: true })} defaultValue={dataProfile.BrithDay.slice(0, 4)} className="form-control p-2 font-size-9 text-gray-800">
+                        <option value="">سال</option>
+                        {Year.map((value, index) => (
+                            <option value={value} key={index}>{value}</option>
+                        ))}
+                    </select>
+                    {errors.year && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
                 </div>
                 <button className={`py-2 mt-4 rounded w-100 ${styles.save_btn}`}>
                     ذخیره تغییرات
