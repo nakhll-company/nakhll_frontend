@@ -17,9 +17,7 @@ const failed = ({ code }) => {
             alt="Picture of the author"
             width={400}
             height={400}
-            data-toggle="tooltip"
-            data-placement="bottom"
-            title=""
+            
           />
           <h3 className={styles.text}>پرداخت ناموفق.</h3>
           <h4 className={styles.text_sub}>
