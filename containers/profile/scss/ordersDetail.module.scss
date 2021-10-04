@@ -1,0 +1,57 @@
+.main_wrapper{
+    margin: 0px 10px;
+    padding: 20px;
+    font-size: 1rem;
+    background: #fff;
+    border-radius: .3125rem;
+    box-shadow: 0 1px 2px rgba(0,0,0,.19);
+    font-family: 'vazir';
+    // items
+    .list_items{
+        display: flex;
+        flex-wrap: wrap;
+        overflow: hidden;
+        background: #fff;
+        background-color: rgb(255, 255, 255);
+        font-size: .875rem;
+        border: 1px solid #ddd;
+        border-radius: 15px;
+        margin: 1rem 0;
+        // right items
+        .right{
+            flex: 0 45%;
+            border-left: 1px solid #dfdfdf;
+            border-bottom: 1px solid #dfdfdf;
+        }
+        // left items
+        .left{
+            flex: 1;
+            text-align: center;
+            border-bottom: 1px solid #dfdfdf;
+            display: flex;
+            justify-content: center;
+        }
+        // price
+        .price{
+            flex: 1;
+            border-bottom: 1px solid #dfdfdf;
+        }
+        // images
+        .images{
+            flex-basis: 100%;
+            padding-bottom: 0 !important;
+        }
+        // detail
+        .detail{
+            display: flex;
+            flex: 1 100%;
+            .btn_gray{
+                border-radius: 1.5rem;
+                color: #303030;
+                background-color: #eee;
+                border-color: #eee;
+                border-bottom-color: rgb(238, 238, 238);
+            }
+        }
+    }
+}
