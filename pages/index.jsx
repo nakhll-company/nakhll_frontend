@@ -10,6 +10,7 @@ import { ApiRegister } from "../services/apiRegister/ApiRegister";
 import SuggestedValue from "../containers/LandingPage/SuggestedValue";
 import LinerTwoImg from "../containers/LandingPage/LinerTwoImg";
 import LinerThreeImg from "../containers/LandingPage/LinerThreeImg";
+import HolderIcon from "../components/holder_icon";
 
 const index = () => {
   const [products, setProducts] = useState([]);
@@ -100,6 +101,7 @@ const index = () => {
           crossOrigin="anonymous"
         ></link>
       </Head>
+      <HolderIcon />
       <HeroSlides />
       <SuggestedValue />
       {/* <Category /> */}
