@@ -20,6 +20,7 @@
         "react": "17.x",
         "react-checkbox-tree": "^1.7.2",
         "react-confetti": "^6.0.1",
+        "react-device-detect": "^2.0.1",
         "react-dom": "17.x",
         "react-easy-crop": "^3.5.2",
         "react-hook-form": "^7.11.1",
