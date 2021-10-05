@@ -7,7 +7,7 @@
         display: flex;
         // align-items: center;
         padding: 1rem 0;
-        font-size: .8rem;
+        font-size: 0.8rem;
         list-style: none;
         color: #7d7d7d;
         border-radius: 0;
@@ -18,11 +18,11 @@
         //     color: #7d7d7d !important;
         // }
         .breadcrumb_item {
-            font-size: .8rem;
+            font-size: 0.8rem;
             color: #7d7d7d;
             border-radius: 0;
-            background-color: transparent!important;
-            padding: 0!important;
+            background-color: transparent !important;
+            padding: 0 !important;
         }
     }
     // image product
@@ -34,12 +34,12 @@
             overflow: hidden;
             position: relative;
             padding-bottom: 100%;
-            border-radius: .5rem;
+            border-radius: 0.5rem;
         }
     }
     .images_product {
         cursor: pointer;
-        border-radius: .5rem;
+        border-radius: 0.5rem;
     }
     // store wrapper
     .store_wrapper {
@@ -86,9 +86,9 @@
         color: #7d7d7d;
     }
     .product_section_title__link {
-        font-size: .9rem!important;
+        font-size: 0.9rem !important;
         color: #3e3e3e;
-        margin-bottom: 0!important;
+        margin-bottom: 0 !important;
     }
     .avatar_box {
         display: flex;
@@ -99,7 +99,7 @@
         align-items: center;
         border-radius: 50%;
     }
-    .shop_image{
+    .shop_image {
         border-radius: 50% !important;
     }
     // title product
@@ -121,17 +121,17 @@
         display: flex;
         align-items: flex-start;
         flex-direction: column;
-        color: #00171F;
+        color: #00171f;
         font-size: 1.7rem;
         font-weight: 700;
         // old price
         .old_price {
-            color: rgba(0, 0, 0, .5);
+            color: rgba(0, 0, 0, 0.5);
             font-size: 1.25rem;
         }
         // inventory
         .inventory {
-            font-size: .875rem;
+            font-size: 0.875rem;
         }
     }
     // wrapper product price
@@ -146,8 +146,8 @@
             outline: none;
             border: none;
             color: #fff;
-            background-color: #224D82;
-            border-color: #00171F;
+            background-color: #224d82;
+            border-color: #00171f;
             cursor: pointer;
             text-align: center;
         }
@@ -163,7 +163,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        font-size: .875rem;
+        font-size: 0.875rem;
         color: #3e3e3e;
         margin-left: 140px;
     }
@@ -175,12 +175,12 @@
         font-size: 1rem;
         margin-top: 5rem;
         font-weight: 700;
-        h2{
+        h2 {
             font-size: 1rem;
             font-weight: 700;
         }
         a {
-            color: #224D82;
+            color: #224d82;
             font-size: 12px;
         }
     }
@@ -208,7 +208,7 @@
             height: 80px;
             text-align: center;
             flex-shrink: 0;
-            .comments_avatar{
+            .comments_avatar {
                 width: 70px;
                 height: 70px;
             }
@@ -235,7 +235,7 @@
             .likes_icons_wrapper {
                 display: flex;
                 align-items: center;
-                color: #224D82;
+                color: #224d82;
                 span {
                     width: 40px;
                     height: 25px;
@@ -244,7 +244,7 @@
                     justify-content: center;
                     border: 1px solid #3629f2;
                     border-radius: 25px;
-                    margin: 0 .5rem;
+                    margin: 0 0.5rem;
                 }
                 span:hover {
                     background-color: #3629f2;
@@ -269,9 +269,9 @@
         .price_mobile {
             font-size: 1.5rem;
             line-height: 1;
-            color: #224D82;
+            color: #224d82;
             font-weight: 700;
-            margin-left: .5rem;
+            margin-left: 0.5rem;
             display: inline-block;
         }
         .price_mobile_decoration {
@@ -282,8 +282,8 @@
         }
         .product_btn_mobile {
             color: #fff;
-            background-color: #224D82;
-            border-color: #224D82;
+            background-color: #224d82;
+            border-color: #224d82;
             font-size: 1.5rem;
             padding-left: 4rem;
             padding-right: 4rem;
@@ -300,31 +300,31 @@
     }
     .avatar_box_content {
         flex: 1;
-        margin: -.15em .7em -.15em 0;
+        margin: -0.15em 0.7em -0.15em 0;
         font-size: 1em;
         overflow: hidden;
     }
     .product_detail_title {
-        font-size: 1.5rem!important;
+        font-size: 1.5rem !important;
         word-break: break-word;
-        font-weight: 700!important;
-        margin-bottom: 1.5rem!important;
+        font-weight: 700 !important;
+        margin-bottom: 1.5rem !important;
     }
     .primary_price {
         line-height: 1;
         text-decoration: line-through;
-        color: rgba(0, 0, 0, .5)!important;
+        color: rgba(0, 0, 0, 0.5) !important;
     }
     .price {
-        font-size: 1rem!important;
-        color: #224D82!important;
-        font-weight: 700!important;
+        font-size: 1rem !important;
+        color: #224d82 !important;
+        font-weight: 700 !important;
     }
     .btn_tprimary {
         color: #fff;
-        background-color: #224D82;
-        border-color: #00171F;
-        font-size: 1.5rem!important;
+        background-color: #224d82;
+        border-color: #00171f;
+        font-size: 1.5rem !important;
         height: 3.75rem;
         overflow: hidden;
         cursor: pointer;
@@ -336,9 +336,9 @@
         flex-direction: row;
         justify-content: space-around;
         &__element {
-            flex-basis: 20%;
-            color: #3e3e3e!important;
-            text-align: center!important;
+            flex-basis: 33%;
+            color: #3e3e3e !important;
+            text-align: center !important;
         }
         &__deaktop {
             width: 33.313rem;
