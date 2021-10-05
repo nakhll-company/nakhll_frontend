@@ -3,7 +3,7 @@ import ProductCard from "../../../components/ProductCart/ProductCard";
 
 import styles from "./LinerTwoImg.module.scss";
 
-function LinerThreeImg({}) {
+function LinerTwoImg({}) {
   return (
     <>
       <aside className={styles.section}>
@@ -40,4 +40,4 @@ function LinerThreeImg({}) {
   );
 }
 
-export default LinerThreeImg;
+export default LinerTwoImg;

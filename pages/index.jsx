@@ -9,7 +9,7 @@ import LinerProductsBg from "../containers/LandingPage/LinerProductsBg";
 import { ApiRegister } from "../services/apiRegister/ApiRegister";
 import SuggestedValue from "../containers/LandingPage/SuggestedValue";
 import LinerTwoImg from "../containers/LandingPage/LinerTwoImg";
-import LinerThreeImg from "../containers/LandingPage/LinerTwoImg";
+import LinerThreeImg from "../containers/LandingPage/LinerThreeImg";
 
 const index = () => {
   const [products, setProducts] = useState([]);
@@ -110,15 +110,14 @@ const index = () => {
           subTitle=""
         />
       )}
-      <LinerThreeImg />
-      <LinerThreeImg />
-      <LinerThreeImg />
       ‌‌
       <LinearImages />
+      <LinerTwoImg />
       <LinerTwoImg />
       {lastDiscount && (
         <LinerProductsBg num={4} xl={3} products={lastDiscount} />
       )}
+      <LinerThreeImg />
       {mostDiscount && (
         <LinerProducts
           products={mostDiscount}
