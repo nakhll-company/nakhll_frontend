@@ -101,9 +101,6 @@ const index = () => {
       </Head>
 
       <HeroSlides />
-      {products && (
-        <LinerProducts products={products} title="جدیدترین محصولات" />
-      )}
 
       <SuggestedValue />
       {/* <Category /> */}
