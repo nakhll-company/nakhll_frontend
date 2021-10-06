@@ -12,6 +12,7 @@ import CustomLabel from "../../components/custom/customLabel";
 import ProductCard from "../../components/ProductCart/ProductCard";
 import CustomSlider from "../../components/custom/customSlider";
 // methods
+import { addToCart } from './methods/addToCart';
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 // styles
 import styles from "./productDetail.module.scss";
@@ -558,6 +559,9 @@ const ProductDetailMobile = ({ data }) => {
         </div>
         <button
           className={`${styles.product_btn_mobile} btn btn-tprimary rounded-pill font-weight-bold font-size1-5 px-6 py-2 ev-add-to-cart`}
+          onClick={() => {
+            addToCart(detail.id);
+          }}
         >
           خرید
         </button>
