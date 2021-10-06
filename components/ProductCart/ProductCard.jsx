@@ -1,6 +1,7 @@
 // node libraries
 import Assistent from "zaravand-assistent-number";
 // methods
+import { addToCart } from './methods/addToCart';
 import { addToFavoritesList } from "./methods/addToFavotitesList";
 import { deleteFromFavoritesList } from './methods/deleteFromFavoritesList';
 // scss
@@ -174,7 +175,9 @@ const ProductCard = ({
           <hr style={{ marginBottom: "5px" }} />
           <div className="_product_card_price mb-2">
             <div>
-              <button className={`btn ${styles._product_card_add_to_cart}`}>
+              <button className={`btn ${styles._product_card_add_to_cart}`} onClick={() => {
+                addToCart(product.id);
+              }}>
                 <i className="fas fa-plus" />
               </button>
             </div>

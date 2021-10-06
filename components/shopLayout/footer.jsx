@@ -70,7 +70,7 @@ const Footer = () => {
                         تماس با ما
                       </a>
                     </div>
-                    <div>
+                    {/* <div>
                       <a
                         to="https://jobs.basalam.com/"
                         href="https://jobs.basalam.com/"
@@ -78,8 +78,8 @@ const Footer = () => {
                       >
                         فرصت‌های شغلی
                       </a>
-                    </div>
-                    <div>
+                    </div> */}
+                    {/* <div>
                       <a
                         to="/guides/how-it-works"
                         href="/guides/how-it-works"
@@ -87,7 +87,7 @@ const Footer = () => {
                       >
                         نخل چطور کار می‌کند؟
                       </a>
-                    </div>
+                    </div> */}
                     <div>
                       <a
                         to="/about/terms-of-use"
@@ -175,7 +175,7 @@ const Footer = () => {
                         گزارش تخلف
                       </a>
                     </div>
-                    <div>
+                    {/* <div>
                       <a
                         to="/guides/customer-satisfaction"
                         href="/guides/customer-satisfaction"
@@ -183,7 +183,7 @@ const Footer = () => {
                       >
                         تضمین رضایت مشتری
                       </a>
-                    </div>
+                    </div> */}
                     <div>
                       <a href="/help" className={styles.footer_items}>
                         پاسخ به سوالات پرتکرار
@@ -203,14 +203,14 @@ const Footer = () => {
                         فروش در نخل
                       </a>
                     </div>
-                    <div>
+                    {/* <div>
                       <a
                         href="/account/invite"
                         className="footer-items font-weight-bold"
                       >
                         100 هزار تومان هدیه
                       </a>
-                    </div>
+                    </div> */}
                     <div>
                       <a href="/account/credit" className={styles.footer_items}>
                         کیف پول من
@@ -232,15 +232,15 @@ const Footer = () => {
                 <div className="row">
                   <div className="col-xx-3"></div>{" "}
                   <div className="col-12 col-xx-9 footer-top-part1">
-                    <div className="pb-3">
+                    {/* <div className="pb-3">
                       <a
                         href="/dl-app"
                         className={`${styles.footer_items} font-lg-size1-1 font-weight-500 m-0`}
                       >
                         دانلود اپلیکیشن
                       </a>
-                    </div>{" "}
-                    <div className={styles.footer_form_wrapper}>
+                    </div>{" "} */}
+                    {/* <div className={styles.footer_form_wrapper}>
                       <form
                         action="https://app.mailerlite.com/webforms/submit/k2y8b4"
                         method="POST"
@@ -253,7 +253,7 @@ const Footer = () => {
                         />{" "}
                         <button type="submit">اشتراک</button>
                       </form>
-                    </div>{" "}
+                    </div>{" "} */}
                     <div className={styles.footer_downloadApp}>
                       <a href="">
                         <img
@@ -374,7 +374,7 @@ const Footer = () => {
                       تماس با ما
                     </a>
                   </div>
-                  <div>
+                  {/* <div>
                     <a
                       to="https://jobs.basalam.com/"
                       href="https://jobs.basalam.com/"
@@ -382,8 +382,8 @@ const Footer = () => {
                     >
                       فرصت‌های شغلی
                     </a>
-                  </div>
-                  <div>
+                  </div> */}
+                  {/* <div>
                     <a
                       to="/guides/how-it-works"
                       href="/guides/how-it-works"
@@ -391,7 +391,7 @@ const Footer = () => {
                     >
                       نخل چطور کار می‌کند؟
                     </a>
-                  </div>
+                  </div> */}
                   <div>
                     <a
                       to="/about/terms-of-use"
@@ -453,14 +453,14 @@ const Footer = () => {
                       پیگیری سفارشات
                     </a>
                   </div>
-                  <div>
+                  {/* <div>
                     <a
                       href="/guides/return-policy"
                       className={styles.footer_items}
                     >
                       بازگشت کالا
                     </a>
-                  </div>
+                  </div> */}
                   <div>
                     <a
                       to="https://help.basalam.com/"
@@ -470,7 +470,7 @@ const Footer = () => {
                       گزارش تخلف
                     </a>
                   </div>
-                  <div>
+                  {/* <div>
                     <a
                       to="/guides/customer-satisfaction"
                       href="/guides/customer-satisfaction"
@@ -478,7 +478,7 @@ const Footer = () => {
                     >
                       تضمین رضایت مشتری
                     </a>
-                  </div>
+                  </div> */}
                   <div>
                     <a href="/help" className={styles.footer_items}>
                       پاسخ به سوالات پرتکرار
@@ -514,14 +514,14 @@ const Footer = () => {
                       فروش در نخل
                     </a>
                   </div>
-                  <div>
+                  {/* <div>
                     <a
                       href="/account/invite"
                       className="footer-items font-weight-bold"
                     >
                       100 هزار تومان هدیه
                     </a>
-                  </div>
+                  </div> */}
                   <div>
                     <a href="/account/credit" className={styles.footer_items}>
                       کیف پول من
@@ -539,13 +539,13 @@ const Footer = () => {
                 </div>
               </div>{" "}
               <div className="align-items-center d-flex justify-content-between mt-3">
-                <div>
+                {/* <div>
                   <a href="https://basalam.com/dl/direct">
                     <button className="btn rounded-pill border-black">
                       دانلود اپلیکیشن
                     </button>
                   </a>
-                </div>{" "}
+                </div>{" "} */}
                 <div className={styles.footer_social_icon}>
                   <div>
                     <a
@@ -594,7 +594,7 @@ const Footer = () => {
                         title="نماد اعتماد الکترونیکی"
                         id="6iQN5yCbmti3PrU4cINp"
                         className="w-100"
-                        // style="cursor: pointer;"
+                      // style="cursor: pointer;"
                       />
                     </a>
                   </div>
