@@ -103,8 +103,9 @@ export default function Cart() {
       let response = await ApiRegister().apiRequest(
         null, "GET", `/accounting_new/api/invoice/${id}/pay/`, true, {}
       );
-      let data = response.data;
       if (response.status === 200) {
+        let data = await response.data;
+        await router.push(data.url);
       } else {
         errorMessage("مشکلی در رفتن به درگاه پرداخت پیش آمده");
       }
