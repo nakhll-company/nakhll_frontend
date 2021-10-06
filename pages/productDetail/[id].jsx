@@ -9,14 +9,17 @@ import { ApiRegister } from '../../services/apiRegister/ApiRegister';
 
 // fetch data
 const fetchData = async (id) => {
+    let urlComments = encodeURI(`/api/v1/product-page/comments/${id}/`);
+    let urlResponse = encodeURI(`/api/v1/product-page/details/${id}/`);
+    let urlRelatedProduct = encodeURI(`/api/v1/product-page/related_products/${id}/?page_size=10`);
     let comments = await ApiRegister().apiRequest(
-        null, "GET", `/api/v1/product-page/comments/${id}/`, true, ""
+        null, "GET", urlComments, true, ""
     );
     let response = await ApiRegister().apiRequest(
-        null, "get", `/api/v1/product-page/details/${id}/`, true, ""
+        null, "get", urlResponse, true, ""
     );
     let relatedProduct = await ApiRegister().apiRequest(
-        null, "GET", `/api/v1/product-page/related_products/${id}/?page_size=10`, true, ""
+        null, "GET", urlRelatedProduct, true, ""
     );
 
     if (response.status === 200) {
@@ -62,7 +65,7 @@ export default ProductDetail;
 // function server side
 export async function getServerSideProps(context) {
     const data = await fetchData(context.params.id);
-
+    console.log(">>>", context.params.id);
     return {
         props: { data },
     };
