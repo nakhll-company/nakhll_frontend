@@ -1,6 +1,7 @@
 // node libraries
 import Assistent from "zaravand-assistent-number";
 // methods
+import { addToCart } from './methods/addToCart';
 import { addToFavoritesList } from "./methods/addToFavotitesList";
 import { deleteFromFavoritesList } from "./methods/deleteFromFavoritesList";
 // scss
@@ -30,33 +31,31 @@ const ProductCard = ({
       >
         <i className="far fa-bookmark" />
       </div>
-      <div
+      {/* <div
         className="_product_card_badge"
         type="button"
         style={{ bottom: "3.3rem" }}
       >
         <i className="fas fa-share-alt"></i>
-      </div>
+      </div> */}
     </>
   );
 
   let cardImg = (
     <img
       src={product.imageUrl}
-      className={`card-img-top _product_card_rounded animationCart ${
-        product.unavailable && "_unavailable_product"
-      }`}
+      className={`card-img-top _product_card_rounded animationCart ${product.unavailable && "_unavailable_product"
+        }`}
       alt={product.title}
     />
   );
 
   return (
     <div
-      className={`animationCartParent ${
-        col
+      className={`animationCartParent ${col
           ? `col-${col}`
           : `col-6 col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
-      } ${padding ? `px-${padding}` : ""} mb-3`}
+        } ${padding ? `px-${padding}` : ""} mb-3`}
     >
       {product.iconClose && (
         <span
@@ -100,9 +99,8 @@ const ProductCard = ({
         )} */}
 
         <div
-          className={`card-body mt-2 p-1 ${
-            product.unavailable && "_unavailable_product"
-          }`}
+          className={`card-body mt-2 p-1 ${product.unavailable && "_unavailable_product"
+            }`}
         >
           <div className=" mb-3">
             <a
@@ -193,7 +191,9 @@ const ProductCard = ({
           <hr style={{ marginBottom: "5px" }} />
           <div className="_product_card_price mb-2">
             <div>
-              <button className={`btn ${styles._product_card_add_to_cart}`}>
+              <button className={`btn ${styles._product_card_add_to_cart}`} onClick={() => {
+                addToCart(product.id);
+              }}>
                 <i className="fas fa-plus" />
               </button>
             </div>

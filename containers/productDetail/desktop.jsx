@@ -11,6 +11,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import CustomLabel from "../../components/custom/customLabel";
 import CustomSlider from "../../components/custom/customSlider";
 // methods
+import { addToCart } from './methods/addToCart';
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 // styles
 import styles from "./productDetail.module.scss";
@@ -325,6 +326,9 @@ const ProductDetailDesktop = ({ data }) => {
                 <div style={{ flex: "0 0 44%" }} className="d-flex flex-column">
                   <button
                     className={`product-btn btn rounded-pill font-size1-5  p-1  ${styles.btn_tprimary}`}
+                    onClick={() => {
+                      addToCart(detail.id);
+                    }}
                   >
                     خرید
                   </button>

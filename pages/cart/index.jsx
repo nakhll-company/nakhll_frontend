@@ -7,7 +7,6 @@ import ListCardBuy from "../../containers/card/ListCardBuy";
 import MiniCardBuy from "../../containers/card/MiniCardBuy";
 import SumBuy from "../../containers/card/SumBuy";
 import ShopLayout from "../../components/shopLayout";
-import CheckOutSteps from "../../components/CheckOutSteps/CheckOutSteps";
 // metods
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import ContextProduct from "../../containers/card/Context/context";
@@ -30,7 +29,6 @@ import { getProducts } from "../../redux/actions/cart/getProducts";
 export default function Cart() {
   const dispatch = useDispatch();
   const AllProduct = useSelector((state) => state.Cart.allProduct);
-  console.log("AllProduct :>> ", AllProduct);
   // STATE FOR SAVE PRODUCTS
   const [All_product_list_buy, setAll_product_list_buy] = useState({});
 
@@ -92,7 +90,6 @@ export default function Cart() {
         ) : All_product_list_buy &&
           All_product_list_buy.ordered_items.length > 0 ? (
           <section className="container container_mob pb-5 ">
-            <CheckOutSteps step="1" />
 
             <div className="row mx-auto mt-4" style={{ maxWidth: "72rem" }}>
               <ListCardBuy />

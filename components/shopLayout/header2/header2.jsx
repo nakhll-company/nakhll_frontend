@@ -102,7 +102,7 @@ function Header2(props) {
               </div> */}
               <a
                 className={styles.nav_item_link_login}
-                href="/accounts/get-phone/"
+                href="https://nakhll.com/accounts/get-phone/"
               >
                 ورود/ثبت نام
               </a>

@@ -1,21 +1,21 @@
-import { useEffect, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
-
+import { useRouter } from 'next/router';
+import { useEffect, useState } from "react";
+import Assistent from "zaravand-assistent-number";
+// scss
 import styles from "../../../styles/pages/cart/payment/payment.module.scss";
-import ShopLayout from "../../../components/shopLayout";
-
+// methods
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import { errorMessage } from "../../../containers/utils/message";
-import Assistent from "zaravand-assistent-number";
-
-
-
-
 
 const _asist = new Assistent();
 
 export default function Cart() {
+
+  const router = useRouter();
+  const { id } = router.query;
+
   const [msgCoupon, setMsgCoupon] = useState([]);
   const [isLoadInvoice, setIsLoadInvoice] = useState(true);
   const [listInvoice, setListInvoice] = useState([]);
@@ -24,96 +24,26 @@ export default function Cart() {
   const [finalPrice, setFinalPrice] = useState(null);
   const [addressReceiver, setAddressReceiver] = useState({});
   const [resultCoupon, setResultCoupon] = useState(null);
-  // const [listMsgCoupon, setlistMsgCoupon] = useState(null)
-
-  let item = [
-    {
-      id: 53,
-      cart: 10,
-      product: {
-        image_thumbnail_url:
-          "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/6FDT9m/6a34047cff3a249326a8d4419ff3ba3f.jpg",
-        url: "/product/kilm_darestan/h30_30_2/",
-        old_price: 4100000,
-        price: 3500000,
-        slug: "h30_30_2",
-        title: "گليم ( فرش دستباف ) 30 * 30 سانتي متري طرح یک",
-        status: "تولید بعد از سفارش",
-        discount: 14,
-        id: "01b85eb9-46fb-4726-959c-59def8200745",
-        shop: {
-          slug: "kilm_darestan",
-          title: "گليم شیریکی پیچ (فرش دستباف) دارستان",
-          url: "/kilm_darestan/",
-          image_thumbnail_url:
-            "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/xm8aDL/e1cf7fca21d746f7629150c04a7bd4b3.jpg",
-          state: "کرمان",
-          show_contact_info: false,
-
-          publish: true,
-          available: true,
-        },
-      },
-      total_price: 3500000,
-      total_old_price: 4100000,
-      count: 1,
-      added_datetime: "2021-08-15T10:34:07.210799+04:30",
-    },
-    {
-      id: 52,
-      cart: 10,
-      product: {
-        image_thumbnail_url:
-          "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/Xwy0Is/7dca6b5390898fb9b7d49721aef7a213.jpg",
-        url: "/product/kilm_darestan/h0_0_1/",
-        old_price: 6100000,
-        price: 5800000,
-        slug: "h0_0_1",
-        title: "گليم ( فرش دستباف ) جعبه دستمال کاغذي",
-        status: "تولید بعد از سفارش",
-        discount: 4,
-        id: "b8cbfae0-b008-4c7f-93ad-8fe077b51a74",
-        shop: {
-          slug: "kilm_darestan",
-          title: "گليم شیریکی پیچ (فرش دستباف) دارستان",
-          url: "/kilm_darestan/",
-          image_thumbnail_url:
-            "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/xm8aDL/e1cf7fca21d746f7629150c04a7bd4b3.jpg",
-          state: "کرمان",
-          show_contact_info: false,
-          publish: true,
-          available: true,
-        },
-      },
-      total_price: 5800000,
-      total_old_price: 6100000,
-      count: 5,
-      added_datetime: "2021-08-15T10:34:02.161705+04:30",
-    },
-  ];
+  const [logisticErrors, setLogisticErrors] = useState([]);
 
   useEffect(() => {
-    _getListInvoice();
-  }, []);
+    id && _getListInvoice();
+  }, [id]);
 
   const _getListInvoice = async () => {
-    let dataUrl = "/accounting_new/api/invoice/active_invoice/";
     let response = await ApiRegister().apiRequest(
-      null,
-      "GET",
-      dataUrl,
-      true,
-      {}
+      null, "GET", `/accounting_new/api/invoice/${id}/`, true, {}
     );
     let data = response.data;
     if (response.status === 200) {
-      setListInvoice(data.cart.ordered_items);
+      setListInvoice(data.items);
       setLogisticPrice(data.logistic_price);
-      setTotalPrice(data.cart.total_price);
+      setTotalPrice(data.invoice_price_without_discount);
       setFinalPrice(data.final_price);
       setAddressReceiver(data.address);
       setResultCoupon(data.coupons_total_price);
       setMsgCoupon(data.coupon_usages);
+      setLogisticErrors(data.logistic_errors);
       setIsLoadInvoice(false);
     }
   };
@@ -123,23 +53,15 @@ export default function Cart() {
     let valueCoupon = e.target[0].value;
     if (valueCoupon) {
       setIsLoadInvoice(true);
-      let params = {};
-      let loadData = { coupon: valueCoupon };
-      let dataUrl = `/accounting_new/api/invoice/set_coupon/`;
       try {
         let response = await ApiRegister().apiRequest(
-          loadData,
-          "PATCH",
-          dataUrl,
-          true,
-          params
+          { coupon: valueCoupon }, "PATCH", `/accounting_new/api/invoice/${id}/set_coupon/`, true, {}
         );
         let data = response.data;
         if (response.status === 200) {
           if (data.result) {
             await _getListInvoice()
             setIsLoadInvoice(false);
-
           } else {
             data.errors.map((item) => {
               errorMessage(item);
@@ -147,13 +69,16 @@ export default function Cart() {
             setIsLoadInvoice(false);
           }
           // setIsLoadInvoice(false);
+        } else {
+          errorMessage("این کد تخفیف معتبر نمی باشد");
+          setIsLoadInvoice(false);
         }
       } catch (e) {
-        console.log(`error>>>>>>>>>>>>>>>>>>`, e.response)
         let errorData = e.response.data
         errorData.coupon.map((item) => {
           errorMessage(item);
         });
+        errorMessage(response.coupon[0]);
         // setMsgCoupon("adkaslkdjksa");
       }
     }
@@ -161,46 +86,33 @@ export default function Cart() {
 
   const _deleteCoupon = async (coupon) => {
     setIsLoadInvoice(true);
-    let params = {};
-    let loadData = { coupon };
-    let dataUrl = `/accounting_new/api/invoice/unset_coupon/`;
     let response = await ApiRegister().apiRequest(
-      loadData,
-      "PATCH",
-      dataUrl,
-      true,
-      params
+      { coupon }, "PATCH", `/accounting_new/api/invoice/${id}/unset_coupon/`, true, {}
     );
     if (response.status === 200) {
       await _getListInvoice()
       setIsLoadInvoice(false);
+    } else {
+      errorMessage("مشکلی در حذف کوپن پیش آمده");
     }
-
   };
 
   const invoicePay = async () => {
     try {
       setIsLoadInvoice(true);
-      let params = {};
-      let loadData = null;
-      let dataUrl = `/accounting_new/api/invoice/pay/`;
       let response = await ApiRegister().apiRequest(
-        loadData,
-        "GET",
-        dataUrl,
-        true,
-        params
+        null, "GET", `/accounting_new/api/invoice/${id}/pay/`, true, {}
       );
       let data = response.data;
       if (response.status === 200) {
+      } else {
+        errorMessage("مشکلی در رفتن به درگاه پرداخت پیش آمده");
       }
-
-
     } catch (error) {
+      errorMessage("مشکلی در رفتن به درگاه پرداخت پیش آمده");
     }
   }
 
-  console.log(`addressReceiver.receiver_full_name`, resultCoupon)
   return (
     <div className={styles.steps_wrapper}>
       <Head>
@@ -359,33 +271,33 @@ export default function Cart() {
                   <div className={`${styles.spinner} ${styles.spinner__tiny}`}></div>
                 </div>
               )}
-              {item &&
+              {listInvoice.length > 0 &&
                 listInvoice.map((itemProduct) => {
                   return (
                     <div className="font-size-sm border-bottom pb-3 mt-3">
                       <div className="title font-weight-500">
-                        از غرفه {itemProduct.product.shop.title}
+                        از غرفه {itemProduct.shop_name}
                       </div>
                       <div className="d-flex align-items-center mt-3">
                         <div className={`${styles.picItemInvoice}`}>
                           <a href="/pestehkerman/product/175903" className>
                             <img
-                              src={itemProduct.product.image_thumbnail_url}
-                              alt={itemProduct.product.title}
+                              src={itemProduct.image}
+                              alt={itemProduct.name}
                             />
                           </a>
                         </div>
                         <div className="mr-3" style={{ minWidth: "1%", marginRight: "1rem" }}>
                           <a
-                            href={itemProduct.product.url}
+                            href="/"
                             className="link-body"
                           >
-                            {itemProduct.product.title}
+                            {itemProduct.name}
                           </a>
                           <div className="mt-2">{itemProduct.count}عدد</div>
                         </div>
                         <div className="mr-auto" style={{ marginRight: "auto" }}>
-                          {_asist.PSeparator(itemProduct.total_price / 10)}{" "}
+                          {_asist.PSeparator(itemProduct.price_without_discount / 10)}{" "}
                           تومان
                         </div>
                       </div>
@@ -394,8 +306,6 @@ export default function Cart() {
                     </div>
                   );
                 })}
-
-
               <div className="font-size-sm border-bottom py-3">
                 <div className="d-flex py-1">
                   <span>جمع بهای سفارش:</span>
@@ -443,6 +353,7 @@ export default function Cart() {
                   ویرایش
                 </Link>
               </div>
+
               {/* <div className="toggle-btn mt-2">
                                 <label data-v-25adc6c0 className="vue-js-switch toggled">
                                     <input data-v-25adc6c0 type="checkbox" className="v-switch-input" style={{ opacity: 0, position: "absolute", width: "1px", height: "1px" }} />
@@ -477,7 +388,14 @@ export default function Cart() {
                                 </span>
                             </div> */}
             </div>
-
+            <div style={{ border: "1px solid red", color: "red", padding: "10px" }}>
+              {logisticErrors.length > 0 && logisticErrors.map((value, index) => (
+                <p key={index}>
+                  {value}
+                  در محدوده ارسال شما قرار ندارد
+                </p>
+              ))}
+            </div>
             <div className="d-none d-md-flex justify-content-between mt-4">
               <span
                 className="font-size1  font-weight-bold"
@@ -527,4 +445,3 @@ export default function Cart() {
   );
 }
 
-Cart.Layout = ShopLayout;
