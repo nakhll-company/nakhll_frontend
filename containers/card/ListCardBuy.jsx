@@ -38,35 +38,35 @@ export default function ListCardBuy() {
                   !(
                     index > 0 &&
                     El.product.shop.slug ==
-                      All_product_list_buy.ordered_items[index - 1].product.shop
-                        .slug
+                    All_product_list_buy.ordered_items[index - 1].product.shop
+                      .slug
                   )
                     ? { position: "relative" }
                     : {
-                        position: "relative",
-                        marginTop: "-12px",
-                        borderTop: "2px dashed hsl(213deg 59% 26%)",
-                        borderTopLeftRadius: "inherit",
-                        borderTopRightRadius: "inherit",
-                      }
+                      position: "relative",
+                      marginTop: "-12px",
+                      borderTop: "2px dashed hsl(213deg 59% 26%)",
+                      borderTopLeftRadius: "inherit",
+                      borderTopRightRadius: "inherit",
+                    }
                 }
               >
                 {!(
                   index > 0 &&
                   El.product.shop.slug ==
-                    All_product_list_buy.ordered_items[index - 1].product.shop
-                      .slug
+                  All_product_list_buy.ordered_items[index - 1].product.shop
+                    .slug
                 ) && (
-                  <div className="pt-3 pb-1 px-3">
-                    <span className="font-size1">از غرفه: </span>{" "}
-                    <a
-                      href={El.product.shop.url}
-                      className="vendor-link font-size1 font-weight-bold link-body font-weight-normal txtcut"
-                    >
-                      {El.product.shop.title}
-                    </a>
-                  </div>
-                )}
+                    <div className="pt-3 pb-1 px-3">
+                      <span className="font-size1">از غرفه: </span>{" "}
+                      <a
+                        href={`hojreh/${El.product.shop.slug}`}
+                        className="vendor-link font-size1 font-weight-bold link-body font-weight-normal txtcut"
+                      >
+                        {El.product.shop.title}
+                      </a>
+                    </div>
+                  )}
                 {/*</mnbvcxz> IF CHANGE IN PRODUCT IN LIST */}
 
                 {/* <div className="align-items-center nakhl-label d-flex justify-content-between mx-3 mt-3 p-2 rounded  border border-danger text-danger">
@@ -140,9 +140,8 @@ export default function ListCardBuy() {
                               className={styles.cart_product_item_remain_stock}
                             ></div>
                             <div
-                              className={`nakhl-label mr-auto small teaberry-light ${
-                                El.product.discount == 0 && "opacity_none"
-                              }`}
+                              className={`nakhl-label mr-auto small teaberry-light ${El.product.discount == 0 && "opacity_none"
+                                }`}
                             >
                               {_asist.number(El.product.discount)}
                               <span> %</span>
@@ -223,11 +222,9 @@ export default function ListCardBuy() {
                               <div className="mr-auto">
                                 <span
                                   style={{ display: "block" }}
-                                  className={`${
-                                    styles.cart_product_item_primary_price
-                                  } ${
-                                    El.product.discount == 0 && "opacity_none"
-                                  }`}
+                                  className={`${styles.cart_product_item_primary_price
+                                    } ${El.product.discount == 0 && "opacity_none"
+                                    }`}
                                 >
                                   {_asist.PSeparator(El.total_old_price / 10)}
                                 </span>{" "}
@@ -471,8 +468,8 @@ export default function ListCardBuy() {
               {false &&
                 index !== 0 &&
                 El.product.shop.slug ==
-                  All_product_list_buy.ordered_items[index - 1].product.shop
-                    .slug && (
+                All_product_list_buy.ordered_items[index - 1].product.shop
+                  .slug && (
                   <div
                     className="mt-0 cart-product-group bg-white"
                     style={{ position: "relative" }}
@@ -536,9 +533,8 @@ export default function ListCardBuy() {
                             </div>
                             <div className="cart-product-item-remain-stock"></div>
                             <div
-                              className={`nakhl-label mr-auto small teaberry-light ${
-                                El.product.discount == 0 && "opacity_none"
-                              }`}
+                              className={`nakhl-label mr-auto small teaberry-light ${El.product.discount == 0 && "opacity_none"
+                                }`}
                             >
                               {_asist.number(El.product.discount)}
                               <span> %</span>
@@ -598,11 +594,9 @@ export default function ListCardBuy() {
                               </div>
                               <div className="mr-auto">
                                 <span
-                                  className={`${
-                                    styles.cart_product_item_primary_price
-                                  } ${
-                                    El.product.discount == 0 && "opacity_none"
-                                  }`}
+                                  className={`${styles.cart_product_item_primary_price
+                                    } ${El.product.discount == 0 && "opacity_none"
+                                    }`}
                                 >
                                   {_asist.PSeparator(El.total_old_price / 10)}
                                 </span>{" "}
