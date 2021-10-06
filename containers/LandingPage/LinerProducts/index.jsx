@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProductCard from "../../../components/ProductCart/ProductCard";
+import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
 import styles from "./LinerProducts.module.scss";
 
@@ -7,12 +8,36 @@ function LinerProducts({
   num = 6,
   title,
   subTitle,
-  products = [],
+  nextApi,
+
   xl = 2,
   md = 4,
   lg = 3,
   sm = 6,
 }) {
+  const [products, setProducts] = useState([]);
+  const _Call_Products = async () => {
+    try {
+      let response = await ApiRegister().apiRequest(
+        null,
+        "get",
+        nextApi,
+        true,
+        {}
+      );
+      if (response.status === 200) {
+        console.log("milad :>> ", response.data);
+        setProducts(response.data);
+      }
+    } catch (e) {
+      console.log("rrrr :>> ", e);
+    }
+  };
+
+  useEffect(() => {
+    _Call_Products();
+  }, []);
+
   return (
     <div className={`container ${styles.lineProduct}`}>
       {title && (
@@ -27,7 +52,7 @@ function LinerProducts({
         </div>
       )}
       <div className={`${styles.products} row`}>
-        {products.slice(0, num).map((product) => (
+        {/* {products.length > 0 && products.slice(0, num).map((product) => (
           <ProductCard
             xl={xl}
             md={md}
@@ -49,7 +74,7 @@ function LinerProducts({
               is_advertisement: product.is_advertisement,
             }}
           />
-        ))}
+        ))} */}
       </div>
     </div>
   );

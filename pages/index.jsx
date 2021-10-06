@@ -11,67 +11,80 @@ import SuggestedValue from "../containers/LandingPage/SuggestedValue";
 import LinerTwoImg from "../containers/LandingPage/LinerTwoImg";
 import LinerThreeImg from "../containers/LandingPage/LinerThreeImg";
 import HolderIcon from "../components/holder_icon";
+import LinerOneImg from "../containers/LandingPage/LinerOneImg";
 
 const index = () => {
-  const [products, setProducts] = useState([]);
-  const [lastDiscount, setLastDiscount] = useState([]);
-  const [mostDiscount, setMostDiscount] = useState([]);
-  const _Call_Products = async () => {
+  const [Schema, setSchema] = useState([]);
+
+  const Sample = {
+    1: "اسلایدر تکی",
+    2: "بنر تک عکسی",
+    3: " بنر 2تایی در یک ردیف",
+    4: " (یکی بالا دوتا پایین)بنر ۳ تایی",
+    5: " بنر چهارتایی چهارتا کنار هم",
+    6: " ردیف محصولات",
+    7: " ردیف شگفت انگیزا",
+  };
+
+  const _Call_Api_Schema = async () => {
     try {
       let response = await ApiRegister().apiRequest(
         null,
         "get",
-        `/api/v1/landing/last-created-products/`,
+        `http://51.89.107.174:8000/api/v1/landing/schema/`,
         true,
         {}
       );
       if (response.status === 200) {
-        console.log("response.data :>> ", response.data);
-        setProducts(response.data);
+        setSchema(response.data);
       }
     } catch (e) {
       console.log("rrrr :>> ", e);
     }
   };
-  const _Call_last_discount = async () => {
-    try {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        `/api/v1/landing/last-created-discounted-products/`,
-        true,
-        {}
-      );
-      if (response.status === 200) {
-        console.log("response.data :>> ", response.data);
-        setLastDiscount(response.data);
-      }
-    } catch (e) {
-      console.log("rrrr :>> ", e);
-    }
-  };
-  const _Call_most_discount = async () => {
-    try {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        `/api/v1/landing/most-discount-prec-products/`,
-        true,
-        {}
-      );
-      if (response.status === 200) {
-        console.log("response.data :>> ", response.data);
-        setMostDiscount(response.data);
-      }
-    } catch (e) {
-      console.log("rrrr :>> ", e);
+
+  const _handel_select_component = (type) => {
+    switch (type.component_type) {
+      case 1:
+        return <HeroSlides />;
+        break;
+      case 2:
+        return <LinerOneImg />;
+        break;
+      case 3:
+        return <LinerTwoImg />;
+        break;
+      case 4:
+        return <LinerThreeImg />;
+        break;
+      case 5:
+        return (
+          <>
+            <LinerTwoImg />
+            <LinerTwoImg />
+          </>
+        );
+        break;
+      case 6:
+        return (
+          <LinerProducts
+            title={type.title}
+            subTitle={type.subtitle}
+            nextApi={type.data}
+            url={type.url}
+          />
+        );
+        break;
+      case 7:
+        return <LinerProductsBg num={4} xl={3} products={lastDiscount} />;
+        break;
+      default:
+        null;
     }
   };
 
   useEffect(() => {
-    _Call_Products();
-    _Call_last_discount();
-    _Call_most_discount();
+    _Call_Api_Schema();
   }, []);
 
   return (
@@ -101,32 +114,11 @@ const index = () => {
           crossOrigin="anonymous"
         ></link>
       </Head>
+      {Schema.length > 0 && Schema.map((turn) => _handel_select_component(turn))}
       <HolderIcon />
       <HeroSlides />
       <SuggestedValue />
-      {/* <Category /> */}
-      {mostDiscount && (
-        <LinerProducts
-          products={mostDiscount}
-          title="پرفروش‌ترین‌های هفته"
-          subTitle=""
-        />
-      )}
       ‌‌
-      <LinearImages />
-      <LinerTwoImg />
-      <LinerTwoImg />
-      {lastDiscount && (
-        <LinerProductsBg num={4} xl={3} products={lastDiscount} />
-      )}
-      <LinerThreeImg />
-      {mostDiscount && (
-        <LinerProducts
-          products={mostDiscount}
-          title="بیشترین تخفیفات"
-          subTitle=""
-        />
-      )}
     </>
   );
 };
