@@ -95,11 +95,11 @@ function Header2(props) {
                   />
                 </a>
               </div> */}
-              <div className={styles.help_link}>
-                <a title="راهنمای نخل" href="">
+              {/* <div className={styles.help_link}>
+                <a title="راهنمای نخل" href=""> */}
                   {/* <i className="icon icon-QuestionCircle"></i> */}
-                </a>
-              </div>
+                {/* </a>
+              </div> */}
               <a
                 className={styles.nav_item_link_login}
                 href="/accounts/get-phone/"
@@ -164,6 +164,7 @@ function Header2(props) {
                       alt=""
                     />
                   </i>
+                  <span className={styles.counter_cart}>0</span>
                 </a>
               </div>
             </div>
