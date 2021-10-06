@@ -3,7 +3,7 @@ import Assistent from "zaravand-assistent-number";
 // methods
 import { addToCart } from './methods/addToCart';
 import { addToFavoritesList } from "./methods/addToFavotitesList";
-import { deleteFromFavoritesList } from './methods/deleteFromFavoritesList';
+import { deleteFromFavoritesList } from "./methods/deleteFromFavoritesList";
 // scss
 import styles from "./ProductCard.module.scss";
 
@@ -24,18 +24,17 @@ const ProductCard = ({
       <div
         className="_product_card_badge"
         type="button"
-        style={{ top: ".75rem" }}
+        style={{ bottom: ".75rem" }}
         onClick={() => {
           addToFavoritesList(product.id);
         }}
       >
         <i className="far fa-bookmark" />
-
       </div>
       <div
         className="_product_card_badge"
         type="button"
-        style={{ top: "3.3rem" }}
+        style={{ bottom: "3.3rem" }}
       >
         <i className="fas fa-share-alt"></i>
       </div>
@@ -45,31 +44,50 @@ const ProductCard = ({
   let cardImg = (
     <img
       src={product.imageUrl}
-      className={`card-img-top _product_card_rounded animationCart ${product.unavailable && "_unavailable_product"
-        }`}
+      className={`card-img-top _product_card_rounded animationCart ${
+        product.unavailable && "_unavailable_product"
+      }`}
       alt={product.title}
     />
   );
 
   return (
     <div
-      className={`animationCartParent ${col
-        ? `col-${col}`
-        : `col-6 col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
-        } ${padding ? `px-${padding}` : ""} mb-3`}
+      className={`animationCartParent ${
+        col
+          ? `col-${col}`
+          : `col-6 col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
+      } ${padding ? `px-${padding}` : ""} mb-3`}
     >
-      {product.iconClose && <span style={{ position: "relative", width: "0px", height: "0px", cursor: "pointer" }} onClick={() => {
-        deleteFromFavoritesList(product.id);
-      }}>
-        <i class="fa fa-times-circle" style={{ position: "absolute", fontSize: "28px", color: "#4f4f4f", zIndex: "100" }}></i>
-      </span>}
+      {product.iconClose && (
+        <span
+          style={{
+            position: "relative",
+            width: "0px",
+            height: "0px",
+            cursor: "pointer",
+          }}
+          onClick={() => {
+            deleteFromFavoritesList(product.id);
+          }}
+        >
+          <i
+            class="fa fa-times-circle"
+            style={{
+              position: "absolute",
+              fontSize: "28px",
+              color: "#4f4f4f",
+              zIndex: "100",
+            }}
+          ></i>
+        </span>
+      )}
       <div
         // style={{ minHeight: "170px" }}
         className="card _product_card _product_card_rounded p-2"
       >
-        {cardBadge}
-
         <div className={styles.paterImage}>
+          {cardBadge}
           <a href={product.url}>{cardImg}</a>
         </div>
         {/* {linkType === "anchor" ? (
@@ -83,8 +101,9 @@ const ProductCard = ({
         )} */}
 
         <div
-          className={`card-body mt-2 p-1 ${product.unavailable && "_unavailable_product"
-            }`}
+          className={`card-body mt-2 p-1 ${
+            product.unavailable && "_unavailable_product"
+          }`}
         >
           <div className=" mb-3">
             <a
@@ -194,7 +213,12 @@ const ProductCard = ({
                       {_asist.PSeparator(product.discountNumber)}
                     </span>
                   )}
-                  <span className="_product_card_toman" style={{ fontSize: ".75rem" }}>تومان</span>
+                  <span
+                    className="_product_card_toman"
+                    style={{ fontSize: ".75rem" }}
+                  >
+                    تومان
+                  </span>
                 </>
               )}
             </div>

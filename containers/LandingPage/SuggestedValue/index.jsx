@@ -6,13 +6,14 @@ function SuggestedValue(props) {
       <div className={styles.section_inner}>
         <div className={styles.container}>
           <a href="#">
-            <div className={styles.img_one}>تحویل اکسپرس</div>
+            <div className={styles.img_one}>
+              <span>تسویه تا ۷۲ ساعت</span>
+            </div>
           </a>
           <a href="#">
-            <div className={styles.img_two}>پرداخت در محل</div>
-          </a>
-          <a href="#">
-            <div className={styles.img_three}>۷ روز ضمانت بازگشت</div>
+            <div className={styles.img_two}>
+              <span>فروشگاه آنلاین</span>
+            </div>
           </a>
         </div>
       </div>

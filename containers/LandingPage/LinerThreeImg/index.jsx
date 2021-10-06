@@ -1,11 +1,14 @@
 import React from "react";
 import ProductCard from "../../../components/ProductCart/ProductCard";
 
-import styles from "./LinerTwoImg.module.scss";
+import styles from "./LinerThreeImg.module.scss";
 
-function LinerTwoImg({}) {
+function LinerThreeImg({}) {
   return (
     <>
+      <div className={styles.topImage}>
+        <img src="/image/slide/slidB.jpg" alt="" />
+      </div>
       <aside className={styles.section}>
         <a
           href=""
@@ -40,4 +43,4 @@ function LinerTwoImg({}) {
   );
 }
 
-export default LinerTwoImg;
+export default LinerThreeImg;

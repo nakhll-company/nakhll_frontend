@@ -7,12 +7,6 @@
     justify-content: space-between;
     width: 100%;
     margin: 0;
-    .one {
-        margin: 2.5px 5px 2.5px 2.5px;
-    }
-    .two {
-        margin: 2.5px 2.5px 2.5px 5px;
-    }
     a {
         display: block;
         -webkit-box-flex: 1;
@@ -20,6 +14,7 @@
         flex-grow: 1;
         height: 100%;
         min-width: 24%;
+        margin: 15px 0 15px 10px;
         border-radius: 9px;
         overflow: hidden;
         img {

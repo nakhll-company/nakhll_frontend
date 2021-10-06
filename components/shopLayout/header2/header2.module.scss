@@ -157,6 +157,17 @@ $color_tel_word: rgb(162, 172, 182);
                 display: inline-block;
                 padding: 16px 4px;
                 position: relative;
+                &::after {
+                    content: "";
+                    display: block;
+                    width: 1px;
+                    height: 24px;
+                    background-color: #d1d1d1;
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    left: 0;
+                }
             }
             .bascket_btn {
                 font-size: 20px;
@@ -168,7 +179,7 @@ $color_tel_word: rgb(162, 172, 182);
                 .counter_cart {
                     position: absolute;
                     right: 8px;
-                    bottom: 20px;
+                    bottom: -2px;
                     display: block;
                     background: #0082fd;
                     border-radius: 5px;
@@ -332,6 +343,7 @@ $color_tel_word: rgb(162, 172, 182);
             .logo {
                 position: absolute;
                 right: 40px;
+                left: 50%;
                 top: 5px;
             }
             .left_side {
@@ -349,6 +361,20 @@ $color_tel_word: rgb(162, 172, 182);
                     color: #595959;
                     font-size: 24px;
                     line-height: 0;
+                    .counter_cart {
+                        position: absolute;
+                        right: -10px;
+                        bottom: -6px;
+                        display: block;
+                        background: #0082fd;
+                        border-radius: 5px;
+                        padding: 0 5px;
+                        color: #fff;
+                        font-size: 10px;
+                        border: 1px solid #fff;
+                        height: 16px;
+                        line-height: 16px;
+                    }
                 }
             }
         }
