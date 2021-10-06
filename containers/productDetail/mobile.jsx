@@ -12,6 +12,7 @@ import CustomLabel from "../../components/custom/customLabel";
 import ProductCard from "../../components/ProductCart/ProductCard";
 import CustomSlider from "../../components/custom/customSlider";
 // methods
+import { addToCart } from './methods/addToCart';
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 // styles
 import styles from "./productDetail.module.scss";
@@ -20,6 +21,12 @@ import styles from "./productDetail.module.scss";
  */
 // import Swiper core and required modules
 import SwiperCore, { EffectCube, Pagination } from "swiper";
+
+// Icons
+
+const myLoader = ({ src, width, quality }) => {
+  return `https://example.com/${src}?w=${width}&q=${quality || 75}`;
+};
 
 // install Swiper modules
 SwiperCore.use([EffectCube, Pagination]);
@@ -262,17 +269,17 @@ const ProductDetailMobile = ({ data }) => {
                   <a className={styles.product_guide__element}>
                     <Image
                       className="mb-2"
-                      src={detail.shop.image_thumbnail_url}
-                      width="100%"
-                      height="100%"
-                      alt="7 روز ضمانت بازگشت پول"
+                      src="/Values/7_roz_zemanat.svg"
+                      width={100}
+                      height={160}
+                      alt="۷ روز ضمانت بازگشت پول"
                     />
                     <span
                       style={{ fontSize: ".875rem" }}
                       className="d-block font-size-sm"
                     >
                       {" "}
-                      7 روز ضمانت بازگشت پول{" "}
+                      ۷ روز ضمانت بازگشت وجه{" "}
                     </span>
                   </a>
                 </Link>
@@ -280,17 +287,17 @@ const ProductDetailMobile = ({ data }) => {
                   <a className={styles.product_guide__element}>
                     <Image
                       className="mb-2"
-                      src={detail.shop.image_thumbnail_url}
-                      width="100%"
-                      height="100%"
-                      alt="7 روز ضمانت بازگشت پول"
+                      src="/Values/ertebat_mostaghim.svg"
+                      width={100}
+                      height={160}
+                      alt="ارتباط مستقیم با حجره دار"
                     />
                     <span
                       style={{ fontSize: ".875rem" }}
                       className="d-block font-size-sm"
                     >
                       {" "}
-                      محصولات باکیفیت خانگی و محلی{" "}
+                      ارتباط مستقیم با حجره دار{" "}
                     </span>
                   </a>
                 </Link>
@@ -298,17 +305,17 @@ const ProductDetailMobile = ({ data }) => {
                   <a className={styles.product_guide__element}>
                     <Image
                       className="mb-2"
-                      src={detail.shop.image_thumbnail_url}
-                      width="100%"
-                      height="100%"
-                      alt="7 روز ضمانت بازگشت پول"
+                      src="/Values/sedaghat.svg"
+                      width={100}
+                      height={160}
+                      alt=" صداقت در فروش"
                     />
                     <span
                       style={{ fontSize: ".875rem" }}
                       className="d-block font-size-sm"
                     >
                       {" "}
-                      ارتباط مستقیم با غرفه‌دارها{" "}
+                      صداقت در فروش{" "}
                     </span>
                   </a>
                 </Link>
@@ -399,7 +406,7 @@ const ProductDetailMobile = ({ data }) => {
                       chamberUrl: `/hojreh/${value.shop.slug} `,
                       discount: value.discount,
                       price: value.price / 10,
-                      discountNumber:value.old_price / 10,
+                      discountNumber: value.old_price / 10,
                       city: value.shop.city,
                       is_advertisement: value.is_advertisement,
                     }}
@@ -522,7 +529,7 @@ const ProductDetailMobile = ({ data }) => {
                         url: `/productDetail/${value.slug}`,
                         title: value.title,
                         chamberTitle: value.shop.title,
-                        chamberUrl:`/hojreh/${value.shop.slug} `,
+                        chamberUrl: `/hojreh/${value.shop.slug} `,
                         discount: value.discount,
                         price: value.price / 10,
                         discountNumber: value.old_price / 10,
@@ -552,6 +559,9 @@ const ProductDetailMobile = ({ data }) => {
         </div>
         <button
           className={`${styles.product_btn_mobile} btn btn-tprimary rounded-pill font-weight-bold font-size1-5 px-6 py-2 ev-add-to-cart`}
+          onClick={() => {
+            addToCart(detail.id);
+          }}
         >
           خرید
         </button>

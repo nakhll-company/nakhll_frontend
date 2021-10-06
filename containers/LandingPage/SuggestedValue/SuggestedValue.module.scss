@@ -1,8 +1,8 @@
 .section {
     border-bottom: 1px solid #e5e5ea;
-    padding: 15px 0;
+    padding: 20px 0;
     &_inner {
-        height: 75px;
+        height: 138px;
         position: relative;
         overflow: hidden;
         .container {
@@ -21,27 +21,32 @@
             flex-wrap: nowrap;
             position: relative;
             a {
-                width: 33%;
+                width: 50%;
                 -webkit-box-flex: 0;
-                -ms-flex: 0 0 33%;
-                flex: 0 0 33%;
+                -ms-flex: 0 0 50%;
+                flex: 0 0 50%;
                 display: block;
                 div {
-                    padding-top: 56px;
+                    padding-top: 108px;
                     background: no-repeat;
-                    text-align: center;
-                    background-position: 50% 0;
-                    background-size: auto 45px;
+                    font-size: 12px;
+                    font-weight: bold;
+                    background-size: auto 100px;
                 }
             }
             .img_one {
-                background-image: url(/icons/logo_Nakhl.svg);
+                background-image: url(/Values/72_saat.svg);
+                background-position: 25% 0;
+                span {
+                    padding-right: 35%;
+                }
             }
             .img_two {
-                background-image: url(/icons/logo_Nakhl.svg);
-            }
-            .img_three {
-                background-image: url(/icons/logo_Nakhl.svg);
+                background-image: url(/Values/online_shop.svg);
+                background-position: 75% 0;
+                span {
+                    padding-right: 14%;
+                }
             }
         }
     }

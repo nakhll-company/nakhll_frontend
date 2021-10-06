@@ -1,8 +1,9 @@
 // node libraries
 import Assistent from "zaravand-assistent-number";
 // methods
+import { addToCart } from './methods/addToCart';
 import { addToFavoritesList } from "./methods/addToFavotitesList";
-import { deleteFromFavoritesList } from './methods/deleteFromFavoritesList';
+import { deleteFromFavoritesList } from "./methods/deleteFromFavoritesList";
 // scss
 import styles from "./ProductCard.module.scss";
 
@@ -23,21 +24,20 @@ const ProductCard = ({
       <div
         className="_product_card_badge"
         type="button"
-        style={{ top: ".75rem" }}
+        style={{ bottom: ".75rem" }}
         onClick={() => {
           addToFavoritesList(product.id);
         }}
       >
         <i className="far fa-bookmark" />
-
       </div>
-      <div
+      {/* <div
         className="_product_card_badge"
         type="button"
-        style={{ top: "3.3rem" }}
+        style={{ bottom: "3.3rem" }}
       >
         <i className="fas fa-share-alt"></i>
-      </div>
+      </div> */}
     </>
   );
 
@@ -53,22 +53,39 @@ const ProductCard = ({
   return (
     <div
       className={`animationCartParent ${col
-        ? `col-${col}`
-        : `col-6 col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
+          ? `col-${col}`
+          : `col-6 col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
         } ${padding ? `px-${padding}` : ""} mb-3`}
     >
-      {product.iconClose && <span style={{ position: "relative", width: "0px", height: "0px", cursor: "pointer" }} onClick={() => {
-        deleteFromFavoritesList(product.id);
-      }}>
-        <i class="fa fa-times-circle" style={{ position: "absolute", fontSize: "28px", color: "#4f4f4f", zIndex: "100" }}></i>
-      </span>}
+      {product.iconClose && (
+        <span
+          style={{
+            position: "relative",
+            width: "0px",
+            height: "0px",
+            cursor: "pointer",
+          }}
+          onClick={() => {
+            deleteFromFavoritesList(product.id);
+          }}
+        >
+          <i
+            class="fa fa-times-circle"
+            style={{
+              position: "absolute",
+              fontSize: "28px",
+              color: "#4f4f4f",
+              zIndex: "100",
+            }}
+          ></i>
+        </span>
+      )}
       <div
         // style={{ minHeight: "170px" }}
         className="card _product_card _product_card_rounded p-2"
       >
-        {cardBadge}
-
         <div className={styles.paterImage}>
+          {cardBadge}
           <a href={product.url}>{cardImg}</a>
         </div>
         {/* {linkType === "anchor" ? (
@@ -174,7 +191,9 @@ const ProductCard = ({
           <hr style={{ marginBottom: "5px" }} />
           <div className="_product_card_price mb-2">
             <div>
-              <button className={`btn ${styles._product_card_add_to_cart}`}>
+              <button className={`btn ${styles._product_card_add_to_cart}`} onClick={() => {
+                addToCart(product.id);
+              }}>
                 <i className="fas fa-plus" />
               </button>
             </div>
@@ -191,7 +210,12 @@ const ProductCard = ({
                       {_asist.PSeparator(product.discountNumber)}
                     </span>
                   )}
-                  <span className="_product_card_toman" style={{ fontSize: ".75rem" }}>تومان</span>
+                  <span
+                    className="_product_card_toman"
+                    style={{ fontSize: ".75rem" }}
+                  >
+                    تومان
+                  </span>
                 </>
               )}
             </div>

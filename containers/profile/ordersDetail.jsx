@@ -40,24 +40,24 @@ const OrdersDetail = () => {
                     <h6>سفارش شماره یک</h6>
                 </div>
                 <div className={`${styles.right} p-3`}>
-                    <span className="d-block text-secondary mb-2">حجره</span>
-                    <span className="text-dark font-weight-bold">دست سازهای </span>
+                    <span className="d-block text-secondary mb-2">نام حجره</span>
+                    <span className="text-dark font-weight-bold">گلیم</span>
                 </div>
                 <div className={`${styles.price} p-3`}>
                     <span className="text-secondary d-block mb-2">استان</span>
-                    <span>کرمان و کرمان</span>
+                    <span>کرمان</span>
                 </div>
                 <div className={`${styles.right} p-3`}>
-                    <span className="text-secondary d-block mb-2">مبلغ کل </span>
+                    <span className="text-secondary d-block mb-2">مبلغ کل سفارش</span>
                     <span>{_asist.PSeparator(3000)}</span>
                 </div>
                 <div className={`${styles.price} p-3`}>
-                    <span className="text-secondary d-block mb-2">هزینه ارسال </span>
-                    <span>3000</span>
+                    <span className="text-secondary d-block mb-2">هزینه ارسال سفارش</span>
+                    <span>60000</span>
                 </div>
                 <div className={`${styles.images} p-3`}>
-                    <span className="text-secondary mb-2"> کدرهگیری :</span>
-                    <span> خیابان اول - کوچه آخر </span>
+                    <span className="text-secondary mb-2"> کد رهگیری سفارش :</span>
+                    <span>429711</span>
                 </div>
                 <div className={`${styles.detail} p-3`}>
                     <span className="text-secondary mb-2"> شماره موبایل :</span>

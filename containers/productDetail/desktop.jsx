@@ -11,6 +11,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import CustomLabel from "../../components/custom/customLabel";
 import CustomSlider from "../../components/custom/customSlider";
 // methods
+import { addToCart } from './methods/addToCart';
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 // styles
 import styles from "./productDetail.module.scss";
@@ -325,6 +326,9 @@ const ProductDetailDesktop = ({ data }) => {
                 <div style={{ flex: "0 0 44%" }} className="d-flex flex-column">
                   <button
                     className={`product-btn btn rounded-pill font-size1-5  p-1  ${styles.btn_tprimary}`}
+                    onClick={() => {
+                      addToCart(detail.id);
+                    }}
                   >
                     خرید
                   </button>
@@ -339,17 +343,17 @@ const ProductDetailDesktop = ({ data }) => {
                   <a className={styles.product_guide__element}>
                     <Image
                       className="mb-2"
-                      src={detail.shop.image_thumbnail_url}
-                      width="100%"
-                      height="100%"
-                      alt="7 روز ضمانت بازگشت پول"
+                      src="/Values/7_roz_zemanat.svg"
+                      width={100}
+                      height={160}
+                      alt="۷ روز ضمانت بازگشت پول"
                     />
                     <span
                       style={{ fontSize: ".875rem" }}
                       className="d-block font-size-sm"
                     >
                       {" "}
-                      7 روز ضمانت بازگشت پول{" "}
+                      ۷ روز ضمانت بازگشت وجه{" "}
                     </span>
                   </a>
                 </Link>
@@ -357,17 +361,17 @@ const ProductDetailDesktop = ({ data }) => {
                   <a className={styles.product_guide__element}>
                     <Image
                       className="mb-2"
-                      src={detail.shop.image_thumbnail_url}
-                      width="100%"
-                      height="100%"
-                      alt="7 روز ضمانت بازگشت پول"
+                      src="/Values/ertebat_mostaghim.svg"
+                      width={100}
+                      height={160}
+                      alt="ارتباط مستقیم با حجره دار"
                     />
                     <span
                       style={{ fontSize: ".875rem" }}
                       className="d-block font-size-sm"
                     >
                       {" "}
-                      محصولات باکیفیت خانگی و محلی{" "}
+                      ارتباط مستقیم با حجره دار{" "}
                     </span>
                   </a>
                 </Link>
@@ -375,17 +379,17 @@ const ProductDetailDesktop = ({ data }) => {
                   <a className={styles.product_guide__element}>
                     <Image
                       className="mb-2"
-                      src={detail.shop.image_thumbnail_url}
-                      width="100%"
-                      height="100%"
-                      alt="7 روز ضمانت بازگشت پول"
+                      src="/Values/sedaghat.svg"
+                      width={100}
+                      height={160}
+                      alt=" صداقت در فروش"
                     />
                     <span
                       style={{ fontSize: ".875rem" }}
                       className="d-block font-size-sm"
                     >
                       {" "}
-                      ارتباط مستقیم با غرفه‌دارها{" "}
+                      صداقت در فروش{" "}
                     </span>
                   </a>
                 </Link>
@@ -580,8 +584,8 @@ const ProductDetailDesktop = ({ data }) => {
                         chamberTitle: value.shop.title,
                         chamberUrl: `/hojreh/${value.shop.slug} `,
                         discount: value.discount,
-                        price:value.price / 10,
-                        discountNumber:value.old_price / 10,
+                        price: value.price / 10,
+                        discountNumber: value.old_price / 10,
                         city: value.shop.city,
                         is_advertisement: value.is_advertisement,
                       }}

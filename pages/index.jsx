@@ -9,6 +9,8 @@ import LinerProductsBg from "../containers/LandingPage/LinerProductsBg";
 import { ApiRegister } from "../services/apiRegister/ApiRegister";
 import SuggestedValue from "../containers/LandingPage/SuggestedValue";
 import LinerTwoImg from "../containers/LandingPage/LinerTwoImg";
+import LinerThreeImg from "../containers/LandingPage/LinerThreeImg";
+import HolderIcon from "../components/holder_icon";
 
 const index = () => {
   const [products, setProducts] = useState([]);
@@ -99,28 +101,25 @@ const index = () => {
           crossOrigin="anonymous"
         ></link>
       </Head>
-
+      <HolderIcon />
       <HeroSlides />
-      {products && (
-        <LinerProducts products={products} title="جدیدترین محصولات" />
-      )}
-
       <SuggestedValue />
       {/* <Category /> */}
-
-      <LinearImages />
-      <LinerTwoImg />
       {mostDiscount && (
         <LinerProducts
           products={mostDiscount}
-          title="بیشترین تخفیفات"
+          title="پرفروش‌ترین‌های هفته"
           subTitle=""
         />
       )}
+      ‌‌
+      <LinearImages />
+      <LinerTwoImg />
+      <LinerTwoImg />
       {lastDiscount && (
         <LinerProductsBg num={4} xl={3} products={lastDiscount} />
       )}
-
+      <LinerThreeImg />
       {mostDiscount && (
         <LinerProducts
           products={mostDiscount}

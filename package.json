@@ -3,8 +3,9 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "next dev -p 3007",
-        "build": "next build",
+        "dev": "cp config.dev.js next.config.js && next dev -p 3007",
+        "build:demo": "cp config.demo.js next.config.js && next build",
+        "build": "cp config.pro.js next.config.js && next build",
         "start": "next start -p 8555"
     },
     "dependencies": {
@@ -20,6 +21,7 @@
         "react": "17.x",
         "react-checkbox-tree": "^1.7.2",
         "react-confetti": "^6.0.1",
+        "react-device-detect": "^2.0.1",
         "react-dom": "17.x",
         "react-easy-crop": "^3.5.2",
         "react-hook-form": "^7.11.1",
