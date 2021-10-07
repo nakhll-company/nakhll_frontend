@@ -6,7 +6,7 @@ import styles from './scss/mobileOrders.module.scss';
 
 const _asist = new Assistent();
 
-const MobileOrders = ({ ordersList, setProfilePages }) => {
+const MobileOrders = ({ ordersList, setProfilePages, setInvoiceId }) => {
     const router = useRouter();
     return (
         <div className={styles.main_wrapper}>
@@ -18,7 +18,6 @@ const MobileOrders = ({ ordersList, setProfilePages }) => {
                     </div>
                     <div className={`${styles.left} p-3 d-flex align-items-center`}>
                         <span className="d-block text-success px-3 py-2 rounded-pill" style={{ backgroundColor: "rgb(238, 238, 238)" }}>
-                            {value.status === "completed" && <i class="fas fa-check mx-3"></i>}
                             <span style={{ color: "red" }} onClick={() => {
                                 router.push(`/cart/payment?id=${value.id}`);
                             }}>{value.status === "awaiting_paying" && "در انتظار پرداخت"}</span>
@@ -45,8 +44,9 @@ const MobileOrders = ({ ordersList, setProfilePages }) => {
                         </div>
                     </div>
                     {value.status === "completed" && <div className={`${styles.detail} p-3`}>
-                        <span className={`btn ${styles.btn_gray} btn-sm font-size-sm flex-grow-1 d-flex`} onClick={() => {
-                            setProfilePages((pre) => {
+                        <span className={`btn ${styles.btn_gray} btn-sm font-size-sm flex-grow-1 d-flex`} onClick={async () => {
+                            await setInvoiceId(value.id);
+                            await setProfilePages((pre) => {
                                 return {
                                     editProfile: false,
                                     ordersPage: false,
@@ -54,7 +54,7 @@ const MobileOrders = ({ ordersList, setProfilePages }) => {
                                     favoritesList: false,
                                     orderDetail: true
                                 }
-                            })
+                            });
                         }}>
                             <span>جزییات</span>
                             <i className="bi bi-angle-left mr-auto"></i>

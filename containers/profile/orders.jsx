@@ -15,7 +15,7 @@ import styles from './scss/orders.module.scss';
  */
 const _asist = new Assistent();
 
-const Orders = ({ setProfilePages }) => {
+const Orders = ({ setProfilePages, setInvoiceId }) => {
 
     const [ordersList, setOrdersList] = useState([]);
 
@@ -30,7 +30,7 @@ const Orders = ({ setProfilePages }) => {
     return (
         <>
             {width < breakpoint ?
-                <MobileOrders ordersList={ordersList} setProfilePages={setProfilePages} /> :
+                <MobileOrders ordersList={ordersList} setProfilePages={setProfilePages} setInvoiceId={setInvoiceId} /> :
                 <div className={styles.main_wrapper}>
                     <h1>لیست سفارشات</h1>
                     <table>
@@ -60,12 +60,12 @@ const Orders = ({ setProfilePages }) => {
                                     </td>
                                     <td>
                                         <span class="d-block px-3 py-2" style={{ backgroundColor: "#ddd", borderRadius: "50rem" }}>
-                                            {value.status === "completed" && <i class="fas fa-check mx-3"></i>}
-                                            <span style={{ color: "red" }} onClick={() => {
+                                            {/* <span style={{ color: "red" }} onClick={() => {
                                                 router.push(`/cart/payment?id=${value.id}`);
-                                            }}>{value.status === "awaiting_paying" && "در انتظار پرداخت"}</span>
-                                            <span style={{ color: "#006060" }} onClick={() => {
-                                                setProfilePages((pre) => {
+                                            }}>{value.status === "awaiting_paying" && "در انتظار پرداخت"}</span> */}
+                                            <span style={{ color: "#006060" }} onClick={async () => {
+                                                await setInvoiceId(value.id);
+                                                await setProfilePages((pre) => {
                                                     return {
                                                         editProfile: false,
                                                         ordersPage: false,
@@ -73,8 +73,8 @@ const Orders = ({ setProfilePages }) => {
                                                         favoritesList: false,
                                                         orderDetail: true
                                                     }
-                                                })
-                                            }}>{value.status === "completed" && "تکمیل شده"}</span>
+                                                });
+                                            }}>{value.status === "awaiting_paying" && "تکمیل شده"}</span>
                                             <span style={{ color: "gray" }}>{value.status === "canceled" && "لغو شده"}</span>
                                         </span>
                                     </td>
