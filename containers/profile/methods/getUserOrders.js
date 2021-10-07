@@ -5,7 +5,7 @@ export const getUserOrders = async (setOrdersList) => {
     let response = await ApiRegister().apiRequest(
         null,
         "get",
-        `/api/v1/profile/orders/`,
+        `/accounting_new/api/invoice/`,
         true,
         {}
     );
