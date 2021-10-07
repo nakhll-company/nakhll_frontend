@@ -26,6 +26,7 @@ function MegaMenuMobile(props) {
       );
       if (response.status === 200) {
         setCategory(response.data);
+       
       }
     } catch (e) {
       console.log("rrrr :>> ", e);

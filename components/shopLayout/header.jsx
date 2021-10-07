@@ -38,7 +38,7 @@ const Header = ({ count }) => {
               type="button"
               onClick={() => {
                 let inputSearch = document.getElementById("search").value;
-                // console.log("input search value", inputSearch);
+                
               }}
             >
               جستجو

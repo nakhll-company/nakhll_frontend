@@ -70,7 +70,7 @@ function ListProduct({
       max_price: maxPrice,
       shop: shop_products,
     };
-    console.log("params :>> ", params);
+    
 
     try {
       let response = await ApiRegister().apiRequest(
@@ -230,7 +230,7 @@ function ListProduct({
                       min={0}
                       max={10000}
                       onChange={({ min, max }) => {
-                        console.log("min :>> ", min);
+                        
                         setMinPrice(min * 10000);
                         setMaxPrice(max * 10000);
                       }}

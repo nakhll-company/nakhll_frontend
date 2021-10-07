@@ -161,7 +161,7 @@ const CreateProduct = ({ activeHojreh }) => {
   const [checkedCities, setCheckedCities] = useState([]);
 
   useEffect(() => {
-    console.log("checkedCities :>> ", checkedCities);
+   
   }, [checkedCities]);
 
   const router = useRouter();

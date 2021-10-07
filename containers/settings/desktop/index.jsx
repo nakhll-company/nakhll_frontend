@@ -267,11 +267,11 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
   // const SubmitCity = (event) => {
   //   debugger;
   //   event.preventDefault();
-  //   console.log("last :>> ", event);
+  
   // };
 
   const SetDataCity = () => {
-    // console.log(">>>", SavaAllCity);
+    
     return (
       <div className={styles.content}>
         <form>
@@ -323,7 +323,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
   };
 
   const clickButton = async (e) => {
-    // console.log("e :>> ", e);
+   
     setshowState(false);
 
     let params = {};
@@ -380,12 +380,12 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
       }
     }
     if (!checkAll) {
-      // console.log('"hi" :>> ', "hi");
-      // SaveCity.map((e) => console.log("e :>> ", e));
+      
+      
     }
 
     SaveCity?.map((e) => {
-      // console.log("e :>> ", e);
+      
       setSavaAllCity([...SavaAllCity, { id: e.id, name: e.name }]);
     });
   };

@@ -50,7 +50,7 @@ export default failed;
 
 // function server side
 export async function getServerSideProps(context) {
-  console.log("context.query :>> ", context.query);
+  
   return {
     props: {
       id: context.params.id,
