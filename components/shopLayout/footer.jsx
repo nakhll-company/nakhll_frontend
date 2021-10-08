@@ -100,7 +100,7 @@ const Footer = () => {
                       </a>
                     </div>{" "}
                     <div className={styles.footer_social_icon}>
-                      <div>
+                      {/* <div>
                         <a
                           href=""
                           rel="noopener noreferrer nofollow"
@@ -109,8 +109,8 @@ const Footer = () => {
                         >
                           <i className="fas fa-linkedin"></i>
                         </a>
-                      </div>{" "}
-                      <div>
+                      </div>{" "} */}
+                      {/* <div>
                         <a
                           href=""
                           rel="noopener noreferrer nofollow"
@@ -119,8 +119,8 @@ const Footer = () => {
                         >
                           <i className="bi bi-twitter"></i>
                         </a>
-                      </div>{" "}
-                      <div>
+                      </div>{" "} */}
+                      {/* <div>
                         <a
                           href=""
                           rel="noopener noreferrer nofollow"
@@ -129,7 +129,7 @@ const Footer = () => {
                         >
                           <i className="bi bi-instagram"></i>
                         </a>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                   <div className="col-4 col-4 d-flex flex-column">
@@ -138,37 +138,37 @@ const Footer = () => {
                     </div>{" "}
                     <div>
                       <a
-                        to="tel://025-31075"
-                        href="tel://025-31075"
+                        to="tel://034-32476561"
+                        href="tel://034-32476561"
                         className={styles.footer_items}
                       >
                         تلفن تماس:
-                        <span className="d-inline-block">025-31075</span>
+                        <span className="d-inline-block">034-32476561</span>
                       </a>
                     </div>
-                    <div>
+                    {/* <div>
                       <a to="" href="" className={styles.footer_items}>
                         پشتیبانی آنلاین
                       </a>
-                    </div>
+                    </div> */}
                     <div>
-                      <a href="/account/orders" className={styles.footer_items}>
+                      <a href="/profile" className={styles.footer_items}>
                         پیگیری سفارشات
                       </a>
                     </div>
-                    <div>
+                    {/* <div>
                       <a
                         href="/guides/return-policy"
                         className={styles.footer_items}
                       >
                         بازگشت کالا
                       </a>
-                    </div>
-                    <div>
+                    </div> */}
+                    {/* <div>
                       <a to="" href="" className={styles.footer_items}>
                         گزارش تخلف
                       </a>
-                    </div>
+                    </div> */}
                     {/* <div>
                       <a
                         to="/guides/customer-satisfaction"
@@ -193,8 +193,8 @@ const Footer = () => {
                     </div>{" "}
                     <div>
                       <a
-                        to="/landing/create-vendor"
-                        href="/landing/create-vendor"
+                        to="/"
+                        href="/"
                         className={styles.footer_items}
                       >
                         فروش در نخل
@@ -208,14 +208,14 @@ const Footer = () => {
                         100 هزار تومان هدیه
                       </a>
                     </div> */}
-                    <div>
+                    {/* <div>
                       <a href="/account/credit" className={styles.footer_items}>
                         کیف پول من
                       </a>
-                    </div>
+                    </div> */}
                     <div>
                       <a href="" className={styles.footer_items}>
-                        مدیریت غرفه
+                        مدیریت حجره
                       </a>
                     </div>{" "}
                   </div>
@@ -312,13 +312,6 @@ const Footer = () => {
                             className="footer-namad"
                           />
                         </div>
-
-
-
-
-
-
-
                       </div>
                     </div>
                   </div>
@@ -412,27 +405,27 @@ const Footer = () => {
                 >
                   <div>
                     <div
-                      to="tel://025-31075"
-                      href="tel://025-31075"
+                      to="tel://034-32476561"
+                      href="tel://034-32476561"
                       className={styles.footer_items}
                     >
                       تلفن تماس:
-                      <a href="tel://025-31075" className="d-inline-block">
-                        025-31075
+                      <a href="tel://034-32476561" className="d-inline-block">
+                        034-32476561
                       </a>{" "}
                       <span>و</span>{" "}
-                      <a href="tel://025-91003175" className="d-inline-block">
-                        025-91003175
+                      <a href="tel://034-32476561" className="d-inline-block">
+                        034-32476561
                       </a>
                     </div>
                   </div>
-                  <div>
+                  {/* <div>
                     <a to="" href="" className={styles.footer_items}>
                       پشتیبانی آنلاین
                     </a>
-                  </div>
+                  </div> */}
                   <div>
-                    <a href="/account/orders" className={styles.footer_items}>
+                    <a href="/profile" className={styles.footer_items}>
                       پیگیری سفارشات
                     </a>
                   </div>
@@ -444,11 +437,11 @@ const Footer = () => {
                       بازگشت کالا
                     </a>
                   </div> */}
-                  <div>
+                  {/* <div>
                     <a to="" href="" className={styles.footer_items}>
                       گزارش تخلف
                     </a>
-                  </div>
+                  </div> */}
                   {/* <div>
                     <a
                       to="/guides/customer-satisfaction"
@@ -489,8 +482,8 @@ const Footer = () => {
                 >
                   <div>
                     <a
-                      to="/landing/create-vendor"
-                      href="/landing/create-vendor"
+                      to="/"
+                      href="/"
                       className={styles.footer_items}
                     >
                       فروش در نخل
@@ -504,14 +497,14 @@ const Footer = () => {
                       100 هزار تومان هدیه
                     </a>
                   </div> */}
-                  <div>
+                  {/* <div>
                     <a href="/account/credit" className={styles.footer_items}>
                       کیف پول من
                     </a>
-                  </div>
+                  </div> */}
                   <div>
-                    <a to="" href="" className={styles.footer_items}>
-                      مدیریت غرفه
+                    <a to="/fp" href="/fp" className={styles.footer_items}>
+                      مدیریت حجره
                     </a>
                   </div>
                 </div>
@@ -525,7 +518,7 @@ const Footer = () => {
                   </a>
                 </div>{" "} */}
                 <div className={styles.footer_social_icon}>
-                  <div>
+                  {/* <div>
                     <a
                       href=""
                       rel="noopener noreferrer nofollow"
@@ -534,8 +527,8 @@ const Footer = () => {
                     >
                       <i className="bi bi-linkedin"></i>
                     </a>
-                  </div>{" "}
-                  <div>
+                  </div>{" "} */}
+                  {/* <div>
                     <a
                       href=""
                       rel="noopener noreferrer nofollow"
@@ -544,8 +537,8 @@ const Footer = () => {
                     >
                       <i className="bi bi-twitter-outline"></i>
                     </a>
-                  </div>{" "}
-                  <div>
+                  </div>{" "} */}
+                  {/* <div>
                     <a
                       href=""
                       rel="noopener noreferrer nofollow"
@@ -554,7 +547,7 @@ const Footer = () => {
                     >
                       <i className="bi bi-instagram"></i>
                     </a>
-                  </div>
+                  </div> */}
                 </div>
               </div>{" "}
               <div className="row align-items-center d-flex justify-content-between mt-5 row">
@@ -647,13 +640,13 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-            <div className="bg-black text-white py-3">
+            {/* <div className="bg-black text-white py-3">
               <div className="container font-size-sm">
                 کلیه حقوق مادی و معنوی برای «توسعه و تدبیر جوامع سلام»، بازار
                 اجتماعی آنلاین، محفوظ است.
               </div>{" "}
               <div className="mt-5 mt-lg-0 pt-4 pt-lg-0"></div>
-            </div>
+            </div> */}
           </div>
         </>
       )}

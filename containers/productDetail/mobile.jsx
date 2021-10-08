@@ -268,10 +268,9 @@ const ProductDetailMobile = ({ data }) => {
                 <Link href="/" passHref>
                   <a className={styles.product_guide__element}>
                     <Image
-                      className="mb-2"
                       src="/Values/7_roz_zemanat.svg"
-                      width={100}
-                      height={160}
+                      width={70}
+                      height={140}
                       alt="۷ روز ضمانت بازگشت پول"
                     />
                     <span
@@ -279,17 +278,16 @@ const ProductDetailMobile = ({ data }) => {
                       className="d-block font-size-sm"
                     >
                       {" "}
-                      ۷ روز ضمانت بازگشت وجه{" "}
+                      ۷ روز ضمانت <br />بازگشت وجه{" "}
                     </span>
                   </a>
                 </Link>
                 <Link href="/" passHref>
                   <a className={styles.product_guide__element}>
                     <Image
-                      className="mb-2"
                       src="/Values/ertebat_mostaghim.svg"
-                      width={100}
-                      height={160}
+                      width={70}
+                      height={140}
                       alt="ارتباط مستقیم با حجره دار"
                     />
                     <span
@@ -297,17 +295,16 @@ const ProductDetailMobile = ({ data }) => {
                       className="d-block font-size-sm"
                     >
                       {" "}
-                      ارتباط مستقیم با حجره دار{" "}
+                      ارتباط مستقیم <br />با حجره دار{" "}
                     </span>
                   </a>
                 </Link>
                 <Link href="/" passHref>
                   <a className={styles.product_guide__element}>
                     <Image
-                      className="mb-2"
                       src="/Values/sedaghat.svg"
-                      width={100}
-                      height={160}
+                      width={70}
+                      height={140}
                       alt=" صداقت در فروش"
                     />
                     <span
@@ -315,7 +312,7 @@ const ProductDetailMobile = ({ data }) => {
                       className="d-block font-size-sm"
                     >
                       {" "}
-                      صداقت در فروش{" "}
+                      صداقت <br />در فروش{" "}
                     </span>
                   </a>
                 </Link>
@@ -547,14 +544,14 @@ const ProductDetailMobile = ({ data }) => {
       </div>
       <div className={`${styles.product_purchase} container py-3`}>
         <div className="ml-2">
-          <div className={styles.price_mobile}>
-            <span>{_asist.PSeparator(detail.price)}</span>
-            <span>تومان</span>
-          </div>
           <div className={styles.price_mobile_decoration}>
             <span style={{ fontSize: "1.25rem" }}>
               {detail.old_price && _asist.PSeparator(detail.old_price)}
             </span>
+          </div>
+          <div className={styles.price_mobile}>
+            <span>{_asist.PSeparator(detail.price)}</span>
+            <span>تومان</span>
           </div>
         </div>
         <button

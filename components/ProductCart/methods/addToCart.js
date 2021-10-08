@@ -11,9 +11,9 @@ export const addToCart = async (idProduct) => {
     );
     if (response.status === 201) {
         successMessage("محصول با موفقیت به سبد خرید شما اضافه شد");
-    } else if (response.status === 403) {
+    } else if (response.response.status === 403) {
         errorMessage("لطفا ابتدا لاگین کنید");
-    } {
+    } else {
         errorMessage("خطایی رخ داده است");
     }
 };

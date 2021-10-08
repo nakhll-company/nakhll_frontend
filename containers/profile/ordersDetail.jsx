@@ -1,5 +1,6 @@
 // node libraries
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Assistent from "zaravand-assistent-number";
 // methods
@@ -25,7 +26,7 @@ const OrdersDetail = ({ invoiceId }) => {
                     <div className={`${styles.list_items} my-3`}>
                         <div className={`${styles.right} p-3`}>
                             <span className="d-block text-secondary mb-2">شماره سفارش</span>
-                            <span className="text-dark font-weight-bold">{detailData.id}</span>
+                            <span className="text-dark font-weight-bold">{_asist.number(detailData.id)}</span>
                         </div>
                         <div className={`${styles.price} p-3`}>
                             <span className="text-secondary d-block mb-2">تاریخ ثبت سفارش</span>
@@ -98,6 +99,12 @@ const OrdersDetail = ({ invoiceId }) => {
                                     <Image src="/orderDetial/car.svg" alt="" width="35" height="35" />
                                     <hr style={{ width: "50px", borderTop: "2px solid green" }} />
                                     <Image src="/orderDetial/tik.svg" alt="" width="30" height="30" />
+                                </div>
+                                <div className="d-flex justify-content-center align-items-center mt-4">
+                                    کد رهگیری سفارش شما : {_asist.number(detailData.payment_request_datetime)}
+                                    <Link href={`https://tracking.post.ir/?id=${detailData.payment_request_datetime}`}>
+                                        <a style={{ border: "1px solid gray", borderRadius: "25px", padding: "5px 10px" }}>پیگیری سفارش در سامانه پست</a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

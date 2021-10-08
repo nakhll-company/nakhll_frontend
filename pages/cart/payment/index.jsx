@@ -38,7 +38,7 @@ export default function Cart() {
     if (response.status === 200) {
       setListInvoice(data.items);
       setLogisticPrice(data.logistic_price);
-      setTotalPrice(data.invoice_price_without_discount);
+      setTotalPrice(data.invocie_price_with_discount);
       setFinalPrice(data.final_price);
       setAddressReceiver(data.address);
       setResultCoupon(data.coupons_total_price);
@@ -388,14 +388,16 @@ export default function Cart() {
                                 </span>
                             </div> */}
             </div>
-            <div style={{ border: "1px solid red", color: "red", padding: "10px" }}>
-              {logisticErrors.length > 0 && logisticErrors.map((value, index) => (
-                <p key={index}>
-                  {value}
-                  در محدوده ارسال شما قرار ندارد
-                </p>
-              ))}
-            </div>
+            {logisticErrors.length > 0 &&
+              <div style={{ border: "1px solid red", color: "red", padding: "10px" }}>
+                {logisticErrors.map((value, index) => (
+                  <p key={index}>
+                    {value}
+                    در محدوده ارسال شما قرار ندارد
+                  </p>
+                ))}
+              </div>
+            }
             <div className="d-none d-md-flex justify-content-between mt-4">
               <span
                 className="font-size1  font-weight-bold"
