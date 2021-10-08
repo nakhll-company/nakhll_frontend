@@ -1,5 +1,6 @@
 // node libraries
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 import Assistent from "zaravand-assistent-number";
 // components
@@ -14,12 +15,13 @@ import styles from './scss/orders.module.scss';
  */
 const _asist = new Assistent();
 
-const Orders = ({ setProfilePages }) => {
+const Orders = ({ setProfilePages, setInvoiceId }) => {
 
     const [ordersList, setOrdersList] = useState([]);
 
     const { width } = useViewport();
     const breakpoint = 900;
+    const router = useRouter();
 
     useEffect(async () => {
         await getUserOrders(setOrdersList);
@@ -28,7 +30,7 @@ const Orders = ({ setProfilePages }) => {
     return (
         <>
             {width < breakpoint ?
-                <MobileOrders ordersList={ordersList} setProfilePages={setProfilePages} /> :
+                <MobileOrders ordersList={ordersList} setProfilePages={setProfilePages} setInvoiceId={setInvoiceId} /> :
                 <div className={styles.main_wrapper}>
                     <h1>لیست سفارشات</h1>
                     <table>
@@ -47,24 +49,35 @@ const Orders = ({ setProfilePages }) => {
                                 <tr>
                                     <td>{_asist.number(index + 1)}</td>
                                     <td>{_asist.number(value.id)}</td>
-                                    <td>{value.created_datetime}</td>
-                                    <td>{_asist.PSeparator(value.final_invoice_price)}</td>
+                                    <td>{new Date(value.created_datetime).toLocaleDateString('fa-IR')}</td>
+                                    <td>{_asist.PSeparator(value.final_price)}</td>
                                     <td>
-                                        {value.products.map((value, index) => (
-                                            <Image src={value.image_thumbnail_url} alt={value.title} key={index} width="30" height="30" />
+                                        {value.items.length > 0 && value.items.map((value, index) => (
+                                            <a href={`productDetail/${value.slug}`} target="_blank" key={index}>
+                                                {value.image_thumbnail && <Image src={value.image_thumbnail} alt={value.name} key={index} width="30" height="30" />}
+                                            </a>
                                         ))}
                                     </td>
-                                    <td onClick={() => {
-                                        setProfilePages((pre) => {
-                                            return {
-                                                editProfile: false,
-                                                ordersPage: false,
-                                                shoppingExperiences: false,
-                                                favoritesList: false,
-                                                orderDetail: true
-                                            }
-                                        })
-                                    }}>{value.status}</td>
+                                    <td>
+                                        <span class="d-block px-3 py-2" style={{ backgroundColor: "#ddd", borderRadius: "50rem" }}>
+                                            {/* <span style={{ color: "red" }} onClick={() => {
+                                                router.push(`/cart/payment?id=${value.id}`);
+                                            }}>{value.status === "awaiting_paying" && "در انتظار پرداخت"}</span> */}
+                                            <span style={{ color: "#006060" }} onClick={async () => {
+                                                await setInvoiceId(value.id);
+                                                await setProfilePages((pre) => {
+                                                    return {
+                                                        editProfile: false,
+                                                        ordersPage: false,
+                                                        shoppingExperiences: false,
+                                                        favoritesList: false,
+                                                        orderDetail: true
+                                                    }
+                                                });
+                                            }}>{value.status === "awaiting_paying" && "تکمیل شده"}</span>
+                                            <span style={{ color: "gray" }}>{value.status === "canceled" && "لغو شده"}</span>
+                                        </span>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

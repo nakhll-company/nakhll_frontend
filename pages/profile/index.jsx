@@ -24,6 +24,7 @@ const Profile = () => {
         shoppingExperiences: false,
         orderDetail: false
     });
+    const [invoiceId, setInvoiceId] = useState(0);
     const [dataProfile, setDataProfile] = useState({});
     function activeLink(event) {
         let elementsActive = document.querySelectorAll("li");
@@ -118,9 +119,9 @@ const Profile = () => {
                     </div>
                     <div className={`col-md-8 col-lg-9 col-12`}>
                         {profilePages.editProfile && <EditProfile dataProfile={dataProfile} />}
-                        {profilePages.ordersPage && <Oredrs setProfilePages={setProfilePages} />}
+                        {profilePages.ordersPage && <Oredrs setProfilePages={setProfilePages} setInvoiceId={setInvoiceId} />}
                         {profilePages.favoritesList && <FavoritesList />}
-                        {profilePages.orderDetail && <OrderDetail />}
+                        {profilePages.orderDetail && <OrderDetail invoiceId={invoiceId} />}
                     </div>
                 </div>
             </div>
