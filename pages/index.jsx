@@ -114,9 +114,8 @@ const index = () => {
           crossOrigin="anonymous"
         ></link>
       </Head>
-      {Schema.length > 0 && Schema.map((turn) => _handel_select_component(turn))}
-      
-      
+      {Schema.length > 0 &&
+        Schema.map((turn) => _handel_select_component(turn))}
       <SuggestedValue />
       ‌‌
     </>
@@ -124,3 +123,49 @@ const index = () => {
 };
 
 export default index;
+
+// {
+//   "component_type": 3,
+//   "data": "https://nakhll.com/api/v1/landing/sliders/?search=3",
+//   "title": null,
+//   "subtitle": null,
+//   "url": null,
+//   "background_color": null,
+//   "image": null,
+//   "publish_status": "pub",
+//   "order": 0
+// },
+// {
+//   "component_type": 1,
+//   "data": "https://nakhll.com/api/v1/landing/sliders/?search=2",
+//   "title": null,
+//   "subtitle": null,
+//   "url": null,
+//   "background_color": null,
+//   "image": null,
+//   "publish_status": "pub",
+//   "order": 1
+// },
+// {
+//   "component_type": 2,
+//   "data": "https://nakhll.com/api/v1/landing/sliders/?search=3",
+//   "title": null,
+//   "subtitle": null,
+//   "url": null,
+//   "background_color": null,
+//   "image": null,
+//   "publish_status": "pub",
+//   "order": 1
+// },
+// {
+//   "component_type": 6,
+//   "data": "https://nakhll.com/api/v1/landing/most-discount-prec-products/",
+//   "title": "پر تخفیف ترین ها",
+//   "subtitle": "براساس محصولات با بیشترین تخفیف",
+//   "url": "https://nakhll.com/api/v1/landing/most-discount-prec-products/",
+//   "background_color": null,
+//   "image": null,
+//   "publish_status": "pub",
+//   "order": 2
+// }
+// ]
