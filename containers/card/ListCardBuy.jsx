@@ -60,7 +60,7 @@ export default function ListCardBuy() {
                   <div className="pt-3 pb-1 px-3">
                     <span className="font-size1">از غرفه: </span>{" "}
                     <a
-                      href={`/productDetail/${El.product.shop.slug}/`}
+                      href={`/hojreh/${El.product.shop.slug}/`}
                       className="vendor-link font-size1 font-weight-bold link-body font-weight-normal txtcut"
                     >
                       {El.product.shop.title}
