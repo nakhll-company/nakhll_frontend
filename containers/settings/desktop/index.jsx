@@ -281,7 +281,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
             checked={checkAll}
             onClick={handelSelectAllState}
           />
-          <label htmlFor="all">انتخاب تمام شهر ها</label> */}
+          <label htmlhtmlFor="all">انتخاب تمام شهر ها</label> */}
           {SaveCity?.map((e, index) => {
             return (
               <div key={index}>
@@ -305,7 +305,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                     }
                   }}
                 />
-                <label for={e.id}>{e.name}</label>
+                <label htmlFor={e.id}>{e.name}</label>
                 <br />
               </div>
             );
@@ -419,7 +419,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                         <Image src={result} width={100} height={100}></Image>
                       )}
                       <div className={styles.Hojreh_headD_edit_icon_pic}>
-                        <label htmlFor="file_pic_avatar">
+                        <label htmlhtmlFor="file_pic_avatar">
                           <span
                             style={{ fontSize: "20px", cursor: "pointer" }}
                             className="fas fa-edit"
@@ -935,24 +935,24 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
 
                           {/* <div className={styles.SelectAnother}>
                             <form>
-                              <div class="form-check">
+                              <div className="form-check">
                                 <input
-                                  class="form-check-input"
+                                  className="form-check-input"
                                   type="radio"
                                   name="flexRadioDefault"
                                   id="flexRadioDefault1"
                                   checked
                                 />
                                 <label
-                                  class="form-check-label"
-                                  for="flexRadioDefault1"
+                                  className="form-check-label"
+                                  htmlFor="flexRadioDefault1"
                                 >
                                   به سراسر ایران
                                 </label>
                               </div>
-                              <div class="form-check">
+                              <div className="form-check">
                                 <input
-                                  class="form-check-input"
+                                  className="form-check-input"
                                   type="radio"
                                   name="flexRadioDefault"
                                   id="flexRadioDefault2"
@@ -961,8 +961,8 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                                   }}
                                 />
                                 <label
-                                  class="form-check-label"
-                                  for="flexRadioDefault2"
+                                  className="form-check-label"
+                                  htmlFor="flexRadioDefault2"
                                 >
                                   انتخاب شهرها
                                 </label>

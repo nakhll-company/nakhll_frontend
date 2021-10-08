@@ -59,7 +59,7 @@ const Orders = ({ setProfilePages, setInvoiceId }) => {
                                         ))}
                                     </td>
                                     <td>
-                                        <span class="d-block px-3 py-2" style={{ backgroundColor: "#ddd", borderRadius: "50rem" }}>
+                                        <span className="d-block px-3 py-2" style={{ backgroundColor: "#ddd", borderRadius: "50rem" }}>
                                             {/* <span style={{ color: "red",cursor:"pointer" }} onClick={() => {
                                                 router.push(`/cart/payment?id=${value.id}`);
                                             }}>{value.status === "awaiting_paying" && "در انتظار پرداخت"}</span> */}

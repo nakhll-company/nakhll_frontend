@@ -59,13 +59,13 @@ function LinerProducts({
         </div>
       )}
       <div className={`${styles.products} row`}>
-        {products.length > 0 && products.slice(0, num).map((product) => (
+        {products.length > 0 && products.slice(0, num).map((product,index) => (
           <ProductCard
             xl={xl}
             md={md}
             lg={lg}
             sm={sm}
-            key={1}
+            key={index}
             padding={1}
             product={{
               id: product.id,

@@ -16,7 +16,7 @@ function Category(props) {
     <div className={styles.category}>
       <span className={styles.mar}></span>
       {root.map((item, index) => (
-        <div className={styles.loader}>
+        <div key={index} className={styles.loader}>
           <span className={styles.part_icon}>
             <i className={styles.between}></i>
           </span>
