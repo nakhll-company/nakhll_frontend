@@ -38,7 +38,7 @@ const MobileOrders = ({ ordersList, setProfilePages, setInvoiceId }) => {
                         <div className="d-flex">
                             {value.items.length > 0 && value.items.map((value, index) => (
                                 <a href={`/productDetail/${value.slug}`} target="_blank" key={index}>
-                                    {value.image_thumbnail && <img src={value.image_thumbnail} alt={value.title} class="rounded-lg ml-2" width="35" height="35" />}
+                                    {value.image_thumbnail && <img src={value.image_thumbnail} alt={value.title} className="rounded-lg ml-2" width="35" height="35" />}
                                 </a>
                             ))}
                         </div>

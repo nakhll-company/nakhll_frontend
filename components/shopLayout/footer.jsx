@@ -593,7 +593,7 @@ const Footer = () => {
                       title="ستاد ساماندهی پایگاه‌های اینترنتی"
                       id="jxlzwlaorgvjrgvjfukzfukz"
                       src="https://statics.basalam.com/public/photo/explore/bx3V8/06-12/ItxiSGJ2SKnErTyX4sDp2EEfDApfmsoQrtiVxR4lIeEJ7tcCcB.png"
-                      onClick="window.open('https://logo.samandehi.ir/Verify.aspx?id=143366&amp;p=rfthaodsxlaoxlaogvkagvka', 'Popup','toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30')"
+                     
                       className="w-100"
                     />
                   </div>
@@ -604,7 +604,7 @@ const Footer = () => {
                       alt="انجمن کسب و کار های اینترنتی"
                       title="انجمن کسب و کار های اینترنتی"
                       src="https://statics.basalam.com/public/photo/explore/bx3V8/06-12/IIe9258erPuTim4DEaH2iWRQobRqYydLbaztyiUZ2CAdV35kui.png"
-                      onClick="window.open('https://ecunion.ir/verify/basalam.com?token=43445575c7a0a8344a6b', 'Popup','toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30')"
+                     
                       className="w-100"
                     />
                   </div>

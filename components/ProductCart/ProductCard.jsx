@@ -70,7 +70,7 @@ const ProductCard = ({
           }}
         >
           <i
-            class="fa fa-times-circle"
+            className="fa fa-times-circle"
             style={{
               position: "absolute",
               fontSize: "28px",

@@ -14,7 +14,7 @@ function LinerThreeImg({}) {
           href=""
           data-observed="0"
           target="_blank"
-          data-id="82998"
+          
           title="خرید بیشتر، سود بیشتر"
           className={styles.one}
         >
@@ -28,7 +28,7 @@ function LinerThreeImg({}) {
           href=""
           data-observed="0"
           target="_blank"
-          data-id="84058"
+          
           title="پارتنرشیپ - گلرنگ"
           className={styles.two}
         >
