@@ -1,10 +1,9 @@
 import React from "react";
 import ListProduct from "../../containers/listProduct";
 
-function product({ word, category,ap }) {
+function product({ word, category }) {
   return (
     <>
-    {ap !=="" && <><h1>hiiiiiiiiiiii</h1></>}
       <ListProduct searchWord={word} categoryIn={category} />
     </>
   );
@@ -16,10 +15,9 @@ export default product;
 export async function getServerSideProps(context) {
   return {
     props: {
-      id: context.params.id ||"",
-      category: context.query.cat || "",
-      word: context.query.word ||"",
-      ap:context.query.ap ||""
+      id: context.params.id,
+      category: context.query.cat,
+      word: context.query.word,
     },
   };
 }
