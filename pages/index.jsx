@@ -114,9 +114,8 @@ const index = () => {
           crossOrigin="anonymous"
         ></link>
       </Head>
-      {Schema.length > 0 && Schema.map((turn) => _handel_select_component(turn))}
-      
-      
+      {Schema.length > 0 &&
+        Schema.map((turn) => _handel_select_component(turn))}
       <SuggestedValue />
       ‌‌
     </>
@@ -124,8 +123,6 @@ const index = () => {
 };
 
 export default index;
-
-
 
 // {
 //   "component_type": 3,
