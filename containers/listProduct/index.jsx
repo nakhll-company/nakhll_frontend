@@ -70,7 +70,6 @@ function ListProduct({
       max_price: maxPrice,
       shop: shop_products,
     };
-    
 
     try {
       let response = await ApiRegister().apiRequest(
@@ -206,7 +205,7 @@ function ListProduct({
           <div className="row sidebar-parent">
             <div className="d-none d-lg-block col-lg-3">
               <div id="sidebar">
-                <CustomAccordion title="دسته بندی" item="1">
+                <CustomAccordion title="دسته بندی" item="one" close={true}>
                   <CheckboxTree
                     icons={{
                       expandClose: (
@@ -224,13 +223,12 @@ function ListProduct({
                     onExpand={(e) => setExpandCategory(e)}
                   />
                 </CustomAccordion>
-                <CustomAccordion title="محدوده قیمت" item="2" close={true}>
-                  <div style={{ direction: "ltr" }}>
+                <CustomAccordion title="محدوده قیمت" item="two" close={true}>
+                  <div style={{ direction: "ltr", zIndex: "1000" }}>
                     <MultiRangeSlider
                       min={0}
                       max={10000}
                       onChange={({ min, max }) => {
-                        
                         setMinPrice(min * 10000);
                         setMaxPrice(max * 10000);
                       }}
@@ -249,7 +247,7 @@ function ListProduct({
 
                 <CustomAccordion
                   title="استان و شهر غرفه دار"
-                  item="3"
+                  item="three"
                   close={true}
                 >
                   <CheckboxTree

@@ -1,49 +1,63 @@
 import React from "react";
 import styles from "./customAccordion.module.scss";
-export const CustomAccordion = ({ children, title, item,close }) => {
+export const CustomAccordion = ({ children, title, item }) => {
+  const _handel_according = (accord, icon) => {
+    let element = document.getElementById(accord);
+    if (element.style.height == "0px") {
+      element.style.height = "unset";
+      document.getElementById(icon).className = "fas fa-angle-down";
+    } else {
+      element.style.height = "0";
+      element.style.overflow = "hidden";
+
+      document.getElementById(icon).className = "fas fa-angle-up";
+    }
+  };
   return (
-    <div
-      className="accordion"
-      style={{
-        background: "#fff",
-        padding: ".4rem !important",
-        // paddingBottom: ".5rem !important",
-        // paddingBottom: " 0 !important",
-        borderRadius: "1.2rem",
-        margin: "1rem 0",
-      }}
-    >
-      <div className="accordion-item " style={{ border: "none" }}>
-        <h2 className="accordion-header" id="panelsStayOpen-headingOne">
-          <button
-            style={{
-              padding: "11px",
-            }}
-            className="accordion-button collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target={`#panelsStayOpen-${item}`}
-            aria-expanded="false"
-            aria-controls={`#panelsStayOpen-${item}`}
-          >
-            <span
-              className={styles.iconAccordin}
-              style={{ marginLeft: "auto" }}
+    <>
+      <div
+        style={{
+          background: "#fff",
+          padding: ".4rem !important",
+          // paddingBottom: ".5rem !important",
+          // paddingBottom: " 0 !important",
+          borderRadius: "1.2rem",
+          margin: "1rem 0",
+        }}
+      >
+        <div style={{ border: "none" }}>
+          <h2>
+            <button
+              className={styles.header}
+              style={{
+                padding: "11px",
+                display: "flex",
+                justifyContent: "space-between",
+              }}
+              onClick={() =>
+                _handel_according(`according_${item}`, `icon_${item}`)
+              }
             >
-              {" "}
-              {title}
-            </span>
-          </button>
-        </h2>
-        <div
-          id={`panelsStayOpen-${item}`}
-          className={`accordion-collapse collapse ${close ? " " : "show"}`}
-          aria-labelledby={`#panelsStayOpen-${item}`}
-        >
-          <div className="accordion-body ">{children}</div>
+              <span style={{ marginLeft: "auto" }}> {title}</span>
+              <i id={`icon_${item}`} className="fas fa-angle-up"></i>
+            </button>
+          </h2>
+          <div>
+            <div
+              id={`according_${item}`}
+              style={{
+                transition: "all 1s ease-out",
+                height: "0",
+                overflow: "hidden",
+                position: "relative",
+              }}
+            >
+              {children}
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
