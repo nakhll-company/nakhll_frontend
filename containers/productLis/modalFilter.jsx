@@ -18,7 +18,7 @@ export const modalFilter = () => {
         <CustomAccordion title="محدوده قیمت" item="3">
           <div>اینجا اطلاعات قرار می گیره</div>
         </CustomAccordion>
-        <CustomAccordion title="استان و شهر غرفه دار" item="4">
+        <CustomAccordion title="استان و شهر حجره دار" item="4">
           <div>اینجا اطلاعات قرار می گیره</div>
         </CustomAccordion>
 

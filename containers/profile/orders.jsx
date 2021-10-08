@@ -60,10 +60,10 @@ const Orders = ({ setProfilePages, setInvoiceId }) => {
                                     </td>
                                     <td>
                                         <span class="d-block px-3 py-2" style={{ backgroundColor: "#ddd", borderRadius: "50rem" }}>
-                                            {/* <span style={{ color: "red" }} onClick={() => {
+                                            {/* <span style={{ color: "red",cursor:"pointer" }} onClick={() => {
                                                 router.push(`/cart/payment?id=${value.id}`);
                                             }}>{value.status === "awaiting_paying" && "در انتظار پرداخت"}</span> */}
-                                            <span style={{ color: "#006060" }} onClick={async () => {
+                                            <span style={{ color: "#006060", cursor: "pointer" }} onClick={async () => {
                                                 await setInvoiceId(value.id);
                                                 await setProfilePages((pre) => {
                                                     return {
@@ -75,7 +75,7 @@ const Orders = ({ setProfilePages, setInvoiceId }) => {
                                                     }
                                                 });
                                             }}>{value.status === "awaiting_paying" && "تکمیل شده"}</span>
-                                            <span style={{ color: "gray" }}>{value.status === "canceled" && "لغو شده"}</span>
+                                            <span style={{ color: "gray", cursor: "pointer" }}>{value.status === "canceled" && "لغو شده"}</span>
                                         </span>
                                     </td>
                                 </tr>

@@ -276,7 +276,7 @@ export default function Cart() {
                   return (
                     <div className="font-size-sm border-bottom pb-3 mt-3">
                       <div className="title font-weight-500">
-                        از غرفه {itemProduct.shop_name}
+                        از حجره {itemProduct.shop_name}
                       </div>
                       <div className="d-flex align-items-center mt-3">
                         <div className={`${styles.picItemInvoice}`}>
@@ -381,7 +381,7 @@ export default function Cart() {
                                     </div>
                                 </label>
                                 <span className="toggle-btn-text pointer">
-                                    ارسال شماره من به غرفه دار
+                                    ارسال شماره من به حجره دار
                                     <div className="text-secondary font-size-9 d-block d-lg-inline-block mr-lg-2">
                                         (برای هماهنگی دریافت سفارش)
                                     </div>

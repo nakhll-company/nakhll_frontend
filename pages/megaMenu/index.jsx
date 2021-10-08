@@ -1127,7 +1127,7 @@ const index = () => {
                     <span>ترجمه عربی</span>
                   </a>
                   <a href="#" className={styles.section_link}>
-                    <span>غرفه نویسی</span>
+                    <span>حجره نویسی</span>
                   </a>
                 </div>
                 <div className={styles.megamenu__section__wrapper}>
@@ -1152,7 +1152,7 @@ const index = () => {
                     <span>آموزش و مشاوره</span>
                   </a>
                   <a href="#" className={styles.section_link}>
-                    <span>آموزش غرفه داری</span>
+                    <span>آموزش حجره داری</span>
                   </a>
                   <a href="#" className={styles.section_link}>
                     <span>مشاوره مالی کسب و کار </span>

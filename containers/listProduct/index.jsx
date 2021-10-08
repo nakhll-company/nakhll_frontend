@@ -70,7 +70,7 @@ function ListProduct({
       max_price: maxPrice,
       shop: shop_products,
     };
-    
+
 
     try {
       let response = await ApiRegister().apiRequest(
@@ -133,7 +133,7 @@ function ListProduct({
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   // START
@@ -230,7 +230,7 @@ function ListProduct({
                       min={0}
                       max={10000}
                       onChange={({ min, max }) => {
-                        
+
                         setMinPrice(min * 10000);
                         setMaxPrice(max * 10000);
                       }}
@@ -248,7 +248,7 @@ function ListProduct({
                 </CustomAccordion>
 
                 <CustomAccordion
-                  title="استان و شهر غرفه دار"
+                  title="استان و شهر حجره دار"
                   item="3"
                   close={true}
                 >
@@ -439,7 +439,7 @@ function ListProduct({
                 />
               </CustomAccordion>
 
-              <CustomAccordion title="استان و شهر غرفه دار" item="3mobile">
+              <CustomAccordion title="استان و شهر حجره دار" item="3mobile">
                 <CheckboxTree
                   // direction="rtl"
                   icons={{
