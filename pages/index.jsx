@@ -55,7 +55,7 @@ const index = () => {
         return <LinerTwoImg nextApi_LinerTwoImg={type.data} />;
         break;
       case 4:
-        return <LinerThreeImg />;
+        return <LinerThreeImg nextApi_LinerThreeImg={type.data} />;
         break;
       // case 5:
       //   return (
