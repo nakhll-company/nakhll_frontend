@@ -33,4 +33,28 @@
             }
         }
     }
+    // mobile menu
+    .menu_mobile{
+        position: fixed;
+        bottom: 0px;
+        width: 100%;
+        background-color: #fff;
+        padding: 0px;
+        ul {
+            list-style-type: none !important;
+            margin: 0px;
+            padding: 0px;
+            padding: 10px 0px;
+            li{
+                // padding: 5px 15px;
+                font-size: 13px;
+                cursor: pointer;
+                h6{
+                    padding-top: 5px;
+                    font-size: 17px;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
 }

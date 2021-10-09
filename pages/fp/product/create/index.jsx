@@ -161,7 +161,7 @@ const CreateProduct = ({ activeHojreh }) => {
   const [checkedCities, setCheckedCities] = useState([]);
 
   useEffect(() => {
-    console.log("checkedCities :>> ", checkedCities);
+   
   }, [checkedCities]);
 
   const router = useRouter();
@@ -945,8 +945,8 @@ const CreateProduct = ({ activeHojreh }) => {
                       }}
                     ></span>
                   </button>
-                  {page === 1 && <h2>انتخاب دسته بندی</h2>}
-                  {page !== 1 && <h2> انتخاب زیر دسته از {title} </h2>}
+                  {page === 1 && <h2 style={{fontSize:"18px",fontWeight:"bold"}}>انتخاب دسته بندی</h2>}
+                  {page !== 1 && <h2 style={{fontSize:"18px",fontWeight:"bold"}}> انتخاب زیر دسته از {title} </h2>}
                 </div>
                 <div className={styles.content}>
                   {page === 1 ? (
@@ -959,10 +959,10 @@ const CreateProduct = ({ activeHojreh }) => {
                           className={styles.btn}
                         >
                           <div className={styles.in_btn}>
-                            <h2 style={{ marginRight: "14px" }}>{e.title}</h2>
+                            <h2 style={{ marginRight: "14px",fontSize:"16px",fontWeight:"bold" }}>{e.title}</h2>
                             <span
                               style={{ marginLeft: "14px" }}
-                              className="fas fa-chevron-left fa-2x"
+                              className="fas fa-chevron-left "
                             ></span>
                           </div>
                         </button>
@@ -979,10 +979,10 @@ const CreateProduct = ({ activeHojreh }) => {
                             className={styles.btn}
                           >
                             <div className={styles.in_btn}>
-                              <h2 style={{ marginRight: "14px" }}>{e.title}</h2>
+                              <h2 style={{ marginRight: "14px",fontSize:"16px",fontWeight:"bold" }}>{e.title}</h2>
                               <span
                                 style={{ marginLeft: "14px" }}
-                                className="fas fa-chevron-left fa-2x"
+                                className="fas fa-chevron-left "
                               ></span>
                             </div>
                           </button>

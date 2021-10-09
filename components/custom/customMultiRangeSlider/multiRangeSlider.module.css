@@ -67,11 +67,11 @@
 }
 
 .thumb__left {
-    z-index: 3;
+    z-index: 5;
 }
 
 .thumb__right {
-    z-index: 4;
+    z-index: 5;
 }
 
 

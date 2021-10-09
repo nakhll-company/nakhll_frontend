@@ -166,9 +166,9 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
       </div>
       <hr style={{ background: "#007aff", width: "100%" }} />
       <form>
-        <div class="form-check">
+        <div className="form-check">
           <input
-            class="form-check-input"
+            className="form-check-input"
             type="radio"
             name="flexRadioDefault"
             id="flexRadioDefault1"
@@ -182,13 +182,13 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
             }}
             style={{ cursor: "pointer" }}
           />
-          <label class="form-check-label" for="flexRadioDefault1">
+          <label className="form-check-label" htmlFor="flexRadioDefault1">
             به سراسر ایران
           </label>
         </div>
-        <div class="form-check" style={{ position: "relative" }}>
+        <div className="form-check" style={{ position: "relative" }}>
           <input
-            class="form-check-input"
+            className="form-check-input"
             type="radio"
             name="flexRadioDefault"
             id="flexRadioDefault2"
@@ -198,7 +198,7 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
             }}
             style={{ cursor: "pointer" }}
           />
-          <label class="form-check-label" for="flexRadioDefault2">
+          <label className="form-check-label" htmlFor="flexRadioDefault2">
             انتخاب شهرها
           </label>
         </div>

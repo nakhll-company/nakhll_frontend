@@ -344,8 +344,8 @@ const ProductDetailDesktop = ({ data }) => {
                     <Image
                       className="mb-2"
                       src="/Values/7_roz_zemanat.svg"
-                      width={100}
-                      height={160}
+                      width={90}
+                      height={150}
                       alt="۷ روز ضمانت بازگشت پول"
                     />
                     <span
@@ -362,8 +362,8 @@ const ProductDetailDesktop = ({ data }) => {
                     <Image
                       className="mb-2"
                       src="/Values/ertebat_mostaghim.svg"
-                      width={100}
-                      height={160}
+                      width={85}
+                      height={145}
                       alt="ارتباط مستقیم با حجره دار"
                     />
                     <span
@@ -380,8 +380,8 @@ const ProductDetailDesktop = ({ data }) => {
                     <Image
                       className="mb-2"
                       src="/Values/sedaghat.svg"
-                      width={100}
-                      height={160}
+                      width={90}
+                      height={150}
                       alt=" صداقت در فروش"
                     />
                     <span

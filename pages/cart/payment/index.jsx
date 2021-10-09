@@ -38,7 +38,7 @@ export default function Cart() {
     if (response.status === 200) {
       setListInvoice(data.items);
       setLogisticPrice(data.logistic_price);
-      setTotalPrice(data.invoice_price_without_discount);
+      setTotalPrice(data.invocie_price_with_discount);
       setFinalPrice(data.final_price);
       setAddressReceiver(data.address);
       setResultCoupon(data.coupons_total_price);
@@ -277,7 +277,7 @@ export default function Cart() {
                   return (
                     <div className="font-size-sm border-bottom pb-3 mt-3">
                       <div className="title font-weight-500">
-                        از غرفه {itemProduct.shop_name}
+                        از حجره {itemProduct.shop_name}
                       </div>
                       <div className="d-flex align-items-center mt-3">
                         <div className={`${styles.picItemInvoice}`}>
@@ -382,21 +382,23 @@ export default function Cart() {
                                     </div>
                                 </label>
                                 <span className="toggle-btn-text pointer">
-                                    ارسال شماره من به غرفه دار
+                                    ارسال شماره من به حجره دار
                                     <div className="text-secondary font-size-9 d-block d-lg-inline-block mr-lg-2">
                                         (برای هماهنگی دریافت سفارش)
                                     </div>
                                 </span>
                             </div> */}
             </div>
-            <div style={{ border: "1px solid red", color: "red", padding: "10px" }}>
-              {logisticErrors.length > 0 && logisticErrors.map((value, index) => (
-                <p key={index}>
-                  {value}
-                  در محدوده ارسال شما قرار ندارد
-                </p>
-              ))}
-            </div>
+            {logisticErrors.length > 0 &&
+              <div style={{ border: "1px solid red", color: "red", padding: "10px" }}>
+                {logisticErrors.map((value, index) => (
+                  <p key={index}>
+                    {value}
+                    در محدوده ارسال شما قرار ندارد
+                  </p>
+                ))}
+              </div>
+            }
             <div className="d-none d-md-flex justify-content-between mt-4">
               <span
                 className="font-size1  font-weight-bold"

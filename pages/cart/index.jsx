@@ -51,7 +51,7 @@ export default function Cart() {
       setAll_product_list_buy(await response.data);
       setShowLoading(false);
     } catch (e) {
-      // console.log("e :>> ", e);
+      
     }
   };
 

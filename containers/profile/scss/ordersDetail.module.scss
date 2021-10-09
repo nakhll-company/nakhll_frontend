@@ -45,8 +45,7 @@
         }
         // detail
         .detail{
-            display: flex;
-            flex: 1 100%;
+            flex-basis: 100%;
             .btn_gray{
                 border-radius: 1.5rem;
                 color: #303030;

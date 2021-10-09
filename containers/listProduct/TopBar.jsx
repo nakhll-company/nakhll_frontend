@@ -12,7 +12,7 @@ export const TopBar = ({
   const { totalcount } = useContext(ContextListProductPage);
   return (
     <>
-      <div>
+      <div style={{marginTop:"16px"}}>
         <div className="items-slider product-filters mb-4">
           <div
             style={{

@@ -137,11 +137,8 @@ function MobileSetting({ activeHojreh }) {
   };
   // For pic Avatar
   const handelPicAvatar = (e) => {
-    // console.log("e.target.files[0] :>> ", e.target.files[0]);
-    // console.log(
-    //   "e.target.files[0] :>> ",
-    //   URL.createObjectURL(e.target.files[0])
-    // );
+    
+   
     setSelectImageAvatar(URL.createObjectURL(e.target.files[0]));
   };
 
@@ -165,7 +162,7 @@ function MobileSetting({ activeHojreh }) {
       crop.height
     );
     const base64Image = canvas.toDataURL("image/jpeg");
-    // console.log("base64Image :>> ", base64Image);
+    
     setResult(base64Image);
 
     // Send Avatar Pic to Server

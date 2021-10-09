@@ -17,7 +17,7 @@ export const _reduceProduct = (productId) => {
 
     await dispatch({ type: "َREDUCE_PRODUCT", payload: response.data });
 
-    // console.log("Reduc :>> ", response);
+    
     // if (response.status === 200) {
     successMessage("داده ها با موفقیت ثبت شده اند");
   };

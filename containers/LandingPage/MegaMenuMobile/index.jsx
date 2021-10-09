@@ -26,6 +26,7 @@ function MegaMenuMobile(props) {
       );
       if (response.status === 200) {
         setCategory(response.data);
+       
       }
     } catch (e) {
       console.log("rrrr :>> ", e);
@@ -39,7 +40,7 @@ function MegaMenuMobile(props) {
   return (
     <ul className={styles.ul}>
       {category.map((element, index) => (
-        <li>
+        <li key={index}>
           <a
             href="javascript:void(0);"
             onClick={() =>
@@ -63,8 +64,8 @@ function MegaMenuMobile(props) {
                 مشاهده همه موارد این دسته
               </a> */}
             </li>
-            {element.submarkets.map((subElement) => (
-              <li>
+            {element.submarkets.map((subElement,index) => (
+              <li key={index}>
                 <a href={`/product/search?word=&cat=${subElement.id}`}>
                   {subElement.title}
                 </a>
