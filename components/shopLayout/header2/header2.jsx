@@ -11,7 +11,7 @@ import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
 function Header2(props) {
   const dispatch = useDispatch();
   const userLog = useSelector((state) => state.User.userInfo);
-  console.log("userLog :>> ", userLog);
+
   const [inputSearch, setInputSearch] = useState("");
   useEffect(() => {
     dispatch(getUserInfo());
@@ -182,9 +182,25 @@ function Header2(props) {
                 </a>
               </div>
               <div className={styles.left_side}>
-                <a className={styles.profile_btn} href="/dashboard">
-                  <i className="fas fa-user-circle"></i>
-                </a>
+                {Object.keys(userLog).length > 0 ? (
+                  <a className={styles.profile_btn} href="/profile">
+                    <i
+                      style={{ fontSize: "30px", marginLeft: "9px" }}
+                      className="fas fa-user-circle"
+                    ></i>
+                  </a>
+                ) : (
+                  <a
+                    style={{
+                      margin: "0px 2px ",
+                      fontSize: "10px",
+                      fontWeight: "500",
+                    }}
+                    href="https://nakhll.com/accounts/get-phone/"
+                  >
+                    ورود/ثبت نام
+                  </a>
+                )}
                 <a className={styles.bascket_btn} href="/cart">
                   <i>
                     <img
