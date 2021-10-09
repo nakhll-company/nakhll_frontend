@@ -12,6 +12,7 @@ import LinerTwoImg from "../containers/LandingPage/LinerTwoImg";
 import LinerThreeImg from "../containers/LandingPage/LinerThreeImg";
 import HolderIcon from "../components/holder_icon";
 import LinerOneImg from "../containers/LandingPage/LinerOneImg";
+import LinerFourImgMobile from "../containers/LandingPage/LinerFourImgMobile";
 
 const index = () => {
   const [Schema, setSchema] = useState([]);
@@ -57,14 +58,9 @@ const index = () => {
       case 4:
         return <LinerThreeImg nextApi_LinerThreeImg={type.data} />;
         break;
-      // case 5:
-      //   return (
-      //     <>
-      //       <LinerTwoImg />
-      //       <LinerTwoImg />
-      //     </>
-      //   );
-      //   break;
+      case 5:
+        return <LinerFourImgMobile  nextApi_LinerFourImgMobile={type.data}/>;
+        break;
       // case 6:
       //   return (
       //     <LinerTwoImg />
