@@ -21,17 +21,21 @@ const MobileOrders = ({ ordersList, setProfilePages, setInvoiceId }) => {
                             <span style={{ color: "red" }} onClick={() => {
                                 router.push(`/cart/payment?id=${value.id}`);
                             }}>{value.status === "awaiting_paying" && "در انتظار پرداخت"}</span>
-                            <span style={{ color: "#006060" }}>{value.status === "completed" && "تکمیل شده"}</span>
+                            <span style={{ color: "#006060" }}>{(value.status === "completed" || value.status === "wait_store_checkout") && "تکمیل شده"}</span>
+                            <span style={{ color: "#006060" }}>{(value.status === "wait_store_approv") && "در انتظار تأیید فروشگاه"}</span>
+                            <span style={{ color: "#006060" }}>{(value.status === "preparing_product") && "در حال آماده سازی"}</span>
+                            <span style={{ color: "#006060" }}>{(value.status === "wait_customer_approv") && "در انتظار تأیید مشتری"}</span>
                             <span style={{ color: "gray" }}>{value.status === "canceled" && "لغو شده"}</span>
                         </span>
                     </div>
                     <div className={`${styles.right} p-3`}>
                         <span className="text-secondary d-block mb-2 d-lg-none">تاریخ ثبت سفارش</span>
-                        <span>{new Date(value.created_datetime).toLocaleDateString('fa-IR')}</span>
+                        <span>{_asist.number(value.created_date_jalali)}</span>
                     </div>
                     <div className={`${styles.price} p-3`}>
                         <span className="text-secondary d-block mb-2 d-lg-none">مبلغ پرداخت شده</span>
-                        <span>{_asist.PSeparator(value.final_price)}</span>
+                        <span>{value.status !== "awaiting_paying" && value.status !== "canceled" &&
+                            _asist.PSeparator(value.final_price)}</span>
                     </div>
                     <div className={`${styles.images} p-3`}>
                         <span className="text-secondary d-block mb-2 d-lg-none">لیست محصولات</span>
@@ -43,23 +47,29 @@ const MobileOrders = ({ ordersList, setProfilePages, setInvoiceId }) => {
                             ))}
                         </div>
                     </div>
-                    {value.status === "completed" && <div className={`${styles.detail} p-3`}>
-                        <span className={`btn ${styles.btn_gray} btn-sm font-size-sm flex-grow-1 d-flex`} onClick={async () => {
-                            await setInvoiceId(value.id);
-                            await setProfilePages((pre) => {
-                                return {
-                                    editProfile: false,
-                                    ordersPage: false,
-                                    shoppingExperiences: false,
-                                    favoritesList: false,
-                                    orderDetail: true
-                                }
-                            });
-                        }}>
-                            <span>جزییات</span>
-                            <i className="bi bi-angle-left mr-auto"></i>
-                        </span>
-                    </div>}
+                    {(value.status === "completed" ||
+                        value.status === "wait_customer_approv" ||
+                        value.status === "wait_store_approv" ||
+                        value.status === "preparing_product" ||
+                        value.status === "wait_customer_approv"
+                    ) &&
+                        <div className={`${styles.detail} p-3`}>
+                            <span className={`btn ${styles.btn_gray} btn-sm font-size-sm flex-grow-1 d-flex`} onClick={async () => {
+                                await setInvoiceId(value.id);
+                                await setProfilePages((pre) => {
+                                    return {
+                                        editProfile: false,
+                                        ordersPage: false,
+                                        shoppingExperiences: false,
+                                        favoritesList: false,
+                                        orderDetail: true
+                                    }
+                                });
+                            }}>
+                                <span>جزییات</span>
+                                <i className="bi bi-angle-left mr-auto"></i>
+                            </span>
+                        </div>}
                 </div>
             ))}
         </div>
