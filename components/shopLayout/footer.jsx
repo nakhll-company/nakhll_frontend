@@ -303,8 +303,8 @@ const Footer = () => {
                           >
                             <img
                               referrerPolicy="origin"
-                              alt="ستاد ساماندهی پایگاه‌های اینترنتی"
-                              title="ستاد ساماندهی پایگاه‌های اینترنتی"
+                              alt="نماد اعتماد الکترونیکی"
+                              title="نماد اعتماد الکترونیکی"
                               src="/icons/footer/namad.png"
                               className="footer-namad"
                             />

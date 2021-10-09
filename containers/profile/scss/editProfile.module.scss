@@ -1,33 +1,45 @@
-.form{
+.form {
     margin: 0px 10px;
     padding: 20px;
     font-size: 1rem;
     background: #fff;
-    border-radius: .3125rem;
-    box-shadow: 0 1px 2px rgba(0,0,0,.19);
+    border-radius: 0.3125rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.19);
     // errors
-    .form_errors{
+    .form_errors {
         color: red;
         padding: 10px 10px;
     }
+    // parent image
+    .Parent_imageProfile {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto;
+        display: block;
+        margin-bottom: 20px;
+        position: relative;
+    }
     // image profile
-    .imageProfile{
-        border-radius: 50% !important;
+    .imageProfile {
+        background: rgb(34, 193, 195);
+        background: radial-gradient( circle, rgba(34, 193, 195, 1) 0%, rgba(45, 253, 238, 1) 100%);
     }
     // save button
-    .save_btn{
+    .save_btn {
         color: #fff;
-        background-color: #1B3E68;
-        border:1px solid #1B3E68;
+        background-color: #1b3e68;
+        border: 1px solid #1b3e68;
         outline: none;
     }
     // select
-    select{
-        font-family: 'vazir';
+    select {
+        font-family: "vazir";
         color: #555555;
     }
     // label
-    input{
+    input {
         color: #555555;
     }
 }
