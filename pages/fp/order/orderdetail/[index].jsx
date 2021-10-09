@@ -634,8 +634,10 @@ function HomePage({ id }) {
                 <hr />
                 <div className={styles.contentinfD}>
                   <div className={styles.post_informationD_content}>
-                    <h4>نام مشتری</h4>
-                    <h3 style={{ marginTop: "5px" }}>
+                    <h4 style={{ fontSize: "14px", fontWeight: "bold" }}>
+                      نام مشتری
+                    </h4>
+                    <h3 style={{ marginTop: "5px", fontSize: "15px" }}>
                       {`${data.profile && data.profile.user.first_name}  ${data.profile && data.profile.user.last_name
                         }`}
                     </h3>
@@ -694,7 +696,10 @@ function HomePage({ id }) {
                 <hr />
                 <div className={styles.contentpostD}>
                   <div className={styles.post_details_content}>
-                    <h4 style={{ fontSize: "14px" }}> تاریخ ثبت سفارش</h4>
+                    <h4 style={{ fontSize: "14px", fontWeight: "bold" }}>
+                      {" "}
+                      تاریخ ثبت سفارش
+                    </h4>
                     <h4 style={{ direction: "ltr", fontSize: "14px" }}>
                       {_asist.number(data.jalali_order_date)}
                     </h4>
@@ -704,20 +709,22 @@ function HomePage({ id }) {
       <h4> style={{ fontSize: "14px" }} 1400/04/22</h4>
     </div> */}
                   <div className={styles.post_details_content}>
-                    <h4 style={{ fontSize: "14px" }}> روش ارسال</h4>
+                    <h4 style={{ fontSize: "14px", fontWeight: "bold" }}>
+                      {" "}
+                      روش ارسال
+                    </h4>
                     <h4 style={{ fontSize: "14px" }}> پست پیشتاز</h4>
                   </div>
-                  <div className={styles.post_details_content}>
+                  {/* <div className={styles.post_details_content}>
                     <h4 style={{ fontSize: "14px" }}>
                       {" "}
                       هزینه ارسال پرداخت شده
                     </h4>
                     <h4 style={{ fontSize: "14px" }}>
-                      {" "}
-                      {_asist.PSeparator(data.post_price / 10)}
+                      
                       <span style={{ marginRight: "10px" }}>هزار تومان</span>
                     </h4>
-                  </div>
+                  </div> */}
                   {/* <div className={styles.post_details_content}>
       <h4> style={{ fontSize: "14px" }} کد رهگیری</h4>
       <h4> style={{ fontSize: "14px" }} 029860006300331500076119</h4>
@@ -842,7 +849,9 @@ function HomePage({ id }) {
                             className={styles.purchased_good_threeD}
                           >
                             <div className={styles.good_three_content}>
-                              <h4 style={{ fontSize: "14px" }}>
+                              <h4
+                                style={{ fontSize: "14px", fontWeight: "bold" }}
+                              >
                                 {" "}
                                 مجموع هزینه محصول
                               </h4>
@@ -1499,7 +1508,9 @@ function HomePage({ id }) {
                 <hr />
                 <div className={styles.content}>
                   <div className={styles.post_information_content}>
-                    <h4 style={{ fontSize: "14px" }}>نام مشتری</h4>
+                    <h4 style={{ fontSize: "14px", fontWeight: "bold" }}>
+                      نام مشتری
+                    </h4>
                     <h3 style={{ marginTop: "5px", fontSize: "15px" }}>
                       {`${data.profile.user.first_name}  ${data.profile.user.last_name}`}
                     </h3>
@@ -1591,7 +1602,12 @@ function HomePage({ id }) {
               {/* کالاهای خریداری شده */}
 
               <div className={styles.purchased_good}>
-                <h1 className={styles.header}>کالاهای خریداری شده</h1>
+                <h1
+                  className={styles.header}
+                  style={{ fontSize: "18px", margin: "0px" }}
+                >
+                  کالاهای خریداری شده
+                </h1>
                 <hr />
 
                 {data.factor_post.map((e, index) => {
@@ -1603,7 +1619,13 @@ function HomePage({ id }) {
                           width={45}
                           height={45}
                         />
-                        <h3 style={{ marginRight: "15px" }}>
+                        <h3
+                          style={{
+                            marginRight: "15px",
+                            fontSize: "15px",
+                            fontWeight: "bold",
+                          }}
+                        >
                           {_asist.number(e.product.title)}
                         </h3>
                       </div>
@@ -1620,19 +1642,28 @@ function HomePage({ id }) {
                         </div>
                         <div>
                           <h4 style={{ color: "#364254" }}>
-                            {_asist.number(e.product_count)} <span>عدد</span>
+                            {_asist.number(e.product_count)}{" "}
+                            <span style={{ fontSize: "14px" }}>عدد</span>
                           </h4>
                         </div>
                       </div>
                       {isOpen && (
                         <div className={styles.purchased_good_three}>
                           <div className={styles.good_three_content}>
-                            <h4>مجموع هزینه محصول</h4>
+                            <h4
+                              style={{ fontSize: "14px", fontWeight: "bold" }}
+                            >
+                              مجموع هزینه محصول
+                            </h4>
                             <h4
                               style={{ color: "#089319", fontWeight: "bold" }}
                             >
                               {_asist.PSeparator(e.get_total_item_price / 10)}+{" "}
-                              <span style={{ color: "#5E7488" }}>تومان</span>
+                              <span
+                                style={{ color: "#5E7488", fontSize: "14px" }}
+                              >
+                                تومان
+                              </span>
                             </h4>
                           </div>
                           {/* <div className={styles.good_three_content}>
@@ -1657,7 +1688,11 @@ function HomePage({ id }) {
                                 {_asist.PSeparator(
                                   (e.product.old_price - e.product.price) / 10
                                 )}
-                                <span style={{ color: "#5E7488" }}>تومان</span>
+                                <span
+                                  style={{ color: "#5E7488", fontSize: "14px" }}
+                                >
+                                  تومان
+                                </span>
                               </h4>
                             </div>
                           )}
@@ -1705,7 +1740,9 @@ function HomePage({ id }) {
                                   alignItems: "center",
                                 }}
                               >
-                                <h3>جزییات کمتر</h3>
+                                <h3 style={{ fontSize: "15px", margin: "0" }}>
+                                  جزییات کمتر
+                                </h3>
                                 <span
                                   style={{
                                     fontSize: "16px",
@@ -1723,7 +1760,9 @@ function HomePage({ id }) {
                                   alignItems: "center",
                                 }}
                               >
-                                <h3>جزییات بیشتر</h3>
+                                <h3 style={{ fontSize: "15px", margin: "0" }}>
+                                  جزییات بیشتر
+                                </h3>
                                 <span
                                   style={{
                                     fontSize: "16px",
@@ -1753,10 +1792,14 @@ function HomePage({ id }) {
                 <hr />
                 <div className={styles.content}>
                   <div className={styles.final_invoice_content}>
-                    <h4>مجموع قیمت محصولات</h4>
+                    <h4 style={{ fontSize: "14px", fontWeight: "bold" }}>
+                      مجموع قیمت محصولات
+                    </h4>
                     <h4 style={{ color: "#089319", fontWeight: "bold" }}>
-                      {_asist.PSeparator(data.total_price / 10)}+{" "}
-                      <span style={{ color: "#5E7488" }}>تومان</span>
+                      {_asist.PSeparator(data.total_user_price / 10)}+{" "}
+                      <span style={{ color: "#5E7488", fontSize: "14px" }}>
+                        تومان
+                      </span>
                     </h4>
                   </div>
                   <div className={styles.final_invoice_content}>

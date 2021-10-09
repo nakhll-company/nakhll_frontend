@@ -31,7 +31,7 @@ const index = () => {
       let response = await ApiRegister().apiRequest(
         null,
         "get",
-        `/api/v1/landing/schema/`,
+        `http://51.89.107.174:8000/api/v1/landing/schema/`,
         true,
         {}
       );
