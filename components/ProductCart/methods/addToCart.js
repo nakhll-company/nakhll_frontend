@@ -13,6 +13,8 @@ export const addToCart = async (idProduct) => {
         successMessage("محصول با موفقیت به سبد خرید شما اضافه شد");
     } else if (response.response.status === 403) {
         errorMessage("لطفا ابتدا لاگین کنید");
+    } else if (response.response.status === 400) {
+        errorMessage(`${response.response.data[0]}`);
     } else {
         errorMessage("خطایی رخ داده است");
     }

@@ -38,7 +38,7 @@ export default function Cart() {
     if (response.status === 200) {
       setListInvoice(data.items);
       setLogisticPrice(data.logistic_price);
-      setTotalPrice(data.invocie_price_with_discount);
+      setTotalPrice(data.invoice_price_with_discount);
       setFinalPrice(data.final_price);
       setAddressReceiver(data.address);
       setResultCoupon(data.coupons_total_price);

@@ -22,7 +22,9 @@ import { errorMessage } from "../../../containers/utils/message";
  */
 const _asist = new Assistent();
 const Address = () => {
+
     const router = useRouter();
+    const { id } = router.query;
 
     let [loading, setLoading] = useState(true);
     let [showModal, setShowModal] = useState({
@@ -30,10 +32,9 @@ const Address = () => {
         id: 0,
     });
     let [address, setAddress] = useState([]);
-    let [invoiceId, setInvoiceId] = useState();
 
     useEffect(async () => {
-        await checkUserLogin(setInvoiceId);
+        await checkUserLogin();
         await getAddress(setAddress);
         await setLoading(false);
     }, []);
@@ -80,8 +81,8 @@ const Address = () => {
                                 let selectedAddressId = document.querySelector("input[type=radio]:checked").value;
                                 let data = { address: selectedAddressId, };
                                 await setLoading(true);
-                                let response = await sendUserAddress(data, invoiceId);
-                                await (response === true && router.push(`/cart/payment?id=${invoiceId}`));
+                                let response = await sendUserAddress(data, id);
+                                await (response === true && router.push(`/cart/payment?id=${id}`));
                                 await setLoading(false);
                             } else {
                                 errorMessage("لطفا ادرس خود را وارد نمایید");
