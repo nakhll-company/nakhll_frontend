@@ -74,7 +74,6 @@ const index = () => {
       case 7:
         return (
           <LinerProductsBg
-            title_LinerProductsBg={type.title}
             subTitle_LinerProductsBg={type.subtitle}
             nextApi_LinerProductsBg={type.data}
             url_LinerProductsBg={type.url}
@@ -119,10 +118,8 @@ const index = () => {
           crossOrigin="anonymous"
         ></link>
       </Head>
-      <div className="container">
-        {Schema.length > 0 &&
-          Schema.map((turn) => _handel_select_component(turn))}
-      </div>
+      {Schema.length > 0 &&
+        Schema.map((turn) => _handel_select_component(turn))}
       <SuggestedValue />
       ‌‌
     </>

@@ -2,7 +2,6 @@ import React from "react";
 import LinerProducts from "../LinerProducts";
 import styles from "./LinerProductsBg.module.scss";
 function LinerProductsBg({
-  title_LinerProductsBg,
   subTitle_LinerProductsBg,
   nextApi_LinerProductsBg,
   url_LinerProductsBg,
@@ -25,7 +24,6 @@ function LinerProductsBg({
           url={url_LinerProductsBg}
           nextApi={nextApi_LinerProductsBg}
           subTitle={subTitle_LinerProductsBg}
-          title={title_LinerProductsBg}
           num={num}
           xl={xl}
           md={md}
