@@ -143,7 +143,7 @@ function Header2(props) {
                     alt=""
                   />
                 </i>
-                <span className={styles.counter_cart}>0</span>
+                <span className={styles.counter_cart}>{userLog.cart_items_count}</span>
               </a>
             </div>
           </div>
@@ -264,8 +264,8 @@ function Header2(props) {
               </span>
             </div>
             <div className={styles.top_menu}>
-              <div className={styles.btn_links}>
-                <a className={styles.btn_link_box} href="/cart">
+              {/* <div className={styles.btn_links}> */}
+              {/* <a className={styles.btn_link_box} href="/cart">
                   <div className={styles.icon_holder}>
                     <img
                       src="https://images.timcheh.com/1/fill/24/24/sm/true/plain/https://static.timcheh.com/uploads/manual/images/others/icon-ShoppingCart-fill.svg"
@@ -273,8 +273,8 @@ function Header2(props) {
                     />
                   </div>
                   <div className="txt">سبد‌‌خرید</div>
-                </a>
-                <a className={styles.btn_link_box} href="/help">
+                </a> */}
+              {/* <a className={styles.btn_link_box} href="/help">
                   <div className={styles.icon_holder}>
                     <img
                       src="https://images.timcheh.com/1/fill/24/24/sm/true/plain/https://static.timcheh.com/uploads/manual/images/others/icon-QuestionCircle-fill.svg"
@@ -282,8 +282,8 @@ function Header2(props) {
                     />
                   </div>
                   <div className="txt">دفترچه راهنما</div>
-                </a>
-                {/* <a
+                </a> */}
+              {/* <a
                   className={styles.btn_link_box}
                   href="/search/category-timcheh-gift-card"
                 >
@@ -295,7 +295,7 @@ function Header2(props) {
                   </div>
                   <div className="txt">کارت هدیه</div>
                 </a> */}
-                {/* <a className={styles.btn_link_box} href="/page/shahneshin">
+              {/* <a className={styles.btn_link_box} href="/page/shahneshin">
                   <div className={styles.icon_holder}>
                     <img
                       src="https://images.timcheh.com/1/fill/18/14/sm/true/plain/https://static.timcheh.com/uploads/manual/images/others/shahneshin.svg"
@@ -304,7 +304,7 @@ function Header2(props) {
                   </div>
                   <div className="txt">شاه‌نشین</div>
                 </a> */}
-                <a className={styles.btn_link_box} href="/landing/seller">
+              {/* <a className={styles.btn_link_box} href="/landing/seller">
                   <div className={styles.icon_holder}>
                     <img
                       src="https://images.timcheh.com/1/fill/24/24/sm/true/plain/https://static.timcheh.com/uploads/manual/images/others/Store-Mall-Directory-blue.svg"
@@ -312,8 +312,8 @@ function Header2(props) {
                     />
                   </div>
                   <div className="txt">فروشنده شوید</div>
-                </a>
-              </div>
+                </a> */}
+              {/* </div> */}
               <h2 className={styles.title_menu}>دسته بندی محصولات</h2>
             </div>
             <MegaMenuMobile />

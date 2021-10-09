@@ -451,6 +451,7 @@ const ProductDetailDesktop = ({ data }) => {
                   <ProductCard
                     col="12"
                     product={{
+                      id: value.id,
                       imageUrl: value.image_thumbnail_url,
                       url: `/productDetail/${value.slug}`,
                       title: value.title,

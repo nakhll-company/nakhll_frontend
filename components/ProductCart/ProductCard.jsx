@@ -1,7 +1,9 @@
 // node libraries
 import Assistent from "zaravand-assistent-number";
+import { useDispatch } from "react-redux";
 // methods
 import { addToCart } from './methods/addToCart';
+import { getUserInfo } from '../../redux/actions/user/getUserInfo';
 import { addToFavoritesList } from "./methods/addToFavotitesList";
 import { deleteFromFavoritesList } from "./methods/deleteFromFavoritesList";
 // scss
@@ -19,6 +21,7 @@ const ProductCard = ({
   _blank = false,
   product,
 }) => {
+  const dispatch = useDispatch();
   let cardBadge = (
     <>
       <div
@@ -53,8 +56,8 @@ const ProductCard = ({
   return (
     <div
       className={`animationCartParent ${col
-          ? `col-${col}`
-          : `col-6 col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
+        ? `col-${col}`
+        : `col-6 col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
         } ${padding ? `px-${padding}` : ""} mb-3`}
     >
       {product.iconClose && (
@@ -193,6 +196,7 @@ const ProductCard = ({
             <div>
               <button className={`btn ${styles._product_card_add_to_cart}`} onClick={() => {
                 addToCart(product.id);
+                dispatch(getUserInfo());
               }}>
                 <i className="fas fa-plus" />
               </button>
