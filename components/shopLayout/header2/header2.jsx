@@ -4,8 +4,18 @@ import Head from "next/head";
 import Image from "next/image";
 import MegaMenuDesktop from "../../../containers/LandingPage/MegaMenuDesktop";
 import MegaMenuMobile from "../../../containers/LandingPage/MegaMenuMobile";
+// Redux
+import { useDispatch, useSelector } from "react-redux";
+import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
+
 function Header2(props) {
+  const dispatch = useDispatch();
+  const userLog = useSelector((state) => state.User.userInfo);
+  console.log("userLog :>> ", userLog);
   const [inputSearch, setInputSearch] = useState("");
+  useEffect(() => {
+    dispatch(getUserInfo());
+  }, []);
   return (
     <>
       <Head>
@@ -109,12 +119,22 @@ function Header2(props) {
               {/* <i className="icon icon-QuestionCircle"></i> */}
               {/* </a>
               </div> */}
-              <a
-                className={styles.nav_item_link_login}
-                href="https://nakhll.com/accounts/get-phone/"
-              >
-                ورود/ثبت نام
-              </a>
+              {Object.keys(userLog).length > 0 ? (
+                <a className={styles.nav_item_link_login} href="/profile">
+                  <i
+                    style={{ fontSize: "30px", marginLeft: "20px" }}
+                    className="fas fa-user-circle"
+                  ></i>
+                </a>
+              ) : (
+                <a
+                  style={{ margin: "0px 20px " }}
+                  className={styles.nav_item_link_login}
+                  href="https://nakhll.com/accounts/get-phone/"
+                >
+                  ورود/ثبت نام
+                </a>
+              )}
               <a className={styles.bascket_btn} rel="nofollow" href="/cart">
                 <i>
                   <img

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -9,25 +9,43 @@ import SwiperCore, { Pagination } from "swiper";
 SwiperCore.use([Pagination]);
 
 import styles from "./HeroSlides.module.scss";
-function HeroSlides(props) {
+import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+function HeroSlides({ nextApi_HeroSlides }) {
+  const [dataHeroSlides, setDataHeroSlides] = useState([]);
+
+  const _Call_Products_HeroSlides = async () => {
+    try {
+      let response = await ApiRegister().apiRequest(
+        null,
+        "get",
+        nextApi_HeroSlides,
+        true,
+        {}
+      );
+      if (response.status === 200) {
+        setDataHeroSlides(response.data);
+        console.log("Hero :>> ", response.data);
+      }
+    } catch (e) {
+      console.log("rrrr :>> ", e);
+    }
+  };
+  useEffect(() => {
+    _Call_Products_HeroSlides();
+  }, []);
+
   return (
     <div className="container  ">
       <div className={`row ${styles.slide}`}>
         <div className={`col-md-8 ${styles.righter}`}>
           <Swiper pagination={true} spaceBetween={50} slidesPerView={1}>
-            <SwiperSlide>
-              <img src="/image/slide/slid1.jpg" alt="" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="/image/slide/slid1.jpg" alt="" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="/image/slide/slid1.jpg" alt="" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="/image/slide/slid1.jpg" alt="" />
-            </SwiperSlide>
-            
+            {dataHeroSlides.map((slider, index) => (
+              <SwiperSlide key={index}>
+                <a href={slider.url}>
+                  <img src={slider.image} alt="بنر" />
+                </a>
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
         <div className={`col-md-4  ${styles.lefter}  d-none d-md-block`}>
