@@ -76,7 +76,7 @@ const index = () => {
         );
         break;
       case 7:
-        return <LinerProductsBg num={4} xl={3} products={lastDiscount} />;
+        return <LinerProductsBg num={4} xl={3} />;
         break;
       default:
         null;

@@ -638,8 +638,9 @@ function HomePage({ id }) {
                       نام مشتری
                     </h4>
                     <h3 style={{ marginTop: "5px", fontSize: "15px" }}>
-                      {`${data.profile && data.profile.user.first_name}  ${data.profile && data.profile.user.last_name
-                        }`}
+                      {`${data.profile && data.profile.user.first_name}  ${
+                        data.profile && data.profile.user.last_name
+                      }`}
                     </h3>
                   </div>
                   {/* <div className={styles.post_informationD_content}>
@@ -893,7 +894,7 @@ function HomePage({ id }) {
                                   >
                                     {_asist.PSeparator(
                                       (e.product.old_price - e.product.price) /
-                                      10
+                                        10
                                     )}
                                     -{" "}
                                     <span style={{ color: "#5E7488" }}>
@@ -951,8 +952,16 @@ function HomePage({ id }) {
                 <hr />
                 <div className={styles.content}>
                   <div className={styles.final_invoice_content}>
-                    <h4>مجموع قیمت محصولات</h4>
-                    <h4 style={{ color: "#089319", fontWeight: "bold" }}>
+                    <h4 style={{ fontSize: "14px", fontWeight: "bold" }}>
+                      مجموع قیمت محصولات
+                    </h4>
+                    <h4
+                      style={{
+                        color: "#089319",
+                        fontWeight: "bold",
+                        fontSize: "14px",
+                      }}
+                    >
                       {_asist.PSeparator(data.total_user_price / 10)}+{" "}
                       <span style={{ color: "#5E7488" }}>تومان</span>
                     </h4>
