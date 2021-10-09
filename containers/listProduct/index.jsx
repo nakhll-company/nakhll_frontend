@@ -308,7 +308,10 @@ function ListProduct({
               <div id="sidebar">
                 <CustomAccordion title="دسته بندی" item="one">
                   {categories.map((ele, index) => (
-                    <div key={`one${index}`} style={{ marginBottom: "10px" }}>
+                    <div
+                      key={`one${index}`}
+                      style={{ marginBottom: "10px", paddingRight: "10px" }}
+                    >
                       <input
                         onChange={(e) => {
                           _handel_Add_category(e.target.value);
@@ -524,22 +527,29 @@ function ListProduct({
                 </div>
               </CustomAccordion>
               <CustomAccordion title="دسته بندی" item="1mobile">
-                <CheckboxTree
-                  icons={{
-                    expandClose: (
-                      <span
-                        className="fas fa-angle-left"
-                        style={{ fontSize: "15px" }}
-                      />
-                    ),
-                    parentClose: <span />,
-                  }}
-                  nodes={market}
-                  checked={checkedCategory}
-                  expanded={expandCategory}
-                  onCheck={(e) => setCheckedCategory(e)}
-                  onExpand={(e) => setExpandCategory(e)}
-                />
+                {categories.map((ele, index) => (
+                  <div
+                    key={`one${index}`}
+                    style={{ marginBottom: "10px", paddingRight: "10px" }}
+                  >
+                    <input
+                      onChange={(e) => {
+                        _handel_Add_category(e.target.value);
+                      }}
+                      className="form-check-input"
+                      type="checkbox"
+                      value={ele.id}
+                      id={`checkbox${index}`}
+                    />
+                    <label
+                      style={{ marginRight: "5px", fontSize: "15px" }}
+                      className="form-check-label"
+                      htmlFor={`checkbox${index}`}
+                    >
+                      {ele.title} ({_asist.number(ele.product_count)})
+                    </label>
+                  </div>
+                ))}
               </CustomAccordion>
 
               <CustomAccordion title="استان و شهر حجره دار" item="3mobile">
