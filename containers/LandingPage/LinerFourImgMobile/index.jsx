@@ -29,57 +29,57 @@ function LinerFourImgMobile({ nextApi_LinerFourImgMobile }) {
         <>
           <aside className={styles.section}>
             <a
-              href={dataLinerTwoImg[0].url}
+              href={dataLinerFourImgMobile[0].url}
               data-observed="0"
               target="_blank"
-              title={dataLinerTwoImg[0].description}
+              title={dataLinerFourImgMobile[0].description}
               className={styles.one}
             >
               <img
-                src={dataLinerTwoImg[0].image}
+                src={dataLinerFourImgMobile[0].image}
                 loading="lazy"
-                alt={dataLinerTwoImg[0].title}
+                alt={dataLinerFourImgMobile[0].title}
               />
             </a>
             <a
-              href={dataLinerTwoImg[1].url}
+              href={dataLinerFourImgMobile[1].url}
               data-observed="0"
               target="_blank"
-              title={dataLinerTwoImg[1].description}
+              title={dataLinerFourImgMobile[1].description}
               className={styles.two}
             >
               <img
-                src={dataLinerTwoImg[1].image}
+                src={dataLinerFourImgMobile[1].image}
                 loading="lazy"
-                alt={dataLinerTwoImg[1].title}
+                alt={dataLinerFourImgMobile[1].title}
               />
             </a>
           </aside>
           <aside className={styles.section}>
             <a
-              href={dataLinerTwoImg[3].url}
+              href={dataLinerFourImgMobile[3].url}
               data-observed="0"
               target="_blank"
-              title={dataLinerTwoImg[3].description}
+              title={dataLinerFourImgMobile[3].description}
               className={styles.one}
             >
               <img
-                src={dataLinerTwoImg[3].image}
+                src={dataLinerFourImgMobile[3].image}
                 loading="lazy"
-                alt={dataLinerTwoImg[3].title}
+                alt={dataLinerFourImgMobile[3].title}
               />
             </a>
             <a
-              href={dataLinerTwoImg[4].url}
+              href={dataLinerFourImgMobile[4].url}
               data-observed="0"
               target="_blank"
-              title={dataLinerTwoImg[4].description}
+              title={dataLinerFourImgMobile[4].description}
               className={styles.two}
             >
               <img
-                src={dataLinerTwoImg[4].image}
+                src={dataLinerFourImgMobile[4].image}
                 loading="lazy"
-                alt={dataLinerTwoImg[4].title}
+                alt={dataLinerFourImgMobile[4].title}
               />
             </a>
           </aside>

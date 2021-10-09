@@ -59,19 +59,18 @@ const index = () => {
         return <LinerThreeImg nextApi_LinerThreeImg={type.data} />;
         break;
       case 5:
-        return <LinerFourImgMobile  nextApi_LinerFourImgMobile={type.data}/>;
+        return <LinerFourImgMobile nextApi_LinerFourImgMobile={type.data} />;
         break;
-      // case 6:
-      //   return (
-      //     <LinerTwoImg />
-      //     // <LinerProducts
-      //     //   title={type.title}
-      //     //   subTitle={type.subtitle}
-      //     //   nextApi={type.data}
-      //     //   url={type.url}
-      //     // />
-      //   );
-      //   break;
+      case 6:
+        return (
+          <LinerProducts
+            title={type.title}
+            subTitle={type.subtitle}
+            nextApi={type.data}
+            url={type.url}
+          />
+        );
+        break;
       // case 7:
       //   return (
       //     < />
