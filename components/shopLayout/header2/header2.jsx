@@ -51,17 +51,26 @@ function Header2(props) {
               </div>
               <div className={styles.h_search}>
                 <div className={styles.search_box}>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="جستجو در نخل ..."
-                    onChange={(e) => setInputSearch(e.target.value)}
-                    value={inputSearch}
-                  />
+                  <form
+                    onSubmit={(event) => {
+                      event.preventDefault();
+                      location.replace(
+                        `/product/search?word=${inputSearch}&cat=`
+                      );
+                    }}
+                  >
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="جستجو در نخل ..."
+                      onChange={(e) => setInputSearch(e.target.value)}
+                      value={inputSearch}
+                    />
 
-                  <a href={`/product/search?word=${inputSearch}&cat=`}>
-                    <i className="fas fa-search"></i>
-                  </a>
+                    <a href={`/product/search?word=${inputSearch}&cat=`}>
+                      <i className="fas fa-search"></i>
+                    </a>
+                  </form>
                   {/* <i className="fas fa-close"></i> */}
                   <div className="result_search">
                     <div className="search_history"></div>
@@ -97,8 +106,8 @@ function Header2(props) {
               </div> */}
               {/* <div className={styles.help_link}>
                 <a title="راهنمای نخل" href=""> */}
-                  {/* <i className="icon icon-QuestionCircle"></i> */}
-                {/* </a>
+              {/* <i className="icon icon-QuestionCircle"></i> */}
+              {/* </a>
               </div> */}
               <a
                 className={styles.nav_item_link_login}
@@ -173,17 +182,23 @@ function Header2(props) {
         <div className={styles.search_header}>
           <div className="container">
             <div className={styles.search_box}>
-              <input
-                type="text"
-                className="form-control"
-                onChange={(e) => setInputSearch(e.target.value)}
-                value={inputSearch}
-                placeholder="جستجو در نخل ..."
-              />
-
-              <a href={`/product/search?word=${inputSearch}&cat=`}>
-                <i className="fas fa-search"></i>
-              </a>
+              <form
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  location.replace(`/product/search?word=${inputSearch}&cat=`);
+                }}
+              >
+                <input
+                  type="text"
+                  className="form-control"
+                  onChange={(e) => setInputSearch(e.target.value)}
+                  value={inputSearch}
+                  placeholder="جستجو در نخل ..."
+                />
+                <a href={`/product/search?word=${inputSearch}&cat=`}>
+                  <i className="fas fa-search"></i>
+                </a>
+              </form>
               {/* <i className="fas fa-times"></i> */}
             </div>
           </div>
