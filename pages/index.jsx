@@ -49,7 +49,7 @@ const index = () => {
         return <HeroSlides nextApi_HeroSlides={type.data} />;
         break;
       case 2:
-        return <LinerOneImg />;
+        return <LinerOneImg nextApi_LinerOneImg={type.data} />;
         break;
       case 3:
         return <LinerTwoImg />;
