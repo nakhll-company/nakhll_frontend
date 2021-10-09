@@ -22,7 +22,6 @@ function ListProduct({
   shop_products = "",
   categoryIn = "",
 }) {
-  
   const [listProducts, setlistProducts] = useState([]);
   const [listWithFilter, setListWithFilter] = useState([]);
   // state for  show Ordering Modal in mobile
@@ -40,8 +39,8 @@ function ListProduct({
   const [isAvailableGoods, setIsAvailableGoods] = useState(false);
 
   // Array for cateGory
-  const [categories, setCategories] = useState([])
-const [wantCategories, setWantCategories] = useState([])
+  const [categories, setCategories] = useState([]);
+  const [wantCategories, setWantCategories] = useState([]);
 
   const [checkedCity, setCheckedCity] = useState([]);
   const [expandCity, setExpandCity] = useState([]);
@@ -57,70 +56,68 @@ const [wantCategories, setWantCategories] = useState([])
 
   [
     {
-      "title": "عسل ارده و  شيره های گياهی",
-      "url": "/markets/submarkets/rsth-aasl-rdh-o-h-shyrh-yh/",
-      "id": "206b4dee-3b4c-41c5-a20a-ab3689f0096c",
-      "product_count": 26
+      title: "عسل ارده و  شيره های گياهی",
+      url: "/markets/submarkets/rsth-aasl-rdh-o-h-shyrh-yh/",
+      id: "206b4dee-3b4c-41c5-a20a-ab3689f0096c",
+      product_count: 26,
     },
     {
-      "title": "خواروبار",
-      "url": "/markets/submarkets/khorobr/",
-      "id": "b103e502-fd6d-4e92-a1e2-6c6eb4d390c6",
-      "product_count": 10
+      title: "خواروبار",
+      url: "/markets/submarkets/khorobr/",
+      id: "b103e502-fd6d-4e92-a1e2-6c6eb4d390c6",
+      product_count: 10,
     },
     {
-      "title": "لوازم آرایشی",
-      "url": "/markets/submarkets/lozm-rsh/",
-      "id": "4d4abca7-974c-4ac3-91f4-adfe2e0fd9a6",
-      "product_count": 3
+      title: "لوازم آرایشی",
+      url: "/markets/submarkets/lozm-rsh/",
+      id: "4d4abca7-974c-4ac3-91f4-adfe2e0fd9a6",
+      product_count: 3,
     },
     {
-      "title": "کتاب و مجله",
-      "url": "/markets/submarkets/tb-o-mglh/",
-      "id": "cf888a4c-a148-49f4-a43d-0873ecd8188c",
-      "product_count": 2
+      title: "کتاب و مجله",
+      url: "/markets/submarkets/tb-o-mglh/",
+      id: "cf888a4c-a148-49f4-a43d-0873ecd8188c",
+      product_count: 2,
     },
     {
-      "title": "تنقلات",
-      "url": "/markets/submarkets/tnklt/",
-      "id": "96a86f48-2faa-44d8-a759-15353a54e585",
-      "product_count": 2
+      title: "تنقلات",
+      url: "/markets/submarkets/tnklt/",
+      id: "96a86f48-2faa-44d8-a759-15353a54e585",
+      product_count: 2,
     },
     {
-      "title": "خشکبار",
-      "url": "/markets/submarkets/khshbr/",
-      "id": "5d8c6ddd-2077-4d5b-8287-41e1e97b1f42",
-      "product_count": 2
+      title: "خشکبار",
+      url: "/markets/submarkets/khshbr/",
+      id: "5d8c6ddd-2077-4d5b-8287-41e1e97b1f42",
+      product_count: 2,
     },
     {
-      "title": "زیور سازان",
-      "url": "/markets/submarkets/zor-szn/",
-      "id": "fb1d0dc0-5265-471a-9a26-34f7da2a3336",
-      "product_count": 1
+      title: "زیور سازان",
+      url: "/markets/submarkets/zor-szn/",
+      id: "fb1d0dc0-5265-471a-9a26-34f7da2a3336",
+      product_count: 1,
     },
     {
-      "title": "بافندگان",
-      "url": "/markets/submarkets/bfndn/",
-      "id": "5f239daf-9984-477a-aacd-fc3a2f8b76cb",
-      "product_count": 1
+      title: "بافندگان",
+      url: "/markets/submarkets/bfndn/",
+      id: "5f239daf-9984-477a-aacd-fc3a2f8b76cb",
+      product_count: 1,
     },
     {
-      "title": "تزئینات منزل",
-      "url": "/markets/submarkets/sbb-khodmn/",
-      "id": "a2960d7f-c8b2-4f41-ae58-e72b186640b5",
-      "product_count": 1
+      title: "تزئینات منزل",
+      url: "/markets/submarkets/sbb-khodmn/",
+      id: "a2960d7f-c8b2-4f41-ae58-e72b186640b5",
+      product_count: 1,
     },
     {
-      "title": "گیاهان دارویی",
-      "url": "/markets/submarkets/hn-dro/",
-      "id": "e82717ef-aff5-47b3-9e88-97bd764b6f8b",
-      "product_count": 1
-    }
-  ]
-  const _handel_category = async ()=>{
-    
-
-       try {
+      title: "گیاهان دارویی",
+      url: "/markets/submarkets/hn-dro/",
+      id: "e82717ef-aff5-47b3-9e88-97bd764b6f8b",
+      product_count: 1,
+    },
+  ];
+  const _handel_category = async () => {
+    try {
       let response = await ApiRegister().apiRequest(
         null,
         "get",
@@ -129,19 +126,11 @@ const [wantCategories, setWantCategories] = useState([])
         {}
       );
       if (response.status === 200) {
-        console.log('response.data :>> ', response.data);
-        setCategories(response.data)
-       
+        console.log("response.data :>> ", response.data);
+        setCategories(response.data);
       }
-    } catch (e) {
-      
-    }
-
-
-
-
-
-  }
+    } catch (e) {}
+  };
 
   const _handel_filters = async (witchFilter) => {
     setHasMore(true);
@@ -224,7 +213,7 @@ const [wantCategories, setWantCategories] = useState([])
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   // START
@@ -237,7 +226,7 @@ const [wantCategories, setWantCategories] = useState([])
     isReadyForSend,
     isDiscountPercentage,
     checkedCity,
-    
+
     whichOrdering,
     clickOnRange,
   ]);
@@ -298,19 +287,26 @@ const [wantCategories, setWantCategories] = useState([])
           <div className="row sidebar-parent">
             <div className="d-none d-lg-block col-lg-3">
               <div id="sidebar">
-                <CustomAccordion title="دسته بندی" item="one" >
-                  {categories.map((ele,index)=>(
-                    
-                     <div key={`one${index}`} style={{marginBottom:"10px"}}>
-                       <input  onChange={(e)=>{console.log('e.target.value :>> ', e.target.value)}}  className="form-check-input" type="checkbox" value={ele.id} id={`checkbox${index}`}/>
-                       <label style={{marginRight:"5px",fontSize:"15px"}} className="form-check-label" htmlFor={`checkbox${index}`}>
-                       {ele.title} ({_asist.number(ele.product_count)})
-                       </label>
-                     </div>
-
-                    
-
-                    
+                <CustomAccordion title="دسته بندی" item="one">
+                  {categories.map((ele, index) => (
+                    <div key={`one${index}`} style={{ marginBottom: "10px" }}>
+                      <input
+                        onChange={(e) => {
+                          console.log("e.target.value :>> ", e.target.value);
+                        }}
+                        className="form-check-input"
+                        type="checkbox"
+                        value={ele.id}
+                        id={`checkbox${index}`}
+                      />
+                      <label
+                        style={{ marginRight: "5px", fontSize: "15px" }}
+                        className="form-check-label"
+                        htmlFor={`checkbox${index}`}
+                      >
+                        {ele.title} ({_asist.number(ele.product_count)})
+                      </label>
+                    </div>
                   ))}
                 </CustomAccordion>
                 <CustomAccordion title="محدوده قیمت" item="two" close={true}>
@@ -337,7 +333,7 @@ const [wantCategories, setWantCategories] = useState([])
 
                 <CustomAccordion
                   title="استان و شهر حجره دار"
-                  item="3"
+                  item="three"
                   close={true}
                 >
                   <CheckboxTree
