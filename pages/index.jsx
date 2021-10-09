@@ -71,13 +71,17 @@ const index = () => {
           />
         );
         break;
-      // case 7:
-      //   return (
-      //     < />
-
-      //     // <LinerProductsBg num={4} xl={3} />
-      //   );
-      //   break;
+      case 7:
+        return (
+          <LinerProductsBg
+            subTitle_LinerProductsBg={type.subtitle}
+            nextApi_LinerProductsBg={type.data}
+            url_LinerProductsBg={type.url}
+            num={4}
+            xl={3}
+          />
+        );
+        break;
       default:
         null;
     }

@@ -55,7 +55,7 @@ function LinerProducts({
       )}
       <div className={`${styles.products} row`}>
         {productsListForLinear.length > 0 &&
-          productsListForLinear?.map((product, index) => (
+          productsListForLinear.slice(0, num).map((product, index) => (
             <ProductCard
               xl={xl}
               md={md}
