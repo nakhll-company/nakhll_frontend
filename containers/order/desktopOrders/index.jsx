@@ -1,53 +1,34 @@
 // node libraries
 import Link from "next/link";
 import Image from "next/image";
-
+import Assistent from "zaravand-assistent-number";
 // components
 import CustomBadge from "../../../components/custom/customBadge";
-// methods
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // scss
 import styles from "../../../styles/pages/order/desktopOrders.module.scss";
-import { errorMessage } from "../../utils/message";
+
+const _asist = new Assistent();
 
 export default function DesktopOrders({
   loading,
   ordersList,
-  type,
-  activeHojreh,
-  getUncompleted,
+  type
 }) {
   const statusCompleted = [
     { value: "", label: "" },
-    { value: 4, label: "لغو شده" },
-    { value: 0, label: "تحویل داده شده" },
+    { value: "wait_store_checkout", label: "در انتظار تسویه با فروشگاه" },
+    { value: "completed", label: "تکمیل شده" },
+    { value: "canceled", label: "لغو شده" },
   ];
 
   const statusUncompleted = [
     { value: "", label: "" },
-    { value: 1, label: "سفارش آماده است" },
-    { value: 5, label: "ارسال شده" },
-    { value: 2, label: "در حال آماده سازی" },
-    { value: 3, label: "منتظر بررسی" },
+    { value: "awaiting_paying", label: "در انتظار پرداخت" },
+    { value: "wait_store_approv", label: "در انتظار تأیید فروشگاه" },
+    { value: "preparing_product", label: "در حال آماده سازی" },
+    { value: "wait_customer_approv", label: "در انتظار تأیید مشتری" },
   ];
-
-  const _handleRequestApi = async (id) => {
-    let params = {};
-    let loadData = null;
-    let dataUrl = `/app/api/v1/factor/change-status/confirmed/${id}/`;
-    let response = await ApiRegister().apiRequest(
-      loadData,
-      "PUT",
-      dataUrl,
-      true,
-      params
-    );
-    if (response.status === 200) {
-      getUncompleted(activeHojreh);
-    } else {
-      errorMessage("خطایی در ارسال داده ها پیش آمده است");
-    }
-  };
+  console.log(">>", ordersList);
 
   return (
     <div className={styles.wrapper}>
@@ -133,9 +114,7 @@ export default function DesktopOrders({
               <th>شماره سفارش</th>
               <th>نام مشتری</th>
               <th>تاریخ ثبت</th>
-              <th>مهلت ارسال</th>
               <th>وضعیت</th>
-              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -158,24 +137,21 @@ export default function DesktopOrders({
                 return (
                   <tr key={index}>
                     <Link href={`/fp/order/orderdetail/${value.id}`}>
-                      <td>{index + 1}</td>
+                      <td>{_asist.number(index + 1)}</td>
                     </Link>
                     <Link href={`/fp/order/orderdetail/${value.id}`}>
-                      <td>{value.factor_number}</td>
+                      <td>{_asist.number(value.id)}</td>
                     </Link>
                     <Link href={`/fp/order/orderdetail/${value.id}`}>
-                      <td>{value.user}</td>
+                      <td>{value.items[0].buyer}</td>
                     </Link>
                     <Link href={`/fp/order/orderdetail/${value.id}`}>
-                      <td>{value.order_date}</td>
-                    </Link>
-                    <Link href={`/fp/order/orderdetail/${value.id}`}>
-                      <td>{value.max_due_date}</td>
+                      <td>{_asist.number(value.created_date_jalali)}</td>
                     </Link>
                     <Link href={`/fp/order/orderdetail/${value.id}`}>
                       <td>
-                        <CustomBadge
-                          title={value.factor_status}
+                        {value.status === "awaiting_paying" && <CustomBadge
+                          title="در انتظار پرداخت"
                           color="#089319"
                           backgroundColor="rgba(8, 147, 25, 0.15)"
                           customBadgeStyle={{
@@ -183,22 +159,39 @@ export default function DesktopOrders({
                             padding: "2px 6px",
                             fontSize: "12px",
                           }}
-                        />
+                        />}
+                        {value.status === "wait_store_approv" && <CustomBadge
+                          title="در انتظار تایید فروشگاه"
+                          color="#089319"
+                          backgroundColor="rgba(8, 147, 25, 0.15)"
+                          customBadgeStyle={{
+                            borderRadius: "3px",
+                            padding: "2px 6px",
+                            fontSize: "12px",
+                          }}
+                        />}
+                        {value.status === "preparing_product" && <CustomBadge
+                          title="در حال آماده سازی"
+                          color="#089319"
+                          backgroundColor="rgba(8, 147, 25, 0.15)"
+                          customBadgeStyle={{
+                            borderRadius: "3px",
+                            padding: "2px 6px",
+                            fontSize: "12px",
+                          }}
+                        />}
+                        {value.status === "wait_customer_approv" && <CustomBadge
+                          title="در انتظار تایید مشتری"
+                          color="#089319"
+                          backgroundColor="rgba(8, 147, 25, 0.15)"
+                          customBadgeStyle={{
+                            borderRadius: "3px",
+                            padding: "2px 6px",
+                            fontSize: "12px",
+                          }}
+                        />}
                       </td>
                     </Link>
-                    <td>
-                      {value.order_status === "3" && (
-                        <button
-                          type="button"
-                          className={styles.button_ready}
-                          onClick={() => {
-                            _handleRequestApi(value.id);
-                          }}
-                        >
-                          به موقع ارسال میکنم
-                        </button>
-                      )}
-                    </td>
                   </tr>
                 );
               })
