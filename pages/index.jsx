@@ -52,37 +52,37 @@ const index = () => {
         return <LinerOneImg nextApi_LinerOneImg={type.data} />;
         break;
       case 3:
-        return <LinerTwoImg />;
+        return <LinerTwoImg nextApi_LinerTwoImg={type.data} />;
         break;
       case 4:
         return <LinerThreeImg />;
         break;
-      case 5:
-        return (
-          <>
-            <LinerTwoImg />
-            <LinerTwoImg />
-          </>
-        );
-        break;
-      case 6:
-        return (
-          <LinerTwoImg />
-          // <LinerProducts
-          //   title={type.title}
-          //   subTitle={type.subtitle}
-          //   nextApi={type.data}
-          //   url={type.url}
-          // />
-        );
-        break;
-      case 7:
-        return (
-          <LinerTwoImg />
+      // case 5:
+      //   return (
+      //     <>
+      //       <LinerTwoImg />
+      //       <LinerTwoImg />
+      //     </>
+      //   );
+      //   break;
+      // case 6:
+      //   return (
+      //     <LinerTwoImg />
+      //     // <LinerProducts
+      //     //   title={type.title}
+      //     //   subTitle={type.subtitle}
+      //     //   nextApi={type.data}
+      //     //   url={type.url}
+      //     // />
+      //   );
+      //   break;
+      // case 7:
+      //   return (
+      //     < />
 
-          // <LinerProductsBg num={4} xl={3} />
-        );
-        break;
+      //     // <LinerProductsBg num={4} xl={3} />
+      //   );
+      //   break;
       default:
         null;
     }

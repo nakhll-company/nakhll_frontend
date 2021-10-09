@@ -4,6 +4,7 @@ import ProductCard from "../../../components/ProductCart/ProductCard";
 import styles from "./LinerThreeImg.module.scss";
 
 function LinerThreeImg({}) {
+  console.log("Render :>> ", "Render_LinerThreeImg ");
   return (
     <>
       <div className={styles.topImage}>
@@ -14,7 +15,6 @@ function LinerThreeImg({}) {
           href=""
           data-observed="0"
           target="_blank"
-          
           title="خرید بیشتر، سود بیشتر"
           className={styles.one}
         >
@@ -28,7 +28,6 @@ function LinerThreeImg({}) {
           href=""
           data-observed="0"
           target="_blank"
-          
           title="پارتنرشیپ - گلرنگ"
           className={styles.two}
         >
