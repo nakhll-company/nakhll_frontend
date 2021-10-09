@@ -89,7 +89,7 @@ const index = () => {
   };
 
   useEffect(() => {
-    // _Call_Api_Schema();
+    _Call_Api_Schema();
   }, []);
 
   return (

@@ -24,7 +24,7 @@ function HeroSlides({ nextApi_HeroSlides }) {
       );
       if (response.status === 200) {
         setDataHeroSlides(response.data);
-        console.log("Hero :>> ", response.data);
+        
       }
     } catch (e) {
       console.log("rrrr :>> ", e);
