@@ -38,6 +38,7 @@ const index = () => {
       );
       if (response.status === 200) {
         setSchema(response.data);
+        
       }
     } catch (e) {
       console.log("rrrr :>> ", e);

@@ -9,22 +9,28 @@
     margin: 0;
     .one {
         margin: 2.5px 5px 2.5px 2.5px;
+        @media (min-width: "900px") {
+            margin: 2.5px 5px 10px 10px;
+        }
     }
     .two {
         margin: 2.5px 2.5px 2.5px 5px;
+        @media (min-width: "900px") {
+            margin: 2.5px 10px 5px 10px;
+        }
     }
     a {
         display: block;
         -webkit-box-flex: 1;
         -ms-flex-positive: 1;
         flex-grow: 1;
-        height: 100%;
-        min-width: 24%;
+        width: 48%;
         border-radius: 9px;
         overflow: hidden;
         img {
             width: 100%;
-            border-radius: 16px;
+            aspect-ratio: 4/3;
+            border-radius: 10px;
         }
     }
 }

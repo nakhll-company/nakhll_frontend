@@ -565,62 +565,62 @@ const Footer = () => {
                 </div>
               </div>{" "}
               <div className="row align-items-center d-flex justify-content-between mt-5 row">
-                <div className="col-3 col-md-2">
+                <div className="col-4 col-md-2">
                   <div className="d-flex justify-content-center">
                     <a
-                      referrerPolicy="origin"
+                      href="https://kerman.irannsr.org/services/trade_unit/319012-%D8%A7%D8%B9%D8%B6%D8%A7%DB%8C-%D8%AD%D9%82%D9%88%D9%82%DB%8C-%D9%86%D9%88%DB%8C%D8%AF-%D8%AA%DB%8C%D9%85%DA%86%D9%87-%D8%AA%D8%AC%D8%A7%D8%B1%D8%AA-%D9%86%DB%8C%D9%84.html?t=%D8%AC%D8%B3%D8%AA%D8%AC%D9%88%DB%8C-%D9%BE%DB%8C%D8%B4%D8%B1%D9%81%D8%AA%D9%87"
+                      rel="noopener noreferrer nofollow"
                       target="_blank"
-                      href="https://trustseal.enamad.ir/?id=116503&amp;Code=6iQN5yCbmti3PrU4cINp"
+                      className="w-100"
+                      style={{ overflow: "hidden", display: "inline-block" }}
+                    >
+                      <img
+                        style={{ objectFit: "fill", width: "100px " }}
+                        alt=""
+                        title=""
+                        src="/icons/footer/fn.png"
+                        className="footer-namad"
+                      />
+                    </a>
+                  </div>
+                </div>{" "}
+                <div className="col-4 col-md-2">
+                  <div className="d-flex justify-content-center mt-1">
+                    <a
+                      referrerPolicy="origin"
+                      href="https://trustseal.enamad.ir/?id=135577&Code=4LVJlUntZdqZWSmXWkA1"
+                      target="_blank"
+                      className="w-100"
                     >
                       <img
                         referrerPolicy="origin"
-                        src="https://Trustseal.eNamad.ir/logo.aspx?id=116503&amp;Code=6iQN5yCbmti3PrU4cINp"
                         alt="نماد اعتماد الکترونیکی"
                         title="نماد اعتماد الکترونیکی"
-                        id="6iQN5yCbmti3PrU4cINp"
-                        className="w-100"
-                        // style="cursor: pointer;"
+                        src="/icons/footer/namad.png"
+                        className="footer-namad"
+                        style={{ width: "100px" }}
                       />
                     </a>
                   </div>
                 </div>{" "}
-                <div className="col-3 col-md-2">
-                  <div className="d-flex justify-content-center mt-1">
+                <div className="col-4 col-md-2">
+                  <div className="d-flex justify-content-center">
                     <a
-                      href="http://www.qomstp.ir/"
+                      href="https://logo.samandehi.ir/Verify.aspx?id=163029&p=rfthgvkaxlaoobpduiwkpfvl"
                       rel="noopener noreferrer nofollow"
                       target="_blank"
+                      className="w-100"
                     >
                       <img
-                        alt="پارک علم و فناوری قم"
-                        title="پارک علم و فناوری قم"
-                        src="https://statics.basalam.com/public/photo/explore/bx3V8/06-12/XQY1TLwetRvzVEbz3eJaq90hrTdZnyrYAup92cSq7mKZUC40Ex.png"
-                        className="w-100"
+                        alt="انجمن کسب و کار های اینترنتی"
+                        title="انجمن کسب و کار های اینترنتی"
+                        src="/icons/footer/namadTwo.png"
+                        className="footer-namad"
+                        style={{ width: "100px" }}
                       />
                     </a>
                   </div>
                 </div>{" "}
-                <div className="col-3 col-md-2">
-                  <div className="d-flex justify-content-center">
-                    <img
-                      alt="ستاد ساماندهی پایگاه‌های اینترنتی"
-                      title="ستاد ساماندهی پایگاه‌های اینترنتی"
-                      id="jxlzwlaorgvjrgvjfukzfukz"
-                      src="https://statics.basalam.com/public/photo/explore/bx3V8/06-12/ItxiSGJ2SKnErTyX4sDp2EEfDApfmsoQrtiVxR4lIeEJ7tcCcB.png"
-                      className="w-100"
-                    />
-                  </div>
-                </div>{" "}
-                <div className="col-3 col-md-2">
-                  <div className="d-flex justify-content-center">
-                    <img
-                      alt="انجمن کسب و کار های اینترنتی"
-                      title="انجمن کسب و کار های اینترنتی"
-                      src="https://statics.basalam.com/public/photo/explore/bx3V8/06-12/IIe9258erPuTim4DEaH2iWRQobRqYydLbaztyiUZ2CAdV35kui.png"
-                      className="w-100"
-                    />
-                  </div>
-                </div>
               </div>
             </div>
             <div className=" pt-3">
@@ -650,41 +650,6 @@ const Footer = () => {
                         ‍‍
                         <br />
                         <br />
-                        <span>
-                          با ضریب نفوذ بالای اینترنت، روش‌های بازاریابی، فروش و
-                          حتی خرید به کلی تغییر پیدا کرده است و با محتواهای
-                          مناسب، بهتر می‌توان صاحبان کسب­‌وکارهای اصیل را دید و
-                          با آنها ارتباط برقرار کرد. بنابراین امروزه
-                          تولیدکنندگان و عرضه کنندگان کالا‌ها وحتی کسب‌­ وکارهای
-                          خدماتی، به این باور رسیده‌­اند که با آنلاین‌­بودن
-                          ­به­‌آسانی می‌­توان دغدغۀ خود را بیان کرد و با نفوذ
-                          بالای اینترنت، بهتر می‌­توان کالاها و خدمات خود را به
-                          نمایش گذاشت و فروش بهتر و آسان­‌تری را تجربه کرد.
-                        </span>
-                        <br />
-                        <br />
-                        <span>
-                          امروز صاحبان کسب­‌وکار دوست دارند محصول خود را بدون
-                          واسطه و با ارزش افزوده به‌­دست مشتری خود برسانند و با
-                          مشتریان خود «کانون مشتریان وفادار» خود را تأسیس و با
-                          نظریات آنها به بازار بزرگتری دست یافته و بتوانند با
-                          بهترین شرایط رشد کنند تا خود زمینه­‌ای برای کارآفرینی
-                          و امیدبخشی جامعۀ خویش باشند. با بازار آنلاین نخل
-                          می‌­توان در این مسیر قدم گذاشت و به این هدف مبارک دست
-                          یافت.
-                        </span>
-                        <br />
-                        <br />
-                        <span>
-                          رویکرد اصلی بازار آنلاین نخل، زمینه‌سازی جهت حضور این
-                          کسب‌وکارهای خرد، به­‌خصوص کسب‌وکارهای اصیل و پرمعنا در
-                          سرتاسر ایران است که علاوه بر آنکه مجموعاً سهم بالایی
-                          از تجارت مردمی را به خود اختصاص داده‌اند؛ انگیزۀ
-                          بیشتری نیز جهت ارتقاء و توسعۀ کسب‌وکار خود خواهند داشت
-                          و همچنین می‌توانند از میراث‌ و هویت بومی خود جهت ایجاد
-                          جذابیت و افزایش آگاهی مخاطب و در نتیجه جذب مخاطب‌های
-                          علاقه‌مند و وفادار بهره­‌مند شوند
-                        </span>
                       </div>{" "}
                     </div>
                   </div>

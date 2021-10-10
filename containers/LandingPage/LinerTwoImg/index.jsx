@@ -28,34 +28,36 @@ function LinerTwoImg({ nextApi_LinerTwoImg }) {
   return (
     <>
       {dataLinerTwoImg.length >= 2 && (
-        <aside className={styles.section}>
-          <a
-            href={dataLinerTwoImg[0].url}
-            data-observed="0"
-            target="_blank"
-            title={dataLinerTwoImg[0].description}
-            className={styles.one}
-          >
-            <img
-              src={dataLinerTwoImg[0].image}
-              loading="lazy"
-              alt={dataLinerTwoImg[0].title}
-            />
-          </a>
-          <a
-            href={dataLinerTwoImg[1].url}
-            data-observed="0"
-            target="_blank"
-            title={dataLinerTwoImg[1].description}
-            className={styles.two}
-          >
-            <img
-              src={dataLinerTwoImg[1].image}
-              loading="lazy"
-              alt={dataLinerTwoImg[1].title}
-            />
-          </a>
-        </aside>
+        <div className="container">
+          <aside className={styles.section}>
+            <a
+              href={dataLinerTwoImg[0].url}
+              data-observed="0"
+              target="_blank"
+              title={dataLinerTwoImg[0].description}
+              className={styles.one}
+            >
+              <img
+                src={dataLinerTwoImg[0].image}
+                loading="lazy"
+                alt={dataLinerTwoImg[0].title}
+              />
+            </a>
+            <a
+              href={dataLinerTwoImg[1].url}
+              data-observed="0"
+              target="_blank"
+              title={dataLinerTwoImg[1].description}
+              className={styles.two}
+            >
+              <img
+                src={dataLinerTwoImg[1].image}
+                loading="lazy"
+                alt={dataLinerTwoImg[1].title}
+              />
+            </a>
+          </aside>
+        </div>
       )}
     </>
   );
