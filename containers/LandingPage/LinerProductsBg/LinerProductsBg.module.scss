@@ -14,17 +14,17 @@ $color6: #d4d8e1;
     background: rgb(240, 97, 153);
     background: linear-gradient( 90deg, rgba(240, 97, 153, 1) 0%, rgba(254, 15, 36, 1) 87%);
     display: flex;
+    overflow-x: auto;
     .righter {
         display: flex;
-        justify-content: center;
-        margin-bottom: 15px;
-        margin-top: auto;
+        justify-content: space-around;
+        align-items: center;
         .Button {
             display: flex;
             flex-direction: column;
             justify-content: center;
             img {
-                width: 100%;
+                width: 200px;
                 height: auto;
             }
             button {

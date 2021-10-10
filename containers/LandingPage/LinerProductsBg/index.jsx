@@ -11,8 +11,8 @@ function LinerProductsBg({
   num,
 }) {
   return (
-    <div className={`${styles.linearBg} row`}>
-      <div className={`${styles.righter} col-md-3 d-none d-md-block`}>
+    <div className={`${styles.linearBg} row col-12`}>
+      <div className={`${styles.righter} col-3 col-md-3 `}>
         <div className={styles.Button}>
           <img src="/Values/shegeft.svg" alt="" />
           <button>
@@ -20,7 +20,7 @@ function LinerProductsBg({
           </button>
         </div>
       </div>
-      <div className={`${styles.lefter} col-12 col-md-9`}>
+      <div className={`${styles.lefter} col-9 col-md-9`}>
         <LinerProducts
           url={url_LinerProductsBg}
           nextApi={nextApi_LinerProductsBg}
@@ -29,6 +29,7 @@ function LinerProductsBg({
           xl={xl}
           md={md}
           lg={lg}
+          sm={12}
         />
       </div>
     </div>
