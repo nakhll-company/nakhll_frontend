@@ -5,9 +5,11 @@ import Image from 'next/image';
 import CustomBadge from '../../../components/custom/customBadge';
 // scss
 import styles from '../../../styles/pages/product/desktopList.module.scss';
-
-export default function Desktop({ loading, productList, activeHojreh, getProduct }) {
-
+//functions
+import {groupProductResponse} from '../groupProduct/methods/groupProductResponse';
+import { useRouter } from 'next/router';
+export default function Desktop({ loading, productList, activeHojreh, getProduct, userInfo }) {
+    const router = useRouter();
     const productStatus = [
         { value: "", label: "" },
         { value: 1, label: "آماده در انبار" },
@@ -63,6 +65,13 @@ export default function Desktop({ loading, productList, activeHojreh, getProduct
                             ایجاد کالا جدید
                         </a>
                     </Link>
+                    {console.log(userInfo, activeHojreh)}
+                    <button onClick={()=>groupProductResponse(userInfo, activeHojreh, router)}>
+                        <a className={`${styles.button_add}`}>
+                            <i className="fa fa-plus" style={{ marginLeft: "10px" }}></i>
+                            ایجاد کالای گروهی
+                        </a>
+                    </button>
                 </div>
                 <table className={styles.product_tabel}>
                     <thead>
