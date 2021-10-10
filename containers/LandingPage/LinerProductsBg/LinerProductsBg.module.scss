@@ -21,7 +21,16 @@ $color6: #d4d8e1;
         margin-top: auto;
         .Button {
             display: flex;
+            flex-direction: column;
             justify-content: center;
+            img {
+                width: 100%;
+                height: auto;
+            }
+            button {
+                margin-right: auto;
+                margin-left: auto;
+            }
         }
     }
     .lefter {}

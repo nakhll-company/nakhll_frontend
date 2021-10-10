@@ -14,6 +14,7 @@ function LinerProductsBg({
     <div className={`${styles.linearBg} row`}>
       <div className={`${styles.righter} col-md-3 d-none d-md-block`}>
         <div className={styles.Button}>
+          <img src="/Values/shegeft.svg" alt="" />
           <button>
             <a href={`/product/search?ap=${url_LinerProductsBg}`}>مشاهده همه</a>
           </button>
