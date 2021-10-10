@@ -1,49 +1,19 @@
 // node
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+import Assistent from "zaravand-assistent-number";
 // components
 import CustomLabel from "../../../components/custom/customLabel";
 import CustomBadge from "../../../components/custom/customBadge";
-// methods
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // scss
 import styles from "../../../styles/pages/order/mobileOrders.module.scss";
-import { errorMessage } from "../../utils/message";
+
+const _asist = new Assistent();
 
 const MobileOrders = ({ loading, ordersList }) => {
-  const _handleRequestApi = async (id) => {
-    let params = {};
-    let loadData = null;
-    let dataUrl = `/app/api/v1/factor/change-status/confirmed/${id}/`;
-    let response = await ApiRegister().apiRequest(
-      loadData,
-      "PUT",
-      dataUrl,
-      true,
-      params
-    );
-    if (response.status === 200) {
-      getUncompleted(activeHojreh);
-    } else {
-      errorMessage("خطایی در ارسال داده ها پیش آمده است");
-    }
-  };
 
   return (
     <div className={styles.wrapper}>
-      {/* <div className={styles.header}>
-                <Link href={`/fp/product/list/filter`}>
-                    <a className={styles.header_link}>
-                        <Image src="/image/product/filter.svg" alt="filter" className={styles.header_link_icon} width="15" height="15" />
-                        <i className="fa fa-sliders" aria-hidden="true"></i>
-                        فیلترها
-                    </a>
-                </Link>
-                <span className={styles.header_link}>
-                    <Image src="/image/product/sort.svg" alt="sort" className={styles.header_link_icon} width="15" height="15" />
-                    <i className="fa fa-sort-amount-asc" aria-hidden="true"></i>
-                    ترتیب نمایش</span>
-            </div> */}
       {loading ? (
         <div style={{ textAlign: "center", margin: "20px 0px" }}>
           <Image src="/loading.svg" alt="loding" width="40" height="40" />
@@ -57,33 +27,39 @@ const MobileOrders = ({ loading, ordersList }) => {
                   <div className={styles.card_header}>
                     <CustomLabel
                       type="normal"
-                      value={value.factor_number}
+                      value={_asist.number(value.id)}
                       label="شماره سفارش"
                     />
-                    <CustomBadge
-                      title={`${value.factor_status}`}
+                    {value.status === "awaiting_paying" && <CustomBadge
+                      title="در انتظار پرداخت"
                       customBadgeStyle={{ fontSize: "12px" }}
-                    />
+                    />}
+                    {value.status === "wait_store_approv" && <CustomBadge
+                      title="در انتظار تایید فروشگاه"
+                      customBadgeStyle={{ fontSize: "12px" }}
+                    />}
+                    {value.status === "preparing_product" && <CustomBadge
+                      title="در حال آماده سازی"
+                      customBadgeStyle={{ fontSize: "12px" }}
+                    />}
+                    {value.status === "wait_customer_approv" && <CustomBadge
+                      title="در انتظار تایید مشتری"
+                      customBadgeStyle={{ fontSize: "12px" }}
+                    />}
                   </div>
                   <CustomLabel
                     type="normal"
-                    value={value.user}
+                    value={value.items[0].buyer}
                     label="خریدار"
                     customLabelDiv="wrapper_custom_label"
                   />
                   <CustomLabel
                     type="normal"
-                    value={`${value.order_date}`}
+                    value={`${_asist.number(value.created_date_jalali)}`}
                     label="ثبت"
                     customLabelDiv="wrapper_custom_label"
                   />
-                  <CustomLabel
-                    type="normal"
-                    value={`${value.max_due_date}`}
-                    label="مهلت"
-                    customLabelDiv="wrapper_custom_label"
-                  />
-                  <div className={styles.card_details}>
+                  {/* <div className={styles.card_details}>
                     <li className="fas fa-shopping-basket"></li>
                     <span className={styles.card_details_span}>
                       {value.factor_posts_count} کالا
@@ -92,9 +68,9 @@ const MobileOrders = ({ loading, ordersList }) => {
                     <span className={styles.card_details_span}>
                       {value.state}-{value.big_city}
                     </span>
-                  </div>
+                  </div> */}
                   <div className={styles.card_image_wrapper}>
-                    {value.factor_posts_summary.length > 0 &&
+                    {/* {value.image_thumbnail.length > 0 &&
                       value.factor_posts_summary.map((value, index) => {
                         return (
                           <div key={index} className={styles.card_image}>
@@ -106,21 +82,10 @@ const MobileOrders = ({ loading, ordersList }) => {
                             />
                           </div>
                         );
-                      })}
+                      })} */}
                   </div>
                 </a>
               </Link>
-              {value.order_status === "3" && (
-                <button
-                  type="button"
-                  className={styles.button_ready}
-                  onClick={() => {
-                    _handleRequestApi(value.id);
-                  }}
-                >
-                  به موقع ارسال میکنم
-                </button>
-              )}
             </div>
           );
         })
