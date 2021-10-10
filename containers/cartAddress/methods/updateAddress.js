@@ -11,7 +11,7 @@ export async function updateAddress(id, data) {
         ""
     );
     if (response.status === 200) {
-        successMessage("آدرس مورد نظر حذف شد");
+        successMessage("آدرس مورد نظر با موفقیت ویرایش شد");
     } else {
         errorMessage("خطایی در دریافت داده ها پیش آمده است");
     }

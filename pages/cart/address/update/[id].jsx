@@ -29,7 +29,7 @@ const UpdateAddress = () => {
     const onSubmit = async (data) => {
         await setLoading(true);
         await updateAddress(id, data);
-        router.push("/cart/address");
+        router.push(`/cart/address?id=${id}`);
     };
 
     let [editAddressData, setEditAddressData] = useState({});
@@ -62,7 +62,7 @@ const UpdateAddress = () => {
                 :
                 <div className={`col-12 col-lg-5 ${styles.wrapper}`}>
                     <header className={styles.header}>
-                        <Link href={prev ? "/cart/payment" : "/cart/address"}>
+                        <Link href={prev ? `/cart/payment?id=${id}` : `/cart/address?id=${id}`}>
                             <a className={styles.header_back_link}>
                                 <i className="fas fa-arrow-right px-2"></i>
                                 بازگشت
