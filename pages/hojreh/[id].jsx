@@ -7,6 +7,7 @@ import styles from "./hojreh.module.scss";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 
 import ListProduct from "../../containers/listProduct";
+import DynamicLanding from "../../containers/LandingPage/DynamicLanding";
 
 // fetch data
 const fetchData = async (id) => {
@@ -96,7 +97,9 @@ const Hojreh = ({ dataShop }) => {
         </>
       )}
 
-      {dataShop.is_landing &&<></>}
+      {dataShop.is_landing && dataShop.id && (
+        <DynamicLanding urlSchema={`/api/v1/shop/schema/${dataShop.id}/`} />
+      )}
     </>
   );
 };
