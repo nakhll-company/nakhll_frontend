@@ -30,7 +30,7 @@ const OrdersDetail = ({ invoiceId }) => {
                         </div>
                         <div className={`${styles.price} p-3`}>
                             <span className="text-secondary d-block mb-2">تاریخ ثبت سفارش</span>
-                            <span>{new Date(detailData.created_datetime).toLocaleDateString('fa-IR')}</span>
+                            <span>{`${_asist.number(detailData.created_date_jalali)} - ${_asist.number(detailData.created_time_jalali)}`}</span>
                         </div>
                         <div className={`${styles.right} p-3`}>
                             <span className="text-secondary d-block mb-2">مبلغ پرداخت شده</span>
@@ -42,11 +42,11 @@ const OrdersDetail = ({ invoiceId }) => {
                         </div>
                         <div className={`${styles.images} p-3`}>
                             <span className="text-secondary mb-2"> آدرس :</span>
-                            <span>{detailData.address.address}</span>
+                            <span>{detailData.address && detailData.address.address}</span>
                         </div>
                         <div className={`${styles.detail} p-3`}>
                             <span className="text-secondary mb-2"> شماره موبایل :</span>
-                            <span>{_asist.number(detailData.address.receiver_mobile_number)}</span>
+                            <span>{detailData.address && _asist.number(detailData.address.receiver_mobile_number)}</span>
                         </div>
                     </div>
                     {detailData.items.length > 0 && detailData.items.map((value, index) => (
@@ -60,7 +60,7 @@ const OrdersDetail = ({ invoiceId }) => {
                             </div>
                             <div className={`${styles.price} p-3`}>
                                 <span className="text-secondary d-block mb-2">استان</span>
-                                <span>{`${detailData.address.big_city} / ${detailData.address.city}`}</span>
+                                <span>{detailData.address && `${detailData.address.big_city} / ${detailData.address.city}`}</span>
                             </div>
                             <div className={`${styles.right} p-3`}>
                                 <span className="text-secondary d-block mb-2">مبلغ کل سفارش</span>
