@@ -304,14 +304,13 @@ const ProductDetailDesktop = ({ data }) => {
                       style={{ fontSize: "1.25rem" }}
                       className={styles.old_price}
                     >
-                      {detail.old_price && _asist.PSeparator(detail.price / 10)}
+                      {detail.old_price && _asist.PSeparator(detail.old_price / 10)}
                     </del>
                   </div>
                   <div className={`${styles.price} d-inline-block  ms-2 `}>
                     <span>
-                      {detail.old_price
-                        ? _asist.PSeparator(detail.old_price / 10)
-                        : _asist.PSeparator(detail.price / 10)}
+                      {detail.price
+                        && _asist.PSeparator(detail.price / 10)}
                     </span>
                     <span> تومان </span>
                   </div>
