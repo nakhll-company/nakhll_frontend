@@ -52,7 +52,6 @@ function DynamicLanding({ urlSchema }) {
       case 3:
         return (
           <>
-            <LinerTwoImg nextApi_LinerTwoImg={type.data} />
             <LinerTwoValue nextApi_LinerTwoValue={type.data} />
           </>
         );
