@@ -8,7 +8,7 @@
         display: flex;
         img {
             width: auto;
-            height: 120px !important;
+            height: 50px !important;
             object-fit: cover;
             @media (min-width: 768px) {
                 height: 180px !important;
@@ -18,7 +18,15 @@
 }
 
 .rightImg {
+    position: relative;
     justify-content: space-evenly;
+    span {
+        font-size: 20px;
+        position: absolute;
+        bottom: -18px;
+        margin: 0;
+        line-height: 2px;
+    }
 }
 
 .leftImg {

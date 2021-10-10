@@ -37,7 +37,7 @@ function LinerTwoValue({ nextApi_LinerTwoValue }) {
                 loading="lazy"
                 alt={dataLinerTwoValue[0].title}
               />
-              
+              <span></span>
             </div>
 
             <div className={styles.leftImg}>
