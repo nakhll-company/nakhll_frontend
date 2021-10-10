@@ -38,6 +38,7 @@ function LinerTwoValue({ nextApi_LinerTwoValue }) {
               className={styles.one}
             >
               <img
+                style={{ height: "auto" }}
                 src={dataLinerTwoValue[0].image}
                 loading="lazy"
                 alt={dataLinerTwoValue[0].title}
@@ -51,6 +52,7 @@ function LinerTwoValue({ nextApi_LinerTwoValue }) {
               className={styles.two}
             >
               <img
+                style={{ height: "auto" }}
                 src={dataLinerTwoValue[1].image}
                 loading="lazy"
                 alt={dataLinerTwoValue[1].title}
