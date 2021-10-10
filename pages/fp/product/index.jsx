@@ -12,8 +12,8 @@ import Desktop from "../../../containers/product/list/desktop";
 import { getProduct } from "../../../redux/actions/product/getProduct";
 import { mapState } from "../../../containers/product/methods/mapState";
 
-const Product = ({ getProduct, productList, activeHojreh }) => {
 
+const Product = ({ getProduct, productList, activeHojreh, userInfo }) => {
   let [loading, setLoading] = useState(false);
 
   const { width } = useViewport();
@@ -31,8 +31,8 @@ const Product = ({ getProduct, productList, activeHojreh }) => {
   return (
     <>
       {width < breakpoint ?
-        <Mobile loading={loading} productList={productList} activeHojreh={activeHojreh} /> :
-        <Desktop loading={loading} productList={productList} activeHojreh={activeHojreh} getProduct={getProduct} />}
+        <Mobile loading={loading} productList={productList} activeHojreh={activeHojreh} userInfo={userInfo} /> :
+        <Desktop loading={loading} productList={productList} activeHojreh={activeHojreh} getProduct={getProduct} userInfo={userInfo} />}
     </>
   );
 };
