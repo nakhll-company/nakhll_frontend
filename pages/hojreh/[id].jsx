@@ -98,7 +98,7 @@ const Hojreh = ({ dataShop }) => {
       )}
 
       {dataShop.is_landing && dataShop.id && (
-        <DynamicLanding urlSchema={`/api/v1/shop/schema/${dataShop.id}/`} />
+        <DynamicLanding urlSchema={`/api/v1/shop/schema/${dataShop.ID}/`} />
       )}
     </>
   );

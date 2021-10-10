@@ -115,7 +115,6 @@ function DynamicLanding({ urlSchema }) {
       </Head>
       {Schema.length > 0 &&
         Schema.map((turn) => _handel_select_component(turn))}
-      <SuggestedValue />
       ‌‌
     </>
   );
