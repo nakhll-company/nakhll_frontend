@@ -11,16 +11,22 @@ function LinerProductsBg({
   num,
 }) {
   return (
-    <div className={`${styles.linearBg} row col-12`}>
-      <div className={`${styles.righter} col-3 col-md-3 `}>
+    <div className={`${styles.linearBg}  `}>
+      <div
+        style={{ marginLeft: "0 !important", padding: "0 !important" }}
+        className={`${styles.righter} col-5 col-md-3 `}
+      >
         <div className={styles.Button}>
-          <img src="/Values/shegeft.svg" alt="" />
+          <div>
+            <img src="/Values/shegeft.svg" alt="" />
+          </div>
+
           <button>
             <a href={`/product/search?ap=${url_LinerProductsBg}`}>مشاهده همه</a>
           </button>
         </div>
       </div>
-      <div className={`${styles.lefter} col-9 col-md-9`}>
+      <div className={`${styles.lefter} col-7 col-md-9`}>
         <LinerProducts
           url={url_LinerProductsBg}
           nextApi={nextApi_LinerProductsBg}
@@ -29,7 +35,8 @@ function LinerProductsBg({
           xl={xl}
           md={md}
           lg={lg}
-          sm={12}
+          xs={12}
+          noScroll={true}
         />
       </div>
     </div>

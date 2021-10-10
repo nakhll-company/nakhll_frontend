@@ -5,6 +5,7 @@ import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import styles from "./LinerProducts.module.scss";
 
 function LinerProducts({
+  noScroll = false,
   num = 6,
   title,
   subTitle,
@@ -15,6 +16,7 @@ function LinerProducts({
   md = 4,
   lg = 3,
   sm = 6,
+  xs = 6,
 }) {
   const [productsListForLinear, setProductsListForLinear] = useState([]);
   const _Call_Products = async () => {
@@ -53,7 +55,10 @@ function LinerProducts({
           </div>
         </div>
       )}
-      <div className={`${styles.products} row`}>
+      <div
+        style={{ overflowX: noScroll ? "unset" : "auto" }}
+        className={`${styles.products} row`}
+      >
         {productsListForLinear.length > 0 &&
           productsListForLinear.slice(0, num).map((product, index) => (
             <ProductCard
@@ -61,6 +66,7 @@ function LinerProducts({
               md={md}
               lg={lg}
               sm={sm}
+              xs={xs}
               key={index}
               padding={1}
               product={{

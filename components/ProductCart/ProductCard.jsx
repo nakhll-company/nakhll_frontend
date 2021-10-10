@@ -2,8 +2,8 @@
 import Assistent from "zaravand-assistent-number";
 import { useDispatch } from "react-redux";
 // methods
-import { addToCart } from './methods/addToCart';
-import { getUserInfo } from '../../redux/actions/user/getUserInfo';
+import { addToCart } from "./methods/addToCart";
+import { getUserInfo } from "../../redux/actions/user/getUserInfo";
 import { addToFavoritesList } from "./methods/addToFavotitesList";
 import { deleteFromFavoritesList } from "./methods/deleteFromFavoritesList";
 // scss
@@ -16,6 +16,7 @@ const ProductCard = ({
   md = 5,
   lg = 4,
   xl = 3,
+  xs = 6,
   col,
   padding,
   _blank = false,
@@ -47,18 +48,20 @@ const ProductCard = ({
   let cardImg = (
     <img
       src={product.imageUrl}
-      className={`card-img-top _product_card_rounded animationCart ${product.unavailable && "_unavailable_product"
-        }`}
+      className={`card-img-top _product_card_rounded animationCart ${
+        product.unavailable && "_unavailable_product"
+      }`}
       alt={product.title}
     />
   );
 
   return (
     <div
-      className={`animationCartParent ${col
-        ? `col-${col}`
-        : `col-6 col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
-        } ${padding ? `px-${padding}` : ""} mb-3`}
+      className={`animationCartParent ${
+        col
+          ? `col-${col}`
+          : `col-${xs} col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
+      } ${padding ? `px-${padding}` : ""} mb-3`}
     >
       {product.iconClose && (
         <span
@@ -102,8 +105,9 @@ const ProductCard = ({
         )} */}
 
         <div
-          className={`card-body mt-2 p-1 ${product.unavailable && "_unavailable_product"
-            }`}
+          className={`card-body mt-2 p-1 ${
+            product.unavailable && "_unavailable_product"
+          }`}
         >
           <div className=" mb-3">
             <a
@@ -194,10 +198,13 @@ const ProductCard = ({
           <hr style={{ marginBottom: "5px" }} />
           <div className="_product_card_price mb-2">
             <div>
-              <button className={`btn ${styles._product_card_add_to_cart}`} onClick={() => {
-                addToCart(product.id);
-                dispatch(getUserInfo());
-              }}>
+              <button
+                className={`btn ${styles._product_card_add_to_cart}`}
+                onClick={() => {
+                  addToCart(product.id);
+                  dispatch(getUserInfo());
+                }}
+              >
                 <i className="fas fa-plus" />
               </button>
             </div>

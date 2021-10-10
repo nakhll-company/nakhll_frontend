@@ -80,6 +80,7 @@ const index = () => {
             url_LinerProductsBg={type.url}
             num={4}
             xl={3}
+            
           />
         );
         break;
