@@ -106,6 +106,8 @@ export default function Cart() {
       if (response.status === 200) {
         let data = await response.data;
         await router.push(data.url);
+      } else if (response.response.status === 400) {
+        errorMessage(`${response.response.data.error}`);
       } else {
         errorMessage("مشکلی در رفتن به درگاه پرداخت پیش آمده");
       }
@@ -341,9 +343,9 @@ export default function Cart() {
             <div className="mt-3 p-3 border rounded font-size-sm my-3 line-height-normal">
               <div className="mx-auto" style={{ textAlign: "center" }}>
                 تمامی بسته‌های پستی به آقا/خانم
-                <strong> {addressReceiver.receiver_full_name} </strong>
+                <strong> {addressReceiver && addressReceiver.receiver_full_name} </strong>
                 به آدرس
-                <strong className="font-size-8"> {addressReceiver.address} </strong>
+                <strong className="font-size-8"> {addressReceiver && addressReceiver.address} </strong>
                 تحویل داده می‌شوند.
               </div>
               <div className="text-left line-height-1 mb-5 mb-md-0">
