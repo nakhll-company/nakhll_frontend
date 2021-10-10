@@ -393,7 +393,7 @@ export default function Cart() {
               <div style={{ border: "1px solid red", color: "red", padding: "10px" }}>
                 {logisticErrors.map((value, index) => (
                   <p key={index}>
-                    {value}
+                    {" "}{value}{" "}
                     در محدوده ارسال شما قرار ندارد
                   </p>
                 ))}
