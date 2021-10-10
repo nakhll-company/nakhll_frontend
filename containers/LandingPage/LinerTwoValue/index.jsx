@@ -30,34 +30,24 @@ function LinerTwoValue({ nextApi_LinerTwoValue }) {
       {dataLinerTwoValue.length >= 2 && (
         <div className="container">
           <aside className={styles.section}>
-            <a
-              href={dataLinerTwoValue[0].url}
-              data-observed="0"
-              target="_blank"
-              title={dataLinerTwoValue[0].description}
-              className={styles.one}
-            >
+            <div className={styles.rightImg}>
               <img
                 style={{ height: "auto" }}
                 src={dataLinerTwoValue[0].image}
                 loading="lazy"
                 alt={dataLinerTwoValue[0].title}
               />
-            </a>
-            <a
-              href={dataLinerTwoValue[1].url}
-              data-observed="0"
-              target="_blank"
-              title={dataLinerTwoValue[1].description}
-              className={styles.two}
-            >
+              
+            </div>
+
+            <div className={styles.leftImg}>
               <img
                 style={{ height: "auto" }}
                 src={dataLinerTwoValue[1].image}
                 loading="lazy"
                 alt={dataLinerTwoValue[1].title}
               />
-            </a>
+            </div>
           </aside>
         </div>
       )}

@@ -48,6 +48,7 @@ function LinerThreeImg({ nextApi_LinerThreeImg }) {
                 className={styles.one}
               >
                 <img
+                
                   src={dataLinerThreeImg[1].image}
                   loading="lazy"
                   alt={dataLinerThreeImg[1].title}
