@@ -11,7 +11,7 @@ function LinerThreeImg({ nextApi_LinerThreeImg }) {
       let response = await ApiRegister().apiRequest(
         null,
         "get",
-        setDataLinerThreeImg,
+        nextApi_LinerThreeImg,
         true,
         {}
       );

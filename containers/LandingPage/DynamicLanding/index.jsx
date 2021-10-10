@@ -9,6 +9,7 @@ import LinerProductsBg from "../LinerProductsBg";
 import LinerThreeImg from "../LinerThreeImg";
 import LinerTwoImg from "../LinerTwoImg";
 import SuggestedValue from "../SuggestedValue";
+import LinerTwoValue from "../LinerTwoValue";
 
 function DynamicLanding({ urlSchema }) {
   const [Schema, setSchema] = useState([]);
@@ -49,7 +50,12 @@ function DynamicLanding({ urlSchema }) {
         return <LinerOneImg nextApi_LinerOneImg={type.data} />;
         break;
       case 3:
-        return <LinerTwoImg nextApi_LinerTwoImg={type.data} />;
+        return (
+          <>
+            <LinerTwoImg nextApi_LinerTwoImg={type.data} />
+            <LinerTwoValue nextApi_LinerTwoValue={type.data} />
+          </>
+        );
         break;
       case 4:
         return <LinerThreeImg nextApi_LinerThreeImg={type.data} />;
