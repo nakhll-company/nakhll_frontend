@@ -30,7 +30,7 @@ function LinerTwoValue({ nextApi_LinerTwoValue }) {
       {dataLinerTwoValue.length >= 2 && (
         <div className="container">
           <aside className={styles.section}>
-            <div>
+            <div className={styles.rightImg}>
               <img
                 style={{ height: "auto" }}
                 src={dataLinerTwoValue[0].image}
@@ -39,7 +39,7 @@ function LinerTwoValue({ nextApi_LinerTwoValue }) {
               />
             </div>
 
-            <div>
+            <div className={styles.leftImg}>
               <img
                 style={{ height: "auto" }}
                 src={dataLinerTwoValue[1].image}

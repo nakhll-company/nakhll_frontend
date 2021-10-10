@@ -5,10 +5,17 @@
         flex-basis: 50%;
         padding-left: 15px;
         padding-right: 15px;
+        display: flex;
         img {
-            width: 100%;
-            height: auto;
+            width: auto;
+            height: 220px !important;
             object-fit: cover;
         }
+    }
+    .rightImg {
+        justify-content: space-evenly;
+    }
+    .leftImg {
+        justify-content: space-evenly;
     }
 }
