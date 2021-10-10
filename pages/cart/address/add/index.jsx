@@ -28,6 +28,7 @@ import styles from "../../../../styles/pages/cart/newAddress.module.scss";
 const NewAddress = () => {
 
     const router = useRouter();
+    const { id } = router.query;
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -35,7 +36,7 @@ const NewAddress = () => {
         await setLoading(true);
         let response = await postAddress(data);
         if (response === true) {
-            router.push("/cart/address");
+            router.push(`/cart/address?id=${id}`);
         }
         await setLoading(false);
     };
@@ -68,7 +69,7 @@ const NewAddress = () => {
                 :
                 <div className={`col-12 col-lg-5 ${styles.wrapper}`}>
                     <header className={styles.header}>
-                        <Link href="/cart/address">
+                        <Link href={`/cart/address?id=${id}`}>
                             <a className={styles.header_back_link}>
                                 <i className="fas fa-arrow-right px-2"></i>
                                 بازگشت
