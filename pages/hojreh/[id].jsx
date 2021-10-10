@@ -7,6 +7,7 @@ import styles from "./hojreh.module.scss";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 
 import ListProduct from "../../containers/listProduct";
+import DynamicLanding from "../../containers/LandingPage/DynamicLanding";
 
 // fetch data
 const fetchData = async (id) => {
@@ -59,39 +60,46 @@ const Hojreh = ({ dataShop }) => {
           crossOrigin="anonymous"
         ></link>
       </Head>
-
-      <div className={styles.topHoj}>
-        <div className={styles.liner}>
-          <span>خانه</span>
-          <i className="fas fa-angle-left"></i>
-          <span> حجره ها</span>
-          <i className="fas fa-angle-left"></i>
-          <span>{informationShop.title}</span>
-        </div>
-        <div className={styles.slide}>
-          <div className="">
-            <img className={styles.imgslid} src="/image/back.jpeg" alt="" />
-          </div>
-          <div className={styles.profile}>
-            <img
-              className={styles.img_profile}
-              src={informationShop.image_thumbnail_url}
-              alt=""
-            />
-            <div className={styles.information}>
-              <h1>{informationShop.title}</h1>
-              <h5>{informationShop.title}</h5>
+      {!dataShop.is_landing && (
+        <>
+          <div className={styles.topHoj}>
+            <div className={styles.liner}>
+              <span>خانه</span>
+              <i className="fas fa-angle-left"></i>
+              <span> حجره ها</span>
+              <i className="fas fa-angle-left"></i>
+              <span>{informationShop.title}</span>
             </div>
-            <i className="fas fa-share-alt-square"></i>
+            <div className={styles.slide}>
+              <div className="">
+                <img className={styles.imgslid} src="/image/back.jpeg" alt="" />
+              </div>
+              <div className={styles.profile}>
+                <img
+                  className={styles.img_profile}
+                  src={informationShop.image_thumbnail_url}
+                  alt=""
+                />
+                <div className={styles.information}>
+                  <h1>{informationShop.title}</h1>
+                  <h5>{informationShop.title}</h5>
+                </div>
+                <i className="fas fa-share-alt-square"></i>
+              </div>
+            </div>
+            <div className={styles.title}>
+              <span> محصولات حجره</span>
+            </div>
+            <div className={styles.sub_line}></div>
           </div>
-        </div>
-        <div className={styles.title}>
-          <span> محصولات حجره</span>
-        </div>
-        <div className={styles.sub_line}></div>
-      </div>
 
-      <ListProduct shop_products={dataShop.slug} />
+          <ListProduct shop_products={dataShop.slug} />
+        </>
+      )}
+
+      {dataShop.is_landing && dataShop.id && (
+        <DynamicLanding urlSchema={`/api/v1/shop/schema/${dataShop.ID}/`} />
+      )}
     </>
   );
 };
