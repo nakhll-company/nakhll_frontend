@@ -444,7 +444,7 @@ const ProductDetailMobile = ({ data }) => {
                               className="text-muted"
                               style={{ fontSize: "13px" }}
                             >
-                              {value.date_create}
+                              {_asist.number(value.date_create)}
                             </span>
                           </div>
                           <span>{value.description}</span>
@@ -486,7 +486,7 @@ const ProductDetailMobile = ({ data }) => {
                                     className="text-muted"
                                     style={{ fontSize: "13px" }}
                                   >
-                                    {value.date_create}
+                                    {_asist.number(value.date_create)}
                                   </span>
                                 </div>
                                 <span>{value.description}</span>

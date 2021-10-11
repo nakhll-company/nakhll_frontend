@@ -205,7 +205,7 @@ const ProductCard = ({
                 <i className="fas fa-plus" />
               </button>
             </div>
-            <div className="_product_card_price_number">
+            <div className="_product_card_price_number" style={{ display: "flex", flexDirection: "column" }}>
               {product.unavailable ? (
                 <span>ناموجود</span>
               ) : (
@@ -214,7 +214,7 @@ const ProductCard = ({
                     {_asist.PSeparator(product.price)}
                   </span>
                   {product.discountNumber !== 0 && (
-                    <span className="_product_card_discount_number" style={{ display: "block" }}>
+                    <span className="_product_card_discount_number" style={{ display: "flex", justifyContent: "flex-end" }}>
                       {_asist.PSeparator(product.discountNumber)}
                     </span>
                   )}
