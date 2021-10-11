@@ -74,7 +74,7 @@ const OrdersDetail = ({ invoiceId }) => {
                                 <span className="text-secondary mb-2"> محصولات :</span>
                                 <div className="d-flex align-items-center">
                                     <a href={`productDetail/${value.id}`}>
-                                        <img src="https://statics.basalam.com/public/users/3lYjO/1910/CsP6MQHQZrJfG6oym2PlFNNyE2Sd6RqxVA47PxEp.jpeg_256X256X70.jpeg" alt="" style={{ width: "3.2rem", borderRadius: "1.5rem", marginLeft: "1rem" }} />
+                                        <img src={detailData.image_thumbnail} alt="" style={{ width: "3.2rem", borderRadius: "1.5rem", marginLeft: "1rem" }} />
                                     </a>
                                     <div className="d-flex flex-column flex-md-row align-items-center">
                                         <a href={`productDetail/${value.id}`} className="mx-3">
