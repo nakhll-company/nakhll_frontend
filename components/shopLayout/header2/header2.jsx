@@ -65,7 +65,7 @@ function Header2(props) {
                     onSubmit={(event) => {
                       event.preventDefault();
                       location.replace(
-                        `/product/search?word=${inputSearch}&cat=`
+                        `/product?word=${inputSearch}&cat=`
                       );
                     }}
                   >
@@ -77,7 +77,7 @@ function Header2(props) {
                       value={inputSearch}
                     />
 
-                    <a href={`/product/search?word=${inputSearch}&cat=`}>
+                    <a href={`/product?word=${inputSearch}&cat=`}>
                       <i className="fas fa-search"></i>
                     </a>
                   </form>
@@ -221,7 +221,7 @@ function Header2(props) {
               <form
                 onSubmit={(event) => {
                   event.preventDefault();
-                  location.replace(`/product/search?word=${inputSearch}&cat=`);
+                  location.replace(`/product?word=${inputSearch}&cat=`);
                 }}
               >
                 <input
@@ -231,7 +231,7 @@ function Header2(props) {
                   value={inputSearch}
                   placeholder="جستجو در نخل ..."
                 />
-                <a href={`/product/search?word=${inputSearch}&cat=`}>
+                <a href={`/product?word=${inputSearch}&cat=`}>
                   <i className="fas fa-search"></i>
                 </a>
               </form>

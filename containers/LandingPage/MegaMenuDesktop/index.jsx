@@ -16,7 +16,6 @@ function MegaMenuDesktop(props) {
         setCategory(response.data);
       }
     } catch (e) {
-      console.log("rrrr :>> ", e);
     }
   };
 
@@ -44,8 +43,8 @@ function MegaMenuDesktop(props) {
               <div className={styles.nav_submenu_col}>
                 <ul className={styles.nav_submenu_cat}>
                   <li className={styles.nav_submenu_col_title}>
-                    {element.submarkets.map((subElement,index) => (
-                      <a key={index} href={`/product/search?word=&cat=${subElement.id}`}>
+                    {element.submarkets.map((subElement, index) => (
+                      <a key={index} href={`/product?word=&cat=${subElement.id}`}>
                         {subElement.title}
                         <i className="icon icon-Left"></i>
                       </a>

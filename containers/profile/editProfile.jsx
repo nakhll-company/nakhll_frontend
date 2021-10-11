@@ -15,11 +15,12 @@ import styles from "./scss/editProfile.module.scss";
  * edit profile
  */
 const EditProfile = ({ dataProfile }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+
+  const { register, handleSubmit, formState: { errors }, } = useForm();
+  let [previewImageSrc, setPreviewImageSrc] = useState("");
+  let [selectState, setSelectState] = useState([]);
+  let [selectBigCities, setSelectBigCities] = useState([]);
+  let [selectCities, setSelectCities] = useState([]);
 
   const onSubmit = async (data) => {
     data.FK_User = {
@@ -27,14 +28,22 @@ const EditProfile = ({ dataProfile }) => {
       last_name: data.last_name,
     };
     data.BrithDay = `${data.year}-${data.month}-${data.day}`;
-    data.Image = dataProfile.Image;
-    updatUserProfile(data);
+    let imageProfile = data.image[0];
+    let reader = new FileReader();
+    reader.onloadend = async function () {
+      data.Image = `${reader.result}`;
+    }
+    reader.readAsDataURL(imageProfile);
+    setTimeout(() => {
+      updatUserProfile(data);
+    }, 1000);
   };
 
-  let [selectState, setSelectState] = useState([]);
-  let [selectBigCities, setSelectBigCities] = useState([]);
-  let [selectCities, setSelectCities] = useState([]);
-
+  function previewImage(e) {
+    if (e.target.files[0]) {
+      setPreviewImageSrc(URL.createObjectURL(e.target.files[0]));
+    }
+  }
   useEffect(async () => {
     // state
     setSelectState(await getStates());
@@ -45,14 +54,14 @@ const EditProfile = ({ dataProfile }) => {
       <ToastContainer />
       <div className="d-flex justify-content-center mt-3">
         <div className={styles.Parent_imageProfile}>
-          <img
-            src={
-              Object.keys(dataProfile).length > 0
-                ? dataProfile.Image
-                : "/productDetail/avatar.png"
-            }
-            style={{ width: "90px", height: "90px" }}
-            className={styles.imageProfile}
+          <label htmlFor="image" style={{ cursor: "pointer" }}>
+            {previewImageSrc.length === 0 && <img src={Object.keys(dataProfile).length > 0 ? dataProfile.image : "/productDetail/avatar.png"}
+              style={{ width: "90px", height: "90px" }} className={styles.imageProfile}
+            />}
+            {previewImageSrc.length > 0 && <img src={previewImageSrc} style={{ width: "90px", height: "90px" }} className={styles.imageProfile} />}
+          </label>
+          <input type="file" {...register("image")} id="image" accept="image/png, image/jpeg" style={{ visibility: "hidden" }}
+            onChange={(e) => { previewImage(e) }}
           />
         </div>
       </div>

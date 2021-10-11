@@ -153,10 +153,6 @@ const Profile = () => {
           {width < breakpoint && (
             <div className={styles.menu_mobile}>
               <ul className="d-flex justify-content-between align-items-center">
-                {/* <li className="d-flex flex-column align-items-center mb-3">
-                                    <Image src={Object.keys(dataProfile).length > 0 ? dataProfile.image : "/productDetail/avatar.png"} width="90" height="90" className={styles.imageProfile} />
-                                    <h6>{Object.keys(dataProfile).length > 0 && `${dataProfile.FK_User.first_name} ${dataProfile.FK_User.last_name}`}</h6>
-                                </li> */}
                 <hr />
                 <li
                   className="d-flex flex-column align-items-center"

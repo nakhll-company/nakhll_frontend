@@ -12,6 +12,6 @@ export const updatUserProfile = async (data) => {
     if (response.status === 200) {
         successMessage("ویرایش اطلاعات با موفقیت صورت گرفت");
     } else {
-        errorMessage("خطایی در دریافت دادها پیش آمده است");
+        errorMessage("خطایی در ارسال داده ها پیش آمده است");
     }
 };

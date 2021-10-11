@@ -2,7 +2,29 @@ import React from "react";
 
 import styles from "./LinerTwoValue.module.scss";
 
+<<<<<<< HEAD
 function LinerTwoValue({ dataLinerTwoValue }) {
+=======
+function LinerTwoValue({ nextApi_LinerTwoValue }) {
+  const [dataLinerTwoValue, setDataLinerTwoValue] = useState([]);
+
+  useEffect(async () => {
+    try {
+      let response = await ApiRegister().apiRequest(
+        null,
+        "get",
+        nextApi_LinerTwoValue,
+        true,
+        {}
+      );
+      if (response.status === 200) {
+        setDataLinerTwoValue(response.data);
+      }
+    } catch (e) {
+    }
+  }, []);
+
+>>>>>>> a45fb04b5a3e158703b3136ea0dd9a8ee3c66e72
   return (
     <>
       {dataLinerTwoValue.length >= 2 && (

@@ -7,7 +7,6 @@ import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import ProductCard from "../../../components/ProductCart/ProductCard";
 
 function ListWitOutFilters({ api }) {
-  console.log("api :>> ", api);
   const [listProducts, setlistProducts] = useState([]);
   // state for show loading
   const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +18,6 @@ function ListWitOutFilters({ api }) {
         setlistProducts(response.data);
       }
     } catch (e) {
-      console.log("rrrr :>> ", e);
     }
   };
 

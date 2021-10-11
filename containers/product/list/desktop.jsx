@@ -6,7 +6,7 @@ import CustomBadge from '../../../components/custom/customBadge';
 // scss
 import styles from '../../../styles/pages/product/desktopList.module.scss';
 //functions
-import {groupProductResponse} from '../groupProduct/methods/groupProductResponse';
+import { groupProductResponse } from '../groupProduct/methods/groupProductResponse';
 import { useRouter } from 'next/router';
 export default function Desktop({ loading, productList, activeHojreh, getProduct, userInfo }) {
     const router = useRouter();
@@ -65,8 +65,7 @@ export default function Desktop({ loading, productList, activeHojreh, getProduct
                             ایجاد کالا جدید
                         </a>
                     </Link>
-                    {console.log(userInfo, activeHojreh)}
-                    <button onClick={()=>groupProductResponse(userInfo, activeHojreh, router)}>
+                    <button onClick={() => groupProductResponse(userInfo, activeHojreh, router)}>
                         <a className={`${styles.button_add}`}>
                             <i className="fa fa-plus" style={{ marginLeft: "10px" }}></i>
                             ایجاد کالای گروهی
