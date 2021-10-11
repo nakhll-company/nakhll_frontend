@@ -15,7 +15,7 @@ function LinerTwoValue({ dataLinerTwoValue }) {
                 loading="lazy"
                 alt={dataLinerTwoValue[0].title}
               />
-              <span></span>
+              <span>{dataLinerTwoValue[0].title}</span>
             </div>
 
             <div className={styles.leftImg}>
@@ -25,6 +25,7 @@ function LinerTwoValue({ dataLinerTwoValue }) {
                 loading="lazy"
                 alt={dataLinerTwoValue[1].title}
               />
+              <span>{dataLinerTwoValue[1].title}</span>
             </div>
           </aside>
         </div>

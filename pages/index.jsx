@@ -45,6 +45,15 @@ const fetchData = async () => {
 };
 
 const index = ({ data }) => {
+  const Sample = {
+    1: "اسلایدر تکی",
+    2: "بنر تک عکسی",
+    3: " بنر 2تایی در یک ردیف",
+    4: " (یکی بالا دوتا پایین)بنر ۳ تایی",
+    5: " بنر چهارتایی چهارتا کنار هم",
+    6: " ردیف محصولات",
+    7: " ردیف شگفت انگیزا",
+  };
   console.log("data :>> ", data);
 
   const _handel_select_component = (type, index) => {
