@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -9,29 +9,8 @@ import SwiperCore, { Pagination } from "swiper";
 SwiperCore.use([Pagination]);
 
 import styles from "./HeroSlides.module.scss";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-function HeroSlides({ nextApi_HeroSlides }) {
-  console.log("Render :>> ", "Render_HeroSlides");
-  const [dataHeroSlides, setDataHeroSlides] = useState([]);
 
-  useEffect(async () => {
-    console.log("Run One :>> ", "Run One");
-    try {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        nextApi_HeroSlides,
-        true,
-        {}
-      );
-      if (response.status === 200) {
-        setDataHeroSlides(response.data);
-      }
-    } catch (e) {
-      console.log("rrrr :>> ", e);
-    }
-  }, []);
-
+function HeroSlides({ dataHeroSlides }) {
   return (
     <div className="container  ">
       <div className={`row ${styles.slide}`}>

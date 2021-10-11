@@ -1,30 +1,8 @@
-import React, { useEffect, useState } from "react";
-import ProductCard from "../../../components/ProductCart/ProductCard";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+import React from "react";
 
 import styles from "./LinerTwoValue.module.scss";
 
-function LinerTwoValue({ nextApi_LinerTwoValue }) {
-  const [dataLinerTwoValue, setDataLinerTwoValue] = useState([]);
-
-  useEffect(async () => {
-    try {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        nextApi_LinerTwoValue,
-        true,
-        {}
-      );
-      if (response.status === 200) {
-        setDataLinerTwoValue(response.data);
-        console.log("response.data :>> ", response.data);
-      }
-    } catch (e) {
-      console.log("rrrr :>> ", e);
-    }
-  }, []);
-
+function LinerTwoValue({ dataLinerTwoValue }) {
   return (
     <>
       {dataLinerTwoValue.length >= 2 && (

@@ -1,28 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+import React from "react";
+
 import styles from "./LinerOneImg.module.scss";
 
-function LinerOneImg({ nextApi_LinerOneImg }) {
- 
-  const [dataLinerOneImg, setDataLinerOneImg] = useState([]);
-
-  useEffect(async () => {
-    
-    try {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        nextApi_LinerOneImg,
-        true,
-        {}
-      );
-      if (response.status === 200) {
-        setDataLinerOneImg(response.data);
-      }
-    } catch (e) {
-      console.log("rrrr :>> ", e);
-    }
-  }, []);
+function LinerOneImg({ dataLinerOneImg }) {
   return (
     <>
       {dataLinerOneImg.length > 0 && (

@@ -4,25 +4,7 @@ import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
 import styles from "./LinerFourImgMobile.module.scss";
 
-function LinerFourImgMobile({ nextApi_LinerFourImgMobile }) {
-  const [dataLinerFourImgMobile, setDataLinerFourImgMobile] = useState([]);
-  useEffect(async () => {
-    try {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        nextApi_LinerFourImgMobile,
-        true,
-        {}
-      );
-      if (response.status === 200) {
-        setDataLinerFourImgMobile(response.data);
-      }
-    } catch (e) {
-      console.log("rrrr :>> ", e);
-    }
-  }, []);
-
+function LinerFourImgMobile({ dataLinerFourImgMobile }) {
   return (
     <>
       {dataLinerFourImgMobile.length >= 4 && (

@@ -9,7 +9,7 @@ function LinerProducts({
   num = 6,
   title,
   subTitle,
-  nextApi,
+  dataLinerProducts,
   url,
 
   xl = 2,
@@ -18,28 +18,6 @@ function LinerProducts({
   sm = 6,
   xs = 6,
 }) {
-  const [productsListForLinear, setProductsListForLinear] = useState([]);
-  const _Call_Products = async () => {
-    try {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        nextApi,
-        true,
-        {}
-      );
-      if (response.status === 200) {
-        setProductsListForLinear(response.data);
-      }
-    } catch (e) {
-      console.log("rrrr :>> ", e);
-    }
-  };
-
-  useEffect(() => {
-    _Call_Products();
-  }, []);
-
   return (
     <div className={`container ${styles.lineProduct}`}>
       {title && (
@@ -59,8 +37,8 @@ function LinerProducts({
         style={{ overflowX: noScroll ? "unset" : "auto" }}
         className={`${styles.products} row`}
       >
-        {productsListForLinear.length > 0 &&
-          productsListForLinear.slice(0, num).map((product, index) => (
+        {dataLinerProducts.length > 0 &&
+          dataLinerProducts.slice(0, num).map((product, index) => (
             <ProductCard
               xl={xl}
               md={md}
