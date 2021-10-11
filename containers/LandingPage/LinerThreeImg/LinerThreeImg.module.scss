@@ -5,19 +5,10 @@
     margin-bottom: 2.5px;
     border-radius: 10px;
     overflow: hidden;
-    @media (min-width: 768px) {
-        margin-right: 20px;
-        margin-left: 20px;
-        margin-bottom: 20px;
-    }
     img {
         width: 100%;
         height: auto;
         border-radius: 15px;
-        @media (min-width: 768px) {
-            max-height: 500px;
-            width: auto;
-        }
     }
 }
 
@@ -32,18 +23,9 @@
     margin: 0;
     .one {
         margin: 2.5px 5px 2.5px 2.5px;
-        @media (min-width: 768px) {
-            margin-right: 20px;
-            margin-left: 20px;
-            text-align: left;
-        }
     }
     .two {
         margin: 2.5px 2.5px 2.5px 5px;
-        @media (min-width: 768px) {
-            margin-right: 20px;
-            margin-left: 20px;
-        }
     }
     a {
         display: block;
@@ -57,10 +39,30 @@
         img {
             width: 100%;
             border-radius: 16px;
-            @media (min-width: 768px) {
-                max-height: 500px;
-                width: auto;
-            }
+        }
+    }
+}
+
+.parent {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    .right_img {
+        img {
+            width: 100%;
+            aspect-ratio: 2/1;
+            border-radius: 15px;
+        }
+    }
+    .left_side {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .left_image {
+        img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            border-radius: 15px;
         }
     }
 }
