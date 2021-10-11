@@ -11,7 +11,7 @@
             height: 50px !important;
             object-fit: cover;
             @media (min-width: 768px) {
-                height: 180px !important;
+                height: 110px !important;
             }
         }
     }
@@ -21,9 +21,9 @@
     position: relative;
     justify-content: space-evenly;
     span {
-        font-size: 20px;
+        font-size: 18px;
         position: absolute;
-        bottom: -18px;
+        bottom: -20px;
         margin: 0;
         line-height: 2px;
     }
@@ -31,4 +31,12 @@
 
 .leftImg {
     justify-content: space-evenly;
+    position: relative;
+    span {
+        font-size: 18px;
+        position: absolute;
+        bottom: -20px;
+        margin: 0;
+        line-height: 2px;
+    }
 }
