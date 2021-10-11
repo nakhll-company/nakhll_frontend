@@ -32,7 +32,6 @@ function LinerProducts({
         setProductsListForLinear(response.data);
       }
     } catch (e) {
-      console.log("rrrr :>> ", e);
     }
   };
 

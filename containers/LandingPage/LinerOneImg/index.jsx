@@ -3,11 +3,11 @@ import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import styles from "./LinerOneImg.module.scss";
 
 function LinerOneImg({ nextApi_LinerOneImg }) {
- 
+
   const [dataLinerOneImg, setDataLinerOneImg] = useState([]);
 
   useEffect(async () => {
-    
+
     try {
       let response = await ApiRegister().apiRequest(
         null,
@@ -20,7 +20,6 @@ function LinerOneImg({ nextApi_LinerOneImg }) {
         setDataLinerOneImg(response.data);
       }
     } catch (e) {
-      console.log("rrrr :>> ", e);
     }
   }, []);
   return (

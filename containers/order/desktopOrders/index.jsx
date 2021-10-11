@@ -28,7 +28,6 @@ export default function DesktopOrders({
     { value: "preparing_product", label: "در حال آماده سازی" },
     { value: "wait_customer_approv", label: "در انتظار تأیید مشتری" },
   ];
-  console.log(">>", ordersList);
 
   return (
     <div className={styles.wrapper}>

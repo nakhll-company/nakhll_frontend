@@ -19,7 +19,6 @@ function LinerFourImgMobile({ nextApi_LinerFourImgMobile }) {
         setDataLinerFourImgMobile(response.data);
       }
     } catch (e) {
-      console.log("rrrr :>> ", e);
     }
   }, []);
 

@@ -27,7 +27,6 @@ const fetchData = async (id) => {
 };
 
 const Hojreh = ({ dataShop }) => {
-  console.log("dataShop :>> ", dataShop);
   const [informationShop, setInformationShop] = useState(dataShop);
   const router = useRouter();
 

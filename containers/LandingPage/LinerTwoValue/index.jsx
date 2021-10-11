@@ -18,10 +18,8 @@ function LinerTwoValue({ nextApi_LinerTwoValue }) {
       );
       if (response.status === 200) {
         setDataLinerTwoValue(response.data);
-        console.log("response.data :>> ", response.data);
       }
     } catch (e) {
-      console.log("rrrr :>> ", e);
     }
   }, []);
 

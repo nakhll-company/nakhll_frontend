@@ -110,13 +110,6 @@ const UpdateProduct = ({ activeHojreh }) => {
   // for Save cities
   const [checkedCities, setCheckedCities] = useState([]);
 
-  useEffect(() => {
-    console.log("checkedCities :>> ", checkedCities);
-  }, [checkedCities]);
-  useEffect(() => {
-    console.log("iii :>> ", citiesInput);
-  }, [citiesInput]);
-
   if (showSuccessPage) {
     router.replace("/fp/product/update/product/successPageEditProduct");
   }
@@ -453,11 +446,10 @@ const UpdateProduct = ({ activeHojreh }) => {
                               key={index}
                               className={styles.product_image}
                               style={{
-                                backgroundImage: `${
-                                  item.image
+                                backgroundImage: `${item.image
                                     ? `url(${item.image})`
                                     : `url(${item})`
-                                } `,
+                                  } `,
                               }}
                             >
                               <div

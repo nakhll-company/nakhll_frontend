@@ -54,10 +54,6 @@ function ListProduct({
   const [maxPrice, setMaxPrice] = useState("");
   const [clickOnRange, setClickOnRange] = useState(1);
 
-  useEffect(() => {
-    console.log("wantCategories :>> ", wantCategories);
-  }, [wantCategories]);
-
   // [
   //   {
   //     title: "عسل ارده و  شيره های گياهی",
@@ -132,7 +128,7 @@ function ListProduct({
       if (response.status === 200) {
         setCategories(response.data);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   const _handel_Add_category = (id) => {
@@ -232,14 +228,14 @@ function ListProduct({
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   // START
   // for filters in sidebar
-
   useEffect(async () => {
-    _handel_filters();
+    await _handel_filters();
+    await _handel_category();
   }, [
     isAvailableGoods,
     isReadyForSend,
@@ -249,10 +245,6 @@ function ListProduct({
     whichOrdering,
     clickOnRange,
   ]);
-  useEffect(() => {
-    _handel_filters();
-    _handel_category();
-  }, []);
 
   // for filters in sidebar
   // END

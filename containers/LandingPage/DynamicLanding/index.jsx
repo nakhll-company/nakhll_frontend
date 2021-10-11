@@ -37,7 +37,6 @@ function DynamicLanding({ urlSchema }) {
         setSchema(response.data);
       }
     } catch (e) {
-      console.log("rrrr :>> ", e);
     }
   };
 

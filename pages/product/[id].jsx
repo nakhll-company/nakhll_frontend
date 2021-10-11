@@ -1,31 +1,77 @@
-import React from "react";
-import ListProduct from "../../containers/listProduct";
-import ListWitOutFilters from "../../containers/listProduct/ListWithOutFilters";
+// node libraries
+import { useState } from 'react';
+// components
+import useViewport from "../../components/viewPort";
+import ProductDetailMobile from "../../containers/productDetail/mobile";
+import ProductDetailDesktop from "../../containers/productDetail/desktop";
+// methods
+import { ApiRegister } from '../../services/apiRegister/ApiRegister';
 
-function product({ word, category, ap }) {
-  return (
-    <>
-      {ap !== "" && (
+// fetch data
+const fetchData = async (id) => {
+    let urlComments = encodeURI(`/api/v1/product-page/comments/${id}/`);
+    let urlResponse = encodeURI(`/api/v1/product-page/details/${id}/`);
+    let urlRelatedProduct = encodeURI(`/api/v1/product-page/related_products/${id}/?page_size=10`);
+    let comments = await ApiRegister().apiRequest(
+        null, "GET", urlComments, true, ""
+    );
+    let response = await ApiRegister().apiRequest(
+        null, "get", urlResponse, true, ""
+    );
+    let relatedProduct = await ApiRegister().apiRequest(
+        null, "GET", urlRelatedProduct, true, ""
+    );
+
+    if (response.status === 200) {
+        return {
+            detail: response.data,
+            comments: comments.data,
+            relatedProduct: relatedProduct.data,
+        };
+    } else {
+        return false;
+    }
+};
+/**
+ * component detail 
+*/
+const ProductDetail = ({ data }) => {
+
+    const { width } = useViewport();
+    const breakpoint = 620;
+    const [posts, setPosts] = useState(Array.from({ length: 20 }));
+
+    const getMorePost = async () => {
+        const res = await fetch(
+            `https://jsonplaceholder.typicode.com/todos?_start=${posts.length}&_limit=10`
+        );
+        const newPosts = await res.json();
+        setPosts((post) => [...post, ...newPosts]);
+    };
+    return (
         <>
-          <ListWitOutFilters api={ap} />
-        </>
-      )}
+            {width < breakpoint ?
+                <ProductDetailMobile data={data} />
+                : <ProductDetailDesktop data={data} />
+            }
 
-      {ap == "" && <ListProduct searchWord={word} categoryIn={category} />}
-    </>
-  );
+        </>
+    );
 }
 
-export default product;
+export default ProductDetail;
+
 
 // function server side
 export async function getServerSideProps(context) {
-  return {
-    props: {
-      id: context.params.id || "",
-      category: context.query.cat || "",
-      word: context.query.word || "",
-      ap: context.query.ap || "",
-    },
-  };
+    const data = await fetchData(context.params.id);
+    return {
+        props: { data },
+    };
 }
+
+
+
+
+
+

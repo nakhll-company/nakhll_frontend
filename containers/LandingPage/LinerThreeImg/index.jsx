@@ -19,7 +19,6 @@ function LinerThreeImg({ nextApi_LinerThreeImg }) {
         setDataLinerThreeImg(response.data);
       }
     } catch (e) {
-      console.log("rrrr :>> ", e);
     }
   }, []);
 
@@ -48,7 +47,7 @@ function LinerThreeImg({ nextApi_LinerThreeImg }) {
                 className={styles.one}
               >
                 <img
-                
+
                   src={dataLinerThreeImg[1].image}
                   loading="lazy"
                   alt={dataLinerThreeImg[1].title}
