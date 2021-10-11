@@ -1,27 +1,8 @@
-import React, { useEffect, useState } from "react";
-import ProductCard from "../../../components/ProductCart/ProductCard";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+import React from "react";
 
 import styles from "./LinerThreeImg.module.scss";
 
-function LinerThreeImg({ nextApi_LinerThreeImg }) {
-  const [dataLinerThreeImg, setDataLinerThreeImg] = useState([]);
-  useEffect(async () => {
-    try {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        nextApi_LinerThreeImg,
-        true,
-        {}
-      );
-      if (response.status === 200) {
-        setDataLinerThreeImg(response.data);
-      }
-    } catch (e) {
-    }
-  }, []);
-
+function LinerThreeImg({ dataLinerThreeImg }) {
   return (
     <>
       {dataLinerThreeImg.length >= 3 && (
@@ -47,7 +28,6 @@ function LinerThreeImg({ nextApi_LinerThreeImg }) {
                 className={styles.one}
               >
                 <img
-
                   src={dataLinerThreeImg[1].image}
                   loading="lazy"
                   alt={dataLinerThreeImg[1].title}

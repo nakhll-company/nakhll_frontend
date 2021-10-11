@@ -3,7 +3,7 @@ import LinerProducts from "../LinerProducts";
 import styles from "./LinerProductsBg.module.scss";
 function LinerProductsBg({
   subTitle_LinerProductsBg,
-  nextApi_LinerProductsBg,
+  dataLinerProductsBg,
   url_LinerProductsBg,
   xl = 2,
   md = 6,
@@ -29,7 +29,7 @@ function LinerProductsBg({
       <div className={`${styles.lefter} col-7 col-md-9`}>
         <LinerProducts
           url={url_LinerProductsBg}
-          nextApi={nextApi_LinerProductsBg}
+          dataLinerProducts={dataLinerProductsBg}
           subTitle={subTitle_LinerProductsBg}
           num={num}
           xl={xl}
