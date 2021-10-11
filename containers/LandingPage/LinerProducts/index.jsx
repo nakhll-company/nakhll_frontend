@@ -18,30 +18,6 @@ function LinerProducts({
   sm = 6,
   xs = 6,
 }) {
-<<<<<<< HEAD
-=======
-  const [productsListForLinear, setProductsListForLinear] = useState([]);
-  const _Call_Products = async () => {
-    try {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        nextApi,
-        true,
-        {}
-      );
-      if (response.status === 200) {
-        setProductsListForLinear(response.data);
-      }
-    } catch (e) {
-    }
-  };
-
-  useEffect(() => {
-    _Call_Products();
-  }, []);
-
->>>>>>> a45fb04b5a3e158703b3136ea0dd9a8ee3c66e72
   return (
     <div className={`container ${styles.lineProduct}`}>
       {title && (

@@ -2,28 +2,7 @@ import React from "react";
 
 import styles from "./LinerThreeImg.module.scss";
 
-<<<<<<< HEAD
 function LinerThreeImg({ dataLinerThreeImg }) {
-=======
-function LinerThreeImg({ nextApi_LinerThreeImg }) {
-  const [dataLinerThreeImg, setDataLinerThreeImg] = useState([]);
-  useEffect(async () => {
-    try {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        nextApi_LinerThreeImg,
-        true,
-        {}
-      );
-      if (response.status === 200) {
-        setDataLinerThreeImg(response.data);
-      }
-    } catch (e) {
-    }
-  }, []);
-
->>>>>>> a45fb04b5a3e158703b3136ea0dd9a8ee3c66e72
   return (
     <>
       {dataLinerThreeImg.length >= 3 && (
@@ -49,10 +28,6 @@ function LinerThreeImg({ nextApi_LinerThreeImg }) {
                 className={styles.one}
               >
                 <img
-<<<<<<< HEAD
-=======
-
->>>>>>> a45fb04b5a3e158703b3136ea0dd9a8ee3c66e72
                   src={dataLinerThreeImg[1].image}
                   loading="lazy"
                   alt={dataLinerThreeImg[1].title}

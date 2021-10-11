@@ -9,29 +9,6 @@ import SwiperCore, { Pagination } from "swiper";
 SwiperCore.use([Pagination]);
 
 import styles from "./HeroSlides.module.scss";
-<<<<<<< HEAD
-=======
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-function HeroSlides({ nextApi_HeroSlides }) {
-  const [dataHeroSlides, setDataHeroSlides] = useState([]);
-
-  useEffect(async () => {
-
-    try {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        nextApi_HeroSlides,
-        true,
-        {}
-      );
-      if (response.status === 200) {
-        setDataHeroSlides(response.data);
-      }
-    } catch (e) {
-    }
-  }, []);
->>>>>>> a45fb04b5a3e158703b3136ea0dd9a8ee3c66e72
 
 function HeroSlides({ dataHeroSlides }) {
   return (
