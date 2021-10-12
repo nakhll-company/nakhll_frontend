@@ -74,7 +74,7 @@ const OrdersDetail = ({ invoiceId }) => {
                                 <span className="text-secondary mb-2"> محصولات :</span>
                                 <div className="d-flex align-items-center">
                                     <a href={`productDetail/${value.id}`}>
-                                        <img src={detailData.image_thumbnail} alt="" style={{ width: "3.2rem", borderRadius: "1.5rem", marginLeft: "1rem" }} />
+                                        {value.image_thumbnail && <img src={value.image_thumbnail} alt="" style={{ width: "3.2rem", borderRadius: "1.5rem", marginLeft: "1rem" }} />}
                                     </a>
                                     <div className="d-flex flex-column flex-md-row align-items-center">
                                         <a href={`productDetail/${value.id}`} className="mx-3">
@@ -90,15 +90,28 @@ const OrdersDetail = ({ invoiceId }) => {
                             <hr style={{ borderBottom: "1px solid rgb(119, 119, 119)", width: "100%" }} />
                             <div className={`${styles.detail} p-3`}>
                                 <div className="d-flex justify-content-center">
-                                    <Image src="/orderDetial/tik.svg" alt="" width="30" height="30" />
-                                    <hr style={{ width: "50px", borderTop: "2px solid green" }} />
-                                    <Image src="/orderDetial/box.svg" alt="" width="35" height="35" />
-                                    <hr style={{ width: "50px", borderTop: "2px solid green" }} />
-                                    <Image src="/orderDetial/tik.svg" alt="" width="30" height="30" />
-                                    <hr style={{ width: "50px", borderTop: "2px solid green" }} />
-                                    <Image src="/orderDetial/car.svg" alt="" width="35" height="35" />
-                                    <hr style={{ width: "50px", borderTop: "2px solid green" }} />
-                                    <Image src="/orderDetial/tik.svg" alt="" width="30" height="30" />
+                                    <div className="d-flex flex-column">
+                                        <Image src="/orderDetial/tik.svg" alt="" width="30" height="30" />
+                                        <span className="mt-2">تایید حجره دار</span>
+                                    </div>
+                                    <div className="d-flex align-items-start">
+                                        <hr style={{ width: "60px", borderTop: "2px solid green" }} />
+                                        <Image src="/orderDetial/box.svg" alt="" width="35" height="35" />
+                                        <hr style={{ width: "60px", borderTop: "2px solid green" }} />
+                                    </div>
+                                    <div className="d-flex flex-column">
+                                        <Image src="/orderDetial/tik.svg" alt="" width="30" height="30" />
+                                        <span className="mt-2">آماده سازی سفارش</span>
+                                    </div>
+                                    <div className="d-flex align-items-start">
+                                        <hr style={{ width: "60px", borderTop: "2px solid green" }} />
+                                        <Image src="/orderDetial/car.svg" alt="" width="35" height="35" />
+                                        <hr style={{ width: "60px", borderTop: "2px solid green" }} />
+                                    </div>
+                                    <div className="d-flex flex-column">
+                                        <Image src="/orderDetial/tik.svg" alt="" width="30" height="30" />
+                                        <span className="mt-2">تایید مشتری</span>
+                                    </div>
                                 </div>
                                 <div className="d-flex justify-content-center align-items-center mt-4">
                                     کد رهگیری سفارش شما : {_asist.number(detailData.payment_request_datetime)}
