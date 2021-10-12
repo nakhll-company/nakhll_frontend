@@ -1,6 +1,8 @@
 // node libraries
 import { Provider } from "react-redux";
 import { Store } from "../redux/store";
+import { hotjar } from "react-hotjar";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 // components
 import MyLayout from "../components/layout/Layout";
@@ -15,6 +17,9 @@ import "../styles/globals.scss";
 import "../styles/General/font-awesome/css/font-awesome.css";
 
 function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    hotjar.initialize(2447146, 6);
+  }, []);
   const router = useRouter();
 
   if (router.pathname.startsWith("/fp")) {
