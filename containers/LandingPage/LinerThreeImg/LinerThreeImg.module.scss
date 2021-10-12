@@ -55,13 +55,12 @@
     }
     .left_side {
         display: flex;
-        flex-direction: column;
         justify-content: space-between;
     }
     .left_image {
         img {
-            width: 100%;
-            aspect-ratio: 4/3;
+            height: 100%;
+            width: 90%;
             border-radius: 15px;
         }
     }
