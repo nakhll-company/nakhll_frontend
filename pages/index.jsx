@@ -1,7 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import DynamicLanding from "../containers/LandingPage/DynamicLanding";
-import DynamicLandingSSR from "../containers/LandingPage/DynamicLandingSSR";
+
 import HeroSlides from "../containers/LandingPage/HeroSlides";
 import LinerFourImgMobile from "../containers/LandingPage/LinerFourImgMobile";
 import LinerOneImg from "../containers/LandingPage/LinerOneImg";
@@ -54,7 +53,6 @@ const index = ({ data }) => {
     6: " ردیف محصولات",
     7: " ردیف شگفت انگیزا",
   };
-  console.log("data :>> ", data);
 
   const _handel_select_component = (type, index) => {
     switch (type.component_type) {
@@ -115,15 +113,6 @@ const index = ({ data }) => {
       default:
         null;
     }
-  };
-  const SampleLanding = {
-    1: "اسلایدر تکی",
-    2: "بنر تک عکسی",
-    3: " بنر 2تایی در یک ردیف",
-    4: " (یکی بالا دوتا پایین)بنر ۳ تایی",
-    5: " بنر چهارتایی چهارتا کنار هم",
-    6: " ردیف محصولات",
-    7: " ردیف شگفت انگیزا",
   };
 
   return (

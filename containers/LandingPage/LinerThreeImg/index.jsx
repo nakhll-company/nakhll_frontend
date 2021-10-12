@@ -7,6 +7,7 @@ function LinerThreeImg({ dataLinerThreeImg }) {
     <>
       {dataLinerThreeImg.length >= 3 && (
         <>
+          {/* for mobile */}
           <div className="container d-lg-none">
             <div className={styles.topImage}>
               <a
@@ -66,7 +67,6 @@ function LinerThreeImg({ dataLinerThreeImg }) {
               </div>
               <div className={`${styles.left_side}   col-7`}>
                 <a
-                  style={{ marginRight: "10px" }}
                   href={dataLinerThreeImg[1].url}
                   data-observed="0"
                   target="_blank"
