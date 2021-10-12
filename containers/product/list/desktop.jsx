@@ -1,13 +1,14 @@
 // node libraries
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 // components
 import CustomBadge from '../../../components/custom/customBadge';
 // scss
 import styles from '../../../styles/pages/product/desktopList.module.scss';
 //functions
 import { groupProductResponse } from '../groupProduct/methods/groupProductResponse';
-import { useRouter } from 'next/router';
+
 export default function Desktop({ loading, productList, activeHojreh, getProduct, userInfo }) {
     const router = useRouter();
     const productStatus = [
@@ -65,8 +66,8 @@ export default function Desktop({ loading, productList, activeHojreh, getProduct
                             ایجاد کالا جدید
                         </a>
                     </Link>
-                    <button onClick={() => groupProductResponse(userInfo, activeHojreh, router)}>
-                        <a className={`${styles.button_add}`}>
+                    <button className={styles.button_add_group} onClick={() => groupProductResponse(userInfo, activeHojreh, router)}>
+                        <a className="d-flex align-items-center">
                             <i className="fa fa-plus" style={{ marginLeft: "10px" }}></i>
                             ایجاد کالای گروهی
                         </a>

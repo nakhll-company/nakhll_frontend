@@ -103,7 +103,7 @@ const OrdersDetail = ({ invoiceId }) => {
                                 <div className="d-flex justify-content-center align-items-center mt-4">
                                     کد رهگیری سفارش شما : {_asist.number(detailData.payment_request_datetime)}
                                     <Link href={`https://tracking.post.ir/?id=${detailData.payment_request_datetime}`}>
-                                        <a style={{ border: "1px solid gray", borderRadius: "25px", padding: "5px 10px" }}>پیگیری سفارش در سامانه پست</a>
+                                        <a target="_blank" style={{ border: "1px solid gray", borderRadius: "25px", padding: "5px 10px" }}>پیگیری سفارش در سامانه پست</a>
                                     </Link>
                                 </div>
                             </div>

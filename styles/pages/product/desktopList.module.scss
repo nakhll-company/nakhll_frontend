@@ -134,6 +134,25 @@
                 font-family: 'vazir';
                 margin: 0px 20px;
             }
+            // button add group
+            .button_add_group{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 150px;
+                height: 33px;
+                background: #004fa3 !important;
+                border-radius: 5px;
+                text-align: center;
+                color: #fff;
+                border: none;
+                outline: none;
+                font-family: 'vazir';
+                margin: 0px 10px;
+                a:hover{
+                    color: #fff;
+                }
+            }
         }
         // tabel
         .product_tabel{
