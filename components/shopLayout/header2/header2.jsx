@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import styles from "./header2.module.scss";
 import Head from "next/head";
-import Image from "next/image";
+// component
 import MegaMenuDesktop from "../../../containers/LandingPage/MegaMenuDesktop";
 import MegaMenuMobile from "../../../containers/LandingPage/MegaMenuMobile";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
+// style
+import styles from "./header2.module.scss";
 
 function Header2(props) {
   const dispatch = useDispatch();
@@ -64,9 +65,7 @@ function Header2(props) {
                   <form
                     onSubmit={(event) => {
                       event.preventDefault();
-                      location.replace(
-                        `/product?word=${inputSearch}&cat=`
-                      );
+                      location.replace(`/product?word=${inputSearch}&cat=`);
                     }}
                   >
                     <input
@@ -143,7 +142,9 @@ function Header2(props) {
                     alt=""
                   />
                 </i>
-                <span className={styles.counter_cart}>{userLog.cart_items_count}</span>
+                <span className={styles.counter_cart}>
+                  {userLog.cart_items_count}
+                </span>
               </a>
             </div>
           </div>
