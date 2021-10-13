@@ -8,13 +8,20 @@ import { ApiReference } from "../../Api";
 import ListProduct from "../../containers/listProduct";
 import DynamicLanding from "../../containers/LandingPage/DynamicLanding";
 import EnfoLiner from "../../containers/hojreh/EnfoLiner";
+import HeroSlides from "../../containers/LandingPage/HeroSlides";
+import LinerOneImg from "../../containers/LandingPage/LinerOneImg";
+import LinerTwoValue from "../../containers/LandingPage/LinerTwoValue";
+import LinerThreeImg from "../../containers/LandingPage/LinerThreeImg";
+import LinerFourImgMobile from "../../containers/LandingPage/LinerFourImgMobile";
+import LinerProducts from "../../containers/LandingPage/LinerProducts";
+import LinerProductsBg from "../../containers/LandingPage/LinerProductsBg";
 
 // fetch data
 const fetchData = async (id) => {
   let all_data_for_component = [];
   let all_type_for_component = [];
   let Schema = [];
-  let urlSchema = encodeURI(ApiReference.Landing_Page);
+  let urlSchema = encodeURI(`${ApiReference.Landing_Page}${id}/`);
   let response = await ApiRegister().apiRequest(
     null,
     "GET",
@@ -24,7 +31,7 @@ const fetchData = async (id) => {
   );
 
   if (response.status === 200) {
-    if (response.data.is_landing) {
+    if (true) {
       Schema = await ApiRegister().apiRequest(null, "GET", urlSchema, true, "");
       if (Schema.status === 200) {
         for (let index = 0; index < Schema.data.length; index++) {
@@ -54,25 +61,26 @@ const fetchData = async (id) => {
 };
 
 const Hojreh = ({ dataShop }) => {
-  console.log("dataShop :>> ", dataShop);
   const [informationShop, setInformationShop] = useState(dataShop.shop);
   const _handel_select_component = (type, index) => {
     switch (type.component_type) {
       case 1:
         return (
-          <HeroSlides dataHeroSlides={data.all_data_for_component[index]} />
+          <HeroSlides dataHeroSlides={dataShop.all_data_for_component[index]} />
         );
         break;
       case 2:
         return (
-          <LinerOneImg dataLinerOneImg={data.all_data_for_component[index]} />
+          <LinerOneImg
+            dataLinerOneImg={dataShop.all_data_for_component[index]}
+          />
         );
         break;
       case 3:
         return (
           <>
             <LinerTwoValue
-              dataLinerTwoValue={data.all_data_for_component[index]}
+              dataLinerTwoValue={dataShop.all_data_for_component[index]}
             />
           </>
         );
@@ -80,14 +88,14 @@ const Hojreh = ({ dataShop }) => {
       case 4:
         return (
           <LinerThreeImg
-            dataLinerThreeImg={data.all_data_for_component[index]}
+            dataLinerThreeImg={dataShop.all_data_for_component[index]}
           />
         );
         break;
       case 5:
         return (
           <LinerFourImgMobile
-            dataLinerFourImgMobile={data.all_data_for_component[index]}
+            dataLinerFourImgMobile={dataShop.all_data_for_component[index]}
           />
         );
         break;
@@ -96,7 +104,7 @@ const Hojreh = ({ dataShop }) => {
           <LinerProducts
             title={type.title}
             subTitle={type.subtitle}
-            dataLinerProducts={data.all_data_for_component[index]}
+            dataLinerProducts={dataShop.all_data_for_component[index]}
             url={type.url}
           />
         );
@@ -155,8 +163,6 @@ const Hojreh = ({ dataShop }) => {
       )}
 
       {dataShop.shop.is_landing &&
-        dataShop.id &&
-        dataShop.SchemaIn.length > 0 &&
         dataShop.SchemaIn.map((turn, index) =>
           _handel_select_component(turn, index)
         )}
@@ -169,8 +175,6 @@ export default Hojreh;
 // function server side
 export async function getServerSideProps(context) {
   const dataShop = await fetchData(context.params.id);
-  console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-  console.log(dataShop);
 
   return {
     props: {
