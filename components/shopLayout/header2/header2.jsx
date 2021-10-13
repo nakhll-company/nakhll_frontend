@@ -9,7 +9,7 @@ import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
 // style
 import styles from "./header2.module.scss";
 
-function Header2(props) {
+function Header2({ category }) {
   const dispatch = useDispatch();
   const userLog = useSelector((state) => state.User.userInfo);
 
@@ -155,7 +155,7 @@ function Header2(props) {
               <div className={styles.menu_collaps}>
                 <span className="fas fa-bars"></span>
               </div>
-              <MegaMenuDesktop />
+              <MegaMenuDesktop category={category} />
             </div>
           </div>
         </nav>
@@ -317,7 +317,7 @@ function Header2(props) {
               {/* </div> */}
               <h2 className={styles.title_menu}>دسته بندی محصولات</h2>
             </div>
-            <MegaMenuMobile />
+            <MegaMenuMobile  category={category}/>
           </div>
         </nav>
       </header>

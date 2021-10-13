@@ -7,8 +7,28 @@ import { ToastContainer } from "react-toastify";
 
 // style
 import styles from "../../styles/components/shopLayout/shopLayout.module.scss";
+import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { useEffect, useState } from "react";
 
 function ShopLayout({ children }) {
+  const [category, setCategory] = useState([]);
+  const _call_Category = async () => {
+    try {
+      let response = await ApiRegister().apiRequest(
+        null,
+        "get",
+        `/api/v1/markets/`,
+        true,
+        {}
+      );
+      if (response.status === 200) {
+        setCategory(response.data);
+      }
+    } catch (e) {}
+  };
+  useEffect(() => {
+    _call_Category();
+  }, []);
   return (
     <div>
       <ToastContainer />
@@ -21,7 +41,7 @@ function ShopLayout({ children }) {
           height="100px"
         /> */}
       {/* </header> */}
-      <Header2 />
+      <Header2 category={category} />
       <main className={styles.mainContent}>{children}</main>
       <Footer />
     </div>

@@ -4,7 +4,7 @@ import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
 import styles from "./MegaMenuMobile.module.scss";
 
-function MegaMenuMobile(props) {
+function MegaMenuMobile({ category }) {
   const _handel_according = (accord, icon) => {
     let element = document.getElementById(accord);
     if (element.style.height == "0px") {
@@ -16,26 +16,6 @@ function MegaMenuMobile(props) {
       document.getElementById(icon).className = "fas fa-angle-up";
     }
   };
-
-  const [category, setCategory] = useState([]);
-  const _call_Category = async () => {
-    try {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        ApiReference.menu,
-        true,
-        {}
-      );
-      if (response.status === 200) {
-        setCategory(response.data);
-      }
-    } catch (e) {}
-  };
-
-  useEffect(() => {
-    _call_Category();
-  }, []);
 
   return (
     <ul className={styles.ul}>

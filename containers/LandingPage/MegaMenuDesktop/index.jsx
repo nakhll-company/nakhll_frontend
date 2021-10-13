@@ -1,28 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import styles from "./MegaMenuDesktop.module.scss";
-function MegaMenuDesktop(props) {
-  const [category, setCategory] = useState([]);
-  const _call_Category = async () => {
-    try {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        `/api/v1/markets/`,
-        true,
-        {}
-      );
-      if (response.status === 200) {
-        setCategory(response.data);
-      }
-    } catch (e) {
-    }
-  };
-
-  useEffect(() => {
-    _call_Category();
-  }, []);
-
+function MegaMenuDesktop({ category }) {
   return (
     <ul className={styles.nav_list}>
       {category.slice(0, 9).map((element, index) => (
@@ -44,7 +23,10 @@ function MegaMenuDesktop(props) {
                 <ul className={styles.nav_submenu_cat}>
                   <li className={styles.nav_submenu_col_title}>
                     {element.submarkets.map((subElement, index) => (
-                      <a key={index} href={`/product?word=&cat=${subElement.id}`}>
+                      <a
+                        key={index}
+                        href={`/product?word=&cat=${subElement.id}`}
+                      >
                         {subElement.title}
                         <i className="icon icon-Left"></i>
                       </a>

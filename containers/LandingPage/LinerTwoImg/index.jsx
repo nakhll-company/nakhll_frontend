@@ -18,8 +18,7 @@ function LinerTwoImg({ nextApi_LinerTwoImg }) {
       if (response.status === 200) {
         setDataLinerTwoImg(response.data);
       }
-    } catch (e) {
-    }
+    } catch (e) {}
   }, []);
 
   return (
