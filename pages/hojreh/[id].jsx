@@ -6,7 +6,7 @@ import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { ApiReference } from "../../Api";
 
 import ListProduct from "../../containers/listProduct";
-import DynamicLanding from "../../containers/LandingPage/DynamicLanding";
+
 import EnfoLiner from "../../containers/hojreh/EnfoLiner";
 import HeroSlides from "../../containers/LandingPage/HeroSlides";
 import LinerOneImg from "../../containers/LandingPage/LinerOneImg";
