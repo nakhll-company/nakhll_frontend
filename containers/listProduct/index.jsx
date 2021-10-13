@@ -3,7 +3,7 @@ import Head from "next/head";
 import ContextListProductPage from "./Context/context";
 import CustomAccordion from "../../components/custom/customAccordion";
 import CheckboxTree from "react-checkbox-tree";
-import { market } from "../../components/custom/data/market";
+
 import MultiRangeSlider from "../../components/custom/customMultiRangeSlider/MultiRangeSlider";
 import { allCites } from "../../components/custom/data/data";
 import CustomSwitch from "../../components/custom/customSwitch";
@@ -54,68 +54,6 @@ function ListProduct({
   const [maxPrice, setMaxPrice] = useState("");
   const [clickOnRange, setClickOnRange] = useState(1);
 
-  // [
-  //   {
-  //     title: "عسل ارده و  شيره های گياهی",
-  //     url: "/markets/submarkets/rsth-aasl-rdh-o-h-shyrh-yh/",
-  //     id: "206b4dee-3b4c-41c5-a20a-ab3689f0096c",
-  //     product_count: 26,
-  //   },
-  //   {
-  //     title: "خواروبار",
-  //     url: "/markets/submarkets/khorobr/",
-  //     id: "b103e502-fd6d-4e92-a1e2-6c6eb4d390c6",
-  //     product_count: 10,
-  //   },
-  //   {
-  //     title: "لوازم آرایشی",
-  //     url: "/markets/submarkets/lozm-rsh/",
-  //     id: "4d4abca7-974c-4ac3-91f4-adfe2e0fd9a6",
-  //     product_count: 3,
-  //   },
-  //   {
-  //     title: "کتاب و مجله",
-  //     url: "/markets/submarkets/tb-o-mglh/",
-  //     id: "cf888a4c-a148-49f4-a43d-0873ecd8188c",
-  //     product_count: 2,
-  //   },
-  //   {
-  //     title: "تنقلات",
-  //     url: "/markets/submarkets/tnklt/",
-  //     id: "96a86f48-2faa-44d8-a759-15353a54e585",
-  //     product_count: 2,
-  //   },
-  //   {
-  //     title: "خشکبار",
-  //     url: "/markets/submarkets/khshbr/",
-  //     id: "5d8c6ddd-2077-4d5b-8287-41e1e97b1f42",
-  //     product_count: 2,
-  //   },
-  //   {
-  //     title: "زیور سازان",
-  //     url: "/markets/submarkets/zor-szn/",
-  //     id: "fb1d0dc0-5265-471a-9a26-34f7da2a3336",
-  //     product_count: 1,
-  //   },
-  //   {
-  //     title: "بافندگان",
-  //     url: "/markets/submarkets/bfndn/",
-  //     id: "5f239daf-9984-477a-aacd-fc3a2f8b76cb",
-  //     product_count: 1,
-  //   },
-  //   {
-  //     title: "تزئینات منزل",
-  //     url: "/markets/submarkets/sbb-khodmn/",
-  //     id: "a2960d7f-c8b2-4f41-ae58-e72b186640b5",
-  //     product_count: 1,
-  //   },
-  //   {
-  //     title: "گیاهان دارویی",
-  //     url: "/markets/submarkets/hn-dro/",
-  //     id: "e82717ef-aff5-47b3-9e88-97bd764b6f8b",
-  //     product_count: 1,
-  //   },
-  // ]
   const _handel_category = async () => {
     try {
       let response = await ApiRegister().apiRequest(
@@ -128,7 +66,7 @@ function ListProduct({
       if (response.status === 200) {
         setCategories(response.data);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   const _handel_Add_category = (id) => {
@@ -228,7 +166,7 @@ function ListProduct({
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   // START
@@ -269,60 +207,38 @@ function ListProduct({
           listWithFilter: listWithFilter,
         }}
       >
-        <Head>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link
-            href="https://cdn.jsdelivr.net/npm/bootstramp@5.0.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-            crossorigin="anonymous"
-          />
-          <script
-            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-            integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-            crossorigin="anonymous"
-          ></script>
-          <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-            crossorigin="anonymous"
-          ></script>
-          <link
-            rel="stylesheet"
-            href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
-            integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
-            crossOrigin="anonymous"
-          ></link>
-        </Head>
         <div className="container_N">
           <div className="row sidebar-parent">
             <div className="d-none d-lg-block col-lg-3">
               <div id="sidebar">
-                <CustomAccordion title="دسته بندی" item="one">
-                  {categories.map((ele, index) => (
-                    <div
-                      key={`one${index}`}
-                      style={{ marginBottom: "10px", paddingRight: "10px" }}
-                    >
-                      <input
-                        onChange={(e) => {
-                          _handel_Add_category(e.target.value);
-                        }}
-                        className="form-check-input"
-                        type="checkbox"
-                        value={ele.id}
-                        id={`checkbox${index}`}
-                      />
-                      <label
-                        style={{ marginRight: "5px", fontSize: "15px" }}
-                        className="form-check-label"
-                        htmlFor={`checkbox${index}`}
+                {categories.length > 0 && (
+                  <CustomAccordion title="دسته بندی" item="one">
+                    {categories.map((ele, index) => (
+                      <div
+                        key={`one${index}`}
+                        style={{ marginBottom: "10px", paddingRight: "10px" }}
                       >
-                        {ele.title} ({_asist.number(ele.product_count)})
-                      </label>
-                    </div>
-                  ))}
-                </CustomAccordion>
+                        <input
+                          onChange={(e) => {
+                            _handel_Add_category(e.target.value);
+                          }}
+                          className="form-check-input"
+                          type="checkbox"
+                          value={ele.id}
+                          id={`checkbox${index}`}
+                        />
+                        <label
+                          style={{ marginRight: "5px", fontSize: "15px" }}
+                          className="form-check-label"
+                          htmlFor={`checkbox${index}`}
+                        >
+                          {ele.title} ({_asist.number(ele.product_count)})
+                        </label>
+                      </div>
+                    ))}
+                  </CustomAccordion>
+                )}
+
                 <CustomAccordion title="محدوده قیمت" item="two" close={true}>
                   <div style={{ direction: "ltr", zIndex: "1000" }}>
                     <MultiRangeSlider
@@ -518,31 +434,33 @@ function ListProduct({
                   </div>
                 </div>
               </CustomAccordion>
-              <CustomAccordion title="دسته بندی" item="1mobile">
-                {categories.map((ele, index) => (
-                  <div
-                    key={`one${index}`}
-                    style={{ marginBottom: "10px", paddingRight: "10px" }}
-                  >
-                    <input
-                      onChange={(e) => {
-                        _handel_Add_category(e.target.value);
-                      }}
-                      className="form-check-input"
-                      type="checkbox"
-                      value={ele.id}
-                      id={`checkbox${index}`}
-                    />
-                    <label
-                      style={{ marginRight: "5px", fontSize: "15px" }}
-                      className="form-check-label"
-                      htmlFor={`checkbox${index}`}
+              {categories.length > 0 && (
+                <CustomAccordion title="دسته بندی" item="1mobile">
+                  {categories.map((ele, index) => (
+                    <div
+                      key={`one${index}`}
+                      style={{ marginBottom: "10px", paddingRight: "10px" }}
                     >
-                      {ele.title} ({_asist.number(ele.product_count)})
-                    </label>
-                  </div>
-                ))}
-              </CustomAccordion>
+                      <input
+                        onChange={(e) => {
+                          _handel_Add_category(e.target.value);
+                        }}
+                        className="form-check-input"
+                        type="checkbox"
+                        value={ele.id}
+                        id={`checkbox${index}`}
+                      />
+                      <label
+                        style={{ marginRight: "5px", fontSize: "15px" }}
+                        className="form-check-label"
+                        htmlFor={`checkbox${index}`}
+                      >
+                        {ele.title} ({_asist.number(ele.product_count)})
+                      </label>
+                    </div>
+                  ))}
+                </CustomAccordion>
+              )}
 
               <CustomAccordion title="استان و شهر حجره دار" item="3mobile">
                 <CheckboxTree
@@ -685,78 +603,6 @@ function ListProduct({
                   >
                     <span>تازه ها</span>
                   </div>
-                  {/* <ul>
-                      <li className={`sort-item   `}>
-                        <a
-                          id={"1"}
-                          onClick={() => {
-                            setWhichOrdering("");
-                            setWitchItem("1");
-                          }}
-                        >
-                          مرتبط‌ترین
-                        </a>
-                      </li>
-                      <li
-                        className={`sort-item  ${
-                          "2" === witchItem ? " active" : ""
-                        } `}
-                      >
-                        <a
-                          onClick={() => {
-                            setWhichOrdering("Price");
-  
-                            setWitchItem("2");
-                          }}
-                        >
-                          ارزان‌تر
-                        </a>
-                      </li>
-                      <li
-                        id={"3"}
-                        className={`sort-item  ${
-                          "3" === witchItem ? " active" : ""
-                        } `}
-                      >
-                        <a
-                          onClick={() => {
-                            setWhichOrdering("-Price");
-  
-                            setWitchItem("3");
-                          }}
-                        >
-                          گران‌تر
-                        </a>
-                      </li>
-                      <li
-                        className={`sort-item  ${
-                          "4" === witchItem ? " active" : ""
-                        } `}
-                      >
-                        <a
-                          onClick={() => {
-                            setWhichOrdering("DiscountPrecentage");
-                            setWitchItem("4");
-                          }}
-                        >
-                          بیشترین تخفیف
-                        </a>
-                      </li>
-                      <li
-                        className={`sort-item  ${
-                          "5" === witchItem ? " active" : ""
-                        } `}
-                      >
-                        <a
-                          onClick={() => {
-                            setWhichOrdering("-DateCreate");
-                            setWitchItem("5");
-                          }}
-                        >
-                          تازه‌ها
-                        </a>
-                      </li>
-                    </ul> */}
                 </div>
               </div>
             </div>

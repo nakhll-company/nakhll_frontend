@@ -45,22 +45,22 @@
       -webkit-backdrop-filter: blur(0px);
       border-radius: 10px;
       border: 1px solid rgba(255, 255, 255, 0.18);
-      @media (min-width: "768px") {
+      @media (min-width: 768px) {
         width: 50%;
         height: 50%;
       }
       .img_profile {
         margin-right: 10px;
-        width: 30px;
-        height: 30px;
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
         margin-left: 5px;
-        @media (min-width: "425px") {
+        @media (min-width: 425px) {
           width: 50px;
           height: 50px;
           margin-left: 10px;
         }
-        @media (min-width: "768px") {
+        @media (min-width: 768px) {
           width: 90px;
           height: 90px;
           margin-left: 10px;
@@ -68,7 +68,7 @@
       }
       .information {
         h1 {
-          font-size: 0.7rem;
+          font-size: 1rem;
           margin-bottom: 5px;
           color: #fff;
           @media (min-width: "425px") {
@@ -81,7 +81,7 @@
         h5 {
           color: #fff;
           opacity: 0;
-          font-size: 0.5rem;
+          font-size: 0.7rem;
           font-weight: bold;
           transition: 0.5s;
           transform: translateX(20px);
