@@ -11,6 +11,10 @@ import EnfoLiner from "../../containers/hojreh/EnfoLiner";
 
 // fetch data
 const fetchData = async (id) => {
+  let all_data_for_component = [];
+  let all_type_for_component = [];
+  let Schema = [];
+  let urlSchema = encodeURI(ApiReference.Landing_Page);
   let response = await ApiRegister().apiRequest(
     null,
     "GET",
@@ -20,7 +24,30 @@ const fetchData = async (id) => {
   );
 
   if (response.status === 200) {
-    return response.data;
+    if (response.data.is_landing) {
+      Schema = await ApiRegister().apiRequest(null, "GET", urlSchema, true, "");
+      if (Schema.status === 200) {
+        for (let index = 0; index < Schema.data.length; index++) {
+          let one_Component = await ApiRegister().apiRequest(
+            null,
+            "GET",
+            Schema.data[index].data,
+            true,
+            ""
+          );
+          if (one_Component.status === 200) {
+            all_type_for_component.push(Schema.data[index].component_type);
+            all_data_for_component.push(one_Component.data);
+          }
+        }
+      }
+    }
+    return {
+      shop: response.data || [],
+      SchemaIn: Schema.data || [],
+      all_type_for_component,
+      all_data_for_component,
+    };
   } else {
     return false;
   }
@@ -28,11 +55,67 @@ const fetchData = async (id) => {
 
 const Hojreh = ({ dataShop }) => {
   console.log("dataShop :>> ", dataShop);
-  const [informationShop, setInformationShop] = useState(dataShop);
-  const router = useRouter();
-
-  const id_Hojreh = router.query.id;
-
+  const [informationShop, setInformationShop] = useState(dataShop.shop);
+  const _handel_select_component = (type, index) => {
+    switch (type.component_type) {
+      case 1:
+        return (
+          <HeroSlides dataHeroSlides={data.all_data_for_component[index]} />
+        );
+        break;
+      case 2:
+        return (
+          <LinerOneImg dataLinerOneImg={data.all_data_for_component[index]} />
+        );
+        break;
+      case 3:
+        return (
+          <>
+            <LinerTwoValue
+              dataLinerTwoValue={data.all_data_for_component[index]}
+            />
+          </>
+        );
+        break;
+      case 4:
+        return (
+          <LinerThreeImg
+            dataLinerThreeImg={data.all_data_for_component[index]}
+          />
+        );
+        break;
+      case 5:
+        return (
+          <LinerFourImgMobile
+            dataLinerFourImgMobile={data.all_data_for_component[index]}
+          />
+        );
+        break;
+      case 6:
+        return (
+          <LinerProducts
+            title={type.title}
+            subTitle={type.subtitle}
+            dataLinerProducts={data.all_data_for_component[index]}
+            url={type.url}
+          />
+        );
+        break;
+      case 7:
+        return (
+          <LinerProductsBg
+            subTitle_LinerProductsBg={type.subtitle}
+            dataLinerProductsBg={type.data}
+            url_LinerProductsBg={type.url}
+            num={4}
+            xl={3}
+          />
+        );
+        break;
+      default:
+        null;
+    }
+  };
   return (
     <>
       <Head>
@@ -60,22 +143,23 @@ const Hojreh = ({ dataShop }) => {
           crossOrigin="anonymous"
         ></link>
       </Head>
-      {!dataShop.is_landing && (
+      {!dataShop.shop.is_landing && (
         <>
           <EnfoLiner
             title={informationShop.title}
             profile={informationShop.image_thumbnail_url}
           />
 
-          <ListProduct shop_products={dataShop.slug} />
+          <ListProduct shop_products={dataShop.shop.slug} />
         </>
       )}
 
-      {dataShop.is_landing && dataShop.id && (
-        <DynamicLanding
-          urlSchema={`${ApiReference.schemaShop}${dataShop.ID}/`}
-        />
-      )}
+      {dataShop.shop.is_landing &&
+        dataShop.id &&
+        dataShop.SchemaIn.length > 0 &&
+        dataShop.SchemaIn.map((turn, index) =>
+          _handel_select_component(turn, index)
+        )}
     </>
   );
 };
@@ -85,6 +169,8 @@ export default Hojreh;
 // function server side
 export async function getServerSideProps(context) {
   const dataShop = await fetchData(context.params.id);
+  console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+  console.log(dataShop);
 
   return {
     props: {
