@@ -30,7 +30,7 @@ const FavoritesList = () => {
                             <ProductCart padding={2} product={{
                                 id: value.id,
                                 imageUrl: value.image_thumbnail_url,
-                                url: `/productDetail/${value.slug}`,
+                                url: `/product/${value.slug}`,
                                 title: value.title,
                                 chamberTitle: value.shop.title,
                                 chamberUrl: `/hojreh/${value.shop.slug} `,

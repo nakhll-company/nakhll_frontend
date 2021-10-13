@@ -430,7 +430,7 @@ function ListProduct({
                         product={{
                           id: oneProduct.id,
                           imageUrl: oneProduct.image_thumbnail_url,
-                          url: `/productDetail/${oneProduct.slug}/`,
+                          url: `/product/${oneProduct.slug}/`,
                           title: oneProduct.title,
                           chamberTitle:
                             oneProduct.shop && oneProduct.shop.title,

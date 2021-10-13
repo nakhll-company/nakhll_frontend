@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import ProductCard from "../../../components/ProductCart/ProductCard";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
 import styles from "./LinerTwoImg.module.scss";

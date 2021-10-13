@@ -50,7 +50,7 @@ function LinerProducts({
               product={{
                 id: product.id,
                 imageUrl: product.image_thumbnail_url,
-                url: `/productDetail/${product.slug}/`,
+                url: `/product/${product.slug}/`,
                 title: product.title,
                 chamberTitle: product.shop.title,
                 chamberUrl: `/hojreh/${product.shop.slug} `,

@@ -118,6 +118,7 @@ const Profile = () => {
                     };
                   });
                 }}
+                onLoad={(event) => { activeLink(event); }}
               >
                 <i className="fas fa-box-open ms-2"></i>
                 پیگیری سفارشات
