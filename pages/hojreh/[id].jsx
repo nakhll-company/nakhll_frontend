@@ -2,19 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 
-import styles from "./hojreh.module.scss";
-
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { ApiReference } from "../../Api";
 
 import ListProduct from "../../containers/listProduct";
 import DynamicLanding from "../../containers/LandingPage/DynamicLanding";
+import EnfoLiner from "../../containers/hojreh/EnfoLiner";
 
 // fetch data
 const fetchData = async (id) => {
   let response = await ApiRegister().apiRequest(
     null,
     "GET",
-    `/api/v1/shop/${id}/`,
+    `${ApiReference.shop}${id}/`,
     true,
     ""
   );
@@ -27,6 +27,7 @@ const fetchData = async (id) => {
 };
 
 const Hojreh = ({ dataShop }) => {
+  console.log("dataShop :>> ", dataShop);
   const [informationShop, setInformationShop] = useState(dataShop);
   const router = useRouter();
 
@@ -61,43 +62,19 @@ const Hojreh = ({ dataShop }) => {
       </Head>
       {!dataShop.is_landing && (
         <>
-          <div className={styles.topHoj}>
-            <div className={styles.liner}>
-              <span>خانه</span>
-              <i className="fas fa-angle-left"></i>
-              <span> حجره ها</span>
-              <i className="fas fa-angle-left"></i>
-              <span>{informationShop.title}</span>
-            </div>
-            <div className={styles.slide}>
-              <div className="">
-                <img className={styles.imgslid} src="/image/back.jpeg" alt="" />
-              </div>
-              <div className={styles.profile}>
-                <img
-                  className={styles.img_profile}
-                  src={informationShop.image_thumbnail_url}
-                  alt=""
-                />
-                <div className={styles.information}>
-                  <h1>{informationShop.title}</h1>
-                  <h5>{informationShop.title}</h5>
-                </div>
-                <i className="fas fa-share-alt-square"></i>
-              </div>
-            </div>
-            <div className={styles.title}>
-              <span> محصولات حجره</span>
-            </div>
-            <div className={styles.sub_line}></div>
-          </div>
+          <EnfoLiner
+            title={informationShop.title}
+            profile={informationShop.image_thumbnail_url}
+          />
 
           <ListProduct shop_products={dataShop.slug} />
         </>
       )}
 
       {dataShop.is_landing && dataShop.id && (
-        <DynamicLanding urlSchema={`/api/v1/shop/schema/${dataShop.ID}/`} />
+        <DynamicLanding
+          urlSchema={`${ApiReference.schemaShop}${dataShop.ID}/`}
+        />
       )}
     </>
   );

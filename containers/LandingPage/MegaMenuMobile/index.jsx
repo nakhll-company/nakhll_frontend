@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { ApiReference } from "../../../Api";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+
 import styles from "./MegaMenuMobile.module.scss";
+
 function MegaMenuMobile(props) {
   const _handel_according = (accord, icon) => {
     let element = document.getElementById(accord);
@@ -20,16 +23,14 @@ function MegaMenuMobile(props) {
       let response = await ApiRegister().apiRequest(
         null,
         "get",
-        `/api/v1/markets/`,
+        ApiReference.menu,
         true,
         {}
       );
       if (response.status === 200) {
         setCategory(response.data);
-
       }
-    } catch (e) {
-    }
+    } catch (e) {}
   };
 
   useEffect(() => {

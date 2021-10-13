@@ -9,12 +9,12 @@ import LinerProductsBg from "../containers/LandingPage/LinerProductsBg";
 import LinerThreeImg from "../containers/LandingPage/LinerThreeImg";
 import LinerTwoValue from "../containers/LandingPage/LinerTwoValue";
 import { ApiRegister } from "../services/apiRegister/ApiRegister";
-
+import { ApiReference } from "../Api";
 // fetch data
 const fetchData = async () => {
   let all_data_for_component = [];
   let all_type_for_component = [];
-  let urlSchema = encodeURI("http://51.89.107.174:8000/api/v1/landing/schema/");
+  let urlSchema = encodeURI(ApiReference.Landing_Page);
 
   let Schema = await ApiRegister().apiRequest(null, "GET", urlSchema, true, "");
 
