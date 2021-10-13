@@ -15,6 +15,7 @@ import "../styles/globals.scss";
 // font-awesome
 
 import "../styles/General/font-awesome/css/font-awesome.css";
+import Script from "next/script";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -24,19 +25,45 @@ function MyApp({ Component, pageProps }) {
 
   if (router.pathname.startsWith("/fp")) {
     return (
-      <Provider store={Store}>
-        <MyLayout>
-          <Component {...pageProps} />
-        </MyLayout>
-      </Provider>
+      <>
+        <Script
+          strategy="lazyOnload"
+          src={"https://www.googletagmanager.com/gtag/js?id=G-Z8E2Z09JDT"}
+        />
+        <Script strategy="lazyOnload">
+          {`window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Z8E2Z09JDT');`}
+        </Script>
+        <Provider store={Store}>
+          <MyLayout>
+            <Component {...pageProps} />
+          </MyLayout>
+        </Provider>
+      </>
     );
   } else {
     return (
-      <Provider store={Store}>
-        <ShopLayout>
-          <Component {...pageProps} />
-        </ShopLayout>
-      </Provider>
+      <>
+        <Script
+          strategy="lazyOnload"
+          src={"https://www.googletagmanager.com/gtag/js?id=G-Z8E2Z09JDT"}
+        />
+        <Script strategy="lazyOnload">
+          {`window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Z8E2Z09JDT');`}
+        </Script>
+        <Provider store={Store}>
+          <ShopLayout>
+            <Component {...pageProps} />
+          </ShopLayout>
+        </Provider>
+      </>
     );
   }
 }
