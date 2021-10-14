@@ -22,14 +22,18 @@ import styles from "../../../../styles/pages/cart/newAddress.module.scss";
 const UpdateAddress = () => {
 
     const router = useRouter();
-    const { id, prev } = router.query;
-
+    const { invoice_id, prev, id } = router.query;
+    console.log(router.query);
     const { register, handleSubmit, setValue, formState: { errors } } = useForm();
 
     const onSubmit = async (data) => {
         await setLoading(true);
         await updateAddress(id, data);
-        router.push(`/cart/address?id=${id}`);
+        if (prev) {
+            router.push(`/cart/payment?invoice_id=${invoice_id}`);
+        } else {
+            router.push(`/cart/address?invoice_id=${invoice_id}`);
+        }
     };
 
     let [editAddressData, setEditAddressData] = useState({});
@@ -62,7 +66,7 @@ const UpdateAddress = () => {
                 :
                 <div className={`col-12 col-lg-5 ${styles.wrapper}`}>
                     <header className={styles.header}>
-                        <Link href={prev ? `/cart/payment?id=${id}` : `/cart/address?id=${id}`}>
+                        <Link href={prev ? `/cart/payment?invoice_id=${invoice_id}` : `/cart/address?invoice_id=${invoice_id}`}>
                             <a className={styles.header_back_link}>
                                 <i className="fas fa-arrow-right px-2"></i>
                                 بازگشت
@@ -145,7 +149,7 @@ const UpdateAddress = () => {
                                 </div>
                                 &nbsp;
                                 <div className={`col-md-6 ${styles.buttons_form}`}>
-                                    <Link href={prev ? "/cart/payment" : "/cart/address"}>
+                                    <Link href={prev ? `/cart/payment?invoice_id=$invoice_{id}` : `/cart/address?invoice_id=${invoice_id}`}>
                                         <a className="btn btn-secondary w-100"> بازگشت </a>
                                     </Link>
                                 </div>

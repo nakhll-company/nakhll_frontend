@@ -24,7 +24,8 @@ const _asist = new Assistent();
 const Address = () => {
 
     const router = useRouter();
-    const { id } = router.query;
+    const { invoice_id } = router.query;
+    console.log(invoice_id);
 
     let [loading, setLoading] = useState(true);
     let [showModal, setShowModal] = useState({
@@ -68,7 +69,7 @@ const Address = () => {
                     <section className={styles.body_address}>
                         <div className={styles.address_head}>
                             <span>می خواهید سفارش شما به کدام نشانی ارسال شود :</span>
-                            <Link href={`/cart/address/add?id=${id}`}>
+                            <Link href={`/cart/address/add?invoice_id=${invoice_id}`}>
                                 <a className={styles.address_head_link}>
                                     <i className="fas fa-plus px-2"></i>
                                     یک نشانی جدید اضافه کنید
@@ -81,8 +82,8 @@ const Address = () => {
                                 let selectedAddressId = document.querySelector("input[type=radio]:checked").value;
                                 let data = { address: selectedAddressId, };
                                 await setLoading(true);
-                                let response = await sendUserAddress(data, id);
-                                await (response === true && router.push(`/cart/payment?id=${id}`));
+                                let response = await sendUserAddress(data, invoice_id);
+                                await (response === true && router.push(`/cart/payment?invoice_id=${invoice_id}`));
                                 await setLoading(false);
                             } else {
                                 errorMessage("لطفا ادرس خود را وارد نمایید");
@@ -120,7 +121,7 @@ const Address = () => {
                                         <div className={styles.address_item_icons}>
                                             <i className="far fa-edit mx-3"
                                                 onClick={() => {
-                                                    router.push(`/cart/address/update/${value.id}`);
+                                                    router.push(`/cart/address/update/${value.id}?invoice_id=${invoice_id}`);
                                                 }}
                                             ></i>
                                             <i className="far fa-trash-alt"
