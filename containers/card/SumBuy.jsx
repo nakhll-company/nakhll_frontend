@@ -17,7 +17,7 @@ export default function SumBuy() {
   const All_product_list_buy = useSelector((state) => state.Cart.allProduct);
   return (
     <>
-      {All_product_list_buy.total_old_price && (
+      {All_product_list_buy.total_old_price ? (
         <div className="col-12 col-md-12 col-lg-4 order-0 order-md-0 order-lg-1">
           <div className={styles.cart_invoice}>
             <div className={styles.cart_invoice_primary_price}>
@@ -90,7 +90,7 @@ export default function SumBuy() {
             </div> */}
           </div>
         </div>
-      )}
+      ) : ""}
     </>
   );
 }
