@@ -46,17 +46,17 @@
 
 .mobile {
     display: flex;
-    margin-bottom: 10px;
+    // margin-bottom: 10px;
     justify-content: space-evenly;
     div {
-        height: 130px;
+        height: 100px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         text-align: center;
         img {
-            height: 50%;
+            height: 70%;
             aspect-ratio: 1/1.14;
         }
         h4 {
@@ -65,8 +65,11 @@
             font-size: 13px;
             margin-top: 10px;
             padding: 3px;
+            width: 60px;
+            text-align: right;
+            line-height: 1.8;
             // border-top: 1px solid royalblue;
-            border-bottom: 1px solid #91a6c1;
+            // border-bottom: 1px solid #91a6c1;
         }
     }
 }

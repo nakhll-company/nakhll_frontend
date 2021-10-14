@@ -262,16 +262,16 @@ const ProductDetailMobile = ({ data }) => {
                 {detail.story ? <CustomLabel type="normal" value={detail.story} label="" /> : <span>ندارد</span>}
               </div>
             </div>
-            <div className=" mb-4">
+            <div className="mb-1">
               <div
-                className={`${styles.product_guide} ${styles.product_guide__deaktop} mt-4  mb-5 `}
+                className={`${styles.product_guide} ${styles.product_guide__deaktop} mt-4  mb-3`}
               >
                 <Link href="/" passHref>
                   <a className={styles.product_guide__element}>
                     <Image
                       src="/Values/7_roz_zemanat.svg"
                       width={70}
-                      height={100}
+                      height={90}
                       alt="۷ روز ضمانت بازگشت پول"
                     />
                     <span
@@ -288,7 +288,7 @@ const ProductDetailMobile = ({ data }) => {
                     <Image
                       src="/Values/ertebat_mostaghim.svg"
                       width={70}
-                      height={100}
+                      height={90}
                       alt="ارتباط مستقیم با حجره دار"
                     />
                     <span
@@ -305,7 +305,7 @@ const ProductDetailMobile = ({ data }) => {
                     <Image
                       src="/Values/sedaghat.svg"
                       width={70}
-                      height={100}
+                      height={90}
                       alt=" صداقت در فروش"
                     />
                     <span
@@ -321,11 +321,11 @@ const ProductDetailMobile = ({ data }) => {
             </div>
             <div>
               <div>
-                <hr className="d-lg-none mb-4 mt-2" />
+                <hr className="d-lg-none mb-4 mt-1" />
                 <section>
                   <h2 className={styles.product_section_title}>
                     <span className="d-none d-lg-block">فروشنده این محصول</span>
-                    <Link href={detail.shop.url} passHref>
+                    <Link href={`/hojreh/${detail.shop.slug}`} passHref>
                       <a
                         className={`${styles.product_section_title__link} d-lg-none d-block`}
                       >
@@ -337,7 +337,7 @@ const ProductDetailMobile = ({ data }) => {
                     className={`${styles.avatar_box}  align-items-start mb-2`}
                   >
                     <div className={` ${styles.avatar} mx-auto mb-2`}>
-                      <Link href={detail.shop.url} passHref>
+                      <Link href={`/hojreh/${detail.shop.slug}`} passHref>
                         <a>
                           <Image
                             src={detail.shop.image_thumbnail_url}
@@ -353,7 +353,7 @@ const ProductDetailMobile = ({ data }) => {
                       className={`${styles.avatar_box_content} align-self-center`}
                     >
                       <div>
-                        <Link href={detail.shop.url} passHref>
+                        <Link href={`/hojreh/${detail.shop.slug}`} passHref>
                           <span
                             style={{ fontSize: ".9rem", color: "#3e3e3e" }}
                             className="mb-0"
@@ -364,7 +364,7 @@ const ProductDetailMobile = ({ data }) => {
                         </Link>
                       </div>
                       <div>
-                        <Link href={detail.shop.url}>
+                        <Link href={`/hojreh/${detail.shop.slug}`}>
                           <span
                             style={{ fontSize: ".8rem", color: "#3e3e3e" }}
                             className="mb-0"
@@ -418,7 +418,7 @@ const ProductDetailMobile = ({ data }) => {
             {/* comments */}
             <section className="col-12">
               <div className={styles.comments_header}>
-                <h3>نظر مشتریان({comments.length} نظر)</h3>
+                <h3>نظر مشتریان ({_asist.number(comments.length)} نظر)</h3>
                 {/* <Link href="/">
                                     <a>مشاهده همه</a>
                                 </Link> */}

@@ -12,7 +12,7 @@ import styles from "./HeroSlides.module.scss";
 
 function HeroSlides({ dataHeroSlides }) {
   return (
-    <div className="container  ">
+    <div className="container ">
       <div className={`row ${styles.slide}`}>
         <div className={`col-md-8 ${styles.righter}`}>
           <Swiper pagination={true} spaceBetween={50} slidesPerView={1}>
