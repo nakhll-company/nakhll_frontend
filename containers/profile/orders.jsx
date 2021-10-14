@@ -18,19 +18,20 @@ const _asist = new Assistent();
 
 const Orders = ({ setProfilePages, setInvoiceId }) => {
 
+    const [loading, setLoading] = useState(true);
     const [ordersList, setOrdersList] = useState([]);
     const { width } = useViewport();
     const breakpoint = 900;
     const router = useRouter();
 
     useEffect(async () => {
-        await getUserOrders(setOrdersList);
+        await getUserOrders(setOrdersList, setLoading);
     }, []);
 
     return (
         <>
             {width < breakpoint ?
-                <MobileOrders ordersList={ordersList} setProfilePages={setProfilePages} setInvoiceId={setInvoiceId} /> :
+                <MobileOrders loading={loading} ordersList={ordersList} setProfilePages={setProfilePages} setInvoiceId={setInvoiceId} /> :
                 <div className={styles.main_wrapper}>
                     <h1>لیست سفارشات</h1>
                     <table>
@@ -45,83 +46,94 @@ const Orders = ({ setProfilePages, setInvoiceId }) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {ordersList.length > 0 && ordersList.map((value, index) => {
-                                let statusOrder = checkTimeOrder(value.created_time_jalali);
-                                return (
+                            {loading ?
+                                <tr>
+                                    <td colSpan={7} className={styles.one_colmne}>
+                                        <Image src="/loading.svg" alt="loding" width="40" height="40" />
+                                    </td>
+                                </tr>
+                                :
+                                ordersList.length > 0 ? ordersList.map((value, index) => {
+                                    let statusOrder = checkTimeOrder(value.created_time_jalali);
+                                    return (
+                                        <tr>
+                                            <td>{_asist.number(index + 1)}</td>
+                                            <td>{_asist.number(value.id)}</td>
+                                            <td>{_asist.number(value.created_date_jalali)}</td>
+                                            <td>{value.status !== "awaiting_paying" && value.status !== "canceled" &&
+                                                _asist.PSeparator(value.final_price)}</td>
+                                            <td>
+                                                {value.items.length > 0 && value.items.map((value, index) => (
+                                                    <a href={`productDetail/${value.slug}`} target="_blank" key={index}>
+                                                        {value.image_thumbnail && <Image src={value.image_thumbnail}
+                                                            alt={value.name} key={index} className={styles.image_product}
+                                                            width="35" height="35" />}
+                                                    </a>
+                                                ))}
+                                            </td>
+                                            <td>
+                                                <span class="d-block px-3 py-2" style={{ backgroundColor: "#ddd", borderRadius: "50rem" }}>
+                                                    <span style={{ color: "red", cursor: "pointer" }} onClick={() => {
+                                                        router.push(`/cart/payment?id=${value.id}`);
+                                                    }}>{value.status === "awaiting_paying" && statusOrder === "haveTime" && "در انتظار پرداخت"}</span>
+                                                    <span style={{ color: "#006060", cursor: "pointer" }} onClick={async () => {
+                                                        await setInvoiceId(value.id);
+                                                        await setProfilePages((pre) => {
+                                                            return {
+                                                                editProfile: false,
+                                                                ordersPage: false,
+                                                                shoppingExperiences: false,
+                                                                favoritesList: false,
+                                                                orderDetail: true
+                                                            }
+                                                        });
+                                                    }}>{(value.status === "completed" || value.status === "wait_store_checkout") && "تکمیل شده"}</span>
+                                                    <span style={{ color: "#006060", cursor: "pointer" }} onClick={async () => {
+                                                        await setInvoiceId(value.id);
+                                                        await setProfilePages((pre) => {
+                                                            return {
+                                                                editProfile: false,
+                                                                ordersPage: false,
+                                                                shoppingExperiences: false,
+                                                                favoritesList: false,
+                                                                orderDetail: true
+                                                            }
+                                                        });
+                                                    }}>{value.status === "wait_store_approv" && "در انتظار تأیید فروشگاه"}</span>
+                                                    <span style={{ color: "#006060", cursor: "pointer" }} onClick={async () => {
+                                                        await setInvoiceId(value.id);
+                                                        await setProfilePages((pre) => {
+                                                            return {
+                                                                editProfile: false,
+                                                                ordersPage: false,
+                                                                shoppingExperiences: false,
+                                                                favoritesList: false,
+                                                                orderDetail: true
+                                                            }
+                                                        });
+                                                    }}>{value.status === "preparing_product" && "در حال آماده سازی"}</span>
+                                                    <span style={{ color: "#006060", cursor: "pointer" }} onClick={async () => {
+                                                        await setInvoiceId(value.id);
+                                                        await setProfilePages((pre) => {
+                                                            return {
+                                                                editProfile: false,
+                                                                ordersPage: false,
+                                                                shoppingExperiences: false,
+                                                                favoritesList: false,
+                                                                orderDetail: true
+                                                            }
+                                                        });
+                                                    }}>{value.status === "wait_customer_approv" && "در انتظار تأیید مشتری"}</span>
+                                                    <span style={{ color: "gray", cursor: "pointer" }}>{value.status === "canceled" && "لغو شده"}</span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    )
+                                }) :
                                     <tr>
-                                        <td>{_asist.number(index + 1)}</td>
-                                        <td>{_asist.number(value.id)}</td>
-                                        <td>{_asist.number(value.created_date_jalali)}</td>
-                                        <td>{value.status !== "awaiting_paying" && value.status !== "canceled" &&
-                                            _asist.PSeparator(value.final_price)}</td>
-                                        <td>
-                                            {value.items.length > 0 && value.items.map((value, index) => (
-                                                <a href={`productDetail/${value.slug}`} target="_blank" key={index}>
-                                                    {value.image_thumbnail && <Image src={value.image_thumbnail}
-                                                        alt={value.name} key={index} className={styles.image_product}
-                                                        width="35" height="35" />}
-                                                </a>
-                                            ))}
-                                        </td>
-                                        <td>
-                                            <span class="d-block px-3 py-2" style={{ backgroundColor: "#ddd", borderRadius: "50rem" }}>
-                                                <span style={{ color: "red", cursor: "pointer" }} onClick={() => {
-                                                    router.push(`/cart/payment?id=${value.id}`);
-                                                }}>{value.status === "awaiting_paying" && statusOrder === "haveTime" && "در انتظار پرداخت"}</span>
-                                                <span style={{ color: "#006060", cursor: "pointer" }} onClick={async () => {
-                                                    await setInvoiceId(value.id);
-                                                    await setProfilePages((pre) => {
-                                                        return {
-                                                            editProfile: false,
-                                                            ordersPage: false,
-                                                            shoppingExperiences: false,
-                                                            favoritesList: false,
-                                                            orderDetail: true
-                                                        }
-                                                    });
-                                                }}>{(value.status === "completed" || value.status === "wait_store_checkout") && "تکمیل شده"}</span>
-                                                <span style={{ color: "#006060", cursor: "pointer" }} onClick={async () => {
-                                                    await setInvoiceId(value.id);
-                                                    await setProfilePages((pre) => {
-                                                        return {
-                                                            editProfile: false,
-                                                            ordersPage: false,
-                                                            shoppingExperiences: false,
-                                                            favoritesList: false,
-                                                            orderDetail: true
-                                                        }
-                                                    });
-                                                }}>{value.status === "wait_store_approv" && "در انتظار تأیید فروشگاه"}</span>
-                                                <span style={{ color: "#006060", cursor: "pointer" }} onClick={async () => {
-                                                    await setInvoiceId(value.id);
-                                                    await setProfilePages((pre) => {
-                                                        return {
-                                                            editProfile: false,
-                                                            ordersPage: false,
-                                                            shoppingExperiences: false,
-                                                            favoritesList: false,
-                                                            orderDetail: true
-                                                        }
-                                                    });
-                                                }}>{value.status === "preparing_product" && "در حال آماده سازی"}</span>
-                                                <span style={{ color: "#006060", cursor: "pointer" }} onClick={async () => {
-                                                    await setInvoiceId(value.id);
-                                                    await setProfilePages((pre) => {
-                                                        return {
-                                                            editProfile: false,
-                                                            ordersPage: false,
-                                                            shoppingExperiences: false,
-                                                            favoritesList: false,
-                                                            orderDetail: true
-                                                        }
-                                                    });
-                                                }}>{value.status === "wait_customer_approv" && "در انتظار تأیید مشتری"}</span>
-                                                <span style={{ color: "gray", cursor: "pointer" }}>{value.status === "canceled" && "لغو شده"}</span>
-                                            </span>
-                                        </td>
+                                        <td colSpan={7}>سفارشی موجود نیست</td>
                                     </tr>
-                                )
-                            })}
+                            }
                         </tbody>
                     </table>
                 </div>

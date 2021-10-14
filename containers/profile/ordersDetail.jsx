@@ -12,16 +12,21 @@ const _asist = new Assistent();
 
 const OrdersDetail = ({ invoiceId }) => {
 
+    const [loading, setLoading] = useState(true);
     const [detailData, setDetailData] = useState({});
 
     useEffect(async () => {
-        await getOrderDetail(invoiceId, setDetailData);
+        await getOrderDetail(invoiceId, setDetailData, setLoading);
     }, []);
 
     return (
         <div className={styles.main_wrapper}>
             <h6>جزئیات سفارش</h6>
-            {Object.keys(detailData).length > 0 &&
+            {loading ?
+                <div className="d-flex flex-column">
+                    <Image src="/loading.svg" alt="loading" width="40" height="40" />
+                </div> :
+                Object.keys(detailData).length > 0 &&
                 <>
                     <div className={`${styles.list_items} my-3`}>
                         <div className={`${styles.right} p-3`}>
