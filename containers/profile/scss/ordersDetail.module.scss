@@ -53,6 +53,16 @@
                 border-color: #eee;
                 border-bottom-color: rgb(238, 238, 238);
             }
+            // hr
+                hr{
+                    width: 60px;
+                    border-top: "2px solid green";
+                } 
+            @media only screen and (max-width: 600px) {
+                hr{
+                    width: 30px;
+                } 
+            }
         }
     }
 }

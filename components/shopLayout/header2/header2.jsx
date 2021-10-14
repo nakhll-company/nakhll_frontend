@@ -180,7 +180,9 @@ function Header2({ category }) {
                   <img
                     src="/icons/Nakhll.png"
                     alt="فروشگاه اینترنتی نخل"
-                    style={{ cursor: "pointer", maxHeight: "33px" }}
+                    width="26"
+                    height="26"
+                    style={{ cursor: "pointer", maxHeight: "33px", marginTop: "5px", marginRight: "2px" }}
                   />
                 </a>
               </div>

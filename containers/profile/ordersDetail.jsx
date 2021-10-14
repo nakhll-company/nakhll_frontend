@@ -95,26 +95,26 @@ const OrdersDetail = ({ invoiceId }) => {
                                         <span className="mt-2">تایید حجره دار</span>
                                     </div>
                                     <div className="d-flex align-items-start">
-                                        <hr style={{ width: "60px", borderTop: "2px solid green" }} />
+                                        <hr />
                                         <Image src="/orderDetial/box.svg" alt="" width="35" height="35" />
-                                        <hr style={{ width: "60px", borderTop: "2px solid green" }} />
+                                        <hr />
                                     </div>
                                     <div className="d-flex flex-column">
                                         <Image src="/orderDetial/tik.svg" alt="" width="30" height="30" />
                                         <span className="mt-2">آماده سازی سفارش</span>
                                     </div>
                                     <div className="d-flex align-items-start">
-                                        <hr style={{ width: "60px", borderTop: "2px solid green" }} />
+                                        <hr />
                                         <Image src="/orderDetial/car.svg" alt="" width="35" height="35" />
-                                        <hr style={{ width: "60px", borderTop: "2px solid green" }} />
+                                        <hr />
                                     </div>
                                     <div className="d-flex flex-column">
                                         <Image src="/orderDetial/tik.svg" alt="" width="30" height="30" />
                                         <span className="mt-2">تایید مشتری</span>
                                     </div>
                                 </div>
-                                <div className="d-flex justify-content-center align-items-center mt-4">
-                                    کد رهگیری سفارش شما : {_asist.number(detailData.payment_request_datetime)}
+                                <div className="d-flex flex-column align-items-center mt-4">
+                                    کد رهگیری سفارش شما : {_asist.number(detailData.payment_request_datetime)}<br />
                                     <Link href={`https://tracking.post.ir/?id=${detailData.payment_request_datetime}`}>
                                         <a target="_blank" style={{ border: "1px solid gray", borderRadius: "25px", padding: "5px 10px" }}>پیگیری سفارش در سامانه پست</a>
                                     </Link>
