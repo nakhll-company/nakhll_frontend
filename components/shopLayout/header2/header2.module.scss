@@ -333,18 +333,13 @@ $color_tel_word: rgb(162, 172, 182);
             padding: 5px 0;
             height: 48px;
             box-sizing: border-box;
-            position: relative;
             .menu_Hamburger {
-                padding-top: 8px;
+                display: flex;
+                align-items: center;
+                flex-direction: row-reverse;
                 i {
                     font-size: 20px;
                 }
-            }
-            .logo {
-                position: absolute;
-                right: 40px;
-                left: 50%;
-                top: 5px;
             }
             .left_side {
                 display: flex;
@@ -549,14 +544,6 @@ $color_tel_word: rgb(162, 172, 182);
     }
 }
 
-.logo_mobile {
-    position: absolute;
-    right: 25px;
-    top: 5px;
-}
-
 .logo_name {
-    position: absolute;
-    right: 35%;
-    top: 15px;
+    width: 50px;
 }

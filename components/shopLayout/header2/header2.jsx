@@ -169,29 +169,28 @@ function Header2({ category }) {
             <div className={styles.inner_header}>
               <div
                 className={styles.menu_Hamburger}
-                onClick={() => {
-                  document.getElementById("SlideMenu").style.right = "0px";
-                }}
               >
-                <i className="fas fa-bars"></i>
-              </div>
-              <div className={styles.logo_mobile}>
                 <a href="/">
                   <img
                     src="/icons/Nakhll.png"
                     alt="فروشگاه اینترنتی نخل"
                     width="26"
                     height="26"
-                    style={{ cursor: "pointer", maxHeight: "33px", marginTop: "5px", marginRight: "2px" }}
+                    style={{ cursor: "pointer", float: "right", marginRight: "10px" }}
                   />
                 </a>
+                <i className="fas fa-bars" onClick={() => {
+                  document.getElementById("SlideMenu").style.right = "0px";
+                }}></i>
               </div>
+              {/* <div className={styles.logo_mobile}>
+              </div> */}
               <div className={styles.logo_name}>
                 <a href="/">
                   <img
                     src="/icons/Name_Nakhl.png"
                     alt="فروشگاه اینترنتی نخل"
-                    style={{ cursor: "pointer", width: "38%" }}
+                    style={{ cursor: "pointer", width: "180%" }}
                   />
                 </a>
               </div>
