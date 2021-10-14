@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
 import Head from "next/head";
+import React, { useState, useEffect } from "react";
+import Assistent from "zaravand-assistent-number";
 // component
 import MegaMenuDesktop from "../../../containers/LandingPage/MegaMenuDesktop";
 import MegaMenuMobile from "../../../containers/LandingPage/MegaMenuMobile";
@@ -9,10 +10,11 @@ import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
 // style
 import styles from "./header2.module.scss";
 
+const _asist = new Assistent();
+
 function Header2({ category }) {
   const dispatch = useDispatch();
   const userLog = useSelector((state) => state.User.userInfo);
-
   const [inputSearch, setInputSearch] = useState("");
   useEffect(() => {
     dispatch(getUserInfo());
@@ -143,7 +145,7 @@ function Header2({ category }) {
                   />
                 </i>
                 <span className={styles.counter_cart}>
-                  {userLog.cart_items_count}
+                  {_asist.number(userLog.cart_items_count)}
                 </span>
               </a>
             </div>
@@ -210,7 +212,7 @@ function Header2({ category }) {
                       alt=""
                     />
                   </i>
-                  <span className={styles.counter_cart}>0</span>
+                  <span className={styles.counter_cart}>{_asist.number(userLog.cart_items_count)}</span>
                 </a>
               </div>
             </div>
@@ -317,7 +319,7 @@ function Header2({ category }) {
               {/* </div> */}
               <h2 className={styles.title_menu}>دسته بندی محصولات</h2>
             </div>
-            <MegaMenuMobile  category={category}/>
+            <MegaMenuMobile category={category} />
           </div>
         </nav>
       </header>

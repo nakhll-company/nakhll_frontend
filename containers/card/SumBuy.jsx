@@ -6,6 +6,7 @@ import ContextProduct from "./Context/context";
 import { useSelector } from "react-redux";
 // methods
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { errorMessage } from '../utils/message';
 // style
 import styles from "../../styles/pages/cart/cart.module.scss";
 

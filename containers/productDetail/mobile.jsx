@@ -148,8 +148,8 @@ const ProductDetailMobile = ({ data }) => {
                         <Image
                           src={value.image}
                           alt="thumbline"
-                          width="345"
-                          height="345"
+                          width="350"
+                          height="350"
                           className={styles.image_slider}
                         />
                       </SwiperSlide>

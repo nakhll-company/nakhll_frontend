@@ -197,9 +197,9 @@ const ProductCard = ({
             <div>
               <button
                 className={`btn ${styles._product_card_add_to_cart}`}
-                onClick={() => {
-                  addToCart(product.id);
-                  dispatch(getUserInfo());
+                onClick={async () => {
+                  await addToCart(product.id);
+                  await dispatch(getUserInfo());
                 }}
               >
                 <i className="fas fa-plus" />
