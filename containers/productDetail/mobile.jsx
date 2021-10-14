@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
 import Assistent from "zaravand-assistent-number";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Fragment, useState, useEffect } from "react";
@@ -13,6 +14,7 @@ import ProductCard from "../../components/ProductCart/ProductCard";
 import CustomSlider from "../../components/custom/customSlider";
 // methods
 import { addToCart } from './methods/addToCart';
+import { getUserInfo } from '../../redux/actions/user/getUserInfo';
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 // styles
 import styles from "./productDetail.module.scss";
@@ -32,6 +34,7 @@ const myLoader = ({ src, width, quality }) => {
 SwiperCore.use([EffectCube, Pagination]);
 const _asist = new Assistent();
 const ProductDetailMobile = ({ data }) => {
+  const dispatch = useDispatch();
   const router = useRouter();
   const { id } = router.query;
 
@@ -558,8 +561,9 @@ const ProductDetailMobile = ({ data }) => {
         </div>
         <button
           className={`${styles.product_btn_mobile} btn btn-tprimary rounded-pill font-weight-bold font-size1-5 px-6 py-2 ev-add-to-cart`}
-          onClick={() => {
-            addToCart(detail.id);
+          onClick={async () => {
+            await addToCart(detail.id);
+            await dispatch(getUserInfo());
           }}
         >
           خرید
