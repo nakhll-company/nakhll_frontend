@@ -260,30 +260,31 @@ function ListProduct({
                     </div>
                   </div>
                 </CustomAccordion>
-
-                <CustomAccordion
-                  title="استان و شهر حجره دار"
-                  item="three"
-                  close={true}
-                >
-                  <CheckboxTree
-                    // direction="rtl"
-                    icons={{
-                      expandClose: (
-                        <span
-                          className="fas fa-angle-left"
-                          style={{ fontSize: "15px" }}
-                        />
-                      ),
-                      parentClose: <span />,
-                    }}
-                    nodes={allCites}
-                    checked={checkedCity}
-                    expanded={expandCity}
-                    onCheck={(e) => setCheckedCity(e)}
-                    onExpand={(e) => setExpandCity(e)}
-                  />
-                </CustomAccordion>
+                {shop_products == "" && (
+                  <CustomAccordion
+                    title="استان و شهر حجره دار"
+                    item="three"
+                    close={true}
+                  >
+                    <CheckboxTree
+                      // direction="rtl"
+                      icons={{
+                        expandClose: (
+                          <span
+                            className="fas fa-angle-left"
+                            style={{ fontSize: "15px" }}
+                          />
+                        ),
+                        parentClose: <span />,
+                      }}
+                      nodes={allCites}
+                      checked={checkedCity}
+                      expanded={expandCity}
+                      onCheck={(e) => setCheckedCity(e)}
+                      onExpand={(e) => setExpandCity(e)}
+                    />
+                  </CustomAccordion>
+                )}
 
                 <div className="search-body-filter">
                   <div className="modal-body" style={{ msOverflowX: "hidden" }}>
@@ -461,26 +462,27 @@ function ListProduct({
                   ))}
                 </CustomAccordion>
               )}
-
-              <CustomAccordion title="استان و شهر حجره دار" item="3mobile">
-                <CheckboxTree
-                  // direction="rtl"
-                  icons={{
-                    expandClose: (
-                      <span
-                        className="fas fa-angle-left"
-                        style={{ fontSize: "15px" }}
-                      />
-                    ),
-                    parentClose: <span />,
-                  }}
-                  nodes={allCites}
-                  checked={checkedCity}
-                  expanded={expandCity}
-                  onCheck={(e) => setCheckedCity(e)}
-                  onExpand={(e) => setExpandCity(e)}
-                />
-              </CustomAccordion>
+              {shop_products == "" && (
+                <CustomAccordion title="استان و شهر حجره دار" item="3mobile">
+                  <CheckboxTree
+                    // direction="rtl"
+                    icons={{
+                      expandClose: (
+                        <span
+                          className="fas fa-angle-left"
+                          style={{ fontSize: "15px" }}
+                        />
+                      ),
+                      parentClose: <span />,
+                    }}
+                    nodes={allCites}
+                    checked={checkedCity}
+                    expanded={expandCity}
+                    onCheck={(e) => setCheckedCity(e)}
+                    onExpand={(e) => setExpandCity(e)}
+                  />
+                </CustomAccordion>
+              )}
             </div>
             <div
               style={{

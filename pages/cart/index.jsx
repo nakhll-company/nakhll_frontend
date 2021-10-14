@@ -50,9 +50,7 @@ export default function Cart() {
       );
       setAll_product_list_buy(await response.data);
       setShowLoading(false);
-    } catch (e) {
-      
-    }
+    } catch (e) {}
   };
 
   // CALL API  &  GET PRODUCT LIST  & SET DATA IN "All_product_list_buy"
@@ -90,7 +88,6 @@ export default function Cart() {
         ) : All_product_list_buy &&
           All_product_list_buy.ordered_items.length > 0 ? (
           <section className="container container_mob pb-5 ">
-
             <div className="row mx-auto mt-4" style={{ maxWidth: "72rem" }}>
               <ListCardBuy />
               <SumBuy />
