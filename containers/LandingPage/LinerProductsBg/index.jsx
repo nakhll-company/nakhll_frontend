@@ -5,13 +5,14 @@ function LinerProductsBg({
   subTitle_LinerProductsBg,
   dataLinerProductsBg,
   url_LinerProductsBg,
+  color,
   xl = 2,
   md = 6,
   lg = 6,
   num,
 }) {
   return (
-    <div className={`${styles.linearBg}  `}>
+    <div styles={{ color: `${color}` }} className={`${styles.linearBg}  `}>
       <div
         style={{ marginLeft: "0 !important", padding: "0 !important" }}
         className={`${styles.righter} col-5 col-md-3 `}

@@ -28,7 +28,7 @@ function LinerTwoValue({ dataLinerTwoValue }) {
             </div>
           </div>
 
-          <div className="container d-none d-lg-block">
+          <div className="container d-none d-lg-block mt-2 mb-5">
             <aside className={styles.section}>
               <div className={styles.rightImg}>
                 <img

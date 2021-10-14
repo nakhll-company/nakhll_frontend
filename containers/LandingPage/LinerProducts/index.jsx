@@ -6,6 +6,7 @@ import styles from "./LinerProducts.module.scss";
 
 function LinerProducts({
   noScroll = false,
+  color,
   num = 6,
   title,
   subTitle,
@@ -19,51 +20,108 @@ function LinerProducts({
   xs = 5,
 }) {
   return (
-    <div className={`container ${styles.lineProduct}`}>
-      {title && (
-        <div className={styles.header}>
-          <div className={styles.title}>
-            <h1>{title}</h1>
-            {/* <h5>{subTitle}</h5> */}
-          </div>
-          <div className={styles.Button}>
-            <button>
-              <a href={`/product/search?ap=${url}`}>مشاهده همه</a>
-            </button>
-          </div>
-        </div>
-      )}
+    <>
+      {/* for mobile */}
       <div
-        style={{ overflowX: noScroll ? "unset" : "auto" }}
-        className={`${styles.products} row`}
+        style={{ backgroundColor: `${color}` }}
+        className={`container d-md-none ${styles.lineProduct}`}
       >
-        {dataLinerProducts.length > 0 &&
-          dataLinerProducts.slice(0, num).map((product, index) => (
-            <ProductCard
-              xl={xl}
-              md={md}
-              lg={lg}
-              sm={sm}
-              xs={xs}
-              key={index}
-              padding={1}
-              product={{
-                id: product.id,
-                imageUrl: product.image_thumbnail_url,
-                url: `/product/${product.slug}/`,
-                title: product.title,
-                chamberTitle: product.shop.title,
-                chamberUrl: `/hojreh/${product.shop.slug} `,
-                discount: product.discount,
-                price: product.price / 10,
-                discountNumber: product.old_price / 10,
-                city: product.shop.state,
-                is_advertisement: product.is_advertisement,
-              }}
-            />
-          ))}
+        {title && (
+          <div className={styles.header}>
+            <div className={styles.title}>
+              <h1>{title}</h1>
+              {/* <h5>{subTitle}</h5> */}
+            </div>
+            <div className={styles.Button}>
+              <button>
+                <a href={`/product/search?ap=${url}`}>مشاهده همه</a>
+              </button>
+            </div>
+          </div>
+        )}
+        <div
+          style={{ overflowX: noScroll ? "unset" : "auto" }}
+          className={`${styles.products} row`}
+        >
+          {dataLinerProducts.length > 0 &&
+            dataLinerProducts.slice(0, num).map((product, index) => (
+              <ProductCard
+                xl={xl}
+                md={md}
+                lg={lg}
+                sm={sm}
+                xs={xs}
+                key={index}
+                padding={1}
+                product={{
+                  id: product.id,
+                  imageUrl: product.image_thumbnail_url,
+                  url: `/product/${product.slug}/`,
+                  title: product.title,
+                  chamberTitle: product.shop.title,
+                  chamberUrl: `/hojreh/${product.shop.slug} `,
+                  discount: product.discount,
+                  price: product.price / 10,
+                  discountNumber: product.old_price / 10,
+                  city: product.shop.state,
+                  is_advertisement: product.is_advertisement,
+                }}
+              />
+            ))}
+        </div>
       </div>
-    </div>
+
+      {/* for Descktop */}
+
+      <div
+        style={{ backgroundColor: `${color}` }}
+        className={` d-none d-md-block ${styles.lineProduct}`}
+      >
+        {title && (
+          <div className={`${styles.header} px-5 pt-3`}>
+            <div className={styles.title}>
+              <h1>{title}</h1>
+              {/* <h5>{subTitle}</h5> */}
+            </div>
+            <div className={styles.Button}>
+              <button>
+                <a href={`/product/search?ap=${url}`}>مشاهده همه</a>
+              </button>
+            </div>
+          </div>
+        )}
+        <div
+          style={{ overflowX: noScroll ? "unset" : "auto" }}
+          className={`${styles.products} row px-5`}
+        >
+          {dataLinerProducts.length > 0 &&
+            dataLinerProducts.slice(0, num).map((product, index) => (
+              <ProductCard
+                xl={xl}
+                md={md}
+                lg={lg}
+                sm={sm}
+                xs={xs}
+                key={index}
+                padding={1}
+                product={{
+                  id: product.id,
+                  imageUrl: product.image_thumbnail_url,
+                  url: `/product/${product.slug}/`,
+                  title: product.title,
+                  chamberTitle: product.shop.title,
+                  chamberUrl: `/hojreh/${product.shop.slug} `,
+                  discount: product.discount,
+                  price: product.price / 10,
+                  discountNumber: product.old_price / 10,
+                  city: product.shop.state,
+                  is_advertisement: product.is_advertisement,
+                }}
+              />
+            ))}
+        </div>
+      </div>
+    </>
   );
 }
 
