@@ -16,7 +16,7 @@ function LinerProducts({
   md = 4,
   lg = 3,
   sm = 6,
-  xs = 6,
+  xs = 5,
 }) {
   return (
     <div className={`container ${styles.lineProduct}`}>

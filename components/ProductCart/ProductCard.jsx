@@ -48,18 +48,20 @@ const ProductCard = ({
   let cardImg = (
     <img
       src={product.imageUrl}
-      className={`card-img-top _product_card_rounded animationCart ${product.unavailable && "_unavailable_product"
-        }`}
+      className={`card-img-top _product_card_rounded animationCart ${
+        product.unavailable && "_unavailable_product"
+      }`}
       alt={product.title}
     />
   );
 
   return (
     <div
-      className={`animationCartParent ${col
-        ? `col-${col}`
-        : `col-5 col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
-        } ${padding ? `px-${padding}` : ""} mb-3`}
+      className={`animationCartParent ${
+        col
+          ? `col-${col}`
+          : `col-${xs} col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
+      } ${padding ? `px-${padding}` : ""} mb-3`}
     >
       {product.iconClose && (
         <span
@@ -103,8 +105,9 @@ const ProductCard = ({
         )} */}
 
         <div
-          className={`card-body mt-2 p-1 ${product.unavailable && "_unavailable_product"
-            }`}
+          className={`card-body mt-2 p-1 ${
+            product.unavailable && "_unavailable_product"
+          }`}
         >
           <div className=" mb-3">
             <a
@@ -205,7 +208,10 @@ const ProductCard = ({
                 <i className="fas fa-plus" />
               </button>
             </div>
-            <div className="_product_card_price_number" style={{ display: "flex", flexDirection: "column" }}>
+            <div
+              className="_product_card_price_number"
+              style={{ display: "flex", flexDirection: "column" }}
+            >
               {product.unavailable ? (
                 <span>ناموجود</span>
               ) : (
@@ -214,7 +220,10 @@ const ProductCard = ({
                     {_asist.PSeparator(product.price)}
                   </span>
                   {product.discountNumber !== 0 && (
-                    <span className="_product_card_discount_number" style={{ display: "flex", justifyContent: "flex-end" }}>
+                    <span
+                      className="_product_card_discount_number"
+                      style={{ display: "flex", justifyContent: "flex-end" }}
+                    >
                       {_asist.PSeparator(product.discountNumber)}
                     </span>
                   )}
