@@ -564,7 +564,7 @@ const Footer = () => {
                   </div> */}
                 </div>
               </div>{" "}
-              <div className="row align-items-center d-flex justify-content-between mt-5 row">
+              <div className="row align-items-center d-flex justify-content-between mt-1 row">
                 <div className="col-4 col-md-2">
                   <div className="d-flex justify-content-center">
                     <a
