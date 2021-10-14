@@ -140,7 +140,7 @@ const ProductDetailMobile = ({ data }) => {
               <h1 className={`${styles.product_detail_title} px-3`}>
                 {detail.title}
               </h1>
-              <div>
+              <div className="px-2">
                 <Swiper grabCursor={true} pagination={true}>
                   {thumblineImage.map((value, index) => {
                     return (
@@ -148,8 +148,9 @@ const ProductDetailMobile = ({ data }) => {
                         <Image
                           src={value.image}
                           alt="thumbline"
-                          width="400"
-                          height="400"
+                          width="345"
+                          height="345"
+                          className={styles.image_slider}
                         />
                       </SwiperSlide>
                     );
@@ -242,7 +243,7 @@ const ProductDetailMobile = ({ data }) => {
                   })}
               </div>
             </section>
-            <div className="mt-4">
+            {/* <div className="mt-4">
               <h2 className={styles.product_section_title}>قیمت محصول</h2>
               <div className="d-flex align-items-center">
                 <h4 className="ms-4" style={{ color: "#224D82" }}>
@@ -252,13 +253,13 @@ const ProductDetailMobile = ({ data }) => {
                   {_asist.PSeparator(detail.old_price / 10)} تومان
                 </del>
               </div>
-            </div>
+            </div> */}
             <div>
               <div>
                 <h2 className={`${styles.product_section_title} mt-4`}>
                   درباره محصول
                 </h2>
-                <CustomLabel type="normal" value={detail.story} label="" />
+                {detail.story ? <CustomLabel type="normal" value={detail.story} label="" /> : <span>ندارد</span>}
               </div>
             </div>
             <div className=" mb-4">
@@ -270,7 +271,7 @@ const ProductDetailMobile = ({ data }) => {
                     <Image
                       src="/Values/7_roz_zemanat.svg"
                       width={70}
-                      height={140}
+                      height={100}
                       alt="۷ روز ضمانت بازگشت پول"
                     />
                     <span
@@ -287,7 +288,7 @@ const ProductDetailMobile = ({ data }) => {
                     <Image
                       src="/Values/ertebat_mostaghim.svg"
                       width={70}
-                      height={140}
+                      height={100}
                       alt="ارتباط مستقیم با حجره دار"
                     />
                     <span
@@ -304,7 +305,7 @@ const ProductDetailMobile = ({ data }) => {
                     <Image
                       src="/Values/sedaghat.svg"
                       width={70}
-                      height={140}
+                      height={100}
                       alt=" صداقت در فروش"
                     />
                     <span
@@ -320,7 +321,7 @@ const ProductDetailMobile = ({ data }) => {
             </div>
             <div>
               <div>
-                <hr className="d-lg-none mb-2 mt-2" />
+                <hr className="d-lg-none mb-4 mt-2" />
                 <section>
                   <h2 className={styles.product_section_title}>
                     <span className="d-none d-lg-block">فروشنده این محصول</span>
@@ -552,7 +553,7 @@ const ProductDetailMobile = ({ data }) => {
           </div>
           <div className={styles.price_mobile}>
             <span>{_asist.PSeparator(detail.price)}</span>
-            <span>تومان</span>
+            <span> تومان </span>
           </div>
         </div>
         <button

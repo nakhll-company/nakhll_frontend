@@ -28,6 +28,8 @@
     // image product
     .image_slider {
         background: white;
+        border: 1px solid rgb(161, 161, 161) !important;
+        border-radius: 20px;
         &_default_media_box {
             height: 5vh;
             cursor: pointer;
