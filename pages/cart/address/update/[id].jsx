@@ -149,7 +149,7 @@ const UpdateAddress = () => {
                                 </div>
                                 &nbsp;
                                 <div className={`col-md-6 ${styles.buttons_form}`}>
-                                    <Link href={prev ? `/cart/payment?invoice_id=$invoice_{id}` : `/cart/address?invoice_id=${invoice_id}`}>
+                                    <Link href={prev ? `/cart/payment?invoice_id=${invoice_id}` : `/cart/address?invoice_id=${invoice_id}`}>
                                         <a className="btn btn-secondary w-100"> بازگشت </a>
                                     </Link>
                                 </div>

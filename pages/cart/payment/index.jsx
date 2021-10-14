@@ -14,7 +14,7 @@ const _asist = new Assistent();
 export default function Cart() {
 
   const router = useRouter();
-  const { id } = router.query;
+  const { invoice_id } = router.query;
 
   const [msgCoupon, setMsgCoupon] = useState([]);
   const [isLoadInvoice, setIsLoadInvoice] = useState(true);
@@ -27,12 +27,12 @@ export default function Cart() {
   const [logisticErrors, setLogisticErrors] = useState([]);
 
   useEffect(() => {
-    id && _getListInvoice();
-  }, [id]);
+    invoice_id && _getListInvoice();
+  }, [invoice_id]);
 
   const _getListInvoice = async () => {
     let response = await ApiRegister().apiRequest(
-      null, "GET", `/accounting_new/api/invoice/${id}/`, true, {}
+      null, "GET", `/accounting_new/api/invoice/${invoice_id}/`, true, {}
     );
     let data = response.data;
     if (response.status === 200) {
@@ -55,7 +55,7 @@ export default function Cart() {
       setIsLoadInvoice(true);
       try {
         let response = await ApiRegister().apiRequest(
-          { coupon: valueCoupon }, "PATCH", `/accounting_new/api/invoice/${id}/set_coupon/`, true, {}
+          { coupon: valueCoupon }, "PATCH", `/accounting_new/api/invoice/${invoice_id}/set_coupon/`, true, {}
         );
         let data = response.data;
         if (response.status === 200) {
@@ -87,7 +87,7 @@ export default function Cart() {
   const _deleteCoupon = async (coupon) => {
     setIsLoadInvoice(true);
     let response = await ApiRegister().apiRequest(
-      { coupon }, "PATCH", `/accounting_new/api/invoice/${id}/unset_coupon/`, true, {}
+      { coupon }, "PATCH", `/accounting_new/api/invoice/${invoice_id}/unset_coupon/`, true, {}
     );
     if (response.status === 200) {
       await _getListInvoice()
@@ -101,7 +101,7 @@ export default function Cart() {
     try {
       setIsLoadInvoice(true);
       let response = await ApiRegister().apiRequest(
-        null, "GET", `/accounting_new/api/invoice/${id}/pay/`, true, {}
+        null, "GET", `/accounting_new/api/invoice/${invoice_id}/pay/`, true, {}
       );
       if (response.status === 200) {
         let data = await response.data;
@@ -137,7 +137,7 @@ export default function Cart() {
             className="cart-head d-flex align-items-center py-3 px-3 text-right mb-0 bg-gray-100"
             style={{ borderRadius: "5px 5px 0px 0px" }}
           >
-            <Link href="/cart/address">
+            <Link href={`/cart/address?invoice_id=${invoice_id}`}>
               <a
                 className="font-size-8 text-muted"
                 style={{ flexBasis: "43.33%" }}
@@ -350,7 +350,7 @@ export default function Cart() {
               </div>
               <div className="text-left line-height-1 mb-5 mb-md-0">
                 <Link
-                  href={`/cart/address/update/${addressReceiver.id}?prev=payment`}
+                  href={`/cart/address/update/${addressReceiver.id}?prev=payment&invoice_id=${invoice_id}`}
                   className="font-size-8 link-body"
                 >
                   ویرایش
