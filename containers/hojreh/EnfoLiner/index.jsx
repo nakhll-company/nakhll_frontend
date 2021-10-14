@@ -26,14 +26,13 @@ function EnfoLiner({ title, profile }) {
             {/* <i className="fas fa-share-alt-square"></i> */}
           </div>
 
-          <div
-            style={{ backgroundColor: "red" }}
-            className={`${styles.profile_mobile}  d-md-none`}
-          >
+          <div className={`${styles.profile_mobile}  d-md-none`}>
             <div className={styles.pater}>
               <img className={styles.img_profile} src={profile} alt="" />
               <div className={styles.information}>
-                <h1>{title}</h1>
+                <div className={styles.pater_title}>
+                  <h1>{title}</h1>
+                </div>
                 <h5>{title}</h5>
               </div>
             </div>
