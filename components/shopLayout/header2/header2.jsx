@@ -175,12 +175,21 @@ function Header2({ category }) {
               >
                 <i className="fas fa-bars"></i>
               </div>
-              <div className={styles.logo}>
+              <div className={styles.logo_mobile}>
                 <a href="/">
                   <img
-                    src="/icons/logo_Nakhl.svg"
+                    src="/icons/Nakhll.png"
                     alt="فروشگاه اینترنتی نخل"
-                    style={{ cursor: "pointer", maxHeight: "42px" }}
+                    style={{ cursor: "pointer", maxHeight: "33px" }}
+                  />
+                </a>
+              </div>
+              <div className={styles.logo_name}>
+                <a href="/">
+                  <img
+                    src="/icons/Name_Nakhl.png"
+                    alt="فروشگاه اینترنتی نخل"
+                    style={{ cursor: "pointer", width: "38%" }}
                   />
                 </a>
               </div>
@@ -188,7 +197,7 @@ function Header2({ category }) {
                 {Object.keys(userLog).length > 0 ? (
                   <a className={styles.profile_btn} href="/profile">
                     <i
-                      style={{ fontSize: "30px", marginLeft: "9px" }}
+                      style={{ fontSize: "25px", marginLeft: "9px" }}
                       className="fas fa-user-circle"
                     ></i>
                   </a>
