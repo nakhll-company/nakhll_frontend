@@ -61,6 +61,14 @@ const Footer = () => {
                     </div>{" "}
                     <div>
                       <a
+                        href="https://nakhll.com/blog/"
+                        className={styles.footer_items}
+                      >
+                        وبلاگ
+                      </a>
+                    </div>
+                    <div>
+                      <a
                         href="https://nakhll.com/blog/%d9%86%d8%ae%d9%84%d8%8c-%d8%a8%d8%a7%d8%b2%d8%a7%d8%b1%db%8c-%d8%a7%d8%ac%d8%aa%d9%85%d8%a7%d8%b9%db%8c-%d9%88-%d8%a2%d9%86%d9%84%d8%a7%db%8c%d9%86/"
                         className={styles.footer_items}
                       >
@@ -296,6 +304,7 @@ const Footer = () => {
                           className="d-flex justify-content-center"
                         >
                           <a
+                            rel="nofollow"
                             referrerPolicy="origin"
                             href="https://trustseal.enamad.ir/?id=135577&Code=4LVJlUntZdqZWSmXWkA1"
                             target="_blank"
@@ -357,6 +366,14 @@ const Footer = () => {
                   }}
                   className="is-active"
                 >
+                  <div>
+                    <a
+                      href="https://nakhll.com/blog/"
+                      className={styles.footer_items}
+                    >
+                      وبلاگ
+                    </a>
+                  </div>
                   <div>
                     <a
                       href="https://nakhll.com/blog/%d9%86%d8%ae%d9%84%d8%8c-%d8%a8%d8%a7%d8%b2%d8%a7%d8%b1%db%8c-%d8%a7%d8%ac%d8%aa%d9%85%d8%a7%d8%b9%db%8c-%d9%88-%d8%a2%d9%86%d9%84%d8%a7%db%8c%d9%86/"
