@@ -34,7 +34,7 @@ export default function SumBuy() {
                 {_asist.PSeparator(
                   (All_product_list_buy.total_old_price -
                     All_product_list_buy.total_price) /
-                    10
+                  10
                 )}
 
                 <span style={{ marginRight: "5px" }}>تومان</span>
@@ -65,7 +65,7 @@ export default function SumBuy() {
                     ""
                   );
                   if (result.status === 200) {
-                    await router.push(`/cart/address?id=${result.data.id}`);
+                    await router.push(`/cart/address?invoice_id=${result.data.id}`);
                   } else {
                     errorMessage("خطایی پیش آمده است");
                   }
