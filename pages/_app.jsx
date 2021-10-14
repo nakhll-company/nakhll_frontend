@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps }) {
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
 
-              gtag('config', UA-156540827-1);`}
+              gtag('config', 'UA-156540827-1');`}
         </Script>
         <Script strategy="lazyOnload">
           {`!function (t, e, n) {
