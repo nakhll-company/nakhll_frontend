@@ -11,7 +11,7 @@ function product({ word, category, ap }) {
         </>
       )}
 
-      {ap == "" && <ListProduct searchWord={word} categoryIn={category} />}
+      {ap === "" && <ListProduct searchWord={word} categoryIn={category} />}
     </>
   );
 }

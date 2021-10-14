@@ -23,7 +23,7 @@ function LinerProductsBg({
           </div>
 
           <button>
-            <a href={`/product/search?ap=${url_LinerProductsBg}`}>مشاهده همه</a>
+            <a href={`/product?ap=${url_LinerProductsBg}`}>مشاهده همه</a>
           </button>
         </div>
       </div>
