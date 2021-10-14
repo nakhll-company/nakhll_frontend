@@ -25,7 +25,6 @@ const Address = () => {
 
     const router = useRouter();
     const { invoice_id } = router.query;
-    console.log(invoice_id);
 
     let [loading, setLoading] = useState(true);
     let [showModal, setShowModal] = useState({

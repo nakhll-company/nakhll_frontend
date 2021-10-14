@@ -32,7 +32,7 @@ const fetchData = async () => {
         all_data_for_component.push(one_Component.data);
       }
     }
-    console.log("Schema.data :>> ", Schema.data);
+
     return {
       SchemaIn: Schema.data,
       all_type_for_component,
@@ -44,7 +44,7 @@ const fetchData = async () => {
 };
 
 const index = ({ data }) => {
-  console.log("data :>> ", data);
+
   const Sample = {
     1: "اسلایدر تکی",
     2: "بنر تک عکسی",

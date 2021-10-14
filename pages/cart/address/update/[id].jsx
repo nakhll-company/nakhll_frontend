@@ -23,7 +23,6 @@ const UpdateAddress = () => {
 
     const router = useRouter();
     const { invoice_id, prev, id } = router.query;
-    console.log(router.query);
     const { register, handleSubmit, setValue, formState: { errors } } = useForm();
 
     const onSubmit = async (data) => {
