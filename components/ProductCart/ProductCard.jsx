@@ -58,7 +58,7 @@ const ProductCard = ({
     <div
       className={`animationCartParent ${col
         ? `col-${col}`
-        : `col-${xs} col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
+        : `col-5 col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
         } ${padding ? `px-${padding}` : ""} mb-3`}
     >
       {product.iconClose && (

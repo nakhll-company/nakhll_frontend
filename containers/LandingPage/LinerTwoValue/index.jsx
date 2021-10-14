@@ -9,16 +9,16 @@ function LinerTwoValue({ dataLinerTwoValue }) {
         <>
           {/* for mobile */}
           <div className={`container d-lg-none ${styles.mobile}`}>
-            <div>
+            <div className="d-flex flex-row-reverse">
               <img
                 src={dataLinerTwoValue[0].image}
                 loading="lazy"
                 alt={dataLinerTwoValue[0].title}
               />
-              <h4>{dataLinerTwoValue[0].title}</h4>
+              <h4 className="ms-2">{dataLinerTwoValue[0].title}</h4>
             </div>
 
-            <div>
+            <div className="d-flex flex-row-reverse">
               <img
                 src={dataLinerTwoValue[1].image}
                 loading="lazy"

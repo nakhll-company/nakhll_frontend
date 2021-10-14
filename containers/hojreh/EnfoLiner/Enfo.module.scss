@@ -1,7 +1,7 @@
 .topHoj {
   padding-top: 20spx;
   padding: 10px;
-  margin-top: 10px;
+  // margin-top: 10px;
   background-color: #fff;
   margin-bottom: 20px;
   position: relative;
@@ -10,10 +10,11 @@
     height: 20px;
     display: flex;
     align-items: center;
+    font-size: 14px;
     span {
       margin-right: 15px;
       color: rgb(68, 80, 86);
-      font-size: 15px;
+      font-size: 14px;
     }
     i {
       margin-right: 10px;
