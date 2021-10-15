@@ -11,9 +11,13 @@ export const addToCart = async (productId) => {
             {}
         );
         if (response.status === 201) {
-            successMessage("با موفقیت به سبد خرید شما اضافه شد");
+            successMessage("محصول با موفقیت به سبد خرید شما اضافه شد");
+        } else if (response.response.status === 403) {
+            errorMessage("لطفا ابتدا وارد شوید");
+        } else if (response.response.status === 400) {
+            errorMessage(`${response.response.data[0]}`);
         } else {
-            errorMessage(response.response.data[0]);
+            errorMessage("خطایی رخ داده است");
         }
     } catch (error) {
         errorMessage("خطایی در افزودن به سبد خرید پیش آمده");
