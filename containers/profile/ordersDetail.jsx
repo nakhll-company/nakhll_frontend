@@ -39,7 +39,7 @@ const OrdersDetail = ({ invoiceId }) => {
                         </div>
                         <div className={`${styles.right} p-3`}>
                             <span className="text-secondary d-block mb-2">مبلغ پرداخت شده</span>
-                            <span>{_asist.PSeparator(detailData.final_price)}</span>
+                            <span>{_asist.PSeparator(detailData.final_price / 10)} تومان</span>
                         </div>
                         <div className={`${styles.price} p-3`}>
                             <span className="text-secondary d-block mb-2">گیرنده</span>
@@ -69,11 +69,11 @@ const OrdersDetail = ({ invoiceId }) => {
                             </div>
                             <div className={`${styles.right} p-3`}>
                                 <span className="text-secondary d-block mb-2">مبلغ کل سفارش</span>
-                                <span>{_asist.PSeparator(detailData.final_price)}</span>
+                                <span>{_asist.PSeparator(detailData.final_price / 10)} تومان</span>
                             </div>
                             <div className={`${styles.price} p-3`}>
                                 <span className="text-secondary d-block mb-2">هزینه ارسال سفارش</span>
-                                <span>{_asist.PSeparator(detailData.logistic_price)}</span>
+                                <span>{_asist.PSeparator(detailData.logistic_price / 10)} تومان</span>
                             </div>
                             <div className={`${styles.images} p-3`}>
                                 <span className="text-secondary mb-2"> محصولات :</span>
@@ -90,7 +90,7 @@ const OrdersDetail = ({ invoiceId }) => {
                                             </a>
                                         </Link>
                                         <div className="">
-                                            <span className="mx-4">{_asist.PSeparator(value.price_with_discount)} تومان</span>
+                                            <span className="mx-4">{_asist.PSeparator(value.price_with_discount / 10)} تومان</span>
                                             <span>{_asist.number(value.count)} عدد</span>
                                         </div>
                                     </div>
