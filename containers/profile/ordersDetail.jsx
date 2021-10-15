@@ -78,13 +78,17 @@ const OrdersDetail = ({ invoiceId }) => {
                             <div className={`${styles.images} p-3`}>
                                 <span className="text-secondary mb-2"> محصولات :</span>
                                 <div className="d-flex align-items-center">
-                                    <a href={`productDetail/${value.id}`}>
-                                        {value.image_thumbnail && <img src={value.image_thumbnail} alt="" style={{ width: "3.2rem", borderRadius: "1.5rem", marginLeft: "1rem" }} />}
-                                    </a>
-                                    <div className="d-flex flex-column flex-md-row align-items-center">
-                                        <a href={`productDetail/${value.id}`} className="mx-3">
-                                            <span>{value.name}</span>
+                                    <Link href={`productDetail/${value.id}`}>
+                                        <a>
+                                            {value.image_thumbnail && <img src={value.image_thumbnail} alt="" style={{ width: "3.2rem", borderRadius: "1.5rem", marginLeft: "1rem" }} />}
                                         </a>
+                                    </Link>
+                                    <div className="d-flex flex-column flex-md-row align-items-center">
+                                        <Link href={`productDetail/${value.id}`}>
+                                            <a className="mx-3">
+                                                <span>{value.name}</span>
+                                            </a>
+                                        </Link>
                                         <div className="">
                                             <span className="mx-4">{_asist.PSeparator(value.price_with_discount)} تومان</span>
                                             <span>{_asist.number(value.count)} عدد</span>

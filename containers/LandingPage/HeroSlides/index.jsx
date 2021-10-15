@@ -1,4 +1,5 @@
 import React from "react";
+import Link from 'next/link';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -18,9 +19,11 @@ function HeroSlides({ dataHeroSlides }) {
           <Swiper pagination={true} spaceBetween={50} slidesPerView={1}>
             {dataHeroSlides.map((slider, index) => (
               <SwiperSlide key={index}>
-                <a href={slider.url}>
-                  <img src={slider.image} alt="بنر" />
-                </a>
+                <Link href={slider.url}>
+                  <a>
+                    <img src={slider.image} alt="بنر" />
+                  </a>
+                </Link>
               </SwiperSlide>
             ))}
           </Swiper>

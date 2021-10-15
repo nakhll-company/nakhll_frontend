@@ -1,4 +1,5 @@
 // node libraries
+import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Assistent from "zaravand-assistent-number";
@@ -46,9 +47,11 @@ const MobileOrders = ({ ordersList, setProfilePages, setInvoiceId, loading }) =>
                             <span className="text-secondary d-block mb-2 d-lg-none">لیست محصولات</span>
                             <div className="d-flex">
                                 {value.items.length > 0 && value.items.map((value, index) => (
-                                    <a href={`/productDetail/${value.slug}`} target="_blank" key={index}>
-                                        {value.image_thumbnail && <img src={value.image_thumbnail} alt={value.title} className="rounded-lg ml-2" width="35" height="35" />}
-                                    </a>
+                                    <Link href={`/productDetail/${value.slug}`}>
+                                        <a target="_blank" key={index}>
+                                            {value.image_thumbnail && <img src={value.image_thumbnail} alt={value.title} className="rounded-lg ml-2" width="35" height="35" />}
+                                        </a>
+                                    </Link>
                                 ))}
                             </div>
                         </div>

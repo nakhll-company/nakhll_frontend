@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-
+import React from "react";
+import Link from 'next/link';
 import styles from "./LinerFourImgMobile.module.scss";
 
 function LinerFourImgMobile({ dataLinerFourImgMobile }) {
@@ -9,60 +9,56 @@ function LinerFourImgMobile({ dataLinerFourImgMobile }) {
         <>
           <div className="container">
             <aside className={styles.section}>
-              <a
-                href={dataLinerFourImgMobile[0].url}
-                data-observed="0"
-                target="_blank"
-                title={dataLinerFourImgMobile[0].description}
-                className={styles.one}
-              >
-                <img
-                  src={dataLinerFourImgMobile[0].image}
-                  loading="lazy"
-                  alt={dataLinerFourImgMobile[0].title}
-                />
-              </a>
-              <a
-                href={dataLinerFourImgMobile[1].url}
-                data-observed="0"
-                target="_blank"
-                title={dataLinerFourImgMobile[1].description}
-                className={styles.two}
-              >
-                <img
-                  src={dataLinerFourImgMobile[1].image}
-                  loading="lazy"
-                  alt={dataLinerFourImgMobile[1].title}
-                />
-              </a>
+              <Link href={dataLinerFourImgMobile[0].url}>
+                <a
+                  title={dataLinerFourImgMobile[0].description}
+                  className={styles.one}
+                >
+                  <img
+                    src={dataLinerFourImgMobile[0].image}
+                    loading="lazy"
+                    alt={dataLinerFourImgMobile[0].title}
+                  />
+                </a>
+              </Link>
+              <Link href={dataLinerFourImgMobile[1].url}>
+                <a
+                  title={dataLinerFourImgMobile[1].description}
+                  className={styles.two}
+                >
+                  <img
+                    src={dataLinerFourImgMobile[1].image}
+                    loading="lazy"
+                    alt={dataLinerFourImgMobile[1].title}
+                  />
+                </a>
+              </Link>
             </aside>
             <aside className={styles.section}>
-              <a
-                href={dataLinerFourImgMobile[3].url}
-                data-observed="0"
-                target="_blank"
-                title={dataLinerFourImgMobile[3].description}
-                className={styles.one}
-              >
-                <img
-                  src={dataLinerFourImgMobile[3].image}
-                  loading="lazy"
-                  alt={dataLinerFourImgMobile[3].title}
-                />
-              </a>
-              <a
-                href={dataLinerFourImgMobile[4].url}
-                data-observed="0"
-                target="_blank"
-                title={dataLinerFourImgMobile[4].description}
-                className={styles.two}
-              >
-                <img
-                  src={dataLinerFourImgMobile[4].image}
-                  loading="lazy"
-                  alt={dataLinerFourImgMobile[4].title}
-                />
-              </a>
+              <Link href={dataLinerFourImgMobile[3].url}>
+                <a
+                  title={dataLinerFourImgMobile[3].description}
+                  className={styles.one}
+                >
+                  <img
+                    src={dataLinerFourImgMobile[3].image}
+                    loading="lazy"
+                    alt={dataLinerFourImgMobile[3].title}
+                  />
+                </a>
+              </Link>
+              <Link href={dataLinerFourImgMobile[4].url}>
+                <a
+                  title={dataLinerFourImgMobile[4].description}
+                  className={styles.two}
+                >
+                  <img
+                    src={dataLinerFourImgMobile[4].image}
+                    loading="lazy"
+                    alt={dataLinerFourImgMobile[4].title}
+                  />
+                </a>
+              </Link>
             </aside>
           </div>
         </>

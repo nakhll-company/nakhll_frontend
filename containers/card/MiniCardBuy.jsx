@@ -26,8 +26,7 @@ export default function MiniCardBuy() {
             جزئیات
           </a>{" "} */}
           <a
-            href="#"
-            onClick={() => {}}
+            onClick={() => { }}
             style={{ backgroundColor: "1b3e68" }}
             className="btn btn-buy mr-3 order-lg-1"
           >

@@ -1,4 +1,5 @@
 // node libraries
+import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
@@ -64,11 +65,13 @@ const Orders = ({ setProfilePages, setInvoiceId }) => {
                                                 _asist.PSeparator(value.final_price)}</td>
                                             <td>
                                                 {value.items.length > 0 && value.items.map((value, index) => (
-                                                    <a href={`productDetail/${value.slug}`} target="_blank" key={index}>
-                                                        {value.image_thumbnail && <Image src={value.image_thumbnail}
-                                                            alt={value.name} key={index} className={styles.image_product}
-                                                            width="35" height="35" />}
-                                                    </a>
+                                                    <Link href={`productDetail/${value.slug}`}>
+                                                        <a target="_blank" key={index}>
+                                                            {value.image_thumbnail && <Image src={value.image_thumbnail}
+                                                                alt={value.name} key={index} className={styles.image_product}
+                                                                width="35" height="35" />}
+                                                        </a>
+                                                    </Link>
                                                 ))}
                                             </td>
                                             <td>

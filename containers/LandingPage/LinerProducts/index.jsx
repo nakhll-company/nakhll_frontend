@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import ProductCard from "../../../components/ProductCart/ProductCard";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-
+import React from "react";
+import Link from 'next/link';
 import styles from "./LinerProducts.module.scss";
+import ProductCard from "../../../components/ProductCart/ProductCard";
 
 function LinerProducts({
   noScroll = false,
@@ -34,7 +33,9 @@ function LinerProducts({
             </div>
             <div className={styles.Button}>
               <button>
-                <a href={`/product?ap=${url}`}>مشاهده همه</a>
+                <Link href={`/product?ap=${url}`}>
+                  <a>مشاهده همه</a>
+                </Link>
               </button>
             </div>
           </div>
@@ -85,7 +86,9 @@ function LinerProducts({
             </div>
             <div className={styles.Button}>
               <button>
-                <a href={`/product?ap=${url}`}>مشاهده همه</a>
+                <Link href={`/product?ap=${url}`}>
+                  <a>مشاهده همه</a>
+                </Link>
               </button>
             </div>
           </div>

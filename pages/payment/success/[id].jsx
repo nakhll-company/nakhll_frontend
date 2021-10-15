@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from 'next/link';
 import Confetti from "react-confetti";
 import Assistent from "zaravand-assistent-number";
+import React, { useEffect, useRef, useState } from "react";
 const _asist = new Assistent();
 
 // styles
@@ -34,12 +35,13 @@ const success = ({ code }) => {
             <h3 className={styles.tex_sub}>
               شماره سفارش : {_asist.PSeparator(`${code}`)}
             </h3>
-
-            <a className="w-50" href="/profile">
-              <button className={`btn ${styles.btn_Buy} p-2 rounded-pill  `}>
-                پیگیری سفارش
-              </button>
-            </a>
+            <Link href="/profile">
+              <a className="w-50">
+                <button className={`btn ${styles.btn_Buy} p-2 rounded-pill  `}>
+                  پیگیری سفارش
+                </button>
+              </a>
+            </Link>
           </div>
           <Confetti width={width} height={height} />
         </div>

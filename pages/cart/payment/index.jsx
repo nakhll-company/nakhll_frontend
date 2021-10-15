@@ -283,20 +283,21 @@ export default function Cart() {
                       </div>
                       <div className="d-flex align-items-center mt-3">
                         <div className={`${styles.picItemInvoice}`}>
-                          <a href="/pestehkerman/product/175903" className>
-                            <img
-                              src={itemProduct.image}
-                              alt={itemProduct.name}
-                            />
-                          </a>
+                          <Link href={`/product/${itemProduct.slug}`}>
+                            <a>
+                              <img
+                                src={itemProduct.image}
+                                alt={itemProduct.name}
+                              />
+                            </a>
+                          </Link>
                         </div>
                         <div className="mr-3" style={{ minWidth: "1%", marginRight: "1rem" }}>
-                          <a
-                            href="/"
-                            className="link-body"
-                          >
-                            {itemProduct.name}
-                          </a>
+                          <Link href={`/product/${itemProduct.slug}`}>
+                            <a className="link-body">
+                              {itemProduct.name}
+                            </a>
+                          </Link>
                           <div className="mt-2">{itemProduct.count}عدد</div>
                         </div>
                         <div className="mr-auto" style={{ marginRight: "auto" }}>
