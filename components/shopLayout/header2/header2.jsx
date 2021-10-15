@@ -1,5 +1,7 @@
 import Head from "next/head";
+
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import Assistent from "zaravand-assistent-number";
 // component
 import MegaMenuDesktop from "../../../containers/LandingPage/MegaMenuDesktop";
@@ -40,8 +42,6 @@ function Header2() {
   }, []);
   return (
     <>
-     
-
       <header className={`${styles.header} `}>
         <div className="container">
           <div className={styles.top_header}>
@@ -93,15 +93,7 @@ function Header2() {
               {/* <div className={styles.be_seller}>
                 <a href="/landing/seller">در نخل بفروش!</a>
               </div> */}
-              {/* <div className={styles.shahneshin}>
-                <a title="شاه نشین" href="/page/shahneshin">
-                  <img
-                    src=""
-                    alt="شاه نشین"
-                    className="icon-shahneshin"
-                  />
-                </a>
-              </div> */}
+
               {/* <div className={styles.help_link}>
                 <a
                   target="_blank"
@@ -121,13 +113,36 @@ function Header2() {
               {/* </a>
               </div> */}
               {Object.keys(userLog).length > 0 ? (
-                <a className={styles.nav_item_link_login} href="/profile">
-                  <i
-                    style={{ fontSize: "30px", marginLeft: "20px" }}
-                    className="fas fa-user-circle"
-                  ></i>
-                </a>
+                <>
+                  <Link href="/profile">
+                    <a className={styles.nav_item_link_login}>
+                      <i
+                        style={{ fontSize: "30px", marginLeft: "20px" }}
+                        className="fas fa-user-circle"
+                      ></i>
+                    </a>
+                  </Link>
+                  <div className={styles.modalProfile}>
+                    <Link href="/profile">
+                      <a>
+                        <div style={{ marginTop: "10px" }} className="flex-row">
+                          <i className="fas fa-user-circle"></i>
+                          <span>پروفایل</span>
+                        </div>
+                      </a>
+                    </Link>
+                    <Link href="/accounts/logout/">
+                      <a>
+                        <div className="">
+                          <i className="fas fa-sign-out-alt "></i>
+                          <span>خروج از حساب کاربری</span>
+                        </div>
+                      </a>
+                    </Link>
+                  </div>
+                </>
               ) : (
+                <>
                 <a
                   style={{ margin: "0px 20px " }}
                   className={styles.nav_item_link_login}
@@ -135,6 +150,8 @@ function Header2() {
                 >
                   ورود/ثبت نام
                 </a>
+                
+                </>
               )}
               <a className={styles.bascket_btn} rel="nofollow" href="/cart">
                 <i>
@@ -182,7 +199,12 @@ function Header2() {
                     alt="فروشگاه اینترنتی نخل"
                     width="26"
                     height="26"
-                    style={{ cursor: "pointer", maxHeight: "33px", marginTop: "5px", marginRight: "2px" }}
+                    style={{
+                      cursor: "pointer",
+                      maxHeight: "33px",
+                      marginTop: "5px",
+                      marginRight: "2px",
+                    }}
                   />
                 </a>
               </div>
@@ -223,7 +245,9 @@ function Header2() {
                       alt=""
                     />
                   </i>
-                  <span className={styles.counter_cart}>{_asist.number(userLog.cart_items_count)}</span>
+                  <span className={styles.counter_cart}>
+                    {_asist.number(userLog.cart_items_count)}
+                  </span>
                 </a>
               </div>
             </div>
