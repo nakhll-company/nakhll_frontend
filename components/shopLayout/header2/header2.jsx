@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from 'next/link';
 import React, { useState, useEffect } from "react";
 import Assistent from "zaravand-assistent-number";
 // component
@@ -50,7 +51,7 @@ function Header2({ category }) {
           <div className={styles.top_header}>
             <div className={styles.top_header_rightside}>
               <div className={styles.h_logo}>
-                <a
+                <Link
                   href="/"
                   style={{
                     display: "flex",
@@ -63,7 +64,7 @@ function Header2({ category }) {
                     alt="فروشگاه اینترنتی نخل"
                     style={{ cursor: "pointer", maxHeight: "42px" }}
                   />
-                </a>
+                </Link>
               </div>
               <div className={styles.h_search}>
                 <div className={styles.search_box}>
@@ -81,9 +82,9 @@ function Header2({ category }) {
                       value={inputSearch}
                     />
 
-                    <a href={`/product?word=${inputSearch}&cat=`}>
+                    <Link href={`/product?word=${inputSearch}&cat=`}>
                       <i className="fas fa-search"></i>
-                    </a>
+                    </Link>
                   </form>
                   {/* <i className="fas fa-close"></i> */}
                   <div className="result_search">
@@ -124,20 +125,20 @@ function Header2({ category }) {
               {/* </a>
               </div> */}
               {Object.keys(userLog).length > 0 ? (
-                <a className={styles.nav_item_link_login} href="/profile">
+                <Link className={styles.nav_item_link_login} href="/profile">
                   <i
                     style={{ fontSize: "30px", marginLeft: "20px" }}
                     className="fas fa-user-circle"
                   ></i>
-                </a>
+                </Link>
               ) : (
-                <a
+                <Link
                   style={{ margin: "0px 20px " }}
                   className={styles.nav_item_link_login}
                   href="https://nakhll.com/accounts/get-phone/"
                 >
                   ورود/ثبت نام
-                </a>
+                </Link>
               )}
               <div onClick={() => {
                 Object.keys(userLog).length > 0 ? router.push("/cart") : errorMessage("لطفا ابتدا وارد شوید");
@@ -175,7 +176,7 @@ function Header2({ category }) {
               <div
                 className={styles.menu_Hamburger}
               >
-                <a href="/">
+                <Link href="/">
                   <img
                     src="/icons/Nakhll.png"
                     alt="فروشگاه اینترنتی نخل"
@@ -183,7 +184,7 @@ function Header2({ category }) {
                     height="26"
                     style={{ cursor: "pointer", float: "right", marginRight: "10px" }}
                   />
-                </a>
+                </Link>
                 <i className="fas fa-bars" onClick={() => {
                   document.getElementById("SlideMenu").style.right = "0px";
                 }}></i>
@@ -191,24 +192,24 @@ function Header2({ category }) {
               {/* <div className={styles.logo_mobile}>
               </div> */}
               <div className={styles.logo_name}>
-                <a href="/">
+                <Link href="/">
                   <img
                     src="/icons/Name_Nakhl.png"
                     alt="فروشگاه اینترنتی نخل"
                     style={{ cursor: "pointer", width: "180%" }}
                   />
-                </a>
+                </Link>
               </div>
               <div className={styles.left_side}>
                 {Object.keys(userLog).length > 0 ? (
-                  <a className={styles.profile_btn} href="/profile">
+                  <Link className={styles.profile_btn} href="/profile">
                     <i
                       style={{ fontSize: "25px", marginLeft: "9px" }}
                       className="fas fa-user-circle"
                     ></i>
-                  </a>
+                  </Link>
                 ) : (
-                  <a
+                  <Link
                     style={{
                       margin: "0px 2px ",
                       fontSize: "10px",
@@ -217,7 +218,7 @@ function Header2({ category }) {
                     href="https://nakhll.com/accounts/get-phone/"
                   >
                     ورود/ثبت نام
-                  </a>
+                  </Link>
                 )}
                 <div onClick={() => {
                   Object.keys(userLog).length > 0 ? router.push("/cart") : errorMessage("لطفا ابتدا وارد شوید");
@@ -253,9 +254,9 @@ function Header2({ category }) {
                   value={inputSearch}
                   placeholder="جستجو در نخل ..."
                 />
-                <a href={`/product?word=${inputSearch}&cat=`}>
+                <Link href={`/product?word=${inputSearch}&cat=`}>
                   <i className="fas fa-search"></i>
-                </a>
+                </Link>
               </form>
               {/* <i className="fas fa-times"></i> */}
             </div>
@@ -269,13 +270,13 @@ function Header2({ category }) {
         >
           <div className={styles.mobile_menu} id="SlideMenu">
             <div className={styles.head_menu}>
-              <a href="#" className={styles.menu_logo}>
+              <Link href="/" className={styles.menu_logo}>
                 <img
                   style={{ maxHeight: "50px" }}
                   src="/icons/logo_Nakhl.svg"
                   alt=""
                 />
-              </a>
+              </Link>
               <span
                 className={styles.close_menu}
                 onClick={() => {
