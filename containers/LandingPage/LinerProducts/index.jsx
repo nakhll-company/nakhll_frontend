@@ -1,10 +1,7 @@
 import React from "react";
 import Link from 'next/link';
-import React from "react";
-import Link from "next/link";
 import ProductCard from "../../../components/ProductCart/ProductCard";
 import styles from "./LinerProducts.module.scss";
-import ProductCard from "../../../components/ProductCart/ProductCard";
 
 function LinerProducts({
   noScroll = false,

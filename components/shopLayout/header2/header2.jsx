@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 import Assistent from "zaravand-assistent-number";
 // component
 import MegaMenuDesktop from "../../../containers/LandingPage/MegaMenuDesktop";
@@ -15,7 +14,7 @@ import styles from "./header2.module.scss";
 
 const _asist = new Assistent();
 
-function Header2({ category }) {
+function Header2() {
   const [category, setCategory] = useState([]);
   const _call_Category = async () => {
     try {
