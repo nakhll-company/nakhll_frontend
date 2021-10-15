@@ -22,7 +22,7 @@ function MegaMenuMobile({ category }) {
       {category.map((element, index) => (
         <li key={index}>
           <a
-            href="javascript:void(0);"
+            // href="javascript:void(0);"
             onClick={() =>
               _handel_according(`according_${index}`, `icon_${index}`)
             }

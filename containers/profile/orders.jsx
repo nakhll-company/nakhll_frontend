@@ -62,7 +62,7 @@ const Orders = ({ setProfilePages, setInvoiceId }) => {
                                             <td>{_asist.number(value.id)}</td>
                                             <td>{_asist.number(value.created_date_jalali)}</td>
                                             <td>{value.status !== "awaiting_paying" && value.status !== "canceled" &&
-                                                _asist.PSeparator(value.final_price / 10)} تومان</td>
+                                                _asist.PSeparator(`${value.final_price / 10} تومان`)}</td>
                                             <td>
                                                 {value.items.length > 0 && value.items.map((value, index) => (
                                                     <Link href={`productDetail/${value.slug}`}>
