@@ -356,19 +356,19 @@ const ProductDetailMobile = ({ data }) => {
                       className={`${styles.avatar_box_content} align-self-center`}
                     >
                       <div>
-                        <Link href={`/hojreh/${detail.shop.slug}`} passHref>
-                          <span
+                        <Link href={`/hojreh/${detail.shop.slug}`}>
+                          <a
                             style={{ fontSize: ".9rem", color: "#3e3e3e" }}
                             className="mb-0"
                           >
                             {" "}
                             {detail.shop.title}
-                          </span>
+                          </a>
                         </Link>
                       </div>
                       <div>
                         <Link href={`/hojreh/${detail.shop.slug}`}>
-                          <span
+                          <a
                             style={{ fontSize: ".8rem", color: "#3e3e3e" }}
                             className="mb-0"
                           >
@@ -378,7 +378,7 @@ const ProductDetailMobile = ({ data }) => {
                             ماه در نخل &nbsp;&nbsp;&nbsp;&nbsp;
                             {_asist.PSeparator(detail.shop.total_products)}{" "}
                             محصول{" "}
-                          </span>
+                          </a>
                         </Link>
                       </div>
                     </div>

@@ -41,7 +41,7 @@ const MobileOrders = ({ ordersList, setProfilePages, setInvoiceId, loading }) =>
                         <div className={`${styles.price} p-3`}>
                             <span className="text-secondary d-block mb-2 d-lg-none">مبلغ پرداخت شده</span>
                             <span>{value.status !== "awaiting_paying" && value.status !== "canceled" &&
-                                _asist.PSeparator(value.final_price / 10)} تومان</span>
+                                _asist.PSeparator(`${value.final_price / 10} تومان`)}</span>
                         </div>
                         <div className={`${styles.images} p-3`}>
                             <span className="text-secondary d-block mb-2 d-lg-none">لیست محصولات</span>
