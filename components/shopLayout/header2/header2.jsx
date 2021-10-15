@@ -7,12 +7,15 @@ import MegaMenuMobile from "../../../containers/LandingPage/MegaMenuMobile";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
+import { errorMessage } from '../../../containers/utils/message';
 // style
 import styles from "./header2.module.scss";
+import { useRouter } from "next/router";
 
 const _asist = new Assistent();
 
 function Header2({ category }) {
+  const router = useRouter();
   const dispatch = useDispatch();
   const userLog = useSelector((state) => state.User.userInfo);
   const [inputSearch, setInputSearch] = useState("");
@@ -136,18 +139,20 @@ function Header2({ category }) {
                   ورود/ثبت نام
                 </a>
               )}
-              <a className={styles.bascket_btn} rel="nofollow" href="/cart">
-                <i>
-                  <img
-                    style={{ width: "24px" }}
-                    src="/icons/sabad.svg"
-                    alt=""
-                  />
-                </i>
-                <span className={styles.counter_cart}>
-                  {_asist.number(userLog.cart_items_count)}
-                </span>
-              </a>
+              <div onClick={() => {
+                Object.keys(userLog).length > 0 ? router.push("/cart") : errorMessage("لطفا ابتدا وارد شوید");
+              }}>
+                <a className={styles.bascket_btn}>
+                  <i>
+                    <img
+                      style={{ width: "24px" }}
+                      src="/icons/sabad.svg"
+                      alt=""
+                    />
+                  </i>
+                  {Object.keys(userLog).length > 0 && userLog.cart_items_count !== 0 && <span className={styles.counter_cart}>{_asist.number(userLog.cart_items_count)}</span>}
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -214,16 +219,20 @@ function Header2({ category }) {
                     ورود/ثبت نام
                   </a>
                 )}
-                <a className={styles.bascket_btn} href="/cart">
-                  <i>
-                    <img
-                      style={{ width: "24px", marginLeft: "12px" }}
-                      src="/icons/sabad.svg"
-                      alt=""
-                    />
-                  </i>
-                  <span className={styles.counter_cart}>{_asist.number(userLog.cart_items_count)}</span>
-                </a>
+                <div onClick={() => {
+                  Object.keys(userLog).length > 0 ? router.push("/cart") : errorMessage("لطفا ابتدا وارد شوید");
+                }}>
+                  <a className={styles.bascket_btn}>
+                    <i>
+                      <img
+                        style={{ width: "24px", marginLeft: "12px" }}
+                        src="/icons/sabad.svg"
+                        alt=""
+                      />
+                    </i>
+                    {Object.keys(userLog).length > 0 && userLog.cart_items_count !== 0 && <span className={styles.counter_cart}>{_asist.number(userLog.cart_items_count)}</span>}
+                  </a>
+                </div>
               </div>
             </div>
           </div>
