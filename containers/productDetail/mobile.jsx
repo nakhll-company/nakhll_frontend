@@ -46,7 +46,7 @@ const ProductDetailMobile = ({ data }) => {
   const [posts, setPosts] = useState([...relatedProduct.results]);
   const [productShop, setProductShop] = useState([]);
   let thumblineImage = [
-    { image: detail.shop.image_thumbnail_url, id: 0 },
+    // { image: detail.shop.image_thumbnail_url, id: 0 },
     ...detail.banners,
   ];
 
@@ -109,11 +109,11 @@ const ProductDetailMobile = ({ data }) => {
                   { title: "خانه", url: "/" },
                   {
                     title: detail.sub_market.market.title,
-                    url: detail.sub_market.market.url,
+                    url: `/product?cat=${detail.sub_market.market.id}`,
                   },
                   {
                     title: detail.sub_market.title,
-                    url: detail.sub_market.url,
+                    url: `/product?cat=${detail.sub_market.id}`,
                   },
                 ].map((value, index) => {
                   return (

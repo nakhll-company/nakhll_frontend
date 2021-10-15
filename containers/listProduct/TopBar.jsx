@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import ContextListProductPage from "./Context/context";
-import { productForList } from "../../public/dataForProduct/data";
 
 export const TopBar = ({
   handel_filterModal,

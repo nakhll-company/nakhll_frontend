@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
-
+import Link from 'next/link';
 import MenuMobile from "../../../components/layout/MenuMobile";
 import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
