@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Link from "next/link"
 import { ApiReference } from "../../../Api";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
@@ -46,9 +47,11 @@ function MegaMenuMobile({ category }) {
             </li>
             {element.submarkets.map((subElement, index) => (
               <li key={index}>
-                <a href={`/product?word=&cat=${subElement.id}`}>
-                  {subElement.title}
-                </a>
+                <Link  href={`/product?word=&cat=${subElement.id}`}>
+                  <a>
+                    {subElement.title}
+                  </a>
+                </Link>
               </li>
             ))}
           </ul>

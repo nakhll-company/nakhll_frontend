@@ -1,6 +1,7 @@
 // node libraries
 import Assistent from "zaravand-assistent-number";
 import { useDispatch } from "react-redux";
+import Link from "next/link"
 // methods
 import { addToCart } from "./methods/addToCart";
 import { getUserInfo } from "../../redux/actions/user/getUserInfo";
@@ -92,7 +93,7 @@ const ProductCard = ({
       >
         <div className={styles.paterImage}>
           {cardBadge}
-          <a href={product.url}>{cardImg}</a>
+          <Link href={product.url}><a >{cardImg}</a></Link>
         </div>
         {/* {linkType === "anchor" ? (
           <a href={product.url}>
@@ -110,14 +111,16 @@ const ProductCard = ({
           }`}
         >
           <div className=" mb-3">
-            <a
-              href={product.url}
-              // target={_blank && "_blank"}
-              style={{ fontWeight: "bold" }}
-              className="_product_card_title text-truncate "
-            >
-              {product.title}
-            </a>
+            <Link href={product.url}>
+              <a
+                
+                // target={_blank && "_blank"}
+                style={{ fontWeight: "bold" }}
+                className="_product_card_title text-truncate "
+              >
+                {product.title}
+              </a>
+            </Link>
             {/* {linkType === "anchor" ? (
               <a
                 href={product.url}
@@ -137,13 +140,15 @@ const ProductCard = ({
           <div className="_product_card_city text-truncate mb-3">
             <span className="_product_card_subtitle">{product.city}</span>
             {product.city && <i className="fa fa-angle-left px-1"></i>}
-            <a
-              title={product.chamberTitle}
-              href={product.chamberUrl}
-              className="_product_card_subtitle"
-            >
-              {product.chamberTitle}
-            </a>
+            <Link href={product.chamberUrl}>
+              <a
+                title={product.chamberTitle}
+                
+                className="_product_card_subtitle"
+              >
+                {product.chamberTitle}
+              </a>
+            </Link>
             {/* {linkType === "anchor" ? (
               <a
                 title={product.chamberTitle}

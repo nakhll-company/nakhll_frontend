@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link"
 import React, { useState, useEffect } from "react";
 import Assistent from "zaravand-assistent-number";
 // component
@@ -29,14 +30,13 @@ function Header2() {
       }
     } catch (e) {}
   };
-  useEffect(() => {
-    _call_Category();
-  }, []);
+ 
   const dispatch = useDispatch();
   const userLog = useSelector((state) => state.User.userInfo);
   const [inputSearch, setInputSearch] = useState("");
   useEffect(() => {
     dispatch(getUserInfo());
+    _call_Category();
   }, []);
   return (
     <>
@@ -47,20 +47,22 @@ function Header2() {
           <div className={styles.top_header}>
             <div className={styles.top_header_rightside}>
               <div className={styles.h_logo}>
-                <a
-                  href="/"
-                  style={{
-                    display: "flex",
-                    alignItems: " center",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <img
-                    src="/icons/logo_Nakhl.svg"
-                    alt="فروشگاه اینترنتی نخل"
-                    style={{ cursor: "pointer", maxHeight: "42px" }}
-                  />
-                </a>
+                <Link href="/">
+                  <a
+                    
+                    style={{
+                      display: "flex",
+                      alignItems: " center",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <img
+                      src="/icons/logo_Nakhl.svg"
+                      alt="فروشگاه اینترنتی نخل"
+                      style={{ cursor: "pointer", maxHeight: "42px" }}
+                    />
+                  </a>
+                </Link>
               </div>
               <div className={styles.h_search}>
                 <div className={styles.search_box}>
@@ -78,9 +80,11 @@ function Header2() {
                       value={inputSearch}
                     />
 
-                    <a href={`/product?word=${inputSearch}&cat=`}>
-                      <i className="fas fa-search"></i>
-                    </a>
+                    <Link href={`/product?word=${inputSearch}&cat=`}>
+                      <a >
+                        <i className="fas fa-search"></i>
+                      </a>
+                    </Link>
                   </form>
                   {/* <i className="fas fa-close"></i> */}
                   <div className="result_search">
@@ -121,12 +125,14 @@ function Header2() {
               {/* </a>
               </div> */}
               {Object.keys(userLog).length > 0 ? (
-                <a className={styles.nav_item_link_login} href="/profile">
-                  <i
-                    style={{ fontSize: "30px", marginLeft: "20px" }}
-                    className="fas fa-user-circle"
-                  ></i>
-                </a>
+                <Link href="/profile">
+                  <a className={styles.nav_item_link_login} >
+                    <i
+                      style={{ fontSize: "30px", marginLeft: "20px" }}
+                      className="fas fa-user-circle"
+                    ></i>
+                  </a>
+                </Link>
               ) : (
                 <a
                   style={{ margin: "0px 20px " }}
@@ -136,18 +142,20 @@ function Header2() {
                   ورود/ثبت نام
                 </a>
               )}
-              <a className={styles.bascket_btn} rel="nofollow" href="/cart">
-                <i>
-                  <img
-                    style={{ width: "24px" }}
-                    src="/icons/sabad.svg"
-                    alt=""
-                  />
-                </i>
-                <span className={styles.counter_cart}>
-                  {_asist.number(userLog.cart_items_count)}
-                </span>
-              </a>
+              <Link href="/cart">
+                <a className={styles.bascket_btn} rel="nofollow" >
+                  <i>
+                    <img
+                      style={{ width: "24px" }}
+                      src="/icons/sabad.svg"
+                      alt=""
+                    />
+                  </i>
+                  <span className={styles.counter_cart}>
+                    {_asist.number(userLog.cart_items_count)}
+                  </span>
+                </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -176,33 +184,39 @@ function Header2() {
                 <i className="fas fa-bars"></i>
               </div>
               <div className={styles.logo_mobile}>
-                <a href="/">
-                  <img
-                    src="/icons/Nakhll.png"
-                    alt="فروشگاه اینترنتی نخل"
-                    width="26"
-                    height="26"
-                    style={{ cursor: "pointer", maxHeight: "33px", marginTop: "5px", marginRight: "2px" }}
-                  />
-                </a>
+                <Link href="/">
+                  <a  >
+                    <img
+                      src="/icons/Nakhll.png"
+                      alt="فروشگاه اینترنتی نخل"
+                      width="26"
+                      height="26"
+                      style={{ cursor: "pointer", maxHeight: "33px", marginTop: "5px", marginRight: "2px" }}
+                    />
+                  </a>
+                </Link>
               </div>
               <div className={styles.logo_name}>
-                <a href="/">
-                  <img
-                    src="/icons/Name_Nakhl.png"
-                    alt="فروشگاه اینترنتی نخل"
-                    style={{ cursor: "pointer", width: "38%" }}
-                  />
-                </a>
+                <Link href="/">
+                  <a >
+                    <img
+                      src="/icons/Name_Nakhl.png"
+                      alt="فروشگاه اینترنتی نخل"
+                      style={{ cursor: "pointer", width: "38%" }}
+                    />
+                  </a>
+                </Link>
               </div>
               <div className={styles.left_side}>
                 {Object.keys(userLog).length > 0 ? (
-                  <a className={styles.profile_btn} href="/profile">
-                    <i
-                      style={{ fontSize: "25px", marginLeft: "9px" }}
-                      className="fas fa-user-circle"
-                    ></i>
-                  </a>
+                  <Link href="/profile">
+                    <a className={styles.profile_btn} >
+                      <i
+                        style={{ fontSize: "25px", marginLeft: "9px" }}
+                        className="fas fa-user-circle"
+                      ></i>
+                    </a>
+                  </Link>
                 ) : (
                   <a
                     style={{
@@ -215,16 +229,18 @@ function Header2() {
                     ورود/ثبت نام
                   </a>
                 )}
-                <a className={styles.bascket_btn} href="/cart">
-                  <i>
-                    <img
-                      style={{ width: "24px", marginLeft: "12px" }}
-                      src="/icons/sabad.svg"
-                      alt=""
-                    />
-                  </i>
-                  <span className={styles.counter_cart}>{_asist.number(userLog.cart_items_count)}</span>
-                </a>
+                <Link  href="/cart">
+                  <a className={styles.bascket_btn}>
+                    <i>
+                      <img
+                        style={{ width: "24px", marginLeft: "12px" }}
+                        src="/icons/sabad.svg"
+                        alt=""
+                      />
+                    </i>
+                    <span className={styles.counter_cart}>{_asist.number(userLog.cart_items_count)}</span>
+                  </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -245,9 +261,11 @@ function Header2() {
                   value={inputSearch}
                   placeholder="جستجو در نخل ..."
                 />
-                <a href={`/product?word=${inputSearch}&cat=`}>
-                  <i className="fas fa-search"></i>
-                </a>
+                <Link href={`/product?word=${inputSearch}&cat=`}>
+                  <a >
+                    <i className="fas fa-search"></i>
+                  </a>
+                </Link>
               </form>
               {/* <i className="fas fa-times"></i> */}
             </div>
@@ -261,13 +279,15 @@ function Header2() {
         >
           <div className={styles.mobile_menu} id="SlideMenu">
             <div className={styles.head_menu}>
-              <a href="#" className={styles.menu_logo}>
-                <img
-                  style={{ maxHeight: "50px" }}
-                  src="/icons/logo_Nakhl.svg"
-                  alt=""
-                />
-              </a>
+              <Link href="#">
+                <a  className={styles.menu_logo}>
+                  <img
+                    style={{ maxHeight: "50px" }}
+                    src="/icons/logo_Nakhl.svg"
+                    alt=""
+                  />
+                </a>
+              </Link>
               <span
                 className={styles.close_menu}
                 onClick={() => {
