@@ -224,13 +224,19 @@ const Profile = () => {
                   <br />
                   <span>علاقمندی ها</span>
                 </li>
-                {/* <li className="d-flex align-items-center mb-3">
-                                    <i className="fas fa-wallet ms-2"></i>
-                                    موجودی
-                                    <span className="mx-3">
-                                        {Object.keys(dataProfile).length > 0 && `${dataProfile.wallet} تومان`}
-                                    </span>
-                                </li> */}
+                <li
+                  className="d-flex flex-column align-items-center ms-4"
+                  
+                >
+                  <Link href="/accounts/logout/">
+                    <a >
+                      <i className="fas fa-sign-out-alt"></i>
+                      <br />
+                      <span>خروج</span>
+                    </a>
+                  </Link>
+                </li>
+               
               </ul>
             </div>
           )}
