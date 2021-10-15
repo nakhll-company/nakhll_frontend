@@ -1,6 +1,6 @@
-import Head from "next/head";
 import Link from 'next/link';
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import Assistent from "zaravand-assistent-number";
 // component
 import MegaMenuDesktop from "../../../containers/LandingPage/MegaMenuDesktop";
@@ -9,14 +9,31 @@ import MegaMenuMobile from "../../../containers/LandingPage/MegaMenuMobile";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
 import { errorMessage } from '../../../containers/utils/message';
+import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // style
 import styles from "./header2.module.scss";
-import { useRouter } from "next/router";
 
 const _asist = new Assistent();
 
 function Header2({ category }) {
-  const router = useRouter();
+  const [category, setCategory] = useState([]);
+  const _call_Category = async () => {
+    try {
+      let response = await ApiRegister().apiRequest(
+        null,
+        "get",
+        `/api/v1/markets/`,
+        true,
+        {}
+      );
+      if (response.status === 200) {
+        setCategory(response.data);
+      }
+    } catch (e) { }
+  };
+  useEffect(() => {
+    _call_Category();
+  }, []);
   const dispatch = useDispatch();
   const userLog = useSelector((state) => state.User.userInfo);
   const [inputSearch, setInputSearch] = useState("");
@@ -25,27 +42,6 @@ function Header2({ category }) {
   }, []);
   return (
     <>
-      <Head>
-        <link
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
-          crossorigin="anonymous"
-        />
-        <link
-          rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
-          crossorigin="anonymous"
-        />
-
-        <script
-          src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
-          crossorigin="anonymous"
-        ></script>
-      </Head>
-
       <header className={`${styles.header} `}>
         <div className="container">
           <div className={styles.top_header}>
@@ -97,15 +93,7 @@ function Header2({ category }) {
               {/* <div className={styles.be_seller}>
                 <a href="/landing/seller">در نخل بفروش!</a>
               </div> */}
-              {/* <div className={styles.shahneshin}>
-                <a title="شاه نشین" href="/page/shahneshin">
-                  <img
-                    src=""
-                    alt="شاه نشین"
-                    className="icon-shahneshin"
-                  />
-                </a>
-              </div> */}
+
               {/* <div className={styles.help_link}>
                 <a
                   target="_blank"
@@ -125,19 +113,43 @@ function Header2({ category }) {
               {/* </a>
               </div> */}
               {Object.keys(userLog).length > 0 ? (
-                <Link className={styles.nav_item_link_login} href="/profile">
-                  <i
-                    style={{ fontSize: "30px", marginLeft: "20px" }}
-                    className="fas fa-user-circle"
-                  ></i>
-                </Link>
+                <>
+                  <Link href="/profile">
+                    <a className={styles.nav_item_link_login}>
+                      <i
+                        style={{ fontSize: "30px", marginLeft: "20px" }}
+                        className="fas fa-user-circle"
+                      ></i>
+                    </a>
+                  </Link>
+                  <div className={styles.modalProfile}>
+                    <Link href="/profile">
+                      <a>
+                        <div style={{ marginTop: "10px" }} className="flex-row">
+                          <i className="fas fa-user-circle"></i>
+                          <span>پروفایل</span>
+                        </div>
+                      </a>
+                    </Link>
+                    <Link href="/accounts/logout/">
+                      <a>
+                        <div className="">
+                          <i className="fas fa-sign-out-alt "></i>
+                          <span>خروج از حساب کاربری</span>
+                        </div>
+                      </a>
+                    </Link>
+                  </div>
+                </>
               ) : (
-                <Link
-                  style={{ margin: "0px 20px " }}
-                  className={styles.nav_item_link_login}
-                  href="https://nakhll.com/accounts/get-phone/"
-                >
-                  ورود/ثبت نام
+                <Link href="https://nakhll.com/accounts/get-phone/">
+                  <a
+                    style={{ margin: "0px 20px " }}
+                    className={styles.nav_item_link_login}
+                  >
+                    ورود/ثبت نام
+                  </a>
+
                 </Link>
               )}
               <div onClick={() => {
@@ -182,7 +194,12 @@ function Header2({ category }) {
                     alt="فروشگاه اینترنتی نخل"
                     width="26"
                     height="26"
-                    style={{ cursor: "pointer", float: "right", marginRight: "10px" }}
+                    style={{
+                      cursor: "pointer",
+                      maxHeight: "33px",
+                      marginTop: "5px",
+                      marginRight: "2px",
+                    }}
                   />
                 </Link>
                 <i className="fas fa-bars" onClick={() => {
