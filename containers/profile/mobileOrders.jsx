@@ -25,7 +25,7 @@ const MobileOrders = ({ ordersList, setProfilePages, setInvoiceId, loading }) =>
                         <div className={`${styles.left} p-3 d-flex align-items-center`}>
                             <span className="d-block text-success px-3 py-2 rounded-pill" style={{ backgroundColor: "rgb(238, 238, 238)" }}>
                                 <span style={{ color: "red" }} onClick={() => {
-                                    router.push(`/cart/payment?id=${value.id}`);
+                                    router.push(`/cart/payment?invoice_id=${value.id}`);
                                 }}>{value.status === "awaiting_paying" && "در انتظار پرداخت"}</span>
                                 <span style={{ color: "#006060" }}>{(value.status === "completed" || value.status === "wait_store_checkout") && "تکمیل شده"}</span>
                                 <span style={{ color: "#006060" }}>{(value.status === "wait_store_approv") && "در انتظار تأیید فروشگاه"}</span>

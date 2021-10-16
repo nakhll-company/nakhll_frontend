@@ -19,11 +19,11 @@ const _asist = new Assistent();
 
 const Orders = ({ setProfilePages, setInvoiceId }) => {
 
-    const [loading, setLoading] = useState(true);
-    const [ordersList, setOrdersList] = useState([]);
-    const { width } = useViewport();
     const breakpoint = 900;
     const router = useRouter();
+    const { width } = useViewport();
+    const [loading, setLoading] = useState(true);
+    const [ordersList, setOrdersList] = useState([]);
 
     useEffect(async () => {
         await getUserOrders(setOrdersList, setLoading);
@@ -77,8 +77,11 @@ const Orders = ({ setProfilePages, setInvoiceId }) => {
                                             <td>
                                                 <span class="d-block px-3 py-2" style={{ backgroundColor: "#ddd", borderRadius: "50rem" }}>
                                                     <span style={{ color: "red", cursor: "pointer" }} onClick={() => {
-                                                        router.push(`/cart/payment?id=${value.id}`);
-                                                    }}>{value.status === "awaiting_paying" && statusOrder === "haveTime" && "در انتظار پرداخت"}</span>
+                                                        statusOrder === "haveTime" && router.push(`/cart/payment?invoice_id=${value.id}`);
+                                                    }}>
+                                                        {value.status === "awaiting_paying" && statusOrder === "haveTime" && "در انتظار پرداخت"}
+                                                        {value.status === "awaiting_paying" && statusOrder === "canceled" && "مهلت پرداخت گذشته است"}
+                                                    </span>
                                                     <span style={{ color: "#006060", cursor: "pointer" }} onClick={async () => {
                                                         await setInvoiceId(value.id);
                                                         await setProfilePages((pre) => {
