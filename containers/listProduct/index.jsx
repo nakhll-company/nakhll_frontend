@@ -112,6 +112,7 @@ function ListProduct({
       );
       if (response.status === 200) {
         setListWithFilter(response.data.results);
+        console.log("response.data :>> ", response.data);
 
         if (
           response.data.results.length === 0 ||
@@ -182,6 +183,7 @@ function ListProduct({
     wantCategories,
     whichOrdering,
     clickOnRange,
+    categoryIn,
   ]);
 
   // for filters in sidebar
@@ -349,9 +351,12 @@ function ListProduct({
                           imageUrl: oneProduct.image_thumbnail_url,
                           url: `/product/${oneProduct.slug}/`,
                           title: oneProduct.title,
-                          chamberTitle:
-                            oneProduct.shop && oneProduct.shop.title,
-                          chamberUrl: `/hojreh/${oneProduct.shop.slug} `,
+                          chamberTitle: oneProduct.shop
+                            ? oneProduct.shop.title
+                            : "",
+                          chamberUrl: oneProduct.shop
+                            ? `/hojreh/${oneProduct.shop.slug} `
+                            : "",
                           discount: oneProduct.discount,
                           price: oneProduct.price / 10,
                           discountNumber: oneProduct.old_price / 10,
