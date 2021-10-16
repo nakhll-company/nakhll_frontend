@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import styles from "./MegaMenuDesktop.module.scss";
 function MegaMenuDesktop({ category }) {
@@ -10,10 +11,12 @@ function MegaMenuDesktop({ category }) {
           className={styles.nav_item}
           style={{ position: "relative", display: "inline-block" }}
         >
-          <a className={styles.nav_item_link} href="#">
-            {element.title}
-            <i className="fas fa-angle-down"></i>
-          </a>
+          <Link href="#">
+            <a className={styles.nav_item_link}>
+              {element.title}
+              <i className="fas fa-angle-down"></i>
+            </a>
+          </Link>
           <div
             className={`container  ${styles.nav_submenu}`}
             style={{ backgroundColor: "#fff" }}
@@ -23,13 +26,15 @@ function MegaMenuDesktop({ category }) {
                 <ul className={styles.nav_submenu_cat}>
                   <li className={styles.nav_submenu_col_title}>
                     {element.submarkets.map((subElement, index) => (
-                      <a
-                        key={index}
+                      <Link
                         href={`/product?word=&cat=${subElement.id}`}
+                        key={index}
                       >
-                        {subElement.title}
-                        <i className="icon icon-Left"></i>
-                      </a>
+                        <a>
+                          {subElement.title}
+                          <i className="icon icon-Left"></i>
+                        </a>
+                      </Link>
                     ))}
                   </li>
                 </ul>
