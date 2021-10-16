@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import styles from "./Enfo.module.scss";
 
 function EnfoLiner({ title, profile }) {
@@ -6,7 +7,9 @@ function EnfoLiner({ title, profile }) {
     <>
       <div className={styles.topHoj}>
         <div className={styles.liner}>
-          <span>خانه</span>
+          <span>
+            <Link href="/">خانه</Link>
+          </span>
           <i className="fas fa-angle-left"></i>
           <span> حجره ها</span>
           <i className="fas fa-angle-left"></i>

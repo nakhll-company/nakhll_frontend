@@ -589,7 +589,7 @@ function ListProduct({
                       borderBottom: "1px solid gray",
                     }}
                     onClick={() => {
-                      setWhichOrdering("DiscountPrecentage");
+                      setWhichOrdering("-DiscountPrecentage");
                       setIsOpenOrderingModal(false);
                     }}
                   >

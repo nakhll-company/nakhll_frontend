@@ -28,7 +28,7 @@ function HeroSlides({ dataHeroSlides }) {
             ))}
           </Swiper>
         </div>
-        <div className={`col-md-4  ${styles.lefter}  d-none d-md-block`}>
+        <div className={`col-md-4  ${styles.lefter}  d-none d-md-flex`}>
           <img src="/image/slide/slideLeft2.jpg" alt="" />
           <img src="/image/slide/slidLeft.jpg" alt="" />
         </div>
