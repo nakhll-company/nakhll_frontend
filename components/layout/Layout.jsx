@@ -88,6 +88,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   marginRight: "5px",
                   marginLeft: "20px",
                   cursor: "pointer",
+
                 }}
               >
                 <Image
@@ -117,7 +118,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   width={60}
                   height={60}
                   onClick={() =>
-                    location.replace("https://nakhll.com/profile/")
+                    router.push("https://nakhll.com/profile/")
                   }
                   data-toggle="tooltip"
                   data-placement="bottom"
@@ -166,10 +167,8 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   height={30}
                   onClick={() => {
                     slugHojreh !== "" &&
-                      location.replace(`https://nakhll.com/${slugHojreh}/`);
+                      router.push(`https://nakhll.com/hojreh/${slugHojreh}/`);
                   }}
-                  data-toggle="tooltip"
-                  data-placement="bottom"
                   title="حجره"
                 />{" "}
               </span>
@@ -185,7 +184,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   width={30}
                   height={30}
                   onClick={() =>
-                    location.replace("https://nakhll.com/profile/dashboard/")
+                    router.push("https://nakhll.com/profile/")
                   }
                   data-toggle="tooltip"
                   data-placement="bottom"
@@ -218,8 +217,8 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
 
       <div
         className={`${width < breakpoint && router.pathname !== "/"
-            ? styles.wrapperProduct
-            : styles.wrapper
+          ? styles.wrapperProduct
+          : styles.wrapper
           }`}
       >
         {/* <!-- Right  SideBar--> */}
@@ -284,8 +283,8 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                 <Link href="/fp/setting">
                   <div
                     className={`${router.pathname == "/fp/setting"
-                        ? styles.ActiveMenuBarBig
-                        : ""
+                      ? styles.ActiveMenuBarBig
+                      : ""
                       }   ${styles.info_card_btn_one} ${styles.forhover}`}
                   >
                     <i
@@ -446,15 +445,15 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                         cursor: "pointer",
                       }}
                       className={`${styles.subTitleOrder}   ${router.pathname == "/fp/order/completed"
-                          ? styles.selectNav
-                          : ""
+                        ? styles.selectNav
+                        : ""
                         }`}
                     >
                       <span
                         style={{ marginLeft: "18px" }}
                         className={`${styles.dot}   ${router.pathname == "/fp/order/completed"
-                            ? styles.selectdot
-                            : ""
+                          ? styles.selectdot
+                          : ""
                           }`}
                       ></span>
                       <h2
@@ -478,15 +477,15 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                         cursor: "pointer",
                       }}
                       className={`${styles.subTitleOrder}   ${router.pathname == "/fp/order/uncompleted"
-                          ? styles.selectNav
-                          : ""
+                        ? styles.selectNav
+                        : ""
                         }`}
                     >
                       <span
                         style={{ marginLeft: "18px" }}
                         className={`${styles.dot}   ${router.pathname == "/fp/order/uncompleted"
-                            ? styles.selectdot
-                            : ""
+                          ? styles.selectdot
+                          : ""
                           }`}
                       ></span>
                       <h2

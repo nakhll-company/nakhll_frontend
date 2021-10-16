@@ -1,5 +1,5 @@
-import styles from "../../styles/components/layout/MenuMobile.module.scss";
 import Link from "next/link";
+import styles from "../../styles/components/layout/MenuMobile.module.scss";
 
 function MenuMobile() {
   return (
