@@ -111,7 +111,7 @@ function Header2() {
                         </div>
                       </a>
                     </Link>
-                    <Link href="/accounts/logout/">
+                    <Link href="/accounts/logout//">
                       <a>
                         <div className="">
                           <i className="fas fa-sign-out-alt "></i>
@@ -122,7 +122,7 @@ function Header2() {
                   </div>
                 </>
               ) : (
-                <Link href="https://nakhll.com/accounts/get-phone/">
+                <Link href="https://nakhll.com/accounts/get-phone//">
                   <a
                     style={{ margin: "0px 20px " }}
                     className={styles.nav_item_link_login}
@@ -210,7 +210,7 @@ function Header2() {
                       fontSize: "10px",
                       fontWeight: "500",
                     }}
-                    href="https://nakhll.com/accounts/get-phone/"
+                    href="https://nakhll.com/accounts/get-phone//"
                   >
                     ورود/ثبت نام
                   </Link>
