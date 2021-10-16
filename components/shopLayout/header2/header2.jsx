@@ -165,6 +165,9 @@ function Header2() {
             <div className={styles.inner_header}>
               <div
                 className={styles.menu_Hamburger}
+                onClick={() => {
+                  document.getElementById("SlideMenu").style.right = "0px";
+                }}
               >
                 <i className="fas fa-bars"></i>
                 <Link href="/">
