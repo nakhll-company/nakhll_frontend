@@ -1,7 +1,7 @@
 // node libraries
 import Assistent from "zaravand-assistent-number";
 import { useDispatch } from "react-redux";
-import Link from "next/link"
+import Link from "next/link";
 // methods
 import { addToCart } from "./methods/addToCart";
 import { getUserInfo } from "../../redux/actions/user/getUserInfo";
@@ -93,7 +93,9 @@ const ProductCard = ({
       >
         <div className={styles.paterImage}>
           {cardBadge}
-          <Link href={product.url}><a >{cardImg}</a></Link>
+          <Link href={product.url}>
+            <a>{cardImg}</a>
+          </Link>
         </div>
         {/* {linkType === "anchor" ? (
           <a href={product.url}>
@@ -113,7 +115,6 @@ const ProductCard = ({
           <div className=" mb-3">
             <Link href={product.url}>
               <a
-                
                 // target={_blank && "_blank"}
                 style={{ fontWeight: "bold" }}
                 className="_product_card_title text-truncate "
@@ -143,7 +144,6 @@ const ProductCard = ({
             <Link href={product.chamberUrl}>
               <a
                 title={product.chamberTitle}
-                
                 className="_product_card_subtitle"
               >
                 {product.chamberTitle}
@@ -224,14 +224,17 @@ const ProductCard = ({
                   <span className="_product_card_orginal_number">
                     {_asist.PSeparator(product.price)}
                   </span>
-                  {product.discountNumber !== 0 && (
-                    <span
-                      className="_product_card_discount_number"
-                      style={{ display: "flex", justifyContent: "flex-end" }}
-                    >
-                      {_asist.PSeparator(product.discountNumber)}
-                    </span>
-                  )}
+                  <span
+                    className="_product_card_discount_number"
+                    style={{
+                      display: "flex",
+                      justifyContent: "flex-end",
+                      minHeight: "15px",
+                    }}
+                  >
+                    {product.discountNumber !== 0 &&
+                      _asist.PSeparator(product.discountNumber)}
+                  </span>
                 </>
               )}
             </div>
