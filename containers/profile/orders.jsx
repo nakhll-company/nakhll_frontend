@@ -67,7 +67,7 @@ const Orders = ({ setProfilePages, setInvoiceId }) => {
                                                 {value.items.length > 0 && value.items.map((value, index) => (
                                                     <Link href={`productDetail/${value.slug}`}>
                                                         <a target="_blank" key={index}>
-                                                            {value.image_thumbnail && <Image src={value.image_thumbnail}
+                                                            {value.image_thumbnail && <Image src={`${value.image}`}
                                                                 alt={value.name} key={index} className={styles.image_product}
                                                                 width="35" height="35" />}
                                                         </a>

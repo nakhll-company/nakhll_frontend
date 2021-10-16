@@ -44,7 +44,20 @@ const GroupProduct = (data) => {
             </label>
             {/* input file */}
             <input style={{ width: "0px", height: "0px", opacity: "0px" }}
-              type="file" id="productExcelUpload" name="productExcelUpload"
+              type="file" id="productExcelUpload" name="productExcelUpload" accept=".csv"
+            >
+            </input>
+            <label style={{ marginTop: 10, marginRight: 10 }} htmlFor="productZipFile">
+              <div className={styles.add_image_container}>
+                <i style={{ fontSize: "25px" }}>+</i>
+                <p style={{ fontSize: "15px" }} className="mt-2">
+                  افزودن فایل zip
+                </p>
+              </div>
+            </label>
+            {/* input file */}
+            <input style={{ width: "0px", height: "0px", opacity: "0px" }}
+              type="file" id="productZipFile" name="productZipFile" accept=".zip,.rar,.7zip"
             >
             </input>
           </div>

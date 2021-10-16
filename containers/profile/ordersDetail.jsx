@@ -80,7 +80,7 @@ const OrdersDetail = ({ invoiceId }) => {
                                 <div className="d-flex align-items-center">
                                     <Link href={`productDetail/${value.id}`}>
                                         <a>
-                                            {value.image_thumbnail && <img src={value.image_thumbnail} alt="" style={{ width: "3.2rem", borderRadius: "1.5rem", marginLeft: "1rem" }} />}
+                                            {value.image && <img src={value.image} alt="" style={{ width: "3.2rem", borderRadius: "1.5rem", marginLeft: "1rem" }} />}
                                         </a>
                                     </Link>
                                     <div className="d-flex flex-column flex-md-row align-items-center">

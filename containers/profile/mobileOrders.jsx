@@ -55,7 +55,7 @@ const MobileOrders = ({ ordersList, setProfilePages, setInvoiceId, loading }) =>
                                 {value.items.length > 0 && value.items.map((value, index) => (
                                     <Link href={`/productDetail/${value.slug}`}>
                                         <a target="_blank" key={index}>
-                                            {value.image_thumbnail && <img src={value.image_thumbnail} alt={value.title} className="rounded-lg ml-2" width="35" height="35" />}
+                                            {value.image && <img src={value.image} alt={value.title} className="rounded-lg ml-2" width="35" height="35" />}
                                         </a>
                                     </Link>
                                 ))}
