@@ -1,20 +1,19 @@
 // node libraries
-import { useRouter } from "next/router";
 import { connect } from "react-redux";
 import Cropper from "react-easy-crop";
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
 import { useCallback, useEffect, useState } from "react";
 // components
-import MyLayout from "../../../../../components/layout/Layout";
 import Loading from "../../../../../components/loading/index";
+import MyLayout from "../../../../../components/layout/Layout";
 // methods
+import { errorMessage } from "../../../../../containers/utils/message";
 import { ApiRegister } from "../../../../../services/apiRegister/ApiRegister";
 import { mapState } from "../../../../../containers/product/methods/mapState";
 import { getCroppedImg } from "../../../../../containers/product/create/canvasUtils";
 // styles
 import styles from "../../../../../styles/pages/product/create.module.scss";
-import { errorMessage } from "../../../../../containers/utils/message";
 import CheckboxTreeCities from "../../../../../components/CheckboxTree/CheckboxTree";
 /**
  * page update product
@@ -31,7 +30,6 @@ const UpdateProduct = ({ activeHojreh }) => {
     register,
     setError,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm({
     criteriaMode: "all",
@@ -106,7 +104,6 @@ const UpdateProduct = ({ activeHojreh }) => {
   const [idImage, setIdImage] = useState(false);
   const [showSuccessPage, setShowSuccessPage] = useState(false);
   const [citiesInput, setCitiesInput] = useState([]);
-
   // for Save cities
   const [checkedCities, setCheckedCities] = useState([]);
 
@@ -128,10 +125,10 @@ const UpdateProduct = ({ activeHojreh }) => {
     );
     if (response.status === 200) {
       setCitiesInput(response.data.post_range_cities);
-
       setValue("Title", response.data.title);
-      setValue("submark", response.data.sub_market.title);
-      setPlaceholderSubmarckets(response.data.sub_market.title);
+      response.data.sub_market && setValue("submark", response.data.sub_market.title);
+      response.data.sub_market && setPlaceholderSubmarckets(response.data.sub_market.title);
+      response.data.sub_market && setSubmarketId(response.data.sub_market.id);
       setValue("Net_Weight", response.data.net_weight);
       setValue("Weight_With_Packing", response.data.weight_with_packing);
       if (response.data.price > response.data.old_price) {
@@ -142,23 +139,20 @@ const UpdateProduct = ({ activeHojreh }) => {
         setValue("OldPrice", response.data.price / 10);
       }
       setValue("Description", response.data.description);
-
-      let peree = response.data.banners.map((item) => {
-        return item.image;
-      });
-      setPreviewImage(response.data.banners);
-
-      window.localStorage.setItem("image", JSON.stringify(peree));
-
+      if (response.data.length > 0) {
+        let peree = response.data.banners.map((item) => {
+          return item.image;
+        });
+        setPreviewImage(response.data.banners);
+        window.localStorage.setItem("image", JSON.stringify(peree));
+        let idImage = response.data.banners.map((item) => {
+          return item.id;
+        });
+        setIdImage(idImage);
+      }
       setAdd(response.data.inventory);
       setAddPreparationDays(response.data.preparation_days);
       setIsLoad(true);
-      setSubmarketId(response.data.sub_market.id);
-
-      let idImage = response.data.banners.map((item) => {
-        return item.id;
-      });
-      setIdImage(idImage);
     }
   }; //close edit data
   // use effect
@@ -447,8 +441,8 @@ const UpdateProduct = ({ activeHojreh }) => {
                               className={styles.product_image}
                               style={{
                                 backgroundImage: `${item.image
-                                    ? `url(${item.image})`
-                                    : `url(${item})`
+                                  ? `url(${item.image})`
+                                  : `url(${item})`
                                   } `,
                               }}
                             >

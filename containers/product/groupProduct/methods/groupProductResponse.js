@@ -1,5 +1,5 @@
 import { errorMessage } from '../../../../containers/utils/message'
-import {hasActiveHojrehGroupProductAddEditPermission} from './hasActiveHojrehGroupProductAddEditPermission'
+import { hasActiveHojrehGroupProductAddEditPermission } from './hasActiveHojrehGroupProductAddEditPermission'
 export function groupProductResponse(userInfo, activeHojreh, router) {
     let hasPermission = hasActiveHojrehGroupProductAddEditPermission(userInfo, activeHojreh);
     if (hasPermission) {
