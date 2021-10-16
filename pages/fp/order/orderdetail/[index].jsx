@@ -242,7 +242,7 @@ function HomePage({ id }) {
                       </button>
                     </div>
                   )}
-                  {configOrder && (
+                  {(configOrder || data.status === "preparing_product") && (
                     <>
                       <Formik
                         enableReinitialize={true}
@@ -432,6 +432,15 @@ function HomePage({ id }) {
                       className={styles.post_information_h3}
                     >
                       {data.address && _asist.number(data.address.zip_code)}
+                    </h3>
+                  </div>
+                  <div className={styles.post_informationD_content}>
+                    <h4 style={{ fontSize: "14px" }}> کد رهگیری</h4>
+                    <h3
+                      style={{ fontSize: "15px" }}
+                      className={styles.post_information_h3}
+                    >
+                      {data.items.length > 0 && _asist.number(data.items[0].barcode)}
                     </h3>
                   </div>
                 </div>
@@ -825,7 +834,7 @@ function HomePage({ id }) {
                       </button>
                     </div>
                   )}
-                  {configOrder && (
+                  {(configOrder || data.status === "preparing_product") && (
                     <>
                       <Formik
                         enableReinitialize={true}
@@ -1017,6 +1026,15 @@ function HomePage({ id }) {
                       className={styles.post_information_h3}
                     >
                       {data.address && _asist.number(data.address.zip_code)}
+                    </h3>
+                  </div>
+                  <div className={styles.post_information_content}>
+                    <h4 style={{ fontSize: "14px" }}> کد رهگیری</h4>
+                    <h3
+                      style={{ fontSize: "15px" }}
+                      className={styles.post_information_h3}
+                    >
+                      {data.items.length > 0 && _asist.number(data.items[0].barcode)}
                     </h3>
                   </div>
                 </div>
