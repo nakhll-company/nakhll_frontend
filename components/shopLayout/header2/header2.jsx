@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import React, { useState, useEffect } from "react";
 import Assistent from "zaravand-assistent-number";
+import React, { useState, useEffect } from "react";
 // component
 import MegaMenuDesktop from "../../../containers/LandingPage/MegaMenuDesktop";
 import MegaMenuMobile from "../../../containers/LandingPage/MegaMenuMobile";
@@ -30,14 +30,13 @@ function Header2() {
       }
     } catch (e) { }
   };
-  useEffect(() => {
-    _call_Category();
-  }, []);
+
   const dispatch = useDispatch();
   const userLog = useSelector((state) => state.User.userInfo);
   const [inputSearch, setInputSearch] = useState("");
   useEffect(() => {
     dispatch(getUserInfo());
+    _call_Category();
   }, []);
   return (
     <>
@@ -46,19 +45,20 @@ function Header2() {
           <div className={styles.top_header}>
             <div className={styles.top_header_rightside}>
               <div className={styles.h_logo}>
-                <Link
-                  href="/"
-                  style={{
-                    display: "flex",
-                    alignItems: " center",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <img
-                    src="/icons/logo_Nakhl.svg"
-                    alt="فروشگاه اینترنتی نخل"
-                    style={{ cursor: "pointer", maxHeight: "42px" }}
-                  />
+                <Link href="/">
+                  <a
+                    style={{
+                      display: "flex",
+                      alignItems: " center",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <img
+                      src="/icons/logo_Nakhl.svg"
+                      alt="فروشگاه اینترنتی نخل"
+                      style={{ cursor: "pointer", maxHeight: "42px" }}
+                    />
+                  </a>
                 </Link>
               </div>
               <div className={styles.h_search}>
@@ -78,7 +78,9 @@ function Header2() {
                     />
 
                     <Link href={`/product?word=${inputSearch}&cat=`}>
-                      <i className="fas fa-search"></i>
+                      <a >
+                        <i className="fas fa-search"></i>
+                      </a>
                     </Link>
                   </form>
                   {/* <i className="fas fa-close"></i> */}
@@ -187,33 +189,32 @@ function Header2() {
               <div
                 className={styles.menu_Hamburger}
               >
+                <i className="fas fa-bars"></i>
+              </div>
+              <div className={styles.logo_mobile}>
                 <Link href="/">
-                  <img
-                    src="/icons/Nakhll.png"
-                    alt="فروشگاه اینترنتی نخل"
-                    width="26"
-                    height="26"
-                    style={{
-                      cursor: "pointer",
-                      maxHeight: "33px",
-                      marginTop: "5px",
-                      marginRight: "2px",
-                    }}
-                  />
+                  <a>
+                    <img
+                      src="/icons/Nakhll.png"
+                      alt="فروشگاه اینترنتی نخل"
+                      width="26"
+                      height="26"
+                      style={{ cursor: "pointer", maxHeight: "33px", marginTop: "5px", marginRight: "2px" }}
+                    />
+                  </a>
                 </Link>
-                <i className="fas fa-bars" onClick={() => {
-                  document.getElementById("SlideMenu").style.right = "0px";
-                }}></i>
               </div>
               {/* <div className={styles.logo_mobile}>
               </div> */}
               <div className={styles.logo_name}>
                 <Link href="/">
-                  <img
-                    src="/icons/Name_Nakhl.png"
-                    alt="فروشگاه اینترنتی نخل"
-                    style={{ cursor: "pointer", width: "180%" }}
-                  />
+                  <a>
+                    <img
+                      src="/icons/Name_Nakhl.png"
+                      alt="فروشگاه اینترنتی نخل"
+                      style={{ cursor: "pointer", width: "38%" }}
+                    />
+                  </a>
                 </Link>
               </div>
               <div className={styles.left_side}>
@@ -271,7 +272,9 @@ function Header2() {
                   placeholder="جستجو در نخل ..."
                 />
                 <Link href={`/product?word=${inputSearch}&cat=`}>
-                  <i className="fas fa-search"></i>
+                  <a >
+                    <i className="fas fa-search"></i>
+                  </a>
                 </Link>
               </form>
               {/* <i className="fas fa-times"></i> */}
@@ -286,12 +289,14 @@ function Header2() {
         >
           <div className={styles.mobile_menu} id="SlideMenu">
             <div className={styles.head_menu}>
-              <Link href="/" className={styles.menu_logo}>
-                <img
-                  style={{ maxHeight: "50px" }}
-                  src="/icons/logo_Nakhl.svg"
-                  alt=""
-                />
+              <Link href="/">
+                <a className={styles.menu_logo}>
+                  <img
+                    style={{ maxHeight: "50px" }}
+                    src="/icons/logo_Nakhl.svg"
+                    alt=""
+                  />
+                </a>
               </Link>
               <span
                 className={styles.close_menu}

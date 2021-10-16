@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/router";
 import ListProduct from "../../containers/listProduct";
 import ListWitOutFilters from "../../containers/listProduct/ListWithOutFilters";
 
 function product({ word, category, ap }) {
+  const router = useRouter();
+
+  const [cat, setCat] = useState(category);
   return (
     <>
       {ap !== "" && (
@@ -11,7 +15,9 @@ function product({ word, category, ap }) {
         </>
       )}
 
-      {ap === "" && <ListProduct searchWord={word} categoryIn={category} />}
+      {ap === "" && (
+        <ListProduct searchWord={word} categoryIn={router.query.cat} />
+      )}
     </>
   );
 }

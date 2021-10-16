@@ -1,5 +1,5 @@
 import React from "react";
-import Head from "next/head";
+
 
 import HeroSlides from "../containers/LandingPage/HeroSlides";
 import LinerFourImgMobile from "../containers/LandingPage/LinerFourImgMobile";

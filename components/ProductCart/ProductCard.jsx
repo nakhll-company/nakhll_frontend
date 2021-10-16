@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import Assistent from "zaravand-assistent-number";
 import { useDispatch } from "react-redux";
+import Link from "next/link"
 // methods
 import { addToCart } from "./methods/addToCart";
 import { getUserInfo } from "../../redux/actions/user/getUserInfo";
