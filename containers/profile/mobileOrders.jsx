@@ -3,6 +3,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Assistent from "zaravand-assistent-number";
+// methods
+import { checkTimeOrder } from './methods/checkTimeOrder';
 // scss
 import styles from './scss/mobileOrders.module.scss';
 
@@ -16,7 +18,8 @@ const MobileOrders = ({ ordersList, setProfilePages, setInvoiceId, loading }) =>
                 <div className="d-flex flex-column">
                     <Image src="/loading.svg" alt="loding" width="40" height="40" />
                 </div> :
-                ordersList.length > 0 ? ordersList.map((value, index) => (
+                ordersList.length > 0 ? ordersList.map((value, index) => {
+                    let statusOrder = checkTimeOrder(value.created_time_jalali);
                     <div className={styles.list_items} key={index}>
                         <div className={`${styles.right} p-3`}>
                             <span className="d-block text-secondary mb-2 d-lg-none">شماره سفارش</span>
@@ -25,8 +28,11 @@ const MobileOrders = ({ ordersList, setProfilePages, setInvoiceId, loading }) =>
                         <div className={`${styles.left} p-3 d-flex align-items-center`}>
                             <span className="d-block text-success px-3 py-2 rounded-pill" style={{ backgroundColor: "rgb(238, 238, 238)" }}>
                                 <span style={{ color: "red" }} onClick={() => {
-                                    router.push(`/cart/payment?invoice_id=${value.id}`);
-                                }}>{value.status === "awaiting_paying" && "در انتظار پرداخت"}</span>
+                                    statusOrder === "haveTime" && router.push(`/cart/payment?invoice_id=${value.id}`);
+                                }}>
+                                    {value.status === "awaiting_paying" && statusOrder === "haveTime" && "در انتظار پرداخت"}
+                                    {value.status === "awaiting_paying" && statusOrder === "canceled" && "مهلت پرداخت گذشته است"}
+                                </span>
                                 <span style={{ color: "#006060" }}>{(value.status === "completed" || value.status === "wait_store_checkout") && "تکمیل شده"}</span>
                                 <span style={{ color: "#006060" }}>{(value.status === "wait_store_approv") && "در انتظار تأیید فروشگاه"}</span>
                                 <span style={{ color: "#006060" }}>{(value.status === "preparing_product") && "در حال آماده سازی"}</span>
@@ -79,7 +85,7 @@ const MobileOrders = ({ ordersList, setProfilePages, setInvoiceId, loading }) =>
                                 </span>
                             </div>}
                     </div>
-                )) : <div>سفارشی موجود نیست</div>}
+                }) : <div>سفارشی موجود نیست</div>}
         </div>
     );
 }

@@ -77,7 +77,7 @@ const Orders = ({ setProfilePages, setInvoiceId }) => {
                                             <td>
                                                 <span class="d-block px-3 py-2" style={{ backgroundColor: "#ddd", borderRadius: "50rem" }}>
                                                     <span style={{ color: "red", cursor: "pointer" }} onClick={() => {
-                                                        statusOrder === "haveTime" && router.push(`/cart/payment?invoice_id=${value.id}`);
+                                                        statusOrder === "haveTime" && router.push(`/cart/address?invoice_id=${value.id}`);
                                                     }}>
                                                         {value.status === "awaiting_paying" && statusOrder === "haveTime" && "در انتظار پرداخت"}
                                                         {value.status === "awaiting_paying" && statusOrder === "canceled" && "مهلت پرداخت گذشته است"}
