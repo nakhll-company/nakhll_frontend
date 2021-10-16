@@ -22,7 +22,7 @@ const fetchData = async (id) => {
   let all_type_for_component = [];
   let Schema = [];
   let urlSchema = encodeURI(`${ApiReference.Landing_Page}${id}/`);
-  let Api_Shop=encodeURI(`${ApiReference.shop}${id}/`)
+  let Api_Shop = encodeURI(`${ApiReference.shop}${id}/`);
   let response = await ApiRegister().apiRequest(
     null,
     "GET",
@@ -30,7 +30,7 @@ const fetchData = async (id) => {
     true,
     ""
   );
-  
+
   if (response.status === 200) {
     if (response.data.is_landing) {
       Schema = await ApiRegister().apiRequest(null, "GET", urlSchema, true, "");
@@ -59,7 +59,7 @@ const fetchData = async (id) => {
   } else {
     return {
       shop: response.data || [],
-      SchemaIn:  [],
+      SchemaIn: [],
       all_type_for_component,
       all_data_for_component,
     };
@@ -67,7 +67,6 @@ const fetchData = async (id) => {
 };
 
 const Hojreh = ({ dataShop }) => {
-  
   const [informationShop, setInformationShop] = useState(dataShop.shop);
   const _handel_select_component = (type, index) => {
     switch (type.component_type) {
@@ -158,10 +157,11 @@ const Hojreh = ({ dataShop }) => {
           crossOrigin="anonymous"
         ></link>
       </Head>
-      { !dataShop.shop.is_landing && (
+      {!dataShop.shop.is_landing && (
         <>
           <EnfoLiner
             title={informationShop.title}
+            name={dataShop.shop.FK_ShopManager}
             profile={informationShop.image_thumbnail_url}
           />
 
@@ -169,8 +169,7 @@ const Hojreh = ({ dataShop }) => {
         </>
       )}
 
-      {
-        dataShop.shop.is_landing &&
+      {dataShop.shop.is_landing &&
         dataShop.SchemaIn.map((turn, index) =>
           _handel_select_component(turn, index)
         )}
