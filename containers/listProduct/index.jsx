@@ -112,7 +112,6 @@ function ListProduct({
       );
       if (response.status === 200) {
         setListWithFilter(response.data.results);
-        console.log("response.data :>> ", response.data);
 
         if (
           response.data.results.length === 0 ||

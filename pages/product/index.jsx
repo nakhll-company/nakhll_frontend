@@ -5,7 +5,6 @@ import ListWitOutFilters from "../../containers/listProduct/ListWithOutFilters";
 
 function product({ word, category, ap }) {
   const router = useRouter();
-  console.log("router :>> ", router.query.cat);
 
   const [cat, setCat] = useState(category);
   return (
