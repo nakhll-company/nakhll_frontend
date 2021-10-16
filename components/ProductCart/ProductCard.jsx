@@ -112,12 +112,12 @@ const ProductCard = ({
             }`}
         >
           <div className=" mb-3">
-            <Link
-              href={product.url}
-              // target={_blank && "_blank"}
-              style={{ fontWeight: "bold" }}
-            >
-              <a className={`_product_card_title text-truncate ${styles.links}`}>
+            <Link href={product.url}>
+              <a
+                // target={_blank && "_blank"}
+                style={{ fontWeight: "bold" }}
+                className="_product_card_title text-truncate "
+              >
                 {product.title}
               </a>
             </Link>
@@ -140,10 +140,11 @@ const ProductCard = ({
           <div className="_product_card_city text-truncate mb-3">
             <span className="_product_card_subtitle">{product.city}</span>
             {product.city && <i className="fa fa-angle-left px-1"></i>}
-            <Link
-              href={product.chamberUrl}
-            >
-              <a className={`_product_card_subtitle ${styles.links}`}>
+            <Link href={product.chamberUrl}>
+              <a
+                title={product.chamberTitle}
+                className="_product_card_subtitle"
+              >
                 {product.chamberTitle}
               </a>
             </Link>
@@ -222,14 +223,17 @@ const ProductCard = ({
                   <span className="_product_card_orginal_number">
                     {_asist.PSeparator(product.price)}
                   </span>
-                  {product.discountNumber !== 0 && (
-                    <span
-                      className="_product_card_discount_number"
-                      style={{ display: "flex", justifyContent: "flex-end" }}
-                    >
-                      {_asist.PSeparator(product.discountNumber)}
-                    </span>
-                  )}
+                  <span
+                    className="_product_card_discount_number"
+                    style={{
+                      display: "flex",
+                      justifyContent: "flex-end",
+                      minHeight: "15px",
+                    }}
+                  >
+                    {product.discountNumber !== 0 &&
+                      _asist.PSeparator(product.discountNumber)}
+                  </span>
                 </>
               )}
             </div>
