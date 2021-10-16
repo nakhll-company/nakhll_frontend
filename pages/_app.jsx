@@ -1,5 +1,6 @@
 // node libraries
 import { Provider } from "react-redux";
+import Head from "next/head";
 import { Store } from "../redux/store";
 import { hotjar } from "react-hotjar";
 import { useEffect } from "react";
@@ -16,6 +17,15 @@ import "../styles/globals.scss";
 
 import "../styles/General/font-awesome/css/font-awesome.css";
 import Script from "next/script";
+// <!-- Global site tag (gtag.js) - Google Analytics -->
+// <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156540827-1"></script>
+// <script>
+//   window.dataLayer = window.dataLayer || [];
+//   function gtag(){dataLayer.push(arguments);}
+//   gtag('js', new Date());
+
+//   gtag('config', 'UA-156540827-1');
+// </script>
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -26,16 +36,18 @@ function MyApp({ Component, pageProps }) {
   if (router.pathname.startsWith("/fp")) {
     return (
       <>
+        {/* Analytics */}
+
         <Script
           strategy="lazyOnload"
-          src={`https://www.googletagmanager.com/gtag/js?id=UA-156540827-1`}
+          src={"https://www.googletagmanager.com/gtag/js?id=UA-156540827-1"}
         />
         <Script strategy="lazyOnload">
           {`window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
+   function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-              gtag('config', 'UA-156540827-1');`}
+   gtag('config', 'UA-156540827-1');`}
         </Script>
         <Script strategy="lazyOnload">
           {`!function (t, e, n) {
@@ -62,14 +74,14 @@ function MyApp({ Component, pageProps }) {
       <>
         <Script
           strategy="lazyOnload"
-          src={"https://www.googletagmanager.com/gtag/js?id=G-Z8E2Z09JDT"}
+          src={"https://www.googletagmanager.com/gtag/js?id=UA-156540827-1"}
         />
         <Script strategy="lazyOnload">
           {`window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
+   function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-              gtag('config', 'G-Z8E2Z09JDT');`}
+   gtag('config', 'UA-156540827-1');`}
         </Script>
         <Script strategy="lazyOnload">{`!function(){function t(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,localStorage.getItem("rayToken")?t.src="https://app.raychat.io/scripts/js/"+o+"?rid="+localStorage.getItem("rayToken")+"&href="+window.location.href:t.src="https://app.raychat.io/scripts/js/"+o+"?href="+window.location.href;var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}var e=document,a=window,o="1b3710ed-495e-4794-bbc7-842af6728c48";"complete"==e.readyState?t():a.attachEvent?a.attachEvent("onload",t):a.addEventListener("load",t,!1)}();`}</Script>
         <Script strategy="lazyOnload">
