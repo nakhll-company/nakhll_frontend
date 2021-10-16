@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Assistent from "zaravand-assistent-number";
 import React, { useState, useEffect } from "react";
 // component
@@ -15,6 +16,7 @@ import styles from "./header2.module.scss";
 const _asist = new Assistent();
 
 function Header2() {
+  const router = useRouter();
   const [category, setCategory] = useState([]);
   const _call_Category = async () => {
     try {
