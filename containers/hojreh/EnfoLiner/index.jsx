@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import styles from "./Enfo.module.scss";
 
-function EnfoLiner({ title, profile }) {
+function EnfoLiner({ title, profile, name }) {
   return (
     <>
       <div className={styles.topHoj}>
@@ -24,7 +24,7 @@ function EnfoLiner({ title, profile }) {
             <img className={styles.img_profile} src={profile} alt="" />
             <div className={styles.information}>
               <h1>{title}</h1>
-              <h5>{title}</h5>
+              <h5>{`${name.first_name}  ${name.last_name}`}</h5>
             </div>
             {/* <i className="fas fa-share-alt-square"></i> */}
           </div>
