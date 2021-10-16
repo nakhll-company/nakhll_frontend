@@ -443,7 +443,7 @@ const ProductDetailDesktop = ({ data }) => {
             <hr className="my-5" />
             <div className={`col-12 ${styles.other_product}`}>
               <h2>محصولات دیگر {detail.shop.title}</h2>
-              <Link href={`${detail.shop.url}`}>
+              <Link href={`/hojreh/${detail.shop.slug}`}>
                 <a>همه ی محصولات</a>
               </Link>
             </div>
