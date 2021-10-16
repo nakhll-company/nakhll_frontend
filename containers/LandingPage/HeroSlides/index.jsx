@@ -12,10 +12,10 @@ import styles from "./HeroSlides.module.scss";
 
 function HeroSlides({ dataHeroSlides }) {
   return (
-    <div className="container ">
+    <div style={{ marginTop: "5px" }} className="container ">
       <div className={`row ${styles.slide}`}>
-        <div className={`col-md-8 ${styles.righter}`}>
-          <Swiper pagination={true} spaceBetween={50} slidesPerView={1}>
+        <div className={`col-12 col-md-8 ${styles.righter}`}>
+          <Swiper pagination={true} spaceBetween={20} slidesPerView={1}>
             {dataHeroSlides.map((slider, index) => (
               <SwiperSlide key={index}>
                 <a href={slider.url}>
