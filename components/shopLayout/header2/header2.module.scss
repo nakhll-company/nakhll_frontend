@@ -369,7 +369,9 @@ $color_tel_word: rgb(162, 172, 182);
       box-sizing: border-box;
       position: relative;
       .menu_Hamburger {
-        padding-top: 8px;
+        display: flex;
+        align-items: center;
+        // padding-top: 8px;
         i {
           font-size: 20px;
         }
@@ -584,5 +586,5 @@ $color_tel_word: rgb(162, 172, 182);
 }
 
 .logo_name {
-    width: 50px;
+    width: 60px;
 }

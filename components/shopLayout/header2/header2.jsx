@@ -83,7 +83,6 @@ function Header2() {
                       </a>
                     </Link>
                   </form>
-                  {/* <i className="fas fa-close"></i> */}
                   <div className="result_search">
                     <div className="search_history"></div>
                   </div>
@@ -91,28 +90,6 @@ function Header2() {
               </div>
             </div>
             <div className={styles.top_header_leftside}>
-              {/* <div className={styles.be_seller}>
-                <a href="/landing/seller">در نخل بفروش!</a>
-              </div> */}
-
-              {/* <div className={styles.help_link}>
-                <a
-                  target="_blank"
-                  title="کارت هدیه"
-                  href=""
-                >
-                  <img
-                    src=""
-                    alt="کارت هدیه"
-                    className="icon-shahneshin"
-                  />
-                </a>
-              </div> */}
-              {/* <div className={styles.help_link}>
-                <a title="راهنمای نخل" href=""> */}
-              {/* <i className="icon icon-QuestionCircle"></i> */}
-              {/* </a>
-              </div> */}
               {Object.keys(userLog).length > 0 ? (
                 <>
                   <Link href="/profile">
@@ -190,8 +167,6 @@ function Header2() {
                 className={styles.menu_Hamburger}
               >
                 <i className="fas fa-bars"></i>
-              </div>
-              <div className={styles.logo_mobile}>
                 <Link href="/">
                   <a>
                     <img
@@ -199,20 +174,18 @@ function Header2() {
                       alt="فروشگاه اینترنتی نخل"
                       width="26"
                       height="26"
-                      style={{ cursor: "pointer", maxHeight: "33px", marginTop: "5px", marginRight: "2px" }}
+                      style={{ cursor: "pointer", marginRight: "10px" }}
                     />
                   </a>
                 </Link>
               </div>
-              {/* <div className={styles.logo_mobile}>
-              </div> */}
               <div className={styles.logo_name}>
                 <Link href="/">
                   <a>
                     <img
                       src="/icons/Name_Nakhl.png"
                       alt="فروشگاه اینترنتی نخل"
-                      style={{ cursor: "pointer", width: "38%" }}
+                      style={{ cursor: "pointer", width: "130%" }}
                     />
                   </a>
                 </Link>
@@ -277,7 +250,6 @@ function Header2() {
                   </a>
                 </Link>
               </form>
-              {/* <i className="fas fa-times"></i> */}
             </div>
           </div>
         </div>
@@ -308,56 +280,6 @@ function Header2() {
               </span>
             </div>
             <div className={styles.top_menu}>
-              {/* <div className={styles.btn_links}> */}
-              {/* <a className={styles.btn_link_box} href="/cart">
-                  <div className={styles.icon_holder}>
-                    <img
-                      src="https://images.timcheh.com/1/fill/24/24/sm/true/plain/https://static.timcheh.com/uploads/manual/images/others/icon-ShoppingCart-fill.svg"
-                      className="icon"
-                    />
-                  </div>
-                  <div className="txt">سبد‌‌خرید</div>
-                </a> */}
-              {/* <a className={styles.btn_link_box} href="/help">
-                  <div className={styles.icon_holder}>
-                    <img
-                      src="https://images.timcheh.com/1/fill/24/24/sm/true/plain/https://static.timcheh.com/uploads/manual/images/others/icon-QuestionCircle-fill.svg"
-                      className="icon"
-                    />
-                  </div>
-                  <div className="txt">دفترچه راهنما</div>
-                </a> */}
-              {/* <a
-                  className={styles.btn_link_box}
-                  href="/search/category-timcheh-gift-card"
-                >
-                  <div className={styles.icon_holder}>
-                    <img
-                      src="https://images.timcheh.com/1/fill/18/14/sm/true/plain/https://static.timcheh.com/uploads/manual/images/others/card_giftcard.svg"
-                      className="icon"
-                    />
-                  </div>
-                  <div className="txt">کارت هدیه</div>
-                </a> */}
-              {/* <a className={styles.btn_link_box} href="/page/shahneshin">
-                  <div className={styles.icon_holder}>
-                    <img
-                      src="https://images.timcheh.com/1/fill/18/14/sm/true/plain/https://static.timcheh.com/uploads/manual/images/others/shahneshin.svg"
-                      className="icon"
-                    />
-                  </div>
-                  <div className="txt">شاه‌نشین</div>
-                </a> */}
-              {/* <a className={styles.btn_link_box} href="/landing/seller">
-                  <div className={styles.icon_holder}>
-                    <img
-                      src="https://images.timcheh.com/1/fill/24/24/sm/true/plain/https://static.timcheh.com/uploads/manual/images/others/Store-Mall-Directory-blue.svg"
-                      className="icon"
-                    />
-                  </div>
-                  <div className="txt">فروشنده شوید</div>
-                </a> */}
-              {/* </div> */}
               <h2 className={styles.title_menu}>دسته بندی محصولات</h2>
             </div>
             <MegaMenuMobile category={category} />
