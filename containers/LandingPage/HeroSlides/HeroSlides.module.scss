@@ -5,6 +5,9 @@ $color4: #597ba1;
 $color5: #91a6c1;
 $color6: #d4d8e1;
 .slide {
+    @media (min-width: 768px) {
+        margin-top: 19px;
+    }
     // margin-top: 2px;
     // margin-bottom: 15px;
     .righter {
@@ -17,6 +20,9 @@ $color6: #d4d8e1;
         }
     }
     .lefter {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: space-between;
         img {
             width: 100%;
             border-radius: 15px;
