@@ -25,6 +25,7 @@ export const getServerSideProps = ({ params }) => {
 };
 
 function HomePage({ id }) {
+
   const VALIDATION_SCHEMA = yup.object().shape({
     codeRahgiri: yup
       .number()
@@ -71,6 +72,9 @@ function HomePage({ id }) {
   useEffect(() => {
     _handleRequestApi(id);
   }, []);
+
+  let jsonAddress = data.address_json || {};
+  jsonAddress = JSON.parse(jsonAddress);
 
   return (
     <>
@@ -412,7 +416,7 @@ function HomePage({ id }) {
                     <h3 style={{ fontSize: "15px" }}
                       className={styles.post_information_h3}
                     >
-                      {data.address && _asist.number(data.address.receiver_mobile_number)}
+                      {data.address_json && _asist.number(jsonAddress.receiver_mobile_number)}
                     </h3>
                   </div>
                   <div></div>
@@ -422,7 +426,7 @@ function HomePage({ id }) {
                       style={{ fontSize: "15px" }}
                       className={styles.post_information_h3}
                     >
-                      {data.address && `${data.address.state} |  ${data.address.big_city}  |  ${data.address.address}`}
+                      {data.address_json && `${jsonAddress.state} |  ${jsonAddress.big_city}  |  ${jsonAddress.address}`}
                     </h3>
                   </div>
                   <div className={styles.post_informationD_content}>
@@ -431,7 +435,7 @@ function HomePage({ id }) {
                       style={{ fontSize: "15px" }}
                       className={styles.post_information_h3}
                     >
-                      {data.address && _asist.number(data.address.zip_code)}
+                      {data.address_json && _asist.number(jsonAddress.zip_code)}
                     </h3>
                   </div>
                   <div className={styles.post_informationD_content}>
@@ -1007,7 +1011,7 @@ function HomePage({ id }) {
                       style={{ fontSize: "15px" }}
                       className={styles.post_information_h3}
                     >
-                      {data.address && _asist.number(data.address.receiver_mobile_number)}
+                      {data.address_json && _asist.number(jsonAddress.receiver_mobile_number)}
                     </h3>
                   </div>
                   <div className={styles.post_information_content}>
@@ -1016,7 +1020,7 @@ function HomePage({ id }) {
                       style={{ fontSize: "15px" }}
                       className={styles.post_information_h3}
                     >
-                      {data.address && `${data.address.state} |  ${data.address.big_city}  |  ${data.address.address}`}
+                      {data.address_json && `${jsonAddress.state} |  ${jsonAddress.big_city}  |  ${jsonAddress.address}`}
                     </h3>
                   </div>
                   <div className={styles.post_information_content}>
