@@ -228,7 +228,7 @@ const Profile = () => {
                   className="d-flex flex-column align-items-center ms-4"
 
                 >
-                  <Link href="/accounts/logout//">
+                  <Link href="/accounts/logout/">
                     <a >
                       <i className="fas fa-sign-out-alt"></i>
                       <br />

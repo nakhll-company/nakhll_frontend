@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import Link from 'next/link';
 import { useContext } from "react";
 import Assistent from "zaravand-assistent-number";
@@ -31,9 +31,8 @@ export default function ListCardBuy() {
       <div className="cart-items mt-2">
         {!isEmpty(All_product_list_buy) &&
           All_product_list_buy.ordered_items.map((El, index) => (
-            <>
+            <Fragment key={index + 10}>
               <div
-                key={index + 10}
                 className={`${styles.cart_product_group} bg-white`}
                 style={
                   !(
@@ -839,7 +838,7 @@ export default function ListCardBuy() {
                     {/* <LoadingDelet /> */}
                   </div>
                 )}
-            </>
+            </Fragment>
           ))}
       </div>
     </div>

@@ -205,9 +205,9 @@ export default function Cart() {
                 <div className={`${styles.input_group_bg} rounded-pill`}></div>
               </form>
               {msgCoupon && (
-                msgCoupon.map((item) => {
+                msgCoupon.map((item, index) => {
                   return (
-                    <div className="border border-success bg-white font-size-9 py-2 pr-3 mt-3 rounded d-flex flex-wrap justify-content-between align-items-center">
+                    <div key={index} className="border border-success bg-white font-size-9 py-2 pr-3 mt-3 rounded d-flex flex-wrap justify-content-between align-items-center">
                       <span className=" text-success ml-3">کوپن شما با مبلغ {item.price_applied / 10
                       } تومان برای شما فعال گردید.</span>
                       {/* <strong className="text-success ml-3">61,000 تومان</strong> */}
@@ -275,9 +275,9 @@ export default function Cart() {
                 </div>
               )}
               {listInvoice.length > 0 &&
-                listInvoice.map((itemProduct) => {
+                listInvoice.map((itemProduct, index) => {
                   return (
-                    <div className="font-size-sm border-bottom pb-3 mt-3">
+                    <div key={index} className="font-size-sm border-bottom pb-3 mt-3">
                       <div className="title font-weight-500">
                         از حجره {itemProduct.shop_name}
                       </div>

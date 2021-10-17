@@ -57,7 +57,7 @@ const Orders = ({ setProfilePages, setInvoiceId }) => {
                                 ordersList.length > 0 ? ordersList.map((value, index) => {
                                     let statusOrder = checkTimeOrder(value.created_time_jalali);
                                     return (
-                                        <tr>
+                                        <tr key={index}>
                                             <td>{_asist.number(index + 1)}</td>
                                             <td>{_asist.number(value.id)}</td>
                                             <td>{_asist.number(value.created_date_jalali)}</td>
@@ -65,7 +65,7 @@ const Orders = ({ setProfilePages, setInvoiceId }) => {
                                                 _asist.PSeparator(`${value.final_price / 10} تومان`)}</td>
                                             <td>
                                                 {value.items.length > 0 && value.items.map((value, index) => (
-                                                    <Link href={`productDetail/${value.slug}`}>
+                                                    <Link href={`productDetail/${value.slug}`} key={index}>
                                                         <a target="_blank" key={index}>
                                                             {value.image_thumbnail && <Image src={`${value.image}`}
                                                                 alt={value.name} key={index} className={styles.image_product}
@@ -75,7 +75,7 @@ const Orders = ({ setProfilePages, setInvoiceId }) => {
                                                 ))}
                                             </td>
                                             <td>
-                                                <span class="d-block px-3 py-2" style={{ backgroundColor: "#ddd", borderRadius: "50rem" }}>
+                                                <span className="d-block px-3 py-2" style={{ backgroundColor: "#ddd", borderRadius: "50rem" }}>
                                                     <span style={{ color: "red", cursor: "pointer" }} onClick={() => {
                                                         statusOrder === "haveTime" && router.push(`/cart/address?invoice_id=${value.id}`);
                                                     }}>

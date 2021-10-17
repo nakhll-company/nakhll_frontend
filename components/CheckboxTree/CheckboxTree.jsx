@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import CheckboxTree from "react-checkbox-tree";
 import { allCites } from "./data";
 import Assistent from "zaravand-assistent-number";
@@ -264,8 +264,8 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
       >
         {false &&
           selectState.map((e) => (
-            <>
-              <div key={e.value} style={{ display: "flex" }}>
+            <Fragment key={e.value}>
+              <div style={{ display: "flex" }}>
                 {/* {e.children.length &&} */}
 
                 <>
@@ -285,7 +285,7 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
                   </h4>
                 </>
               </div>
-            </>
+            </Fragment>
           ))}
       </div>
       {/* Show City */}
@@ -308,8 +308,8 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
         }}
       >
         {allOfCity.map((e) => (
-          <>
-            <div key={e.value} style={{ display: "flex" }}>
+          <Fragment key={e.value}>
+            <div style={{ display: "flex" }}>
               {/* {e.children.length &&} */}
 
               <>
@@ -338,7 +338,7 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
                 ></i>
               </>
             </div>
-          </>
+          </Fragment>
         ))}
       </div>
     </>
