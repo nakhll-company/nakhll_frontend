@@ -29,7 +29,7 @@ import Script from "next/script";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
-    hotjar.initialize(2447146, 6);
+    hotjar.initialize(2655206, 6);
   }, []);
   const router = useRouter();
 
