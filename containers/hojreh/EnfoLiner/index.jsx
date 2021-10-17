@@ -18,7 +18,7 @@ function EnfoLiner({ title, profile, name }) {
 
         <div className={styles.slide}>
           <div className="">
-            <img className={styles.imgslid} src="/image/back.jpeg" alt="" />
+            <img className={styles.imgslid} src="/image/back.jpg" alt="" />
           </div>
           <div className={`${styles.profile} d-none d-md-flex `}>
             <img className={styles.img_profile} src={profile} alt="" />
