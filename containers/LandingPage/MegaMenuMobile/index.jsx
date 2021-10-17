@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Link from "next/link"
+import Link from "next/link";
 import { ApiReference } from "../../../Api";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
@@ -47,8 +47,13 @@ function MegaMenuMobile({ category }) {
             </li>
             {element.submarkets.map((subElement, index) => (
               <li key={index}>
-                <Link  href={`/product?word=&cat=${subElement.id}`}>
-                  <a>
+                <Link href={`/product?word=&cat=${subElement.id}`}>
+                  <a
+                    onClick={() => {
+                      document.getElementById("SlideMenu").style.right =
+                        "-100%";
+                    }}
+                  >
                     {subElement.title}
                   </a>
                 </Link>
