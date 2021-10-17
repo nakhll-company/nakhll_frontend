@@ -73,7 +73,7 @@ function HomePage({ id }) {
     _handleRequestApi(id);
   }, []);
 
-  let jsonAddress = data.address_json || {};
+  let jsonAddress = data.address_json || "{}";
   jsonAddress = JSON.parse(jsonAddress);
 
   return (
