@@ -11,7 +11,7 @@ import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
 import { errorMessage } from '../../../containers/utils/message';
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // style
-import styles from "./header2.module.scss";
+import styles from "./header.module.scss";
 
 const _asist = new Assistent();
 

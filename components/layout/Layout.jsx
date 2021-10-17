@@ -27,7 +27,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
   const [slugHojreh, setSlugHojreh] = useState("");
   const breakpoint = 620;
   const ExitDash = () => {
-    location.replace("https://www.nakhll.com");
+    router.push("https://www.nakhll.com");
   };
   useEffect(() => {
     Object.keys(userInfo).length === 0 && getUserInfo();
@@ -98,7 +98,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   height={60}
                   onClick={() => {
                     slugHojreh !== "" &&
-                      location.replace(`https://nakhll.com/hojreh/${slugHojreh}/`);
+                      router.push(`/hojreh/${slugHojreh}/`);
                   }}
                   data-toggle="tooltip"
                   data-placement="bottom"
@@ -138,7 +138,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   alt="Picture of the author"
                   width={60}
                   height={60}
-                  onClick={() => location.replace("https://nakhll.com/")}
+                  onClick={() => router.push("/")}
                   data-toggle="tooltip"
                   data-placement="bottom"
                   title="نخل"
@@ -167,7 +167,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   height={30}
                   onClick={() => {
                     slugHojreh !== "" &&
-                      router.push(`https://nakhll.com/hojreh/${slugHojreh}/`);
+                      router.push(`/hojreh/${slugHojreh}/`);
                   }}
                   title="حجره"
                 />{" "}
