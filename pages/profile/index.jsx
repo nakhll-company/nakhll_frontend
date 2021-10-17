@@ -99,7 +99,7 @@ const Profile = () => {
                                     activeLink(event);
                                 }}
                             >
-                                <Link href={userData.shops.length > 0 ? "/fp" : "/fp/store/create"}>
+                                <Link href={userData && userData.shops && userData.shops.length > 0 ? "/fp" : "/fp/store/create"}>
                                     <a className="d-flex align-items-center">
                                         <i className="fas fa-store ms-2"></i>
                                         مدیریت حجره
@@ -180,7 +180,7 @@ const Profile = () => {
                                         activeLink(event);
                                     }}
                                 >
-                                    <Link href={userData.shops.length > 0 ? "/fp" : "/fp/store/create"}>
+                                    <Link href={userData && userData.shops && userData.shops.length > 0 ? "/fp" : "/fp/store/create"}>
                                         <a className="d-flex flex-column align-items-center">
                                             <i className="fas fa-store"></i>
                                             <br />
