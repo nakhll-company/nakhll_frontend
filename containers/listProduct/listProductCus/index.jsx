@@ -43,9 +43,15 @@ function ListProductCus({
   console.log("whichOrdering :>> ", whichOrdering);
 
   // state for on filter
-  const [isDiscountPercentage, setIsDiscountPercentage] = useState(false);
-  const [isReadyForSend, setIsReadyForSend] = useState(false);
-  const [isAvailableGoods, setIsAvailableGoods] = useState(false);
+  const [isDiscountPercentage, setIsDiscountPercentage] = useState(
+    data.discounted == "true" ? true : false
+  );
+  const [isReadyForSend, setIsReadyForSend] = useState(
+    data.ready == "true" ? true : false
+  );
+  const [isAvailableGoods, setIsAvailableGoods] = useState(
+    data.available == "true" ? true : false
+  );
 
   // Array for cateGory
   const [categories, setCategories] = useState([]);
@@ -317,6 +323,7 @@ function ListProductCus({
                 <div className="search-body-filter">
                   <div className="modal-body" style={{ msOverflowX: "hidden" }}>
                     <CustomSwitch
+                      defaultChecked={data.available == "true" ? true : false}
                       title="فقط کالاهای موجود"
                       id="Available_goods"
                       onChange={(e) => {
@@ -324,6 +331,7 @@ function ListProductCus({
                       }}
                     />
                     <CustomSwitch
+                      defaultChecked={data.ready == "true" ? true : false}
                       title="آماده ارسال"
                       id="Ready_to_send"
                       onChange={(e) => {
@@ -331,6 +339,7 @@ function ListProductCus({
                       }}
                     />
                     <CustomSwitch
+                      defaultChecked={data.discounted == "true" ? true : false}
                       title="تخفیف دارها"
                       id="discounted"
                       onChange={(e) => {

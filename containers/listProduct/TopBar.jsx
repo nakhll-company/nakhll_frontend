@@ -9,7 +9,7 @@ export const TopBar = ({
   whichOrdering,
 }) => {
   console.log("data :>> ", data);
-  const [witchItem, setWitchItem] = useState("1");
+
   const { totalcount } = useContext(ContextListProductPage);
   return (
     <>
@@ -38,12 +38,12 @@ export const TopBar = ({
                     marginRight: "5px",
                   }}
                 >
-                  {whichOrdering == "" && "مرتبط‌ترین"}
-                  {whichOrdering == "Price" && "ارزانتر"}
-                  {whichOrdering == "-Price" && "گرانتر"}
+                  {data == "" && "مرتبط‌ترین"}
+                  {data == "Price" && "ارزانتر"}
+                  {data == "-Price" && "گرانتر"}
 
-                  {whichOrdering == "DiscountPrecentage" && "بیشترین تخفیف"}
-                  {whichOrdering == "-DateCreate" && "تازه ها"}
+                  {data == "DiscountPrecentage" && "بیشترین تخفیف"}
+                  {data == "-DateCreate" && "تازه ها"}
                 </span>
                 <span></span>
               </span>
@@ -72,31 +72,22 @@ export const TopBar = ({
                 </span>
               </div>{" "}
               <ul>
-                <li
-                  className={`sort-item  ${
-                    "1" === witchItem ? " active" : ""
-                  } `}
-                >
+                <li className={`sort-item  ${data == "" ? " active" : ""} `}>
                   <a
                     id={"1"}
                     onClick={() => {
                       setWhichOrdering("");
-                      setWitchItem("1");
                     }}
                   >
                     مرتبط‌ترین
                   </a>
                 </li>
                 <li
-                  className={`sort-item  ${
-                    "2" === witchItem || data == "" ? " active" : ""
-                  } `}
+                  className={`sort-item  ${data == "Price" ? " active" : ""} `}
                 >
                   <a
                     onClick={() => {
                       setWhichOrdering("Price");
-
-                      setWitchItem("2");
                     }}
                   >
                     ارزان‌تر
@@ -104,15 +95,11 @@ export const TopBar = ({
                 </li>
                 <li
                   id={"3"}
-                  className={`sort-item  ${
-                    "3" === witchItem || data == "Price" ? " active" : ""
-                  } `}
+                  className={`sort-item  ${data == "-Price" ? " active" : ""} `}
                 >
                   <a
                     onClick={() => {
                       setWhichOrdering("-Price");
-
-                      setWitchItem("3");
                     }}
                   >
                     گران‌تر
@@ -120,15 +107,12 @@ export const TopBar = ({
                 </li>
                 <li
                   className={`sort-item  ${
-                    "4" === witchItem || data == "DiscountPrecentage"
-                      ? " active"
-                      : ""
+                    data == "DiscountPrecentage" ? " active" : ""
                   } `}
                 >
                   <a
                     onClick={() => {
                       setWhichOrdering("DiscountPrecentage");
-                      setWitchItem("4");
                     }}
                   >
                     بیشترین تخفیف
@@ -136,13 +120,12 @@ export const TopBar = ({
                 </li>
                 <li
                   className={`sort-item  ${
-                    "5" === witchItem || data == "-DateCreate" ? " active" : ""
+                    data == "-DateCreate" ? " active" : ""
                   } `}
                 >
                   <a
                     onClick={() => {
                       setWhichOrdering("-DateCreate");
-                      setWitchItem("5");
                     }}
                   >
                     تازه‌ها
