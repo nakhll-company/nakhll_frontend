@@ -1,10 +1,12 @@
 // node libraries
 import { Provider } from "react-redux";
-import Head from "next/head";
+import { useEffect } from "react";
+import * as gtag from "../lib/gtag";
+import Script from "next/script";
+import { useRouter } from "next/router";
 import { Store } from "../redux/store";
 import { hotjar } from "react-hotjar";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
+
 // components
 import MyLayout from "../components/layout/Layout";
 import ShopLayout from "../components/shopLayout";
@@ -14,41 +16,47 @@ import "bootstrap/dist/css/bootstrap.css";
 import "../styles/globals.scss";
 
 // font-awesome
-
 import "../styles/General/font-awesome/css/font-awesome.css";
-import Script from "next/script";
-// <!-- Global site tag (gtag.js) - Google Analytics -->
-// <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156540827-1"></script>
-// <script>
-//   window.dataLayer = window.dataLayer || [];
-//   function gtag(){dataLayer.push(arguments);}
-//   gtag('js', new Date());
-
-//   gtag('config', 'UA-156540827-1');
-// </script>
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+
   useEffect(() => {
     hotjar.initialize(2655206, 6);
   }, []);
-  const router = useRouter();
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      gtag.pageview(url);
+    };
+    router.events.on("routeChangeComplete", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
 
   if (router.pathname.startsWith("/fp")) {
     return (
       <>
-        {/* Analytics */}
-
+        {/* Global Site Tag (gtag.js) - Google Analytics */}
         <Script
-          strategy="lazyOnload"
-          src={"https://www.googletagmanager.com/gtag/js?id=UA-156540827-1"}
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
         />
-        <Script strategy="lazyOnload">
-          {`window.dataLayer = window.dataLayer || [];
-   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+        <Script
+          id="gtag-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${gtag.GA_TRACKING_ID}', {
+              page_path: window.location.pathname,
+            });
+          `,
+          }}
+        />
 
-   gtag('config', 'UA-156540827-1');`}
-        </Script>
         <Script strategy="lazyOnload">
           {`!function (t, e, n) {
         t.yektanetAnalyticsObject = n, t[n] = t[n] || function () {
@@ -72,17 +80,25 @@ function MyApp({ Component, pageProps }) {
   } else {
     return (
       <>
+        {/* Global Site Tag (gtag.js) - Google Analytics */}
         <Script
-          strategy="lazyOnload"
-          src={"https://www.googletagmanager.com/gtag/js?id=UA-156540827-1"}
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
         />
-        <Script strategy="lazyOnload">
-          {`window.dataLayer = window.dataLayer || [];
-   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-   gtag('config', 'UA-156540827-1');`}
-        </Script>
+        <Script
+          id="gtag-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${gtag.GA_TRACKING_ID}', {
+              page_path: window.location.pathname,
+            });
+          `,
+          }}
+        />
         <Script strategy="lazyOnload">{`!function(){function t(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,localStorage.getItem("rayToken")?t.src="https://app.raychat.io/scripts/js/"+o+"?rid="+localStorage.getItem("rayToken")+"&href="+window.location.href:t.src="https://app.raychat.io/scripts/js/"+o+"?href="+window.location.href;var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}var e=document,a=window,o="1b3710ed-495e-4794-bbc7-842af6728c48";"complete"==e.readyState?t():a.attachEvent?a.attachEvent("onload",t):a.addEventListener("load",t,!1)}();`}</Script>
         <Script strategy="lazyOnload">
           {`!function (t, e, n) {
