@@ -25,6 +25,7 @@ function ListProductCus({
   shop_products = "",
   categoryIn = "",
 }) {
+  console.log("data.city :>> ", data.city);
   const [listProducts, setlistProducts] = useState([]);
 
   const [listWithFilter, setListWithFilter] = useState([]);
@@ -55,7 +56,11 @@ function ListProductCus({
   const [categories, setCategories] = useState([]);
   const [wantCategories, setWantCategories] = useState([]);
 
-  const [checkedCity, setCheckedCity] = useState([]);
+  const [checkedCity, setCheckedCity] = useState([
+    ...data.city.split(",").map((el) => parseInt(el)),
+  ]);
+
+  console.log("check :>> ", checkedCity);
   const [expandCity, setExpandCity] = useState([]);
 
   // state for handel pagination in api
@@ -358,6 +363,7 @@ function ListProductCus({
             </div>{" "}
             <div className="col-12 col-lg-9">
               <TopBar
+              totalcount={totalcount}
                 data={data.ordering}
                 whichOrdering={whichOrdering}
                 handel_filterModal={handel_filterModal}

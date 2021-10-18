@@ -1,16 +1,13 @@
-import React, { useState, useContext } from "react";
-import ContextListProductPage from "./Context/context";
+import React from "react";
 
 export const TopBar = ({
+  totalcount,
   data,
   handel_filterModal,
   setWhichOrdering,
   handel_OrderingModal,
   whichOrdering,
 }) => {
-  console.log("data :>> ", data);
-
-  const { totalcount } = useContext(ContextListProductPage);
   return (
     <>
       <div style={{ marginTop: "0px" }}>
