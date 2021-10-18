@@ -57,7 +57,7 @@ function ListProductCus({
   const [wantCategories, setWantCategories] = useState([]);
 
   const [checkedCity, setCheckedCity] = useState([
-    ...data.city.split(",").map((el) => parseInt(el)),
+    ...(data.city ? data.city.split(",").map((el) => parseInt(el)) : []),
   ]);
 
   console.log("check :>> ", checkedCity);
@@ -363,7 +363,7 @@ function ListProductCus({
             </div>{" "}
             <div className="col-12 col-lg-9">
               <TopBar
-              totalcount={totalcount}
+                totalcount={totalcount}
                 data={data.ordering}
                 whichOrdering={whichOrdering}
                 handel_filterModal={handel_filterModal}
