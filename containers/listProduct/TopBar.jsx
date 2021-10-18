@@ -1,14 +1,13 @@
-import React, { useState, useContext } from "react";
-import ContextListProductPage from "./Context/context";
+import React from "react";
 
 export const TopBar = ({
+  totalcount,
+  data,
   handel_filterModal,
   setWhichOrdering,
   handel_OrderingModal,
   whichOrdering,
 }) => {
-  const [witchItem, setWitchItem] = useState("1");
-  const { totalcount } = useContext(ContextListProductPage);
   return (
     <>
       <div style={{ marginTop: "0px" }}>
@@ -23,9 +22,7 @@ export const TopBar = ({
           >
             <i className="fas fa-filter"></i>
             <button className="btn px-2" onClick={handel_filterModal}>
-              <span style={{ marginLeft: "45px" }}>
-                فیلترها
-              </span>
+              <span style={{ marginLeft: "45px" }}>فیلترها</span>
             </button>
             <i className="fas fa-sort-amount-down-alt"></i>
             <button className="btn px-2" onClick={handel_OrderingModal}>
@@ -38,12 +35,12 @@ export const TopBar = ({
                     marginRight: "5px",
                   }}
                 >
-                  {whichOrdering == "" && "مرتبط‌ترین"}
-                  {whichOrdering == "Price" && "ارزانتر"}
-                  {whichOrdering == "-Price" && "گرانتر"}
+                  {data == "" && "مرتبط‌ترین"}
+                  {data == "Price" && "ارزانتر"}
+                  {data == "-Price" && "گرانتر"}
 
-                  {whichOrdering == "DiscountPrecentage" && "بیشترین تخفیف"}
-                  {whichOrdering == "-DateCreate" && "تازه ها"}
+                  {data == "DiscountPrecentage" && "بیشترین تخفیف"}
+                  {data == "-DateCreate" && "تازه ها"}
                 </span>
                 <span></span>
               </span>
@@ -72,29 +69,22 @@ export const TopBar = ({
                 </span>
               </div>{" "}
               <ul>
-                <li
-                  className={`sort-item  ${"1" === witchItem ? " active" : ""
-                    } `}
-                >
+                <li className={`sort-item  ${data == "" ? " active" : ""} `}>
                   <a
                     id={"1"}
                     onClick={() => {
                       setWhichOrdering("");
-                      setWitchItem("1");
                     }}
                   >
                     مرتبط‌ترین
                   </a>
                 </li>
                 <li
-                  className={`sort-item  ${"2" === witchItem ? " active" : ""
-                    } `}
+                  className={`sort-item  ${data == "Price" ? " active" : ""} `}
                 >
                   <a
                     onClick={() => {
                       setWhichOrdering("Price");
-
-                      setWitchItem("2");
                     }}
                   >
                     ارزان‌تر
@@ -102,40 +92,37 @@ export const TopBar = ({
                 </li>
                 <li
                   id={"3"}
-                  className={`sort-item  ${"3" === witchItem ? " active" : ""
-                    } `}
+                  className={`sort-item  ${data == "-Price" ? " active" : ""} `}
                 >
                   <a
                     onClick={() => {
                       setWhichOrdering("-Price");
-
-                      setWitchItem("3");
                     }}
                   >
                     گران‌تر
                   </a>
                 </li>
                 <li
-                  className={`sort-item  ${"4" === witchItem ? " active" : ""
-                    } `}
+                  className={`sort-item  ${
+                    data == "DiscountPrecentage" ? " active" : ""
+                  } `}
                 >
                   <a
                     onClick={() => {
                       setWhichOrdering("DiscountPrecentage");
-                      setWitchItem("4");
                     }}
                   >
                     بیشترین تخفیف
                   </a>
                 </li>
                 <li
-                  className={`sort-item  ${"5" === witchItem ? " active" : ""
-                    } `}
+                  className={`sort-item  ${
+                    data == "-DateCreate" ? " active" : ""
+                  } `}
                 >
                   <a
                     onClick={() => {
                       setWhichOrdering("-DateCreate");
-                      setWitchItem("5");
                     }}
                   >
                     تازه‌ها

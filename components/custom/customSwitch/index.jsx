@@ -1,12 +1,6 @@
-import React, { useContext, useState } from "react";
-import ContextListProductPage from "../../../containers/listProduct/Context/context";
+import React from "react";
 
-const CustomSwitch = ({ id, title, onChange }) => {
-  const { listProducts } = useContext(ContextListProductPage);
-  const _ = require("lodash");
-
-  const copyList = _.filter(listProducts, { discount: 0 });
-
+const CustomSwitch = ({ id, title, onChange, defaultChecked }) => {
   return (
     <div className="filter-box pb">
       <div className="custom-switch d-flex align-items-center ev-yekase-filter">
@@ -15,6 +9,7 @@ const CustomSwitch = ({ id, title, onChange }) => {
           id={`switch__${id}`}
           className="custom-switch__input"
           onChange={onChange}
+          defaultChecked={defaultChecked}
         />{" "}
         <label htmlFor={`switch__${id}`} className="custom-switch__label">
           <span className="circle"></span>
