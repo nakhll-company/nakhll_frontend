@@ -25,7 +25,6 @@ function ListProductCus({
   shop_products = "",
   categoryIn = "",
 }) {
-  console.log("data :>> ", data);
   const [listProducts, setlistProducts] = useState([]);
 
   const [listWithFilter, setListWithFilter] = useState([]);
@@ -40,7 +39,6 @@ function ListProductCus({
   const [whichOrdering, setWhichOrdering] = useState(
     data.ordering ? data.ordering : ""
   );
-  console.log("whichOrdering :>> ", whichOrdering);
 
   // state for on filter
   const [isDiscountPercentage, setIsDiscountPercentage] = useState(
@@ -65,8 +63,12 @@ function ListProductCus({
   const [hasMore, setHasMore] = useState(false);
 
   // stat for Range
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
+  const [minPrice, setMinPrice] = useState(
+    data.min_price ? parseInt(data.min_price) : 0
+  );
+  const [maxPrice, setMaxPrice] = useState(
+    data.max_price ? parseInt(data.max_price) : 10000
+  );
   const [clickOnRange, setClickOnRange] = useState(1);
 
   const _handel_category = async () => {
@@ -112,8 +114,8 @@ function ListProductCus({
       ...(wantCategories.length > 0 && { category: wantCategories.toString() }),
       // "5f239daf-9984-477a-aacd-fc3a2f8b76cb"
       page_size: 50,
-      min_price: minPrice,
-      max_price: maxPrice,
+      min_price: minPrice * 10000,
+      max_price: maxPrice * 10000,
       shop: shop_products,
     };
 
@@ -165,8 +167,8 @@ function ListProductCus({
             category: wantCategories.toString(),
           }),
           page_size: 50,
-          min_price: minPrice,
-          max_price: maxPrice,
+          min_price: minPrice * 10000,
+          max_price: maxPrice * 100000,
           shop: shop_products,
         }
       );
@@ -204,7 +206,11 @@ function ListProductCus({
     let url = `
     ?search=${searchWord}&test=${
       data.ali ? data.ali : ""
-    }&ordering=${whichOrdering}&ready=${isReadyForSend}&available=${isAvailableGoods}&discounted=${isDiscountPercentage}&city=${checkedCity.toString()}&page_size=50&min_price=${minPrice}&max_price=${maxPrice}&shop=${shop_products}&category: ${wantCategories.toString()}`;
+    }&ordering=${whichOrdering}&ready=${isReadyForSend}&available=${isAvailableGoods}&discounted=${isDiscountPercentage}&city=${checkedCity.toString()}&page_size=50&min_price=${parseInt(
+      minPrice
+    )}&max_price=${parseInt(
+      maxPrice
+    )}&shop=${shop_products}&category: ${wantCategories.toString()}`;
 
     router.push(url);
   }, [
@@ -276,11 +282,11 @@ function ListProductCus({
                 <CustomAccordion title="محدوده قیمت" item="two" close={true}>
                   <div style={{ direction: "ltr", zIndex: "1000" }}>
                     <MultiRangeSlider
-                      min={0}
-                      max={10000}
+                      min={data.min_price ? data.min_price : 0}
+                      max={data.max_price ? data.max_price : 10000}
                       onChange={({ min, max }) => {
-                        setMinPrice(min * 10000);
-                        setMaxPrice(max * 10000);
+                        setMinPrice(min);
+                        setMaxPrice(max);
                       }}
                     />
                     <div style={{ display: "flex", justifyContent: "center" }}>
