@@ -25,9 +25,8 @@ function ListProductCus({
   shop_products = "",
   categoryIn = "",
 }) {
-  console.log("data.city :>> ", data.city);
-  const [listProducts, setlistProducts] = useState([]);
 
+  const [listProducts, setlistProducts] = useState([]);
   const [listWithFilter, setListWithFilter] = useState([]);
   // state for  show Ordering Modal in mobile
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -59,8 +58,6 @@ function ListProductCus({
   const [checkedCity, setCheckedCity] = useState([
     ...data.city.split(",").map((el) => parseInt(el)),
   ]);
-
-  console.log("check :>> ", checkedCity);
   const [expandCity, setExpandCity] = useState([]);
 
   // state for handel pagination in api
@@ -88,7 +85,7 @@ function ListProductCus({
       if (response.status === 200) {
         setCategories(response.data);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   const _handel_Add_category = (id) => {
@@ -188,7 +185,7 @@ function ListProductCus({
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   // START
@@ -209,13 +206,12 @@ function ListProductCus({
 
   useEffect(() => {
     let url = `
-    ?search=${searchWord}&test=${
-      data.ali ? data.ali : ""
-    }&ordering=${whichOrdering}&ready=${isReadyForSend}&available=${isAvailableGoods}&discounted=${isDiscountPercentage}&city=${checkedCity.toString()}&page_size=50&min_price=${parseInt(
-      minPrice
-    )}&max_price=${parseInt(
-      maxPrice
-    )}&shop=${shop_products}&category: ${wantCategories.toString()}`;
+    ?search=${searchWord}&test=${data.ali ? data.ali : ""
+      }&ordering=${whichOrdering}&ready=${isReadyForSend}&available=${isAvailableGoods}&discounted=${isDiscountPercentage}&city=${checkedCity.toString()}&page_size=50&min_price=${parseInt(
+        minPrice
+      )}&max_price=${parseInt(
+        maxPrice
+      )}&shop=${shop_products}&category: ${wantCategories.toString()}`;
 
     router.push(url);
   }, [
@@ -363,7 +359,7 @@ function ListProductCus({
             </div>{" "}
             <div className="col-12 col-lg-9">
               <TopBar
-              totalcount={totalcount}
+                totalcount={totalcount}
                 data={data.ordering}
                 whichOrdering={whichOrdering}
                 handel_filterModal={handel_filterModal}

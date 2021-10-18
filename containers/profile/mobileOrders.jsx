@@ -53,7 +53,7 @@ const MobileOrders = ({ ordersList, setProfilePages, setInvoiceId, loading }) =>
                             <span className="text-secondary d-block mb-2 d-lg-none">لیست محصولات</span>
                             <div className="d-flex">
                                 {value.items.length > 0 && value.items.map((value, index) => (
-                                    <Link href={`/productDetail/${value.slug}`} key={index}>
+                                    <Link href={`/product/${value.slug}`} key={index}>
                                         <a target="_blank" key={index}>
                                             {value.image && <img src={value.image} alt={value.title} className="rounded-lg ml-2" width="35" height="35" />}
                                         </a>
