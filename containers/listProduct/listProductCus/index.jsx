@@ -56,7 +56,7 @@ function ListProductCus({
   const [wantCategories, setWantCategories] = useState([]);
 
   const [checkedCity, setCheckedCity] = useState([
-    ...data.city.split(",").map((el) => parseInt(el)),
+    ...(data.city ? data.city.split(",").map((el) => parseInt(el)) : []),
   ]);
   const [expandCity, setExpandCity] = useState([]);
 
