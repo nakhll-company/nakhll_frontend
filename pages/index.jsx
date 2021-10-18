@@ -1,6 +1,5 @@
 import React from "react";
 
-
 import HeroSlides from "../containers/LandingPage/HeroSlides";
 import LinerFourImgMobile from "../containers/LandingPage/LinerFourImgMobile";
 import LinerOneImg from "../containers/LandingPage/LinerOneImg";
@@ -44,7 +43,6 @@ const fetchData = async () => {
 };
 
 const index = ({ data }) => {
-
   const Sample = {
     1: "اسلایدر تکی",
     2: "بنر تک عکسی",
@@ -120,7 +118,6 @@ const index = ({ data }) => {
 
   return (
     <>
-      
       {data.SchemaIn.length > 0 &&
         data.SchemaIn.map((turn, index) =>
           _handel_select_component(turn, index)
@@ -135,7 +132,7 @@ export default index;
 // function server side
 export async function getServerSideProps(context) {
   const data = await fetchData();
-
+  console.log("data :>> ", data);
   return {
     props: { data },
   };
