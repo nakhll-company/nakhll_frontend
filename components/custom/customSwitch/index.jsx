@@ -5,8 +5,6 @@ const CustomSwitch = ({ id, title, onChange }) => {
   const { listProducts } = useContext(ContextListProductPage);
   const _ = require("lodash");
 
-  const copyList = _.filter(listProducts, { discount: 0 });
-
   return (
     <div className="filter-box pb">
       <div className="custom-switch d-flex align-items-center ev-yekase-filter">

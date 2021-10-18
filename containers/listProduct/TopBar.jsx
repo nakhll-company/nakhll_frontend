@@ -2,11 +2,13 @@ import React, { useState, useContext } from "react";
 import ContextListProductPage from "./Context/context";
 
 export const TopBar = ({
+  data,
   handel_filterModal,
   setWhichOrdering,
   handel_OrderingModal,
   whichOrdering,
 }) => {
+  console.log("data :>> ", data);
   const [witchItem, setWitchItem] = useState("1");
   const { totalcount } = useContext(ContextListProductPage);
   return (
@@ -23,9 +25,7 @@ export const TopBar = ({
           >
             <i className="fas fa-filter"></i>
             <button className="btn px-2" onClick={handel_filterModal}>
-              <span style={{ marginLeft: "45px" }}>
-                فیلترها
-              </span>
+              <span style={{ marginLeft: "45px" }}>فیلترها</span>
             </button>
             <i className="fas fa-sort-amount-down-alt"></i>
             <button className="btn px-2" onClick={handel_OrderingModal}>
@@ -73,8 +73,9 @@ export const TopBar = ({
               </div>{" "}
               <ul>
                 <li
-                  className={`sort-item  ${"1" === witchItem ? " active" : ""
-                    } `}
+                  className={`sort-item  ${
+                    "1" === witchItem ? " active" : ""
+                  } `}
                 >
                   <a
                     id={"1"}
@@ -87,8 +88,9 @@ export const TopBar = ({
                   </a>
                 </li>
                 <li
-                  className={`sort-item  ${"2" === witchItem ? " active" : ""
-                    } `}
+                  className={`sort-item  ${
+                    "2" === witchItem || data == "" ? " active" : ""
+                  } `}
                 >
                   <a
                     onClick={() => {
@@ -102,8 +104,9 @@ export const TopBar = ({
                 </li>
                 <li
                   id={"3"}
-                  className={`sort-item  ${"3" === witchItem ? " active" : ""
-                    } `}
+                  className={`sort-item  ${
+                    "3" === witchItem || data == "Price" ? " active" : ""
+                  } `}
                 >
                   <a
                     onClick={() => {
@@ -116,8 +119,11 @@ export const TopBar = ({
                   </a>
                 </li>
                 <li
-                  className={`sort-item  ${"4" === witchItem ? " active" : ""
-                    } `}
+                  className={`sort-item  ${
+                    "4" === witchItem || data == "DiscountPrecentage"
+                      ? " active"
+                      : ""
+                  } `}
                 >
                   <a
                     onClick={() => {
@@ -129,8 +135,9 @@ export const TopBar = ({
                   </a>
                 </li>
                 <li
-                  className={`sort-item  ${"5" === witchItem ? " active" : ""
-                    } `}
+                  className={`sort-item  ${
+                    "5" === witchItem || data == "-DateCreate" ? " active" : ""
+                  } `}
                 >
                   <a
                     onClick={() => {
