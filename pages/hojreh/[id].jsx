@@ -21,8 +21,8 @@ const fetchData = async (id) => {
   let all_data_for_component = [];
   let all_type_for_component = [];
   let Schema = [];
-  let urlSchema = encodeURI(`${ApiReference.Landing_Page}${id}/`);
   let Api_Shop = encodeURI(`${ApiReference.shop}${id}/`);
+
   let response = await ApiRegister().apiRequest(
     null,
     "GET",
@@ -33,7 +33,13 @@ const fetchData = async (id) => {
 
   if (response.status === 200) {
     if (response.data.is_landing) {
-      Schema = await ApiRegister().apiRequest(null, "GET", urlSchema, true, "");
+      Schema = await ApiRegister().apiRequest(
+        null,
+        "GET",
+        `${ApiReference.schemaShop}${response.data.ID}/`,
+        true,
+        ""
+      );
       if (Schema.status === 200) {
         for (let index = 0; index < Schema.data.length; index++) {
           let one_Component = await ApiRegister().apiRequest(
@@ -182,6 +188,7 @@ export default Hojreh;
 // function server side
 export async function getServerSideProps(context) {
   const dataShop = await fetchData(context.params.id);
+  console.log("dataShop :>> ", dataShop);
 
   return {
     props: {

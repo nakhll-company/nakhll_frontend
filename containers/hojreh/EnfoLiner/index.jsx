@@ -24,7 +24,9 @@ function EnfoLiner({ title, profile, name }) {
             <img className={styles.img_profile} src={profile} alt="" />
             <div className={styles.information}>
               <h1>{title}</h1>
-              <h5>{`${name.first_name}  ${name.last_name}`}</h5>
+              <h5>{`${name ? name.first_name : ""}  ${
+                name ? name.last_name : ""
+              }`}</h5>
             </div>
             {/* <i className="fas fa-share-alt-square"></i> */}
           </div>
