@@ -34,9 +34,14 @@ const EditProfile = ({ dataProfile }) => {
                 data.Image = `${reader.result}`;
             }
             reader.readAsDataURL(imageProfile);
-        } else {
-            // let imageProfile = "";
         }
+        if (data.BrithDay === "--") {
+            delete data.BrithDay;
+        }
+        if (data.Sex === "") {
+            delete data.Sex;
+        }
+
 
         setTimeout(() => {
             updatUserProfile(data);

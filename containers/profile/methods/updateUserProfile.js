@@ -11,6 +11,8 @@ export const updatUserProfile = async (data) => {
     );
     if (response.status === 200) {
         successMessage("ویرایش اطلاعات با موفقیت صورت گرفت");
+    } else if (response.response.status === 400) {
+        errorMessage("لطفا عکس خود را وارد نمایید");
     } else {
         errorMessage("خطایی در ارسال داده ها پیش آمده است");
     }
