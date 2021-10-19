@@ -137,12 +137,17 @@ const NewAddress = () => {
                             <div className={styles.form_row}>
                                 <div className={`${styles.form_group} col-md-6 col-sm-12`}>
                                     <label>کد پستی:</label>
-                                    <input type="text" className="form-control" {...register("zip_code", { required: true })} />
-                                    {errors.zip_code && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
+                                    <input type="text" className="form-control" {...register("zip_code", {
+                                        minLength: {
+                                            value: 10,
+                                            message: 'کدپستی باید ده رقمی باشد'
+                                        }
+                                    })} />
+                                    {errors.zip_code && <span className={styles.form_errors}>{errors.zip_code.message}</span>}
                                 </div>
                                 <div className={`${styles.form_group} col-md-6 col-sm-12`}>
                                     <label>موبایل گیرندۀ سفارش:</label>
-                                    <input type="text" className="form-control" {...register("receiver_mobile_number", { required: true })} />
+                                    <input type="number" className="form-control" {...register("receiver_mobile_number", { required: true })} />
                                     {errors.receiver_mobile_number && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
                                 </div>
                             </div>

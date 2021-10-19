@@ -27,12 +27,17 @@ const EditProfile = ({ dataProfile }) => {
             last_name: data.last_name,
         };
         data.BrithDay = `${data.year}-${data.month}-${data.day}`;
-        let imageProfile = data.image[0];
-        let reader = new FileReader();
-        reader.onloadend = async function () {
-            data.Image = `${reader.result}`;
+        if (data.image.length > 0) {
+            let imageProfile = data.image[0];
+            let reader = new FileReader();
+            reader.onloadend = async function () {
+                data.Image = `${reader.result}`;
+            }
+            reader.readAsDataURL(imageProfile);
+        } else {
+            // let imageProfile = "";
         }
-        reader.readAsDataURL(imageProfile);
+
         setTimeout(() => {
             updatUserProfile(data);
         }, 1000);
@@ -107,7 +112,7 @@ const EditProfile = ({ dataProfile }) => {
                 </label>
                 <div className="d-flex">
                     <select
-                        {...register("State", { required: true })}
+                        {...register("State")}
                         className="form-control ms-2"
                         onChange={async (event) => {
                             let optionsArray = Object.values(event.target.options);
@@ -133,7 +138,7 @@ const EditProfile = ({ dataProfile }) => {
                         </span>
                     )}
                     <select
-                        {...register("BigCity", { required: true })}
+                        {...register("BigCity")}
                         className="form-control ms-2"
                         onChange={async (event) => {
                             let optionsArray = Object.values(event.target.options);
@@ -159,7 +164,7 @@ const EditProfile = ({ dataProfile }) => {
                         </span>
                     )}
                     <select
-                        {...register("City", { required: true })}
+                        {...register("City")}
                         className="form-control"
                     >
                         <option value={dataProfile.City}>{dataProfile.City}</option>
@@ -184,7 +189,7 @@ const EditProfile = ({ dataProfile }) => {
                 </label>
                 <textarea
                     rows="4"
-                    {...register("Bio", { required: true })}
+                    {...register("Bio")}
                     defaultValue={dataProfile.Bio}
                     className="form-control p-2 font-size-9 text-gray-800"
                 ></textarea>
@@ -197,7 +202,7 @@ const EditProfile = ({ dataProfile }) => {
                     جنسیت
                 </label>
                 <select
-                    {...register("Sex", { required: true })}
+                    {...register("Sex")}
                     defaultValue={dataProfile.Sex}
                     id="gender"
                     className="form-control p-2 font-size-9 text-gray-800"
@@ -216,7 +221,7 @@ const EditProfile = ({ dataProfile }) => {
                 </label>
                 <div className="d-flex">
                     <select
-                        {...register("day", { required: true })}
+                        {...register("day")}
                         defaultValue={dataProfile.BrithDay && dataProfile.BrithDay.slice(8, 10)}
                         className="form-control p-2 font-size-9 text-gray-800 ms-2"
                     >
@@ -233,7 +238,7 @@ const EditProfile = ({ dataProfile }) => {
                         </span>
                     )}
                     <select
-                        {...register("month", { required: true })}
+                        {...register("month")}
                         defaultValue={dataProfile.BrithDay && dataProfile.BrithDay.slice(5, 7)}
                         className="form-control p-2 font-size-9 text-gray-800 ms-2"
                     >
@@ -250,7 +255,7 @@ const EditProfile = ({ dataProfile }) => {
                         </span>
                     )}
                     <select
-                        {...register("year", { required: true })}
+                        {...register("year")}
                         defaultValue={dataProfile.BrithDay && dataProfile.BrithDay.slice(0, 4)}
                         className="form-control p-2 font-size-9 text-gray-800"
                     >
