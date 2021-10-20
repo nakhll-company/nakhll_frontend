@@ -15,6 +15,7 @@ import LinerThreeImg from "../../containers/LandingPage/LinerThreeImg";
 import LinerFourImgMobile from "../../containers/LandingPage/LinerFourImgMobile";
 import LinerProducts from "../../containers/LandingPage/LinerProducts";
 import LinerProductsBg from "../../containers/LandingPage/LinerProductsBg";
+import ListProductCus from "../../containers/listProduct/listProductCus";
 
 // fetch data
 const fetchData = async (id) => {
@@ -72,7 +73,8 @@ const fetchData = async (id) => {
   }
 };
 
-const Hojreh = ({ dataShop }) => {
+const Hojreh = ({ dataShop, data }) => {
+ 
   const [informationShop, setInformationShop] = useState(dataShop.shop);
   const _handel_select_component = (type, index) => {
     switch (type.component_type) {
@@ -170,8 +172,8 @@ const Hojreh = ({ dataShop }) => {
             name={dataShop.shop.FK_ShopManager}
             profile={informationShop.image_thumbnail_url}
           />
-
-          <ListProduct shop_products={dataShop.shop.slug} />
+          <ListProductCus shop_products={dataShop.shop.slug} data={data} />
+          {/* <ListProduct shop_products={dataShop.shop.slug} /> */}
         </>
       )}
 
@@ -187,11 +189,12 @@ export default Hojreh;
 
 // function server side
 export async function getServerSideProps(context) {
-  const dataShop = await fetchData(context.params.id);
-  console.log("dataShop :>> ", dataShop);
+  const dataShop = await fetchData(context.query.shop);
+  
 
   return {
     props: {
+      data: context.query,
       dataShop,
     },
   };

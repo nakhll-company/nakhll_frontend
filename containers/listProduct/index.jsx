@@ -354,8 +354,9 @@ function ListProduct({
                             ? oneProduct.shop.title
                             : "",
                           chamberUrl: oneProduct.shop
-                            ? `/hojreh/${oneProduct.shop.slug} `
+                            ? `/hojreh?shop=${oneProduct.shop.slug} `
                             : "",
+
                           discount: oneProduct.discount,
                           price: oneProduct.price / 10,
                           discountNumber: oneProduct.old_price / 10,
