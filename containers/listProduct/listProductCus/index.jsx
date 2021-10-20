@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import ContextListProductPage from "./Context/context";
+import Link from "next/link";
 
 import CheckboxTree from "react-checkbox-tree";
 
@@ -17,6 +18,9 @@ import ProductCard from "../../../components/ProductCart/ProductCard";
 import Assistent from "zaravand-assistent-number";
 import CustomAccordion from "../../../components/custom/customAccordion";
 import router from "next/router";
+import Search from "../../../components/search/Search";
+import { ApiReference } from "../../../Api";
+import styles from "./listProductCus.module.scss";
 const _asist = new Assistent();
 function ListProductCus({
   data,
@@ -75,6 +79,11 @@ function ListProductCus({
     data.max_price ? parseInt(data.max_price) : 10000
   );
   const [clickOnRange, setClickOnRange] = useState(1);
+  // save all shopsName
+  const [shopsName, setShopsName] = useState([]);
+  const [searchShops, setSearchShops] = useState([]);
+  // state for change page
+  const [changePage, setChangePage] = useState(1);
 
   const _handel_category = async () => {
     try {
@@ -191,6 +200,33 @@ function ListProductCus({
     } catch (e) {}
   };
 
+  // Get all shops
+  const _get_all_shops = async () => {
+    let shops = await ApiRegister().apiRequest(
+      null,
+      "GET",
+      ApiReference.allShops,
+      true,
+      ""
+    );
+
+    if (shops.status === 200) {
+      setShopsName(shops.data);
+      console.log("shops.response :>> ", shops.data);
+    }
+  };
+  // Function for search
+  const _handel_search = (word) => {
+    let copy_Array = [...shopsName];
+    let filterArray = [];
+    if (word != "") {
+      filterArray = copy_Array.filter((el) => el.title.includes(word));
+    }
+    setSearchShops(filterArray);
+
+    console.log("word :>> ", word);
+  };
+
   // START
   // for filters in sidebar
   useEffect(async () => {
@@ -205,15 +241,20 @@ function ListProductCus({
     whichOrdering,
     clickOnRange,
     categoryIn,
+    changePage,
   ]);
+  useEffect(async () => {
+    await _get_all_shops();
+  }, []);
 
   useEffect(() => {
-    let url = `
-    ?search=${searchWord}&ordering=${whichOrdering}&ready=${isReadyForSend}&available=${isAvailableGoods}&
-    discounted=${isDiscountPercentage}&city=${checkedCity.toString()}&page_size=50&min_price=
-    ${parseInt(minPrice)}&max_price=${parseInt(
-      maxPrice
-    )}&shop=${hojreh}&category: ${wantCategories.toString()}`;
+    // let url = `
+    // ?search=${searchWord}&ordering=${whichOrdering}&ready=${isReadyForSend}&available=${isAvailableGoods}&
+
+    // discounted=${isDiscountPercentage}&city=${checkedCity.toString()}&page_size=50&min_price=
+    // ${parseInt(minPrice)}&max_price=${parseInt(
+    //   maxPrice
+    // )}&shop=${hojreh}&category: ${wantCategories.toString()}`;
 
     // router.push(url);
     router.push(
@@ -322,6 +363,27 @@ function ListProductCus({
                       </button>
                     </div>
                   </div>
+                </CustomAccordion>
+
+                <CustomAccordion
+                  title="جستجو بر اساس حجره"
+                  item="searchHoj"
+                  close={true}
+                >
+                  <Search onChange={(e) => _handel_search(e.target.value)} />
+                  {searchShops.length > 0 && (
+                    <div className={styles.numBag}>
+                      <span> {_asist.PSeparator(searchShops.length)}</span>
+                      حجره
+                    </div>
+                  )}
+                  {searchShops.map((el, index) => (
+                    <Link key={index} href={`/product?shop=${el.slug}`}>
+                      <a>
+                        <div className={styles.itemHojreh}>{el.title}</div>
+                      </a>
+                    </Link>
+                  ))}
                 </CustomAccordion>
                 {hojreh == "" && (
                   <CustomAccordion
