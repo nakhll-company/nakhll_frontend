@@ -11,7 +11,7 @@ import CustomSwitch from "../../../components/custom/customSwitch";
 import { TopBar } from "../TopBar";
 import InfiniteScroll from "react-infinite-scroll-component";
 import MenuMobile from "../../../components/layout/MenuMobile";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+
 import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
 import ProductCard from "../../../components/ProductCart/ProductCard";
 
@@ -19,8 +19,11 @@ import Assistent from "zaravand-assistent-number";
 import CustomAccordion from "../../../components/custom/customAccordion";
 import router from "next/router";
 import Search from "../../../components/search/Search";
-import { ApiReference } from "../../../Api";
+
 import styles from "./listProductCus.module.scss";
+import { apiReference } from "../../../api/apiReference";
+import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+
 const _asist = new Assistent();
 function ListProductCus({
   data,
@@ -207,7 +210,7 @@ function ListProductCus({
     let shops = await ApiRegister().apiRequest(
       null,
       "GET",
-      ApiReference.allShops,
+      apiReference.allShops,
       true,
       ""
     );

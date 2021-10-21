@@ -8,39 +8,9 @@ import LinerProductsBg from "../containers/LandingPage/LinerProductsBg";
 import LinerThreeImg from "../containers/LandingPage/LinerThreeImg";
 import LinerTwoValue from "../containers/LandingPage/LinerTwoValue";
 import { ApiRegister } from "../services/apiRegister/ApiRegister";
-import { ApiReference } from "../Api";
-// fetch data
-const fetchData = async () => {
-  let all_data_for_component = [];
-  let all_type_for_component = [];
-  let urlSchema = encodeURI(ApiReference.Landing_Page);
 
-  let Schema = await ApiRegister().apiRequest(null, "GET", urlSchema, true, "");
-
-  if (Schema.status === 200) {
-    for (let index = 0; index < Schema.data.length; index++) {
-      let one_Component = await ApiRegister().apiRequest(
-        null,
-        "GET",
-        Schema.data[index].data,
-        true,
-        ""
-      );
-      if (one_Component.status === 200) {
-        all_type_for_component.push(Schema.data[index].component_type);
-        all_data_for_component.push(one_Component.data);
-      }
-    }
-
-    return {
-      SchemaIn: Schema.data,
-      all_type_for_component,
-      all_data_for_component,
-    };
-  } else {
-    return null;
-  }
-};
+import { apiReference } from "../api/apiReference";
+import { getSchemaList } from "../api/landing";
 
 const index = ({ data }) => {
   const Sample = {
@@ -131,8 +101,8 @@ export default index;
 
 // function server side
 export async function getServerSideProps(context) {
-  const data = await fetchData();
-  
+  const data = await getSchemaList();
+
   return {
     props: { data },
   };

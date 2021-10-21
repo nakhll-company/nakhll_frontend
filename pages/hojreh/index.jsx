@@ -1,11 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import React, { useState } from "react";
+
 import Head from "next/head";
-
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
-import { ApiReference } from "../../Api";
-
-import ListProduct from "../../containers/listProduct";
 
 import EnfoLiner from "../../containers/hojreh/EnfoLiner";
 import HeroSlides from "../../containers/LandingPage/HeroSlides";
@@ -17,64 +12,9 @@ import LinerProducts from "../../containers/LandingPage/LinerProducts";
 import LinerProductsBg from "../../containers/LandingPage/LinerProductsBg";
 import ListProductCus from "../../containers/listProduct/listProductCus";
 
-// fetch data
-const fetchData = async (id) => {
-  let all_data_for_component = [];
-  let all_type_for_component = [];
-  let Schema = [];
-  let Api_Shop = encodeURI(`${ApiReference.shop}${id}/`);
-
-  let response = await ApiRegister().apiRequest(
-    null,
-    "GET",
-    Api_Shop,
-    true,
-    ""
-  );
-
-  if (response.status === 200) {
-    if (response.data.is_landing) {
-      Schema = await ApiRegister().apiRequest(
-        null,
-        "GET",
-        `${ApiReference.schemaShop}${response.data.ID}/`,
-        true,
-        ""
-      );
-      if (Schema.status === 200) {
-        for (let index = 0; index < Schema.data.length; index++) {
-          let one_Component = await ApiRegister().apiRequest(
-            null,
-            "GET",
-            Schema.data[index].data,
-            true,
-            ""
-          );
-          if (one_Component.status === 200) {
-            all_type_for_component.push(Schema.data[index].component_type);
-            all_data_for_component.push(one_Component.data);
-          }
-        }
-      }
-    }
-    return {
-      shop: response.data || [],
-      SchemaIn: Schema.data || [],
-      all_type_for_component,
-      all_data_for_component,
-    };
-  } else {
-    return {
-      shop: response.data || [],
-      SchemaIn: [],
-      all_type_for_component,
-      all_data_for_component,
-    };
-  }
-};
+import { getSchemaList } from "../../api/hojreh";
 
 const Hojreh = ({ dataShop, data }) => {
- 
   const [informationShop, setInformationShop] = useState(dataShop.shop);
   const _handel_select_component = (type, index) => {
     switch (type.component_type) {
@@ -141,29 +81,7 @@ const Hojreh = ({ dataShop, data }) => {
   return (
     <>
       <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-          crossOrigin="anonymous"
-        />
-        <script
-          src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-          integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-          crossOrigin="anonymous"
-        ></script>
-        <script
-          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-          integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-          crossOrigin="anonymous"
-        ></script>
-        <link
-          rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
-          integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
-          crossOrigin="anonymous"
-        ></link>
+        <title>{informationShop.title}</title>
       </Head>
       {!dataShop.shop.is_landing && (
         <>
@@ -189,8 +107,7 @@ export default Hojreh;
 
 // function server side
 export async function getServerSideProps(context) {
-  const dataShop = await fetchData(context.query.shop);
-  
+  const dataShop = await getSchemaList(context.query.shop);
 
   return {
     props: {
