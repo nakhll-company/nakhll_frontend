@@ -620,6 +620,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                     id="Description"
                     name="Description"
                     type="text"
+                    {...register("Description")}
                     placeholder="توضیحات خود را در صورت تمایل اینجا وارد کنید"
                   />
                 </div>
