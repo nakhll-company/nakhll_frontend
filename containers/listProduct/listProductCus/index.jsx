@@ -25,13 +25,15 @@ const _asist = new Assistent();
 function ListProductCus({
   data,
   dataFirst,
-  searchWord = "",
+
   shop_products = "",
   categoryIn = "",
 }) {
+  console.log("data.search :>> ", data.search);
   const [listProducts, setlistProducts] = useState([]);
 
   const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
+  const [searchWord, setSearchWord] = useState(data.search ? data.search : "");
 
   const [listWithFilter, setListWithFilter] = useState([]);
   // state for  show Ordering Modal in mobile
@@ -242,6 +244,7 @@ function ListProductCus({
     clickOnRange,
     categoryIn,
     changePage,
+    hojreh,
   ]);
   useEffect(async () => {
     await _get_all_shops();
@@ -286,6 +289,7 @@ function ListProductCus({
     whichOrdering,
     clickOnRange,
     categoryIn,
+    hojreh,
   ]);
 
   // for filters in sidebar
@@ -378,11 +382,16 @@ function ListProductCus({
                     </div>
                   )}
                   {searchShops.map((el, index) => (
-                    <Link key={index} href={`/product?shop=${el.slug}`}>
-                      <a>
-                        <div className={styles.itemHojreh}>{el.title}</div>
-                      </a>
-                    </Link>
+                    <div
+                      key={index}
+                      className={styles.itemHojreh}
+                      onClick={() => {
+                        setHojreh(el.slug);
+                        setSearchWord("");
+                      }}
+                    >
+                      {el.title}
+                    </div>
                   ))}
                 </CustomAccordion>
                 {hojreh == "" && (
