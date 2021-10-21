@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import styles from "./liveEdit.module.scss";
+import Living from "../../components/liveEdit/living";
 
 function index(props) {
   return (
@@ -61,6 +62,7 @@ function index(props) {
             <img src="/image/person.jpeg" alt="" />
           </div>
         </div>
+        <Living />
       </div>
 
       <style jsx>{`

@@ -1,0 +1,44 @@
+.wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #111;
+    .container {
+        position: relative;
+        width: 800px;
+        height: 500px;
+        background: #222;
+         :hover {
+            .clip {
+                clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+            }
+        }
+        .clip {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: 0.5s;
+            &:hover {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+        }
+        .clip1 {
+            background: url("../../public/image/pic1.jpg");
+            background-size: cover;
+            clip-path: polygon(0 0, 55% 0, 20% 100%, 0% 100%);
+        }
+        .clip2 {
+            background: url("../../public/image/pic2.jpg");
+            background-size: cover;
+            clip-path: polygon(55% 0, 100% 0, 45% 100%, 20% 100%);
+        }
+        .clip3 {
+            background: url("../../public/image/pic3.jpg");
+            background-size: cover;
+            clip-path: polygon(100% 0, 100% 0, 100% 100%, 45% 100%);
+        }
+    }
+}
