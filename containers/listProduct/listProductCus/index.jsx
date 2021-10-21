@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import ContextListProductPage from "./Context/context";
+import Link from "next/link";
 
 import CheckboxTree from "react-checkbox-tree";
 
@@ -17,16 +18,23 @@ import ProductCard from "../../../components/ProductCart/ProductCard";
 import Assistent from "zaravand-assistent-number";
 import CustomAccordion from "../../../components/custom/customAccordion";
 import router from "next/router";
+import Search from "../../../components/search/Search";
+import { ApiReference } from "../../../Api";
+import styles from "./listProductCus.module.scss";
 const _asist = new Assistent();
 function ListProductCus({
   data,
   dataFirst,
-  searchWord = "",
+
   shop_products = "",
   categoryIn = "",
 }) {
 
   const [listProducts, setlistProducts] = useState([]);
+
+  const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
+  const [searchWord, setSearchWord] = useState(data.search ? data.search : "");
+
   const [listWithFilter, setListWithFilter] = useState([]);
   // state for  show Ordering Modal in mobile
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -72,6 +80,11 @@ function ListProductCus({
     data.max_price ? parseInt(data.max_price) : 10000
   );
   const [clickOnRange, setClickOnRange] = useState(1);
+  // save all shopsName
+  const [shopsName, setShopsName] = useState([]);
+  const [searchShops, setSearchShops] = useState([]);
+  // state for change page
+  const [changePage, setChangePage] = useState(1);
 
   const _handel_category = async () => {
     try {
@@ -118,7 +131,7 @@ function ListProductCus({
       page_size: 50,
       min_price: minPrice * 10000,
       max_price: maxPrice * 10000,
-      shop: shop_products,
+      shop: `${hojreh}`,
     };
 
     try {
@@ -171,7 +184,7 @@ function ListProductCus({
           page_size: 50,
           min_price: minPrice * 10000,
           max_price: maxPrice * 100000,
-          shop: shop_products,
+          shop: `${hojreh}`,
         }
       );
       if (response.status === 200) {
@@ -188,6 +201,33 @@ function ListProductCus({
     } catch (e) { }
   };
 
+  // Get all shops
+  const _get_all_shops = async () => {
+    let shops = await ApiRegister().apiRequest(
+      null,
+      "GET",
+      ApiReference.allShops,
+      true,
+      ""
+    );
+
+    if (shops.status === 200) {
+      setShopsName(shops.data);
+      console.log("shops.response :>> ", shops.data);
+    }
+  };
+  // Function for search
+  const _handel_search = (word) => {
+    let copy_Array = [...shopsName];
+    let filterArray = [];
+    if (word != "") {
+      filterArray = copy_Array.filter((el) => el.title.includes(word));
+    }
+    setSearchShops(filterArray);
+
+    console.log("word :>> ", word);
+  };
+
   // START
   // for filters in sidebar
   useEffect(async () => {
@@ -202,18 +242,43 @@ function ListProductCus({
     whichOrdering,
     clickOnRange,
     categoryIn,
+    changePage,
+    hojreh,
   ]);
+  useEffect(async () => {
+    await _get_all_shops();
+  }, []);
 
   useEffect(() => {
-    let url = `
-    ?search=${searchWord}&test=${data.ali ? data.ali : ""
-      }&ordering=${whichOrdering}&ready=${isReadyForSend}&available=${isAvailableGoods}&discounted=${isDiscountPercentage}&city=${checkedCity.toString()}&page_size=50&min_price=${parseInt(
-        minPrice
-      )}&max_price=${parseInt(
-        maxPrice
-      )}&shop=${shop_products}&category: ${wantCategories.toString()}`;
+    // let url = `
+    // ?search=${searchWord}&ordering=${whichOrdering}&ready=${isReadyForSend}&available=${isAvailableGoods}&
 
-    router.push(url);
+    // discounted=${isDiscountPercentage}&city=${checkedCity.toString()}&page_size=50&min_price=
+    // ${parseInt(minPrice)}&max_price=${parseInt(
+    //   maxPrice
+    // )}&shop=${hojreh}&category: ${wantCategories.toString()}`;
+
+    // router.push(url);
+    router.push(
+      {
+        pathname: router.pathname,
+        query: {
+          search: searchWord,
+          ordering: whichOrdering,
+          ready: isReadyForSend,
+          available: isAvailableGoods,
+          discounted: isDiscountPercentage,
+          city: checkedCity.toString(),
+          page_size: 50,
+          min_price: parseInt(minPrice),
+          max_price: parseInt(maxPrice),
+          shop: hojreh,
+          category: wantCategories.toString(),
+        },
+      },
+      undefined,
+      { scroll: false }
+    );
   }, [
     isAvailableGoods,
     isReadyForSend,
@@ -223,6 +288,7 @@ function ListProductCus({
     whichOrdering,
     clickOnRange,
     categoryIn,
+    hojreh,
   ]);
 
   // for filters in sidebar
@@ -301,7 +367,33 @@ function ListProductCus({
                     </div>
                   </div>
                 </CustomAccordion>
-                {shop_products == "" && (
+
+                <CustomAccordion
+                  title="جستجو بر اساس حجره"
+                  item="searchHoj"
+                  close={true}
+                >
+                  <Search onChange={(e) => _handel_search(e.target.value)} />
+                  {searchShops.length > 0 && (
+                    <div className={styles.numBag}>
+                      <span> {_asist.PSeparator(searchShops.length)}</span>
+                      حجره
+                    </div>
+                  )}
+                  {searchShops.map((el, index) => (
+                    <div
+                      key={index}
+                      className={styles.itemHojreh}
+                      onClick={() => {
+                        setHojreh(el.slug);
+                        setSearchWord("");
+                      }}
+                    >
+                      {el.title}
+                    </div>
+                  ))}
+                </CustomAccordion>
+                {hojreh == "" && (
                   <CustomAccordion
                     title="استان و شهر حجره دار"
                     item="three"
@@ -399,8 +491,9 @@ function ListProductCus({
                             ? oneProduct.shop.title
                             : "",
                           chamberUrl: oneProduct.shop
-                            ? `/hojreh/${oneProduct.shop.slug} `
+                            ? `/hojreh?shop=${oneProduct.shop.slug} `
                             : "",
+
                           discount: oneProduct.discount,
                           price: oneProduct.price / 10,
                           discountNumber: oneProduct.old_price / 10,
@@ -511,7 +604,7 @@ function ListProductCus({
                   ))}
                 </CustomAccordion>
               )}
-              {shop_products == "" && (
+              {hojreh == "" && (
                 <CustomAccordion title="استان و شهر حجره دار" item="3mobile">
                   <CheckboxTree
                     // direction="rtl"

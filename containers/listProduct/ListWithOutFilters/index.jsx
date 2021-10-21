@@ -76,7 +76,7 @@ function ListWitOutFilters({ api }) {
                         url: `/product/${oneProduct.slug}/`,
                         title: oneProduct.title,
                         chamberTitle: oneProduct.shop && oneProduct.shop.title,
-                        chamberUrl: `/hojreh/${oneProduct.shop.slug} `,
+                        chamberUrl: `/hojreh?shop=${oneProduct.shop.slug} `,
                         discount: oneProduct.discount,
                         price: oneProduct.price / 10,
                         discountNumber: oneProduct.old_price / 10,

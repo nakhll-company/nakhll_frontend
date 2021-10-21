@@ -1,5 +1,5 @@
 // node libraries
-import Link from 'next/link';
+import Link from "next/link";
 import Assistent from "zaravand-assistent-number";
 import { useDispatch } from "react-redux";
 // methods
@@ -49,18 +49,20 @@ const ProductCard = ({
   let cardImg = (
     <img
       src={product.imageUrl}
-      className={`card-img-top _product_card_rounded animationCart ${product.unavailable && "_unavailable_product"
-        }`}
+      className={`card-img-top _product_card_rounded animationCart ${
+        product.unavailable && "_unavailable_product"
+      }`}
       alt={product.title}
     />
   );
 
   return (
     <div
-      className={`animationCartParent ${col
-        ? `col-${col}`
-        : `col-${xs} col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
-        } ${padding ? `px-${padding}` : ""} mb-3`}
+      className={`animationCartParent ${
+        col
+          ? `col-${col}`
+          : `col-${xs} col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
+      } ${padding ? `px-${padding}` : ""} mb-3`}
     >
       {product.iconClose && (
         <span
@@ -92,9 +94,7 @@ const ProductCard = ({
         <div className={styles.paterImage}>
           {cardBadge}
           <Link href={product.url}>
-            <a className={styles.links}>
-              {cardImg}
-            </a>
+            <a className={styles.links}>{cardImg}</a>
           </Link>
         </div>
         {/* {linkType === "anchor" ? (
@@ -108,8 +108,9 @@ const ProductCard = ({
         )} */}
 
         <div
-          className={`card-body mt-2 p-1 ${product.unavailable && "_unavailable_product"
-            }`}
+          className={`card-body mt-2 p-1 ${
+            product.unavailable && "_unavailable_product"
+          }`}
         >
           <div className=" mb-3">
             <Link href={product.url}>

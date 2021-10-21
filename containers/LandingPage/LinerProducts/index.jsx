@@ -1,5 +1,5 @@
 import React from "react";
-import Link from 'next/link';
+import Link from "next/link";
 import ProductCard from "../../../components/ProductCart/ProductCard";
 import styles from "./LinerProducts.module.scss";
 
@@ -60,7 +60,7 @@ function LinerProducts({
                   url: `/product/${product.slug}/`,
                   title: product.title,
                   chamberTitle: product.shop.title,
-                  chamberUrl: `/hojreh/${product.shop.slug} `,
+                  chamberUrl: `/hojreh?shop=${product.shop.slug} `,
                   discount: product.discount,
                   price: product.price / 10,
                   discountNumber: product.old_price / 10,
@@ -113,7 +113,7 @@ function LinerProducts({
                   url: `/product/${product.slug}/`,
                   title: product.title,
                   chamberTitle: product.shop.title,
-                  chamberUrl: `/hojreh/${product.shop.slug} `,
+                  chamberUrl: `/hojreh?shop=${product.shop.slug} `,
                   discount: product.discount,
                   price: product.price / 10,
                   discountNumber: product.old_price / 10,
