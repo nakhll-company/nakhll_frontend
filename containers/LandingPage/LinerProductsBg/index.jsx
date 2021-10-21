@@ -1,5 +1,5 @@
 import React from "react";
-import Link from 'next/link';
+import Link from "next/link";
 import LinerProducts from "../LinerProducts";
 import styles from "./LinerProductsBg.module.scss";
 function LinerProductsBg({
@@ -24,7 +24,13 @@ function LinerProductsBg({
           </div>
 
           <button>
-            <Link href={`/product?ap=${url_LinerProductsBg}`}>
+            <Link
+              href={`${
+                url.includes("search=")
+                  ? `${url_LinerProductsBg}`
+                  : `/product?ap=${url_LinerProductsBg}`
+              }`}
+            >
               <a>مشاهده همه</a>
             </Link>
           </button>
