@@ -1,9 +1,11 @@
 // node libraries
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Assistent from "zaravand-assistent-number";
 // style
 import styles from "../../styles/components/shopLayout/footer.module.scss";
 
+const _asist = new Assistent();
 
 const Footer = () => {
   const _handel_according = (accord, icon) => {
@@ -129,7 +131,7 @@ const Footer = () => {
                         className={styles.footer_items}
                       >
                         تلفن تماس:
-                        <span className="d-inline-block">034-32476561</span>
+                        <span className="d-inline-block">{_asist.number(`034-32476561  034-91001230`)}</span>
                       </a>
                     </div>
                     {/* <div>
@@ -427,11 +429,11 @@ const Footer = () => {
                     >
                       تلفن تماس:
                       <a href="tel://034-32476561" className="d-inline-block">
-                        034-32476561
+                        {_asist.number(`034-32476561`)}
                       </a>{" "}
                       <span>و</span>{" "}
-                      <a href="tel://034-32476561" className="d-inline-block">
-                        034-32476561
+                      <a href="tel://034-91001230" className="d-inline-block">
+                        {_asist.number(`034-91001230`)}
                       </a>
                     </div>
                   </div>
