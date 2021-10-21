@@ -40,6 +40,7 @@ const UpdateAddress = () => {
     let [selectBigCities, setSelectBigCities] = useState([]);
     let [selectCities, setSelectCities] = useState([]);
     let [loading, setLoading] = useState(true);
+    let [emptySelectBox, setEmptySelectBox] = useState(false);
 
     useEffect(async () => {
         await getEditAddress(id, setValue, setEditAddressData);
@@ -86,8 +87,9 @@ const UpdateAddress = () => {
                                 <select className="form-control" {...register("state", { required: true })} onChange={async (event) => {
                                     let optionsArray = Object.values(event.target.options);
                                     setSelectBigCities(await getBigCities(optionsArray[event.target.options.selectedIndex].id));
+                                    setEmptySelectBox(true);
                                 }}>
-                                    <option value={editAddressData.state}>{editAddressData.state}</option>
+                                    <option value={!emptySelectBox && editAddressData.state}>{!emptySelectBox && editAddressData.state}</option>
                                     {selectState.map((value, index) => {
                                         return (
                                             <option key={index} value={value.name} id={value.id}>{value.name}</option>
@@ -102,8 +104,9 @@ const UpdateAddress = () => {
                                     <select className="form-control col-sm-12" {...register("big_city", { required: true })} onChange={async (event) => {
                                         let optionsArray = Object.values(event.target.options);
                                         setSelectCities(await getCities(optionsArray[event.target.options.selectedIndex].id));
+                                        setEmptySelectBox(true);
                                     }}>
-                                        <option value={editAddressData.big_city}>{editAddressData.big_city}</option>
+                                        <option value={emptySelectBox ? " " : editAddressData.big_city}>{emptySelectBox ? " " : editAddressData.big_city}</option>
                                         {selectBigCities.map((value, index) => {
                                             return (
                                                 <option key={index} value={value.name} id={value.id}>{value.name}</option>
@@ -114,8 +117,10 @@ const UpdateAddress = () => {
                                 </div>
                                 <div className={`${styles.form_group} col-md-6 col-sm-12`}>
                                     <label>انتخاب شهر:</label>
-                                    <select className="form-control col-sm-12" {...register("city", { required: true })}>
-                                        <option value={editAddressData.city}>{editAddressData.city}</option>
+                                    <select className="form-control col-sm-12" {...register("city", { required: true })} onChange={() => {
+                                        setEmptySelectBox(false);
+                                    }}>
+                                        <option value={emptySelectBox ? " " : editAddressData.city}>{emptySelectBox ? " " : editAddressData.city}</option>
                                         {selectCities.map((value, index) => {
                                             return (
                                                 <option key={index} value={value.name}>{value.name}</option>
