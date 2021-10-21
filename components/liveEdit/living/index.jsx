@@ -20,7 +20,7 @@ function Living(props) {
     );
 
     if (shops.status === 200) {
-      console.log("shops.data :>> ", shops.data);
+      
       setAllshops([...shops.data]);
       //   setAllshops(shops.data);
     }

@@ -7,7 +7,7 @@ export const getSchemaList = async(id) => {
     let Schema = [];
     let Api_Shop = encodeURI(`${apiReference.shop}${id}/`);
 
-    console.log("Api_Shop :>> ", Api_Shop);
+
     let response = await ApiRegister().apiRequest(
         null,
         "GET",

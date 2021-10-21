@@ -32,7 +32,6 @@ function ListProductCus({
   shop_products = "",
   categoryIn = "",
 }) {
-  console.log("data.search :>> ", data.search);
   const [listProducts, setlistProducts] = useState([]);
 
   const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
@@ -217,7 +216,6 @@ function ListProductCus({
 
     if (shops.status === 200) {
       setShopsName(shops.data);
-      console.log("shops.response :>> ", shops.data);
     }
   };
   // Function for search
@@ -228,8 +226,6 @@ function ListProductCus({
       filterArray = copy_Array.filter((el) => el.title.includes(word));
     }
     setSearchShops(filterArray);
-
-    console.log("word :>> ", word);
   };
 
   // START
