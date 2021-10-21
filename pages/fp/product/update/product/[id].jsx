@@ -59,12 +59,9 @@ const UpdateProduct = ({ activeHojreh }) => {
         Status: product_status,
         PostRangeType: 1,
         PreparationDays: AddPreparationDays,
-        // FK_Shop: activeHojreh,
         FK_SubMarket: submarketId,
         Product_Banner: idImage,
         post_range: checkedCities,
-
-        // Product_Banner: previewImage
       };
 
       let paramsProduct = {};
@@ -139,7 +136,7 @@ const UpdateProduct = ({ activeHojreh }) => {
         setValue("OldPrice", response.data.price / 10);
       }
       setValue("Description", response.data.description);
-      if (response.data.length > 0) {
+      if (Object.keys(response.data).length > 0) {
         let peree = response.data.banners.map((item) => {
           return item.image;
         });
