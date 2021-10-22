@@ -47,9 +47,20 @@ function Living(props) {
       title: "هنرکده آنا",
     },
   ];
-  const dataSlider=[{url:"",image:"/image/slide/slid1.jpg"},{url:"",image:"/image/slide/slid1.jpg"},{url:"",image:"/image/slide/slid1.jpg"}]
+  const dataSlider = [
+    { url: "", image: "/image/slide/slid1.jpg" },
+    { url: "", image: "/image/slide/slid1.jpg" },
+    { url: "", image: "/image/slide/slid1.jpg" },
+  ];
 
+  const handelClickOnDeleteBtn = (index) => {
+    console.log('index :>> ', index);
+    let copyList = [...list];
+    let b=copyList.splice(index,1)
+    console.log('b :>> ', b);
   
+    setCharacters(copyList);
+  };
 
   useEffect(() => {
     // _get_all_shops();
@@ -94,7 +105,7 @@ function Living(props) {
             {...provided.droppableProps}
             ref={provided.innerRef}
           >
-            {characterss.map((e, index) => (
+            {characters.map((e, index) => (
               <Draggable key={e.ID} draggableId={e.ID} index={index}>
                 {(provided) => (
                   <div
@@ -113,9 +124,18 @@ function Living(props) {
                         <i className="fas fa-plus"></i>
                       </button>
                     </div>
+                    <div className={`${styles.wrapBtn} ${styles.btnLeft}`}>
+                      <button
+                        class={styles.buttonDel}
+                        role="button"
+                        onClick={() => handelClickOnDeleteBtn(index)}
+                      >
+                        <i className="fas fa-eraser"></i>
+                      </button>
+                    </div>
                     {/* fas fa-calendar-times" */}
+                    <Sm_HeroSlides />
 
-                    
                     {/* <HeroSlides dataHeroSlides={dataSlider}/> */}
                   </div>
                 )}
@@ -129,7 +149,7 @@ function Living(props) {
   );
 }
 
-export default Living;
+
 
 // [
 //   {

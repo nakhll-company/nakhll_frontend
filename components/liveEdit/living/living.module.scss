@@ -8,7 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid #ccc;
+
     margin: 10px;
     width: 90%;
     padding-top: 15px;
@@ -20,7 +20,7 @@
     margin-bottom: 20px;
     position: relative;
     &:hover {
-      border: 3px solid blue;
+      border: 2px dashed #f4f7fb;
       .wrapBtn {
         opacity: 1;
       }
@@ -52,7 +52,7 @@
     margin: 0;
     outline: none;
     overflow: visible;
-    padding: 13px 16px;
+    padding: 4px 8px;
     text-align: center;
     text-transform: uppercase;
     touch-action: manipulation;
@@ -78,17 +78,32 @@
       z-index: -1;
     }
   }
-  .buttonDelete {
-    bottom: 2px;
+  .buttonDel {
+    background: transparent;
+    border: none;
+    color: red;
+    font-size: 25px;
+    :hover{
+
+      animation: myAnim 2s ease 0s 1 normal forwards;
+    }
   }
 }
 
 .btnUp {
-  top: -25px;
+  top: -19px;
 }
 
 .btnBottom {
-  bottom: -25px;
+  bottom: -19px;
+}
+.btnLeft {
+  left: -35px;
+  top: -24px;
+  z-index: 10;
+  color: #b71c1c;
+  
+  
 }
 
 .buttonAdd:main,
@@ -102,4 +117,36 @@
 
 .buttonAdd:disabled {
   cursor: auto;
+}
+
+@keyframes myAnim {
+  0%,
+  100% {
+    transform: rotate(0deg);
+    transform-origin: 50% 50%;
+  }
+
+  10% {
+    transform: rotate(8deg);
+  }
+
+  20%,
+  40%,
+  60% {
+    transform: rotate(-10deg);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: rotate(10deg);
+  }
+
+  80% {
+    transform: rotate(-8deg);
+  }
+
+  90% {
+    transform: rotate(8deg);
+  }
 }
