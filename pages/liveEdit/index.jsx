@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import styles from "./liveEdit.module.scss";
+import Living from "../../components/liveEdit/living";
 
 function index(props) {
+  
   return (
     <div className={styles.container}>
       <div id="navigation" className={styles.navigation}>
@@ -54,13 +56,14 @@ function index(props) {
               main.classList.toggle("active_hamberg_icon");
             }}
           >
-            <i style={{ fontSize: "25px" }} className="fas fa-bars icon"></i>
+            <i style={{ fontSize: "25px" }}  className="fas fa-bars icon"></i>
           </div>
           {/* userImg */}
           <div className={styles.user}>
             <img src="/image/person.jpeg" alt="" />
           </div>
         </div>
+        <Living  />
       </div>
 
       <style jsx>{`

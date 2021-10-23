@@ -1,6 +1,6 @@
 .paterImage {
     position: relative;
-    min-height: 194px;
+    min-height: 177px;
     @media (max-width: 1025px) {
         min-height: 200px;
     }
@@ -8,15 +8,17 @@
         min-height: 185px;
     }
     @media (max-width: 376px) {
-        min-height: 150px;
+        min-height: 126px;
     }
     @media (max-width: 321px) {
         min-height: 114px;
     }
 }
-.links{
+
+.links {
     font-size: small;
 }
+
 .discount_badge {
     position: absolute;
     top: 14px;
