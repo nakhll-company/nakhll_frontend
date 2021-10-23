@@ -12,6 +12,9 @@ function LinerProductsBg({
   lg = 6,
   num,
 }) {
+  if (dataLinerProductsBg.results) {
+    dataLinerProductsBg = dataLinerProductsBg.results;
+  }
   return (
     <div styles={{ color: `${color}` }} className={`${styles.linearBg}  `}>
       <div

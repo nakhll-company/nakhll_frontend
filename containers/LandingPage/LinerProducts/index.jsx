@@ -18,6 +18,10 @@ function LinerProducts({
   sm = 6,
   xs = 5,
 }) {
+  if (dataLinerProducts.results) {
+    dataLinerProducts = dataLinerProducts.results;
+  }
+
   return (
     <>
       {/* for mobile */}
