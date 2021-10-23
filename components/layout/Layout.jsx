@@ -98,7 +98,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   height={60}
                   onClick={() => {
                     slugHojreh !== "" &&
-                      router.push(`/hojreh/${slugHojreh}/`);
+                      router.push(`/hojreh?shop=${slugHojreh}/`);
                   }}
                   data-toggle="tooltip"
                   data-placement="bottom"
@@ -167,7 +167,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   height={30}
                   onClick={() => {
                     slugHojreh !== "" &&
-                      router.push(`/hojreh/${slugHojreh}/`);
+                      router.push(`/hojreh?shop=${slugHojreh}/`);
                   }}
                   title="حجره"
                 />{" "}

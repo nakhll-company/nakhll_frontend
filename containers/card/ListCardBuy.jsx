@@ -59,7 +59,7 @@ export default function ListCardBuy() {
                 ) && (
                     <div className="pt-3 pb-1 px-3">
                       <span className="font-size1">از حجره: </span>{" "}
-                      <Link href={`/hojreh/${El.product.shop.slug}/`}>
+                      <Link href={`/hojreh?shop=${El.product.shop.slug}/`}>
                         <a
                           className="vendor-link font-size1 font-weight-bold link-body font-weight-normal txtcut"
                         >
@@ -111,7 +111,7 @@ export default function ListCardBuy() {
                                 justifyContent: "space-between",
                               }}
                             >
-                              <Link href={`productDetail/${El.product.slug}/`}>
+                              <Link href={`product/${El.product.slug}/`}>
                                 <a
                                   className="product-link d-block font-size1 link-body font-weight-bold text-truncate"
                                 >
