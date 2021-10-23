@@ -132,7 +132,7 @@ export default index;
 // function server side
 export async function getServerSideProps(context) {
   const data = await fetchData();
-  
+
   return {
     props: { data },
   };
