@@ -74,7 +74,6 @@ const fetchData = async (id) => {
 };
 
 const Hojreh = ({ dataShop, data }) => {
- 
   const [informationShop, setInformationShop] = useState(dataShop.shop);
   const _handel_select_component = (type, index) => {
     switch (type.component_type) {
@@ -190,7 +189,6 @@ export default Hojreh;
 // function server side
 export async function getServerSideProps(context) {
   const dataShop = await fetchData(context.query.shop);
-  
 
   return {
     props: {
