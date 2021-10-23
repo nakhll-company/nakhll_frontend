@@ -12,9 +12,11 @@ const GroupProduct = (data) => {
       <form onSubmit={async (event) => {
         event.preventDefault();
         let excel = document.getElementById('productExcelUpload').files[0];
+        let zipFile = document.getElementById('productZipFile').files[0];
         let data = new FormData();
         data.append('product-excel-upload', excel);
-        let loadData = data
+        data.append('product-zip-file', zipFile);
+        let loadData = data;
         successMessage('درحال بارگزاری محصولات...')
         let response = await ApiRegister().apiRequest(
           loadData,

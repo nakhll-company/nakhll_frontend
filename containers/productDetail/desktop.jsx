@@ -420,7 +420,7 @@ const ProductDetailDesktop = ({ data }) => {
                         <CustomLabel
                           type="normal"
                           value={_asist.PSeparator(value.value)}
-                          label={value.FK_Attribute.title}
+                          label={value.FK_Attribute && value.FK_Attribute.title ? value.FK_Attribute.title : ""}
                         />
                       </div>
                     );
