@@ -53,16 +53,13 @@ function Living(props) {
     { url: "", image: "/image/slide/slid1.jpg" },
   ];
 
-  const handelClickOnDeleteBtn = (index) => {
-    console.log('index :>> ', index);
-    let copyList = [...list];
-    let b=copyList.splice(index,1)
-    console.log('b :>> ', b);
-  
-    setCharacters(copyList);
+  const handelClickOnDeleteBtn = (idSelected) => {
+    let b = list.filter((el) => el.ID !== idSelected);
+    console.log("b :>> ", b);
   };
 
   useEffect(() => {
+    console.log("run again :>> ", "run again");
     // _get_all_shops();
     setCharacters(list);
   }, []);
@@ -128,7 +125,7 @@ function Living(props) {
                       <button
                         class={styles.buttonDel}
                         role="button"
-                        onClick={() => handelClickOnDeleteBtn(index)}
+                        onClick={() => handelClickOnDeleteBtn(e.ID)}
                       >
                         <i className="fas fa-eraser"></i>
                       </button>
@@ -149,7 +146,7 @@ function Living(props) {
   );
 }
 
-
+export default Living;
 
 // [
 //   {
