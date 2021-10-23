@@ -15,7 +15,7 @@ import styles from "./header.module.scss";
 
 const _asist = new Assistent();
 
-function Header2() {
+function Header() {
   const router = useRouter();
   const [category, setCategory] = useState([]);
   const _call_Category = async () => {
@@ -295,4 +295,4 @@ function Header2() {
   );
 }
 
-export default Header2;
+export default Header;

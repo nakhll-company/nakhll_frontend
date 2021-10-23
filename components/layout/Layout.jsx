@@ -98,7 +98,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   height={60}
                   onClick={() => {
                     slugHojreh !== "" &&
-                      router.push(`/hojreh?shop=${slugHojreh}/`);
+                      router.push(`/hojreh?shop=${slugHojreh}`);
                   }}
                   data-toggle="tooltip"
                   data-placement="bottom"
@@ -167,7 +167,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   height={30}
                   onClick={() => {
                     slugHojreh !== "" &&
-                      router.push(`/hojreh?shop=${slugHojreh}/`);
+                      router.push(`/hojreh?shop=${slugHojreh}`);
                   }}
                   title="حجره"
                 />{" "}
@@ -267,41 +267,47 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                 </select>
               </div>
               <div className={styles.info_card_btn}>
-                <div className={styles.info_card_btn_one}>
-                  <i className="far fa-envelope fa-2x"></i>
-                  <h4
-                    style={{
-                      textAlign: "center",
-                      fontSize: "14px",
-                      color: "#a4aebb",
-                      margin: "0px",
-                    }}
-                  >
-                    پیام ها
-                  </h4>
-                </div>
+                <Link href="/fp/store/create">
+                  <a>
+                    <div className={styles.info_card_btn_one}>
+                      <i className="fas fa-store fa-2x"></i>
+                      <h4
+                        style={{
+                          textAlign: "center",
+                          fontSize: "14px",
+                          color: "#a4aebb",
+                          margin: "0px",
+                        }}
+                      >
+                        ایجاد حجره
+                      </h4>
+                    </div>
+                  </a>
+                </Link>
                 <Link href="/fp/setting">
-                  <div
-                    className={`${router.pathname == "/fp/setting"
-                      ? styles.ActiveMenuBarBig
-                      : ""
-                      }   ${styles.info_card_btn_one} ${styles.forhover}`}
-                  >
-                    <i
-                      style={{ fontSize: "20px" }}
-                      className="fas fa-user-cog fa-2x"
-                    ></i>
-                    <h4
-                      style={{
-                        textAlign: "center",
-                        fontSize: "14px",
-                        color: "#a4aebb",
-                        margin: "0px",
-                      }}
+                  <a>
+                    <div
+                      className={`${router.pathname == "/fp/setting"
+                        ? styles.ActiveMenuBarBig
+                        : ""
+                        }   ${styles.info_card_btn_one} ${styles.forhover}`}
                     >
-                      تنظیمات
-                    </h4>
-                  </div>
+                      <i
+                        style={{ fontSize: "20px" }}
+                        className="fas fa-user-cog fa-2x"
+                      ></i>
+                      <h4
+                        style={{
+                          textAlign: "center",
+                          fontSize: "14px",
+                          color: "#a4aebb",
+                          margin: "0px",
+                        }}
+                      >
+                        تنظیمات
+                      </h4>
+                    </div>
+                  </a>
                 </Link>
 
                 <button
@@ -327,25 +333,27 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
             </section>
             <section className={styles.menu_card}>
               <Link href={`/fp`}>
-                <span
-                  className={`${styles.menu_card_item} ${router.pathname == "/" ? styles.selectNav : ""
-                    } mt-5 mb-4`}
-                >
-                  <i
-                    style={{
-                      marginLeft: "18px",
-                      fontSize: "20px",
-                    }}
-                    className="fas fa-home  "
-                  ></i>
-                  <h2
-                    style={{
-                      fontSize: "16px",
-                    }}
+                <a>
+                  <span
+                    className={`${styles.menu_card_item} ${router.pathname == "/" ? styles.selectNav : ""
+                      } mt-5 mb-4`}
                   >
-                    داشبورد
-                  </h2>
-                </span>
+                    <i
+                      style={{
+                        marginLeft: "18px",
+                        fontSize: "20px",
+                      }}
+                      className="fas fa-home  "
+                    ></i>
+                    <h2
+                      style={{
+                        fontSize: "16px",
+                      }}
+                    >
+                      داشبورد
+                    </h2>
+                  </span>
+                </a>
               </Link>
               <button
                 style={{ cursor: "pointer", marginBottom: "20px" }}
