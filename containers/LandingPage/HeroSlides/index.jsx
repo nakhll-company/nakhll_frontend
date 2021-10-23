@@ -1,5 +1,5 @@
 import React from "react";
-import Link from 'next/link';
+import Link from "next/link";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -29,8 +29,16 @@ function HeroSlides({ dataHeroSlides }) {
           </Swiper>
         </div>
         <div className={`col-md-4  ${styles.lefter}  d-none d-md-flex`}>
-          <img src="/image/slide/slideLeft2.jpg" alt="" />
-          <img src="/image/slide/slidLeft.jpg" alt="" />
+          <Link href="/hojreh?shop=boghcheh">
+            <a>
+              <img src="/image/slide/slideLeft2.png" alt="" />
+            </a>
+          </Link>
+          <Link href="/hojreh?shop=kal-bargh-payam-noor">
+            <a>
+              <img src="/image/slide/slidLeft.png" alt="" />
+            </a>
+          </Link>
         </div>
       </div>
     </div>
