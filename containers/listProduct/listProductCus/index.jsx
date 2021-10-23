@@ -24,10 +24,9 @@ function ListProductCus({
   shop_products = "",
   categoryIn = "",
 }) {
-
   const [listProducts, setlistProducts] = useState([]);
 
-  const [hojreh, setHojreh] = useState(data.shop ? data.shop.substring(0, data.shop.length - 1) : "");
+  const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
   const [searchWord, setSearchWord] = useState(data.search ? data.search : "");
 
   const [listWithFilter, setListWithFilter] = useState([]);
@@ -93,7 +92,7 @@ function ListProductCus({
       if (response.status === 200) {
         setCategories(response.data);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   const _handel_Add_category = (id) => {
@@ -126,7 +125,7 @@ function ListProductCus({
       page_size: 50,
       min_price: minPrice * 10000,
       max_price: maxPrice * 10000,
-      shop: `${hojreh}`,
+      shop: hojreh,
     };
 
     console.log(">>", data.shop);
@@ -181,7 +180,7 @@ function ListProductCus({
           page_size: 50,
           min_price: minPrice * 10000,
           max_price: maxPrice * 100000,
-          shop: `${hojreh}`,
+          shop: hojreh,
         }
       );
       if (response.status === 200) {
@@ -195,7 +194,7 @@ function ListProductCus({
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   // Get all shops

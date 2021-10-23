@@ -20,7 +20,7 @@ const fetchData = async (id) => {
   let all_type_for_component = [];
   let Schema = [];
   let Api_Shop = encodeURI(`${ApiReference.shop}${id}/`);
-
+  
   let response = await ApiRegister().apiRequest(
     null,
     "GET",
