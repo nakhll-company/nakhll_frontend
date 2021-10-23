@@ -430,7 +430,7 @@ const ProductDetailDesktop = ({ data }) => {
             <div>
               <div>
                 <h2 className={styles.product_section_title}>درباره محصول</h2>
-                <CustomLabel type="normal" value={`${detail.story}`} label="" />
+                {(detail.story || detail.description) ? <CustomLabel type="normal" value={detail.description ? detail.description : detail.story} label="" /> : <span>ندارد</span>}
               </div>
             </div>
             <hr className="my-5" />

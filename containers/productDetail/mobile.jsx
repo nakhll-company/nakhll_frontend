@@ -262,7 +262,7 @@ const ProductDetailMobile = ({ data }) => {
                 <h2 className={`${styles.product_section_title} mt-4`}>
                   درباره محصول
                 </h2>
-                {detail.story ? <CustomLabel type="normal" value={detail.story} label="" /> : <span>ندارد</span>}
+                {(detail.story || detail.description) ? <CustomLabel type="normal" value={detail.description ? detail.description : detail.story} label="" /> : <span>ندارد</span>}
               </div>
             </div>
             <div className="mb-1">
