@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Head from "next/head";
 import ContextListProductPage from "./Context/context";
-import Link from "next/link";
-
 import CheckboxTree from "react-checkbox-tree";
-
 import MultiRangeSlider from "../../../components/custom/customMultiRangeSlider/MultiRangeSlider";
 import { allCites } from "../../../components/custom/data/data";
 import CustomSwitch from "../../../components/custom/customSwitch";
@@ -14,7 +10,6 @@ import MenuMobile from "../../../components/layout/MenuMobile";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
 import ProductCard from "../../../components/ProductCart/ProductCard";
-
 import Assistent from "zaravand-assistent-number";
 import CustomAccordion from "../../../components/custom/customAccordion";
 import router from "next/router";
@@ -32,7 +27,7 @@ function ListProductCus({
 
   const [listProducts, setlistProducts] = useState([]);
 
-  const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
+  const [hojreh, setHojreh] = useState(data.shop ? data.shop.substring(0, data.shop.length - 1) : "");
   const [searchWord, setSearchWord] = useState(data.search ? data.search : "");
 
   const [listWithFilter, setListWithFilter] = useState([]);
@@ -133,6 +128,8 @@ function ListProductCus({
       max_price: maxPrice * 10000,
       shop: `${hojreh}`,
     };
+
+    console.log(">>", data.shop);
 
     try {
       let response = await ApiRegister().apiRequest(

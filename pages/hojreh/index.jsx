@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import React, { useState } from "react";
 import Head from "next/head";
 
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { ApiReference } from "../../Api";
-
-import ListProduct from "../../containers/listProduct";
 
 import EnfoLiner from "../../containers/hojreh/EnfoLiner";
 import HeroSlides from "../../containers/LandingPage/HeroSlides";
