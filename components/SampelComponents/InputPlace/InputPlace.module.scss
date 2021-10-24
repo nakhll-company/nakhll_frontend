@@ -1,0 +1,101 @@
+.box_outer {
+    overflow: hidden;
+    width: 100%;
+}
+
+.main_box {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    background: #f34c4c;
+    border: 0.5rem solid #000;
+}
+
+.bar {
+    position: absolute;
+    width: 5rem;
+    height: 0.5rem;
+    background: #fff;
+    transition: all 1s linear;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
+
+.bar.delay {
+    animation-delay: 0.65s;
+    -webkit-animation-delay: 0.65s;
+}
+
+.top {
+    top: -0.5rem;
+    left: -0.5rem;
+}
+
+.right {
+    top: 1.8rem;
+    right: -2.8rem;
+    transform: rotate(90deg);
+}
+
+.bottom {
+    bottom: -0.5rem;
+    left: -0.5rem;
+}
+
+.left {
+    top: 1.8rem;
+    left: -2.8rem;
+    transform: rotate(90deg);
+}
+
+@-webkit-keyframes h-move {
+    0% {
+        left: -0.5rem;
+    }
+    100% {
+        left: 20rem;
+    }
+}
+
+@keyframes h-move {
+    0% {
+        left: -0.5rem;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+.top,
+.bottom {
+    -webkit-animation-name: h-move;
+    animation-name: h-move;
+}
+
+@-webkit-keyframes v-move {
+    0% {
+        top: -0.5rem;
+    }
+    100% {
+        top: 22.8rem;
+    }
+}
+
+@keyframes v-move {
+    0% {
+        top: -0.5rem;
+    }
+    100% {
+        top: 22.8rem;
+    }
+}
+
+.right,
+.left {
+    -webkit-animation-name: v-move;
+    animation-name: v-move;
+}
