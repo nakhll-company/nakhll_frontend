@@ -5,6 +5,7 @@ import Sm_HeroSlides from "../../SampelComponents/HeroSlides";
 import Sm_InputPlace from "../../SampelComponents/InputPlace";
 import Sm_LinerOneImg from "../../SampelComponents/Sm_LinerOneImg";
 import Sm_LinerTwoImg from "../../SampelComponents/Sm_LinerTwoImg";
+import Sm_LinerThreeImg from "../../SampelComponents/Sm_LinerThreeImg";
 function Living(props) {
   const [characters, setCharacters] = useState([]);
   const [allshops, setAllshops] = useState([]);
@@ -38,6 +39,12 @@ function Living(props) {
     },
     {
       type: 3,
+      ID: "c226da83-9526-465a-97d4-9f112a0dc636",
+      slug: "Irana",
+      title: "نقش و نگار",
+    },
+    {
+      type: 4,
       ID: "c226da83-9526-465a-97d4-9f112a0dc636",
       slug: "Irana",
       title: "نقش و نگار",
@@ -86,6 +93,10 @@ function Living(props) {
 
       case 3:
         return <Sm_LinerTwoImg />;
+        break;
+
+      case 4:
+        return <Sm_LinerThreeImg />;
         break;
     }
   };
