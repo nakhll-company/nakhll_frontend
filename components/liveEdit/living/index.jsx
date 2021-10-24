@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { ApiReference } from "../../../Api";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import styles from "./living.module.scss";
-import HeroSlides from "../../../containers/LandingPage/HeroSlides";
 import Sm_HeroSlides from "../../SampelComponents/HeroSlides";
 import Sm_InputPlace from "../../SampelComponents/InputPlace";
 import Sm_LinerOneImg from "../../SampelComponents/Sm_LinerOneImg";
@@ -64,22 +60,6 @@ function Living(props) {
     setCharacters(list);
   }, []);
 
-  // // Get all shops
-  // const _get_all_shops = async () => {
-  //   let shops = await ApiRegister().apiRequest(
-  //     null,
-  //     "GET",
-  //     ApiReference.allShops,
-  //     true,
-  //     ""
-  //   );
-
-  //   if (shops.status === 200) {
-  //     setAllshops([...shops.data]);
-  //     setCharacters(shops.data.slice(0, 7));
-  //     //   setAllshops(shops.data);
-  //   }
-  // };
   useEffect(() => {
     console.log("characters :>> ", characters);
   }, [characters]);
