@@ -72,7 +72,11 @@ function Living(props) {
     },
   ];
 
-  const handelClickOnDeleteBtn = (idSelected) => {};
+  const handelClickOnDeleteBtn = (idSelected) => {
+    const items = [...characters];
+    items.splice(idSelected, 1);
+    setCharacters(items);
+  };
 
   useEffect(() => {
     setCharacters(list);
@@ -149,7 +153,7 @@ function Living(props) {
                         <button
                           class={styles.buttonDel}
                           role="button"
-                          onClick={() => handelClickOnDeleteBtn(e.ID)}
+                          onClick={() => handelClickOnDeleteBtn(index)}
                         >
                           <i className="fas fa-eraser"></i>
                         </button>
