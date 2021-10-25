@@ -7,6 +7,7 @@ import Sm_LinerOneImg from "../../SampelComponents/Sm_LinerOneImg";
 import Sm_LinerTwoImg from "../../SampelComponents/Sm_LinerTwoImg";
 import Sm_LinerThreeImg from "../../SampelComponents/Sm_LinerThreeImg";
 import Sm_LinerFourImg from "../../SampelComponents/Sm_LinerFourImg";
+import Sm_LinerProducts from "../../SampelComponents/Sm_LinerProducts";
 function Living(props) {
   const [characters, setCharacters] = useState([]);
   const [allshops, setAllshops] = useState([]);
@@ -20,6 +21,12 @@ function Living(props) {
     7: " ردیف شگفت انگیزا",
   };
   const list = [
+    {
+      type: 6,
+      ID: "c226da83-9526-465a-97d4-9f112a0dc636",
+      slug: "Irana",
+      title: "نقش و نگار",
+    },
     {
       type: 5,
       ID: "c226da83-9526-465a-97d4-9f112a0dc636",
@@ -108,6 +115,10 @@ function Living(props) {
 
       case 5:
         return <Sm_LinerFourImg />;
+        break;
+
+      case 6:
+        return <Sm_LinerProducts />;
         break;
     }
   };
