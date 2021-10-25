@@ -5,3 +5,5 @@ const Options = () => {
         <div></div>
     );
 }
+// export
+export default Options;
