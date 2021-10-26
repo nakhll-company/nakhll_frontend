@@ -79,7 +79,7 @@ function MyApp({ Component, pageProps }) {
         </Provider>
       </>
     );
-  } else if (router.pathname.startsWith("/liveEdit")) {
+  } else if (router.pathname.startsWith("/liveEdit") || router.pathname.startsWith("/game")) {
     return (
       <>
         {/* Global Site Tag (gtag.js) - Google Analytics */}
