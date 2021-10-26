@@ -9,9 +9,8 @@ import Sm_LinerTwoImg from "../../SampelComponents/Sm_LinerTwoImg";
 import Sm_LinerThreeImg from "../../SampelComponents/Sm_LinerThreeImg";
 import Sm_LinerFourImg from "../../SampelComponents/Sm_LinerFourImg";
 import Sm_LinerProducts from "../../SampelComponents/Sm_LinerProducts";
-function Living(props) {
-  const [characters, setCharacters] = useState([]);
 
+function Living({ list, characters, setCharacters }) {
   const Sample = {
     1: "اسلایدر تکی",
     2: "بنر تک عکسی",
@@ -21,57 +20,6 @@ function Living(props) {
     6: " ردیف محصولات",
     7: " ردیف شگفت انگیزا",
   };
-  const list = [
-    {
-      type: 6,
-      component: <Sm_LinerProducts />,
-      ID: "c22xzczxc6da83-9526-465a-97d4-9f112a0dc636",
-      slug: "Irana",
-      title: "نقش و نگار",
-    },
-    {
-      type: 5,
-      component: <Sm_LinerFourImg />,
-      ID: "c226da83czxvzxvz-9526-465a-97d4-9f112a0dc636",
-      slug: "Irana",
-      title: "نقش و نگار",
-    },
-    {
-      type: 0,
-      component: <Sm_InputPlace />,
-      ID: "46153726-<zczxcvxz3f09-4bb1-967c-ebd55c9751ba",
-      slug: "mohammadi",
-      title: "محمدی",
-    },
-    {
-      type: 1,
-      component: <Sm_HeroSlides />,
-      ID: "f3501a78-2b0e-4zxvzxvzx302-9d1c-f282daa5592e",
-      slug: "Roya",
-      title: "رویا",
-    },
-    {
-      type: 2,
-      component: <Sm_LinerOneImg />,
-      ID: "c226da83-9526-465a-9zc<zcz7d4-9f112a0dc636",
-      slug: "Irana",
-      title: "نقش و نگار",
-    },
-    {
-      type: 3,
-      component: <Sm_LinerTwoImg />,
-      ID: "c226da83-9zx526-465a-97d4-9f112a0dc636",
-      slug: "Irana",
-      title: "نقش و نگار",
-    },
-    {
-      type: 4,
-      component: <Sm_LinerThreeImg />,
-      ID: "c226da83-zxvzx9526-465a-97d4-9f112a0dc636",
-      slug: "Irana",
-      title: "نقش و نگار",
-    },
-  ];
 
   const handelClickOnDeleteBtn = (idSelected) => {
     const items = [...characters];
@@ -96,10 +44,6 @@ function Living(props) {
     items.splice(index + 1, 0, newItem);
     setCharacters(items);
   };
-
-  useEffect(() => {
-    setCharacters(list);
-  }, []);
 
   const handleOnDragEnd = (result) => {
     if (!result.destination) return;

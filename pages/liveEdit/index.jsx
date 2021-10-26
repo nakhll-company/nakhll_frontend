@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./liveEdit.module.scss";
 import Living from "../../components/liveEdit/living";
+import Head from "next/head";
 // gsap
 import { gsap, Power3 } from "gsap";
 import Sm_InputPlace from "../../components/SampelComponents/InputPlace";
@@ -11,10 +12,13 @@ import Sm_LinerProducts from "../../components/SampelComponents/Sm_LinerProducts
 import Sm_LinerTwoImg from "../../components/SampelComponents/Sm_LinerTwoImg";
 import Sm_LinerThreeImg from "../../components/SampelComponents/Sm_LinerThreeImg";
 import Sm_LinerOneImg from "../../components/SampelComponents/Sm_LinerOneImg";
+import ListComponent from "../../containers/liveEdit/ListComponent";
 
 function index(props) {
   // stat for handel sidBar for edit and add
   const [openAddComponent, setOpenAddComponent] = useState(false);
+
+  const [characters, setCharacters] = useState([]);
   // gsap
   let tl = new gsap.timeline();
   let ease = Power3.easeOut();
@@ -23,8 +27,60 @@ function index(props) {
   let main = useRef(null);
   let profile = useRef(null);
   let toggleMenu = useRef(null);
+  const list = [
+    {
+      type: 6,
+      component: <Sm_LinerProducts />,
+      ID: "c22xzczxc6da83-9526-465a-97d4-9f112a0dc636",
+      slug: "Irana",
+      title: "نقش و نگار",
+    },
+    {
+      type: 5,
+      component: <Sm_LinerFourImg />,
+      ID: "c226da83czxvzxvz-9526-465a-97d4-9f112a0dc636",
+      slug: "Irana",
+      title: "نقش و نگار",
+    },
+    {
+      type: 0,
+      component: <Sm_InputPlace />,
+      ID: "46153726-<zczxcvxz3f09-4bb1-967c-ebd55c9751ba",
+      slug: "mohammadi",
+      title: "محمدی",
+    },
+    {
+      type: 1,
+      component: <Sm_HeroSlides />,
+      ID: "f3501a78-2b0e-4zxvzxvzx302-9d1c-f282daa5592e",
+      slug: "Roya",
+      title: "رویا",
+    },
+    {
+      type: 2,
+      component: <Sm_LinerOneImg />,
+      ID: "c226da83-9526-465a-9zc<zcz7d4-9f112a0dc636",
+      slug: "Irana",
+      title: "نقش و نگار",
+    },
+    {
+      type: 3,
+      component: <Sm_LinerTwoImg />,
+      ID: "c226da83-9zx526-465a-97d4-9f112a0dc636",
+      slug: "Irana",
+      title: "نقش و نگار",
+    },
+    {
+      type: 4,
+      component: <Sm_LinerThreeImg />,
+      ID: "c226da83-zxvzx9526-465a-97d4-9f112a0dc636",
+      slug: "Irana",
+      title: "نقش و نگار",
+    },
+  ];
 
   useEffect(() => {
+    setCharacters(list);
     tl.from(profile, { y: 1200, ease: "ease", opacity: 0, duration: 0.8 })
       .from(profile, {
         scale: 1.6,
@@ -39,6 +95,14 @@ function index(props) {
   }, []);
   return (
     <>
+      <Head>
+        <link
+          rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+          integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
+          crossOrigin="anonymous"
+        ></link>
+      </Head>
       <div className={styles.container}>
         <div
           ref={(el) => (navigation = el)}
@@ -83,30 +147,7 @@ function index(props) {
               </li>
             </ul>
           )}
-          <div className={styles.parent}>
-            <div className={styles.holderItems}>
-              <Sm_LinerThreeImg />
-            </div>
-            <div className={styles.holderItems}>
-              <Sm_HeroSlides />
-            </div>
-            <div className={styles.holderItems}>
-              <Sm_LinerFourImg />
-            </div>
-            <div className={styles.holderItems}>
-              <Sm_LinerProducts />
-            </div>
-            <div className={styles.holderItems}>
-              <Sm_LinerTwoImg />
-            </div>
-            <div className={styles.holderItems}>
-              <Sm_LinerOneImg />
-            </div>
-            <div className={styles.holderItems}>
-              <Sm_LinerOneImg />
-            </div>
-            <div style={{ marginTop: "30px" }}></div>
-          </div>
+          <ListComponent />
         </div>
 
         {/* main */}
@@ -129,7 +170,12 @@ function index(props) {
               <img src="/image/person.jpeg" alt="" />
             </div>
           </div>
-          <Living />
+
+          <Living
+            list={list}
+            characters={characters}
+            setCharacters={setCharacters}
+          />
         </div>
 
         <style jsx>{`
