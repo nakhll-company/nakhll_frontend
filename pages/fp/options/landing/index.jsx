@@ -1,6 +1,7 @@
 // node libraries
 import Head from 'next/head';
 import Link from 'next/link';
+import Asistent from 'zaravand-assistent-number';
 // scss
 import styles from './landing.module.scss';
 
