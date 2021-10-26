@@ -1,0 +1,38 @@
+// main wrapper
+.wrapper{
+    background-color: #fff;
+    padding: 0px 15px;
+    border-radius: 5px;
+    font-family: 'vazir';
+    grid-column: 1/-1;
+    grid-row: 1/-1;
+    // title page
+    .title_page{
+        font-size: 25px;
+        @media screen and (max-width: 620px)  {
+            font-size: 7vw;
+        }
+    }
+    // list title
+    .list_title{
+        font-size: 17px;
+        margin-bottom: 15px;
+    }
+    // list discription
+    .list_description{
+        text-align: justify;
+        text-justify: inter-word;
+        // link wrapper
+        .wrapper_link{
+            display: flex;
+            justify-content: flex-end;
+            .link{
+                border: 1px solid #0824a0;
+                background-color: #0824a0;
+                border-radius: 5px;
+                padding: 10px;
+                color: #fff;
+            }
+        }
+    }
+}

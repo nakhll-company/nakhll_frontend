@@ -70,12 +70,6 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
           <div className={styles.hedtop}>
             <div style={{ display: "flex" }}>
               <span style={{ marginRight: "102px" }}>
-                {/* <Image
-                  src="/image/LOGO_500.png"
-                  alt="Picture of the author"
-                  width={60}
-                  height={60}
-                /> */}
               </span>
               <h1 style={{ color: "#224d82", fontSize: "18px", margin: "0px" }}>
                 داشبورد حجره
@@ -335,19 +329,19 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
               <Link href={`/fp`}>
                 <a>
                   <span
-                    className={`${styles.menu_card_item} ${router.pathname == "/" ? styles.selectNav : ""
-                      } mt-5 mb-4`}
+                    className={`${styles.menu_card_item} ${router.pathname == "/fp" && styles.selectNav} mt-5 mb-4`}
                   >
                     <i
                       style={{
-                        marginLeft: "18px",
-                        fontSize: "20px",
+                        marginLeft: "12px",
+                        fontSize: "18px"
                       }}
-                      className="fas fa-home  "
+                      className="fas fa-home"
                     ></i>
                     <h2
                       style={{
-                        fontSize: "16px",
+                        fontSize: "15px",
+                        margin: "0px"
                       }}
                     >
                       داشبورد
@@ -374,8 +368,8 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                       <div style={{ display: "flex", alignItems: "center" }}>
                         <i
                           style={{
-                            marginLeft: "18px",
-                            fontSize: "20px",
+                            marginLeft: "15px",
+                            fontSize: "18px",
                             color: "#1b3e68",
                           }}
                           className="fas fa-shopping-basket"
@@ -383,8 +377,8 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                         <h2
                           style={{
                             color: "#1b3e68",
-
-                            fontSize: "16px",
+                            fontSize: "15px",
+                            margin: "0px"
                           }}
                         >
                           سفارش ها
@@ -392,8 +386,8 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                       </div>{" "}
                       <i
                         style={{
-                          fontSize: "20px",
-                          marginRight: "10px",
+                          fontSize: "15px",
+                          marginLeft: "15px",
                           color: "#1b3e68",
                         }}
                         className="fas fa-chevron-up"
@@ -412,8 +406,8 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                       <div style={{ display: "flex", alignItems: "center" }}>
                         <i
                           style={{
-                            marginLeft: "18px",
-                            fontSize: "20px",
+                            marginLeft: "15px",
+                            fontSize: "18px",
                             color: "#1b3e68",
                           }}
                           className="fas fa-shopping-basket"
@@ -421,8 +415,8 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                         <h2
                           style={{
                             color: "#1b3e68",
-
-                            fontSize: "16px",
+                            margin: "0px",
+                            fontSize: "15px",
                           }}
                         >
                           سفارش ها
@@ -431,8 +425,8 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                       <i
                         style={{
                           color: "#1b3e68",
-                          fontSize: "20px",
-                          marginRight: "10px",
+                          fontSize: "15px",
+                          marginLeft: "15px",
                         }}
                         className="fas fa-chevron-down"
                       ></i>
@@ -446,93 +440,111 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                     style={{ cursor: "pointer" }}
                     href="/fp/order/completed"
                   >
-                    <span
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        cursor: "pointer",
-                      }}
-                      className={`${styles.subTitleOrder}   ${router.pathname == "/fp/order/completed"
-                        ? styles.selectNav
-                        : ""
-                        }`}
-                    >
+                    <a>
                       <span
-                        style={{ marginLeft: "18px" }}
-                        className={`${styles.dot}   ${router.pathname == "/fp/order/completed"
-                          ? styles.selectdot
-                          : ""
-                          }`}
-                      ></span>
-                      <h2
                         style={{
-                          color: "#1b3e68",
-
-                          fontSize: "16px",
+                          display: "flex",
+                          alignItems: "center",
+                          cursor: "pointer",
                         }}
+                        className={`${styles.subTitleOrder}   ${router.pathname === "/fp/order/completed"
+                          && styles.selectNav}`}
                       >
-                        تکمیل شده
-                      </h2>
-                    </span>
+                        {/* <span
+                        style={{ marginLeft: "18px" }}
+                        className={`${styles.dot} ${router.pathname == "/fp/order/completed"
+                          && styles.selectdot}`}
+                      ></span> */}
+                        <h2
+                          style={{
+                            fontSize: "15px",
+                            marginRight: "20px"
+                          }}
+                        >
+                          تکمیل شده
+                        </h2>
+                      </span>
+                    </a>
                   </Link>
                   <Link href="/fp/order/uncompleted">
-                    <span
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        marginTop: "15px",
-                        marginBottom: "25px",
-                        cursor: "pointer",
-                      }}
-                      className={`${styles.subTitleOrder}   ${router.pathname == "/fp/order/uncompleted"
-                        ? styles.selectNav
-                        : ""
-                        }`}
-                    >
+                    <a>
                       <span
-                        style={{ marginLeft: "18px" }}
-                        className={`${styles.dot}   ${router.pathname == "/fp/order/uncompleted"
-                          ? styles.selectdot
-                          : ""
-                          }`}
-                      ></span>
-                      <h2
                         style={{
-                          color: "#1b3e68",
-
-                          fontSize: "16px",
+                          display: "flex",
+                          alignItems: "center",
+                          marginTop: "15px",
+                          marginBottom: "15px",
+                          cursor: "pointer",
                         }}
+                        className={`${styles.subTitleOrder} ${router.pathname == "/fp/order/uncompleted"
+                          && styles.selectNav}`}
                       >
-                        تکمیل نشده
-                      </h2>
-                    </span>
+                        {/* <span
+                        style={{ marginLeft: "18px" }}
+                        className={`${styles.dot} ${router.pathname == "/fp/order/uncompleted"
+                          && styles.selectdot}`}
+                      ></span> */}
+                        <h2
+                          style={{
+                            fontSize: "15px",
+                            marginRight: "20px"
+                          }}
+                        >
+                          تکمیل نشده
+                        </h2>
+                      </span>
+                    </a>
                   </Link>
                 </>
               )}
 
-              <Link activeClassName="selectNav" href="/fp/product">
-                <span
-                  className={`${styles.menu_card_item}   ${router.pathname == "/fp/product" ? styles.selectNav : ""
-                    }`}
-                >
-                  <i
-                    style={{
-                      marginLeft: "18px",
-                      fontSize: "20px",
-                    }}
-                    className="fas fa-box-open"
-                  ></i>
-                  <h2
-                    style={{
-                      color: "#1b3e68",
-
-                      fontSize: "16px",
-                    }}
+              <Link href="/fp/product">
+                <a>
+                  <span
+                    className={`${styles.menu_card_item} ${router.pathname == "/fp/product" && styles.selectNav}`}
                   >
-                    {" "}
-                    محصولات
-                  </h2>
-                </span>
+                    <i
+                      style={{
+                        marginLeft: "12px",
+                        fontSize: "18px",
+                      }}
+                      className="fas fa-box-open"
+                    ></i>
+                    <h2
+                      style={{
+                        fontSize: "15px",
+                        margin: "0px"
+                      }}
+                    >
+                      {" "}
+                      محصولات
+                    </h2>
+                  </span>
+                </a>
+              </Link>
+              <Link href="/fp">
+                <a>
+                  <span
+                    className={`mt-3 ${styles.menu_card_item} ${router.pathname == "/fp/options" && styles.selectNav}`}
+                  >
+                    <i
+                      style={{
+                        marginLeft: "12px",
+                        fontSize: "20px",
+                      }}
+                      className="fas fa-cubes"
+                    ></i>
+                    <h2
+                      style={{
+                        fontSize: "15px",
+                        margin: "0px"
+                      }}
+                    >
+                      {" "}
+                      قابلیت ها
+                    </h2>
+                  </span>
+                </a>
               </Link>
             </section>
           </div>
