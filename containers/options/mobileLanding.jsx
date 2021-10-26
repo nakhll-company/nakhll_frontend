@@ -22,7 +22,7 @@ const MobileLanding = () => {
                     <CustomLabel type="normal" value={"تست فرود"} label="نام" />
                     <CustomLabel type="normal" value={_asist.number("1400/05/21")} label="تاریخ ثبت" />
                     <div className="d-flex justify-content-end align-items-center">
-                        <i className="fas fa-eye"></i>
+                        <i className="fas fa-eye mx-3"></i>
                         <i className="far fa-trash-alt"></i>
                     </div>
                 </div>
