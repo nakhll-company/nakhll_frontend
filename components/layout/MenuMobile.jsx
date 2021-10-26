@@ -55,7 +55,7 @@ function MenuMobile() {
       </Link>
       <Link
         className="menu-card-item-menu"
-        href="/fp/options"
+        href="/fp"
         passHref={true}
       >
         <a>
