@@ -14,6 +14,9 @@ function Sm_InputPlace(props) {
             className={`${styles.bar} ${styles.bottom} ${styles.delay}`}
           ></div>
           <div className={`${styles.bar} ${styles.left}`}></div>
+          <div className={styles.text}>
+            <span>نوع نمایش این قسمت را مشخص کنید</span>
+          </div>
         </div>
       </div>
     </>

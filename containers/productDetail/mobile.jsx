@@ -13,8 +13,8 @@ import CustomLabel from "../../components/custom/customLabel";
 import ProductCard from "../../components/ProductCart/ProductCard";
 import CustomSlider from "../../components/custom/customSlider";
 // methods
-import { addToCart } from './methods/addToCart';
-import { getUserInfo } from '../../redux/actions/user/getUserInfo';
+import { addToCart } from "./methods/addToCart";
+import { getUserInfo } from "../../redux/actions/user/getUserInfo";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 // styles
 import styles from "./productDetail.module.scss";
@@ -108,12 +108,12 @@ const ProductDetailMobile = ({ data }) => {
                 {[
                   { title: "خانه", url: "/" },
                   {
-                    title: detail.sub_market.market.title,
-                    url: `/product?cat=${detail.sub_market.market.id}`,
+                    title: detail?.sub_market?.market.title,
+                    url: `/product?cat=${detail?.sub_market?.market.id}`,
                   },
                   {
-                    title: detail.sub_market.title,
-                    url: `/product?cat=${detail.sub_market.id}`,
+                    title: detail?.sub_market?.title,
+                    url: `/product?cat=${detail?.sub_market?.id}`,
                   },
                 ].map((value, index) => {
                   return (
@@ -239,7 +239,11 @@ const ProductDetailMobile = ({ data }) => {
                         <CustomLabel
                           type="normal"
                           value={_asist.PSeparator(value.value)}
-                          label={value.FK_Attribute && value.FK_Attribute.title ? value.FK_Attribute.title : ""}
+                          label={
+                            value.FK_Attribute && value.FK_Attribute.title
+                              ? value.FK_Attribute.title
+                              : ""
+                          }
                         />
                       </div>
                     );
@@ -262,7 +266,17 @@ const ProductDetailMobile = ({ data }) => {
                 <h2 className={`${styles.product_section_title} mt-4`}>
                   درباره محصول
                 </h2>
-                {(detail.story || detail.description) ? <CustomLabel type="normal" value={detail.description ? detail.description : detail.story} label="" /> : <span>ندارد</span>}
+                {detail.story || detail.description ? (
+                  <CustomLabel
+                    type="normal"
+                    value={
+                      detail.description ? detail.description : detail.story
+                    }
+                    label=""
+                  />
+                ) : (
+                  <span>ندارد</span>
+                )}
               </div>
             </div>
             <div className="mb-1">
@@ -282,7 +296,8 @@ const ProductDetailMobile = ({ data }) => {
                       className="d-block font-size-sm"
                     >
                       {" "}
-                      ۷ روز ضمانت <br />بازگشت وجه{" "}
+                      ۷ روز ضمانت <br />
+                      بازگشت وجه{" "}
                     </span>
                   </a>
                 </Link>
@@ -299,7 +314,8 @@ const ProductDetailMobile = ({ data }) => {
                       className="d-block font-size-sm"
                     >
                       {" "}
-                      ارتباط مستقیم <br />با حجره دار{" "}
+                      ارتباط مستقیم <br />
+                      با حجره دار{" "}
                     </span>
                   </a>
                 </Link>
@@ -316,7 +332,8 @@ const ProductDetailMobile = ({ data }) => {
                       className="d-block font-size-sm"
                     >
                       {" "}
-                      صداقت <br />در فروش{" "}
+                      صداقت <br />
+                      در فروش{" "}
                     </span>
                   </a>
                 </Link>
@@ -531,7 +548,9 @@ const ProductDetailMobile = ({ data }) => {
                         url: `/product/${value.slug}`,
                         title: value.title,
                         chamberTitle: value.shop ? value.shop.title : " ",
-                        chamberUrl: value.shop ? `/hojreh?shop=${value.shop.slug}` : " ",
+                        chamberUrl: value.shop
+                          ? `/hojreh?shop=${value.shop.slug}`
+                          : " ",
                         discount: value.discount,
                         price: value.price / 10,
                         discountNumber: value.old_price / 10,
