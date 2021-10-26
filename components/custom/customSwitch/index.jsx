@@ -15,9 +15,11 @@ const CustomSwitch = ({ id, title, onChange, defaultChecked }) => {
           <span className="circle"></span>
         </label>
       </div>{" "}
-      <label htmlFor={`switch__${id}`} className="filter-box-title">
-        <span className="d-block font-size-9 m-0">{title}</span>
-      </label>
+      {title &&
+        <label htmlFor={`switch__${id}`} className="filter-box-title">
+          <span className="d-block font-size-9 m-0">{title}</span>
+        </label>
+      }
     </div>
   );
 };

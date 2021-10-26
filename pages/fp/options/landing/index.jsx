@@ -1,9 +1,13 @@
 // node libraries
 import Head from 'next/head';
 import Link from 'next/link';
-import Asistent from 'zaravand-assistent-number';
+import Assistent from "zaravand-assistent-number";
+// component
+import CustomSwitch from '../../../../components/custom/customSwitch';
 // scss
 import styles from './landing.module.scss';
+
+const _asist = new Assistent();
 
 const Landing = () => {
     return (
@@ -35,12 +39,14 @@ const Landing = () => {
                     </thead>
                     <tbody>
                         <tr>
-                            <td>1</td>
+                            <td>{_asist.number(1)}</td>
                             <td>تست فرود</td>
-                            <td>1400/05/31</td>
-                            <td>فعال</td>
-                            <td><i class="fas fa-eye"></i></td>
-                            <td><i class="far fa-trash-alt"></i></td>
+                            <td>{_asist.number('1400/05/31')}</td>
+                            <td className="d-flex justify-content-center pb-3">
+                                <CustomSwitch defaultChecked={true} id="active" />
+                            </td>
+                            <td><i className="fas fa-eye"></i></td>
+                            <td><i className="far fa-trash-alt"></i></td>
                         </tr>
                     </tbody>
                 </table>
