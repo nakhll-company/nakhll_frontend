@@ -12,8 +12,8 @@ import { useDispatch } from "react-redux";
 import CustomLabel from "../../components/custom/customLabel";
 import CustomSlider from "../../components/custom/customSlider";
 // methods
-import { addToCart } from './methods/addToCart';
-import { getUserInfo } from '../../redux/actions/user/getUserInfo';
+import { addToCart } from "./methods/addToCart";
+import { getUserInfo } from "../../redux/actions/user/getUserInfo";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 // styles
 import styles from "./productDetail.module.scss";
@@ -105,12 +105,12 @@ const ProductDetailDesktop = ({ data }) => {
                 {[
                   { title: "خانه", url: "/" },
                   {
-                    title: detail.sub_market.market.title,
-                    url: `/product?cat=${detail.sub_market.market.id}`,
+                    title: detail?.sub_market?.market.title,
+                    url: `/product?cat=${detail?.sub_market?.market.id}`,
                   },
                   {
-                    title: detail.sub_market.title,
-                    url: `/product?cat=${detail.sub_market.id}`,
+                    title: detail?.sub_market?.title,
+                    url: `/product?cat=${detail?.sub_market?.id}`,
                   },
                 ].map((value, index) => {
                   return (
@@ -300,13 +300,13 @@ const ProductDetailDesktop = ({ data }) => {
                       style={{ fontSize: "1.25rem" }}
                       className={styles.old_price}
                     >
-                      {detail.old_price && _asist.PSeparator(detail.old_price / 10)}
+                      {detail.old_price &&
+                        _asist.PSeparator(detail.old_price / 10)}
                     </del>
                   </div>
                   <div className={`${styles.price} d-inline-block  ms-2 `}>
                     <span>
-                      {detail.price
-                        && _asist.PSeparator(detail.price / 10)}
+                      {detail.price && _asist.PSeparator(detail.price / 10)}
                     </span>
                     <span> تومان </span>
                   </div>
@@ -420,7 +420,11 @@ const ProductDetailDesktop = ({ data }) => {
                         <CustomLabel
                           type="normal"
                           value={_asist.PSeparator(value.value)}
-                          label={value.FK_Attribute && value.FK_Attribute.title ? value.FK_Attribute.title : ""}
+                          label={
+                            value.FK_Attribute && value.FK_Attribute.title
+                              ? value.FK_Attribute.title
+                              : ""
+                          }
                         />
                       </div>
                     );
@@ -430,7 +434,17 @@ const ProductDetailDesktop = ({ data }) => {
             <div>
               <div>
                 <h2 className={styles.product_section_title}>درباره محصول</h2>
-                {(detail.story || detail.description) ? <CustomLabel type="normal" value={detail.description ? detail.description : detail.story} label="" /> : <span>ندارد</span>}
+                {detail.story || detail.description ? (
+                  <CustomLabel
+                    type="normal"
+                    value={
+                      detail.description ? detail.description : detail.story
+                    }
+                    label=""
+                  />
+                ) : (
+                  <span>ندارد</span>
+                )}
               </div>
             </div>
             <hr className="my-5" />
@@ -576,7 +590,9 @@ const ProductDetailDesktop = ({ data }) => {
                         url: `/product/${value.slug}`,
                         title: value.title,
                         chamberTitle: value.shop ? value.shop.title : " ",
-                        chamberUrl: value.shop ? `/hojreh?shop=${value.shop.slug} ` : " ",
+                        chamberUrl: value.shop
+                          ? `/hojreh?shop=${value.shop.slug} `
+                          : " ",
                         discount: value.discount,
                         price: value.price / 10,
                         discountNumber: value.old_price / 10,
