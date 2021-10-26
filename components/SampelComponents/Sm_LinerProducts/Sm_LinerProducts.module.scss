@@ -1,0 +1,55 @@
+.main {
+    width: 100%;
+    background-color: #a1db43;
+    border-radius: 10px;
+    .title {
+        display: flex;
+        justify-content: space-between;
+        padding-right: 15px;
+        padding-left: 15px;
+        padding-top: 15px;
+        .name {
+            text-align: right;
+            color: black;
+            .mainTitle {
+                display: block;
+                font-size: 18px;
+                letter-spacing: 1.5px;
+                font-weight: bold;
+            }
+            .subTitle {
+                display: block;
+                margin-top: 10px;
+                padding-right: 9px;
+                font-size: 14px;
+                font-weight: bold;
+            }
+        }
+        .seeAll {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .wrapBtn {
+                width: 150px;
+                height: 40px;
+                border-radius: 20px;
+                background-color: #fff;
+                border: 2px solid rgb(27, 62, 104);
+                font-size: 14px;
+                font-weight: bold;
+                color: #000;
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+}
+
+.wrap {
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    padding: 15px 5px;
+}
