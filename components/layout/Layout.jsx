@@ -440,56 +440,60 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                     style={{ cursor: "pointer" }}
                     href="/fp/order/completed"
                   >
-                    <span
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        cursor: "pointer",
-                      }}
-                      className={`${styles.subTitleOrder}   ${router.pathname === "/fp/order/completed"
-                        && styles.selectNav}`}
-                    >
-                      {/* <span
+                    <a>
+                      <span
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          cursor: "pointer",
+                        }}
+                        className={`${styles.subTitleOrder}   ${router.pathname === "/fp/order/completed"
+                          && styles.selectNav}`}
+                      >
+                        {/* <span
                         style={{ marginLeft: "18px" }}
                         className={`${styles.dot} ${router.pathname == "/fp/order/completed"
                           && styles.selectdot}`}
                       ></span> */}
-                      <h2
-                        style={{
-                          fontSize: "15px",
-                          marginRight: "20px"
-                        }}
-                      >
-                        تکمیل شده
-                      </h2>
-                    </span>
+                        <h2
+                          style={{
+                            fontSize: "15px",
+                            marginRight: "20px"
+                          }}
+                        >
+                          تکمیل شده
+                        </h2>
+                      </span>
+                    </a>
                   </Link>
                   <Link href="/fp/order/uncompleted">
-                    <span
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        marginTop: "15px",
-                        marginBottom: "15px",
-                        cursor: "pointer",
-                      }}
-                      className={`${styles.subTitleOrder} ${router.pathname == "/fp/order/uncompleted"
-                        && styles.selectNav}`}
-                    >
-                      {/* <span
+                    <a>
+                      <span
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          marginTop: "15px",
+                          marginBottom: "15px",
+                          cursor: "pointer",
+                        }}
+                        className={`${styles.subTitleOrder} ${router.pathname == "/fp/order/uncompleted"
+                          && styles.selectNav}`}
+                      >
+                        {/* <span
                         style={{ marginLeft: "18px" }}
                         className={`${styles.dot} ${router.pathname == "/fp/order/uncompleted"
                           && styles.selectdot}`}
                       ></span> */}
-                      <h2
-                        style={{
-                          fontSize: "15px",
-                          marginRight: "20px"
-                        }}
-                      >
-                        تکمیل نشده
-                      </h2>
-                    </span>
+                        <h2
+                          style={{
+                            fontSize: "15px",
+                            marginRight: "20px"
+                          }}
+                        >
+                          تکمیل نشده
+                        </h2>
+                      </span>
+                    </a>
                   </Link>
                 </>
               )}
