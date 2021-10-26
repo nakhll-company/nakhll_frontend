@@ -522,7 +522,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   </span>
                 </a>
               </Link>
-              <Link href="/fp/options">
+              <Link href="/fp">
                 <a>
                   <span
                     className={`mt-3 ${styles.menu_card_item} ${router.pathname == "/fp/options" && styles.selectNav}`}
