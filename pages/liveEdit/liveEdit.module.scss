@@ -104,17 +104,6 @@ $color-black2: #999;
             right: -100%;
             z-index: 1000;
         }
-        .parent {
-            position: relative;
-            .holderItems {
-                padding-top: 10px;
-                padding-bottom: 10px;
-                border-bottom: 1px solid #ccc;
-                margin-bottom: 5px;
-                position: relative;
-                display: block;
-            }
-        }
     }
     .main {
         position: absolute;
