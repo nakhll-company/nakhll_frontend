@@ -98,9 +98,36 @@
 
 .btnLeft {
     left: -35px;
-    top: -24px;
+    top: 1px;
     z-index: 10;
     color: #b71c1c;
+}
+
+.btnLeftEdit {
+    left: 2px;
+    top: 3px;
+    z-index: 10;
+    color: #57fd09;
+    .buttonEdit {
+        background: #fff;
+        align-items: center;
+        padding: 0 12px;
+        color: #20303c;
+        font-size: 14px;
+        font-weight: 500;
+        height: 30px;
+        background-color: #fcfcfc;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        border-radius: 4px;
+        -webkit-box-shadow: 0 1px 7px 0 rgb(32 48 60 / 40%);
+        box-shadow: 0 1px 7px 0 rgb(32 48 60 / 40%);
+        &:hover {
+            animation: myAnim 2s ease 0s 1 normal forwards;
+            background-color: aqua;
+        }
+    }
 }
 
 .buttonAdd:main,

@@ -1,11 +1,20 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./liveEdit.module.scss";
 import Living from "../../components/liveEdit/living";
 // gsap
 import { gsap, Power3 } from "gsap";
+import Sm_InputPlace from "../../components/SampelComponents/InputPlace";
+import Sm_HeroSlides from "../../components/SampelComponents/HeroSlides";
+import Sm_LinerFourImg from "../../components/SampelComponents/Sm_LinerFourImg";
+import Sm_LinerProducts from "../../components/SampelComponents/Sm_LinerProducts";
+import Sm_LinerTwoImg from "../../components/SampelComponents/Sm_LinerTwoImg";
+import Sm_LinerThreeImg from "../../components/SampelComponents/Sm_LinerThreeImg";
+import Sm_LinerOneImg from "../../components/SampelComponents/Sm_LinerOneImg";
 
 function index(props) {
+  // stat for handel sidBar for edit and add
+  const [openAddComponent, setOpenAddComponent] = useState(false);
   // gsap
   let tl = new gsap.timeline();
   let ease = Power3.easeOut();
@@ -36,40 +45,68 @@ function index(props) {
           id="navigation"
           className={styles.navigation}
         >
-          <ul>
-            <li>
-              <a href="">
-                <span className={styles.icon}></span>
-                <span className={styles.title}>بازار نخل</span>
-              </a>
-            </li>
-            <li>
-              <Link href="/liveEdit/edit">
-                <a>
-                  <span className={`${styles.icon} fas fa-dice-d20`}></span>
-                  <span className={styles.title}>چیدمان</span>
+          {openAddComponent && (
+            <ul>
+              <li>
+                <a href="">
+                  <span className={styles.icon}></span>
+                  <span className={styles.title}>بازار نخل</span>
                 </a>
-              </Link>
-            </li>
-            <li>
-              <a href="">
-                <span className={`${styles.icon}  fab fa-fort-awesome`}></span>
-                <span className={styles.title}>داشبورد</span>
-              </a>
-            </li>
-            <li>
-              <a href="">
-                <span className={`${styles.icon} fas fa-scroll`}></span>
-                <span className={styles.title}>پیش نمایش</span>
-              </a>
-            </li>
-            <li>
-              <a href="">
-                <span className={`${styles.icon}   fas fa-hat-wizard`}></span>
-                <span className={styles.title}>ثبت نهایی</span>
-              </a>
-            </li>
-          </ul>
+              </li>
+              <li>
+                <Link href="/liveEdit/edit">
+                  <a>
+                    <span className={`${styles.icon} fas fa-dice-d20`}></span>
+                    <span className={styles.title}>چیدمان</span>
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <a href="">
+                  <span
+                    className={`${styles.icon}  fab fa-fort-awesome`}
+                  ></span>
+                  <span className={styles.title}>داشبورد</span>
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  <span className={`${styles.icon} fas fa-scroll`}></span>
+                  <span className={styles.title}>پیش نمایش</span>
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  <span className={`${styles.icon}   fas fa-hat-wizard`}></span>
+                  <span className={styles.title}>ثبت نهایی</span>
+                </a>
+              </li>
+            </ul>
+          )}
+          <div className={styles.parent}>
+            <div className={styles.holderItems}>
+              <Sm_LinerThreeImg />
+            </div>
+            <div className={styles.holderItems}>
+              <Sm_HeroSlides />
+            </div>
+            <div className={styles.holderItems}>
+              <Sm_LinerFourImg />
+            </div>
+            <div className={styles.holderItems}>
+              <Sm_LinerProducts />
+            </div>
+            <div className={styles.holderItems}>
+              <Sm_LinerTwoImg />
+            </div>
+            <div className={styles.holderItems}>
+              <Sm_LinerOneImg />
+            </div>
+            <div className={styles.holderItems}>
+              <Sm_LinerOneImg />
+            </div>
+            <div style={{ marginTop: "30px" }}></div>
+          </div>
         </div>
 
         {/* main */}

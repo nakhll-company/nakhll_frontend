@@ -77,6 +77,8 @@ function Living(props) {
     items.splice(idSelected, 1);
     setCharacters(items);
   };
+  // function for when click on component
+  const _handel_click_on_component = () => {};
 
   useEffect(() => {
     setCharacters(list);
@@ -155,7 +157,18 @@ function Living(props) {
                           role="button"
                           onClick={() => handelClickOnDeleteBtn(index)}
                         >
-                          <i className="fas fa-eraser"></i>
+                          <i className="fas fa-trash"></i>
+                        </button>
+                      </div>
+                      <div
+                        className={`${styles.wrapBtn} ${styles.btnLeftEdit}`}
+                      >
+                        <button
+                          class={styles.buttonEdit}
+                          role="button"
+                          onClick={() => handelClickOnDeleteBtn(index)}
+                        >
+                          ویرایش
                         </button>
                       </div>
                       {/* fas fa-calendar-times" */}

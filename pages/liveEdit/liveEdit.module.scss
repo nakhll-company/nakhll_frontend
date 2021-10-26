@@ -11,11 +11,12 @@ $color-black2: #999;
     .navigation {
         position: fixed;
         width: 300px;
+        bottom: 0;
         height: 100%;
         background: $color-blue;
         border-right: 10px solid $color-blue;
         transition: 0.5s;
-        overflow: hidden;
+        overflow-y: scroll;
         ul {
             margin: 0;
             padding: 0;
@@ -102,6 +103,17 @@ $color-black2: #999;
             width: 100%;
             right: -100%;
             z-index: 1000;
+        }
+        .parent {
+            position: relative;
+            .holderItems {
+                padding-top: 10px;
+                padding-bottom: 10px;
+                border-bottom: 1px solid #ccc;
+                margin-bottom: 5px;
+                position: relative;
+                display: block;
+            }
         }
     }
     .main {
