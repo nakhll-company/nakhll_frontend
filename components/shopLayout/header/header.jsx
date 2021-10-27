@@ -174,7 +174,7 @@ function Header() {
 
       <header className={`${styles.mobile_header} `}>
       <div className={styles.topBanner}>
-          <img src="./image/topBanner/topImg.jpg" alt="" />
+          <img src="./image/topBanner/topImg_mobile.jpg" alt="" />
         </div>
         <div className={styles.header_holder}>
           <div className="container">
