@@ -30,7 +30,7 @@ function Header() {
       if (response.status === 200) {
         setCategory(response.data);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   const dispatch = useDispatch();
@@ -42,9 +42,13 @@ function Header() {
   }, []);
   return (
     <>
-      <header className={`${styles.header} `}>
+      <header className={`${styles.header}`}>
         <div className={styles.topBanner}>
-          <img src="./image/topBanner/topImg.jpg" alt="" />
+          <Link href={Object.keys(userLog).length > 0 ? "/fp/store/create" : "https://nakhll.com/accounts/get-phone/"}>
+            <a>
+              <img src="./image/topBanner/topImg.jpg" alt="top banner" />
+            </a>
+          </Link>
         </div>
         <div className="container">
           <div className={styles.top_header}>
@@ -173,8 +177,12 @@ function Header() {
       </header>
 
       <header className={`${styles.mobile_header} `}>
-      <div className={styles.topBanner}>
-          <img src="./image/topBanner/topImg_mobile.jpg" alt="" />
+        <div className={styles.topBanner}>
+          <Link href={Object.keys(userLog).length > 0 ? "/fp/store/create" : "https://nakhll.com/accounts/get-phone/"}>
+            <a>
+              <img src="./image/topBanner/topImg_mobile.jpg" alt="top banner" />
+            </a>
+          </Link>
         </div>
         <div className={styles.header_holder}>
           <div className="container">
