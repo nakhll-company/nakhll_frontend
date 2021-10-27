@@ -46,7 +46,7 @@ function Header() {
         <div className={styles.topBanner}>
           <Link href={Object.keys(userLog).length > 0 ? "/fp/store/create" : "https://nakhll.com/accounts/get-phone/"}>
             <a>
-              <img src="./image/topBanner/topImg.jpg" alt="top banner" />
+              <img src="/image/topBanner/topImg.jpg" alt="top banner" />
             </a>
           </Link>
         </div>
@@ -180,7 +180,7 @@ function Header() {
         <div className={styles.topBanner}>
           <Link href={Object.keys(userLog).length > 0 ? "/fp/store/create" : "https://nakhll.com/accounts/get-phone/"}>
             <a>
-              <img src="./image/topBanner/topImg_mobile.jpg" alt="top banner" />
+              <img src="/image/topBanner/topImg_mobile.jpg" alt="top banner" />
             </a>
           </Link>
         </div>
