@@ -92,7 +92,7 @@ function ListProductCus({
       if (response.status === 200) {
         setCategories(response.data);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   const _handel_Add_category = (id) => {
@@ -127,8 +127,6 @@ function ListProductCus({
       max_price: maxPrice * 10000,
       shop: hojreh,
     };
-
-    console.log(">>", data.shop);
 
     try {
       let response = await ApiRegister().apiRequest(
@@ -194,7 +192,7 @@ function ListProductCus({
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   // Get all shops
@@ -209,7 +207,6 @@ function ListProductCus({
 
     if (shops.status === 200) {
       setShopsName(shops.data);
-      console.log("shops.response :>> ", shops.data);
     }
   };
   // Function for search
@@ -220,8 +217,6 @@ function ListProductCus({
       filterArray = copy_Array.filter((el) => el.title.includes(word));
     }
     setSearchShops(filterArray);
-
-    console.log("word :>> ", word);
   };
 
   // START

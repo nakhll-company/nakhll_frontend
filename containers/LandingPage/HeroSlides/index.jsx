@@ -14,7 +14,6 @@ import styles from "./HeroSlides.module.scss";
 
 function HeroSlides({ dataHeroSlides }) {
   const userLog = useSelector((state) => state.User.userInfo);
-  console.log(">>>>", userLog);
   return (
     <div style={{ marginTop: "5px" }} className="container ">
       <div className={`row ${styles.slide}`}>
