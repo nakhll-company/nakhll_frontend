@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import Link from "next/link";
+import { v4 as uuidv4 } from "uuid";
 import styles from "./liveEdit.module.scss";
 import Living from "../../components/liveEdit/living";
 import Head from "next/head";
@@ -93,6 +94,22 @@ function index(props) {
         duration: 0.4,
       });
   }, []);
+
+  // function for add component in empty Place
+  const _handel_add_component = (incomeComponent, type) => {
+    
+    const items = [...characters];
+
+    items.map((element, index) => {
+      const newItem = { ID: uuidv4(), component: incomeComponent, type };
+      if (element.type == 0) {
+        
+        items.splice(index, 1);
+        items.splice(index, 0, newItem);
+      }
+    });
+    setCharacters(items);
+  };
   return (
     <>
       <Head>
@@ -147,7 +164,7 @@ function index(props) {
               </li>
             </ul>
           )}
-          <ListComponent />
+          <ListComponent _handel_add_component={_handel_add_component} />
         </div>
 
         {/* main */}

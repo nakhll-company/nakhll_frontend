@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -12,6 +13,7 @@ SwiperCore.use([Pagination]);
 import styles from "./HeroSlides.module.scss";
 
 function HeroSlides({ dataHeroSlides }) {
+  const userLog = useSelector((state) => state.User.userInfo);
   return (
     <div style={{ marginTop: "5px" }} className="container ">
       <div className={`row ${styles.slide}`}>
@@ -19,7 +21,7 @@ function HeroSlides({ dataHeroSlides }) {
           <Swiper pagination={true} spaceBetween={20} slidesPerView={1}>
             {dataHeroSlides.map((slider, index) => (
               <SwiperSlide key={index}>
-                <Link href={slider.url}>
+                <Link href={slider.url === "https://nakhll.com/fp/store/create" ? Object.keys(userLog).length > 0 ? slider.url : "https://nakhll.com/accounts/get-phone/" : slider.url}>
                   <a>
                     <img src={slider.image} alt="بنر" />
                   </a>

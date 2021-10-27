@@ -40,6 +40,23 @@ function MyApp({ Component, pageProps }) {
         {/* Global Site Tag (gtag.js) - Google Analytics */}
         <Script
           strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=G-1BKTG72HYN`}
+        />
+        <Script
+          id="gtag-init_two"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-1BKTG72HYN');
+                `,
+          }}
+        />
+        <Script
+          strategy="afterInteractive"
           src={`https://www.googletagmanager.com/gtag/js?id=UA-156540827-1`}
         />
         <Script
@@ -79,10 +96,30 @@ function MyApp({ Component, pageProps }) {
         </Provider>
       </>
     );
-  } else if (router.pathname.startsWith("/liveEdit") || router.pathname.startsWith("/game")) {
+  } else if (
+    router.pathname.startsWith("/liveEdit") ||
+    router.pathname.startsWith("/game")
+  ) {
     return (
       <>
         {/* Global Site Tag (gtag.js) - Google Analytics */}
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=G-1BKTG72HYN`}
+        />
+        <Script
+          id="gtag-init_two"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-1BKTG72HYN');
+                `,
+          }}
+        />
         <Script
           strategy="afterInteractive"
           src={`https://www.googletagmanager.com/gtag/js?id=UA-156540827-1`}
@@ -126,6 +163,23 @@ function MyApp({ Component, pageProps }) {
     return (
       <>
         {/* Global Site Tag (gtag.js) - Google Analytics */}
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=G-1BKTG72HYN`}
+        />
+        <Script
+          id="gtag-init_two"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-1BKTG72HYN');
+                `,
+          }}
+        />
         <Script
           strategy="afterInteractive"
           src={`https://www.googletagmanager.com/gtag/js?id=UA-156540827-1`}

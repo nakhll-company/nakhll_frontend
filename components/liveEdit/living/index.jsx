@@ -24,10 +24,12 @@ function Living({ list, characters, setCharacters }) {
   const handelClickOnDeleteBtn = (idSelected) => {
     const items = [...characters];
     items.splice(idSelected, 1);
+    if (items.length == 0) {
+      const newItem = { ID: uuidv4(), component: <Sm_InputPlace />, type: 0 };
+      items.splice(0, 0, newItem);
+    }
     setCharacters(items);
   };
-  // function for when click on component
-  const _handel_click_on_component = () => {};
 
   // function for when click on plus icon
 
