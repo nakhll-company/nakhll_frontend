@@ -1,4 +1,5 @@
 // node libraies
+import Link from 'next/link';
 import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -124,7 +125,7 @@ function NewStore({ getUserInfo, userInfo }) {
             {/* roles */}
             <label className={styles.form_label}>
               <input className={styles.form_checkbox} type="checkbox" {...register("roles", { required: true })} />
-              <a>قوانین</a> را به طور کامل مطالعه کردم و آنها را می پذیرم
+              <Link href="https://nakhll.com/blog/%d8%b4%d8%b1%d8%a7%db%8c%d8%b7-%d9%88-%d8%b6%d9%88%d8%a7%d8%a8%d8%b7/"><a style={{ color: "blue" }}>قوانین</a></Link> را به طور کامل مطالعه کردم و آنها را می پذیرم
             </label>
             {errors.roles && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
             {/* show contact info */}
