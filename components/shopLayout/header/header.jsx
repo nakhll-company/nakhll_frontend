@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import Link from "next/link";
+import { useRouter } from "next/router";
 import Assistent from "zaravand-assistent-number";
 import React, { useState, useEffect } from "react";
 // component
@@ -8,7 +8,7 @@ import MegaMenuMobile from "../../../containers/LandingPage/MegaMenuMobile";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
-import { errorMessage } from '../../../containers/utils/message';
+import { errorMessage } from "../../../containers/utils/message";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // style
 import styles from "./header.module.scss";
@@ -30,7 +30,7 @@ function Header() {
       if (response.status === 200) {
         setCategory(response.data);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   const dispatch = useDispatch();
@@ -43,6 +43,9 @@ function Header() {
   return (
     <>
       <header className={`${styles.header} `}>
+        <div className={styles.topBanner}>
+          <img src="./image/topBanner/topImg.jpg" alt="" />
+        </div>
         <div className="container">
           <div className={styles.top_header}>
             <div className={styles.top_header_rightside}>
@@ -80,7 +83,7 @@ function Header() {
                     />
 
                     <Link href={`/product?word=${inputSearch}&cat=`}>
-                      <a >
+                      <a>
                         <i className="fas fa-search"></i>
                       </a>
                     </Link>
@@ -129,12 +132,15 @@ function Header() {
                   >
                     ورود/ثبت نام
                   </a>
-
                 </Link>
               )}
-              <div onClick={() => {
-                Object.keys(userLog).length > 0 ? router.push("/cart") : errorMessage("لطفا ابتدا وارد شوید");
-              }}>
+              <div
+                onClick={() => {
+                  Object.keys(userLog).length > 0
+                    ? router.push("/cart")
+                    : errorMessage("لطفا ابتدا وارد شوید");
+                }}
+              >
                 <a className={styles.bascket_btn}>
                   <i>
                     <img
@@ -143,7 +149,12 @@ function Header() {
                       alt=""
                     />
                   </i>
-                  {Object.keys(userLog).length > 0 && userLog.cart_items_count !== 0 && <span className={styles.counter_cart}>{_asist.number(userLog.cart_items_count)}</span>}
+                  {Object.keys(userLog).length > 0 &&
+                    userLog.cart_items_count !== 0 && (
+                      <span className={styles.counter_cart}>
+                        {_asist.number(userLog.cart_items_count)}
+                      </span>
+                    )}
                 </a>
               </div>
             </div>
@@ -162,6 +173,9 @@ function Header() {
       </header>
 
       <header className={`${styles.mobile_header} `}>
+      <div className={styles.topBanner}>
+          <img src="./image/topBanner/topImg.jpg" alt="" />
+        </div>
         <div className={styles.header_holder}>
           <div className="container">
             <div className={styles.inner_header}>
@@ -215,9 +229,13 @@ function Header() {
                     ورود/ثبت نام
                   </Link>
                 )}
-                <div onClick={() => {
-                  Object.keys(userLog).length > 0 ? router.push("/cart") : errorMessage("لطفا ابتدا وارد شوید");
-                }}>
+                <div
+                  onClick={() => {
+                    Object.keys(userLog).length > 0
+                      ? router.push("/cart")
+                      : errorMessage("لطفا ابتدا وارد شوید");
+                  }}
+                >
                   <a className={styles.bascket_btn}>
                     <i>
                       <img
@@ -226,7 +244,12 @@ function Header() {
                         alt=""
                       />
                     </i>
-                    {Object.keys(userLog).length > 0 && userLog.cart_items_count !== 0 && <span className={styles.counter_cart}>{_asist.number(userLog.cart_items_count)}</span>}
+                    {Object.keys(userLog).length > 0 &&
+                      userLog.cart_items_count !== 0 && (
+                        <span className={styles.counter_cart}>
+                          {_asist.number(userLog.cart_items_count)}
+                        </span>
+                      )}
                   </a>
                 </div>
               </div>
@@ -250,7 +273,7 @@ function Header() {
                   placeholder="جستجو در نخل ..."
                 />
                 <Link href={`/product?search=${inputSearch}&cat=`}>
-                  <a >
+                  <a>
                     <i className="fas fa-search"></i>
                   </a>
                 </Link>
