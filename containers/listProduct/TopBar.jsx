@@ -1,4 +1,5 @@
 import React from "react";
+import AddFavorites from "../../components/AddFavorites";
 
 export const TopBar = ({
   totalcount,
@@ -7,7 +8,9 @@ export const TopBar = ({
   setWhichOrdering,
   handel_OrderingModal,
   whichOrdering,
+  router,
 }) => {
+  console.log("router :>> ", router);
   return (
     <>
       <div style={{ marginTop: "0px" }}>
@@ -128,6 +131,11 @@ export const TopBar = ({
                     تازه‌ها
                   </a>
                 </li>
+                {/* <li className={`sort-item   `}>
+                  <a>
+                    <AddFavorites />
+                  </a>
+                </li> */}
               </ul>
             </div>
             <span className="  " style={{ marginLeft: "20px" }}>

@@ -1,0 +1,57 @@
+.action {
+    position: relative;
+    .profile {
+        position: relative;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        overflow: hidden;
+        cursor: pointer;
+        img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    .menu {
+        position: absolute;
+        top: 80px;
+        right: -10px;
+        padding: 10px 20px;
+        background: rgb(14, 13, 13);
+        width: 200px;
+        box-sizing: 0 5px 25px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        transition: 0.5s;
+        visibility: hidden;
+        opacity: 0;
+        &::before {
+            content: "";
+            position: absolute;
+            top: -5px;
+            right: 28px;
+            width: 20px;
+            height: 20px;
+            background: rgb(14, 13, 13);
+            transform: rotate(45deg);
+        }
+        h3 {
+            width: 100%;
+            text-align: center;
+            font-size: 18px;
+            padding: 20px 0;
+            font-weight: 500;
+            font-size: 18px;
+            color: #555;
+            line-height: 1.2em;
+            span {
+                font-size: 14px;
+                color: #cecece;
+                font-weight: 400;
+            }
+        }
+    }
+}
