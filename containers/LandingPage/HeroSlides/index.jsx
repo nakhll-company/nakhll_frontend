@@ -21,7 +21,15 @@ function HeroSlides({ dataHeroSlides }) {
           <Swiper pagination={true} spaceBetween={20} slidesPerView={1}>
             {dataHeroSlides.map((slider, index) => (
               <SwiperSlide key={index}>
-                <Link href={slider.url === "https://nakhll.com/fp/store/create" ? Object.keys(userLog).length > 0 ? slider.url : "https://nakhll.com/accounts/get-phone/" : slider.url}>
+                <Link
+                  href={
+                    slider.url === "https://nakhll.com/fp/store/create"
+                      ? Object.keys(userLog).length > 0
+                        ? slider.url
+                        : "https://nakhll.com/accounts/get-phone/"
+                      : slider.url
+                  }
+                >
                   <a>
                     <img src={slider.image} alt="بنر" />
                   </a>
@@ -31,9 +39,9 @@ function HeroSlides({ dataHeroSlides }) {
           </Swiper>
         </div>
         <div className={`col-md-4  ${styles.lefter}  d-none d-md-flex`}>
-          <Link href="/hojreh?shop=boghcheh">
+          <Link href="/hojreh?shop=coffee-and-chocolate">
             <a>
-              <img src="/image/slide/slideLeft2.png" alt="" />
+              <img src="/image/slide/slideLeft2.jpg" alt="" />
             </a>
           </Link>
           <Link href="/hojreh?shop=kal-bargh-payam-noor">
