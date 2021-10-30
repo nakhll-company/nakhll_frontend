@@ -20,12 +20,11 @@ function index(props) {
   const [openAddComponent, setOpenAddComponent] = useState(false);
 
   const [characters, setCharacters] = useState([]);
+
+  // Animations
   // gsap
   let tl = new gsap.timeline();
-  let ease = Power3.easeOut();
   // Ref
-  let navigation = useRef(null);
-  let main = useRef(null);
   let profile = useRef(null);
   let toggleMenu = useRef(null);
   const list = [
@@ -82,6 +81,7 @@ function index(props) {
 
   useEffect(() => {
     setCharacters(list);
+    // for Animation
     tl.from(profile, { y: 1200, ease: "ease", opacity: 0, duration: 0.8 })
       .from(profile, {
         scale: 1.6,
@@ -97,13 +97,11 @@ function index(props) {
 
   // function for add component in empty Place
   const _handel_add_component = (incomeComponent, type) => {
-    
     const items = [...characters];
 
     items.map((element, index) => {
       const newItem = { ID: uuidv4(), component: incomeComponent, type };
       if (element.type == 0) {
-        
         items.splice(index, 1);
         items.splice(index, 0, newItem);
       }
