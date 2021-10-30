@@ -1,0 +1,29 @@
+.onePage {
+  height: 100vh;
+  width: 100%;
+  background: url("../../../public/image/game/05.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.btntop{
+  position: absolute;
+  top: 42%;
+  left: 5%;
+  height: 200px;
+  width: 90%;
+
+  button{
+      width: 100%;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      background: transparent;
+      border: 1px solid #ccc;
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
+      backdrop-filter: blur(2px);
+      
+  }
+}

@@ -1,14 +1,35 @@
 .onePage {
   height: 100vh;
   width: 100%;
-  background: url("../../../public/image/game/two.jpg");
+  background: url("../../../public/image/game/03-1.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
+.twoPage{
+  height: 100vh;
+  width: 100%;
+  background: url("../../../public/image/game/03-2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.threePage{
+  height: 100vh;
+  width: 100%;
+  background: url("../../../public/image/game/03-3.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+
+
 .wrap {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 5%;
   
