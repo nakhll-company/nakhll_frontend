@@ -20,6 +20,7 @@ import styles from "./productDetail.module.scss";
 import ProductCard from "../../components/ProductCart/ProductCard";
 // import Swiper core and required modules
 import SwiperCore, { Navigation, Thumbs } from "swiper";
+import AddFavorites from "../../components/AddFavorites";
 // install Swiper modules
 SwiperCore.use([Navigation, Thumbs]);
 /**
@@ -97,6 +98,7 @@ const ProductDetailDesktop = ({ data }) => {
         />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
+      <AddFavorites />
       <div>
         <div className="product-page-breadcrumb">
           <nav>
