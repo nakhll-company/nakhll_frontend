@@ -3,8 +3,10 @@ import { useTransition, animated } from "react-spring";
 import { useRouter } from "next/router";
 import { v4 as uuidv4 } from "uuid";
 import styles from "./AddFavorites.module.scss";
+import Assistent from "zaravand-assistent-number";
+const _asist = new Assistent();
 
-function AddFavorites(props) {
+function AddFavorites() {
   const router = useRouter();
 
   const [openAdd, setOpenAdd] = useState(true);
@@ -26,11 +28,6 @@ function AddFavorites(props) {
   const _handel_tabs = () => {
     setOpenAdd(!openAdd);
     setOpenList(!openList);
-  };
-  // function for time click on item in list
-
-  const _handel_click_list = (urlSelect) => {
-    router.push(urlSelect);
   };
 
   // function add page to favourite
@@ -76,11 +73,46 @@ function AddFavorites(props) {
                 </div>
               </div>
               <div className={styles.selectHeader}>
-                <div onClick={_handel_tabs} className={styles.right}>
+                <div
+                  onClick={_handel_tabs}
+                  style={
+                    openAdd
+                      ? { backgroundColor: "rgb(69, 4, 247)", color: "#fff" }
+                      : {}
+                  }
+                  className={styles.right}
+                >
                   <span>افزودن</span>
                 </div>
-                <div onClick={_handel_tabs} className={styles.left}>
-                  <span>لیست</span>
+                <div
+                  style={
+                    openList
+                      ? { backgroundColor: "rgb(69, 4, 247)", color: "#fff" }
+                      : {}
+                  }
+                  onClick={_handel_tabs}
+                  className={styles.left}
+                >
+                  <span>
+                    {" "}
+                    لیست
+                    <span
+                      style={{
+                        fontSize: "14px",
+                        fontWeight: "bold",
+                        marginRight: "4px",
+                        color: openList ? "#fff" : "blue",
+                      }}
+                    >
+                      <span style={{ fontSize: "10px", marginLeft: "2px" }}>
+                        (
+                      </span>
+                      {_asist.number(listFav.length)}
+                      <span style={{ fontSize: "10px", marginRight: "2px" }}>
+                        )
+                      </span>
+                    </span>
+                  </span>
                 </div>
               </div>
               {openAdd && (
@@ -107,11 +139,10 @@ function AddFavorites(props) {
               {openList && (
                 <div className={styles.list}>
                   {listFav.map((el) => (
-                    <div
-                      className={styles.items}
-                      onClick={() => _handel_click_list(el.url)}
-                    >
-                      <span>{el.title}</span>
+                    <div className={styles.items}>
+                      <a  href={el.url}>
+                        <span>{el.title}</span>
+                      </a>
                       <i
                         onClick={() => _handel_delete_from_fav(el.ID)}
                         className="fas fa-times"

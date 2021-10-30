@@ -131,11 +131,7 @@ export const TopBar = ({
                     تازه‌ها
                   </a>
                 </li>
-                {/* <li className={`sort-item   `}>
-                  <a>
-                    <AddFavorites />
-                  </a>
-                </li> */}
+                
               </ul>
             </div>
             <span className="  " style={{ marginLeft: "20px" }}>
