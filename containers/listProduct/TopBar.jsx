@@ -112,7 +112,7 @@ export const TopBar = ({
                 >
                   <a
                     onClick={() => {
-                      setWhichOrdering("DiscountPrecentage");
+                      setWhichOrdering("-DiscountPrecentage");
                     }}
                   >
                     بیشترین تخفیف
