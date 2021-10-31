@@ -39,10 +39,10 @@ function index(props) {
           <Image src="/image/game/last.jpg" layout="fill"
             objectFit="cover"
             quality={10} />
-          <span>تیله اول رو بدست بیار</span>
-          <Link href="/fp/store">
+          <Link href="/fp/store/create/">
             <a>
-              حجره دار شوید
+              تیله اول رو بدست بیار<br />
+              کلیک کنید
             </a>
           </Link>
         </div>
