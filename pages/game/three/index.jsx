@@ -33,6 +33,7 @@ function index(props) {
           />
           <div style={{ height: "300px" }}>
             <span ref={(el) => (sp = el)}>
+              <b style={{ fontSize: "18px" }}>درباره بازی:</b><br />
               دنیای کسب و کار مثل یه بازی می‌مونه،<br />
               باید اهل رقابت و رفاقت باشی<br />
               بپذیری که این بازی، باخت هم داره!<br />
