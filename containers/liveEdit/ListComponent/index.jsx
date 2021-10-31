@@ -13,23 +13,26 @@ function ListComponent({ _handel_add_component }) {
       <div className={styles.parent}>
         <div
           className={styles.holderItems}
-          onClick={() => _handel_add_component(<Sm_HeroSlides />,  1)}
+          onClick={() => _handel_add_component(<Sm_HeroSlides />, 1)}
         >
-          <Sm_HeroSlides />
+          {/* <Sm_HeroSlides /> */}
+          <span>کامپوننت اسلایدر</span>
           <div className={styles.cover}></div>
         </div>
         <div
           className={styles.holderItems}
-          onClick={() => _handel_add_component(<Sm_LinerOneImg />,  2)}
+          onClick={() => _handel_add_component(<Sm_LinerOneImg />, 2)}
         >
-          <Sm_LinerOneImg />
+          {/* <Sm_LinerOneImg /> */}
+          <span>بنر تکی</span>
           <div className={styles.cover}></div>
         </div>
         <div
           className={styles.holderItems}
-          onClick={() => _handel_add_component(<Sm_LinerTwoImg />,  3)}
+          onClick={() => _handel_add_component(<Sm_LinerTwoImg />, 3)}
         >
-          <Sm_LinerTwoImg />
+          {/* <Sm_LinerTwoImg /> */}
+          <span>بنر دوتایی</span>
           <div className={styles.cover}></div>
         </div>
         <div
@@ -38,24 +41,27 @@ function ListComponent({ _handel_add_component }) {
             _handel_add_component(<Sm_LinerThreeImg />, 4)
           }
         >
-          <Sm_LinerThreeImg />
+          {/* <Sm_LinerThreeImg /> */}
+          <span>بنر سه تایی</span>
           <div className={styles.cover}></div>
         </div>
 
         <div
           className={styles.holderItems}
-          onClick={() => _handel_add_component(<Sm_LinerFourImg />,  5)}
+          onClick={() => _handel_add_component(<Sm_LinerFourImg />, 5)}
         >
-          <Sm_LinerFourImg />
+          {/* <Sm_LinerFourImg /> */}
+          <span>بنر چهارتایی</span>
           <div className={styles.cover}></div>
         </div>
         <div
           className={styles.holderItems}
           onClick={() =>
-            _handel_add_component(<Sm_LinerProducts />,  6)
+            _handel_add_component(<Sm_LinerProducts />, 6)
           }
         >
-          <Sm_LinerProducts />
+          {/* <Sm_LinerProducts /> */}
+          <span>لیست</span>
           <div className={styles.cover}></div>
         </div>
 

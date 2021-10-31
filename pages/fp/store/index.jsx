@@ -44,29 +44,7 @@ const Demo = () => {
                 <span>انتخاب کنید</span>
                 <input type="file" id="uploadIamge" name="uploadIamge" onChange={(e) => { selectImage(e, setImageSrc, setShowModal) }} accept="image/*" style={{ visibility: "hidden" }} />
             </label>
-            <CustomModal show={showModal} onClose={() => { setShowModal(false) }} content={
-                <div className={styles.modal_wrapper}>
-                    <div className={styles.cropper_wrapper}>
-                        <Cropper
-                            image={imageSrc}
-                            crop={crop}
-                            rotation={rotation}
-                            zoom={zoom}
-                            aspect={2 / 1}
-                            onCropChange={setCrop}
-                            onRotationChange={setRotation}
-                            onCropComplete={onCropComplete}
-                            onZoomChange={setZoom}
-                        />
-                    </div>
-                    <div className={styles.button_submit}>
-                        <button onClick={() => {
-                            showCroppedImage();
-                            setShowModal(false);
-                        }}>تایید</button>
-                    </div>
-                </div>
-            } />
+
             {croppedImage && <Image src={croppedImage} alt="image crop" width="100" height="100" />}
         </div>
     )
