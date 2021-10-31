@@ -50,6 +50,9 @@ function Living({ list, characters, setCharacters }) {
     setCharacters(items);
   };
 
+  // function when click on Edit Button
+  const _handelClickEditComponent = () => {};
+
   return (
     <div>
       <DragDropContext onDragEnd={handleOnDragEnd}>
@@ -102,7 +105,7 @@ function Living({ list, characters, setCharacters }) {
                         <button
                           class={styles.buttonEdit}
                           role="button"
-                          onClick={() => handelClickOnDeleteBtn(index)}
+                          onClick={() => _handelClickEditComponent(index)}
                         >
                           ویرایش
                         </button>

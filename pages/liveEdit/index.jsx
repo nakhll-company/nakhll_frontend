@@ -119,11 +119,7 @@ function index(props) {
         ></link>
       </Head>
       <div className={styles.container}>
-        <div
-          ref={(el) => (navigation = el)}
-          id="navigation"
-          className={styles.navigation}
-        >
+        <div id="navigation" className={styles.navigation}>
           {openAddComponent && (
             <ul>
               <li>
@@ -166,7 +162,7 @@ function index(props) {
         </div>
 
         {/* main */}
-        <div ref={(el) => (main = el)} id="main" className={styles.main}>
+        <div id="main" className={styles.main}>
           <div className={styles.topbar}>
             <div
               ref={(el) => (toggleMenu = el)}
