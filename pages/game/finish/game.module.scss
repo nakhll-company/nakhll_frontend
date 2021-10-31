@@ -10,10 +10,20 @@
     right: 0;
     height: 100%;
     width: 100%;
-    background: url("../../../public/image/game/last_1.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    // padding: 0px 10px;
+    // background: url("../../../public/image/game/last_1.jpg");
+    // background-size: cover;
+    // background-position: center;
+    // background-repeat: no-repeat;
+    span{
+        position: fixed;
+        // left: 10%;
+        top: 50%;
+        background-color: #ffffff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        color: rgb(0, 0, 0);
+    }
 }
 
 .twoPage {
@@ -22,10 +32,10 @@
     right: 0;
     height: 100%;
     width: 100%;
-    background: url("../../../public/image/game/last.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    // background: url("../../../public/image/game/last.jpg");
+    // background-size: cover;
+    // background-position: center;
+    // background-repeat: no-repeat;
     span{
         position: fixed;
         left: 50%;

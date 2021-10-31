@@ -1,37 +1,41 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import Link from "next/link";
-import { gsap, Power3 } from "gsap";
+import Image from "next/image";
 import styles from "./game.module.scss";
-function index(props) {
+function index() {
   // gsap
-  let tl = new gsap.timeline();
-  let btn = useRef(null);
-  let all = useRef(null)
-  useEffect(() => {
-    // for Animation
-    tl.from(all, {
-      opacity: 0,
-      duration: 1,
-    }).from(btn, {
-      opacity: 0,
-      scale: 0,
-      ease: "back",
-    })
-  }, []);
+  // let tl = new gsap.timeline();
+  // let btn = useRef(null);
+  // let all = useRef(null)
+  // useEffect(() => {
+  // for Animation
+  // tl.from(all, {
+  //   opacity: 0,
+  //   duration: 1,
+  // }).from(btn, {
+  //   opacity: 0,
+  //   scale: 0,
+  //   ease: "back",
+  // })
+  // }, []);
 
   return (
     <>
-      <div ref={(el) => (all = el)} className={styles.onePage}>
+      <div className={styles.onePage}>
+        <Image src="/image/game/main.jpg" layout="fill"
+          objectFit="cover"
+          quality={10}
+        />
         <Link href="/game/two">
           <a>
-            <div ref={(el) => (btn = el)} className={styles.btntop}>
+            <div className={styles.btntop}>
               <button>شروع</button>
             </div>
           </a>
         </Link>
         <Link href="/game/two">
           <a>
-            <div ref={(el) => (btn = el)} className={styles.btnbottom}>
+            <div className={styles.btnbottom}>
               <button>شروع</button>
             </div>
           </a>

@@ -1,41 +1,21 @@
 import React, { useEffect, useRef } from "react";
 import styles from "./game.module.scss";
 import Link from "next/link";
-import { gsap, Power3 } from "gsap";
-// import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from 'next/image';
+import { gsap } from "gsap";
 function index(props) {
+
   let tl = new gsap.timeline();
   let onePart = useRef(null);
   let sp = useRef(null);
-  let sp2 = useRef(null);
-  let sp3 = useRef(null);
-  let sp4 = useRef(null);
-  let sp5 = useRef(null);
-  let sp6 = useRef(null);
-  let sp7 = useRef(null);
-  let sp8 = useRef(null);
-  let sp9 = useRef(null);
-  let twoPage = useRef(null);
   let threePage = useRef(null);
+
   useEffect(() => {
     tl.from(onePart, {
       opacity: 0,
       duration: 2,
     })
       .from(sp, { y: 600, duration: 25 })
-      // .from(sp2, { x: -400, duration: 1 })
-      // .from(sp3, { x: -400, duration: 1 })
-      // .from(sp4, { x: -400, duration: 1 })
-      // .from(sp5, { y: 400, duration: 2 })
-      // .from(twoPage, {
-      //   opacity: 0,
-      //   duration: 2,
-      //   scale: 0
-      // })
-      // .from(sp6, { y: 400, duration: 2 })
-      // .from(sp7, { y: 400, duration: 2 })
-      // .from(sp8, { y: 400, duration: 2 })
-      // .from(sp9, { y: 400, duration: 2 })
       .from(threePage, {
         opacity: 0,
         duration: 2,
@@ -47,6 +27,10 @@ function index(props) {
     <>
       <div className={styles.wrapAll}>
         <div ref={(el) => (onePart = el)} className={styles.onePage}>
+          <Image src="/image/game/03-1.jpg" layout="fill"
+            objectFit="cover"
+            quality={10}
+          />
           <div style={{ height: "300px" }}>
             <span ref={(el) => (sp = el)}>
               دنیای کسب و کار مثل یه بازی می‌مونه،<br />
@@ -63,42 +47,14 @@ function index(props) {
               از جامعه در سراسر کشور برای خودت بسازی و کسب و کارت رو با این
               جامعه رشد بدی.<br />
             </span>
-            {/* <br /> */}
-            {/* <span ref={(el) => (sp2 = el)}></span>{" "} */}
-            {/* <br />
-            <span ref={(el) => (sp3 = el)}>
-              
-            </span>{" "}
-            <br />
-            <span ref={(el) => (sp4 = el)}>
-              
-            </span>{" "}
-            <br />
-            <span ref={(el) => (sp5 = el)}>
-              
-            </span>{" "} */}
           </div>
           <br />.
         </div>
-        {/* <div ref={(el) => (twoPage = el)} className={styles.twoPage}>
-          <span ref={(el) => (sp6 = el)}>
-           
-          </span>
-          <span ref={(el) => (sp7 = el)}>
-            {" "}
-            
-          </span>
-          <div className={styles.bot}>
-            <span ref={(el) => (sp8 = el)}>
-              {" "}
-              
-            </span>
-            <span ref={(el) => (sp9 = el)}>
-              
-            </span>
-          </div>
-        </div> */}
         <div ref={(el) => (threePage = el)} className={styles.threePage}>
+          <Image src="/image/game/03-3.jpg" layout="fill"
+            objectFit="cover"
+            quality={10}
+          />
           <div className={styles.ques}>
             <i>«اینجوری همه‌جای ایران، سرای تو میشه...»</i>
           </div>
