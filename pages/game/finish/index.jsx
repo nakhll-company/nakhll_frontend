@@ -23,7 +23,14 @@ function index(props) {
     <>
       <div className={styles.wrap}>
         <div ref={(el) => (box1 = el)} className={styles.onePage}></div>
-        <div ref={(el) => (box2 = el)} className={styles.twoPage}></div>
+        <div ref={(el) => (box2 = el)} className={styles.twoPage}>
+          <span>تیله اول رو بدست بیار</span>
+          <Link href="/fp/store">
+            <a>
+              حجره دار شوید
+            </a>
+          </Link>
+        </div>
       </div>
     </>
   );

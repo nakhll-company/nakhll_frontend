@@ -5,4 +5,20 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    padding: 170px 10px;
+    text-align: center;
+    button{
+        width: 40%;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      background: transparent;
+      border: 1px solid rgb(3, 128, 86);
+      font-size: 18px;
+      font-weight: bold;
+      color: rgb(255, 255, 255);
+      background-color: rgb(4, 134, 91);
+      backdrop-filter: blur(2px);
+      border-radius: 5px;
+      margin-top: 15px;
+    }
 }
