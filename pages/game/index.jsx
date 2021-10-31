@@ -6,24 +6,32 @@ function index(props) {
   // gsap
   let tl = new gsap.timeline();
   let btn = useRef(null);
-  let all=useRef(null)
+  let all = useRef(null)
   useEffect(() => {
     // for Animation
-    tl.from(all,{
-      opacity:0,
-      duration:1,
-    }).from(btn, { opacity: 0,
+    tl.from(all, {
+      opacity: 0,
+      duration: 1,
+    }).from(btn, {
+      opacity: 0,
       scale: 0,
       ease: "back",
-       })
+    })
   }, []);
 
   return (
     <>
-      <div ref={(el)=>(all=el)} className={styles.onePage}>
+      <div ref={(el) => (all = el)} className={styles.onePage}>
         <Link href="/game/two">
           <a>
             <div ref={(el) => (btn = el)} className={styles.btntop}>
+              <button>شروع</button>
+            </div>
+          </a>
+        </Link>
+        <Link href="/game/two">
+          <a>
+            <div ref={(el) => (btn = el)} className={styles.btnbottom}>
               <button>شروع</button>
             </div>
           </a>

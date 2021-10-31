@@ -10,41 +10,38 @@
 .wrap {
   position: fixed;
   top: 50%;
-  left: 5%;
-  
-  width: 90%;
+  left: 15%;
+  width: 70%;
   display: flex;
   justify-content: space-around;
   .btnYes {
-   
-    width: 150px;
-    
+    width: 120px;
     button {
       width: 100%;
-        
       padding-top: 15px;
       padding-bottom: 15px;
       background: transparent;
-      border: 1px solid #ccc;
+      border: 1px solid rgb(3, 128, 86);
       font-size: 20px;
       font-weight: bold;
-      color: white;
+      color: rgb(255, 255, 255);
+      background-color: rgb(3, 128, 86);
       backdrop-filter: blur(2px);
       border-radius: 5px;
     }
   }
   .btnNo {
-    width: 150px;
+    width: 120px;
     button {
       width: 100%;
-
       padding-top: 15px;
       padding-bottom: 15px;
       background: transparent;
-      border: 1px solid #ccc;
+      border: 1px solid rgb(133, 10, 71);
       font-size: 20px;
       font-weight: bold;
-      color: white;
+      color: rgb(255, 255, 255);
+      background-color: rgb(133, 10, 71);
       backdrop-filter: blur(2px);
       border-radius: 5px;
     }
