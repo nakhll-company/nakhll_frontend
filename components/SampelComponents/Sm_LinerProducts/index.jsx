@@ -1,14 +1,17 @@
 import React, { useState } from "react";
+
 import styles from "./Sm_LinerProducts.module.scss";
 
 import Sm_product from "../Sm_product";
 function Sm_LinerProducts(props) {
+  // #a1db43
   const [toggle, setToggle] = useState(true);
   const [name, setName] = useState("پرفروش ترین");
   const [toggleSubTitle, setToggleSubTitle] = useState(true);
   const [subTitle, setSubTitle] = useState("زیرعنوان");
+  const [color, setColor] = useState("#a1db43");
   return (
-    <div className={styles.main}>
+    <div style={{ backgroundColor: color }} className={styles.main}>
       <div className={styles.title}>
         <div className={styles.name}>
           {toggle ? (
@@ -64,10 +67,39 @@ function Sm_LinerProducts(props) {
         <div className={styles.seeAll}>
           <div className={styles.wrapBtn}>
             <span>مشاهده همه</span>
-            <input type="color" name="" id="" />
+          </div>
+
+          <div className={styles.palette}>
+            {/* <input type="color" name="" id="" /> */}
+            <div className={styles.wrapIcon}>
+              <label for="palette">
+                <i
+                  style={{ fontSize: "30px", color: "#fff" }}
+                  className={`fas fa-palette ${styles.colorIcon}`}
+                ></i>
+              </label>
+              <input
+                className={styles.inputcolor}
+                type="color"
+                name="palette"
+                id="palette"
+                value={color}
+                onChange={(e) => setColor(e.target.value)}
+                style={{
+                  opacity: 0,
+                  cursor: "pointer",
+                  position: "absolute",
+                  top: "0",
+                  left: "0",
+                  width: "100%",
+                  height: "100%",
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
+
       <div className={styles.wrap}>
         <Sm_product />
         <Sm_product />
