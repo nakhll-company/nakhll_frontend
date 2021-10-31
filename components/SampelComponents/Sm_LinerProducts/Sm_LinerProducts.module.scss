@@ -17,6 +17,19 @@
                 letter-spacing: 1.5px;
                 font-weight: bold;
             }
+            .input {
+                display: block;
+                font-size: 18px;
+                letter-spacing: 1.5px;
+                font-weight: bold;
+                border: none;
+                background-color: rgba(255, 255, 255, 0.8);
+                backdrop-filter: blur(10px);
+                border: 3px solid rgb(255, 255, 255);
+                border-radius: 5px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
             .subTitle {
                 display: block;
                 margin-top: 10px;
