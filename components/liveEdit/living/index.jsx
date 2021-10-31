@@ -96,7 +96,7 @@ function Living({ list, characters, setCharacters }) {
                           <i className="fas fa-trash"></i>
                         </button>
                       </div>
-                      <div
+                      {/* <div
                         className={`${styles.wrapBtn} ${styles.btnLeftEdit}`}
                       >
                         <button
@@ -106,7 +106,7 @@ function Living({ list, characters, setCharacters }) {
                         >
                           ویرایش
                         </button>
-                      </div>
+                      </div> */}
 
                       {e.component}
                     </div>
