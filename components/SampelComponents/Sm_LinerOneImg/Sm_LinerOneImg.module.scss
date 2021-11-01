@@ -1,7 +1,14 @@
 .wrapper {
     overflow: hidden;
+    position: relative;
     img {
         width: 100%;
         border-radius: 15px;
     }
+}
+
+.icon_change_pic {
+    width: 20px;
+    height: 20px;
+    position: absolute;
 }

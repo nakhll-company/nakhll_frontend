@@ -9,6 +9,7 @@ import Sm_LinerTwoImg from "../../SampelComponents/Sm_LinerTwoImg";
 import Sm_LinerThreeImg from "../../SampelComponents/Sm_LinerThreeImg";
 import Sm_LinerFourImg from "../../SampelComponents/Sm_LinerFourImg";
 import Sm_LinerProducts from "../../SampelComponents/Sm_LinerProducts";
+import CustomCropper from "../../customCropper";
 
 function Living({ list, characters, setCharacters }) {
   const Sample = {
@@ -87,6 +88,7 @@ function Living({ list, characters, setCharacters }) {
 
   return (
     <div>
+      {/* <CustomCropper /> */}
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="characters">
           {(provided) => (
