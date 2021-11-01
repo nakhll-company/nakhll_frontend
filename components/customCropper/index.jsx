@@ -6,13 +6,19 @@ import { getCroppedImg } from "./methods/getCropImage";
 
 // scss
 import styles from "./customCropper.module.scss";
-function CustomCropper(props) {
-  const [imageSrc, setImageSrc] = useState(null);
+function CustomCropper({
+  imageSrc,
+  setImageSrc,
+  _handel_show_cropper,
+  croppedImage,
+  setCroppedImage,
+}) {
+  // const [imageSrc, setImageSrc] = useState(null);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [rotation, setRotation] = useState(0);
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
-  const [croppedImage, setCroppedImage] = useState(null);
+  // const [croppedImage, setCroppedImage] = useState(null);
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
@@ -33,28 +39,31 @@ function CustomCropper(props) {
   return (
     <>
       <div className={styles.modal_wrapper}>
-        <div className={styles.cropper_wrapper}>
-          <Cropper
-            image={imageSrc}
-            crop={crop}
-            rotation={rotation}
-            zoom={zoom}
-            aspect={2 / 1}
-            onCropChange={setCrop}
-            onRotationChange={setRotation}
-            onCropComplete={onCropComplete}
-            onZoomChange={setZoom}
-          />
-        </div>
-        <div className={styles.button_submit}>
-          <button
-            onClick={() => {
-              showCroppedImage();
-              setShowModal(false);
-            }}
-          >
-            تایید
-          </button>
+        <div>
+          <div className={styles.cropper_wrapper}>
+            <Cropper
+              image={imageSrc}
+              crop={crop}
+              rotation={rotation}
+              zoom={zoom}
+              aspect={3 / 1}
+              onCropChange={setCrop}
+              onRotationChange={setRotation}
+              onCropComplete={onCropComplete}
+              onZoomChange={setZoom}
+            />
+          </div>
+          <div className={styles.button_submit}>
+            <button
+              onClick={() => {
+                showCroppedImage();
+                // injjjjjjjjjjjjjjjj
+                _handel_show_cropper();
+              }}
+            >
+              تایید
+            </button>
+          </div>
         </div>
       </div>
     </>

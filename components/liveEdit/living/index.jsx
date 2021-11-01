@@ -13,6 +13,8 @@ import CustomCropper from "../../customCropper";
 
 function Living({ list, characters, setCharacters }) {
   const [showCropper, setShowCropper] = useState(false);
+  const [imageSrc, setImageSrc] = useState(null);
+  const [croppedImage, setCroppedImage] = useState(null);
 
   // function for handel cropper
   const _handel_show_cropper = () => {
@@ -60,7 +62,7 @@ function Living({ list, characters, setCharacters }) {
 
   // select component from server
   // type
-  const _handel_select_component = (type, index) => {
+  const _handel_select_component = (type, id, data) => {
     switch (type) {
       case 0:
         return <Sm_InputPlace />;
@@ -69,7 +71,16 @@ function Living({ list, characters, setCharacters }) {
         return <Sm_HeroSlides />;
         break;
       case 2:
-        return <Sm_LinerOneImg />;
+        return (
+          <Sm_LinerOneImg
+            setShowCropper={setShowCropper}
+            setImageSrc={setImageSrc}
+            croppedImage={croppedImage}
+            setCroppedImage={setCroppedImage}
+            id={id}
+            data={data}
+          />
+        );
         break;
 
       case 3:
@@ -92,7 +103,17 @@ function Living({ list, characters, setCharacters }) {
 
   return (
     <div>
-      {showCropper && <CustomCropper />}
+      {/* imageSrc, setImageSrc */}
+      {showCropper && (
+        <CustomCropper
+          imageSrc={imageSrc}
+          setImageSrc={setImageSrc}
+          _handel_show_cropper={_handel_show_cropper}
+          croppedImage={croppedImage}
+          setCroppedImage={setCroppedImage}
+          list={list}
+        />
+      )}
 
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="characters">
@@ -149,7 +170,7 @@ function Living({ list, characters, setCharacters }) {
                           ویرایش
                         </button>
                       </div> */}
-                      {_handel_select_component(e.type)}
+                      {_handel_select_component(e.type, e.ID, e.data)}
                     </div>
                   )}
                 </Draggable>

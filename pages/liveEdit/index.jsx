@@ -62,6 +62,21 @@ function index(props) {
       ID: "c226da83-9526-465a-9zc<zcz7d4-9f112a0dc636",
       slug: "Irana",
       title: "نقش و نگار",
+      data: {
+        src: "",
+        url: "",
+      },
+    },
+    {
+      type: 2,
+      component: <Sm_LinerOneImg />,
+      ID: "c226da83-9526-465a-9zc<zcz7d4-9f112a0dc63sdsadsd6",
+      slug: "Irana",
+      title: "نقش و نگار",
+      data: {
+        src: "",
+        url: "",
+      },
     },
     {
       type: 3,
