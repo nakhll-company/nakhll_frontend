@@ -120,7 +120,7 @@ function index(props) {
       </Head>
       <div className={styles.container}>
         <div id="navigation" className={styles.navigation}>
-          {openAddComponent && (
+          {true && (
             <ul>
               <li>
                 <a href="">
@@ -158,7 +158,7 @@ function index(props) {
               </li>
             </ul>
           )}
-          <ListComponent _handel_add_component={_handel_add_component} />
+          {/* <ListComponent _handel_add_component={_handel_add_component} /> */}
         </div>
 
         {/* main */}
