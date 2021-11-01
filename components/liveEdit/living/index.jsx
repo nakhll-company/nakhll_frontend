@@ -12,6 +12,13 @@ import Sm_LinerProducts from "../../SampelComponents/Sm_LinerProducts";
 import CustomCropper from "../../customCropper";
 
 function Living({ list, characters, setCharacters }) {
+  const [showCropper, setShowCropper] = useState(false);
+
+  // function for handel cropper
+  const _handel_show_cropper = () => {
+    setShowCropper(!showCropper);
+  };
+
   // function for when click on delete icon
   const handelClickOnDeleteBtn = (idSelected) => {
     const items = [...characters];
@@ -51,12 +58,42 @@ function Living({ list, characters, setCharacters }) {
     setCharacters(items);
   };
 
-  // function when click on Edit Button
-  const _handelClickEditComponent = () => {};
+  // select component from server
+  // type
+  const _handel_select_component = (type, index) => {
+    switch (type) {
+      case 0:
+        return <Sm_InputPlace />;
+        break;
+      case 1:
+        return <Sm_HeroSlides />;
+        break;
+      case 2:
+        return <Sm_LinerOneImg />;
+        break;
+
+      case 3:
+        return <Sm_LinerTwoImg />;
+        break;
+
+      case 4:
+        return <Sm_LinerThreeImg />;
+        break;
+
+      case 5:
+        return <Sm_LinerFourImg />;
+        break;
+
+      case 6:
+        return <Sm_LinerProducts />;
+        break;
+    }
+  };
 
   return (
     <div>
-      {/* <CustomCropper /> */}
+      {showCropper && <CustomCropper />}
+
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="characters">
           {(provided) => (
@@ -112,8 +149,7 @@ function Living({ list, characters, setCharacters }) {
                           ویرایش
                         </button>
                       </div> */}
-
-                      {e.component}
+                      {_handel_select_component(e.type)}
                     </div>
                   )}
                 </Draggable>
