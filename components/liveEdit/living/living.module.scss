@@ -81,7 +81,7 @@
         background: transparent;
         border: none;
         color: #f34c4c;
-        font-size: 25px;
+        font-size: 20px;
          :hover {
             animation: myAnim 2s ease 0s 1 normal forwards;
         }
@@ -97,8 +97,8 @@
 }
 
 .btnLeft {
-    left: -35px;
-    top: 1px;
+    left: 1px;
+    top: -29px;
     z-index: 10;
     color: #b71c1c;
 }
