@@ -16,6 +16,7 @@ import router from "next/router";
 import Search from "../../../components/search/Search";
 import { ApiReference } from "../../../Api";
 import styles from "./listProductCus.module.scss";
+import AddFavorites from "../../../components/AddFavorites";
 const _asist = new Assistent();
 function ListProductCus({
   data,
@@ -92,7 +93,7 @@ function ListProductCus({
       if (response.status === 200) {
         setCategories(response.data);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   const _handel_Add_category = (id) => {
@@ -192,7 +193,7 @@ function ListProductCus({
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   // Get all shops
@@ -766,6 +767,7 @@ function ListProductCus({
             <div style={{ paddingBottom: "80px" }}></div>
           </div>
         )}
+        <AddFavorites />
 
         {/* ModalOrdering End */}
 

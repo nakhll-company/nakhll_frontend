@@ -72,12 +72,12 @@ function NewStore({ getUserInfo, userInfo }) {
       </Head>
       {width < breakpoint && <MobileHeader title="ثبت حجره" type="close" />}
       {/* form */}
-      {Object.keys(userInfo).length === 0 &&
+      {/* {Object.keys(userInfo).length === 0 &&
         <div className={styles.loading}>
           <h1>لطفا منتظر بمانید</h1>
           <Image src="/loading.svg" width="45" height="45" />
         </div>
-      }
+      } */}
       {(userInfo && userInfo.user && userInfo.user.first_name && userInfo.user.last_name) ?
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.form_right}>

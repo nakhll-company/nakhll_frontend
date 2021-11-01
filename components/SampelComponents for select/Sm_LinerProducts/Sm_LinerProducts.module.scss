@@ -1,0 +1,68 @@
+.main {
+    width: 100%;
+    background-color: #a1db43;
+    border-radius: 10px;
+    .title {
+        display: flex;
+        justify-content: space-between;
+        padding-right: 15px;
+        padding-left: 15px;
+        padding-top: 15px;
+        .name {
+            text-align: right;
+            color: black;
+            .mainTitle {
+                display: block;
+                font-size: 18px;
+                letter-spacing: 1.5px;
+                font-weight: bold;
+            }
+            .input {
+                display: block;
+                font-size: 18px;
+                letter-spacing: 1.5px;
+                font-weight: bold;
+                border: none;
+                background-color: rgba(255, 255, 255, 0.8);
+                backdrop-filter: blur(10px);
+                border: 3px solid rgb(255, 255, 255);
+                border-radius: 5px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
+            .subTitle {
+                display: block;
+                margin-top: 10px;
+                padding-right: 9px;
+                font-size: 14px;
+                font-weight: bold;
+            }
+        }
+        .seeAll {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .wrapBtn {
+                width: 150px;
+                height: 40px;
+                border-radius: 20px;
+                background-color: #fff;
+                border: 2px solid rgb(27, 62, 104);
+                font-size: 14px;
+                font-weight: bold;
+                color: #000;
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+}
+
+.wrap {
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    padding: 15px 5px;
+}

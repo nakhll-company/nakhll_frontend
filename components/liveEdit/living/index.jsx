@@ -12,16 +12,7 @@ import Sm_LinerProducts from "../../SampelComponents/Sm_LinerProducts";
 import CustomCropper from "../../customCropper";
 
 function Living({ list, characters, setCharacters }) {
-  const Sample = {
-    1: "اسلایدر تکی",
-    2: "بنر تک عکسی",
-    3: " بنر 2تایی در یک ردیف",
-    4: " (یکی بالا دوتا پایین)بنر ۳ تایی",
-    5: " بنر چهارتایی چهارتا کنار هم",
-    6: " ردیف محصولات",
-    7: " ردیف شگفت انگیزا",
-  };
-
+  // function for when click on delete icon
   const handelClickOnDeleteBtn = (idSelected) => {
     const items = [...characters];
     items.splice(idSelected, 1);
@@ -32,7 +23,7 @@ function Living({ list, characters, setCharacters }) {
     setCharacters(items);
   };
 
-  // function for when click on plus icon
+  // function for when click on top plus icon
 
   const _handel_add_component_top = (index) => {
     const items = [...characters];
@@ -41,12 +32,15 @@ function Living({ list, characters, setCharacters }) {
     setCharacters(items);
   };
 
+  // function for when click on bottom plus icon
   const _handel_add_component_bottom = (index) => {
     const items = [...characters];
     const newItem = { ID: uuidv4(), component: <Sm_InputPlace />, type: 0 };
     items.splice(index + 1, 0, newItem);
     setCharacters(items);
   };
+
+  // function for Drag components
 
   const handleOnDragEnd = (result) => {
     if (!result.destination) return;
@@ -56,35 +50,9 @@ function Living({ list, characters, setCharacters }) {
     items.splice(result.destination.index, 0, reorderedItem);
     setCharacters(items);
   };
-  const _handel_select_component = (data, index) => {
-    switch (data.type) {
-      case 0:
-        return <Sm_InputPlace />;
-        break;
-      case 1:
-        return <Sm_HeroSlides />;
-        break;
-      case 2:
-        return <Sm_LinerOneImg />;
-        break;
 
-      case 3:
-        return <Sm_LinerTwoImg />;
-        break;
-
-      case 4:
-        return <Sm_LinerThreeImg />;
-        break;
-
-      case 5:
-        return <Sm_LinerFourImg />;
-        break;
-
-      case 6:
-        return <Sm_LinerProducts />;
-        break;
-    }
-  };
+  // function when click on Edit Button
+  const _handelClickEditComponent = () => {};
 
   return (
     <div>
@@ -133,21 +101,19 @@ function Living({ list, characters, setCharacters }) {
                           <i className="fas fa-trash"></i>
                         </button>
                       </div>
-                      <div
+                      {/* <div
                         className={`${styles.wrapBtn} ${styles.btnLeftEdit}`}
                       >
                         <button
                           class={styles.buttonEdit}
                           role="button"
-                          onClick={() => handelClickOnDeleteBtn(index)}
+                          onClick={() => _handelClickEditComponent(index)}
                         >
                           ویرایش
                         </button>
-                      </div>
-                      {/* fas fa-calendar-times" */}
-                      {/* {_handel_select_component(e, index)} */}
+                      </div> */}
+
                       {e.component}
-                      {/* <HeroSlides dataHeroSlides={dataSlider}/> */}
                     </div>
                   )}
                 </Draggable>

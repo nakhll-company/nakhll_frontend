@@ -1,0 +1,27 @@
+.wrapper {
+    overflow: hidden;
+    margin-bottom: 10px;
+    img {
+        width: 100%;
+        border-radius: 15px;
+    }
+}
+
+.wrap {
+    display: flex;
+    gap: 10px;
+    .right {
+        flex-basis: 50%;
+        img {
+            width: 100%;
+            border-radius: 15px;
+        }
+    }
+    .left {
+        flex-basis: 50%;
+        img {
+            width: 100%;
+            border-radius: 15px;
+        }
+    }
+}

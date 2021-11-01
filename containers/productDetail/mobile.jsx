@@ -23,6 +23,7 @@ import styles from "./productDetail.module.scss";
  */
 // import Swiper core and required modules
 import SwiperCore, { EffectCube, Pagination } from "swiper";
+import AddFavorites from "../../components/AddFavorites";
 
 // Icons
 
@@ -99,6 +100,7 @@ const ProductDetailMobile = ({ data }) => {
         />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
+      <AddFavorites />
       <div>
         {/* bread_crumb */}
         <div className="product-page-breadcrumb">

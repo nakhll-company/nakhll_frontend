@@ -1,9 +1,12 @@
+// node libraies
 
+const Demo = () => {
 
-export default function Store() {
     return (
         <div>
-            <h1>store</h1>
+            store
         </div>
-    );
+    )
 }
+// export
+export default Demo;
