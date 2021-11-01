@@ -4,55 +4,21 @@
     position: relative;
 }
 
-.onePage {
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    // padding: 0px 10px;
-    // background: url("../../../public/image/game/last_1.jpg");
-    // background-size: cover;
-    // background-position: center;
-    // background-repeat: no-repeat;
-    span{
-        position: fixed;
-        // left: 10%;
-        top: 50%;
-        background-color: #ffffff;
-        padding: 5px 10px;
-        border-radius: 5px;
-        color: rgb(0, 0, 0);
-    }
-}
-
 .twoPage {
-    position: absolute;
+    position: relative;
     left: 0;
     right: 0;
     height: 100%;
     width: 100%;
-    // background: url("../../../public/image/game/last.jpg");
-    // background-size: cover;
-    // background-position: center;
-    // background-repeat: no-repeat;
-    span{
-        position: fixed;
-        left: 50%;
-        top: 48%;
-        color: #fff;
-        background-color: #8fa574;
-        padding: 5px 10px;
-        border-radius: 5px;
-    }
     a{
         position: fixed;
-        left: 32%;
-        top: 59%;
+        left: 30%;
+        bottom: 10%;
         background-color: #8c547b;
         padding: 5px 10px;
         border-radius: 5px;
         color: #fff;
         text-align: center;
+        box-shadow: 0px 0px 10px #502242;
     }
 }
