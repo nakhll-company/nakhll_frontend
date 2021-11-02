@@ -29,7 +29,7 @@ function Sm_LinerOneImg({ setImageSrc, croppedImage, id, data }) {
         />
       </div>
       <img
-        src={data.src ? data.src : "/image/sample/linearOneImg2.jpg"}
+        // src={data.src ? data.src : "/image/sample/linearOneImg2.jpg"}
         src={croppedImage ? croppedImage : "/image/sample/linearOneImg2.jpg"}
         alt=""
       />

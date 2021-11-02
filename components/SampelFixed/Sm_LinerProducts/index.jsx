@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./Sm_LinerProducts.module.scss";
 
 import Sm_product from "../Sm_product";
-function Sm_LinerProducts(props) {
+function Sm_LinerProducts_Fix(props) {
   const [toggle, setToggle] = useState(true);
   const [name, setName] = useState("پرفروش ترین");
   const [toggleSubTitle, setToggleSubTitle] = useState(true);
@@ -64,7 +64,6 @@ function Sm_LinerProducts(props) {
         <div className={styles.seeAll}>
           <div className={styles.wrapBtn}>
             <span>مشاهده همه</span>
-            <input type="color" name="" id="" />
           </div>
         </div>
       </div>
@@ -80,4 +79,4 @@ function Sm_LinerProducts(props) {
   );
 }
 
-export default Sm_LinerProducts;
+export default Sm_LinerProducts_Fix;

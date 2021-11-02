@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Sm_LinerFourImg.module.scss";
 
-function Sm_LinerFourImg(props) {
+function Sm_LinerFourImg_Fix(props) {
   return (
     <div className={styles.wrap}>
       <img src="/image/sample/main.jpg" alt="" />
@@ -15,4 +15,4 @@ function Sm_LinerFourImg(props) {
   );
 }
 
-export default Sm_LinerFourImg;
+export default Sm_LinerFourImg_Fix;

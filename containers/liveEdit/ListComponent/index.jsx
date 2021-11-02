@@ -1,10 +1,12 @@
 import React from "react";
-import Sm_HeroSlides from "../../../components/SampelComponents/HeroSlides";
-import Sm_LinerFourImg from "../../../components/SampelComponents/Sm_LinerFourImg";
-import Sm_LinerOneImg from "../../../components/SampelComponents/Sm_LinerOneImg";
-import Sm_LinerProducts from "../../../components/SampelComponents/Sm_LinerProducts";
-import Sm_LinerThreeImg from "../../../components/SampelComponents/Sm_LinerThreeImg";
-import Sm_LinerTwoImg from "../../../components/SampelComponents/Sm_LinerTwoImg";
+
+import Sm_HeroSlides_Fix from "../../../components/SampelFixed/HeroSlides";
+import Sm_LinerFourImg_Fix from "../../../components/SampelFixed/Sm_LinerFourImg";
+import Sm_LinerOneImg_Fix from "../../../components/SampelFixed/Sm_LinerOneImg";
+import Sm_LinerProducts_Fix from "../../../components/SampelFixed/Sm_LinerProducts";
+import Sm_LinerThreeImg_Fix from "../../../components/SampelFixed/Sm_LinerThreeImg";
+import Sm_LinerTwoImg_Fix from "../../../components/SampelFixed/Sm_LinerTwoImg";
+
 import styles from "./ListComponent.module.scss";
 
 function ListComponent({ _handel_add_component }) {
@@ -13,55 +15,51 @@ function ListComponent({ _handel_add_component }) {
       <div className={styles.parent}>
         <div
           className={styles.holderItems}
-          onClick={() => _handel_add_component(<Sm_HeroSlides />, 1)}
+          onClick={() => _handel_add_component(1)}
         >
-          {/* <Sm_HeroSlides /> */}
-          <span>کامپوننت اسلایدر</span>
+          <Sm_HeroSlides_Fix />
+          {/* <span>کامپوننت اسلایدر</span> */}
           <div className={styles.cover}></div>
         </div>
         <div
           className={styles.holderItems}
-          onClick={() => _handel_add_component(<Sm_LinerOneImg />, 2)}
+          onClick={() => _handel_add_component(2)}
         >
-          {/* <Sm_LinerOneImg /> */}
-          <span>بنر تکی</span>
+          <Sm_LinerOneImg_Fix />
+          {/* <span>بنر تکی</span> */}
           <div className={styles.cover}></div>
         </div>
         <div
           className={styles.holderItems}
-          onClick={() => _handel_add_component(<Sm_LinerTwoImg />, 3)}
+          onClick={() => _handel_add_component(3)}
         >
-          {/* <Sm_LinerTwoImg /> */}
-          <span>بنر دوتایی</span>
+          <Sm_LinerTwoImg_Fix />
+          {/* <span>بنر دوتایی</span> */}
           <div className={styles.cover}></div>
         </div>
         <div
           className={styles.holderItems}
-          onClick={() =>
-            _handel_add_component(<Sm_LinerThreeImg />, 4)
-          }
+          onClick={() => _handel_add_component(4)}
         >
-          {/* <Sm_LinerThreeImg /> */}
-          <span>بنر سه تایی</span>
+          <Sm_LinerThreeImg_Fix />
+          {/* <span>بنر سه تایی</span> */}
           <div className={styles.cover}></div>
         </div>
 
         <div
           className={styles.holderItems}
-          onClick={() => _handel_add_component(<Sm_LinerFourImg />, 5)}
+          onClick={() => _handel_add_component(5)}
         >
-          {/* <Sm_LinerFourImg /> */}
-          <span>بنر چهارتایی</span>
+          {/* <span style={{ color: "red" }}>بنر چهارتایی</span> */}
+          <Sm_LinerFourImg_Fix />
           <div className={styles.cover}></div>
         </div>
         <div
           className={styles.holderItems}
-          onClick={() =>
-            _handel_add_component(<Sm_LinerProducts />, 6)
-          }
+          onClick={() => _handel_add_component(6)}
         >
-          {/* <Sm_LinerProducts /> */}
-          <span>لیست</span>
+          <Sm_LinerProducts_Fix />
+          {/* <span>لیست</span> */}
           <div className={styles.cover}></div>
         </div>
 

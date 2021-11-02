@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import styles from "./Sm_LinerThreeImg.module.scss";
-function Sm_LinerThreeImg(props) {
+function Sm_LinerThreeImg_Fix(props) {
   return (
     <div>
       <div className={styles.wrapper}>
@@ -27,4 +27,4 @@ function Sm_LinerThreeImg(props) {
   );
 }
 
-export default Sm_LinerThreeImg;
+export default Sm_LinerThreeImg_Fix;

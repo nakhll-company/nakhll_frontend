@@ -1,27 +1,27 @@
 .wrapper {
     overflow: hidden;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     img {
         width: 100%;
-        border-radius: 15px;
+        border-radius: 5px;
     }
 }
 
 .wrap {
     display: flex;
-    gap: 10px;
+    gap: 5px;
     .right {
         flex-basis: 50%;
         img {
             width: 100%;
-            border-radius: 15px;
+            border-radius: 5px;
         }
     }
     .left {
         flex-basis: 50%;
         img {
             width: 100%;
-            border-radius: 15px;
+            border-radius: 5px;
         }
     }
 }

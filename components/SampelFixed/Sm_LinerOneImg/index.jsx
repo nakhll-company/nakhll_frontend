@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import styles from "./Sm_LinerOneImg.module.scss";
-function Sm_LinerOneImg(props) {
+function Sm_LinerOneImg_Fix(props) {
   return (
     <div className={styles.wrapper}>
       <Link href="">
@@ -13,4 +13,4 @@ function Sm_LinerOneImg(props) {
   );
 }
 
-export default Sm_LinerOneImg;
+export default Sm_LinerOneImg_Fix;

@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Sm_product.module.scss";
 import Assistent from "zaravand-assistent-number";
 
-function Sm_product(props) {
+function Sm_product_Fix(props) {
   const _asist = new Assistent();
   return (
     <>
@@ -33,4 +33,4 @@ function Sm_product(props) {
   );
 }
 
-export default Sm_product;
+export default Sm_product_Fix;

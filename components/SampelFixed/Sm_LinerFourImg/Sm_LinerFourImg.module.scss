@@ -5,8 +5,7 @@
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1fr;
     grid-template-areas: "img1 img2 img3 img4";
-    grid-gap: 10px;
-    margin-bottom: 20px;
+    grid-gap: 5px;
     @media screen and (max-width: 768px) {
         grid-template-columns: repeat(2, 1fr);
         grid-template-areas: "img1 img2" "img3 img4";
@@ -16,6 +15,6 @@
         height: 100%;
         object-fit: cover;
         object-position: center;
-        border-radius: 15px;
+        border-radius: 5px;
     }
 }

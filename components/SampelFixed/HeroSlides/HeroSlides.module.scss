@@ -1,0 +1,52 @@
+.slider {
+    display: flex;
+    .right {
+        flex: 0 0 66.66%;
+        overflow: hidden;
+        padding-left: 5px;
+        img {
+            width: 100%;
+            aspect-ratio: 2/1;
+            border-radius: 5px;
+        }
+    }
+    .left {
+        flex: 0 0 33.33%;
+        overflow: hidden;
+        .top {
+            position: relative;
+            padding-top: 50%;
+            a {
+                display: block;
+                position: absolute;
+                left: 0;
+                top: 0;
+                right: 5px;
+                bottom: 5px;
+                img {
+                    width: 100%;
+                    aspect-ratio: 2/1;
+                    border-radius: 5px;
+                }
+            }
+        }
+        .bottom {
+            position: relative;
+            padding-top: 50%;
+            overflow: hidden;
+            a {
+                display: block;
+                position: absolute;
+                left: 0;
+                top: 0;
+                right: 5px;
+                top: 5px;
+                img {
+                    width: 100%;
+                    aspect-ratio: 2/1;
+                    border-radius: 5px;
+                }
+            }
+        }
+    }
+}

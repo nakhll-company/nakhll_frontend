@@ -110,11 +110,11 @@ function index() {
   }, []);
 
   // function for add component in empty Place
-  const _handel_add_component = (incomeComponent, type) => {
+  const _handel_add_component = (type) => {
     const items = [...characters];
 
     items.map((element, index) => {
-      const newItem = { ID: uuidv4(), component: incomeComponent, type };
+      const newItem = { ID: uuidv4(), type };
       if (element.type == 0) {
         items.splice(index, 1);
         items.splice(index, 0, newItem);
@@ -172,7 +172,7 @@ function index() {
               </li>
             </ul>
           )}
-          {/* <ListComponent _handel_add_component={_handel_add_component} /> */}
+          <ListComponent _handel_add_component={_handel_add_component} />
         </div>
 
         {/* main */}
