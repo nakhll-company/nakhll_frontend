@@ -14,6 +14,7 @@ import Sm_LinerTwoImg from "../../components/SampelComponents/Sm_LinerTwoImg";
 import Sm_LinerThreeImg from "../../components/SampelComponents/Sm_LinerThreeImg";
 import Sm_LinerOneImg from "../../components/SampelComponents/Sm_LinerOneImg";
 import ListComponent from "../../containers/liveEdit/ListComponent";
+import { useSelector } from "react-redux";
 
 function index(props) {
   // stat for handel sidBar for edit and add
@@ -93,6 +94,7 @@ function index(props) {
       title: "نقش و نگار",
     },
   ];
+  const sta = useSelector((state) => state.allDataLanding);
 
   useEffect(() => {
     setCharacters(list);
