@@ -13,8 +13,7 @@ import Sm_LinerProducts from "../../SampelComponents/Sm_LinerProducts";
 import CustomCropper from "../../customCropper";
 
 function Living({ list, characters, setCharacters }) {
-  const showCrop = useSelector((state) => state.liveEdit);
-  console.log(`showCrop`, showCrop);
+  const showCrop = useSelector((state) => state.showCropper);
 
   const [imageSrc, setImageSrc] = useState(null);
   const [croppedImage, setCroppedImage] = useState(null);

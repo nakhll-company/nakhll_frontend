@@ -1,4 +1,4 @@
-const reducer = (state = false, action) => {
+export const showCropper = (state = false, action) => {
   switch (action.type) {
     case "SHOW_CROPPER":
       return !state;
@@ -7,5 +7,3 @@ const reducer = (state = false, action) => {
       return state;
   }
 };
-
-export default reducer;
