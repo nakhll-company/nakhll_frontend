@@ -18,6 +18,7 @@ import { useSelector } from "react-redux";
 
 function index() {
   const [characters, setCharacters] = useState([]);
+  const [openPlaneEditor, setOpenPlaneEditor] = useState(false);
 
   // Animations
   // gsap
@@ -121,6 +122,7 @@ function index() {
       }
     });
     setCharacters(items);
+    setOpenPlaneEditor(false);
   };
   return (
     <>
@@ -134,7 +136,7 @@ function index() {
       </Head>
       <div className={styles.container}>
         <div id="navigation" className={styles.navigation}>
-          {true && (
+          {!openPlaneEditor && (
             <ul>
               <li>
                 <a href="">
@@ -172,7 +174,9 @@ function index() {
               </li>
             </ul>
           )}
-          <ListComponent _handel_add_component={_handel_add_component} />
+          {openPlaneEditor && (
+            <ListComponent _handel_add_component={_handel_add_component} />
+          )}
         </div>
 
         {/* main */}
@@ -196,7 +200,11 @@ function index() {
             </div>
           </div>
 
-          <Living characters={characters} setCharacters={setCharacters} />
+          <Living
+            characters={characters}
+            setCharacters={setCharacters}
+            setOpenPlaneEditor={setOpenPlaneEditor}
+          />
         </div>
 
         <style jsx>{`

@@ -13,7 +13,7 @@ import Sm_LinerProducts from "../../SampelComponents/Sm_LinerProducts";
 import CustomCropper from "../../customCropper";
 import { _updateDataLanding } from "../../../redux/actions/liveEdit/_updateDataLanding";
 
-function Living({ characters, setCharacters }) {
+function Living({ characters, setCharacters, setOpenPlaneEditor }) {
   const dispatch = useDispatch();
   const showCrop = useSelector((state) => state.showCropper);
   // const characters = useSelector((state) => state.allDataLanding);
@@ -40,6 +40,7 @@ function Living({ characters, setCharacters }) {
     const newItem = { ID: uuidv4(), component: <Sm_InputPlace />, type: 0 };
     items.splice(index, 0, newItem);
     setCharacters(items);
+    setOpenPlaneEditor(true);
     // dispatch(_updateDataLanding(items));
   };
 
@@ -49,6 +50,7 @@ function Living({ characters, setCharacters }) {
     const newItem = { ID: uuidv4(), component: <Sm_InputPlace />, type: 0 };
     items.splice(index + 1, 0, newItem);
     setCharacters(items);
+    setOpenPlaneEditor(true);
     // dispatch(_updateDataLanding(items));
   };
 
