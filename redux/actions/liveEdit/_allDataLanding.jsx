@@ -1,5 +1,5 @@
 export const _allDataLanding = () => {
   return async (dispatch) => {
-    await dispatch({ type: "UPDATE_DATA" });
+    await dispatch({ type: "Get_DATA" });
   };
 };

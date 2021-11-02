@@ -12,7 +12,7 @@ import Sm_LinerFourImg from "../../SampelComponents/Sm_LinerFourImg";
 import Sm_LinerProducts from "../../SampelComponents/Sm_LinerProducts";
 import CustomCropper from "../../customCropper";
 
-function Living({ list, characters, setCharacters }) {
+function Living({  characters, setCharacters }) {
   const showCrop = useSelector((state) => state.showCropper);
 
   const [imageSrc, setImageSrc] = useState(null);
@@ -106,7 +106,7 @@ function Living({ list, characters, setCharacters }) {
           setImageSrc={setImageSrc}
           croppedImage={croppedImage}
           setCroppedImage={setCroppedImage}
-          list={list}
+          
         />
       )}
 
