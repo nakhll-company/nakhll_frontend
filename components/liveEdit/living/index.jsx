@@ -13,10 +13,10 @@ import Sm_LinerProducts from "../../SampelComponents/Sm_LinerProducts";
 import CustomCropper from "../../customCropper";
 import { _updateDataLanding } from "../../../redux/actions/liveEdit/_updateDataLanding";
 
-function Living() {
+function Living({ characters, setCharacters }) {
   const dispatch = useDispatch();
   const showCrop = useSelector((state) => state.showCropper);
-  const characters = useSelector((state) => state.allDataLanding);
+  // const characters = useSelector((state) => state.allDataLanding);
 
   const [imageSrc, setImageSrc] = useState(null);
   const [croppedImage, setCroppedImage] = useState(null);
@@ -29,8 +29,8 @@ function Living() {
       const newItem = { ID: uuidv4(), component: <Sm_InputPlace />, type: 0 };
       items.splice(0, 0, newItem);
     }
-
-    dispatch(_updateDataLanding(items));
+    setCharacters(items);
+    // dispatch(_updateDataLanding(items));
   };
 
   // function for when click on top plus icon
@@ -39,8 +39,8 @@ function Living() {
     const items = [...characters];
     const newItem = { ID: uuidv4(), component: <Sm_InputPlace />, type: 0 };
     items.splice(index, 0, newItem);
-
-    dispatch(_updateDataLanding(items));
+    setCharacters(items);
+    // dispatch(_updateDataLanding(items));
   };
 
   // function for when click on bottom plus icon
@@ -48,8 +48,8 @@ function Living() {
     const items = [...characters];
     const newItem = { ID: uuidv4(), component: <Sm_InputPlace />, type: 0 };
     items.splice(index + 1, 0, newItem);
-
-    dispatch(_updateDataLanding(items));
+    setCharacters(items);
+    // dispatch(_updateDataLanding(items));
   };
 
   // function for Drag components
@@ -60,8 +60,8 @@ function Living() {
 
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
-
-    dispatch(_updateDataLanding(items));
+    setCharacters(items);
+    // dispatch(_updateDataLanding(items));
   };
 
   // select component from server
