@@ -86,3 +86,5 @@ export const allDataLanding = (state = list, action) => {
       break;
   }
 };
+
+
