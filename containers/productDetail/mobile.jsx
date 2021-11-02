@@ -572,11 +572,11 @@ const ProductDetailMobile = ({ data }) => {
         <div className="ml-2">
           <div className={styles.price_mobile_decoration}>
             <span style={{ fontSize: "1.25rem" }}>
-              {detail.old_price && _asist.PSeparator(detail.old_price)}
+              {detail.old_price !== 0 && _asist.PSeparator(detail.old_price)}
             </span>
           </div>
           <div className={styles.price_mobile}>
-            <span>{_asist.PSeparator(detail.price)}</span>
+            <span>{_asist.PSeparator(detail.price / 10)}</span>
             <span> تومان </span>
           </div>
         </div>
