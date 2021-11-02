@@ -77,8 +77,9 @@ export const allDataLanding = (state = list, action) => {
         allData: [...action.payload],
       };
       break;
-    case "Get_DATA":
-      return state;
+    case "UPDATE_DATA":
+      return [...action.payload];
+
       break;
     default:
       return state;

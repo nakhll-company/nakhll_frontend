@@ -16,10 +16,7 @@ import Sm_LinerOneImg from "../../components/SampelComponents/Sm_LinerOneImg";
 import ListComponent from "../../containers/liveEdit/ListComponent";
 import { useSelector } from "react-redux";
 
-function index(props) {
-  // stat for handel sidBar for edit and add
-  const [openAddComponent, setOpenAddComponent] = useState(false);
-
+function index() {
   const [characters, setCharacters] = useState([]);
 
   // Animations
@@ -199,11 +196,7 @@ function index(props) {
             </div>
           </div>
 
-          <Living
-            list={list}
-            characters={characters}
-            setCharacters={setCharacters}
-          />
+          <Living characters={characters} setCharacters={setCharacters} />
         </div>
 
         <style jsx>{`
