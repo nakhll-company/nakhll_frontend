@@ -5,7 +5,7 @@ import styles from "./MegaMenuDesktop.module.scss";
 function MegaMenuDesktop({ category }) {
   return (
     <ul className={styles.nav_list}>
-      {category.slice(0, 9).map((element, index) => (
+      {category.map((element, index) => (
         <li
           key={index}
           className={styles.nav_item}
@@ -13,7 +13,7 @@ function MegaMenuDesktop({ category }) {
         >
           <Link href="#">
             <a className={styles.nav_item_link}>
-              {element.title}
+              {element.name}
               <i className="fas fa-angle-down"></i>
             </a>
           </Link>
@@ -25,14 +25,14 @@ function MegaMenuDesktop({ category }) {
               <div className={styles.nav_submenu_col}>
                 <ul className={styles.nav_submenu_cat}>
                   <li className={styles.nav_submenu_col_title}>
-                    {element.submarkets.map((subElement, index) => (
+                    {element.childrens.length > 0 && element.childrens.map((subElement, index) => (
                       <Link
                         href={`/product?word=&cat=${subElement.id}`}
                         key={index}
-                        
+
                       >
                         <a>
-                          {subElement.title}
+                          {subElement.name}
                           <i className="icon icon-Left"></i>
                         </a>
                       </Link>

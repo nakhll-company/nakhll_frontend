@@ -23,7 +23,7 @@ function Header() {
       let response = await ApiRegister().apiRequest(
         null,
         "get",
-        `/api/v1/markets/`,
+        `/api/v1/categories/?max_depth=2`,
         true,
         {}
       );

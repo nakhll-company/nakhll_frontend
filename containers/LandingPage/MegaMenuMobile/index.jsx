@@ -28,7 +28,7 @@ function MegaMenuMobile({ category }) {
               _handel_according(`according_${index}`, `icon_${index}`)
             }
           >
-            {element.title}
+            {element.name}
             <i id={`icon_${index}`} className="fas fa-angle-up"></i>
           </a>
           <ul
@@ -45,7 +45,7 @@ function MegaMenuMobile({ category }) {
                 مشاهده همه موارد این دسته
               </a> */}
             </li>
-            {element.submarkets.map((subElement, index) => (
+            {element.childrens.length > 0 && element.childrens.map((subElement, index) => (
               <li key={index}>
                 <Link href={`/product?word=&cat=${subElement.id}`}>
                   <a
@@ -54,7 +54,7 @@ function MegaMenuMobile({ category }) {
                         "-100%";
                     }}
                   >
-                    {subElement.title}
+                    {subElement.name}
                   </a>
                 </Link>
               </li>
