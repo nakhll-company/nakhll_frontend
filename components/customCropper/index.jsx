@@ -6,10 +6,12 @@ import { getCroppedImg } from "./methods/getCropImage";
 
 // scss
 import styles from "./customCropper.module.scss";
+import { useDispatch } from "react-redux";
+import { showCropper } from "../../redux/actions/liveEdit/showCropper";
 function CustomCropper({
   imageSrc,
   setImageSrc,
-  _handel_show_cropper,
+
   croppedImage,
   setCroppedImage,
 }) {
@@ -19,6 +21,7 @@ function CustomCropper({
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   // const [croppedImage, setCroppedImage] = useState(null);
+  const dispatch = useDispatch();
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
@@ -57,8 +60,8 @@ function CustomCropper({
             <button
               onClick={() => {
                 showCroppedImage();
-                // injjjjjjjjjjjjjjjj
-                _handel_show_cropper();
+
+                dispatch(showCropper());
               }}
             >
               تایید

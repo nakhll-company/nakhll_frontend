@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { v4 as uuidv4 } from "uuid";
 import styles from "./living.module.scss";
@@ -12,14 +13,11 @@ import Sm_LinerProducts from "../../SampelComponents/Sm_LinerProducts";
 import CustomCropper from "../../customCropper";
 
 function Living({ list, characters, setCharacters }) {
-  const [showCropper, setShowCropper] = useState(false);
+  const showCrop = useSelector((state) => state.liveEdit);
+  console.log(`showCrop`, showCrop);
+
   const [imageSrc, setImageSrc] = useState(null);
   const [croppedImage, setCroppedImage] = useState(null);
-
-  // function for handel cropper
-  const _handel_show_cropper = () => {
-    setShowCropper(!showCropper);
-  };
 
   // function for when click on delete icon
   const handelClickOnDeleteBtn = (idSelected) => {
@@ -73,7 +71,6 @@ function Living({ list, characters, setCharacters }) {
       case 2:
         return (
           <Sm_LinerOneImg
-            setShowCropper={setShowCropper}
             setImageSrc={setImageSrc}
             croppedImage={croppedImage}
             setCroppedImage={setCroppedImage}
@@ -104,11 +101,10 @@ function Living({ list, characters, setCharacters }) {
   return (
     <div>
       {/* imageSrc, setImageSrc */}
-      {showCropper && (
+      {showCrop && (
         <CustomCropper
           imageSrc={imageSrc}
           setImageSrc={setImageSrc}
-          _handel_show_cropper={_handel_show_cropper}
           croppedImage={croppedImage}
           setCroppedImage={setCroppedImage}
           list={list}
