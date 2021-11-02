@@ -1,21 +1,19 @@
+// node libraries
 import React, { useEffect, useRef } from "react";
-import styles from "./game.module.scss";
 import Link from "next/link";
 import Image from 'next/image';
 import { gsap } from "gsap";
+// scss
+import styles from "./game.module.scss";
+
 function index(props) {
 
   let tl = new gsap.timeline();
-  let onePart = useRef(null);
   let sp = useRef(null);
   let threePage = useRef(null);
 
   useEffect(() => {
-    tl.from(onePart, {
-      opacity: 0,
-      duration: 2,
-    })
-      .from(sp, { y: 600, duration: 25 })
+    tl.from(sp, { y: 600, duration: 25 })
       .from(threePage, {
         opacity: 0,
         duration: 2,
@@ -26,10 +24,10 @@ function index(props) {
   return (
     <>
       <div className={styles.wrapAll}>
-        <div ref={(el) => (onePart = el)} className={styles.onePage}>
+        <div className={styles.onePage}>
           <Image src="/image/game/03-1.jpg" layout="fill"
             objectFit="cover"
-            quality={10}
+          // quality={10}
           />
           <div style={{ height: "300px" }}>
             <span ref={(el) => (sp = el)}>
