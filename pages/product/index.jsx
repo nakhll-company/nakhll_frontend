@@ -31,7 +31,6 @@ export default product;
 
 // function server side
 export async function getServerSideProps(context) {
-  
   return {
     props: {
       data: context.query,

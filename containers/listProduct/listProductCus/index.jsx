@@ -120,8 +120,10 @@ function ListProductCus({
       available: isAvailableGoods,
       discounted: isDiscountPercentage,
       city: checkedCity.toString(),
-      ...(categoryIn.length !== 0 && { category: categoryIn }),
-      ...(wantCategories.length > 0 && { category: wantCategories.toString() }),
+      ...(categoryIn.length !== 0 && { new_category: categoryIn }),
+      ...(wantCategories.length > 0 && {
+        new_category: wantCategories.toString(),
+      }),
       // "5f239daf-9984-477a-aacd-fc3a2f8b76cb"
       page_size: 50,
       min_price: minPrice * 10000,
@@ -172,7 +174,7 @@ function ListProductCus({
           available: isAvailableGoods,
           discounted: isDiscountPercentage,
           city: checkedCity.toString(),
-          ...(categoryIn !== "" && { category: categoryIn }),
+          ...(categoryIn !== "" && { new_category: categoryIn }),
           ...(wantCategories.length > 0 && {
             category: wantCategories.toString(),
           }),

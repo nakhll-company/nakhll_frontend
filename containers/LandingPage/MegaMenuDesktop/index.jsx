@@ -3,9 +3,10 @@ import Link from "next/link";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import styles from "./MegaMenuDesktop.module.scss";
 function MegaMenuDesktop({ category }) {
+  console.log(`category`, category);
   return (
     <ul className={styles.nav_list}>
-      {category.map((element, index) => (
+      {category.slice(0, 9).map((element, index) => (
         <li
           key={index}
           className={styles.nav_item}
@@ -25,18 +26,18 @@ function MegaMenuDesktop({ category }) {
               <div className={styles.nav_submenu_col}>
                 <ul className={styles.nav_submenu_cat}>
                   <li className={styles.nav_submenu_col_title}>
-                    {element.childrens.length > 0 && element.childrens.map((subElement, index) => (
-                      <Link
-                        href={`/product?word=&cat=${subElement.id}`}
-                        key={index}
-
-                      >
-                        <a>
-                          {subElement.name}
-                          <i className="icon icon-Left"></i>
-                        </a>
-                      </Link>
-                    ))}
+                    {element.childrens.length > 0 &&
+                      element.childrens.map((subElement, index) => (
+                        <Link
+                          href={`/product?word=&cat=${subElement.id}`}
+                          key={index}
+                        >
+                          <a>
+                            {subElement.name}
+                            <i className="icon icon-Left"></i>
+                          </a>
+                        </Link>
+                      ))}
                   </li>
                 </ul>
               </div>
