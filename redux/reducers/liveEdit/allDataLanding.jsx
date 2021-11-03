@@ -68,14 +68,12 @@ const list = [
 export const allDataLanding = (state = list, action) => {
   switch (action.type) {
     case "UPDATE_PICTURE":
-      return {
-        allData: [...action.payload],
-      };
+      return [...action.payload];
+
       break;
     case "UPDATE_URL":
-      return {
-        allData: [...action.payload],
-      };
+      return [...action.payload];
+
       break;
     case "UPDATE_DATA":
       return [...action.payload];

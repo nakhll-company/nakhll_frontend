@@ -30,7 +30,7 @@ function Living({ characters, setCharacters, setOpenPlaneEditor }) {
       items.splice(0, 0, newItem);
     }
     setCharacters(items);
-    // dispatch(_updateDataLanding(items));
+    dispatch(_updateDataLanding(items));
   };
 
   // function for when click on top plus icon
@@ -41,7 +41,7 @@ function Living({ characters, setCharacters, setOpenPlaneEditor }) {
     items.splice(index, 0, newItem);
     setCharacters(items);
     setOpenPlaneEditor(true);
-    // dispatch(_updateDataLanding(items));
+    dispatch(_updateDataLanding(items));
   };
 
   // function for when click on bottom plus icon
@@ -51,7 +51,7 @@ function Living({ characters, setCharacters, setOpenPlaneEditor }) {
     items.splice(index + 1, 0, newItem);
     setCharacters(items);
     setOpenPlaneEditor(true);
-    // dispatch(_updateDataLanding(items));
+    dispatch(_updateDataLanding(items));
   };
 
   // function for Drag components
@@ -63,7 +63,7 @@ function Living({ characters, setCharacters, setOpenPlaneEditor }) {
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
     setCharacters(items);
-    // dispatch(_updateDataLanding(items));
+    dispatch(_updateDataLanding(items));
   };
 
   // select component from server
@@ -109,12 +109,7 @@ function Living({ characters, setCharacters, setOpenPlaneEditor }) {
   return (
     <div>
       {showCrop && (
-        <CustomCropper
-          imageSrc={imageSrc}
-          setImageSrc={setImageSrc}
-          croppedImage={croppedImage}
-          setCroppedImage={setCroppedImage}
-        />
+        <CustomCropper imageSrc={imageSrc} setCroppedImage={setCroppedImage} />
       )}
 
       <DragDropContext onDragEnd={handleOnDragEnd}>

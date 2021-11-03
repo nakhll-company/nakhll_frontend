@@ -6,6 +6,7 @@ import User from "./reducers/user";
 import Cart from "./reducers/cart";
 import { showCropper } from "./reducers/liveEdit/showCropper";
 import { allDataLanding } from "./reducers/liveEdit/allDataLanding";
+import { selectIdFormLanding } from "./reducers/liveEdit/selectIdFormLanding";
 
 // object of All reducers
 export const reducerObject = {
@@ -15,6 +16,7 @@ export const reducerObject = {
     Cart,
     showCropper,
     allDataLanding,
+    selectIdFormLanding,
 };
 
 /**
