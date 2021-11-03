@@ -115,7 +115,15 @@ function index() {
     const items = [...characters];
 
     items.map((element, index) => {
-      const newItem = { ID: uuidv4(), type };
+      let newItem = {};
+      newItem = {
+        ID: uuidv4(),
+        type,
+        data: {
+          src: "",
+          url: "",
+        },
+      };
       if (element.type == 0) {
         items.splice(index, 1);
         items.splice(index, 0, newItem);
