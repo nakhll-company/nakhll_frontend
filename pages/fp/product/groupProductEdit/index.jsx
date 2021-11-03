@@ -21,7 +21,7 @@ const GroupProduct = (data) => {
         let response = await ApiRegister().apiRequest(
           loadData,
           "post",
-          `/api/v1/product/group-create-edit/${activeHojreh}/`,
+          `/api/v1/product/group-update/${activeHojreh}/`,
           true,
           {}
         );
