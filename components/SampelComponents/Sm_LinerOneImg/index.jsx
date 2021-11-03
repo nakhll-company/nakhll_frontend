@@ -11,7 +11,7 @@ function Sm_LinerOneImg({ setImageSrc, id, data }) {
         <InputPicture setImageSrc={setImageSrc} id={id} />
       </div>
       <img
-        src={data.src ? data.src : "/image/sample/linearOneImg2.jpg"}
+        src={data[0].src ? data[0].src : "/image/sample/linearOneImg2.jpg"}
         alt=""
       />
     </div>

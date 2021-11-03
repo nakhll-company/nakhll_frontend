@@ -27,20 +27,20 @@ function index() {
   let profile = useRef(null);
   let toggleMenu = useRef(null);
   const list = [
-    {
-      type: 6,
-      component: <Sm_LinerProducts />,
-      ID: "c22xzczxc6da83-9526-465a-97d4-9f112a0dc636",
-      slug: "Irana",
-      title: "نقش و نگار",
-    },
-    {
-      type: 5,
-      component: <Sm_LinerFourImg />,
-      ID: "c226da83czxvzxvz-9526-465a-97d4-9f112a0dc636",
-      slug: "Irana",
-      title: "نقش و نگار",
-    },
+    // {
+    //   type: 6,
+    //   component: <Sm_LinerProducts />,
+    //   ID: "c22xzczxc6da83-9526-465a-97d4-9f112a0dc636",
+    //   slug: "Irana",
+    //   title: "نقش و نگار",
+    // },
+    // {
+    //   type: 5,
+    //   component: <Sm_LinerFourImg />,
+    //   ID: "c226da83czxvzxvz-9526-465a-97d4-9f112a0dc636",
+    //   slug: "Irana",
+    //   title: "نقش و نگار",
+    // },
     {
       type: 0,
       component: <Sm_InputPlace />,
@@ -48,49 +48,49 @@ function index() {
       slug: "mohammadi",
       title: "محمدی",
     },
-    {
-      type: 1,
-      component: <Sm_HeroSlides />,
-      ID: "f3501a78-2b0e-4zxvzxvzx302-9d1c-f282daa5592e",
-      slug: "Roya",
-      title: "رویا",
-    },
-    {
-      type: 2,
-      component: <Sm_LinerOneImg />,
-      ID: "c226da83-9526-465a-9zc<zcz7d4-9f112a0dc636",
-      slug: "Irana",
-      title: "نقش و نگار",
-      data: {
-        src: "",
-        url: "",
-      },
-    },
-    {
-      type: 2,
-      component: <Sm_LinerOneImg />,
-      ID: "c226da83-9526-465a-9zc<zcz7d4-9f112a0dc63sdsadsd6",
-      slug: "Irana",
-      title: "نقش و نگار",
-      data: {
-        src: "",
-        url: "",
-      },
-    },
-    {
-      type: 3,
-      component: <Sm_LinerTwoImg />,
-      ID: "c226da83-9zx526-465a-97d4-9f112a0dc636",
-      slug: "Irana",
-      title: "نقش و نگار",
-    },
-    {
-      type: 4,
-      component: <Sm_LinerThreeImg />,
-      ID: "c226da83-zxvzx9526-465a-97d4-9f112a0dc636",
-      slug: "Irana",
-      title: "نقش و نگار",
-    },
+    // {
+    //   type: 1,
+    //   component: <Sm_HeroSlides />,
+    //   ID: "f3501a78-2b0e-4zxvzxvzx302-9d1c-f282daa5592e",
+    //   slug: "Roya",
+    //   title: "رویا",
+    // },
+    // {
+    //   type: 2,
+    //   component: <Sm_LinerOneImg />,
+    //   ID: "c226da83-9526-465a-9zc<zcz7d4-9f112a0dc636",
+    //   slug: "Irana",
+    //   title: "نقش و نگار",
+    //   data: {
+    //     src: "",
+    //     url: "",
+    //   },
+    // },
+    // {
+    //   type: 2,
+    //   component: <Sm_LinerOneImg />,
+    //   ID: "c226da83-9526-465a-9zc<zcz7d4-9f112a0dc63sdsadsd6",
+    //   slug: "Irana",
+    //   title: "نقش و نگار",
+    //   data: {
+    //     src: "",
+    //     url: "",
+    //   },
+    // },
+    // {
+    //   type: 3,
+    //   component: <Sm_LinerTwoImg />,
+    //   ID: "c226da83-9zx526-465a-97d4-9f112a0dc636",
+    //   slug: "Irana",
+    //   title: "نقش و نگار",
+    // },
+    // {
+    //   type: 4,
+    //   component: <Sm_LinerThreeImg />,
+    //   ID: "c226da83-zxvzx9526-465a-97d4-9f112a0dc636",
+    //   slug: "Irana",
+    //   title: "نقش و نگار",
+    // },
   ];
   const sta = useSelector((state) => state.allDataLanding);
 
@@ -116,14 +116,38 @@ function index() {
 
     items.map((element, index) => {
       let newItem = {};
-      newItem = {
-        ID: uuidv4(),
-        type,
-        data: {
-          src: "",
-          url: "",
-        },
-      };
+      if (type == 2) {
+        newItem = {
+          ID: uuidv4(),
+          type,
+          data: [
+            {
+              src: "",
+              url: "",
+              order: "",
+            },
+          ],
+        };
+      }
+      if (type == 3) {
+        newItem = {
+          ID: uuidv4(),
+          type,
+          data: [
+            {
+              src: "",
+              url: "",
+              order: 0,
+            },
+            {
+              src: "",
+              url: "",
+              order: 1,
+            },
+          ],
+        };
+      }
+
       if (element.type == 0) {
         items.splice(index, 1);
         items.splice(index, 0, newItem);
