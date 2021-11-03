@@ -4,6 +4,7 @@ import styles from "./Sm_LinerOneImg.module.scss";
 import { selectImage } from "../../customCropper/methods/selectImage";
 import { useDispatch } from "react-redux";
 import { showCropper } from "../../../redux/actions/liveEdit/showCropper";
+import { _selectId } from "../../../redux/actions/liveEdit/_selectId";
 
 function Sm_LinerOneImg({ setImageSrc, croppedImage, id, data }) {
   const refInput = useRef(null);
@@ -24,13 +25,14 @@ function Sm_LinerOneImg({ setImageSrc, croppedImage, id, data }) {
           onChange={(e) => {
             selectImage(e, setImageSrc);
             dispatch(showCropper());
+            dispatch(_selectId(id));
           }}
           accept="image/*"
         />
       </div>
       <img
-        // src={data.src ? data.src : "/image/sample/linearOneImg2.jpg"}
-        src={croppedImage ? croppedImage : "/image/sample/linearOneImg2.jpg"}
+        src={data.src ? data.src : "/image/sample/linearOneImg2.jpg"}
+        // src={croppedImage ? croppedImage : "/image/sample/linearOneImg2.jpg"}
         alt=""
       />
     </div>

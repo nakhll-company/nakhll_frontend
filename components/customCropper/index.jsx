@@ -8,13 +8,8 @@ import { getCroppedImg } from "./methods/getCropImage";
 import styles from "./customCropper.module.scss";
 import { useDispatch } from "react-redux";
 import { showCropper } from "../../redux/actions/liveEdit/showCropper";
-function CustomCropper({
-  imageSrc,
-  setImageSrc,
-
-  croppedImage,
-  setCroppedImage,
-}) {
+import { _updatePicture } from "../../redux/actions/liveEdit/_updatePicture";
+function CustomCropper({ imageSrc, setCroppedImage }) {
   // const [imageSrc, setImageSrc] = useState(null);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [rotation, setRotation] = useState(0);
@@ -34,6 +29,7 @@ function CustomCropper({
         rotation
       );
       setCroppedImage(croppedImage);
+      dispatch(_updatePicture(croppedImage));
     } catch (e) {
       console.error(e);
     }
