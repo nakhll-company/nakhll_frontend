@@ -1,38 +1,17 @@
 import React, { useRef } from "react";
-import Link from "next/link";
 import styles from "./Sm_LinerOneImg.module.scss";
-import { selectImage } from "../../customCropper/methods/selectImage";
 import { useDispatch } from "react-redux";
-import { showCropper } from "../../../redux/actions/liveEdit/showCropper";
 import { _selectId } from "../../../redux/actions/liveEdit/_selectId";
+import InputPicture from "../../../containers/liveEdit/InputPicture";
 
-function Sm_LinerOneImg({ setImageSrc, croppedImage, id, data }) {
-  const refInput = useRef(null);
-  const dispatch = useDispatch();
+function Sm_LinerOneImg({ setImageSrc, id, data }) {
   return (
     <div className={styles.wrapper}>
       <div className={styles.icon_change_pic}>
-        <i
-          onClick={() => refInput.current.click()}
-          className="fas fa-images"
-        ></i>
-        <input
-          style={{ display: "none" }}
-          ref={refInput}
-          type="file"
-          name=""
-          id=""
-          onChange={(e) => {
-            selectImage(e, setImageSrc);
-            dispatch(showCropper());
-            dispatch(_selectId(id));
-          }}
-          accept="image/*"
-        />
+        <InputPicture setImageSrc={setImageSrc} id={id} />
       </div>
       <img
-        src={data.src ? data.src : "/image/sample/linearOneImg2.jpg"}
-        // src={croppedImage ? croppedImage : "/image/sample/linearOneImg2.jpg"}
+        src={data[0].src ? data[0].src : "/image/sample/linearOneImg2.jpg"}
         alt=""
       />
     </div>

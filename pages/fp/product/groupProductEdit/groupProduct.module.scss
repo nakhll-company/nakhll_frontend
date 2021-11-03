@@ -1,0 +1,42 @@
+.main_wrapper{
+    grid-column: 1/-1;
+    grid-row: 1/-1;
+    display: flex;
+    flex-direction: column;
+    // margin-top: 15px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    padding: 100px;
+    font-family: 'vazir';
+}
+.product_image_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+.add_image_container {
+    border: 1px dashed #2185f8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f3faff;
+    height: 100px;
+    width: 150px;
+    color: #3366ff;
+}
+.form_buttonSubmit {
+    width: 70%;
+    height: 47px;
+    background: #007aff;
+    border-radius: 2px;
+    font-weight: normal;
+    font-size: 20px;
+    text-align: center;
+    color: #ffffff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-top: 70px;
+}

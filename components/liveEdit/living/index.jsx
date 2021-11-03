@@ -77,19 +77,11 @@ function Living({ characters, setCharacters, setOpenPlaneEditor }) {
         return <Sm_HeroSlides />;
         break;
       case 2:
-        return (
-          <Sm_LinerOneImg
-            setImageSrc={setImageSrc}
-            croppedImage={croppedImage}
-            setCroppedImage={setCroppedImage}
-            id={id}
-            data={data}
-          />
-        );
+        return <Sm_LinerOneImg setImageSrc={setImageSrc} id={id} data={data} />;
         break;
 
       case 3:
-        return <Sm_LinerTwoImg />;
+        return <Sm_LinerTwoImg setImageSrc={setImageSrc} id={id} data={data} />;
         break;
 
       case 4:
