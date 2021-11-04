@@ -4,11 +4,12 @@ import { useRouter } from "next/router";
 import { v4 as uuidv4 } from "uuid";
 import styles from "./AddFavorites.module.scss";
 import Assistent from "zaravand-assistent-number";
+import { useDispatch, useSelector } from "react-redux";
+import { _addToWishList } from "../../redux/actions/Wishlist/_addToWishList";
 const _asist = new Assistent();
 
 function AddFavorites() {
   const router = useRouter();
-
   const [openAdd, setOpenAdd] = useState(true);
   const [openList, setOpenList] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -21,6 +22,8 @@ function AddFavorites() {
     enter: { x: 0, y: 0, opacity: 1 },
     leave: { x: 100, y: 800, opacity: 0 },
   });
+  const list = useSelector((state) => state.WishList);
+  const dispatch = useDispatch();
 
   const _handel_menu = () => {
     setIsVisible(!isVisible);
@@ -35,10 +38,11 @@ function AddFavorites() {
     const url = router.asPath;
     const newFav = {
       url,
-      title: textInput == "" ? "گمنام" : textInput,
+      title: textInput == "" ? "بدون عنوان" : textInput,
       ID: uuidv4(),
     };
     setListFav([...listFav, newFav]);
+    // dispatch(_addToWishList(newFav));
     settextInput("");
   };
 
@@ -140,7 +144,7 @@ function AddFavorites() {
                 <div className={styles.list}>
                   {listFav.map((el) => (
                     <div className={styles.items}>
-                      <a  href={el.url}>
+                      <a href={el.url}>
                         <span>{el.title}</span>
                       </a>
                       <i

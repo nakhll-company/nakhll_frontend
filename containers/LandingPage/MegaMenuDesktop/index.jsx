@@ -3,7 +3,6 @@ import Link from "next/link";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import styles from "./MegaMenuDesktop.module.scss";
 function MegaMenuDesktop({ category }) {
-  console.log(`category`, category);
   return (
     <ul className={styles.nav_list}>
       {category.slice(0, 9).map((element, index) => (
