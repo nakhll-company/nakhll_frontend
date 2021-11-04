@@ -147,7 +147,7 @@ function index() {
           ],
         };
       }
-      if (type == 4) {
+      if (type == 4 || type == 1) {
         newItem = {
           ID: uuidv4(),
           type,

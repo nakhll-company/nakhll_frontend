@@ -74,7 +74,7 @@ function Living({ characters, setCharacters, setOpenPlaneEditor }) {
         return <Sm_InputPlace />;
         break;
       case 1:
-        return <Sm_HeroSlides />;
+        return <Sm_HeroSlides setImageSrc={setImageSrc} id={id} data={data} />;
         break;
       case 2:
         return <Sm_LinerOneImg setImageSrc={setImageSrc} id={id} data={data} />;

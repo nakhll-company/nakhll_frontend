@@ -1,28 +1,47 @@
-import React from 'react';
-import styles from './HeroSlides.module.scss'
+import React from "react";
+import InputPicture from "../../../containers/liveEdit/InputPicture";
+import styles from "./HeroSlides.module.scss";
 
-function Sm_HeroSlides(props) {
-    return (
-        <div className={styles.content}>
+function Sm_HeroSlides({ setImageSrc, id, data }) {
+  return (
+    <div className={styles.content}>
       <div className={styles.slider}>
         <div className={styles.right}>
-          <img src="/image/sample/main.jpg" alt="" />
+          <div className={styles.icon_change_pic}>
+            <InputPicture setImageSrc={setImageSrc} id={id} order={0} />
+          </div>
+          <img
+            src={data[0].src ? data[0].src : "/image/sample/main.jpg"}
+            alt=""
+          />
         </div>
         <div className={styles.left}>
           <div className={styles.top}>
-              <a href="">
-                <img src="/image/sample/sample.jpg" alt="" />
-              </a>
+            <div className={styles.holderPic}>
+              <img
+                src={data[1].src ? data[1].src : "/image/sample/sample.jpg"}
+                alt=""
+              />
+            </div>
+            <div className={styles.icon_change_pic}>
+              <InputPicture setImageSrc={setImageSrc} id={id} order={1} />
+            </div>
           </div>
           <div className={styles.bottom}>
-              <a href="">
-                <img src="/image/sample/sample2.jpg" alt="" />
-              </a>
+            <div className={styles.holderPic}>
+              <img
+                src={data[2].src ? data[2].src : "/image/sample/sample2.jpg"}
+                alt=""
+              />
+            </div>
+            <div className={styles.icon_change_pic}>
+              <InputPicture setImageSrc={setImageSrc} id={id} order={2} />
+            </div>
           </div>
         </div>
       </div>
     </div>
-    );
+  );
 }
 
 export default Sm_HeroSlides;
