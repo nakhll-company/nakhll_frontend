@@ -1,4 +1,4 @@
-export const selectIdFormLanding = (state = "", action) => {
+export const selectIdFormLanding = (state = {}, action) => {
   switch (action.type) {
     case "UPDATE_ID":
       return action.payload;

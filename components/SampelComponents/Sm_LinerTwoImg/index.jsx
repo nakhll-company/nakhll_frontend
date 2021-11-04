@@ -8,7 +8,7 @@ function Sm_LinerTwoImg({ setImageSrc, id, data }) {
     <div className={styles.wrap}>
       <div className={styles.right}>
         <div className={styles.icon_change_pic}>
-          <InputPicture setImageSrc={setImageSrc} id={id} />
+          <InputPicture setImageSrc={setImageSrc} id={id} order={0} />
         </div>
         <a href="">
           <img
@@ -19,11 +19,11 @@ function Sm_LinerTwoImg({ setImageSrc, id, data }) {
       </div>
       <div className={styles.left}>
         <div className={styles.icon_change_pic}>
-          <InputPicture setImageSrc={setImageSrc} id={id} />
+          <InputPicture setImageSrc={setImageSrc} id={id} order={1} />
         </div>
         <a href="">
           <img
-            src={data[0].src ? data[0].src : "/image/sample/main.jpg"}
+            src={data[1].src ? data[1].src : "/image/sample/main.jpg"}
             alt=""
           />
         </a>

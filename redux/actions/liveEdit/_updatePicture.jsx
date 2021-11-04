@@ -1,11 +1,12 @@
 export const _updatePicture = (img) => {
   return async (dispatch, getState) => {
     const id = getState().selectIdFormLanding;
+   
 
     let dataLanding = [...getState().allDataLanding];
     dataLanding.map((El, index) => {
-      if (El.ID == id) {
-        dataLanding[index].data[0].src = img;
+      if (El.ID == id.id) {
+        dataLanding[index].data[id.order].src = img;
       }
     });
     await dispatch({ type: "UPDATE_PICTURE", payload: dataLanding });

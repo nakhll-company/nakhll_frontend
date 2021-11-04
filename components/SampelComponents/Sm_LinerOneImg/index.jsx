@@ -5,6 +5,7 @@ import { _selectId } from "../../../redux/actions/liveEdit/_selectId";
 import InputPicture from "../../../containers/liveEdit/InputPicture";
 
 function Sm_LinerOneImg({ setImageSrc, id, data }) {
+  console.log(`milad`, data);
   return (
     <div className={styles.wrapper}>
       <div className={styles.icon_change_pic}>
