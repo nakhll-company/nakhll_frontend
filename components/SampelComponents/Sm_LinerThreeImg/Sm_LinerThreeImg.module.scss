@@ -1,6 +1,12 @@
 .wrapper {
     overflow: hidden;
     margin-bottom: 10px;
+    position: relative;
+    &:hover {
+        .icon_change_pic {
+            visibility: visible;
+        }
+    }
     img {
         width: 100%;
         border-radius: 15px;
@@ -11,17 +17,37 @@
     display: flex;
     gap: 10px;
     .right {
+        position: relative;
         flex-basis: 50%;
         img {
             width: 100%;
             border-radius: 15px;
+        }
+        &:hover {
+            .icon_change_pic {
+                visibility: visible;
+            }
         }
     }
     .left {
         flex-basis: 50%;
+        position: relative;
         img {
             width: 100%;
             border-radius: 15px;
         }
+        &:hover {
+            .icon_change_pic {
+                visibility: visible;
+            }
+        }
     }
+}
+
+.icon_change_pic {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    visibility: hidden;
+    transition: all 0.3s ease;
 }

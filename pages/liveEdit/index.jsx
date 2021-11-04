@@ -147,6 +147,29 @@ function index() {
           ],
         };
       }
+      if (type == 4) {
+        newItem = {
+          ID: uuidv4(),
+          type,
+          data: [
+            {
+              src: "",
+              url: "",
+              order: 0,
+            },
+            {
+              src: "",
+              url: "",
+              order: 1,
+            },
+            {
+              src: "",
+              url: "",
+              order: 2,
+            },
+          ],
+        };
+      }
 
       if (element.type == 0) {
         items.splice(index, 1);

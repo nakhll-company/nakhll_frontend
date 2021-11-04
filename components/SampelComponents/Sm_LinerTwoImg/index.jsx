@@ -3,7 +3,6 @@ import InputPicture from "../../../containers/liveEdit/InputPicture";
 
 import styles from "./Sm_LinerTwoImg.module.scss";
 function Sm_LinerTwoImg({ setImageSrc, id, data }) {
-  console.log(`data`, data);
   return (
     <div className={styles.wrap}>
       <div className={styles.right}>

@@ -85,7 +85,9 @@ function Living({ characters, setCharacters, setOpenPlaneEditor }) {
         break;
 
       case 4:
-        return <Sm_LinerThreeImg />;
+        return (
+          <Sm_LinerThreeImg setImageSrc={setImageSrc} id={id} data={data} />
+        );
         break;
 
       case 5:
