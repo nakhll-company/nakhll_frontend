@@ -1,3 +1,11 @@
+@mixin inputPic {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
 .wrap {
     width: 100%;
     overflow: hidden;
@@ -10,6 +18,17 @@
     @media screen and (max-width: 768px) {
         grid-template-columns: repeat(2, 1fr);
         grid-template-areas: "img1 img2" "img3 img4";
+    }
+    .wrapImg {
+        position: relative;
+        .icon_change_pic {
+            @include inputPic;
+        }
+        &:hover {
+            .icon_change_pic {
+                visibility: visible;
+            }
+        }
     }
     img {
         width: 100%;

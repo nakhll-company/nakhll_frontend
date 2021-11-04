@@ -170,6 +170,34 @@ function index() {
           ],
         };
       }
+      if (type == 5) {
+        newItem = {
+          ID: uuidv4(),
+          type,
+          data: [
+            {
+              src: "",
+              url: "",
+              order: 0,
+            },
+            {
+              src: "",
+              url: "",
+              order: 1,
+            },
+            {
+              src: "",
+              url: "",
+              order: 2,
+            },
+            {
+              src: "",
+              url: "",
+              order: 3,
+            },
+          ],
+        };
+      }
 
       if (element.type == 0) {
         items.splice(index, 1);

@@ -91,7 +91,9 @@ function Living({ characters, setCharacters, setOpenPlaneEditor }) {
         break;
 
       case 5:
-        return <Sm_LinerFourImg />;
+        return (
+          <Sm_LinerFourImg setImageSrc={setImageSrc} id={id} data={data} />
+        );
         break;
 
       case 6:
