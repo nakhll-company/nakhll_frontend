@@ -1,5 +1,7 @@
 import React, { useRef } from "react";
 import styles from "./InputPicture.module.scss";
+
+// redux
 import { _selectId } from "../../../redux/actions/liveEdit/_selectId";
 import { showCropper } from "../../../redux/actions/liveEdit/showCropper";
 import { useDispatch } from "react-redux";

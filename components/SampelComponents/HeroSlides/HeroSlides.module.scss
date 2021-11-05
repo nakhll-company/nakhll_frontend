@@ -26,6 +26,9 @@
             .icon_change_pic {
                 visibility: visible;
             }
+            .icon_change_url{
+                visibility: visible;
+            }
         }
     }
     .left {
@@ -39,6 +42,9 @@
             }
             &:hover {
                 .icon_change_pic {
+                    visibility: visible;
+                }
+                .icon_change_url{
                     visibility: visible;
                 }
             }
@@ -69,6 +75,9 @@
                 .icon_change_pic {
                     visibility: visible;
                 }
+                .icon_change_url{
+                    visibility: visible;
+                }
             }
             .holderPic {
                 display: block;
@@ -93,5 +102,12 @@
     right: 10px;
     top: 10px;
     // visibility: hidden;
+    transition: all 0.3s ease;
+}
+.icon_change_url{
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    visibility: hidden;
     transition: all 0.3s ease;
 }

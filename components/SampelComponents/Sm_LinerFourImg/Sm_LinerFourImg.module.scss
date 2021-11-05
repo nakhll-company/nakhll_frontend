@@ -28,6 +28,9 @@
             .icon_change_pic {
                 visibility: visible;
             }
+            .icon_change_url{
+                visibility: visible;
+            }
         }
     }
     img {
@@ -37,4 +40,11 @@
         object-position: center;
         border-radius: 15px;
     }
+}
+.icon_change_url{
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    visibility: hidden;
+    transition: all 0.3s ease;
 }

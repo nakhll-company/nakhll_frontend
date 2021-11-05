@@ -1,5 +1,6 @@
 import React from "react";
 import InputPicture from "../../../containers/liveEdit/InputPicture";
+import InputUrl from "../../../containers/liveEdit/InputUrl";
 import styles from "./HeroSlides.module.scss";
 
 function Sm_HeroSlides({ setImageSrc, id, data }) {
@@ -9,6 +10,9 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
         <div className={styles.right}>
           <div className={styles.icon_change_pic}>
             <InputPicture setImageSrc={setImageSrc} id={id} order={0} />
+          </div>
+          <div className={styles.icon_change_url}>
+            <InputUrl />
           </div>
           <img
             src={data[0].src ? data[0].src : "/image/sample/main.jpg"}
@@ -26,6 +30,9 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
             <div className={styles.icon_change_pic}>
               <InputPicture setImageSrc={setImageSrc} id={id} order={1} />
             </div>
+            <div className={styles.icon_change_url}>
+              <InputUrl />
+            </div>
           </div>
           <div className={styles.bottom}>
             <div className={styles.holderPic}>
@@ -36,6 +43,10 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
             </div>
             <div className={styles.icon_change_pic}>
               <InputPicture setImageSrc={setImageSrc} id={id} order={2} />
+            </div>
+
+            <div className={styles.icon_change_url}>
+              <InputUrl />
             </div>
           </div>
         </div>
