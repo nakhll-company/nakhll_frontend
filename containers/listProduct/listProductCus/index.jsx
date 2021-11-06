@@ -328,7 +328,7 @@ function ListProductCus({
                           id={`checkbox${index}`}
                         />
                         <label
-                          style={{ marginRight: "5px", fontSize: "15px" }}
+                          style={{ marginRight: "5px", fontSize: "15px", cursor: "pointer" }}
                           className="form-check-label"
                           htmlFor={`checkbox${index}`}
                         >
