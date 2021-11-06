@@ -48,13 +48,16 @@ function SelectUrl(props) {
             <div className={styles.header}>لیست صفحات شما</div>
             {true && (
               <div className={styles.list}>
-                <div className={styles.wrapItem}>
-                  <span className={styles.numbers}>{_asist.number(1)}</span>
-                  <div className={styles.item}> صفحه محصولات پر تخفیف</div>
-                  <div className={styles.icon}>
-                    <i className="fas fa-check-circle"></i>
-                  </div>
-                </div>
+            {list.map((el,index)=>
+            <div key={index} className={styles.wrapItem}>
+            <span className={styles.numbers}>{_asist.number(index+1)}</span>
+            <div className={styles.item}> {el.title}</div>
+            <div className={styles.icon}>
+              <i className="fas fa-check-circle"></i>
+            </div>
+          </div>
+            )}
+                
                 <div className={styles.buttonPages}>
                   <div className={styles.btnProductPage}>
                     <i className="fas fa-road"></i>
