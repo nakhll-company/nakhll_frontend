@@ -12,6 +12,7 @@ import Sm_LinerFourImg from "../../SampelComponents/Sm_LinerFourImg";
 import Sm_LinerProducts from "../../SampelComponents/Sm_LinerProducts";
 import CustomCropper from "../../customCropper";
 import { _updateDataLanding } from "../../../redux/actions/liveEdit/_updateDataLanding";
+import SelectUrl from "../../../containers/liveEdit/SelectUrl";
 
 function Living({ characters, setCharacters, setOpenPlaneEditor }) {
   const dispatch = useDispatch();
@@ -107,6 +108,7 @@ function Living({ characters, setCharacters, setOpenPlaneEditor }) {
       {showCrop && (
         <CustomCropper imageSrc={imageSrc} setCroppedImage={setCroppedImage} />
       )}
+      <SelectUrl />
 
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="characters">
