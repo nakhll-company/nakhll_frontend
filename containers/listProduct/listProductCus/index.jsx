@@ -21,7 +21,6 @@ const _asist = new Assistent();
 function ListProductCus({
   data,
   dataFirst,
-
   shop_products = "",
   categoryIn = "",
 }) {
@@ -86,14 +85,14 @@ function ListProductCus({
       let response = await ApiRegister().apiRequest(
         null,
         "get",
-        `/api/v1/sub_markets/?q=${searchWord}`,
+        `/api/v1/categories/category_product_count/?q=${searchWord}`,
         true,
         {}
       );
       if (response.status === 200) {
         setCategories(response.data);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   const _handel_Add_category = (id) => {
@@ -195,7 +194,7 @@ function ListProductCus({
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   // Get all shops
@@ -333,7 +332,7 @@ function ListProductCus({
                           className="form-check-label"
                           htmlFor={`checkbox${index}`}
                         >
-                          {ele.title} ({_asist.number(ele.product_count)})
+                          {ele.name} ({_asist.number(ele.product_count)})
                         </label>
                       </div>
                     ))}
@@ -592,7 +591,7 @@ function ListProductCus({
                         className="form-check-label"
                         htmlFor={`checkbox${index}`}
                       >
-                        {ele.title} ({_asist.number(ele.product_count)})
+                        {ele.name} ({_asist.number(ele.product_count)})
                       </label>
                     </div>
                   ))}

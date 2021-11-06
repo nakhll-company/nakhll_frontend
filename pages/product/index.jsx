@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useRouter } from "next/router";
 
 import ListWitOutFilters from "../../containers/listProduct/ListWithOutFilters";
@@ -6,8 +6,6 @@ import ListProductCus from "../../containers/listProduct/listProductCus";
 
 function product({ word, category, ap, data }) {
   const router = useRouter();
-
-  const [cat, setCat] = useState(category);
   return (
     <>
       {ap !== "" && (
