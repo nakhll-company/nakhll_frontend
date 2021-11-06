@@ -16,12 +16,20 @@ $color-black2: #999;
         background: $color-blue;
         border-right: 10px solid $color-blue;
         transition: 0.5s;
-        overflow-y: scroll;
+        
         overflow-x: hidden;
         background-image: url("/image/LOGO_500.png");
         background-repeat: no-repeat;
-        // background-size: cover;
+        
         background-position: right center;
+        &::-webkit-scrollbar{ width: 0.5em;}
+        &::-webkit-scrollbar-track {
+            background: #1e1e24;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            background: rgb(38, 20, 126);
+        }
         ul {
             margin: 0;
             padding: 0;
