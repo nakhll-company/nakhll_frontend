@@ -1,33 +1,28 @@
 // node libraries
 import { connect } from "react-redux";
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
 import Cropper from "react-easy-crop";
 import { useForm } from "react-hook-form";
-import CheckboxTree from "react-checkbox-tree";
-
 import Assistent from "zaravand-assistent-number";
 import { useCallback, useEffect, useState } from "react";
 // components
 import MyLayout from "../../../../components/layout/Layout";
 import Loading from "../../../../components/loading/index";
+import Category from '../../../../containers/product/create/category';
 // methods
 import { getCroppedImg } from "../../../../containers/product/create/canvasUtils";
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 import { mapState } from "../../../../containers/product/methods/mapState";
 // styles
-
 import styles from "../../../../styles/pages/product/create.module.scss";
 import { errorMessage } from "../../../../containers/utils/message";
-
-const _asist = new Assistent();
-
-import { allCites } from "../../../../components/custom/data/data";
 import CheckboxTreeCities from "../../../../components/CheckboxTree/CheckboxTree";
 /**
  * component create product
  * @param {string} activeHojreh => it has slug of product
  */
 const CreateProduct = ({ activeHojreh }) => {
+  const router = useRouter();
   const _asist = new Assistent();
   // useform
   const {
@@ -37,7 +32,6 @@ const CreateProduct = ({ activeHojreh }) => {
     register,
     setError,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm({
     criteriaMode: "all",
@@ -70,6 +64,7 @@ const CreateProduct = ({ activeHojreh }) => {
         PreparationDays: AddPreparationDays,
         FK_Shop: activeHojreh,
         post_range: checkedCities,
+        new_category: submarketId
       };
       let paramsProduct = {};
       let loadDataProduct = confirm;
@@ -88,25 +83,25 @@ const CreateProduct = ({ activeHojreh }) => {
       var resultId = response.data.ID;
 
       if (resultId) {
-        let idProduct = {
-          product: resultId,
-          submarkets: [submarketId],
-        };
+        // let idProduct = {
+        //   product: resultId,
+        //   submarkets: [submarketId],
+        // };
 
-        let paramssubmarkets = {};
-        let loadDatasubmarkets = idProduct;
-        let dataUrlsubmarkets = "/api/v1/product/categories/";
-        let responsesubmarkets = await ApiRegister().apiRequest(
-          loadDatasubmarkets,
-          "post",
-          dataUrlsubmarkets,
-          true,
-          paramssubmarkets
-        );
+        // let paramssubmarkets = {};
+        // let loadDatasubmarkets = idProduct;
+        // let dataUrlsubmarkets = "/api/v1/product/categories/";
+        // let responsesubmarkets = await ApiRegister().apiRequest(
+        //   loadDatasubmarkets,
+        //   "post",
+        //   dataUrlsubmarkets,
+        //   true,
+        //   paramssubmarkets
+        // );
 
-        if (responsesubmarkets.status !== 200) {
-          errorMessage("خطایی در ایجاد محصول پیش آمده است");
-        }
+        // if (responsesubmarkets.status !== 200) {
+        //   errorMessage("خطایی در ایجاد محصول پیش آمده است");
+        // }
 
         let imagesProduct = {
           product: resultId,
@@ -134,14 +129,8 @@ const CreateProduct = ({ activeHojreh }) => {
   };
   // states
   const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState("");
-  const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
-  const [title, settitle] = useState("");
-  const [subMarkets, setSubMarkets] = useState([]);
-  const [dataChoice, setDataChoice] = useState({
-    title: "",
-    submarket: "",
-  });
+  const [categories, setCategories] = useState([]);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
@@ -164,34 +153,6 @@ const CreateProduct = ({ activeHojreh }) => {
 
   }, [checkedCities]);
 
-  const router = useRouter();
-  const { id } = router.query;
-  // copy product
-  const _editProduct = async () => {
-    let params = null;
-    let loadData = null;
-    let dataUrl = `/api/v1/landing/products/${id}/`;
-    let response = await ApiRegister().apiRequest(
-      loadData,
-      "get",
-      dataUrl,
-      true,
-      params
-    );
-    if (response.status === 200) {
-      setValue("Title", response.data.title);
-      setValue("Net_Weight", response.data.net_weight);
-      setValue("Weight_With_Packing", response.data.weight_with_packing);
-      setValue("Price", response.data.price);
-      setValue("OldPrice", response.data.old_price);
-      setValue("Description", response.data.description);
-      setPreviewImage(response.data.banners);
-      setAdd(response.data.inventory);
-      setAddPreparationDays(response.data.preparation_days);
-      setIsLoad(true);
-    }
-  };
-
   // show success page
   if (showSuccessPage) {
     router.replace("/fp/product/create/successPageProduct");
@@ -199,14 +160,11 @@ const CreateProduct = ({ activeHojreh }) => {
   // use effect
   useEffect(() => {
     window.localStorage.setItem("image", JSON.stringify([]));
-    if (id) {
-      _editProduct();
-    }
 
     const _handleRequestApi = async () => {
       let params = null;
       let loadData = null;
-      let dataUrl = "/api/v1/markets/";
+      let dataUrl = "/api/v1/categories/";
       let response = await ApiRegister().apiRequest(
         loadData,
         "get",
@@ -217,6 +175,7 @@ const CreateProduct = ({ activeHojreh }) => {
       if (response.status === 200) {
         setIsLoad(true);
         setData(response.data); //==> output: {}
+        setCategories(response.data);
       }
     };
     _handleRequestApi();
@@ -242,36 +201,6 @@ const CreateProduct = ({ activeHojreh }) => {
   const AddPreparationDayss = () => {
     setAddPreparationDays(AddPreparationDays + 1);
   };
-  // submarket
-  function clickButton(e) {
-    setSubMarkets(e.submarkets);
-    setDataChoice({ ...dataChoice, title: e.title });
-    setPage(2);
-    settitle(e.title);
-  }
-  // final Click
-  function finalClick(e) {
-    let element = document.getElementById("wrapperMarkets");
-    element.style.display = "none";
-    let elementProduct = document.getElementById("wrapper_product");
-    elementProduct.style.display = "flex";
-    setDataChoice({ ...dataChoice, submarket: e.title });
-    setPlaceholderSubmarckets(e.title);
-    setSubmarketId(e.id);
-    setPage((page) => page - 1);
-    clearErrors("submark");
-  }
-  // Go Back
-  function GoBack() {
-    if (page === 1) {
-      let element = document.getElementById("wrapperMarkets");
-      element.style.display = "none";
-      let elementProduct = document.getElementById("wrapper_product");
-      elementProduct.style.display = "flex";
-    } else {
-      setPage((page) => page - 1);
-    }
-  }
   // select Submarket
   const _selectSubmarket = () => {
     let element = document.getElementById("wrapperMarkets");
@@ -919,81 +848,14 @@ const CreateProduct = ({ activeHojreh }) => {
             </div>
           </form>
           {/* category page */}
-          <div
-            style={{
-              position: "relative",
-              gridColumn: "1/-1",
-              gridRow: "1/-1",
-              background: "#ffffff",
-            }}
-          >
-            <div id="wrapperMarkets" className={styles.markets}>
-              <div className={styles.wrapper}>
-                <div className={styles.Header}>
-                  <button
-                    style={{ outline: "unset" }}
-                    onClick={GoBack}
-                    className={styles.btn_icon}
-                  >
-                    <span
-                      className="fas fa-arrow-right"
-                      style={{
-                        fontSize: "15px",
-                        color: "#5E7488",
-                        marginLeft: "20px",
-                        marginRight: "20px",
-                      }}
-                    ></span>
-                  </button>
-                  {page === 1 && <h2 style={{ fontSize: "18px", fontWeight: "bold" }}>انتخاب دسته بندی</h2>}
-                  {page !== 1 && <h2 style={{ fontSize: "18px", fontWeight: "bold" }}> انتخاب زیر دسته از {title} </h2>}
-                </div>
-                <div className={styles.content}>
-                  {page === 1 ? (
-                    data?.map((e, index) => {
-                      return (
-                        <button
-                          key={index}
-                          style={{ outline: "unset" }}
-                          onClick={() => clickButton(e)}
-                          className={styles.btn}
-                        >
-                          <div className={styles.in_btn}>
-                            <h2 style={{ marginRight: "14px", fontSize: "16px", fontWeight: "bold" }}>{e.title}</h2>
-                            <span
-                              style={{ marginLeft: "14px" }}
-                              className="fas fa-chevron-left "
-                            ></span>
-                          </div>
-                        </button>
-                      );
-                    })
-                  ) : page === 2 ? (
-                    <>
-                      {subMarkets?.map((e, index) => {
-                        return (
-                          <button
-                            key={index}
-                            style={{ outline: "unset" }}
-                            onClick={() => finalClick(e)}
-                            className={styles.btn}
-                          >
-                            <div className={styles.in_btn}>
-                              <h2 style={{ marginRight: "14px", fontSize: "16px", fontWeight: "bold" }}>{e.title}</h2>
-                              <span
-                                style={{ marginLeft: "14px" }}
-                                className="fas fa-chevron-left "
-                              ></span>
-                            </div>
-                          </button>
-                        );
-                      })}
-                    </>
-                  ) : null}
-                </div>
-              </div>
-            </div>
-          </div>
+          <Category
+            clearErrors={clearErrors}
+            setPlaceholderSubmarckets={setPlaceholderSubmarckets}
+            data={data}
+            setSubmarketId={setSubmarketId}
+            setData={setData}
+            categories={categories}
+          />
           {/* croperProduct modal*/}
           <div id="crop_container" className={styles.wrapperIMageProduct}>
             <Cropper

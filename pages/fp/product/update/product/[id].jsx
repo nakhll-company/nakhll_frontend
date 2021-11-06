@@ -123,9 +123,9 @@ const UpdateProduct = ({ activeHojreh }) => {
     if (response.status === 200) {
       setCitiesInput(response.data.post_range_cities);
       setValue("Title", response.data.title);
-      response.data.sub_market && setValue("submark", response.data.sub_market.title);
-      response.data.sub_market && setPlaceholderSubmarckets(response.data.sub_market.title);
-      response.data.sub_market && setSubmarketId(response.data.sub_market.id);
+      response.data.new_category && setValue("submark", response.data.new_category.name);
+      response.data.new_category && setPlaceholderSubmarckets(response.data.new_category.name);
+      response.data.new_category && setSubmarketId(response.data.new_category.id);
       setValue("Net_Weight", response.data.net_weight);
       setValue("Weight_With_Packing", response.data.weight_with_packing);
       if (response.data.price > response.data.old_price) {
