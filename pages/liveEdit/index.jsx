@@ -223,7 +223,9 @@ function index() {
             <ul>
               <li>
                 <a href="">
-                  <span className={styles.icon}></span>
+                  <span className={styles.icon}>
+                    {/* <img style={{position:"absolute"}} src="/image/LOGO_500.png" alt="" /> */}
+                  </span>
                   <span className={styles.title}>بازار نخل</span>
                 </a>
               </li>
