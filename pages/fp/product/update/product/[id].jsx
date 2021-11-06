@@ -7,14 +7,15 @@ import { useCallback, useEffect, useState } from "react";
 // components
 import Loading from "../../../../../components/loading/index";
 import MyLayout from "../../../../../components/layout/Layout";
+import Category from '../../../../../containers/product/create/category';
+import CheckboxTreeCities from "../../../../../components/CheckboxTree/CheckboxTree";
 // methods
 import { errorMessage } from "../../../../../containers/utils/message";
 import { ApiRegister } from "../../../../../services/apiRegister/ApiRegister";
 import { mapState } from "../../../../../containers/product/methods/mapState";
-import { getCroppedImg } from "../../../../../containers/product/create/canvasUtils";
+import { getCroppedImg } from "../../../../../containers/product/create/methods/canvasUtils";
 // styles
 import styles from "../../../../../styles/pages/product/create.module.scss";
-import CheckboxTreeCities from "../../../../../components/CheckboxTree/CheckboxTree";
 /**
  * page update product
  * @param {string} activeHojreh => it has slug name
@@ -84,11 +85,8 @@ const UpdateProduct = ({ activeHojreh }) => {
   };
   // state
   const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState("");
-  const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
-  const [title, settitle] = useState("");
-  const [subMarkets, setSubMarkets] = useState([]);
-  const [dataChoice, setDataChoice] = useState({ title: "", submarket: "" });
+  const [categories, setCategories] = useState([]);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
@@ -162,7 +160,7 @@ const UpdateProduct = ({ activeHojreh }) => {
     const _handleRequestApi = async () => {
       let params = null;
       let loadData = null;
-      let dataUrl = "/api/v1/markets/";
+      let dataUrl = "/api/v1/categories/";
       let response = await ApiRegister().apiRequest(
         loadData,
         "get",
@@ -173,6 +171,7 @@ const UpdateProduct = ({ activeHojreh }) => {
       if (response.status === 200) {
         setIsLoad(true);
         setData(response.data);
+        setCategories(response.data);
       }
     };
     _handleRequestApi();
@@ -197,37 +196,6 @@ const UpdateProduct = ({ activeHojreh }) => {
   const AddPreparationDayss = () => {
     setAddPreparationDays(AddPreparationDays + 1);
   };
-  // submarket
-  function clickButton(e) {
-    // setSelectList(e.id);
-    setSubMarkets(e.submarkets);
-    setDataChoice({ ...dataChoice, title: e.title });
-    setPage(2);
-    settitle(e.title);
-  }
-  // finalClick
-  function finalClick(e) {
-    let element = document.getElementById("wrapperMarkets");
-    element.style.display = "none";
-    let elementProduct = document.getElementById("wrapper_product");
-    elementProduct.style.display = "flex";
-    setDataChoice({ ...dataChoice, submarket: e.title });
-    setPlaceholderSubmarckets(e.title);
-    setSubmarketId(e.id);
-    setPage((page) => page - 1);
-    clearErrors("submark");
-  }
-  // GoBack
-  function GoBack() {
-    if (page === 1) {
-      let element = document.getElementById("wrapperMarkets");
-      element.style.display = "none";
-      let elementProduct = document.getElementById("wrapper_product");
-      elementProduct.style.display = "flex";
-    } else {
-      setPage((page) => page - 1);
-    }
-  }
   // categories
   const _selectSubmarket = () => {
     let element = document.getElementById("wrapperMarkets");
@@ -873,82 +841,14 @@ const UpdateProduct = ({ activeHojreh }) => {
             </div>
           </form>
           {/* categories */}
-          <div
-            style={{
-              position: "relative",
-              gridColumn: "1/-1",
-              gridRow: "1/-1",
-              background: "#ffffff",
-            }}
-          >
-            <div id="wrapperMarkets" className={styles.markets}>
-              <div className={styles.wrapper}>
-                {/* // progress bar */}
-                <div className={styles.Header}>
-                  <button
-                    style={{ outline: "unset" }}
-                    onClick={GoBack}
-                    className={styles.btn_icon}
-                  >
-                    <span
-                      className="fas fa-arrow-right"
-                      style={{
-                        fontSize: "15px",
-                        color: "#5E7488",
-                        marginLeft: "20px",
-                        marginRight: "20px",
-                      }}
-                    ></span>
-                  </button>
-                  {page === 1 && <h2>انتخاب دسته بندی</h2>}
-                  {page !== 1 && <h2> انتخاب زیر دسته از {title} </h2>}
-                </div>
-                <div className={styles.content}>
-                  {page === 1 ? (
-                    data?.map((e, index) => {
-                      return (
-                        <button
-                          key={index}
-                          style={{ outline: "unset" }}
-                          className={styles.btn}
-                          onClick={() => clickButton(e)}
-                        >
-                          <div className={styles.in_btn}>
-                            <h2 style={{ marginRight: "14px" }}>{e.title}</h2>
-                            <span
-                              style={{ marginLeft: "14px" }}
-                              className="fas fa-chevron-left fa-2x"
-                            ></span>
-                          </div>
-                        </button>
-                      );
-                    })
-                  ) : page === 2 ? (
-                    <>
-                      {subMarkets?.map((e, index) => {
-                        return (
-                          <button
-                            key={index}
-                            style={{ outline: "unset" }}
-                            className={styles.btn}
-                            onClick={() => finalClick(e)}
-                          >
-                            <div className={styles.in_btn}>
-                              <h2 style={{ marginRight: "14px" }}>{e.title}</h2>
-                              <span
-                                style={{ marginLeft: "14px" }}
-                                className="fas fa-chevron-left fa-2x"
-                              ></span>
-                            </div>
-                          </button>
-                        );
-                      })}
-                    </>
-                  ) : null}
-                </div>
-              </div>
-            </div>
-          </div>
+          <Category
+            clearErrors={clearErrors}
+            setPlaceholderSubmarckets={setPlaceholderSubmarckets}
+            data={data}
+            setSubmarketId={setSubmarketId}
+            setData={setData}
+            categories={categories}
+          />
           {/* croperProduct */}
           <div id="crop_container" className={styles.wrapperIMageProduct}>
             <Cropper

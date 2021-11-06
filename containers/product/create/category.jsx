@@ -6,16 +6,10 @@ import styles from '../../../styles/pages/product/create.module.scss';
 const Category = ({ clearErrors, setPlaceholderSubmarckets, data, setSubmarketId, setData, categories }) => {
 
     const [title, settitle] = useState("");
-    const [subMarkets, setSubMarkets] = useState([]);
     const [page, setPage] = useState(1);
-    const [dataChoice, setDataChoice] = useState({
-        title: "",
-        submarket: "",
-    });
+
     // submarket
     function clickButton(e) {
-        setSubMarkets(e.childrens);
-        setDataChoice({ ...dataChoice, title: e.name });
         setPage(2);
         settitle(e.name);
     }
@@ -25,7 +19,6 @@ const Category = ({ clearErrors, setPlaceholderSubmarckets, data, setSubmarketId
         element.style.display = "none";
         let elementProduct = document.getElementById("wrapper_product");
         elementProduct.style.display = "flex";
-        setDataChoice({ ...dataChoice, submarket: e.name });
         setPlaceholderSubmarckets(e.name);
         setSubmarketId(e.id);
         setData(categories);
