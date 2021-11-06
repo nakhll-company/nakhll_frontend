@@ -6,9 +6,12 @@ import styles from "./AddFavorites.module.scss";
 import Assistent from "zaravand-assistent-number";
 import { useDispatch, useSelector } from "react-redux";
 import { _addToWishList } from "../../redux/actions/Wishlist/_addToWishList";
+import { _deleteFromWishList } from "../../redux/actions/Wishlist/_deleteFromWishList";
 const _asist = new Assistent();
 
 function AddFavorites() {
+  const listFav = useSelector((state) => state.WishList);
+
   const router = useRouter();
   const [openAdd, setOpenAdd] = useState(true);
   const [openList, setOpenList] = useState(false);
@@ -16,7 +19,7 @@ function AddFavorites() {
   // state for input
   const [textInput, settextInput] = useState("");
   // state for favourite
-  const [listFav, setListFav] = useState([]);
+
   const transition = useTransition(isVisible, {
     from: { x: -100, y: 800, opacity: 0 },
     enter: { x: 0, y: 0, opacity: 1 },
@@ -41,8 +44,8 @@ function AddFavorites() {
       title: textInput == "" ? "بدون عنوان" : textInput,
       ID: uuidv4(),
     };
-    setListFav([...listFav, newFav]);
-    // dispatch(_addToWishList(newFav));
+
+    dispatch(_addToWishList(newFav));
     settextInput("");
   };
 
@@ -51,7 +54,8 @@ function AddFavorites() {
   const _handel_delete_from_fav = (ID) => {
     let arr = [...listFav];
     let arrDeleted = arr.filter((el) => el.ID !== ID);
-    setListFav(arrDeleted);
+
+    dispatch(_deleteFromWishList(arrDeleted));
   };
 
   return (
