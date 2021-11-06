@@ -1,12 +1,23 @@
 import React from "react";
 import styles from "./SelectUrl.module.scss";
 import Assistent from "zaravand-assistent-number";
+import { useDispatch } from "react-redux";
+import { _showSelect_url } from "../../../redux/actions/liveEdit/_showSelect_url";
 const _asist = new Assistent();
 function SelectUrl(props) {
+  const dispatch = useDispatch();
   return (
     <>
       <div className={styles.wrap}>
         <div className={styles.content_wrapper}>
+          <span className={styles.close}>
+            <i
+              className="far fa-times-circle"
+              onClick={() => {
+                dispatch(_showSelect_url());
+              }}
+            ></i>
+          </span>
           کاربر با کلیک بر روی بنر شما به چه صفحه ای از سایت برود؟
           <br />
           شما میتوانید کاربر را به صفحه محصول یا صفحه محصولات با فیلتر های مشخص

@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { selectImage } from "../../../components/customCropper/methods/selectImage";
 
 function InputPicture({ setImageSrc, id, order = 0 }) {
+
   const refInput = useRef(null);
   const dispatch = useDispatch();
   return (
