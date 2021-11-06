@@ -12,7 +12,7 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
             <InputPicture setImageSrc={setImageSrc} id={id} order={0} />
           </div>
           <div className={styles.icon_change_url}>
-            <InputUrl />
+            <InputUrl id={id} order={0} />
           </div>
           <img
             src={data[0].src ? data[0].src : "/image/sample/main.jpg"}
@@ -31,7 +31,7 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
               <InputPicture setImageSrc={setImageSrc} id={id} order={1} />
             </div>
             <div className={styles.icon_change_url}>
-              <InputUrl />
+              <InputUrl id={id} order={1} />
             </div>
           </div>
           <div className={styles.bottom}>
@@ -46,7 +46,7 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
             </div>
 
             <div className={styles.icon_change_url}>
-              <InputUrl />
+              <InputUrl id={id} order={2} />
             </div>
           </div>
         </div>

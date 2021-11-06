@@ -8,6 +8,7 @@ import { showCropper } from "./reducers/liveEdit/showCropper";
 import { allDataLanding } from "./reducers/liveEdit/allDataLanding";
 import { selectIdFormLanding } from "./reducers/liveEdit/selectIdFormLanding";
 import { WishList } from "./reducers/WishList/WishList";
+import { showSelectUrl } from "./reducers/liveEdit/showSelectUrl";
 
 // object of All reducers
 export const reducerObject = {
@@ -19,6 +20,7 @@ export const reducerObject = {
     allDataLanding,
     selectIdFormLanding,
     WishList,
+    showSelectUrl,
 };
 
 /**

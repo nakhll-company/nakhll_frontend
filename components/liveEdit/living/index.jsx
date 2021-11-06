@@ -17,6 +17,7 @@ import SelectUrl from "../../../containers/liveEdit/SelectUrl";
 function Living({ characters, setCharacters, setOpenPlaneEditor }) {
   const dispatch = useDispatch();
   const showCrop = useSelector((state) => state.showCropper);
+  const showSelectorUrl = useSelector((state) => state.showSelectUrl);
   // const characters = useSelector((state) => state.allDataLanding);
 
   const [imageSrc, setImageSrc] = useState(null);
@@ -108,7 +109,7 @@ function Living({ characters, setCharacters, setOpenPlaneEditor }) {
       {showCrop && (
         <CustomCropper imageSrc={imageSrc} setCroppedImage={setCroppedImage} />
       )}
-      <SelectUrl />
+      {showSelectorUrl && <SelectUrl />}
 
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="characters">

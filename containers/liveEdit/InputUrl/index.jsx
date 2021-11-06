@@ -1,14 +1,23 @@
-import React from 'react';
-import styles from "./InputUrl.module.scss"
+import React from "react";
+import { useDispatch } from "react-redux";
+import { _showSelect_url } from "../../../redux/actions/liveEdit/_showSelect_url";
+
+import styles from "./InputUrl.module.scss";
+
 function InputUrl(props) {
-    return (
-        <>
-        <div className={styles.icon_change_url}>
-            <i className="fas fa-snowboarding"></i>
-        </div>
-            
-        </>
-    );
+  const dispatch = useDispatch();
+  return (
+    <>
+      <div
+        className={styles.icon_change_url}
+        onClick={() => {
+          dispatch(_showSelect_url());
+        }}
+      >
+        <i className="fas fa-snowboarding"></i>
+      </div>
+    </>
+  );
 }
 
 export default InputUrl;
