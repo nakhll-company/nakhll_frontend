@@ -1,0 +1,209 @@
+// modal wrapper
+.wrap {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(20px);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// cropper wrapper
+.content_wrapper {
+    position: relative;
+    width: 80vw;
+    height: 80vh;
+    background: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    .table {
+        height: 300px;
+        .header {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            font-weight: bold;
+            border-bottom: 2px solid #000;
+        }
+        .list {
+            .wrapItem {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                border-bottom: 1px solid #000;
+                transition: all 0.4s;
+                cursor: pointer;
+                &:hover {
+                    background: #000;
+                    color: wheat;
+                    font-size: 20px;
+                }
+                .numbers {
+                    padding-right: 5px;
+                    padding-left: 5px;
+                }
+                .icon {
+                    margin-right: auto;
+                    margin-left: 10px;
+                    font-size: 24px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    transition: all 0.4s;
+                    &:hover {
+                        color: rgb(94, 255, 0);
+                        font-size: 35px;
+                    }
+                }
+            }
+            .buttonPages {
+                display: flex;
+                .btnProductPage {
+                    height: 100px;
+                    flex-basis: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    cursor: pointer;
+                    i {
+                        font-size: 30px;
+                        transition: transform 0.4s, font-size 0.8s;
+                    }
+                    span {
+                        font-size: 16px;
+                        margin-top: 20px;
+                        font-weight: bold;
+                        letter-spacing: 1px;
+                        transition: all 0.4s;
+                    }
+                    &:hover {
+                        background-color: rgb(0, 247, 255);
+                        i {
+                            transform: rotateX(60deg);
+                            font-size: 40px;
+                        }
+                        span {
+                            font-size: 12px;
+                            margin-top: 8px;
+                        }
+                    }
+                }
+                .btnListProductPage {
+                    height: 100px;
+                    flex-basis: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    cursor: pointer;
+                    i {
+                        font-size: 30px;
+                        transition: transform 0.4s, font-size 0.8s;
+                    }
+                    span {
+                        font-size: 16px;
+                        margin-top: 20px;
+                        font-weight: bold;
+                        letter-spacing: 1px;
+                        transition: all 0.4s;
+                    }
+                    &:hover {
+                        background-color: rgb(0, 247, 255);
+                        i {
+                            transform: rotateX(60deg);
+                            font-size: 40px;
+                        }
+                        span {
+                            font-size: 12px;
+                            margin-top: 8px;
+                        }
+                    }
+                }
+            }
+        }
+        .emptyList {
+            .headerEmpty {
+                display: flex;
+                justify-content: center;
+                padding-top: 15px;
+                padding-bottom: 15px;
+                font-weight: bold;
+                border-bottom: 2px solid #000;
+                background-color: rgb(226, 132, 255);
+            }
+            .buttonPages {
+                display: flex;
+                .btnProductPage {
+                    height: 100px;
+                    flex-basis: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    cursor: pointer;
+                    i {
+                        font-size: 30px;
+                        transition: transform 0.4s, font-size 0.8s;
+                    }
+                    span {
+                        font-size: 16px;
+                        margin-top: 20px;
+                        font-weight: bold;
+                        letter-spacing: 1px;
+                        transition: all 0.4s;
+                    }
+                    &:hover {
+                        background-color: rgb(0, 247, 255);
+                        i {
+                            transform: rotateX(60deg);
+                            font-size: 40px;
+                        }
+                        span {
+                            font-size: 12px;
+                            margin-top: 8px;
+                        }
+                    }
+                }
+                .btnListProductPage {
+                    height: 100px;
+                    flex-basis: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    cursor: pointer;
+                    i {
+                        font-size: 30px;
+                        transition: transform 0.4s, font-size 0.8s;
+                    }
+                    span {
+                        font-size: 16px;
+                        margin-top: 20px;
+                        font-weight: bold;
+                        letter-spacing: 1px;
+                        transition: all 0.4s;
+                    }
+                    &:hover {
+                        background-color: rgb(0, 247, 255);
+                        i {
+                            transform: rotateX(60deg);
+                            font-size: 40px;
+                        }
+                        span {
+                            font-size: 12px;
+                            margin-top: 8px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
