@@ -11,8 +11,8 @@ function Sm_LinerFourImg({ setImageSrc, id, data }) {
           <InputPicture setImageSrc={setImageSrc} id={id} order={0} />
         </div>
         <div className={styles.icon_change_url}>
-      <InputUrl/>
-      </div>
+          <InputUrl id={id} order={0} />
+        </div>
         <img
           src={data[0].src ? data[0].src : "/image/sample/main.jpg"}
           alt=""
@@ -24,8 +24,8 @@ function Sm_LinerFourImg({ setImageSrc, id, data }) {
           <InputPicture setImageSrc={setImageSrc} id={id} order={1} />
         </div>
         <div className={styles.icon_change_url}>
-      <InputUrl/>
-      </div>
+          <InputUrl id={id} order={1} />
+        </div>
         <img
           src={data[1].src ? data[1].src : "/image/sample/linearOneImg2.jpg"}
           alt=""
@@ -37,8 +37,8 @@ function Sm_LinerFourImg({ setImageSrc, id, data }) {
           <InputPicture setImageSrc={setImageSrc} id={id} order={2} />
         </div>
         <div className={styles.icon_change_url}>
-      <InputUrl/>
-      </div>
+          <InputUrl id={id} order={2} />
+        </div>
         <img
           src={data[2].src ? data[2].src : "/image/sample/sample.jpg"}
           alt=""
@@ -50,8 +50,8 @@ function Sm_LinerFourImg({ setImageSrc, id, data }) {
           <InputPicture setImageSrc={setImageSrc} id={id} order={3} />
         </div>
         <div className={styles.icon_change_url}>
-      <InputUrl/>
-      </div>
+          <InputUrl id={id} order={3} />
+        </div>
         <img
           src={data[3].src ? data[3].src : "/image/sample/sample2.jpg"}
           alt=""

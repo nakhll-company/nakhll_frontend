@@ -12,8 +12,8 @@ function Sm_LinerTwoImg({ setImageSrc, id, data }) {
           <InputPicture setImageSrc={setImageSrc} id={id} order={0} />
         </div>
         <div className={styles.icon_change_url}>
-      <InputUrl/>
-      </div>
+          <InputUrl id={id} order={0} />
+        </div>
         <a href="">
           <img
             src={data[0].src ? data[0].src : "/image/sample/main.jpg"}
@@ -26,8 +26,8 @@ function Sm_LinerTwoImg({ setImageSrc, id, data }) {
           <InputPicture setImageSrc={setImageSrc} id={id} order={1} />
         </div>
         <div className={styles.icon_change_url}>
-      <InputUrl/>
-      </div>
+          <InputUrl id={id} order={1} />
+        </div>
         <a href="">
           <img
             src={data[1].src ? data[1].src : "/image/sample/main.jpg"}
