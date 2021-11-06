@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+
+// gsap
+import { gsap } from "gsap";
 
 import Sm_HeroSlides_Fix from "../../../components/SampelFixed/HeroSlides";
 import Sm_LinerFourImg_Fix from "../../../components/SampelFixed/Sm_LinerFourImg";
@@ -10,12 +13,37 @@ import Sm_LinerTwoImg_Fix from "../../../components/SampelFixed/Sm_LinerTwoImg";
 import styles from "./ListComponent.module.scss";
 
 function ListComponent({ _handel_add_component }) {
+  // gsap
+
+  let tl = new gsap.timeline();
+
+  // Ref
+  let partOne = useRef(null);
+  let partTwo = useRef(null);
+  let partThree = useRef(null);
+  let partFour = useRef(null);
+  let partFive = useRef(null);
+
+  useEffect(() => {
+    tl.from(partOne, {
+      opacity: 0,
+      scale: 0,
+      ease: "back",
+      duration: 0.8,
+    })
+      .from(partTwo, { opacity: 0, scale: 0, ease: "back", duration: 0.3 })
+      .from(partThree, { opacity: 0, scale: 0, ease: "back", duration: 0.3 })
+      .from(partFour, { opacity: 0, scale: 0, ease: "back", duration: 0.3 })
+      .from(partFive, { opacity: 0, scale: 0, ease: "back", duration: 0.3 });
+  }, []);
+
   return (
     <>
       <div className={styles.parent}>
         <div
           className={styles.holderItems}
           onClick={() => _handel_add_component(1)}
+          ref={(el) => (partOne = el)}
         >
           <Sm_HeroSlides_Fix />
           {/* <span>کامپوننت اسلایدر</span> */}
@@ -24,6 +52,7 @@ function ListComponent({ _handel_add_component }) {
         <div
           className={styles.holderItems}
           onClick={() => _handel_add_component(2)}
+          ref={(el) => (partTwo = el)}
         >
           <Sm_LinerOneImg_Fix />
           {/* <span>بنر تکی</span> */}
@@ -32,6 +61,7 @@ function ListComponent({ _handel_add_component }) {
         <div
           className={styles.holderItems}
           onClick={() => _handel_add_component(3)}
+          ref={(el) => (partThree = el)}
         >
           <Sm_LinerTwoImg_Fix />
           {/* <span>بنر دوتایی</span> */}
@@ -40,6 +70,7 @@ function ListComponent({ _handel_add_component }) {
         <div
           className={styles.holderItems}
           onClick={() => _handel_add_component(4)}
+          ref={(el) => (partFour = el)}
         >
           <Sm_LinerThreeImg_Fix />
           {/* <span>بنر سه تایی</span> */}
@@ -49,6 +80,7 @@ function ListComponent({ _handel_add_component }) {
         <div
           className={styles.holderItems}
           onClick={() => _handel_add_component(5)}
+          ref={(el) => (partFive = el)}
         >
           {/* <span style={{ color: "red" }}>بنر چهارتایی</span> */}
           <Sm_LinerFourImg_Fix />

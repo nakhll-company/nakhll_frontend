@@ -229,7 +229,7 @@ function index() {
                   <span className={styles.title}>بازار نخل</span>
                 </a>
               </li>
-              <li>
+              <li className={styles.activeLink}>
                 <Link href="/liveEdit/edit">
                   <a>
                     <span className={`${styles.icon} fas fa-dice-d20`}></span>
