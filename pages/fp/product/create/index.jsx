@@ -10,7 +10,7 @@ import MyLayout from "../../../../components/layout/Layout";
 import Loading from "../../../../components/loading/index";
 import Category from '../../../../containers/product/create/category';
 // methods
-import { getCroppedImg } from "../../../../containers/product/create/canvasUtils";
+import { getCroppedImg } from "../../../../containers/product/create/methods/canvasUtils";
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 import { mapState } from "../../../../containers/product/methods/mapState";
 // styles
@@ -83,26 +83,6 @@ const CreateProduct = ({ activeHojreh }) => {
       var resultId = response.data.ID;
 
       if (resultId) {
-        // let idProduct = {
-        //   product: resultId,
-        //   submarkets: [submarketId],
-        // };
-
-        // let paramssubmarkets = {};
-        // let loadDatasubmarkets = idProduct;
-        // let dataUrlsubmarkets = "/api/v1/product/categories/";
-        // let responsesubmarkets = await ApiRegister().apiRequest(
-        //   loadDatasubmarkets,
-        //   "post",
-        //   dataUrlsubmarkets,
-        //   true,
-        //   paramssubmarkets
-        // );
-
-        // if (responsesubmarkets.status !== 200) {
-        //   errorMessage("خطایی در ایجاد محصول پیش آمده است");
-        // }
-
         let imagesProduct = {
           product: resultId,
           images: previewImage,
