@@ -111,11 +111,11 @@ const ProductDetailMobile = ({ data }) => {
                   { title: "خانه", url: "/" },
                   {
                     title: detail?.new_category?.parents[0].name,
-                    url: `/product?cat=${detail?.sub_market?.market.id}`,
+                    url: `/product?cat=${detail?.new_category?.parents[0].id}`,
                   },
                   {
                     title: detail?.new_category?.name,
-                    url: `/product?cat=${detail?.sub_market?.id}`,
+                    url: `/product?cat=${detail?.new_category?.id}`,
                   },
                 ].map((value, index) => {
                   return (

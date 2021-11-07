@@ -1,23 +1,30 @@
+// node libraries
+import router from "next/router";
+import CheckboxTree from "react-checkbox-tree";
+import Assistent from "zaravand-assistent-number";
 import React, { useEffect, useState } from "react";
 import ContextListProductPage from "./Context/context";
-import CheckboxTree from "react-checkbox-tree";
-import MultiRangeSlider from "../../../components/custom/customMultiRangeSlider/MultiRangeSlider";
+import InfiniteScroll from "react-infinite-scroll-component";
+// components
+import { TopBar } from "../TopBar";
+import { errorMessage } from '../../utils/message';
+import Search from "../../../components/search/Search";
+import AddFavorites from "../../../components/AddFavorites";
+import MenuMobile from "../../../components/layout/MenuMobile";
 import { allCites } from "../../../components/custom/data/data";
 import CustomSwitch from "../../../components/custom/customSwitch";
-import { TopBar } from "../TopBar";
-import InfiniteScroll from "react-infinite-scroll-component";
-import MenuMobile from "../../../components/layout/MenuMobile";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
 import ProductCard from "../../../components/ProductCart/ProductCard";
-import Assistent from "zaravand-assistent-number";
 import CustomAccordion from "../../../components/custom/customAccordion";
-import router from "next/router";
-import Search from "../../../components/search/Search";
+import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
+import MultiRangeSlider from "../../../components/custom/customMultiRangeSlider/MultiRangeSlider";
+// methods
 import { ApiReference } from "../../../Api";
+import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+// styles
 import styles from "./listProductCus.module.scss";
-import AddFavorites from "../../../components/AddFavorites";
+
 const _asist = new Assistent();
+
 function ListProductCus({
   data,
   dataFirst,
@@ -151,9 +158,12 @@ function ListProductCus({
         setTotalcount(response.data.total_count);
 
         setIsLoading(false);
+      } else {
+        errorMessage("خطایی رخ داده است");
       }
     } catch (e) {
       setIsLoading(false);
+      errorMessage("خطایی رخ داده است");
     }
   };
 
