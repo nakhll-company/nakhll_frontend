@@ -6,6 +6,7 @@ import InputPicture from "../../../containers/liveEdit/InputPicture";
 import InputUrl from "../../../containers/liveEdit/InputUrl";
 
 function Sm_LinerOneImg({ setImageSrc, id, data }) {
+  console.log(`data`, data);
   return (
     <div className={styles.wrapper}>
       <div className={styles.icon_change_pic}>
@@ -14,6 +15,11 @@ function Sm_LinerOneImg({ setImageSrc, id, data }) {
       <div className={styles.icon_change_url}>
         <InputUrl id={id} />
       </div>
+      {data[0].title && (
+        <div className={styles.titleUrl}>
+          <span>{data[0].title}</span>
+        </div>
+      )}
       <img
         src={data[0].src ? data[0].src : "/image/sample/linearOneImg2.jpg"}
         alt=""

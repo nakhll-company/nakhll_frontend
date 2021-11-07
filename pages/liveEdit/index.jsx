@@ -125,6 +125,7 @@ function index() {
             {
               src: "",
               url: "",
+              title: "",
               order: "",
             },
           ],
@@ -138,11 +139,13 @@ function index() {
             {
               src: "",
               url: "",
+              title: "",
               order: 0,
             },
             {
               src: "",
               url: "",
+              title: "",
               order: 1,
             },
           ],
@@ -156,16 +159,19 @@ function index() {
             {
               src: "",
               url: "",
+              title: "",
               order: 0,
             },
             {
               src: "",
               url: "",
+              title: "",
               order: 1,
             },
             {
               src: "",
               url: "",
+              title: "",
               order: 2,
             },
           ],
@@ -179,21 +185,25 @@ function index() {
             {
               src: "",
               url: "",
+              title: "",
               order: 0,
             },
             {
               src: "",
               url: "",
+              title: "",
               order: 1,
             },
             {
               src: "",
               url: "",
+              title: "",
               order: 2,
             },
             {
               src: "",
               url: "",
+              title: "",
               order: 3,
             },
           ],
@@ -210,6 +220,7 @@ function index() {
               order: 0,
               color: "#a1db43",
               title: "پروفروش ترین",
+
               subTitle: "ویژه فصل پاییز",
             },
           ],
@@ -239,7 +250,7 @@ function index() {
         <div id="navigation" className={styles.navigation}>
           {!openPlaneEditor && (
             <ul>
-              <li>
+              <li style={{ pointerEvents: "none" }}>
                 <a href="">
                   <span className={styles.icon}>
                     <img

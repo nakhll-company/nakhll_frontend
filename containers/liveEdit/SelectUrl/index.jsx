@@ -3,6 +3,7 @@ import styles from "./SelectUrl.module.scss";
 import Assistent from "zaravand-assistent-number";
 import { useDispatch } from "react-redux";
 import { _showSelect_url } from "../../../redux/actions/liveEdit/_showSelect_url";
+import { _updateUrl } from "../../../redux/actions/liveEdit/_updateUrl";
 const _asist = new Assistent();
 function SelectUrl(props) {
   const dispatch = useDispatch();
@@ -48,16 +49,25 @@ function SelectUrl(props) {
             <div className={styles.header}>لیست صفحات شما</div>
             {true && (
               <div className={styles.list}>
-            {list.map((el,index)=>
-            <div key={index} className={styles.wrapItem}>
-            <span className={styles.numbers}>{_asist.number(index+1)}</span>
-            <div className={styles.item}> {el.title}</div>
-            <div className={styles.icon}>
-              <i className="fas fa-check-circle"></i>
-            </div>
-          </div>
-            )}
-                
+                {list.map((el, index) => (
+                  <div
+                    key={index}
+                    className={styles.wrapItem}
+                    onClick={() => {
+                      dispatch(_updateUrl(el.url, el.title));
+                      dispatch(_showSelect_url());
+                    }}
+                  >
+                    <span className={styles.numbers}>
+                      {_asist.number(index + 1)}
+                    </span>
+                    <div className={styles.item}> {el.title}</div>
+                    <div className={styles.icon}>
+                      <i className="fas fa-check-circle"></i>
+                    </div>
+                  </div>
+                ))}
+
                 <div className={styles.buttonPages}>
                   <div className={styles.btnProductPage}>
                     <i className="fas fa-road"></i>
