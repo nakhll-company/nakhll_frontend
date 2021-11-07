@@ -52,10 +52,19 @@ function ListProductCus({
   const [isAvailableGoods, setIsAvailableGoods] = useState(
     data.available == "true" ? true : false
   );
+  // category
 
   // Array for cateGory
-  const [categories, setCategories] = useState([]);
-  const [wantCategories, setWantCategories] = useState([]);
+  const [categories, setCategories] = useState([
+    ...(data.category
+      ? data.category.split(",").map((el) => parseInt(el))
+      : []),
+  ]);
+  const [wantCategories, setWantCategories] = useState([
+    ...(data.category
+      ? data.category.split(",").map((el) => parseInt(el))
+      : []),
+  ]);
 
   const [checkedCity, setCheckedCity] = useState([
     ...(data.city ? data.city.split(",").map((el) => parseInt(el)) : []),
@@ -254,7 +263,6 @@ function ListProductCus({
           ...(isAvailableGoods && { available: isAvailableGoods }),
           ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
           ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
-
           ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
           ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
           ...(hojreh !== "" && { shop: hojreh }),
