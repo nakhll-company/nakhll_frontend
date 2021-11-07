@@ -81,7 +81,7 @@ function Header() {
                   <form
                     onSubmit={(event) => {
                       event.preventDefault();
-                      location.replace(`/search?q=${inputSearch}&cat=`);
+                      location.replace(`/product?q=${inputSearch}&cat=`);
                     }}
                   >
                     <input
