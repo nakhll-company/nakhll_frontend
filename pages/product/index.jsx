@@ -34,7 +34,7 @@ export async function getServerSideProps(context) {
       data: context.query,
       id: context.query.id || "",
       category: context.query.cat || "",
-      word: context.query.word || "",
+      word: context.query.q || "",
       ap: context.query.ap || "",
     },
   };

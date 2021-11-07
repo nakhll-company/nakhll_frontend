@@ -45,20 +45,21 @@ function MegaMenuMobile({ category }) {
                 مشاهده همه موارد این دسته
               </a> */}
             </li>
-            {element.childrens.length > 0 && element.childrens.map((subElement, index) => (
-              <li key={index}>
-                <Link href={`/product?word=&cat=${subElement.id}`}>
-                  <a
-                    onClick={() => {
-                      document.getElementById("SlideMenu").style.right =
-                        "-100%";
-                    }}
-                  >
-                    {subElement.name}
-                  </a>
-                </Link>
-              </li>
-            ))}
+            {element.childrens.length > 0 &&
+              element.childrens.map((subElement, index) => (
+                <li key={index}>
+                  <Link href={`/product?q=&cat=${subElement.id}`}>
+                    <a
+                      onClick={() => {
+                        document.getElementById("SlideMenu").style.right =
+                          "-100%";
+                      }}
+                    >
+                      {subElement.name}
+                    </a>
+                  </Link>
+                </li>
+              ))}
           </ul>
         </li>
       ))}

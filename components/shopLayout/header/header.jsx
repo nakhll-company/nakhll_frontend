@@ -30,7 +30,7 @@ function Header() {
       if (response.status === 200) {
         setCategory(response.data);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   const dispatch = useDispatch();
@@ -44,7 +44,13 @@ function Header() {
     <>
       <header className={`${styles.header}`}>
         <div className={styles.topBanner}>
-          <Link href={Object.keys(userLog).length > 0 ? "/fp/store/create" : "https://nakhll.com/accounts/get-phone/"}>
+          <Link
+            href={
+              Object.keys(userLog).length > 0
+                ? "/fp/store/create"
+                : "https://nakhll.com/accounts/get-phone/"
+            }
+          >
             <a>
               <img src="/image/topBanner/topImg.jpg" alt="top banner" />
             </a>
@@ -75,7 +81,7 @@ function Header() {
                   <form
                     onSubmit={(event) => {
                       event.preventDefault();
-                      location.replace(`/product?search=${inputSearch}&cat=`);
+                      location.replace(`/product?q=${inputSearch}&cat=`);
                     }}
                   >
                     <input
@@ -86,7 +92,7 @@ function Header() {
                       value={inputSearch}
                     />
 
-                    <Link href={`/product?word=${inputSearch}&cat=`}>
+                    <Link href={`/product?q=${inputSearch}&cat=`}>
                       <a>
                         <i className="fas fa-search"></i>
                       </a>
@@ -178,7 +184,13 @@ function Header() {
 
       <header className={`${styles.mobile_header} `}>
         <div className={styles.topBanner}>
-          <Link href={Object.keys(userLog).length > 0 ? "/fp/store/create" : "https://nakhll.com/accounts/get-phone/"}>
+          <Link
+            href={
+              Object.keys(userLog).length > 0
+                ? "/fp/store/create"
+                : "https://nakhll.com/accounts/get-phone/"
+            }
+          >
             <a>
               <img src="/image/topBanner/topImg_mobile.jpg" alt="top banner" />
             </a>

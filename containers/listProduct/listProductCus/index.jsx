@@ -27,7 +27,7 @@ function ListProductCus({
   const [listProducts, setlistProducts] = useState([]);
 
   const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
-  const [searchWord, setSearchWord] = useState(data.search ? data.search : "");
+  const [searchWord, setSearchWord] = useState(data.q ? data.q : "");
 
   const [listWithFilter, setListWithFilter] = useState([]);
   // state for  show Ordering Modal in mobile
@@ -92,7 +92,7 @@ function ListProductCus({
       if (response.status === 200) {
         setCategories(response.data);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   const _handel_Add_category = (id) => {
@@ -194,7 +194,7 @@ function ListProductCus({
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   // Get all shops
@@ -243,20 +243,11 @@ function ListProductCus({
   }, []);
 
   useEffect(() => {
-    // let url = `
-    // ?search=${searchWord}&ordering=${whichOrdering}&ready=${isReadyForSend}&available=${isAvailableGoods}&
-
-    // discounted=${isDiscountPercentage}&city=${checkedCity.toString()}&page_size=50&min_price=
-    // ${parseInt(minPrice)}&max_price=${parseInt(
-    //   maxPrice
-    // )}&shop=${hojreh}&category: ${wantCategories.toString()}`;
-
-    // router.push(url);
     router.push(
       {
         pathname: router.pathname,
         query: {
-          search: searchWord,
+          q: searchWord,
           ordering: whichOrdering,
           ready: isReadyForSend,
           available: isAvailableGoods,
@@ -328,7 +319,11 @@ function ListProductCus({
                           id={`checkbox${index}`}
                         />
                         <label
-                          style={{ marginRight: "5px", fontSize: "15px", cursor: "pointer" }}
+                          style={{
+                            marginRight: "5px",
+                            fontSize: "15px",
+                            cursor: "pointer",
+                          }}
                           className="form-check-label"
                           htmlFor={`checkbox${index}`}
                         >
