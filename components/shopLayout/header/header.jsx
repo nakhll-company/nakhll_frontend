@@ -92,7 +92,7 @@ function Header() {
                       value={inputSearch}
                     />
 
-                    <Link href={`/search?q=${inputSearch}&cat=`}>
+                    <Link href={`/product?q=${inputSearch}&cat=`}>
                       <a>
                         <i className="fas fa-search"></i>
                       </a>
@@ -292,7 +292,7 @@ function Header() {
                   value={inputSearch}
                   placeholder="جستجو در نخل ..."
                 />
-                <Link href={`/search?q=${inputSearch}&cat=`}>
+                <Link href={`/product?q=${inputSearch}&cat=`}>
                   <a>
                     <i className="fas fa-search"></i>
                   </a>
