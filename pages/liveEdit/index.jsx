@@ -242,9 +242,19 @@ function index() {
               <li>
                 <a href="">
                   <span className={styles.icon}>
-                    {/* <img style={{position:"absolute"}} src="/image/LOGO_500.png" alt="" /> */}
+                    <img
+                      style={{
+                        height: "40px",
+                        width: "40px",
+                        pointerEvents: "none",
+                      }}
+                      src="/iconWhite.png"
+                      alt=""
+                    />
                   </span>
-                  <span className={styles.title}>بازار نخل</span>
+                  <span className={styles.title} style={{ fontSize: "bold" }}>
+                    بازار نخل
+                  </span>
                 </a>
               </li>
               <li className={styles.activeLink}>
