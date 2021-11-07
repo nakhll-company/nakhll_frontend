@@ -253,7 +253,7 @@ function ListProductCus({
           available: isAvailableGoods,
           discounted: isDiscountPercentage,
           city: checkedCity.toString(),
-          page_size: 50,
+         
           min_price: parseInt(minPrice),
           max_price: parseInt(maxPrice),
           shop: hojreh,
