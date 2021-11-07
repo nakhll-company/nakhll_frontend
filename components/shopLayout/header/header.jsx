@@ -292,7 +292,7 @@ function Header() {
                   value={inputSearch}
                   placeholder="جستجو در نخل ..."
                 />
-                <Link href={`/product?search=${inputSearch}&cat=`}>
+                <Link href={`/product?q=${inputSearch}&cat=`}>
                   <a>
                     <i className="fas fa-search"></i>
                   </a>
