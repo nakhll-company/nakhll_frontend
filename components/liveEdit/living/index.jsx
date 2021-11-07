@@ -100,7 +100,7 @@ function Living({ characters, setCharacters, setOpenPlaneEditor }) {
         break;
 
       case 6:
-        return <Sm_LinerProducts />;
+        return <Sm_LinerProducts id={id} data={data} />;
         break;
     }
   };

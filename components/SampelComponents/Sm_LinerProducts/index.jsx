@@ -3,15 +3,19 @@ import React, { useState } from "react";
 import styles from "./Sm_LinerProducts.module.scss";
 
 import Sm_product from "../Sm_product";
-function Sm_LinerProducts(props) {
+import InputUrl from "../../../containers/liveEdit/InputUrl";
+function Sm_LinerProducts({ id, data }) {
   // #a1db43
   const [toggle, setToggle] = useState(true);
-  const [name, setName] = useState("پرفروش ترین");
+  const [name, setName] = useState(data.title);
   const [toggleSubTitle, setToggleSubTitle] = useState(true);
-  const [subTitle, setSubTitle] = useState("زیرعنوان");
-  const [color, setColor] = useState("#a1db43");
+  const [subTitle, setSubTitle] = useState(data.subTitle);
+  const [color, setColor] = useState(data.color);
   return (
     <div style={{ backgroundColor: color }} className={styles.main}>
+      <div className={styles.icon_change_url}>
+        <InputUrl id={id} order={0} />
+      </div>
       <div className={styles.title}>
         <div className={styles.name}>
           {toggle ? (

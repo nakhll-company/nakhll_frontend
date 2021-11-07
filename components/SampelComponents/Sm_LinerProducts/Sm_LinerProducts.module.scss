@@ -62,6 +62,9 @@
         .palette {
             opacity: 1;
         }
+        .icon_change_url {
+            visibility: visible;
+        }
     }
 }
 
@@ -101,4 +104,12 @@
             }
         }
     }
+}
+
+.icon_change_url {
+    position: absolute;
+    left: 10px;
+    bottom: 20px;
+    visibility: hidden;
+    transition: all 0.3s ease;
 }

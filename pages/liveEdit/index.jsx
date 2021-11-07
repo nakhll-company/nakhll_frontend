@@ -198,6 +198,20 @@ function index() {
           ],
         };
       }
+      if (type == 6) {
+        newItem = {
+          ID: uuidv4(),
+          type,
+          data: {
+            src: "",
+            url: "",
+            order: 0,
+            color: "#a1db43",
+            title: "پروفروش ترین",
+            subTitle: "ویژه فصل پاییز",
+          },
+        };
+      }
 
       if (element.type == 0) {
         items.splice(index, 1);
