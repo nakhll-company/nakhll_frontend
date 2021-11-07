@@ -14,12 +14,13 @@ import Sm_LinerTwoImg from "../../components/SampelComponents/Sm_LinerTwoImg";
 import Sm_LinerThreeImg from "../../components/SampelComponents/Sm_LinerThreeImg";
 import Sm_LinerOneImg from "../../components/SampelComponents/Sm_LinerOneImg";
 import ListComponent from "../../containers/liveEdit/ListComponent";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { _updateDataLanding } from "../../redux/actions/liveEdit/_updateDataLanding";
 
 function index() {
   const [characters, setCharacters] = useState([]);
   const [openPlaneEditor, setOpenPlaneEditor] = useState(false);
-
+  const dispatch = useDispatch();
   // Animations
   // gsap
   let tl = new gsap.timeline();
@@ -202,14 +203,16 @@ function index() {
         newItem = {
           ID: uuidv4(),
           type,
-          data: {
-            src: "",
-            url: "",
-            order: 0,
-            color: "#a1db43",
-            title: "پروفروش ترین",
-            subTitle: "ویژه فصل پاییز",
-          },
+          data: [
+            {
+              src: "",
+              url: "",
+              order: 0,
+              color: "#a1db43",
+              title: "پروفروش ترین",
+              subTitle: "ویژه فصل پاییز",
+            },
+          ],
         };
       }
 
@@ -219,6 +222,7 @@ function index() {
       }
     });
     setCharacters(items);
+    dispatch(_updateDataLanding(items));
     setOpenPlaneEditor(false);
   };
   return (
