@@ -118,12 +118,13 @@ function ListProductCus({
       ready: isReadyForSend,
       available: isAvailableGoods,
       discounted: isDiscountPercentage,
-      city: checkedCity.toString(),
+
+      ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
       ...(categoryIn.length !== 0 && { new_category: categoryIn }),
       ...(wantCategories.length > 0 && {
         new_category: wantCategories.toString(),
       }),
-      // "5f239daf-9984-477a-aacd-fc3a2f8b76cb"
+
       page_size: 50,
       min_price: minPrice * 10000,
       max_price: maxPrice * 10000,
@@ -248,16 +249,18 @@ function ListProductCus({
         pathname: router.pathname,
         query: {
           q: searchWord,
-          ordering: whichOrdering,
-          ready: isReadyForSend,
-          available: isAvailableGoods,
-          discounted: isDiscountPercentage,
-          city: checkedCity.toString(),
-         
-          min_price: parseInt(minPrice),
-          max_price: parseInt(maxPrice),
-          shop: hojreh,
-          category: wantCategories.toString(),
+          ...(whichOrdering !== "" && { ordering: whichOrdering }),
+          ...(isReadyForSend && { ready: isReadyForSend }),
+          ...(isAvailableGoods && { available: isAvailableGoods }),
+          ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
+          ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
+
+          ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
+          ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
+          ...(hojreh !== "" && { shop: hojreh }),
+          ...(wantCategories.length !== 0 && {
+            category: wantCategories.toString(),
+          }),
         },
       },
       undefined,
@@ -274,8 +277,6 @@ function ListProductCus({
     categoryIn,
     hojreh,
   ]);
-
-  
 
   // for filters in sidebar
   // END
