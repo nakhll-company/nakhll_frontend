@@ -28,7 +28,10 @@
             .icon_change_pic {
                 visibility: visible;
             }
-            .icon_change_url{
+            .icon_change_url {
+                visibility: visible;
+            }
+            .titleUrl {
                 visibility: visible;
             }
         }
@@ -41,10 +44,31 @@
         border-radius: 15px;
     }
 }
-.icon_change_url{
+
+.icon_change_url {
     position: absolute;
     left: 10px;
     bottom: 10px;
     visibility: hidden;
     transition: all 0.3s ease;
+}
+
+.titleUrl {
+    position: absolute;
+    background: #000;
+    left: 50px;
+    bottom: 10px;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255);
+    backdrop-filter: blur(15px);
+    box-shadow: 5px 9.9px 9.9px hsl(0deg 0% 0% / 0.35);
+    border-radius: 7px;
+    span {
+        padding: 10px;
+        font-size: 13px;
+        font-weight: bold;
+        position: block;
+        color: #000;
+    }
 }

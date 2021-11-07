@@ -16,6 +16,11 @@ function Sm_LinerProducts({ id, data }) {
       <div className={styles.icon_change_url}>
         <InputUrl id={id} order={0} />
       </div>
+      {data[0].title && (
+        <div className={styles.titleUrl}>
+          <span>{data[0].title}</span>
+        </div>
+      )}
       <div className={styles.title}>
         <div className={styles.name}>
           {toggle ? (
