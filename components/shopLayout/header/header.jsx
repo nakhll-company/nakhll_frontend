@@ -81,7 +81,7 @@ function Header() {
                   <form
                     onSubmit={(event) => {
                       event.preventDefault();
-                      location.replace(`/product?q=${inputSearch}&cat=`);
+                      location.replace(`/search?q=${inputSearch}&cat=`);
                     }}
                   >
                     <input
@@ -92,7 +92,7 @@ function Header() {
                       value={inputSearch}
                     />
 
-                    <Link href={`/product?q=${inputSearch}&cat=`}>
+                    <Link href={`/search?q=${inputSearch}&cat=`}>
                       <a>
                         <i className="fas fa-search"></i>
                       </a>
@@ -282,7 +282,7 @@ function Header() {
               <form
                 onSubmit={(event) => {
                   event.preventDefault();
-                  location.replace(`/product?search=${inputSearch}&cat=`);
+                  location.replace(`/search?q=${inputSearch}&cat=`);
                 }}
               >
                 <input
@@ -292,7 +292,7 @@ function Header() {
                   value={inputSearch}
                   placeholder="جستجو در نخل ..."
                 />
-                <Link href={`/product?search=${inputSearch}&cat=`}>
+                <Link href={`/search?q=${inputSearch}&cat=`}>
                   <a>
                     <i className="fas fa-search"></i>
                   </a>
