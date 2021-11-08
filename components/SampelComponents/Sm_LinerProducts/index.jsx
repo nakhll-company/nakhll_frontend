@@ -7,10 +7,10 @@ import InputUrl from "../../../containers/liveEdit/InputUrl";
 function Sm_LinerProducts({ id, data }) {
   // #a1db43
   const [toggle, setToggle] = useState(true);
-  const [name, setName] = useState(data.title);
+  const [name, setName] = useState(data[0].title);
   const [toggleSubTitle, setToggleSubTitle] = useState(true);
-  const [subTitle, setSubTitle] = useState(data.subTitle);
-  const [color, setColor] = useState(data.color);
+  const [subTitle, setSubTitle] = useState(data[0].subTitle);
+  const [color, setColor] = useState(data[0].color);
   return (
     <div style={{ backgroundColor: color }} className={styles.main}>
       <div className={styles.icon_change_url}>
