@@ -5,7 +5,7 @@
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    width: 100%;
+    width: 50%;
     margin: 0;
     .one {
         margin: 2.5px 5px 2.5px 2.5px;
@@ -32,6 +32,12 @@
             aspect-ratio: 4/3;
             border-radius: 10px;
         }
+    }
+}
+
+@media (max-width: 768px) {
+    .section {
+        width: 100%;
     }
 }
 

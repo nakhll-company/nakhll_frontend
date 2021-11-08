@@ -35,27 +35,27 @@ function LinerFourImgMobile({ dataLinerFourImgMobile }) {
               </Link>
             </aside>
             <aside className={styles.section}>
+              <Link href={dataLinerFourImgMobile[2].url}>
+                <a
+                  title={dataLinerFourImgMobile[2].description}
+                  className={styles.one}
+                >
+                  <img
+                    src={dataLinerFourImgMobile[2].image}
+                    loading="lazy"
+                    alt={dataLinerFourImgMobile[2].title}
+                  />
+                </a>
+              </Link>
               <Link href={dataLinerFourImgMobile[3].url}>
                 <a
                   title={dataLinerFourImgMobile[3].description}
-                  className={styles.one}
+                  className={styles.two}
                 >
                   <img
                     src={dataLinerFourImgMobile[3].image}
                     loading="lazy"
                     alt={dataLinerFourImgMobile[3].title}
-                  />
-                </a>
-              </Link>
-              <Link href={dataLinerFourImgMobile[4].url}>
-                <a
-                  title={dataLinerFourImgMobile[4].description}
-                  className={styles.two}
-                >
-                  <img
-                    src={dataLinerFourImgMobile[4].image}
-                    loading="lazy"
-                    alt={dataLinerFourImgMobile[4].title}
                   />
                 </a>
               </Link>
