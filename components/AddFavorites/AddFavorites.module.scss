@@ -32,6 +32,16 @@
         left: 10px;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        &::-webkit-scrollbar {
+            width: 0.3em;
+        }
+        &::-webkit-scrollbar-track {
+            background: #ffffff;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: rgb(34, 77, 130);
+            border-radius: 5px;
+        }
         .header {
             .top {
                 .text {

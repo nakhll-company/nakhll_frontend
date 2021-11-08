@@ -95,7 +95,7 @@ function ListComponent({ _handel_add_component }) {
         >
           <Sm_LinerProducts_Fix />
           {/* <span>لیست</span> */}
-          {/* <div className={styles.cover}></div> */}
+          <div className={styles.cover}></div>
         </div>
 
         <div style={{ marginTop: "30px" }}></div>

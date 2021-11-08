@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTransition, animated } from "react-spring";
 import { useRouter } from "next/router";
 import { v4 as uuidv4 } from "uuid";
@@ -7,11 +7,13 @@ import Assistent from "zaravand-assistent-number";
 import { useDispatch, useSelector } from "react-redux";
 import { _addToWishList } from "../../redux/actions/Wishlist/_addToWishList";
 import { _deleteFromWishList } from "../../redux/actions/Wishlist/_deleteFromWishList";
+import { ApiReference } from "../../Api";
+import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 const _asist = new Assistent();
 
 function AddFavorites() {
-  const listFav = useSelector((state) => state.WishList);
-
+  // const listFav = useSelector((state) => state.WishList);
+  const [listFav, setListFav] = useState([]);
   const router = useRouter();
   const [openAdd, setOpenAdd] = useState(true);
   const [openList, setOpenList] = useState(false);
@@ -19,6 +21,8 @@ function AddFavorites() {
   // state for input
   const [textInput, settextInput] = useState("");
   // state for favourite
+  let apiCreat = ApiReference.PinnedURL.creat.url;
+  let apiListPinned = ApiReference.PinnedURL.PinnedList.url;
 
   const transition = useTransition(isVisible, {
     from: { x: -100, y: 800, opacity: 0 },
@@ -37,26 +41,56 @@ function AddFavorites() {
   };
 
   // function add page to favourite
-  const _handel_add_page_to_favourit = () => {
-    const url = router.asPath;
+  const _handel_add_page_to_favourit = async () => {
+    const link = router.asPath;
+
     const newFav = {
-      url,
-      title: textInput == "" ? "بدون عنوان" : textInput,
-      ID: uuidv4(),
+      link: `https://nakhll.com${link}`,
+      name: textInput == "" ? "بدون عنوان" : textInput,
     };
 
-    dispatch(_addToWishList(newFav));
+    let response = await ApiRegister().apiRequest(
+      newFav,
+      "POST",
+      apiCreat,
+      true,
+      ""
+    );
+
+    setListFav([...listFav, newFav]);
     settextInput("");
   };
 
   // function Delete form fav
 
-  const _handel_delete_from_fav = (ID) => {
+  const _handel_delete_from_fav = async (ID) => {
+    let urlDelet = `/api/v1/pinned_url/${ID}/`;
+    let deletePinned = await ApiRegister().apiRequest(
+      null,
+      "DELETE",
+      urlDelet,
+      true,
+      ""
+    );
     let arr = [...listFav];
-    let arrDeleted = arr.filter((el) => el.ID !== ID);
+    let arrDeleted = arr.filter((el) => el.id !== ID);
 
-    dispatch(_deleteFromWishList(arrDeleted));
+    setListFav(arrDeleted);
   };
+
+  useEffect(async () => {
+    let response = await ApiRegister().apiRequest(
+      null,
+      "get",
+      apiListPinned,
+      true,
+      ""
+    );
+
+    if (response.status == 200) {
+      setListFav(response.data);
+    }
+  }, []);
 
   return (
     <div className={styles.content}>
@@ -146,13 +180,13 @@ function AddFavorites() {
               )}
               {openList && (
                 <div className={styles.list}>
-                  {listFav.map((el) => (
-                    <div className={styles.items}>
-                      <a href={el.url}>
-                        <span>{el.title}</span>
+                  {listFav.map((el, index) => (
+                    <div key={index} className={styles.items}>
+                      <a href={el.link}>
+                        <span>{el.name}</span>
                       </a>
                       <i
-                        onClick={() => _handel_delete_from_fav(el.ID)}
+                        onClick={() => _handel_delete_from_fav(el.id)}
                         className="fas fa-times"
                       ></i>
                     </div>
