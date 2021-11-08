@@ -16,8 +16,20 @@ export const ApiReference = {
       url: "/api/v1/pinned_url/",
       method: "Get",
     },
-    delete:{
-      url:""
-    }
+    delete: {
+      url: "",
+    },
+  },
+  landing: {
+    creat: {
+      url: "/api/v1/shop_landing/",
+      params: { name: "", page_data: "", shop: "mamaneila" },
+      method: "post",
+    },
+    update: {
+      url: "/api/v1/shop_landing/",
+      urlPath: "/id/",
+      method: "put",
+    },
   },
 };

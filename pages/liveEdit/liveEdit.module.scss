@@ -16,17 +16,16 @@ $color-black2: #999;
         background: $color-blue;
         border-right: 5px solid $color-blue;
         transition: 0.5s;
-        
         overflow-x: hidden;
         background-image: url("/image/LOGO_500.png");
         background-repeat: no-repeat;
-        
         background-position: right center;
-        &::-webkit-scrollbar{ width: 0.5em;}
+        &::-webkit-scrollbar {
+            width: 0.5em;
+        }
         &::-webkit-scrollbar-track {
             background: #1e1e24;
         }
-        
         &::-webkit-scrollbar-thumb {
             background: rgb(38, 20, 126);
         }
@@ -46,10 +45,12 @@ $color-black2: #999;
                 cursor: pointer;
                 &:hover {
                     background: $color-white;
-                    a {
-                        color: $color-blue;
+                    .wrap_item {
+                        span {
+                            color: $color-blue;
+                        }
                     }
-                    a::before {
+                    .wrap_item::before {
                         content: "";
                         position: absolute;
                         left: 0;
@@ -61,7 +62,7 @@ $color-black2: #999;
                         box-shadow: -35px 35px 0px 10px $color-white;
                         pointer-events: none;
                     }
-                    a::after {
+                    .wrap_item::after {
                         content: "";
                         position: absolute;
                         left: 0;
@@ -74,7 +75,7 @@ $color-black2: #999;
                         pointer-events: none;
                     }
                 }
-                a {
+                .wrap_item {
                     position: relative;
                     display: block;
                     width: 100%;
@@ -171,8 +172,6 @@ $color-black2: #999;
 }
 
 // responsive design
-
-
 .activeLink {
     background: $color-white;
     a {

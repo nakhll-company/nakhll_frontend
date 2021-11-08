@@ -13,6 +13,7 @@ import Sm_LinerProducts from "../../SampelComponents/Sm_LinerProducts";
 import CustomCropper from "../../customCropper";
 import { _updateDataLanding } from "../../../redux/actions/liveEdit/_updateDataLanding";
 import SelectUrl from "../../../containers/liveEdit/SelectUrl";
+import SaveLanding from "../../../containers/liveEdit/SaveLanding";
 
 function Living({ characters, setCharacters, setOpenPlaneEditor }) {
   const dispatch = useDispatch();

@@ -16,10 +16,12 @@ import Sm_LinerOneImg from "../../components/SampelComponents/Sm_LinerOneImg";
 import ListComponent from "../../containers/liveEdit/ListComponent";
 import { useDispatch, useSelector } from "react-redux";
 import { _updateDataLanding } from "../../redux/actions/liveEdit/_updateDataLanding";
+import SaveLanding from "../../containers/liveEdit/SaveLanding";
 
 function index() {
   const [characters, setCharacters] = useState([]);
   const [openPlaneEditor, setOpenPlaneEditor] = useState(false);
+  const [openSaveLanding, setOpenSaveLanding] = useState(false);
   const dispatch = useDispatch();
   // Animations
   // gsap
@@ -270,14 +272,14 @@ function index() {
               </li>
               <li className={styles.activeLink}>
                 <Link href="/liveEdit/edit">
-                  <a>
+                  <a className={styles.wrap_item}>
                     <span className={`${styles.icon} fas fa-dice-d20`}></span>
                     <span className={styles.title}>چیدمان</span>
                   </a>
                 </Link>
               </li>
               <li>
-                <a href="">
+                <a className={styles.wrap_item} href="">
                   <span
                     className={`${styles.icon}  fab fa-fort-awesome`}
                   ></span>
@@ -285,16 +287,19 @@ function index() {
                 </a>
               </li>
               <li>
-                <a href="">
+                <a className={styles.wrap_item} href="">
                   <span className={`${styles.icon} fas fa-scroll`}></span>
                   <span className={styles.title}>پیش نمایش</span>
                 </a>
               </li>
               <li>
-                <a href="">
+                <div
+                  onClick={() => setOpenSaveLanding(true)}
+                  className={styles.wrap_item}
+                >
                   <span className={`${styles.icon}   fas fa-hat-wizard`}></span>
                   <span className={styles.title}>ثبت نهایی</span>
-                </a>
+                </div>
               </li>
             </ul>
           )}
@@ -330,6 +335,9 @@ function index() {
             setOpenPlaneEditor={setOpenPlaneEditor}
           />
         </div>
+        {openSaveLanding && (
+          <SaveLanding setOpenSaveLanding={setOpenSaveLanding} />
+        )}
 
         <style jsx>{`
           .active_side_bar_liveEdit {
