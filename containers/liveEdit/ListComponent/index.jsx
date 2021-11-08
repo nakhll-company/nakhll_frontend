@@ -23,6 +23,7 @@ function ListComponent({ _handel_add_component }) {
   let partThree = useRef(null);
   let partFour = useRef(null);
   let partFive = useRef(null);
+  let partSix = useRef(null);
 
   useEffect(() => {
     tl.from(partOne, {
@@ -34,7 +35,8 @@ function ListComponent({ _handel_add_component }) {
       .from(partTwo, { opacity: 0, scale: 0, ease: "back", duration: 0.3 })
       .from(partThree, { opacity: 0, scale: 0, ease: "back", duration: 0.3 })
       .from(partFour, { opacity: 0, scale: 0, ease: "back", duration: 0.3 })
-      .from(partFive, { opacity: 0, scale: 0, ease: "back", duration: 0.3 });
+      .from(partFive, { opacity: 0, scale: 0, ease: "back", duration: 0.3 })
+      .from(partSix, { opacity: 0, scale: 0, ease: "back", duration: 0.3 });
   }, []);
 
   return (
@@ -89,10 +91,11 @@ function ListComponent({ _handel_add_component }) {
         <div
           className={styles.holderItems}
           onClick={() => _handel_add_component(6)}
+          ref={(el) => (partSix = el)}
         >
           <Sm_LinerProducts_Fix />
           {/* <span>لیست</span> */}
-          <div className={styles.cover}></div>
+          {/* <div className={styles.cover}></div> */}
         </div>
 
         <div style={{ marginTop: "30px" }}></div>

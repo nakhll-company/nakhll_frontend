@@ -14,11 +14,11 @@ function Sm_product_Fix(props) {
           <span>نام محصول</span>
         </div>
         <div className={styles.product_detail}>
-          <span>نام استان</span>
+          <span> استان</span>
           <span>
             ‍<i className="fa fa-angle-left px-1"></i>
           </span>
-          <span>نام حجره</span>
+          <span> حجره</span>
         </div>
         <div className={styles.product_price}>
           <div className={styles.plus}>
@@ -26,7 +26,7 @@ function Sm_product_Fix(props) {
               <i className="fas fa-plus"></i>
             </span>
           </div>
-          <div className={styles.price}>{_asist.PSeparator(250000)}</div>
+          <div className={styles.price}>{_asist.PSeparator(25000)}</div>
         </div>
       </div>
     </>

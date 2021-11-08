@@ -11,55 +11,23 @@ function Sm_LinerProducts_Fix(props) {
     <div className={styles.main}>
       <div className={styles.title}>
         <div className={styles.name}>
-          {toggle ? (
-            <span
-              className={styles.mainTitle}
-              onDoubleClick={() => {
-                setToggle(false);
-              }}
-            >
-              {name}
-            </span>
-          ) : (
-            <input
-              className={styles.input}
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              onKeyDown={(event) => {
-                if (event.key === "Enter" || event.key === "Escape") {
-                  setToggle(true);
-                  event.preventDefault();
-                  event.stopPropagation();
-                }
-              }}
-            />
-          )}
+          <span
+            className={styles.mainTitle}
+            onDoubleClick={() => {
+              setToggle(false);
+            }}
+          >
+            {name}
+          </span>
 
-          {toggleSubTitle ? (
-            <span
-              className={styles.subTitle}
-              onDoubleClick={() => {
-                setToggleSubTitle(false);
-              }}
-            >
-              {subTitle}
-            </span>
-          ) : (
-            <input
-              className={styles.input}
-              type="text"
-              value={subTitle}
-              onChange={(e) => setSubTitle(e.target.value)}
-              onKeyDown={(event) => {
-                if (event.key === "Enter" || event.key === "Escape") {
-                  setToggleSubTitle(true);
-                  event.preventDefault();
-                  event.stopPropagation();
-                }
-              }}
-            />
-          )}
+          <span
+            className={styles.subTitle}
+            onDoubleClick={() => {
+              setToggleSubTitle(false);
+            }}
+          >
+            {subTitle}
+          </span>
         </div>
         <div className={styles.seeAll}>
           <div className={styles.wrapBtn}>
@@ -68,9 +36,6 @@ function Sm_LinerProducts_Fix(props) {
         </div>
       </div>
       <div className={styles.wrap}>
-        <Sm_product />
-        <Sm_product />
-        <Sm_product />
         <Sm_product />
         <Sm_product />
         <Sm_product />
