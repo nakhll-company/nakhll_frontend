@@ -45,7 +45,7 @@ function CustomCropper({ imageSrc, setCroppedImage }) {
               crop={crop}
               rotation={rotation}
               zoom={zoom}
-              aspect={3 / 1}
+              aspect={4 / 3}
               onCropChange={setCrop}
               onRotationChange={setRotation}
               onCropComplete={onCropComplete}
