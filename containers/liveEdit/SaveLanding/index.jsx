@@ -48,6 +48,15 @@ function SaveLanding({ setOpenSaveLanding }) {
             <div className={styles.header}>ذخیره صفحه</div>
             <button onClick={_handel_creat_landing}>ایجاد</button>
           </div>
+          <div className={styles.content_save}>
+            <div className={styles.name}>
+              <span>نام صفحه</span>
+              <input type="text" />
+            </div>
+            <div className={styles.wrap_btn}>
+              <button>ذخیره صفحه</button>
+            </div>
+          </div>
         </div>
       </div>
     </>

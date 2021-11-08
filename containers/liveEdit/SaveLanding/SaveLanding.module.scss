@@ -17,7 +17,7 @@
 .content_wrapper {
     position: relative;
     width: 80vw;
-    height: 70vh;
+    height: 40vh;
     // background: #fff;
     padding: 10px;
     border-radius: 10px;
@@ -37,13 +37,62 @@
         }
     }
     .table {
-        height: 300px;
         .header {
             display: flex;
             justify-content: center;
             padding: 10px;
             font-weight: bold;
             border-bottom: 2px solid #000;
+        }
+    }
+    .content_save {
+        height: 200px;
+        .name {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            span {
+                font-size: 16px;
+                font-weight: bold;
+                letter-spacing: 1px;
+                margin-left: 10px;
+            }
+            input {
+                height: 50px;
+                width: 80%;
+                background: rgba(255, 255, 255, 0.5);
+                border: none;
+                border-radius: 5px;
+                outline: none;
+                padding-right: 10px;
+                color: rgb(9, 0, 139);
+                font-size: 18px;
+                font-weight: bold;
+            }
+        }
+        .wrap_btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            margin-top: 30px;
+            button {
+                height: 50px;
+                width: 50%;
+                background: rgb(9, 0, 139);
+                border: none;
+                border-radius: 5px;
+                outline: none;
+                color: #fff;
+                font-size: 18px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                &:hover {
+                    background: rgb(0, 0, 139);
+                }
+            }
         }
     }
 }
