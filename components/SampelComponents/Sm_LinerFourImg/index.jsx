@@ -3,12 +3,20 @@ import InputPicture from "../../../containers/liveEdit/InputPicture";
 import InputUrl from "../../../containers/liveEdit/InputUrl";
 import styles from "./Sm_LinerFourImg.module.scss";
 
+// type==============5
+// aspect=================1.33
+
 function Sm_LinerFourImg({ setImageSrc, id, data }) {
   return (
     <div className={styles.wrap}>
       <div className={styles.wrapImg}>
         <div className={styles.icon_change_pic}>
-          <InputPicture setImageSrc={setImageSrc} id={id} order={0} />
+          <InputPicture
+            setImageSrc={setImageSrc}
+            id={id}
+            order={0}
+            ratio={1.33}
+          />
         </div>
         <div className={styles.icon_change_url}>
           <InputUrl id={id} order={0} />

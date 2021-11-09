@@ -3,12 +3,15 @@ import Link from "next/link";
 import styles from "./Sm_LinerThreeImg.module.scss";
 import InputPicture from "../../../containers/liveEdit/InputPicture";
 import InputUrl from "../../../containers/liveEdit/InputUrl";
+
+// type====================4
+// aspect ratio======6/1  && 3/1
 function Sm_LinerThreeImg({ setImageSrc, id, data }) {
   return (
     <div>
       <div className={styles.wrapper}>
         <div className={styles.icon_change_pic}>
-          <InputPicture setImageSrc={setImageSrc} id={id} order={0} />
+          <InputPicture setImageSrc={setImageSrc} id={id} order={0} ratio={6} />
         </div>
         <div className={styles.icon_change_url}>
           <InputUrl id={id} order={0} />
@@ -28,7 +31,12 @@ function Sm_LinerThreeImg({ setImageSrc, id, data }) {
       <div className={styles.wrap}>
         <div className={styles.right}>
           <div className={styles.icon_change_pic}>
-            <InputPicture setImageSrc={setImageSrc} id={id} order={1} />
+            <InputPicture
+              setImageSrc={setImageSrc}
+              id={id}
+              order={1}
+              ratio={3}
+            />
           </div>
           <div className={styles.icon_change_url}>
             <InputUrl id={id} order={1} />
@@ -45,7 +53,12 @@ function Sm_LinerThreeImg({ setImageSrc, id, data }) {
         </div>
         <div className={styles.left}>
           <div className={styles.icon_change_pic}>
-            <InputPicture setImageSrc={setImageSrc} id={id} order={2} />
+            <InputPicture
+              setImageSrc={setImageSrc}
+              id={id}
+              order={2}
+              ratio={3}
+            />
           </div>
           <div className={styles.icon_change_url}>
             <InputUrl id={id} order={2} />

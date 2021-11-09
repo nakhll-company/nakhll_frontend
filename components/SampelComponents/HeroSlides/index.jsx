@@ -3,13 +3,20 @@ import InputPicture from "../../../containers/liveEdit/InputPicture";
 import InputUrl from "../../../containers/liveEdit/InputUrl";
 import styles from "./HeroSlides.module.scss";
 
+// type============1
+//  ratio========2/1
 function Sm_HeroSlides({ setImageSrc, id, data }) {
   return (
     <div className={styles.content}>
       <div className={styles.slider}>
         <div className={styles.right}>
           <div className={styles.icon_change_pic}>
-            <InputPicture setImageSrc={setImageSrc} id={id} order={0} />
+            <InputPicture
+              setImageSrc={setImageSrc}
+              id={id}
+              order={0}
+              ratio={2}
+            />
           </div>
           <div className={styles.icon_change_url}>
             <InputUrl id={id} order={0} />
@@ -33,7 +40,12 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
               />
             </div>
             <div className={styles.icon_change_pic}>
-              <InputPicture setImageSrc={setImageSrc} id={id} order={1} />
+              <InputPicture
+                setImageSrc={setImageSrc}
+                id={id}
+                order={1}
+                ratio={2}
+              />
             </div>
             <div className={styles.icon_change_url}>
               <InputUrl id={id} order={1} />

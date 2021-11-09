@@ -6,11 +6,12 @@ import { getCroppedImg } from "./methods/getCropImage";
 
 // scss
 import styles from "./customCropper.module.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { showCropper } from "../../redux/actions/liveEdit/showCropper";
 import { _updatePicture } from "../../redux/actions/liveEdit/_updatePicture";
 function CustomCropper({ imageSrc, setCroppedImage }) {
-  // const [imageSrc, setImageSrc] = useState(null);
+  const Component = useSelector((state) => state.selectIdFormLanding);
+  console.log(`typecomponent`, Component);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [rotation, setRotation] = useState(0);
   const [zoom, setZoom] = useState(1);
@@ -34,6 +35,7 @@ function CustomCropper({ imageSrc, setCroppedImage }) {
       console.error(e);
     }
   }, [imageSrc, croppedAreaPixels, rotation]);
+  let b = Component.ratio;
 
   return (
     <>
@@ -45,7 +47,9 @@ function CustomCropper({ imageSrc, setCroppedImage }) {
               crop={crop}
               rotation={rotation}
               zoom={zoom}
-              aspect={3 / 1}
+              // type certain aspect
+              // {Component.typeComponent == 2 && `aspect={10 / 1}`}
+              aspect={b / 1}
               onCropChange={setCrop}
               onRotationChange={setRotation}
               onCropComplete={onCropComplete}
