@@ -45,16 +45,16 @@ function index(props) {
       case 5:
         return <LinerFourImgMobile dataLinerFourImgMobile={data.data} />;
         break;
-      //   case 6:
-      //     return (
-      //       <LinerProducts
-      //         title={type.title}
-      //         subTitle={type.subtitle}
-      //         dataLinerProducts={data.data}
-      //         url={type.url}
-      //       />
-      //     );
-      //     break;
+      case 6:
+        return (
+          <LinerProducts
+            title={data.data.title}
+            // subTitle={type.subtitle}
+            dataLinerProducts={data.data}
+            url={data.data.url}
+          />
+        );
+        break;
       //   case 7:
       //     return (
       //       <LinerProductsBg
