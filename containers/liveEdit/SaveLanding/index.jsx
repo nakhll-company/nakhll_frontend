@@ -17,7 +17,7 @@ function SaveLanding({ setOpenSaveLanding }) {
   const [idLanding, setIdLanding] = useState("4");
   const dispatch = useDispatch();
   const landing = useSelector((state) => state.allDataLanding);
-  console.log(`landing`, landing);
+
   let ansapi = {
     name: "milad",
     shop: "mamaneila",
@@ -46,8 +46,9 @@ function SaveLanding({ setOpenSaveLanding }) {
       true,
       ""
     );
-    console.log(`response`, response);
+
     setInputName("");
+    setOpenSaveLanding(false);
   };
 
   return (
