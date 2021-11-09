@@ -22,9 +22,7 @@ function Sm_LinerThreeImg({ setImageSrc, id, data }) {
           </div>
         )}
         <img
-          src={
-            data[0].image ? data[0].image : "/image/sample/linearOneImg2.jpg"
-          }
+          src={data[0].image ? data[0].image : "/image/sample/6_1.jpg"}
           alt=""
         />
       </div>

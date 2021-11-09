@@ -6,7 +6,7 @@ function Sm_LinerOneImg_Fix(props) {
     <div className={styles.wrapper}>
       <Link href="">
         <a>
-          <img src="/image/sample/linearOneImg2.jpg" alt="" />
+          <img src="/image/sample/6_1.jpg" alt="" />
         </a>
       </Link>
     </div>
