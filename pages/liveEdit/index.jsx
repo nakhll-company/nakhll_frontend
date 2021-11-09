@@ -125,7 +125,7 @@ function index() {
           type,
           data: [
             {
-              src: "",
+              image: "",
               url: "",
               title: "",
               order: "",
@@ -139,13 +139,13 @@ function index() {
           type,
           data: [
             {
-              src: "",
+              image: "",
               url: "",
               title: "",
               order: 0,
             },
             {
-              src: "",
+              image: "",
               url: "",
               title: "",
               order: 1,
@@ -159,19 +159,19 @@ function index() {
           type,
           data: [
             {
-              src: "",
+              image: "",
               url: "",
               title: "",
               order: 0,
             },
             {
-              src: "",
+              image: "",
               url: "",
               title: "",
               order: 1,
             },
             {
-              src: "",
+              image: "",
               url: "",
               title: "",
               order: 2,
@@ -185,25 +185,25 @@ function index() {
           type,
           data: [
             {
-              src: "",
+              image: "",
               url: "",
               title: "",
               order: 0,
             },
             {
-              src: "",
+              image: "",
               url: "",
               title: "",
               order: 1,
             },
             {
-              src: "",
+              image: "",
               url: "",
               title: "",
               order: 2,
             },
             {
-              src: "",
+              image: "",
               url: "",
               title: "",
               order: 3,
@@ -217,7 +217,7 @@ function index() {
           type,
           data: [
             {
-              src: "",
+              image: "",
               url: "",
               order: 0,
               color: "#a1db43",

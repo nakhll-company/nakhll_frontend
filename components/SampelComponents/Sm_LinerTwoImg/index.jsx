@@ -16,7 +16,7 @@ function Sm_LinerTwoImg({ setImageSrc, id, data }) {
         </div>
         <a href="">
           <img
-            src={data[0].src ? data[0].src : "/image/sample/main.jpg"}
+            src={data[0].image ? data[0].image : "/image/sample/main.jpg"}
             alt=""
           />
         </a>
@@ -30,7 +30,7 @@ function Sm_LinerTwoImg({ setImageSrc, id, data }) {
         </div>
         <a href="">
           <img
-            src={data[1].src ? data[1].src : "/image/sample/main.jpg"}
+            src={data[1].image ? data[1].image : "/image/sample/main.jpg"}
             alt=""
           />
         </a>
