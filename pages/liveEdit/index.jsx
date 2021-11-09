@@ -253,7 +253,7 @@ function index() {
           {!openPlaneEditor && (
             <ul>
               <li style={{ pointerEvents: "none" }}>
-                <a href="">
+                <a className={styles.wrap_item} href="">
                   <span className={styles.icon}>
                     <img
                       style={{
