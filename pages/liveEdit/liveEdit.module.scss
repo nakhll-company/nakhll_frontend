@@ -163,6 +163,41 @@ $color-black2: #999;
                     object-fit: cover;
                 }
             }
+            .wrap_item {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-decoration: none;
+                color: $color-blue;
+                padding-left: 10px;
+                cursor: pointer;
+                transition: all 0.4s;
+                .icon {
+                    position: relative;
+                    display: block;
+                    min-width: 60px;
+                    height: 60px;
+                    line-height: 60px;
+                    font-size: 30px;
+                    text-align: center;
+                    margin-top: auto;
+                    margin-bottom: auto;
+                }
+                .title {
+                    position: relative;
+                    display: block;
+                    height: 60px;
+                    text-align: center;
+                    line-height: 60px;
+                    text-align: start;
+                    white-space: nowrap;
+                    font-size: bold;
+                }
+                &:hover {
+                    background: #ccc;
+                }
+            }
         }
         @media (max-width: 991px) {
             width: 100%;

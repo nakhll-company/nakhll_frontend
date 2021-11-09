@@ -292,7 +292,7 @@ function index() {
                   <span className={styles.title}>پیش نمایش</span>
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <div
                   onClick={() => setOpenSaveLanding(true)}
                   className={styles.wrap_item}
@@ -300,7 +300,7 @@ function index() {
                   <span className={`${styles.icon}   fas fa-hat-wizard`}></span>
                   <span className={styles.title}>ثبت نهایی</span>
                 </div>
-              </li>
+              </li> */}
             </ul>
           )}
           {openPlaneEditor && (
@@ -322,6 +322,13 @@ function index() {
               }}
             >
               <i style={{ fontSize: "25px" }} className="fas fa-bars icon"></i>
+            </div>
+            <div
+              onClick={() => setOpenSaveLanding(true)}
+              className={styles.wrap_item}
+            >
+              <span className={`${styles.icon}   fas fa-hat-wizard`}></span>
+              <span className={styles.title}>ثبت نهایی</span>
             </div>
             {/* userImg */}
             <div ref={(el) => (profile = el)} className={styles.user}>
