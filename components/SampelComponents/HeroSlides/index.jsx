@@ -27,7 +27,7 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
             </div>
           )}
           <img
-            src={data[0].image ? data[0].image : "/image/sample/main.jpg"}
+            src={data[0].image ? data[0].image : "/image/sample/2_1.jpg"}
             alt=""
           />
         </div>
@@ -35,7 +35,7 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
           <div className={styles.top}>
             <div className={styles.holderPic}>
               <img
-                src={data[1].image ? data[1].image : "/image/sample/sample.jpg"}
+                src={data[1].image ? data[1].image : "/image/sample/2_1_M.jpg"}
                 alt=""
               />
             </div>
@@ -59,9 +59,7 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
           <div className={styles.bottom}>
             <div className={styles.holderPic}>
               <img
-                src={
-                  data[2].image ? data[2].image : "/image/sample/sample2.jpg"
-                }
+                src={data[2].image ? data[2].image : "/image/sample/2_1_M.jpg"}
                 alt=""
               />
             </div>

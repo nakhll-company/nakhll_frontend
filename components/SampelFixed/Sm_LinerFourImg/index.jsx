@@ -4,13 +4,13 @@ import styles from "./Sm_LinerFourImg.module.scss";
 function Sm_LinerFourImg_Fix(props) {
   return (
     <div className={styles.wrap}>
-      <img src="/image/sample/main.jpg" alt="" />
+      <img src="/image/sample/4_3.jpg" alt="" />
 
-      <img src="/image/sample/linearOneImg2.jpg" alt="" />
+      <img src="/image/sample/4_3.jpg" alt="" />
 
-      <img src="/image/sample/sample.jpg" alt="" />
+      <img src="/image/sample/4_3.jpg" alt="" />
 
-      <img src="/image/sample/sample2.jpg" alt="" />
+      <img src="/image/sample/4_3.jpg" alt="" />
     </div>
   );
 }

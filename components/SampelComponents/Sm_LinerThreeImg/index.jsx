@@ -47,7 +47,7 @@ function Sm_LinerThreeImg({ setImageSrc, id, data }) {
             </div>
           )}
           <img
-            src={data[1].image ? data[1].image : "/image/sample/main.jpg"}
+            src={data[1].image ? data[1].image : "/image/sample/3_1.jpg"}
             alt=""
           />
         </div>
@@ -69,7 +69,7 @@ function Sm_LinerThreeImg({ setImageSrc, id, data }) {
             </div>
           )}
           <img
-            src={data[2].image ? data[2].image : "/image/sample/main.jpg"}
+            src={data[2].image ? data[2].image : "/image/sample/3_1.jpg"}
             alt=""
           />
         </div>
