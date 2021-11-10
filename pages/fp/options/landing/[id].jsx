@@ -33,9 +33,9 @@ const Landing = () => {
             </Head>
             {featureActive.length > 0 ?
                 width < breakpoint ?
-                    <MobileLanding landingList={landingList} id={id} />
+                    <MobileLanding landingList={landingList} id={id} activeHojreh={activeHojreh} setLandingList={setLandingList} />
                     :
-                    <DesktopLanding landingList={landingList} id={id} />
+                    <DesktopLanding landingList={landingList} id={id} activeHojreh={activeHojreh} setLandingList={setLandingList} />
                 :
                 <LandingDetail id={id} activeHojreh={activeHojreh} />
             }

@@ -3,12 +3,15 @@ import Link from 'next/link';
 import Assistent from "zaravand-assistent-number";
 // component
 import CustomSwitch from '../../components/custom/customSwitch';
+// methods
+import { deleteItemListLanding } from './methods/deleteItemListLanding';
+import { activeListItemLanding } from './methods/activeListItemLanding';
 // scss
 import styles from './scss/desktopLanding.module.scss';
 
 const _asist = new Assistent();
 
-const DesktopLanding = ({ landingList, id }) => {
+const DesktopLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
 
     return (
         <div className={styles.wrapper}>
@@ -22,7 +25,6 @@ const DesktopLanding = ({ landingList, id }) => {
                 </Link>
                 <Link href={`/fp/options/landing/orders?id=${id}`}>
                     <a className={styles.link_add}>
-                        {/* <i className="fa fa-plus ms-2"></i> */}
                         سفارشات
                     </a>
                 </Link>
@@ -45,11 +47,21 @@ const DesktopLanding = ({ landingList, id }) => {
                                 <td>{_asist.number(index + 1)}</td>
                                 <td>{value.name}</td>
                                 <td>{_asist.number(value.created_at)}</td>
-                                <td className="d-flex justify-content-center pb-3">
+                                <td className="d-flex justify-content-center pb-3" onClick={() => {
+                                    value.status === "inactive" && activeListItemLanding(value.id, activeHojreh, setLandingList);
+                                }}>
                                     <CustomSwitch defaultChecked={value.status === "active" ? true : false} id="active" />
                                 </td>
-                                <td><i className="fas fa-eye"></i></td>
-                                <td><i className="far fa-trash-alt"></i></td>
+                                <td>
+                                    <Link href={`/showLanding/${id}`}>
+                                        <a>
+                                            <i className="fas fa-eye"></i>
+                                        </a>
+                                    </Link>
+                                </td>
+                                <td><i className="far fa-trash-alt" style={{ cursor: "pointer" }} onClick={() => {
+                                    deleteItemListLanding(value.id, activeHojreh, setLandingList);
+                                }}></i></td>
                             </tr>
                         )
                     })}
