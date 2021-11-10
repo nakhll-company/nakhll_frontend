@@ -4,6 +4,7 @@ import styles from "./Sm_LinerProducts.module.scss";
 
 import Sm_product from "../Sm_product";
 import InputUrl from "../../../containers/liveEdit/InputUrl";
+import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 function Sm_LinerProducts({ id, data }) {
   console.log(`data`, data);
   // #a1db43
@@ -12,7 +13,76 @@ function Sm_LinerProducts({ id, data }) {
   const [toggleSubTitle, setToggleSubTitle] = useState(true);
   const [subTitle, setSubTitle] = useState(data[0].subTitle);
   const [color, setColor] = useState(data[0].color);
+  useEffect(async () => {
+    if (data[0].url !== "") {
+      console.log(`data[0].url `, data[0].url);
+      let Queries = { page_size: "6" };
+      //
 
+      let api =
+        "https://nakhll.com/api/v1/products/?search=%D9%84%D8%A8%D8%A7%D8%B3&ordering=&ready=false&available=false&discounted=false&page_size=6&min_price=0&max_price=100000000&shop=";
+
+      // url
+      // let urlpa =
+      //   "http://localhost:3007/product/?q=&ordering=-Price&ready=true&available=true&discounted=true&city=467&min_price=1662&shop=Roya&category=306";
+      let url = data[0].url;
+      if (url.split("?")[1]) {
+        let partTwoUrl = url.split("?")[1].split("&");
+        let arrayString = partTwoUrl.map((el) => el.split("="));
+
+        arrayString.map((el) => {
+          if (el[0] == "q") {
+            Queries["search"] = decodeURI(el[1]);
+          } else {
+            Queries[el[0]] = el[1];
+          }
+        });
+      }
+
+      if (Object.keys(Queries).length > 1) {
+        let one_Component = await ApiRegister().apiRequest(
+          null,
+          "GET",
+          "https://nakhll.com/api/v1/products/",
+          true,
+          Queries
+        );
+      }
+
+      let samp = [
+        {
+          q: "",
+        },
+        {
+          ordering: "-Price",
+        },
+        {
+          ready: "true",
+        },
+        {
+          available: "true",
+        },
+        {
+          discounted: "true",
+        },
+        {
+          city: "467",
+        },
+        {
+          min_price: "1662",
+        },
+        {
+          shop: "Roya",
+        },
+        {
+          category: "306",
+        },
+      ];
+    }
+  }, [data[0].url]);
+  // if (data[0].url !== "") {
+  //   alert("hi");
+  // }
   return (
     <div style={{ backgroundColor: color }} className={styles.main}>
       <div className={styles.icon_change_url}>
