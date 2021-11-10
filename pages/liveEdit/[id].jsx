@@ -18,7 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { _updateDataLanding } from "../../redux/actions/liveEdit/_updateDataLanding";
 import SaveLanding from "../../containers/liveEdit/SaveLanding";
 
-function index() {
+function index({ idLanding }) {
   const [characters, setCharacters] = useState([]);
   const [openPlaneEditor, setOpenPlaneEditor] = useState(false);
   const [openSaveLanding, setOpenSaveLanding] = useState(false);
@@ -30,70 +30,30 @@ function index() {
   let profile = useRef(null);
   let toggleMenu = useRef(null);
   const list = [
-    // {
-    //   type: 6,
-    //   component: <Sm_LinerProducts />,
-    //   ID: "c22xzczxc6da83-9526-465a-97d4-9f112a0dc636",
-    //   slug: "Irana",
-    //   title: "نقش و نگار",
-    // },
-    // {
-    //   type: 5,
-    //   component: <Sm_LinerFourImg />,
-    //   ID: "c226da83czxvzxvz-9526-465a-97d4-9f112a0dc636",
-    //   slug: "Irana",
-    //   title: "نقش و نگار",
-    // },
     {
-      type: 0,
-      component: <Sm_InputPlace />,
-      ID: "46153726-<zczxcvxz3f09-4bb1-967c-ebd55c9751ba",
-      slug: "mohammadi",
-      title: "محمدی",
+      ID: uuidv4(),
+      type: 1,
+      data: [
+        {
+          image: "",
+          url: "",
+          title: "",
+          order: 0,
+        },
+        {
+          image: "",
+          url: "",
+          title: "",
+          order: 1,
+        },
+        {
+          image: "",
+          url: "",
+          title: "",
+          order: 2,
+        },
+      ],
     },
-    // {
-    //   type: 1,
-    //   component: <Sm_HeroSlides />,
-    //   ID: "f3501a78-2b0e-4zxvzxvzx302-9d1c-f282daa5592e",
-    //   slug: "Roya",
-    //   title: "رویا",
-    // },
-    // {
-    //   type: 2,
-    //   component: <Sm_LinerOneImg />,
-    //   ID: "c226da83-9526-465a-9zc<zcz7d4-9f112a0dc636",
-    //   slug: "Irana",
-    //   title: "نقش و نگار",
-    //   data: {
-    //     src: "",
-    //     url: "",
-    //   },
-    // },
-    // {
-    //   type: 2,
-    //   component: <Sm_LinerOneImg />,
-    //   ID: "c226da83-9526-465a-9zc<zcz7d4-9f112a0dc63sdsadsd6",
-    //   slug: "Irana",
-    //   title: "نقش و نگار",
-    //   data: {
-    //     src: "",
-    //     url: "",
-    //   },
-    // },
-    // {
-    //   type: 3,
-    //   component: <Sm_LinerTwoImg />,
-    //   ID: "c226da83-9zx526-465a-97d4-9f112a0dc636",
-    //   slug: "Irana",
-    //   title: "نقش و نگار",
-    // },
-    // {
-    //   type: 4,
-    //   component: <Sm_LinerThreeImg />,
-    //   ID: "c226da83-zxvzx9526-465a-97d4-9f112a0dc636",
-    //   slug: "Irana",
-    //   title: "نقش و نگار",
-    // },
   ];
   const sta = useSelector((state) => state.allDataLanding);
 
@@ -359,7 +319,7 @@ function index() {
           }
           @media (max-width: 991px) {
             .active_hamberg_icon {
-              right: 300px;
+              right: 0px;
             }
             .active_side_bar_liveEdit {
               right: 0px;
@@ -375,7 +335,7 @@ function index() {
             .active_hamberg_icon .icon {
               color: #fff;
               position: fixed;
-              left: 0;
+              left: -290px;
               right: initial;
             }
           }
@@ -386,3 +346,12 @@ function index() {
 }
 
 export default index;
+
+// function server side
+export async function getServerSideProps(context) {
+  const idLanding = context.params.id;
+
+  return {
+    props: { idLanding },
+  };
+}

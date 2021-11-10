@@ -2,23 +2,23 @@ import React from "react";
 import styles from "./Sm_product.module.scss";
 import Assistent from "zaravand-assistent-number";
 
-function Sm_product(props) {
+function Sm_product({ data }) {
   const _asist = new Assistent();
   return (
     <>
       <div className={styles.product}>
         <div className={styles.product_img}>
-          <img src="/image/sample/sample.jpg" alt="" />
+          <img src={data.image_thumbnail_url} alt="" />
         </div>
         <div className={styles.product_name}>
-          <span>نام محصول</span>
+          <span>{data.title}</span>
         </div>
         <div className={styles.product_detail}>
-          <span>نام استان</span>
+          <span>{data.shop.state}</span>
           <span>
             ‍<i className="fa fa-angle-left px-1"></i>
           </span>
-          <span>نام حجره</span>
+          <span>{data.shop.title}</span>
         </div>
         <div className={styles.product_price}>
           <div className={styles.plus}>
@@ -26,7 +26,7 @@ function Sm_product(props) {
               <i className="fas fa-plus"></i>
             </span>
           </div>
-          <div className={styles.price}>{_asist.PSeparator(250000)}</div>
+          <div className={styles.price}>{_asist.PSeparator(data.price)}</div>
         </div>
       </div>
     </>

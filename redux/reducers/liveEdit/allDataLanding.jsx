@@ -75,6 +75,11 @@ export const allDataLanding = (state = list, action) => {
       return [...action.payload];
 
       break;
+
+    case "UPDATE_PRODUCTS":
+      return [...action.payload];
+
+      break;
     case "UPDATE_DATA":
       return [...action.payload];
 

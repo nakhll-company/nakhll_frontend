@@ -7,8 +7,10 @@ import LinerProducts from "../../containers/LandingPage/LinerProducts";
 import LinerThreeImg from "../../containers/LandingPage/LinerThreeImg";
 import LinerTwoValue from "../../containers/LandingPage/LinerTwoValue";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
-function index(props) {
-  let getDataLanding = `${ApiReference.landing.getLanding.url}4/`;
+import { useRouter } from "next/router";
+function index({ idLanding }) {
+  let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding}/`;
+
   const [dataLanding, setDataLanding] = useState([]);
 
   useEffect(async () => {
@@ -25,6 +27,7 @@ function index(props) {
     }
   }, []);
   const _handel_select_component = (data, index) => {
+    console.log(`data1`, data);
     switch (data.type) {
       case 1:
         return <HeroSlides dataHeroSlides={data.data} />;
@@ -45,16 +48,17 @@ function index(props) {
       case 5:
         return <LinerFourImgMobile dataLinerFourImgMobile={data.data} />;
         break;
-      // case 6:
-      //   return (
-      //     <LinerProducts
-      //       title={data.data.title}
-      //       // subTitle={type.subtitle}
-      //       dataLinerProducts={data.data}
-      //       url={data.data.url}
-      //     />
-      //   );
-      //   break;
+      case 6:
+        return (
+          <LinerProducts
+            title={data.data[0].title}
+            color={data.data[0].color}
+            subTitle={data.data[0].subTitle}
+            dataLinerProducts={data.data[0].products}
+            url={data.data[0].url}
+          />
+        );
+        break;
       //   case 7:
       //     return (
       //       <LinerProductsBg
@@ -71,7 +75,7 @@ function index(props) {
     }
   };
   useEffect(() => {
-    console.log(`dataLanding`, dataLanding);
+    console.log(`mii`, dataLanding);
   }, [dataLanding]);
 
   return (
@@ -82,3 +86,12 @@ function index(props) {
 }
 
 export default index;
+
+// function server side
+export async function getServerSideProps(context) {
+  const idLanding = context.params.id;
+
+  return {
+    props: { idLanding },
+  };
+}

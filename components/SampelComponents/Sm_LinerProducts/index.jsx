@@ -4,25 +4,63 @@ import styles from "./Sm_LinerProducts.module.scss";
 
 import Sm_product from "../Sm_product";
 import InputUrl from "../../../containers/liveEdit/InputUrl";
+import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+import { useDispatch } from "react-redux";
+import { _updateProducts } from "../../../redux/actions/liveEdit/_updateProducts";
 function Sm_LinerProducts({ id, data }) {
-  console.log(`data`, data);
-  // #a1db43
+  const [products, setProducts] = useState([]);
   const [toggle, setToggle] = useState(true);
   const [name, setName] = useState(data[0].titleComponent);
   const [toggleSubTitle, setToggleSubTitle] = useState(true);
   const [subTitle, setSubTitle] = useState(data[0].subTitle);
   const [color, setColor] = useState(data[0].color);
+  const dispatch = useDispatch();
+  useEffect(async () => {
+    let Queries = { page_size: "6" };
+    if (data[0].url !== "") {
+      let url = data[0].url;
+      if (url.split("?")[1]) {
+        let partTwoUrl = url.split("?")[1].split("&");
+        let arrayString = partTwoUrl.map((el) => el.split("="));
+
+        arrayString.map((el) => {
+          if (el[0] == "q") {
+            Queries["search"] = decodeURI(el[1]);
+          } else {
+            Queries[el[0]] = el[1];
+          }
+        });
+      }
+
+      if (Object.keys(Queries).length > 1) {
+        let response = await ApiRegister().apiRequest(
+          null,
+          "GET",
+          "https://nakhll.com/api/v1/products/",
+          true,
+          Queries
+        );
+
+        if (response.status == 200) {
+          setProducts(response.data.results);
+          dispatch(_updateProducts(response.data.results));
+        }
+      }
+    }
+  }, [data[0].url]);
 
   return (
     <div style={{ backgroundColor: color }} className={styles.main}>
       <div className={styles.icon_change_url}>
         <InputUrl id={id} order={0} />
       </div>
+
       {data[0].title && (
         <div className={styles.titleUrl}>
           <span>{data[0].title}</span>
         </div>
       )}
+
       <div className={styles.title}>
         <div className={styles.name}>
           {toggle ? (
@@ -112,12 +150,14 @@ function Sm_LinerProducts({ id, data }) {
       </div>
 
       <div className={styles.wrap}>
+        {products.map((product) => (
+          <Sm_product data={product} />
+        ))}
+        {/* <Sm_product />
         <Sm_product />
         <Sm_product />
         <Sm_product />
-        <Sm_product />
-        <Sm_product />
-        <Sm_product />
+        <Sm_product /> */}
       </div>
     </div>
   );

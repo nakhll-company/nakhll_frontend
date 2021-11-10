@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    margin: 10px;
+    margin: 5px;
     border: 1px solid #e6e6e6;
     .product_img {
         height: 146px;
@@ -26,13 +26,17 @@
     .product_name {
         text-align: right;
         padding: 7px;
+        width: 159px;
         color: black;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: bold;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
     .product_detail {
         color: black;
-        font-size: 14px;
+        font-size: 12px;
         text-align: right;
         padding-right: 7px;
         color: #4e4e4e;
@@ -44,7 +48,7 @@
         }
     }
     .product_price {
-        padding: 7px;
+        padding: 4px;
         display: flex;
         margin-top: auto;
         justify-content: space-between;
