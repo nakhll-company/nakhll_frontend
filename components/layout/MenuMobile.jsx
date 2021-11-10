@@ -68,7 +68,7 @@ function MenuMobile({ activeOptions }) {
       </span>
       <div id="moreOptions" className={styles.moreOptionsWrapper}>
         <ul>
-          {activeOptions.map((value, index) => {
+          {activeOptions && activeOptions.lenght > 0 && activeOptions.map((value, index) => {
             return (
               <li key={index} className="mb-3" onClick={() => { document.querySelector("#moreOptions").style.display = "none"; }}>
                 <Link href="/fp/options/landing">

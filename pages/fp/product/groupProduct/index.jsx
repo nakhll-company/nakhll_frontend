@@ -1,15 +1,23 @@
+// node libraries
+import { useState } from 'react';
+import { useSelector } from "react-redux";
 // methods
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
-import {
-  errorMessage,
-  successMessage,
-} from "../../../../containers/utils/message";
+import { errorMessage, successMessage } from "../../../../containers/utils/message";
 // scss
 import styles from "./groupProduct.module.scss";
-import { useSelector } from "react-redux";
 
-const GroupProduct = (data) => {
+const GroupProduct = () => {
+
+  const [showResult, setShowResult] = useState({
+    old_products: 0,
+    new: 0,
+    total_rows: 0,
+    na_rows: 0,
+    slug_duplicate_rows: 0,
+  });
   const activeHojreh = useSelector((state) => state.User.activeHojreh);
+
   return (
     <div className={styles.main_wrapper}>
       <form
@@ -20,24 +28,36 @@ const GroupProduct = (data) => {
           let data = new FormData();
           data.append("product-excel-upload", excel);
           data.append("product-zip-file", zipFile);
-          let loadData = data;
           successMessage("درحال بارگزاری محصولات...");
           let response = await ApiRegister().apiRequest(
-            loadData,
-            "post",
+            data, "post",
             `/api/v1/product/group-create/${activeHojreh}/`,
-            true,
-            {}
+            true, {}
           );
           if (response.status === 200) {
-            successMessage(
-              `عملیات با موقیت انجام شد.\n ${response.data.available_rows} محصول بروزرسانی شد.\n ${response.data.unavailable_rows} محصول ایجاد شد.\د.`
-            );
-            errorMessage(
-              `${response.data.slug_duplicate_rows} عنوان محصول تکراری است.\n${response.data.na_rows} بارکد محصول خالی است.`
-            );
+            successMessage("محصول با موفقیت بارگزاری شد");
+            setShowResult(response.data);
           } else {
-            errorMessage("مشکلی رخ داده است.");
+            switch (response.response.data) {
+              case "Price is required field":
+                errorMessage("ستون قیمت الزامیست یا نام آن اشتباه است");
+                break;
+              case "Title is required field":
+                errorMessage("ستون نام الزامیست یا نام آن اشتباه است");
+                break;
+              case "barcode is required field":
+                errorMessage("ستون بارکد الزامیست یا نام آن اشتباه است");
+                break;
+              case "OldPrice is required field":
+                errorMessage("ستون قیمت با تخفیف الزامیست یا نام آن اشتباه است");
+                break;
+              case "Inventory is required field":
+                errorMessage("ستون موجودی الزامیست یا نام آن اشتباه است");
+                break;
+              default:
+                errorMessage("مشکلی رخ داده است.");
+                break;
+            }
           }
         }}
         className="d-flex flex-column align-items-center"
@@ -85,14 +105,42 @@ const GroupProduct = (data) => {
             ></input>
           </div>
         </div>
-        <button
-          type="submit"
-          id="sumbitButton"
-          className={styles.form_buttonSubmit}
-        >
-          ثبت محصولات
-        </button>
+        <div className="d-flex justify-content-between">
+          <button
+            type="submit"
+            id="sumbitButton"
+            className={`${styles.form_buttonSubmit} mx-5`}
+          >
+            ثبت محصولات
+          </button>
+          <button
+            type="button"
+            id="buttonUodo"
+            className={styles.form_buttonSubmit}
+            onClick={async () => {
+              let response = await ApiRegister().apiRequest(
+                null, "get",
+                `/api/v1/product/group-undo/${activeHojreh}/`,
+                true, {}
+              );
+              if (response.status === 200) {
+                successMessage("درخواست لغو بارگزاری با موفقیت ارسال شد");
+              } else {
+                errorMessage("خطایی رخ داده است");
+              }
+            }}
+          >
+            لغو بارگزاری
+          </button>
+        </div>
       </form>
+      <div className="d-flex flex-column mt-5">
+        <span>تعداد کل سطرها: {showResult.total_rows}</span>
+        <span>تعداد ستون های خالی: {showResult.na_rows}</span>
+        <span>مجموع سطر هایی که نام حجره تکراری است: {showResult.slug_duplicate_rows}</span>
+        <span>تعداد محصولات بروزرسانی شده: {showResult.old_products}</span>
+        <span>تعداد محصولاتی که جدید ایجاد شده: {showResult.new}</span>
+      </div>
     </div>
   );
 };
