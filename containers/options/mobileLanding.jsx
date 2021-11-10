@@ -25,7 +25,7 @@ const MobileLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
             <div className={styles.wrapper_cart}>
                 <div className={styles.wrapper_links}>
                     {/* <Link href="/liveEdit"> */}
-                    <span className={styles.link_add} onClick={() => {
+                    <span className={styles.link_add} onClick={async () => {
                         let response = await ApiRegister().apiRequest(
                             {
                                 name: "",

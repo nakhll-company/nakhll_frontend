@@ -23,7 +23,7 @@ const DesktopLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
             <div className={styles.header}>
                 <h1 className={styles.title}>فرودها</h1>
                 {/* <Link href="/liveEdit"> */}
-                <span className={styles.link_add} onClick={() => {
+                <span className={styles.link_add} onClick={async () => {
                     let response = await ApiRegister().apiRequest(
                         {
                             name: "",
