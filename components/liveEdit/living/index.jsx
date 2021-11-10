@@ -30,7 +30,30 @@ function Living({ characters, setCharacters, setOpenPlaneEditor }) {
     const items = [...characters];
     items.splice(idSelected, 1);
     if (items.length == 0) {
-      const newItem = { ID: uuidv4(), component: <Sm_InputPlace />, type: 0 };
+      const newItem = {
+        ID: uuidv4(),
+        type:1,
+        data: [
+          {
+            image: "",
+            url: "",
+            title: "",
+            order: 0,
+          },
+          {
+            image: "",
+            url: "",
+            title: "",
+            order: 1,
+          },
+          {
+            image: "",
+            url: "",
+            title: "",
+            order: 2,
+          },
+        ],
+      };
       items.splice(0, 0, newItem);
     }
     setCharacters(items);
