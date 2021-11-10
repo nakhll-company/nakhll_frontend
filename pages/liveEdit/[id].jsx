@@ -18,7 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { _updateDataLanding } from "../../redux/actions/liveEdit/_updateDataLanding";
 import SaveLanding from "../../containers/liveEdit/SaveLanding";
 
-function index() {
+function index({ idLanding }) {
   const [characters, setCharacters] = useState([]);
   const [openPlaneEditor, setOpenPlaneEditor] = useState(false);
   const [openSaveLanding, setOpenSaveLanding] = useState(false);
@@ -346,3 +346,12 @@ function index() {
 }
 
 export default index;
+
+// function server side
+export async function getServerSideProps(context) {
+  const idLanding = context.params.id;
+
+  return {
+    props: { idLanding },
+  };
+}
