@@ -45,3 +45,23 @@
         display: none;
     }
 }
+
+.moreOptionsWrapper{
+    position: fixed; 
+    z-index: 100000; 
+    bottom: 65px; 
+    background-color: #fff;
+    display: none; 
+    width: 60%; 
+    left: 0px; 
+    border-radius: 5px; 
+    color: #000;
+    ul{
+        list-style-type: none; 
+        margin: 0px; 
+        padding: 20px;
+        li{
+            text-align: right;
+        }
+    }
+}

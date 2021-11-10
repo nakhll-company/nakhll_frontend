@@ -95,6 +95,17 @@
     justify-content: space-between;
 }
 
+.optionsList{
+    display: none;
+    list-style-type: none;
+    font-size: 14px;
+    color: #1b3e68;
+    padding: 10px 60px;
+    li{
+        margin-bottom: 15px;
+    }
+}
+
 .hedtop_mobile h1 {
     margin-right: 14px;
     color: hsl(213deg 59% 32%);

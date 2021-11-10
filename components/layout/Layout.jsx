@@ -10,6 +10,7 @@ import useViewport from "../viewPort/index";
 import MenuMobile from "./MenuMobile";
 // methods
 import { mapState } from "./methods/mapState";
+import { allOptions } from './methods/allOptions';
 import { getUserInfo } from "../../redux/actions/user/getUserInfo";
 import { getActiveHojreh } from "../../redux/actions/user/getActiveHojreh";
 // styles
@@ -18,8 +19,8 @@ import { ToastContainer } from "react-toastify";
 
 function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
   const [selectShop, setselectShop] = useState("");
+  const [activeOptions, setActiveOptions] = useState([]);
   const [isShowOrder, setisShowOrder] = useState(false);
-
   const [Title, setTitle] = useState("");
   const router = useRouter();
   const { width } = useViewport();
@@ -29,7 +30,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
   const ExitDash = () => {
     router.push("/");
   };
-  useEffect(() => {
+  useEffect(async () => {
     Object.keys(userInfo).length === 0 && getUserInfo();
     if (
       selectShop.length === 0 &&
@@ -39,6 +40,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
       getActiveHojreh(userInfo.shops[0].slug);
       setSlugHojreh(userInfo.shops[0].slug);
     }
+    setActiveOptions(await allOptions());
   }, [userInfo.shops]);
 
   const ForHeader = (option) => {
@@ -522,30 +524,54 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                   </span>
                 </a>
               </Link>
-              <Link href="/fp">
-                <a>
-                  <span
-                    className={`mt-3 ${styles.menu_card_item} ${router.pathname == "/fp/options" && styles.selectNav}`}
-                  >
-                    <i
-                      style={{
-                        marginLeft: "12px",
-                        fontSize: "20px",
-                      }}
-                      className="fas fa-cubes"
-                    ></i>
-                    <h2
-                      style={{
-                        fontSize: "15px",
-                        margin: "0px"
-                      }}
-                    >
-                      {" "}
-                      قابلیت ها
-                    </h2>
-                  </span>
-                </a>
-              </Link>
+              <span
+                className={`mt-3 ${styles.menu_card_item} ${router.pathname == "/fp/options" && styles.selectNav}`}
+                onClick={() => {
+                  if (document.querySelector("#options").style.display === "block") {
+                    document.querySelector("#options").style.display = "none";
+                  } else {
+                    document.querySelector("#options").style.display = "block";
+                  }
+                }}
+              >
+                <i
+                  style={{
+                    marginLeft: "12px",
+                    fontSize: "20px",
+                  }}
+                  className="fas fa-cubes"
+                ></i>
+                <h2
+                  style={{
+                    fontSize: "15px",
+                    margin: "0px"
+                  }}
+                >
+                  {" "}
+                  قابلیت ها
+                </h2>
+                <i
+                  style={{
+                    color: "#1b3e68",
+                    fontSize: "15px",
+                    marginRight: "145px",
+                  }}
+                  className="fas fa-chevron-down"
+                ></i>
+              </span>
+              <ul id="options" className={styles.optionsList}>
+                {activeOptions.map((value, index) => {
+                  return (
+                    <li key={index}>
+                      <Link href={`/fp/options/landing/${value.id}`}>
+                        <a>
+                          {value.name}
+                        </a>
+                      </Link>
+                    </li>
+                  )
+                })}
+              </ul>
             </section>
           </div>
         )}
@@ -556,7 +582,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
         >
           {children}
         </div>
-        <MenuMobile />
+        <MenuMobile activeOptions={activeOptions} />
       </div>
     </>
   );
