@@ -319,7 +319,7 @@ function index() {
           }
           @media (max-width: 991px) {
             .active_hamberg_icon {
-              right: 300px;
+              right: 0px;
             }
             .active_side_bar_liveEdit {
               right: 0px;
@@ -335,7 +335,7 @@ function index() {
             .active_hamberg_icon .icon {
               color: #fff;
               position: fixed;
-              left: 0;
+              left: -290px;
               right: initial;
             }
           }
