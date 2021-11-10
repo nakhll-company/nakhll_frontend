@@ -1,9 +1,12 @@
 // node libraries
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Assistent from "zaravand-assistent-number";
 // component
 import CustomSwitch from '../../components/custom/customSwitch';
 // methods
+import { errorMessage } from '../utils/message';
+import { ApiRegister } from '../../services/apiRegister/ApiRegister';
 import { deleteItemListLanding } from './methods/deleteItemListLanding';
 import { activeListItemLanding } from './methods/activeListItemLanding';
 // scss
@@ -13,16 +16,35 @@ const _asist = new Assistent();
 
 const DesktopLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
 
+    const router = useRouter();
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.header}>
                 <h1 className={styles.title}>فرودها</h1>
-                <Link href="/liveEdit">
-                    <a className={styles.link_add}>
-                        <i className="fa fa-plus ms-2"></i>
-                        افزودن فرود
-                    </a>
-                </Link>
+                {/* <Link href="/liveEdit"> */}
+                <span className={styles.link_add} onClick={() => {
+                    let response = await ApiRegister().apiRequest(
+                        {
+                            name: "",
+                            page_data: "",
+                            shop: activeHojreh
+                        },
+                        "post",
+                        "/api/v1/shop_landing/",
+                        true,
+                        ""
+                    );
+                    if (response.status === 200) {
+                        router.push(`/liveEdit/${response.data.id}`);
+                    } else {
+                        errorMessage("خطایی رخ داده است");
+                    }
+                }}>
+                    <i className="fa fa-plus ms-2"></i>
+                    افزودن فرود
+                </span>
+                {/* </Link> */}
                 <Link href={`/fp/options/landing/orders?id=${id}`}>
                     <a className={styles.link_add}>
                         سفارشات
@@ -53,7 +75,7 @@ const DesktopLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
                                     <CustomSwitch defaultChecked={value.status === "active" ? true : false} id="active" />
                                 </td>
                                 <td>
-                                    <Link href={`/showLanding/${id}`}>
+                                    <Link href={`/showLanding/${value.id}`}>
                                         <a>
                                             <i className="fas fa-eye"></i>
                                         </a>

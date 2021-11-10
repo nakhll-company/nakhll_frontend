@@ -1,11 +1,14 @@
 // node libraries
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Assistent from "zaravand-assistent-number";
 // components
 import MobileHeader from '../../components/mobileHeader';
 import CustomLabel from '../../components/custom/customLabel';
 import CustomSwitch from '../../components/custom/customSwitch';
 // methods
+import { errorMessage } from '../utils/message';
+import { ApiRegister } from '../../services/apiRegister/ApiRegister';
 import { deleteItemListLanding } from './methods/deleteItemListLanding';
 import { activeListItemLanding } from './methods/activeListItemLanding';
 // scss
@@ -15,17 +18,35 @@ const _asist = new Assistent();
 
 const MobileLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
 
+    const router = useRouter();
     return (
         <div>
             <MobileHeader type="search" title="فرودها" />
             <div className={styles.wrapper_cart}>
                 <div className={styles.wrapper_links}>
-                    <Link href="/liveEdit">
-                        <a className={styles.link_add}>
-                            <i className="fa fa-plus ms-2"></i>
-                            افزودن فرود
-                        </a>
-                    </Link>
+                    {/* <Link href="/liveEdit"> */}
+                    <span className={styles.link_add} onClick={() => {
+                        let response = await ApiRegister().apiRequest(
+                            {
+                                name: "",
+                                page_data: "",
+                                shop: activeHojreh
+                            },
+                            "post",
+                            "/api/v1/shop_landing/",
+                            true,
+                            ""
+                        );
+                        if (response.status === 200) {
+                            router.push(`/liveEdit/${response.data.id}`);
+                        } else {
+                            errorMessage("خطایی رخ داده است");
+                        }
+                    }}>
+                        <i className="fa fa-plus ms-2"></i>
+                        افزودن فرود
+                    </span>
+                    {/* </Link> */}
                     <Link href={`/fp/options/landing/orders?id=${id}`}>
                         <a className={styles.link_add}>
                             سفارشات
@@ -44,7 +65,7 @@ const MobileLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
                             <CustomLabel type="normal" value={value.name} label="نام" />
                             <CustomLabel type="normal" value={_asist.number(value.created_at)} label="تاریخ ثبت" />
                             <div className="d-flex justify-content-end align-items-center">
-                                <Link href={`/showLanding/${id}`}>
+                                <Link href={`/showLanding/${value.id}`}>
                                     <a>
                                         <i className="fas fa-eye mx-3"></i>
                                     </a>
