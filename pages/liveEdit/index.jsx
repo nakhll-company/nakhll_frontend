@@ -221,7 +221,9 @@ function index() {
               url: "",
               order: 0,
               color: "#a1db43",
-              title: "پروفروش ترین",
+              title: "",
+              titleComponent: "پروفروش ترین",
+              products: [],
 
               subTitle: "ویژه فصل پاییز",
             },
