@@ -7,8 +7,10 @@ import LinerProducts from "../../containers/LandingPage/LinerProducts";
 import LinerThreeImg from "../../containers/LandingPage/LinerThreeImg";
 import LinerTwoValue from "../../containers/LandingPage/LinerTwoValue";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
-function index(props) {
-  let getDataLanding = `${ApiReference.landing.getLanding.url}4/`;
+import { useRouter } from "next/router";
+function index({ idLanding }) {
+  let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding}/`;
+
   const [dataLanding, setDataLanding] = useState([]);
 
   useEffect(async () => {
@@ -84,3 +86,12 @@ function index(props) {
 }
 
 export default index;
+
+// function server side
+export async function getServerSideProps(context) {
+  const idLanding = context.params.id;
+
+  return {
+    props: { idLanding },
+  };
+}
