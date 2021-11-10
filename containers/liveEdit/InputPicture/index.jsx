@@ -7,8 +7,7 @@ import { showCropper } from "../../../redux/actions/liveEdit/showCropper";
 import { useDispatch } from "react-redux";
 import { selectImage } from "../../../components/customCropper/methods/selectImage";
 
-function InputPicture({ setImageSrc, id, order = 0 }) {
-
+function InputPicture({ setImageSrc, id, order = 0, ratio = 2 }) {
   const refInput = useRef(null);
   const dispatch = useDispatch();
   return (
@@ -22,7 +21,7 @@ function InputPicture({ setImageSrc, id, order = 0 }) {
         id=""
         onChange={(e) => {
           selectImage(e, setImageSrc);
-          let idSelected = { id, order };
+          let idSelected = { id, order, ratio };
           dispatch(_selectId(idSelected));
           dispatch(showCropper());
         }}

@@ -28,8 +28,13 @@ export const ApiReference = {
     },
     update: {
       url: "/api/v1/shop_landing/",
-      urlPath: "/id/",
+      urlPath: "id/",
       method: "put",
+    },
+    getLanding: {
+      url: "/api/v1/shop_landing/",
+      urlPath: "id/",
+      method: "Get",
     },
   },
 };

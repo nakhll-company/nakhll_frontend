@@ -4,13 +4,13 @@ import styles from "./Sm_LinerOneImg.module.scss";
 import { _selectId } from "../../../redux/actions/liveEdit/_selectId";
 import InputPicture from "../../../containers/liveEdit/InputPicture";
 import InputUrl from "../../../containers/liveEdit/InputUrl";
-
+// type component ===============2
+// aspect ratio 6/1
 function Sm_LinerOneImg({ setImageSrc, id, data }) {
-  console.log(`data`, data);
   return (
     <div className={styles.wrapper}>
       <div className={styles.icon_change_pic}>
-        <InputPicture setImageSrc={setImageSrc} id={id} />
+        <InputPicture setImageSrc={setImageSrc} id={id} ratio={6} />
       </div>
       <div className={styles.icon_change_url}>
         <InputUrl id={id} />
@@ -21,7 +21,7 @@ function Sm_LinerOneImg({ setImageSrc, id, data }) {
         </div>
       )}
       <img
-        src={data[0].src ? data[0].src : "/image/sample/linearOneImg2.jpg"}
+        src={data[0].image ? data[0].image : "/image/sample/6_1.jpg"}
         alt=""
       />
     </div>

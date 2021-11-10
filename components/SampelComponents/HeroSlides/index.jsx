@@ -3,13 +3,20 @@ import InputPicture from "../../../containers/liveEdit/InputPicture";
 import InputUrl from "../../../containers/liveEdit/InputUrl";
 import styles from "./HeroSlides.module.scss";
 
+// type============1
+//  ratio========2/1
 function Sm_HeroSlides({ setImageSrc, id, data }) {
   return (
     <div className={styles.content}>
       <div className={styles.slider}>
         <div className={styles.right}>
           <div className={styles.icon_change_pic}>
-            <InputPicture setImageSrc={setImageSrc} id={id} order={0} />
+            <InputPicture
+              setImageSrc={setImageSrc}
+              id={id}
+              order={0}
+              ratio={2}
+            />
           </div>
           <div className={styles.icon_change_url}>
             <InputUrl id={id} order={0} />
@@ -20,7 +27,7 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
             </div>
           )}
           <img
-            src={data[0].src ? data[0].src : "/image/sample/main.jpg"}
+            src={data[0].image ? data[0].image : "/image/sample/2_1.jpg"}
             alt=""
           />
         </div>
@@ -28,12 +35,17 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
           <div className={styles.top}>
             <div className={styles.holderPic}>
               <img
-                src={data[1].src ? data[1].src : "/image/sample/sample.jpg"}
+                src={data[1].image ? data[1].image : "/image/sample/2_1_M.jpg"}
                 alt=""
               />
             </div>
             <div className={styles.icon_change_pic}>
-              <InputPicture setImageSrc={setImageSrc} id={id} order={1} />
+              <InputPicture
+                setImageSrc={setImageSrc}
+                id={id}
+                order={1}
+                ratio={2}
+              />
             </div>
             <div className={styles.icon_change_url}>
               <InputUrl id={id} order={1} />
@@ -47,7 +59,7 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
           <div className={styles.bottom}>
             <div className={styles.holderPic}>
               <img
-                src={data[2].src ? data[2].src : "/image/sample/sample2.jpg"}
+                src={data[2].image ? data[2].image : "/image/sample/2_1_M.jpg"}
                 alt=""
               />
             </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./SaveLanding.module.scss";
 import Assistent from "zaravand-assistent-number";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { _showSelect_url } from "../../../redux/actions/liveEdit/_showSelect_url";
 import { _updateUrl } from "../../../redux/actions/liveEdit/_updateUrl";
 import { ApiReference } from "../../../Api";
@@ -9,14 +9,23 @@ import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
 const _asist = new Assistent();
 function SaveLanding({ setOpenSaveLanding }) {
+  const [inputName, setInputName] = useState("");
   let apiCreateLanding = ApiReference.landing.creat.url;
-  let ansapi = { id: 2, name: "milad", shop: "mamaneila", page_data: "" };
+
+  let apiUpdateLanding = `${ApiReference.landing.update.url}4/`;
+  console.log(`apiUpdateLanding`, apiUpdateLanding);
   const [idLanding, setIdLanding] = useState("4");
   const dispatch = useDispatch();
+  const landing = useSelector((state) => state.allDataLanding);
 
+  let ansapi = {
+    name: "milad",
+    shop: "mamaneila",
+    page_data: JSON.stringify(landing),
+  };
   const _handel_creat_landing = async () => {
     let params = {
-      name: "milad",
+      name: inputName == "" ? "بدون عنوان" : inputName,
       page_data: "",
       shop: "mamaneila",
     };
@@ -27,8 +36,19 @@ function SaveLanding({ setOpenSaveLanding }) {
       true,
       ""
     );
+  };
 
-    console.log(`response`, response);
+  const _handel_update_landing = async () => {
+    let response = await ApiRegister().apiRequest(
+      ansapi,
+      "PUT",
+      apiUpdateLanding,
+      true,
+      ""
+    );
+
+    setInputName("");
+    setOpenSaveLanding(false);
   };
 
   return (
@@ -51,10 +71,16 @@ function SaveLanding({ setOpenSaveLanding }) {
           <div className={styles.content_save}>
             <div className={styles.name}>
               <span>نام صفحه</span>
-              <input type="text" />
+              <input
+                value={inputName}
+                onChange={(e) => {
+                  setInputName(e.target.value);
+                }}
+                type="text"
+              />
             </div>
             <div className={styles.wrap_btn}>
-              <button>ذخیره صفحه</button>
+              <button onClick={_handel_update_landing}>ذخیره صفحه</button>
             </div>
           </div>
         </div>

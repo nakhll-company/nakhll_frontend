@@ -7,19 +7,19 @@ function Sm_LinerThreeImg_Fix(props) {
       <div className={styles.wrapper}>
         <Link href="">
           <a>
-            <img src="/image/sample/linearOneImg2.jpg" alt="" />
+            <img src="/image/sample/6_1.jpg" alt="" />
           </a>
         </Link>
       </div>
       <div className={styles.wrap}>
         <div className={styles.right}>
           <a href="">
-            <img src="/image/sample/main.jpg" alt="" />
+            <img src="/image/sample/3_1.jpg" alt="" />
           </a>
         </div>
         <div className={styles.left}>
           <a href="">
-            <img src="/image/sample/main.jpg" alt="" />
+            <img src="/image/sample/3_1.jpg" alt="" />
           </a>
         </div>
       </div>

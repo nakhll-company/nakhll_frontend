@@ -6,7 +6,7 @@ export const _updatePicture = (img) => {
     let dataLanding = [...getState().allDataLanding];
     dataLanding.map((El, index) => {
       if (El.ID == id.id) {
-        dataLanding[index].data[id.order].src = img;
+        dataLanding[index].data[id.order].image = img;
       }
     });
     await dispatch({ type: "UPDATE_PICTURE", payload: dataLanding });
