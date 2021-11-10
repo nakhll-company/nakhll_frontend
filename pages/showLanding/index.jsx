@@ -25,6 +25,7 @@ function index(props) {
     }
   }, []);
   const _handel_select_component = (data, index) => {
+    console.log(`data1`, data);
     switch (data.type) {
       case 1:
         return <HeroSlides dataHeroSlides={data.data} />;
@@ -45,16 +46,17 @@ function index(props) {
       case 5:
         return <LinerFourImgMobile dataLinerFourImgMobile={data.data} />;
         break;
-      // case 6:
-      //   return (
-      //     <LinerProducts
-      //       title={data.data.title}
-      //       // subTitle={type.subtitle}
-      //       dataLinerProducts={data.data}
-      //       url={data.data.url}
-      //     />
-      //   );
-      //   break;
+      case 6:
+        return (
+          <LinerProducts
+            title={data.data[0].title}
+            color={data.data[0].color}
+            subTitle={data.data[0].subTitle}
+            dataLinerProducts={data.data[0].products}
+            url={data.data[0].url}
+          />
+        );
+        break;
       //   case 7:
       //     return (
       //       <LinerProductsBg
@@ -71,7 +73,7 @@ function index(props) {
     }
   };
   useEffect(() => {
-    console.log(`dataLanding`, dataLanding);
+    console.log(`mii`, dataLanding);
   }, [dataLanding]);
 
   return (

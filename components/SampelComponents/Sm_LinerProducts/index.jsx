@@ -5,15 +5,16 @@ import styles from "./Sm_LinerProducts.module.scss";
 import Sm_product from "../Sm_product";
 import InputUrl from "../../../containers/liveEdit/InputUrl";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+import { useDispatch } from "react-redux";
+import { _updateProducts } from "../../../redux/actions/liveEdit/_updateProducts";
 function Sm_LinerProducts({ id, data }) {
   const [products, setProducts] = useState([]);
-
-  // #a1db43
   const [toggle, setToggle] = useState(true);
   const [name, setName] = useState(data[0].titleComponent);
   const [toggleSubTitle, setToggleSubTitle] = useState(true);
   const [subTitle, setSubTitle] = useState(data[0].subTitle);
   const [color, setColor] = useState(data[0].color);
+  const dispatch = useDispatch();
   useEffect(async () => {
     let Queries = { page_size: "6" };
     if (data[0].url !== "") {
@@ -42,7 +43,7 @@ function Sm_LinerProducts({ id, data }) {
 
         if (response.status == 200) {
           setProducts(response.data.results);
-          console.log(`response.data.results`, response.data.results);
+          dispatch(_updateProducts(response.data.results));
         }
       }
     }
