@@ -7,6 +7,8 @@ import InputUrl from "../../../containers/liveEdit/InputUrl";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import { useDispatch } from "react-redux";
 import { _updateProducts } from "../../../redux/actions/liveEdit/_updateProducts";
+import { _selectId } from "../../../redux/actions/liveEdit/_selectId";
+import { _updateTitleColorSubtitle } from "../../../redux/actions/liveEdit/_updateTitleColorSubtitle";
 function Sm_LinerProducts({ id, data }) {
   const [products, setProducts] = useState([]);
   const [toggle, setToggle] = useState(true);
@@ -68,6 +70,7 @@ function Sm_LinerProducts({ id, data }) {
               className={styles.mainTitle}
               onDoubleClick={() => {
                 setToggle(false);
+                dispatch(_selectId({ id, order: 0 }));
               }}
             >
               {name}
@@ -81,6 +84,13 @@ function Sm_LinerProducts({ id, data }) {
               onKeyDown={(event) => {
                 if (event.key === "Enter" || event.key === "Escape") {
                   setToggle(true);
+                  dispatch(
+                    _updateTitleColorSubtitle({
+                      color: color,
+                      title: name,
+                      subTitle: subTitle,
+                    })
+                  );
                   event.preventDefault();
                   event.stopPropagation();
                 }
@@ -93,6 +103,7 @@ function Sm_LinerProducts({ id, data }) {
               className={styles.subTitle}
               onDoubleClick={() => {
                 setToggleSubTitle(false);
+                dispatch(_selectId({ id, order: 0 }));
               }}
             >
               {subTitle}
@@ -106,6 +117,13 @@ function Sm_LinerProducts({ id, data }) {
               onKeyDown={(event) => {
                 if (event.key === "Enter" || event.key === "Escape") {
                   setToggleSubTitle(true);
+                  dispatch(
+                    _updateTitleColorSubtitle({
+                      color: color,
+                      title: name,
+                      subTitle: subTitle,
+                    })
+                  );
                   event.preventDefault();
                   event.stopPropagation();
                 }
@@ -133,7 +151,19 @@ function Sm_LinerProducts({ id, data }) {
                 name="palette"
                 id="palette"
                 value={color}
-                onChange={(e) => setColor(e.target.value)}
+                onClick={() => {
+                  dispatch(_selectId({ id, order: 0 }));
+                }}
+                onChange={(e) => {
+                  setColor(e.target.value);
+                  dispatch(
+                    _updateTitleColorSubtitle({
+                      color: color,
+                      title: name,
+                      subTitle: subTitle,
+                    })
+                  );
+                }}
                 style={{
                   opacity: 0,
                   cursor: "pointer",

@@ -17,8 +17,11 @@ import ListComponent from "../../containers/liveEdit/ListComponent";
 import { useDispatch, useSelector } from "react-redux";
 import { _updateDataLanding } from "../../redux/actions/liveEdit/_updateDataLanding";
 import SaveLanding from "../../containers/liveEdit/SaveLanding";
+import { ApiReference } from "../../Api";
+import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 
 function index({ idLanding }) {
+  let apiUpdateLanding = `${ApiReference.landing.update.url}${idLanding}/`;
   const [characters, setCharacters] = useState([]);
   const [openPlaneEditor, setOpenPlaneEditor] = useState(false);
   const [openSaveLanding, setOpenSaveLanding] = useState(false);
@@ -55,7 +58,6 @@ function index({ idLanding }) {
       ],
     },
   ];
-  const sta = useSelector((state) => state.allDataLanding);
 
   useEffect(() => {
     setCharacters(list);
@@ -72,6 +74,26 @@ function index({ idLanding }) {
         duration: 0.4,
       });
   }, []);
+
+  // Function For Update Landing
+  // Start
+  const landing = useSelector((state) => state.allDataLanding);
+  const _handel_update_landing = async () => {
+    let ansapi = {
+      name: "milad",
+      shop: "mamaneila",
+      page_data: JSON.stringify(landing),
+    };
+    let response = await ApiRegister().apiRequest(
+      ansapi,
+      "PUT",
+      apiUpdateLanding,
+      true,
+      ""
+    );
+  };
+
+  // End
 
   // function for add component in empty Place
   const _handel_add_component = (type) => {
@@ -241,18 +263,30 @@ function index({ idLanding }) {
                 </Link>
               </li>
               <li>
-                <a className={styles.wrap_item} href="">
+                <div
+                  className={styles.wrap_item}
+                  onClick={() => {
+                    _handel_update_landing();
+                    window.open(`/fp`, "_blank");
+                  }}
+                >
                   <span
                     className={`${styles.icon}  fab fa-fort-awesome`}
                   ></span>
                   <span className={styles.title}>داشبورد</span>
-                </a>
+                </div>
               </li>
               <li>
-                <a className={styles.wrap_item} href="">
+                <div
+                  className={styles.wrap_item}
+                  onClick={() => {
+                    _handel_update_landing();
+                    window.open(`/showLanding/${idLanding}/`, "_blank");
+                  }}
+                >
                   <span className={`${styles.icon} fas fa-scroll`}></span>
                   <span className={styles.title}>پیش نمایش</span>
-                </a>
+                </div>
               </li>
               {/* <li>
                 <div
@@ -305,7 +339,10 @@ function index({ idLanding }) {
           />
         </div>
         {openSaveLanding && (
-          <SaveLanding setOpenSaveLanding={setOpenSaveLanding} />
+          <SaveLanding
+            setOpenSaveLanding={setOpenSaveLanding}
+            idLanding={idLanding}
+          />
         )}
 
         <style jsx>{`

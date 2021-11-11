@@ -84,6 +84,11 @@ export const allDataLanding = (state = list, action) => {
       return [...action.payload];
 
       break;
+
+    case "UPDATE_TITLE_COLOR_SUBTITLE":
+      return [...action.payload];
+
+      break;
     default:
       return state;
       break;
