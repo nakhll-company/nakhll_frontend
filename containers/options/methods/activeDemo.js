@@ -13,7 +13,7 @@ export async function activeDemo(id, activeShop) {
     );
 
     if (response.status === 200) {
-        location.reload();
+        location.replace("/fp/options/landing/orders");
     } else {
         errorMessage(response.response.data.error);
     }
