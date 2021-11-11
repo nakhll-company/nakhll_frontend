@@ -22,20 +22,6 @@ function SaveLanding({ setOpenSaveLanding, idLanding }) {
     shop: "mamaneila",
     page_data: JSON.stringify(landing),
   };
-  const _handel_creat_landing = async () => {
-    let params = {
-      name: inputName == "" ? "بدون عنوان" : inputName,
-      page_data: "",
-      shop: "mamaneila",
-    };
-    let response = await ApiRegister().apiRequest(
-      params,
-      "post",
-      apiCreateLanding,
-      true,
-      ""
-    );
-  };
 
   const _handel_update_landing = async () => {
     let response = await ApiRegister().apiRequest(
@@ -65,7 +51,6 @@ function SaveLanding({ setOpenSaveLanding, idLanding }) {
 
           <div className={styles.table}>
             <div className={styles.header}>ذخیره صفحه</div>
-            <button onClick={_handel_creat_landing}>ایجاد</button>
           </div>
           <div className={styles.content_save}>
             <div className={styles.name}>
