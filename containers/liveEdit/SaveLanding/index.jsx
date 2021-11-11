@@ -13,7 +13,7 @@ function SaveLanding({ setOpenSaveLanding, idLanding }) {
   let apiCreateLanding = ApiReference.landing.creat.url;
 
   let apiUpdateLanding = `${ApiReference.landing.update.url}${idLanding}/`;
-  console.log(`apiUpdateLanding`, apiUpdateLanding);
+ 
 
   const dispatch = useDispatch();
   const landing = useSelector((state) => state.allDataLanding);
