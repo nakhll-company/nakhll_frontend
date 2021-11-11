@@ -305,7 +305,10 @@ function index({ idLanding }) {
           />
         </div>
         {openSaveLanding && (
-          <SaveLanding setOpenSaveLanding={setOpenSaveLanding} />
+          <SaveLanding
+            setOpenSaveLanding={setOpenSaveLanding}
+            idLanding={idLanding}
+          />
         )}
 
         <style jsx>{`

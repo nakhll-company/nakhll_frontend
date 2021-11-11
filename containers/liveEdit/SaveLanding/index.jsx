@@ -8,13 +8,13 @@ import { ApiReference } from "../../../Api";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
 const _asist = new Assistent();
-function SaveLanding({ setOpenSaveLanding }) {
+function SaveLanding({ setOpenSaveLanding, idLanding }) {
   const [inputName, setInputName] = useState("");
   let apiCreateLanding = ApiReference.landing.creat.url;
 
-  let apiUpdateLanding = `${ApiReference.landing.update.url}4/`;
+  let apiUpdateLanding = `${ApiReference.landing.update.url}${idLanding}/`;
   console.log(`apiUpdateLanding`, apiUpdateLanding);
-  const [idLanding, setIdLanding] = useState("4");
+
   const dispatch = useDispatch();
   const landing = useSelector((state) => state.allDataLanding);
 
