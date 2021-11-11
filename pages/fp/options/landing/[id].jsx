@@ -37,7 +37,7 @@ const Landing = () => {
                     :
                     <DesktopLanding landingList={landingList} id={id} activeHojreh={activeHojreh} setLandingList={setLandingList} />
                 :
-                <LandingDetail id={id} activeHojreh={activeHojreh} />
+                router.push(`fp/options/landing/detail?id=${id}`)
             }
         </>
     );

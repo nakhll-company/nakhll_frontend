@@ -40,7 +40,7 @@ const Orders = () => {
                 <div className={styles.wrapper}>
                     <div className={styles.header}>
                         <h1 className={styles.title}>سفارشات قابلیت {ordersData.length > 0 && ordersData[0].feature.name}</h1>
-                        <Link href={`/fp/options/landing/${id}`}>
+                        <Link href={`/fp/options/landing/detail?id=${id}`}>
                             <a className={styles.link_add}>
                                 جزئیات قابلیت
                             </a>
