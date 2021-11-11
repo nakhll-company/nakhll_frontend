@@ -8,6 +8,8 @@ import LinerThreeImg from "../../containers/LandingPage/LinerThreeImg";
 import LinerTwoValue from "../../containers/LandingPage/LinerTwoValue";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { useRouter } from "next/router";
+import LinerTwoImg from "../../containers/LandingPage/LinerTwoImg";
+import LinerTwoImgSm from "../../containers/LandingPage/LinerTwoImgSm";
 function index({ idLanding }) {
   let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}`;
 
@@ -37,7 +39,8 @@ function index({ idLanding }) {
       case 3:
         return (
           <>
-            <LinerTwoValue dataLinerTwoValue={data.data} />
+          
+            <LinerTwoImgSm dataLinerTwoValue={data.data} />
           </>
         );
         break;
