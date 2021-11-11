@@ -263,12 +263,18 @@ function index({ idLanding }) {
                 </Link>
               </li>
               <li>
-                <a className={styles.wrap_item} href="">
+                <div
+                  className={styles.wrap_item}
+                  onClick={() => {
+                    _handel_update_landing();
+                    window.open(`/fp`, "_blank");
+                  }}
+                >
                   <span
                     className={`${styles.icon}  fab fa-fort-awesome`}
                   ></span>
                   <span className={styles.title}>داشبورد</span>
-                </a>
+                </div>
               </li>
               <li>
                 <div
