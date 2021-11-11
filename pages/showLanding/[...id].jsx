@@ -22,7 +22,6 @@ function index({ idLanding }) {
       ""
     );
     if (response.status == 200) {
-      console.log(`response`, response.data.page_data);
       setDataLanding(JSON.parse(response.data.page_data));
     }
   }, []);
@@ -51,7 +50,7 @@ function index({ idLanding }) {
       case 6:
         return (
           <LinerProducts
-            title={data.data[0].title}
+            title={data.data[0].titleComponent}
             color={data.data[0].color}
             subTitle={data.data[0].subTitle}
             dataLinerProducts={data.data[0].products}
