@@ -8,8 +8,10 @@ import LinerThreeImg from "../../containers/LandingPage/LinerThreeImg";
 import LinerTwoValue from "../../containers/LandingPage/LinerTwoValue";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { useRouter } from "next/router";
+import LinerTwoImg from "../../containers/LandingPage/LinerTwoImg";
+import LinerTwoImgSm from "../../containers/LandingPage/LinerTwoImgSm";
 function index({ idLanding }) {
-  let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding}/`;
+  let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}`;
 
   const [dataLanding, setDataLanding] = useState([]);
 
@@ -22,7 +24,6 @@ function index({ idLanding }) {
       ""
     );
     if (response.status == 200) {
-      console.log(`response`, response.data.page_data);
       setDataLanding(JSON.parse(response.data.page_data));
     }
   }, []);
@@ -38,7 +39,7 @@ function index({ idLanding }) {
       case 3:
         return (
           <>
-            <LinerTwoValue dataLinerTwoValue={data.data} />
+            <LinerTwoImgSm dataLinerTwoValue={data.data} />
           </>
         );
         break;
@@ -51,7 +52,7 @@ function index({ idLanding }) {
       case 6:
         return (
           <LinerProducts
-            title={data.data[0].title}
+            title={data.data[0].titleComponent}
             color={data.data[0].color}
             subTitle={data.data[0].subTitle}
             dataLinerProducts={data.data[0].products}
@@ -74,9 +75,6 @@ function index({ idLanding }) {
         null;
     }
   };
-  useEffect(() => {
-    console.log(`mii`, dataLanding);
-  }, [dataLanding]);
 
   return (
     <>

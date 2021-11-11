@@ -15,7 +15,7 @@ import { _updateDataLanding } from "../../../redux/actions/liveEdit/_updateDataL
 import SelectUrl from "../../../containers/liveEdit/SelectUrl";
 import SaveLanding from "../../../containers/liveEdit/SaveLanding";
 
-function Living({ characters, setCharacters, setOpenPlaneEditor }) {
+function Living({ characters, setCharacters, setOpenPlaneEditor,idLanding }) {
   const dispatch = useDispatch();
   const showCrop = useSelector((state) => state.showCropper);
   const showSelectorUrl = useSelector((state) => state.showSelectUrl);
@@ -135,7 +135,7 @@ function Living({ characters, setCharacters, setOpenPlaneEditor }) {
         <CustomCropper imageSrc={imageSrc} setCroppedImage={setCroppedImage} />
       )}
 
-      {showSelectorUrl && <SelectUrl />}
+      {showSelectorUrl && <SelectUrl idLanding={idLanding } />}
 
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="characters">

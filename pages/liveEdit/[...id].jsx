@@ -21,7 +21,8 @@ import { ApiReference } from "../../Api";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 
 function index({ idLanding }) {
-  let apiUpdateLanding = `${ApiReference.landing.update.url}${idLanding}/`;
+  // idLanding=[slugShop,idLanding]
+  let apiUpdateLanding = `${ApiReference.landing.update.url}${idLanding[0]}/${idLanding[1]}/`;
   const [characters, setCharacters] = useState([]);
   const [openPlaneEditor, setOpenPlaneEditor] = useState(false);
   const [openSaveLanding, setOpenSaveLanding] = useState(false);
@@ -281,7 +282,10 @@ function index({ idLanding }) {
                   className={styles.wrap_item}
                   onClick={() => {
                     _handel_update_landing();
-                    window.open(`/showLanding/${idLanding}/`, "_blank");
+                    window.open(
+                      `/showLanding/${idLanding[0]}/${idLanding[1]}/`,
+                      "_blank"
+                    );
                   }}
                 >
                   <span className={`${styles.icon} fas fa-scroll`}></span>
@@ -333,6 +337,7 @@ function index({ idLanding }) {
           </div>
 
           <Living
+            idLanding={idLanding}
             characters={characters}
             setCharacters={setCharacters}
             setOpenPlaneEditor={setOpenPlaneEditor}
@@ -387,6 +392,7 @@ export default index;
 // function server side
 export async function getServerSideProps(context) {
   const idLanding = context.params.id;
+  console.log("context :>> ", context.params.id);
 
   return {
     props: { idLanding },

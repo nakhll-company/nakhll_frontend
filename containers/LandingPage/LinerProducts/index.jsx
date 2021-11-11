@@ -90,7 +90,7 @@ function LinerProducts({
           <div className={`${styles.header} px-5 pt-3`}>
             <div className={styles.title}>
               <h1>{title}</h1>
-              {/* <h5>{subTitle}</h5> */}
+              <h5>{subTitle}</h5>
             </div>
             <div className={styles.Button}>
               <button>
