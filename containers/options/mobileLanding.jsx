@@ -37,7 +37,7 @@ const MobileLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
                             true,
                             ""
                         );
-                        if (response.status === 200) {
+                        if (response.status === 201) {
                             router.push(`/liveEdit/${activeHojreh}/${response.data.id}`);
                         } else {
                             errorMessage("خطایی رخ داده است");
