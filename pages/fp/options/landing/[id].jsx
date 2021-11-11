@@ -31,14 +31,14 @@ const Landing = () => {
                 <title>لیست فرودها</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
-            {/* {featureActive.length > 0 ?
+            {featureActive.length > 0 ?
                 width < breakpoint ?
                     <MobileLanding landingList={landingList} id={id} activeHojreh={activeHojreh} setLandingList={setLandingList} />
                     :
                     <DesktopLanding landingList={landingList} id={id} activeHojreh={activeHojreh} setLandingList={setLandingList} />
-                : */}
-            <LandingDetail id={id} activeHojreh={activeHojreh} />
-            {/* } */}
+                :
+                <LandingDetail id={id} activeHojreh={activeHojreh} />
+            }
         </>
     );
 }
