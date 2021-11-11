@@ -22,7 +22,8 @@
     .list_description{
         text-align: justify;
         text-justify: inter-word;
-        // link wrapper
+    }
+            // link wrapper
         .wrapper_link{
             display: flex;
             justify-content: flex-end;
@@ -36,5 +37,4 @@
                 margin-left: 20px;
             }
         }
-    }
 }

@@ -33,12 +33,12 @@ const MobileLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
                                 shop: activeHojreh
                             },
                             "post",
-                            "/api/v1/shop_landing/",
+                            `/api/v1/shop_landing/${activeHojreh}/`,
                             true,
                             ""
                         );
                         if (response.status === 200) {
-                            router.push(`/liveEdit/${response.data.id}`);
+                            router.push(`/liveEdit/${activeHojreh}/${response.data.id}`);
                         } else {
                             errorMessage("خطایی رخ داده است");
                         }
@@ -65,7 +65,7 @@ const MobileLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
                             <CustomLabel type="normal" value={value.name} label="نام" />
                             <CustomLabel type="normal" value={_asist.number(value.created_at)} label="تاریخ ثبت" />
                             <div className="d-flex justify-content-end align-items-center">
-                                <Link href={`/showLanding/${value.id}`}>
+                                <Link href={`/showLanding/${activeHojreh}/${value.id}`}>
                                     <a>
                                         <i className="fas fa-eye mx-3"></i>
                                     </a>

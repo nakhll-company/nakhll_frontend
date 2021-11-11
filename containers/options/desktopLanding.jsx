@@ -31,12 +31,12 @@ const DesktopLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
                             shop: activeHojreh
                         },
                         "post",
-                        "/api/v1/shop_landing/",
+                        `/api/v1/shop_landing/${activeHojreh}/`,
                         true,
                         ""
                     );
                     if (response.status === 200) {
-                        router.push(`/liveEdit/${response.data.id}`);
+                        router.push(`/liveEdit/${activeHojreh}/${response.data.id}`);
                     } else {
                         errorMessage("خطایی رخ داده است");
                     }
@@ -75,7 +75,7 @@ const DesktopLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
                                     <CustomSwitch defaultChecked={value.status === "active" ? true : false} id="active" />
                                 </td>
                                 <td>
-                                    <Link href={`/showLanding/${value.id}`}>
+                                    <Link href={`/showLanding/${activeHojreh}/${value.id}`}>
                                         <a>
                                             <i className="fas fa-eye"></i>
                                         </a>

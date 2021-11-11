@@ -137,7 +137,7 @@ const GroupProduct = () => {
       <div className="d-flex flex-column mt-5">
         <span>تعداد کل سطرها: {showResult.total_rows}</span>
         <span>تعداد ستون های خالی: {showResult.na_rows}</span>
-        <span>مجموع سطر هایی که نام حجره تکراری است: {showResult.slug_duplicate_rows}</span>
+        <span>مجموع سطر هایی که نام محصول تکراری است: {showResult.slug_duplicate_rows}</span>
         <span>تعداد محصولات بروزرسانی شده: {showResult.old_products}</span>
         <span>تعداد محصولاتی که جدید ایجاد شده: {showResult.new}</span>
       </div>

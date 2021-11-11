@@ -80,7 +80,7 @@ const Orders = () => {
                                             "تکمیل شده" :
                                             <span>
                                                 در انتظار پرداخت
-                                                <button className={styles.button_buy} onClick={() => {
+                                                <button className={`${styles.button_buy} mx-3`} onClick={() => {
                                                     buyWaitOrders(value.id);
                                                 }}>خرید</button>
                                             </span>

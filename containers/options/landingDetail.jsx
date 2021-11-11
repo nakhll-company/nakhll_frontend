@@ -30,20 +30,20 @@ const LandingDetail = ({ id, activeHojreh }) => {
                         <dt className={styles.list_title}> - {detailData.name}</dt>
                         <dd className={styles.list_description}>
                             {detailData.description}
-                            <div className={styles.wrapper_link}>
-                                <span className={styles.link} onClick={() => {
-                                    activeDemo(id, activeHojreh);
-                                }}>فعال سازی دمو</span>
-                                <span className={styles.link} onClick={() => {
-                                    buyOptions(id, activeHojreh);
-                                }}>خرید</span>
-                                <Link href={`/fp/options/landing/orders?id=${id}`}>
-                                    <a>
-                                        <span className={styles.link}>سفارشات</span>
-                                    </a>
-                                </Link>
-                            </div>
                         </dd>
+                        <div className={styles.wrapper_link}>
+                            <span className={styles.link} onClick={() => {
+                                activeDemo(id, activeHojreh);
+                            }}>فعال سازی دمو</span>
+                            <span className={styles.link} onClick={() => {
+                                buyOptions(id, activeHojreh);
+                            }}>خرید</span>
+                            <Link href={`/fp/options/landing/orders?id=${id}`}>
+                                <a className={styles.link}>
+                                    سفارشات
+                                </a>
+                            </Link>
+                        </div>
                     </dl>
                 }
             </div>
