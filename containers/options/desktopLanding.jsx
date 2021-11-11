@@ -26,7 +26,7 @@ const DesktopLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
                 <span className={styles.link_add} onClick={async () => {
                     let response = await ApiRegister().apiRequest(
                         {
-                            name: "",
+                            name: "صفحه بدون نام",
                             page_data: "",
                             shop: activeHojreh
                         },
