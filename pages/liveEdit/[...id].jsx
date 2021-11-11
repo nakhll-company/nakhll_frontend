@@ -22,7 +22,7 @@ import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 
 function index({ idLanding }) {
   // idLanding=[slugShop,idLanding]
-  let apiUpdateLanding = `${ApiReference.landing.update.url}${idLanding[1]}/`;
+  let apiUpdateLanding = `${ApiReference.landing.update.url}${idLanding[0]}/${idLanding[1]}/`;
   const [characters, setCharacters] = useState([]);
   const [openPlaneEditor, setOpenPlaneEditor] = useState(false);
   const [openSaveLanding, setOpenSaveLanding] = useState(false);
