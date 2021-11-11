@@ -9,7 +9,7 @@ import LinerTwoValue from "../../containers/LandingPage/LinerTwoValue";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { useRouter } from "next/router";
 function index({ idLanding }) {
-  let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding}/`;
+  let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}`;
 
   const [dataLanding, setDataLanding] = useState([]);
 
