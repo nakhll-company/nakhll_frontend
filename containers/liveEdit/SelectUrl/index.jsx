@@ -27,28 +27,6 @@ function SelectUrl(props) {
     }
   }, []);
 
-  // const list = [
-  //   {
-  //     url: "/product/?search=%D8%B9%D8%B3%D9%84&ordering=&ready=false&available=false&discounted=false&city=&page_size=50&min_price=0&max_price=10000&shop=&category=",
-  //     title: "عسل ها",
-  //     ID: "fc628161-2a0f-46db-9c86-3ac7132db4ea",
-  //   },
-  //   {
-  //     url: "/product/?search=%D8%B9%D8%B3%D9%84&ordering=&ready=false&available=true&discounted=false&city=&page_size=50&min_price=0&max_price=10000&shop=&category=",
-  //     title: "عسل های موجود",
-  //     ID: "b61a6721-94bd-4890-84c5-8eca0d94b1a9",
-  //   },
-  //   {
-  //     url: "/product/?search=%D8%B9%D8%B3%D9%84&ordering=&ready=true&available=true&discounted=false&city=&page_size=50&min_price=0&max_price=10000&shop=&category=",
-  //     title: "عسل های آماده ارسال",
-  //     ID: "0a91a361-f4d6-49f3-b531-20f6cdf3421b",
-  //   },
-  //   {
-  //     url: "/product/?search=%D8%B9%D8%B3%D9%84&ordering=&ready=true&available=true&discounted=true&city=&page_size=50&min_price=0&max_price=10000&shop=&category=",
-  //     title: "عسل های آماده ارسال با تخفیف زیاد",
-  //     ID: "2ca388ce-18be-4636-aa8f-320d13ad536c",
-  //   },
-  // ];
   return (
     <>
       <div className={styles.wrap}>
@@ -61,10 +39,14 @@ function SelectUrl(props) {
               }}
             ></i>
           </span>
-          کاربر با کلیک بر روی بنر شما به چه صفحه ای از سایت برود؟
+          <span style={{ color: "#000" }}>
+            کاربر با کلیک بر روی بنر شما به چه صفحه ای از سایت برود؟
+          </span>
           <br />
-          شما میتوانید کاربر را به صفحه محصول یا صفحه محصولات با فیلتر های مشخص
-          شده هدایت کنید
+          <span style={{ color: "#000" }}>
+            شما میتوانید کاربر را به صفحه محصول یا صفحه محصولات با فیلتر های
+            .مشخص شده هدایت کنید
+          </span>
           <div className={styles.table}>
             <div className={styles.header}>لیست صفحات شما</div>
             {true && (
@@ -89,11 +71,21 @@ function SelectUrl(props) {
                 ))}
 
                 <div className={styles.buttonPages}>
-                  <div className={styles.btnProductPage}>
+                  <div
+                    className={styles.btnProductPage}
+                    onClick={() => {
+                      window.open(`/`, "_blank");
+                    }}
+                  >
                     <i className="fas fa-road"></i>
                     <span>رفتن به صفحه محصولات</span>
                   </div>
-                  <div className={styles.btnListProductPage}>
+                  <div
+                    className={styles.btnListProductPage}
+                    onClick={() => {
+                      window.open(`/`, "_blank");
+                    }}
+                  >
                     <i className="fas fa-road"></i>
                     <span>رفتن به صفحه محصولات</span>
                   </div>

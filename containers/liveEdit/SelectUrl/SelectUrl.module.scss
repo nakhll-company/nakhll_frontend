@@ -46,6 +46,7 @@
             border-bottom: 2px solid #000;
         }
         .list {
+            overflow-y: auto;
             .wrapItem {
                 display: flex;
                 justify-content: center;
@@ -59,11 +60,11 @@
                     background: #000;
                     color: wheat;
                     font-size: 20px;
-                    .item{
+                    .item {
                         color: wheat;
                     }
                 }
-                .item{
+                .item {
                     color: #000;
                 }
                 .numbers {
