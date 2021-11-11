@@ -563,7 +563,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                 {(activeOptions && activeOptions.length > 0) ? activeOptions.map((value, index) => {
                   return (
                     <li key={index}>
-                      <Link href={`/fp/options/landing/${value.id}`}>
+                      <Link href={`/fp/options/landing/detail?id=${value.id}`}>
                         <a>
                           {value.name}
                         </a>

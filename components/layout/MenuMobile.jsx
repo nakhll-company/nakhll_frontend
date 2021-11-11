@@ -71,7 +71,7 @@ function MenuMobile({ activeOptions }) {
           {(activeOptions && activeOptions.lenght > 0) ? activeOptions.map((value, index) => {
             return (
               <li key={index} className="mb-3" onClick={() => { document.querySelector("#moreOptions").style.display = "none"; }}>
-                <Link href="/fp/options/landing">
+                <Link href={`/fp/options/landing/detail?id=${value.id}`}>
                   <a>
                     {value.name}
                   </a>
