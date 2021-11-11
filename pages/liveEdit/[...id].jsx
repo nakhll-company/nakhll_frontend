@@ -337,6 +337,7 @@ function index({ idLanding }) {
           </div>
 
           <Living
+            idLanding={idLanding}
             characters={characters}
             setCharacters={setCharacters}
             setOpenPlaneEditor={setOpenPlaneEditor}

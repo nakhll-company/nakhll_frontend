@@ -8,7 +8,7 @@ import { ApiReference } from "../../../Api";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
 const _asist = new Assistent();
-function SelectUrl(props) {
+function SelectUrl({ idLanding }) {
   let apiListPinned = ApiReference.PinnedURL.PinnedList.url;
   const dispatch = useDispatch();
   const [list, setList] = useState([]);
@@ -23,7 +23,6 @@ function SelectUrl(props) {
 
     if (response.status == 200) {
       setList(response.data);
-      console.log(`response.data`, response.data);
     }
   }, []);
 
@@ -74,7 +73,10 @@ function SelectUrl(props) {
                   <div
                     className={styles.btnProductPage}
                     onClick={() => {
-                      window.open(`/`, "_blank");
+                      window.open(
+                        `/product/?q=&shop=${idLanding[0]}`,
+                        "_blank"
+                      );
                     }}
                   >
                     <i className="fas fa-road"></i>
@@ -82,8 +84,12 @@ function SelectUrl(props) {
                   </div>
                   <div
                     className={styles.btnListProductPage}
+                    // https://nakhll.com/product/?q=&shop=mamaneila
                     onClick={() => {
-                      window.open(`/`, "_blank");
+                      window.open(
+                        `/product/?q=&shop=${idLanding[0]}`,
+                        "_blank"
+                      );
                     }}
                   >
                     <i className="fas fa-road"></i>

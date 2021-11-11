@@ -39,7 +39,6 @@ function index({ idLanding }) {
       case 3:
         return (
           <>
-          
             <LinerTwoImgSm dataLinerTwoValue={data.data} />
           </>
         );
@@ -76,9 +75,6 @@ function index({ idLanding }) {
         null;
     }
   };
-  useEffect(() => {
-    console.log(`mii`, dataLanding);
-  }, [dataLanding]);
 
   return (
     <>
