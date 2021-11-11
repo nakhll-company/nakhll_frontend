@@ -560,7 +560,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                 ></i>
               </span>
               <ul id="options" className={styles.optionsList}>
-                {activeOptions && activeOptions.length > 0 && activeOptions.map((value, index) => {
+                {(activeOptions && activeOptions.length > 0) ? activeOptions.map((value, index) => {
                   return (
                     <li key={index}>
                       <Link href={`/fp/options/landing/${value.id}`}>
@@ -570,7 +570,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                       </Link>
                     </li>
                   )
-                })}
+                }) : <li>قابلیتی وجود ندارد</li>}
               </ul>
             </section>
           </div>
