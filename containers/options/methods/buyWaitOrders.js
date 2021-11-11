@@ -10,6 +10,7 @@ export async function buyWaitOrders(id) {
     );
 
     if (response.status === 200) {
+        location.replace(`${response.data.url}`);
     } else {
         errorMessage(response.response.data[0]);
     }
