@@ -63,14 +63,17 @@ function index({ idLanding }) {
       true,
       ""
     );
+    console.log(`response.data`, response.data);
     if (response.status == 200) {
-      let item = JSON.parse(response.data.page_data);
-      setCharacters(item);
-      dispatch(_updateDataLanding(item));
-      console.log(
-        "JSON.parse(response.data.page_data) :>> ",
-        JSON.parse(response.data.page_data)
-      );
+      if (response.data.page_data == "") {
+        setCharacters(list);
+        dispatch(_updateDataLanding(list));
+      } else {
+        let item = JSON.parse(response.data.page_data);
+
+        setCharacters(item);
+        dispatch(_updateDataLanding(item));
+      }
     }
 
     // setCharacters(list);
