@@ -6,13 +6,7 @@ import Living from "../../components/liveEdit/living";
 import Head from "next/head";
 // gsap
 import { gsap, Power3 } from "gsap";
-import Sm_InputPlace from "../../components/SampelComponents/InputPlace";
-import Sm_HeroSlides from "../../components/SampelComponents/HeroSlides";
-import Sm_LinerFourImg from "../../components/SampelComponents/Sm_LinerFourImg";
-import Sm_LinerProducts from "../../components/SampelComponents/Sm_LinerProducts";
-import Sm_LinerTwoImg from "../../components/SampelComponents/Sm_LinerTwoImg";
-import Sm_LinerThreeImg from "../../components/SampelComponents/Sm_LinerThreeImg";
-import Sm_LinerOneImg from "../../components/SampelComponents/Sm_LinerOneImg";
+
 import ListComponent from "../../containers/liveEdit/ListComponent";
 import { useDispatch, useSelector } from "react-redux";
 import { _updateDataLanding } from "../../redux/actions/liveEdit/_updateDataLanding";
@@ -21,6 +15,7 @@ import { ApiReference } from "../../Api";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 
 function index({ idLanding }) {
+  let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}`;
   // idLanding=[slugShop,idLanding]
   let apiUpdateLanding = `${ApiReference.landing.update.url}${idLanding[0]}/${idLanding[1]}/`;
   const [characters, setCharacters] = useState([]);
@@ -60,8 +55,25 @@ function index({ idLanding }) {
     },
   ];
 
-  useEffect(() => {
-    setCharacters(list);
+  useEffect(async () => {
+    let response = await ApiRegister().apiRequest(
+      null,
+      "get",
+      getDataLanding,
+      true,
+      ""
+    );
+    if (response.status == 200) {
+      let item = JSON.parse(response.data.page_data);
+      setCharacters(item);
+      dispatch(_updateDataLanding(item));
+      console.log(
+        "JSON.parse(response.data.page_data) :>> ",
+        JSON.parse(response.data.page_data)
+      );
+    }
+
+    // setCharacters(list);
     // for Animation
     tl.from(profile, { y: 1200, ease: "ease", opacity: 0, duration: 0.8 })
       .from(profile, {

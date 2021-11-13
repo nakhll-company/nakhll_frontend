@@ -47,8 +47,7 @@ function CustomCropper({ imageSrc, setCroppedImage }) {
               crop={crop}
               rotation={rotation}
               zoom={zoom}
-              // type certain aspect
-              // {Component.typeComponent == 2 && `aspect={10 / 1}`}
+              
               aspect={b / 1}
               onCropChange={setCrop}
               onRotationChange={setRotation}

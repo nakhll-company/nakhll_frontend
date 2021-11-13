@@ -139,7 +139,7 @@ function Sm_LinerProducts({ id, data }) {
           <div className={styles.palette}>
             {/* <input type="color" name="" id="" /> */}
             <div className={styles.wrapIcon}>
-              <label for="palette">
+              <label htmlFor="palette">
                 <i
                   style={{ fontSize: "30px", color: "#fff" }}
                   className={`fas fa-palette ${styles.colorIcon}`}
@@ -180,8 +180,8 @@ function Sm_LinerProducts({ id, data }) {
       </div>
 
       <div className={styles.wrap}>
-        {products.map((product) => (
-          <Sm_product data={product} />
+        {products.map((product, index) => (
+          <Sm_product key={index} data={product} />
         ))}
         {/* <Sm_product />
         <Sm_product />
