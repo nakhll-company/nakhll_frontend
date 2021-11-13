@@ -16,12 +16,16 @@ function Sm_LinerTwoImg({ setImageSrc, id, data }) {
         <div className={styles.icon_change_url}>
           <InputUrl id={id} order={0} />
         </div>
-        <a href="">
-          <img
-            src={data[0].image ? data[0].image : "/image/sample/3_1.jpg"}
-            alt=""
-          />
-        </a>
+        {data[0].title && (
+          <div className={styles.titleUrl}>
+            <span>{data[0].title}</span>
+          </div>
+        )}
+
+        <img
+          src={data[0].image ? data[0].image : "/image/sample/3_1.jpg"}
+          alt=""
+        />
       </div>
       <div className={styles.left}>
         <div className={styles.icon_change_pic}>
@@ -30,12 +34,17 @@ function Sm_LinerTwoImg({ setImageSrc, id, data }) {
         <div className={styles.icon_change_url}>
           <InputUrl id={id} order={1} />
         </div>
-        <a href="">
-          <img
-            src={data[1].image ? data[1].image : "/image/sample/3_1.jpg"}
-            alt=""
-          />
-        </a>
+
+        <img
+          src={data[1].image ? data[1].image : "/image/sample/3_1.jpg"}
+          alt=""
+        />
+
+        {data[1].title && (
+          <div className={styles.titleUrl}>
+            <span>{data[1].title}</span>
+          </div>
+        )}
       </div>
     </div>
   );
