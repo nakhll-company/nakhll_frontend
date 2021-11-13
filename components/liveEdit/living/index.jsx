@@ -156,7 +156,7 @@ function Living({ characters, setCharacters, setOpenPlaneEditor,idLanding }) {
                     >
                       <div className={`${styles.wrapBtn} ${styles.btnBottom}`}>
                         <button
-                          class={styles.buttonAdd}
+                          className={styles.buttonAdd}
                           role="button"
                           onClick={() => _handel_add_component_bottom(index)}
                         >
@@ -165,7 +165,7 @@ function Living({ characters, setCharacters, setOpenPlaneEditor,idLanding }) {
                       </div>
                       <div className={`${styles.wrapBtn} ${styles.btnUp}`}>
                         <button
-                          class={styles.buttonAdd}
+                          className={styles.buttonAdd}
                           role="button"
                           onClick={() => _handel_add_component_top(index)}
                         >
@@ -174,7 +174,7 @@ function Living({ characters, setCharacters, setOpenPlaneEditor,idLanding }) {
                       </div>
                       <div className={`${styles.wrapBtn} ${styles.btnLeft}`}>
                         <button
-                          class={styles.buttonDel}
+                          className={styles.buttonDel}
                           role="button"
                           onClick={() => handelClickOnDeleteBtn(index)}
                         >
@@ -185,7 +185,7 @@ function Living({ characters, setCharacters, setOpenPlaneEditor,idLanding }) {
                         className={`${styles.wrapBtn} ${styles.btnLeftEdit}`}
                       >
                         <button
-                          class={styles.buttonEdit}
+                          className={styles.buttonEdit}
                           role="button"
                           onClick={() => _handelClickEditComponent(index)}
                         >
