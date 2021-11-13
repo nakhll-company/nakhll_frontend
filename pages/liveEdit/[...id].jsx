@@ -93,13 +93,12 @@ function index({ idLanding }) {
   const landing = useSelector((state) => state.allDataLanding);
   const _handel_update_landing = async () => {
     let ansapi = {
-      name: "milad",
-      shop: "mamaneila",
+      shop: idLanding[0],
       page_data: JSON.stringify(landing),
     };
     let response = await ApiRegister().apiRequest(
       ansapi,
-      "PUT",
+      "patch",
       apiUpdateLanding,
       true,
       ""
