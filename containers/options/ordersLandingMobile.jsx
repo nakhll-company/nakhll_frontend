@@ -28,7 +28,7 @@ const OrdersLandingMobile = ({ id, ordersData }) => {
                         </a>
                     </Link>
                 </div>
-                {ordersData.length > 0 && ordersData.map((value, index) => {
+                {(ordersData && ordersData.length > 0) ? ordersData.map((value, index) => {
                     return (
                         <div className={styles.cart_item} key={index}>
                             <div className="d-flex justify-content-between align-items-center">
@@ -51,7 +51,13 @@ const OrdersLandingMobile = ({ id, ordersData }) => {
                             </div>
                         </div>
                     )
-                })}
+                }) :
+                    <tr>
+                        <td colSpan="7">
+                            داده ای موجود نیست
+                        </td>
+                    </tr>
+                }
             </div>
         </div>
     );

@@ -20,7 +20,7 @@ const LandingDetail = () => {
 
     useEffect(async () => {
         setDetailData(await landingDetal(id));
-    }, []);
+    }, [id]);
 
     return (
         <>
@@ -38,7 +38,7 @@ const LandingDetail = () => {
                         </dd>
                         <div className={styles.wrapper_link}>
                             <span className={styles.link} onClick={() => {
-                                activeDemo(id, activeHojreh);
+                                activeDemo(id, activeHojreh, router);
                             }}>فعال سازی دمو</span>
                             <span className={styles.link} onClick={() => {
                                 buyOptions(id, activeHojreh);

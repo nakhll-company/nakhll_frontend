@@ -27,7 +27,7 @@ const Orders = () => {
 
     useEffect(async () => {
         setOrdersData(await getOrders(id, activeHojreh));
-    }, []);
+    }, [id, activeHojreh]);
 
     return (
         <>
@@ -63,7 +63,7 @@ const Orders = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {ordersData.length > 0 && ordersData.map((value, index) => {
+                            {(ordersData && ordersData.length > 0) ? ordersData.map((value, index) => {
                                 return (
                                     <tr key={index}>
                                         <td>{_asist.number(index + 1)}</td>
@@ -87,7 +87,9 @@ const Orders = () => {
                                         }</td>
                                     </tr>
                                 )
-                            })}
+                            }) : <tr>
+                                <td colSpan="7">داده ای موجود نیست</td>
+                            </tr>}
                         </tbody>
                     </table>
                 </div> :

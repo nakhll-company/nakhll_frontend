@@ -63,7 +63,7 @@ const DesktopLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {landingList.length > 0 && landingList.map((value, index) => {
+                    {(landingList && landingList.length > 0) ? landingList.map((value, index) => {
                         return (
                             <tr key={index}>
                                 <td>{_asist.number(index + 1)}</td>
@@ -86,7 +86,11 @@ const DesktopLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
                                 }}></i></td>
                             </tr>
                         )
-                    })}
+                    }) :
+                        <tr>
+                            <td colSpan="7">داده ای موجود نیست</td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
