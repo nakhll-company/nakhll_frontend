@@ -18,8 +18,8 @@ function SaveLanding({ setOpenSaveLanding, idLanding }) {
   const landing = useSelector((state) => state.allDataLanding);
 
   let ansapi = {
-    name: "milad",
-    shop: "mamaneila",
+    name: inputName !== "" ? inputName : "بدون عنوان",
+    shop: idLanding[0],
     page_data: JSON.stringify(landing),
   };
 

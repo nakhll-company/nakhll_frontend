@@ -18,6 +18,8 @@ function index({ idLanding }) {
   let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}`;
   // idLanding=[slugShop,idLanding]
   let apiUpdateLanding = `${ApiReference.landing.update.url}${idLanding[0]}/${idLanding[1]}/`;
+  // const userLog = useSelector((state) => state.User.userInfo);
+  // console.log(`userLog`, userLog);
   const [characters, setCharacters] = useState([]);
   const [openPlaneEditor, setOpenPlaneEditor] = useState(false);
   const [openSaveLanding, setOpenSaveLanding] = useState(false);
@@ -63,7 +65,7 @@ function index({ idLanding }) {
       true,
       ""
     );
-    console.log(`response.data`, response.data);
+
     if (response.status == 200) {
       if (response.data.page_data == "") {
         setCharacters(list);
@@ -78,17 +80,12 @@ function index({ idLanding }) {
 
     // setCharacters(list);
     // for Animation
-    tl.from(profile, { y: 1200, ease: "ease", opacity: 0, duration: 0.8 })
-      .from(profile, {
-        scale: 1.6,
-        ease: "ease",
-      })
-      .from(toggleMenu, {
-        opacity: 0,
-        scale: 0,
-        ease: "back",
-        duration: 0.4,
-      });
+    tl.from(toggleMenu, {
+      opacity: 0,
+      scale: 0,
+      ease: "back",
+      duration: 0.4,
+    });
   }, []);
 
   // Function For Update Landing
@@ -96,13 +93,12 @@ function index({ idLanding }) {
   const landing = useSelector((state) => state.allDataLanding);
   const _handel_update_landing = async () => {
     let ansapi = {
-      name: "milad",
-      shop: "mamaneila",
+      shop: idLanding[0],
       page_data: JSON.stringify(landing),
     };
     let response = await ApiRegister().apiRequest(
       ansapi,
-      "PUT",
+      "patch",
       apiUpdateLanding,
       true,
       ""
@@ -270,13 +266,14 @@ function index({ idLanding }) {
                   </span>
                 </a>
               </li>
-              <li className={styles.activeLink}>
-                <Link href="/liveEdit/edit">
-                  <a className={styles.wrap_item}>
-                    <span className={`${styles.icon} fas fa-dice-d20`}></span>
-                    <span className={styles.title}>چیدمان</span>
-                  </a>
-                </Link>
+              <li
+                className={styles.activeLink}
+                style={{ pointerEvents: "none" }}
+              >
+                <a className={styles.wrap_item}>
+                  <span className={`${styles.icon} fas fa-dice-d20`}></span>
+                  <span className={styles.title}>چیدمان</span>
+                </a>
               </li>
               <li>
                 <div
@@ -347,7 +344,7 @@ function index({ idLanding }) {
             </div>
             {/* userImg */}
             <div ref={(el) => (profile = el)} className={styles.user}>
-              <img src="/image/person.jpeg" alt="" />
+              {/* <img src="/image/person.jpeg" alt="" /> */}
             </div>
           </div>
 
