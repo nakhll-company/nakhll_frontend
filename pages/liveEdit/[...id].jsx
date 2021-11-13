@@ -80,17 +80,12 @@ function index({ idLanding }) {
 
     // setCharacters(list);
     // for Animation
-    tl.from(profile, { y: 1200, ease: "ease", opacity: 0, duration: 0.8 })
-      .from(profile, {
-        scale: 1.6,
-        ease: "ease",
-      })
-      .from(toggleMenu, {
-        opacity: 0,
-        scale: 0,
-        ease: "back",
-        duration: 0.4,
-      });
+    tl.from(toggleMenu, {
+      opacity: 0,
+      scale: 0,
+      ease: "back",
+      duration: 0.4,
+    });
   }, []);
 
   // Function For Update Landing
@@ -350,7 +345,7 @@ function index({ idLanding }) {
             </div>
             {/* userImg */}
             <div ref={(el) => (profile = el)} className={styles.user}>
-              <img src="/image/person.jpeg" alt="" />
+              {/* <img src="/image/person.jpeg" alt="" /> */}
             </div>
           </div>
 
