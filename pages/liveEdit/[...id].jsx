@@ -18,6 +18,8 @@ function index({ idLanding }) {
   let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}`;
   // idLanding=[slugShop,idLanding]
   let apiUpdateLanding = `${ApiReference.landing.update.url}${idLanding[0]}/${idLanding[1]}/`;
+  // const userLog = useSelector((state) => state.User.userInfo);
+  // console.log(`userLog`, userLog);
   const [characters, setCharacters] = useState([]);
   const [openPlaneEditor, setOpenPlaneEditor] = useState(false);
   const [openSaveLanding, setOpenSaveLanding] = useState(false);
@@ -63,7 +65,7 @@ function index({ idLanding }) {
       true,
       ""
     );
-    console.log(`response.data`, response.data);
+
     if (response.status == 200) {
       if (response.data.page_data == "") {
         setCharacters(list);
@@ -270,13 +272,14 @@ function index({ idLanding }) {
                   </span>
                 </a>
               </li>
-              <li className={styles.activeLink}>
-                <Link href="/liveEdit/edit">
-                  <a className={styles.wrap_item}>
-                    <span className={`${styles.icon} fas fa-dice-d20`}></span>
-                    <span className={styles.title}>چیدمان</span>
-                  </a>
-                </Link>
+              <li
+                className={styles.activeLink}
+                style={{ pointerEvents: "none" }}
+              >
+                <a className={styles.wrap_item}>
+                  <span className={`${styles.icon} fas fa-dice-d20`}></span>
+                  <span className={styles.title}>چیدمان</span>
+                </a>
               </li>
               <li>
                 <div
