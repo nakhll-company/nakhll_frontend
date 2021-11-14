@@ -1,5 +1,5 @@
 import React from "react";
-import Head from 'next/head'
+import Head from "next/head";
 
 import HeroSlides from "../containers/LandingPage/HeroSlides";
 import LinerFourImgMobile from "../containers/LandingPage/LinerFourImgMobile";
@@ -119,10 +119,13 @@ const index = ({ data }) => {
 
   return (
     <>
-    <Head>
+      <Head>
         <title>بازار اجتماعی نخل</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta name="description" content="بازار اجتماعی نخل؛برای شکوفایی استعدادها و بهتردیده­‌شدن‌تان، کالاها و خدمات خود را در سرزمین نخل به اشتراک بگذارید. " />
+        <meta
+          name="description"
+          content="نخل سرزمینی است برای یادآوری سنت‌های اصیل ایرانی‌مان، برای شکوفایی استعدادها و بهتر دیده‌شدن‌تان، کالاها و خدمات خود را در سرزمین نخل به اشتراک بگذارید. اینجا راهی برای پیشبرد هدف‌هایتان وجود دارد."
+        />
       </Head>
       {data.SchemaIn.length > 0 &&
         data.SchemaIn.map((turn, index) =>
