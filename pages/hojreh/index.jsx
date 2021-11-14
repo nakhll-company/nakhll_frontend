@@ -20,7 +20,7 @@ const fetchData = async (id) => {
   let all_type_for_component = [];
   let Schema = [];
   let Api_Shop = encodeURI(`${ApiReference.shop}${id}/`);
-  
+
   let response = await ApiRegister().apiRequest(
     null,
     "GET",
@@ -160,6 +160,7 @@ const Hojreh = ({ dataShop, data }) => {
           integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
           crossOrigin="anonymous"
         ></link>
+        <title>{`${informationShop.title} | نخل`}</title>
       </Head>
       {!dataShop.shop.is_landing && (
         <>
