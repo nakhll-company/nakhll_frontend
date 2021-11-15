@@ -404,7 +404,6 @@ export default index;
 // function server side
 export async function getServerSideProps(context) {
   const idLanding = context.params.id;
-  console.log("context :>> ", context.params.id);
 
   return {
     props: { idLanding },
