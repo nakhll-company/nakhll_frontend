@@ -8,6 +8,7 @@
     .nav_item {
         margin-left: 48px;
         flex-shrink: 0;
+        cursor: pointer;
         @media (max-width: 1399px) {
             margin-left: 20px;
         }
@@ -64,7 +65,8 @@
                     .nav_submenu_cat {
                         padding: 10px 0 8px;
                         .nav_submenu_col_title {
-                            a {
+                            div {
+                                cursor: pointer;
                                 color: #141414;
                                 margin: 0 0 16px;
                                 i {
@@ -77,7 +79,8 @@
                             }
                         }
                         li {
-                            a {
+                            cursor: pointer;
+                            div {
                                 color: #8c8c8c;
                                 font-size: 14px;
                                 display: inline-block;
@@ -86,6 +89,7 @@
                                 line-height: 20px;
                                 white-space: nowrap;
                                 text-overflow: ellipsis;
+                                cursor: pointer;
                             }
                         }
                     }

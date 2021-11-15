@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from "next/link";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+
 import styles from "./MegaMenuDesktop.module.scss";
 function MegaMenuDesktop({ category }) {
   return (
@@ -11,12 +11,11 @@ function MegaMenuDesktop({ category }) {
           className={styles.nav_item}
           style={{ position: "relative", display: "inline-block" }}
         >
-          <Link href="#">
-            <a className={styles.nav_item_link}>
-              {element.name}
-              <i className="fas fa-angle-down"></i>
-            </a>
-          </Link>
+          <div className={styles.nav_item_link}>
+            {element.name}
+            <i className="fas fa-angle-down"></i>
+          </div>
+
           <div
             className={`container  ${styles.nav_submenu}`}
             style={{ backgroundColor: "#fff" }}
@@ -27,15 +26,21 @@ function MegaMenuDesktop({ category }) {
                   <li className={styles.nav_submenu_col_title}>
                     {element.childrens.length > 0 &&
                       element.childrens.map((subElement, index) => (
-                        <Link
-                          href={`/product?word=&cat=${subElement.id}`}
-                          key={index}
+                        // <Link
+                        //   href={`/product?q=&category=${subElement.id}`}
+                        //   key={index}
+                        // >
+                        <div
+                          onClick={() =>
+                            location.replace(
+                              `/product?q=&category=${subElement.id}`
+                            )
+                          }
                         >
-                          <a>
-                            {subElement.name}
-                            <i className="icon icon-Left"></i>
-                          </a>
-                        </Link>
+                          {subElement.name}
+                          <i className="icon icon-Left"></i>
+                        </div>
+                        // </Link>
                       ))}
                   </li>
                 </ul>

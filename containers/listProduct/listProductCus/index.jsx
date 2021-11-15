@@ -7,7 +7,7 @@ import ContextListProductPage from "./Context/context";
 import InfiniteScroll from "react-infinite-scroll-component";
 // components
 import { TopBar } from "../TopBar";
-import { errorMessage } from '../../utils/message';
+import { errorMessage } from "../../utils/message";
 import Search from "../../../components/search/Search";
 import AddFavorites from "../../../components/AddFavorites";
 import MenuMobile from "../../../components/layout/MenuMobile";
@@ -25,12 +25,7 @@ import styles from "./listProductCus.module.scss";
 
 const _asist = new Assistent();
 
-function ListProductCus({
-  data,
-  dataFirst,
-  shop_products = "",
-  categoryIn = "",
-}) {
+function ListProductCus({ data }) {
   const [listProducts, setlistProducts] = useState([]);
 
   const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
@@ -136,7 +131,7 @@ function ListProductCus({
       discounted: isDiscountPercentage,
 
       ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
-      ...(categoryIn.length !== 0 && { new_category: categoryIn }),
+
       ...(wantCategories.length > 0 && {
         new_category: wantCategories.toString(),
       }),
@@ -193,9 +188,9 @@ function ListProductCus({
           available: isAvailableGoods,
           discounted: isDiscountPercentage,
           city: checkedCity.toString(),
-          ...(categoryIn !== "" && { new_category: categoryIn }),
+
           ...(wantCategories.length > 0 && {
-            category: wantCategories.toString(),
+            new_category: wantCategories.toString(),
           }),
           page_size: 50,
           min_price: minPrice * 10000,
@@ -245,7 +240,6 @@ function ListProductCus({
   // for filters in sidebar
   useEffect(async () => {
     await _handel_filters();
-    await _handel_category();
   }, [
     isAvailableGoods,
     isReadyForSend,
@@ -254,12 +248,13 @@ function ListProductCus({
     wantCategories,
     whichOrdering,
     clickOnRange,
-    categoryIn,
+
     changePage,
     hojreh,
   ]);
   useEffect(async () => {
     await _get_all_shops();
+    await _handel_category();
   }, []);
 
   useEffect(() => {
@@ -292,7 +287,7 @@ function ListProductCus({
     wantCategories,
     whichOrdering,
     clickOnRange,
-    categoryIn,
+
     hojreh,
   ]);
 

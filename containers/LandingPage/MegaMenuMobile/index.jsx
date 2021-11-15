@@ -48,7 +48,7 @@ function MegaMenuMobile({ category }) {
             {element.childrens.length > 0 &&
               element.childrens.map((subElement, index) => (
                 <li key={index}>
-                  <Link href={`/product?q=&cat=${subElement.id}`}>
+                  <Link href={`/product?q=&category=${subElement.id}`}>
                     <a
                       onClick={() => {
                         document.getElementById("SlideMenu").style.right =
