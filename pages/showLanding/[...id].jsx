@@ -28,7 +28,6 @@ function index({ idLanding }) {
     }
   }, []);
   const _handel_select_component = (data, index) => {
-    console.log(`data1`, data);
     switch (data.type) {
       case 1:
         return <HeroSlides dataHeroSlides={data.data} />;
