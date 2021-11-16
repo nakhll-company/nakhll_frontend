@@ -53,7 +53,7 @@ const MobileLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
                         </a>
                     </Link>
                 </div>
-                {landingList.length > 0 && landingList.map((value, index) => {
+                {(landingList && landingList.length > 0) ? landingList.map((value, index) => {
                     return (
                         <div className={styles.cart_item} key={index}>
                             <div className="d-flex justify-content-between align-items-center" onClick={() => {
@@ -74,7 +74,12 @@ const MobileLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
                             </div>
                         </div>
                     )
-                })}
+                }) : <tr>
+                    <td colSpan="7">
+                        داده ای موجود نیست
+                    </td>
+                </tr>
+                }
             </div>
         </div>
     );

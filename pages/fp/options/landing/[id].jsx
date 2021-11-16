@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from 'react';
 // component
 import useViewport from '../../../../components/viewPort';
-import LandingDetail from '../../../../containers/options/landingDetail';
 import MobileLanding from '../../../../containers/options/mobileLanding';
 import DesktopLanding from '../../../../containers/options/desktopLanding';
 // methods
@@ -23,7 +22,7 @@ const Landing = () => {
 
     useEffect(async () => {
         setFeacureActive(await featureIsActive(id, activeHojreh, setLandingList));
-    }, []);
+    }, [id, activeHojreh]);
 
     return (
         <>
@@ -31,7 +30,7 @@ const Landing = () => {
                 <title>لیست فرودها</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
-            {(featureActive.length > 0 &&
+            {(featureActive && featureActive.length > 0 &&
                 width < breakpoint) ?
                 <MobileLanding landingList={landingList} id={id} activeHojreh={activeHojreh} setLandingList={setLandingList} />
                 :

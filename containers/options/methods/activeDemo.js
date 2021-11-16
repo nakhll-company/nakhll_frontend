@@ -1,7 +1,7 @@
 import { ApiRegister } from '../../../services/apiRegister/ApiRegister';
 import { errorMessage } from '../../../containers/utils/message';
 
-export async function activeDemo(id, activeShop) {
+export async function activeDemo(id, activeShop, router) {
 
     let response = await ApiRegister().apiRequest(
         {
@@ -13,7 +13,7 @@ export async function activeDemo(id, activeShop) {
     );
 
     if (response.status === 200) {
-        location.replace(`/fp/options/landing/orders?id=${id}`);
+        router.push(`/fp/options/landing/orders?id=${id}`);
     } else {
         errorMessage(response.response.data.error);
     }

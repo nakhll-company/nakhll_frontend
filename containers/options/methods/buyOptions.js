@@ -21,10 +21,9 @@ export async function buyOptions(id, activeShop) {
         );
 
         if (result.status === 200) {
-            location.replace(`${response.data.url}`);
+            location.replace(`${result.data.url}`);
         } else {
-            errorMessage("خطایی رخ داده است");
-
+            errorMessage(result.response.data[0]);
         }
 
     } else {
