@@ -12,6 +12,9 @@ function product({ ap, data }) {
     <>
       <Head>
         <title>{`جستجو برای ${data.q} | نخل`}</title>
+        <meta name="robots" content="noindex, nofollow" />
+
+        <link rel="canonical" href="https://nakhll.com/search/?q=" />
       </Head>
 
       {ap !== "" && (
