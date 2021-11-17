@@ -187,6 +187,7 @@ export default Shop;
 
 // function server side
 export async function getServerSideProps(context) {
+  console.log(`context.query`, context.query);
   const dataShop = await fetchData(context.query.shop);
 
   return {
