@@ -208,7 +208,7 @@ const ProductDetailDesktop = ({ data }) => {
                 <section>
                   <h2 className={styles.product_section_title}>
                     <span className="d-none d-lg-block">فروشنده این محصول</span>
-                    <Link href={`/shop?shop=${detail.shop.slug}`}>
+                    <Link href={`/shop/${detail.shop.slug}`}>
                       <a
                         className={`${styles.product_section_title__link} d-lg-none d-block`}
                       >
@@ -220,7 +220,7 @@ const ProductDetailDesktop = ({ data }) => {
                     className={`${styles.avatar_box}  align-items-start mb-2`}
                   >
                     <div className={` ${styles.avatar} mx-auto mb-2`}>
-                      <Link href={`/shop?shop=${detail.shop.slug}`}>
+                      <Link href={`/shop/${detail.shop.slug}`}>
                         <a>
                           <Image
                             src={detail.shop.image_thumbnail_url}
@@ -236,7 +236,7 @@ const ProductDetailDesktop = ({ data }) => {
                       className={`${styles.avatar_box_content} align-self-center`}
                     >
                       <div>
-                        <Link href={`/shop?shop=${detail.shop.slug}`}>
+                        <Link href={`/shop/${detail.shop.slug}`}>
                           <a
                             style={{ fontSize: ".9rem", color: "#3e3e3e" }}
                             className="mb-0"
@@ -247,7 +247,7 @@ const ProductDetailDesktop = ({ data }) => {
                         </Link>
                       </div>
                       <div>
-                        <Link href={`/shop?shop=${detail.shop.slug}`}>
+                        <Link href={`/shop/${detail.shop.slug}`}>
                           <a
                             style={{ fontSize: ".8rem", color: "#3e3e3e" }}
                             className="mb-0"
@@ -458,7 +458,7 @@ const ProductDetailDesktop = ({ data }) => {
             <hr className="my-5" />
             <div className={`col-12 ${styles.other_product}`}>
               <h2>محصولات دیگر {detail.shop.title}</h2>
-              <Link href={`/shop?shop=${detail.shop.slug}`}>
+              <Link href={`/shop/${detail.shop.slug}`}>
                 <a>همه ی محصولات</a>
               </Link>
             </div>
@@ -474,7 +474,7 @@ const ProductDetailDesktop = ({ data }) => {
                       url: `/product/${value.slug}`,
                       title: value.title,
                       chamberTitle: value.shop.title,
-                      chamberUrl: `/shop?shop=${value.shop.slug} `,
+                      chamberUrl: `/shop/${value.shop.slug} `,
                       discount: value.discount,
                       price: value.price / 10,
                       discountNumber: value.old_price / 10,

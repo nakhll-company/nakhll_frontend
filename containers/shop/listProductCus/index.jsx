@@ -400,7 +400,7 @@ function ListProductShop({ data }) {
                           ? oneProduct.shop.title
                           : "",
                         chamberUrl: oneProduct.shop
-                          ? `/shop?shop=${oneProduct.shop.slug} `
+                          ? `/shop/${oneProduct.shop.slug} `
                           : "",
 
                         discount: oneProduct.discount,

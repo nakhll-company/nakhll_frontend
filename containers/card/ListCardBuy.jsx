@@ -59,7 +59,7 @@ export default function ListCardBuy() {
                 ) && (
                   <div className="pt-3 pb-1 px-3">
                     <span className="font-size1">از حجره: </span>{" "}
-                    <Link href={`/shop?shop=${El.product.shop.slug}/`}>
+                    <Link href={`/shop/${El.product.shop.slug}/`}>
                       <a className="vendor-link font-size1 font-weight-bold link-body font-weight-normal txtcut">
                         {El.product.shop.title}
                       </a>

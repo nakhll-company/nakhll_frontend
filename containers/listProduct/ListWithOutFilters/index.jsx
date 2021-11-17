@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
-import Link from 'next/link';
+import Link from "next/link";
 import MenuMobile from "../../../components/layout/MenuMobile";
 import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import ProductCard from "../../../components/ProductCart/ProductCard";
 
 function ListWitOutFilters({ api }) {
-
   const [listProducts, setlistProducts] = useState([]);
   // state for show loading
   const [isLoading, setIsLoading] = useState(false);
@@ -18,8 +17,7 @@ function ListWitOutFilters({ api }) {
       if (response.status === 200) {
         setlistProducts(response.data);
       }
-    } catch (e) {
-    }
+    } catch (e) {}
   };
 
   useEffect(() => {
@@ -76,7 +74,7 @@ function ListWitOutFilters({ api }) {
                         url: `/product/${oneProduct.slug}/`,
                         title: oneProduct.title,
                         chamberTitle: oneProduct.shop && oneProduct.shop.title,
-                        chamberUrl: `/shop?shop=${oneProduct.shop.slug} `,
+                        chamberUrl: `/shop/${oneProduct.shop.slug} `,
                         discount: oneProduct.discount,
                         price: oneProduct.price / 10,
                         discountNumber: oneProduct.old_price / 10,
