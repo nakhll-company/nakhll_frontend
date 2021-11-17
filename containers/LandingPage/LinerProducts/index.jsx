@@ -65,7 +65,7 @@ function LinerProducts({
                 product={{
                   id: product.id,
                   imageUrl: product.image_thumbnail_url,
-                  url: `/product/${product.slug}/`,
+                  url: `/shop/${product.shop.slug}/product/${product.slug}/`,
                   title: product.title,
                   chamberTitle: product.shop.title,
                   chamberUrl: `/shop/${product.shop.slug} `,
@@ -124,7 +124,7 @@ function LinerProducts({
                 product={{
                   id: product.id,
                   imageUrl: product.image_thumbnail_url,
-                  url: `/product/${product.slug}/`,
+                  url: `/shop/${product.shop.slug}/product/${product.slug}/`,
                   title: product.title,
                   chamberTitle: product.shop.title,
                   chamberUrl: `/shop/${product.shop.slug} `,

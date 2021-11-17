@@ -489,7 +489,7 @@ function ListProductCus({ data }) {
                         product={{
                           id: oneProduct.id,
                           imageUrl: oneProduct.image_thumbnail_url,
-                          url: `/product/${oneProduct.slug}/`,
+                          url: `/shop/${oneProduct.shop.slug}/product/${oneProduct.slug}/`,
                           title: oneProduct.title,
                           chamberTitle: oneProduct.shop
                             ? oneProduct.shop.title

@@ -66,7 +66,7 @@ const ProductDetail = ({ data }) => {
   return (
     <>
       <Head>
-        <title>{`خرید و قیمت ${data.detail.title} | نخل`}</title>
+        {/* <title>{`خرید و قیمت ${data.detail.title} | نخل`}</title> */}
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       {width < breakpoint ? (
@@ -82,7 +82,8 @@ export default ProductDetail;
 
 // function server side
 export async function getServerSideProps(context) {
-  const data = await fetchData(context.params.id);
+  const data = await fetchData(context.query.product[2]);
+
   return {
     props: { data },
   };

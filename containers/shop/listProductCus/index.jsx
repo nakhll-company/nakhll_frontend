@@ -24,7 +24,9 @@ import styles from "./ListProductShop.module.scss";
 const _asist = new Assistent();
 
 function ListProductShop({ data }) {
-  const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
+  console.log(`data`, data);
+  console.log(`router`, router);
+  const [hojreh, setHojreh] = useState(data.shopslug ? data.shopslug : "");
   const [searchWord, setSearchWord] = useState(data.q ? data.q : "");
 
   const [listWithFilter, setListWithFilter] = useState([]);
@@ -226,7 +228,7 @@ function ListProductShop({ data }) {
   useEffect(() => {
     router.push(
       {
-        pathname: router.pathname,
+        pathname: data.shopslug,
         query: {
           ...(searchWord !== "" && { q: searchWord }),
           ...(whichOrdering !== "" && { ordering: whichOrdering }),
@@ -236,7 +238,7 @@ function ListProductShop({ data }) {
           ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
           ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
           ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
-          ...(hojreh !== "" && { shop: hojreh }),
+
           ...(wantCategories.length !== 0 && {
             category: wantCategories.toString(),
           }),
@@ -394,7 +396,7 @@ function ListProductShop({ data }) {
                       product={{
                         id: oneProduct.id,
                         imageUrl: oneProduct.image_thumbnail_url,
-                        url: `/product/${oneProduct.slug}/`,
+                        url: `/shop/${oneProduct.shop.slug}/product/${oneProduct.slug}/`,
                         title: oneProduct.title,
                         chamberTitle: oneProduct.shop
                           ? oneProduct.shop.title
