@@ -37,7 +37,7 @@ const _asist = new Assistent();
 const ProductDetailMobile = ({ data }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { id } = router.query;
+  const { productSlug } = router.query;
 
   const detail = data.detail;
   const comments = data.comments;
@@ -70,7 +70,7 @@ const ProductDetailMobile = ({ data }) => {
     let moreProduct = await ApiRegister().apiRequest(
       null,
       "GET",
-      `/api/v1/product-page/related_products/${id}/`,
+      `/api/v1/product-page/related_products/${productSlug}/`,
       true,
       {
         page: pageApi,
@@ -427,7 +427,7 @@ const ProductDetailMobile = ({ data }) => {
                     product={{
                       id: value.id,
                       imageUrl: value.image_thumbnail_url,
-                      url: `/product/${value.slug}`,
+                      url: `/shop/${value.shop.slug}/product/${value.slug}`,
                       title: value.title,
                       chamberTitle: value.shop.title,
                       chamberUrl: `/shop/${value.shop.slug}`,
@@ -553,7 +553,7 @@ const ProductDetailMobile = ({ data }) => {
                       product={{
                         id: value.id,
                         imageUrl: value.image_thumbnail_url,
-                        url: `/product/${value.slug}`,
+                        url: `/shop/${value.shop.slug}/product/${value.slug}`,
                         title: value.title,
                         chamberTitle: value.shop ? value.shop.title : " ",
                         chamberUrl: value.shop

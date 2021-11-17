@@ -30,7 +30,7 @@ const _asist = new Assistent();
 const ProductDetailDesktop = ({ data }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { id } = router.query;
+  const { productSlug } = router.query;
 
   // State for contorol page
 
@@ -67,7 +67,7 @@ const ProductDetailDesktop = ({ data }) => {
     let moreProduct = await ApiRegister().apiRequest(
       null,
       "GET",
-      `/api/v1/product-page/related_products/${id}/`,
+      `/api/v1/product-page/related_products/${productSlug}/`,
       true,
       {
         page: pageApi,
@@ -471,7 +471,7 @@ const ProductDetailDesktop = ({ data }) => {
                     product={{
                       id: value.id,
                       imageUrl: value.image_thumbnail_url,
-                      url: `/product/${value.slug}`,
+                      url: `/shop/${value.shop.slug}/product/${value.slug}`,
                       title: value.title,
                       chamberTitle: value.shop.title,
                       chamberUrl: `/shop/${value.shop.slug} `,
@@ -595,11 +595,11 @@ const ProductDetailDesktop = ({ data }) => {
                       product={{
                         id: value.id,
                         imageUrl: value.image_thumbnail_url,
-                        url: `/product/${value.slug}`,
+                        url: `/shop/${value.shop.slug}/product/${value.slug}`,
                         title: value.title,
                         chamberTitle: value.shop ? value.shop.title : " ",
                         chamberUrl: value.shop
-                          ? `/shop?shop=${value.shop.slug} `
+                          ? `/shop/${value.shop.slug} `
                           : " ",
                         discount: value.discount,
                         price: value.price / 10,
