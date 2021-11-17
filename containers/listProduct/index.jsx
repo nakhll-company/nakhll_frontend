@@ -354,7 +354,7 @@ function ListProduct({
                             ? oneProduct.shop.title
                             : "",
                           chamberUrl: oneProduct.shop
-                            ? `/hojreh?shop=${oneProduct.shop.slug} `
+                            ? `/shop?shop=${oneProduct.shop.slug} `
                             : "",
 
                           discount: oneProduct.discount,
