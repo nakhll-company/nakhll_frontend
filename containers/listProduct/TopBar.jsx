@@ -105,8 +105,9 @@ export const TopBar = ({
                   </a>
                 </li>
                 <li
-                  className={`sort-item  ${data == "DiscountPrecentage" ? " active" : ""
-                    } `}
+                  className={`sort-item  ${
+                    data == "DiscountPrecentage" ? " active" : ""
+                  } `}
                 >
                   <a
                     onClick={() => {
@@ -117,8 +118,9 @@ export const TopBar = ({
                   </a>
                 </li>
                 <li
-                  className={`sort-item  ${data == "-DateCreate" ? " active" : ""
-                    } `}
+                  className={`sort-item  ${
+                    data == "-DateCreate" ? " active" : ""
+                  } `}
                 >
                   <a
                     onClick={() => {
@@ -128,16 +130,12 @@ export const TopBar = ({
                     تازه‌ها
                   </a>
                 </li>
-
               </ul>
             </div>
             <span className="  " style={{ marginLeft: "20px" }}>
               {" "}
               تعداد کالا:
-              <span className="Blazing" style={{ marginRight: "10px" }}>
-                {" "}
-                {totalcount}
-              </span>
+              <span style={{ marginRight: "10px" }}> {totalcount}</span>
             </span>
           </div>{" "}
         </div>

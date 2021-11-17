@@ -6,8 +6,6 @@ export const TopBar = ({
   handel_filterModal,
   setWhichOrdering,
   handel_OrderingModal,
-  whichOrdering,
-  router,
 }) => {
   return (
     <>
@@ -131,13 +129,10 @@ export const TopBar = ({
                 </li>
               </ul>
             </div>
-            <span className="  " style={{ marginLeft: "20px" }}>
+            <span style={{ marginLeft: "20px" }}>
               {" "}
               تعداد کالا:
-              <span className="Blazing" style={{ marginRight: "10px" }}>
-                {" "}
-                {totalcount}
-              </span>
+              <span style={{ marginRight: "10px" }}> {totalcount}</span>
             </span>
           </div>{" "}
         </div>

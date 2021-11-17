@@ -78,11 +78,9 @@
                 }
                 h5 {
                     color: #fff;
-                    opacity: 0;
                     font-size: 0.7rem;
                     font-weight: bold;
                     transition: 0.5s;
-                    transform: translateX(20px);
                     @media (min-width: "425px") {
                         font-size: 0.7rem;
                     }
@@ -93,24 +91,12 @@
             }
             i {
                 color: #fff;
-                opacity: 0;
                 font-size: 20px;
                 margin-right: auto;
                 margin-left: 10px;
                 transition: 0.5s ease-in;
                 @media (min-width: "768px") {
                     font-size: 40px;
-                }
-            }
-            &:hover {
-                .information {
-                    h5 {
-                        opacity: 1;
-                        transform: translateX(0px);
-                    }
-                }
-                i {
-                    opacity: 1;
                 }
             }
         }
@@ -130,13 +116,11 @@
         background: rgb(28, 236, 28);
     }
 }
-
 .imgslid {
     width: 100%;
     height: 400px;
     object-fit: cover;
 }
-
 .profile_mobile {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     display: flex;

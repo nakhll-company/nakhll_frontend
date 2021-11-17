@@ -9,7 +9,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { TopBar } from "../TopBar";
 import { errorMessage } from "../../utils/message";
 
-import AddFavorites from "../../../components/AddFavorites";
 import MenuMobile from "../../../components/layout/MenuMobile";
 import { allCites } from "../../../components/custom/data/data";
 import CustomSwitch from "../../../components/custom/customSwitch";
@@ -17,8 +16,7 @@ import ProductCard from "../../../components/ProductCart/ProductCard";
 import CustomAccordion from "../../../components/custom/customAccordion";
 import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
 import MultiRangeSlider from "../../../components/custom/customMultiRangeSlider/MultiRangeSlider";
-// methods
-import { ApiReference } from "../../../Api";
+
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // styles
 import styles from "./ListProductShop.module.scss";
@@ -26,8 +24,6 @@ import styles from "./ListProductShop.module.scss";
 const _asist = new Assistent();
 
 function ListProductShop({ data }) {
-  const [listProducts, setlistProducts] = useState([]);
-
   const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
   const [searchWord, setSearchWord] = useState(data.q ? data.q : "");
 
@@ -85,9 +81,7 @@ function ListProductShop({ data }) {
     data.max_price ? parseInt(data.max_price) : 10000
   );
   const [clickOnRange, setClickOnRange] = useState(1);
-  // save all shopsName
-  const [shopsName, setShopsName] = useState([]);
-  const [searchShops, setSearchShops] = useState([]);
+
   // state for change page
   const [changePage, setChangePage] = useState(1);
 
@@ -118,12 +112,11 @@ function ListProductShop({ data }) {
     }
   };
 
-  const _handel_filters = async (witchFilter) => {
+  const _handel_filters = async () => {
     setHasMore(true);
     setIsLoading(true);
 
     let params = {
-      ...(witchFilter ? witchFilter : null),
       search: searchWord,
       ordering: whichOrdering,
       ready: isReadyForSend,
@@ -172,7 +165,7 @@ function ListProductShop({ data }) {
     }
   };
 
-  const _handel_call_another_page_api = async (witchFilter) => {
+  const _handel_call_another_page_api = async () => {
     try {
       let response = await ApiRegister().apiRequest(
         null,
@@ -180,7 +173,6 @@ function ListProductShop({ data }) {
         `/api/v1/products/`,
         true,
         {
-          ...(witchFilter ? witchFilter : null),
           search: searchWord,
           ordering: whichOrdering,
           page: pageApi,
@@ -337,32 +329,6 @@ function ListProductShop({ data }) {
                 </div>
               </CustomAccordion>
 
-              {hojreh == "" && (
-                <CustomAccordion
-                  title="استان و شهر حجره دار"
-                  item="three"
-                  close={true}
-                >
-                  <CheckboxTree
-                    // direction="rtl"
-                    icons={{
-                      expandClose: (
-                        <span
-                          className="fas fa-angle-left"
-                          style={{ fontSize: "15px" }}
-                        />
-                      ),
-                      parentClose: <span />,
-                    }}
-                    nodes={allCites}
-                    checked={checkedCity}
-                    expanded={expandCity}
-                    onCheck={(e) => setCheckedCity(e)}
-                    onExpand={(e) => setExpandCity(e)}
-                  />
-                </CustomAccordion>
-              )}
-
               <div className="search-body-filter">
                 <div className="modal-body" style={{ msOverflowX: "hidden" }}>
                   <CustomSwitch
@@ -397,7 +363,6 @@ function ListProductShop({ data }) {
             <TopBar
               totalcount={totalcount}
               data={data.ordering}
-              whichOrdering={whichOrdering}
               handel_filterModal={handel_filterModal}
               setWhichOrdering={setWhichOrdering}
               handel_OrderingModal={handel_OrderingModal}
@@ -719,7 +684,6 @@ function ListProductShop({ data }) {
           <div style={{ paddingBottom: "80px" }}></div>
         </div>
       )}
-      <AddFavorites />
 
       {/* ModalOrdering End */}
 
