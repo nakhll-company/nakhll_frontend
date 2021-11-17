@@ -13,6 +13,7 @@ import LinerFourImgMobile from "../../containers/LandingPage/LinerFourImgMobile"
 import LinerProducts from "../../containers/LandingPage/LinerProducts";
 import LinerProductsBg from "../../containers/LandingPage/LinerProductsBg";
 import ListProductCus from "../../containers/listProduct/listProductCus";
+import ListProductShop from "../../containers/shop/listProductCus";
 
 // fetch data
 const fetchData = async (id) => {
@@ -169,7 +170,8 @@ const Shop = ({ dataShop, data }) => {
             name={dataShop.shop.FK_ShopManager}
             profile={informationShop.image_thumbnail_url}
           />
-          <ListProductCus shop_products={dataShop.shop.slug} data={data} />
+
+          <ListProductShop shop_products={dataShop.shop.slug} data={data} />
         </>
       )}
 
