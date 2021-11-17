@@ -228,7 +228,7 @@ function ListProductShop({ data }) {
       {
         pathname: router.pathname,
         query: {
-          q: searchWord,
+          ...(searchWord !== "" && { q: searchWord }),
           ...(whichOrdering !== "" && { ordering: whichOrdering }),
           ...(isReadyForSend && { ready: isReadyForSend }),
           ...(isAvailableGoods && { available: isAvailableGoods }),
