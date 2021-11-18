@@ -31,7 +31,7 @@ function LinerProductsBg({
               href={`${
                 url.includes("search=")
                   ? `${url_LinerProductsBg}`
-                  : `/product?ap=${url_LinerProductsBg}`
+                  : `/search?ap=${url_LinerProductsBg}`
               }`}
             >
               <a>مشاهده همه</a>
