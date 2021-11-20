@@ -130,6 +130,7 @@ const index = ({ data }) => {
           name="keywords"
           content="بازار نخل،نخل،بازار اجتماعی نخل،بازار آنلاین نخل"
         />
+        <link rel="canonical" href="https://nakhll.com/" />
       </Head>
       {data.SchemaIn.length > 0 &&
         data.SchemaIn.map((turn, index) =>
@@ -143,7 +144,7 @@ const index = ({ data }) => {
 export default index;
 
 // function server side
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const data = await fetchData();
 
   return {
