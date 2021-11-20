@@ -12,7 +12,7 @@ import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import { mapState } from "../methods/mapState";
 import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
 // form
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, FormikProps } from "formik";
 
 // components
 import { Loading } from "../../../components/custom/Loading/Loading";
@@ -25,6 +25,10 @@ import { VALIDATION_SCHEMA, VALIDATION_HESAB } from "../methods/Validation";
 
 import Modal from "../../../components/custom/customModal";
 import { errorMessage, successMessage } from "../../utils/message";
+import InputSetting from "../components/input";
+import FieldCus from "../components/field";
+import { dataExp } from "../data";
+import TitleLiner from "../components/titleLiner";
 
 const getStates = async () => {
   let params = {};
@@ -264,24 +268,11 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
       </div>
     );
   };
-  // const SubmitCity = (event) => {
-  //   debugger;
-  //   event.preventDefault();
-  
-  // };
 
   const SetDataCity = () => {
-    
     return (
       <div className={styles.content}>
         <form>
-          {/* <input
-            id="all"
-            type="checkbox"
-            checked={checkAll}
-            onClick={handelSelectAllState}
-          />
-          <label htmlhtmlFor="all">انتخاب تمام شهر ها</label> */}
           {SaveCity?.map((e, index) => {
             return (
               <div key={index}>
@@ -323,7 +314,6 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
   };
 
   const clickButton = async (e) => {
-   
     setshowState(false);
 
     let params = {};
@@ -380,12 +370,9 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
       }
     }
     if (!checkAll) {
-      
-      
     }
 
     SaveCity?.map((e) => {
-      
       setSavaAllCity([...SavaAllCity, { id: e.id, name: e.name }]);
     });
   };
@@ -458,23 +445,6 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                   </div>
                 )}
 
-                {/* <form
-              onSubmit={(e) => {
-                e.preventDefault();
-              }}
-            > */}
-                {/* <form
-              onSubmit={async (e) => {
-                e.preventDefault();
-                const data = new FormData(e.target);
-                let body = Object.fromEntries(data.entries());
-                let response = await setting(body);
-                // if (response.status === 201) {
-                //   setShowSuccessPage((showSuccessPage) => !showSuccessPage);
-                // }
-              }}
-            > */}
-
                 <Formik
                   enableReinitialize={true}
                   initialValues={{
@@ -544,541 +514,122 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                     }
                   }}
                 >
-                  {({ values, errors, touched }) => (
+                  {(props) => (
                     <Form>
-                      <div className={styles.Hojreh_profile}>
-                        <div className={styles.HeadName}>
-                          <h1 style={{ margin: "0px" }}>حجره</h1>
-                        </div>
-                        <div className={styles.hojrehD}>
-                          <div className={styles.input_setting}>
-                            <h2
-                              style={{
-                                marginBottom: "10px",
-                                color: "#364254",
-                                fontSize: "16px",
-                              }}
-                            >
-                              نام حجره
-                            </h2>
-                            <div className={styles.inputWidRtl}>
-                              <Field
-                                name="Title"
-                                type="text"
-                                // defaultValue={apiSetting.Title}
-                              />
-                              {touched.Title && errors.Title ? (
-                                <small className={styles.error}>
-                                  {errors.Title}
-                                </small>
-                              ) : null}
-                            </div>
-                          </div>
-                          <div className="">
-                            <h4
-                              className={styles.explain}
-                              style={{
-                                marginTop: "33px",
-                                fontSize: "14px",
-                                color: "#a4aebb",
-                              }}
-                            >
-                              نام حجره:
-                            </h4>
-                            <h4
-                              className={styles.explain}
-                              style={{ fontSize: "14px", color: "#a4aebb" }}
-                            >
-                              نام حجره خود را به زبان فارسی انتخاب کنید. نام
-                              حجره باید مختص شما و جز مالکیت شخص دیگری نشود. سعی
-                              شود تا نام نامناسب و بیگانه استفاده نباشد. این نام
-                              هویت و شخصیت شماست و برای کاربران نمایش داده می
-                              شود.
-                            </h4>
-                          </div>
+                      <TitleLiner title="حجره" />
+                      <FieldCus
+                        name="Title"
+                        type="text"
+                        title="نام حجره"
+                        description={dataExp.Title}
+                      />
+                      <FieldCus
+                        name="slug"
+                        type="text"
+                        title="آدرس اینترنتی حجره"
+                        description={dataExp.slug}
+                      />
+                      <FieldCus
+                        name="Description"
+                        type="text"
+                        title="درباره حجره"
+                        description={dataExp.Description}
+                      />
+                      <TitleLiner title="مشخصات" />
+                      <FieldCus
+                        name="NationalCode"
+                        type="text"
+                        title="کد ملی"
+                      />
+                      <FieldCus
+                        name="MobileNumber"
+                        type="text"
+                        title="شماره تماس اصلی"
+                        description={dataExp.MobileNumber}
+                      />
+                      <FieldCus
+                        name="PhoneNumber"
+                        type="text"
+                        title="شماره تماس:"
+                      />
+                      <TitleLiner title="آدرس" />
+                      <div className={styles.forAddress}>
+                        {/* استان */}
+                        <label className={styles.form_label}>استان</label>
+                        <select
+                          className={styles.form_select}
+                          name="State"
+                          defaultValue=""
+                          onChange={async (event) => {
+                            setSelectBigCities(
+                              await getBigCities(event.target.value)
+                            );
 
-                          <div className={styles.input_setting}>
-                            <h2
-                              style={{
-                                marginBottom: "10px",
-                                color: "#364254",
-                                fontSize: "16px",
-                              }}
-                            >
-                              آدرس اینترنتی حجره
-                            </h2>
-                            <div className={styles.inputWid}>
-                              <Field
-                                name="slug"
-                                type="text"
-                                // defaultValue={apiSetting.Slug}
-                              />
-                              {touched.slug && errors.slug ? (
-                                <small className={styles.error}>
-                                  {errors.slug}
-                                </small>
-                              ) : null}
-                            </div>
-                          </div>
-                          <div className="">
-                            <h4
-                              className={styles.explain}
-                              style={{
-                                marginTop: "33px",
-                                fontSize: "14px",
-                                color: "#a4aebb",
-                              }}
-                            >
-                              آدرس اینترنتی:
-                            </h4>
-                            <h4
-                              className={styles.explain}
-                              style={{ fontSize: "14px", color: "#a4aebb" }}
-                            >
-                              آدرس اینترنتی، نشانی حجره شما در نخل است. نام حجره
-                              خود را ﺑﺎ ﺣﺮوف و اﻋﺪاد اﻧﮕﻠﯿﺴﯽ ﺑﻨﻮﯾﺴﯿﺪ. برای فاصه
-                              از (_) استفاده کنید.
-                            </h4>
-                          </div>
-
-                          <div className={styles.input_setting}>
-                            <h2
-                              style={{
-                                marginBottom: "10px",
-                                color: "#364254",
-                                fontSize: "16px",
-                              }}
-                            >
-                              درباره حجره
-                            </h2>
-                            <div className={styles.inputWidRtlH}>
-                              <Field type="input" name="Description" />
-                            </div>
-                          </div>
-
-                          <div className="">
-                            <h4
-                              className={styles.explain}
-                              style={{
-                                marginTop: "33px",
-                                fontSize: "14px",
-                                color: "#a4aebb",
-                              }}
-                            >
-                              درباره حجره:
-                            </h4>
-                            <h4
-                              className={styles.explain}
-                              style={{ fontSize: "14px", color: "#a4aebb" }}
-                            >
-                              به عنوان مثال: کتاب غذای روح است.هر کس با کتاب
-                              آرامش یابد هیچ آرامشی را از دست ندهد. اینجا
-                              نمایشگاه کتاب ... است.گامی در جهت تحول فرهنگ
-                              مطالعه مردم کشورمان! محلی برای آشنایی با یک حس
-                              شیرین و دلنشین.
-                            </h4>
-                          </div>
-                          {/* <div className={styles.input_setting}>
-                  <h2 style={{ marginBottom: "10px", color: "#364254" }}>
-                    نوع کسب وکار
-                  </h2>
-                  <div className={styles.inputWidRtl}>
-                    <input type="text" />
-                  </div>
-                </div>
-                <div className="">
-                  <h4 className={styles.explain}>
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و
-                    با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه
-                    و مجله در ستون و سطرآنچنان که لازم است، طراحی اساسا مورد
-                    استفاده قرار گیرد.
-                  </h4>
-                </div> */}
-                        </div>
-                      </div>
-
-                      <div className={styles.Hojreh_space}>
-                        <div className={styles.HeadName}>
-                          <h1 style={{ margin: "0px" }}>مشخصات</h1>
-                        </div>
-
-                        <div className={styles.spaceGridD}>
-                          <div className={styles.input_setting}>
-                            <h2
-                              style={{
-                                marginBottom: "10px",
-                                color: "#364254",
-                                fontSize: "16px",
-                              }}
-                            >
-                              کد ملی
-                            </h2>
-                            <div className={styles.inputWid}>
-                              <Field name="NationalCode" type="text" />
-                              {touched.NationalCode && errors.NationalCode ? (
-                                <small className={styles.error}>
-                                  {errors.NationalCode}
-                                </small>
-                              ) : null}
-                            </div>
-                          </div>
-                          <div className="">
-                            <h4 className={styles.explain}></h4>
-                          </div>
-                          <div className={styles.input_setting}>
-                            <h2
-                              style={{
-                                marginBottom: "10px",
-                                color: "#364254",
-                                fontSize: "16px",
-                              }}
-                            >
-                              شماره تماس اصلی
-                            </h2>
-                            <div className={styles.inputWid}>
-                              <Field name="MobileNumber" type="text" />
-                              {touched.MobileNumber && errors.MobileNumber ? (
-                                <small className={styles.error}>
-                                  {errors.MobileNumber}
-                                </small>
-                              ) : null}
-                            </div>
-                          </div>
-
-                          <div className="">
-                            <h4
-                              style={{
-                                marginTop: "33px",
-                                fontSize: "14px",
-                                color: "#a4aebb",
-                              }}
-                              className={styles.explain}
-                            >
-                              شماره تماس:
-                            </h4>
-                            <h4
-                              className={styles.explain}
-                              style={{ fontSize: "14px", color: "#a4aebb" }}
-                            >
-                              پیامک های مهم به این شماره ارسال می‌شوند. جهت
-                              تغییر با پشتیبانی تماس بگیرید.
-                            </h4>
-                          </div>
-                          <div className={styles.input_setting}>
-                            <h2
-                              style={{
-                                marginBottom: "10px",
-                                color: "#364254",
-                                fontSize: "16px",
-                              }}
-                            >
-                              شماره تلفن ثابت
-                            </h2>
-                            <div className={styles.inputWid}>
-                              <Field
-                                name="PhoneNumber"
-                                type="text"
-                                // defaultValue={
-                                //   apiSetting.FK_ShopManager &&
-                                //   apiSetting.FK_ShopManager.User_Profile.PhoneNumber
-                                // }
-                              />
-                            </div>
-                          </div>
-                          <div className="">
-                            <h4 className={styles.explain}></h4>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className={styles.Hojreh_Address}>
-                        <div className={styles.HeadName}>
-                          <h1 style={{ margin: "0px" }}>آدرس</h1>
-                        </div>
-
-                        <div className={styles.AddressGridD}>
-                          <div className={styles.forAddress}>
-                            {/* استان */}
-                            <label className={styles.form_label}>استان</label>
-                            <select
-                              className={styles.form_select}
-                              name="State"
-                              defaultValue=""
-                              onChange={async (event) => {
-                                setSelectBigCities(
-                                  await getBigCities(event.target.value)
-                                );
-
-                                setChoiceState(
-                                  event.target[event.target.selectedIndex].text
-                                );
-                              }}
-                            >
-                              <option value="" disabled>
-                                {apiSetting.FK_ShopManager.User_Profile.State}
+                            setChoiceState(
+                              event.target[event.target.selectedIndex].text
+                            );
+                          }}
+                        >
+                          <option value="" disabled>
+                            {apiSetting.FK_ShopManager.User_Profile.State}
+                          </option>
+                          {selectState.map((value, index) => {
+                            return (
+                              <option key={index} value={value.id}>
+                                {value.name}
                               </option>
-                              {selectState.map((value, index) => {
-                                return (
-                                  <option key={index} value={value.id}>
-                                    {value.name}
-                                  </option>
-                                );
-                              })}
-                            </select>
-                            <label className={styles.form_label}>شهرستان</label>
-                            <select
-                              className={styles.form_select}
-                              name="BigCity"
-                              defaultValue=""
-                              onChange={async (event) => {
-                                setSelectCities(
-                                  await getCities(event.target.value)
-                                );
-
-                                setChoiceBigCity(
-                                  event.target[event.target.selectedIndex].text
-                                );
-                              }}
-                            >
-                              <option value="" disabled>
-                                {apiSetting.FK_ShopManager.User_Profile.BigCity}
+                            );
+                          })}
+                        </select>
+                        <label className={styles.form_label}>شهرستان</label>
+                        <select
+                          className={styles.form_select}
+                          name="BigCity"
+                          defaultValue=""
+                          onChange={async (event) => {
+                            setSelectCities(
+                              await getCities(event.target.value)
+                            );
+                            setChoiceBigCity(
+                              event.target[event.target.selectedIndex].text
+                            );
+                          }}
+                        >
+                          <option value="" disabled>
+                            {apiSetting.FK_ShopManager.User_Profile.BigCity}
+                          </option>
+                          {selectBigCities.map((value, index) => {
+                            return (
+                              <option key={index} value={value.id}>
+                                {value.name}
                               </option>
-                              {selectBigCities.map((value, index) => {
-                                return (
-                                  <option key={index} value={value.id}>
-                                    {value.name}
-                                  </option>
-                                );
-                              })}
-                            </select>
-                            <label className={styles.form_label}>شهر</label>
-                            <select
-                              className={styles.form_select}
-                              name="City"
-                              defaultValue=""
-                              onChange={(event) => {
-                                setChoiceCity(event.target.value);
-                              }}
-                            >
-                              <option value="" disabled>
-                                {apiSetting.FK_ShopManager.User_Profile.City}{" "}
+                            );
+                          })}
+                        </select>
+                        <label className={styles.form_label}>شهر</label>
+                        <select
+                          className={styles.form_select}
+                          name="City"
+                          defaultValue=""
+                          onChange={(event) => {
+                            setChoiceCity(event.target.value);
+                          }}
+                        >
+                          <option value="" disabled>
+                            {apiSetting.FK_ShopManager.User_Profile.City}{" "}
+                          </option>
+                          {selectCities.map((value, index) => {
+                            return (
+                              <option key={index} value={value.name}>
+                                {value.name}
                               </option>
-                              {selectCities.map((value, index) => {
-                                return (
-                                  <option key={index} value={value.name}>
-                                    {value.name}
-                                  </option>
-                                );
-                              })}
-                            </select>
-                          </div>
-                          <div className="">
-                            <h4 className={styles.explain}></h4>
-                          </div>
-                          <div className={styles.input_setting}>
-                            <h2
-                              style={{
-                                marginBottom: "10px",
-                                color: "#364254",
-                                fontSize: "16px",
-                              }}
-                            >
-                              آدرس
-                            </h2>
-
-                            <div className={styles.inputWidRtlH}>
-                              <Field
-                                name="Address"
-                                rows="4"
-                                cols="50"
-                                // defaultValue={
-                                //   apiSetting.FK_ShopManager &&
-                                //   apiSetting.FK_ShopManager.User_Profile.Address
-                                // }
-                              />
-                              {touched.Address && errors.Address ? (
-                                <small className={styles.error}>
-                                  {errors.Address}
-                                </small>
-                              ) : null}
-                            </div>
-                          </div>
-
-                          <div className="">
-                            <h4 className={styles.explain}></h4>
-                          </div>
-
-                          <div className={styles.input_setting}>
-                            <h2
-                              style={{
-                                marginBottom: "10px",
-                                color: "#364254",
-                                fontSize: "16px",
-                              }}
-                            >
-                              کد پستی
-                            </h2>
-                            <div className={styles.inputWid}>
-                              <Field type="input" name="ZipCode" />
-                              {touched.ZipCode && errors.ZipCode ? (
-                                <small className={styles.error}>
-                                  {errors.ZipCode}
-                                </small>
-                              ) : null}
-                            </div>
-                          </div>
-                          <div className="">
-                            <h4 className={styles.explain}></h4>
-                          </div>
-
-                          {/* Select List */}
-
-                          {/* <div className={styles.SelectAnother}>
-                            <form>
-                              <div className="form-check">
-                                <input
-                                  className="form-check-input"
-                                  type="radio"
-                                  name="flexRadioDefault"
-                                  id="flexRadioDefault1"
-                                  checked
-                                />
-                                <label
-                                  className="form-check-label"
-                                  htmlFor="flexRadioDefault1"
-                                >
-                                  به سراسر ایران
-                                </label>
-                              </div>
-                              <div className="form-check">
-                                <input
-                                  className="form-check-input"
-                                  type="radio"
-                                  name="flexRadioDefault"
-                                  id="flexRadioDefault2"
-                                  onClick={() => {
-                                    setshowState(true);
-                                  }}
-                                />
-                                <label
-                                  className="form-check-label"
-                                  htmlFor="flexRadioDefault2"
-                                >
-                                  انتخاب شهرها
-                                </label>
-                              </div>
-                            </form>
-                            {showState && (
-                              <Modal
-                                show={true}
-                                onClose={() => {}}
-                                content={SetDataInModal()}
-                              />
-                            )}
-                            {showBigcity && (
-                              <Modal
-                                show={true}
-                                onClose={() => {}}
-                                content={SetDataBigCity()}
-                              />
-                            )}
-                            {showCity && (
-                              <Modal
-                                show={true}
-                                onClose={() => {}}
-                                content={SetDataCity()}
-                              />
-                            )}
-                          </div> */}
-
-                          <div
-                            style={{
-                              display: "flex",
-                              height: "40px",
-                              flexWrap: "wrap",
-                            }}
-                          >
-                            {SavaAllCity.map((e) => (
-                              <div key={e.id} style={{ display: "flex" }}>
-                                <h4
-                                  style={{
-                                    backgroundColor: "gray",
-                                    padding: "2px 10px",
-                                    color: "#fff",
-                                    margin: "0px",
-                                    marginLeft: "1px",
-                                    borderRadius: "2px",
-                                    marginTop: "10px",
-                                    fontSize: "10px",
-                                  }}
-                                  className={styles.explain}
-                                >
-                                  {e.name}
-                                </h4>
-                                <i
-                                  style={{
-                                    fontSize: "15px",
-                                    marginLeft: "5px",
-                                    cursor: "pointer",
-                                  }}
-                                  onClick={() => handelDeletState(e.id)}
-                                  className="fas fa-times"
-                                ></i>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-
-                        {IsLoading && (
-                          <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                            }}
-                          >
-                            <div className={styles.loader}>
-                              <Image
-                                src="/image/LOGO_500.png"
-                                alt="Picture of the author"
-                                width={50}
-                                height={50}
-                              />
-                            </div>
-                            <h3
-                              className={styles.nameLoding}
-                              style={{
-                                fontSize: "15px",
-                                color: "hsl(211deg 100% 50%)",
-                              }}
-                            >
-                              {" "}
-                              در حال بروزرسانی ...
-                            </h3>
-                          </div>
-                        )}
-                        {showMessage == 1 && (
-                          <div>
-                            <h3 style={{ color: "green" }}>
-                              به روز رسانی با موفقیت انجام شد.
-                            </h3>
-                          </div>
-                        )}
-                        {showMessage == 2 && (
-                          <div>
-                            <h3 style={{ color: "red" }}>
-                              عملیات به روز رسانی موفقیت آمیز نبود.لطفا باری
-                              دیگر اقدام کنید.
-                            </h3>
-                          </div>
-                        )}
+                            );
+                          })}
+                        </select>
                       </div>
-
+                      <FieldCus name="ZipCode" type="text" title="کد پستی" />
                       <div className={styles.status_button_one}>
                         <button
-                          // onClick={() => {
-                          //   setbtnOk(!btnOk);
-                          // }}
-
                           type="submit"
                           className={`${styles.btn} ${styles.btnSubmit}`}
                         >
@@ -1086,12 +637,10 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                             ذخیره اطلاعات
                           </h3>
                         </button>
-                      </div>
+                      </div>{" "}
                     </Form>
                   )}
                 </Formik>
-                {/* </form> */}
-                {/* TODO finish */}
 
                 <div style={{ marginTop: "80px" }}></div>
               </>
@@ -1144,15 +693,6 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                 >
                   {({ values, errors, touched }) => (
                     <Form>
-                      {/* <div className={styles.note}>
-                <span className="fas fa-info-circle"></span>
-
-                <h1 className={styles.note_text}>
-                  برای ویرایش شماره شبا بعد از تغییر بر روی گزینع بر روز رسانی
-                  کلیک کنید.
-                </h1>
-              </div> */}
-
                       <div className={styles.HesabBankiGridD}>
                         <div className={styles.input_setting}>
                           <h2
@@ -1310,57 +850,27 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                   }}
                 >
                   <div className={styles.LinksGridD}>
-                    <div className={styles.input_setting}>
-                      <h2
-                        style={{
-                          marginBottom: "10px",
-                          color: "#364254",
-                          fontSize: "16px",
-                        }}
-                      >
-                        آدرس تلگرام
-                      </h2>
-                      <div className={styles.inputWid_withWord}>
-                        <div>
-                          <h2 style={{ fontSize: "16px" }}>t.me/</h2>
-                        </div>
-                        <input
-                          type="text"
-                          name="telegram"
-                          defaultValue={
-                            apiSetting.social_media &&
-                            apiSetting.social_media.telegram
-                          }
-                        />
-                      </div>
-                    </div>
+                    <InputSetting
+                      name="telegram"
+                      value={
+                        apiSetting.social_media &&
+                        apiSetting.social_media.telegram
+                      }
+                      title="آدرس تلگرام"
+                      text="t.me/"
+                    />
                     <div className="">
                       <h4 className={styles.explain}></h4>
                     </div>
-                    <div className={styles.input_setting}>
-                      <h2
-                        style={{
-                          marginBottom: "10px",
-                          color: "#364254",
-                          fontSize: "16px",
-                        }}
-                      >
-                        آدرس اینستاگرام
-                      </h2>
-                      <div className={styles.inputWid_withWord}>
-                        <div>
-                          <h2 style={{ fontSize: "16px" }}>instagram.com/</h2>
-                        </div>
-                        <input
-                          type="text"
-                          name="instagram"
-                          defaultValue={
-                            apiSetting.social_media &&
-                            apiSetting.social_media.instagram
-                          }
-                        />
-                      </div>
-                    </div>
+                    <InputSetting
+                      name="instagram"
+                      value={
+                        apiSetting.social_media &&
+                        apiSetting.social_media.instagram
+                      }
+                      title="آدرس اینستاگرام"
+                      text="instagram.com/"
+                    />
                   </div>
                   {/* ‌Buttons */}
 
