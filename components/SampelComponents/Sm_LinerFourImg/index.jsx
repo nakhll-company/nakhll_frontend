@@ -7,7 +7,6 @@ import styles from "./Sm_LinerFourImg.module.scss";
 // aspect=================1.33
 
 function Sm_LinerFourImg({ setImageSrc, id, data }) {
-  console.log(`mii`, data);
   return (
     <div className={styles.wrap}>
       <div className={styles.wrapImg}>

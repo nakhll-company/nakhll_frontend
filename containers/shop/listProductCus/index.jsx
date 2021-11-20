@@ -24,8 +24,6 @@ import styles from "./ListProductShop.module.scss";
 const _asist = new Assistent();
 
 function ListProductShop({ data }) {
-  console.log(`data`, data);
-  console.log(`router`, router);
   const [hojreh, setHojreh] = useState(data.shopslug ? data.shopslug : "");
   const [searchWord, setSearchWord] = useState(data.q ? data.q : "");
 
@@ -99,7 +97,7 @@ function ListProductShop({ data }) {
       if (response.status === 200) {
         setCategories(response.data);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   const _handel_Add_category = (id) => {
@@ -203,7 +201,7 @@ function ListProductShop({ data }) {
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   // START

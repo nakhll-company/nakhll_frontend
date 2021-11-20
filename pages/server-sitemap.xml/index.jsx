@@ -31,10 +31,9 @@ export const getServerSideProps = async (ctx) => {
         });
       }
     });
-    console.log('fields.length :>> ', fields.length);
   }
 
   return getServerSideSitemap(ctx, fields);
 };
 
-export default function Site() {}
+export default function Site() { }

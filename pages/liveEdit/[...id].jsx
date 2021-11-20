@@ -19,7 +19,6 @@ function index({ idLanding }) {
   // idLanding=[slugShop,idLanding]
   let apiUpdateLanding = `${ApiReference.landing.update.url}${idLanding[0]}/${idLanding[1]}/`;
   // const userLog = useSelector((state) => state.User.userInfo);
-  // console.log(`userLog`, userLog);
   const [characters, setCharacters] = useState([]);
   const [openPlaneEditor, setOpenPlaneEditor] = useState(false);
   const [openSaveLanding, setOpenSaveLanding] = useState(false);

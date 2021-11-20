@@ -11,7 +11,6 @@ import { showCropper } from "../../redux/actions/liveEdit/showCropper";
 import { _updatePicture } from "../../redux/actions/liveEdit/_updatePicture";
 function CustomCropper({ imageSrc, setCroppedImage }) {
   const Component = useSelector((state) => state.selectIdFormLanding);
-  console.log(`typecomponent`, Component);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [rotation, setRotation] = useState(0);
   const [zoom, setZoom] = useState(1);
@@ -47,7 +46,7 @@ function CustomCropper({ imageSrc, setCroppedImage }) {
               crop={crop}
               rotation={rotation}
               zoom={zoom}
-              
+
               aspect={b / 1}
               onCropChange={setCrop}
               onRotationChange={setRotation}
