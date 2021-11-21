@@ -1,7 +1,7 @@
 import { Form, Formik } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
-import { GetBigCities, GetCities } from "../../../../utils/states";
+import { GetBigCities, GetCities, GetStates } from "../../../../utils/states";
 import { dataExp } from "../../data";
 import { VALIDATION_SCHEMA } from "../../methods/Validation";
 import FieldCus from "../field";
@@ -9,17 +9,7 @@ import SubButton from "../subButton";
 import TitleLiner from "../titleLiner";
 import styles from "./hojrehForm.module.scss";
 
-function HojrehForm({
-  apiSetting,
-  selectState,
-
-  selectCities,
-  setSelectCities,
-
-  activeHojreh,
-
-  setClicked,
-}) {
+function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
   const [ChoiceBigCity, setChoiceBigCity] = useState(
     apiSetting.FK_ShopManager.User_Profile.BigCity
   );
@@ -32,6 +22,12 @@ function HojrehForm({
   const [IsLoading, setIsLoading] = useState(false);
   const [showMessage, setshowMessage] = useState(0);
   const [selectBigCities, setSelectBigCities] = useState([]);
+  const [selectState, setSelectState] = useState([]);
+  const [selectCities, setSelectCities] = useState([]);
+
+  useEffect(async () => {
+    setSelectState(await GetStates());
+  }, []);
   return (
     <>
       <Formik
@@ -247,6 +243,7 @@ function HojrehForm({
               </div>
             )}
             <SubButton title="ذخیره اطلاعات" />
+            <div style={{ marginTop: "80px" }}></div>
           </Form>
         )}
       </Formik>

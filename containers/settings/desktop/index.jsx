@@ -27,9 +27,6 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
   const [MainLoading, setMainLoading] = useState(true);
   const [onMenu, setOnMenu] = useState("1");
 
-  const [selectCities, setSelectCities] = useState([]);
-  const [selectState, setSelectState] = useState([]);
-
   // for btn  when click call api again
   const [clicked, setClicked] = useState(false);
 
@@ -55,8 +52,6 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
         setApiSetting(await response.data);
         setMainLoading(false);
       }
-
-      setSelectState(await GetStates());
     };
 
     activeHojreh.length > 0 && _handleRequestApi();
@@ -70,7 +65,6 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
   return (
     <div dir="rtl" className={styles.setting}>
       <Headers onMenu={onMenu} setOnMenu={setOnMenu}></Headers>
-
       {/* Setting Conttent */}
       <div className={styles.wrapper}>
         {MainLoading ? (
@@ -78,7 +72,6 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
         ) : (
           <>
             {/* Hojreh */}
-
             {onMenu == "1" && (
               <>
                 <div className={styles.Hojreh_headD}>
@@ -116,21 +109,13 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                 </div>
                 <HojrehForm
                   apiSetting={apiSetting}
-                  selectState={selectState}
-                  selectCities={selectCities}
                   activeHojreh={activeHojreh}
                   setClicked={setClicked}
-                  setSelectCities={setSelectCities}
                 />
-
-                <div style={{ marginTop: "80px" }}></div>
               </>
             )}
 
-            {/* HesabBanki */}
             {onMenu == "2" && <BankAccountForm apiSetting={apiSetting} />}
-
-            {/* Links */}
 
             {onMenu == "4" && (
               <FormInputs
