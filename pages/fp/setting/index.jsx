@@ -26,11 +26,12 @@ function Settings({ activeHojreh }) {
         />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      {width > breakpoint ? (
+      <DesktopSettings activeHojreh={activeHojreh} />
+      {/* {width > breakpoint ? (
         <DesktopSettings activeHojreh={activeHojreh} />
       ) : (
         <MobileSettings activeHojreh={activeHojreh} />
-      )}
+      )} */}
     </>
   );
 }

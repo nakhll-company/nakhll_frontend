@@ -1,27 +1,44 @@
 import styles from "./field.module.scss";
 import { useField, Form, FormikProps, Formik } from "formik";
 
-function FieldCus({ title, description, ...props }) {
+function FieldCus({ title, description, text, ...props }) {
   const [field, meta, helpers] = useField(props);
   return (
     <>
       <div className={styles.wrapper}>
         <div className={styles.input_setting}>
-          <h2
+          <span
             style={{
               marginBottom: "10px",
               color: "#364254",
               fontSize: "16px",
+              display: "block",
             }}
           >
             {title}
-          </h2>
-          <div className={styles.inputWidRtl}>
-            <input {...field} {...props} />
-            {meta.touched && meta.error ? (
-              <small className={styles.error}>{meta.error}</small>
-            ) : null}
-          </div>
+          </span>
+          {!text && (
+            <div className={styles.inputWidRtl}>
+              <input {...field} {...props} />
+              {meta.touched && meta.error ? (
+                <small className={styles.error}>{meta.error}</small>
+              ) : null}
+            </div>
+          )}
+
+          {text && (
+            <>
+              <div className={styles.inputWid_withWord}>
+                <div>
+                  <span style={{ fontSize: "16px" }}>{text}</span>
+                </div>
+                <input {...field} {...props} />
+              </div>
+              {meta.touched && meta.error ? (
+                <small className={styles.error}>{meta.error}</small>
+              ) : null}
+            </>
+          )}
         </div>
         <div className="">
           <h4

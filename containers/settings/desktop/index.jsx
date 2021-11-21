@@ -683,7 +683,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                     if (response.status == 200) {
                       setIsLoadingHesab(false);
                       setShowMessageHesab(1);
-                      // location.replace("https://nakhll.com/fp/setting");
+
                       setClicked((pre) => !pre);
                     } else {
                       setIsLoadingHesab(false);
@@ -691,88 +691,15 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                     }
                   }}
                 >
-                  {({ values, errors, touched }) => (
+                  {(props) => (
                     <Form>
-                      <div className={styles.HesabBankiGridD}>
-                        <div className={styles.input_setting}>
-                          <h2
-                            style={{
-                              marginBottom: "10px",
-                              color: "#364254",
-                              fontSize: "16px",
-                            }}
-                          >
-                            شماره شبا
-                          </h2>
-                          <div className={styles.inputWid_withWord}>
-                            <div>
-                              <h2 style={{ fontSize: "16px" }}>IR-</h2>
-                            </div>
-                            <Field name="iban" type="text" />
-                          </div>
-                          {touched.iban && errors.iban ? (
-                            <small className={styles.error}>
-                              {errors.iban}
-                            </small>
-                          ) : null}
-                        </div>
-                        <div className={styles.fatherExp}>
-                          <h4
-                            style={{ color: "#a4aebb" }}
-                            className={styles.explain}
-                          >
-                            شماره شبا جهت تسویه حساب مالی با شما لازم است. با
-                            مراجعه به سایت بانک خودتان می‌توانید شماره شبا خود
-                            را دریافت کنید.
-                          </h4>
-                          <h4
-                            className={styles.explain}
-                            style={{ marginTop: "10px", color: "#a4aebb" }}
-                          >
-                            شماره شبا یک عدد ۲۴ رقمی است که با IR شروع می‌شود.
-                          </h4>
-                          <h4
-                            className={styles.explain}
-                            style={{ marginTop: "10px", color: "#a4aebb" }}
-                          >
-                            شماره 24 رقمی شبا خود را جهت تسویه حساب مالی وارد
-                            کنید.
-                          </h4>
-                          <h4
-                            className={styles.explain}
-                            style={{ marginTop: "10px", color: "#a4aebb" }}
-                          >
-                            مثلا : IR 1233 4455 6677 8811 4466 22
-                          </h4>
-                        </div>
-                        <div className={styles.input_setting}>
-                          <h2
-                            style={{
-                              marginBottom: "10px",
-                              color: "#364254",
-                              fontSize: "16px",
-                            }}
-                          >
-                            صاحب حساب
-                          </h2>
-                          <div className={styles.inputWid}>
-                            <Field
-                              name="owner"
-                              type="text"
-                              defaultValue={
-                                apiSetting.bank_account &&
-                                apiSetting.bank_account.owner
-                              }
-                            />
-                          </div>
-                          {touched.owner && errors.owner ? (
-                            <small className={styles.error}>
-                              {errors.owner}
-                            </small>
-                          ) : null}
-                        </div>
-                      </div>
-
+                      <FieldCus
+                        name="iban"
+                        type="text"
+                        text="IR-"
+                        title="شماره شبا"
+                      />
+                      <FieldCus name="owner" type="text" title="صاحب حساب" />
                       {/* ‌Buttons */}
                       {IsLoadingHesab && (
                         <div style={{ display: "flex", alignItems: "center" }}>
@@ -840,12 +767,9 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                     const data = new FormData(e.target);
                     let body = Object.fromEntries(data.entries());
                     let response = await linkSetting(body);
-                    // if (response.status === 201) {
-                    //   setShowSuccessPage((showSuccessPage) => !showSuccessPage);
-                    // }
+
                     successMessage("اطلاعات با موفقیت به روز رسانی شد");
 
-                    // location.replace("https://nakhll.com/fp/setting");
                     setClicked((pre) => !pre);
                   }}
                 >

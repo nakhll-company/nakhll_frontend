@@ -3,19 +3,20 @@ import styles from "./input.module.scss";
 function InputSetting({ name, value, title, text }) {
   return (
     <div className={styles.input_setting}>
-      <h2
+      <span
         style={{
           marginBottom: "10px",
           color: "#364254",
           fontSize: "16px",
+          display: "block",
         }}
       >
         {title}
-      </h2>
+      </span>
       <div className={styles.inputWid_withWord}>
         {text && (
           <div>
-            <h2 style={{ fontSize: "16px" }}>{text}</h2>
+            <span style={{ fontSize: "16px" }}>{text}</span>
           </div>
         )}
         <input type="text" name={name} defaultValue={value} />
