@@ -50,7 +50,7 @@ export default function Cart() {
       );
       setAll_product_list_buy(await response.data);
       setShowLoading(false);
-    } catch (e) {}
+    } catch (e) { }
   };
 
   // CALL API  &  GET PRODUCT LIST  & SET DATA IN "All_product_list_buy"
@@ -67,6 +67,7 @@ export default function Cart() {
 
       <div className="all">
         <Head>
+          <title>سبد خرید</title>
           <link
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"

@@ -38,9 +38,8 @@ function LinerProducts({
             <div className={styles.Button}>
               <button>
                 <Link
-                  href={`${
-                    url.includes("search=") ? `${url}` : `/product?ap=${url}`
-                  }`}
+                  href={`${url.includes("search=") ? `${url}` : `/search?ap=${url}`
+                    }`}
                 >
                   <a>مشاهده همه</a>
                 </Link>
@@ -95,11 +94,10 @@ function LinerProducts({
             <div className={styles.Button}>
               <button>
                 <Link
-                  href={`${
-                    url.includes("search=") || url.includes("q=")
+                  href={`${url.includes("search=") || url.includes("q=")
                       ? `${url}`
-                      : `/product?ap=${url}`
-                  }`}
+                      : `/search?ap=${url}`
+                    }`}
                 >
                   <a>مشاهده همه</a>
                 </Link>

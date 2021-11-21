@@ -37,10 +37,10 @@ const FavoritesList = () => {
                   product={{
                     id: value.id,
                     imageUrl: value.image_thumbnail_url,
-                    url: `/product/${value.slug}`,
+                    url: `/shop/${value.shop.slug}/product/${value.slug}`,
                     title: value.title,
                     chamberTitle: value.shop.title,
-                    chamberUrl: `/shop/${value.shop.slug} `,
+                    chamberUrl: `/shop/${value.shop.slug}`,
                     discount: value.discount,
                     price: value.price / 10,
                     discountNumber: value.old_price / 10,
