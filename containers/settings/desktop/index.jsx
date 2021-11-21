@@ -23,60 +23,13 @@ import { VALIDATION_SCHEMA, VALIDATION_HESAB } from "../methods/Validation";
 
 // Toast
 
-import Modal from "../../../components/custom/customModal";
 import { errorMessage, successMessage } from "../../utils/message";
-import InputSetting from "../components/input";
+
 import FieldCus from "../components/field";
 import { dataExp } from "../data";
 import TitleLiner from "../components/titleLiner";
-
-const getStates = async () => {
-  let params = {};
-  let loadData = null;
-  let dataUrl = "/app/api/v1/get-all-state/";
-  let response = await ApiRegister().apiRequest(
-    loadData,
-    "get",
-    dataUrl,
-    true,
-    params
-  );
-  if (response.status === 200) {
-    return response.data;
-  }
-};
-
-const getBigCities = async (id) => {
-  let params = {};
-  let loadData = null;
-  let dataUrl = `/app/api/v1/get-big-cities/?state_id=${id}`;
-  let response = await ApiRegister().apiRequest(
-    loadData,
-    "get",
-    dataUrl,
-    true,
-    params
-  );
-  if (response.status === 200) {
-    return response.data;
-  }
-};
-
-const getCities = async (id) => {
-  let params = {};
-  let loadData = null;
-  let dataUrl = `/app/api/v1/get-cities/?bigcity_id=${id}`;
-  let response = await ApiRegister().apiRequest(
-    loadData,
-    "get",
-    dataUrl,
-    true,
-    params
-  );
-  if (response.status === 200) {
-    return response.data;
-  }
-};
+import { GetBigCities, GetCities, GetStates } from "../../../utils/states";
+import FormInputs from "../components/linksForm";
 
 const DesktopSetting = ({ activeHojreh, userInfo }) => {
   const [apiSetting, setApiSetting] = useState({});
@@ -133,32 +86,11 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
         setMainLoading(false);
       }
 
-      setSelectState(await getStates());
+      setSelectState(await GetStates());
     };
 
     activeHojreh.length > 0 && _handleRequestApi();
   }, [activeHojreh, clicked]);
-
-  const linkSetting = (body) => {
-    const dataForSendLink = {
-      social_media: {
-        telegram: body.telegram,
-        instagram: body.instagram,
-      },
-    };
-
-    let params = {};
-    let loadData = dataForSendLink;
-    let dataUrl = `/api/v1/shop/${activeHojreh}/settings/social_media/`;
-
-    let response = ApiRegister().apiRequest(
-      loadData,
-      "put",
-      dataUrl,
-      true,
-      params
-    );
-  };
 
   // For pic Avatar
   const handelPicAvatar = (e) => {
@@ -562,7 +494,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                           defaultValue=""
                           onChange={async (event) => {
                             setSelectBigCities(
-                              await getBigCities(event.target.value)
+                              await GetBigCities(event.target.value)
                             );
 
                             setChoiceState(
@@ -588,7 +520,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                           defaultValue=""
                           onChange={async (event) => {
                             setSelectCities(
-                              await getCities(event.target.value)
+                              await GetCities(event.target.value)
                             );
                             setChoiceBigCity(
                               event.target[event.target.selectedIndex].text
@@ -740,9 +672,6 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                       )}
                       <div className={styles.status_button_one}>
                         <button
-                          // onClick={() => {
-                          //   setbtnOk(!btnOk);
-                          // }}
                           type="submit"
                           className={`${styles.btn} ${styles.btnSubmit}`}
                         >
@@ -760,56 +689,11 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
             {/* Links */}
 
             {onMenu == "4" && (
-              <>
-                <form
-                  onSubmit={async (e) => {
-                    e.preventDefault();
-                    const data = new FormData(e.target);
-                    let body = Object.fromEntries(data.entries());
-                    let response = await linkSetting(body);
-
-                    successMessage("اطلاعات با موفقیت به روز رسانی شد");
-
-                    setClicked((pre) => !pre);
-                  }}
-                >
-                  <div className={styles.LinksGridD}>
-                    <InputSetting
-                      name="telegram"
-                      value={
-                        apiSetting.social_media &&
-                        apiSetting.social_media.telegram
-                      }
-                      title="آدرس تلگرام"
-                      text="t.me/"
-                    />
-                    <div className="">
-                      <h4 className={styles.explain}></h4>
-                    </div>
-                    <InputSetting
-                      name="instagram"
-                      value={
-                        apiSetting.social_media &&
-                        apiSetting.social_media.instagram
-                      }
-                      title="آدرس اینستاگرام"
-                      text="instagram.com/"
-                    />
-                  </div>
-                  {/* ‌Buttons */}
-
-                  <div className={styles.status_button_one}>
-                    <button
-                      type="submit"
-                      className={`${styles.btn} ${styles.btnSubmit}`}
-                    >
-                      <h3 style={{ margin: "0px", fontSize: "15px" }}>
-                        ذخیره اطلاعات{" "}
-                      </h3>
-                    </button>
-                  </div>
-                </form>
-              </>
+              <FormInputs
+                apiSetting={apiSetting}
+                setClicked={setClicked}
+                activeHojreh={activeHojreh}
+              />
             )}
           </>
         )}
