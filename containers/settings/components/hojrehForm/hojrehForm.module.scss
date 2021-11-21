@@ -1,0 +1,149 @@
+.form_label {
+    color: hsl(216deg 22% 27%);
+    font-size: 16px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+.form_select {
+    height: 43px;
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #e0e6e9;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+        // left: 0px
+    }
+    25% {
+        // left: -150px;
+        transform: rotate(90deg);
+    }
+    50% {
+        // left: -100px;
+        transform: rotate(180deg);
+    }
+    75% {
+        // left: -50px;
+        transform: rotate(270deg);
+    }
+    100% {
+        // left: 0px;
+        transform: rotate(360deg);
+    }
+    // 0%   {background-color:red; left:0px; top:0px;}
+    // 25%  {background-color:yellow; left:200px; top:0px;}
+    // 50%  {background-color:blue; left:200px; top:200px;}
+    // 75%  {background-color:green; left:0px; top:200px;}
+    // 100% {background-color:red; left:0px; top:0px;}
+}
+@keyframes name {
+    0% {
+        opacity: 20%;
+    }
+    50% {
+        opacity: 50%;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
+// Message
+.loader {
+    display: inline-block;
+    position: relative;
+    z-index: 5;
+    -webkit-animation: spin 3s linear infinite;
+    animation: spin 3s linear infinite;
+}
+.nameLoding {
+    -webkit-animation: name 2s ease-in-out infinite;
+    animation: name 2s ease-in-out infinite;
+}
+.status_button {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 25px;
+    margin-left: 14px;
+}
+.status_button_one {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-top: 25px;
+}
+
+/* btn */
+
+.btn {
+    border: none;
+    background: none;
+    outline: 0;
+    cursor: pointer;
+}
+.btn:focus {
+    outline: 0;
+}
+.btnSubmit {
+    background-color: #007aff;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 23px;
+    text-align: center;
+    color: #ffffff;
+    border-radius: 5px;
+    height: 40px;
+}
+.btnProblem {
+    background-color: #fff;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 23px;
+    text-align: center;
+    color: #007aff;
+    margin-right: 15px;
+    border: 1px solid #007aff;
+    box-sizing: border-box;
+    border-radius: 5px;
+    height: 40px;
+}
+.btn_For_save {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: center;
+    button {
+        border: 0px;
+        background-color: #dc3545;
+        border-radius: 5px;
+        font-size: 15px;
+        padding: 10px 15px;
+        color: #fff;
+        font-weight: 900;
+        cursor: pointer;
+    }
+}
+.status_button {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 25px;
+    margin-left: 14px;
+}
+.status_button_one {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-top: 25px;
+}
