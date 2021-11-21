@@ -13,7 +13,6 @@ SwiperCore.use([Pagination]);
 import styles from "./HeroSlides.module.scss";
 
 function HeroSlides({ dataHeroSlides }) {
-  console.log(`dataHer`, dataHeroSlides);
   const userLog = useSelector((state) => state.User.userInfo);
   return (
     <div style={{ marginTop: "5px" }} className="container ">
