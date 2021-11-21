@@ -160,7 +160,7 @@ const Shop = ({ dataShop, data }) => {
           integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
           crossOrigin="anonymous"
         ></link>
-        <title>{`${informationShop.title} | نخل`}</title>
+        <title>{` حجره ${informationShop.title} | نخل`}</title>
       </Head>
       {!dataShop.shop.is_landing && (
         <>

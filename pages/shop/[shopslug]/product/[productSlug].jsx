@@ -12,7 +12,6 @@ import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 
 // fetch data
 const fetchData = async (id) => {
-  console.log(`id`, id);
   let urlComments = encodeURI(`/api/v1/product-page/comments/${id}/`);
   let urlResponse = encodeURI(`/api/v1/product-page/details/${id}/`);
   let urlRelatedProduct = encodeURI(
@@ -68,7 +67,7 @@ const ProductDetail = ({ data }) => {
   return (
     <>
       <Head>
-        {/* <title>{`خرید و قیمت ${data.detail.title} | نخل`}</title> */}
+        <title>{`خرید و قیمت ${data.detail.title} | نخل`}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       {width < breakpoint ? (
