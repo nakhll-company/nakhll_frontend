@@ -287,10 +287,8 @@ const Footer = () => {
                           style={{ height: "125px", width: "125px" }}
                           className="d-flex justify-content-center"
                         >
-                          <Link href="https://trustseal.enamad.ir/?id=135577&Code=4LVJlUntZdqZWSmXWkA1">
-                            <a
-                              className="w-100"
-                            >
+                          <Link href="https://trustseal.enamad.ir/?id=135577&amp;Code=4LVJlUntZdqZWSmXWkA1">
+                            <a className="w-100" >
                               <img
                                 referrerPolicy="origin"
                                 alt="نماد اعتماد الکترونیکی"
