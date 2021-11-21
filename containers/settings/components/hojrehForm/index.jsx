@@ -5,20 +5,20 @@ import { GetBigCities, GetCities } from "../../../../utils/states";
 import { dataExp } from "../../data";
 import { VALIDATION_SCHEMA } from "../../methods/Validation";
 import FieldCus from "../field";
+import SubButton from "../subButton";
 import TitleLiner from "../titleLiner";
 import styles from "./hojrehForm.module.scss";
 
 function HojrehForm({
   apiSetting,
   selectState,
-  selectBigCities,
+
   selectCities,
   setSelectCities,
-  showMessage,
+
   activeHojreh,
-  setshowMessage,
+
   setClicked,
-  setSelectBigCities,
 }) {
   const [ChoiceBigCity, setChoiceBigCity] = useState(
     apiSetting.FK_ShopManager.User_Profile.BigCity
@@ -30,6 +30,8 @@ function HojrehForm({
     apiSetting.FK_ShopManager.User_Profile.State
   );
   const [IsLoading, setIsLoading] = useState(false);
+  const [showMessage, setshowMessage] = useState(0);
+  const [selectBigCities, setSelectBigCities] = useState([]);
   return (
     <>
       <Formik
@@ -244,16 +246,7 @@ function HojrehForm({
                 </h3>
               </div>
             )}
-            <div className={styles.status_button_one}>
-              <button
-                type="submit"
-                className={`${styles.btn} ${styles.btnSubmit}`}
-              >
-                <h3 style={{ margin: "0px", fontSize: "15px" }}>
-                  ذخیره اطلاعات
-                </h3>
-              </button>
-            </div>{" "}
+            <SubButton title="ذخیره اطلاعات" />
           </Form>
         )}
       </Formik>

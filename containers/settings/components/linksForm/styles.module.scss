@@ -14,28 +14,3 @@
         line-height: 150%;
     }
 }
-.status_button_one {
-    display: grid;
-    grid-template-columns: 1fr;
-    margin-top: 25px;
-}
-.btn {
-    border: none;
-    background: none;
-    outline: 0;
-    cursor: pointer;
-}
-.btn:focus {
-    outline: 0;
-}
-.btnSubmit {
-    background-color: #007aff;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 15px;
-    line-height: 23px;
-    text-align: center;
-    color: #ffffff;
-    border-radius: 5px;
-    height: 40px;
-}

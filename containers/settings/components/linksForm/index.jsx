@@ -1,6 +1,7 @@
 import { linkSetting } from "../../../../api/settings";
 import { successMessage } from "../../../utils/message";
 import InputSetting from "../input";
+import SubButton from "../subButton";
 import styles from "./styles.module.scss";
 
 function FormInputs({ apiSetting, setClicked, activeHojreh }) {
@@ -36,12 +37,7 @@ function FormInputs({ apiSetting, setClicked, activeHojreh }) {
           />
         </div>
         {/* ‌Buttons */}
-
-        <div className={styles.status_button_one}>
-          <button type="submit" className={`${styles.btn} ${styles.btnSubmit}`}>
-            <h3 style={{ margin: "0px", fontSize: "15px" }}>ذخیره اطلاعات </h3>
-          </button>
-        </div>
+        <SubButton title="ذخیره اطلاعات" />
       </form>
     </>
   );
