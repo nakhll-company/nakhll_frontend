@@ -139,7 +139,7 @@ const index = ({ data }) => {
         />
         <meta
           name="keywords"
-          content="بازار نخل،نخل،بازار اجتماعی نخل،بازار آنلاین نخل"
+          content=" نخل به وسعت یک سرزمین،بازار نخل،نخل،بازار اجتماعی نخل،بازار آنلاین نخل"
         />
         <link rel="canonical" href="https://nakhll.com/" />
       </Head>
