@@ -6,6 +6,7 @@ import { dataExp } from "../../data";
 import { VALIDATION_SCHEMA } from "../../methods/Validation";
 import FieldCus from "../field";
 import SubButton from "../subButton";
+import TextArea from "../textArea";
 import TitleLiner from "../titleLiner";
 import styles from "./hojrehForm.module.scss";
 
@@ -89,7 +90,7 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
             if (response.status === 200) {
               setIsLoading(false);
               setshowMessage(1);
-              // location.replace("https://nakhll.com/fp/setting");
+
               setClicked((pre) => !pre);
             }
           } catch (error) {
@@ -115,12 +116,13 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
               title="آدرس اینترنتی حجره"
               description={dataExp.slug}
             />
-            <FieldCus
+            <TextArea
               name="Description"
               type="text"
               title="درباره حجره"
               description={dataExp.Description}
             />
+
             <TitleLiner title="مشخصات" />
             <FieldCus name="NationalCode" type="text" title="کد ملی" />
             <FieldCus
@@ -199,6 +201,8 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
                 })}
               </select>
             </div>
+
+            <TextArea name="Address" type="text" title="آدرس" />
             <FieldCus name="ZipCode" type="text" title="کد پستی" />
             {IsLoading && (
               <div

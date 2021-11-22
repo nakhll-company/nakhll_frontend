@@ -40,7 +40,7 @@ function FieldCus({ title, description, text, ...props }) {
             </>
           )}
         </div>
-        <div className="">
+        <div className={styles.explain_section}>
           <h4
             className={styles.explain}
             style={{

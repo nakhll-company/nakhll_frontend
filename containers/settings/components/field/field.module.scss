@@ -23,6 +23,14 @@
 .input_setting {
     margin-top: 20px;
     margin-bottom: 20px;
+    @media (max-width: 768px) {
+        grid-column: 1 / -1;
+    }
+}
+.explain_section {
+    @media (max-width: 768px) {
+        display: none;
+    }
 }
 .inputWid {
     display: grid;
