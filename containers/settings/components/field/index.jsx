@@ -1,7 +1,7 @@
 import styles from "./field.module.scss";
 import { useField, Form, FormikProps, Formik } from "formik";
 
-function FieldCus({ title, description, text, ...props }) {
+function FieldCus({ title, description, text, extraTitle, ...props }) {
   const [field, meta, helpers] = useField(props);
   return (
     <>
@@ -16,6 +16,18 @@ function FieldCus({ title, description, text, ...props }) {
             }}
           >
             {title}
+            {""}
+            <span
+              style={{
+                display: "inline-block",
+                fontSize: "12px",
+                marginRight: "10px",
+                fontWeight: "bold",
+                color: "rgb(255, 5, 5)",
+              }}
+            >
+              {extraTitle}
+            </span>
           </span>
           {!text && (
             <div className={styles.inputWidRtl}>

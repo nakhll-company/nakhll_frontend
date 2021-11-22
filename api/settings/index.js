@@ -1,5 +1,18 @@
-import { useSelector } from "react-redux";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+
+export const callApiAllData = async(activeHojreh) => {
+    let params = {};
+    let loadData = null;
+    let dataUrl = `/api/v1/shop/${activeHojreh}/settings/`;
+    let response = await ApiRegister().apiRequest(
+        loadData,
+        "get",
+        dataUrl,
+        true,
+        params
+    );
+    return response;
+};
 
 export const linkSetting = (body, activeHojreh) => {
     const dataForSendLink = {
@@ -20,4 +33,35 @@ export const linkSetting = (body, activeHojreh) => {
         true,
         params
     );
+};
+
+export const callApiUpDataShop = async(dataForSend, activeHojreh) => {
+    let params = {};
+    let loadData = dataForSend;
+    let dataUrl = `/api/v1/shop/${activeHojreh}/settings/`;
+
+    const response = await ApiRegister().apiRequest(
+        loadData,
+        "put",
+        dataUrl,
+        true,
+        params
+    );
+
+    return response;
+};
+
+export const callBankAccount = async(dataForSend, activeHojreh) => {
+    let params = {};
+    let loadData = dataForSend;
+    let dataUrl = `/api/v1/shop/${activeHojreh}/settings/bank_account/`;
+
+    let response = await ApiRegister().apiRequest(
+        loadData,
+        "put",
+        dataUrl,
+        true,
+        params
+    );
+    return response;
 };

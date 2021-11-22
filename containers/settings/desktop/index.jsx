@@ -20,6 +20,7 @@ import { GetBigCities, GetCities, GetStates } from "../../../utils/states";
 import FormInputs from "../components/linksForm";
 import HojrehForm from "../components/hojrehForm";
 import BankAccountForm from "../components/bankAccountForm";
+import { callApiAllData } from "../../../api/settings";
 
 const DesktopSetting = ({ activeHojreh, userInfo }) => {
   const [apiSetting, setApiSetting] = useState({});
@@ -37,16 +38,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
 
   useEffect(() => {
     const _handleRequestApi = async () => {
-      let params = {};
-      let loadData = null;
-      let dataUrl = `/api/v1/shop/${activeHojreh}/settings/`;
-      let response = await ApiRegister().apiRequest(
-        loadData,
-        "get",
-        dataUrl,
-        true,
-        params
-      );
+      const response = callApiAllData(activeHojreh);
 
       if (response.status === 200) {
         setApiSetting(await response.data);
@@ -115,7 +107,12 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
               </>
             )}
 
-            {onMenu == "2" && <BankAccountForm apiSetting={apiSetting} />}
+            {onMenu == "2" && (
+              <BankAccountForm
+                activeHojreh={activeHojreh}
+                apiSetting={apiSetting}
+              />
+            )}
 
             {onMenu == "4" && (
               <FormInputs

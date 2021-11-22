@@ -1,11 +1,12 @@
 import { Form, Formik } from "formik";
 import { useState } from "react";
+import { callBankAccount } from "../../../../api/settings";
 import { VALIDATION_HESAB } from "../../methods/Validation";
 import FieldCus from "../field";
 import SubButton from "../subButton";
 import styles from "./bankAccountForm.module.scss";
 
-function BankAccountForm({ apiSetting }) {
+function BankAccountForm({ apiSetting, activeHojreh }) {
   const [IsLoadingHesab, setIsLoadingHesab] = useState(false);
   const [showMessageHesab, setShowMessageHesab] = useState(0);
   return (
@@ -18,27 +19,18 @@ function BankAccountForm({ apiSetting }) {
         }}
         validationSchema={VALIDATION_HESAB}
         onSubmit={async (data) => {
-          setIsLoadingHesab(true);
+          // setIsLoadingHesab(true);
           setShowMessageHesab(0);
 
-          const dataHesabBankiForSend = {
+          const dataForSend = {
             bank_account: {
               iban: data.iban,
               owner: data.owner,
             },
           };
 
-          let params = {};
-          let loadData = dataHesabBankiForSend;
-          let dataUrl = `/api/v1/shop/${activeHojreh}/settings/bank_account/`;
+          const response = await callBankAccount(dataForSend, activeHojreh);
 
-          let response = await ApiRegister().apiRequest(
-            loadData,
-            "put",
-            dataUrl,
-            true,
-            params
-          );
           if (response.status == 200) {
             setIsLoadingHesab(false);
             setShowMessageHesab(1);

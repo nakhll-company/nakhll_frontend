@@ -1,6 +1,6 @@
 import { Form, Formik } from "formik";
 import { useEffect, useState } from "react";
-import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
+import { callApiUpDataShop } from "../../../../api/settings";
 import { GetBigCities, GetCities, GetStates } from "../../../../utils/states";
 import { dataExp } from "../../data";
 import { VALIDATION_SCHEMA } from "../../methods/Validation";
@@ -57,8 +57,7 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
         validationSchema={VALIDATION_SCHEMA}
         onSubmit={async (data) => {
           setshowMessage(0);
-          //   setIsLoading(true);
-
+          // setIsLoading(true);
           const dataForSend = {
             Title: data.Title,
             Slug: data.slug,
@@ -76,25 +75,13 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
               },
             },
           };
-          let params = {};
-          let loadData = dataForSend;
-          let dataUrl = `/api/v1/shop/${activeHojreh}/settings/`;
-          try {
-            const response = await ApiRegister().apiRequest(
-              loadData,
-              "put",
-              dataUrl,
-              true,
-              params
-            );
-            if (response.status === 200) {
-              setIsLoading(false);
-              setshowMessage(1);
+          const response = await callApiUpDataShop(dataForSend, activeHojreh);
+          if (response.status === 200) {
+            setIsLoading(false);
+            setshowMessage(1);
 
-              setClicked((pre) => !pre);
-            }
-          } catch (error) {
-            alert(error);
+            setClicked((pre) => !pre);
+          } else {
             setIsLoading(false);
             // Not Good
             setshowMessage(2);
@@ -108,11 +95,14 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
               name="Title"
               type="text"
               title="نام حجره"
+              extraTitle="غیر قابل تغییر"
               description={dataExp.Title}
+              disabled={true}
             />
             <FieldCus
               name="slug"
               type="text"
+              extraTitle="غیر قابل تغییر"
               title="آدرس اینترنتی حجره"
               description={dataExp.slug}
             />
