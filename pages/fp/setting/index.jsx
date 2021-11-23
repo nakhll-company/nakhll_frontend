@@ -3,16 +3,13 @@ import Head from "next/head";
 import { connect } from "react-redux";
 // components
 import MyLayout from "../../../components/layout/Layout";
-import useViewport from "../../../components/viewPort";
+
 import DesktopSettings from "../../../containers/settings/desktop";
-import MobileSettings from "../../../containers/settings/mobile";
+
 // methods
 import { mapState } from "../../../containers/settings/methods/mapState";
 
 function Settings({ activeHojreh }) {
-  const { width } = useViewport();
-  const breakpoint = 620;
-
   return (
     <>
       <Head>
@@ -27,11 +24,6 @@ function Settings({ activeHojreh }) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <DesktopSettings activeHojreh={activeHojreh} />
-      {/* {width > breakpoint ? (
-        <DesktopSettings activeHojreh={activeHojreh} />
-      ) : (
-        <MobileSettings activeHojreh={activeHojreh} />
-      )} */}
     </>
   );
 }

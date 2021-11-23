@@ -19,7 +19,6 @@ function BankAccountForm({ apiSetting, activeHojreh }) {
         }}
         validationSchema={VALIDATION_HESAB}
         onSubmit={async (data) => {
-          // setIsLoadingHesab(true);
           setShowMessageHesab(0);
 
           const dataForSend = {
