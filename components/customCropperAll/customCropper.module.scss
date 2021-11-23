@@ -1,0 +1,36 @@
+// modal wrapperrrrrr
+.modal_wrapper {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(20px);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// cropper wrapper
+.cropper_wrapper {
+    position: relative;
+    width: 80vw;
+    height: 80vh;
+    background: #fff;
+}
+
+// button submit
+.button_submit {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    button {
+        border: none;
+        background-color: rgb(0, 143, 187);
+        color: #fff;
+        border-radius: 5px;
+        padding: 10px;
+    }
+}

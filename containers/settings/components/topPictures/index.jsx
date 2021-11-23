@@ -25,10 +25,14 @@ function TopPictures({ apiSetting }) {
           )}
         </div>
         <div className={styles.btnProfile}>
-          <InputPictureSetting setImageSrc={setImgProfile} />
+          <InputPictureSetting setImageSrc={setImgProfile} image={imgProfile} />
         </div>
         <div className={styles.btnBanner}>
-          <InputPictureSetting setImageSrc={setImgBanner} />
+          <InputPictureSetting
+            setImageSrc={setImgBanner}
+            image={imgBanner}
+            ratio={3}
+          />
         </div>
       </div>
     </>
