@@ -12,11 +12,16 @@ function TopPictures({ apiSetting }) {
   return (
     <>
       <div className={styles.Hojreh_headD}>
-        {imgBanner && <Image src={imgBanner} width={800} height={50}></Image>}
+        <Image
+          src={imgBanner ? imgBanner : "/image/back.jpg"}
+          layout="responsive"
+          width={300}
+          height={100}
+        ></Image>
 
         <div className={styles.Hojreh_headD_pic}>
           {imgProfile && (
-            <Image src={imgProfile} width={100} height={100}></Image>
+            <Image src={imgProfile} width={120} height={120}></Image>
           )}
         </div>
         <div className={styles.btnProfile}>
