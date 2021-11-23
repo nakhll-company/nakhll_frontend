@@ -13,16 +13,17 @@ function TopPictures({ apiSetting }) {
     <>
       <div className={styles.Hojreh_headD}>
         {imgBanner && <Image src={imgBanner} width={800} height={50}></Image>}
-        <div>
-          <div className={styles.Hojreh_headD_pic}>
-            {imgProfile && (
-              <Image src={imgProfile} width={100} height={100}></Image>
-            )}
-          </div>
+
+        <div className={styles.Hojreh_headD_pic}>
+          {imgProfile && (
+            <Image src={imgProfile} width={100} height={100}></Image>
+          )}
+        </div>
+        <div className={styles.btnProfile}>
           <InputPictureSetting setImageSrc={setImgProfile} />
-          <div className={styles.Hojreh_headD_edit_icon}>
-            <InputPictureSetting setImageSrc={setImgBanner} />
-          </div>
+        </div>
+        <div className={styles.btnBanner}>
+          <InputPictureSetting setImageSrc={setImgBanner} />
         </div>
       </div>
     </>

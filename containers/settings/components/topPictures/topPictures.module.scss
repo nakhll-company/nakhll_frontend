@@ -6,7 +6,6 @@
     margin-top: 20px;
     position: relative;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
     &_pic {
         width: 100px;
         height: 100px;
@@ -24,53 +23,15 @@
         * {
             border-radius: 50%;
         }
-        .Hojreh_headD_edit_icon_pic {
-            display: flex;
-            background-color: #fff;
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            border-radius: 100%;
-            align-items: center;
-            justify-content: center;
-            bottom: -6px;
-            right: -10px;
-            input {
-                display: none;
-            }
-        }
-    }
-    &_edit_icon {
-        display: flex;
-        background-color: #fff;
-        position: absolute;
-        width: 30px;
-        height: 30px;
-        border-radius: 100%;
-        align-items: center;
-        justify-content: center;
-        bottom: 3px;
-        right: 3px;
-        span {
-            font-size: 20px;
-        }
     }
 }
-.Hojreh_headD_edit_icon_pic>span {
-    font-size: 20px;
+.btnProfile {
+    position: absolute;
+    left: 53%;
+    top: 70%;
 }
-.hojrehD {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    column-gap: 20px;
-    .explain {
-        margin-left: 50px;
-        align-items: center;
-        text-align: justify;
-        font-family: IRANSans;
-        font-style: normal;
-        font-size: 14px;
-        line-height: 200%;
-    }
+.btnBanner {
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
 }
