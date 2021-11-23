@@ -42,7 +42,7 @@ export const callApiUpDataShop = async(dataForSend, activeHojreh) => {
 
     const response = await ApiRegister().apiRequest(
         loadData,
-        "put",
+        "get",
         dataUrl,
         true,
         params
@@ -63,5 +63,21 @@ export const callBankAccount = async(dataForSend, activeHojreh) => {
         true,
         params
     );
+    return response;
+};
+
+export const callApiUpDataPicture = async(dataForSend, activeHojreh) => {
+    let params = {};
+    let loadData = dataForSend;
+    let dataUrl = `/api/v1/shop/${activeHojreh}/settings/avatar/`;
+
+    const response = await ApiRegister().apiRequest(
+        loadData,
+        "put",
+        dataUrl,
+        true,
+        params
+    );
+
     return response;
 };

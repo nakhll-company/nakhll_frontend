@@ -50,7 +50,10 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
             {/* Hojreh */}
             {onMenu == "1" && (
               <>
-                <TopPictures apiSetting={apiSetting} />
+                <TopPictures
+                  apiSetting={apiSetting}
+                  activeHojreh={activeHojreh}
+                />
 
                 <HojrehForm
                   apiSetting={apiSetting}

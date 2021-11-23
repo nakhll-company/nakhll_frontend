@@ -1,14 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./topPictures.module.scss";
 import Image from "next/image";
 import InputPictureSetting from "../InputPicture";
+import { callApiUpDataPicture } from "../../../../api/settings";
 
-function TopPictures({ apiSetting }) {
+function TopPictures({ apiSetting, activeHojreh }) {
+  console.log(`apiSetting.image_thumbnail_url`, apiSetting.image_thumbnail_url);
   const [imgProfile, setImgProfile] = useState(
     apiSetting.image_thumbnail_url ? apiSetting.image_thumbnail_url : null
   );
   const [imgBanner, setImgBanner] = useState(null);
-
+  useEffect(() => {
+    let dataForSend = {
+      image: imgProfile,
+    };
+    console.log(`dataForSend`, dataForSend);
+    {
+      imgProfile.startsWith("data") &&
+        callApiUpDataPicture(dataForSend, activeHojreh);
+    }
+  }, [imgProfile]);
   return (
     <>
       <div className={styles.Hojreh_headD}>
