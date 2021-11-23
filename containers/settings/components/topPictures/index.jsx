@@ -7,23 +7,21 @@ function TopPictures({ apiSetting }) {
   const [imgProfile, setImgProfile] = useState(
     apiSetting.image_thumbnail_url ? apiSetting.image_thumbnail_url : null
   );
-  const [imageSrc, setImageSrc] = useState(null);
-
-  const [isShowCropper, setIsShowCropper] = useState(false);
+  const [imgBanner, setImgBanner] = useState(null);
 
   return (
     <>
-      {isShowCropper && (
-        <CustomCropperAll imageSrc={imgProfile} close={setIsShowCropper} />
-      )}
       <div className={styles.Hojreh_headD}>
+        {imgBanner && <Image src={imgBanner} width={800} height={50}></Image>}
         <div>
           <div className={styles.Hojreh_headD_pic}>
-            <Image src={imageSrc} width={100} height={100}></Image>
+            {imgProfile && (
+              <Image src={imgProfile} width={100} height={100}></Image>
+            )}
           </div>
-          <InputPictureSetting setImageSrc={setImageSrc} />
+          <InputPictureSetting setImageSrc={setImgProfile} />
           <div className={styles.Hojreh_headD_edit_icon}>
-            <span className="fas fa-edit"></span>
+            <InputPictureSetting setImageSrc={setImgBanner} />
           </div>
         </div>
       </div>
