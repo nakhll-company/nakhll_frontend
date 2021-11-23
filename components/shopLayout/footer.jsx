@@ -23,7 +23,6 @@ const Footer = () => {
   const router = useRouter();
   return (
     <>
-
       {!router.pathname.startsWith("/cart") && (
         <>
           <div className="container">
@@ -35,30 +34,18 @@ const Footer = () => {
                       نخل
                     </div>{" "}
                     <div>
-                      <Link
-                        href="https://nakhll.com/blog/"
-                      >
-                        <a className={styles.footer_items}>
-                          وبلاگ
-                        </a>
+                      <Link href="https://nakhll.com/blog/">
+                        <a className={styles.footer_items}>وبلاگ</a>
                       </Link>
                     </div>
                     <div>
-                      <Link
-                        href="https://nakhll.com/blog/%d9%86%d8%ae%d9%84%d8%8c-%d8%a8%d8%a7%d8%b2%d8%a7%d8%b1%db%8c-%d8%a7%d8%ac%d8%aa%d9%85%d8%a7%d8%b9%db%8c-%d9%88-%d8%a2%d9%86%d9%84%d8%a7%db%8c%d9%86/"
-                      >
-                        <a className={styles.footer_items}>
-                          داستان نخل
-                        </a>
+                      <Link href="https://nakhll.com/blog/%d9%86%d8%ae%d9%84%d8%8c-%d8%a8%d8%a7%d8%b2%d8%a7%d8%b1%db%8c-%d8%a7%d8%ac%d8%aa%d9%85%d8%a7%d8%b9%db%8c-%d9%88-%d8%a2%d9%86%d9%84%d8%a7%db%8c%d9%86/">
+                        <a className={styles.footer_items}>داستان نخل</a>
                       </Link>
                     </div>
                     <div>
-                      <Link
-                        href="https://nakhll.com/blog/%d8%aa%d9%85%d8%a7%d8%b3-%d8%a8%d8%a7-%d9%85%d8%a7/"
-                      >
-                        <a className={styles.footer_items}>
-                          تماس با ما
-                        </a>
+                      <Link href="https://nakhll.com/blog/%d8%aa%d9%85%d8%a7%d8%b3-%d8%a8%d8%a7-%d9%85%d8%a7/">
+                        <a className={styles.footer_items}>تماس با ما</a>
                       </Link>
                     </div>
                     {/* <div>
@@ -80,9 +67,7 @@ const Footer = () => {
                       </a>
                     </div> */}
                     <div>
-                      <Link
-                        href="https://nakhll.com/blog/%d8%b4%d8%b1%d8%a7%db%8c%d8%b7-%d9%88-%d8%b6%d9%88%d8%a7%d8%a8%d8%b7/"
-                      >
+                      <Link href="https://nakhll.com/blog/%d8%b4%d8%b1%d8%a7%db%8c%d8%b7-%d9%88-%d8%b6%d9%88%d8%a7%d8%a8%d8%b7/">
                         <a className={styles.footer_items}>
                           قوانین و شرایط استفاده
                         </a>
@@ -127,11 +112,13 @@ const Footer = () => {
                     </div>{" "}
                     <div>
                       <a
-                        to="tel://034-32476561"
+                        href="tel://034-32476561"
                         className={styles.footer_items}
                       >
                         تلفن تماس:
-                        <span className="d-inline-block">{_asist.number(`034-32476561  034-91001230`)}</span>
+                        <span className="d-inline-block">
+                          {_asist.number(`034-32476561  034-91001230`)}
+                        </span>
                       </a>
                     </div>
                     {/* <div>
@@ -141,9 +128,7 @@ const Footer = () => {
                     </div> */}
                     <div>
                       <Link href="/profile">
-                        <a className={styles.footer_items}>
-                          پیگیری سفارشات
-                        </a>
+                        <a className={styles.footer_items}>پیگیری سفارشات</a>
                       </Link>
                     </div>
                     {/* <div>
@@ -170,9 +155,7 @@ const Footer = () => {
                     </div> */}
                     <div>
                       <Link href="https://nakhll.com/blog/%d8%b3%d9%88%d8%a7%d9%84%d8%a7%d8%aa-%d9%be%d8%b1-%d8%aa%da%a9%d8%b1%d8%a7%d8%b1/">
-                        <a
-                          className={styles.footer_items}
-                        >
+                        <a className={styles.footer_items}>
                           پاسخ به سوالات پرتکرار
                         </a>
                       </Link>
@@ -184,9 +167,7 @@ const Footer = () => {
                     </div>{" "}
                     <div>
                       <Link href="/">
-                        <a className={styles.footer_items}>
-                          فروش در نخل
-                        </a>
+                        <a className={styles.footer_items}>فروش در نخل</a>
                       </Link>
                     </div>
                     {/* <div>
@@ -204,9 +185,7 @@ const Footer = () => {
                     </div> */}
                     <div>
                       <Link href="/fp">
-                        <a className={styles.footer_items}>
-                          مدیریت حجره
-                        </a>
+                        <a className={styles.footer_items}>مدیریت حجره</a>
                       </Link>
                     </div>{" "}
                   </div>
@@ -269,9 +248,7 @@ const Footer = () => {
                           className="d-flex justify-content-center mt-1"
                         >
                           <Link href="https://kerman.irannsr.org/services/trade_unit/319012-%D8%A7%D8%B9%D8%B6%D8%A7%DB%8C-%D8%AD%D9%82%D9%88%D9%82%DB%8C-%D9%86%D9%88%DB%8C%D8%AF-%D8%AA%DB%8C%D9%85%DA%86%D9%87-%D8%AA%D8%AC%D8%A7%D8%B1%D8%AA-%D9%86%DB%8C%D9%84.html?t=%D8%AC%D8%B3%D8%AA%D8%AC%D9%88%DB%8C-%D9%BE%DB%8C%D8%B4%D8%B1%D9%81%D8%AA%D9%87">
-                            <a
-                              className="w-100"
-                            >
+                            <a className="w-100">
                               <img
                                 alt=""
                                 title=""
@@ -306,9 +283,7 @@ const Footer = () => {
                           className="d-flex justify-content-center"
                         >
                           <Link href="https://logo.samandehi.ir/Verify.aspx?id=163029&p=rfthgvkaxlaoobpduiwkpfvl">
-                            <a
-                              className="w-100"
-                            >
+                            <a className="w-100">
                               <img
                                 alt="انجمن کسب و کار های اینترنتی"
                                 title="انجمن کسب و کار های اینترنتی"
@@ -347,29 +322,17 @@ const Footer = () => {
                 >
                   <div>
                     <Link href="https://nakhll.com/blog/">
-                      <a
-                        className={styles.footer_items}
-                      >
-                        وبلاگ
-                      </a>
+                      <a className={styles.footer_items}>وبلاگ</a>
                     </Link>
                   </div>
                   <div>
                     <Link href="https://nakhll.com/blog/%d9%86%d8%ae%d9%84%d8%8c-%d8%a8%d8%a7%d8%b2%d8%a7%d8%b1%db%8c-%d8%a7%d8%ac%d8%aa%d9%85%d8%a7%d8%b9%db%8c-%d9%88-%d8%a2%d9%86%d9%84%d8%a7%db%8c%d9%86/">
-                      <a
-                        className={styles.footer_items}
-                      >
-                        داستان نخل
-                      </a>
+                      <a className={styles.footer_items}>داستان نخل</a>
                     </Link>
                   </div>
                   <div>
                     <Link href="https://nakhll.com/blog/%d8%aa%d9%85%d8%a7%d8%b3-%d8%a8%d8%a7-%d9%85%d8%a7/">
-                      <a
-                        className={styles.footer_items}
-                      >
-                        تماس با ما
-                      </a>
+                      <a className={styles.footer_items}>تماس با ما</a>
                     </Link>
                   </div>
                   {/* <div>
@@ -392,9 +355,7 @@ const Footer = () => {
                   </div> */}
                   <div>
                     <Link href="https://nakhll.com/blog/%d8%b4%d8%b1%d8%a7%db%8c%d8%b7-%d9%88-%d8%b6%d9%88%d8%a7%d8%a8%d8%b7/">
-                      <a
-                        className={styles.footer_items}
-                      >
+                      <a className={styles.footer_items}>
                         قوانین و شرایط استفاده
                       </a>
                     </Link>
@@ -422,9 +383,7 @@ const Footer = () => {
                   className="is-active"
                 >
                   <div>
-                    <div
-                      className={styles.footer_items}
-                    >
+                    <div className={styles.footer_items}>
                       تلفن تماس:
                       <a href="tel://034-32476561" className="d-inline-block">
                         {_asist.number(`034-32476561`)}
@@ -442,9 +401,7 @@ const Footer = () => {
                   </div> */}
                   <div>
                     <Link href="/profile">
-                      <a className={styles.footer_items}>
-                        پیگیری سفارشات
-                      </a>
+                      <a className={styles.footer_items}>پیگیری سفارشات</a>
                     </Link>
                   </div>
                   {/* <div>
@@ -471,9 +428,7 @@ const Footer = () => {
                   </div> */}
                   <div>
                     <Link href="https://nakhll.com/blog/%d8%b3%d9%88%d8%a7%d9%84%d8%a7%d8%aa-%d9%be%d8%b1-%d8%aa%da%a9%d8%b1%d8%a7%d8%b1/">
-                      <a
-                        className={styles.footer_items}
-                      >
+                      <a className={styles.footer_items}>
                         پاسخ به سوالات پرتکرار
                       </a>
                     </Link>
@@ -501,9 +456,7 @@ const Footer = () => {
                 >
                   <div>
                     <Link href="/">
-                      <a className={styles.footer_items}>
-                        فروش در نخل
-                      </a>
+                      <a className={styles.footer_items}>فروش در نخل</a>
                     </Link>
                   </div>
                   {/* <div>
@@ -521,9 +474,7 @@ const Footer = () => {
                   </div> */}
                   <div>
                     <Link href="/fp">
-                      <a className={styles.footer_items}>
-                        مدیریت حجره
-                      </a>
+                      <a className={styles.footer_items}>مدیریت حجره</a>
                     </Link>
                   </div>
                 </div>
@@ -590,9 +541,7 @@ const Footer = () => {
                 <div className="col-4 col-md-2">
                   <div className="d-flex justify-content-center mt-1">
                     <Link href="https://trustseal.enamad.ir/?id=135577&Code=4LVJlUntZdqZWSmXWkA1">
-                      <a
-                        className="w-100"
-                      >
+                      <a className="w-100">
                         <img
                           referrerPolicy="origin"
                           alt="نماد اعتماد الکترونیکی"
@@ -607,9 +556,7 @@ const Footer = () => {
                 <div className="col-4 col-md-2">
                   <div className="d-flex justify-content-center">
                     <Link href="https://logo.samandehi.ir/Verify.aspx?id=163029&p=rfthgvkaxlaoobpduiwkpfvl">
-                      <a
-                        className="w-100"
-                      >
+                      <a className="w-100">
                         <img
                           alt="انجمن کسب و کار های اینترنتی"
                           src="/icons/footer/namadTwo.png"

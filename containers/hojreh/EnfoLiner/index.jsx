@@ -18,10 +18,10 @@ function EnfoLiner({ title, profile, name }) {
 
         <div className={styles.slide}>
           <div className="">
-            <img className={styles.imgslid} src="/image/back.jpg" alt="" />
+            <img className={styles.imgslid} src="/image/back.jpg" alt="background" />
           </div>
           <div className={`${styles.profile} d-none d-md-flex `}>
-            <img className={styles.img_profile} src={profile} alt="" />
+            <img className={styles.img_profile} src={profile} alt={title} />
             <div className={styles.information}>
               <h1>{title}</h1>
               <h5>{`${name ? name.first_name : ""}  ${

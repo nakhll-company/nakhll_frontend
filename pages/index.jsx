@@ -58,18 +58,25 @@ const index = ({ data }) => {
     switch (type.component_type) {
       case 1:
         return (
-          <HeroSlides dataHeroSlides={data.all_data_for_component[index]} />
+          <HeroSlides
+            key={index}
+            dataHeroSlides={data.all_data_for_component[index]}
+          />
         );
         break;
       case 2:
         return (
-          <LinerOneImg dataLinerOneImg={data.all_data_for_component[index]} />
+          <LinerOneImg
+            key={index}
+            dataLinerOneImg={data.all_data_for_component[index]}
+          />
         );
         break;
       case 3:
         return (
           <>
             <LinerTwoValue
+              key={index}
               dataLinerTwoValue={data.all_data_for_component[index]}
             />
           </>
@@ -78,6 +85,7 @@ const index = ({ data }) => {
       case 4:
         return (
           <LinerThreeImg
+            key={index}
             dataLinerThreeImg={data.all_data_for_component[index]}
           />
         );
@@ -85,6 +93,7 @@ const index = ({ data }) => {
       case 5:
         return (
           <LinerFourImgMobile
+            key={index}
             dataLinerFourImgMobile={data.all_data_for_component[index]}
           />
         );
@@ -92,6 +101,7 @@ const index = ({ data }) => {
       case 6:
         return (
           <LinerProducts
+            key={index}
             title={type.title}
             subTitle={type.subtitle}
             dataLinerProducts={data.all_data_for_component[index]}
@@ -103,6 +113,7 @@ const index = ({ data }) => {
       case 7:
         return (
           <LinerProductsBg
+            key={index}
             subTitle_LinerProductsBg={type.subtitle}
             dataLinerProductsBg={type.data}
             url_LinerProductsBg={type.url}
@@ -128,8 +139,9 @@ const index = ({ data }) => {
         />
         <meta
           name="keywords"
-          content="بازار نخل،نخل،بازار اجتماعی نخل،بازار آنلاین نخل"
+          content=" نخل به وسعت یک سرزمین،بازار نخل،نخل،بازار اجتماعی نخل،بازار آنلاین نخل"
         />
+        <link rel="canonical" href="https://nakhll.com/" />
       </Head>
       {data.SchemaIn.length > 0 &&
         data.SchemaIn.map((turn, index) =>
@@ -143,7 +155,7 @@ const index = ({ data }) => {
 export default index;
 
 // function server side
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const data = await fetchData();
 
   return {
