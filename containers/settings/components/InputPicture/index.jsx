@@ -18,6 +18,7 @@ function InputPictureSetting({ setImageSrc, image, ratio }) {
       {showCropper && (
         <CustomCropperAll
           image={image}
+          setImageSrc={setImageSrc}
           setShowCropper={setShowCropper}
           ratio={ratio}
         />

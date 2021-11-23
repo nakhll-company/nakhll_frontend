@@ -10,8 +10,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { showCropper } from "../../redux/actions/liveEdit/showCropper";
 import { _updatePicture } from "../../redux/actions/liveEdit/_updatePicture";
 function CustomCropperAll({
+  setImageSrc,
   image,
-  setCroppedImage,
+
   setShowCropper,
   ratio = 1,
 }) {
@@ -31,7 +32,8 @@ function CustomCropperAll({
         croppedAreaPixels,
         rotation
       );
-      setCroppedImage(croppedImage);
+
+      setImageSrc(croppedImage);
       // dispatch(_updatePicture(croppedImage));
     } catch (e) {
       console.error(e);

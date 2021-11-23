@@ -21,11 +21,19 @@ function TopPictures({ apiSetting }) {
 
         <div className={styles.Hojreh_headD_pic}>
           {imgProfile && (
-            <Image src={imgProfile} width={120} height={120}></Image>
+            <Image
+              src={imgProfile ? imgProfile : "/icons/iconpro.png"}
+              width={120}
+              height={120}
+            ></Image>
           )}
         </div>
         <div className={styles.btnProfile}>
-          <InputPictureSetting setImageSrc={setImgProfile} image={imgProfile} />
+          <InputPictureSetting
+            setImageSrc={setImgProfile}
+            image={imgProfile}
+            ratio={1}
+          />
         </div>
         <div className={styles.btnBanner}>
           <InputPictureSetting
