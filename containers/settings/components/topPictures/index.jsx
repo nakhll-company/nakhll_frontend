@@ -5,7 +5,6 @@ import InputPictureSetting from "../InputPicture";
 import { callApiUpDataPicture } from "../../../../api/settings";
 
 function TopPictures({ apiSetting, activeHojreh }) {
-  console.log(`apiSetting.image_thumbnail_url`, apiSetting.image_thumbnail_url);
   const [imgProfile, setImgProfile] = useState(
     apiSetting.image_thumbnail_url ? apiSetting.image_thumbnail_url : null
   );
@@ -14,7 +13,7 @@ function TopPictures({ apiSetting, activeHojreh }) {
     let dataForSend = {
       image: imgProfile,
     };
-    console.log(`dataForSend`, dataForSend);
+
     {
       imgProfile.startsWith("data") &&
         callApiUpDataPicture(dataForSend, activeHojreh);
@@ -47,11 +46,11 @@ function TopPictures({ apiSetting, activeHojreh }) {
           />
         </div>
         <div className={styles.btnBanner}>
-          <InputPictureSetting
+          {/* <InputPictureSetting
             setImageSrc={setImgBanner}
             image={imgBanner}
             ratio={3}
-          />
+          /> */}
         </div>
       </div>
     </>
