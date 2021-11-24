@@ -1,5 +1,6 @@
 import React from "react";
-import Link from 'next/link';
+import Link from "next/link";
+import Image from "next/image";
 import styles from "./LinerFourImgMobile.module.scss";
 
 function LinerFourImgMobile({ dataLinerFourImgMobile }) {
@@ -14,7 +15,10 @@ function LinerFourImgMobile({ dataLinerFourImgMobile }) {
                   title={dataLinerFourImgMobile[0].description}
                   className={styles.one}
                 >
-                  <img
+                  <Image
+                    layout="responsive"
+                    width={400}
+                    height={300}
                     src={dataLinerFourImgMobile[0].image}
                     loading="lazy"
                     alt={dataLinerFourImgMobile[0].title}
@@ -26,7 +30,10 @@ function LinerFourImgMobile({ dataLinerFourImgMobile }) {
                   title={dataLinerFourImgMobile[1].description}
                   className={styles.two}
                 >
-                  <img
+                  <Image
+                    layout="responsive"
+                    width={400}
+                    height={300}
                     src={dataLinerFourImgMobile[1].image}
                     loading="lazy"
                     alt={dataLinerFourImgMobile[1].title}
@@ -40,7 +47,10 @@ function LinerFourImgMobile({ dataLinerFourImgMobile }) {
                   title={dataLinerFourImgMobile[2].description}
                   className={styles.one}
                 >
-                  <img
+                  <Image
+                    layout="responsive"
+                    width={400}
+                    height={300}
                     src={dataLinerFourImgMobile[2].image}
                     loading="lazy"
                     alt={dataLinerFourImgMobile[2].title}
@@ -52,7 +62,10 @@ function LinerFourImgMobile({ dataLinerFourImgMobile }) {
                   title={dataLinerFourImgMobile[3].description}
                   className={styles.two}
                 >
-                  <img
+                  <Image
+                    layout="responsive"
+                    width={400}
+                    height={300}
                     src={dataLinerFourImgMobile[3].image}
                     loading="lazy"
                     alt={dataLinerFourImgMobile[3].title}

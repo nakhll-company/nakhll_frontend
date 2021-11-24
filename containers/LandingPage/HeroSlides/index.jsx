@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 // Import Swiper React components
@@ -33,7 +34,13 @@ function HeroSlides({ dataHeroSlides }) {
                     }
                   >
                     <a>
-                      <img src={slider.image} alt="بنر" />
+                      <Image
+                        layout="responsive"
+                        width={200}
+                        height={100}
+                        src={slider.image}
+                        alt="بنر"
+                      />
                     </a>
                   </Link>
                 </SwiperSlide>
@@ -43,7 +50,10 @@ function HeroSlides({ dataHeroSlides }) {
         <div className={`col-md-4  ${styles.lefter}  d-none d-md-flex`}>
           <Link href={dataHeroSlides[dataHeroSlides.length - 2].url}>
             <a>
-              <img
+              <Image
+                layout="responsive"
+                width={200}
+                height={100}
                 src={dataHeroSlides[dataHeroSlides.length - 2].image}
                 alt={dataHeroSlides[dataHeroSlides.length - 2].title}
               />
@@ -51,7 +61,10 @@ function HeroSlides({ dataHeroSlides }) {
           </Link>
           <Link href={dataHeroSlides[dataHeroSlides.length - 1].url}>
             <a>
-              <img
+              <Image
+                layout="responsive"
+                width={200}
+                height={100}
                 src={dataHeroSlides[dataHeroSlides.length - 1].image}
                 alt={dataHeroSlides[dataHeroSlides.length - 1].title}
               />
