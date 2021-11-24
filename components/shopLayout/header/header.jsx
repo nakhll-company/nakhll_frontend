@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import Assistent from "zaravand-assistent-number";
 import React, { useState, useEffect } from "react";
@@ -52,7 +53,13 @@ function Header() {
             }
           >
             <a>
-              <img src="/image/topBanner/topImg.jpg" alt="top banner" />
+              <Image
+                layout="responsive"
+                height={100}
+                width={3000}
+                src="/image/topBanner/topImg.jpg"
+                alt="در نخل حجره دار شوید."
+              />
             </a>
           </Link>
         </div>
@@ -66,9 +73,13 @@ function Header() {
                       display: "flex",
                       alignItems: " center",
                       justifyContent: "space-between",
+                      display: "block",
                     }}
                   >
-                    <img
+                    <Image
+                      layout="responsive"
+                      height={100}
+                      width={300}
                       src="/icons/logo_Nakhl.svg"
                       alt="فروشگاه اینترنتی نخل"
                       style={{ cursor: "pointer", maxHeight: "42px" }}
@@ -192,7 +203,13 @@ function Header() {
             }
           >
             <a>
-              <img src="/image/topBanner/topImg_mobile.jpg" alt="top banner" />
+              <Image
+                layout="responsive"
+                height={100}
+                width={1200}
+                src="/image/topBanner/topImg_mobile.jpg"
+                alt="در نخل حجره دار شوید."
+              />
             </a>
           </Link>
         </div>
@@ -208,11 +225,12 @@ function Header() {
                 <i className="fas fa-bars"></i>
                 <Link href="/">
                   <a>
-                    <img
+                    <Image
+                      layout="responsive"
+                      height={26}
+                      width={26}
                       src="/icons/Nakhll.png"
                       alt="فروشگاه اینترنتی نخل"
-                      width="26"
-                      height="26"
                       style={{ cursor: "pointer", marginRight: "10px" }}
                     />
                   </a>
@@ -221,7 +239,10 @@ function Header() {
               <div className={styles.logo_name}>
                 <Link href="/">
                   <a>
-                    <img
+                    <Image
+                      layout="responsive"
+                      height={100}
+                      width={350}
                       src="/icons/Name_Nakhl.png"
                       alt="فروشگاه اینترنتی نخل"
                       style={{ cursor: "pointer", width: "130%" }}

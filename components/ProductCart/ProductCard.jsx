@@ -1,5 +1,6 @@
 // node libraries
 import Link from "next/link";
+import Image from "next/image";
 import Assistent from "zaravand-assistent-number";
 import { useDispatch } from "react-redux";
 // methods
@@ -36,18 +37,14 @@ const ProductCard = ({
       >
         <i className="far fa-bookmark" />
       </div>
-      {/* <div
-        className="_product_card_badge"
-        type="button"
-        style={{ bottom: "3.3rem" }}
-      >
-        <i className="fas fa-share-alt"></i>
-      </div> */}
     </>
   );
 
   let cardImg = (
-    <img
+    <Image
+      layout="responsive"
+      height={100}
+      width={100}
       src={product.imageUrl}
       className={`card-img-top _product_card_rounded animationCart ${
         product.unavailable && "_unavailable_product"
@@ -87,25 +84,13 @@ const ProductCard = ({
           ></i>
         </span>
       )}
-      <div
-        // style={{ minHeight: "170px" }}
-        className="card _product_card _product_card_rounded p-2"
-      >
+      <div className="card _product_card _product_card_rounded p-2">
         <div className={styles.paterImage}>
           {cardBadge}
           <Link href={product.url}>
             <a className={styles.links}>{cardImg}</a>
           </Link>
         </div>
-        {/* {linkType === "anchor" ? (
-          <a href={product.url}>
-            {cardImg}
-          </a>
-        ) : (
-          <Link to={product.url}>
-            {cardImg}
-          </Link>
-        )} */}
 
         <div
           className={`card-body mt-2 p-1 ${
@@ -115,28 +100,12 @@ const ProductCard = ({
           <div className=" mb-3">
             <Link href={product.url}>
               <a
-                // target={_blank && "_blank"}
                 style={{ fontWeight: "bold" }}
                 className="_product_card_title text-truncate "
               >
                 {product.title}
               </a>
             </Link>
-            {/* {linkType === "anchor" ? (
-              <a
-                href={product.url}
-                className="_product_card_title text-truncate"
-              >
-                {product.title}
-              </a>
-            ) : (
-              <Link
-                to={product.url}
-                className="_product_card_title text-truncate"
-              >
-                {product.title}
-              </Link>
-            )} */}
           </div>
           <div className="_product_card_city text-truncate mb-3">
             <span className="_product_card_subtitle">{product.city}</span>
@@ -149,23 +118,6 @@ const ProductCard = ({
                 {product.chamberTitle}
               </a>
             </Link>
-            {/* {linkType === "anchor" ? (
-              <a
-                title={product.chamberTitle}
-                href={product.chamberUrl}
-                className="_product_card_subtitle"
-              >
-                {product.chamberTitle}
-              </a>
-            ) : (
-              <Link
-                title={product.chamberTitle}
-                to={product.chamberUrl}
-                className="_product_card_subtitle"
-              >
-                {product.chamberTitle}
-              </Link>
-            )} */}
           </div>
           {product.discountNumber !== 0 && (
             <div className={`_product_card_discount  ${styles.discount_badge}`}>
@@ -176,30 +128,6 @@ const ProductCard = ({
             <div className={styles.Ads_badge}>آگهی</div>
           )}
 
-          {/* <div className="mb-2 _product_card_rate">
-            <div>
-              {product.rate && (
-                <>
-                  <i className="fa fa-star _product_card_star_icon"></i>
-                  <span className="font-weight-bold ml-1">
-                    {_asist.PSeparator(product.rate)}
-                  </span>
-                  {product.commentCount && (
-                    <span className="text-secondary">
-                      ({_asist.number(product.commentCount)} نظر)
-                    </span>
-                  )}
-                </>
-              )}
-            </div>
-            {product.discountNumber !== 0 && (
-              <div
-                className={`_product_card_discount  ${styles.discount_badge}`}
-              >
-                {_asist.number(product.discount)}%
-              </div>
-            )}
-          </div> */}
           <hr style={{ marginBottom: "5px" }} />
           <div className="_product_card_price mb-2">
             <div>

@@ -1,5 +1,6 @@
 // node libraries
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import Assistent from "zaravand-assistent-number";
 // style
@@ -48,24 +49,6 @@ const Footer = () => {
                         <a className={styles.footer_items}>تماس با ما</a>
                       </Link>
                     </div>
-                    {/* <div>
-                      <a
-                        to=""
-                        href=""
-                        className={styles.footer_items}
-                      >
-                        فرصت‌های شغلی
-                      </a>
-                    </div> */}
-                    {/* <div>
-                      <a
-                        to="/guides/how-it-works"
-                        href="/guides/how-it-works"
-                        className={styles.footer_items}
-                      >
-                        نخل چطور کار می‌کند؟
-                      </a>
-                    </div> */}
                     <div>
                       <Link href="https://nakhll.com/blog/%d8%b4%d8%b1%d8%a7%db%8c%d8%b7-%d9%88-%d8%b6%d9%88%d8%a7%d8%a8%d8%b7/">
                         <a className={styles.footer_items}>
@@ -131,28 +114,6 @@ const Footer = () => {
                         <a className={styles.footer_items}>پیگیری سفارشات</a>
                       </Link>
                     </div>
-                    {/* <div>
-                      <a
-                        href="/guides/return-policy"
-                        className={styles.footer_items}
-                      >
-                        بازگشت کالا
-                      </a>
-                    </div> */}
-                    {/* <div>
-                      <a to="" href="" className={styles.footer_items}>
-                        گزارش تخلف
-                      </a>
-                    </div> */}
-                    {/* <div>
-                      <a
-                        to="/guides/customer-satisfaction"
-                        href="/guides/customer-satisfaction"
-                        className={styles.footer_items}
-                      >
-                        تضمین رضایت مشتری
-                      </a>
-                    </div> */}
                     <div>
                       <Link href="https://nakhll.com/blog/%d8%b3%d9%88%d8%a7%d9%84%d8%a7%d8%aa-%d9%be%d8%b1-%d8%aa%da%a9%d8%b1%d8%a7%d8%b1/">
                         <a className={styles.footer_items}>
@@ -170,19 +131,6 @@ const Footer = () => {
                         <a className={styles.footer_items}>فروش در نخل</a>
                       </Link>
                     </div>
-                    {/* <div>
-                      <a
-                        href="/account/invite"
-                        className="footer-items font-weight-bold"
-                      >
-                        100 هزار تومان هدیه
-                      </a>
-                    </div> */}
-                    {/* <div>
-                      <a href="/account/credit" className={styles.footer_items}>
-                        کیف پول من
-                      </a>
-                    </div> */}
                     <div>
                       <Link href="/fp">
                         <a className={styles.footer_items}>مدیریت حجره</a>
@@ -204,11 +152,7 @@ const Footer = () => {
                       </a>
                     </div>{" "} */}
                     {/* <div className={styles.footer_form_wrapper}>
-                      <form
-                        action=""
-                        method="POST"
-                        target="_blank"
-                      >
+                      <form action="" method="POST" target="_blank">
                         <input
                           type="email"
                           name="fields[email]"
@@ -249,7 +193,10 @@ const Footer = () => {
                         >
                           <Link href="https://kerman.irannsr.org/services/trade_unit/319012-%D8%A7%D8%B9%D8%B6%D8%A7%DB%8C-%D8%AD%D9%82%D9%88%D9%82%DB%8C-%D9%86%D9%88%DB%8C%D8%AF-%D8%AA%DB%8C%D9%85%DA%86%D9%87-%D8%AA%D8%AC%D8%A7%D8%B1%D8%AA-%D9%86%DB%8C%D9%84.html?t=%D8%AC%D8%B3%D8%AA%D8%AC%D9%88%DB%8C-%D9%BE%DB%8C%D8%B4%D8%B1%D9%81%D8%AA%D9%87">
                             <a className="w-100">
-                              <img
+                              <Image
+                                layout="responsive"
+                                height={100}
+                                width={100}
                                 alt=""
                                 title=""
                                 src="/icons/footer/fn.png"
@@ -265,8 +212,11 @@ const Footer = () => {
                           className="d-flex justify-content-center"
                         >
                           <Link href="https://trustseal.enamad.ir/?id=135577&amp;Code=4LVJlUntZdqZWSmXWkA1">
-                            <a className="w-100" >
-                              <img
+                            <a className="w-100">
+                              <Image
+                                layout="responsive"
+                                height={100}
+                                width={100}
                                 referrerPolicy="origin"
                                 alt="نماد اعتماد الکترونیکی"
                                 title="نماد اعتماد الکترونیکی"
@@ -284,7 +234,10 @@ const Footer = () => {
                         >
                           <Link href="https://logo.samandehi.ir/Verify.aspx?id=163029&p=rfthgvkaxlaoobpduiwkpfvl">
                             <a className="w-100">
-                              <img
+                              <Image
+                                layout="responsive"
+                                height={100}
+                                width={100}
                                 alt="انجمن کسب و کار های اینترنتی"
                                 title="انجمن کسب و کار های اینترنتی"
                                 src="/icons/footer/namadTwo.png"
@@ -528,7 +481,10 @@ const Footer = () => {
                         className="w-100"
                         style={{ overflow: "hidden", display: "inline-block" }}
                       >
-                        <img
+                        <Image
+                          layout="responsive"
+                          height={100}
+                          width={100}
                           style={{ objectFit: "fill", width: "100px " }}
                           alt=""
                           src="/icons/footer/fn.png"
@@ -542,7 +498,10 @@ const Footer = () => {
                   <div className="d-flex justify-content-center mt-1">
                     <Link href="https://trustseal.enamad.ir/?id=135577&Code=4LVJlUntZdqZWSmXWkA1">
                       <a className="w-100">
-                        <img
+                        <Image
+                          layout="responsive"
+                          height={100}
+                          width={100}
                           referrerPolicy="origin"
                           alt="نماد اعتماد الکترونیکی"
                           src="/icons/footer/namad.png"
@@ -557,7 +516,10 @@ const Footer = () => {
                   <div className="d-flex justify-content-center">
                     <Link href="https://logo.samandehi.ir/Verify.aspx?id=163029&p=rfthgvkaxlaoobpduiwkpfvl">
                       <a className="w-100">
-                        <img
+                        <Image
+                          layout="responsive"
+                          height={100}
+                          width={100}
                           alt="انجمن کسب و کار های اینترنتی"
                           src="/icons/footer/namadTwo.png"
                           className="footer-namad"

@@ -127,6 +127,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                 <Image
                   src="/icons/Nakhll.png"
                   alt="Picture of the author"
+                  layout="responsive"
                   width={60}
                   height={60}
                   onClick={() => router.push("/")}
