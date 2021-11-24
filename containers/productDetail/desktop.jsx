@@ -37,7 +37,6 @@ const ProductDetailDesktop = ({ data }) => {
   const detail = data.detail;
   const comments = data.comments;
   const relatedProduct = data.relatedProduct;
-
   const [posts, setPosts] = useState([]);
   const [pageApi, setPageApi] = useState(1);
   const [hasMore, setHasMore] = useState(true);
@@ -46,7 +45,7 @@ const ProductDetailDesktop = ({ data }) => {
 
   let thumblineImage = [
     // { image: detail.shop.image_thumbnail_url, id: 0 },
-    ...detail.banners,
+    ...detail.banners, , { image: detail.image }
   ];
   async function fetchProductShop() {
     let response = await ApiRegister().apiRequest(

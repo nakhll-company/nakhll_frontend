@@ -95,8 +95,7 @@ function LinerProducts({
             <div className={styles.Button}>
               <button>
                 <Link
-                  href={`${
-                    url.includes("search=") || url.includes("q=")
+                  href={`${url.includes("search=") || url.includes("q=")
                       ? `${url}`
                       : `/search?ap=${url}`
                   }`}

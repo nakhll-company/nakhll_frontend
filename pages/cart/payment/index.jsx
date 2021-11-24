@@ -283,7 +283,7 @@ export default function Cart() {
                       </div>
                       <div className="d-flex align-items-center mt-3">
                         <div className={`${styles.picItemInvoice}`}>
-                          <Link href={`/product/${itemProduct.slug}`}>
+                          <Link href={`/shop/${itemProduct.shop_slug}/product/${itemProduct.slug}`}>
                             <a>
                               <img
                                 src={itemProduct.image}
@@ -293,7 +293,7 @@ export default function Cart() {
                           </Link>
                         </div>
                         <div className="mr-3" style={{ minWidth: "1%", marginRight: "1rem" }}>
-                          <Link href={`/product/${itemProduct.slug}`}>
+                          <Link href={`/shop/${itemProduct.shop_slug}//product/${itemProduct.slug}`}>
                             <a className="link-body">
                               {itemProduct.name}
                             </a>

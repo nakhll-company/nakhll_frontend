@@ -48,7 +48,7 @@ const ProductDetailMobile = ({ data }) => {
   const [productShop, setProductShop] = useState([]);
   let thumblineImage = [
     // { image: detail.shop.image_thumbnail_url, id: 0 },
-    ...detail.banners,
+    ...detail.banners, { image: detail.image }
   ];
 
   async function fetchProductShop() {

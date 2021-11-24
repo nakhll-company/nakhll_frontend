@@ -83,7 +83,6 @@ export default ProductDetail;
 
 // function server side
 export async function getServerSideProps(context) {
-  console.log(`context.query`, context.query);
   const data = await fetchData(context.query.productSlug);
 
   return {

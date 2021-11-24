@@ -74,7 +74,7 @@ function SelectUrl({ idLanding }) {
                     className={styles.btnProductPage}
                     onClick={() => {
                       window.open(
-                        `/product/?q=&shop=${idLanding[0]}`,
+                        `/search/?q=&shop=${idLanding[0]}`,
                         "_blank"
                       );
                     }}
@@ -87,7 +87,7 @@ function SelectUrl({ idLanding }) {
                     // https://nakhll.com/product/?q=&shop=mamaneila
                     onClick={() => {
                       window.open(
-                        `/product/?q=&shop=${idLanding[0]}`,
+                        `/search/?q=&shop=${idLanding[0]}`,
                         "_blank"
                       );
                     }}
