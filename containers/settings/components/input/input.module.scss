@@ -1,0 +1,69 @@
+/* Start     Input */
+
+.input_setting {
+    margin-top: 20px;
+}
+.inputWid {
+    display: grid;
+    height: 45px;
+}
+.inputWid>input {
+    background: #ffffff;
+    border: 1px solid #e0e6e9;
+    box-sizing: border-box;
+    border-radius: 5px;
+    direction: ltr;
+    font-size: 15px;
+    color: #364254;
+    padding: 11px;
+}
+.inputWidRtl {
+    display: grid;
+    height: 45px;
+}
+.inputWidRtl>input {
+    background: #ffffff;
+    border: 1px solid #e0e6e9;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 15px;
+    color: #364254;
+    padding: 11px;
+}
+.inputWidRtlH {
+    display: grid;
+    height: 80px;
+}
+.inputWidRtlH>textarea {
+    background: #ffffff;
+    border: 1px solid #e0e6e9;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 15px;
+    color: #364254;
+    padding: 11px;
+}
+
+/*  End    Input */
+
+.inputWid_withWord {
+    display: flex;
+    height: 45px;
+    background: #ffffff;
+    border: 1px solid #e0e6e9;
+    box-sizing: border-box;
+    border-radius: 5px;
+    direction: ltr;
+    font-size: 15px;
+    color: #364254;
+    padding: 11px;
+    align-items: center;
+}
+.inputWid_withWord>input {
+    border: 0;
+    width: 100%;
+    font-size: 15px;
+}
+.inputWid_withWord>input:focus {
+    outline: 0;
+}

@@ -31,9 +31,10 @@ function MegaMenuDesktop({ category }) {
                         //   key={index}
                         // >
                         <div
+                          key={index}
                           onClick={() =>
                             location.replace(
-                              `/product?q=&category=${subElement.id}`
+                              `/search?q=&category=${subElement.id}`
                             )
                           }
                         >

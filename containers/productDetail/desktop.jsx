@@ -166,7 +166,7 @@ const ProductDetailDesktop = ({ data }) => {
                               src={value.image}
                               width="400"
                               height="400"
-                              alt="thumbline"
+                              alt={detail.title}
                               onClick={() => {
                                 setShowModal((showModal) => !showModal);
                               }}
@@ -191,7 +191,7 @@ const ProductDetailDesktop = ({ data }) => {
                               src={value.image}
                               width="100"
                               height="100"
-                              alt="thumbline"
+                              alt={detail.title}
                             />
                           </SwiperSlide>
                         );
@@ -225,7 +225,7 @@ const ProductDetailDesktop = ({ data }) => {
                           <Image
                             src={detail.shop.image_thumbnail_url}
                             className={styles.shop_image}
-                            alt="store image"
+                            alt={detail.shop.title}
                             width="100%"
                             height="100%"
                           />

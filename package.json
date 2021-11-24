@@ -6,7 +6,8 @@
         "dev": "cp config.dev.js next.config.js && next dev -p 3007",
         "build:demo": "cp config.demo.js next.config.js && next build",
         "build": "cp config.pro.js next.config.js && next build",
-        "start": "next start -p 8555"
+        "start": "next start -p 8555",
+        "postbuild": "next-sitemap"
     },
     "dependencies": {
         "@hookform/error-message": "^2.0.0",
@@ -19,6 +20,7 @@
         "gsap": "^3.8.0",
         "lodash": "^4.17.21",
         "next": "^11.1.2",
+        "next-sitemap": "^1.6.203",
         "react": "^17.0.2",
         "react-beautiful-dnd": "^13.1.0",
         "react-checkbox-tree": "^1.7.2",

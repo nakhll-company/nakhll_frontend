@@ -9,15 +9,18 @@ import styles from "./customCropper.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { showCropper } from "../../redux/actions/liveEdit/showCropper";
 import { _updatePicture } from "../../redux/actions/liveEdit/_updatePicture";
-function CustomCropper({ imageSrc, setCroppedImage }) {
-  const Component = useSelector((state) => state.selectIdFormLanding);
+function CustomCropperAll({
+  setImageSrc,
+  image,
 
+  setShowCropper,
+  ratio = 1,
+}) {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [rotation, setRotation] = useState(0);
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
-  // const [croppedImage, setCroppedImage] = useState(null);
-  const dispatch = useDispatch();
+
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
@@ -25,17 +28,17 @@ function CustomCropper({ imageSrc, setCroppedImage }) {
   const showCroppedImage = useCallback(async () => {
     try {
       const croppedImage = await getCroppedImg(
-        imageSrc,
+        image,
         croppedAreaPixels,
         rotation
       );
-      setCroppedImage(croppedImage);
-      dispatch(_updatePicture(croppedImage));
+
+      setImageSrc(croppedImage);
+      // dispatch(_updatePicture(croppedImage));
     } catch (e) {
       console.error(e);
     }
-  }, [imageSrc, croppedAreaPixels, rotation]);
-  let b = Component.ratio;
+  }, [image, croppedAreaPixels, rotation]);
 
   return (
     <>
@@ -43,11 +46,11 @@ function CustomCropper({ imageSrc, setCroppedImage }) {
         <div>
           <div className={styles.cropper_wrapper}>
             <Cropper
-              image={imageSrc}
+              image={image}
               crop={crop}
               rotation={rotation}
               zoom={zoom}
-              aspect={b / 1}
+              aspect={ratio / 1}
               onCropChange={setCrop}
               onRotationChange={setRotation}
               onCropComplete={onCropComplete}
@@ -58,8 +61,7 @@ function CustomCropper({ imageSrc, setCroppedImage }) {
             <button
               onClick={() => {
                 showCroppedImage();
-
-                dispatch(showCropper());
+                setShowCropper(false);
               }}
             >
               تایید
@@ -71,4 +73,4 @@ function CustomCropper({ imageSrc, setCroppedImage }) {
   );
 }
 
-export default CustomCropper;
+export default CustomCropperAll;

@@ -1,2 +1,15 @@
-User-agent:*
-Disallow : /
+# *
+User-agent: *
+Disallow: /game
+Disallow: /fp
+
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://nakhll.com/
+
+# Sitemaps
+Sitemap: https://nakhll.com/sitemap.xml
+Sitemap: https://nakhll.com/server-sitemap.xml
