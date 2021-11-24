@@ -146,11 +146,11 @@ function AddFavorites() {
                         color: openList ? "#fff" : "blue",
                       }}
                     >
-                      <span style={{ fontSize: "10px", marginLeft: "2px" }}>
+                      <span style={{ fontSize: "12px", marginLeft: "2px" }}>
                         (
                       </span>
                       {_asist.number(listFav.length)}
-                      <span style={{ fontSize: "10px", marginRight: "2px" }}>
+                      <span style={{ fontSize: "12px", marginRight: "2px" }}>
                         )
                       </span>
                     </span>

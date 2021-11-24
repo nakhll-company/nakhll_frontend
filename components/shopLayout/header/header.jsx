@@ -277,7 +277,7 @@ function Header() {
                       : errorMessage("لطفا ابتدا وارد شوید");
                   }}
                 >
-                  <a className={styles.bascket_btn}>
+                  <div className={styles.bascket_btn}>
                     <i>
                       <img
                         style={{ width: "24px", marginLeft: "12px" }}
@@ -291,7 +291,7 @@ function Header() {
                           {_asist.number(userLog.cart_items_count)}
                         </span>
                       )}
-                  </a>
+                  </div>
                 </div>
               </div>
             </div>
