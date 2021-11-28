@@ -28,7 +28,6 @@ $color_tel_word: rgb(162, 172, 182);
         }
     }
 }
-
 .header {
     position: relative;
     z-index: 101;
@@ -76,6 +75,7 @@ $color_tel_word: rgb(162, 172, 182);
                     box-sizing: border-box;
                     margin-right: 24px;
                     position: relative;
+                    z-index: 3;
                     @media (max-width: 1199px) {
                         height: 40px;
                         width: 320px;
@@ -356,7 +356,6 @@ $color_tel_word: rgb(162, 172, 182);
         }
     }
 }
-
 .mobile_header {
     @media (min-width: "767px") {
         display: none;
@@ -436,6 +435,7 @@ $color_tel_word: rgb(162, 172, 182);
             border-radius: 5px;
             box-sizing: border-box;
             position: relative;
+            z-index: 3;
             input {
                 border: 1px solid transparent;
                 height: 40px;
@@ -595,7 +595,6 @@ $color_tel_word: rgb(162, 172, 182);
         }
     }
 }
-
 .logo_name {
     width: 60px;
 }
