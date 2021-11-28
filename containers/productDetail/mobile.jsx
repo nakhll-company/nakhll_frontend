@@ -46,7 +46,7 @@ const ProductDetailMobile = ({ data }) => {
   const [pageApi, setPageApi] = useState(1);
   const [posts, setPosts] = useState([...relatedProduct.results]);
   const [productShop, setProductShop] = useState([]);
-  console.log(">>>", posts);
+
   let thumblineImage = [
     // { image: detail.shop.image_thumbnail_url, id: 0 },
     ...detail.banners,
@@ -425,25 +425,27 @@ const ProductDetailMobile = ({ data }) => {
               {productShop.length > 0 &&
                 <CustomSlider
                   slides1200={4}
-                  data={productShop.map((value, index) => (
-                    <ProductCard
-                      col="12"
-                      product={{
-                        id: value.id,
-                        imageUrl: value.image_thumbnail_url,
-                        url: `/shop/${value.shop.slug}/product/${value.slug}`,
-                        title: value.title,
-                        chamberTitle: value.shop.title,
-                        chamberUrl: `/shop/${value.shop.slug}`,
-                        discount: value.discount,
-                        price: value.price / 10,
-                        discountNumber: value.old_price / 10,
-                        city: value.shop.city,
-                        is_advertisement: value.is_advertisement,
-                      }}
-                      key={index}
-                    />
-                  ))}
+                  data={productShop.map((value, index) => {
+                    return (
+                      value.FK_Shop !== undefined && <ProductCard
+                        col="12"
+                        product={{
+                          id: value.ID,
+                          imageUrl: value.Image_medium_url,
+                          url: `/shop/${value.FK_Shop.slug}/product/${value.Slug}`,
+                          title: value.Title,
+                          chamberTitle: value.FK_Shop.title,
+                          chamberUrl: `/shop/${value.FK_Shop.slug}`,
+                          discount: value.discount,
+                          price: value.Price / 10,
+                          discountNumber: value.OldPrice / 10,
+                          city: value.FK_Shop.state,
+                          is_advertisement: value.is_advertisement,
+                        }}
+                        key={index}
+                      />
+                    )
+                  })}
                 />
               }
             </div>
@@ -552,30 +554,31 @@ const ProductDetailMobile = ({ data }) => {
                 style={{ overflow: "hidden" }}
               >
                 <div className="row d-flex">
-                  {posts.length > 0 && posts.map((oneProduct, index) => (
-                    <ProductCard
-                      col="6"
-                      product={{
-                        id: oneProduct.ID,
-                        imageUrl: oneProduct.Image_medium_url ? oneProduct.Image_medium_url : '',
-                        url: oneProduct.FK_Shop && `/shop/${oneProduct.FK_Shop.slug}/product/${oneProduct.Slug}/`,
-                        title: oneProduct.Title,
-                        chamberTitle: oneProduct.FK_Shop
-                          ? oneProduct.FK_Shop.title
-                          : "",
-                        chamberUrl: oneProduct.FK_Shop
-                          ? `/shop/${oneProduct.FK_Shop.slug} `
-                          : "",
-
-                        discount: oneProduct.discount,
-                        price: oneProduct.Price / 10,
-                        discountNumber: oneProduct.OldPrice / 10,
-                        city: oneProduct.FK_Shop && oneProduct.FK_Shop.state,
-                        is_advertisement: oneProduct.is_advertisement,
-                      }}
-                      key={index}
-                    />
-                  ))}
+                  {posts.length > 0 && posts.map((oneProduct, index) => {
+                    return (
+                      oneProduct.FK_Shop !== undefined && <ProductCard
+                        col="6"
+                        product={{
+                          id: oneProduct.ID,
+                          imageUrl: oneProduct.Image_medium_url ? oneProduct.Image_medium_url : '',
+                          url: oneProduct.FK_Shop && `/shop/${oneProduct.FK_Shop.slug}/product/${oneProduct.Slug}/`,
+                          title: oneProduct.Title,
+                          chamberTitle: oneProduct.FK_Shop
+                            ? oneProduct.FK_Shop.title
+                            : "",
+                          chamberUrl: oneProduct.FK_Shop
+                            ? `/shop/${oneProduct.FK_Shop.slug} `
+                            : "",
+                          discount: oneProduct.discount,
+                          price: oneProduct.Price / 10,
+                          discountNumber: oneProduct.OldPrice / 10,
+                          city: oneProduct.FK_Shop && oneProduct.FK_Shop.state,
+                          is_advertisement: oneProduct.is_advertisement,
+                        }}
+                        key={index}
+                      />
+                    )
+                  })}
                 </div>
               </InfiniteScroll>
             </section>
