@@ -109,10 +109,10 @@ const ProductDetailDesktop = ({ data }) => {
                   { title: "خانه", url: "/" },
                   {
                     title:
-                      detail.new_category && detail.new_category.parents
+                      detail.new_category && detail.new_category.parents.length > 0
                         ? detail.new_category.parents[0].name
                         : "",
-                    url: `/product?q=&category=${detail?.new_category?.parents[0].id}`,
+                    url: detail.new_category && detail.new_category.parents.length > 0 && `/product?q=&category=${detail?.new_category?.parents[0].id}`,
                   },
                   {
                     title:
