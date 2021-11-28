@@ -13,12 +13,16 @@ import { errorMessage } from "../../../containers/utils/message";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // style
 import styles from "./header.module.scss";
+import BoxSearch from "./boxSearch";
+import { ApiReference } from "../../../Api";
 
 const _asist = new Assistent();
 
 function Header() {
   const router = useRouter();
   const [category, setCategory] = useState([]);
+  const [shopsName, setShopsName] = useState([]);
+  const [searchShops, setSearchShops] = useState([]);
   const _call_Category = async () => {
     try {
       let response = await ApiRegister().apiRequest(
@@ -32,6 +36,34 @@ function Header() {
         setCategory(response.data);
       }
     } catch (e) {}
+  };
+
+  // Get all shops
+  const _get_all_shops = async () => {
+    if (shopsName.length == 0) {
+      let shops = await ApiRegister().apiRequest(
+        null,
+        "GET",
+        ApiReference.allShops,
+        true,
+        ""
+      );
+
+      if (shops.status === 200) {
+        setShopsName(shops.data);
+      }
+    }
+  };
+
+  // Function for search
+  const _handel_search = (word) => {
+    setInputSearch(word);
+    let copy_Array = [...shopsName];
+    let filterArray = [];
+    if (word != "") {
+      filterArray = copy_Array.filter((el) => el.title.includes(word));
+    }
+    setSearchShops(filterArray);
   };
 
   const dispatch = useDispatch();
@@ -99,9 +131,11 @@ function Header() {
                       type="text"
                       className="form-control"
                       placeholder="جستجو در نخل ..."
-                      onChange={(e) => setInputSearch(e.target.value)}
+                      onClick={() => _get_all_shops()}
+                      onChange={(e) => _handel_search(e.target.value)}
                       value={inputSearch}
                     />
+                    {searchShops.length > 0 && <BoxSearch list={searchShops} />}
 
                     <Link href={`/search?q=${inputSearch}`}>
                       <a>
@@ -309,10 +343,13 @@ function Header() {
                 <input
                   type="text"
                   className="form-control"
-                  onChange={(e) => setInputSearch(e.target.value)}
+                  onClick={() => _get_all_shops()}
+                  onChange={(e) => _handel_search(e.target.value)}
                   value={inputSearch}
                   placeholder="جستجو در نخل ..."
                 />
+
+                {searchShops.length > 0 && <BoxSearch list={searchShops} />}
                 <Link href={`/search?q=${inputSearch}`}>
                   <a>
                     <i className="fas fa-search"></i>
