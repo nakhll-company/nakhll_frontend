@@ -48,7 +48,8 @@ const ProductDetailMobile = ({ data }) => {
   const [productShop, setProductShop] = useState([]);
   let thumblineImage = [
     // { image: detail.shop.image_thumbnail_url, id: 0 },
-    ...detail.banners, { image: detail.image }
+    ...detail.banners,
+    { image: detail.image },
   ];
 
   async function fetchProductShop() {
@@ -547,23 +548,26 @@ const ProductDetailMobile = ({ data }) => {
                 style={{ overflow: "hidden" }}
               >
                 <div className="row d-flex">
-                  {posts.map((value, index) => (
+                  {posts.map((oneProduct, index) => (
                     <ProductCard
                       col="6"
                       product={{
-                        id: value.id,
-                        imageUrl: value.image_thumbnail_url,
-                        url: `/shop/${value.shop.slug}/product/${value.slug}`,
-                        title: value.title,
-                        chamberTitle: value.shop ? value.shop.title : " ",
-                        chamberUrl: value.shop
-                          ? `/shop/${value.shop.slug}`
-                          : " ",
-                        discount: value.discount,
-                        price: value.price / 10,
-                        discountNumber: value.old_price / 10,
-                        city: value.shop ? value.shop.city : " ",
-                        is_advertisement: value.is_advertisement,
+                        id: oneProduct.ID,
+                        imageUrl: oneProduct.Image_medium_url,
+                        url: `/shop/${oneProduct.FK_Shop.slug}/product/${oneProduct.Slug}/`,
+                        title: oneProduct.Title,
+                        chamberTitle: oneProduct.FK_Shop
+                          ? oneProduct.FK_Shop.title
+                          : "",
+                        chamberUrl: oneProduct.FK_Shop
+                          ? `/shop/${oneProduct.FK_Shop.slug} `
+                          : "",
+
+                        discount: oneProduct.discount,
+                        price: oneProduct.Price / 10,
+                        discountNumber: oneProduct.OldPrice / 10,
+                        city: oneProduct.FK_Shop && oneProduct.FK_Shop.state,
+                        is_advertisement: oneProduct.is_advertisement,
                       }}
                       key={index}
                     />

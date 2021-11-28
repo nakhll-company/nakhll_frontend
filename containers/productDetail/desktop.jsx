@@ -45,7 +45,9 @@ const ProductDetailDesktop = ({ data }) => {
 
   let thumblineImage = [
     // { image: detail.shop.image_thumbnail_url, id: 0 },
-    ...detail.banners, , { image: detail.image }
+    ...detail.banners,
+    ,
+    { image: detail.image },
   ];
   async function fetchProductShop() {
     let response = await ApiRegister().apiRequest(
@@ -464,21 +466,26 @@ const ProductDetailDesktop = ({ data }) => {
             <div className="row">
               <CustomSlider
                 slides1200={4}
-                data={productShop.map((value, index) => (
+                data={productShop.map((oneProduct, index) => (
                   <ProductCard
                     col="12"
                     product={{
-                      id: value.id,
-                      imageUrl: value.image_thumbnail_url,
-                      url: `/shop/${value.shop.slug}/product/${value.slug}`,
-                      title: value.title,
-                      chamberTitle: value.shop.title,
-                      chamberUrl: `/shop/${value.shop.slug} `,
-                      discount: value.discount,
-                      price: value.price / 10,
-                      discountNumber: value.old_price / 10,
-                      is_advertisement: value.is_advertisement,
-                      city: value.shop.city,
+                      id: oneProduct.ID,
+                      imageUrl: oneProduct.Image_medium_url,
+                      url: `/shop/${oneProduct.FK_Shop.slug}/product/${oneProduct.Slug}/`,
+                      title: oneProduct.Title,
+                      chamberTitle: oneProduct.FK_Shop
+                        ? oneProduct.FK_Shop.title
+                        : "",
+                      chamberUrl: oneProduct.FK_Shop
+                        ? `/shop/${oneProduct.FK_Shop.slug} `
+                        : "",
+
+                      discount: oneProduct.discount,
+                      price: oneProduct.Price / 10,
+                      discountNumber: oneProduct.OldPrice / 10,
+                      city: oneProduct.FK_Shop && oneProduct.FK_Shop.state,
+                      is_advertisement: oneProduct.is_advertisement,
                     }}
                     key={index}
                   />
