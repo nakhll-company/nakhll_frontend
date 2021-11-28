@@ -135,7 +135,9 @@ function Header() {
                       onChange={(e) => _handel_search(e.target.value)}
                       value={inputSearch}
                     />
-                    {searchShops.length > 0 && <BoxSearch list={searchShops} />}
+                    {searchShops.length > 0 && (
+                      <BoxSearch list={searchShops} word={inputSearch} />
+                    )}
 
                     <Link href={`/search?q=${inputSearch}`}>
                       <a>
@@ -349,7 +351,9 @@ function Header() {
                   placeholder="جستجو در نخل ..."
                 />
 
-                {searchShops.length > 0 && <BoxSearch list={searchShops} />}
+                {searchShops.length > 0 && (
+                  <BoxSearch list={searchShops} word={inputSearch} />
+                )}
                 <Link href={`/search?q=${inputSearch}`}>
                   <a>
                     <i className="fas fa-search"></i>
