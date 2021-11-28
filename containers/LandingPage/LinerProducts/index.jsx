@@ -63,16 +63,18 @@ function LinerProducts({
                 key={index}
                 padding={1}
                 product={{
-                  id: product.id,
-                  imageUrl: product.image_thumbnail_url,
-                  url: `/shop/${product.shop.slug}/product/${product.slug}/`,
-                  title: product.title,
-                  chamberTitle: product.shop.title,
-                  chamberUrl: `/shop/${product.shop.slug} `,
+                  id: product.ID,
+                  imageUrl: product.Image_medium_url,
+                  url: `/shop/${product.FK_Shop.slug}/product/${product.Slug}/`,
+                  title: product.Title,
+                  chamberTitle: product.FK_Shop ? product.FK_Shop.title : "",
+                  chamberUrl: product.FK_Shop
+                    ? `/shop/${product.FK_Shop.slug} `
+                    : "",
                   discount: product.discount,
-                  price: product.price / 10,
-                  discountNumber: product.old_price / 10,
-                  city: product.shop.state,
+                  price: product.Price / 10,
+                  discountNumber: product.OldPrice / 10,
+                  city: product.FK_Shop && product.FK_Shop.state,
                   is_advertisement: product.is_advertisement,
                 }}
               />
@@ -95,7 +97,8 @@ function LinerProducts({
             <div className={styles.Button}>
               <button>
                 <Link
-                  href={`${url.includes("search=") || url.includes("q=")
+                  href={`${
+                    url.includes("search=") || url.includes("q=")
                       ? `${url}`
                       : `/search?ap=${url}`
                   }`}
@@ -111,7 +114,7 @@ function LinerProducts({
           className={`${styles.products} row px-5`}
         >
           {dataLinerProducts.length > 0 &&
-            dataLinerProducts.slice(0, num).map((product, index) => (
+            dataLinerProducts.slice(0, num).map((oneProduct, index) => (
               <ProductCard
                 xl={xl}
                 md={md}
@@ -121,17 +124,22 @@ function LinerProducts({
                 key={index}
                 padding={1}
                 product={{
-                  id: product.id,
-                  imageUrl: product.image_thumbnail_url,
-                  url: `/shop/${product.shop.slug}/product/${product.slug}/`,
-                  title: product.title,
-                  chamberTitle: product.shop.title,
-                  chamberUrl: `/shop/${product.shop.slug} `,
-                  discount: product.discount,
-                  price: product.price / 10,
-                  discountNumber: product.old_price / 10,
-                  city: product.shop.state,
-                  is_advertisement: product.is_advertisement,
+                  id: oneProduct.ID,
+                  imageUrl: oneProduct.Image_medium_url,
+                  url: `/shop/${oneProduct.FK_Shop.slug}/product/${oneProduct.Slug}/`,
+                  title: oneProduct.Title,
+                  chamberTitle: oneProduct.FK_Shop
+                    ? oneProduct.FK_Shop.title
+                    : "",
+                  chamberUrl: oneProduct.FK_Shop
+                    ? `/shop/${oneProduct.FK_Shop.slug} `
+                    : "",
+
+                  discount: oneProduct.discount,
+                  price: oneProduct.Price / 10,
+                  discountNumber: oneProduct.OldPrice / 10,
+                  city: oneProduct.FK_Shop && oneProduct.FK_Shop.state,
+                  is_advertisement: oneProduct.is_advertisement,
                 }}
               />
             ))}
