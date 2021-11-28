@@ -97,7 +97,7 @@ function ListProductShop({ data }) {
       if (response.status === 200) {
         setCategories(response.data);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   const _handel_Add_category = (id) => {
@@ -201,7 +201,7 @@ function ListProductShop({ data }) {
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   // START
@@ -392,21 +392,21 @@ function ListProductShop({ data }) {
                       key={index}
                       padding={1}
                       product={{
-                        id: oneProduct.id,
-                        imageUrl: oneProduct.image_thumbnail_url,
-                        url: `/shop/${oneProduct.shop.slug}/product/${oneProduct.slug}/`,
-                        title: oneProduct.title,
-                        chamberTitle: oneProduct.shop
-                          ? oneProduct.shop.title
+                        id: oneProduct.ID,
+                        imageUrl: oneProduct.Image_medium_url,
+                        url: `/shop/${oneProduct.FK_Shop.slug}/product/${oneProduct.Slug}/`,
+                        title: oneProduct.Title,
+                        chamberTitle: oneProduct.FK_Shop
+                          ? oneProduct.FK_Shop.title
                           : "",
-                        chamberUrl: oneProduct.shop
-                          ? `/shop/${oneProduct.shop.slug} `
+                        chamberUrl: oneProduct.FK_Shop
+                          ? `/shop/${oneProduct.FK_Shop.slug} `
                           : "",
 
                         discount: oneProduct.discount,
-                        price: oneProduct.price / 10,
-                        discountNumber: oneProduct.old_price / 10,
-                        city: oneProduct.shop && oneProduct.shop.state,
+                        price: oneProduct.Price / 10,
+                        discountNumber: oneProduct.OldPrice / 10,
+                        city: oneProduct.FK_Shop && oneProduct.FK_Shop.state,
                         is_advertisement: oneProduct.is_advertisement,
                       }}
                     />
