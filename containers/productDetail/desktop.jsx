@@ -464,33 +464,34 @@ const ProductDetailDesktop = ({ data }) => {
               </Link>
             </div>
             <div className="row">
-              <CustomSlider
-                slides1200={4}
-                data={productShop.map((oneProduct, index) => (
-                  <ProductCard
-                    col="12"
-                    product={{
-                      id: oneProduct.ID,
-                      imageUrl: oneProduct.Image_medium_url,
-                      url: `/shop/${oneProduct.FK_Shop.slug}/product/${oneProduct.Slug}/`,
-                      title: oneProduct.Title,
-                      chamberTitle: oneProduct.FK_Shop
-                        ? oneProduct.FK_Shop.title
-                        : "",
-                      chamberUrl: oneProduct.FK_Shop
-                        ? `/shop/${oneProduct.FK_Shop.slug} `
-                        : "",
+              {productShop.length > 0 &&
+                <CustomSlider
+                  slides1200={4}
+                  data={productShop.map((oneProduct, index) => (
+                    <ProductCard
+                      col="12"
+                      product={{
+                        id: oneProduct.ID,
+                        imageUrl: oneProduct.Image_medium_url,
+                        url: `/shop/${oneProduct.FK_Shop.slug}/product/${oneProduct.Slug}/`,
+                        title: oneProduct.Title,
+                        chamberTitle: oneProduct.FK_Shop
+                          ? oneProduct.FK_Shop.title
+                          : "",
+                        chamberUrl: oneProduct.FK_Shop
+                          ? `/shop/${oneProduct.FK_Shop.slug} `
+                          : "",
 
-                      discount: oneProduct.discount,
-                      price: oneProduct.Price / 10,
-                      discountNumber: oneProduct.OldPrice / 10,
-                      city: oneProduct.FK_Shop && oneProduct.FK_Shop.state,
-                      is_advertisement: oneProduct.is_advertisement,
-                    }}
-                    key={index}
-                  />
-                ))}
-              />
+                        discount: oneProduct.discount,
+                        price: oneProduct.Price / 10,
+                        discountNumber: oneProduct.OldPrice / 10,
+                        city: oneProduct.FK_Shop && oneProduct.FK_Shop.state,
+                        is_advertisement: oneProduct.is_advertisement,
+                      }}
+                      key={index}
+                    />
+                  ))}
+                />}
             </div>
             <hr className="my-5" />
             {/* comments */}
@@ -594,23 +595,23 @@ const ProductDetailDesktop = ({ data }) => {
                 style={{ overflow: "hidden", padding: "10px" }}
               >
                 <div className="row">
-                  {posts.map((value, index) => (
+                  {posts.length > 0 && posts.map((value, index) => (
                     <ProductCard
                       col="3"
                       padding={1}
                       product={{
-                        id: value.id,
-                        imageUrl: value.image_thumbnail_url,
-                        url: `/shop/${value.shop.slug}/product/${value.slug}`,
-                        title: value.title,
-                        chamberTitle: value.shop ? value.shop.title : " ",
-                        chamberUrl: value.shop
-                          ? `/shop/${value.shop.slug} `
+                        id: value.ID,
+                        imageUrl: value.Image_medium_url ? value.Image_medium_url : '',
+                        url: value.FK_Shop && `/shop/${value.FK_Shop.slug}/product/${value.slug}`,
+                        title: value.Title,
+                        chamberTitle: value.FK_Shop ? value.FK_Shop.title : " ",
+                        chamberUrl: value.FK_Shop
+                          ? `/shop/${value.FK_Shop.slug} `
                           : " ",
                         discount: value.discount,
-                        price: value.price / 10,
-                        discountNumber: value.old_price / 10,
-                        city: value.shop ? value.shop.city : " ",
+                        price: value.Price / 10,
+                        discountNumber: value.OldPrice / 10,
+                        city: value.FK_Shop ? value.FK_Shop.City : " ",
                         is_advertisement: value.is_advertisement,
                       }}
                       key={index}

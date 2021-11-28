@@ -46,6 +46,7 @@ const ProductDetailMobile = ({ data }) => {
   const [pageApi, setPageApi] = useState(1);
   const [posts, setPosts] = useState([...relatedProduct.results]);
   const [productShop, setProductShop] = useState([]);
+  console.log(">>>", posts);
   let thumblineImage = [
     // { image: detail.shop.image_thumbnail_url, id: 0 },
     ...detail.banners,
@@ -53,6 +54,7 @@ const ProductDetailMobile = ({ data }) => {
   ];
 
   async function fetchProductShop() {
+
     let response = await ApiRegister().apiRequest(
       null,
       "GET",
@@ -420,28 +422,30 @@ const ProductDetailMobile = ({ data }) => {
               </Link>
             </div>
             <div className="row">
-              <CustomSlider
-                slides1200={4}
-                data={productShop.map((value, index) => (
-                  <ProductCard
-                    col="12"
-                    product={{
-                      id: value.id,
-                      imageUrl: value.image_thumbnail_url,
-                      url: `/shop/${value.shop.slug}/product/${value.slug}`,
-                      title: value.title,
-                      chamberTitle: value.shop.title,
-                      chamberUrl: `/shop/${value.shop.slug}`,
-                      discount: value.discount,
-                      price: value.price / 10,
-                      discountNumber: value.old_price / 10,
-                      city: value.shop.city,
-                      is_advertisement: value.is_advertisement,
-                    }}
-                    key={index}
-                  />
-                ))}
-              />
+              {productShop.length > 0 &&
+                <CustomSlider
+                  slides1200={4}
+                  data={productShop.map((value, index) => (
+                    <ProductCard
+                      col="12"
+                      product={{
+                        id: value.id,
+                        imageUrl: value.image_thumbnail_url,
+                        url: `/shop/${value.shop.slug}/product/${value.slug}`,
+                        title: value.title,
+                        chamberTitle: value.shop.title,
+                        chamberUrl: `/shop/${value.shop.slug}`,
+                        discount: value.discount,
+                        price: value.price / 10,
+                        discountNumber: value.old_price / 10,
+                        city: value.shop.city,
+                        is_advertisement: value.is_advertisement,
+                      }}
+                      key={index}
+                    />
+                  ))}
+                />
+              }
             </div>
             <hr />
             {/* comments */}
@@ -548,13 +552,13 @@ const ProductDetailMobile = ({ data }) => {
                 style={{ overflow: "hidden" }}
               >
                 <div className="row d-flex">
-                  {posts.map((oneProduct, index) => (
+                  {posts.length > 0 && posts.map((oneProduct, index) => (
                     <ProductCard
                       col="6"
                       product={{
                         id: oneProduct.ID,
-                        imageUrl: oneProduct.Image_medium_url,
-                        url: `/shop/${oneProduct.FK_Shop.slug}/product/${oneProduct.Slug}/`,
+                        imageUrl: oneProduct.Image_medium_url ? oneProduct.Image_medium_url : '',
+                        url: oneProduct.FK_Shop && `/shop/${oneProduct.FK_Shop.slug}/product/${oneProduct.Slug}/`,
                         title: oneProduct.Title,
                         chamberTitle: oneProduct.FK_Shop
                           ? oneProduct.FK_Shop.title
