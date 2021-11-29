@@ -13,7 +13,7 @@ export const TopBar = ({
   return (
     <>
       <div style={{ marginTop: "0px" }}>
-        <div className="items-slider product-filters mb-4">
+        <div className=" product-filters mb-4">
           <div
             style={{
               cursor: "pointer",

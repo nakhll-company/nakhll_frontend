@@ -13,7 +13,7 @@ import MenuMobile from "../../components/layout/MenuMobile";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { WoLoading } from "../../components/custom/Loading/woLoading/WoLoading";
 import ProductCard from "../../components/ProductCart/ProductCard";
-
+import styles from "./listProduct.module.scss";
 import Assistent from "zaravand-assistent-number";
 const _asist = new Assistent();
 function ListProduct({
@@ -208,7 +208,7 @@ function ListProduct({
           listWithFilter: listWithFilter,
         }}
       >
-        <div className="container_N">
+        <div className={styles.container_N}>
           <div className="row sidebar-parent">
             <div className="d-none d-lg-block col-lg-3">
               <div id="sidebar">
@@ -287,8 +287,8 @@ function ListProduct({
                   </CustomAccordion>
                 )}
 
-                <div className="search-body-filter">
-                  <div className="modal-body" style={{ msOverflowX: "hidden" }}>
+                <div className={styles.search_body_filter}>
+                  <div className={styles.modal_body} style={{ msOverflowX: "hidden" }}>
                     <CustomSwitch
                       title="فقط کالاهای موجود"
                       id="Available_goods"
@@ -374,7 +374,7 @@ function ListProduct({
 
         {/* modalFilter start*/}
         {isOpenModal && (
-          <div className="modal_filter_products d-none d-lg-block ">
+          <div className={`${styles.modal_filter_products} d-none d-lg-block`}>
             <div
               style={{
                 position: "fixed",
@@ -394,8 +394,8 @@ function ListProduct({
               ></i>
             </div>
             <div id="sidebar">
-              <div className="search-body-filter">
-                <div className="modal-body" style={{ msOverflowX: "hidden" }}>
+              <div className={styles.search_body_filter}>
+                <div className={styles.modal_body} style={{ msOverflowX: "hidden" }}>
                   <CustomSwitch
                     title="فقط کالاهای موجود"
                     id="Available_goods_mobile"
@@ -518,7 +518,7 @@ function ListProduct({
 
         {/* ModalOrdering Strat */}
         {isOpenOrderingModal && (
-          <div className="modal_filter_products d-none d-lg-block ">
+          <div className={`${styles.modal_filter_products} d-none d-lg-block `}>
             <div
               style={{
                 position: "fixed",
@@ -538,8 +538,8 @@ function ListProduct({
               ></i>
             </div>
             <div id="sidebar">
-              <div className="search-body-filter">
-                <div className="modal-body" style={{ msOverflowX: "hidden" }}>
+              <div className={styles.search_body_filter}>
+                <div className={styles.modal_body} style={{ msOverflowX: "hidden" }}>
                   <div
                     style={{
                       padding: "5px",
