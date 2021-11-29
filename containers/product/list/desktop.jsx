@@ -189,7 +189,7 @@ export default function Desktop({
               productList.map((value, index) => {
                 return (
                   <Link
-                    href={`/fp/product/update/product/${value.id}`}
+                    href={`/fp/product/update/product/${value.ID}`}
                     key={index}
                   >
                     <tr>
@@ -202,7 +202,7 @@ export default function Desktop({
                           height="45"
                         />
                         <div style={{ margin: "0px 20px" }}>
-                          {value.title}
+                          {value.Title}
                           <br />
                           <span className={styles.icons}>
                             <i className="fas fa-shopping-basket"></i>
@@ -215,17 +215,17 @@ export default function Desktop({
                           </span>
                         </div>
                       </td>
-                      <td>{value.preparation_days}</td>
-                      <td>{value.inventory}</td>
+                      <td>{value.PreparationDays}</td>
+                      <td>{value.Inventory}</td>
                       <td>
-                        {value.old_price === 0 && (
-                          <b>{value.price / 10} تومان</b>
+                        {value.OldPrice === 0 && (
+                          <b>{value.Price / 10} تومان</b>
                         )}
-                        {value.old_price !== 0 && (
+                        {value.OldPrice !== 0 && (
                           <>
-                            <del>{value.old_price / 10}</del>
+                            <del>{value.OldPrice / 10}</del>
                             <br />
-                            <b>{value.price / 10}تومان</b>
+                            <b>{value.Price / 10}تومان</b>
                           </>
                         )}
                       </td>
