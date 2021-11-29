@@ -326,7 +326,7 @@ function ListProductCus({ data }) {
                 <CustomAccordion title="محدوده قیمت" item="two" close={true}>
                   <div style={{ direction: "ltr", zIndex: "1000" }}>
                     <MultiRangeSlider
-                      min={data.min_price ? data.min_price : 0}
+                      min={0}
                       max={data.max_price ? data.max_price : 10000}
                       onChange={({ min, max }) => {
                         setMinPrice(min);
