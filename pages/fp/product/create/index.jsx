@@ -1,6 +1,6 @@
 // node libraries
 import { connect } from "react-redux";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import Cropper from "react-easy-crop";
 import { useForm } from "react-hook-form";
 import Assistent from "zaravand-assistent-number";
@@ -8,7 +8,7 @@ import { useCallback, useEffect, useState } from "react";
 // components
 import MyLayout from "../../../../components/layout/Layout";
 import Loading from "../../../../components/loading/index";
-import Category from '../../../../containers/product/create/category';
+import Category from "../../../../containers/product/create/category";
 // methods
 import { getCroppedImg } from "../../../../containers/product/create/methods/canvasUtils";
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
@@ -17,6 +17,9 @@ import { mapState } from "../../../../containers/product/methods/mapState";
 import styles from "../../../../styles/pages/product/create.module.scss";
 import { errorMessage } from "../../../../containers/utils/message";
 import CheckboxTreeCities from "../../../../components/CheckboxTree/CheckboxTree";
+import InputPictureSetting from "../../../../containers/settings/components/InputPicture";
+import InputPictureCreat from "../../../../containers/creat/component/InputPicture";
+import TitleLiner from "../../../../containers/settings/components/titleLiner";
 /**
  * component create product
  * @param {string} activeHojreh => it has slug of product
@@ -45,9 +48,8 @@ const CreateProduct = ({ activeHojreh }) => {
     } else {
       err = true;
     }
-    let product_status = document.querySelector(
-      "input[type=radio]:checked"
-    ).value;
+    let product_status = document.querySelector("input[type=radio]:checked")
+      .value;
     if (err) {
       setIsLoad(false);
       let confirm = {
@@ -64,7 +66,7 @@ const CreateProduct = ({ activeHojreh }) => {
         PreparationDays: AddPreparationDays,
         FK_Shop: activeHojreh,
         post_range: checkedCities,
-        new_category: submarketId
+        new_category: submarketId,
       };
       let paramsProduct = {};
       let loadDataProduct = confirm;
@@ -126,12 +128,13 @@ const CreateProduct = ({ activeHojreh }) => {
   let [stringOldPrice, setStringOldPrice] = useState("");
   let [sepratoreOldPrice, setSepratoreOldPrice] = useState("");
 
+  // stat for test image
+  const [imgProduct, setImgProduct] = useState(null);
+
   // for Save cities
   const [checkedCities, setCheckedCities] = useState([]);
 
-  useEffect(() => {
-
-  }, [checkedCities]);
+  useEffect(() => {}, [checkedCities]);
 
   // show success page
   if (showSuccessPage) {
@@ -188,62 +191,7 @@ const CreateProduct = ({ activeHojreh }) => {
     let elementProduct = document.getElementById("wrapper_product");
     elementProduct.style.display = "none";
   };
-  // cropper
-  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
-    setCroppedAreaPixels(croppedAreaPixels);
-  }, []);
-  // on File Change
-  const onFileChange = async (e) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files[0];
-      let imageDataUrl = await readFile(file);
-      setImageSrc(imageDataUrl);
-      let elementImageProduct = document.getElementById("crop_container");
-      elementImageProduct.style.display = "block";
-    }
-  };
-  // read File
-  function readFile(file) {
-    return new Promise((resolve) => {
-      const reader = new FileReader();
-      reader.addEventListener("load", () => resolve(reader.result), false);
-      reader.readAsDataURL(file);
-    });
-  }
-  // on Close Cropper
-  const _onCloseCropper = () => {
-    let elementImageProduct = document.getElementById("crop_container");
-    elementImageProduct.style.display = "none";
-    setImageSrc(null);
-    setValue("product_image_upload", null);
-  };
-  // show Cropped Image
-  const showCroppedImage = async () => {
-    const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
-    if (croppedImage) {
-      let listImage = window.localStorage.getItem("image");
-      var prev = JSON.parse(listImage);
-      setPreviewImage(prev);
-    }
-    let elementImageProduct = document.getElementById("crop_container");
-    elementImageProduct.style.display = "none";
-    if (prev.length === 5) {
-      document.getElementById("product-image-upload").disabled = true;
-    }
-  };
-  // remove Image
-  const _removeImage = (item) => {
-    let listRemoveImage = window.localStorage.getItem("image");
-    let removeImage = JSON.parse(listRemoveImage);
-    let testt = removeImage.filter((itemRemove) => {
-      return itemRemove.includes(item) ? "" : itemRemove;
-    });
-    window.localStorage.setItem("image", JSON.stringify(testt));
-    setPreviewImage(testt);
-    if (testt.length == 0) {
-      setValue("product_image_upload", null);
-    }
-  };
+
   // sepratore in numbers
   const numberSeparateUtils = (number) => {
     return number !== undefined
@@ -258,17 +206,8 @@ const CreateProduct = ({ activeHojreh }) => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div id="wrapper_product" className={styles.wrapper_product}>
               <div className={styles.createProduct_lineRighte}>
-                <div className="mt-4">
-                  <div>
-                    <h5
-                      style={{ color: "#007aff", fontSize: "14px" }}
-                      className="mb-0 d-inline mr-20"
-                    >
-                      اطلاعات محصول
-                    </h5>
-                  </div>
-                </div>
-                <hr style={{ background: "#007aff", width: "100%" }} />
+                <TitleLiner title="اطلاعات محصول" />
+
                 {/* product name */}
                 <div className={styles.wrapper_input}>
                   <label className={styles.lable_product} htmlFor="Title">
@@ -322,29 +261,15 @@ const CreateProduct = ({ activeHojreh }) => {
                     حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش
                     داده خواهد شد.
                   </div>
+
+                  <InputPictureCreat
+                    setImageSrc={setImgProduct}
+                    image={imgProduct}
+                    ratio={1}
+                  />
+
                   <div className="mt-4" name="mainPhoto">
                     <div className={styles.product_image_container}>
-                      <label
-                        style={{ marginTop: 10, marginRight: 10 }}
-                        htmlFor="product-image-upload"
-                      >
-                        <div className={styles.add_image_container}>
-                          <i style={{ fontSize: "25px" }}>+</i>
-                          <p style={{ fontSize: "15px" }} className="mt-2">
-                            افزودن تصویر
-                          </p>
-                        </div>
-                      </label>
-                      {/* input file */}
-                      <input
-                        style={{ width: "0px", height: "0px", opacity: "0px" }}
-                        type="file"
-                        id="product-image-upload"
-                        {...register("product_image_upload", {
-                          required: true,
-                        })}
-                        onChange={onFileChange}
-                      ></input>
                       {/* preview image */}
                       {previewImage &&
                         previewImage.map((item, index) => {
@@ -370,24 +295,11 @@ const CreateProduct = ({ activeHojreh }) => {
                         })}
                     </div>
                   </div>
-                  {errors.product_image_upload && (
-                    <span style={{ color: "red", fontSize: "14px" }}>
-                      لطفا این گزینه را پر کنید
-                    </span>
-                  )}
                 </div>
                 {/* product detail */}
-                <div className="mt-4">
-                  <div>
-                    <h5
-                      style={{ color: "#007aff", fontSize: "14px" }}
-                      className="mb-0 d-inline mr-20"
-                    >
-                      جزئیات محصول
-                    </h5>
-                  </div>
-                </div>
-                <hr style={{ background: "#007aff", width: "100%" }} />
+
+                <TitleLiner title=" جزئیات محصول" />
+
                 {/* weight */}
                 <div className={styles.wrapper_input}>
                   <label className={styles.lable_product} htmlFor="Net_Weight">
@@ -616,17 +528,9 @@ const CreateProduct = ({ activeHojreh }) => {
                   </div>
                 </div>
                 {/* information  */}
-                <div className="mt-4">
-                  <div>
-                    <h5
-                      style={{ color: "#007aff", fontSize: "14px" }}
-                      className="mb-0 d-inline mr-20"
-                    >
-                      اطلاعات ارسال
-                    </h5>
-                  </div>
-                </div>
-                <hr style={{ background: "#007aff", width: "100%" }} />
+
+                <TitleLiner title=" اطلاعات ارسال" />
+
                 {/* Preparation Days */}
                 <div className={styles.twoCol}>
                   <div>
@@ -683,8 +587,9 @@ const CreateProduct = ({ activeHojreh }) => {
                     htmlFor="availbe"
                     className="labels activeLabel"
                     onClick={(e) => {
-                      let actives =
-                        document.getElementsByClassName("activeLabel");
+                      let actives = document.getElementsByClassName(
+                        "activeLabel"
+                      );
                       for (let i = 0; i < actives.length; i++) {
                         actives[i].classList.remove("activeLabel");
                       }
@@ -706,8 +611,9 @@ const CreateProduct = ({ activeHojreh }) => {
                     htmlFor="stop"
                     className="labels"
                     onClick={(e) => {
-                      let actives =
-                        document.getElementsByClassName("activeLabel");
+                      let actives = document.getElementsByClassName(
+                        "activeLabel"
+                      );
                       for (let i = 0; i < actives.length; i++) {
                         actives[i].classList.remove("activeLabel");
                       }
@@ -728,8 +634,9 @@ const CreateProduct = ({ activeHojreh }) => {
                     htmlFor="soon"
                     className="labels"
                     onClick={(e) => {
-                      let actives =
-                        document.getElementsByClassName("activeLabel");
+                      let actives = document.getElementsByClassName(
+                        "activeLabel"
+                      );
                       for (let i = 0; i < actives.length; i++) {
                         actives[i].classList.remove("activeLabel");
                       }
@@ -802,29 +709,6 @@ const CreateProduct = ({ activeHojreh }) => {
                   </button>
                 </div>
               </div>
-              {/* left side */}
-              <div className={styles.createProduct_lineLeft}>
-                <div className="mt-4">
-                  <div>
-                    <h5
-                      style={{ color: "#007aff", fontSize: "14px" }}
-                      className="mb-0 d-inline mr-20"
-                    ></h5>
-                  </div>
-                </div>
-                <hr style={{ background: "#007aff" }} />
-                <div>
-                  <p
-                    style={{
-                      color: "#5E7488",
-                      fontSize: "14px",
-                      marginTop: "90px",
-                    }}
-                  >
-                    به عنوان مثال : برنج لاشه 10 کیلویی، کشت اول
-                  </p>
-                </div>
-              </div>
             </div>
           </form>
           {/* category page */}
@@ -836,51 +720,6 @@ const CreateProduct = ({ activeHojreh }) => {
             setData={setData}
             categories={categories}
           />
-          {/* croperProduct modal*/}
-          <div id="crop_container" className={styles.wrapperIMageProduct}>
-            <Cropper
-              image={imageSrc}
-              crop={crop}
-              restrictPosition={true}
-              zoom={zoom}
-              aspect={1}
-              classes={{
-                containerClassName: "container_cropper_product",
-                cropAreaClassName: "product_cropArea",
-              }}
-              onCropChange={setCrop}
-              onCropComplete={onCropComplete}
-              onZoomChange={setZoom}
-            />
-            <div className={styles.controls}>
-              <input
-                value={zoom}
-                type="range"
-                step="0.1"
-                max="3"
-                min="1"
-                onChange={(e) => setZoom(e.target.value)}
-              />
-              <div className={styles.wrapperButton}>
-                <div style={{ marginLeft: "10px" }}>
-                  <button
-                    onClick={showCroppedImage}
-                    className="btn btn-success btn-lg"
-                  >
-                    تایید
-                  </button>
-                </div>
-                <div>
-                  <button
-                    onClick={_onCloseCropper}
-                    className="btn btn-secondary btn-lg"
-                  >
-                    لغو
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </>
     );
