@@ -188,7 +188,6 @@ function ListProductCus({ data }) {
           available: isAvailableGoods,
           discounted: isDiscountPercentage,
           city: checkedCity.toString(),
-
           ...(wantCategories.length > 0 && {
             new_category: wantCategories.toString(),
           }),
@@ -212,30 +211,6 @@ function ListProductCus({ data }) {
     } catch (e) {}
   };
 
-  // Get all shops
-  const _get_all_shops = async () => {
-    let shops = await ApiRegister().apiRequest(
-      null,
-      "GET",
-      ApiReference.allShops,
-      true,
-      ""
-    );
-
-    if (shops.status === 200) {
-      setShopsName(shops.data);
-    }
-  };
-  // Function for search
-  const _handel_search = (word) => {
-    let copy_Array = [...shopsName];
-    let filterArray = [];
-    if (word != "") {
-      filterArray = copy_Array.filter((el) => el.title.includes(word));
-    }
-    setSearchShops(filterArray);
-  };
-
   // START
   // for filters in sidebar
   useEffect(async () => {
@@ -248,12 +223,10 @@ function ListProductCus({ data }) {
     wantCategories,
     whichOrdering,
     clickOnRange,
-
     changePage,
     hojreh,
   ]);
   useEffect(async () => {
-    await _get_all_shops();
     await _handel_category();
   }, []);
 
@@ -372,31 +345,6 @@ function ListProductCus({ data }) {
                   </div>
                 </CustomAccordion>
 
-                <CustomAccordion
-                  title="جستجو بر اساس حجره"
-                  item="searchHoj"
-                  close={true}
-                >
-                  <Search onChange={(e) => _handel_search(e.target.value)} />
-                  {searchShops.length > 0 && (
-                    <div className={styles.numBag}>
-                      <span> {_asist.PSeparator(searchShops.length)}</span>
-                      حجره
-                    </div>
-                  )}
-                  {searchShops.map((el, index) => (
-                    <div
-                      key={index}
-                      className={styles.itemHojreh}
-                      onClick={() => {
-                        setHojreh(el.slug);
-                        setSearchWord("");
-                      }}
-                    >
-                      {el.title}
-                    </div>
-                  ))}
-                </CustomAccordion>
                 {hojreh == "" && (
                   <CustomAccordion
                     title="استان و شهر حجره دار"
