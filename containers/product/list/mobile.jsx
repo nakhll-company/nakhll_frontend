@@ -71,9 +71,9 @@ const MobileList = ({ loading, productList, activeHojreh }) => {
           <Image
             src="/loading.svg"
             alt="loding"
-            layout="responsive"
-            width={40}
-            height={40}
+            // layout="responsive"
+            width="40px"
+            height="40px"
           />
         </div>
       ) : productList.length > 0 ? (

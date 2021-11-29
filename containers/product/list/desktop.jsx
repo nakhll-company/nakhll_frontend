@@ -180,9 +180,9 @@ export default function Desktop({
                   <Image
                     src="/loading.svg"
                     alt="loding"
-                    layout="responsive"
-                    width={40}
-                    height={40}
+                    // layout="responsive"
+                    width="40px"
+                    height="40px"
                   />
                 </td>
               </tr>
