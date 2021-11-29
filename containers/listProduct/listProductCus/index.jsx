@@ -188,7 +188,6 @@ function ListProductCus({ data }) {
           available: isAvailableGoods,
           discounted: isDiscountPercentage,
           city: checkedCity.toString(),
-
           ...(wantCategories.length > 0 && {
             new_category: wantCategories.toString(),
           }),
@@ -211,7 +210,6 @@ function ListProductCus({ data }) {
       }
     } catch (e) {}
   };
-
   // Get all shops
   const _get_all_shops = async () => {
     let shops = await ApiRegister().apiRequest(
@@ -239,6 +237,7 @@ function ListProductCus({ data }) {
   // START
   // for filters in sidebar
   useEffect(async () => {
+    await _get_all_shops();
     await _handel_filters();
   }, [
     isAvailableGoods,
@@ -248,12 +247,10 @@ function ListProductCus({ data }) {
     wantCategories,
     whichOrdering,
     clickOnRange,
-
     changePage,
     hojreh,
   ]);
   useEffect(async () => {
-    await _get_all_shops();
     await _handel_category();
   }, []);
 
@@ -314,8 +311,8 @@ function ListProductCus({ data }) {
           listWithFilter: listWithFilter,
         }}
       >
-        <div className="container_N">
-          <div className="row sidebar-parent">
+        <div className={styles.container_N}>
+          <div className="row ">
             <div className="d-none d-lg-block col-lg-3">
               <div id="sidebar">
                 {categories.length > 0 && (
@@ -353,7 +350,7 @@ function ListProductCus({ data }) {
                 <CustomAccordion title="محدوده قیمت" item="two" close={true}>
                   <div style={{ direction: "ltr", zIndex: "1000" }}>
                     <MultiRangeSlider
-                      min={data.min_price ? data.min_price : 0}
+                      min={0}
                       max={data.max_price ? data.max_price : 10000}
                       onChange={({ min, max }) => {
                         setMinPrice(min);
@@ -371,7 +368,6 @@ function ListProductCus({ data }) {
                     </div>
                   </div>
                 </CustomAccordion>
-
                 <CustomAccordion
                   title="جستجو بر اساس حجره"
                   item="searchHoj"
@@ -397,6 +393,7 @@ function ListProductCus({ data }) {
                     </div>
                   ))}
                 </CustomAccordion>
+
                 {hojreh == "" && (
                   <CustomAccordion
                     title="استان و شهر حجره دار"
@@ -423,8 +420,11 @@ function ListProductCus({ data }) {
                   </CustomAccordion>
                 )}
 
-                <div className="search-body-filter">
-                  <div className="modal-body" style={{ msOverflowX: "hidden" }}>
+                <div className={styles.search_body_filter}>
+                  <div
+                    className={styles.modal_body}
+                    style={{ msOverflowX: "hidden" }}
+                  >
                     <CustomSwitch
                       defaultChecked={data.available == "true" ? true : false}
                       title="فقط کالاهای موجود"
@@ -464,12 +464,8 @@ function ListProductCus({ data }) {
               />
               <div className="mx-auto row">
                 {isLoading ? (
-                  // <Loading />
-                  // <BeautyLoading />
                   <WoLoading />
                 ) : (
-                  // isLoading
-                  // <WoLoading />
                   <InfiniteScroll
                     className="mx-auto row"
                     dataLength={listWithFilter.length} //This is important field to render the next data
@@ -515,7 +511,7 @@ function ListProductCus({ data }) {
 
         {/* modalFilter start*/}
         {isOpenModal && (
-          <div className="modal_filter_products d-none d-lg-block ">
+          <div className={`${styles.modal_filter_products} d-none d-lg-block`}>
             <div
               style={{
                 position: "fixed",
@@ -535,8 +531,11 @@ function ListProductCus({ data }) {
               ></i>
             </div>
             <div id="sidebar">
-              <div className="search-body-filter">
-                <div className="modal-body" style={{ msOverflowX: "hidden" }}>
+              <div className={styles.search_body_filter}>
+                <div
+                  className={styles.modal_body}
+                  style={{ msOverflowX: "hidden" }}
+                >
                   <CustomSwitch
                     title="فقط کالاهای موجود"
                     id="Available_goods_mobile"
@@ -659,7 +658,7 @@ function ListProductCus({ data }) {
 
         {/* ModalOrdering Strat */}
         {isOpenOrderingModal && (
-          <div className="modal_filter_products d-none d-lg-block ">
+          <div className={`${styles.modal_filter_products} d-none d-lg-block `}>
             <div
               style={{
                 position: "fixed",
@@ -679,8 +678,11 @@ function ListProductCus({ data }) {
               ></i>
             </div>
             <div id="sidebar">
-              <div className="search-body-filter">
-                <div className="modal-body" style={{ msOverflowX: "hidden" }}>
+              <div className={styles.search_body_filter}>
+                <div
+                  className={styles.modal_body}
+                  style={{ msOverflowX: "hidden" }}
+                >
                   <div
                     style={{
                       padding: "5px",

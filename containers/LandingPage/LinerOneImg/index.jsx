@@ -9,12 +9,25 @@ function LinerOneImg({ dataLinerOneImg }) {
       {dataLinerOneImg.length > 0 && (
         <div className={`${styles.linearImages} container`}>
           <div className="row ">
-            <div className={`col-12  ${styles.righter}`}>
+            <div className={` d-none d-md-block ${styles.righter}`}>
               <Link href={dataLinerOneImg[0].url}>
                 <a>
                   <Image
                     layout="responsive"
                     width={600}
+                    height={100}
+                    src={dataLinerOneImg[0].image}
+                    alt={dataLinerOneImg[0].title}
+                  />
+                </a>
+              </Link>
+            </div>
+            <div className={`col-12 d-md-none  ${styles.righter}`}>
+              <Link href={dataLinerOneImg[0].url}>
+                <a>
+                  <Image
+                    layout="responsive"
+                    width={300}
                     height={100}
                     src={dataLinerOneImg[0].image}
                     alt={dataLinerOneImg[0].title}

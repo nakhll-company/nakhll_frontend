@@ -180,8 +180,9 @@ export default function Desktop({
                   <Image
                     src="/loading.svg"
                     alt="loding"
-                    width="40"
-                    height="40"
+                    layout="responsive"
+                    width={40}
+                    height={40}
                   />
                 </td>
               </tr>
@@ -198,8 +199,9 @@ export default function Desktop({
                         <Image
                           src={value.image_thumbnail_url}
                           alt="product"
-                          width="45"
-                          height="45"
+                          layout="responsive"
+                          width={45}
+                          height={45}
                         />
                         <div style={{ margin: "0px 20px" }}>
                           {value.Title}

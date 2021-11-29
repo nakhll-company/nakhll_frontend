@@ -1,19 +1,17 @@
 import React from "react";
-import AddFavorites from "../../components/AddFavorites";
-
+import Assistent from "zaravand-assistent-number";
+const _asist = new Assistent();
 export const TopBar = ({
   totalcount,
   data,
   handel_filterModal,
   setWhichOrdering,
   handel_OrderingModal,
-  whichOrdering,
-  router,
 }) => {
   return (
     <>
       <div style={{ marginTop: "0px" }}>
-        <div className="items-slider product-filters mb-4">
+        <div className=" product-filters mb-4">
           <div
             style={{
               cursor: "pointer",
@@ -71,7 +69,7 @@ export const TopBar = ({
                 </span>
               </div>{" "}
               <ul>
-                <li className={`sort-item  ${data == "" ? " active" : ""} `}>
+                <li className={`sort-item  ${data ? " " : "active"} `}>
                   <a
                     id={"1"}
                     onClick={() => {
@@ -106,7 +104,7 @@ export const TopBar = ({
                 </li>
                 <li
                   className={`sort-item  ${
-                    data == "DiscountPrecentage" ? " active" : ""
+                    data == "-DiscountPrecentage" ? " active" : ""
                   } `}
                 >
                   <a
@@ -135,7 +133,10 @@ export const TopBar = ({
             <span className="  " style={{ marginLeft: "20px" }}>
               {" "}
               تعداد کالا:
-              <span style={{ marginRight: "10px" }}> {totalcount}</span>
+              <span style={{ marginRight: "10px", fontWeight: "bold" }}>
+                {" "}
+                {_asist.number(totalcount)}
+              </span>
             </span>
           </div>{" "}
         </div>
