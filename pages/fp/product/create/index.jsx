@@ -288,32 +288,34 @@ const CreateProduct = ({ activeHojreh }) => {
                     )}
                   </div>
                   {/* imgProductChild, setImgProductChild */}
-                  <div className={styles.another_picture_product}>
-                    <PictureChildProduct
-                      setImageSrc={setImgProductOne}
-                      image={imgProductOne}
-                    />
-                    <PictureChildProduct
-                      setImageSrc={setImgProductTwo}
-                      image={imgProductTwo}
-                    />
-                    <PictureChildProduct
-                      setImageSrc={setImgProductThree}
-                      image={imgProductThree}
-                    />
-                    <PictureChildProduct
-                      setImageSrc={setImgProductFour}
-                      image={imgProductFour}
-                    />
-                    <PictureChildProduct
-                      setImageSrc={setImgProductFive}
-                      image={imgProductFive}
-                    />
-                    <PictureChildProduct
-                      setImageSrc={setImgProductSix}
-                      image={imgProductSix}
-                    />
-                  </div>
+                  {imgProduct && (
+                    <div className={styles.another_picture_product}>
+                      <PictureChildProduct
+                        setImageSrc={setImgProductOne}
+                        image={imgProductOne}
+                      />
+                      <PictureChildProduct
+                        setImageSrc={setImgProductTwo}
+                        image={imgProductTwo}
+                      />
+                      <PictureChildProduct
+                        setImageSrc={setImgProductThree}
+                        image={imgProductThree}
+                      />
+                      <PictureChildProduct
+                        setImageSrc={setImgProductFour}
+                        image={imgProductFour}
+                      />
+                      <PictureChildProduct
+                        setImageSrc={setImgProductFive}
+                        image={imgProductFive}
+                      />
+                      <PictureChildProduct
+                        setImageSrc={setImgProductSix}
+                        image={imgProductSix}
+                      />
+                    </div>
+                  )}
                 </div>
                 {/* product detail */}
                 <TitleLiner title=" جزئیات محصول" />

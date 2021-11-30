@@ -4,6 +4,19 @@
         top: 5px;
         position: absolute;
     }
+    .deleteBtn {
+        left: 2px;
+        top: 2px;
+        position: absolute;
+        .wrapBtn {
+            cursor: pointer;
+            font-size: 20px;
+            color: red;
+            &:hover {
+                transform: scale(1.2);
+            }
+        }
+    }
     width: 47%;
     margin: 5px auto;
     overflow: hidden;

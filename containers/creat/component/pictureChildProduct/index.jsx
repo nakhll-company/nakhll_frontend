@@ -24,6 +24,11 @@ function PictureChildProduct({ setImageSrc, image }) {
             witchIndex={0}
           />
         </div>
+        <div className={styles.deleteBtn}>
+          <div className={styles.wrapBtn} onClick={() => setImageSrc(null)}>
+            <i className="fas fa-trash"></i>
+          </div>
+        </div>
       </div>
     </>
   );
