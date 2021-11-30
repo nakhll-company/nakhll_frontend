@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 
 import { useForm } from "react-hook-form";
 import Assistent from "zaravand-assistent-number";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 // components
 import MyLayout from "../../../../components/layout/Layout";
@@ -22,13 +22,14 @@ import TitleLiner from "../../../../containers/settings/components/titleLiner";
 import PictureChildProduct from "../../../../containers/creat/component/pictureChildProduct";
 import InputUseForm from "../../../../containers/creat/component/inputUseForm";
 import TextAreaUseForm from "../../../../containers/creat/component/textAreaUseForm";
-/**
- * component create product
- * @param {string} activeHojreh => it has slug of product
- */
+import {
+  _ApiCreateProduct,
+  _ApiGetCategories,
+} from "../../../../api/creatProduct";
+
 const CreateProduct = ({ activeHojreh }) => {
   const router = useRouter();
-  const _asist = new Assistent();
+
   // useform
   const {
     setValue,
@@ -45,82 +46,103 @@ const CreateProduct = ({ activeHojreh }) => {
   });
   console.log(watch());
   // submit
+  // const onSubmit = async (data) => {
+
+  //   let err = false;
+  //   if (!placeholderSubmarckets) {
+  //     setError("submark", { type: "focus" }, { shouldFocus: true });
+  //   } else {
+  //     err = true;
+  //   }
+
+  //   if (err) {
+  //     setIsLoad(false);
+
+  //     let confirm = {
+  //       Title: data.Title,
+  //       Inventory: Add,
+  //       Slug: activeHojreh,
+  //       Price: data.Price,
+  //       OldPrice: data.OldPrice,
+  //       Net_Weight: data.Net_Weight,
+  //       Weight_With_Packing: data.Weight_With_Packing,
+  //       Description: data.Description,
+  //       Status: product_status,
+  //       PostRangeType: 1,
+  //       PreparationDays: AddPreparationDays,
+  //       FK_Shop: activeHojreh,
+  //       post_range: checkedCities,
+  //       new_category: submarketId,
+  //     };
+  //     let paramsProduct = {};
+  //     let loadDataProduct = confirm;
+  //     let dataUrlProduct = "/api/v1/landing/products/";
+  //     let response = await ApiRegister().apiRequest(
+  //       loadDataProduct,
+  //       "post",
+  //       dataUrlProduct,
+  //       true,
+  //       paramsProduct
+  //     );
+
+  //     if (response.status !== 201) {
+  //       errorMessage("خطایی در ایجاد محصول پیش آمده است");
+  //     }
+  //     var resultId = response.data.ID;
+
+  //     if (resultId) {
+  //       let imagesProduct = {
+  //         product: resultId,
+  //         images: previewImage,
+  //       };
+
+  //       let paramsImages = {};
+  //       let loadDataImages = imagesProduct;
+  //       let dataUrlImages = "/api/v1/product/images/";
+  //       let responseImages = await ApiRegister().apiRequest(
+  //         loadDataImages,
+  //         "post",
+  //         dataUrlImages,
+  //         true,
+  //         paramsImages
+  //       );
+  //       if (responseImages.status === 200) {
+  //         setShowSuccessPage(true);
+  //         // setIsLoad(false)
+  //       } else {
+  //         errorMessage("خطایی در ایجاد محصول پیش آمده است");
+  //       }
+  //     }
+  //   }
+  // };
+
   const onSubmit = async (data) => {
-    let err = false;
-    if (!placeholderSubmarckets) {
-      setError("submark", { type: "focus" }, { shouldFocus: true });
-    } else {
-      err = true;
-    }
-    let product_status = document.querySelector("input[type=radio]:checked")
-      .value;
-    if (err) {
-      setIsLoad(false);
-      let confirm = {
-        Title: data.Title,
-        Inventory: Add,
-        Slug: activeHojreh,
-        Price: data.Price,
-        OldPrice: data.OldPrice,
-        Net_Weight: data.Net_Weight,
-        Weight_With_Packing: data.Weight_With_Packing,
-        Description: data.Description,
-        Status: product_status,
-        PostRangeType: 1,
-        PreparationDays: AddPreparationDays,
-        FK_Shop: activeHojreh,
-        post_range: checkedCities,
-        new_category: submarketId,
-      };
-      let paramsProduct = {};
-      let loadDataProduct = confirm;
-      let dataUrlProduct = "/api/v1/landing/products/";
-      let response = await ApiRegister().apiRequest(
-        loadDataProduct,
-        "post",
-        dataUrlProduct,
-        true,
-        paramsProduct
-      );
+    console.log(`data`, data);
+    const externalData = {
+      Status: 1,
+      PostRangeType: 1,
+      post_range: checkedCities,
+      new_category: submarketId,
+      Image: imgProduct,
+      Product_Banner: [
+        ...(imgProductOne != null && { Image: imgProductOne }),
+        ...(imgProductTwo != null && { Image: imgProductTwo }),
+        ...(imgProductThree != null && { Image: imgProductThree }),
+        ...(imgProductFour != null && { Image: imgProductFour }),
+        ...(imgProductFive != null && { Image: imgProductFive }),
+        ...(imgProductSix != null && { Image: imgProductSix }),
+      ],
+    };
 
-      if (response.status !== 201) {
-        errorMessage("خطایی در ایجاد محصول پیش آمده است");
-      }
-      var resultId = response.data.ID;
-
-      if (resultId) {
-        let imagesProduct = {
-          product: resultId,
-          images: previewImage,
-        };
-
-        let paramsImages = {};
-        let loadDataImages = imagesProduct;
-        let dataUrlImages = "/api/v1/product/images/";
-        let responseImages = await ApiRegister().apiRequest(
-          loadDataImages,
-          "post",
-          dataUrlImages,
-          true,
-          paramsImages
-        );
-        if (responseImages.status === 200) {
-          setShowSuccessPage(true);
-          // setIsLoad(false)
-        } else {
-          errorMessage("خطایی در ایجاد محصول پیش آمده است");
-        }
-      }
-    }
+    // const response = await _ApiCreateProduct(dataForSend, activeHojreh);
   };
+
   // states
   const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState("");
   const [data, setData] = useState([]);
   const [categories, setCategories] = useState([]);
-
   const [previewImage, setPreviewImage] = useState(null);
-  const [Add, setAdd] = useState(1);
-  const [AddPreparationDays, setAddPreparationDays] = useState(1);
+
   const [submarketId, setSubmarketId] = useState(null);
   const [showSuccessPage, setShowSuccessPage] = useState(false);
   const [isLoad, setIsLoad] = useState(false);
@@ -137,54 +159,49 @@ const CreateProduct = ({ activeHojreh }) => {
   // for Save cities
   const [checkedCities, setCheckedCities] = useState([]);
 
-  useEffect(() => {}, [checkedCities]);
-
   // show success page
   if (showSuccessPage) {
     router.replace("/fp/product/create/successPageProduct");
   }
-  // use effect
   useEffect(() => {
-    const _handleRequestApi = async () => {
-      let params = null;
-      let loadData = null;
-      let dataUrl = "/api/v1/categories/";
-      let response = await ApiRegister().apiRequest(
-        loadData,
-        "get",
-        dataUrl,
-        false,
-        params
-      );
-      if (response.status === 200) {
-        setIsLoad(true);
-        setData(response.data); //==> output: {}
-        setCategories(response.data);
-      }
-    };
-    _handleRequestApi();
+    let Product_Banner = [];
+    if (imgProductOne) {
+      Product_Banner.push({ Image: imgProductOne });
+    }
+    if (imgProductTwo) {
+      Product_Banner.push({ Image: imgProductTwo });
+    }
+    if (imgProductThree) {
+      Product_Banner.push({ Image: imgProductThree });
+    }
+    if (imgProductFour) {
+      Product_Banner.push({ Image: imgProductFour });
+    }
+    if (imgProductFive) {
+      Product_Banner.push({ Image: imgProductFive });
+    }
+    if (imgProductSix) {
+      Product_Banner.push({ Image: imgProductSix });
+    }
+
+    console.log(`Product_Banner`, Product_Banner);
+  }, [imgProductOne]);
+
+  useEffect(() => {
+    console.log(`submarketId`, submarketId);
+  }, [submarketId]);
+  // use effect
+  useEffect(async () => {
+    const response_categories = await _ApiGetCategories();
+    console.log(`response_categories.data`, response_categories.data);
+
+    if (response_categories.status === 200) {
+      setIsLoad(true);
+      setData(response_categories.data); //==> output: {}
+      setCategories(response_categories.data);
+    }
   }, [activeHojreh]);
-  // inputButton
-  const mini = () => {
-    if (Add == 0) {
-      return;
-    }
-    setAdd(Add - 1);
-  };
-  const add = () => {
-    setAdd(Add + 1);
-  };
-  // mini Preparation Days
-  const miniPreparationDays = () => {
-    if (AddPreparationDays == 0) {
-      return;
-    }
-    setAddPreparationDays(AddPreparationDays - 1);
-  };
-  // Add Preparation Days
-  const AddPreparationDayss = () => {
-    setAddPreparationDays(AddPreparationDays + 1);
-  };
+
   // select Submarket
   const _selectSubmarket = () => {
     let element = document.getElementById("wrapperMarkets");
@@ -204,7 +221,6 @@ const CreateProduct = ({ activeHojreh }) => {
                 {/* product name */}
                 <InputUseForm title="نام محصول" error={errors.Title}>
                   <input
-                    type="number"
                     {...register("Title", {
                       required: "لطفا نام محصول را تکمیل کنید.",
                     })}

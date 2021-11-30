@@ -235,51 +235,14 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
           </div>
         </div>
       )}
-      {/* {selectState.length > 0 && (
-        <div
-          style={{
-            display: "block",
-            marginBottom: "5px",
-            marginTop: "15px",
-          }}
-        >
-          {selectState.length == 1 ? "استان " : "استان های "}(
-          {_asist.PSeparator(selectState.length)}):
-        </div>
-      )} */}
+
       <div
         style={{
           display: "flex",
           flexWrap: "wrap",
           borderBottom: "2ps solid #ccc",
         }}
-      >
-        {false &&
-          selectState.map((e) => (
-            <Fragment key={e.value}>
-              <div style={{ display: "flex" }}>
-                {/* {e.children.length &&} */}
-
-                <>
-                  <h4
-                    style={{
-                      backgroundColor: "#d14666",
-                      padding: "2px 10px",
-                      color: "#fff",
-                      margin: "0px",
-                      marginLeft: "1px",
-                      borderRadius: "2px",
-                      marginTop: "10px",
-                      fontSize: "15px",
-                    }}
-                  >
-                    {e.label}
-                  </h4>
-                </>
-              </div>
-            </Fragment>
-          ))}
-      </div>
+      ></div>
       {/* Show City */}
       {allOfCity.length > 0 && (
         <div
