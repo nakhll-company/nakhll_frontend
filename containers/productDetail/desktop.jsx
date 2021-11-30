@@ -604,7 +604,7 @@ const ProductDetailDesktop = ({ data }) => {
                         product={{
                           id: value.ID,
                           imageUrl: value.Image_medium_url ? value.Image_medium_url : '',
-                          url: value.FK_Shop && `/shop/${value.FK_Shop.slug}/product/${value.slug}`,
+                          url: value.FK_Shop && `/shop/${value.FK_Shop.slug}/product/${value.Slug}`,
                           title: value.Title,
                           chamberTitle: value.FK_Shop ? value.FK_Shop.title : " ",
                           chamberUrl: value.FK_Shop
