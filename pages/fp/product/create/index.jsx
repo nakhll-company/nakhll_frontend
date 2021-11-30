@@ -5,6 +5,7 @@ import Cropper from "react-easy-crop";
 import { useForm } from "react-hook-form";
 import Assistent from "zaravand-assistent-number";
 import { useCallback, useEffect, useState } from "react";
+import Image from "next/image";
 // components
 import MyLayout from "../../../../components/layout/Layout";
 import Loading from "../../../../components/loading/index";
@@ -20,6 +21,7 @@ import CheckboxTreeCities from "../../../../components/CheckboxTree/CheckboxTree
 import InputPictureSetting from "../../../../containers/settings/components/InputPicture";
 import InputPictureCreat from "../../../../containers/creat/component/InputPicture";
 import TitleLiner from "../../../../containers/settings/components/titleLiner";
+import PictureChildProduct from "../../../../containers/creat/component/pictureChildProduct";
 /**
  * component create product
  * @param {string} activeHojreh => it has slug of product
@@ -113,10 +115,7 @@ const CreateProduct = ({ activeHojreh }) => {
   const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState("");
   const [data, setData] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [crop, setCrop] = useState({ x: 0, y: 0 });
-  const [zoom, setZoom] = useState(1);
-  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
-  const [imageSrc, setImageSrc] = useState(null);
+
   const [previewImage, setPreviewImage] = useState(null);
   const [Add, setAdd] = useState(1);
   const [AddPreparationDays, setAddPreparationDays] = useState(1);
@@ -130,6 +129,12 @@ const CreateProduct = ({ activeHojreh }) => {
 
   // stat for test image
   const [imgProduct, setImgProduct] = useState(null);
+  const [imgProductOne, setImgProductOne] = useState(null);
+  const [imgProductTwo, setImgProductTwo] = useState(null);
+  const [imgProductThree, setImgProductThree] = useState(null);
+  const [imgProductFour, setImgProductFour] = useState(null);
+  const [imgProductFive, setImgProductFive] = useState(null);
+  const [imgProductSix, setImgProductSix] = useState(null);
 
   // for Save cities
   const [checkedCities, setCheckedCities] = useState([]);
@@ -258,42 +263,60 @@ const CreateProduct = ({ activeHojreh }) => {
                     }}
                     className="mt-3"
                   >
-                    حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش
+                    حداکثر تا ۷ تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش
                     داده خواهد شد.
                   </div>
 
-                  <InputPictureCreat
-                    setImageSrc={setImgProduct}
-                    image={imgProduct}
-                    ratio={1}
-                  />
-
-                  <div className="mt-4" name="mainPhoto">
-                    <div className={styles.product_image_container}>
-                      {/* preview image */}
-                      {previewImage &&
-                        previewImage.map((item, index) => {
-                          return (
-                            <div
-                              key={index}
-                              className={styles.product_image}
-                              style={{
-                                backgroundImage: `url(${item})`,
-                              }}
-                            >
-                              <div
-                                onClick={() => _removeImage(item)}
-                                className={styles.close_icon_container}
-                              >
-                                <i
-                                  style={{ fontSize: 14 }}
-                                  className="fas fa-times"
-                                ></i>
-                              </div>
-                            </div>
-                          );
-                        })}
+                  <div className={styles.main_picture_product}>
+                    <div className={styles.input_picture}>
+                      <InputPictureCreat
+                        setImageSrc={setImgProduct}
+                        image={imgProduct}
+                        ratio={1}
+                      />
                     </div>
+                    {imgProduct ? (
+                      <Image
+                        src={imgProduct}
+                        layout="responsive"
+                        height={100}
+                        width={100}
+                      />
+                    ) : (
+                      <Image
+                        src="/image/sample/2_1.jpg"
+                        layout="responsive"
+                        height={100}
+                        width={100}
+                      />
+                    )}
+                  </div>
+                  {/* imgProductChild, setImgProductChild */}
+                  <div className={styles.another_picture_product}>
+                    <PictureChildProduct
+                      setImageSrc={setImgProductOne}
+                      image={imgProductOne}
+                    />
+                    <PictureChildProduct
+                      setImageSrc={setImgProductTwo}
+                      image={imgProductTwo}
+                    />
+                    <PictureChildProduct
+                      setImageSrc={setImgProductThree}
+                      image={imgProductThree}
+                    />
+                    <PictureChildProduct
+                      setImageSrc={setImgProductFour}
+                      image={imgProductFour}
+                    />
+                    <PictureChildProduct
+                      setImageSrc={setImgProductFive}
+                      image={imgProductFive}
+                    />
+                    <PictureChildProduct
+                      setImageSrc={setImgProductSix}
+                      image={imgProductSix}
+                    />
                   </div>
                 </div>
                 {/* product detail */}
