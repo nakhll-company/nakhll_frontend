@@ -1,7 +1,7 @@
 // node libraries
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
-import Cropper from "react-easy-crop";
+
 import { useForm } from "react-hook-form";
 import Assistent from "zaravand-assistent-number";
 import { useCallback, useEffect, useState } from "react";
@@ -11,17 +11,17 @@ import MyLayout from "../../../../components/layout/Layout";
 import Loading from "../../../../components/loading/index";
 import Category from "../../../../containers/product/create/category";
 // methods
-import { getCroppedImg } from "../../../../containers/product/create/methods/canvasUtils";
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 import { mapState } from "../../../../containers/product/methods/mapState";
 // styles
 import styles from "../../../../styles/pages/product/create.module.scss";
 import { errorMessage } from "../../../../containers/utils/message";
 import CheckboxTreeCities from "../../../../components/CheckboxTree/CheckboxTree";
-import InputPictureSetting from "../../../../containers/settings/components/InputPicture";
 import InputPictureCreat from "../../../../containers/creat/component/InputPicture";
 import TitleLiner from "../../../../containers/settings/components/titleLiner";
 import PictureChildProduct from "../../../../containers/creat/component/pictureChildProduct";
+import InputUseForm from "../../../../containers/creat/component/inputUseForm";
+import TextAreaUseForm from "../../../../containers/creat/component/textAreaUseForm";
 /**
  * component create product
  * @param {string} activeHojreh => it has slug of product
@@ -36,12 +36,14 @@ const CreateProduct = ({ activeHojreh }) => {
     clearErrors,
     register,
     setError,
+    watch,
     handleSubmit,
     formState: { errors },
   } = useForm({
     criteriaMode: "all",
     mode: "all",
   });
+  console.log(watch());
   // submit
   const onSubmit = async (data) => {
     let err = false;
@@ -122,10 +124,6 @@ const CreateProduct = ({ activeHojreh }) => {
   const [submarketId, setSubmarketId] = useState(null);
   const [showSuccessPage, setShowSuccessPage] = useState(false);
   const [isLoad, setIsLoad] = useState(false);
-  let [stringPrice, setStringPrice] = useState("");
-  let [sepratorePrice, setSepratorePrice] = useState("");
-  let [stringOldPrice, setStringOldPrice] = useState("");
-  let [sepratoreOldPrice, setSepratoreOldPrice] = useState("");
 
   // stat for test image
   const [imgProduct, setImgProduct] = useState(null);
@@ -147,8 +145,6 @@ const CreateProduct = ({ activeHojreh }) => {
   }
   // use effect
   useEffect(() => {
-    window.localStorage.setItem("image", JSON.stringify([]));
-
     const _handleRequestApi = async () => {
       let params = null;
       let loadData = null;
@@ -197,13 +193,6 @@ const CreateProduct = ({ activeHojreh }) => {
     elementProduct.style.display = "none";
   };
 
-  // sepratore in numbers
-  const numberSeparateUtils = (number) => {
-    return number !== undefined
-      ? number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-      : null;
-  };
-
   if (isLoad) {
     return (
       <>
@@ -212,24 +201,15 @@ const CreateProduct = ({ activeHojreh }) => {
             <div id="wrapper_product" className={styles.wrapper_product}>
               <div className={styles.createProduct_lineRighte}>
                 <TitleLiner title="اطلاعات محصول" />
-
                 {/* product name */}
-                <div className={styles.wrapper_input}>
-                  <label className={styles.lable_product} htmlFor="Title">
-                    نام محصول
-                  </label>
+                <InputUseForm title="نام محصول" error={errors.Title}>
                   <input
-                    className={styles.input_product}
-                    id="Title"
-                    type="text"
-                    {...register("Title", { required: true })}
+                    type="number"
+                    {...register("Title", {
+                      required: "لطفا نام محصول را تکمیل کنید.",
+                    })}
                   />
-                  {errors.Title && (
-                    <span style={{ color: "red", fontSize: "14px" }}>
-                      لطفا این گزینه را پر کنید
-                    </span>
-                  )}
-                </div>
+                </InputUseForm>
                 {/* category */}
                 <div className={styles.wrapper_input}>
                   <label className={styles.lable_product} htmlFor="Title">
@@ -320,283 +300,127 @@ const CreateProduct = ({ activeHojreh }) => {
                   </div>
                 </div>
                 {/* product detail */}
-
                 <TitleLiner title=" جزئیات محصول" />
-
                 {/* weight */}
-                <div className={styles.wrapper_input}>
-                  <label className={styles.lable_product} htmlFor="Net_Weight">
-                    وزن خالص محصول
-                  </label>
-                  <div className={styles.wrapper_input_suffixText}>
-                    <input
-                      style={{ outline: "unset", border: "unset" }}
-                      id="Net_Weight"
-                      type="number"
-                      onWheel={(event) => {
-                        event.currentTarget.blur();
-                      }}
-                      {...register("Net_Weight", {
-                        required: "لطفا این گزینه را پرنمایید",
-                        min: {
-                          value: 0,
-                          message: "لطفا اعداد بزرگتر از صفر وارد نمایید",
-                        },
-                      })}
-                    />
-                    <div>
-                      <p>گرم</p>
-                    </div>
-                  </div>
-                  {errors.Net_Weight && (
-                    <span style={{ color: "red", fontSize: "14px" }}>
-                      {errors.Net_Weight.message}
-                    </span>
-                  )}
-                </div>
+                <InputUseForm
+                  title="وزن خالص محصول"
+                  error={errors.Net_Weight}
+                  text="گرم"
+                >
+                  <input
+                    type="number"
+                    {...register("Net_Weight", {
+                      required: "لطفا این گزینه را پرنمایید",
+                      min: {
+                        value: 0,
+                        message: "لطفا اعداد بزرگتر از صفر وارد نمایید",
+                      },
+                    })}
+                  />
+                </InputUseForm>
                 {/* weight with packing */}
-                <div className={styles.wrapper_input}>
-                  <label
-                    className={styles.lable_product}
-                    htmlFor="Weight_With_Packing"
-                  >
-                    وزن با بسته بندی
-                  </label>
-                  <div className={styles.wrapper_input_suffixText}>
-                    <input
-                      style={{ outline: "unset", border: "unset" }}
-                      id="Weight_With_Packing"
-                      type="number"
-                      onWheel={(event) => {
-                        event.currentTarget.blur();
-                      }}
-                      {...register("Weight_With_Packing", {
-                        required: "لطفا این گزینه را پرنمایید",
-                        min: {
-                          value: 0,
-                          message: "لطفا اعداد بزرگتر از صفر وارد نمایید",
-                        },
-                        validate: (value) =>
-                          parseInt(value) > parseInt(getValues("Net_Weight")) ||
-                          "وزن با بسته بندی باید بیشتر از وزن  خالص باشد",
-                      })}
-                    />
-                    <div>
-                      <p>گرم</p>
-                    </div>
-                  </div>
-                  {errors.Weight_With_Packing && (
-                    <span style={{ color: "red", fontSize: "14px" }}>
-                      {errors.Weight_With_Packing.message}
-                    </span>
-                  )}
-                </div>
+                <InputUseForm
+                  title="وزن با بسته بندی"
+                  error={errors.Weight_With_Packing}
+                  text="گرم"
+                >
+                  <input
+                    type="number"
+                    {...register("Weight_With_Packing", {
+                      required: "لطفا این گزینه را پرنمایید",
+                      min: {
+                        value: 0,
+                        message: "لطفا اعداد بزرگتر از صفر وارد نمایید",
+                      },
+                      validate: (value) =>
+                        parseInt(value) > parseInt(getValues("Net_Weight")) ||
+                        "وزن با بسته بندی باید بیشتر از وزن  خالص باشد",
+                    })}
+                  />
+                </InputUseForm>
                 {/* price */}
-                <div className={styles.wrapper_input}>
-                  <label className={styles.lable_product} htmlFor="Price">
-                    قیمت محصول
-                  </label>
-                  <div className={styles.wrapper_input_suffixText}>
-                    <input
-                      style={{ outline: "unset", border: "unset" }}
-                      id="Price"
-                      type="number"
-                      onWheel={(event) => {
-                        event.currentTarget.blur();
-                      }}
-                      {...register("Price", {
-                        required: "لطفا این گزینه را پرنمایید",
-                        min: {
-                          value: 500,
-                          message: "لطفا اعداد بزرگتر از 500 وارد نمایید",
-                        },
-                      })}
-                      onChange={(e) => {
-                        setStringPrice(_asist.word(e.target.value));
-                        setSepratorePrice(numberSeparateUtils(e.target.value));
-                      }}
-                    />
-                    <div>
-                      <p>تومان</p>
-                    </div>
-                  </div>
-                  <span
-                    style={{
-                      fontSize: "12px",
-                      color: "rgb(0, 122, 255)",
-                      paddingRight: "20px",
-                    }}
-                  >
-                    {stringPrice.length !== 0 && `${stringPrice} تومان`}
-                  </span>
-                  {errors.Price && (
-                    <span style={{ color: "red", fontSize: "14px" }}>
-                      {errors.Price.message}
-                    </span>
-                  )}
-                </div>
+                <InputUseForm
+                  title="قیمت محصول"
+                  error={errors.Price}
+                  text="تومان"
+                >
+                  <input
+                    type="number"
+                    {...register("Price", {
+                      required: "لطفا این گزینه را پرنمایید",
+                      min: {
+                        value: 500,
+                        message: "لطفا اعداد بزرگتر از 500 وارد نمایید",
+                      },
+                    })}
+                  />
+                </InputUseForm>
                 {/* price with discount */}
-                <div className={styles.wrapper_input}>
-                  <label className={styles.lable_product} htmlFor="OldPrice">
-                    قیمت محصول با تخفیف (اختیاری){" "}
-                  </label>
-                  <div className={styles.wrapper_input_suffixText}>
-                    <input
-                      style={{ outline: "unset", border: "unset" }}
-                      id="OldPrice"
-                      type="number"
-                      onWheel={(event) => {
-                        event.currentTarget.blur();
-                      }}
-                      defaultValue={0}
-                      {...register("OldPrice", {
-                        min: {
-                          value: 0,
-                          message: "لطفا اعداد بزرگتر از صفر وارد نمایید",
-                        },
-                        validate: (value) =>
-                          parseInt(value) < parseInt(getValues("Price")) ||
-                          "قیمت با تخفیف باید کمتر از قیمت اصلی باشد",
-                      })}
-                      onChange={(e) => {
-                        setStringOldPrice(_asist.word(e.target.value));
-                        setSepratoreOldPrice(
-                          numberSeparateUtils(e.target.value)
-                        );
-                      }}
-                    />
-                    <div>
-                      <p>تومان</p>
-                    </div>
-                  </div>
-                  <span
-                    style={{
-                      fontSize: "12px",
-                      color: "rgb(0, 122, 255)",
-                      paddingRight: "20px",
-                    }}
-                  >
-                    {stringOldPrice.length !== 0 && `${stringOldPrice} تومان`}
-                  </span>
-                  {errors.OldPrice && (
-                    <span style={{ color: "red", fontSize: "14px" }}>
-                      {errors.OldPrice.message}
-                    </span>
-                  )}
-                  {sepratoreOldPrice.length > 0 && (
-                    <div className={styles.previewPrice}>
-                      <span>پیش نمایش :</span>
-                      <span dir="rtl">
-                        <del dir="rtl" style={{ color: "#a3a3a3" }}>
-                          {sepratorePrice}
-                        </del>
-                        <br />
-                        <b dir="rtl">{sepratoreOldPrice}تومان</b>
-                      </span>
-                    </div>
-                  )}
-                </div>
+                <InputUseForm
+                  title="قیمت محصول با تخفیف (اختیاری)"
+                  error={errors.OldPrice}
+                  text="تومان"
+                >
+                  <input
+                    type="number"
+                    defaultValue={0}
+                    {...register("OldPrice", {
+                      min: {
+                        value: 0,
+                        message: "لطفا اعداد بزرگتر از صفر وارد نمایید",
+                      },
+                      validate: (value) =>
+                        parseInt(value) < parseInt(getValues("Price")) ||
+                        "قیمت با تخفیف باید کمتر از قیمت اصلی باشد",
+                    })}
+                  />
+                </InputUseForm>
                 {/* discription */}
-                <div className={styles.wrapper_input}>
-                  <label className={styles.lable_product} htmlFor="Description">
-                    توضیحات محصول (اختیاری)
-                  </label>
+                <TextAreaUseForm title="توضیحات محصول (اختیاری)">
                   <textarea
-                    className={styles.input_product}
-                    id="Description"
-                    name="Description"
+                    rows="10"
                     type="text"
-                    placeholder="توضیحات خود را در صورت تمایل اینجا وارد کنید"
+                    placeholder="محصول بدون توضیح مثل آدم بدون شناسنامه میمونه..."
                     {...register("Description")}
                   />
-                </div>
+                </TextAreaUseForm>
                 {/* inventory */}
-                <div className={styles.twoCol}>
-                  <div>
-                    <p
-                      htmlFor="Inventory"
-                      style={{
-                        marginBottom: "10px",
-                        color: "#364254",
-                        fontSize: 14,
-                      }}
-                    >
-                      موجودی
-                    </p>
-                    <div className={styles.inputWidRtl}>
-                      <button type="button" onClick={add}>
-                        <span className="fas fa-plus"></span>
-                      </button>
-                      <div className={styles.center}>
-                        <input
-                          type="number"
-                          min="0"
-                          max="500"
-                          value={Add}
-                          id="Inventory"
-                          name="Inventory"
-                          onWheel={(event) => {
-                            event.currentTarget.blur();
-                          }}
-                          onChange={(e) => {
-                            setAdd(e.target.value);
-                          }}
-                        />
-                        <h4>عدد</h4>
-                      </div>
-                      <button type="button" onClick={mini}>
-                        <span className="fas fa-minus"></span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                <InputUseForm
+                  title="موجودی"
+                  error={errors.Inventory}
+                  text="عدد"
+                >
+                  <input
+                    type="number"
+                    {...register("Inventory", {
+                      required: "لطفا این گزینه را پرنمایید",
+                      min: {
+                        value: 0,
+                        message: "لطفا اعداد بزرگتر از 0 وارد نمایید",
+                      },
+                    })}
+                  />
+                </InputUseForm>
                 {/* information  */}
-
                 <TitleLiner title=" اطلاعات ارسال" />
-
                 {/* Preparation Days */}
-                <div className={styles.twoCol}>
-                  <div>
-                    <p
-                      htmlFor="PreparationDays"
-                      style={{
-                        marginBottom: "10px",
-                        color: "#364254",
-                        fontSize: 14,
-                      }}
-                    >
-                      زمان آماده سازی
-                    </p>
-                    <div className={styles.inputWidRtl}>
-                      <button type="button" onClick={AddPreparationDayss}>
-                        <span className="fas fa-plus"></span>
-                      </button>
-                      <div className={styles.center}>
-                        <input
-                          type="number"
-                          min="0"
-                          max="500"
-                          onWheel={(event) => {
-                            event.currentTarget.blur();
-                          }}
-                          value={AddPreparationDays}
-                          id="PreparationDays"
-                          name="PreparationDays"
-                          onChange={(e) => {
-                            setAddPreparationDays(e.target.value);
-                          }}
-                        />
-                        <h4>روز</h4>
-                      </div>
-                      <button type="button" onClick={miniPreparationDays}>
-                        <span className="fas fa-minus"></span>
-                      </button>
-                    </div>
-                    <p style={{ fontSize: "13px", color: "#5E7488" }}>
-                      زمان آماده سازی : آماده برای ارسال بعد از سفارش مشتری
-                    </p>
-                  </div>
-                </div>
+                <InputUseForm
+                  title="زمان آماده سازی"
+                  error={errors.PreparationDays}
+                  text="روز"
+                >
+                  <input
+                    type="number"
+                    {...register("PreparationDays", {
+                      required: "لطفا این گزینه را پرنمایید",
+                      min: {
+                        value: 0,
+                        message: "لطفا اعداد بزرگتر از 0 وارد نمایید",
+                      },
+                    })}
+                  />
+                </InputUseForm>
+                زمان آماده سازی : آماده برای ارسال بعد از سفارش مشتری
                 {/* product status */}
                 <div
                   style={{
@@ -604,124 +428,13 @@ const CreateProduct = ({ activeHojreh }) => {
                     justifyContent: "center",
                     marginTop: "15px",
                   }}
-                >
-                  {/* Ready in stock */}
-                  <label
-                    htmlFor="availbe"
-                    className="labels activeLabel"
-                    onClick={(e) => {
-                      let actives = document.getElementsByClassName(
-                        "activeLabel"
-                      );
-                      for (let i = 0; i < actives.length; i++) {
-                        actives[i].classList.remove("activeLabel");
-                      }
-                      e.currentTarget.classList.add("activeLabel");
-                    }}
-                  >
-                    اماده در انبار
-                  </label>
-                  <input
-                    defaultChecked={true}
-                    value={1}
-                    type="radio"
-                    name="status_product"
-                    id="availbe"
-                    className="radios"
-                  />
-                  {/* Post ready production */}
-                  <label
-                    htmlFor="stop"
-                    className="labels"
-                    onClick={(e) => {
-                      let actives = document.getElementsByClassName(
-                        "activeLabel"
-                      );
-                      for (let i = 0; i < actives.length; i++) {
-                        actives[i].classList.remove("activeLabel");
-                      }
-                      e.currentTarget.classList.add("activeLabel");
-                    }}
-                  >
-                    تولید بعد از سفارش
-                  </label>
-                  <input
-                    value={2}
-                    type="radio"
-                    name="status_product"
-                    id="stop"
-                    className="radios"
-                  />
-                  {/* Ordering */}
-                  <label
-                    htmlFor="soon"
-                    className="labels"
-                    onClick={(e) => {
-                      let actives = document.getElementsByClassName(
-                        "activeLabel"
-                      );
-                      for (let i = 0; i < actives.length; i++) {
-                        actives[i].classList.remove("activeLabel");
-                      }
-                      e.currentTarget.classList.add("activeLabel");
-                    }}
-                  >
-                    سفارشی سازی فروش
-                  </label>
-                  <input
-                    value={3}
-                    type="radio"
-                    name="status_product"
-                    id="soon"
-                    className="radios"
-                  />
-                  {/* styles label */}
-                  <style jsx>
-                    {`
-                      .labels {
-                        background: #ffffff;
-                        border: 1px solid #e0e6e9;
-                        box-sizing: border-box;
-                        border-radius: 5px;
-                        width: 250px;
-                        height: 41px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        flex-direction: row;
-                        font-size: 15px;
-                        color: #a4aebb;
-                        text-align: center;
-                      }
-                      .radios {
-                        visibility: hidden;
-                      }
-                      .activeLabel {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        flex-direction: row;
-                        background: #ffffff;
-                        border: 1px solid #007aff;
-                        box-sizing: border-box;
-                        border-radius: 5px;
-                        width: 250px;
-                        height: 41px;
-                        font-size: 15px;
-                        color: #007aff;
-                      }
-                    `}
-                  </style>
-                </div>
-
+                ></div>
                 {/* with Componetn */}
                 <CheckboxTreeCities
                   checkedCity={checkedCities}
                   setCheckedCity={setCheckedCities}
                 />
-
                 {/* button submit */}
-
                 <div>
                   <button
                     type="submit"

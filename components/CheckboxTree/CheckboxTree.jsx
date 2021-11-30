@@ -2,6 +2,7 @@ import React, { useEffect, useState, Fragment } from "react";
 import CheckboxTree from "react-checkbox-tree";
 import { allCites } from "./data";
 import Assistent from "zaravand-assistent-number";
+import TitleLiner from "../../containers/settings/components/titleLiner";
 const _asist = new Assistent();
 
 function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
@@ -154,17 +155,8 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
   // ###########################################
   return (
     <>
-      <div className="mt-4">
-        <div>
-          <h5
-            style={{ color: "#007aff", fontSize: "14px" }}
-            className="mb-0 d-inline mr-20"
-          >
-            محدوده ارسال
-          </h5>
-        </div>
-      </div>
-      <hr style={{ background: "#007aff", width: "100%" }} />
+      <TitleLiner title=" محدوده ارسال" />
+
       <form>
         <div className="form-check">
           <input
