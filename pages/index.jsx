@@ -32,7 +32,7 @@ const fetchData = async () => {
         all_data_for_component.push(one_Component.data);
       }
     }
-    console.log(">>>", Schema.data);
+
     return {
       SchemaIn: Schema.data,
       all_type_for_component,
