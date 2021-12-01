@@ -91,18 +91,22 @@ function ListProductCus({ data }) {
   const [changePage, setChangePage] = useState(1);
 
   const _handel_category = async () => {
-    try {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        `/api/v1/categories/category_product_count/?q=${searchWord}`,
-        true,
-        {}
-      );
-      if (response.status === 200) {
-        setCategories(response.data);
-      }
-    } catch (e) {}
+    if(categories.length ==0){
+      try {
+        let response = await ApiRegister().apiRequest(
+          null,
+          "get",
+          `/api/v1/categories/category_product_count/?q=${searchWord}`,
+          true,
+          {}
+        );
+        if (response.status === 200) {
+          setCategories(response.data);
+        }
+      } catch (e) {}
+
+    }
+    
   };
 
   const _handel_Add_category = (id) => {
@@ -254,9 +258,9 @@ function ListProductCus({ data }) {
     changePage,
     hojreh,
   ]);
-  useEffect(async () => {
-    await _handel_category();
-  }, []);
+  // useEffect(async () => {
+  //   await _handel_category();
+  // }, []);
 
   useEffect(() => {
     router.push(
@@ -311,8 +315,8 @@ function ListProductCus({ data }) {
           <div className="row ">
             <div className="d-none d-lg-block col-lg-3">
               <div id="sidebar">
-                {categories.length > 0 && (
-                  <CustomAccordion title="دسته بندی" item="one">
+               
+                  <CustomAccordion title="دسته بندی" item="one" callApi={_handel_category}>
                     {categories.map((ele, index) => (
                       <div
                         key={`one${index}`}
@@ -341,7 +345,7 @@ function ListProductCus({ data }) {
                       </div>
                     ))}
                   </CustomAccordion>
-                )}
+                
 
                 <CustomAccordion title="محدوده قیمت" item="two" close={true}>
                   <div style={{ direction: "ltr", zIndex: "1000" }}>
