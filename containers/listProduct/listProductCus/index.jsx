@@ -3,7 +3,7 @@ import router from "next/router";
 import CheckboxTree from "react-checkbox-tree";
 import Assistent from "zaravand-assistent-number";
 import React, { useEffect, useState } from "react";
-import ContextListProductPage from "./Context/context";
+
 import InfiniteScroll from "react-infinite-scroll-component";
 // components
 import { TopBar } from "../TopBar";
@@ -17,20 +17,22 @@ import ProductCard from "../../../components/ProductCart/ProductCard";
 import CustomAccordion from "../../../components/custom/customAccordion";
 import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
 import MultiRangeSlider from "../../../components/custom/customMultiRangeSlider/MultiRangeSlider";
+
+
+
+
 // methods
 import { ApiReference } from "../../../Api";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // styles
 import styles from "./listProductCus.module.scss";
+import OrderingModalMobile from "./components/OrderingModalMobile";
 
 const _asist = new Assistent();
 
 function ListProductCus({ data }) {
-  const [listProducts, setlistProducts] = useState([]);
-
-  const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
+    const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
   const [searchWord, setSearchWord] = useState(data.q ? data.q : "");
-
   const [listWithFilter, setListWithFilter] = useState([]);
   // state for  show Ordering Modal in mobile
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -152,6 +154,7 @@ function ListProductCus({ data }) {
       );
       if (response.status === 200) {
         setListWithFilter(response.data.results);
+        console.log(`response.data`, response.data)
 
         if (
           response.data.results.length === 0 ||
@@ -302,15 +305,7 @@ function ListProductCus({ data }) {
 
   return (
     <>
-      <ContextListProductPage.Provider
-        value={{
-          listProducts: listProducts,
-          totalcount: totalcount,
-          handel_filterModal: handel_filterModal,
-          _handel_filters: _handel_filters,
-          listWithFilter: listWithFilter,
-        }}
-      >
+      
         <div className={styles.container_N}>
           <div className="row ">
             <div className="d-none d-lg-block col-lg-3">
@@ -658,128 +653,10 @@ function ListProductCus({ data }) {
 
         {/* ModalOrdering Strat */}
         {isOpenOrderingModal && (
-          <div className={`${styles.modal_filter_products} d-none d-lg-block `}>
-            <div
-              style={{
-                position: "fixed",
-                top: "10px",
-                left: "10px",
-                zIndex: "10000",
-              }}
-            >
-              <i
-                onClick={handel_OrderingModal}
-                className="far fa-times-circle"
-                style={{
-                  fontSize: "25px",
-                  marginTop: "5px",
-                  marginLeft: "10px",
-                }}
-              ></i>
-            </div>
-            <div id="sidebar">
-              <div className={styles.search_body_filter}>
-                <div
-                  className={styles.modal_body}
-                  style={{ msOverflowX: "hidden" }}
-                >
-                  <div
-                    style={{
-                      padding: "5px",
-                      paddingBottom: "10px",
-                      paddingTop: "20px",
-                      borderBottom: "1px solid gray",
-                    }}
-                    onClick={() => {
-                      setWhichOrdering("");
-                      setIsOpenOrderingModal(false);
-                    }}
-                  >
-                    <span>مرتبط ترین</span>
-                  </div>
-                  <div
-                    style={{
-                      padding: "5px",
-                      paddingBottom: "10px",
-                      paddingTop: "20px",
-                      borderBottom: "1px solid gray",
-                    }}
-                    onClick={() => {
-                      setWhichOrdering("Price");
-                      setIsOpenOrderingModal(false);
-                    }}
-                  >
-                    <span>ارزانتر</span>
-                  </div>
-                  <div
-                    style={{
-                      padding: "5px",
-                      paddingBottom: "10px",
-                      paddingTop: "20px",
-                      borderBottom: "1px solid gray",
-                    }}
-                    onClick={() => {
-                      setWhichOrdering("-Price");
-                      setIsOpenOrderingModal(false);
-                    }}
-                  >
-                    <span>گرانتر</span>
-                  </div>
-                  <div
-                    style={{
-                      padding: "5px",
-                      paddingBottom: "10px",
-                      paddingTop: "20px",
-                      borderBottom: "1px solid gray",
-                    }}
-                    onClick={() => {
-                      setWhichOrdering("-DiscountPrecentage");
-                      setIsOpenOrderingModal(false);
-                    }}
-                  >
-                    <span>بیشترین تخفیف</span>
-                  </div>
-                  <div
-                    style={{
-                      padding: "5px",
-                      paddingBottom: "10px",
-                      paddingTop: "20px",
-                      borderBottom: "1px solid gray",
-                    }}
-                    onClick={() => {
-                      setWhichOrdering("-DateCreate");
-                      setIsOpenOrderingModal(false);
-                    }}
-                  >
-                    <span>تازه ها</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              style={{
-                position: "fixed",
-                bottom: "0",
-                left: "0",
-                right: "0",
-                textAlign: "center",
-                marginTop: "20px",
-                zIndex: "99999",
-                backgroundColor: "#fff",
-                padding: "5px",
-              }}
-            >
-              <button
-                onClick={handel_filterModal}
-                className="btn btn-dark"
-                style={{ width: "90vw", fontSize: "14px" }}
-              >
-                {" "}
-                تایید
-              </button>
-            </div>
-            <div style={{ paddingBottom: "80px" }}></div>
-          </div>
+          <OrderingModalMobile handel_OrderingModal={handel_OrderingModal}
+          handel_filterModal={handel_filterModal}
+          setWhichOrdering={setWhichOrdering}
+          setIsOpenOrderingModal={setIsOpenOrderingModal}/>
         )}
         <AddFavorites />
 
@@ -790,7 +667,7 @@ function ListProductCus({ data }) {
         {/* MenuMobile */}
         <MenuMobile />
         {/* MenuMobile */}
-      </ContextListProductPage.Provider>
+      
     </>
   );
 }
