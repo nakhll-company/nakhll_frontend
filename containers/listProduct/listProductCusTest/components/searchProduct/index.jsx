@@ -7,7 +7,7 @@ function SearchProduct({ NameHojreh, hojreh, searchWord }) {
   const { register, handleSubmit } = useForm();
 
   const _handelSearch = (data) => {
-    location.replace(`/search?q=${data.searchWord}&shop=${hojreh}`);
+    location.replace(`/shop/${hojreh}?q=${data.searchWord}&shop=${hojreh}`);
   };
 
   return (
@@ -29,7 +29,7 @@ function SearchProduct({ NameHojreh, hojreh, searchWord }) {
               defaultValue={searchWord}
               type="text"
               className={styles.searchTerm}
-              placeholder={`جستجو  در حجره ${NameHojreh}`}
+              placeholder={`جستجو در حجره ${NameHojreh}`}
               {...register("searchWord")}
             />
             <button type="submit" className={styles.searchButton}>

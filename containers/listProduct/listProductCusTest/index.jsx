@@ -27,8 +27,8 @@ import OrderingModalMobile from "./components/OrderingModalMobile";
 import SearchProduct from "./components/searchProduct";
 const _asist = new Assistent();
 
-function ListProductCus({ data }) {
-  const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
+function ListProductCusTest({ data }) {
+  const [hojreh, setHojreh] = useState(data.shopslug ? data.shopslug : "");
   const [searchWord, setSearchWord] = useState(data.q ? data.q : "");
   const [listWithFilter, setListWithFilter] = useState([]);
   // state for  show Ordering Modal in mobile
@@ -94,7 +94,7 @@ function ListProductCus({ data }) {
       let response = await ApiRegister().apiRequest(
         null,
         "get",
-        `/api/v1/categories/category_product_count/?q=${searchWord}`,
+        `/api/v1/categories/category_product_count/?q=${searchWord}&shop=${hojreh}`,
         true,
         {}
       );
@@ -256,7 +256,7 @@ function ListProductCus({ data }) {
   useEffect(() => {
     router.push(
       {
-        pathname: router.pathname,
+        pathname: data.shopslug,
         query: {
           q: searchWord,
           ...(whichOrdering !== "" && { ordering: whichOrdering }),
@@ -678,4 +678,4 @@ function ListProductCus({ data }) {
   );
 }
 
-export default ListProductCus;
+export default ListProductCusTest;
