@@ -27,11 +27,10 @@ import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // styles
 import styles from "./listProductCus.module.scss";
 import OrderingModalMobile from "./components/OrderingModalMobile";
-
 const _asist = new Assistent();
 
 function ListProductCus({ data }) {
-    const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
+  const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
   const [searchWord, setSearchWord] = useState(data.q ? data.q : "");
   const [listWithFilter, setListWithFilter] = useState([]);
   // state for  show Ordering Modal in mobile
@@ -40,12 +39,10 @@ function ListProductCus({ data }) {
   const [totalcount, setTotalcount] = useState("");
   // state for show loading
   const [isLoading, setIsLoading] = useState(false);
-
   // state for ordering
   const [whichOrdering, setWhichOrdering] = useState(
     data.ordering ? data.ordering : ""
   );
-
   // state for on filter
   const [isDiscountPercentage, setIsDiscountPercentage] = useState(
     data.discounted == "true" ? true : false
@@ -215,17 +212,21 @@ function ListProductCus({ data }) {
   };
   // Get all shops
   const _get_all_shops = async () => {
-    let shops = await ApiRegister().apiRequest(
-      null,
-      "GET",
-      ApiReference.allShops,
-      true,
-      ""
-    );
 
-    if (shops.status === 200) {
-      setShopsName(shops.data);
+    if(shopsName.length==0){
+      let shops = await ApiRegister().apiRequest(
+        null,
+        "GET",
+        ApiReference.allShops,
+        true,
+        ""
+      );
+  
+      if (shops.status === 200) {
+        setShopsName(shops.data);
+      }
     }
+    
   };
   // Function for search
   const _handel_search = (word) => {
@@ -240,7 +241,7 @@ function ListProductCus({ data }) {
   // START
   // for filters in sidebar
   useEffect(async () => {
-    await _get_all_shops();
+    
     await _handel_filters();
   }, [
     isAvailableGoods,
@@ -368,7 +369,7 @@ function ListProductCus({ data }) {
                   item="searchHoj"
                   close={true}
                 >
-                  <Search onChange={(e) => _handel_search(e.target.value)} />
+                  <Search onClick={_get_all_shops} onChange={(e) => _handel_search(e.target.value)} />
                   {searchShops.length > 0 && (
                     <div className={styles.numBag}>
                       <span> {_asist.PSeparator(searchShops.length)}</span>
