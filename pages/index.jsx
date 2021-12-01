@@ -131,13 +131,8 @@ const index = ({ data }) => {
   return (
     <>
       <Head>
-        <title>بازار اجتماعی نخل</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta
-          name="description"
-          content="نخل سرزمینی است برای یادآوری سنت‌های اصیل ایرانی‌مان، برای شکوفایی استعدادها و بهتر دیده‌شدن‌تان، کالاها و خدمات خود را در سرزمین نخل به اشتراک بگذارید. اینجا راهی برای پیشبرد هدف‌هایتان وجود دارد."
-        />
-        <meta
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                <meta
           name="keywords"
           content=" نخل به وسعت یک سرزمین،بازار نخل،نخل،بازار اجتماعی نخل،بازار آنلاین نخل"
         />

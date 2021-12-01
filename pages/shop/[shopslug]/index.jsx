@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Head from "next/head";
+import {NextSeo} from 'next-seo'
 
 import EnfoLiner from "../../../containers/hojreh/EnfoLiner";
 import HeroSlides from "../../../containers/LandingPage/HeroSlides";
@@ -73,6 +74,7 @@ const fetchData = async (id) => {
 
 const Shop = ({ dataShop, data }) => {
   const [informationShop, setInformationShop] = useState(dataShop.shop);
+  console.log(`data`, data)
   const _handel_select_component = (type, index) => {
     switch (type.component_type) {
       case 1:
@@ -135,6 +137,9 @@ const Shop = ({ dataShop, data }) => {
         null;
     }
   };
+  const SEO={
+    title:` حجره ${dataShop.shop.title} | نخل`
+  }
   return (
     <>
       <Head>
@@ -161,8 +166,9 @@ const Shop = ({ dataShop, data }) => {
           integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
           crossOrigin="anonymous"
         ></link>
-        <title>{` حجره ${informationShop.title} | نخل`}</title>
+        
       </Head>
+      <NextSeo {...SEO}/>
       {!dataShop.shop.is_landing && (
         <>
           <EnfoLiner

@@ -1,11 +1,12 @@
 // node libraries
 import { Provider } from "react-redux";
-import { useEffect } from "react";
 
 import Script from "next/script";
 import { useRouter } from "next/router";
 import { Store } from "../redux/store";
-import { hotjar } from "react-hotjar";
+
+import { DefaultSeo } from "next-seo";
+import SEO from "../next-seo.config";
 
 // components
 import MyLayout from "../components/layout/Layout";
@@ -24,6 +25,7 @@ function MyApp({ Component, pageProps }) {
   if (router.pathname.startsWith("/fp")) {
     return (
       <>
+        <DefaultSeo {...SEO} />
         <General />
         <Script id="testChat" strategy="lazyOnload">
           {`
@@ -44,6 +46,7 @@ function MyApp({ Component, pageProps }) {
   ) {
     return (
       <>
+        <DefaultSeo {...SEO} />
         <General />
         <Provider store={Store}>
           <Component {...pageProps} />
@@ -53,6 +56,7 @@ function MyApp({ Component, pageProps }) {
   } else {
     return (
       <>
+        <DefaultSeo {...SEO} />
         <General />
         <Script id="testChat" strategy="lazyOnload">
           {`
