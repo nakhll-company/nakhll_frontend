@@ -21,6 +21,7 @@ const Code = () => {
 
         if (result !== false) {
             if (JSON.parse(sessionStorage.getItem("login")).mobile_status === "login_pass") {
+                sessionStorage.setItem("secret_key", result.auth_secret);
                 router.push("/login/forgetPassword");
             } else {
                 let response = await getAccessToken(result);
