@@ -24,6 +24,7 @@ import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // styles
 import styles from "./listProductCus.module.scss";
 import OrderingModalMobile from "./components/OrderingModalMobile";
+import SearchProduct from "./components/searchProduct";
 const _asist = new Assistent();
 
 function ListProductCus({ data }) {
@@ -86,11 +87,10 @@ function ListProductCus({ data }) {
   const [searchShops, setSearchShops] = useState([]);
   // state for change page
   const [changePage, setChangePage] = useState(1);
+  const [NameHojreh, setNameHojreh] = useState("")
 
   const _handel_category = async () => {
-    console.log(`categories`, categories);
-
-    try {
+        try {
       let response = await ApiRegister().apiRequest(
         null,
         "get",
@@ -150,7 +150,8 @@ function ListProductCus({ data }) {
       );
       if (response.status === 200) {
         setListWithFilter(response.data.results);
-        console.log(`response.data`, response.data);
+        setNameHojreh(response.data.results[0].FK_Shop.title)
+        
 
         if (
           response.data.results.length === 0 ||
@@ -250,9 +251,7 @@ function ListProductCus({ data }) {
     changePage,
     hojreh,
   ]);
-  // useEffect(async () => {
-  //   await _handel_category();
-  // }, []);
+  
 
   useEffect(() => {
     router.push(
@@ -458,6 +457,9 @@ function ListProductCus({ data }) {
               setWhichOrdering={setWhichOrdering}
               handel_OrderingModal={handel_OrderingModal}
             />
+            {/* inja */}
+            {hojreh !== "" && <SearchProduct searchWord={searchWord} NameHojreh={NameHojreh} hojreh={hojreh}/>}
+            
             <div className="mx-auto row">
               {isLoading ? (
                 <WoLoading />
@@ -577,7 +579,7 @@ function ListProductCus({ data }) {
               </div>
             </CustomAccordion>
             {categories.length > 0 && (
-              <CustomAccordion title="دسته بندی" item="1mobile">
+              <CustomAccordion title="دسته بندی" item="1mobile" callApi={() => _handel_category()}>
                 {categories.map((ele, index) => (
                   <div
                     key={`one${index}`}
