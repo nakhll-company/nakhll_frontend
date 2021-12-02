@@ -37,8 +37,8 @@ export default function ListCardBuy() {
                 style={
                   !(
                     index > 0 &&
-                    El.product.shop.slug ==
-                    All_product_list_buy.ordered_items[index - 1].product.shop
+                    El.product.FK_Shop.slug ==
+                    All_product_list_buy.ordered_items[index - 1].product.FK_Shop
                       .slug
                   )
                     ? { position: "relative" }
@@ -53,15 +53,15 @@ export default function ListCardBuy() {
               >
                 {!(
                   index > 0 &&
-                  El.product.shop.slug ==
-                  All_product_list_buy.ordered_items[index - 1].product.shop
+                  El.product.FK_Shop.slug ==
+                  All_product_list_buy.ordered_items[index - 1].product.FK_Shop
                     .slug
                 ) && (
                     <div className="pt-3 pb-1 px-3">
                       <span className="font-size1">از حجره: </span>{" "}
-                      <Link href={`/shop/${El.product.shop.slug}/`}>
+                      <Link href={`/shop/${El.product.FK_Shop.slug}/`}>
                         <a className="vendor-link font-size1 font-weight-bold link-body font-weight-normal txtcut">
-                          {El.product.shop.title}
+                          {El.product.FK_Shop.title}
                         </a>
                       </Link>
                     </div>
@@ -88,7 +88,7 @@ export default function ListCardBuy() {
                 {/*^^^^^^^^^^^ IF CHANGE IN PRODUCT IN LIST ^^^^^^^^^^^*/}
 
                 <div className="p-3 mt-2 cart-product-item">
-                  {loading && productId === El.product.id ? (
+                  {loading && productId === El.product.ID ? (
                     <div>
                       <Loading />
                     </div>
@@ -98,7 +98,7 @@ export default function ListCardBuy() {
                         <div className="d-flex w-100">
                           <a className="product-link">
                             <img
-                              src={El.product.image_thumbnail_url}
+                              src={El.product.Image_medium_url}
                               className={`${styles.cart_product_item_img} ${styles.rounded}`}
                             />
                           </a>
@@ -109,9 +109,9 @@ export default function ListCardBuy() {
                                 justifyContent: "space-between",
                               }}
                             >
-                              <Link href={`/shop/${El.product.shop.slug}/product/${El.product.slug}/`}>
+                              <Link href={`/shop/${El.product.FK_Shop.slug}/product/${El.product.Slug}/`}>
                                 <a className="product-link d-block font-size1 link-body font-weight-bold text-truncate">
-                                  {_asist.number(El.product.title)}
+                                  {_asist.number(El.product.Title)}
                                 </a>
                               </Link>
                               <i
@@ -124,10 +124,10 @@ export default function ListCardBuy() {
                                   cursor: "pointer",
                                 }}
                                 onClick={async () => {
-                                  await setProductId(El.product.id);
+                                  await setProductId(El.product.ID);
                                   await setLoading(true);
                                   dispatch(
-                                    _deleteProduct(El.id, El.product.title)
+                                    _deleteProduct(El.id, El.product.Title)
                                   );
 
                                   await setLoading(true);
@@ -167,10 +167,10 @@ export default function ListCardBuy() {
                                         }}
                                         className="fas fa-plus-square"
                                         onClick={async () => {
-                                          await setProductId(El.product.id);
+                                          await setProductId(El.product.ID);
                                           await setLoading(true);
                                           await dispatch(
-                                            _addProduct(El.product.id)
+                                            _addProduct(El.product.ID)
                                           );
                                           // await handel_AddProductTOList(
                                           //   El.product.id
@@ -202,7 +202,7 @@ export default function ListCardBuy() {
                                         }}
                                         className="fas fa-minus-square"
                                         onClick={async () => {
-                                          await setProductId(El.product.id);
+                                          await setProductId(El.product.ID);
                                           await setLoading(true);
                                           await dispatch(_reduceProduct(El.id));
 
@@ -247,8 +247,8 @@ export default function ListCardBuy() {
 
               {false &&
                 index !== 0 &&
-                El.product.shop.slug ==
-                All_product_list_buy.ordered_items[index - 1].product.shop
+                El.product.FK_Shop.slug ==
+                All_product_list_buy.ordered_items[index - 1].product.FK_Shop
                   .slug && (
                   <div
                     className="mt-0 cart-product-group bg-white"
@@ -261,7 +261,7 @@ export default function ListCardBuy() {
                         <div className="d-flex w-100">
                           <a className="product-link">
                             <img
-                              src={El.product.image_thumbnail_url}
+                              src={El.product.Image_medium_url}
                               className={`${styles.cart_product_item_img} ${styles.rounded}`}
                             />
                           </a>
@@ -274,7 +274,7 @@ export default function ListCardBuy() {
                             >
                               <Link href={El.product.url}>
                                 <a className="product-link d-block font-size1 link-body font-weight-bold text-truncate">
-                                  {_asist.number(El.product.title)}
+                                  {_asist.number(El.product.Title)}
                                 </a>
                               </Link>
                               <i
@@ -320,7 +320,7 @@ export default function ListCardBuy() {
                                         }}
                                         className="fas fa-plus-square"
                                         onClick={() =>
-                                          handel_AddProductTOList(El.product.id)
+                                          handel_AddProductTOList(El.product.ID)
                                         }
                                       ></i>
                                     </button>

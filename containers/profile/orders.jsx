@@ -65,7 +65,7 @@ const Orders = ({ setProfilePages, setInvoiceId }) => {
                                                 _asist.PSeparator(`${value.final_price / 10} تومان`)}</td>
                                             <td>
                                                 {value.items.length > 0 && value.items.map((value, index) => (
-                                                    <Link href={`product/${value.slug}`} key={index}>
+                                                    <Link href={`/shop/${value.shop_slug}/product/${value.slug}`} key={index}>
                                                         <a target="_blank" key={index}>
                                                             {value.image_thumbnail && <Image src={`${value.image}`}
                                                                 alt={value.name} key={index} className={styles.image_product}
