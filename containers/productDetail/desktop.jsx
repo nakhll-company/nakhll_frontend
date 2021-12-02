@@ -103,7 +103,7 @@ const ProductDetailDesktop = ({ data }) => {
       <div>
         <div className="product-page-breadcrumb">
           <nav>
-            <div className="container_N">
+            <div className="container">
               <ol className={styles.bread_crumb}>
                 {[
                   { title: "خانه", url: "/" },
@@ -143,7 +143,7 @@ const ProductDetailDesktop = ({ data }) => {
           </nav>
         </div>
 
-        <div className="container_N d-lg-flex px-0 mb-5">
+        <div className="container d-lg-flex px-0 mb-5">
           <div className="col-lg-4">
             <section className="mb-4">
               <div className="slider_product mt-0">
@@ -274,7 +274,7 @@ const ProductDetailDesktop = ({ data }) => {
               className="mb-4"
               style={{ display: "flex", alignItems: "center" }}
             >
-              <div
+              {detail.salable && detail.salable === true && <div
                 className="ms-lg-5 mb-3 mb-lg-0"
                 style={{ display: "flex", alignItems: "center" }}
               >
@@ -283,7 +283,7 @@ const ProductDetailDesktop = ({ data }) => {
                   className="far fa-clock ms-3"
                 ></i>
                 <span style={{ fontSize: ".85rem" }}>{detail.status}</span>
-              </div>
+              </div>}
               <div
                 className="ms-lg-5 mb-3 mb-lg-0"
                 style={{ display: "flex", alignItems: "center" }}
@@ -327,7 +327,7 @@ const ProductDetailDesktop = ({ data }) => {
                       )} عدد باقی مانده`}
                   </div>
                 </div>
-                <div style={{ flex: "0 0 44%" }} className="d-flex flex-column">
+                {detail.salable && detail.salable === true && <div style={{ flex: "0 0 44%" }} className="d-flex flex-column">
                   <button
                     className={`product-btn btn rounded-pill font-size1-5  p-1  ${styles.btn_tprimary}`}
                     onClick={async () => {
@@ -337,7 +337,7 @@ const ProductDetailDesktop = ({ data }) => {
                   >
                     خرید
                   </button>
-                </div>
+                </div>}
               </div>
             </div>
             <div className="d-none d-lg-block mb-4">
