@@ -6,7 +6,12 @@ export const _updatePicture = (img) => {
 
     try {
       let params = {};
-      let loadData = img;
+
+      let loadData = {
+        image: img,
+        title: "",
+        description: "",
+      };
       let dataUrl = `/api/v1/profile/images/`;
       let response = await ApiRegister().apiRequest(
         loadData,
@@ -17,6 +22,7 @@ export const _updatePicture = (img) => {
       );
 
       if (response.status === 200) {
+        alert(response.data);
       } else {
         alert(response);
       }
