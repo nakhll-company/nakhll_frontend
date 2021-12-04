@@ -45,5 +45,10 @@
         "uuid": "^8.3.2",
         "yup": "^0.32.9",
         "zaravand-assistent-number": "^1.1.0"
+    },
+    "devDependencies": {
+        "autoprefixer": "^10.4.0",
+        "postcss": "^8.4.4",
+        "tailwindcss": "^2.2.19"
     }
 }
