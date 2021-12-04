@@ -1,4 +1,5 @@
 // node libraries
+import { useEffect } from "react";
 import Script from "next/script";
 import { Store } from "../redux/store";
 import { Provider } from "react-redux";
@@ -7,12 +8,22 @@ import { useRouter } from "next/router";
 import ShopLayout from "../components/shopLayout";
 import General from "../components/utils/General";
 import MyLayout from "../components/layout/Layout";
+// methods
+import { refreshToken } from "../api/auth/refreshToken";
 // add bootstrap css
 import "bootstrap/dist/css/bootstrap.css";
 import "../styles/globals.scss";
 import "../styles/General/font-awesome/css/font-awesome.css";
 
 function MyApp({ Component, pageProps }) {
+
+  useEffect(() => {
+    refreshToken();
+    setInterval(() => {
+      refreshToken();
+    }, 300000);
+  }, []);
+
   const router = useRouter();
   if (router.pathname.startsWith("/fp")) {
     return (
