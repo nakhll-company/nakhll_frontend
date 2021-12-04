@@ -4,6 +4,7 @@ import FeaturesBlocks from "../../containers/description/components/FeaturesBloc
 import Questions from "../../containers/description/components/Questions";
 import Coming from "../../containers/description/components/Coming";
 import Process from "../../containers/description/components/Process";
+import Sliders from "../../containers/description/components/Sliders";
 
 function index() {
   return (
@@ -11,6 +12,10 @@ function index() {
       {/* Video */}
       <div className="bg-gray-700 w-full">
         {/* <Image src="" layout="responsive" width={500} height={500} /> */}
+      </div>
+      {/* Sliders */}
+      <div className="container relative overflow-hidden rounded-lg py-4 ">
+        <Sliders />
       </div>
       {/* icons */}
       <FeaturesBlocks />
