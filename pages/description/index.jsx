@@ -10,8 +10,10 @@ function index() {
   return (
     <div className="px-3 ">
       {/* Video */}
-      <div className="bg-gray-700 w-full">
-        {/* <Image src="" layout="responsive" width={500} height={500} /> */}
+      <div className="bg-gray-700 w-full h-72 flex justify-center items-center ">
+        <p className="text-indigo-100 text-4xl">
+          اینجا قراره احمد رضا فیلم بذاره
+        </p>
       </div>
       {/* Sliders */}
       <div className="container relative overflow-hidden rounded-lg py-4 ">
