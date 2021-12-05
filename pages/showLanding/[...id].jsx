@@ -10,7 +10,7 @@ import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { useRouter } from "next/router";
 import LinerTwoImg from "../../containers/LandingPage/LinerTwoImg";
 import LinerTwoImgSm from "../../containers/LandingPage/LinerTwoImgSm";
-function index({ idLanding }) {
+function ShowLanding({ idLanding }) {
   let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}`;
 
   const [dataLanding, setDataLanding] = useState([]);
@@ -82,7 +82,7 @@ function index({ idLanding }) {
   );
 }
 
-export default index;
+export default ShowLanding;
 
 // function server side
 export async function getServerSideProps(context) {
