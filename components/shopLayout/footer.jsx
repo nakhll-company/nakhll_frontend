@@ -57,34 +57,39 @@ const Footer = () => {
                       </Link>
                     </div>{" "}
                     <div className={styles.footer_social_icon}>
-                      <div>
-                        <a
-                          href=""
-                          rel="noopener noreferrer nofollow"
-                          target="_blank"
-                          aria-label="لینکدین"
-                        >
-                          <i className="fab fa-linkedin"></i>
-                        </a>
-                      </div>{" "}
-                      <div>
-                        <a
-                          href=""
-                          rel="noopener noreferrer nofollow"
-                          target="_blank"
-                          aria-label="توییتر"
-                        ></a>
-                      </div>{" "}
-                      <div>
-                        <a
-                          href=""
-                          rel="noopener noreferrer nofollow"
-                          target="_blank"
-                          aria-label="اینستاگرام"
-                        >
-                          <i className="fab fa-instagram"></i>
-                        </a>
-                      </div>
+                      <a
+                        href="https://www.linkedin.com/company/nakhll/"
+                        target="_blank"
+                        aria-label="لینکدین"
+                      >
+                        <i
+                          style={{ fontSize: "30px" }}
+                          className="fab fa-linkedin"
+                        ></i>
+                      </a>
+
+                      <a
+                        style={{ width: "30px" }}
+                        href="https://www.aparat.com/nakhll"
+                        target="_blank"
+                        aria-label="آپارات بازار اجتماعی نخل"
+                      >
+                        <Image
+                          src="/icons/footer/aparat.png"
+                          layout="responsive"
+                          width={200}
+                          height={200}
+                        />
+                      </a>
+
+                      <a
+                        href="https://www.instagram.com/nakhll_com/"
+                        target="_blank"
+                        aria-label="اینستاگرام"
+                        style={{ fontSize: "30px", display: "flex" }}
+                      >
+                        <i className="fab fa-instagram"></i>
+                      </a>
                     </div>
                   </div>
                   <div className="col-4 col-4 d-flex flex-column">
@@ -438,37 +443,45 @@ const Footer = () => {
                     </button>
                   </a>
                 </div>{" "} */}
-                <div className={styles.footer_social_icon}>
-                  <div>
-                    <a
-                      href=""
-                      rel="noopener noreferrer nofollow"
-                      target="_blank"
-                      aria-label="لینکدین"
-                    >
-                      <i className="fab fa-linkedin"></i>
-                    </a>
-                  </div>{" "}
-                  {/* <div>
-                    <a
-                      href=""
-                      rel="noopener noreferrer nofollow"
-                      target="_blank"
-                      aria-label="توییتر"
-                    >
-                      <i className="bi bi-twitter-outline"></i>
-                    </a>
-                  </div>{" "} */}
-                  {/* <div>
-                    <a
-                      href=""
-                      rel="noopener noreferrer nofollow"
-                      target="_blank"
-                      aria-label="اینستاگرام"
-                    >
-                      <i className="bi bi-instagram"></i>
-                    </a>
-                  </div> */}
+                <div
+                  style={{
+                    justifyContent: "space-around",
+                    marginBottom: "15px",
+                  }}
+                  className={styles.footer_social_icon}
+                >
+                  <a
+                    href="https://www.linkedin.com/company/nakhll/"
+                    target="_blank"
+                    aria-label="لینکدین"
+                  >
+                    <i
+                      style={{ fontSize: "30px" }}
+                      className="fab fa-linkedin"
+                    ></i>
+                  </a>
+
+                  <a
+                    style={{ width: "30px" }}
+                    href="https://www.aparat.com/nakhll"
+                    target="_blank"
+                    aria-label="آپارات بازار اجتماعی نخل"
+                  >
+                    <Image
+                      src="/icons/footer/aparat.png"
+                      layout="responsive"
+                      width={200}
+                      height={200}
+                    />
+                  </a>
+                  <a
+                    href="https://www.instagram.com/nakhll_com/"
+                    target="_blank"
+                    aria-label="اینستاگرام"
+                    style={{ fontSize: "30px", display: "flex" }}
+                  >
+                    <i className="fab fa-instagram"></i>
+                  </a>
                 </div>
               </div>{" "}
               <div className="row align-items-center d-flex justify-content-between mt-1 row">

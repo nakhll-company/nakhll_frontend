@@ -4,28 +4,24 @@
     display: inline-block;
     margin: 10px 0;
 }
-
 .footer_social_icon {
     display: flex;
     flex-grow: 1;
-    align-items: flex-end;
+    justify-content: space-between;
+    align-items: center;
 }
-
 .footer-namad {
     cursor: pointer;
     width: 100%;
 }
-
 .footer_form_wrapper {
     margin: 20px 0 0;
 }
-
 .footer_form_wrapper form {
     border-radius: 100px;
     border: 1px solid #dfdfdf;
     display: flex;
 }
-
 .footer_form_wrapper form input {
     border: none;
     font-size: 12px;
@@ -35,7 +31,6 @@
     padding: 10px 15px;
     border-radius: 100px;
 }
-
 .footer_form_wrapper form button {
     border: 0;
     background-color: #ed1943;
@@ -48,7 +43,6 @@
     outline: 0;
     font-size: 12px;
 }
-
 .footer_downloadApp {
     display: flex;
     flex-wrap: wrap;
@@ -58,7 +52,6 @@
         margin: 20px 0 0;
     }
 }
-
 .footer_seo_container {
     .footer_seo_text {
         font-size: 0.875rem;
@@ -70,7 +63,6 @@
         transition: all 1s ease-in-out;
     }
 }
-
 .animation_According {
     transition: height 1s ease-out;
 }
