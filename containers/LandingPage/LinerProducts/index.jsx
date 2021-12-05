@@ -39,7 +39,9 @@ function LinerProducts({
               <button>
                 <Link
                   href={`${
-                    url.includes("search=") ? `${url}` : `/search?ap=${url}`
+                    url.includes("search=") || url.includes("q=")
+                      ? `${url}`
+                      : `/search?ap=${url}`
                   }`}
                 >
                   <a>مشاهده همه</a>
