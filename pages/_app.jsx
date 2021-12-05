@@ -18,9 +18,9 @@ import "../styles/General/font-awesome/css/font-awesome.css";
 function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
-    refreshToken();
+    localStorage.getItem("accessToken") && refreshToken();
     setInterval(() => {
-      refreshToken();
+      localStorage.getItem("accessToken") && refreshToken();
     }, 300000);
   }, []);
 
