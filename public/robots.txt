@@ -3,10 +3,6 @@ User-agent: *
 Disallow: /game
 Disallow: /fp
 
-# *
-User-agent: *
-Allow: /
-
 # Host
 Host: https://nakhll.com/
 
