@@ -89,13 +89,13 @@ const OrdersDetail = ({ invoiceId }) => {
                             <div className={`${styles.images} p-3`}>
                                 <span className="text-secondary mb-2"> محصول :</span>
                                 <div className="d-flex align-items-center">
-                                    <Link href={`product/${value.slug}`}>
+                                    <Link href={`/shop/${value.shop_slug}/product/${value.slug}`}>
                                         <a>
                                             {value.image && <img src={value.image} alt="" style={{ width: "3.2rem", borderRadius: "1.5rem", marginLeft: "1rem" }} />}
                                         </a>
                                     </Link>
                                     <div className="d-flex flex-column flex-md-row align-items-center">
-                                        <Link href={`product/${value.slug}`}>
+                                        <Link href={`/shop/${value.shop_slug}/product/${value.slug}`}>
                                             <a className="mx-3">
                                                 <span>{value.name}</span>
                                             </a>

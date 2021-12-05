@@ -31,7 +31,6 @@ const fetchData = async (id) => {
   );
 
   if (response.status === 200) {
-    console.log(`response.data`, response.data);
     if (response.data.is_landing) {
       Schema = await ApiRegister().apiRequest(
         null,

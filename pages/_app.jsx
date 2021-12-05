@@ -1,25 +1,29 @@
 // node libraries
-import { Provider } from "react-redux";
 import { useEffect } from "react";
-
 import Script from "next/script";
-import { useRouter } from "next/router";
 import { Store } from "../redux/store";
-import { hotjar } from "react-hotjar";
-
+import { Provider } from "react-redux";
+import { useRouter } from "next/router";
 // components
-import MyLayout from "../components/layout/Layout";
 import ShopLayout from "../components/shopLayout";
+import General from "../components/utils/General";
+import MyLayout from "../components/layout/Layout";
+// methods
+import { refreshToken } from "../api/auth/refreshToken";
 // add bootstrap css
 import "bootstrap/dist/css/bootstrap.css";
-// scss
 import "../styles/globals.scss";
-
-// font-awesome
 import "../styles/General/font-awesome/css/font-awesome.css";
-import General from "../components/utils/General";
 
 function MyApp({ Component, pageProps }) {
+
+  useEffect(() => {
+    refreshToken();
+    setInterval(() => {
+      refreshToken();
+    }, 300000);
+  }, []);
+
   const router = useRouter();
   if (router.pathname.startsWith("/fp")) {
     return (
@@ -40,7 +44,8 @@ function MyApp({ Component, pageProps }) {
     );
   } else if (
     router.pathname.startsWith("/liveEdit") ||
-    router.pathname.startsWith("/game")
+    router.pathname.startsWith("/game") ||
+    router.pathname.startsWith("/login")
   ) {
     return (
       <>

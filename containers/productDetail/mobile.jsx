@@ -182,13 +182,13 @@ const ProductDetailMobile = ({ data }) => {
                                     فروش
                                 </span>
                             </div> */}
-              <div
+              {detail.salable && detail.salable === true && <div
                 className="ms-lg-5 mb-3 mb-lg-0"
                 style={{ display: "flex", alignItems: "center" }}
               >
                 {/* <i style={{ fontSize: "1.5rem", color: "#7d7d7d" }} className="far fa-clock ms-3"></i> */}
                 <Image
-                  src="/productDetail/map.png"
+                  src="/productDetail/time.png"
                   alt="iran icon"
                   width="20"
                   height="23"
@@ -196,14 +196,14 @@ const ProductDetailMobile = ({ data }) => {
                 <span style={{ fontSize: ".85rem" }} className="me-3">
                   {detail.status}
                 </span>
-              </div>
+              </div>}
               <div
                 className="ms-lg-5 mb-3 mb-lg-0"
                 style={{ display: "flex", alignItems: "center" }}
               >
                 {/* <i style={{ fontSize: "1.5rem", color: "#7d7d7d" }} className="fas fa-map-marker-alt ms-3"></i> */}
                 <Image
-                  src="/productDetail/time.png"
+                  src="/productDetail/map.png"
                   alt="iran icon"
                   width="19"
                   height="19"
@@ -597,15 +597,17 @@ const ProductDetailMobile = ({ data }) => {
             <span> تومان </span>
           </div>
         </div>
-        <button
-          className={`${styles.product_btn_mobile} btn btn-tprimary rounded-pill font-weight-bold font-size1-5 px-6 py-2 ev-add-to-cart`}
-          onClick={async () => {
-            await addToCart(detail.id);
-            await dispatch(getUserInfo());
-          }}
-        >
-          خرید
-        </button>
+        {detail.salable && detail.salable === true &&
+          <button
+            className={`${styles.product_btn_mobile} btn btn-tprimary rounded-pill font-weight-bold font-size1-5 px-6 py-2 ev-add-to-cart`}
+            onClick={async () => {
+              await addToCart(detail.id);
+              await dispatch(getUserInfo());
+            }}
+          >
+            خرید
+          </button>
+        }
       </div>
     </div>
   );

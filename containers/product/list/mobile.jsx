@@ -71,15 +71,15 @@ const MobileList = ({ loading, productList, activeHojreh }) => {
           <Image
             src="/loading.svg"
             alt="loding"
-            layout="responsive"
-            width={40}
-            height={40}
+            // layout="responsive"
+            width="40px"
+            height="40px"
           />
         </div>
       ) : productList.length > 0 ? (
         productList.map((value, index) => {
           return (
-            <Link href={`/fp/product/update/product/${value.id}`} key={index}>
+            <Link href={`/fp/product/update/product/${value.ID}`} key={index}>
               <div className={`${styles.product_card}`}>
                 <div className={styles.first_row}>
                   <div className={styles.product_name_wrapper}>
@@ -90,33 +90,32 @@ const MobileList = ({ loading, productList, activeHojreh }) => {
                       width={45}
                       height={45}
                     />
-                    <h6 className={`${styles.name_product}`}>{value.title}</h6>
+                    <h6 className={`${styles.name_product}`}>{value.Title}</h6>
                   </div>
                   <i className={`fas fa-ellipsis-v ${styles.icon_more}`}></i>
                 </div>
                 <div className={styles.second_row}>
                   <CustomLabel
                     type="normal"
-                    value={value.inventory}
+                    value={value.Inventory}
                     label="موجودی"
                   />
-                  {value.old_price === 0 && (
+                  {value.OldPrice === 0 && (
                     <CustomLabel
                       type="normal"
-                      value={`${value.price / 10}تومان`}
+                      value={`${value.Price / 10}تومان`}
                       label="قیمت"
                     />
                   )}
-                  {value.old_price !== 0 && (
+                  {value.OldPrice !== 0 && (
                     <CustomLabel
                       type="price"
-                      valuePrice={value.old_price / 10}
-                      valueOldPrice={`${value.price / 10}تومان`}
+                      valuePrice={value.OldPrice / 10}
+                      valueOldPrice={`${value.Price / 10}تومان`}
                       label="قیمت"
                     />
                   )}
                 </div>
-
                 <div className={styles.third_row}>
                   <div>
                     <span className={styles.icons}>
