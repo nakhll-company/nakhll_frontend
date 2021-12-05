@@ -35,7 +35,6 @@ export async function getServerSideProps(context) {
   return {
     props: {
       data: context.query,
-
       ap: context.query.ap || "",
     },
   };
