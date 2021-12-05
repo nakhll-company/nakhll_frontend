@@ -14,10 +14,10 @@ export async function refreshToken() {
 
         } else {
             errorMessage("خطایی رخ داده است");
-            location.replace("/login");
+            // location.replace("/login");
         }
     } catch (error) {
         errorMessage("خطایی رخ داده است");
-        location.replace("/login");
+        // location.replace("/login");
     }
 }
