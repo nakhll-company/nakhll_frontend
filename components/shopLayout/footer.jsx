@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 import Assistent from "zaravand-assistent-number";
 // style
 import styles from "../../styles/components/shopLayout/footer.module.scss";
@@ -9,6 +10,8 @@ import styles from "../../styles/components/shopLayout/footer.module.scss";
 const _asist = new Assistent();
 
 const Footer = () => {
+  const userData = useSelector((state) => state.User.userInfo);
+
   const _handel_according = (accord, icon) => {
     let element = document.getElementById(accord);
     if (element.style.height == "0px") {
@@ -135,7 +138,11 @@ const Footer = () => {
                       </Link>
                     </div>
                     <div>
-                      <Link href="/fp">
+                      <Link href={
+                        userData && userData.shops && userData.shops.length > 0
+                          ? "/fp"
+                          : "/fp/store/create"
+                      }>
                         <a className={styles.footer_items}>مدیریت حجره</a>
                       </Link>
                     </div>{" "}
@@ -429,7 +436,11 @@ const Footer = () => {
                     </a>
                   </div> */}
                   <div>
-                    <Link href="/fp">
+                    <Link href={
+                      userData && userData.shops && userData.shops.length > 0
+                        ? "/fp"
+                        : "/fp/store/create"
+                    }>
                       <a className={styles.footer_items}>مدیریت حجره</a>
                     </Link>
                   </div>
