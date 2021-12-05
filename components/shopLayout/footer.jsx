@@ -57,36 +57,34 @@ const Footer = () => {
                       </Link>
                     </div>{" "}
                     <div className={styles.footer_social_icon}>
-                      {/* <div>
+                      <div>
                         <a
                           href=""
                           rel="noopener noreferrer nofollow"
                           target="_blank"
                           aria-label="لینکدین"
                         >
-                          <i className="fas fa-linkedin"></i>
+                          <i className="fab fa-linkedin"></i>
                         </a>
-                      </div>{" "} */}
-                      {/* <div>
+                      </div>{" "}
+                      <div>
                         <a
                           href=""
                           rel="noopener noreferrer nofollow"
                           target="_blank"
                           aria-label="توییتر"
-                        >
-                          <i className="bi bi-twitter"></i>
-                        </a>
-                      </div>{" "} */}
-                      {/* <div>
+                        ></a>
+                      </div>{" "}
+                      <div>
                         <a
                           href=""
                           rel="noopener noreferrer nofollow"
                           target="_blank"
                           aria-label="اینستاگرام"
                         >
-                          <i className="bi bi-instagram"></i>
+                          <i className="fab fa-instagram"></i>
                         </a>
-                      </div> */}
+                      </div>
                     </div>
                   </div>
                   <div className="col-4 col-4 d-flex flex-column">
@@ -441,16 +439,16 @@ const Footer = () => {
                   </a>
                 </div>{" "} */}
                 <div className={styles.footer_social_icon}>
-                  {/* <div>
+                  <div>
                     <a
                       href=""
                       rel="noopener noreferrer nofollow"
                       target="_blank"
                       aria-label="لینکدین"
                     >
-                      <i className="bi bi-linkedin"></i>
+                      <i className="fab fa-linkedin"></i>
                     </a>
-                  </div>{" "} */}
+                  </div>{" "}
                   {/* <div>
                     <a
                       href=""
