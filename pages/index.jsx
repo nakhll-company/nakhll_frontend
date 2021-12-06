@@ -139,6 +139,7 @@ const index = ({ data }) => {
         />
         <link rel="canonical" href="https://nakhll.com/" />
       </Head>
+      {/* coments */}
       {data.SchemaIn.length > 0 &&
         data.SchemaIn.map((turn, index) =>
           _handel_select_component(turn, index)
