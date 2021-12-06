@@ -4,6 +4,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
+import { ToastContainer } from "react-toastify";
 // methods
 import { getAccessToken } from '../../api/auth/getAccessToken';
 import { completeAuth } from '../../api/auth/completeAuth';
@@ -27,6 +28,7 @@ const Password = () => {
             <Head>
                 <title>ورود بازار آنلاین نخل</title>
             </Head>
+            <ToastContainer />
             <div className="d-flex flex-column justify-content-center col-12 col-md-8 col-lg-5 m-auto bg-white p-5 mt-5 shadow-lg rounded">
                 <div className="m-auto">
                     <Image src="/image/LOGO_500.png" alt="logo" width="70" height="70" />
