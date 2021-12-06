@@ -1,6 +1,5 @@
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-
-import { errorMessage, successMessage } from "../../utils/message";
+import { errorMessage, successMessage } from "../../containers/utils/message";
+import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 // get address of user
 export async function deleteAddress(id) {
     let response = await ApiRegister().apiRequest(

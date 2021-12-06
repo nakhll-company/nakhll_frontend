@@ -1,53 +1,40 @@
-//////////////////////////////////////// AddAddress /////////////////////////////////////////////////////////
-// In this page user can add new address                                                                   //
-// Data that we get from user: reciver full name, state, big city, city, zipe code, address, mobile number //
-// All fileds are necessary                                                                                //
-// Check validation page with package react form hook                                                      //
-// programmer : sahar shafiee                                                                              //
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // node libraries
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
+import { useState, useEffect } from 'react';
 import { ToastContainer } from "react-toastify";
 // componentes
 import Loading from "../../../../components/loading";
 // methods
-import { getStates } from "../../../../containers/store/methods/getStates";
-import { getBigCities } from "../../../../containers/store/methods/getBigCities";
-import { getCities } from "../../../../containers/store/methods/getCities";
-import { postAddress } from "../../../../containers/cartAddress/methods/postAddress";
+import { getCities } from "../../../../api/general/getCities";
+import { getStates } from "../../../../api/general/getStates";
+import { getBigCities } from "../../../../api/general/getBigCities";
+import { addAddress } from "../../../../api/cartAddress/addAddress";
 // styles
 import styles from "../../../../styles/pages/cart/newAddress.module.scss";
-/**
- * component new address 
- * @param {}  => 
- */
+
 const NewAddress = () => {
 
     const router = useRouter();
     const { invoice_id } = router.query;
-
     const { register, handleSubmit, formState: { errors } } = useForm();
+    let [selectState, setSelectState] = useState([]);
+    let [selectBigCities, setSelectBigCities] = useState([]);
+    let [selectCities, setSelectCities] = useState([]);
+    let [loading, setLoading] = useState(false);
 
     const onSubmit = async (data) => {
         await setLoading(true);
-        let response = await postAddress(data);
+        let response = await addAddress(data);
         if (response === true) {
             router.push(`/cart/address?invoice_id=${invoice_id}`);
         }
         await setLoading(false);
     };
 
-    let [selectState, setSelectState] = useState([]);
-    let [selectBigCities, setSelectBigCities] = useState([]);
-    let [selectCities, setSelectCities] = useState([]);
-    let [loading, setLoading] = useState(false);
-
     useEffect(async () => {
-        // state
         setSelectState(await getStates());
     }, []);
 

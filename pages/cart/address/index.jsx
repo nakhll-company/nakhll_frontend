@@ -2,30 +2,26 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Assistent from "zaravand-assistent-number";
 import { useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
+import Assistent from "zaravand-assistent-number";
 // componentes
+import Loading from "../../../components/loading";
 import CustomModal from "../../../components/custom/customModal";
 import DeleteAddress from "../../../containers/cartAddress/deleteAddress";
-import Loading from "../../../components/loading";
 // methods
-import { getAddress } from "../../../containers/cartAddress/methods/getAddress";
-import { checkUserLogin } from "../../../containers/cartAddress/methods/checkUserLogin";
-import { sendUserAddress } from "../../../containers/cartAddress/methods/sendUserAddress";
+import { getAddress } from "../../../api/cartAddress/getAddress";
+import { checkUserLogin } from "../../../api/cartAddress/checkUserLogin";
+import { selectAddress } from "../../../containers/cartAddress/methods/selectAddress";
+import { changeRadioButtonColor } from "../../../containers/cartAddress/methods/changeRadioButtonsColor";
 // styles
 import styles from "../../../styles/pages/cart/address.module.scss";
-import { errorMessage } from "../../../containers/utils/message";
-/**
- * component address cart
- * @param {}  =>
- */
+
 const _asist = new Assistent();
 const Address = () => {
 
     const router = useRouter();
     const { invoice_id } = router.query;
-
     let [loading, setLoading] = useState(true);
     let [showModal, setShowModal] = useState({
         show: false,
@@ -77,32 +73,14 @@ const Address = () => {
                         </div>
                         <form className={styles.address_items_form} onSubmit={async (event) => {
                             event.preventDefault();
-                            if (document.querySelector("input[type=radio]:checked") !== null) {
-                                let selectedAddressId = document.querySelector("input[type=radio]:checked").value;
-                                let data = { address: selectedAddressId, };
-                                await setLoading(true);
-                                let response = await sendUserAddress(data, invoice_id);
-                                await (response === true && router.push(`/cart/payment?invoice_id=${invoice_id}`));
-                                await setLoading(false);
-                            } else {
-                                errorMessage("لطفا ادرس خود را وارد نمایید");
-                            }
+                            await selectAddress(invoice_id, router, setLoading);
                         }}
                         >
                             {address.map((value, index) => {
                                 return (
                                     <label key={index} className={`${styles.address_items_label} ${index === 0 && styles.active_address}`}
                                         onClick={(event) => {
-                                            let activeLabels = document.querySelectorAll(`.${styles.active_address}`);
-                                            let activeCircles = document.querySelectorAll(`.${styles.active_circle}`);
-                                            activeLabels.forEach((value) => {
-                                                value.classList.remove(`${styles.active_address}`);
-                                            });
-                                            activeCircles.forEach((value) => {
-                                                value.classList.remove(`${styles.active_circle}`);
-                                            });
-                                            event.currentTarget.classList.add(`${styles.active_address}`);
-                                            document.getElementById(`firstCircle${index}`).classList.add(`${styles.active_circle}`);
+                                            changeRadioButtonColor(event);
                                         }}
                                     >
                                         <div id={`firstCircle${index}`} className={`${styles.address_item_circle} ${index === 0 && styles.active_circle}`}>

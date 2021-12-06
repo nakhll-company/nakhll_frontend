@@ -1,4 +1,4 @@
-import { ApiRegister } from '../../../services/apiRegister/ApiRegister';
+import { ApiRegister } from '../../services/apiRegister/ApiRegister';
 // get address of user
 export async function checkUserLogin() {
     let response = await ApiRegister().apiRequest(
