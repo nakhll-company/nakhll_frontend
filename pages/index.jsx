@@ -16,7 +16,13 @@ const fetchData = async () => {
   let all_type_for_component = [];
   let urlSchema = encodeURI(ApiReference.Landing_Page);
 
-  let Schema = await ApiRegister().apiRequest(null, "GET", urlSchema, true, "");
+  let Schema = await ApiRegister().apiRequest(
+    null,
+    "GET",
+    urlSchema,
+    false,
+    ""
+  );
 
   if (Schema.status === 200) {
     for (let index = 0; index < Schema.data.length; index++) {

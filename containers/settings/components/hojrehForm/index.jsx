@@ -56,6 +56,8 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
         }}
         validationSchema={VALIDATION_SCHEMA}
         onSubmit={async (data) => {
+          alert("hi");
+          console.log("hiiiiiiiiiiiiiiiiiii");
           setshowMessage(0);
           // setIsLoading(true);
           const dataForSend = {
@@ -76,6 +78,7 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
             },
           };
           const response = await callApiUpDataShop(dataForSend, activeHojreh);
+          console.log(`response`, response);
           if (response.status === 200) {
             setIsLoading(false);
             setshowMessage(1);
@@ -105,6 +108,7 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
               extraTitle="غیر قابل تغییر"
               title="آدرس اینترنتی حجره"
               description={dataExp.slug}
+              disabled={true}
             />
             <TextArea
               name="Description"
