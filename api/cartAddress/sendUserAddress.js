@@ -1,4 +1,4 @@
-import { errorMessage } from "../../containers/utils";
+import { errorMessage } from "../../../containers/utils";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 // get address of user
 export async function sendUserAddress(data, invoiceId) {
