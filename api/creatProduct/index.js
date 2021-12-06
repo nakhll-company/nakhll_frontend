@@ -23,3 +23,13 @@ export const _ApiCreateProduct = async(dataForSend, activeHojreh) => {
     );
     return response;
 };
+
+export const _ApiUpdateProduct = async(dataForSend, activeHojreh, id) => {
+    let response = await ApiRegister().apiRequest(
+        dataForSend,
+        "patch",
+        `/api/v1/shop/${activeHojreh}/products/${id}/`,
+        true, {}
+    );
+    return response;
+};

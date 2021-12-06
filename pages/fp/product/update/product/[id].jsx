@@ -20,6 +20,7 @@ import styles from "../../../../../styles/pages/product/create.module.scss";
 import {
   _ApiCreateProduct,
   _ApiGetCategories,
+  _ApiUpdateProduct,
 } from "../../../../../api/creatProduct";
 import TitleLiner from "../../../../../containers/settings/components/titleLiner";
 import InputUseForm from "../../../../../containers/creat/component/inputUseForm";
@@ -50,7 +51,7 @@ const UpdateProduct = ({ activeHojreh }) => {
       console.log("response :>> ", response.data);
       if (response.status === 200) {
         setValue("Title", response.data.Title);
-        // setImgProduct(response.data.Image);
+        setImgProduct(null);
         setValue("Price", response.data.Price);
         setValue("OldPrice", response.data.OldPrice);
         setValue("Inventory", response.data.Inventory);
@@ -60,56 +61,18 @@ const UpdateProduct = ({ activeHojreh }) => {
 
         setValue("PreparationDays", response.data.PreparationDays);
         setCheckedCities(response.data.post_range_cities);
+        setPlaceholderSubmarckets(response.data.new_category.name);
+
+        // images
+        setImgProductOne(response.data.Product_Banner[0].Image);
+        setImgProductTwo(response.data.Product_Banner[1].Image);
+        setImgProductThree(response.data.Product_Banner[2].Image);
+        setImgProductFour(response.data.Product_Banner[3].Image);
+        setImgProductFive(response.data.Product_Banner[4].Image);
+        setImgProductSix(response.data.Product_Banner[5].Image);
       }
     }
   }, [id]);
-
-  const _editProduct = async () => {
-    let params = null;
-    let loadData = null;
-    let dataUrl = `/api/v1/shop/${activeHojreh}/products/${id}/`;
-    let response = await ApiRegister().apiRequest(
-      loadData,
-      "get",
-      dataUrl,
-      true,
-      params
-    );
-    if (response.status === 200) {
-      setCitiesInput(response.data.post_range_cities);
-      setValue("Title", response.data.title);
-      response.data.new_category &&
-        setValue("submark", response.data.new_category.name);
-      response.data.new_category &&
-        setPlaceholderSubmarckets(response.data.new_category.name);
-      response.data.new_category &&
-        setSubmarketId(response.data.new_category.id);
-      setValue("Net_Weight", response.data.net_weight);
-      setValue("Weight_With_Packing", response.data.weight_with_packing);
-      if (response.data.price > response.data.old_price) {
-        setValue("Price", response.data.price / 10);
-        setValue("OldPrice", response.data.old_price / 10);
-      } else {
-        setValue("Price", response.data.old_price / 10);
-        setValue("OldPrice", response.data.price / 10);
-      }
-      setValue("Description", response.data.description);
-      if (Object.keys(response.data).length > 0) {
-        let peree = response.data.banners.map((item) => {
-          return item.image;
-        });
-        setPreviewImage(response.data.banners);
-        window.localStorage.setItem("image", JSON.stringify(peree));
-        let idImage = response.data.banners.map((item) => {
-          return item.id;
-        });
-        setIdImage(idImage);
-      }
-      setAdd(response.data.inventory);
-      setAddPreparationDays(response.data.preparation_days);
-      setIsLoad(true);
-    }
-  };
 
   // useform
   const {
@@ -128,22 +91,22 @@ const UpdateProduct = ({ activeHojreh }) => {
 
   const onSubmit = async (data) => {
     let Product_Banner = [];
-    if (imgProductOne) {
+    if (!imgProductOne.includes("http")) {
       Product_Banner.push({ Image: imgProductOne });
     }
-    if (imgProductTwo) {
+    if (!imgProductTwo.includes("http")) {
       Product_Banner.push({ Image: imgProductTwo });
     }
-    if (imgProductThree) {
+    if (!imgProductThree.includes("http")) {
       Product_Banner.push({ Image: imgProductThree });
     }
-    if (imgProductFour) {
+    if (!imgProductFour.includes("http")) {
       Product_Banner.push({ Image: imgProductFour });
     }
-    if (imgProductFive) {
+    if (!imgProductFive.includes("http")) {
       Product_Banner.push({ Image: imgProductFive });
     }
-    if (imgProductSix) {
+    if (!imgProductSix.includes("http")) {
       Product_Banner.push({ Image: imgProductSix });
     }
 
@@ -157,8 +120,10 @@ const UpdateProduct = ({ activeHojreh }) => {
     };
 
     const dataForSend = Object.assign(data, externalData);
-    const response = await _ApiCreateProduct(dataForSend, activeHojreh);
 
+    const response = await _ApiUpdateProduct(dataForSend, activeHojreh, id);
+
+    console.log(`response`, response);
     if (response.status === 201) {
       router.replace("/fp/product/update/product/successPageEditProduct");
     }
