@@ -47,7 +47,20 @@ const UpdateProduct = ({ activeHojreh }) => {
         true,
         params
       );
-      console.log("response :>> ", response);
+      console.log("response :>> ", response.data);
+      if (response.status === 200) {
+        setValue("Title", response.data.Title);
+        // setImgProduct(response.data.Image);
+        setValue("Price", response.data.Price);
+        setValue("OldPrice", response.data.OldPrice);
+        setValue("Inventory", response.data.Inventory);
+        setValue("Net_Weight", response.data.Net_Weight);
+        setValue("Weight_With_Packing", response.data.Weight_With_Packing);
+        setValue("Description", response.data.Description);
+
+        setValue("PreparationDays", response.data.PreparationDays);
+        setCheckedCities(response.data.post_range_cities);
+      }
     }
   }, [id]);
 
