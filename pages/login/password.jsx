@@ -13,7 +13,7 @@ const Password = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const submit = async (data) => {
-        data.auth_key = JSON.parse(sessionStorage.getItem("login"));
+        data.auth_key = JSON.parse(sessionStorage.getItem("login")).auth_key;
         let result = await completeAuth(data);
 
         if (result !== false) {

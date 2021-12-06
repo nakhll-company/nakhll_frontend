@@ -117,24 +117,40 @@ const CreateProduct = ({ activeHojreh }) => {
   // };
 
   const onSubmit = async (data) => {
-    console.log(`data`, data);
+    console.log("data :>> ", data);
+    let Product_Banner = [];
+    if (imgProductOne) {
+      Product_Banner.push({ Image: imgProductOne });
+    }
+    if (imgProductTwo) {
+      Product_Banner.push({ Image: imgProductTwo });
+    }
+    if (imgProductThree) {
+      Product_Banner.push({ Image: imgProductThree });
+    }
+    if (imgProductFour) {
+      Product_Banner.push({ Image: imgProductFour });
+    }
+    if (imgProductFive) {
+      Product_Banner.push({ Image: imgProductFive });
+    }
+    if (imgProductSix) {
+      Product_Banner.push({ Image: imgProductSix });
+    }
+
     const externalData = {
       Status: 1,
       PostRangeType: 1,
       post_range: checkedCities,
       new_category: submarketId,
       Image: imgProduct,
-      Product_Banner: [
-        ...(imgProductOne != null && { Image: imgProductOne }),
-        ...(imgProductTwo != null && { Image: imgProductTwo }),
-        ...(imgProductThree != null && { Image: imgProductThree }),
-        ...(imgProductFour != null && { Image: imgProductFour }),
-        ...(imgProductFive != null && { Image: imgProductFive }),
-        ...(imgProductSix != null && { Image: imgProductSix }),
-      ],
+      Product_Banner: Product_Banner,
     };
+    // data.push(externalData);
 
-    // const response = await _ApiCreateProduct(dataForSend, activeHojreh);
+    const dataForSend = Object.assign(data, externalData);
+    const response = await _ApiCreateProduct(dataForSend, activeHojreh);
+    alert(response);
   };
 
   // states
