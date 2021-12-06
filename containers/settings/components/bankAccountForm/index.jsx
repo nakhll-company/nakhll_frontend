@@ -1,7 +1,7 @@
 import { Form, Formik } from "formik";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { callBankAccount } from "../../../../api/settings";
+import { callApiUpDataShop, callBankAccount } from "../../../../api/settings";
 import InputUseForm from "../../../creat/component/inputUseForm";
 import { VALIDATION_HESAB } from "../../methods/Validation";
 import FieldCus from "../field";
@@ -30,7 +30,15 @@ function BankAccountForm({ apiSetting, activeHojreh }) {
   setValue("iban", apiSetting.bank_account.iban);
   setValue("owner", apiSetting.bank_account.owner);
   const onSubmit = async (data) => {
-    alert(data);
+    const dataForSend = {
+      bank_account: {
+        iban: data.iban,
+        owner: data.owner,
+      },
+    };
+
+    const response = await callApiUpDataShop(dataForSend, activeHojreh);
+    console.log(`response.data`, response.data);
   };
   return (
     <>

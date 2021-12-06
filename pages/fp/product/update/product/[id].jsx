@@ -48,28 +48,31 @@ const UpdateProduct = ({ activeHojreh }) => {
         true,
         params
       );
-      console.log("response :>> ", response.data);
-      if (response.status === 200) {
-        setValue("Title", response.data.Title);
-        setImgProduct(null);
-        setValue("Price", response.data.Price);
-        setValue("OldPrice", response.data.OldPrice);
-        setValue("Inventory", response.data.Inventory);
-        setValue("Net_Weight", response.data.Net_Weight);
-        setValue("Weight_With_Packing", response.data.Weight_With_Packing);
-        setValue("Description", response.data.Description);
 
-        setValue("PreparationDays", response.data.PreparationDays);
-        setCheckedCities(response.data.post_range_cities);
-        setPlaceholderSubmarckets(response.data.new_category.name);
+      if (response.status === 200) {
+        let Data = response.data;
+
+        setValue("Title", Data.Title);
+        setImgProduct(null);
+        setValue("Price", Data.Price);
+        setValue("OldPrice", Data.OldPrice);
+        setValue("Inventory", Data.Inventory);
+        setValue("Net_Weight", Data.Net_Weight);
+        setValue("Weight_With_Packing", Data.Weight_With_Packing);
+        setValue("Description", Data.Description);
+
+        setValue("PreparationDays", Data.PreparationDays);
+        setCheckedCities(Data.post_range_cities);
+        setPlaceholderSubmarckets(Data.new_category.name);
 
         // images
-        setImgProductOne(response.data.Product_Banner[0].Image);
-        setImgProductTwo(response.data.Product_Banner[1].Image);
-        setImgProductThree(response.data.Product_Banner[2].Image);
-        setImgProductFour(response.data.Product_Banner[3].Image);
-        setImgProductFive(response.data.Product_Banner[4].Image);
-        setImgProductSix(response.data.Product_Banner[5].Image);
+
+        setImgProductOne(Data.Product_Banner[0]?.Image);
+        setImgProductTwo(Data.Product_Banner[1]?.Image);
+        setImgProductThree(Data.Product_Banner[2]?.Image);
+        setImgProductFour(Data.Product_Banner[3]?.Image);
+        setImgProductFive(Data.Product_Banner[4]?.Image);
+        setImgProductSix(Data.Product_Banner[5]?.Image);
       }
     }
   }, [id]);
@@ -91,6 +94,7 @@ const UpdateProduct = ({ activeHojreh }) => {
 
   const onSubmit = async (data) => {
     let Product_Banner = [];
+
     if (!imgProductOne.includes("http")) {
       Product_Banner.push({ Image: imgProductOne });
     }
@@ -123,7 +127,6 @@ const UpdateProduct = ({ activeHojreh }) => {
 
     const response = await _ApiUpdateProduct(dataForSend, activeHojreh, id);
 
-    console.log(`response`, response);
     if (response.status === 201) {
       router.replace("/fp/product/update/product/successPageEditProduct");
     }
