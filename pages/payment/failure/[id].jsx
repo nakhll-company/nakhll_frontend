@@ -7,7 +7,7 @@ import styles from "./faile.module.scss";
 import Assistent from "zaravand-assistent-number";
 const _asist = new Assistent();
 
-const failed = ({ code }) => {
+const Failed = ({ code }) => {
   return (
     <>
       <div className={styles.container}>
@@ -17,7 +17,7 @@ const failed = ({ code }) => {
             alt="Picture of the author"
             width={400}
             height={400}
-            
+
           />
           <h3 className={styles.text}>پرداخت ناموفق.</h3>
           <h4 className={styles.text_sub}>
@@ -46,11 +46,11 @@ const failed = ({ code }) => {
   );
 };
 
-export default failed;
+export default Failed;
 
 // function server side
 export async function getServerSideProps(context) {
-  
+
   return {
     props: {
       id: context.params.id,

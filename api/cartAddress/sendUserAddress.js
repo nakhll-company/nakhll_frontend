@@ -1,6 +1,5 @@
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-import { toast } from "react-toastify";
-import { errorMessage } from "../../utils/message";
+import { errorMessage } from "../../containers/utils";
+import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 // get address of user
 export async function sendUserAddress(data, invoiceId) {
     let response = await ApiRegister().apiRequest(

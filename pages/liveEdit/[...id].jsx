@@ -14,7 +14,7 @@ import SaveLanding from "../../containers/liveEdit/SaveLanding";
 import { ApiReference } from "../../Api";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 
-function index({ idLanding }) {
+function LiveEdit({ idLanding }) {
   let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}`;
   // idLanding=[slugShop,idLanding]
   let apiUpdateLanding = `${ApiReference.landing.update.url}${idLanding[0]}/${idLanding[1]}/`;
@@ -398,7 +398,7 @@ function index({ idLanding }) {
   );
 }
 
-export default index;
+export default LiveEdit;
 
 // function server side
 export async function getServerSideProps(context) {

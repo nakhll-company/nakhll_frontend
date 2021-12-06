@@ -1,8 +1,10 @@
 // node libraries
+import { useEffect } from "react";
 import Script from "next/script";
 import { Store } from "../redux/store";
 import { Provider } from "react-redux";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 // components
 import ShopLayout from "../components/shopLayout";
 import General from "../components/utils/General";
@@ -13,7 +15,19 @@ import "../styles/globals.scss";
 import "../styles/General/font-awesome/css/font-awesome.css";
 
 function MyApp({ Component, pageProps }) {
+
   const router = useRouter();
+  const userData = useSelector((state) => state.User.userInfo);
+
+  useEffect(() => {
+    window.addEventListener('goftino_ready', function () {
+      Goftino.setUser({
+        name: 'Ali Rahimi',
+        phone: '09123456789',
+      });
+    });
+  }, []);
+
   if (router.pathname.startsWith("/fp")) {
     return (
       <>

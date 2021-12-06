@@ -2,30 +2,36 @@
 import Link from 'next/link';
 import Head from "next/head";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
+import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
 // components
-import MobileHeader from "../../../../components/mobileHeader";
 import useViewport from "../../../../components/viewPort";
+import MobileHeader from "../../../../components/mobileHeader";
 import SuccessPage from "../../../../containers/store/successPage";
-import { mapDispatch } from "../../../../containers/store/methods/mapDispatch";
 import { mapState } from "../../../../containers/store/methods/mapState";
+import { mapDispatch } from "../../../../containers/store/methods/mapDispatch";
 // methods
-import { getStates } from "../../../../containers/store/methods/getStates";
-import { getBigCities } from "../../../../containers/store/methods/getBigCities";
-import { getCities } from "../../../../containers/store/methods/getCities";
+import { getCities } from "../../../../api/general/getCities";
+import { getStates } from "../../../../api/general/getStates";
+import { getBigCities } from "../../../../api/general/getBigCities";
 import { createStore } from "../../../../containers/store/methods/createStore";
 // styles
-import styles from "../../../../styles/pages/store/createStore.module.scss";
 import { errorMessage } from "../../../../containers/utils/message";
+import styles from "../../../../styles/pages/store/createStore.module.scss";
 
 function NewStore({ getUserInfo, userInfo }) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+
+  const breakpoint = 620;
+  const { width } = useViewport();
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  let [selectState, setSelectState] = useState([]);
+  let [selectBigCities, setSelectBigCities] = useState([]);
+  let [selectCities, setSelectCities] = useState([]);
+  let [showSuccessPage, setShowSuccessPage] = useState({
+    loading: "false",
+    success: "false",
+  });
 
   const onSubmit = async (data) => {
     setShowSuccessPage((prev) => {
@@ -46,19 +52,7 @@ function NewStore({ getUserInfo, userInfo }) {
     }
   };
 
-  let [selectState, setSelectState] = useState([]);
-  let [selectBigCities, setSelectBigCities] = useState([]);
-  let [selectCities, setSelectCities] = useState([]);
-  let [showSuccessPage, setShowSuccessPage] = useState({
-    loading: "false",
-    success: "false",
-  });
-
-  const { width } = useViewport();
-  const breakpoint = 620;
-
   useEffect(async () => {
-    // state
     setSelectState(await getStates());
     Object.keys(userInfo).length === 0 && (await getUserInfo());
   }, []);
@@ -71,13 +65,6 @@ function NewStore({ getUserInfo, userInfo }) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       {width < breakpoint && <MobileHeader title="ثبت حجره" type="close" />}
-      {/* form */}
-      {/* {Object.keys(userInfo).length === 0 &&
-        <div className={styles.loading}>
-          <h1>لطفا منتظر بمانید</h1>
-          <Image src="/loading.svg" width="45" height="45" />
-        </div>
-      } */}
       {(userInfo && userInfo.user && userInfo.user.first_name && userInfo.user.last_name) ?
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.form_right}>

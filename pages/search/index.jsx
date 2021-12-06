@@ -5,7 +5,7 @@ import Head from "next/head";
 import ListWitOutFilters from "../../containers/listProduct/ListWithOutFilters";
 import ListProductCus from "../../containers/listProduct/listProductCus";
 
-function product({ ap, data }) {
+function Product({ ap, data }) {
   const router = useRouter();
 
   return (
@@ -28,7 +28,7 @@ function product({ ap, data }) {
   );
 }
 
-export default product;
+export default Product;
 
 // function server side
 export async function getServerSideProps(context) {

@@ -8,7 +8,7 @@ const _asist = new Assistent();
 // styles
 import styles from "./success.module.scss";
 
-const success = ({ code }) => {
+const Success = ({ code }) => {
   const [height, setHeight] = useState(null);
   const [width, setWidth] = useState(null);
   const confettiRef = useRef(null);
@@ -50,7 +50,7 @@ const success = ({ code }) => {
   );
 };
 
-export default success;
+export default Success;
 
 // function server side
 export async function getServerSideProps(context) {
