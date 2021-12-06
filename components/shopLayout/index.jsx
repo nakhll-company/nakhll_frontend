@@ -1,15 +1,24 @@
 // node libraries
 import Head from "next/head";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 // components
-import Header from "./header/header";
 import Footer from "./footer";
+import Header from "./header/header";
 import { ToastContainer } from "react-toastify";
-
 // style
 import styles from "../../styles/components/shopLayout/shopLayout.module.scss";
 
-
 function ShopLayout({ children }) {
+  const userData = useSelector((state) => state.User.userInfo);
+  useEffect(() => {
+    window.addEventListener('goftino_ready', function () {
+      Goftino.setUser({
+        name: 'Ali Rahimi',
+        phone: '09123456789',
+      });
+    });
+  }, []);
 
   return (
     <>
