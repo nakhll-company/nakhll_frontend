@@ -10,7 +10,7 @@ import { TopBar } from "../TopBar";
 import { errorMessage } from "../../utils/message";
 import Search from "../../../components/search/Search";
 import AddFavorites from "../../../components/AddFavorites";
-import MenuMobile from "../../../components/layout/MenuMobile";
+
 import { allCites } from "../../../components/custom/data/data";
 import CustomSwitch from "../../../components/custom/customSwitch";
 import ProductCard from "../../../components/ProductCart/ProductCard";
@@ -787,8 +787,6 @@ function ListProductCus({ data }) {
 
         {/* END MODAL */}
 
-        {/* MenuMobile */}
-        <MenuMobile />
         {/* MenuMobile */}
       </ContextListProductPage.Provider>
     </>
