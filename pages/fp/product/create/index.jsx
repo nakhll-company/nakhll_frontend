@@ -1,9 +1,7 @@
 // node libraries
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
-
 import { useForm } from "react-hook-form";
-import Assistent from "zaravand-assistent-number";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 // components
@@ -11,11 +9,9 @@ import MyLayout from "../../../../components/layout/Layout";
 import Loading from "../../../../components/loading/index";
 import Category from "../../../../containers/product/create/category";
 // methods
-import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 import { mapState } from "../../../../containers/product/methods/mapState";
 // styles
 import styles from "../../../../styles/pages/product/create.module.scss";
-import { errorMessage } from "../../../../containers/utils/message";
 import CheckboxTreeCities from "../../../../components/CheckboxTree/CheckboxTree";
 import InputPictureCreat from "../../../../containers/creat/component/InputPicture";
 import TitleLiner from "../../../../containers/settings/components/titleLiner";
@@ -37,87 +33,15 @@ const CreateProduct = ({ activeHojreh }) => {
     clearErrors,
     register,
     setError,
-    watch,
+
     handleSubmit,
     formState: { errors },
   } = useForm({
     criteriaMode: "all",
     mode: "all",
   });
-  console.log(watch());
-  // submit
-  // const onSubmit = async (data) => {
-
-  //   let err = false;
-  //   if (!placeholderSubmarckets) {
-  //     setError("submark", { type: "focus" }, { shouldFocus: true });
-  //   } else {
-  //     err = true;
-  //   }
-
-  //   if (err) {
-  //     setIsLoad(false);
-
-  //     let confirm = {
-  //       Title: data.Title,
-  //       Inventory: Add,
-  //       Slug: activeHojreh,
-  //       Price: data.Price,
-  //       OldPrice: data.OldPrice,
-  //       Net_Weight: data.Net_Weight,
-  //       Weight_With_Packing: data.Weight_With_Packing,
-  //       Description: data.Description,
-  //       Status: product_status,
-  //       PostRangeType: 1,
-  //       PreparationDays: AddPreparationDays,
-  //       FK_Shop: activeHojreh,
-  //       post_range: checkedCities,
-  //       new_category: submarketId,
-  //     };
-  //     let paramsProduct = {};
-  //     let loadDataProduct = confirm;
-  //     let dataUrlProduct = "/api/v1/landing/products/";
-  //     let response = await ApiRegister().apiRequest(
-  //       loadDataProduct,
-  //       "post",
-  //       dataUrlProduct,
-  //       true,
-  //       paramsProduct
-  //     );
-
-  //     if (response.status !== 201) {
-  //       errorMessage("خطایی در ایجاد محصول پیش آمده است");
-  //     }
-  //     var resultId = response.data.ID;
-
-  //     if (resultId) {
-  //       let imagesProduct = {
-  //         product: resultId,
-  //         images: previewImage,
-  //       };
-
-  //       let paramsImages = {};
-  //       let loadDataImages = imagesProduct;
-  //       let dataUrlImages = "/api/v1/product/images/";
-  //       let responseImages = await ApiRegister().apiRequest(
-  //         loadDataImages,
-  //         "post",
-  //         dataUrlImages,
-  //         true,
-  //         paramsImages
-  //       );
-  //       if (responseImages.status === 200) {
-  //         setShowSuccessPage(true);
-  //         // setIsLoad(false)
-  //       } else {
-  //         errorMessage("خطایی در ایجاد محصول پیش آمده است");
-  //       }
-  //     }
-  //   }
-  // };
 
   const onSubmit = async (data) => {
-    console.log("data :>> ", data);
     let Product_Banner = [];
     if (imgProductOne) {
       Product_Banner.push({ Image: imgProductOne });
@@ -146,23 +70,21 @@ const CreateProduct = ({ activeHojreh }) => {
       Image: imgProduct,
       Product_Banner: Product_Banner,
     };
-    // data.push(externalData);
 
     const dataForSend = Object.assign(data, externalData);
     const response = await _ApiCreateProduct(dataForSend, activeHojreh);
-    alert(response);
+
+    if (response.status === 201) {
+      router.replace("/fp/product/create/successPageProduct");
+    }
   };
 
   // states
   const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState("");
   const [data, setData] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [previewImage, setPreviewImage] = useState(null);
-
   const [submarketId, setSubmarketId] = useState(null);
-  const [showSuccessPage, setShowSuccessPage] = useState(false);
   const [isLoad, setIsLoad] = useState(false);
-
   // stat for test image
   const [imgProduct, setImgProduct] = useState(null);
   const [imgProductOne, setImgProductOne] = useState(null);
@@ -175,42 +97,10 @@ const CreateProduct = ({ activeHojreh }) => {
   // for Save cities
   const [checkedCities, setCheckedCities] = useState([]);
 
-  // show success page
-  if (showSuccessPage) {
-    router.replace("/fp/product/create/successPageProduct");
-  }
-  useEffect(() => {
-    let Product_Banner = [];
-    if (imgProductOne) {
-      Product_Banner.push({ Image: imgProductOne });
-    }
-    if (imgProductTwo) {
-      Product_Banner.push({ Image: imgProductTwo });
-    }
-    if (imgProductThree) {
-      Product_Banner.push({ Image: imgProductThree });
-    }
-    if (imgProductFour) {
-      Product_Banner.push({ Image: imgProductFour });
-    }
-    if (imgProductFive) {
-      Product_Banner.push({ Image: imgProductFive });
-    }
-    if (imgProductSix) {
-      Product_Banner.push({ Image: imgProductSix });
-    }
-
-    console.log(`Product_Banner`, Product_Banner);
-  }, [imgProductOne]);
-
-  useEffect(() => {
-    console.log(`submarketId`, submarketId);
-  }, [submarketId]);
   // use effect
   useEffect(async () => {
     const response_categories = await _ApiGetCategories();
-    console.log(`response_categories.data`, response_categories.data);
-
+   
     if (response_categories.status === 200) {
       setIsLoad(true);
       setData(response_categories.data); //==> output: {}
