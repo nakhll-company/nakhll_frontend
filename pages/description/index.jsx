@@ -1,4 +1,4 @@
-import "tailwindcss/tailwind.css";
+// import "tailwindcss/tailwind.css";
 import Image from "next/image";
 import FeaturesBlocks from "../../containers/description/components/FeaturesBlocks";
 import Questions from "../../containers/description/components/Questions";

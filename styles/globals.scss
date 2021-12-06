@@ -17,130 +17,143 @@
 
 /* ./styles/globals.css */
 
+/* ./styles/globals.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @font-face {
-    font-family: "IRANSansB";
-    src: url("../public/assets/fonts/Shabnam.eot");
-    /* IE9 Compat Modes */
-    src: url("../public/assets/fonts/Shabnam.eot") format("embedded-opentype"), /* IE6-IE8 */
-    url("../public/assets/fonts/Shabnam.woff2") format("woff2"), /* Super Modern Browsers */
-    url("../public/assets/fonts/Shabnam.woff") format("woff"), /* Pretty Modern Browsers */
-    url("../public/assets/fonts/Shabnam.ttf") format("truetype");
-    /* Safari, Android, iOS */
-    /*url('webfont.svg#svgFontName') format('svg'); !* Legacy iOS *!*/
+  font-family: "IRANSansB";
+  src: url("../public/assets/fonts/Shabnam.eot");
+  /* IE9 Compat Modes */
+  src: url("../public/assets/fonts/Shabnam.eot") format("embedded-opentype"),
+    /* IE6-IE8 */ url("../public/assets/fonts/Shabnam.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("../public/assets/fonts/Shabnam.woff")
+      format("woff"),
+    /* Pretty Modern Browsers */ url("../public/assets/fonts/Shabnam.ttf")
+      format("truetype");
+  /* Safari, Android, iOS */
+  /*url('webfont.svg#svgFontName') format('svg'); !* Legacy iOS *!*/
 }
 // Cart Page
 // @import "../styles/pages/cart/cart.module.scss";
 @font-face {
-    font-family: "vazir";
-    src: url("../public/assets/fonts/Vazir.eot") format("eot"), url("../public/assets/fonts/Vazir.woff") format("woff"), url("../public/assets/fonts/Vazir.woff2") format("woff2"), url("../public/assets/fonts/Vazir.ttf") format("ttf");
-    font-style: normal;
-    font-display: fallback;
+  font-family: "vazir";
+  src: url("../public/assets/fonts/Vazir.eot") format("eot"),
+    url("../public/assets/fonts/Vazir.woff") format("woff"),
+    url("../public/assets/fonts/Vazir.woff2") format("woff2"),
+    url("../public/assets/fonts/Vazir.ttf") format("ttf");
+  font-style: normal;
+  font-display: fallback;
 }
 :root {
-    --background1: #e5e5e5;
-    --background2: #ffffff;
-    --border: 1px solid #e0e6e9;
-    --radius: 5px;
-    --shadow: 0px 0px 12px rgba(0, 0, 0, 0.05);
-    --color1: #5e7488;
-    --color2: #364254;
-    --hover: #007aff;
+  --background1: #e5e5e5;
+  --background2: #ffffff;
+  --border: 1px solid #e0e6e9;
+  --radius: 5px;
+  --shadow: 0px 0px 12px rgba(0, 0, 0, 0.05);
+  --color1: #5e7488;
+  --color2: #364254;
+  --hover: #007aff;
 }
 ::placeholder {
-    font-size: 14px;
-    color: #a4aebb;
+  font-size: 14px;
+  color: #a4aebb;
 }
-html, body {
-    // aasfont-size: 62.5%;
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: "IRANSansB" !important;
-    direction: rtl;
-    background-color: #f8f8f8;
-    text-align: right;
+html,
+body {
+  // aasfont-size: 62.5%;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "IRANSansB" !important;
+  direction: rtl;
+  background-color: #f8f8f8;
+  text-align: right;
 }
 a {
-    color: inherit;
-    text-decoration: none !important;
+  color: inherit;
+  text-decoration: none !important;
 }
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 /* Chrome, ffffffffSafari, Edge, Opera */
 
-input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* Firefox */
 
 input[type="number"] {
-    -moz-appearance: textfield;
+  -moz-appearance: textfield;
 }
 .container_cropper_product {
-    position: fixed !important;
-    z-index: 999;
-    background: rgba(0, 0, 0, 1.51);
+  position: fixed !important;
+  z-index: 999;
+  background: rgba(0, 0, 0, 1.51);
 }
 
 /*# sourceMappingURL=ReactToastify.css.map */
 
 .nakhl-label.teaberry-light {
-    color: #dc3755;
-    background: #fcecef;
+  color: #dc3755;
+  background: #fcecef;
 }
 .nakhl-label.small {
-    font-size: 0.9rem;
-    padding: 0.2rem 0.5rem;
+  font-size: 0.9rem;
+  padding: 0.2rem 0.5rem;
 }
 .nakhl-label {
-    text-align: center;
-    border-radius: 0.4rem;
+  text-align: center;
+  border-radius: 0.4rem;
 }
 .opacity_none {
-    opacity: 0;
+  opacity: 0;
 }
 @media (max-width: 767.98px) {
-    html {
-        font-size: 0.875rem;
-    }
+  html {
+    font-size: 0.875rem;
+  }
 }
 @media (max-width: 767.98px) {
-    .container_mob {
-        padding-left: 0;
-        padding-right: 0;
-    }
-    .container_mob>.row {
-        margin-right: 0;
-        margin-left: 0;
-    }
-    .container_mob>.row>.col, .container_mob>.row>[class*="col-"] {
-        padding-right: 0;
-        padding-left: 0;
-    }
+  .container_mob {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .container_mob > .row {
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .container_mob > .row > .col,
+  .container_mob > .row > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
 }
 .accordion-button::after {
-    margin-left: 0px !important;
+  margin-left: 0px !important;
 }
 .accordion-button:not(.collapsed) {
-    color: #000;
-    background-color: #fff;
+  color: #000;
+  background-color: #fff;
 }
 .accordion-button:focus {
-    z-index: 3;
-    border-color: #fff;
-    outline: 0 !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
+  z-index: 3;
+  border-color: #fff;
+  outline: 0 !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
 }
 // FOR ANIMATION CART IN CART
 .animationCartParent:hover .animationCart {
-    transform: translateY(-10px) scale(1.08) rotate(1deg);
-    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 200;
+  transform: translateY(-10px) scale(1.08) rotate(1deg);
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 200;
 }
 // .animationCartParent:hover {
 //   transform: translateY(0px) rotate(-2deg);
@@ -148,41 +161,41 @@ input[type="number"] {
 // }
 // for menuMobile
 .mobile_menu {
-    position: absolute;
-    top: 0;
-    // iiii
-    // right: -100%;
-    bottom: 0;
-    width: 100%;
-    background: #fff;
-    box-shadow: 0 0 7px 7px hsla(0, 0%, 80.8%, 0.5);
-    overflow-y: scroll;
-    transition: all 0.3s ease-out;
-    padding: 24px 16px;
+  position: absolute;
+  top: 0;
+  // iiii
+  // right: -100%;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 0 7px 7px hsla(0, 0%, 80.8%, 0.5);
+  overflow-y: scroll;
+  transition: all 0.3s ease-out;
+  padding: 24px 16px;
 }
 .mobile_menu_show {
-    right: 0 !important;
+  right: 0 !important;
 }
 .mobile_menu_dont_show {
-    right: -100%;
+  right: -100%;
 }
 @import "../styles/normalize.css";
 body::-webkit-scrollbar {
-    width: 0.5em;
+  width: 0.5em;
 }
 body::-webkit-scrollbar-track {
-    background: #1e1e24;
+  background: #1e1e24;
 }
 body::-webkit-scrollbar-thumb {
-    background: #6649b8;
+  background: #6649b8;
 }
 .raychat_main_button {
-    height: 40px !important;
-    width: 40px !important;
-    margin-bottom: 65px !important;
-    margin-right: 5px !important;
-    background-image: url("../public/image/LOGO_500.png") !important;
+  height: 40px !important;
+  width: 40px !important;
+  margin-bottom: 65px !important;
+  margin-right: 5px !important;
+  background-image: url("../public/image/LOGO_500.png") !important;
 }
 .raychat_bgc {
-    background-color: #f8f8f8 !important;
+  background-color: #f8f8f8 !important;
 }
