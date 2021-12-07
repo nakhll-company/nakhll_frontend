@@ -10,7 +10,8 @@ export const getProduct =
         price_to,
         inventory_from,
         inventory_to,
-        order_by
+        order_by,
+        search
     ) =>
         async (dispatch) => {
             // try
@@ -24,6 +25,7 @@ export const getProduct =
                             inventory_from,
                             inventory_to,
                             order_by,
+                            search
                         };
                         let loadData = null;
                         let dataUrl = `/api/v1/shop/${activeHojreh}/products/`;
@@ -43,7 +45,7 @@ export const getProduct =
                         // dispatch
                         dispatch({
                             type: Types.GET_PRODUCT,
-                            payload: response.results,
+                            payload: response.data.results,
                         });
                     }
                 }
