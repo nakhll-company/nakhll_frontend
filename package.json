@@ -12,7 +12,6 @@
     "dependencies": {
         "@hookform/error-message": "^2.0.0",
         "@hookform/resolvers": "^2.6.1",
-        "@sentry/nextjs": "^6.15.0",
         "axios": "^0.21.4",
         "bootstrap": "^5.1.0",
         "dom7": "^3.0.0",

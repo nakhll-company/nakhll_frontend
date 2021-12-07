@@ -1,6 +1,6 @@
 // methods
 import { getAddress } from "../../api/cartAddress/getAddress";
-import { deleteAddress } from './methods/deleteAddress';
+import { deleteAddress } from '../../api/cartAddress/deleteAddress';
 // styles
 import styles from '../../styles/pages/cart/deleteAddress.module.scss';
 /**
