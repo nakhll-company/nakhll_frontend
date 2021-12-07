@@ -2,6 +2,7 @@ import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
 export const _updatePicture = (img) => {
   return async (dispatch, getState) => {
+    let response;
     const id = getState().selectIdFormLanding;
 
     try {
@@ -13,7 +14,7 @@ export const _updatePicture = (img) => {
         description: "",
       };
       let dataUrl = `/api/v1/profile/images/`;
-      let response = await ApiRegister().apiRequest(
+      response = await ApiRegister().apiRequest(
         loadData,
         "POST",
         dataUrl,
@@ -21,10 +22,9 @@ export const _updatePicture = (img) => {
         params
       );
 
-      if (response.status === 200) {
-        alert(response.data);
+      if (response.status === 201) {
       } else {
-        alert(response);
+        alert("در بارگذاری عکس مشکلی پیش آمده");
       }
     } catch (err) {
       alert(err);
@@ -33,7 +33,9 @@ export const _updatePicture = (img) => {
     let dataLanding = [...getState().allDataLanding];
     dataLanding.map((El, index) => {
       if (El.ID == id.id) {
-        dataLanding[index].data[id.order].image = img;
+        dataLanding[index].data[id.order].image = response.data.image
+          ? response.data.image
+          : null;
       }
     });
     await dispatch({ type: "UPDATE_PICTURE", payload: dataLanding });
