@@ -90,18 +90,18 @@ function ListProductCus({ data }) {
   const [NameHojreh, setNameHojreh] = useState("")
 
   const _handel_category = async () => {
-        try {
+    try {
       let response = await ApiRegister().apiRequest(
         null,
         "get",
         `/api/v1/categories/category_product_count/?q=${searchWord}`,
-        true,
+        false,
         {}
       );
       if (response.status === 200) {
         setCategories(response.data);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   const _handel_Add_category = (id) => {
@@ -145,13 +145,13 @@ function ListProductCus({ data }) {
         null,
         "get",
         `/api/v1/products/`,
-        true,
+        false,
         params
       );
       if (response.status === 200) {
         setListWithFilter(response.data.results);
         setNameHojreh(response.data.results[0].FK_Shop.title)
-        
+
 
         if (
           response.data.results.length === 0 ||
@@ -178,7 +178,7 @@ function ListProductCus({ data }) {
         null,
         "get",
         `/api/v1/products/`,
-        true,
+        false,
         {
           ...(witchFilter ? witchFilter : null),
           search: searchWord,
@@ -208,7 +208,7 @@ function ListProductCus({ data }) {
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
   // Get all shops
   const _get_all_shops = async () => {
@@ -217,7 +217,7 @@ function ListProductCus({ data }) {
         null,
         "GET",
         ApiReference.allShops,
-        true,
+        false,
         ""
       );
 
@@ -251,7 +251,7 @@ function ListProductCus({ data }) {
     changePage,
     hojreh,
   ]);
-  
+
 
   useEffect(() => {
     router.push(
@@ -458,9 +458,9 @@ function ListProductCus({ data }) {
               handel_OrderingModal={handel_OrderingModal}
             />
             {/* inja */}
-            <div style={{position:"sticky",position:"-webkit-sticky",top:"0",zIndex:"999"}}>
-              {hojreh !== "" && <SearchProduct searchWord={searchWord} NameHojreh={NameHojreh} hojreh={hojreh}/>}
-              
+            <div style={{ position: "sticky", position: "-webkit-sticky", top: "0", zIndex: "999" }}>
+              {hojreh !== "" && <SearchProduct searchWord={searchWord} NameHojreh={NameHojreh} hojreh={hojreh} />}
+
             </div>
             <div className="mx-auto row">
               {isLoading ? (

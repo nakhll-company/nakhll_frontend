@@ -13,11 +13,11 @@ function ListWitOutFilters({ api }) {
 
   const _Call_Products = async () => {
     try {
-      let response = await ApiRegister().apiRequest(null, "get", api, true, {});
+      let response = await ApiRegister().apiRequest(null, "get", api, false, {});
       if (response.status === 200) {
         setlistProducts(response.data);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   useEffect(() => {

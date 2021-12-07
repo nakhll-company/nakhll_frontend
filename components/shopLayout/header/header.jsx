@@ -29,7 +29,7 @@ function Header() {
         null,
         "get",
         `/api/v1/categories/?max_depth=2`,
-        true,
+        false,
         {}
       );
       if (response.status === 200) {
@@ -45,7 +45,7 @@ function Header() {
         null,
         "GET",
         ApiReference.allShops,
-        true,
+        false,
         ""
       );
 

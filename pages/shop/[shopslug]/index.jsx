@@ -26,7 +26,7 @@ const fetchData = async (id) => {
     null,
     "GET",
     Api_Shop,
-    true,
+    false,
     ""
   );
 
@@ -36,7 +36,7 @@ const fetchData = async (id) => {
         null,
         "GET",
         `${ApiReference.schemaShop}${response.data.ID}/`,
-        true,
+        false,
         ""
       );
       if (Schema.status === 200) {
@@ -45,7 +45,7 @@ const fetchData = async (id) => {
             null,
             "GET",
             Schema.data[index].data,
-            true,
+            false,
             ""
           );
           if (one_Component.status === 200) {
@@ -172,7 +172,7 @@ const Shop = ({ dataShop, data }) => {
           />
 
           {/* <ListProductShop shop_products={dataShop.shop.slug} data={data} /> */}
-          <ListProductCusTest data={data}/>
+          <ListProductCusTest data={data} />
         </>
       )}
 

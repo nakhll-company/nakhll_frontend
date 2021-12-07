@@ -6,7 +6,7 @@ export const getStates = async () => {
     let response = await ApiRegister().apiRequest(
         null, "get",
         "/app/api/v1/get-all-state/",
-        true, {}
+        false, {}
     );
     if (response.status === 200) {
         return response.data;

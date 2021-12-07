@@ -1,4 +1,4 @@
-import { method } from "lodash";
+
 
 export const ApiReference = {
   Landing_Page: "/api/v1/landing/schema/",
