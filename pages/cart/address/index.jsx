@@ -80,7 +80,7 @@ const Address = () => {
                                 return (
                                     <label key={index} className={`${styles.address_items_label} ${index === 0 && styles.active_address}`}
                                         onClick={(event) => {
-                                            changeRadioButtonColor(event);
+                                            changeRadioButtonColor(event, styles, index);
                                         }}
                                     >
                                         <div id={`firstCircle${index}`} className={`${styles.address_item_circle} ${index === 0 && styles.active_circle}`}>
