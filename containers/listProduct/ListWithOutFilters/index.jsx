@@ -7,17 +7,26 @@ import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import ProductCard from "../../../components/ProductCart/ProductCard";
 
 function ListWitOutFilters({ api }) {
+  console.log(api);
   const [listProducts, setlistProducts] = useState([]);
   // state for show loading
   const [isLoading, setIsLoading] = useState(false);
 
   const _Call_Products = async () => {
     try {
-      let response = await ApiRegister().apiRequest(null, "get", api, false, {});
+      let response = await ApiRegister().apiRequest(
+        null,
+        "get",
+        api,
+        false,
+        {}
+      );
+      console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2");
+      console.log(response.data[0]);
       if (response.status === 200) {
         setlistProducts(response.data);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   useEffect(() => {
@@ -56,29 +65,25 @@ function ListWitOutFilters({ api }) {
           <div className="col-12 ">
             <div className="mx-auto row">
               {isLoading ? (
-                // <Loading />
-                // <BeautyLoading />
                 <WoLoading />
               ) : (
-                // isLoading
-                // <WoLoading />
-
                 <div className="mx-auto row">
                   {listProducts.map((oneProduct, index) => (
                     <ProductCard
                       key={index}
                       padding={1}
                       product={{
-                        id: oneProduct.id,
-                        imageUrl: oneProduct.image_thumbnail_url,
-                        url: `/shop/${oneProduct.shop.slug}/product/${oneProduct.slug}/`,
-                        title: oneProduct.title,
-                        chamberTitle: oneProduct.shop && oneProduct.shop.title,
-                        chamberUrl: `/shop/${oneProduct.shop.slug} `,
+                        id: oneProduct.ID,
+                        imageUrl: oneProduct.Image_medium_url,
+                        url: `/shop/${oneProduct.FK_Shop.slug}/product/${oneProduct.Slug}/`,
+                        title: oneProduct.Title,
+                        chamberTitle:
+                          oneProduct.FK_Shop && oneProduct.FK_Shop.title,
+                        chamberUrl: `/shop/${oneProduct.FK_Shop.slug} `,
                         discount: oneProduct.discount,
-                        price: oneProduct.price / 10,
-                        discountNumber: oneProduct.old_price / 10,
-                        city: oneProduct.shop && oneProduct.shop.state,
+                        price: oneProduct.Price / 10,
+                        discountNumber: oneProduct.OldPrice / 10,
+                        city: oneProduct.FK_Shop && oneProduct.FK_Shop.state,
                         is_advertisement: oneProduct.is_advertisement,
                       }}
                     />
