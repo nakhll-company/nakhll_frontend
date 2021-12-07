@@ -76,6 +76,7 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
             },
           };
           const response = await callApiUpDataShop(dataForSend, activeHojreh);
+
           if (response.status === 200) {
             setIsLoading(false);
             setshowMessage(1);
@@ -105,6 +106,7 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
               extraTitle="غیر قابل تغییر"
               title="آدرس اینترنتی حجره"
               description={dataExp.slug}
+              disabled={true}
             />
             <TextArea
               name="Description"

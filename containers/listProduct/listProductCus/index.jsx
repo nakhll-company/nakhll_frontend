@@ -3,7 +3,7 @@ import router from "next/router";
 import CheckboxTree from "react-checkbox-tree";
 import Assistent from "zaravand-assistent-number";
 import React, { useEffect, useState } from "react";
-import ContextListProductPage from "./Context/context";
+
 import InfiniteScroll from "react-infinite-scroll-component";
 // components
 import { TopBar } from "../TopBar";
@@ -17,20 +17,19 @@ import ProductCard from "../../../components/ProductCart/ProductCard";
 import CustomAccordion from "../../../components/custom/customAccordion";
 import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
 import MultiRangeSlider from "../../../components/custom/customMultiRangeSlider/MultiRangeSlider";
+
 // methods
 import { ApiReference } from "../../../Api";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // styles
 import styles from "./listProductCus.module.scss";
-
+import OrderingModalMobile from "./components/OrderingModalMobile";
+import SearchProduct from "./components/searchProduct";
 const _asist = new Assistent();
 
 function ListProductCus({ data }) {
-  const [listProducts, setlistProducts] = useState([]);
-
   const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
   const [searchWord, setSearchWord] = useState(data.q ? data.q : "");
-
   const [listWithFilter, setListWithFilter] = useState([]);
   // state for  show Ordering Modal in mobile
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -38,12 +37,10 @@ function ListProductCus({ data }) {
   const [totalcount, setTotalcount] = useState("");
   // state for show loading
   const [isLoading, setIsLoading] = useState(false);
-
   // state for ordering
   const [whichOrdering, setWhichOrdering] = useState(
     data.ordering ? data.ordering : ""
   );
-
   // state for on filter
   const [isDiscountPercentage, setIsDiscountPercentage] = useState(
     data.discounted == "true" ? true : false
@@ -90,9 +87,10 @@ function ListProductCus({ data }) {
   const [searchShops, setSearchShops] = useState([]);
   // state for change page
   const [changePage, setChangePage] = useState(1);
+  const [NameHojreh, setNameHojreh] = useState("")
 
   const _handel_category = async () => {
-    try {
+        try {
       let response = await ApiRegister().apiRequest(
         null,
         "get",
@@ -125,10 +123,10 @@ function ListProductCus({ data }) {
     let params = {
       ...(witchFilter ? witchFilter : null),
       search: searchWord,
-      ordering: whichOrdering,
-      ready: isReadyForSend,
-      available: isAvailableGoods,
-      discounted: isDiscountPercentage,
+      ...(whichOrdering !== "" && { ordering: whichOrdering }),
+      ...(isReadyForSend && { ready: isReadyForSend }),
+      ...(isAvailableGoods && { available: isAvailableGoods }),
+      ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
 
       ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
 
@@ -137,9 +135,9 @@ function ListProductCus({ data }) {
       }),
 
       page_size: 50,
-      min_price: minPrice * 10000,
-      max_price: maxPrice * 10000,
-      shop: hojreh,
+      ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
+      ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
+      ...(hojreh !== "" && { shop: hojreh }),
     };
 
     try {
@@ -152,6 +150,8 @@ function ListProductCus({ data }) {
       );
       if (response.status === 200) {
         setListWithFilter(response.data.results);
+        setNameHojreh(response.data.results[0].FK_Shop.title)
+        
 
         if (
           response.data.results.length === 0 ||
@@ -182,19 +182,19 @@ function ListProductCus({ data }) {
         {
           ...(witchFilter ? witchFilter : null),
           search: searchWord,
-          ordering: whichOrdering,
+          ...(whichOrdering !== "" && { ordering: whichOrdering }),
           page: pageApi,
-          ready: isReadyForSend,
-          available: isAvailableGoods,
-          discounted: isDiscountPercentage,
-          city: checkedCity.toString(),
+          ...(isReadyForSend && { ready: isReadyForSend }),
+          ...(isAvailableGoods && { available: isAvailableGoods }),
+          ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
+          ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
           ...(wantCategories.length > 0 && {
             new_category: wantCategories.toString(),
           }),
           page_size: 50,
-          min_price: minPrice * 10000,
-          max_price: maxPrice * 100000,
-          shop: hojreh,
+          ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
+          ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
+          ...(hojreh !== "" && { shop: hojreh }),
         }
       );
       if (response.status === 200) {
@@ -212,16 +212,18 @@ function ListProductCus({ data }) {
   };
   // Get all shops
   const _get_all_shops = async () => {
-    let shops = await ApiRegister().apiRequest(
-      null,
-      "GET",
-      ApiReference.allShops,
-      true,
-      ""
-    );
+    if (shopsName.length == 0) {
+      let shops = await ApiRegister().apiRequest(
+        null,
+        "GET",
+        ApiReference.allShops,
+        true,
+        ""
+      );
 
-    if (shops.status === 200) {
-      setShopsName(shops.data);
+      if (shops.status === 200) {
+        setShopsName(shops.data);
+      }
     }
   };
   // Function for search
@@ -237,7 +239,6 @@ function ListProductCus({ data }) {
   // START
   // for filters in sidebar
   useEffect(async () => {
-    await _get_all_shops();
     await _handel_filters();
   }, [
     isAvailableGoods,
@@ -250,9 +251,7 @@ function ListProductCus({ data }) {
     changePage,
     hojreh,
   ]);
-  useEffect(async () => {
-    await _handel_category();
-  }, []);
+  
 
   useEffect(() => {
     router.push(
@@ -302,271 +301,52 @@ function ListProductCus({ data }) {
 
   return (
     <>
-      <ContextListProductPage.Provider
-        value={{
-          listProducts: listProducts,
-          totalcount: totalcount,
-          handel_filterModal: handel_filterModal,
-          _handel_filters: _handel_filters,
-          listWithFilter: listWithFilter,
-        }}
-      >
-        <div className={styles.container_N}>
-          <div className="row ">
-            <div className="d-none d-lg-block col-lg-3">
-              <div id="sidebar">
-                {categories.length > 0 && (
-                  <CustomAccordion title="دسته بندی" item="one">
-                    {categories.map((ele, index) => (
-                      <div
-                        key={`one${index}`}
-                        style={{ marginBottom: "10px", paddingRight: "10px" }}
-                      >
-                        <input
-                          onChange={(e) => {
-                            _handel_Add_category(e.target.value);
-                          }}
-                          className="form-check-input"
-                          type="checkbox"
-                          value={ele.id}
-                          id={`checkbox${index}`}
-                        />
-                        <label
-                          style={{
-                            marginRight: "5px",
-                            fontSize: "15px",
-                            cursor: "pointer",
-                          }}
-                          className="form-check-label"
-                          htmlFor={`checkbox${index}`}
-                        >
-                          {ele.name} ({_asist.number(ele.product_count)})
-                        </label>
-                      </div>
-                    ))}
-                  </CustomAccordion>
-                )}
-
-                <CustomAccordion title="محدوده قیمت" item="two" close={true}>
-                  <div style={{ direction: "ltr", zIndex: "1000" }}>
-                    <MultiRangeSlider
-                      min={0}
-                      max={data.max_price ? data.max_price : 10000}
-                      onChange={({ min, max }) => {
-                        setMinPrice(min);
-                        setMaxPrice(max);
-                      }}
-                    />
-                    <div style={{ display: "flex", justifyContent: "center" }}>
-                      <button
-                        className="btn btn-dark "
-                        onClick={() => setClickOnRange(clickOnRange + 1)}
-                      >
-                        {" "}
-                        اعمال فیلتر
-                      </button>
-                    </div>
-                  </div>
-                </CustomAccordion>
-                <CustomAccordion
-                  title="جستجو بر اساس حجره"
-                  item="searchHoj"
-                  close={true}
-                >
-                  <Search onChange={(e) => _handel_search(e.target.value)} />
-                  {searchShops.length > 0 && (
-                    <div className={styles.numBag}>
-                      <span> {_asist.PSeparator(searchShops.length)}</span>
-                      حجره
-                    </div>
-                  )}
-                  {searchShops.map((el, index) => (
-                    <div
-                      key={index}
-                      className={styles.itemHojreh}
-                      onClick={() => {
-                        setHojreh(el.slug);
-                        setSearchWord("");
-                      }}
-                    >
-                      {el.title}
-                    </div>
-                  ))}
-                </CustomAccordion>
-
-                {hojreh == "" && (
-                  <CustomAccordion
-                    title="استان و شهر حجره دار"
-                    item="three"
-                    close={true}
-                  >
-                    <CheckboxTree
-                      // direction="rtl"
-                      icons={{
-                        expandClose: (
-                          <span
-                            className="fas fa-angle-left"
-                            style={{ fontSize: "15px" }}
-                          />
-                        ),
-                        parentClose: <span />,
-                      }}
-                      nodes={allCites}
-                      checked={checkedCity}
-                      expanded={expandCity}
-                      onCheck={(e) => setCheckedCity(e)}
-                      onExpand={(e) => setExpandCity(e)}
-                    />
-                  </CustomAccordion>
-                )}
-
-                <div className={styles.search_body_filter}>
-                  <div
-                    className={styles.modal_body}
-                    style={{ msOverflowX: "hidden" }}
-                  >
-                    <CustomSwitch
-                      defaultChecked={data.available == "true" ? true : false}
-                      title="فقط کالاهای موجود"
-                      id="Available_goods"
-                      onChange={(e) => {
-                        setIsAvailableGoods(e.target.checked);
-                      }}
-                    />
-                    <CustomSwitch
-                      defaultChecked={data.ready == "true" ? true : false}
-                      title="آماده ارسال"
-                      id="Ready_to_send"
-                      onChange={(e) => {
-                        setIsReadyForSend(e.target.checked);
-                      }}
-                    />
-                    <CustomSwitch
-                      defaultChecked={data.discounted == "true" ? true : false}
-                      title="تخفیف دارها"
-                      id="discounted"
-                      onChange={(e) => {
-                        setIsDiscountPercentage(e.target.checked);
-                      }}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>{" "}
-            <div className="col-12 col-lg-9">
-              <TopBar
-                totalcount={totalcount}
-                data={data.ordering}
-                whichOrdering={whichOrdering}
-                handel_filterModal={handel_filterModal}
-                setWhichOrdering={setWhichOrdering}
-                handel_OrderingModal={handel_OrderingModal}
-              />
-              <div className="mx-auto row">
-                {isLoading ? (
-                  <WoLoading />
-                ) : (
-                  <InfiniteScroll
-                    className="mx-auto row"
-                    dataLength={listWithFilter.length} //This is important field to render the next data
-                    next={_handel_call_another_page_api}
-                    hasMore={hasMore}
-                    loader={<h4>کمی صبر...</h4>}
-                    endMessage={
-                      <p style={{ textAlign: "center" }}>
-                        <b>به پایان رسیدیم...</b>
-                      </p>
-                    }
-                  >
-                    {listWithFilter.map((oneProduct, index) => (
-                      <ProductCard
-                        key={index}
-                        padding={1}
-                        product={{
-                          id: oneProduct.ID,
-                          imageUrl: oneProduct.Image_medium_url,
-                          url: `/shop/${oneProduct.FK_Shop.slug}/product/${oneProduct.Slug}/`,
-                          title: oneProduct.Title,
-                          chamberTitle: oneProduct.FK_Shop
-                            ? oneProduct.FK_Shop.title
-                            : "",
-                          chamberUrl: oneProduct.FK_Shop
-                            ? `/shop/${oneProduct.FK_Shop.slug} `
-                            : "",
-
-                          discount: oneProduct.discount,
-                          price: oneProduct.Price / 10,
-                          discountNumber: oneProduct.OldPrice / 10,
-                          city: oneProduct.FK_Shop && oneProduct.FK_Shop.state,
-                          is_advertisement: oneProduct.is_advertisement,
-                        }}
-                      />
-                    ))}
-                  </InfiniteScroll>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* modalFilter start*/}
-        {isOpenModal && (
-          <div className={`${styles.modal_filter_products} d-none d-lg-block`}>
-            <div
-              style={{
-                position: "fixed",
-                top: "10px",
-                left: "10px",
-                zIndex: "10000",
-              }}
-            >
-              <i
-                onClick={handel_filterModal}
-                className="far fa-times-circle"
-                style={{
-                  fontSize: "25px",
-                  marginTop: "5px",
-                  marginLeft: "10px",
-                }}
-              ></i>
-            </div>
+      <div className={styles.container_N}>
+        <div className="row ">
+          <div className="d-none d-lg-block col-lg-3">
             <div id="sidebar">
-              <div className={styles.search_body_filter}>
-                <div
-                  className={styles.modal_body}
-                  style={{ msOverflowX: "hidden" }}
-                >
-                  <CustomSwitch
-                    title="فقط کالاهای موجود"
-                    id="Available_goods_mobile"
-                    onChange={(e) => {
-                      setIsAvailableGoods(e.target.checked);
-                    }}
-                  />
-                  <CustomSwitch
-                    title="آماده ارسال"
-                    id="Ready_to_send_mobile"
-                    onChange={(e) => {
-                      setIsReadyForSend(e.target.checked);
-                    }}
-                  />
-                  <CustomSwitch
-                    title="تخفیف دارها"
-                    id="discounted_mobile"
-                    onChange={(e) => {
-                      setIsDiscountPercentage(e.target.checked);
-                    }}
-                  />
-                </div>
-              </div>
-              <CustomAccordion title="محدوده قیمت" item="2mobile">
-                <div style={{ direction: "ltr" }}>
+              <CustomAccordion
+                title="دسته بندی"
+                item="one"
+                callApi={() => _handel_category()}
+              >
+                {categories.map((ele, index) => (
+                  <div
+                    key={`one${index}`}
+                    style={{ marginBottom: "10px", paddingRight: "10px" }}
+                  >
+                    <input
+                      onChange={(e) => {
+                        _handel_Add_category(e.target.value);
+                      }}
+                      className="form-check-input"
+                      type="checkbox"
+                      value={ele.id}
+                      id={`checkbox${index}`}
+                    />
+                    <label
+                      style={{
+                        marginRight: "5px",
+                        fontSize: "15px",
+                        cursor: "pointer",
+                      }}
+                      className="form-check-label"
+                      htmlFor={`checkbox${index}`}
+                    >
+                      {ele.name} ({_asist.number(ele.product_count)})
+                    </label>
+                  </div>
+                ))}
+              </CustomAccordion>
+
+              <CustomAccordion title="محدوده قیمت" item="two" close={true}>
+                <div style={{ direction: "ltr", zIndex: "1000" }}>
                   <MultiRangeSlider
                     min={0}
-                    max={10000}
+                    max={data.max_price ? data.max_price : 10000}
                     onChange={({ min, max }) => {
-                      setMinPrice(min * 10000);
-                      setMaxPrice(max * 10000);
+                      setMinPrice(min);
+                      setMaxPrice(max);
                     }}
                   />
                   <div style={{ display: "flex", justifyContent: "center" }}>
@@ -580,35 +360,41 @@ function ListProductCus({ data }) {
                   </div>
                 </div>
               </CustomAccordion>
-              {categories.length > 0 && (
-                <CustomAccordion title="دسته بندی" item="1mobile">
-                  {categories.map((ele, index) => (
-                    <div
-                      key={`one${index}`}
-                      style={{ marginBottom: "10px", paddingRight: "10px" }}
-                    >
-                      <input
-                        onChange={(e) => {
-                          _handel_Add_category(e.target.value);
-                        }}
-                        className="form-check-input"
-                        type="checkbox"
-                        value={ele.id}
-                        id={`checkbox${index}`}
-                      />
-                      <label
-                        style={{ marginRight: "5px", fontSize: "15px" }}
-                        className="form-check-label"
-                        htmlFor={`checkbox${index}`}
-                      >
-                        {ele.name} ({_asist.number(ele.product_count)})
-                      </label>
-                    </div>
-                  ))}
-                </CustomAccordion>
-              )}
+              <CustomAccordion
+                title="جستجو بر اساس حجره"
+                item="searchHoj"
+                close={true}
+              >
+                <Search
+                  onClick={_get_all_shops}
+                  onChange={(e) => _handel_search(e.target.value)}
+                />
+                {searchShops.length > 0 && (
+                  <div className={styles.numBag}>
+                    <span> {_asist.PSeparator(searchShops.length)}</span>
+                    حجره
+                  </div>
+                )}
+                {searchShops.map((el, index) => (
+                  <div
+                    key={index}
+                    className={styles.itemHojreh}
+                    onClick={() => {
+                      setHojreh(el.slug);
+                      setSearchWord("");
+                    }}
+                  >
+                    {el.title}
+                  </div>
+                ))}
+              </CustomAccordion>
+
               {hojreh == "" && (
-                <CustomAccordion title="استان و شهر حجره دار" item="3mobile">
+                <CustomAccordion
+                  title="استان و شهر حجره دار"
+                  item="three"
+                  close={true}
+                >
                   <CheckboxTree
                     // direction="rtl"
                     icons={{
@@ -628,167 +414,266 @@ function ListProductCus({ data }) {
                   />
                 </CustomAccordion>
               )}
-            </div>
-            <div
-              style={{
-                position: "fixed",
-                bottom: "0",
-                left: "0",
-                right: "0",
-                textAlign: "center",
-                marginTop: "20px",
-                zIndex: "99999",
-                backgroundColor: "#fff",
-                padding: "5px",
-              }}
-            >
-              <button
-                onClick={handel_filterModal}
-                className="btn btn-dark"
-                style={{ width: "90vw", fontSize: "14px" }}
-              >
-                {" "}
-                تایید
-              </button>
-            </div>
-            <div style={{ paddingBottom: "80px" }}></div>
-          </div>
-        )}
-        {/* modalFilter end*/}
 
-        {/* ModalOrdering Strat */}
-        {isOpenOrderingModal && (
-          <div className={`${styles.modal_filter_products} d-none d-lg-block `}>
-            <div
-              style={{
-                position: "fixed",
-                top: "10px",
-                left: "10px",
-                zIndex: "10000",
-              }}
-            >
-              <i
-                onClick={handel_OrderingModal}
-                className="far fa-times-circle"
-                style={{
-                  fontSize: "25px",
-                  marginTop: "5px",
-                  marginLeft: "10px",
-                }}
-              ></i>
-            </div>
-            <div id="sidebar">
               <div className={styles.search_body_filter}>
                 <div
                   className={styles.modal_body}
                   style={{ msOverflowX: "hidden" }}
                 >
-                  <div
-                    style={{
-                      padding: "5px",
-                      paddingBottom: "10px",
-                      paddingTop: "20px",
-                      borderBottom: "1px solid gray",
+                  <CustomSwitch
+                    defaultChecked={data.available == "true" ? true : false}
+                    title="فقط کالاهای موجود"
+                    id="Available_goods"
+                    onChange={(e) => {
+                      setIsAvailableGoods(e.target.checked);
                     }}
-                    onClick={() => {
-                      setWhichOrdering("");
-                      setIsOpenOrderingModal(false);
+                  />
+                  <CustomSwitch
+                    defaultChecked={data.ready == "true" ? true : false}
+                    title="آماده ارسال"
+                    id="Ready_to_send"
+                    onChange={(e) => {
+                      setIsReadyForSend(e.target.checked);
                     }}
-                  >
-                    <span>مرتبط ترین</span>
-                  </div>
-                  <div
-                    style={{
-                      padding: "5px",
-                      paddingBottom: "10px",
-                      paddingTop: "20px",
-                      borderBottom: "1px solid gray",
+                  />
+                  <CustomSwitch
+                    defaultChecked={data.discounted == "true" ? true : false}
+                    title="تخفیف دارها"
+                    id="discounted"
+                    onChange={(e) => {
+                      setIsDiscountPercentage(e.target.checked);
                     }}
-                    onClick={() => {
-                      setWhichOrdering("Price");
-                      setIsOpenOrderingModal(false);
-                    }}
-                  >
-                    <span>ارزانتر</span>
-                  </div>
-                  <div
-                    style={{
-                      padding: "5px",
-                      paddingBottom: "10px",
-                      paddingTop: "20px",
-                      borderBottom: "1px solid gray",
-                    }}
-                    onClick={() => {
-                      setWhichOrdering("-Price");
-                      setIsOpenOrderingModal(false);
-                    }}
-                  >
-                    <span>گرانتر</span>
-                  </div>
-                  <div
-                    style={{
-                      padding: "5px",
-                      paddingBottom: "10px",
-                      paddingTop: "20px",
-                      borderBottom: "1px solid gray",
-                    }}
-                    onClick={() => {
-                      setWhichOrdering("-DiscountPrecentage");
-                      setIsOpenOrderingModal(false);
-                    }}
-                  >
-                    <span>بیشترین تخفیف</span>
-                  </div>
-                  <div
-                    style={{
-                      padding: "5px",
-                      paddingBottom: "10px",
-                      paddingTop: "20px",
-                      borderBottom: "1px solid gray",
-                    }}
-                    onClick={() => {
-                      setWhichOrdering("-DateCreate");
-                      setIsOpenOrderingModal(false);
-                    }}
-                  >
-                    <span>تازه ها</span>
-                  </div>
+                  />
                 </div>
               </div>
             </div>
-            <div
-              style={{
-                position: "fixed",
-                bottom: "0",
-                left: "0",
-                right: "0",
-                textAlign: "center",
-                marginTop: "20px",
-                zIndex: "99999",
-                backgroundColor: "#fff",
-                padding: "5px",
-              }}
-            >
-              <button
-                onClick={handel_filterModal}
-                className="btn btn-dark"
-                style={{ width: "90vw", fontSize: "14px" }}
-              >
-                {" "}
-                تایید
-              </button>
+          </div>{" "}
+          <div className="col-12 col-lg-9">
+            <TopBar
+              totalcount={totalcount}
+              data={data.ordering}
+              whichOrdering={whichOrdering}
+              handel_filterModal={handel_filterModal}
+              setWhichOrdering={setWhichOrdering}
+              handel_OrderingModal={handel_OrderingModal}
+            />
+            {/* inja */}
+            <div style={{position:"sticky",position:"-webkit-sticky",top:"0",zIndex:"999"}}>
+              {hojreh !== "" && <SearchProduct searchWord={searchWord} NameHojreh={NameHojreh} hojreh={hojreh}/>}
+              
             </div>
-            <div style={{ paddingBottom: "80px" }}></div>
+            <div className="mx-auto row">
+              {isLoading ? (
+                <WoLoading />
+              ) : (
+                <InfiniteScroll
+                  className="mx-auto row"
+                  dataLength={listWithFilter.length} //This is important field to render the next data
+                  next={_handel_call_another_page_api}
+                  hasMore={hasMore}
+                  loader={<h4>کمی صبر...</h4>}
+                  endMessage={
+                    <p style={{ textAlign: "center" }}>
+                      <b>به پایان رسیدیم...</b>
+                    </p>
+                  }
+                >
+                  {listWithFilter.map((oneProduct, index) => (
+                    <ProductCard
+                      key={index}
+                      padding={1}
+                      product={{
+                        id: oneProduct.ID,
+                        imageUrl: oneProduct.Image_medium_url,
+                        url: `/shop/${oneProduct.FK_Shop.slug}/product/${oneProduct.Slug}/`,
+                        title: oneProduct.Title,
+                        chamberTitle: oneProduct.FK_Shop
+                          ? oneProduct.FK_Shop.title
+                          : "",
+                        chamberUrl: oneProduct.FK_Shop
+                          ? `/shop/${oneProduct.FK_Shop.slug} `
+                          : "",
+
+                        discount: oneProduct.discount,
+                        price: oneProduct.Price / 10,
+                        discountNumber: oneProduct.OldPrice / 10,
+                        city: oneProduct.FK_Shop && oneProduct.FK_Shop.state,
+                        is_advertisement: oneProduct.is_advertisement,
+                      }}
+                    />
+                  ))}
+                </InfiniteScroll>
+              )}
+            </div>
           </div>
-        )}
-        <AddFavorites />
+        </div>
+      </div>
 
-        {/* ModalOrdering End */}
+      {/* modalFilter start*/}
+      {isOpenModal && (
+        <div className={`${styles.modal_filter_products} d-none d-lg-block`}>
+          <div
+            style={{
+              position: "fixed",
+              top: "10px",
+              left: "10px",
+              zIndex: "10000",
+            }}
+          >
+            <i
+              onClick={handel_filterModal}
+              className="far fa-times-circle"
+              style={{
+                fontSize: "25px",
+                marginTop: "5px",
+                marginLeft: "10px",
+              }}
+            ></i>
+          </div>
+          <div id="sidebar">
+            <div className={styles.search_body_filter}>
+              <div
+                className={styles.modal_body}
+                style={{ msOverflowX: "hidden" }}
+              >
+                <CustomSwitch
+                  title="فقط کالاهای موجود"
+                  id="Available_goods_mobile"
+                  onChange={(e) => {
+                    setIsAvailableGoods(e.target.checked);
+                  }}
+                />
+                <CustomSwitch
+                  title="آماده ارسال"
+                  id="Ready_to_send_mobile"
+                  onChange={(e) => {
+                    setIsReadyForSend(e.target.checked);
+                  }}
+                />
+                <CustomSwitch
+                  title="تخفیف دارها"
+                  id="discounted_mobile"
+                  onChange={(e) => {
+                    setIsDiscountPercentage(e.target.checked);
+                  }}
+                />
+              </div>
+            </div>
+            <CustomAccordion title="محدوده قیمت" item="2mobile">
+              <div style={{ direction: "ltr" }}>
+                <MultiRangeSlider
+                  min={0}
+                  max={10000}
+                  onChange={({ min, max }) => {
+                    setMinPrice(min * 10000);
+                    setMaxPrice(max * 10000);
+                  }}
+                />
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  <button
+                    className="btn btn-dark "
+                    onClick={() => setClickOnRange(clickOnRange + 1)}
+                  >
+                    {" "}
+                    اعمال فیلتر
+                  </button>
+                </div>
+              </div>
+            </CustomAccordion>
+            {categories.length > 0 && (
+              <CustomAccordion title="دسته بندی" item="1mobile" callApi={() => _handel_category()}>
+                {categories.map((ele, index) => (
+                  <div
+                    key={`one${index}`}
+                    style={{ marginBottom: "10px", paddingRight: "10px" }}
+                  >
+                    <input
+                      onChange={(e) => {
+                        _handel_Add_category(e.target.value);
+                      }}
+                      className="form-check-input"
+                      type="checkbox"
+                      value={ele.id}
+                      id={`checkbox${index}`}
+                    />
+                    <label
+                      style={{ marginRight: "5px", fontSize: "15px" }}
+                      className="form-check-label"
+                      htmlFor={`checkbox${index}`}
+                    >
+                      {ele.name} ({_asist.number(ele.product_count)})
+                    </label>
+                  </div>
+                ))}
+              </CustomAccordion>
+            )}
+            {hojreh == "" && (
+              <CustomAccordion title="استان و شهر حجره دار" item="3mobile">
+                <CheckboxTree
+                  // direction="rtl"
+                  icons={{
+                    expandClose: (
+                      <span
+                        className="fas fa-angle-left"
+                        style={{ fontSize: "15px" }}
+                      />
+                    ),
+                    parentClose: <span />,
+                  }}
+                  nodes={allCites}
+                  checked={checkedCity}
+                  expanded={expandCity}
+                  onCheck={(e) => setCheckedCity(e)}
+                  onExpand={(e) => setExpandCity(e)}
+                />
+              </CustomAccordion>
+            )}
+          </div>
+          <div
+            style={{
+              position: "fixed",
+              bottom: "0",
+              left: "0",
+              right: "0",
+              textAlign: "center",
+              marginTop: "20px",
+              zIndex: "99999",
+              backgroundColor: "#fff",
+              padding: "5px",
+            }}
+          >
+            <button
+              onClick={handel_filterModal}
+              className="btn btn-dark"
+              style={{ width: "90vw", fontSize: "14px" }}
+            >
+              {" "}
+              تایید
+            </button>
+          </div>
+          <div style={{ paddingBottom: "80px" }}></div>
+        </div>
+      )}
+      {/* modalFilter end*/}
 
-        {/* END MODAL */}
+      {/* ModalOrdering Strat */}
+      {isOpenOrderingModal && (
+        <OrderingModalMobile
+          handel_OrderingModal={handel_OrderingModal}
+          handel_filterModal={handel_filterModal}
+          setWhichOrdering={setWhichOrdering}
+          setIsOpenOrderingModal={setIsOpenOrderingModal}
+        />
+      )}
+      <AddFavorites />
 
-        {/* MenuMobile */}
-      </ContextListProductPage.Provider>
+      {/* ModalOrdering End */}
+
+      {/* END MODAL */}
+
+      {/* MenuMobile */}
+      <MenuMobile />
+      {/* MenuMobile */}
     </>
   );
 }

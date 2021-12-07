@@ -13,6 +13,7 @@ import ListProductCus from "../../../containers/listProduct/listProductCus";
 import ListProductShop from "../../../containers/shop/listProductCus";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import { ApiReference } from "../../../Api";
+import ListProductCusTest from "../../../containers/listProduct/listProductCusTest";
 
 // fetch data
 const fetchData = async (id) => {
@@ -170,7 +171,8 @@ const Shop = ({ dataShop, data }) => {
             profile={informationShop.image_thumbnail_url}
           />
 
-          <ListProductShop shop_products={dataShop.shop.slug} data={data} />
+          {/* <ListProductShop shop_products={dataShop.shop.slug} data={data} /> */}
+          <ListProductCusTest data={data}/>
         </>
       )}
 

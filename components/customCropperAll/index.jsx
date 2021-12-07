@@ -34,6 +34,7 @@ function CustomCropperAll({
       );
 
       setImageSrc(croppedImage);
+
       // dispatch(_updatePicture(croppedImage));
     } catch (e) {
       console.error(e);
