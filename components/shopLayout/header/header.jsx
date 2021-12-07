@@ -192,11 +192,7 @@ function Header() {
                 </Link>
               )}
               <div
-                onClick={() => {
-                  Object.keys(userLog).length > 0
-                    ? router.push("/cart")
-                    : errorMessage("لطفا ابتدا وارد شوید");
-                }}
+                onClick={() => { router.push("/cart") }}
               >
                 <div className={styles.bascket_btn}>
                   <i>
@@ -307,11 +303,7 @@ function Header() {
                   </Link>
                 )}
                 <div
-                  onClick={() => {
-                    Object.keys(userLog).length > 0
-                      ? router.push("/cart")
-                      : errorMessage("لطفا ابتدا وارد شوید");
-                  }}
+                  onClick={() => { router.push("/cart") }}
                 >
                   <div className={styles.bascket_btn}>
                     <i>

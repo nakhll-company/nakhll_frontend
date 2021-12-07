@@ -332,7 +332,6 @@ const ProductDetailDesktop = ({ data }) => {
                     className={`product-btn btn rounded-pill font-size1-5  p-1  ${styles.btn_tprimary}`}
                     onClick={async () => {
                       await addToCart(detail.id);
-                      await dispatch(getUserInfo());
                     }}
                   >
                     خرید
