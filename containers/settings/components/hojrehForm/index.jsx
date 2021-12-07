@@ -40,9 +40,7 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
           NationalCode:
             apiSetting.FK_ShopManager &&
             apiSetting.FK_ShopManager.User_Profile.NationalCode,
-          MobileNumber:
-            apiSetting.FK_ShopManager &&
-            apiSetting.FK_ShopManager.User_Profile.MobileNumber,
+
           PhoneNumber:
             apiSetting.FK_ShopManager &&
             apiSetting.FK_ShopManager.User_Profile.PhoneNumber,
@@ -65,7 +63,7 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
             FK_ShopManager: {
               User_Profile: {
                 NationalCode: data.NationalCode,
-                MobileNumber: data.MobileNumber,
+
                 PhoneNumber: data.PhoneNumber,
                 BigCity: ChoiceBigCity,
                 State: ChoiceState,
@@ -117,12 +115,7 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
 
             <TitleLiner title="مشخصات" />
             <FieldCus name="NationalCode" type="text" title="کد ملی" />
-            <FieldCus
-              name="MobileNumber"
-              type="text"
-              title="شماره تماس اصلی"
-              description={dataExp.MobileNumber}
-            />
+
             <FieldCus name="PhoneNumber" type="text" title="شماره تماس:" />
             <TitleLiner title="آدرس" />
             <div className={styles.forAddress}>
