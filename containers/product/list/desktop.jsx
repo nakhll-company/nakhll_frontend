@@ -198,13 +198,13 @@ export default function Desktop({
                     <tr>
                       <td>{index + 1}</td>
                       <td style={{ display: "flex" }}>
-                        {/* <Image
+                        <Image
                           src={value.image_thumbnail_url}
                           alt="product"
                           layout="responsive"
                           width={45}
                           height={45}
-                        /> */}
+                        />
                         <div style={{ margin: "0px 20px" }}>
                           {value.Title}
                           <br />
