@@ -1,6 +1,5 @@
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-
-import { errorMessage, successMessage } from "../../utils/message";
+import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { errorMessage, successMessage } from "../../containers/utils/message";
 // get address of user
 export async function updateAddress(id, data) {
     let response = await ApiRegister().apiRequest(

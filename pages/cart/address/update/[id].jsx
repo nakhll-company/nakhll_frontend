@@ -2,17 +2,17 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 // componentes
 import Loading from "../../../../components/loading";
 // methods
-import { getStates } from "../../../../containers/store/methods/getStates";
-import { getBigCities } from "../../../../containers/store/methods/getBigCities";
-import { getCities } from "../../../../containers/store/methods/getCities";
-import { updateAddress } from "../../../../containers/cartAddress/methods/updateAddress";
-import { getEditAddress } from "../../../../containers/cartAddress/methods/getEditAddress";
+import { getCities } from "../../../../api/general/getCities";
+import { getStates } from "../../../../api/general/getStates";
+import { getBigCities } from "../../../../api/general/getBigCities";
+import { updateAddress } from "../../../../api/cartAddress/updateAddress";
+import { getEditAddress } from "../../../../api/cartAddress/getEditAddress";
 // styles
 import styles from "../../../../styles/pages/cart/newAddress.module.scss";
 /**
@@ -24,6 +24,12 @@ const UpdateAddress = () => {
     const router = useRouter();
     const { invoice_id, prev, id } = router.query;
     const { register, handleSubmit, setValue, formState: { errors } } = useForm();
+    let [editAddressData, setEditAddressData] = useState({});
+    let [selectState, setSelectState] = useState([]);
+    let [selectBigCities, setSelectBigCities] = useState([]);
+    let [selectCities, setSelectCities] = useState([]);
+    let [loading, setLoading] = useState(true);
+    let [emptySelectBox, setEmptySelectBox] = useState(false);
 
     const onSubmit = async (data) => {
         await setLoading(true);
@@ -35,12 +41,6 @@ const UpdateAddress = () => {
         }
     };
 
-    let [editAddressData, setEditAddressData] = useState({});
-    let [selectState, setSelectState] = useState([]);
-    let [selectBigCities, setSelectBigCities] = useState([]);
-    let [selectCities, setSelectCities] = useState([]);
-    let [loading, setLoading] = useState(true);
-    let [emptySelectBox, setEmptySelectBox] = useState(false);
 
     useEffect(async () => {
         await getEditAddress(id, setValue, setEditAddressData);
