@@ -38,6 +38,7 @@ export default function Cart() {
   // FUNCTION FOR GET ALL DATA FOR CARTS
   const _handleRequestApiAll = async () => {
     try {
+      let token = localStorage.getItem("accessToken");
       let params = {};
       let loadData = null;
       let dataUrl = `/cart2/api/carts/my/`;
@@ -45,7 +46,7 @@ export default function Cart() {
         loadData,
         "get",
         dataUrl,
-        true,
+        token ? true : false,
         params
       );
       setAll_product_list_buy(await response.data);

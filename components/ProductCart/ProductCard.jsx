@@ -2,10 +2,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import Assistent from "zaravand-assistent-number";
-import { useDispatch } from "react-redux";
 // methods
 import { addToCart } from "./methods/addToCart";
-import { getUserInfo } from "../../redux/actions/user/getUserInfo";
 import { addToFavoritesList } from "./methods/addToFavotitesList";
 import { deleteFromFavoritesList } from "./methods/deleteFromFavoritesList";
 // scss
@@ -24,7 +22,6 @@ const ProductCard = ({
   _blank = false,
   product,
 }) => {
-  const dispatch = useDispatch();
   let cardBadge = (
     <>
       <div
@@ -46,20 +43,18 @@ const ProductCard = ({
       height={100}
       width={100}
       src={product.imageUrl}
-      className={`card-img-top _product_card_rounded animationCart ${
-        product.unavailable && "_unavailable_product"
-      }`}
+      className={`card-img-top _product_card_rounded animationCart ${product.unavailable && "_unavailable_product"
+        }`}
       alt={product.title}
     />
   );
 
   return (
     <div
-      className={`animationCartParent ${
-        col
+      className={`animationCartParent ${col
           ? `col-${col}`
           : `col-${xs} col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
-      } ${padding ? `px-${padding}` : ""} mb-3`}
+        } ${padding ? `px-${padding}` : ""} mb-3`}
     >
       {product.iconClose && (
         <span
@@ -93,9 +88,8 @@ const ProductCard = ({
         </div>
 
         <div
-          className={`card-body mt-2 p-1 ${
-            product.unavailable && "_unavailable_product"
-          }`}
+          className={`card-body mt-2 p-1 ${product.unavailable && "_unavailable_product"
+            }`}
         >
           <div className=" mb-3">
             <Link href={product.url}>
@@ -135,7 +129,6 @@ const ProductCard = ({
                 className={`btn ${styles._product_card_add_to_cart}`}
                 onClick={async () => {
                   await addToCart(product.id);
-                  await dispatch(getUserInfo());
                 }}
               >
                 <i className="fas fa-plus" />
