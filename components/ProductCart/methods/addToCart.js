@@ -10,9 +10,9 @@ export const addToCart = async (idProduct) => {
         token ? true : false,
         {}
     );
-    if (response.status === 201) {
+    if (response.status === 200) {
         successMessage("محصول با موفقیت به سبد خرید شما اضافه شد");
-    } else if (response.response.status === 403) {
+    } else if (response.response.status === 403 || response.response.status === 401) {
         errorMessage("لطفا ابتدا وارد شوید");
     } else if (response.response.status === 400) {
         errorMessage(`${response.response.data[0]}`);
