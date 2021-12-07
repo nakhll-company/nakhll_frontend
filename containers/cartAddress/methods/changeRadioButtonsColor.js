@@ -1,4 +1,4 @@
-export function changeRadioButtonColor(event) {
+export function changeRadioButtonColor(event, styles, index) {
     let activeLabels = document.querySelectorAll(`.${styles.active_address}`);
     let activeCircles = document.querySelectorAll(`.${styles.active_circle}`);
     activeLabels.forEach((value) => {
