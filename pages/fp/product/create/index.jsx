@@ -100,7 +100,7 @@ const CreateProduct = ({ activeHojreh }) => {
   // use effect
   useEffect(async () => {
     const response_categories = await _ApiGetCategories();
-   
+
     if (response_categories.status === 200) {
       setIsLoad(true);
       setData(response_categories.data); //==> output: {}
@@ -186,7 +186,7 @@ const CreateProduct = ({ activeHojreh }) => {
                       />
                     ) : (
                       <Image
-                        src="/image/sample/2_1.jpg"
+                        src="/image/sample/pic.jpg"
                         layout="responsive"
                         height={100}
                         width={100}
