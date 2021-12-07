@@ -1,10 +1,9 @@
-import { Form, Formik } from "formik";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { callApiUpDataShop, callBankAccount } from "../../../../api/settings";
 import InputUseForm from "../../../creat/component/inputUseForm";
-import { VALIDATION_HESAB } from "../../methods/Validation";
-import FieldCus from "../field";
+
+
 import SubButton from "../subButton";
 import styles from "./bankAccountForm.module.scss";
 
@@ -27,9 +26,11 @@ function BankAccountForm({ apiSetting, activeHojreh, setClicked }) {
     mode: "all",
   });
   useEffect(() => {
-    setValue("iban", apiSetting.bank_account.iban);
-    setValue("owner", apiSetting.bank_account.owner);
-  }, []);
+    if (apiSetting.bank_account) {
+      setValue("iban", apiSetting.bank_account.iban);
+      setValue("owner", apiSetting.bank_account.owner);
+    }
+  }, [apiSetting]);
 
   const onSubmit = async (data) => {
     const dataForSend = {
@@ -78,6 +79,7 @@ function BankAccountForm({ apiSetting, activeHojreh, setClicked }) {
             })}
           />
         </InputUseForm>
+        <div style={{ height: "15px" }}></div>
         {/* ‌Buttons */}
         {IsLoadingHesab && (
           <div style={{ display: "flex", alignItems: "center" }}>

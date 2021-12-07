@@ -10,7 +10,7 @@ function PictureChildProduct({ setImageSrc, image }) {
           <Image src={image} layout="responsive" height={100} width={100} />
         ) : (
           <Image
-            src="/image/sample/2_1.jpg"
+            src="/image/sample/pic.jpg"
             layout="responsive"
             height={100}
             width={100}
