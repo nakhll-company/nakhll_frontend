@@ -1,5 +1,9 @@
 import Axios from "axios";
 
+let token = "";
+if (process.browser) {
+    token = window.localStorage.getItem("accessToken");
+}
 //=================================================================\\
 export const instanceAxiosWithOutToken = Axios.create({
     // withCredentials: true,
@@ -19,6 +23,7 @@ export const instanceAxiosWithToken = Axios.create({
     baseURL: process.env.BASE_URL,
     timeout: 300000,
     headers: {
+        "Authorization": 'Bearer ' + token,
         "Content-Type": " application/json",
     },
 });
