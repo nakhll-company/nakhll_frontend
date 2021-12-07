@@ -35,7 +35,7 @@ function Header() {
       if (response.status === 200) {
         setCategory(response.data);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   // Get all shops
@@ -171,18 +171,18 @@ function Header() {
                         </div>
                       </a>
                     </Link>
-                    <Link href="/accounts/logout/">
-                      <a>
-                        <div className="">
-                          <i className="fas fa-sign-out-alt "></i>
-                          <span>خروج از حساب کاربری</span>
-                        </div>
-                      </a>
-                    </Link>
+                    <div onClick={() => {
+                      localStorage.removeItem("refreshToken");
+                      localStorage.removeItem("accessToken");
+                      router.reload(window.location.pathname);
+                    }}>
+                      <i className="fas fa-sign-out-alt "></i>
+                      <span>خروج از حساب کاربری</span>
+                    </div>
                   </div>
                 </>
               ) : (
-                <Link href="https://nakhll.com/accounts/get-phone/">
+                <Link href="/login">
                   <a
                     style={{ margin: "0px 20px " }}
                     className={styles.nav_item_link_login}
@@ -301,7 +301,7 @@ function Header() {
                       fontSize: "10px",
                       fontWeight: "500",
                     }}
-                    href="https://nakhll.com/accounts/get-phone/"
+                    href="/login"
                   >
                     ورود/ثبت نام
                   </Link>

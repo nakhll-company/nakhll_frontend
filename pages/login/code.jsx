@@ -26,7 +26,7 @@ const Code = () => {
                 router.push("/login/forgetPassword");
             } else {
                 let response = await getAccessToken(result);
-                response === true && router.push("/");
+                response === true && location.replace("/");
             }
         }
     }

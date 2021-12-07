@@ -16,7 +16,7 @@ const ForgetPassword = () => {
         delete data.repeatPass;
         data.auth_secret = sessionStorage.getItem("secret_key");
         let response = await setPassword(data);
-        response === true && router.push("/");
+        response === true && location.replace("/");
     }
 
     return (

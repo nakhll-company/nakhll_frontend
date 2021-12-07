@@ -19,7 +19,7 @@ const Password = () => {
 
         if (result !== false) {
             let response = await getAccessToken(result);
-            response === true && router.push("/")
+            response === true && location.replace("/");
         }
     }
 
