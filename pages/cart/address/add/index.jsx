@@ -128,6 +128,10 @@ const NewAddress = () => {
                                         minLength: {
                                             value: 10,
                                             message: 'کدپستی باید ده رقمی باشد'
+                                        },
+                                        maxLength: {
+                                            value: 10,
+                                            message: 'error message' // JS only: <p>error message</p> TS only support string
                                         }
                                     })} />
                                     {errors.zip_code && <span className={styles.form_errors}>{errors.zip_code.message}</span>}
