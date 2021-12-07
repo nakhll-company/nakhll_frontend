@@ -54,8 +54,8 @@ const UpdateProduct = ({ activeHojreh }) => {
 
         setValue("Title", Data.Title);
         setImgProduct(Data.Image);
-        setValue("Price", Data.Price);
-        setValue("OldPrice", Data.OldPrice);
+        setValue("Price", Data.OldPrice);
+        setValue("OldPrice", Data.Price);
         setValue("Inventory", Data.Inventory);
         setValue("Net_Weight", Data.Net_Weight);
         setValue("Weight_With_Packing", Data.Weight_With_Packing);
@@ -95,22 +95,22 @@ const UpdateProduct = ({ activeHojreh }) => {
   const onSubmit = async (data) => {
     let Product_Banner = [];
 
-    if (!imgProductOne.includes("http")) {
+    if (imgProductOne && !imgProductOne.includes("http")) {
       Product_Banner.push({ Image: imgProductOne });
     }
-    if (!imgProductTwo.includes("http")) {
+    if (imgProductTwo && !imgProductTwo.includes("http")) {
       Product_Banner.push({ Image: imgProductTwo });
     }
-    if (!imgProductThree.includes("http")) {
+    if (imgProductThree && !imgProductThree.includes("http")) {
       Product_Banner.push({ Image: imgProductThree });
     }
-    if (!imgProductFour.includes("http")) {
+    if (imgProductFour && !imgProductFour.includes("http")) {
       Product_Banner.push({ Image: imgProductFour });
     }
-    if (!imgProductFive.includes("http")) {
+    if (imgProductFive && !imgProductFive.includes("http")) {
       Product_Banner.push({ Image: imgProductFive });
     }
-    if (!imgProductSix.includes("http")) {
+    if (imgProductSix && !imgProductSix.includes("http")) {
       Product_Banner.push({ Image: imgProductSix });
     }
 
@@ -118,16 +118,19 @@ const UpdateProduct = ({ activeHojreh }) => {
       Status: 1,
       PostRangeType: 1,
       post_range: checkedCities,
-      new_category: submarketId,
-      Image: imgProduct,
+      // new_category: submarketId,
       Product_Banner: Product_Banner,
     };
+
+    if (imgProduct && !imgProduct.includes("http")) {
+      externalData.Image = imgProduct;
+    }
 
     const dataForSend = Object.assign(data, externalData);
 
     const response = await _ApiUpdateProduct(dataForSend, activeHojreh, id);
 
-    if (response.status === 201) {
+    if (response.status === 200) {
       router.replace("/fp/product/update/product/successPageEditProduct");
     }
   };
@@ -418,7 +421,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                     id="sumbitButton"
                     className={styles.form_buttonSubmit}
                   >
-                    ثبت محصول
+                    ویرایش محصول
                   </button>
                 </div>
               </div>
