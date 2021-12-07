@@ -53,7 +53,7 @@ const UpdateProduct = ({ activeHojreh }) => {
         let Data = response.data;
 
         setValue("Title", Data.Title);
-        setImgProduct(null);
+        setImgProduct(Data.Image);
         setValue("Price", Data.Price);
         setValue("OldPrice", Data.OldPrice);
         setValue("Inventory", Data.Inventory);
@@ -239,7 +239,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                       />
                     ) : (
                       <Image
-                        src="/image/sample/2_1.jpg"
+                        src="/image/sample/pic.jpg"
                         layout="responsive"
                         height={100}
                         width={100}
