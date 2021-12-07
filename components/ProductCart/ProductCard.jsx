@@ -28,7 +28,7 @@ const ProductCard = ({
   let cardBadge = (
     <>
       <div
-        className="_product_card_badge"
+        className={styles._product_card_badge}
         type="button"
         style={{ bottom: ".75rem" }}
         onClick={() => {
@@ -84,7 +84,7 @@ const ProductCard = ({
           ></i>
         </span>
       )}
-      <div className="card _product_card _product_card_rounded p-2">
+      <div className={`card ${styles._product_card} _product_card_rounded p-2`}>
         <div className={styles.paterImage}>
           {cardBadge}
           <Link href={product.url}>
