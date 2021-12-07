@@ -1,4 +1,4 @@
-import "tailwindcss/tailwind.css";
+import Script from "next/script";
 
 import FeaturesBlocks from "../../containers/description/components/FeaturesBlocks";
 import Questions from "../../containers/description/components/Questions";
@@ -12,7 +12,13 @@ function index() {
     <div className={styles.wrapper}>
       {/* Video */}
       {/* styles.videos */}
-      <div className={styles.videos}></div>
+
+      <div className="container" id="14440092271">
+        <script
+          type="text/JavaScript"
+          src="https://www.aparat.com/embed/B6lLS?data[rnddiv]=14440092271&data[responsive]=yes"
+        ></script>
+      </div>
       {/* Sliders */}
       {/* styles.slider */}
       <div className={`container   ${styles.slider} `}>
