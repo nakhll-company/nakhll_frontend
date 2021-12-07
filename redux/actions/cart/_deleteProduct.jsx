@@ -8,11 +8,12 @@ export const _deleteProduct = (productId, productTitle) => {
     let loadData = null;
 
     let dataUrl = `/cart2/api/cart_items/${productId}/delete/`;
+    let token = localStorage.getItem("accessToken");
     let response = await ApiRegister().apiRequest(
       loadData,
       "get",
       dataUrl,
-      true,
+      token ? true : false,
       params
     );
     await dispatch({ type: "DELETE_PRODUCT", payload: response.data });

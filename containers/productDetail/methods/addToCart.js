@@ -2,12 +2,13 @@ import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import { errorMessage, successMessage } from "../../utils/message";
 // big city
 export const addToCart = async (productId) => {
+    let token = localStorage.getItem("accessToken");
     try {
         let response = await ApiRegister().apiRequest(
             null,
             "get",
             `/cart2/api/cart_items/${productId}/add/`,
-            true,
+            token ? true : false,
             {}
         );
         if (response.status === 201) {
