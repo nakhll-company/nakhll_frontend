@@ -124,14 +124,14 @@ const NewAddress = () => {
                             <div className={styles.form_row}>
                                 <div className={`${styles.form_group} col-md-6 col-sm-12`}>
                                     <label>کد پستی:</label>
-                                    <input type="text" className="form-control" {...register("zip_code", {
+                                    <input type="number" className="form-control" {...register("zip_code", {
                                         minLength: {
                                             value: 10,
                                             message: 'کدپستی باید ده رقمی باشد'
                                         },
                                         maxLength: {
                                             value: 10,
-                                            message: 'error message' // JS only: <p>error message</p> TS only support string
+                                            message: 'کدپستی باید ده رقمی باشد' // JS only: <p>error message</p> TS only support string
                                         }
                                     })} />
                                     {errors.zip_code && <span className={styles.form_errors}>{errors.zip_code.message}</span>}
