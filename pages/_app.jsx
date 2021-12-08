@@ -14,16 +14,9 @@ import { refreshToken } from "../api/auth/refreshToken";
 import "bootstrap/dist/css/bootstrap.css";
 import "../styles/globals.scss";
 import "../styles/General/font-awesome/css/font-awesome.css";
+import "../styles/tailwind.css";
 
 function MyApp({ Component, pageProps }) {
-
-  useEffect(() => {
-    localStorage.getItem("accessToken") && refreshToken();
-    setInterval(() => {
-      localStorage.getItem("accessToken") && refreshToken();
-    }, 300000);
-  }, []);
-
   const router = useRouter();
 
   if (router.pathname.startsWith("/fp")) {

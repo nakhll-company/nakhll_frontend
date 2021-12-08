@@ -1,5 +1,5 @@
-import Script from "next/script";
-
+// import "tailwindcss/tailwind.css";
+import Image from "next/image";
 import FeaturesBlocks from "../../containers/description/components/FeaturesBlocks";
 import Questions from "../../containers/description/components/Questions";
 import Coming from "../../containers/description/components/Coming";
