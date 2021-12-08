@@ -39,7 +39,7 @@ function Sm_LinerProducts({ id, data }) {
           null,
           "GET",
           "https://nakhll.com/api/v1/products/",
-          true,
+          false,
           Queries
         );
 

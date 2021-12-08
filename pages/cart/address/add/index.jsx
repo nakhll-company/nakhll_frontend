@@ -124,18 +124,38 @@ const NewAddress = () => {
                             <div className={styles.form_row}>
                                 <div className={`${styles.form_group} col-md-6 col-sm-12`}>
                                     <label>کد پستی:</label>
-                                    <input type="text" className="form-control" {...register("zip_code", {
+                                    <input type="number" className="form-control" {...register("zip_code", {
+                                        required: 'لطفا این گزینه را پر کنید',
                                         minLength: {
                                             value: 10,
                                             message: 'کدپستی باید ده رقمی باشد'
+                                        },
+                                        maxLength: {
+                                            value: 10,
+                                            message: 'کدپستی باید ده رقمی باشد' // JS only: <p>error message</p> TS only support string
                                         }
                                     })} />
                                     {errors.zip_code && <span className={styles.form_errors}>{errors.zip_code.message}</span>}
                                 </div>
                                 <div className={`${styles.form_group} col-md-6 col-sm-12`}>
                                     <label>موبایل گیرندۀ سفارش:</label>
-                                    <input type="number" className="form-control" {...register("receiver_mobile_number", { required: true })} />
-                                    {errors.receiver_mobile_number && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
+                                    <input type="number" className="form-control" {...register("receiver_mobile_number", {
+                                        required: 'لطفا این گزینه را پر کنید',
+                                        minLength: {
+                                            value: 11,
+                                            message: 'شماره موبایل باید یازده رقمی باشد'
+                                        },
+                                        maxLength: {
+                                            value: 11,
+                                            message: 'شماره موبایل باید یازده رقمی باشد' // JS only: <p>error message</p> TS only support string
+                                        },
+                                        pattern: {
+                                            value: /^09(0[2-5]|1[0-9]|3[1-9]|2[1-9]|9[0-9])-?[0-9]{3}-?[0-9]{4}$/ || /^۰۹(۰[۲-۵]|۱[۰-۹]|۳[۱-۹]|۲[۱-۹]|۹[۰-۹])-?[۰-۹]{3}-?[۰-۹]{4}$/,
+                                            message: 'لطفا شماره موبایل خود را صحیح وارد نمایید' // JS only: <p>error message</p> TS only support string
+                                        }
+                                    })} />
+                                    <small className="form-text text-muted">*******0913</small><br />
+                                    {errors.receiver_mobile_number && <span className={styles.form_errors}>{errors.receiver_mobile_number.message}</span>}
                                 </div>
                             </div>
                             <div className={`${styles.form_row} d-flex justify-content-between pt-3`}>

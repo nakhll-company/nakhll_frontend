@@ -1,30 +1,29 @@
 import React from "react";
+import styles from "./FeaturesBlocks.module.scss";
 import Image from "next/image";
 function FeaturesBlocks() {
   return (
-    <section className="relative">
+    <section className={styles.wrapper}>
       {/* Section background (needs .relative class on parent and next sibling elements) */}
-      <div
-        className="absolute inset-0 top-1/2 md:mt-24 lg:mt-0 bg-gray-900 pointer-events-none"
-        aria-hidden="true"
-      ></div>
-      <div className="absolute left-0 right-0 bottom-0 m-auto w-px p-px h-20 bg-gray-200 transform translate-y-1/2"></div>
+      <div className={styles.background} aria-hidden="true"></div>
+      {/* // styles */}
+      <div className={styles.liner}></div>
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="py-12 md:py-20">
+      <div className={styles.items}>
+        <div className={styles.paterns}>
           {/* Section header */}
-          <div className="max-w-3xl mx-auto text-center pb-12 md:pb-20">
-            <h2 className="h2 mb-4">بازار نخل</h2>
-            <p className="text-xl text-gray-600">
+          <div className={styles.header}>
+            <h2 className="h-2 mb-4">بازار نخل</h2>
+            <p className={styles.subtitle}>
               ویژگی های بازار نخل که بهتره باهاشون آشنا بشید.
             </p>
           </div>
 
           {/* Items */}
-          <div className="max-w-sm mx-auto grid gap-6 md:grid-cols-2 lg:grid-cols-3 items-start md:max-w-2xl lg:max-w-none">
+          <div className={styles.items_features}>
             {/* 1st item */}
-            <div className="relative flex flex-col items-center p-6 bg-white rounded shadow-xl">
-              <div className="w-16 h-32 p-1  mb-1 block ">
+            <div className={styles.parent_certain_item}>
+              <div className={styles.icon}>
                 <Image
                   src="/image/description/72.svg"
                   layout="responsive"
@@ -33,17 +32,15 @@ function FeaturesBlocks() {
                 />
               </div>
 
-              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">
-                تسویه حساب در ۷۲ ساعت
-              </h4>
-              <p className="text-gray-600 text-center">
+              <h4 className={styles.text_feature}>تسویه حساب در ۷۲ ساعت</h4>
+              <p className={styles.sub_text_feature}>
                 ۷۲ ساعت بعد از ارسال مبلغ خود را دریافت نمایید.
               </p>
             </div>
 
             {/* 2nd item */}
-            <div className="relative flex flex-col items-center p-6 bg-white rounded shadow-xl">
-              <div className="w-16 h-32 p-1  mb-1 block ">
+            <div className={styles.parent_certain_item}>
+              <div className={styles.icon}>
                 <Image
                   src="/image/description/ertebat.svg"
                   layout="responsive"
@@ -52,17 +49,15 @@ function FeaturesBlocks() {
                 />
               </div>
 
-              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">
-                ارتباط مستقیم
-              </h4>
-              <p className="text-gray-600 text-center">
+              <h4 className={styles.text_feature}>ارتباط مستقیم</h4>
+              <p className={styles.sub_text_feature}>
                 ما هیچ مانعی نیستیم .تنها ارتباط مستقیم دارید با مشتری
               </p>
             </div>
 
             {/* 3rd item */}
-            <div className="relative flex flex-col items-center p-6 bg-white rounded shadow-xl">
-              <div className="w-16 h-32 p-1  mb-1 block ">
+            <div className={styles.parent_certain_item}>
+              <div className={styles.icon}>
                 <Image
                   src="/image/description/shop.svg"
                   layout="responsive"
@@ -71,17 +66,15 @@ function FeaturesBlocks() {
                 />
               </div>
 
-              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">
-                فروشگاه اختصاصی
-              </h4>
-              <p className="text-gray-600 text-center">
+              <h4 className={styles.text_feature}>فروشگاه اختصاصی</h4>
+              <p className={styles.sub_text_feature}>
                 کلی ابزار باحال و آسان هست برای اینکه فروشگاه شیک خودتو بزنی.
               </p>
             </div>
 
             {/* 4th item */}
-            <div className="relative flex flex-col items-center p-6 bg-white rounded shadow-xl">
-              <div className="w-16 h-32 p-1  mb-1 block ">
+            <div className={styles.parent_certain_item}>
+              <div className={styles.icon}>
                 <Image
                   src="/image/description/shafafiyat.svg"
                   layout="responsive"
@@ -90,17 +83,15 @@ function FeaturesBlocks() {
                 />
               </div>
 
-              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">
-                شفافیت بالا
-              </h4>
-              <p className="text-gray-600 text-center">
+              <h4 className={styles.text_feature}>شفافیت بالا</h4>
+              <p className={styles.sub_text_feature}>
                 شفافیت در حد آب زلال اونقدر که حتی باورت نشه.
               </p>
             </div>
 
             {/* 5th item */}
-            <div className="relative flex flex-col items-center p-6 bg-white rounded shadow-xl">
-              <div className="w-16 h-32 p-1  mb-1 block ">
+            <div className={styles.parent_certain_item}>
+              <div className={styles.icon}>
                 <Image
                   src="/image/description/pay.svg"
                   layout="responsive"
@@ -109,17 +100,15 @@ function FeaturesBlocks() {
                 />
               </div>
 
-              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">
-                امنتیرین مسیر پرداخت
-              </h4>
-              <p className="text-gray-600 text-center">
+              <h4 className={styles.text_feature}>امنتیرین مسیر پرداخت</h4>
+              <p className={styles.sub_text_feature}>
                 تمام گواهی ها را گرفتیم تا با خیال اسوده بفروشید.
               </p>
             </div>
 
             {/* 6th item */}
-            <div className="relative flex flex-col items-center p-6 bg-white rounded shadow-xl">
-              <div className="w-16 h-32 p-1  mb-1 block ">
+            <div className={styles.parent_certain_item}>
+              <div className={styles.icon}>
                 <Image
                   src="/image/description/edu.svg"
                   layout="responsive"
@@ -128,10 +117,8 @@ function FeaturesBlocks() {
                 />
               </div>
 
-              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">
-                آموزش همیشگی
-              </h4>
-              <p className="text-gray-600 text-center">
+              <h4 className={styles.text_feature}>آموزش همیشگی</h4>
+              <p className={styles.sub_text_feature}>
                 در طول مسیر کلی آموزش عالی براتون در نظر گرفتیم.
               </p>
             </div>

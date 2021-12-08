@@ -1,20 +1,17 @@
+import * as Types from "../../types/user"; // constants
 import { errorMessage } from "../../../containers/utils/message";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-import * as Types from "../../types/user"; // constants
 // action of accounting list
-export const getUserInfo = () => async(dispatch) => {
+export const getUserInfo = () => async (dispatch) => {
     // try
     try {
-        const getProduct = async() => {
-            let params = {};
-            let loadData = null;
-            let dataUrl = "/app/api/v1/get-user-info/";
+        const getProduct = async () => {
             let response = await ApiRegister().apiRequest(
-                loadData,
+                null,
                 "get",
-                dataUrl,
+                "/app/api/v1/get-user-info/",
                 true,
-                params
+                {}
             );
             return response;
         };
@@ -29,9 +26,5 @@ export const getUserInfo = () => async(dispatch) => {
         }
     } catch (error) {
         errorMessage("لطفا ابتدا وارد سایت شوید");
-
-        setTimeout(() => {
-            location.replace("https://www.nakhll.com");
-        }, 3000);
     }
 };

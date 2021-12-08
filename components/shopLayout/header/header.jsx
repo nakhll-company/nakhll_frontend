@@ -29,13 +29,13 @@ function Header() {
         null,
         "get",
         `/api/v1/categories/?max_depth=2`,
-        true,
+        false,
         {}
       );
       if (response.status === 200) {
         setCategory(response.data);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   // Get all shops
@@ -45,7 +45,7 @@ function Header() {
         null,
         "GET",
         ApiReference.allShops,
-        true,
+        false,
         ""
       );
 
@@ -171,18 +171,18 @@ function Header() {
                         </div>
                       </a>
                     </Link>
-                    <Link href="/accounts/logout/">
-                      <a>
-                        <div className="">
-                          <i className="fas fa-sign-out-alt "></i>
-                          <span>خروج از حساب کاربری</span>
-                        </div>
-                      </a>
-                    </Link>
+                    <div onClick={() => {
+                      localStorage.removeItem("refreshToken");
+                      localStorage.removeItem("accessToken");
+                      router.reload(window.location.pathname);
+                    }}>
+                      <i className="fas fa-sign-out-alt "></i>
+                      <span>خروج از حساب کاربری</span>
+                    </div>
                   </div>
                 </>
               ) : (
-                <Link href="https://nakhll.com/accounts/get-phone/">
+                <Link href="/login">
                   <a
                     style={{ margin: "0px 20px " }}
                     className={styles.nav_item_link_login}
@@ -192,11 +192,7 @@ function Header() {
                 </Link>
               )}
               <div
-                onClick={() => {
-                  Object.keys(userLog).length > 0
-                    ? router.push("/cart")
-                    : errorMessage("لطفا ابتدا وارد شوید");
-                }}
+                onClick={() => { router.push("/cart") }}
               >
                 <div className={styles.bascket_btn}>
                   <i>
@@ -301,17 +297,13 @@ function Header() {
                       fontSize: "10px",
                       fontWeight: "500",
                     }}
-                    href="https://nakhll.com/accounts/get-phone/"
+                    href="/login"
                   >
                     ورود/ثبت نام
                   </Link>
                 )}
                 <div
-                  onClick={() => {
-                    Object.keys(userLog).length > 0
-                      ? router.push("/cart")
-                      : errorMessage("لطفا ابتدا وارد شوید");
-                  }}
+                  onClick={() => { router.push("/cart") }}
                 >
                   <div className={styles.bascket_btn}>
                     <i>

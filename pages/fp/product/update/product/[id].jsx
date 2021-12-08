@@ -1,21 +1,31 @@
 // node libraries
 import { connect } from "react-redux";
-import Cropper from "react-easy-crop";
+
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import Image from "next/image";
 // components
 import Loading from "../../../../../components/loading/index";
 import MyLayout from "../../../../../components/layout/Layout";
-import Category from '../../../../../containers/product/create/category';
+import Category from "../../../../../containers/product/create/category";
 import CheckboxTreeCities from "../../../../../components/CheckboxTree/CheckboxTree";
 // methods
 import { errorMessage } from "../../../../../containers/utils/message";
 import { ApiRegister } from "../../../../../services/apiRegister/ApiRegister";
 import { mapState } from "../../../../../containers/product/methods/mapState";
-import { getCroppedImg } from "../../../../../containers/product/create/methods/canvasUtils";
 // styles
 import styles from "../../../../../styles/pages/product/create.module.scss";
+import {
+  _ApiCreateProduct,
+  _ApiGetCategories,
+  _ApiUpdateProduct,
+} from "../../../../../api/creatProduct";
+import TitleLiner from "../../../../../containers/settings/components/titleLiner";
+import InputUseForm from "../../../../../containers/creat/component/inputUseForm";
+import InputPictureCreat from "../../../../../containers/creat/component/InputPicture";
+import TextAreaUseForm from "../../../../../containers/creat/component/textAreaUseForm";
+import PictureChildProduct from "../../../../../containers/creat/component/pictureChildProduct";
 /**
  * page update product
  * @param {string} activeHojreh => it has slug name
@@ -23,285 +33,144 @@ import styles from "../../../../../styles/pages/product/create.module.scss";
 const UpdateProduct = ({ activeHojreh }) => {
   const router = useRouter();
   const { id } = router.query;
-  // react form hook
+  // get edit date
+
+  useEffect(async () => {
+    if (id) {
+      let params = null;
+      let loadData = null;
+      let dataUrl = `/api/v1/shop/${activeHojreh}/products/${id}/`;
+      let response = await ApiRegister().apiRequest(
+        loadData,
+        "get",
+        dataUrl,
+        true,
+        params
+      );
+
+      if (response.status === 200) {
+        let Data = response.data;
+
+        setValue("Title", Data.Title);
+        setImgProduct(Data.Image);
+        setValue("Price", Data.Price);
+        setValue("OldPrice", Data.OldPrice);
+        setValue("Inventory", Data.Inventory);
+        setValue("Net_Weight", Data.Net_Weight);
+        setValue("Weight_With_Packing", Data.Weight_With_Packing);
+        setValue("Description", Data.Description);
+        setValue("PreparationDays", Data.PreparationDays);
+        setCheckedCities(Data.post_range_cities);
+        setPlaceholderSubmarckets(Data.new_category);
+        setSubmarketId(Data.new_category.id);
+        // images
+        setImgProductOne(Data.Product_Banner[0]?.Image);
+        setImgProductTwo(Data.Product_Banner[1]?.Image);
+        setImgProductThree(Data.Product_Banner[2]?.Image);
+        setImgProductFour(Data.Product_Banner[3]?.Image);
+        setImgProductFive(Data.Product_Banner[4]?.Image);
+        setImgProductSix(Data.Product_Banner[5]?.Image);
+      }
+    }
+  }, [id]);
+
+  // useform
   const {
     setValue,
-    clearErrors,
     getValues,
+    clearErrors,
     register,
     setError,
     handleSubmit,
     formState: { errors },
   } = useForm({
     criteriaMode: "all",
+    mode: "all",
   });
-  // on submit
-  const onSubmit = async (data) => {
-    let err = false;
-    if (!placeholderSubmarckets) {
-      setError("submark", { type: "focus" }, { shouldFocus: true });
-    } else {
-      err = true;
-    }
-    let product_status = document.querySelector(
-      "input[type=radio]:checked"
-    ).value;
-    // if error is true
-    if (err) {
-      setIsLoad(false);
-      let confirm = {
-        Title: data.Title,
-        Inventory: Add,
-        Price: data.Price,
-        OldPrice: data.OldPrice,
-        Net_Weight: data.Net_Weight,
-        Weight_With_Packing: data.Weight_With_Packing,
-        Description: data.Description,
-        Status: product_status,
-        PostRangeType: 1,
-        PreparationDays: AddPreparationDays,
-        FK_SubMarket: submarketId,
-        Product_Banner: idImage,
-        post_range: checkedCities,
-      };
 
-      let paramsProduct = {};
-      let loadDataProduct = confirm;
-      let dataUrlProduct = `/api/v1/landing/products/${id}/`;
-      let response = await ApiRegister().apiRequest(
-        loadDataProduct,
-        "PATCH",
-        dataUrlProduct,
-        true,
-        paramsProduct
-      );
-      // check status code
-      if (response.status === 200) {
-        setShowSuccessPage(true);
-      } else {
-        errorMessage("در ویرایش اطلاعات مشکلی پیش آمده است");
-      }
+  const onSubmit = async (data) => {
+    setisLoadingUpdate(true);
+    let Product_Banner = [];
+
+    if (imgProductOne && !imgProductOne.includes("http")) {
+      Product_Banner.push({ Image: imgProductOne });
+    }
+    if (imgProductTwo && !imgProductTwo.includes("http")) {
+      Product_Banner.push({ Image: imgProductTwo });
+    }
+    if (imgProductThree && !imgProductThree.includes("http")) {
+      Product_Banner.push({ Image: imgProductThree });
+    }
+    if (imgProductFour && !imgProductFour.includes("http")) {
+      Product_Banner.push({ Image: imgProductFour });
+    }
+    if (imgProductFive && !imgProductFive.includes("http")) {
+      Product_Banner.push({ Image: imgProductFive });
+    }
+    if (imgProductSix && !imgProductSix.includes("http")) {
+      Product_Banner.push({ Image: imgProductSix });
+    }
+
+    const externalData = {
+      Status: 1,
+      PostRangeType: 1,
+      post_range: checkedCities,
+      new_category: submarketId,
+      Product_Banner: Product_Banner,
+    };
+
+    if (imgProduct && !imgProduct.includes("http")) {
+      externalData.Image = imgProduct;
+    }
+
+    const dataForSend = Object.assign(data, externalData);
+
+    const response = await _ApiUpdateProduct(dataForSend, activeHojreh, id);
+
+    if (response.status === 200) {
+      router.replace("/fp/product/update/product/successPageEditProduct");
+    } else {
+      errorMessage("خطایی رخ داده مجدد تلاش فرمایید.");
     }
   };
-  // state
-  const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState("");
+
+  // states
+  const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState({});
   const [data, setData] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [crop, setCrop] = useState({ x: 0, y: 0 });
-  const [zoom, setZoom] = useState(1);
-  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
-  const [imageSrc, setImageSrc] = useState(null);
-  const [previewImage, setPreviewImage] = useState(null);
-  const [Add, setAdd] = useState(1);
-  const [AddPreparationDays, setAddPreparationDays] = useState(1);
   const [submarketId, setSubmarketId] = useState(null);
   const [isLoad, setIsLoad] = useState(false);
-  const [idImage, setIdImage] = useState(false);
-  const [showSuccessPage, setShowSuccessPage] = useState(false);
-  const [citiesInput, setCitiesInput] = useState([]);
+
+  // stat for test image
+  const [imgProduct, setImgProduct] = useState(null);
+  const [imgProductOne, setImgProductOne] = useState(null);
+  const [imgProductTwo, setImgProductTwo] = useState(null);
+  const [imgProductThree, setImgProductThree] = useState(null);
+  const [imgProductFour, setImgProductFour] = useState(null);
+  const [imgProductFive, setImgProductFive] = useState(null);
+  const [imgProductSix, setImgProductSix] = useState(null);
+  const [isLoadingUpdate, setisLoadingUpdate] = useState(false);
+
   // for Save cities
   const [checkedCities, setCheckedCities] = useState([]);
 
-  if (showSuccessPage) {
-    router.replace("/fp/product/update/product/successPageEditProduct");
-  }
-
-  // get edit date
-  const _editProduct = async () => {
-    let params = null;
-    let loadData = null;
-    let dataUrl = `/api/v1/landing/products/${id}/`;
-    let response = await ApiRegister().apiRequest(
-      loadData,
-      "get",
-      dataUrl,
-      true,
-      params
-    );
-    if (response.status === 200) {
-      setCitiesInput(response.data.post_range_cities);
-      setValue("Title", response.data.title);
-      response.data.new_category && setValue("submark", response.data.new_category.name);
-      response.data.new_category && setPlaceholderSubmarckets(response.data.new_category.name);
-      response.data.new_category && setSubmarketId(response.data.new_category.id);
-      setValue("Net_Weight", response.data.net_weight);
-      setValue("Weight_With_Packing", response.data.weight_with_packing);
-      if (response.data.price > response.data.old_price) {
-        setValue("Price", response.data.price / 10);
-        setValue("OldPrice", response.data.old_price / 10);
-      } else {
-        setValue("Price", response.data.old_price / 10);
-        setValue("OldPrice", response.data.price / 10);
-      }
-      setValue("Description", response.data.description);
-      if (Object.keys(response.data).length > 0) {
-        let peree = response.data.banners.map((item) => {
-          return item.image;
-        });
-        setPreviewImage(response.data.banners);
-        window.localStorage.setItem("image", JSON.stringify(peree));
-        let idImage = response.data.banners.map((item) => {
-          return item.id;
-        });
-        setIdImage(idImage);
-      }
-      setAdd(response.data.inventory);
-      setAddPreparationDays(response.data.preparation_days);
-      setIsLoad(true);
-    }
-  }; //close edit data
   // use effect
-  useEffect(() => {
-    window.localStorage.setItem("image", JSON.stringify([]));
+  useEffect(async () => {
+    const response_categories = await _ApiGetCategories();
 
-    if (id) {
-      _editProduct();
+    if (response_categories.status === 200) {
+      setIsLoad(true);
+      setData(response_categories.data); //==> output: {}
+      setCategories(response_categories.data);
     }
-    const _handleRequestApi = async () => {
-      let params = null;
-      let loadData = null;
-      let dataUrl = "/api/v1/categories/";
-      let response = await ApiRegister().apiRequest(
-        loadData,
-        "get",
-        dataUrl,
-        false,
-        params
-      );
-      if (response.status === 200) {
-        setIsLoad(true);
-        setData(response.data);
-        setCategories(response.data);
-      }
-    };
-    _handleRequestApi();
-  }, [activeHojreh]); //close use effect
+  }, [activeHojreh]);
 
-  const mini = () => {
-    if (Add == 0) {
-      return;
-    }
-    setAdd(Add - 1);
-  };
-  const add = () => {
-    setAdd(Add + 1);
-  };
-
-  const miniPreparationDays = () => {
-    if (AddPreparationDays == 0) {
-      return;
-    }
-    setAddPreparationDays(AddPreparationDays - 1);
-  };
-  const AddPreparationDayss = () => {
-    setAddPreparationDays(AddPreparationDays + 1);
-  };
-  // categories
+  // select Submarket
   const _selectSubmarket = () => {
     let element = document.getElementById("wrapperMarkets");
     element.style.display = "block";
     let elementProduct = document.getElementById("wrapper_product");
     elementProduct.style.display = "none";
-  };
-  // cropper
-  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
-    setCroppedAreaPixels(croppedAreaPixels);
-  }, []);
-  // onFileChange
-  const onFileChange = async (e) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files[0];
-      let imageDataUrl = await readFile(file);
-      setImageSrc(imageDataUrl);
-      let elementImageProduct = document.getElementById("crop_container");
-      elementImageProduct.style.display = "block";
-    }
-  };
-  // readFile
-  function readFile(file) {
-    return new Promise((resolve) => {
-      const reader = new FileReader();
-      reader.addEventListener("load", () => resolve(reader.result), false);
-      reader.readAsDataURL(file);
-    });
-  }
-  // close crop image
-  const _onCloseCropper = () => {
-    let elementImageProduct = document.getElementById("crop_container");
-    elementImageProduct.style.display = "none";
-    setImageSrc(null);
-    setValue("product_image_upload", null);
-  };
-  // show croped image
-  const showCroppedImage = async () => {
-    const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
-
-    if (croppedImage) {
-      let listImage = window.localStorage.getItem("image");
-      var prev = JSON.parse(listImage);
-
-      let temp = prev.map((value) => {
-        return {
-          image: value,
-        };
-      });
-
-      let sendImage = {
-        FK_Product: id,
-        Image: croppedImage,
-      };
-
-      let params = null;
-      let loadData = sendImage;
-      let dataUrl = "/api/v1/landing/product_banner/";
-      let response = await ApiRegister().apiRequest(
-        loadData,
-        "post",
-        dataUrl,
-        true,
-        params
-      );
-
-      let prevImg = {
-        image: response.data.Image,
-        id: response.data.id,
-      };
-
-      setIdImage([...idImage, response.data.id]);
-
-      setPreviewImage([...previewImage, prevImg]);
-    }
-    let elementImageProduct = document.getElementById("crop_container");
-    elementImageProduct.style.display = "none";
-    if (prev.length === 5) {
-      document.getElementById("product-image-upload").disabled = true;
-    } else {
-      document.getElementById("product-image-upload").disabled = false;
-    }
-  };
-  // function for remove image
-  const _removeImage = (item, id) => {
-    let listRemoveImage = window.localStorage.getItem("image");
-    let removeImage = JSON.parse(listRemoveImage);
-    let testt = removeImage.filter((itemRemove) => {
-      return itemRemove.includes(item) ? "" : itemRemove;
-    });
-    window.localStorage.setItem("image", JSON.stringify(testt));
-    // let idd = idImage
-    // let removeId = idd.filter((itemRemoveId) => { return itemRemoveId !== id ? "" : itemRemoveId });
-    let removeId = idImage.filter((value) => {
-      return value !== id ? value : null;
-    });
-    setIdImage([...removeId]);
-    let filter = previewImage.filter((value) => {
-      return value.id !== id ? value : null;
-    });
-
-    setPreviewImage([...filter]);
-
-    if (testt.length == 0) {
-      setValue("product_image_upload", null);
-    }
   };
 
   if (isLoad) {
@@ -311,58 +180,62 @@ const UpdateProduct = ({ activeHojreh }) => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div id="wrapper_product" className={styles.wrapper_product}>
               <div className={styles.createProduct_lineRighte}>
-                <div className="mt-4">
-                  <div>
-                    <h5
-                      style={{ color: "#007aff", fontSize: "14px" }}
-                      className="mb-0 d-inline mr-20"
-                    >
-                      اطلاعات محصول
-                    </h5>
-                  </div>
-                </div>
-                <hr style={{ background: "#007aff", width: "100%" }} />
+                <TitleLiner title="اطلاعات محصول" />
                 {/* product name */}
-                <div className={styles.wrapper_input}>
-                  <label className={styles.lable_product} htmlFor="Title">
-                    نام محصول
-                  </label>
+                <InputUseForm title="نام محصول" error={errors.Title}>
                   <input
-                    className={styles.input_product}
-                    id="Title"
-                    type="text"
-                    {...register("Title", { required: true })}
+                    {...register("Title", {
+                      required: "لطفا نام محصول را تکمیل کنید.",
+                    })}
                   />
-                  {errors.Title && (
-                    <span style={{ color: "red", fontSize: "14px" }}>
-                      لطفا این گزینه را پر کنید
-                    </span>
-                  )}
-                </div>
-                {/* categories */}
+                </InputUseForm>
+                {/* category */}
                 <div className={styles.wrapper_input}>
                   <label className={styles.lable_product} htmlFor="Title">
                     دسته بندی
                   </label>
-                  <input
-                    className={styles.input_product}
-                    value={placeholderSubmarckets}
-                    id="submark"
-                    name="submark"
-                    type="text"
-                    onClick={_selectSubmarket}
-                    {...register("submark")}
-                  />
-                  {errors.submark && (
-                    <span style={{ color: "red", fontSize: "14px" }}>
-                      لطفا این گزینه را پر کنید
+                  <div className={styles.submarcketTitle}>
+                    <span> دسته فعلی :</span>
+                    {"   "}
+                    <span className={styles.badge_submarket}>
+                      {placeholderSubmarckets.name}
                     </span>
-                  )}
+                  </div>
+
+                  <>
+                    <input
+                      className={styles.input_product}
+                      value={placeholderSubmarckets.name}
+                      id="submark"
+                      name="submark"
+                      type="text"
+                      onClick={_selectSubmarket}
+                      {...register("submark")}
+                    />
+                    <div style={{ display: "none" }}>
+                      <input
+                        className={styles.input_product}
+                        value={placeholderSubmarckets.id}
+                        id="submark"
+                        name="submark"
+                        type="text"
+                        onClick={_selectSubmarket}
+                        {...register("submarkId")}
+                      />
+                    </div>
+                    {errors.submark && (
+                      <span style={{ color: "red", fontSize: "14px" }}>
+                        لطفا این گزینه را پر کنید
+                      </span>
+                    )}
+                  </>
                 </div>
                 {/* image */}
                 <div id="imageProduct">
                   <div>
-                    <p style={{ fontSize: "14px" }}>تصاویر</p>
+                    <p style={{ fontSize: "14px", marginTop: "15px" }}>
+                      تصاویر
+                    </p>
                   </div>
                   <div
                     style={{
@@ -372,318 +245,186 @@ const UpdateProduct = ({ activeHojreh }) => {
                     }}
                     className="mt-3"
                   >
-                    حداکثر تا 5 تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش
+                    حداکثر تا ۷ تصویر ، تصویر ابتدایی به عنوان تصویر اصلی نمایش
                     داده خواهد شد.
                   </div>
-                  <div className="mt-4" name="mainPhoto">
-                    <div className={styles.product_image_container}>
-                      <label
-                        style={{ marginTop: 10, marginRight: 10 }}
-                        htmlFor="product-image-upload"
-                      >
-                        <div className={styles.add_image_container}>
-                          <i style={{ fontSize: "25px" }}>+</i>
-                          <p style={{ fontSize: "15px" }} className="mt-2">
-                            افزودن تصویر
-                          </p>
-                        </div>
-                      </label>
-                      {/* input file */}
-                      <input
-                        id="product-image-upload"
-                        type="file"
-                        accept="image/*"
-                        style={{ width: "0px", height: "0px", opacity: "0px" }}
-                        {...register("product_image_upload")}
-                        onChange={onFileChange}
-                      />
-                      {/* map image */}
-                      {previewImage &&
-                        previewImage.map((item, index) => {
-                          return (
-                            <div
-                              key={index}
-                              className={styles.product_image}
-                              style={{
-                                backgroundImage: `${item.image
-                                  ? `url(${item.image})`
-                                  : `url(${item})`
-                                  } `,
-                              }}
-                            >
-                              <div
-                                onClick={() => _removeImage(item, item.id)}
-                                className={styles.close_icon_container}
-                              >
-                                <i
-                                  style={{ fontSize: 14 }}
-                                  className="fas fa-times"
-                                ></i>
-                              </div>
-                            </div>
-                          );
-                        })}
-                    </div>
-                  </div>
-                  {errors.product_image_upload && (
-                    <span style={{ color: "red", fontSize: "14px" }}>
-                      لطفا این گزینه را پر کنید
-                    </span>
-                  )}
-                </div>
 
-                <div className="mt-4">
-                  <div>
-                    <h5
-                      style={{ color: "#007aff", fontSize: "14px" }}
-                      className="mb-0 d-inline mr-20"
-                    >
-                      جزئیات محصول
-                    </h5>
-                  </div>
-                </div>
-                <hr style={{ background: "#007aff", width: "100%" }} />
-                {/* wight */}
-                <div className={styles.wrapper_input}>
-                  <label className={styles.lable_product} htmlFor="Net_Weight">
-                    وزن خالص محصول
-                  </label>
-                  <div className={styles.wrapper_input_suffixText}>
-                    <input
-                      style={{ outline: "unset", border: "unset" }}
-                      onWheel={(event) => {
-                        event.currentTarget.blur();
-                      }}
-                      id="Net_Weight"
-                      type="number"
-                      {...register("Net_Weight", {
-                        required: "لطفا این گزینه را پرنمایید",
-                        min: {
-                          value: 1,
-                          message: "لطفا اعداد بزرگتر از صفر وارد نمایید",
-                        },
-                      })}
-                    />
-                    <div>
-                      <p>گرم</p>
+                  <div className={styles.main_picture_product}>
+                    <div className={styles.input_picture}>
+                      <InputPictureCreat
+                        setImageSrc={setImgProduct}
+                        image={imgProduct}
+                        ratio={1}
+                      />
                     </div>
+                    {imgProduct ? (
+                      <Image
+                        src={imgProduct}
+                        layout="responsive"
+                        height={100}
+                        width={100}
+                      />
+                    ) : (
+                      <Image
+                        src="/image/sample/pic.jpg"
+                        layout="responsive"
+                        height={100}
+                        width={100}
+                      />
+                    )}
                   </div>
-                  {errors.Net_Weight && (
-                    <span style={{ color: "red", fontSize: "14px" }}>
-                      {errors.Net_Weight.message}
-                    </span>
+                  {/* imgProductChild, setImgProductChild */}
+                  {imgProduct && (
+                    <div className={styles.another_picture_product}>
+                      <PictureChildProduct
+                        setImageSrc={setImgProductOne}
+                        image={imgProductOne}
+                      />
+                      <PictureChildProduct
+                        setImageSrc={setImgProductTwo}
+                        image={imgProductTwo}
+                      />
+                      <PictureChildProduct
+                        setImageSrc={setImgProductThree}
+                        image={imgProductThree}
+                      />
+                      <PictureChildProduct
+                        setImageSrc={setImgProductFour}
+                        image={imgProductFour}
+                      />
+                      <PictureChildProduct
+                        setImageSrc={setImgProductFive}
+                        image={imgProductFive}
+                      />
+                      <PictureChildProduct
+                        setImageSrc={setImgProductSix}
+                        image={imgProductSix}
+                      />
+                    </div>
                   )}
                 </div>
-                {/* wight with packing */}
-                <div className={styles.wrapper_input}>
-                  <label
-                    className={styles.lable_product}
-                    htmlFor="Weight_With_Packing"
-                  >
-                    وزن با بسته بندی
-                  </label>
-                  <div className={styles.wrapper_input_suffixText}>
-                    <input
-                      style={{ outline: "unset", border: "unset" }}
-                      id="Weight_With_Packing"
-                      type="number"
-                      onWheel={(event) => {
-                        event.currentTarget.blur();
-                      }}
-                      {...register("Weight_With_Packing", {
-                        required: "لطفا این گزینه را پرنمایید",
-                        min: {
-                          value: 0,
-                          message: "لطفا اعداد بزرگتر از صفر وارد نمایید",
-                        },
-                        validate: (value) =>
-                          parseInt(value) > parseInt(getValues("Net_Weight")) ||
-                          "وزن با بسته بندی باید بیشتر از وزن  خالص باشد",
-                      })}
-                    />
-                    <div>
-                      <p>گرم</p>
-                    </div>
-                  </div>
-                  {errors.Weight_With_Packing && (
-                    <span style={{ color: "red", fontSize: "14px" }}>
-                      {errors.Weight_With_Packing.message}
-                    </span>
-                  )}
-                </div>
-                {/* price */}
-                <div className={styles.wrapper_input}>
-                  <label className={styles.lable_product} htmlFor="Price">
-                    قیمت محصول
-                  </label>
-                  <div className={styles.wrapper_input_suffixText}>
-                    <input
-                      style={{ outline: "unset", border: "unset" }}
-                      id="Price"
-                      type="number"
-                      onWheel={(event) => {
-                        event.currentTarget.blur();
-                      }}
-                      {...register("Price", {
-                        required: "لطفا این گزینه را پرنمایید",
-                        min: {
-                          value: 500,
-                          message: "لطفا اعداد بزرگتر از 500 وارد نمایید",
-                        },
-                      })}
-                    />
-                    <div>
-                      <p>تومان</p>
-                    </div>
-                  </div>
-                  {errors.Price && (
-                    <span style={{ color: "red", fontSize: "14px" }}>
-                      {errors.Price.message}
-                    </span>
-                  )}
-                </div>
-                {/* price with Discount */}
-                <div className={styles.wrapper_input}>
-                  <label className={styles.lable_product} htmlFor="OldPrice">
-                    قیمت محصول با تخفیف (اختیاری){" "}
-                  </label>
-                  <div className={styles.wrapper_input_suffixText}>
-                    <input
-                      style={{ outline: "unset", border: "unset" }}
-                      id="OldPrice"
-                      type="number"
-                      onWheel={(event) => {
-                        event.currentTarget.blur();
-                      }}
-                      {...register("OldPrice", {
-                        min: {
-                          value: 0,
-                          message: "لطفا اعداد بزرگتر از صفر وارد نمایید",
-                        },
-                        validate: (value) =>
-                          parseInt(value) < parseInt(getValues("Price")) ||
-                          "قیمت با تخفیف باید کمتر از قیمت اصلی باشد",
-                      })}
-                    />
-                    <div>
-                      <p>تومان</p>
-                    </div>
-                  </div>
-                  {errors.OldPrice && (
-                    <span style={{ color: "red", fontSize: "14px" }}>
-                      {errors.OldPrice.message}
-                    </span>
-                  )}
-                </div>
-                {/* discription */}
-                <div className={styles.wrapper_input}>
-                  <label className={styles.lable_product} htmlFor="Description">
-                    توضیحات محصول (اختیاری)
-                  </label>
-                  <textarea
-                    className={styles.input_product}
-                    id="Description"
-                    name="Description"
-                    type="text"
-                    {...register("Description")}
-                    placeholder="توضیحات خود را در صورت تمایل اینجا وارد کنید"
+                {/* product detail */}
+                <TitleLiner title=" جزئیات محصول" />
+                {/* weight */}
+                <InputUseForm
+                  title="وزن خالص محصول"
+                  error={errors.Net_Weight}
+                  text="گرم"
+                >
+                  <input
+                    type="number"
+                    {...register("Net_Weight", {
+                      required: "لطفا این گزینه را پرنمایید",
+                      min: {
+                        value: 0,
+                        message: "لطفا اعداد بزرگتر از صفر وارد نمایید",
+                      },
+                    })}
                   />
-                </div>
+                </InputUseForm>
+                {/* weight with packing */}
+                <InputUseForm
+                  title="وزن با بسته بندی"
+                  error={errors.Weight_With_Packing}
+                  text="گرم"
+                >
+                  <input
+                    type="number"
+                    {...register("Weight_With_Packing", {
+                      required: "لطفا این گزینه را پرنمایید",
+                      min: {
+                        value: 0,
+                        message: "لطفا اعداد بزرگتر از صفر وارد نمایید",
+                      },
+                      validate: (value) =>
+                        parseInt(value) > parseInt(getValues("Net_Weight")) ||
+                        "وزن با بسته بندی باید بیشتر از وزن  خالص باشد",
+                    })}
+                  />
+                </InputUseForm>
+                {/* price */}
+                <InputUseForm
+                  title="قیمت محصول"
+                  error={errors.Price}
+                  text="تومان"
+                >
+                  <input
+                    type="number"
+                    {...register("Price", {
+                      required: "لطفا این گزینه را پرنمایید",
+                      min: {
+                        value: 500,
+                        message: "لطفا اعداد بزرگتر از 500 وارد نمایید",
+                      },
+                    })}
+                  />
+                </InputUseForm>
+                {/* price with discount */}
+                <InputUseForm
+                  title="قیمت محصول با تخفیف (اختیاری)"
+                  error={errors.OldPrice}
+                  text="تومان"
+                >
+                  <input
+                    type="number"
+                    defaultValue={0}
+                    {...register("OldPrice", {
+                      min: {
+                        value: 0,
+                        message: "لطفا اعداد بزرگتر از صفر وارد نمایید",
+                      },
+                      validate: (value) =>
+                        parseInt(value) < parseInt(getValues("Price")) ||
+                        "قیمت با تخفیف باید کمتر از قیمت اصلی باشد",
+                    })}
+                  />
+                </InputUseForm>
+                {/* discription */}
+                <TextAreaUseForm title="توضیحات محصول (اختیاری)">
+                  <textarea
+                    rows="10"
+                    type="text"
+                    placeholder="محصول بدون توضیح مثل آدم بدون شناسنامه میمونه..."
+                    {...register("Description")}
+                  />
+                </TextAreaUseForm>
                 {/* inventory */}
-                <div className={styles.twoCol}>
-                  <div>
-                    <p
-                      htmlFor="Inventory"
-                      style={{
-                        marginBottom: "10px",
-                        color: "#364254",
-                        fontSize: 14,
-                      }}
-                    >
-                      موجودی
-                    </p>
-                    <div className={styles.inputWidRtl}>
-                      <button type="button" onClick={add}>
-                        <span className="fas fa-plus"></span>
-                      </button>
-                      <div className={styles.center}>
-                        <input
-                          type="number"
-                          min="0"
-                          max="500"
-                          value={Add}
-                          id="Inventory"
-                          name="Inventory"
-                          onWheel={(event) => {
-                            event.currentTarget.blur();
-                          }}
-                          onChange={(e) => {
-                            setAdd(e.target.value);
-                          }}
-                        />
-                        <h4>عدد</h4>
-                      </div>
-                      <button type="button" onClick={mini}>
-                        <span className="fas fa-minus"></span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                {/* send */}
-                <div className="mt-4">
-                  <div>
-                    <h5
-                      style={{ color: "#007aff", fontSize: "14px" }}
-                      className="mb-0 d-inline mr-20"
-                    >
-                      اطلاعات ارسال
-                    </h5>
-                  </div>
-                </div>
-                <hr style={{ background: "#007aff", width: "100%" }} />
-                {/* time inventory */}
-                <div className={styles.twoCol}>
-                  <div>
-                    <p
-                      htmlFor="PreparationDays"
-                      style={{
-                        marginBottom: "10px",
-                        color: "#364254",
-                        fontSize: 14,
-                      }}
-                    >
-                      زمان آماده سازی
-                    </p>
-                    <div className={styles.inputWidRtl}>
-                      <button type="button" onClick={AddPreparationDayss}>
-                        <span className="fas fa-plus"></span>
-                      </button>
-                      <div className={styles.center}>
-                        <input
-                          type="number"
-                          min="0"
-                          max="500"
-                          value={AddPreparationDays}
-                          id="PreparationDays"
-                          name="PreparationDays"
-                          onWheel={(event) => {
-                            event.currentTarget.blur();
-                          }}
-                          onChange={(e) => {
-                            setAddPreparationDays(e.target.value);
-                          }}
-                        />
-                        <h4>روز</h4>
-                      </div>
-                      <button type="button" onClick={miniPreparationDays}>
-                        <span className="fas fa-minus"></span>
-                      </button>
-                    </div>
-                    <p style={{ fontSize: "13px", color: "#5E7488" }}>
-                      زمان آماده سازی : آماده برای ارسال بعد از سفارش مشتری
-                    </p>
-                  </div>
-                </div>
+                <InputUseForm
+                  title="موجودی"
+                  error={errors.Inventory}
+                  text="عدد"
+                >
+                  <input
+                    type="number"
+                    {...register("Inventory", {
+                      required: "لطفا این گزینه را پرنمایید",
+                      min: {
+                        value: 0,
+                        message: "لطفا اعداد بزرگتر از 0 وارد نمایید",
+                      },
+                    })}
+                  />
+                </InputUseForm>
+                {/* information  */}
+                <TitleLiner title=" اطلاعات ارسال" />
+                {/* Preparation Days */}
+                <InputUseForm
+                  title="زمان آماده سازی"
+                  error={errors.PreparationDays}
+                  text="روز"
+                >
+                  <input
+                    type="number"
+                    {...register("PreparationDays", {
+                      required: "لطفا این گزینه را پرنمایید",
+                      min: {
+                        value: 0,
+                        message: "لطفا اعداد بزرگتر از 0 وارد نمایید",
+                      },
+                    })}
+                  />
+                </InputUseForm>
+                زمان آماده سازی : آماده برای ارسال بعد از سفارش مشتری
                 {/* product status */}
                 <div
                   style={{
@@ -691,156 +432,32 @@ const UpdateProduct = ({ activeHojreh }) => {
                     justifyContent: "center",
                     marginTop: "15px",
                   }}
-                >
-                  {/* availble */}
-                  <label
-                    htmlFor="availbe"
-                    className="labels activeLabel"
-                    onClick={(e) => {
-                      let actives =
-                        document.getElementsByClassName("activeLabel");
-                      for (let i = 0; i < actives.length; i++) {
-                        actives[i].classList.remove("activeLabel");
-                      }
-                      e.currentTarget.classList.add("activeLabel");
-                    }}
-                  >
-                    اماده در انبار
-                  </label>
-                  {/* Post after order production  */}
-                  <input
-                    defaultChecked={true}
-                    value={1}
-                    type="radio"
-                    name="status_product"
-                    id="availbe"
-                    className="radios"
-                  />
-                  <label
-                    htmlFor="stop"
-                    className="labels"
-                    onClick={(e) => {
-                      let actives =
-                        document.getElementsByClassName("activeLabel");
-                      for (let i = 0; i < actives.length; i++) {
-                        actives[i].classList.remove("activeLabel");
-                      }
-                      e.currentTarget.classList.add("activeLabel");
-                    }}
-                  >
-                    تولید بعد از سفارش
-                  </label>
-                  <input
-                    value={2}
-                    type="radio"
-                    name="status_product"
-                    id="stop"
-                    className="radios"
-                  />
-                  {/* Ordering */}
-                  <label
-                    htmlFor="soon"
-                    className="labels"
-                    onClick={(e) => {
-                      let actives =
-                        document.getElementsByClassName("activeLabel");
-                      for (let i = 0; i < actives.length; i++) {
-                        actives[i].classList.remove("activeLabel");
-                      }
-                      e.currentTarget.classList.add("activeLabel");
-                    }}
-                  >
-                    سفارشی سازی فروش
-                  </label>
-                  <input
-                    value={3}
-                    type="radio"
-                    name="status_product"
-                    id="soon"
-                    className="radios"
-                  />
-                  <style jsx>
-                    {`
-                      .labels {
-                        background: #ffffff;
-                        border: 1px solid #e0e6e9;
-                        box-sizing: border-box;
-                        border-radius: 5px;
-                        width: 250px;
-                        height: 41px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        flex-direction: row;
-                        font-size: 15px;
-                        color: #a4aebb;
-                        text-align: center;
-                      }
-                      .radios {
-                        visibility: hidden;
-                      }
-                      .activeLabel {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        flex-direction: row;
-                        background: #ffffff;
-                        border: 1px solid #007aff;
-                        box-sizing: border-box;
-                        border-radius: 5px;
-                        width: 250px;
-                        height: 41px;
-                        font-size: 15px;
-                        color: #007aff;
-                      }
-                    `}
-                  </style>
-                </div>
-                {citiesInput.length > 1 && (
-                  <CheckboxTreeCities
-                    checkedCity={checkedCities}
-                    setCheckedCity={setCheckedCities}
-                    citiesInput={citiesInput}
-                  />
+                ></div>
+                {/* with Componetn */}
+                <CheckboxTreeCities
+                  checkedCity={checkedCities}
+                  setCheckedCity={setCheckedCities}
+                />
+                {/* button submit */}
+                {isLoadingUpdate && (
+                  <div className={styles.loading}>
+                    <Image src="/loading.svg" width="45" height="45" />
+                    <span>در حال ساخت محصول ...</span>
+                  </div>
                 )}
-
-                {/* button update */}
                 <div>
                   <button
                     type="submit"
-                    id="submitButton"
+                    id="sumbitButton"
                     className={styles.form_buttonSubmit}
                   >
                     ویرایش محصول
                   </button>
                 </div>
               </div>
-              {/* laft side show in desktop */}
-              <div className={styles.createProduct_lineLeft}>
-                <div className="mt-4">
-                  <div>
-                    <h5
-                      style={{ color: "#007aff", fontSize: "14px" }}
-                      className="mb-0 d-inline mr-20"
-                    ></h5>
-                  </div>
-                </div>
-                <hr style={{ background: "#007aff" }} />
-                <div>
-                  <p
-                    style={{
-                      color: "#5E7488",
-                      fontSize: "14px",
-                      marginTop: "90px",
-                    }}
-                  >
-                    به عنوان مثال : برنج لاشه 10 کیلویی، کشت اول
-                  </p>
-                </div>
-              </div>
             </div>
           </form>
-          {/* categories */}
+          {/* category page */}
           <Category
             clearErrors={clearErrors}
             setPlaceholderSubmarckets={setPlaceholderSubmarckets}
@@ -849,51 +466,6 @@ const UpdateProduct = ({ activeHojreh }) => {
             setData={setData}
             categories={categories}
           />
-          {/* croperProduct */}
-          <div id="crop_container" className={styles.wrapperIMageProduct}>
-            <Cropper
-              image={imageSrc}
-              crop={crop}
-              restrictPosition={true}
-              zoom={zoom}
-              aspect={1}
-              onCropChange={setCrop}
-              onCropComplete={onCropComplete}
-              onZoomChange={setZoom}
-              classes={{
-                containerClassName: "container_cropper_product",
-                cropAreaClassName: "product_cropArea",
-              }}
-            />
-            <div className={styles.controls}>
-              <input
-                value={zoom}
-                type="range"
-                step="0.1"
-                max="3"
-                min="1"
-                onChange={(e) => setZoom(e.target.value)}
-              />
-              <div className={styles.wrapperButton}>
-                <div style={{ marginLeft: "10px" }}>
-                  <button
-                    onClick={showCroppedImage}
-                    className="btn btn-success btn-lg"
-                  >
-                    تایید
-                  </button>
-                </div>
-                <div>
-                  <button
-                    onClick={_onCloseCropper}
-                    className="btn btn-secondary btn-lg"
-                  >
-                    لغو
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </>
     );

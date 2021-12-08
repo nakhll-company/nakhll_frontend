@@ -1,22 +1,27 @@
-import "tailwindcss/tailwind.css";
-import Image from "next/image";
+import Script from "next/script";
+
 import FeaturesBlocks from "../../containers/description/components/FeaturesBlocks";
 import Questions from "../../containers/description/components/Questions";
 import Coming from "../../containers/description/components/Coming";
 import Process from "../../containers/description/components/Process";
 import Sliders from "../../containers/description/components/Sliders";
 
+import styles from "./description.module.scss";
 function index() {
   return (
-    <div className="px-3 ">
+    <div className={styles.wrapper}>
       {/* Video */}
-      <div className="bg-gray-700 w-full h-72 flex justify-center items-center ">
-        <p className="text-indigo-100 text-4xl">
-          اینجا قراره احمد رضا فیلم بذاره
-        </p>
+      {/* styles.videos */}
+
+      <div className="container" id="14440092271">
+        <script
+          type="text/JavaScript"
+          src="https://www.aparat.com/embed/B6lLS?data[rnddiv]=14440092271&data[responsive]=yes"
+        ></script>
       </div>
       {/* Sliders */}
-      <div className="container relative overflow-hidden rounded-lg py-4 ">
+      {/* styles.slider */}
+      <div className={`container   ${styles.slider} `}>
         <Sliders />
       </div>
       {/* icons */}

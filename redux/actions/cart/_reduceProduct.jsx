@@ -7,17 +7,18 @@ export const _reduceProduct = (productId) => {
     let loadData = null;
 
     let dataUrl = `/cart2/api/cart_items/${productId}/remove/`;
+    let token = localStorage.getItem("accessToken");
     let response = await ApiRegister().apiRequest(
       loadData,
       "get",
       dataUrl,
-      true,
+      token ? true : false,
       params
     );
 
     await dispatch({ type: "َREDUCE_PRODUCT", payload: response.data });
 
-    
+
     // if (response.status === 200) {
     successMessage("داده ها با موفقیت ثبت شده اند");
   };

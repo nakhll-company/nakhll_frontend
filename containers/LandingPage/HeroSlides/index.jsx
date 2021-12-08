@@ -20,31 +20,29 @@ function HeroSlides({ dataHeroSlides }) {
       <div className={`row ${styles.slide}`}>
         <div className={`col-12 col-md-8 ${styles.righter}`}>
           <Swiper pagination={true} spaceBetween={20} slidesPerView={1}>
-            {dataHeroSlides
-              .slice(0, dataHeroSlides.length - 2)
-              .map((slider, index) => (
-                <SwiperSlide key={index}>
-                  <Link
-                    href={
-                      slider.url === "https://nakhll.com/fp/store/create"
-                        ? Object.keys(userLog).length > 0
-                          ? slider.url
-                          : "https://nakhll.com/accounts/get-phone/"
-                        : slider.url
-                    }
-                  >
-                    <a>
-                      <Image
-                        layout="responsive"
-                        width={200}
-                        height={100}
-                        src={slider.image}
-                        alt="بنر"
-                      />
-                    </a>
-                  </Link>
-                </SwiperSlide>
-              ))}
+            {dataHeroSlides.slice(0, dataHeroSlides.length - 2).map((slider, index) => (
+              <SwiperSlide key={index}>
+                <Link
+                  href={
+                    slider.url === "https://nakhll.com/fp/store/create"
+                      ? Object.keys(userLog).length > 0
+                        ? slider.url
+                        : "https://nakhll.com/accounts/get-phone/"
+                      : slider.url
+                  }
+                >
+                  <a>
+                    <Image
+                      layout="responsive"
+                      width={200}
+                      height={100}
+                      src={slider.image}
+                      alt="بنر"
+                    />
+                  </a>
+                </Link>
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
         <div className={`col-md-4  ${styles.lefter}  d-none d-md-flex`}>

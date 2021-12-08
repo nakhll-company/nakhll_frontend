@@ -2,6 +2,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
@@ -19,7 +20,9 @@ import styles from "./profile.module.scss";
  * component profile
  */
 const Profile = () => {
+
     const breakpoint = 767;
+    const router = useRouter();
     const { width } = useViewport();
     const [profilePages, setProfilePages] = useState({
         editProfile: false,
@@ -31,6 +34,7 @@ const Profile = () => {
     const userData = useSelector((state) => state.User.userInfo);
     const [invoiceId, setInvoiceId] = useState(0);
     const [dataProfile, setDataProfile] = useState({});
+
     function activeLink(event) {
         let elementsActive = document.querySelectorAll("li");
         elementsActive.forEach((value) =>
@@ -38,9 +42,11 @@ const Profile = () => {
         );
         event.currentTarget.classList.add(`${styles.active_link}`);
     }
+
     useEffect(() => {
         getUserData(setDataProfile);
     }, []);
+
     return (
         <>
             <Head>
@@ -253,17 +259,17 @@ const Profile = () => {
 
                                     <span>علاقمندی ها</span>
                                 </li>
-                                <li>
-                                    <Link href="/accounts/logout/">
-                                        <a className="d-flex flex-column align-items-center ms-4">
-                                            <i
-                                                className="fas fa-sign-out-alt"
-                                                style={{ fontSize: "18px" }}
-                                            ></i>
+                                <li className="d-flex flex-column align-items-center ms-4" onClick={() => {
+                                    localStorage.removeItem("refreshToken");
+                                    localStorage.removeItem("accessToken");
+                                    router.reload(window.location.pathname);
+                                }}>
+                                    <i
+                                        className="fas fa-sign-out-alt"
+                                        style={{ fontSize: "18px" }}
+                                    ></i>
 
-                                            <span>خروج</span>
-                                        </a>
-                                    </Link>
+                                    <span>خروج</span>
                                 </li>
                             </ul>
                         </div>

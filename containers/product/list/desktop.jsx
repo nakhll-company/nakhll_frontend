@@ -40,7 +40,8 @@ export default function Desktop({
             result.price_to,
             result.inventory_from,
             result.inventory_to,
-            ""
+            "",
+            result.search
           );
         }}
       >
@@ -50,6 +51,7 @@ export default function Desktop({
             جستجو در نام محصول
             <br />
             <input
+              name="search"
               className={styles.filds_input}
               type="text"
               placeholder="نام محصول را وارد کنید"

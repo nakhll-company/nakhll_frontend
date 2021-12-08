@@ -59,7 +59,7 @@ const ProductDetailMobile = ({ data }) => {
       null,
       "GET",
       `/api/v1/landing/shop_products/${detail.shop.slug}/`,
-      true,
+      false,
       ""
     );
     if (response.status === 200) {
@@ -74,7 +74,7 @@ const ProductDetailMobile = ({ data }) => {
       null,
       "GET",
       `/api/v1/product-page/related_products/${productSlug}/`,
-      true,
+      false,
       {
         page: pageApi,
         page_size: 10,
@@ -602,7 +602,6 @@ const ProductDetailMobile = ({ data }) => {
             className={`${styles.product_btn_mobile} btn btn-tprimary rounded-pill font-weight-bold font-size1-5 px-6 py-2 ev-add-to-cart`}
             onClick={async () => {
               await addToCart(detail.id);
-              await dispatch(getUserInfo());
             }}
           >
             خرید

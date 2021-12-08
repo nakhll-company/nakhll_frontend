@@ -10,15 +10,19 @@ import { ToastContainer } from "react-toastify";
 import styles from "../../styles/components/shopLayout/shopLayout.module.scss";
 
 function ShopLayout({ children }) {
+
   const userData = useSelector((state) => state.User.userInfo);
+
   useEffect(() => {
-    window.addEventListener('goftino_ready', function () {
+    Object.keys(userData).length > 0 && window.addEventListener('goftino_ready', function () {
       Goftino.setUser({
-        name: 'Ali Rahimi',
-        phone: '09123456789',
+        name: `${userData.user.first_name} ${userData.user.last_name}`,
+        phone: `${userData.mobile_number}`,
+        about: `${userData.shops.length > 0 && userData.shops[0]} - ${userData.state} - ${userData.big_city} - ${userData.city}`,
+        forceUpdate: true
       });
     });
-  }, []);
+  }, [userData]);
 
   return (
     <>

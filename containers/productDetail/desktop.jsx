@@ -54,7 +54,7 @@ const ProductDetailDesktop = ({ data }) => {
       null,
       "GET",
       `/api/v1/landing/shop_products/${detail.shop.slug}/`,
-      true,
+      false,
       ""
     );
     if (response.status === 200) {
@@ -69,7 +69,7 @@ const ProductDetailDesktop = ({ data }) => {
       null,
       "GET",
       `/api/v1/product-page/related_products/${productSlug}/`,
-      true,
+      false,
       {
         page: pageApi,
         page_size: 10,
@@ -332,7 +332,6 @@ const ProductDetailDesktop = ({ data }) => {
                     className={`product-btn btn rounded-pill font-size1-5  p-1  ${styles.btn_tprimary}`}
                     onClick={async () => {
                       await addToCart(detail.id);
-                      await dispatch(getUserInfo());
                     }}
                   >
                     خرید

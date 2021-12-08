@@ -97,7 +97,7 @@ function ListProductShop({ data }) {
       if (response.status === 200) {
         setCategories(response.data);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   const _handel_Add_category = (id) => {
@@ -140,7 +140,7 @@ function ListProductShop({ data }) {
         null,
         "get",
         `/api/v1/products/`,
-        true,
+        false,
         params
       );
       if (response.status === 200) {
@@ -171,7 +171,7 @@ function ListProductShop({ data }) {
         null,
         "get",
         `/api/v1/products/`,
-        true,
+        false,
         {
           search: searchWord,
           ordering: whichOrdering,
@@ -201,7 +201,7 @@ function ListProductShop({ data }) {
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   // START

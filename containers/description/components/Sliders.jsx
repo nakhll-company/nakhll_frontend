@@ -1,3 +1,5 @@
+import styles from "./Sliders.module.scss";
+
 import Image from "next/image";
 
 // Import Swiper React components
@@ -15,7 +17,7 @@ function Sliders() {
       <Swiper pagination={true} spaceBetween={20} slidesPerView={1}>
         <SwiperSlide>
           <Image
-            className="rounded-lg"
+            className={styles.Image}
             layout="responsive"
             width={200}
             height={100}
@@ -25,7 +27,7 @@ function Sliders() {
         </SwiperSlide>
         <SwiperSlide>
           <Image
-            className="rounded-lg"
+            className={styles.Image}
             layout="responsive"
             width={200}
             height={100}
@@ -35,7 +37,7 @@ function Sliders() {
         </SwiperSlide>
         <SwiperSlide>
           <Image
-            className="rounded-lg"
+            className={styles.Image}
             layout="responsive"
             width={200}
             height={100}

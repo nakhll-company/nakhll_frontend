@@ -67,6 +67,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
               <BankAccountForm
                 activeHojreh={activeHojreh}
                 apiSetting={apiSetting}
+                setClicked={setClicked}
               />
             )}
 

@@ -2,17 +2,17 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 // componentes
 import Loading from "../../../../components/loading";
 // methods
-import { getStates } from "../../../../containers/store/methods/getStates";
-import { getBigCities } from "../../../../containers/store/methods/getBigCities";
-import { getCities } from "../../../../containers/store/methods/getCities";
-import { updateAddress } from "../../../../containers/cartAddress/methods/updateAddress";
-import { getEditAddress } from "../../../../containers/cartAddress/methods/getEditAddress";
+import { getCities } from "../../../../api/general/getCities";
+import { getStates } from "../../../../api/general/getStates";
+import { getBigCities } from "../../../../api/general/getBigCities";
+import { updateAddress } from "../../../../api/cartAddress/updateAddress";
+import { getEditAddress } from "../../../../api/cartAddress/getEditAddress";
 // styles
 import styles from "../../../../styles/pages/cart/newAddress.module.scss";
 /**
@@ -24,6 +24,12 @@ const UpdateAddress = () => {
     const router = useRouter();
     const { invoice_id, prev, id } = router.query;
     const { register, handleSubmit, setValue, formState: { errors } } = useForm();
+    let [editAddressData, setEditAddressData] = useState({});
+    let [selectState, setSelectState] = useState([]);
+    let [selectBigCities, setSelectBigCities] = useState([]);
+    let [selectCities, setSelectCities] = useState([]);
+    let [loading, setLoading] = useState(true);
+    let [emptySelectBox, setEmptySelectBox] = useState(false);
 
     const onSubmit = async (data) => {
         await setLoading(true);
@@ -35,12 +41,6 @@ const UpdateAddress = () => {
         }
     };
 
-    let [editAddressData, setEditAddressData] = useState({});
-    let [selectState, setSelectState] = useState([]);
-    let [selectBigCities, setSelectBigCities] = useState([]);
-    let [selectCities, setSelectCities] = useState([]);
-    let [loading, setLoading] = useState(true);
-    let [emptySelectBox, setEmptySelectBox] = useState(false);
 
     useEffect(async () => {
         await getEditAddress(id, setValue, setEditAddressData);
@@ -139,17 +139,37 @@ const UpdateAddress = () => {
                                 <div className={`${styles.form_group} col-md-6 col-sm-12`}>
                                     <label>کد پستی:</label>
                                     <input type="text" className="form-control" {...register("zip_code", {
+                                        required: 'لطفا این گزینه را پر کنید',
                                         minLength: {
                                             value: 10,
                                             message: 'کدپستی باید ده رقمی باشد'
+                                        },
+                                        maxLength: {
+                                            value: 10,
+                                            message: 'کدپستی باید ده رقمی باشد' // JS only: <p>error message</p> TS only support string
                                         }
                                     })} />
                                     {errors.zip_code && <span className={styles.form_errors}>{errors.zip_code.message}</span>}
                                 </div>
                                 <div className={`${styles.form_group} col-md-6 col-sm-12`}>
                                     <label>موبایل گیرندۀ سفارش:</label>
-                                    <input type="text" className="form-control" {...register("receiver_mobile_number", { required: true })} />
-                                    {errors.receiver_mobile_number && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
+                                    <input type="text" className="form-control" {...register("receiver_mobile_number", {
+                                        required: 'لطفا این گزینه را پر کنید',
+                                        minLength: {
+                                            value: 11,
+                                            message: 'شماره موبایل باید یازده رقمی باشد'
+                                        },
+                                        maxLength: {
+                                            value: 11,
+                                            message: 'شماره موبایل باید یازده رقمی باشد' // JS only: <p>error message</p> TS only support string
+                                        },
+                                        pattern: {
+                                            value: /^09(0[2-5]|1[0-9]|3[1-9]|2[1-9]|9[0-9])-?[0-9]{3}-?[0-9]{4}$/ || /^۰۹(۰[۲-۵]|۱[۰-۹]|۳[۱-۹]|۲[۱-۹]|۹[۰-۹])-?[۰-۹]{3}-?[۰-۹]{4}$/,
+                                            message: 'لطفا شماره موبایل خود را صحیح وارد نمایید' // JS only: <p>error message</p> TS only support string
+                                        }
+                                    })} />
+                                    <small className="form-text text-muted">*******0913</small><br />
+                                    {errors.receiver_mobile_number && <span className={styles.form_errors}>{errors.receiver_mobile_number.message}</span>}
                                 </div>
                             </div>
                             <div className={`${styles.form_row} pt-3`}>

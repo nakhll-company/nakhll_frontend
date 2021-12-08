@@ -21,21 +21,21 @@ const fetchData = async (id) => {
     null,
     "GET",
     urlComments,
-    true,
+    false,
     ""
   );
   let response = await ApiRegister().apiRequest(
     null,
     "get",
     urlResponse,
-    true,
+    false,
     ""
   );
   let relatedProduct = await ApiRegister().apiRequest(
     null,
     "GET",
     urlRelatedProduct,
-    true,
+    false,
     ""
   );
 

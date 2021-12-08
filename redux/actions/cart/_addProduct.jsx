@@ -7,6 +7,7 @@ import {
 export const _addProduct = (productId) => {
   return async (dispatch) => {
     try {
+      let token = localStorage.getItem("accessToken");
       let params = {};
       let loadData = null;
       let dataUrl = `/cart2/api/cart_items/${productId}/add/`;
@@ -14,7 +15,7 @@ export const _addProduct = (productId) => {
         loadData,
         "get",
         dataUrl,
-        true,
+        token ? true : false,
         params
       );
 
