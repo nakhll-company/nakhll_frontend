@@ -80,8 +80,8 @@ function Header() {
           <Link
             href={
               Object.keys(userLog).length > 0
-                ? "/fp/store/create"
-                : "https://nakhll.com/accounts/get-phone/"
+                ? "/description"
+                : "/login"
             }
           >
             <a>
@@ -230,8 +230,8 @@ function Header() {
           <Link
             href={
               Object.keys(userLog).length > 0
-                ? "/fp/store/create"
-                : "https://nakhll.com/accounts/get-phone/"
+                ? "/description"
+                : "/login"
             }
           >
             <a>
