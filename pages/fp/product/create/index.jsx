@@ -42,6 +42,8 @@ const CreateProduct = ({ activeHojreh }) => {
   });
 
   const onSubmit = async (data) => {
+    
+
     let Product_Banner = [];
     if (imgProductOne) {
       Product_Banner.push({ Image: imgProductOne });
@@ -85,6 +87,7 @@ const CreateProduct = ({ activeHojreh }) => {
   const [categories, setCategories] = useState([]);
   const [submarketId, setSubmarketId] = useState(null);
   const [isLoad, setIsLoad] = useState(false);
+
   // stat for test image
   const [imgProduct, setImgProduct] = useState(null);
   const [imgProductOne, setImgProductOne] = useState(null);
@@ -137,6 +140,7 @@ const CreateProduct = ({ activeHojreh }) => {
                   <label className={styles.lable_product} htmlFor="Title">
                     دسته بندی
                   </label>
+
                   <input
                     className={styles.input_product}
                     value={placeholderSubmarckets}
