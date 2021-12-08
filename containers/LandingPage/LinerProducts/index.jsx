@@ -38,11 +38,10 @@ function LinerProducts({
             <div className={styles.Button}>
               <button>
                 <Link
-                  href={`${
-                    url.includes("search=") || url.includes("q=")
+                  href={`${url.includes("search=") || url.includes("q=")
                       ? `${url}`
                       : `/search?ap=${url}`
-                  }`}
+                    }`}
                 >
                   <a>مشاهده همه</a>
                 </Link>
@@ -54,33 +53,32 @@ function LinerProducts({
           style={{ overflowX: noScroll ? "unset" : "auto" }}
           className={`${styles.products} row`}
         >
-          {dataLinerProducts.length > 0 &&
-            dataLinerProducts.slice(0, num).map((product, index) => (
-              <ProductCard
-                xl={xl}
-                md={md}
-                lg={lg}
-                sm={sm}
-                xs={xs}
-                key={index}
-                padding={1}
-                product={{
-                  id: product.ID,
-                  imageUrl: product.Image_medium_url,
-                  url: `/shop/${product.FK_Shop.slug}/product/${product.Slug}/`,
-                  title: product.Title,
-                  chamberTitle: product.FK_Shop ? product.FK_Shop.title : "",
-                  chamberUrl: product.FK_Shop
-                    ? `/shop/${product.FK_Shop.slug} `
-                    : "",
-                  discount: product.discount,
-                  price: product.Price / 10,
-                  discountNumber: product.OldPrice / 10,
-                  city: product.FK_Shop && product.FK_Shop.state,
-                  is_advertisement: product.is_advertisement,
-                }}
-              />
-            ))}
+          {dataLinerProducts.length > 0 && dataLinerProducts.slice(0, num).map((product, index) => (
+            <ProductCard
+              xl={xl}
+              md={md}
+              lg={lg}
+              sm={sm}
+              xs={xs}
+              key={index}
+              padding={1}
+              product={{
+                id: product.ID,
+                imageUrl: product.Image_medium_url,
+                url: `/shop/${product.FK_Shop.slug}/product/${product.Slug}/`,
+                title: product.Title,
+                chamberTitle: product.FK_Shop ? product.FK_Shop.title : "",
+                chamberUrl: product.FK_Shop
+                  ? `/shop/${product.FK_Shop.slug} `
+                  : "",
+                discount: product.discount,
+                price: product.Price / 10,
+                discountNumber: product.OldPrice / 10,
+                city: product.FK_Shop && product.FK_Shop.state,
+                is_advertisement: product.is_advertisement,
+              }}
+            />
+          ))}
         </div>
       </div>
 
@@ -99,11 +97,10 @@ function LinerProducts({
             <div className={styles.Button}>
               <button>
                 <Link
-                  href={`${
-                    url.includes("search=") || url.includes("q=")
+                  href={`${url.includes("search=") || url.includes("q=")
                       ? `${url}`
                       : `/search?ap=${url}`
-                  }`}
+                    }`}
                 >
                   <a>مشاهده همه</a>
                 </Link>
@@ -115,36 +112,35 @@ function LinerProducts({
           style={{ overflowX: noScroll ? "unset" : "auto" }}
           className={`${styles.products} row px-5`}
         >
-          {dataLinerProducts.length > 0 &&
-            dataLinerProducts.slice(0, num).map((oneProduct, index) => (
-              <ProductCard
-                xl={xl}
-                md={md}
-                lg={lg}
-                sm={sm}
-                xs={xs}
-                key={index}
-                padding={1}
-                product={{
-                  id: oneProduct.ID,
-                  imageUrl: oneProduct.Image_medium_url,
-                  url: `/shop/${oneProduct.FK_Shop.slug}/product/${oneProduct.Slug}/`,
-                  title: oneProduct.Title,
-                  chamberTitle: oneProduct.FK_Shop
-                    ? oneProduct.FK_Shop.title
-                    : "",
-                  chamberUrl: oneProduct.FK_Shop
-                    ? `/shop/${oneProduct.FK_Shop.slug} `
-                    : "",
+          {dataLinerProducts.length > 0 && dataLinerProducts.slice(0, num).map((oneProduct, index) => (
+            <ProductCard
+              xl={xl}
+              md={md}
+              lg={lg}
+              sm={sm}
+              xs={xs}
+              key={index}
+              padding={1}
+              product={{
+                id: oneProduct.ID,
+                imageUrl: oneProduct.Image_medium_url,
+                url: `/shop/${oneProduct.FK_Shop.slug}/product/${oneProduct.Slug}/`,
+                title: oneProduct.Title,
+                chamberTitle: oneProduct.FK_Shop
+                  ? oneProduct.FK_Shop.title
+                  : "",
+                chamberUrl: oneProduct.FK_Shop
+                  ? `/shop/${oneProduct.FK_Shop.slug} `
+                  : "",
 
-                  discount: oneProduct.discount,
-                  price: oneProduct.Price / 10,
-                  discountNumber: oneProduct.OldPrice / 10,
-                  city: oneProduct.FK_Shop && oneProduct.FK_Shop.state,
-                  is_advertisement: oneProduct.is_advertisement,
-                }}
-              />
-            ))}
+                discount: oneProduct.discount,
+                price: oneProduct.Price / 10,
+                discountNumber: oneProduct.OldPrice / 10,
+                city: oneProduct.FK_Shop && oneProduct.FK_Shop.state,
+                is_advertisement: oneProduct.is_advertisement,
+              }}
+            />
+          ))}
         </div>
       </div>
     </>
