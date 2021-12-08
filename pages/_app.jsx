@@ -44,7 +44,6 @@ function MyApp({ Component, pageProps }) {
     );
   } else if (
     router.pathname.startsWith("/liveEdit") ||
-    router.pathname.startsWith("/game") ||
     router.pathname.startsWith("/login")
   ) {
     return (

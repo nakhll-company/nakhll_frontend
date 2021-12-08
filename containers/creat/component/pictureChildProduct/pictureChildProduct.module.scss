@@ -1,0 +1,26 @@
+.child_picture {
+    .input_picture {
+        right: 5px;
+        top: 5px;
+        position: absolute;
+    }
+    .deleteBtn {
+        left: 2px;
+        top: 2px;
+        position: absolute;
+        .wrapBtn {
+            cursor: pointer;
+            font-size: 20px;
+            color: red;
+            &:hover {
+                transform: scale(1.2);
+            }
+        }
+    }
+    width: 47%;
+    margin: 5px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    position: relative;
+    border: #303030 solid 1px;
+}

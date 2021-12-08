@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Search.module.scss";
-function Search({ onChange }) {
+function Search({ onChange, onClick }) {
   return (
     <div
       style={{
@@ -16,6 +16,7 @@ function Search({ onChange }) {
             className={styles.searchTerm}
             placeholder="نام حجره"
             onChange={onChange}
+            onClick={onClick}
           />
           <button type="submit" className={styles.searchButton}>
             <i className="fa fa-search"></i>

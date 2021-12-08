@@ -2,6 +2,7 @@ import React, { useEffect, useState, Fragment } from "react";
 import CheckboxTree from "react-checkbox-tree";
 import { allCites } from "./data";
 import Assistent from "zaravand-assistent-number";
+import TitleLiner from "../../containers/settings/components/titleLiner";
 const _asist = new Assistent();
 
 function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
@@ -154,17 +155,8 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
   // ###########################################
   return (
     <>
-      <div className="mt-4">
-        <div>
-          <h5
-            style={{ color: "#007aff", fontSize: "14px" }}
-            className="mb-0 d-inline mr-20"
-          >
-            محدوده ارسال
-          </h5>
-        </div>
-      </div>
-      <hr style={{ background: "#007aff", width: "100%" }} />
+      <TitleLiner title=" محدوده ارسال" />
+
       <form>
         <div className="form-check">
           <input
@@ -243,51 +235,14 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
           </div>
         </div>
       )}
-      {/* {selectState.length > 0 && (
-        <div
-          style={{
-            display: "block",
-            marginBottom: "5px",
-            marginTop: "15px",
-          }}
-        >
-          {selectState.length == 1 ? "استان " : "استان های "}(
-          {_asist.PSeparator(selectState.length)}):
-        </div>
-      )} */}
+
       <div
         style={{
           display: "flex",
           flexWrap: "wrap",
           borderBottom: "2ps solid #ccc",
         }}
-      >
-        {false &&
-          selectState.map((e) => (
-            <Fragment key={e.value}>
-              <div style={{ display: "flex" }}>
-                {/* {e.children.length &&} */}
-
-                <>
-                  <h4
-                    style={{
-                      backgroundColor: "#d14666",
-                      padding: "2px 10px",
-                      color: "#fff",
-                      margin: "0px",
-                      marginLeft: "1px",
-                      borderRadius: "2px",
-                      marginTop: "10px",
-                      fontSize: "15px",
-                    }}
-                  >
-                    {e.label}
-                  </h4>
-                </>
-              </div>
-            </Fragment>
-          ))}
-      </div>
+      ></div>
       {/* Show City */}
       {allOfCity.length > 0 && (
         <div

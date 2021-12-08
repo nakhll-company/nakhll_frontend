@@ -1,0 +1,33 @@
+.modal_filter_products {
+    display: none !important;
+    background-color: #fff;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    overflow-y: auto;
+    bottom: 0;
+    z-index: 9999;
+}
+@media (max-width: 768px) {
+    .modal_filter_products {
+        display: block !important;
+    }
+}
+.search_body_filter {
+    display: -webkit-flex;
+    display: -moz-box;
+    display: flex;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    flex-direction: column;
+    -webkit-flex-grow: 1;
+    -moz-box-flex: 1;
+    flex-grow: 1;
+}
+.modal_body {
+    max-height: 100%;
+    padding: 0;
+}

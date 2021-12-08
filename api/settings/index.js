@@ -42,7 +42,7 @@ export const callApiUpDataShop = async(dataForSend, activeHojreh) => {
 
     const response = await ApiRegister().apiRequest(
         loadData,
-        "get",
+        "patch",
         dataUrl,
         true,
         params
