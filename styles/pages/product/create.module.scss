@@ -413,3 +413,28 @@ bottom: 80px;
         border: #303030 solid 1px;
     }
 }
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    span {
+        color: #2185f8;
+        font-weight: bold;
+        margin-right: 10px;
+    }
+}
+.submarcketTitle {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    .badge_submarket {
+        background: #2185f8;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 15px;
+        font-weight: bold;
+        margin-right: 10px;
+    }
+}

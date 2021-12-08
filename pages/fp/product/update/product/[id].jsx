@@ -1,9 +1,9 @@
 // node libraries
 import { connect } from "react-redux";
-import Cropper from "react-easy-crop";
+
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 // components
 import Loading from "../../../../../components/loading/index";
@@ -14,7 +14,6 @@ import CheckboxTreeCities from "../../../../../components/CheckboxTree/CheckboxT
 import { errorMessage } from "../../../../../containers/utils/message";
 import { ApiRegister } from "../../../../../services/apiRegister/ApiRegister";
 import { mapState } from "../../../../../containers/product/methods/mapState";
-import { getCroppedImg } from "../../../../../containers/product/create/methods/canvasUtils";
 // styles
 import styles from "../../../../../styles/pages/product/create.module.scss";
 import {
@@ -54,19 +53,17 @@ const UpdateProduct = ({ activeHojreh }) => {
 
         setValue("Title", Data.Title);
         setImgProduct(Data.Image);
-        setValue("Price", Data.OldPrice);
-        setValue("OldPrice", Data.Price);
+        setValue("Price", Data.Price);
+        setValue("OldPrice", Data.OldPrice);
         setValue("Inventory", Data.Inventory);
         setValue("Net_Weight", Data.Net_Weight);
         setValue("Weight_With_Packing", Data.Weight_With_Packing);
         setValue("Description", Data.Description);
-
         setValue("PreparationDays", Data.PreparationDays);
         setCheckedCities(Data.post_range_cities);
-        setPlaceholderSubmarckets(Data.new_category.name);
-
+        setPlaceholderSubmarckets(Data.new_category);
+        setSubmarketId(Data.new_category.id);
         // images
-
         setImgProductOne(Data.Product_Banner[0]?.Image);
         setImgProductTwo(Data.Product_Banner[1]?.Image);
         setImgProductThree(Data.Product_Banner[2]?.Image);
@@ -84,7 +81,6 @@ const UpdateProduct = ({ activeHojreh }) => {
     clearErrors,
     register,
     setError,
-
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -93,6 +89,7 @@ const UpdateProduct = ({ activeHojreh }) => {
   });
 
   const onSubmit = async (data) => {
+    setisLoadingUpdate(true);
     let Product_Banner = [];
 
     if (imgProductOne && !imgProductOne.includes("http")) {
@@ -118,7 +115,7 @@ const UpdateProduct = ({ activeHojreh }) => {
       Status: 1,
       PostRangeType: 1,
       post_range: checkedCities,
-      // new_category: submarketId,
+      new_category: submarketId,
       Product_Banner: Product_Banner,
     };
 
@@ -132,15 +129,18 @@ const UpdateProduct = ({ activeHojreh }) => {
 
     if (response.status === 200) {
       router.replace("/fp/product/update/product/successPageEditProduct");
+    } else {
+      errorMessage("خطایی رخ داده مجدد تلاش فرمایید.");
     }
   };
 
   // states
-  const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState("");
+  const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState({});
   const [data, setData] = useState([]);
   const [categories, setCategories] = useState([]);
   const [submarketId, setSubmarketId] = useState(null);
   const [isLoad, setIsLoad] = useState(false);
+
   // stat for test image
   const [imgProduct, setImgProduct] = useState(null);
   const [imgProductOne, setImgProductOne] = useState(null);
@@ -149,6 +149,7 @@ const UpdateProduct = ({ activeHojreh }) => {
   const [imgProductFour, setImgProductFour] = useState(null);
   const [imgProductFive, setImgProductFive] = useState(null);
   const [imgProductSix, setImgProductSix] = useState(null);
+  const [isLoadingUpdate, setisLoadingUpdate] = useState(false);
 
   // for Save cities
   const [checkedCities, setCheckedCities] = useState([]);
@@ -193,25 +194,48 @@ const UpdateProduct = ({ activeHojreh }) => {
                   <label className={styles.lable_product} htmlFor="Title">
                     دسته بندی
                   </label>
-                  <input
-                    className={styles.input_product}
-                    value={placeholderSubmarckets}
-                    id="submark"
-                    name="submark"
-                    type="text"
-                    onClick={_selectSubmarket}
-                    {...register("submark")}
-                  />
-                  {errors.submark && (
-                    <span style={{ color: "red", fontSize: "14px" }}>
-                      لطفا این گزینه را پر کنید
+                  <div className={styles.submarcketTitle}>
+                    <span> دسته فعلی :</span>
+                    {"   "}
+                    <span className={styles.badge_submarket}>
+                      {placeholderSubmarckets.name}
                     </span>
-                  )}
+                  </div>
+
+                  <>
+                    <input
+                      className={styles.input_product}
+                      value={placeholderSubmarckets.name}
+                      id="submark"
+                      name="submark"
+                      type="text"
+                      onClick={_selectSubmarket}
+                      {...register("submark")}
+                    />
+                    <div style={{ display: "none" }}>
+                      <input
+                        className={styles.input_product}
+                        value={placeholderSubmarckets.id}
+                        id="submark"
+                        name="submark"
+                        type="text"
+                        onClick={_selectSubmarket}
+                        {...register("submarkId")}
+                      />
+                    </div>
+                    {errors.submark && (
+                      <span style={{ color: "red", fontSize: "14px" }}>
+                        لطفا این گزینه را پر کنید
+                      </span>
+                    )}
+                  </>
                 </div>
                 {/* image */}
                 <div id="imageProduct">
                   <div>
-                    <p style={{ fontSize: "14px" }}>تصاویر</p>
+                    <p style={{ fontSize: "14px", marginTop: "15px" }}>
+                      تصاویر
+                    </p>
                   </div>
                   <div
                     style={{
@@ -415,6 +439,12 @@ const UpdateProduct = ({ activeHojreh }) => {
                   setCheckedCity={setCheckedCities}
                 />
                 {/* button submit */}
+                {isLoadingUpdate && (
+                  <div className={styles.loading}>
+                    <Image src="/loading.svg" width="45" height="45" />
+                    <span>در حال ساخت محصول ...</span>
+                  </div>
+                )}
                 <div>
                   <button
                     type="submit"
