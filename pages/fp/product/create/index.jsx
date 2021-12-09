@@ -42,8 +42,6 @@ const CreateProduct = ({ activeHojreh }) => {
   });
 
   const onSubmit = async (data) => {
-    
-
     let Product_Banner = [];
     if (imgProductOne) {
       Product_Banner.push({ Image: imgProductOne });
@@ -143,7 +141,7 @@ const CreateProduct = ({ activeHojreh }) => {
 
                   <input
                     className={styles.input_product}
-                    value={placeholderSubmarckets}
+                    value={placeholderSubmarckets.name}
                     id="submark"
                     name="submark"
                     type="text"
