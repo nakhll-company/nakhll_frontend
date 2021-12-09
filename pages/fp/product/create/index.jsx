@@ -235,6 +235,7 @@ const CreateProduct = ({ activeHojreh }) => {
                 >
                   <input
                     type="number"
+                    onWheel={(event) => { event.currentTarget.blur() }}
                     {...register("Net_Weight", {
                       required: "لطفا این گزینه را پرنمایید",
                       min: {
@@ -252,6 +253,7 @@ const CreateProduct = ({ activeHojreh }) => {
                 >
                   <input
                     type="number"
+                    onWheel={(event) => { event.currentTarget.blur() }}
                     {...register("Weight_With_Packing", {
                       required: "لطفا این گزینه را پرنمایید",
                       min: {
@@ -272,6 +274,7 @@ const CreateProduct = ({ activeHojreh }) => {
                 >
                   <input
                     type="number"
+                    onWheel={(event) => { event.currentTarget.blur() }}
                     {...register("Price", {
                       required: "لطفا این گزینه را پرنمایید",
                       min: {
@@ -289,6 +292,7 @@ const CreateProduct = ({ activeHojreh }) => {
                 >
                   <input
                     type="number"
+                    onWheel={(event) => { event.currentTarget.blur() }}
                     defaultValue={0}
                     {...register("OldPrice", {
                       min: {
@@ -318,6 +322,7 @@ const CreateProduct = ({ activeHojreh }) => {
                 >
                   <input
                     type="number"
+                    onWheel={(event) => { event.currentTarget.blur() }}
                     {...register("Inventory", {
                       required: "لطفا این گزینه را پرنمایید",
                       min: {
@@ -337,6 +342,7 @@ const CreateProduct = ({ activeHojreh }) => {
                 >
                   <input
                     type="number"
+                    onWheel={(event) => { event.currentTarget.blur() }}
                     {...register("PreparationDays", {
                       required: "لطفا این گزینه را پرنمایید",
                       min: {

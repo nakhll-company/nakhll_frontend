@@ -53,8 +53,8 @@ const UpdateProduct = ({ activeHojreh }) => {
 
         setValue("Title", Data.Title);
         setImgProduct(Data.Image);
-        setValue("Price", Data.Price);
-        setValue("OldPrice", Data.OldPrice);
+        setValue("Price", Data.Price/10);
+        setValue("OldPrice", Data.OldPrice/10);
         setValue("Inventory", Data.Inventory);
         setValue("Net_Weight", Data.Net_Weight);
         setValue("Weight_With_Packing", Data.Weight_With_Packing);
@@ -310,9 +310,11 @@ const UpdateProduct = ({ activeHojreh }) => {
                   title="وزن خالص محصول"
                   error={errors.Net_Weight}
                   text="گرم"
+                  
                 >
                   <input
                     type="number"
+                    onWheel={(event) => { event.currentTarget.blur() }}
                     {...register("Net_Weight", {
                       required: "لطفا این گزینه را پرنمایید",
                       min: {
@@ -330,6 +332,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                 >
                   <input
                     type="number"
+                    onWheel={(event) => { event.currentTarget.blur() }}
                     {...register("Weight_With_Packing", {
                       required: "لطفا این گزینه را پرنمایید",
                       min: {
@@ -350,6 +353,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                 >
                   <input
                     type="number"
+                    onWheel={(event) => { event.currentTarget.blur() }}
                     {...register("Price", {
                       required: "لطفا این گزینه را پرنمایید",
                       min: {
@@ -367,6 +371,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                 >
                   <input
                     type="number"
+                    onWheel={(event) => { event.currentTarget.blur() }}
                     defaultValue={0}
                     {...register("OldPrice", {
                       min: {
@@ -396,6 +401,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                 >
                   <input
                     type="number"
+                    onWheel={(event) => { event.currentTarget.blur() }}
                     {...register("Inventory", {
                       required: "لطفا این گزینه را پرنمایید",
                       min: {
@@ -415,6 +421,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                 >
                   <input
                     type="number"
+                    onWheel={(event) => { event.currentTarget.blur() }}
                     {...register("PreparationDays", {
                       required: "لطفا این گزینه را پرنمایید",
                       min: {
