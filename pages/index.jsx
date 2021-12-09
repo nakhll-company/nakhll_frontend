@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-// components
+
 import HeroSlides from "../containers/LandingPage/HeroSlides";
 import LinerFourImgMobile from "../containers/LandingPage/LinerFourImgMobile";
 import LinerOneImg from "../containers/LandingPage/LinerOneImg";
@@ -30,7 +30,7 @@ const fetchData = async () => {
         null,
         "GET",
         Schema.data[index].data,
-        true,
+        false,
         ""
       );
       if (one_Component.status === 200) {
@@ -38,6 +38,7 @@ const fetchData = async () => {
         all_data_for_component.push(one_Component.data);
       }
     }
+
     return {
       SchemaIn: Schema.data,
       all_type_for_component,
@@ -68,6 +69,7 @@ const index = ({ data }) => {
             dataHeroSlides={data.all_data_for_component[index]}
           />
         );
+        break;
       case 2:
         return (
           <LinerOneImg
@@ -75,6 +77,7 @@ const index = ({ data }) => {
             dataLinerOneImg={data.all_data_for_component[index]}
           />
         );
+        break;
       case 3:
         return (
           <>
@@ -84,6 +87,7 @@ const index = ({ data }) => {
             />
           </>
         );
+        break;
       case 4:
         return (
           <LinerThreeImg
@@ -91,6 +95,7 @@ const index = ({ data }) => {
             dataLinerThreeImg={data.all_data_for_component[index]}
           />
         );
+        break;
       case 5:
         return (
           <LinerFourImgMobile
@@ -98,6 +103,7 @@ const index = ({ data }) => {
             dataLinerFourImgMobile={data.all_data_for_component[index]}
           />
         );
+        break;
       case 6:
         return (
           <LinerProducts
@@ -109,18 +115,20 @@ const index = ({ data }) => {
             color={data.SchemaIn[index].background_color}
           />
         );
-      // case 7:
-      //   return (
-      //     <LinerProductsBg
-      //       key={index}
-      //       subTitle_LinerProductsBg={type.subtitle}
-      //       dataLinerProductsBg={type.data}
-      //       url_LinerProductsBg={type.url}
-      //       color={data.SchemaIn[index].background_color}
-      //       num={4}
-      //       xl={3}
-      //     />
-      //   );
+        break;
+      case 7:
+        return (
+          <LinerProductsBg
+            key={index}
+            subTitle_LinerProductsBg={type.subtitle}
+            dataLinerProductsBg={type.data}
+            url_LinerProductsBg={type.url}
+            color={data.SchemaIn[index].background_color}
+            num={4}
+            xl={3}
+          />
+        );
+        break;
       default:
         null;
     }
@@ -129,21 +137,17 @@ const index = ({ data }) => {
   return (
     <>
       <Head>
-        <title>بازار اجتماعی نخل</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta
-          name="description"
-          content="نخل سرزمینی است برای یادآوری سنت‌های اصیل ایرانی‌مان، برای شکوفایی استعدادها و بهتر دیده‌شدن‌تان، کالاها و خدمات خود را در سرزمین نخل به اشتراک بگذارید. اینجا راهی برای پیشبرد هدف‌هایتان وجود دارد."
-        />
         <meta
           name="keywords"
           content=" نخل به وسعت یک سرزمین،بازار نخل،نخل،بازار اجتماعی نخل،بازار آنلاین نخل"
         />
         <link rel="canonical" href="https://nakhll.com/" />
       </Head>
-      {data && data.SchemaIn && data.SchemaIn.length > 0 && data.SchemaIn.map((turn, index) =>
-        _handel_select_component(turn, index)
-      )}
+      {data.SchemaIn.length > 0 &&
+        data.SchemaIn.map((turn, index) =>
+          _handel_select_component(turn, index)
+        )}
       ‌‌
     </>
   );
@@ -152,7 +156,7 @@ const index = ({ data }) => {
 export default index;
 
 // function server side
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const data = await fetchData();
 
   return {
