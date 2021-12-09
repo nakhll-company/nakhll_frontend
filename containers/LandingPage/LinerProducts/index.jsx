@@ -18,7 +18,7 @@ function LinerProducts({
   sm = 6,
   xs = 5,
 }) {
-  if (dataLinerProducts.results) {
+  if (dataLinerProducts && dataLinerProducts.results) {
     dataLinerProducts = dataLinerProducts.results;
   }
 
@@ -39,8 +39,8 @@ function LinerProducts({
               <button>
                 <Link
                   href={`${url.includes("search=") || url.includes("q=")
-                      ? `${url}`
-                      : `/search?ap=${url}`
+                    ? `${url}`
+                    : `/search?ap=${url}`
                     }`}
                 >
                   <a>مشاهده همه</a>
@@ -53,7 +53,7 @@ function LinerProducts({
           style={{ overflowX: noScroll ? "unset" : "auto" }}
           className={`${styles.products} row`}
         >
-          {dataLinerProducts.length > 0 && dataLinerProducts.slice(0, num).map((product, index) => (
+          {dataLinerProducts && dataLinerProducts.length > 0 && dataLinerProducts.slice(0, num).map((product, index) => (
             <ProductCard
               xl={xl}
               md={md}
@@ -98,8 +98,8 @@ function LinerProducts({
               <button>
                 <Link
                   href={`${url.includes("search=") || url.includes("q=")
-                      ? `${url}`
-                      : `/search?ap=${url}`
+                    ? `${url}`
+                    : `/search?ap=${url}`
                     }`}
                 >
                   <a>مشاهده همه</a>
@@ -112,7 +112,7 @@ function LinerProducts({
           style={{ overflowX: noScroll ? "unset" : "auto" }}
           className={`${styles.products} row px-5`}
         >
-          {dataLinerProducts.length > 0 && dataLinerProducts.slice(0, num).map((oneProduct, index) => (
+          {dataLinerProducts && dataLinerProducts.length > 0 && dataLinerProducts.slice(0, num).map((oneProduct, index) => (
             <ProductCard
               xl={xl}
               md={md}

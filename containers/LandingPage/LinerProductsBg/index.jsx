@@ -12,7 +12,7 @@ function LinerProductsBg({
   lg = 6,
   num,
 }) {
-  if (dataLinerProductsBg.results) {
+  if (dataLinerProductsBg && dataLinerProductsBg.results) {
     dataLinerProductsBg = dataLinerProductsBg.results;
   }
   return (
@@ -28,11 +28,10 @@ function LinerProductsBg({
 
           <button>
             <Link
-              href={`${
-                url.includes("search=")
+              href={`${url.includes("search=")
                   ? `${url_LinerProductsBg}`
                   : `/search?ap=${url_LinerProductsBg}`
-              }`}
+                }`}
             >
               <a>مشاهده همه</a>
             </Link>

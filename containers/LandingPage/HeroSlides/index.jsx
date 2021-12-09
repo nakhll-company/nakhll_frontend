@@ -25,7 +25,7 @@ function HeroSlides({ dataHeroSlides }) {
                 <Link
                   href={
                     slider.url === "https://nakhll.com/fp/store/create"
-                      ? userLog && Object.keys(userLog).length > 0
+                      ? Object.keys(userLog).length > 0
                         ? "/description"
                         : "/login"
                       : "/description"
