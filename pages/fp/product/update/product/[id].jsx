@@ -53,8 +53,9 @@ const UpdateProduct = ({ activeHojreh }) => {
 
         setValue("Title", Data.Title);
         setImgProduct(Data.Image);
-        setValue("Price", Data.Price/10);
-        setValue("OldPrice", Data.OldPrice/10);
+        
+        setValue("OldPrice", Data.Price/10);
+        setValue("Price", Data.OldPrice/10);
         setValue("Inventory", Data.Inventory);
         setValue("Net_Weight", Data.Net_Weight);
         setValue("Weight_With_Packing", Data.Weight_With_Packing);
