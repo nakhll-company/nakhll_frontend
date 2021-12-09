@@ -87,7 +87,7 @@ function ListProductCus({ data }) {
   const [searchShops, setSearchShops] = useState([]);
   // state for change page
   const [changePage, setChangePage] = useState(1);
-  const [NameHojreh, setNameHojreh] = useState("")
+  const [NameHojreh, setNameHojreh] = useState("");
 
   const _handel_category = async () => {
     try {
@@ -101,7 +101,7 @@ function ListProductCus({ data }) {
       if (response.status === 200) {
         setCategories(response.data);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   const _handel_Add_category = (id) => {
@@ -150,8 +150,7 @@ function ListProductCus({ data }) {
       );
       if (response.status === 200) {
         setListWithFilter(response.data.results);
-        setNameHojreh(response.data.results[0].FK_Shop.title)
-
+        setNameHojreh(response.data.results[0].FK_Shop.title);
 
         if (
           response.data.results.length === 0 ||
@@ -208,7 +207,7 @@ function ListProductCus({ data }) {
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
   // Get all shops
   const _get_all_shops = async () => {
@@ -250,8 +249,8 @@ function ListProductCus({ data }) {
     clickOnRange,
     changePage,
     hojreh,
+    searchWord,
   ]);
-
 
   useEffect(() => {
     router.push(
@@ -458,9 +457,22 @@ function ListProductCus({ data }) {
               handel_OrderingModal={handel_OrderingModal}
             />
             {/* inja */}
-            <div style={{ position: "sticky", position: "-webkit-sticky", top: "0", zIndex: "999" }}>
-              {hojreh !== "" && <SearchProduct searchWord={searchWord} NameHojreh={NameHojreh} hojreh={hojreh} />}
-
+            <div
+              style={{
+                position: "sticky",
+                position: "-webkit-sticky",
+                top: "0",
+                zIndex: "999",
+              }}
+            >
+              {hojreh !== "" && (
+                <SearchProduct
+                  setSearchWord={setSearchWord}
+                  searchWord={searchWord}
+                  NameHojreh={NameHojreh}
+                  hojreh={hojreh}
+                />
+              )}
             </div>
             <div className="mx-auto row">
               {isLoading ? (
@@ -581,7 +593,11 @@ function ListProductCus({ data }) {
               </div>
             </CustomAccordion>
             {categories.length > 0 && (
-              <CustomAccordion title="دسته بندی" item="1mobile" callApi={() => _handel_category()}>
+              <CustomAccordion
+                title="دسته بندی"
+                item="1mobile"
+                callApi={() => _handel_category()}
+              >
                 {categories.map((ele, index) => (
                   <div
                     key={`one${index}`}
