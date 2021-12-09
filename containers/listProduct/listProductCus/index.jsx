@@ -55,13 +55,13 @@ function ListProductCus({ data }) {
 
   // Array for cateGory
   const [categories, setCategories] = useState([
-    ...(data.category
-      ? data.category.split(",").map((el) => parseInt(el))
+    ...(data.new_category
+      ? data.new_category.split(",").map((el) => parseInt(el))
       : []),
   ]);
   const [wantCategories, setWantCategories] = useState([
-    ...(data.category
-      ? data.category.split(",").map((el) => parseInt(el))
+    ...(data.new_category
+      ? data.new_category.split(",").map((el) => parseInt(el))
       : []),
   ]);
 
@@ -268,7 +268,7 @@ function ListProductCus({ data }) {
           ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
           ...(hojreh !== "" && { shop: hojreh }),
           ...(wantCategories.length !== 0 && {
-            category: wantCategories.toString(),
+            new_category: wantCategories.toString(),
           }),
         },
       },
