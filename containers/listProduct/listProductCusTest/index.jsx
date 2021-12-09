@@ -9,7 +9,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { TopBar } from "../TopBar";
 import { errorMessage } from "../../utils/message";
 
-
 import MenuMobile from "../../../components/layout/MenuMobile";
 import { allCites } from "../../../components/custom/data/data";
 import CustomSwitch from "../../../components/custom/customSwitch";
@@ -209,31 +208,6 @@ function ListProductCusTest({ data }) {
       }
     } catch (e) {}
   };
-  // Get all shops
-  const _get_all_shops = async () => {
-    if (shopsName.length == 0) {
-      let shops = await ApiRegister().apiRequest(
-        null,
-        "GET",
-        ApiReference.allShops,
-        true,
-        ""
-      );
-
-      if (shops.status === 200) {
-        setShopsName(shops.data);
-      }
-    }
-  };
-  // Function for search
-  const _handel_search = (word) => {
-    let copy_Array = [...shopsName];
-    let filterArray = [];
-    if (word != "") {
-      filterArray = copy_Array.filter((el) => el.title.includes(word));
-    }
-    setSearchShops(filterArray);
-  };
 
   // START
   // for filters in sidebar
@@ -249,6 +223,7 @@ function ListProductCusTest({ data }) {
     clickOnRange,
     changePage,
     hojreh,
+    searchWord,
   ]);
 
   useEffect(() => {
@@ -412,6 +387,7 @@ function ListProductCusTest({ data }) {
             >
               {hojreh !== "" && (
                 <SearchProduct
+                  setSearchWord={setSearchWord}
                   searchWord={searchWord}
                   NameHojreh={NameHojreh}
                   hojreh={hojreh}

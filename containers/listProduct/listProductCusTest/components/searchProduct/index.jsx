@@ -3,11 +3,11 @@ import router from "next/router";
 import styles from "./searchProduct.module.scss";
 import { useForm } from "react-hook-form";
 
-function SearchProduct({ NameHojreh, hojreh, searchWord }) {
+function SearchProduct({ NameHojreh, hojreh, searchWord, setSearchWord }) {
   const { register, handleSubmit } = useForm();
 
   const _handelSearch = (data) => {
-    location.replace(`/shop/${hojreh}?q=${data.searchWord}&shop=${hojreh}`);
+    setSearchWord(data.searchWord);
   };
 
   return (
