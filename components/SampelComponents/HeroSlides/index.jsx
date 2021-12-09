@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import InputPicture from "../../../containers/liveEdit/InputPicture";
 import InputUrl from "../../../containers/liveEdit/InputUrl";
 import styles from "./HeroSlides.module.scss";
@@ -26,7 +27,10 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
               <span>{data[0].title}</span>
             </div>
           )}
-          <img
+          <Image
+            layout="responsive"
+            height={100}
+            width={200}
             src={data[0].image ? data[0].image : "/image/sample/2_1.jpg"}
             alt=""
           />
@@ -34,7 +38,10 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
         <div className={styles.left}>
           <div className={styles.top}>
             <div className={styles.holderPic}>
-              <img
+              <Image
+                layout="responsive"
+                height={100}
+                width={200}
                 src={data[1].image ? data[1].image : "/image/sample/2_1_M.jpg"}
                 alt=""
               />
@@ -58,7 +65,10 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
           </div>
           <div className={styles.bottom}>
             <div className={styles.holderPic}>
-              <img
+              <Image
+                layout="responsive"
+                height={100}
+                width={200}
                 src={data[2].image ? data[2].image : "/image/sample/2_1_M.jpg"}
                 alt=""
               />
