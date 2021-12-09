@@ -47,6 +47,8 @@ const UpdateProduct = ({ activeHojreh }) => {
         true,
         params
       );
+      
+      console.log(' :>> ', response.data);
 
       if (response.status === 200) {
         let Data = response.data;
