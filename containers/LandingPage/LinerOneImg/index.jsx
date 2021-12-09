@@ -6,7 +6,7 @@ import styles from "./LinerOneImg.module.scss";
 function LinerOneImg({ dataLinerOneImg }) {
   return (
     <>
-      {dataLinerOneImg.length > 0 && (
+      {dataLinerOneImg && dataLinerOneImg.length > 0 && (
         <div className={`${styles.linearImages} container`}>
           <div className="row ">
             <div className={` d-none d-md-block ${styles.righter}`}>

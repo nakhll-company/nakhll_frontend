@@ -5,7 +5,7 @@ import styles from "./MegaMenuDesktop.module.scss";
 function MegaMenuDesktop({ category }) {
   return (
     <ul className={styles.nav_list}>
-      {category.slice(0, 9).map((element, index) => (
+      {category && category.slice(0, 9).map((element, index) => (
         <li
           key={index}
           className={styles.nav_item}

@@ -6,7 +6,7 @@ import styles from "./LinerFourImgMobile.module.scss";
 function LinerFourImgMobile({ dataLinerFourImgMobile }) {
   return (
     <>
-      {dataLinerFourImgMobile.length >= 4 && (
+      {dataLinerFourImgMobile && dataLinerFourImgMobile.length >= 4 && (
         <>
           <div className="container">
             <aside className={styles.section}>

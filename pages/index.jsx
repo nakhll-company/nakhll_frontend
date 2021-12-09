@@ -68,7 +68,6 @@ const index = ({ data }) => {
             dataHeroSlides={data.all_data_for_component[index]}
           />
         );
-        break;
       case 2:
         return (
           <LinerOneImg
@@ -76,7 +75,6 @@ const index = ({ data }) => {
             dataLinerOneImg={data.all_data_for_component[index]}
           />
         );
-        break;
       case 3:
         return (
           <>
@@ -86,7 +84,6 @@ const index = ({ data }) => {
             />
           </>
         );
-        break;
       case 4:
         return (
           <LinerThreeImg
@@ -94,7 +91,6 @@ const index = ({ data }) => {
             dataLinerThreeImg={data.all_data_for_component[index]}
           />
         );
-        break;
       case 5:
         return (
           <LinerFourImgMobile
@@ -102,7 +98,6 @@ const index = ({ data }) => {
             dataLinerFourImgMobile={data.all_data_for_component[index]}
           />
         );
-        break;
       case 6:
         return (
           <LinerProducts
@@ -114,20 +109,18 @@ const index = ({ data }) => {
             color={data.SchemaIn[index].background_color}
           />
         );
-        break;
-      case 7:
-        return (
-          <LinerProductsBg
-            key={index}
-            subTitle_LinerProductsBg={type.subtitle}
-            dataLinerProductsBg={type.data}
-            url_LinerProductsBg={type.url}
-            color={data.SchemaIn[index].background_color}
-            num={4}
-            xl={3}
-          />
-        );
-        break;
+      // case 7:
+      //   return (
+      //     <LinerProductsBg
+      //       key={index}
+      //       subTitle_LinerProductsBg={type.subtitle}
+      //       dataLinerProductsBg={type.data}
+      //       url_LinerProductsBg={type.url}
+      //       color={data.SchemaIn[index].background_color}
+      //       num={4}
+      //       xl={3}
+      //     />
+      //   );
       default:
         null;
     }
@@ -148,10 +141,9 @@ const index = ({ data }) => {
         />
         <link rel="canonical" href="https://nakhll.com/" />
       </Head>
-      {data.SchemaIn.length > 0 &&
-        data.SchemaIn.map((turn, index) =>
-          _handel_select_component(turn, index)
-        )}
+      {data && data.SchemaIn && data.SchemaIn.length > 0 && data.SchemaIn.map((turn, index) =>
+        _handel_select_component(turn, index)
+      )}
       ‌‌
     </>
   );
@@ -160,7 +152,7 @@ const index = ({ data }) => {
 export default index;
 
 // function server side
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const data = await fetchData();
 
   return {

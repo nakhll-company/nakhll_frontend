@@ -6,7 +6,7 @@ import styles from "./LinerThreeImg.module.scss";
 function LinerThreeImg({ dataLinerThreeImg }) {
   return (
     <>
-      {dataLinerThreeImg.length >= 3 && (
+      {dataLinerThreeImg && dataLinerThreeImg.length >= 3 && (
         <>
           {/* for mobile */}
           <div className="container d-lg-none">
