@@ -41,7 +41,49 @@ const CreateProduct = ({ activeHojreh }) => {
     mode: "all",
   });
 
+  // states
+  const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState("");
+  const [data, setData] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [submarketId, setSubmarketId] = useState(null);
+  const [isLoad, setIsLoad] = useState(false);
+
+  // stat for test image
+  const [imgProduct, setImgProduct] = useState(null);
+  const [imgProductOne, setImgProductOne] = useState(null);
+  const [imgProductTwo, setImgProductTwo] = useState(null);
+  const [imgProductThree, setImgProductThree] = useState(null);
+  const [imgProductFour, setImgProductFour] = useState(null);
+  const [imgProductFive, setImgProductFive] = useState(null);
+  const [imgProductSix, setImgProductSix] = useState(null);
+
+  // loading for create product
+  const [isloadingForCreate, setIsloadingForCreate] = useState(false);
+
+  // for Save cities
+  const [checkedCities, setCheckedCities] = useState([]);
+
+  // use effect
+  useEffect(async () => {
+    const response_categories = await _ApiGetCategories();
+
+    if (response_categories.status === 200) {
+      setIsLoad(true);
+      setData(response_categories.data); //==> output: {}
+      setCategories(response_categories.data);
+    }
+  }, [activeHojreh]);
+
+  // select Submarket
+  const _selectSubmarket = () => {
+    let element = document.getElementById("wrapperMarkets");
+    element.style.display = "block";
+    let elementProduct = document.getElementById("wrapper_product");
+    elementProduct.style.display = "none";
+  };
+
   const onSubmit = async (data) => {
+    setIsloadingForCreate(true);
     let Product_Banner = [];
     if (imgProductOne) {
       Product_Banner.push({ Image: imgProductOne });
@@ -77,44 +119,6 @@ const CreateProduct = ({ activeHojreh }) => {
     if (response.status === 201) {
       router.replace("/fp/product/create/successPageProduct");
     }
-  };
-
-  // states
-  const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState("");
-  const [data, setData] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [submarketId, setSubmarketId] = useState(null);
-  const [isLoad, setIsLoad] = useState(false);
-
-  // stat for test image
-  const [imgProduct, setImgProduct] = useState(null);
-  const [imgProductOne, setImgProductOne] = useState(null);
-  const [imgProductTwo, setImgProductTwo] = useState(null);
-  const [imgProductThree, setImgProductThree] = useState(null);
-  const [imgProductFour, setImgProductFour] = useState(null);
-  const [imgProductFive, setImgProductFive] = useState(null);
-  const [imgProductSix, setImgProductSix] = useState(null);
-
-  // for Save cities
-  const [checkedCities, setCheckedCities] = useState([]);
-
-  // use effect
-  useEffect(async () => {
-    const response_categories = await _ApiGetCategories();
-
-    if (response_categories.status === 200) {
-      setIsLoad(true);
-      setData(response_categories.data); //==> output: {}
-      setCategories(response_categories.data);
-    }
-  }, [activeHojreh]);
-
-  // select Submarket
-  const _selectSubmarket = () => {
-    let element = document.getElementById("wrapperMarkets");
-    element.style.display = "block";
-    let elementProduct = document.getElementById("wrapper_product");
-    elementProduct.style.display = "none";
   };
 
   if (isLoad) {
@@ -235,7 +239,9 @@ const CreateProduct = ({ activeHojreh }) => {
                 >
                   <input
                     type="number"
-                    onWheel={(event) => { event.currentTarget.blur() }}
+                    onWheel={(event) => {
+                      event.currentTarget.blur();
+                    }}
                     {...register("Net_Weight", {
                       required: "لطفا این گزینه را پرنمایید",
                       min: {
@@ -253,7 +259,9 @@ const CreateProduct = ({ activeHojreh }) => {
                 >
                   <input
                     type="number"
-                    onWheel={(event) => { event.currentTarget.blur() }}
+                    onWheel={(event) => {
+                      event.currentTarget.blur();
+                    }}
                     {...register("Weight_With_Packing", {
                       required: "لطفا این گزینه را پرنمایید",
                       min: {
@@ -274,7 +282,9 @@ const CreateProduct = ({ activeHojreh }) => {
                 >
                   <input
                     type="number"
-                    onWheel={(event) => { event.currentTarget.blur() }}
+                    onWheel={(event) => {
+                      event.currentTarget.blur();
+                    }}
                     {...register("Price", {
                       required: "لطفا این گزینه را پرنمایید",
                       min: {
@@ -292,7 +302,9 @@ const CreateProduct = ({ activeHojreh }) => {
                 >
                   <input
                     type="number"
-                    onWheel={(event) => { event.currentTarget.blur() }}
+                    onWheel={(event) => {
+                      event.currentTarget.blur();
+                    }}
                     defaultValue={0}
                     {...register("OldPrice", {
                       min: {
@@ -322,7 +334,9 @@ const CreateProduct = ({ activeHojreh }) => {
                 >
                   <input
                     type="number"
-                    onWheel={(event) => { event.currentTarget.blur() }}
+                    onWheel={(event) => {
+                      event.currentTarget.blur();
+                    }}
                     {...register("Inventory", {
                       required: "لطفا این گزینه را پرنمایید",
                       min: {
@@ -342,7 +356,9 @@ const CreateProduct = ({ activeHojreh }) => {
                 >
                   <input
                     type="number"
-                    onWheel={(event) => { event.currentTarget.blur() }}
+                    onWheel={(event) => {
+                      event.currentTarget.blur();
+                    }}
                     {...register("PreparationDays", {
                       required: "لطفا این گزینه را پرنمایید",
                       min: {
@@ -389,6 +405,14 @@ const CreateProduct = ({ activeHojreh }) => {
             categories={categories}
           />
         </div>
+
+        {isloadingForCreate && (
+          <>
+            <div className={styles.create_product}>
+              <div className={styles.create_messege}>در حال ساخت محصول ...</div>
+            </div>
+          </>
+        )}
       </>
     );
   } else {
