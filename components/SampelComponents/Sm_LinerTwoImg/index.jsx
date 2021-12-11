@@ -23,10 +23,7 @@ function Sm_LinerTwoImg({ setImageSrc, id, data }) {
           </div>
         )}
 
-        <Image
-          layout="responsive"
-          width={300}
-          height={100}
+        <img
           src={data[0].image ? data[0].image : "/image/sample/3_1.jpg"}
           alt=""
         />
@@ -39,10 +36,7 @@ function Sm_LinerTwoImg({ setImageSrc, id, data }) {
           <InputUrl id={id} order={1} />
         </div>
 
-        <Image
-          layout="responsive"
-          width={300}
-          height={100}
+        <img
           src={data[1].image ? data[1].image : "/image/sample/3_1.jpg"}
           alt=""
         />

@@ -27,10 +27,7 @@ function Sm_LinerFourImg({ setImageSrc, id, data }) {
             <span>{data[0].title}</span>
           </div>
         )}
-        <Image
-          layout="responsive"
-          height={300}
-          width={400}
+        <img
           src={data[0].image ? data[0].image : "/image/sample/4_3.jpg"}
           alt=""
         />
@@ -48,10 +45,7 @@ function Sm_LinerFourImg({ setImageSrc, id, data }) {
             <span>{data[1].title}</span>
           </div>
         )}
-        <Image
-          layout="responsive"
-          height={300}
-          width={400}
+        <img
           src={data[1].image ? data[1].image : "/image/sample/4_3.jpg"}
           alt=""
         />
@@ -69,10 +63,7 @@ function Sm_LinerFourImg({ setImageSrc, id, data }) {
             <span>{data[2].title}</span>
           </div>
         )}
-        <Image
-          layout="responsive"
-          height={300}
-          width={400}
+        <img
           src={data[2].image ? data[2].image : "/image/sample/4_3.jpg"}
           alt=""
         />
@@ -90,10 +81,7 @@ function Sm_LinerFourImg({ setImageSrc, id, data }) {
             <span>{data[3].title}</span>
           </div>
         )}
-        <Image
-          layout="responsive"
-          height={300}
-          width={400}
+        <img
           src={data[3].image ? data[3].image : "/image/sample/4_3.jpg"}
           alt=""
         />

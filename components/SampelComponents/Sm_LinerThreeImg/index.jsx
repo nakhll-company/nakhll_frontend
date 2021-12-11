@@ -22,10 +22,7 @@ function Sm_LinerThreeImg({ setImageSrc, id, data }) {
             <span>{data[0].title}</span>
           </div>
         )}
-        <Image
-          layout="responsive"
-          height={100}
-          width={600}
+        <img
           src={data[0].image ? data[0].image : "/image/sample/6_1.jpg"}
           alt=""
         />
@@ -48,10 +45,7 @@ function Sm_LinerThreeImg({ setImageSrc, id, data }) {
               <span>{data[1].title}</span>
             </div>
           )}
-          <Image
-            layout="responsive"
-            height={100}
-            width={300}
+          <img
             src={data[1].image ? data[1].image : "/image/sample/3_1.jpg"}
             alt=""
           />
@@ -73,10 +67,7 @@ function Sm_LinerThreeImg({ setImageSrc, id, data }) {
               <span>{data[2].title}</span>
             </div>
           )}
-          <Image
-            layout="responsive"
-            height={100}
-            width={300}
+          <img
             src={data[2].image ? data[2].image : "/image/sample/3_1.jpg"}
             alt=""
           />
