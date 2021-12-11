@@ -48,8 +48,6 @@ const UpdateProduct = ({ activeHojreh }) => {
         params
       );
 
-      console.log(" :>> ", response.data);
-
       if (response.status === 200) {
         let Data = response.data;
 
@@ -73,6 +71,7 @@ const UpdateProduct = ({ activeHojreh }) => {
         setImgProductFour(Data.Product_Banner[3]?.Image);
         setImgProductFive(Data.Product_Banner[4]?.Image);
         setImgProductSix(Data.Product_Banner[5]?.Image);
+        setProduct_Banner(Data.Product_Banner);
       }
     }
   }, [id]);
@@ -153,6 +152,8 @@ const UpdateProduct = ({ activeHojreh }) => {
   const [imgProductFive, setImgProductFive] = useState(null);
   const [imgProductSix, setImgProductSix] = useState(null);
   const [isLoadingUpdate, setisLoadingUpdate] = useState(false);
+
+  const [Product_Banner, setProduct_Banner] = useState([]);
 
   // for Save cities
   const [checkedCities, setCheckedCities] = useState([]);
@@ -276,32 +277,38 @@ const UpdateProduct = ({ activeHojreh }) => {
                       />
                     )}
                   </div>
-                  {/* imgProductChild, setImgProductChild */}
+
                   {imgProduct && (
                     <div className={styles.another_picture_product}>
                       <PictureChildProduct
                         setImageSrc={setImgProductOne}
                         image={imgProductOne}
+                        id={Product_Banner[0]?.id}
                       />
                       <PictureChildProduct
                         setImageSrc={setImgProductTwo}
                         image={imgProductTwo}
+                        id={Product_Banner[1]?.id}
                       />
                       <PictureChildProduct
                         setImageSrc={setImgProductThree}
                         image={imgProductThree}
+                        id={Product_Banner[2]?.id}
                       />
                       <PictureChildProduct
                         setImageSrc={setImgProductFour}
                         image={imgProductFour}
+                        id={Product_Banner[3]?.id}
                       />
                       <PictureChildProduct
                         setImageSrc={setImgProductFive}
                         image={imgProductFive}
+                        id={Product_Banner[4]?.id}
                       />
                       <PictureChildProduct
                         setImageSrc={setImgProductSix}
                         image={imgProductSix}
+                        id={Product_Banner[5]?.id}
                       />
                     </div>
                   )}
@@ -463,7 +470,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                 {isLoadingUpdate && (
                   <div className={styles.loading}>
                     <Image src="/loading.svg" width="45" height="45" />
-                    <span>در حال ساخت محصول ...</span>
+                    <span>در حال ویرایش محصول ...</span>
                   </div>
                 )}
                 <div>
