@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Head from "next/head";
+import { NextSeo } from "next-seo";
 
 import EnfoLiner from "../../../containers/hojreh/EnfoLiner";
 import HeroSlides from "../../../containers/LandingPage/HeroSlides";
@@ -82,6 +83,12 @@ const Shop = ({ dataShop, data }) => {
         null;
     }
   };
+  // const SEO = {
+  //   title: `خرید و قیمت ${data.detail.title} | نخل`,
+  //   description: data.detail.description
+  //     ? data.detail.description
+  //     : "نخل سرزمینی است برای یادآوری سنت‌های اصیل ایرانی‌مان، برای شکوفایی استعدادها و بهتر دیده‌شدن‌تان، کالاها و خدمات خود را در سرزمین نخل به اشتراک بگذارید. اینجا راهی برای پیشبرد هدف‌هایتان وجود دارد.",
+  // };
 
   return (
     <>
@@ -111,7 +118,8 @@ export default Shop;
 // function server side
 export async function getServerSideProps(context) {
   const dataShop = await fetchData(context.query.shopslug);
-
+  console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+  console.log(dataShop);
   return {
     props: {
       data: context.query,

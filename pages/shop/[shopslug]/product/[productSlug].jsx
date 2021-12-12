@@ -1,6 +1,7 @@
 // node libraries
 import { useState } from "react";
 import Head from "next/head";
+import { NextSeo } from "next-seo";
 // components
 
 // methods
@@ -64,10 +65,17 @@ const ProductDetail = ({ data }) => {
     const newPosts = await res.json();
     setPosts((post) => [...post, ...newPosts]);
   };
+
+  const SEO = {
+    title: `خرید و قیمت ${data.detail.title} | نخل`,
+    description: data.detail.description
+      ? data.detail.description
+      : "نخل سرزمینی است برای یادآوری سنت‌های اصیل ایرانی‌مان، برای شکوفایی استعدادها و بهتر دیده‌شدن‌تان، کالاها و خدمات خود را در سرزمین نخل به اشتراک بگذارید. اینجا راهی برای پیشبرد هدف‌هایتان وجود دارد.",
+  };
   return (
     <>
+      <NextSeo {...SEO} />
       <Head>
-        <title>{`خرید و قیمت ${data.detail.title} | نخل`}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       {width < breakpoint ? (

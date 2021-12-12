@@ -4,6 +4,8 @@ import Script from "next/script";
 import { Store } from "../redux/store";
 import { Provider } from "react-redux";
 import { useRouter } from "next/router";
+import { DefaultSeo } from "next-seo";
+import SEO from "../next-seo.config";
 // components
 import ShopLayout from "../components/shopLayout";
 import General from "../components/utils/General";
@@ -22,6 +24,7 @@ function MyApp({ Component, pageProps }) {
   if (router.pathname.startsWith("/fp")) {
     return (
       <>
+        <DefaultSeo {...SEO} />
         <General />
         <Script id="testChat" strategy="lazyOnload">
           {`
@@ -42,6 +45,7 @@ function MyApp({ Component, pageProps }) {
   ) {
     return (
       <>
+        <DefaultSeo {...SEO} />
         <General />
         <Provider store={Store}>
           <Component {...pageProps} />
@@ -51,6 +55,7 @@ function MyApp({ Component, pageProps }) {
   } else {
     return (
       <>
+        <DefaultSeo {...SEO} />
         <General />
         <Script id="testChat" strategy="lazyOnload">
           {`
