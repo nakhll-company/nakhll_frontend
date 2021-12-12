@@ -17,6 +17,7 @@ import HojrehForm from "../components/hojrehForm";
 import BankAccountForm from "../components/bankAccountForm";
 import { callApiAllData } from "../../../api/settings";
 import TopPictures from "../components/topPictures";
+import LogisticPage from "../components/logisticPage";
 
 const DesktopSetting = ({ activeHojreh, userInfo }) => {
   const [apiSetting, setApiSetting] = useState({});
@@ -70,6 +71,8 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
                 setClicked={setClicked}
               />
             )}
+
+            {/* {onMenu == "3" && <LogisticPage />} */}
 
             {onMenu == "4" && (
               <FormInputs

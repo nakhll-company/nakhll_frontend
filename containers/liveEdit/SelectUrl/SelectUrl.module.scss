@@ -12,9 +12,9 @@
     justify-content: center;
     align-items: center;
 }
-
 // cropper wrapper
 .content_wrapper {
+    overflow-y: auto;
     position: relative;
     width: 80vw;
     height: 70vh;
