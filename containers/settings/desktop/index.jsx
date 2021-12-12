@@ -72,7 +72,7 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
               />
             )}
 
-            {/* {onMenu == "3" && <LogisticPage />} */}
+            {onMenu == "3" && <LogisticPage />}
 
             {onMenu == "4" && (
               <FormInputs
