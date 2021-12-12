@@ -112,14 +112,14 @@ const ProductDetailDesktop = ({ data }) => {
                       detail.new_category && detail.new_category.parents.length > 0
                         ? detail.new_category.parents[0].name
                         : "",
-                    url: detail.new_category && detail.new_category.parents.length > 0 && `/product?q=&category=${detail?.new_category?.parents[0].id}`,
+                    url: detail.new_category && detail.new_category.parents.length > 0 && `/search?q=&new_category=${detail?.new_category?.parents[0].id}`,
                   },
                   {
                     title:
                       detail.new_category && detail.new_category.name
                         ? detail.new_category.name
                         : "",
-                    url: `/product?q=&category=${detail?.new_category?.id}`,
+                    url: `/search?q=&new_category=${detail?.new_category?.id}`,
                   },
                 ].map((value, index) => {
                   return (

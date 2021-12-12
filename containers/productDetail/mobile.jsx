@@ -54,7 +54,6 @@ const ProductDetailMobile = ({ data }) => {
   ];
 
   async function fetchProductShop() {
-
     let response = await ApiRegister().apiRequest(
       null,
       "GET",
@@ -114,17 +113,21 @@ const ProductDetailMobile = ({ data }) => {
                   { title: "خانه", url: "/" },
                   {
                     title:
-                      detail.new_category && detail.new_category.parents.length > 0
+                      detail.new_category &&
+                      detail.new_category.parents.length > 0
                         ? detail.new_category.parents[0].name
                         : "",
-                    url: detail.new_category && detail.new_category.parents.length > 0 && `/product?q=&category=${detail?.new_category?.parents[0].id}`,
+                    url:
+                      detail.new_category &&
+                      detail.new_category.parents.length > 0 &&
+                      `/search?q=&new_category=${detail?.new_category?.parents[0].id}`,
                   },
                   {
                     title:
                       detail.new_category && detail.new_category.name
                         ? detail.new_category.name
                         : "",
-                    url: `/product?q=&category=${detail?.new_category?.id}`,
+                    url: `/search?q=&new_category=${detail?.new_category?.id}`,
                   },
                 ].map((value, index) => {
                   return (
@@ -182,21 +185,23 @@ const ProductDetailMobile = ({ data }) => {
                                     فروش
                                 </span>
                             </div> */}
-              {detail.salable && detail.salable === true && <div
-                className="ms-lg-5 mb-3 mb-lg-0"
-                style={{ display: "flex", alignItems: "center" }}
-              >
-                {/* <i style={{ fontSize: "1.5rem", color: "#7d7d7d" }} className="far fa-clock ms-3"></i> */}
-                <Image
-                  src="/productDetail/time.png"
-                  alt="iran icon"
-                  width="20"
-                  height="23"
-                />
-                <span style={{ fontSize: ".85rem" }} className="me-3">
-                  {detail.status}
-                </span>
-              </div>}
+              {detail.salable && detail.salable === true && (
+                <div
+                  className="ms-lg-5 mb-3 mb-lg-0"
+                  style={{ display: "flex", alignItems: "center" }}
+                >
+                  {/* <i style={{ fontSize: "1.5rem", color: "#7d7d7d" }} className="far fa-clock ms-3"></i> */}
+                  <Image
+                    src="/productDetail/time.png"
+                    alt="iran icon"
+                    width="20"
+                    height="23"
+                  />
+                  <span style={{ fontSize: ".85rem" }} className="me-3">
+                    {detail.status}
+                  </span>
+                </div>
+              )}
               <div
                 className="ms-lg-5 mb-3 mb-lg-0"
                 style={{ display: "flex", alignItems: "center" }}
@@ -422,32 +427,34 @@ const ProductDetailMobile = ({ data }) => {
               </Link>
             </div>
             <div className="row">
-              {productShop.length > 0 &&
+              {productShop.length > 0 && (
                 <CustomSlider
                   slides1200={4}
                   data={productShop.map((value, index) => {
                     return (
-                      value.FK_Shop !== undefined && <ProductCard
-                        col="12"
-                        product={{
-                          id: value.ID,
-                          imageUrl: value.Image_medium_url,
-                          url: `/shop/${value.FK_Shop.slug}/product/${value.Slug}`,
-                          title: value.Title,
-                          chamberTitle: value.FK_Shop.title,
-                          chamberUrl: `/shop/${value.FK_Shop.slug}`,
-                          discount: value.discount,
-                          price: value.Price / 10,
-                          discountNumber: value.OldPrice / 10,
-                          city: value.FK_Shop.state,
-                          is_advertisement: value.is_advertisement,
-                        }}
-                        key={index}
-                      />
-                    )
+                      value.FK_Shop !== undefined && (
+                        <ProductCard
+                          col="12"
+                          product={{
+                            id: value.ID,
+                            imageUrl: value.Image_medium_url,
+                            url: `/shop/${value.FK_Shop.slug}/product/${value.Slug}`,
+                            title: value.Title,
+                            chamberTitle: value.FK_Shop.title,
+                            chamberUrl: `/shop/${value.FK_Shop.slug}`,
+                            discount: value.discount,
+                            price: value.Price / 10,
+                            discountNumber: value.OldPrice / 10,
+                            city: value.FK_Shop.state,
+                            is_advertisement: value.is_advertisement,
+                          }}
+                          key={index}
+                        />
+                      )
+                    );
                   })}
                 />
-              }
+              )}
             </div>
             <hr />
             {/* comments */}
@@ -554,31 +561,39 @@ const ProductDetailMobile = ({ data }) => {
                 style={{ overflow: "hidden" }}
               >
                 <div className="row d-flex">
-                  {posts.length > 0 && posts.map((oneProduct, index) => {
-                    return (
-                      oneProduct.FK_Shop !== undefined && <ProductCard
-                        col="6"
-                        product={{
-                          id: oneProduct.ID,
-                          imageUrl: oneProduct.Image_medium_url ? oneProduct.Image_medium_url : '',
-                          url: oneProduct.FK_Shop && `/shop/${oneProduct.FK_Shop.slug}/product/${oneProduct.Slug}/`,
-                          title: oneProduct.Title,
-                          chamberTitle: oneProduct.FK_Shop
-                            ? oneProduct.FK_Shop.title
-                            : "",
-                          chamberUrl: oneProduct.FK_Shop
-                            ? `/shop/${oneProduct.FK_Shop.slug} `
-                            : "",
-                          discount: oneProduct.discount,
-                          price: oneProduct.Price / 10,
-                          discountNumber: oneProduct.OldPrice / 10,
-                          city: oneProduct.FK_Shop && oneProduct.FK_Shop.state,
-                          is_advertisement: oneProduct.is_advertisement,
-                        }}
-                        key={index}
-                      />
-                    )
-                  })}
+                  {posts.length > 0 &&
+                    posts.map((oneProduct, index) => {
+                      return (
+                        oneProduct.FK_Shop !== undefined && (
+                          <ProductCard
+                            col="6"
+                            product={{
+                              id: oneProduct.ID,
+                              imageUrl: oneProduct.Image_medium_url
+                                ? oneProduct.Image_medium_url
+                                : "",
+                              url:
+                                oneProduct.FK_Shop &&
+                                `/shop/${oneProduct.FK_Shop.slug}/product/${oneProduct.Slug}/`,
+                              title: oneProduct.Title,
+                              chamberTitle: oneProduct.FK_Shop
+                                ? oneProduct.FK_Shop.title
+                                : "",
+                              chamberUrl: oneProduct.FK_Shop
+                                ? `/shop/${oneProduct.FK_Shop.slug} `
+                                : "",
+                              discount: oneProduct.discount,
+                              price: oneProduct.Price / 10,
+                              discountNumber: oneProduct.OldPrice / 10,
+                              city:
+                                oneProduct.FK_Shop && oneProduct.FK_Shop.state,
+                              is_advertisement: oneProduct.is_advertisement,
+                            }}
+                            key={index}
+                          />
+                        )
+                      );
+                    })}
                 </div>
               </InfiniteScroll>
             </section>
@@ -597,7 +612,7 @@ const ProductDetailMobile = ({ data }) => {
             <span> تومان </span>
           </div>
         </div>
-        {detail.salable && detail.salable === true &&
+        {detail.salable && detail.salable === true && (
           <button
             className={`${styles.product_btn_mobile} btn btn-tprimary rounded-pill font-weight-bold font-size1-5 px-6 py-2 ev-add-to-cart`}
             onClick={async () => {
@@ -606,7 +621,7 @@ const ProductDetailMobile = ({ data }) => {
           >
             خرید
           </button>
-        }
+        )}
       </div>
     </div>
   );
