@@ -1,0 +1,15 @@
+.header {
+    th {
+        background: #dadada;
+    }
+}
+.status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    i {
+        font-size: 30px;
+        color: #ff0000;
+        cursor: pointer;
+    }
+}
