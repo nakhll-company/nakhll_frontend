@@ -85,6 +85,10 @@ const Shop = ({ dataShop, data }) => {
   };
   const SEO = {
     title: `حجره ${dataShop.shop.title} | نخل`,
+    description:
+      dataShop.shop.Description == ""
+        ? dataShop.shop.Description
+        : "نخل سرزمینی است برای یادآوری سنت‌های اصیل ایرانی‌مان، برای شکوفایی استعدادها و بهتر دیده‌شدن‌تان، کالاها و خدمات خود را در سرزمین نخل به اشتراک بگذارید. اینجا راهی برای پیشبرد هدف‌هایتان وجود دارد.",
   };
 
   return (
@@ -116,7 +120,8 @@ export default Shop;
 // function server side
 export async function getServerSideProps(context) {
   const dataShop = await fetchData(context.query.shopslug);
-
+  console.log("########################################");
+  console.log(dataShop);
   return {
     props: {
       data: context.query,

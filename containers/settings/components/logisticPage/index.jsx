@@ -10,7 +10,7 @@ function LogisticPage() {
   return (
     <>
       <button onClick={() => setIsShow(() => isShow + 1)}>.</button>
-      {isShow == 7 && (
+      {false && (
         <div className={st.main}>
           <HeaderTitle title="تنظیمات لجستیک" />
 
@@ -20,6 +20,13 @@ function LogisticPage() {
           <SendBox title="پست سفارشی " description="توضیحات سرویس" />
           <SendBox title="ارسال رایگان" description="توضیحات سرویس" />
           <SendBox title="ارسال پس کرایه" description="توضیحات سرویس" />
+        </div>
+      )}
+      {false && (
+        <div className={st.main}>
+          <HeaderTitle title="واحد ارسال" />
+
+          <Explain text="توضیحات به حجره دار" />
         </div>
       )}
     </>
