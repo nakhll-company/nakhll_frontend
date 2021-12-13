@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ActiveSendBox from "./components/ActiveSendBox ";
 import Explain from "./components/explain";
 import HeaderTitle from "./components/headerTitle";
 import SendBox from "./components/sendBox";
@@ -10,13 +11,13 @@ function LogisticPage() {
   return (
     <>
       <button onClick={() => setIsShow(() => isShow + 1)}>.</button>
-      {false && (
+      {true && (
         <div className={st.main}>
           <HeaderTitle title="تنظیمات لجستیک" />
 
           <Explain text="توضیحات به حجره دار" />
 
-          <SendBox title="پست پیشتاز" description="توضیحات سرویس" />
+          <ActiveSendBox title="پست پیشتاز" description="توضیحات سرویس" />
           <SendBox title="پست سفارشی " description="توضیحات سرویس" />
           <SendBox title="ارسال رایگان" description="توضیحات سرویس" />
           <SendBox title="ارسال پس کرایه" description="توضیحات سرویس" />
