@@ -18,42 +18,54 @@ function LogisticPage() {
   return (
     <>
       <button onClick={() => setIsShow(() => isShow + 1)}>.</button>
-      {false && (
-        <div className={st.main}>
-          <HeaderTitle title="تنظیمات لجستیک" />
+      <div className={st.main}>
+        {false && (
+          <>
+            <HeaderTitle title="تنظیمات لجستیک" />
 
-          <Explain text="توضیحات به حجره دار" />
+            <Explain text="توضیحات به حجره دار" />
 
-          <ActiveSendBox title="پست پیشتاز" description="توضیحات سرویس" />
-          <SendBox title="پست سفارشی " description="توضیحات سرویس" />
-          <SendBox title="ارسال رایگان" description="توضیحات سرویس" />
-          <SendBox title="ارسال پس کرایه" description="توضیحات سرویس" />
-        </div>
-      )}
-      {false && (
-        <div className={st.main}>
-          <HeaderTitle title="واحد ارسال" />
+            <ActiveSendBox title="پست پیشتاز" description="توضیحات سرویس" />
+            <SendBox title="پست سفارشی " description="توضیحات سرویس" />
+            <SendBox title="ارسال رایگان" description="توضیحات سرویس" />
+            <SendBox title="ارسال پس کرایه" description="توضیحات سرویس" />
+          </>
+        )}
+        {false && (
+          <>
+            <HeaderTitle title="واحد ارسال" />
 
-          <Explain text="توضیحات به حجره دار" />
-          <CheckBoxSend title="استفاده از تنظیمات پیشفرض" />
-          <Tabel />
-          <BtnSetting title="ثبت محدوده جدید" />
-        </div>
-      )}
+            <Explain text="توضیحات به حجره دار" />
+            <CheckBoxSend title="استفاده از تنظیمات پیشفرض" />
+            <Tabel />
+            <BtnSetting title="ثبت محدوده جدید" />
+          </>
+        )}
 
-      {true && (
-        <div className={st.main}>
-          <HeaderTitle title="ثبت محدوده" />
+        {false && (
+          <>
+            <HeaderTitle title="ثبت محدوده" />
 
-          <Explain text="توضیحات به حجره دار" />
-          <CheckboxTreeCities
-            checkedCity={checkedCities}
-            setCheckedCity={setCheckedCities}
-          />
+            <Explain text="توضیحات به حجره دار" />
+            <CheckboxTreeCities
+              checkedCity={checkedCities}
+              setCheckedCity={setCheckedCities}
+            />
 
-          <BtnSetting title="ثبت محدوده جدید" />
-        </div>
-      )}
+            <BtnSetting title="ثبت محدوده جدید" />
+          </>
+        )}
+        {false && (
+          <>
+            <HeaderTitle title="ثبت محدوده" />
+
+            <Explain text="توضیحات به حجره دار" />
+            <CheckBoxSend title="تمام محصولات" />
+
+            <BtnSetting title="ثبت محدوده جدید" />
+          </>
+        )}
+      </div>
     </>
   );
 }

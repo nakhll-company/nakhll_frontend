@@ -3,7 +3,7 @@ import CheckboxTree from "react-checkbox-tree";
 import { allCites } from "./data";
 import Assistent from "zaravand-assistent-number";
 import TitleLiner from "../../containers/settings/components/titleLiner";
-import all from "gsap/all";
+
 const _asist = new Assistent();
 
 function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
