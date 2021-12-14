@@ -3,10 +3,10 @@ import CheckboxTree from "react-checkbox-tree";
 import { allCites } from "./data";
 import Assistent from "zaravand-assistent-number";
 import TitleLiner from "../../containers/settings/components/titleLiner";
+import all from "gsap/all";
 const _asist = new Assistent();
 
 function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
-  console.log(`allCites`, allCites);
   // STATE FOR SHOW MODAL
   const [showModal, setShowModal] = useState(false);
   const [forDontRunFirst, setForDontRunFirst] = useState(1);
@@ -150,15 +150,33 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
     // setCheckedCity(ArrayDeleteState);
   };
 
+  // search from tree
   const _handel_search = (word) => {
-    // let firstLevelSearch = allCites.filter((e) => e.label.includes(word));
-    // setSearchCities(firstLevelSearch);
-    console.log(`allCites`, allCites);
-    let secoundLevelSearch = [...allCites];
-    allCites.map((state, index) => {
-      console.log(`state`, state);
-    });
-    console.log(`secoundLevelSearch`, secoundLevelSearch);
+    if (word == "") {
+      setSearchCities(allCites);
+      setExpandCity([]);
+    } else {
+      let secoundLevelSearch = [];
+      let selectIDForExpand = [];
+      allCites.map((States, index) => {
+        let selectedBigCity = [];
+        States.children.map((BigCity) => {
+          if (BigCity.label.includes(word)) {
+            selectedBigCity.push(BigCity);
+          }
+        });
+        if (selectedBigCity.length > 0) {
+          secoundLevelSearch.push({
+            value: States.value,
+            label: States.label,
+            children: selectedBigCity,
+          });
+          selectIDForExpand.push(States.value);
+        }
+      });
+      setSearchCities(secoundLevelSearch);
+      setExpandCity(selectIDForExpand);
+    }
   };
 
   // ############################################
@@ -191,7 +209,10 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
             به سراسر ایران
           </label>
         </div>
-        <div className="form-check" style={{ position: "relative" }}>
+        <div
+          className="form-check"
+          style={{ position: "relative", marginTop: "15px" }}
+        >
           <input
             className="form-check-input"
             type="radio"
@@ -208,53 +229,63 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
           </label>
         </div>
       </form>
-      <input
-        type="search"
-        placeholder="ddd"
-        onChange={(e) => _handel_search(e.target.value)}
-      />
 
       {showModal && (
-        <div
-          style={{
-            position: "sticky",
-            display: "flex",
-            flexDirection: "column",
-            backgroundColor: "#e0e0e0",
-            marginTop: "15px",
-            overflowY: "auto",
-            padding: "15px",
-            borderRadius: "20px",
-          }}
-        >
-          <div style={{ marginRight: "20px" }}>
-            <CheckboxTree
-              nativeCheckboxes={true}
-              // direction="rtl"
+        <>
+          <input
+            style={{
+              padding: "10px",
+              width: "100%",
+              border: "1px solid  #CED4DA",
+              margin: "10px 0",
+              borderRadius: "10px",
+            }}
+            type="search"
+            placeholder="جستجو بر اساس شهرستان"
+            onChange={(e) => _handel_search(e.target.value)}
+          />
 
-              icons={{
-                expandClose: (
-                  <span
-                    className="fas fa-angle-left"
-                    style={{ fontSize: "15px" }}
-                  />
-                ),
-                parentClose: <span />,
-              }}
-              nodes={searchCities}
-              checked={checkedCity}
-              expanded={expandCity}
-              onCheck={(e, targetNode) => {
-                setCheckedCity(e);
-                _handel_Add_state(targetNode);
-              }}
-              onExpand={(e) => {
-                setExpandCity(e);
-                console.log(e);
-              }}
-            />
+          <div
+            style={{
+              position: "sticky",
+              display: "flex",
+              flexDirection: "column",
+              backgroundColor: "#e0e0e0",
+              marginTop: "15px",
+              overflowY: "auto",
+              padding: "15px",
+              borderRadius: "20px",
+            }}
+          >
+            <div style={{ marginRight: "20px" }}>
+              <CheckboxTree
+                nativeCheckboxes={true}
+                // direction="rtl"
+
+                icons={{
+                  expandClose: (
+                    <span
+                      className="fas fa-angle-left"
+                      style={{ fontSize: "15px" }}
+                    />
+                  ),
+                  parentClose: <span />,
+                }}
+                nodes={searchCities}
+                checked={checkedCity}
+                expanded={expandCity}
+                onCheck={(e, targetNode) => {
+                  setCheckedCity(e);
+                  _handel_Add_state(targetNode);
+                }}
+                onExpand={(e) => {
+                  setExpandCity(e);
+                  console.log(e);
+                }}
+              />
+            </div>
           </div>
-        </div>
+        </>
       )}
 
       <div
@@ -291,7 +322,7 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
               <>
                 <h4
                   style={{
-                    backgroundColor: "#d144f5",
+                    backgroundColor: "#224e82",
                     padding: "2px 10px",
                     color: "#fff",
                     margin: "0px",
