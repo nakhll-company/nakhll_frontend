@@ -6,9 +6,11 @@ import TitleLiner from "../../containers/settings/components/titleLiner";
 const _asist = new Assistent();
 
 function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
+  console.log(`allCites`, allCites);
   // STATE FOR SHOW MODAL
   const [showModal, setShowModal] = useState(false);
   const [forDontRunFirst, setForDontRunFirst] = useState(1);
+  const [searchCities, setSearchCities] = useState(allCites);
 
   // ############################################
 
@@ -148,6 +150,17 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
     // setCheckedCity(ArrayDeleteState);
   };
 
+  const _handel_search = (word) => {
+    // let firstLevelSearch = allCites.filter((e) => e.label.includes(word));
+    // setSearchCities(firstLevelSearch);
+    console.log(`allCites`, allCites);
+    let secoundLevelSearch = [...allCites];
+    allCites.map((state, index) => {
+      console.log(`state`, state);
+    });
+    console.log(`secoundLevelSearch`, secoundLevelSearch);
+  };
+
   // ############################################
 
   // END THREE
@@ -195,6 +208,11 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
           </label>
         </div>
       </form>
+      <input
+        type="search"
+        placeholder="ddd"
+        onChange={(e) => _handel_search(e.target.value)}
+      />
 
       {showModal && (
         <div
@@ -223,14 +241,17 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
                 ),
                 parentClose: <span />,
               }}
-              nodes={allCites}
+              nodes={searchCities}
               checked={checkedCity}
               expanded={expandCity}
               onCheck={(e, targetNode) => {
                 setCheckedCity(e);
                 _handel_Add_state(targetNode);
               }}
-              onExpand={(e) => setExpandCity(e)}
+              onExpand={(e) => {
+                setExpandCity(e);
+                console.log(e);
+              }}
             />
           </div>
         </div>
