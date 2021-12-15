@@ -7,7 +7,8 @@
         "build:demo": "cp config.demo.js next.config.js && next build",
         "build": "cp config.pro.js next.config.js && next build",
         "start": "next start -p 8555",
-        "postbuild": "next-sitemap"
+        "postbuild": "next-sitemap",
+        "lint": "next lint"
     },
     "dependencies": {
         "@hookform/error-message": "^2.0.0",
@@ -50,6 +51,8 @@
     },
     "devDependencies": {
         "autoprefixer": "^10.4.0",
+        "eslint": "^8.4.1",
+        "eslint-config-next": "12.0.7",
         "postcss": "^8.4.4",
         "tailwindcss": "^2.2.19"
     }

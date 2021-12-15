@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+
 
 import CheckboxTreeCities from "../../../../components/CheckboxTree/CheckboxTree";
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
-import ActiveSendBox from "./components/ActiveSendBox ";
+import ActiveSendBox from "./components/ActiveSendBox";
 import BtnSetting from "./components/btnSetting";
 import CheckBoxSend from "./components/checkBoxSend";
 import Explain from "./components/explain";
 import HeaderTitle from "./components/headerTitle";
+import Products from "./components/products";
+import Search from "./components/search";
 import SendBox from "./components/sendBox";
 import Tabel from "./components/tabel";
 
@@ -17,23 +19,10 @@ function LogisticPage() {
   const [isShow, setIsShow] = useState(0);
   // for Save cities
   const [checkedCities, setCheckedCities] = useState([]);
-  const [products, setProducts] = useState([]);
-  const activeHojreh = useSelector((state) => state.User.activeHojreh);
+  
+ 
 
-  useEffect(async () => {
-    let dataUrl = `/api/v1/shop/${activeHojreh}/products/`;
-    let response = await ApiRegister().apiRequest(
-      null,
-      "get",
-      dataUrl,
-      true,
-      null
-    );
-    if (response.status == 200) {
-      setProducts(response.data);
-      console.log(`response.data`, response.data);
-    }
-  }, []);
+  
 
   return (
     <>
@@ -80,8 +69,10 @@ function LogisticPage() {
             <HeaderTitle title="ثبت محدوده" />
 
             <Explain text="توضیحات به حجره دار" />
+
             <CheckBoxSend title="تمام محصولات" />
 
+            <Products />
             <BtnSetting title="ثبت محدوده جدید" />
           </>
         )}
