@@ -10,7 +10,7 @@ const _asist = new Assistent();
 const DesktopFooter = ({ productList, getProduct, activeHojreh }) => {
 
     let [numberPage, setNumberPage] = useState(1);
-    let pagination = paginationStructure(numberPage, howManyPage(productList.count, 15));
+    let pagination = paginationStructure(numberPage, howManyPage(productList.total_count, 50));
 
     return (
         <tr>
