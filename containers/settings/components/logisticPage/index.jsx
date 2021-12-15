@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-
 import CheckboxTreeCities from "../../../../components/CheckboxTree/CheckboxTree";
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 import ActiveSendBox from "./components/ActiveSendBox";
@@ -19,10 +18,6 @@ function LogisticPage() {
   const [isShow, setIsShow] = useState(0);
   // for Save cities
   const [checkedCities, setCheckedCities] = useState([]);
-  
- 
-
-  
 
   return (
     <>
@@ -61,10 +56,10 @@ function LogisticPage() {
               setCheckedCity={setCheckedCities}
             />
 
-            <BtnSetting title="ثبت محدوده جدید" />
+            <BtnSetting title="مرحله بعد" />
           </>
         )}
-        {true && (
+        {false && (
           <>
             <HeaderTitle title="ثبت محدوده" />
 
@@ -73,7 +68,17 @@ function LogisticPage() {
             <CheckBoxSend title="تمام محصولات" />
 
             <Products />
-            <BtnSetting title="ثبت محدوده جدید" />
+            <BtnSetting title="مرحله بعد" />
+          </>
+        )}
+
+        {false && (
+          <>
+            <HeaderTitle title="ثبت محدوده" />
+
+            <Explain text="توضیحات به حجره دار" />
+
+            <BtnSetting title="ثبت" />
           </>
         )}
       </div>

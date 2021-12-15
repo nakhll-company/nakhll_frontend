@@ -1,6 +1,21 @@
 import st from "./checkBoxProduct.module.scss";
 
-function CheckBoxProduct({ title }) {
+function CheckBoxProduct({ title, wordSearch }) {
+  const getHighlightText = (title, wordSearch) => {
+    const startIndex = title.indexOf(wordSearch);
+    return startIndex !== -1 ? (
+      <span>
+        {title.substring(0, startIndex)}
+        <span style={{ color: "#02b7ff" }}>
+          {title.substring(startIndex, startIndex + wordSearch.length)}
+        </span>
+        {title.substring(startIndex + wordSearch.length)}
+      </span>
+    ) : (
+      <span>{title}</span>
+    );
+  };
+
   return (
     <>
       <div style={{ marginBottom: "16px" }} className="form-check">
@@ -16,7 +31,7 @@ function CheckBoxProduct({ title }) {
           className={st.label}
           htmlFor="flexCheckDefault"
         >
-          {title}
+          {getHighlightText(title, wordSearch)}
         </label>
       </div>
     </>

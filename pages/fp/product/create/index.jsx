@@ -185,6 +185,7 @@ const CreateProduct = ({ activeHojreh }) => {
                     </div>
                     {imgProduct ? (
                       <Image
+                        alt="عکس اصلی"
                         src={imgProduct}
                         layout="responsive"
                         height={100}
@@ -192,6 +193,7 @@ const CreateProduct = ({ activeHojreh }) => {
                       />
                     ) : (
                       <Image
+                        alt="عکس اصلی"
                         src="/image/sample/pic.jpg"
                         layout="responsive"
                         height={100}

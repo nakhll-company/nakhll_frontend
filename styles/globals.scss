@@ -152,10 +152,6 @@ input[type="number"] {
   transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 200;
 }
-// .animationCartParent:hover {
-//   transform: translateY(0px) rotate(-2deg);
-//   transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
-// }
 // for menuMobile
 .mobile_menu {
   position: absolute;
@@ -177,22 +173,3 @@ input[type="number"] {
   right: -100%;
 }
 @import "../styles/normalize.css";
-body::-webkit-scrollbar {
-  width: 0.5em;
-}
-body::-webkit-scrollbar-track {
-  background: #1e1e24;
-}
-body::-webkit-scrollbar-thumb {
-  background: #6649b8;
-}
-.raychat_main_button {
-  height: 40px !important;
-  width: 40px !important;
-  margin-bottom: 65px !important;
-  margin-right: 5px !important;
-  background-image: url("../public/image/LOGO_500.png") !important;
-}
-.raychat_bgc {
-  background-color: #f8f8f8 !important;
-}

@@ -8,6 +8,7 @@ function Products() {
   const [products, setProducts] = useState({});
   const [productList, setProductList] = useState([]);
   const [searchedProduct, setSearchedProduct] = useState([]);
+  const [wordSearch, setWordSearch] = useState("");
   const activeHojreh = useSelector((state) => state.User.activeHojreh);
 
   useEffect(() => {
@@ -30,6 +31,8 @@ function Products() {
   }, []);
 
   const _handel_search = (word) => {
+    setWordSearch(word);
+
     let searchedArray = productList.filter((el) => el.Title.includes(word));
     setSearchedProduct(searchedArray);
   };
@@ -40,7 +43,7 @@ function Products() {
         onChange={(e) => _handel_search(e.target.value)}
       />
       {searchedProduct.map((e, index) => (
-        <CheckBoxProduct key={index} title={e.Title} />
+        <CheckBoxProduct key={index} title={e.Title} wordSearch={wordSearch} />
       ))}
     </>
   );
