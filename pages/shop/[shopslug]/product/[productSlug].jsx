@@ -92,7 +92,7 @@ export default ProductDetail;
 // function server side
 export async function getServerSideProps(context) {
   const data = await fetchData(context.query.productSlug);
-
+  
   return {
     props: { data },
   };

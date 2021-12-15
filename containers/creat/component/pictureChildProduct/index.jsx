@@ -6,7 +6,7 @@ function PictureChildProduct({ setImageSrc, image, id }) {
   const handel_delet_pic = () => {
     setImageSrc(null);
   };
-  console.log(`id`, id);
+  
   return (
     <>
       <div className={styles.child_picture}>
