@@ -63,58 +63,55 @@ export default function Desktop({ loading, productList, activeHojreh, getProduct
             ) : productList.results && productList.results.length > 0 ? (
               productList.results.map((value, index) => {
                 return (
-                  <>
-                    <Link href={`/fp/product/update/product/${value.ID}`} key={index}>
-                      <tr>
-                        <td>{index + 1}</td>
-                        <td style={{ display: "flex" }}>
-                          <Image src={value.image_thumbnail_url} alt="product" layout="responsive" width={45} height={45} />
-                          <div style={{ margin: "0px 20px" }}>
-                            {value.Title}
+                  <Link href={`/fp/product/update/product/${value.ID}`} key={index}>
+                    <tr>
+                      <td>{index + 1}</td>
+                      <td style={{ display: "flex" }}>
+                        <Image src={value.image_thumbnail_url} alt="product" layout="responsive" width={45} height={45} />
+                        <div style={{ margin: "0px 20px" }}>
+                          {value.Title}
+                          <br />
+                          <span className={styles.icons}>
+                            <i className="fas fa-shopping-basket"></i>
+                            &nbsp;&nbsp;
+                            {value.total_sell}
+                          </span>
+                          <span className={styles.icons}>
+                            <i className="far fa-star"></i>&nbsp;&nbsp;
+                            {value.star}({value.comments_count} نظر)
+                          </span>
+                        </div>
+                      </td>
+                      <td>{value.PreparationDays}</td>
+                      <td>{value.Inventory}</td>
+                      <td>
+                        {value.OldPrice === 0 && (
+                          <b>{value.Price / 10} تومان</b>
+                        )}
+                        {value.OldPrice !== 0 && (
+                          <>
+                            <del>{value.OldPrice / 10}</del>
                             <br />
-                            <span className={styles.icons}>
-                              <i className="fas fa-shopping-basket"></i>
-                              &nbsp;&nbsp;
-                              {value.total_sell}
-                            </span>
-                            <span className={styles.icons}>
-                              <i className="far fa-star"></i>&nbsp;&nbsp;
-                              {value.star}({value.comments_count} نظر)
-                            </span>
-                          </div>
-                        </td>
-                        <td>{value.PreparationDays}</td>
-                        <td>{value.Inventory}</td>
-                        <td>
-                          {value.OldPrice === 0 && (
-                            <b>{value.Price / 10} تومان</b>
-                          )}
-                          {value.OldPrice !== 0 && (
-                            <>
-                              <del>{value.OldPrice / 10}</del>
-                              <br />
-                              <b>{value.Price / 10}تومان</b>
-                            </>
-                          )}
-                        </td>
-                        <td>
-                          <CustomBadge title={value.status} color="#089319" backgroundColor="rgba(8, 147, 25, 0.15)"
-                            customBadgeStyle={{
-                              borderRadius: "3px",
-                              padding: "2px 6px",
-                              fontSize: "12px",
-                            }}
-                          />
-                        </td>
-                        <td>
-                          <div className={styles.wrapper_copy}>
-                            <li className="fa fa-clone"></li>
-                          </div>
-                        </td>
-                      </tr>
-                    </Link>
-                    <DesktopFooter productList={productList} getProduct={getProduct} activeHojreh={activeHojreh} />
-                  </>
+                            <b>{value.Price / 10}تومان</b>
+                          </>
+                        )}
+                      </td>
+                      <td>
+                        <CustomBadge title={value.status} color="#089319" backgroundColor="rgba(8, 147, 25, 0.15)"
+                          customBadgeStyle={{
+                            borderRadius: "3px",
+                            padding: "2px 6px",
+                            fontSize: "12px",
+                          }}
+                        />
+                      </td>
+                      <td>
+                        <div className={styles.wrapper_copy}>
+                          <li className="fa fa-clone"></li>
+                        </div>
+                      </td>
+                    </tr>
+                  </Link>
                 );
               })
             ) : (
@@ -125,6 +122,9 @@ export default function Desktop({ loading, productList, activeHojreh, getProduct
               </tr>
             )}
           </tbody>
+          <tfoot>
+            <DesktopFooter productList={productList} getProduct={getProduct} activeHojreh={activeHojreh} />
+          </tfoot>
         </table>
       </div>
     </div>
