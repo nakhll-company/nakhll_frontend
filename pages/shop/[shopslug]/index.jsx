@@ -26,6 +26,7 @@ const fetchData = async (id) => {
     false,
     ""
   );
+  
 
   if (response.status === 200) {
     return {
@@ -120,8 +121,7 @@ export default Shop;
 // function server side
 export async function getServerSideProps(context) {
   const dataShop = await fetchData(context.query.shopslug);
-  console.log("########################################");
-  console.log(dataShop);
+
   return {
     props: {
       data: context.query,

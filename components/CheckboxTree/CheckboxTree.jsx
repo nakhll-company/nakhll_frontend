@@ -280,7 +280,7 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
                 }}
                 onExpand={(e) => {
                   setExpandCity(e);
-                  console.log(e);
+                  
                 }}
               />
             </div>
