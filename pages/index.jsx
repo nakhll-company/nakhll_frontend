@@ -164,7 +164,7 @@ const index = ({ data }) => {
 export default index;
 
 // function server side
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const data = await fetchData();
 
   return {
