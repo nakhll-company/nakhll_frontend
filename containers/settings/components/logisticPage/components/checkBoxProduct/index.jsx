@@ -1,6 +1,6 @@
-import st from "./checkBoxSend.module.scss";
+import st from "./checkBoxProduct.module.scss";
 
-function CheckBoxSend({ title }) {
+function CheckBoxProduct({ title }) {
   return (
     <>
       <div style={{ marginBottom: "16px" }} className="form-check">
@@ -23,4 +23,4 @@ function CheckBoxSend({ title }) {
   );
 }
 
-export default CheckBoxSend;
+export default CheckBoxProduct;
