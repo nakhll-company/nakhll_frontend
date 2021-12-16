@@ -35,7 +35,12 @@ function Sm_LinerFourImg({ setImageSrc, id, data }) {
 
       <div className={styles.wrapImg}>
         <div className={styles.icon_change_pic}>
-          <InputPicture setImageSrc={setImageSrc} id={id} order={1} />
+          <InputPicture
+            setImageSrc={setImageSrc}
+            id={id}
+            order={1}
+            ratio={1.33}
+          />
         </div>
         <div className={styles.icon_change_url}>
           <InputUrl id={id} order={1} />
@@ -53,7 +58,12 @@ function Sm_LinerFourImg({ setImageSrc, id, data }) {
 
       <div className={styles.wrapImg}>
         <div className={styles.icon_change_pic}>
-          <InputPicture setImageSrc={setImageSrc} id={id} order={2} />
+          <InputPicture
+            setImageSrc={setImageSrc}
+            id={id}
+            order={2}
+            ratio={1.33}
+          />
         </div>
         <div className={styles.icon_change_url}>
           <InputUrl id={id} order={2} />
@@ -71,7 +81,12 @@ function Sm_LinerFourImg({ setImageSrc, id, data }) {
 
       <div className={styles.wrapImg}>
         <div className={styles.icon_change_pic}>
-          <InputPicture setImageSrc={setImageSrc} id={id} order={3} />
+          <InputPicture
+            setImageSrc={setImageSrc}
+            id={id}
+            order={3}
+            ratio={1.33}
+          />
         </div>
         <div className={styles.icon_change_url}>
           <InputUrl id={id} order={3} />
