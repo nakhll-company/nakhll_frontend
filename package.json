@@ -17,6 +17,7 @@
         "axios": "^0.21.4",
         "bootstrap": "^5.1.0",
         "dom7": "^3.0.0",
+        "echarts-for-react": "^3.0.2",
         "fontawesome": "^5.6.3",
         "formik": "^2.2.9",
         "gsap": "^3.8.0",
