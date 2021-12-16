@@ -4,6 +4,6 @@ WORKDIR /usr/src/app
 
 COPY . .
 RUN yarn install
-RUN yarn add --dev eslint
+
 
 RUN yarn build
