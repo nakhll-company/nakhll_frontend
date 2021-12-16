@@ -27,6 +27,7 @@ const Password = () => {
         <>
             <Head>
                 <title>ورود بازار آنلاین نخل</title>
+                <meta name="robots" content="noindex, nofollow" />
             </Head>
             <ToastContainer />
             <div className="d-flex flex-column justify-content-center col-12 col-md-8 col-lg-5 m-auto bg-white p-5 mt-5 shadow-lg rounded">

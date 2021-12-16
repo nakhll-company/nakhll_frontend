@@ -36,7 +36,7 @@ function Tabel() {
         </thead>
         <tbody style={{ borderTop: "none" }}>
           {[1, 1, 1, 1, 1].map((e, index) => (
-            <tr>
+            <tr key={index}>
               <th scope="row">اول</th>
               <td>۱۲ شهر</td>
               <td>۵۵ محصول</td>

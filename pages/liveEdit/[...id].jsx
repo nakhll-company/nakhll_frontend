@@ -242,6 +242,7 @@ function LiveEdit({ idLanding }) {
           integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
           crossOrigin="anonymous"
         ></link>
+        <meta name="robots" content="noindex, nofollow" />
       </Head>
       <div className={styles.container}>
         <div id="navigation" className={styles.navigation}>
