@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import Head from "next/head";
+
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import _ from "lodash";
 import st from "./analyze.module.scss";
 
-function Analyze() {
+function Index() {
   const [Shops, setShops] = useState([]);
   const [countProduct, setCountProduct] = useState("");
   const [superShop, setSuperShop] = useState("");
@@ -47,6 +47,7 @@ function Analyze() {
     setShops(arraySort);
   };
   useEffect(() => {
+   
     async function fetchData() {
       let response = await ApiRegister().apiRequest(
         null,
@@ -55,7 +56,7 @@ function Analyze() {
         false,
         ""
       );
-      console.log(`response`, response);
+      
       if (response.status == 200) {
         let shopArray = [];
         response.data.map((el) => {
@@ -71,17 +72,17 @@ function Analyze() {
         _handel_status_shop(shopArray);
       }
     }
-    // fetchData();
+    fetchData();
   }, []);
-  //
+  
   return (
+    
+
     <>
-      <Head>
-        <title>آنالیز</title>
-        <meta name="robots" content="noindex, nofollow" />
-      </Head>
-      {false && (
+      
+      
         <div className="container pt-5">
+         
           <div className={st.wrap_summery}>
             <span>تعداد حجره ها</span>
             <span>{Shops.length}</span>
@@ -178,9 +179,9 @@ function Analyze() {
             </table>
           </div>
         </div>
-      )}
+      
     </>
   );
 }
 
-export default Analyze;
+export default Index;
