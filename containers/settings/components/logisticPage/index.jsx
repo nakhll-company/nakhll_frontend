@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 import CheckboxTreeCities from "../../../../components/CheckboxTree/CheckboxTree";
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 import InputUseForm from "../../../creat/component/inputUseForm";
@@ -16,7 +17,12 @@ import Tabel from "./components/tabel";
 import st from "./logisticPage.module.scss";
 
 function LogisticPage() {
+  const activeHojreh = useSelector((state) => state.User.activeHojreh);
+
   const [isShow, setIsShow] = useState(0);
+
+  // State for get card
+  const [cardSend, setCardSend] = useState([]);
   // for Save cities
   const [checkedCities, setCheckedCities] = useState([]);
   // useform
@@ -34,20 +40,43 @@ function LogisticPage() {
     mode: "all",
   });
 
+  useEffect(() => {
+    async function fetchData() {
+      let response = await ApiRegister().apiRequest(
+        null,
+        "GET",
+        `/logistic/api/logistic-unit/?shop=${activeHojreh}`,
+        true,
+        ""
+      );
+      if (response.status == 200) {
+        setCardSend(response.data);
+      }
+      console.log(`response`, response);
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <>
       <button onClick={() => setIsShow(() => isShow + 1)}>.</button>
       <div className={st.main}>
-        {false && (
+        {true && (
           <>
             <HeaderTitle title="تنظیمات لجستیک" />
 
             <Explain text="توضیحات به حجره دار" />
 
             <ActiveSendBox title="پست پیشتاز" description="توضیحات سرویس" />
-            <SendBox title="پست سفارشی " description="توضیحات سرویس" />
-            <SendBox title="ارسال رایگان" description="توضیحات سرویس" />
-            <SendBox title="ارسال پس کرایه" description="توضیحات سرویس" />
+            {cardSend.map((el, index) => (
+              <SendBox
+                key={index}
+                title={el.logistic_unit.name}
+                description={el.logistic_unit.description}
+                isActive={el.is_active}
+              />
+            ))}
           </>
         )}
         {false && (

@@ -1,6 +1,6 @@
 import styles from "./switchButton.module.scss";
 
-function SwitchButton({ id }) {
+function SwitchButtonSetting({ id, isActive }) {
   return (
     <>
       <div className={`${styles.custom_switch} d-flex align-items-center `}>
@@ -8,8 +8,8 @@ function SwitchButton({ id }) {
           type="checkbox"
           id={`switch__${id}`}
           className={styles.custom_switch__input}
-          onChange={onChange}
-          defaultChecked={defaultChecked}
+          // onChange={onChange}
+          defaultChecked={isActive}
         />{" "}
         <label
           htmlFor={`switch__${id}`}
@@ -22,4 +22,4 @@ function SwitchButton({ id }) {
   );
 }
 
-export default SwitchButton;
+export default SwitchButtonSetting;
