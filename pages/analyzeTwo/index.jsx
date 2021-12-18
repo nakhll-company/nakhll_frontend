@@ -5,36 +5,35 @@ import ReactECharts from "echarts-for-react";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import _ from "lodash";
 import st from "./analyze.module.scss";
+import Search from "../../containers/settings/components/logisticPage/components/search";
 
 function Index() {
   const [Shops, setShops] = useState([]);
+  const [searchedShop, setSearchedShop] = useState([]);
   const [countProduct, setCountProduct] = useState("");
   const [superShop, setSuperShop] = useState("");
   const [diedShop, setDiedShop] = useState("");
   const [isDes, setIsDes] = useState(false);
   const [optionStateShops, setOptionStateShops] = useState({});
-  const [optionTreeMap, setOptionTreeMap] = useState({})
+  const [optionTreeMap, setOptionTreeMap] = useState({});
 
   const _handel_count_products = (Shops) => {
-    
-    let dataForTreMap=[]
-    
+    let dataForTreMap = [];
+
     let num = 0;
     Shops.map((el) => {
-      
-      dataForTreMap.push({name: el.shop,
-        value: el.num,})
+      dataForTreMap.push({ name: el.shop, value: el.num });
       num += el.num;
     });
     let optionTwo = {
       series: [
         {
-          type: 'treemap',
-          data: dataForTreMap
-        }
-      ]
+          type: "treemap",
+          data: dataForTreMap,
+        },
+      ],
     };
-    setOptionTreeMap(optionTwo)
+    setOptionTreeMap(optionTwo);
     setCountProduct(num);
   };
   const _handel_status_shop = (shops) => {
@@ -98,8 +97,23 @@ function Index() {
       setIsDes(false);
     }
 
-    setShops(arraySort);
+    setSearchedShop(arraySort);
   };
+
+  const _handel_search_shop = (word) => {
+    let helpArray = Shops.filter((el) => el.shop.includes(word));
+    setSearchedShop(helpArray);
+  };
+
+  const _handel_search_num_product = (word) => {
+    if (word == "") {
+      setSearchedShop(Shops);
+    } else {
+      let helpArray = Shops.filter((el) => el.num == word);
+      setSearchedShop(helpArray);
+    }
+  };
+
   useEffect(() => {
     async function fetchData() {
       let response = await ApiRegister().apiRequest(
@@ -121,15 +135,13 @@ function Index() {
         });
 
         setShops(shopArray);
+        setSearchedShop(shopArray);
         _handel_count_products(shopArray);
         _handel_status_shop(shopArray);
       }
     }
     fetchData();
   }, []);
- 
-
-
 
   return (
     <>
@@ -137,7 +149,6 @@ function Index() {
         <title>آنالیز</title>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
-      
 
       <div className="container pt-5">
         <div className={st.wrap_summery}>
@@ -167,21 +178,33 @@ function Index() {
           <span style={{ color: "green" }}>{superShop}</span>
         </div>
         {/* نمودار */}
-        
 
         {/* نمودار */}
-      <div className={st.wrap_nemodar}>
-        <ReactECharts
-          option={optionStateShops}
-          style={{ height: "500px", width: "100%", padding: "5px" }}
-          opts={{ renderer: "svg" }} // use svg to render the chart.
-        />
-        <ReactECharts
-          option={optionTreeMap}
-          style={{ height: "500px", width: "100%", padding: "5px" }}
-          opts={{ renderer: "svg" }} // use svg to render the chart.
-        />
-      </div>
+        <div className={st.wrap_nemodar}>
+          <ReactECharts
+            option={optionStateShops}
+            style={{ height: "500px", width: "100%", padding: "5px" }}
+            opts={{ renderer: "svg" }} // use svg to render the chart.
+          />
+          <ReactECharts
+            option={optionTreeMap}
+            style={{ height: "500px", width: "100%", padding: "5px" }}
+            opts={{ renderer: "svg" }} // use svg to render the chart.
+          />
+        </div>
+
+        {/* سرچ */}
+        <div className={st.wrap_search}>
+          <Search
+            placeholder="جستجو حجره"
+            onChange={(e) => _handel_search_shop(e.target.value)}
+          />
+
+          <Search
+            placeholder="تعداد محصول"
+            onChange={(e) => _handel_search_num_product(e.target.value)}
+          />
+        </div>
 
         <div className={st.wrap_table}>
           <table
@@ -225,7 +248,7 @@ function Index() {
               </tr>
             </thead>
             <tbody style={{ borderTop: "none" }}>
-              {Shops.map((el, index) => (
+              {searchedShop.map((el, index) => (
                 <tr key={index}>
                   <th scope="row">{index + 1}</th>
                   <td style={{ cursor: "pointer" }}>
