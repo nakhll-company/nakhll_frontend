@@ -64,6 +64,7 @@ const Footer = () => {
                         href="https://www.linkedin.com/company/nakhll/"
                         target="_blank"
                         aria-label="لینکدین"
+                        rel="noreferrer"
                       >
                         <i
                           style={{ fontSize: "30px" }}
@@ -75,6 +76,7 @@ const Footer = () => {
                         style={{ width: "30px" }}
                         href="https://www.aparat.com/nakhll"
                         target="_blank"
+                        rel="noreferrer"
                         aria-label="آپارات بازار اجتماعی نخل"
                       >
                         <Image
@@ -82,6 +84,7 @@ const Footer = () => {
                           layout="responsive"
                           width={200}
                           height={200}
+                          alt="آپارات"
                         />
                       </a>
 
@@ -89,6 +92,7 @@ const Footer = () => {
                         href="https://www.instagram.com/nakhll_com/"
                         target="_blank"
                         aria-label="اینستاگرام"
+                        rel="noreferrer"
                         style={{ fontSize: "30px", display: "flex" }}
                       >
                         <i className="fab fa-instagram"></i>
@@ -138,11 +142,15 @@ const Footer = () => {
                       </Link>
                     </div>
                     <div>
-                      <Link href={
-                        userData && userData.shops && userData.shops.length > 0
-                          ? "/fp"
-                          : "/fp/store/create"
-                      }>
+                      <Link
+                        href={
+                          userData &&
+                          userData.shops &&
+                          userData.shops.length > 0
+                            ? "/fp"
+                            : "/fp/store/create"
+                        }
+                      >
                         <a className={styles.footer_items}>مدیریت حجره</a>
                       </Link>
                     </div>{" "}
@@ -436,11 +444,13 @@ const Footer = () => {
                     </a>
                   </div> */}
                   <div>
-                    <Link href={
-                      userData && userData.shops && userData.shops.length > 0
-                        ? "/fp"
-                        : "/fp/store/create"
-                    }>
+                    <Link
+                      href={
+                        userData && userData.shops && userData.shops.length > 0
+                          ? "/fp"
+                          : "/fp/store/create"
+                      }
+                    >
                       <a className={styles.footer_items}>مدیریت حجره</a>
                     </Link>
                   </div>
@@ -465,6 +475,7 @@ const Footer = () => {
                     href="https://www.linkedin.com/company/nakhll/"
                     target="_blank"
                     aria-label="لینکدین"
+                    rel="noreferrer"
                   >
                     <i
                       style={{ fontSize: "30px" }}
@@ -476,11 +487,13 @@ const Footer = () => {
                     style={{ width: "30px" }}
                     href="https://www.aparat.com/nakhll"
                     target="_blank"
+                    rel="noreferrer"
                     aria-label="آپارات بازار اجتماعی نخل"
                   >
                     <Image
                       src="/icons/footer/aparat.png"
                       layout="responsive"
+                      alt="آپارات"
                       width={200}
                       height={200}
                     />
@@ -489,6 +502,7 @@ const Footer = () => {
                     href="https://www.instagram.com/nakhll_com/"
                     target="_blank"
                     aria-label="اینستاگرام"
+                    rel="noreferrer"
                     style={{ fontSize: "30px", display: "flex" }}
                   >
                     <i className="fab fa-instagram"></i>
