@@ -52,7 +52,6 @@ function LogisticPage() {
       if (response.status == 200) {
         setCardSend(response.data);
       }
-      console.log(`response`, response);
     }
 
     fetchData();
@@ -60,7 +59,6 @@ function LogisticPage() {
 
   return (
     <>
-      <button onClick={() => setIsShow(() => isShow + 1)}>.</button>
       <div className={st.main}>
         {true && (
           <>
@@ -75,6 +73,7 @@ function LogisticPage() {
                 title={el.logistic_unit.name}
                 description={el.logistic_unit.description}
                 isActive={el.is_active}
+                id={el.id}
               />
             ))}
           </>
@@ -116,7 +115,7 @@ function LogisticPage() {
           </>
         )}
 
-        {true && (
+        {false && (
           <>
             <HeaderTitle title="ثبت محدوده" />
 
