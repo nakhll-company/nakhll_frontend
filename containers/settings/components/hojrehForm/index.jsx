@@ -1,5 +1,6 @@
 import { Form, Formik } from "formik";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { callApiUpDataShop } from "../../../../api/settings";
 import { GetBigCities, GetCities, GetStates } from "../../../../utils/states";
 import { dataExp } from "../../data";
@@ -26,8 +27,11 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
   const [selectState, setSelectState] = useState([]);
   const [selectCities, setSelectCities] = useState([]);
 
-  useEffect(async () => {
-    setSelectState(await GetStates());
+  useEffect(() => {
+    async function fetchData() {
+      setSelectState(await GetStates());
+    }
+    fetchData();
   }, []);
   return (
     <>
