@@ -8,6 +8,7 @@ import { addToFavoritesList } from "./methods/addToFavotitesList";
 import { deleteFromFavoritesList } from "./methods/deleteFromFavoritesList";
 // scss
 import styles from "./ProductCard.module.scss";
+import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 
 const _asist = new Assistent();
 
@@ -49,6 +50,18 @@ const ProductCard = ({
       alt={product.title}
     />
   );
+  const handel_webhook = async () => {
+    let data = {
+      content: product.title,
+    };
+    let response = await ApiRegister().apiRequest(
+      data,
+      "post",
+      `https://discord.com/api/webhooks/922069011955609671/i8FC-UEv6XnK-kMsgme7Y9xSl9X7Sr3gTPgA3jVZZelPMxoAyFSdsJPmTFXXZzy6qtkd`,
+      false,
+      ""
+    );
+  };
 
   return (
     <div
@@ -133,6 +146,7 @@ const ProductCard = ({
                 className={`btn ${styles._product_card_add_to_cart}`}
                 onClick={async () => {
                   await addToCart(product.id);
+                  handel_webhook();
                 }}
               >
                 <i className="fas fa-plus" />
