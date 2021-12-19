@@ -1,4 +1,8 @@
 module.exports = {
+    i18n: {
+        locales: ["fa"],
+        defaultLocale: "fa",
+    },
     env: {
         BASE_URL: "https://nakhll.com/",
     },
