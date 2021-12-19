@@ -35,7 +35,7 @@ function Header() {
       if (response.status === 200) {
         setCategory(response.data);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   // Get all shops
@@ -78,11 +78,7 @@ function Header() {
       <header className={`${styles.header}`}>
         <div className={styles.topBanner}>
           <Link
-            href={
-              Object.keys(userLog).length > 0
-                ? "/description"
-                : "/login"
-            }
+            href={Object.keys(userLog).length > 0 ? "/description" : "/login"}
           >
             <a>
               <Image
@@ -140,7 +136,7 @@ function Header() {
                     )}
 
                     <Link href={`/search?q=${inputSearch}`}>
-                      <a>
+                      <a aria-label="پروفایل">
                         <i className="fas fa-search"></i>
                       </a>
                     </Link>
@@ -171,11 +167,13 @@ function Header() {
                         </div>
                       </a>
                     </Link>
-                    <div onClick={() => {
-                      localStorage.removeItem("refreshToken");
-                      localStorage.removeItem("accessToken");
-                      router.reload(window.location.pathname);
-                    }}>
+                    <div
+                      onClick={() => {
+                        localStorage.removeItem("refreshToken");
+                        localStorage.removeItem("accessToken");
+                        router.reload(window.location.pathname);
+                      }}
+                    >
                       <i className="fas fa-sign-out-alt "></i>
                       <span>خروج از حساب کاربری</span>
                     </div>
@@ -192,7 +190,9 @@ function Header() {
                 </Link>
               )}
               <div
-                onClick={() => { router.push("/cart") }}
+                onClick={() => {
+                  router.push("/cart");
+                }}
               >
                 <div className={styles.bascket_btn}>
                   <i>
@@ -228,11 +228,7 @@ function Header() {
       <header className={`${styles.mobile_header} `}>
         <div className={styles.topBanner}>
           <Link
-            href={
-              Object.keys(userLog).length > 0
-                ? "/description"
-                : "/login"
-            }
+            href={Object.keys(userLog).length > 0 ? "/description" : "/login"}
           >
             <a>
               <Image
@@ -303,7 +299,9 @@ function Header() {
                   </Link>
                 )}
                 <div
-                  onClick={() => { router.push("/cart") }}
+                  onClick={() => {
+                    router.push("/cart");
+                  }}
                 >
                   <div className={styles.bascket_btn}>
                     <i>
@@ -347,7 +345,7 @@ function Header() {
                   <BoxSearch list={searchShops} word={inputSearch} />
                 )}
                 <Link href={`/search?q=${inputSearch}`}>
-                  <a>
+                  <a aria-label="پروفایل">
                     <i className="fas fa-search"></i>
                   </a>
                 </Link>
