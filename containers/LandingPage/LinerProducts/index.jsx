@@ -33,7 +33,7 @@ function LinerProducts({
           <div className={styles.header}>
             <div className={styles.title}>
               <h1>{title}</h1>
-              {subTitle !== "" && <h5>{subTitle}</h5>}
+              {subTitle && <h5>{subTitle}</h5>}
             </div>
             <div className={styles.Button}>
               <button>

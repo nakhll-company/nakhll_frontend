@@ -151,7 +151,10 @@ function Header() {
               {Object.keys(userLog).length > 0 ? (
                 <>
                   <Link href="/profile">
-                    <a className={styles.nav_item_link_login}>
+                    <a
+                      aria-label="پروفایل"
+                      className={styles.nav_item_link_login}
+                    >
                       <i
                         style={{ fontSize: "30px", marginLeft: "20px" }}
                         className="fas fa-user-circle"
