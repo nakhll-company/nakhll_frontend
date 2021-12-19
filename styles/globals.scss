@@ -21,6 +21,7 @@
 
 @font-face {
   font-family: "IRANSansB";
+  font-display: optional;
   src: url("../public/assets/fonts/Shabnam.eot");
   /* IE9 Compat Modes */
   src: url("../public/assets/fonts/Shabnam.eot") format("embedded-opentype"),
@@ -36,6 +37,7 @@
 // @import "../styles/pages/cart/cart.module.scss";
 @font-face {
   font-family: "vazir";
+  font-display: optional;
   src: url("../public/assets/fonts/Vazir.eot") format("eot"),
     url("../public/assets/fonts/Vazir.woff") format("woff"),
     url("../public/assets/fonts/Vazir.woff2") format("woff2"),
