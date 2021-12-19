@@ -92,6 +92,18 @@ const ProductDetailMobile = ({ data }) => {
     getMoreProduct();
     fetchProductShop();
   }, []);
+  const handel_webhook = async () => {
+    let data = {
+      content: `جزییات|موبایل: ${detail.title}`,
+    };
+    let response = await ApiRegister().apiRequest(
+      data,
+      "post",
+      `https://discord.com/api/webhooks/922069011955609671/i8FC-UEv6XnK-kMsgme7Y9xSl9X7Sr3gTPgA3jVZZelPMxoAyFSdsJPmTFXXZzy6qtkd`,
+      false,
+      ""
+    );
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -617,6 +629,7 @@ const ProductDetailMobile = ({ data }) => {
             className={`${styles.product_btn_mobile} btn btn-tprimary rounded-pill font-weight-bold font-size1-5 px-6 py-2 ev-add-to-cart`}
             onClick={async () => {
               await addToCart(detail.id);
+              handel_webhook();
             }}
           >
             خرید

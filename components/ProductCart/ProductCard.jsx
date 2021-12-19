@@ -52,7 +52,7 @@ const ProductCard = ({
   );
   const handel_webhook = async () => {
     let data = {
-      content: product.title,
+      content: `دکمه کوچک: ${product.title}`,
     };
     let response = await ApiRegister().apiRequest(
       data,
