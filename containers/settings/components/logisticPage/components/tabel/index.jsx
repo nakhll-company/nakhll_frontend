@@ -1,7 +1,28 @@
-import SwitchButton from "../../../../../../components/custom/switchButton";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { ApiRegister } from "../../../../../../services/apiRegister/ApiRegister";
+import SBSendUnit from "../sendUnit/switchButtonSendUnit";
 import st from "./tabel.module.scss";
 
 function Tabel() {
+  const activeHojreh = useSelector((state) => state.User.activeHojreh);
+  useEffect(() => {
+    async function fetchData() {
+      let response = await ApiRegister().apiRequest(
+        null,
+        "GET",
+        `/api/v1/logistic/shop-logistic-unit-constraint/`,
+        true,
+        ""
+      );
+      console.log(`response`, response);
+
+      if (response.status == 200) {
+      }
+    }
+
+    fetchData();
+  }, []);
   return (
     <>
       <table
@@ -43,7 +64,7 @@ function Tabel() {
               <td>
                 <div className={st.status}>
                   <div style={{ marginBottom: "10px" }}>
-                    <SwitchButton id={`switch_${index}_`} />
+                    <SBSendUnit id={`switch_${index}_`} />
                   </div>
                   <i className="fas fa-times-circle"></i>
                 </div>

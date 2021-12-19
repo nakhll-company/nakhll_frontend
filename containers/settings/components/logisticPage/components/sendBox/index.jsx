@@ -1,10 +1,10 @@
 import st from "./sendBox.module.scss";
 import SwitchButtonSetting from "./switchButton";
 
-function SendBox({ title, description, isActive, id }) {
+function SendBox({ title, description, isActive, id, onClick }) {
   return (
     <>
-      <div className={st.box}>
+      <div onClick={onClick} className={st.box}>
         {/* icon */}
         <div className={st.rigth}>
           <div className={st.icon}></div>

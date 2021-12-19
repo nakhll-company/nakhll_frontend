@@ -21,6 +21,9 @@ function LogisticPage() {
 
   const [isShow, setIsShow] = useState(0);
 
+  // state for handel page
+  const [wichPage, setWichPage] = useState(1);
+
   // State for get card
   const [cardSend, setCardSend] = useState([]);
   // for Save cities
@@ -45,7 +48,7 @@ function LogisticPage() {
       let response = await ApiRegister().apiRequest(
         null,
         "GET",
-        `/logistic/api/logistic-unit/?shop=${activeHojreh}`,
+        `/api/v1/logistic/shop-logistic-unit/?shop=${activeHojreh}`,
         true,
         ""
       );
@@ -57,12 +60,39 @@ function LogisticPage() {
     fetchData();
   }, []);
 
+  const _handle_add_new_scope = async () => {
+    let response = await ApiRegister().apiRequest(
+      {
+        is_active: false,
+        shop_logistic_unit: 1,
+      },
+      "GET",
+      `/api/v1/logistic/shop-logistic-unit-constraint/`,
+      true,
+      ""
+    );
+    if (response.status == 200) {
+      setCardSend(response.data);
+      upPage();
+    }
+  };
+  const upPage = () => {
+    setWichPage(wichPage + 1);
+  };
+  const downPage = () => {
+    setWichPage(wichPage - 1);
+  };
+
   return (
     <>
       <div className={st.main}>
-        {true && (
+        {wichPage == 1 && (
           <>
-            <HeaderTitle title="تنظیمات لجستیک" />
+            <HeaderTitle
+              enabel={false}
+              onClick={() => downPage()}
+              title="تنظیمات لجستیک"
+            />
 
             <Explain text="توضیحات به حجره دار" />
 
@@ -70,6 +100,7 @@ function LogisticPage() {
             {cardSend.map((el, index) => (
               <SendBox
                 key={index}
+                onClick={() => upPage()}
                 title={el.logistic_unit.name}
                 description={el.logistic_unit.description}
                 isActive={el.is_active}
@@ -78,20 +109,23 @@ function LogisticPage() {
             ))}
           </>
         )}
-        {false && (
+        {wichPage == 2 && (
           <>
-            <HeaderTitle title="واحد ارسال" />
+            <HeaderTitle onClick={() => downPage()} title="واحد ارسال" />
 
             <Explain text="توضیحات به حجره دار" />
             <CheckBoxSend title="استفاده از تنظیمات پیشفرض" />
             <Tabel />
-            <BtnSetting title="ثبت محدوده جدید" />
+            <BtnSetting
+              onClick={_handle_add_new_scope}
+              title="ثبت محدوده جدید"
+            />
           </>
         )}
 
-        {false && (
+        {wichPage == 3 && (
           <>
-            <HeaderTitle title="ثبت محدوده" />
+            <HeaderTitle onClick={() => downPage()} title="ثبت محدوده" />
 
             <Explain text="توضیحات به حجره دار" />
             <CheckboxTreeCities
@@ -99,25 +133,25 @@ function LogisticPage() {
               setCheckedCity={setCheckedCities}
             />
 
-            <BtnSetting title="مرحله بعد" />
+            <BtnSetting onClick={() => upPage()} title="مرحله بعد" />
           </>
         )}
-        {false && (
+        {wichPage == 4 && (
           <>
-            <HeaderTitle title="ثبت محدوده" />
+            <HeaderTitle onClick={() => downPage()} title="ثبت محدوده" />
 
             <Explain text="توضیحات به حجره دار" />
 
             <CheckBoxSend title="تمام محصولات" />
 
             <Products />
-            <BtnSetting title="مرحله بعد" />
+            <BtnSetting onClick={() => upPage()} title="مرحله بعد" />
           </>
         )}
 
-        {false && (
+        {wichPage == 5 && (
           <>
-            <HeaderTitle title="ثبت محدوده" />
+            <HeaderTitle onClick={() => downPage()} title="ثبت محدوده" />
 
             <Explain text="توضیحات به حجره دار" />
 
