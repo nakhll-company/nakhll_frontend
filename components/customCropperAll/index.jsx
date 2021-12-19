@@ -46,6 +46,14 @@ function CustomCropperAll({
       <div className={styles.modal_wrapper}>
         <div>
           <div className={styles.cropper_wrapper}>
+            <div className={styles.wrapper_close}>
+              <i
+                className="fas fa-window-close"
+                onClick={() => {
+                  setShowCropper(false);
+                }}
+              ></i>
+            </div>
             <Cropper
               image={image}
               crop={crop}

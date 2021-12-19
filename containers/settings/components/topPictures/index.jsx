@@ -27,6 +27,7 @@ function TopPictures({ apiSetting, activeHojreh }) {
           layout="responsive"
           width={300}
           height={100}
+          alt="بنر"
         ></Image>
 
         <div className={styles.Hojreh_headD_pic}>
@@ -35,6 +36,7 @@ function TopPictures({ apiSetting, activeHojreh }) {
               src={imgProfile ? imgProfile : "/icons/iconpro.png"}
               width={120}
               height={120}
+              alt=""
             ></Image>
           )}
         </div>
