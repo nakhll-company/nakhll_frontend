@@ -199,8 +199,10 @@ function Header() {
               >
                 <div className={styles.bascket_btn}>
                   <i>
-                    <img
-                      style={{ width: "24px" }}
+                    <Image
+                      layout="responsive"
+                      width={10}
+                      height={10}
                       src="/icons/sabad.svg"
                       alt=""
                     />

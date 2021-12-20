@@ -583,7 +583,7 @@ const Footer = () => {
                         className={styles.footer_seo_text}
                         style={{ textAlign: "justify" }}
                       >
-                        <span>
+                        <span style={{ color: "#000" }}>
                           نخل سرزمینی است برای یادآوری سنت­‌های اصیل
                           ایرانی­‌مان. برای شکوفایی استعدادها و
                           بهتردیده­‌شدن‌تان، کالاها و خدمات خود را در سرزمین نخل
