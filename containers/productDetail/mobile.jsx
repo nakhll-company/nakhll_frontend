@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import Assistent from "zaravand-assistent-number";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Fragment, useState, useEffect } from "react";
@@ -38,6 +38,7 @@ const ProductDetailMobile = ({ data }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { productSlug } = router.query;
+  const userData = useSelector((state) => state.User.userInfo);
 
   const detail = data.detail;
   const comments = data.comments;
@@ -93,9 +94,68 @@ const ProductDetailMobile = ({ data }) => {
     fetchProductShop();
   }, []);
   const handel_webhook = async () => {
-    let data = {
-      content: `جزییات|موبایل: ${detail.title}`,
-    };
+    let data = {};
+        
+    if (userData 
+      && Object.keys(userData).length !== 0) {
+      data = {
+        content: `:teddy_bear: `,
+        embeds: [
+          {
+            color: 14811281,
+            author: {
+              name: `\n${userData.user.first_name} ${userData.user.last_name}\n${userData.user.username}`,
+            },
+          },
+
+          {
+            title: detail.title,
+            description: "",
+            url: `https://nakhll.com/${detail.url}`,
+            color: 5814783,
+
+            footer: {
+              text: "جزییات|موبایل",
+            },
+            image: {
+              url: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fstatic.vecteezy.com%2Fpacks%2Fmedia%2Fcomponents%2Fglobal%2Fsearch-explore-nav%2Fimg%2Fvectors%2Fterm-bg-1-666de2d941529c25aa511dc18d727160.jpg&imgrefurl=https%3A%2F%2Fwww.vecteezy.com%2F&tbnid=l5RllJHFLw5NyM&vet=12ahUKEwiAuZn85fL0AhUP8BoKHeDmDx0QMygDegUIARCrAQ..i&docid=LOSptVP0p_ZwUM&w=550&h=549&itg=1&q=image&ved=2ahUKEwiAuZn85fL0AhUP8BoKHeDmDx0QMygDegUIARCrAQ",
+            },
+            thumbnail: {
+              url: `https://nakhll.com/${detail.url}`,
+            },
+          },
+          {
+            color: 11403008,
+            author: {
+              name: userData.big_city,
+            },
+          },
+        ],
+      };
+    } else {
+      data = {
+        content: `:see_no_evil:  `,
+        embeds: [
+          {
+            title: detail.title,
+            description: "",
+            url: `https://nakhll.com/${detail.url}`,
+            color: 0,
+
+            footer: {
+              text: "جزییات|موبایل",
+            },
+            image: {
+              url: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fstatic.vecteezy.com%2Fpacks%2Fmedia%2Fcomponents%2Fglobal%2Fsearch-explore-nav%2Fimg%2Fvectors%2Fterm-bg-1-666de2d941529c25aa511dc18d727160.jpg&imgrefurl=https%3A%2F%2Fwww.vecteezy.com%2F&tbnid=l5RllJHFLw5NyM&vet=12ahUKEwiAuZn85fL0AhUP8BoKHeDmDx0QMygDegUIARCrAQ..i&docid=LOSptVP0p_ZwUM&w=550&h=549&itg=1&q=image&ved=2ahUKEwiAuZn85fL0AhUP8BoKHeDmDx0QMygDegUIARCrAQ",
+            },
+            thumbnail: {
+              url: `https://nakhll.com/${detail.url}`,
+            },
+          },
+        ],
+      };
+    }
+
     let response = await ApiRegister().apiRequest(
       data,
       "post",

@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import ProductCard from "../../../components/ProductCart/ProductCard";
 import styles from "./LinerProducts.module.scss";
+import { useSelector } from "react-redux";
 
 function LinerProducts({
   noScroll = false,
@@ -21,6 +22,7 @@ function LinerProducts({
   if (dataLinerProducts && dataLinerProducts.results) {
     dataLinerProducts = dataLinerProducts.results;
   }
+  const userData = useSelector((state) => state.User.userInfo);
 
   return (
     <>
@@ -59,6 +61,7 @@ function LinerProducts({
             dataLinerProducts.length > 0 &&
             dataLinerProducts.slice(0, num).map((product, index) => (
               <ProductCard
+              userData={userData}
                 xl={xl}
                 md={md}
                 lg={lg}
