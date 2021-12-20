@@ -37,8 +37,23 @@ function InputUseForm({ title, extraTitle, text, error, children }) {
         {text && (
           <>
             <div className={styles.inputWid_withWord}>
-              <div>
-                <span style={{ fontSize: "16px", marginRight: "9px" }}>
+              <div
+                style={{
+                  height: "100%",
+                  padding: "0 5px",
+                  background: "rgb(234,238,243)",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginRight: "10px",
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: "bold",
+                  }}
+                >
                   {text}
                 </span>
               </div>
