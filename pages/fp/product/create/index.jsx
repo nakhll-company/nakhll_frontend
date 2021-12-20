@@ -144,6 +144,7 @@ const CreateProduct = ({ activeHojreh }) => {
                   </label>
 
                   <input
+                    style={{ paddingRight: "10px" }}
                     className={styles.input_product}
                     value={placeholderSubmarckets.name}
                     id="submark"
@@ -152,6 +153,16 @@ const CreateProduct = ({ activeHojreh }) => {
                     onClick={_selectSubmarket}
                     {...register("submark")}
                   />
+                  <i
+                    style={{
+                      color: "#1b3e68",
+                      left: "10px",
+                      top: "64%",
+                      position: "absolute",
+                    }}
+                    className="fas fa-chevron-down"
+                  ></i>
+
                   {errors.submark && (
                     <span style={{ color: "red", fontSize: "14px" }}>
                       لطفا این گزینه را پر کنید
