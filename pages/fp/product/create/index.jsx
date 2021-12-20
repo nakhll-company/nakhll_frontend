@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Assistent from "zaravand-assistent-number";
 // components
 import MyLayout from "../../../../components/layout/Layout";
 import Loading from "../../../../components/loading/index";
@@ -25,6 +26,7 @@ import {
 
 const CreateProduct = ({ activeHojreh }) => {
   const router = useRouter();
+  const _asist = new Assistent();
 
   // useform
   const {
@@ -62,6 +64,14 @@ const CreateProduct = ({ activeHojreh }) => {
 
   // for Save cities
   const [checkedCities, setCheckedCities] = useState([]);
+
+  // state for show word price
+  const [wordPrice, setWordPrice] = useState("");
+  const [wordOldPrice, setWordOldPrice] = useState("");
+
+  // state for precent
+  const [precentPrice, setPrecentPrice] = useState(0);
+  const [precentOldPrice, setprecentOldPrice] = useState(0);
 
   // use effect
   useEffect(async () => {
@@ -302,11 +312,22 @@ const CreateProduct = ({ activeHojreh }) => {
                       required: "لطفا این گزینه را پرنمایید",
                       min: {
                         value: 500,
-                        message: "لطفا اعداد بزرگتر از 500 وارد نمایید",
+                        message: "لطفا اعداد بزرگتر از ۵۰۰ وارد نمایید",
                       },
                     })}
+                    onChange={(e) => {
+                      setPrecentPrice(e.target.value);
+                      setWordPrice(_asist.word(e.target.value));
+                    }}
                   />
                 </InputUseForm>
+                {wordPrice !== "صفر" && wordPrice !== "" && (
+                  <div className={styles.previewPrice}>
+                    قیمت محصول : {wordPrice}
+                    {"  "}
+                    تومان
+                  </div>
+                )}
                 {/* price with discount */}
                 <InputUseForm
                   title="قیمت محصول با تخفیف (اختیاری)"
@@ -328,8 +349,37 @@ const CreateProduct = ({ activeHojreh }) => {
                         parseInt(value) < parseInt(getValues("Price")) ||
                         "قیمت با تخفیف باید کمتر از قیمت اصلی باشد",
                     })}
+                    onChange={(e) => {
+                      if (e.target.value == "" || e.target.value == 0) {
+                        setValue("OldPrice", 0);
+                        setprecentOldPrice(0);
+                      } else {
+                        setprecentOldPrice(e.target.value);
+
+                        setWordOldPrice(_asist.word(e.target.value));
+                      }
+                    }}
                   />
                 </InputUseForm>
+                {wordOldPrice !== "صفر" && wordOldPrice !== "" && (
+                  <div className={styles.previewPrice}>
+                    قیمت محصول با تخفیف : {wordOldPrice} تومان
+                  </div>
+                )}
+                {precentOldPrice !== 0 && (
+                  <>
+                    <span style={{ margin: "8px 0", fontSize: "14px" }}>
+                      تخفیف کالا شما:
+                      <span style={{ fontSize: "13px" }}>درصد رند شده</span>
+                    </span>
+                    <div className={styles.precent_wrper}>
+                      {Math.ceil(
+                        ((precentPrice - precentOldPrice) / precentPrice) * 100
+                      )}
+                      %
+                    </div>
+                  </>
+                )}
                 {/* discription */}
                 <TextAreaUseForm title="توضیحات محصول (اختیاری)">
                   <textarea
