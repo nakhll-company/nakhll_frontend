@@ -4,9 +4,9 @@ import SwitchButtonSetting from "./switchButton";
 function SendBox({ title, description, isActive, id, onClick }) {
   return (
     <>
-      <div onClick={onClick} className={st.box}>
+      <div className={st.box}>
         {/* icon */}
-        <div className={st.rigth}>
+        <div onClick={onClick} className={st.rigth}>
           <div className={st.icon}></div>
           {/* text */}
           <div className={st.text}>

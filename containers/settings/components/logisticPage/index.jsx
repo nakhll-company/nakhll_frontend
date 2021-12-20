@@ -19,10 +19,11 @@ import st from "./logisticPage.module.scss";
 function LogisticPage() {
   const activeHojreh = useSelector((state) => state.User.activeHojreh);
 
-  const [isShow, setIsShow] = useState(0);
-
   // state for handel page
   const [wichPage, setWichPage] = useState(1);
+
+  // for save type post
+  const [whichMethod, setWhichMethod] = useState("");
 
   // State for get card
   const [cardSend, setCardSend] = useState([]);
@@ -60,20 +61,23 @@ function LogisticPage() {
     fetchData();
   }, []);
 
+  // function for Create Shop Logistic Unit Constraint
+
   const _handle_add_new_scope = async () => {
     let response = await ApiRegister().apiRequest(
       {
         is_active: false,
-        shop_logistic_unit: 1,
+        shop_logistic_unit: whichMethod,
       },
-      "GET",
+      "post",
       `/api/v1/logistic/shop-logistic-unit-constraint/`,
       true,
       ""
     );
+    upPage();
+    console.log(`response.data`, response.data);
     if (response.status == 200) {
-      setCardSend(response.data);
-      upPage();
+      alert("hi");
     }
   };
   const upPage = () => {
@@ -82,6 +86,15 @@ function LogisticPage() {
   const downPage = () => {
     setWichPage(wichPage - 1);
   };
+  const setIdWithWay = (id) => {
+    setWhichMethod(id);
+  };
+
+  useEffect(() => {
+    if (whichMethod !== "") {
+      alert(whichMethod);
+    }
+  }, [whichMethod]);
 
   return (
     <>
@@ -100,7 +113,10 @@ function LogisticPage() {
             {cardSend.map((el, index) => (
               <SendBox
                 key={index}
-                onClick={() => upPage()}
+                onClick={() => {
+                  setIdWithWay(el.id);
+                  upPage();
+                }}
                 title={el.logistic_unit.name}
                 description={el.logistic_unit.description}
                 isActive={el.is_active}
