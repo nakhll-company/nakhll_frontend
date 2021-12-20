@@ -29,6 +29,9 @@ function LogisticPage() {
   const [cardSend, setCardSend] = useState([]);
   // for Save cities
   const [checkedCities, setCheckedCities] = useState([]);
+
+  // state for Saved Sending Unit
+  // const [SavedSendingUnit, setSavedSendingUnit] = useState([]);
   // useform
   const {
     setValue,
@@ -77,9 +80,24 @@ function LogisticPage() {
     upPage();
     console.log(`response.data`, response.data);
     if (response.status == 200) {
-      alert("hi");
+      alert(response.data);
     }
   };
+
+  const _handel_get_all_scope = async () => {
+    let response = await ApiRegister().apiRequest(
+      null,
+      "get",
+      `/api/v1/logistic/shop-logistic-unit-constraint/`,
+      true,
+      ""
+    );
+
+    if (response.status == 200) {
+      setSavedSendingUnit(response.data);
+    }
+  };
+
   const upPage = () => {
     setWichPage(wichPage + 1);
   };
@@ -90,11 +108,11 @@ function LogisticPage() {
     setWhichMethod(id);
   };
 
-  useEffect(() => {
-    if (whichMethod !== "") {
-      alert(whichMethod);
-    }
-  }, [whichMethod]);
+  // useEffect(() => {
+  //   if (whichMethod !== "") {
+  //     _handel_get_all_scope();
+  //   }
+  // }, [whichMethod]);
 
   return (
     <>

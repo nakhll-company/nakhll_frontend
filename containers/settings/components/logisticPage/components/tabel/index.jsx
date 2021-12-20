@@ -1,23 +1,28 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { ApiRegister } from "../../../../../../services/apiRegister/ApiRegister";
 import SBSendUnit from "../sendUnit/switchButtonSendUnit";
 import st from "./tabel.module.scss";
+import Assistent from "zaravand-assistent-number";
+const _asist = new Assistent();
 
 function Tabel() {
+  // state for Saved Sending Unit
+  const [SavedSendingUnit, setSavedSendingUnit] = useState([]);
   const activeHojreh = useSelector((state) => state.User.activeHojreh);
   useEffect(() => {
     async function fetchData() {
       let response = await ApiRegister().apiRequest(
         null,
-        "GET",
+        "get",
         `/api/v1/logistic/shop-logistic-unit-constraint/`,
         true,
         ""
       );
-      console.log(`response`, response);
 
       if (response.status == 200) {
+        setSavedSendingUnit(response.data);
+        console.log(`response.data`, response.data);
       }
     }
 
@@ -56,11 +61,11 @@ function Tabel() {
           </tr>
         </thead>
         <tbody style={{ borderTop: "none" }}>
-          {[1, 1, 1, 1, 1].map((e, index) => (
+          {SavedSendingUnit.map((el, index) => (
             <tr key={index}>
-              <th scope="row">اول</th>
-              <td>۱۲ شهر</td>
-              <td>۵۵ محصول</td>
+              <th scope="row">{_asist.PSeparator(el.title)}</th>
+              <td>{_asist.PSeparator(el.cities_count)} شهر</td>
+              <td>{_asist.PSeparator(el.products_count)} محصول</td>
               <td>
                 <div className={st.status}>
                   <div style={{ marginBottom: "10px" }}>
