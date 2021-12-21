@@ -25,10 +25,17 @@ function LogisticPage() {
   // for save type post
   const [whichMethod, setWhichMethod] = useState("");
 
+  // for save id scope
+  const [wichIdScope, setWichIdScope] = useState("");
+
   // State for get card
   const [cardSend, setCardSend] = useState([]);
   // for Save cities
   const [checkedCities, setCheckedCities] = useState([]);
+
+  useEffect(() => {
+    console.log(`checkedCities`, checkedCities);
+  }, [checkedCities]);
 
   // state for Saved Sending Unit
   // const [SavedSendingUnit, setSavedSendingUnit] = useState([]);
@@ -77,26 +84,29 @@ function LogisticPage() {
       true,
       ""
     );
-    upPage();
-    console.log(`response.data`, response.data);
-    if (response.status == 200) {
-      alert(response.data);
+
+    console.log(`response.data`, response);
+    if (response.status == 201) {
+      setWichIdScope(response.data.id);
+      upPage();
     }
   };
 
-  const _handel_get_all_scope = async () => {
+  const _handel_get_all_data_scope = async () => {
     let response = await ApiRegister().apiRequest(
       null,
       "get",
-      `/api/v1/logistic/shop-logistic-unit-constraint/`,
+      `/api/v1/logistic/shop-logistic-unit-constraint-parameter/${wichIdScope}/`,
       true,
       ""
     );
 
     if (response.status == 200) {
-      setSavedSendingUnit(response.data);
+      console.log(`response.data`, response.data);
     }
   };
+
+  const _handel_add_cities = async () => {};
 
   const upPage = () => {
     setWichPage(wichPage + 1);
@@ -108,11 +118,12 @@ function LogisticPage() {
     setWhichMethod(id);
   };
 
-  // useEffect(() => {
-  //   if (whichMethod !== "") {
-  //     _handel_get_all_scope();
-  //   }
-  // }, [whichMethod]);
+  // for get all data for scope
+  useEffect(() => {
+    if (wichIdScope !== "") {
+      _handel_get_all_data_scope();
+    }
+  }, [wichIdScope]);
 
   return (
     <>
@@ -149,7 +160,7 @@ function LogisticPage() {
 
             <Explain text="توضیحات به حجره دار" />
             <CheckBoxSend title="استفاده از تنظیمات پیشفرض" />
-            <Tabel />
+            <Tabel changePage={upPage} setWichIdScope={setWichIdScope} />
             <BtnSetting
               onClick={_handle_add_new_scope}
               title="ثبت محدوده جدید"
@@ -167,7 +178,10 @@ function LogisticPage() {
               setCheckedCity={setCheckedCities}
             />
 
-            <BtnSetting onClick={() => upPage()} title="مرحله بعد" />
+            <BtnSetting
+              onClick={() => _handel_get_all_data_scope()}
+              title="مرحله بعد"
+            />
           </>
         )}
         {wichPage == 4 && (

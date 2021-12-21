@@ -3,21 +3,25 @@ import { useSelector } from "react-redux";
 import { ApiRegister } from "../../../../../../../services/apiRegister/ApiRegister";
 import styles from "./switchButton.module.scss";
 
-function SBSendUnit({ id, isActive }) {
+function SBSendUnit({ id, isActive, shop_logistic_unit }) {
   const [Activer, setActiver] = useState(isActive);
+  const [disableBtn, setDisableBtn] = useState(false);
   const handel_chamnge_status = async () => {
-    setActiver((e) => !e);
+    setDisableBtn(true);
     let response = await ApiRegister().apiRequest(
       {
         is_active: !isActive,
+        shop_logistic_unit: shop_logistic_unit,
       },
       "put",
-      `/api/v1/logistic/shop-logistic-unit/${id}/`,
+      `/api/v1/logistic/shop-logistic-unit-constraint/${id}/`,
       true,
       ""
     );
-    console.log(`response`, response);
+
     if (response.status == 200) {
+      setActiver((e) => !e);
+      setDisableBtn(false);
     }
   };
   return (
@@ -30,6 +34,7 @@ function SBSendUnit({ id, isActive }) {
           onChange={handel_chamnge_status}
           // defaultChecked={isActive}
           checked={Activer}
+          disabled={disableBtn}
           // value={isActive}
         />{" "}
         <label
