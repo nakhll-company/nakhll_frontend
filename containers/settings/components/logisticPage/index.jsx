@@ -33,6 +33,9 @@ function LogisticPage() {
   // for Save cities
   const [checkedCities, setCheckedCities] = useState([]);
 
+  // for Save Products
+  const [ProductsShop, setProductsShop] = useState([]);
+
   useEffect(() => {
     console.log(`checkedCities`, checkedCities);
   }, [checkedCities]);
@@ -85,7 +88,6 @@ function LogisticPage() {
       ""
     );
 
-    console.log(`response.data`, response);
     if (response.status == 201) {
       setWichIdScope(response.data.id);
       upPage();
@@ -102,11 +104,9 @@ function LogisticPage() {
     );
 
     if (response.status == 200) {
-      console.log(`response.data`, response.data);
+      setProductsShop(response.data.products);
     }
   };
-
-  const _handel_add_cities = async () => {};
 
   const upPage = () => {
     setWichPage(wichPage + 1);
@@ -178,10 +178,7 @@ function LogisticPage() {
               setCheckedCity={setCheckedCities}
             />
 
-            <BtnSetting
-              onClick={() => _handel_get_all_data_scope()}
-              title="مرحله بعد"
-            />
+            <BtnSetting onClick={() => upPage()} title="مرحله بعد" />
           </>
         )}
         {wichPage == 4 && (
@@ -192,8 +189,12 @@ function LogisticPage() {
 
             <CheckBoxSend title="تمام محصولات" />
 
-            <Products />
-            <BtnSetting onClick={() => upPage()} title="مرحله بعد" />
+            <Products
+              ProductsShop={ProductsShop}
+              setProductsShop={setProductsShop}
+              changePage={upPage}
+              wichIdScope={wichIdScope}
+            />
           </>
         )}
 

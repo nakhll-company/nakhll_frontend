@@ -1,6 +1,8 @@
 import st from "./checkBoxProduct.module.scss";
 
-function CheckBoxProduct({ title, wordSearch }) {
+function CheckBoxProduct({ title, wordSearch,is_checked }) {
+
+
   const getHighlightText = (title, wordSearch) => {
     const startIndex = title.indexOf(wordSearch);
     return startIndex !== -1 ? (
@@ -25,6 +27,7 @@ function CheckBoxProduct({ title, wordSearch }) {
           type="checkbox"
           value=""
           id="flexCheckDefault"
+          // checked={}
         />
         <label
           style={{ marginRight: "25px", color: "#000000A1", cursor: "pointer" }}
