@@ -13,7 +13,7 @@ export async function activeDemo(id, activeShop, router) {
     );
 
     if (response.status === 200) {
-        router.push(`/fp/options/landing/orders?id=${id}`);
+        router.push(`/liveEdit/${activeShop}/${id}`);
     } else {
         errorMessage(response.response.data.error);
     }

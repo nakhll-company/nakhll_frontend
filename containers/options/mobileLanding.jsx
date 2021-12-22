@@ -47,11 +47,11 @@ const MobileLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
                         افزودن فرود
                     </span>
                     {/* </Link> */}
-                    <Link href={`/fp/options/landing/orders?id=${id}`}>
+                    {/* <Link href={`/fp/options/landing/orders?id=${id}`}>
                         <a className={styles.link_add}>
                             سفارشات
                         </a>
-                    </Link>
+                    </Link> */}
                 </div>
                 {(landingList && landingList.length > 0) ? landingList.map((value, index) => {
                     return (

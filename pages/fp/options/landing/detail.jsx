@@ -37,17 +37,24 @@ const LandingDetail = () => {
                             {detailData.description}
                         </dd>
                         <div className={styles.wrapper_link}>
-                            <span className={styles.link} onClick={() => {
-                                activeDemo(id, activeHojreh, router);
-                            }}>فعال سازی دمو</span>
-                            <span className={styles.link} onClick={() => {
+                            {Object.keys(detailData).length > 0 ?
+                                <Link href={`/fp/options/landing/${id}`}>
+                                    <a className={styles.link}>
+                                        لیست صفحات فرود اختصاصی
+                                    </a>
+                                </Link> :
+                                <span className={styles.link} onClick={() => {
+                                    activeDemo(id, activeHojreh, router);
+                                }}>فعال سازی دمو</span>
+                            }
+                            {/* <span className={styles.link} onClick={() => {
                                 buyOptions(id, activeHojreh);
                             }}>خرید</span>
                             <Link href={`/fp/options/landing/orders?id=${id}`}>
                                 <a className={styles.link}>
                                     سفارشات
                                 </a>
-                            </Link>
+                            </Link> */}
                         </div>
                     </dl>
                 }

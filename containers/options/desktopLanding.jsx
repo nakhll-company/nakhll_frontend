@@ -47,9 +47,9 @@ const DesktopLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
           افزودن فرود
         </span>
         {/* </Link> */}
-        <Link href={`/fp/options/landing/orders?id=${id}`}>
+        {/* <Link href={`/fp/options/landing/orders?id=${id}`}>
           <a className={styles.link_add}>سفارشات</a>
-        </Link>
+        </Link> */}
       </div>
       <table className={styles.table}>
         <thead>

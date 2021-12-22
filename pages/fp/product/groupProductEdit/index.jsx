@@ -72,7 +72,7 @@ const GroupProduct = (data) => {
               </div>
             </label>
             {/* input file */}
-            <input style={{ width: "0px", height: "0px", opacity: "0px" }}
+            {/* <input style={{ width: "0px", height: "0px", opacity: "0px" }}
               type="file" id="productExcelUpload" name="productExcelUpload" accept=".csv"
             >
             </input>
@@ -84,11 +84,10 @@ const GroupProduct = (data) => {
                 </p>
               </div>
             </label>
-            {/* input file */}
             <input style={{ width: "0px", height: "0px", opacity: "0px" }}
               type="file" id="productZipFile" name="productZipFile" accept=".zip,.rar,.7zip"
             >
-            </input>
+            </input> */}
           </div>
         </div>
         <div className="d-flex justify-content-between">
@@ -96,6 +95,7 @@ const GroupProduct = (data) => {
             type="submit"
             id="sumbitButton"
             className={`${styles.form_buttonSubmit} mx-5`}
+            style={{ fontSize: "18px", width: "200px" }}
           >
             ثبت محصولات
           </button>
@@ -103,6 +103,7 @@ const GroupProduct = (data) => {
             type="button"
             id="buttonUodo"
             className={styles.form_buttonSubmit}
+            style={{ fontSize: "18px", width: "200px" }}
             onClick={async () => {
               let response = await ApiRegister().apiRequest(
                 null, "get",
@@ -125,7 +126,7 @@ const GroupProduct = (data) => {
         <span>تعداد ستون های خالی: {showResult.na_rows}</span>
         <span>مجموع سطر هایی که نام محصول تکراری است: {showResult.slug_duplicate_rows}</span>
         <span>تعداد محصولات بروزرسانی شده: {showResult.old_products}</span>
-        <span>تعداد محصولاتی که جدید ایجاد شده: {showResult.new}</span>
+        {/* <span>تعداد محصولاتی که جدید ایجاد شده: {showResult.new}</span> */}
       </div>
     </div>
   )
