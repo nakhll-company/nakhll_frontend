@@ -35,7 +35,7 @@ function Header() {
       if (response.status === 200) {
         setCategory(response.data);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   // Get all shops
@@ -174,7 +174,7 @@ function Header() {
                       onClick={() => {
                         localStorage.removeItem("refreshToken");
                         localStorage.removeItem("accessToken");
-                        router.reload(window.location.pathname);
+                        router.pathname === "/profile" ? router.push("/") : router.reload(window.location.pathname);
                       }}
                     >
                       <i className="fas fa-sign-out-alt "></i>
@@ -286,10 +286,12 @@ function Header() {
               <div className={styles.left_side}>
                 {Object.keys(userLog).length > 0 ? (
                   <Link className={styles.profile_btn} href="/profile">
-                    <i
-                      style={{ fontSize: "25px", marginLeft: "9px" }}
-                      className="fas fa-user-circle"
-                    ></i>
+                    <a>
+                      <i
+                        style={{ fontSize: "25px", marginLeft: "9px" }}
+                        className="fas fa-user-circle"
+                      ></i>
+                    </a>
                   </Link>
                 ) : (
                   <Link
@@ -310,9 +312,11 @@ function Header() {
                 >
                   <div className={styles.bascket_btn}>
                     <i>
-                      <img
+                      <Image
                         style={{ width: "24px", marginLeft: "12px" }}
                         src="/icons/sabad.svg"
+                        width={24}
+                        height={24}
                         alt=""
                       />
                     </i>
@@ -368,9 +372,11 @@ function Header() {
             <div className={styles.head_menu}>
               <Link href="/">
                 <a className={styles.menu_logo}>
-                  <img
+                  <Image
                     style={{ maxHeight: "50px" }}
                     src="/icons/logo_Nakhl.svg"
+                    width={200}
+                    height={100}
                     alt=""
                   />
                 </a>

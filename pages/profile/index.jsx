@@ -74,6 +74,7 @@ const Profile = () => {
                   width="90"
                   height="90"
                   className={styles.imageProfile}
+                  alt=""
                 />
                 <h6>
                   {Object.keys(dataProfile).length > 0 &&
@@ -264,7 +265,7 @@ const Profile = () => {
                   onClick={() => {
                     localStorage.removeItem("refreshToken");
                     localStorage.removeItem("accessToken");
-                    router.reload(window.location.pathname);
+                    router.pathname === "/profile" ? router.push("/") : router.reload(window.location.pathname);
                   }}
                 >
                   <i
