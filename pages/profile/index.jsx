@@ -265,7 +265,7 @@ const Profile = () => {
                   onClick={() => {
                     localStorage.removeItem("refreshToken");
                     localStorage.removeItem("accessToken");
-                    router.pathname === "/profile" ? router.push("/") : router.reload(window.location.pathname);
+                    router.pathname === "/profile" ? router.push("/") && router.reload(window.location.pathname) : router.reload(window.location.pathname);
                   }}
                 >
                   <i
