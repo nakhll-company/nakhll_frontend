@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import styles from "../../styles/components/layout/MenuMobile.module.scss";
 
 function MenuMobile({ activeOptions }) {
+  console.log(">>>>", activeOptions);
   const router = useRouter();
   return (
     <div className={styles.menu_mobile}>

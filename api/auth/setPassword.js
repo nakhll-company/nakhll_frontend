@@ -4,7 +4,7 @@ import { ApiRegister } from '../../services/apiRegister/ApiRegister';
 export async function setPassword(data) {
     try {
         let response = await ApiRegister().apiRequest(
-            data, "POST", "/api/v1/profile/set_password/", true, {}
+            data, "POST", "/api/v1/profile/set_password/", false, {}
         );
         if (response.status === 200) {
             localStorage.setItem("accessToken", response.data.access);

@@ -174,7 +174,12 @@ function Header() {
                       onClick={() => {
                         localStorage.removeItem("refreshToken");
                         localStorage.removeItem("accessToken");
-                        router.pathname === "/profile" ? router.reload(window.location.pathname) && router.push("/") : router.reload(window.location.pathname);
+                        if (router.pathname === "/profile") {
+                          router.reload(window.location.pathname);
+                          router.push("/");
+                        } else {
+                          router.reload(window.location.pathname);
+                        }
                       }}
                     >
                       <i className="fas fa-sign-out-alt "></i>
