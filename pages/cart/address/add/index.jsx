@@ -139,7 +139,7 @@ const NewAddress = () => {
                                 </div>
                                 <div className={`${styles.form_group} col-md-6 col-sm-12`}>
                                     <label>موبایل گیرندۀ سفارش:</label>
-                                    <input type="number" className="form-control" {...register("receiver_mobile_number", {
+                                    <input type="number" placeholder="*******0913" className="form-control" {...register("receiver_mobile_number", {
                                         required: 'لطفا این گزینه را پر کنید',
                                         minLength: {
                                             value: 11,
@@ -154,7 +154,6 @@ const NewAddress = () => {
                                             message: 'لطفا شماره موبایل خود را صحیح وارد نمایید' // JS only: <p>error message</p> TS only support string
                                         }
                                     })} />
-                                    <small className="form-text text-muted">*******0913</small><br />
                                     {errors.receiver_mobile_number && <span className={styles.form_errors}>{errors.receiver_mobile_number.message}</span>}
                                 </div>
                             </div>

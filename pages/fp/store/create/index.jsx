@@ -70,6 +70,18 @@ function NewStore({ getUserInfo, userInfo }) {
       {width < breakpoint && <MobileHeader title="ثبت حجره" type="close" />}
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.form_right}>
+          {Object.keys(userInfo).length > 0 && Object.keys(userInfo.user).length > 0 && userInfo.user.first_name.length === 0 && userInfo.user.last_name.length === 0 &&
+            <>
+              {/* name */}
+              <label className={styles.form_label}>نام</label>
+              <input className={styles.form_input} {...register("first_name", { required: true })} />
+              {errors.first_name && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
+              {/* family */}
+              <label className={styles.form_label}>نام خانوادگی</label>
+              <input className={styles.form_input} {...register("last_name", { required: true })} />
+              {errors.last_name && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
+            </>
+          }
           {/* title */}
           <label className={styles.form_label}>نام حجره</label>
           <input placeholder="پسته کرمان" className={styles.form_input} {...register("Title", { required: true })} />
