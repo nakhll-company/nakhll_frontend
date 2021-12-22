@@ -6,14 +6,11 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { ToastContainer } from "react-toastify";
-import Assistent from "zaravand-assistent-number";
 // methods
 import { resendCode } from '../../api/auth/resendCode';
 import { completeAuth } from '../../api/auth/completeAuth';
 import { forgetPassword } from '../../api/auth/forgetPassword';
 import { getAccessToken } from '../../api/auth/getAccessToken';
-
-const _asist = new Assistent();
 
 const Code = () => {
 
@@ -56,7 +53,7 @@ const Code = () => {
                 </div>
                 <h1 className="d-flex justify-content-center font-weight-bold mb-5" style={{ fontSize: "20px" }}>ورود / ثبت نام</h1>
                 <form onSubmit={handleSubmit(submit)}>
-                    <label htmlFor="user_key" className="mb-2" style={{ fontSize: "15px" }}>کد تایید برای شماره موبایل {_asist.number(sessionStorage.getItem("mobile"))} ارسال گردید</label>
+                    <label htmlFor="user_key" className="mb-2" style={{ fontSize: "15px" }}>کد تایید برای شماره موبایل وارد شده ارسال گردید</label>
                     <input type="number" id="user_key" className="form-control mb-3" {...register("user_key", {
                         required: "لطفا این گزینه را پرنمایید",
                         maxLength: {
