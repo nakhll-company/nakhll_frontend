@@ -51,20 +51,28 @@ function Products({ ProductsShop, setProductsShop, changePage, wichIdScope }) {
     );
   };
   const _handel_send_selected_cities = async () => {
+    let arrayForSend = [];
     let arraySelectedCities = productList.filter((el) => el.is_checked);
+    arraySelectedCities.map((el) => {
+      arrayForSend.push(el.ID);
+    });
+
     console.log(`arraySelectedCities`, arraySelectedCities);
+    console.log(`arrayForSend `, arrayForSend);
     let response = await ApiRegister().apiRequest(
       {
-        cities: [],
+        products: arrayForSend,
       },
       "PATCH",
       `/api/v1/logistic/shop-logistic-unit-constraint-parameter/${wichIdScope}/`,
       true,
       ""
     );
-    console.log(`response`, response);
-    if (response.status == 200) {
-    }
+    changePage();
+    // console.log(`response`, response);
+    // if (response.status == 200) {
+    //   // changePage();
+    // }
   };
 
   return (

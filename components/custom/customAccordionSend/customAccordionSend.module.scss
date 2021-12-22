@@ -1,0 +1,27 @@
+.header {
+    padding: 11px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border: none;
+    background: none;
+    font-size: 15px;
+    font-weight: bold;
+}
+.wraper {
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+.wrap_mini_pic {
+    display: flex;
+    flex-wrap: wrap;
+}
+.mini_pic {
+    width: 25px;
+    height: 25px;
+    background-color: red;
+    border-radius: 50%;
+}
