@@ -32,12 +32,16 @@ const Password = () => {
             <ToastContainer />
             <div className="d-flex flex-column justify-content-center col-12 col-md-8 col-lg-5 m-auto bg-white p-5 mt-5 shadow-lg rounded">
                 <div className="m-auto">
-                    <Image src="/image/LOGO_500.png" alt="logo" width="70" height="70" />
+                    <Link href="/">
+                        <a>
+                            <Image src="/image/base_logo.png" alt="logo" width="250" height="100" />
+                        </a>
+                    </Link>
                 </div>
-                {/* <h1>رمز عبور خود را وارد کنید</h1> */}
+                <h1 className="d-flex justify-content-center font-weight-bold mb-5" style={{ fontSize: "20px" }}>ورود / ثبت نام</h1>
                 <form onSubmit={handleSubmit(submit)}>
-                    <label htmlFor="user_key" className="mb-2">رمز عبور حساب کاربری خود را وارد کنید</label>
-                    <input type="password" id="user_key" className="form-control mb-2" {...register("user_key", {
+                    <label htmlFor="user_key" className="mb-2" style={{ fontSize: "15px" }}>رمز عبور حساب کاربری خود را وارد کنید</label>
+                    <input type="password" id="user_key" className="form-control mb-3" {...register("user_key", {
                         required: "لطفا این گزینه را پرنمایید"
                     })} />
                     {errors.user_key && (
@@ -50,7 +54,7 @@ const Password = () => {
                             فراموشی رمز عبور
                         </a>
                     </Link>
-                    <button type="submit" className="btn btn-primary col-12 mt-2">ادامه</button>
+                    <button type="submit" className="btn btn-primary col-12 mt-3">ادامه</button>
                 </form>
             </div>
         </>

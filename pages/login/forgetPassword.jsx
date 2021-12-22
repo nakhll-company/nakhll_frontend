@@ -1,5 +1,6 @@
 // node libraries
 import Head from "next/head";
+import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
@@ -27,13 +28,17 @@ const ForgetPassword = () => {
             <ToastContainer />
             <div className="d-flex flex-column justify-content-center col-12 col-md-8 col-lg-5 m-auto bg-white p-5 mt-5 shadow-lg rounded">
                 <div className="m-auto">
-                    <Image src="/image/LOGO_500.png" alt="logo" width="70" height="70" />
+                    <Link href="/">
+                        <a>
+                            <Image src="/image/base_logo.png" alt="logo" width="250" height="100" />
+                        </a>
+                    </Link>
                 </div>
-                <h1>تغییر رمز عبور</h1>
+                <h1 className="d-flex justify-content-center font-weight-bold mb-5" style={{ fontSize: "20px" }}>تغییر رمز عبور</h1>
                 <form onSubmit={handleSubmit(submit)}>
                     <span className="text-muted">رمز عبور شما باید حداقل 8 حرف باشد</span><br /><br />
-                    <label htmlFor="password" className="mb-2">رمز عبور جدید*</label>
-                    <input type="text" id="password" className="form-control mb-2" {...register("password", {
+                    <label htmlFor="password" className="mb-2" style={{ fontSize: "15px" }}>رمز عبور جدید*</label>
+                    <input type="password" id="password" className="form-control mb-2" {...register("password", {
                         required: "لطفا این گزینه را پرنمایید"
                     })} />
                     {errors.password && (
@@ -42,7 +47,7 @@ const ForgetPassword = () => {
                         </span>
                     )}
                     <label htmlFor="repeatPass" className="mb-2">تکرار رمز عبور جدید*</label>
-                    <input type="text" id="repeatPass" className="form-control mb-2" {...register("repeatPass", {
+                    <input type="password" id="repeatPass" className="form-control mb-2" {...register("repeatPass", {
                         required: "لطفا این گزینه را پرنمایید"
                     })} />
                     {errors.repeatPass && (
