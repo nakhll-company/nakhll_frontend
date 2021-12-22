@@ -108,6 +108,22 @@ function LogisticPage() {
     }
   };
 
+  const _handle_update_data_scope = async () => {
+    let response = await ApiRegister().apiRequest(
+      {
+        cities: checkedCities,
+      },
+      "PATCH",
+      `/api/v1/logistic/shop-logistic-unit-constraint-parameter/${wichIdScope}/`,
+      true,
+      ""
+    );
+
+    if (response.status == 200) {
+      upPage();
+    }
+  };
+
   const upPage = () => {
     setWichPage(wichPage + 1);
   };
@@ -178,7 +194,10 @@ function LogisticPage() {
               setCheckedCity={setCheckedCities}
             />
 
-            <BtnSetting onClick={() => upPage()} title="مرحله بعد" />
+            <BtnSetting
+              onClick={() => _handle_update_data_scope()}
+              title="مرحله بعد"
+            />
           </>
         )}
         {wichPage == 4 && (
