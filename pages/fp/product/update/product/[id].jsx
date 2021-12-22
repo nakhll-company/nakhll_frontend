@@ -1,6 +1,6 @@
 // node libraries
 import { connect } from "react-redux";
-
+import Assistent from "zaravand-assistent-number";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
@@ -33,6 +33,7 @@ import PictureChildProduct from "../../../../../containers/creat/component/pictu
 const UpdateProduct = ({ activeHojreh }) => {
   const router = useRouter();
   const { id } = router.query;
+  const _asist = new Assistent();
   // get edit date
 
   useEffect(async () => {
@@ -55,7 +56,11 @@ const UpdateProduct = ({ activeHojreh }) => {
         setImgProduct(Data.Image);
 
         setValue("OldPrice", Data.Price / 10);
+        setWordOldPrice(_asist.word(Data.Price / 10));
+        setprecentOldPrice(Data.Price / 10);
         setValue("Price", Data.OldPrice / 10);
+        setWordPrice(_asist.word(Data.OldPrice / 10));
+        setPrecentPrice(Data.OldPrice / 10);
         setValue("Inventory", Data.Inventory);
         setValue("Net_Weight", Data.Net_Weight);
         setValue("Weight_With_Packing", Data.Weight_With_Packing);
@@ -157,7 +162,13 @@ const UpdateProduct = ({ activeHojreh }) => {
 
   // for Save cities
   const [checkedCities, setCheckedCities] = useState([]);
+  // state for show word price
+  const [wordPrice, setWordPrice] = useState("");
+  const [wordOldPrice, setWordOldPrice] = useState("");
 
+  // state for precent
+  const [precentPrice, setPrecentPrice] = useState(0);
+  const [precentOldPrice, setprecentOldPrice] = useState(0);
   // use effect
   useEffect(async () => {
     const response_categories = await _ApiGetCategories();
@@ -377,8 +388,19 @@ const UpdateProduct = ({ activeHojreh }) => {
                         message: "لطفا اعداد بزرگتر از 500 وارد نمایید",
                       },
                     })}
+                    onChange={(e) => {
+                      setPrecentPrice(e.target.value);
+                      setWordPrice(_asist.word(e.target.value));
+                    }}
                   />
                 </InputUseForm>
+                {wordPrice !== "صفر" && wordPrice !== "" && (
+                  <div className={styles.previewPrice}>
+                    قیمت محصول : {wordPrice}
+                    {"  "}
+                    تومان
+                  </div>
+                )}
                 {/* price with discount */}
                 <InputUseForm
                   title="قیمت محصول با تخفیف (اختیاری)"
@@ -400,8 +422,37 @@ const UpdateProduct = ({ activeHojreh }) => {
                         parseInt(value) < parseInt(getValues("Price")) ||
                         "قیمت با تخفیف باید کمتر از قیمت اصلی باشد",
                     })}
+                    onChange={(e) => {
+                      if (e.target.value == "" || e.target.value == 0) {
+                        setValue("OldPrice", 0);
+                        setprecentOldPrice(0);
+                      } else {
+                        setprecentOldPrice(e.target.value);
+
+                        setWordOldPrice(_asist.word(e.target.value));
+                      }
+                    }}
                   />
                 </InputUseForm>
+                {wordOldPrice !== "صفر" && wordOldPrice !== "" && (
+                  <div className={styles.previewPrice}>
+                    قیمت محصول با تخفیف : {wordOldPrice} تومان
+                  </div>
+                )}
+                {precentOldPrice !== 0 && (
+                  <>
+                    <span style={{ margin: "8px 0", fontSize: "14px" }}>
+                      تخفیف کالا شما:
+                      <span style={{ fontSize: "13px" }}>درصد رند شده</span>
+                    </span>
+                    <div className={styles.precent_wrper}>
+                      {Math.ceil(
+                        ((precentPrice - precentOldPrice) / precentPrice) * 100
+                      )}
+                      %
+                    </div>
+                  </>
+                )}
                 {/* discription */}
                 <TextAreaUseForm title="توضیحات محصول (اختیاری)">
                   <textarea
