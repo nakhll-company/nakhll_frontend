@@ -6,7 +6,7 @@ import st from "./tabel.module.scss";
 import Assistent from "zaravand-assistent-number";
 const _asist = new Assistent();
 
-function Tabel({ changePage, setWichIdScope }) {
+function Tabel({ changePage, setWichIdScope, whichMethod }) {
   // state for Saved Sending Unit
   const [SavedSendingUnit, setSavedSendingUnit] = useState([]);
 
@@ -17,7 +17,7 @@ function Tabel({ changePage, setWichIdScope }) {
         "get",
         `/api/v1/logistic/shop-logistic-unit-constraint/`,
         true,
-        ""
+        { id: whichMethod }
       );
 
       if (response.status == 200) {

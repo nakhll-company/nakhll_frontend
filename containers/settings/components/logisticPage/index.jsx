@@ -176,7 +176,7 @@ function LogisticPage() {
 
             <Explain text="توضیحات به حجره دار" />
             <CheckBoxSend title="استفاده از تنظیمات پیشفرض" />
-            <Tabel changePage={upPage} setWichIdScope={setWichIdScope} />
+            <Tabel changePage={upPage} setWichIdScope={setWichIdScope} whichMethod={whichMethod} />
             <BtnSetting
               onClick={_handle_add_new_scope}
               title="ثبت محدوده جدید"

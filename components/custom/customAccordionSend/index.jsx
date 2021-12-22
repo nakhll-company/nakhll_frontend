@@ -1,14 +1,17 @@
 import React from "react";
 import styles from "./customAccordionSend.module.scss";
 export const CustomAccordionSend = ({ children, title, item, callApi }) => {
-  const _handel_according = (accord, icon) => {
+  const _handel_according = (accord, icon, images) => {
     let element = document.getElementById(accord);
     if (element.style.height == "0px") {
       element.style.height = "unset";
+      document.getElementById(images).style.height = "0";
+      document.getElementById(images).style.overflow = "hidden";
       document.getElementById(icon).className = "fas fa-angle-down";
     } else {
       element.style.height = "0";
       element.style.overflow = "hidden";
+      document.getElementById(images).style.height = "unset";
 
       document.getElementById(icon).className = "fas fa-angle-up";
     }
@@ -35,13 +38,17 @@ export const CustomAccordionSend = ({ children, title, item, callApi }) => {
                 justifyContent: "space-between",
               }}
               onClick={() => {
-                _handel_according(`according_${item}`, `icon_${item}`);
+                _handel_according(
+                  `according_${item}`,
+                  `icon_${item}`,
+                  `pic_${item}`
+                );
               }}
             >
               <div>
                 <span
                   style={{
-                    marginLeft: "auto",
+                    textAlign: "right",
                     marginBottom: "9px",
                     display: "block",
                   }}
@@ -50,11 +57,10 @@ export const CustomAccordionSend = ({ children, title, item, callApi }) => {
                   {title}
                 </span>
 
-                <div className={styles.wrap_mini_pic}>
-                  
-                  <div className={styles.mini_pic}></div>
-                  <div className={styles.mini_pic}></div>
-                  <div className={styles.mini_pic}></div>
+                <div id={`pic_${item}`} className={styles.wrap_mini_pic}>
+                  {[1, 1, 1, 1, 1].map((el) => (
+                    <div className={styles.mini_pic}></div>
+                  ))}
                 </div>
               </div>
 
@@ -72,6 +78,15 @@ export const CustomAccordionSend = ({ children, title, item, callApi }) => {
               }}
             >
               {children}
+            </div>
+          </div>
+          <div className={styles.liner}></div>
+          <div className={styles.footer}>
+            <div className="">
+              <span>توضیحات برای ارسال و رایگان شدن سبد حجره</span>
+            </div>
+            <div className="">
+              <span>جمع قیمت</span>
             </div>
           </div>
         </div>

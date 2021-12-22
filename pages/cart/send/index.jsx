@@ -1,6 +1,7 @@
 import { ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
 import Loading from "../../../components/loading";
+import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
 import st from "./send.module.scss";
@@ -8,6 +9,7 @@ import { useEffect, useState } from "react";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
 import CustomAccordionSend from "../../../components/custom/customAccordionSend";
+import Number from "../../../components/number";
 function Send() {
   const [ListItems, setListItems] = useState([]);
   const router = useRouter();
@@ -62,6 +64,7 @@ function Send() {
             <section className={st.body_address}>
               <div className={st.address_head}>
                 <span>روش ارسال محصول خود را انتخاب نمایید.</span>
+                <span className={st.explain_price}>قیمت برحسب تومان می باشد</span>
               </div>
 
               {ListItems.map((el, index) => (
@@ -71,9 +74,60 @@ function Send() {
                   item={`Send_${index}_acor`}
                   close={true}
                 >
-                  <h1>سلاممم</h1>
-                  <h2>حالت چطوره</h2>
-                  <h3>بلعععععععععععععععععععععععععععععه</h3>
+                  {[1, 1, 1, 1, 1, 1].map((ef) => (
+                    <>
+                      <div className={st.wrap_one_product}>
+                        <div
+                          style={{
+                            height: "50px",
+                            width: "50px",
+                            borderRadius: "5px",
+                            backgroundColor: "blueviolet",
+                            overflow: "hidden",
+                          }}
+                          className=""
+                        >
+                          <Image
+                            src={el.image}
+                            layout="responsive"
+                            height={50}
+                            width={50}
+                            alt=""
+                          />
+                        </div>
+                        <div className={st.select_way}>
+                          <select
+                            id="select-shop"
+                            // onChange={(a) => {
+                            //   setselectShop(a.target.value);
+                            //   setSlugHojreh(a.target.value);
+                            //   getActiveHojreh(a.target.value);
+                            //   ForHeader(a);
+                            // }}
+                          >
+                            <option key="ddd" value="dddd">
+                              one
+                            </option>
+                            <option key="ddd" value="dddd">
+                              one
+                            </option>
+                            <option key="ddd" value="dddd">
+                              one
+                            </option>
+                            <option key="ddd" value="dddd">
+                              one
+                            </option>
+                          </select>
+                        </div>
+                        <div className={st.price}>
+                          <Number num="2500000" />
+                        </div>
+                      </div>
+                      <div className={st.liner}></div>
+                    </>
+                  ))}
+
+                  {/* <div className={st.liner}></div> */}
                 </CustomAccordionSend>
               ))}
 
