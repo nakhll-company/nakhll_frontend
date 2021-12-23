@@ -4,11 +4,15 @@ import { ApiRegister } from "../../../../../../services/apiRegister/ApiRegister"
 import SBSendUnit from "../sendUnit/switchButtonSendUnit";
 import st from "./tabel.module.scss";
 import Assistent from "zaravand-assistent-number";
+import LoadingAllPage from "../../../../../../components/loadingAllPage";
+import { errorMessage } from "../../../../../utils/message";
 const _asist = new Assistent();
 
 function Tabel({ changePage, setWichIdScope, whichMethod }) {
   // state for Saved Sending Unit
   const [SavedSendingUnit, setSavedSendingUnit] = useState([]);
+
+  const [loaderTable, setLoaderTable] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -22,7 +26,6 @@ function Tabel({ changePage, setWichIdScope, whichMethod }) {
 
       if (response.status == 200) {
         setSavedSendingUnit(response.data);
-        console.log(`response.data`, response.data);
       }
     }
 
@@ -30,6 +33,7 @@ function Tabel({ changePage, setWichIdScope, whichMethod }) {
   }, []);
 
   const _handle_delete_scope = async (id) => {
+    setLoaderTable(true);
     let response = await ApiRegister().apiRequest(
       null,
       "DELETE",
@@ -38,12 +42,14 @@ function Tabel({ changePage, setWichIdScope, whichMethod }) {
       ""
     );
 
-    console.log(`response`, response);
-
-    // if (response.status == 200) {
-    //   setSavedSendingUnit(response.data);
-    //   console.log(`response.data`, response.data);
-    // }
+    if (response.status == 204) {
+      let helpArray = SavedSendingUnit.filter((el) => el.id !== id);
+      setSavedSendingUnit(helpArray);
+      setLoaderTable(false);
+    } else {
+      setLoaderTable(false);
+      errorMessage("باری دیگر تلاش کنید.");
+    }
   };
   const _handel_click_on_scope = (id) => {
     setWichIdScope(id);
@@ -52,6 +58,7 @@ function Tabel({ changePage, setWichIdScope, whichMethod }) {
 
   return (
     <>
+      {loaderTable && <LoadingAllPage title="در حال حذف" />}
       <table
         style={{ overflow: "hidden", borderRadius: "10px" }}
         className="table"
