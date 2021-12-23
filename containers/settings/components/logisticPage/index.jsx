@@ -124,6 +124,25 @@ function LogisticPage() {
     }
   };
 
+  // functoin for send data for price per kg
+
+  const _handle_send_price_kg = async (data) => {
+    alert(data);
+    console.log("data :>> ", data);
+    let response = await ApiRegister().apiRequest(
+      data,
+      "PATCH",
+      `/api/v1/logistic/shop-logistic-unit-constraint-parameter/${wichIdScope}/`,
+      true,
+      ""
+    );
+
+    if (response.status == 200) {
+      console.log("response.data :>> ", response.data);
+      upPage();
+    }
+  };
+
   const upPage = () => {
     setWichPage(wichPage + 1);
   };
@@ -176,7 +195,11 @@ function LogisticPage() {
 
             <Explain text="توضیحات به حجره دار" />
             <CheckBoxSend title="استفاده از تنظیمات پیشفرض" />
-            <Tabel changePage={upPage} setWichIdScope={setWichIdScope} whichMethod={whichMethod} />
+            <Tabel
+              changePage={upPage}
+              setWichIdScope={setWichIdScope}
+              whichMethod={whichMethod}
+            />
             <BtnSetting
               onClick={_handle_add_new_scope}
               title="ثبت محدوده جدید"
@@ -223,27 +246,31 @@ function LogisticPage() {
 
             <Explain text="توضیحات به حجره دار" />
 
-            <form>
+            <form onSubmit={handleSubmit(_handle_send_price_kg)}>
               <InputUseForm
                 title="هزینه پست به ازای هر کیلوگرم"
-                error={errors.pricPerKilo}
+                error={errors.price_per_kg}
               >
                 <input
-                  {...register("pricPerKilo", {
+                  {...register("price_per_kg", {
                     required: "هشدار سقف و پیش فرض هزینه ها",
                   })}
                 />
               </InputUseForm>
               <InputUseForm
                 title="هزینه پست به ازای هر کیلوگرم اضافه تر"
-                error={errors.plusPricPerKilo}
+                error={errors.price_per_extra_kg}
               >
                 <input
-                  {...register("plusPricPerKilo", {
+                  {...register("price_per_extra_kg", {
                     required: "هشدار سقف و پیش فرض هزینه ها",
                   })}
                 />
               </InputUseForm>
+
+              <BtnSetting type="submit" title="ثبت" />
+            </form>
+            {/* <form>
               <InputUseForm title="حداقل هزینه سفارش" error={errors.minPrice}>
                 <input
                   {...register("minPrice", {
@@ -251,9 +278,24 @@ function LogisticPage() {
                   })}
                 />
               </InputUseForm>
-            </form>
+            </form> */}
+          </>
+        )}
 
-            <BtnSetting title="ثبت" />
+        {wichPage == 6 && (
+          <>
+            <div className="d-flex justify-content-center w-100">
+              <div className="pt-3 pb-3">
+                <h1 style={{ color: "green" }}>
+                  محدوده جدید با موفقیت ایجاد گردید.
+                </h1>
+                <BtnSetting
+                  onClick={() => setWichPage(1)}
+                  type="submit"
+                  title="بازگشت"
+                />
+              </div>
+            </div>
           </>
         )}
       </div>
