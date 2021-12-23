@@ -36,10 +36,6 @@ function LogisticPage() {
   // for Save Products
   const [ProductsShop, setProductsShop] = useState([]);
 
-  useEffect(() => {
-    console.log(`checkedCities`, checkedCities);
-  }, [checkedCities]);
-
   // state for Saved Sending Unit
   // const [SavedSendingUnit, setSavedSendingUnit] = useState([]);
   // useform
@@ -105,6 +101,7 @@ function LogisticPage() {
 
     if (response.status == 200) {
       setProductsShop(response.data.products);
+      setCheckedCities(response.data.cities);
     }
   };
 
@@ -127,8 +124,6 @@ function LogisticPage() {
   // functoin for send data for price per kg
 
   const _handle_send_price_kg = async (data) => {
-    alert(data);
-    console.log("data :>> ", data);
     let response = await ApiRegister().apiRequest(
       data,
       "PATCH",
@@ -138,7 +133,6 @@ function LogisticPage() {
     );
 
     if (response.status == 200) {
-      console.log("response.data :>> ", response.data);
       upPage();
     }
   };
