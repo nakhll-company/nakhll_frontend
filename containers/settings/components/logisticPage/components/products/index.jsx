@@ -1,14 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import _ from "lodash";
 import CheckBoxProduct from "../checkBoxProduct";
 import Search from "../search";
 import BtnSetting from "../btnSetting";
 import { ApiRegister } from "../../../../../../services/apiRegister/ApiRegister";
+import { paginateFront } from "../../../../../../utils/paginateFrontSide";
 
 function Products({ ProductsShop, setProductsShop, changePage, wichIdScope }) {
   const [productList, setProductList] = useState(ProductsShop);
   const [searchedProduct, setSearchedProduct] = useState(ProductsShop);
   const [wordSearch, setWordSearch] = useState("");
+
+  const [perPage, setPerPage] = useState(30);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [allPages, setAllPages] = useState(
+    _.range(Math.ceil(ProductsShop.length / 30))
+  );
 
   const _handel_search = (word) => {
     setWordSearch(word);
@@ -17,25 +24,25 @@ function Products({ ProductsShop, setProductsShop, changePage, wichIdScope }) {
     setSearchedProduct(searchedArray);
   };
 
+  // function for select checkbox and
+
   const _handel_selected_id_product = (data) => {
     let arrayHelpProducts = [...productList];
     let arrayHelpSearch = [...searchedProduct];
-    console.log(`data`, data);
+
     data.is_checked = !data.is_checked;
-    console.log(`data`, data);
 
     var indexProduct = _.findIndex(arrayHelpSearch, { ID: data.ID });
     var indexSearchProduct = _.findIndex(arrayHelpProducts, { ID: data.ID });
 
-    console.log(`indexProduct`, indexProduct);
-    console.log(`indexSearchProduct`, indexSearchProduct);
     // Replace item at index using native splice
     arrayHelpProducts.splice(indexProduct, 1, data);
     arrayHelpSearch.splice(indexSearchProduct, 1, data);
     setProductList(arrayHelpProducts);
-    // setProductsShop(arrayHelpProducts);
+
     setSearchedProduct(arrayHelpSearch);
   };
+  // function for highlight search
   const getHighlightText = (title, wordSearch) => {
     const startIndex = title.indexOf(wordSearch);
     return startIndex !== -1 ? (
@@ -50,6 +57,8 @@ function Products({ ProductsShop, setProductsShop, changePage, wichIdScope }) {
       <span>{title}</span>
     );
   };
+
+  // function for send selected cities
   const _handel_send_selected_cities = async () => {
     let arrayForSend = [];
     let arraySelectedCities = productList.filter((el) => el.is_checked);
@@ -57,8 +66,6 @@ function Products({ ProductsShop, setProductsShop, changePage, wichIdScope }) {
       arrayForSend.push(el.ID);
     });
 
-    console.log(`arraySelectedCities`, arraySelectedCities);
-    console.log(`arrayForSend `, arrayForSend);
     let response = await ApiRegister().apiRequest(
       {
         products: arrayForSend,
@@ -75,6 +82,10 @@ function Products({ ProductsShop, setProductsShop, changePage, wichIdScope }) {
     // }
   };
 
+  useEffect(() => {
+    setSearchedProduct(paginateFront(ProductsShop, currentPage, perPage));
+  }, [currentPage]);
+
   return (
     <>
       <Search
@@ -85,29 +96,24 @@ function Products({ ProductsShop, setProductsShop, changePage, wichIdScope }) {
         <nav aria-label="Page navigation">
           <ul className="pagination">
             <li className="page-item">
-              <a className="page-link" href="#" aria-label="Previous">
+              <div className="page-link">
                 <span aria-hidden="true">&laquo;</span>
-              </a>
+              </div>
+            </li>
+
+            <li className="page-item">
+              <div className="page-link bg-info">{currentPage}</div>
             </li>
             <li className="page-item">
-              <a className="page-link bg-info" href="#">
-                1
-              </a>
+              <div className="page-link ">{currentPage + 1}</div>
             </li>
             <li className="page-item">
-              <a className="page-link " href="#">
-                2
-              </a>
+              <div className="page-link">{currentPage + 2}</div>
             </li>
             <li className="page-item">
-              <a className="page-link" href="#">
-                3
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="#" aria-label="Next">
+              <div className="page-link" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
-              </a>
+              </div>
             </li>
           </ul>
         </nav>
