@@ -12,6 +12,7 @@ import HeaderTitle from "./components/headerTitle";
 import Products from "./components/products";
 import Search from "./components/search";
 import SendBox from "./components/sendBox";
+import SendBoxCu from "./components/sendBoxCu";
 import Tabel from "./components/tabel";
 
 import st from "./logisticPage.module.scss";
@@ -167,7 +168,8 @@ function LogisticPage() {
 
             <Explain text="توضیحات به حجره دار" />
 
-            <ActiveSendBox title="پست پیشتاز" description="توضیحات سرویس" />
+            <SendBoxCu title="پست پیشتاز اولم" />
+            {/* <ActiveSendBox title="پست پیشتاز" description="توضیحات سرویس" /> */}
             {cardSend.map((el, index) => (
               <SendBox
                 key={index}
