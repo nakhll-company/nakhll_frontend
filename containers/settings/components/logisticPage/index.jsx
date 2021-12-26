@@ -77,7 +77,7 @@ function LogisticPage() {
     let response = await ApiRegister().apiRequest(
       {
         is_active: false,
-        shop_logistic_unit: whichMethod,
+        shop_logistic_unit: 10,
       },
       "post",
       `/api/v1/logistic/shop-logistic-unit-constraint/`,
@@ -167,13 +167,21 @@ function LogisticPage() {
             />
 
             <Explain text="توضیحات به حجره دار" />
-
+            <BtnSetting
+              onClick={_handle_add_new_scope}
+              title="ثبت واحد ارسال جدید"
+            />
+            <SendBoxCu title="پست پیشتاز اولم" />
+            <SendBoxCu title="پست پیشتاز اولم" />
+            <SendBoxCu title="پست پیشتاز اولم" />
+            <SendBoxCu title="پست پیشتاز اولم" />
             <SendBoxCu title="پست پیشتاز اولم" />
             {/* <ActiveSendBox title="پست پیشتاز" description="توضیحات سرویس" /> */}
             {cardSend.map((el, index) => (
               <SendBox
                 key={index}
                 onClick={() => {
+                  alert(el.id);
                   setIdWithWay(el.id);
                   upPage();
                 }}

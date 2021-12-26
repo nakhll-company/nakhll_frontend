@@ -8,7 +8,7 @@ import LoadingAllPage from "../../../../../../components/loadingAllPage";
 import { errorMessage } from "../../../../../utils/message";
 const _asist = new Assistent();
 
-function Tabel({ changePage, setWichIdScope, whichMethod }) {
+function Tabel({ changePage, setWichIdScope }) {
   // state for Saved Sending Unit
   const [SavedSendingUnit, setSavedSendingUnit] = useState([]);
 
@@ -21,7 +21,7 @@ function Tabel({ changePage, setWichIdScope, whichMethod }) {
         "get",
         `/api/v1/logistic/shop-logistic-unit-constraint/`,
         true,
-        { id: whichMethod }
+        { id: 10 }
       );
 
       if (response.status == 200) {
@@ -58,7 +58,9 @@ function Tabel({ changePage, setWichIdScope, whichMethod }) {
 
   return (
     <>
+    
       {loaderTable && <LoadingAllPage title="در حال حذف" />}
+
       <table
         style={{ overflow: "hidden", borderRadius: "10px" }}
         className="table"
