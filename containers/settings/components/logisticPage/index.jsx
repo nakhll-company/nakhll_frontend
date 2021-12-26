@@ -38,6 +38,13 @@ function LogisticPage() {
   // for Save Products
   const [ProductsShop, setProductsShop] = useState([]);
 
+  // for Save constraintItems
+  const [constraintId, setConstraintId] = useState("");
+
+  // for save metricId
+
+  const [metricId, setMetricId] = useState("");
+
   // state for Saved Sending Unit
   // const [SavedSendingUnit, setSavedSendingUnit] = useState([]);
   // useform
@@ -168,23 +175,27 @@ function LogisticPage() {
               title="تنظیمات لجستیک"
             />
 
-            <Explain text="توضیحات به حجره دار" />
+            <Explain text="با استفاده از ثبت واحد ارسال جدید شهرها، محصولات، روش و هزینه ارسال دلخواه را انتخاب کنید." />
+
             <BtnSetting
               onClick={_handle_add_new_scope}
               title="ثبت واحد ارسال جدید"
             />
 
-            <Panel />
-
-            {/* <ActiveSendBox title="پست پیشتاز" description="توضیحات سرویس" /> */}
+            <Panel
+              setConstraintId={setConstraintId}
+              setMetricId={setConstraintId}
+            />
           </>
         )}
         {wichPage == 2 && (
           <>
             <HeaderTitle onClick={() => downPage()} title="واحد ارسال" />
 
-            <Explain text="توضیحات به حجره دار" />
+            <Explain text="با استفاده از ثبت واحد ارسال جدید شهرها، محصولات، روش و هزینه ارسال دلخواه را انتخاب کنید." />
+
             <CheckBoxSend title="استفاده از تنظیمات پیشفرض" />
+
             <Tabel
               changePage={upPage}
               setWichIdScope={setWichIdScope}

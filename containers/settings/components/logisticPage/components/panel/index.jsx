@@ -8,7 +8,7 @@ import st from "./panel.module.scss";
 import Image from "next/image";
 import Assistent from "zaravand-assistent-number";
 const _asist = new Assistent();
-function Panel() {
+function Panel({ setConstraintId, setMetricId }) {
   const activeHojreh = useSelector((state) => state.User.activeHojreh);
   // state for Saved Sending Unit
   const [SavedSendingUnit, setSavedSendingUnit] = useState([]);
@@ -25,10 +25,9 @@ function Panel() {
         true,
         ""
       );
-      console.log(`response`, response);
+
       if (response.status == 200) {
-        alert("hi");
-        console.log(`response.data`, response.data);
+        console.log(`response.datasssss`, response.data);
         setSavedSendingUnit(response.data);
       }
     }
@@ -67,7 +66,10 @@ function Panel() {
       {SavedSendingUnit.map((el, index) => (
         <div key={index} className={st.wraper}>
           <div className={st.card}>
-            <div className={st.card_right}>
+            <div
+              onClick={() => console.log(`el`, el)}
+              className={st.card_right}
+            >
               <div className={st.card_right_top}>
                 <span>{_asist.PSeparator(_asist.PSeparator(el.name))}</span>
               </div>
