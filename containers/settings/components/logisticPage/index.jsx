@@ -95,6 +95,9 @@ function LogisticPage() {
 
     if (response.status == 201) {
       setWichIdScope(response.data.id);
+
+      setConstraintId(response.data.constraint_id);
+      setMetricId(response.data.metric_id);
       upPage();
     }
   };

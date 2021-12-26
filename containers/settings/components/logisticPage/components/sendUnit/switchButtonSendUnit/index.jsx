@@ -11,10 +11,10 @@ function SBSendUnit({ id, isActive, shop_logistic_unit }) {
     let response = await ApiRegister().apiRequest(
       {
         is_active: !isActive,
-        shop_logistic_unit: shop_logistic_unit,
       },
-      "put",
-      `/api/v1/logistic/shop-logistic-unit-constraint/${id}/`,
+      "PATCH",
+
+      `/api/v1/logistic/shop-logistic-unit/${id}/`,
       true,
       ""
     );
