@@ -249,6 +249,7 @@ function LogisticPage() {
               <InputUseForm
                 title="هزینه پست به ازای هر کیلوگرم"
                 error={errors.price_per_kg}
+                text="تومان"
               >
                 <input
                   {...register("price_per_kg", {
@@ -259,6 +260,7 @@ function LogisticPage() {
               <InputUseForm
                 title="هزینه پست به ازای هر کیلوگرم اضافه تر"
                 error={errors.price_per_extra_kg}
+                text="تومان"
               >
                 <input
                   {...register("price_per_extra_kg", {
@@ -267,7 +269,11 @@ function LogisticPage() {
                 />
               </InputUseForm>
 
-              <InputUseForm title="حداقل هزینه سفارش" error={errors.minPrice}>
+              <InputUseForm
+                title="حداقل هزینه سفارش"
+                error={errors.minPrice}
+                text="تومان"
+              >
                 <input
                   {...register("minPrice", {
                     required: "هشدار",

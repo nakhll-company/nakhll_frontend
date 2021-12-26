@@ -237,7 +237,9 @@ const CreateProduct = ({ activeHojreh }) => {
                 <InputUseForm
                   title="وزن خالص محصول"
                   error={errors.Net_Weight}
+
                   text="گرم"
+                  
                 >
                   <input
                     type="number"
