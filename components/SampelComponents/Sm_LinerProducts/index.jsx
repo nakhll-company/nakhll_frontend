@@ -29,7 +29,7 @@ function Sm_LinerProducts({ id, data }) {
           if (el[0] == "q") {
             Queries["search"] = decodeURI(el[1]);
           } else {
-            Queries[el[0]] = el[1];
+            Queries[el[0]] = decodeURI(el[1]);
           }
         });
       }
