@@ -9,6 +9,7 @@ import BtnSetting from "./components/btnSetting";
 import CheckBoxSend from "./components/checkBoxSend";
 import Explain from "./components/explain";
 import HeaderTitle from "./components/headerTitle";
+import Panel from "./components/panel";
 import Products from "./components/products";
 import Search from "./components/search";
 import SendBox from "./components/sendBox";
@@ -76,18 +77,19 @@ function LogisticPage() {
   const _handle_add_new_scope = async () => {
     let response = await ApiRegister().apiRequest(
       {
-        is_active: false,
-        shop_logistic_unit: 10,
+        shop: activeHojreh,
+        name: "بدون نام",
       },
       "post",
-      `/api/v1/logistic/shop-logistic-unit-constraint/`,
+      `/api/v1/logistic/shop-logistic-unit/`,
       true,
       ""
     );
 
     if (response.status == 201) {
+      console.log(`response.data.`, response.data);
       setWichIdScope(response.data.id);
-      upPage();
+      upPage(2);
     }
   };
 
@@ -138,8 +140,8 @@ function LogisticPage() {
     }
   };
 
-  const upPage = () => {
-    setWichPage(wichPage + 1);
+  const upPage = (num = 1) => {
+    setWichPage(wichPage + num);
   };
   const downPage = () => {
     setWichPage(wichPage - 1);
@@ -171,26 +173,10 @@ function LogisticPage() {
               onClick={_handle_add_new_scope}
               title="ثبت واحد ارسال جدید"
             />
-            <SendBoxCu title="پست پیشتاز اولم" />
-            <SendBoxCu title="پست پیشتاز اولم" />
-            <SendBoxCu title="پست پیشتاز اولم" />
-            <SendBoxCu title="پست پیشتاز اولم" />
-            <SendBoxCu title="پست پیشتاز اولم" />
+
+            <Panel />
+
             {/* <ActiveSendBox title="پست پیشتاز" description="توضیحات سرویس" /> */}
-            {cardSend.map((el, index) => (
-              <SendBox
-                key={index}
-                onClick={() => {
-                  alert(el.id);
-                  setIdWithWay(el.id);
-                  upPage();
-                }}
-                title={el.logistic_unit.name}
-                description={el.logistic_unit.description}
-                isActive={el.is_active}
-                id={el.id}
-              />
-            ))}
           </>
         )}
         {wichPage == 2 && (
@@ -213,7 +199,10 @@ function LogisticPage() {
 
         {wichPage == 3 && (
           <>
-            <HeaderTitle onClick={() => downPage()} title="ثبت محدوده" />
+            <HeaderTitle
+              onClick={() => downPage()}
+              title="به کدام شهرها ارسال می کنید؟"
+            />
 
             <Explain text="توضیحات به حجره دار" />
             <CheckboxTreeCities
@@ -229,7 +218,10 @@ function LogisticPage() {
         )}
         {wichPage == 4 && (
           <>
-            <HeaderTitle onClick={() => downPage()} title="ثبت محدوده" />
+            <HeaderTitle
+              onClick={() => downPage()}
+              title="چه محصولاتی را ارسال می کنید؟"
+            />
 
             <Explain text="توضیحات به حجره دار" />
 
@@ -246,11 +238,18 @@ function LogisticPage() {
 
         {wichPage == 5 && (
           <>
-            <HeaderTitle onClick={() => downPage()} title="ثبت محدوده" />
+            <HeaderTitle onClick={() => downPage()} title="تنظیمات روش ارسال" />
 
             <Explain text="توضیحات به حجره دار" />
 
             <form onSubmit={handleSubmit(_handle_send_price_kg)}>
+              <InputUseForm title="نام روش" error={errors.NamePost}>
+                <input
+                  {...register("NamePost", {
+                    required: "هشدار سقف و پیش فرض هزینه ها",
+                  })}
+                />
+              </InputUseForm>
               <InputUseForm
                 title="هزینه پست به ازای هر کیلوگرم"
                 error={errors.price_per_kg}
@@ -272,9 +271,6 @@ function LogisticPage() {
                 />
               </InputUseForm>
 
-              <BtnSetting type="submit" title="ثبت" />
-            </form>
-            {/* <form>
               <InputUseForm title="حداقل هزینه سفارش" error={errors.minPrice}>
                 <input
                   {...register("minPrice", {
@@ -282,7 +278,9 @@ function LogisticPage() {
                   })}
                 />
               </InputUseForm>
-            </form> */}
+
+              <BtnSetting type="submit" title="ثبت" />
+            </form>
           </>
         )}
 

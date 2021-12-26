@@ -1,15 +1,17 @@
 import Image from "next/image";
 import SBSendUnit from "../sendUnit/switchButtonSendUnit";
+import Assistent from "zaravand-assistent-number";
 import st from "./sendBoxCu.module.scss";
-
-function SendBoxCu({ title }) {
+const _asist = new Assistent();
+function SendBoxCu({ data }) {
+  console.log(`data`, data);
   return (
     <>
       <div className={st.wraper}>
         <div className={st.card}>
           <div className={st.card_right}>
             <div className={st.card_right_top}>
-              <span>{title}</span>
+              <span>{_asist.PSeparator(_asist.PSeparator(data?.title))}</span>
             </div>
 
             <div className={st.card_right_btm}>
@@ -35,7 +37,7 @@ function SendBoxCu({ title }) {
                     alt="icon-1"
                   />
 
-                  <span>۵۵ محصول</span>
+                  <span>{_asist.PSeparator(data?.products_count)} محصول</span>
                 </div>
                 <div className={st.info_line}>
                   <Image
@@ -45,7 +47,7 @@ function SendBoxCu({ title }) {
                     height={20}
                     alt="icon-1"
                   />
-                  <span>۱۲ شهر</span>
+                  <span>{_asist.PSeparator(data?.cities_count)} شهر</span>
                 </div>
               </div>
             </div>
@@ -53,7 +55,11 @@ function SendBoxCu({ title }) {
           <div className={st.card_left}>
             <div className={st.wrapper_icons}>
               <div>
-                <SBSendUnit isActive={true} shop_logistic_unit={10} id={11} />
+                <SBSendUnit
+                  isActive={data?.is_active}
+                  shop_logistic_unit={data?.shop_logistic_unit}
+                  id={data?.id}
+                />
               </div>
               {/* <i
                   onClick={() => _handle_delete_scope(el.id)}
