@@ -94,9 +94,8 @@ function LogisticPage() {
     );
 
     if (response.status == 201) {
-      console.log(`response.data.`, response.data);
       setWichIdScope(response.data.id);
-      upPage(2);
+      upPage();
     }
   };
 
@@ -104,12 +103,13 @@ function LogisticPage() {
     let response = await ApiRegister().apiRequest(
       null,
       "get",
-      `/api/v1/logistic/shop-logistic-unit-constraint-parameter/${wichIdScope}/`,
+      `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
       true,
       ""
     );
 
     if (response.status == 200) {
+      console.log(`response.data.`, response.data);
       setProductsShop(response.data.products);
       setCheckedCities(response.data.cities);
     }
@@ -121,11 +121,11 @@ function LogisticPage() {
         cities: checkedCities,
       },
       "PATCH",
-      `/api/v1/logistic/shop-logistic-unit-constraint-parameter/${wichIdScope}/`,
+      `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
       true,
       ""
     );
-
+    console.log(`response.data`, response.data);
     if (response.status == 200) {
       upPage();
     }
@@ -133,18 +133,19 @@ function LogisticPage() {
 
   // functoin for send data for price per kg
 
-  const _handle_send_price_kg = async (data) => {
-    let response = await ApiRegister().apiRequest(
-      data,
-      "PATCH",
-      `/api/v1/logistic/shop-logistic-unit-constraint-parameter/${wichIdScope}/`,
-      true,
-      ""
-    );
+  const _handle_send_info_scope = async (data) => {
+    console.log(`data`, data);
+    // let response = await ApiRegister().apiRequest(
+    //   data,
+    //   "PATCH",
+    //   `/api/v1/logistic/shop-logistic-unit-constraint-parameter/${wichIdScope}/`,
+    //   true,
+    //   ""
+    // );
 
-    if (response.status == 200) {
-      upPage();
-    }
+    // if (response.status == 200) {
+    //   upPage();
+    // }
   };
 
   const upPage = (num = 1) => {
@@ -185,37 +186,20 @@ function LogisticPage() {
             <Panel
               setConstraintId={setConstraintId}
               setMetricId={setConstraintId}
-            />
-          </>
-        )}
-        {wichPage == 2 && (
-          <>
-            <HeaderTitle onClick={() => downPage()} title="واحد ارسال" />
-
-            <Explain text="با استفاده از ثبت واحد ارسال جدید شهرها، محصولات، روش و هزینه ارسال دلخواه را انتخاب کنید." />
-
-            <CheckBoxSend title="استفاده از تنظیمات پیشفرض" />
-
-            <Tabel
-              changePage={upPage}
               setWichIdScope={setWichIdScope}
-              whichMethod={whichMethod}
-            />
-            <BtnSetting
-              onClick={_handle_add_new_scope}
-              title="ثبت محدوده جدید"
+              changePage={upPage}
             />
           </>
         )}
 
-        {wichPage == 3 && (
+        {wichPage == 2 && (
           <>
             <HeaderTitle
               onClick={() => downPage()}
               title="به کدام شهرها ارسال می کنید؟"
             />
 
-            <Explain text="توضیحات به حجره دار" />
+            {/* <Explain text="توضیحات به حجره دار" /> */}
             <CheckboxTreeCities
               checkedCity={checkedCities}
               setCheckedCity={setCheckedCities}
@@ -227,18 +211,19 @@ function LogisticPage() {
             />
           </>
         )}
-        {wichPage == 4 && (
+        {wichPage == 3 && (
           <>
             <HeaderTitle
               onClick={() => downPage()}
               title="چه محصولاتی را ارسال می کنید؟"
             />
 
-            <Explain text="توضیحات به حجره دار" />
+            <Explain text="" />
 
             <CheckBoxSend title="تمام محصولات" />
 
             <Products
+              constraintId={constraintId}
               ProductsShop={ProductsShop}
               setProductsShop={setProductsShop}
               changePage={upPage}
@@ -247,16 +232,16 @@ function LogisticPage() {
           </>
         )}
 
-        {wichPage == 5 && (
+        {wichPage == 4 && (
           <>
             <HeaderTitle onClick={() => downPage()} title="تنظیمات روش ارسال" />
 
-            <Explain text="توضیحات به حجره دار" />
+            <Explain text="" />
 
-            <form onSubmit={handleSubmit(_handle_send_price_kg)}>
-              <InputUseForm title="نام روش" error={errors.NamePost}>
+            <form onSubmit={handleSubmit(_handle_send_info_scope)}>
+              <InputUseForm title="نام روش" error={errors.name}>
                 <input
-                  {...register("NamePost", {
+                  {...register("name", {
                     required: "هشدار سقف و پیش فرض هزینه ها",
                   })}
                 />
@@ -295,7 +280,7 @@ function LogisticPage() {
           </>
         )}
 
-        {wichPage == 6 && (
+        {wichPage == 5 && (
           <>
             <div className="d-flex justify-content-center w-100">
               <div className="pt-3 pb-3">

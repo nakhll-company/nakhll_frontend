@@ -7,8 +7,9 @@ import { useSelector } from "react-redux";
 import st from "./panel.module.scss";
 import Image from "next/image";
 import Assistent from "zaravand-assistent-number";
+import { errorMessage } from "../../../../../utils/message";
 const _asist = new Assistent();
-function Panel({ setConstraintId, setMetricId }) {
+function Panel({ setConstraintId, setMetricId, setWichIdScope, changePage }) {
   const activeHojreh = useSelector((state) => state.User.activeHojreh);
   // state for Saved Sending Unit
   const [SavedSendingUnit, setSavedSendingUnit] = useState([]);
@@ -27,7 +28,6 @@ function Panel({ setConstraintId, setMetricId }) {
       );
 
       if (response.status == 200) {
-        console.log(`response.datasssss`, response.data);
         setSavedSendingUnit(response.data);
       }
     }
@@ -54,8 +54,11 @@ function Panel({ setConstraintId, setMetricId }) {
       errorMessage("باری دیگر تلاش کنید.");
     }
   };
-  const _handel_click_on_scope = (id) => {
-    setWichIdScope(id);
+  const _handel_click_on_scope = (data) => {
+    console.log(`data`, data);
+    setWichIdScope(data.id);
+    setConstraintId(data.constraint_id);
+    setMetricId(data.metric_id);
     changePage();
   };
 
@@ -67,7 +70,7 @@ function Panel({ setConstraintId, setMetricId }) {
         <div key={index} className={st.wraper}>
           <div className={st.card}>
             <div
-              onClick={() => console.log(`el`, el)}
+              onClick={() => _handel_click_on_scope(el)}
               className={st.card_right}
             >
               <div className={st.card_right_top}>

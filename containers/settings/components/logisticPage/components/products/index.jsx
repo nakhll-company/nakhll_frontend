@@ -6,7 +6,13 @@ import BtnSetting from "../btnSetting";
 import { ApiRegister } from "../../../../../../services/apiRegister/ApiRegister";
 import { paginateFront } from "../../../../../../utils/paginateFrontSide";
 
-function Products({ ProductsShop, setProductsShop, changePage, wichIdScope }) {
+function Products({
+  ProductsShop,
+  setProductsShop,
+  changePage,
+  wichIdScope,
+  constraintId,
+}) {
   const [productList, setProductList] = useState(ProductsShop);
   const [searchedProduct, setSearchedProduct] = useState(ProductsShop);
   const [wordSearch, setWordSearch] = useState("");
@@ -71,7 +77,7 @@ function Products({ ProductsShop, setProductsShop, changePage, wichIdScope }) {
         products: arrayForSend,
       },
       "PATCH",
-      `/api/v1/logistic/shop-logistic-unit-constraint-parameter/${wichIdScope}/`,
+      `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
       true,
       ""
     );
