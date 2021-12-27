@@ -383,6 +383,7 @@ const CreateProduct = ({ activeHojreh }) => {
                   </>
                 )}
                 {/* discription */}
+
                 <TextAreaUseForm title="توضیحات محصول (اختیاری)">
                   <textarea
                     rows="10"
@@ -391,6 +392,7 @@ const CreateProduct = ({ activeHojreh }) => {
                     {...register("Description")}
                   />
                 </TextAreaUseForm>
+                
                 {/* inventory */}
                 <InputUseForm
                   title="موجودی"

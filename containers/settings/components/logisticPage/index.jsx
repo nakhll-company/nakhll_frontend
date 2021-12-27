@@ -5,6 +5,7 @@ import CheckboxTreeCities from "../../../../components/CheckboxTree/CheckboxTree
 import LoadingAllPage from "../../../../components/loadingAllPage";
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 import InputUseForm from "../../../creat/component/inputUseForm";
+import TextAreaUseForm from "../../../creat/component/textAreaUseForm";
 import { errorMessage } from "../../../utils/message";
 import ActiveSendBox from "./components/ActiveSendBox";
 import BtnSetting from "./components/btnSetting";
@@ -134,9 +135,11 @@ function LogisticPage() {
   // functoin for send data for price per kg
 
   const _handle_send_info_scope = async (data) => {
+    console.log(`data`, data);
     let response = await ApiRegister().apiRequest(
       {
         name: data.name ? data.name : "بدون نام",
+        description: data.description ? data.description : "",
         calculation_metric: {
           price_per_kilogram: data.price_per_kg ? data.price_per_kg : 0,
           price_per_extra_kilogram: data.price_per_extra_kg
@@ -356,6 +359,14 @@ function LogisticPage() {
                   {...register("max_weight")}
                 />
               </InputUseForm>
+              <TextAreaUseForm title="توضیح روش ارسال">
+                <textarea
+                  rows="7"
+                  type="text"
+                  placeholder="در روش ارسال من محصولتون در کمترین زمان  بدستتون میرسه.پس با خیال راحت قهوه بنوشید و منتظر  شنیدن صدای زنگ در باشید."
+                  {...register("description")}
+                />
+              </TextAreaUseForm>
 
               <BtnSetting type="submit" title="ثبت" />
             </form>
