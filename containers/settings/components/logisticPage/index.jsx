@@ -51,6 +51,10 @@ function LogisticPage() {
 
   const [metricId, setMetricId] = useState("");
 
+  // for checkbox
+  const [checkedSelectAllProducts, setCheckedSelectAllProducts] =
+    useState(true);
+
   // state for Saved Sending Unit
   // const [SavedSendingUnit, setSavedSendingUnit] = useState([]);
   // useform
@@ -236,15 +240,30 @@ function LogisticPage() {
 
             <Explain text="" />
 
-            <CheckBoxSend title="تمام محصولات" />
-
-            <Products
-              constraintId={constraintId}
-              ProductsShop={ProductsShop}
-              setProductsShop={setProductsShop}
-              changePage={upPage}
-              wichIdScope={wichIdScope}
+            <CheckBoxSend
+              checked={checkedSelectAllProducts}
+              onChange={() =>
+                setCheckedSelectAllProducts(!checkedSelectAllProducts)
+              }
+              id="selectAllProducts"
+              title="تمام محصولات"
             />
+            {checkedSelectAllProducts && (
+              <BtnSetting
+                onClick={() => alert("تمام محصولات")}
+                title="مرحله بعد"
+              />
+            )}
+
+            {!checkedSelectAllProducts && (
+              <Products
+                constraintId={constraintId}
+                ProductsShop={ProductsShop}
+                setProductsShop={setProductsShop}
+                changePage={upPage}
+                wichIdScope={wichIdScope}
+              />
+            )}
           </>
         )}
 

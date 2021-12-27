@@ -15,6 +15,7 @@ function Products({
 }) {
   const [productList, setProductList] = useState(ProductsShop);
   const [searchedProduct, setSearchedProduct] = useState(ProductsShop);
+  const [PaginatedPages, setPaginatedPages] = useState([]);
   const [wordSearch, setWordSearch] = useState("");
 
   const [perPage, setPerPage] = useState(30);
@@ -91,6 +92,8 @@ function Products({
   useEffect(() => {
     setSearchedProduct(paginateFront(ProductsShop, currentPage, perPage));
   }, [currentPage]);
+
+  useEffect(() => {}, [currentPage, searchedProduct]);
 
   return (
     <>
