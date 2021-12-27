@@ -48,6 +48,7 @@ function LogisticPage() {
   // for save metricId
 
   const [metricId, setMetricId] = useState("");
+  const [informationForm, setInformationForm] = useState({});
 
   // for checkbox
   const [checkedSelectAllProducts, setCheckedSelectAllProducts] =
@@ -86,7 +87,7 @@ function LogisticPage() {
 
     if (response.status == 201) {
       setWichIdScope(response.data.id);
-
+      setInformationForm(response.data);
       setConstraintId(response.data.constraint.id);
       setMetricId(response.data.calculation_metric.id);
       upPage();
@@ -144,6 +145,7 @@ function LogisticPage() {
         },
         constraint: {
           min_cart_price: data.minPrice ? data.minPrice : 0,
+          max_weight: data.max_weight,
         },
       },
       "PATCH",
@@ -156,6 +158,23 @@ function LogisticPage() {
       upPage();
     }
   };
+
+  // set data in form
+  useEffect(() => {
+    if (Object.keys(informationForm).length > 0) {
+      setValue("name", informationForm.name);
+      setValue(
+        "price_per_kg",
+        informationForm.calculation_metric.price_per_kilogram
+      );
+      setValue(
+        "price_per_extra_kg",
+        informationForm.calculation_metric.price_per_extra_kilogram
+      );
+      setValue("minPrice", informationForm.constraint.min_cart_price);
+      setValue("max_weight", informationForm.constraint.max_weight);
+    }
+  }, [informationForm]);
 
   const upPage = (num = 1) => {
     setWichPage(wichPage + num);
@@ -212,6 +231,7 @@ function LogisticPage() {
               setMetricId={setMetricId}
               setWichIdScope={setWichIdScope}
               changePage={upPage}
+              setInformationForm={setInformationForm}
             />
           </>
         )}
@@ -281,19 +301,33 @@ function LogisticPage() {
               <InputUseForm title="نام روش" error={errors.name}>
                 <input {...register("name")} />
               </InputUseForm>
+
               <InputUseForm
                 title="هزینه پست به ازای هر کیلوگرم"
                 error={errors.price_per_kg}
                 text="تومان"
               >
-                <input type="number" {...register("price_per_kg")} />
+                <input
+                  onWheel={(event) => {
+                    event.currentTarget.blur();
+                  }}
+                  type="number"
+                  {...register("price_per_kg")}
+                />
               </InputUseForm>
+
               <InputUseForm
                 title="هزینه پست به ازای هر کیلوگرم اضافه تر"
                 error={errors.price_per_extra_kg}
                 text="تومان"
               >
-                <input type="number" {...register("price_per_extra_kg")} />
+                <input
+                  onWheel={(event) => {
+                    event.currentTarget.blur();
+                  }}
+                  type="number"
+                  {...register("price_per_extra_kg")}
+                />
               </InputUseForm>
 
               <InputUseForm
@@ -301,7 +335,26 @@ function LogisticPage() {
                 error={errors.minPrice}
                 text="تومان"
               >
-                <input type="number" {...register("minPrice")} />
+                <input
+                  onWheel={(event) => {
+                    event.currentTarget.blur();
+                  }}
+                  type="number"
+                  {...register("minPrice")}
+                />
+              </InputUseForm>
+              <InputUseForm
+                title="حداکثر وزن مرسوله"
+                error={errors.max_weight}
+                text="کیلوگرم"
+              >
+                <input
+                  onWheel={(event) => {
+                    event.currentTarget.blur();
+                  }}
+                  type="number"
+                  {...register("max_weight")}
+                />
               </InputUseForm>
 
               <BtnSetting type="submit" title="ثبت" />

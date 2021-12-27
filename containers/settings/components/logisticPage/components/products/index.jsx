@@ -18,10 +18,10 @@ function Products({
   const [PaginatedPages, setPaginatedPages] = useState([]);
   const [wordSearch, setWordSearch] = useState("");
 
-  const [perPage, setPerPage] = useState(30);
+  const [perPage, setPerPage] = useState(50);
   const [currentPage, setCurrentPage] = useState(1);
   const [allPages, setAllPages] = useState(
-    _.range(Math.ceil(ProductsShop.length / 30))
+    _.range(Math.ceil(ProductsShop.length / 50))
   );
 
   const _handel_search = (word) => {

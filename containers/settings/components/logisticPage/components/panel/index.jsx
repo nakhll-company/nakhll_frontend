@@ -9,7 +9,13 @@ import Image from "next/image";
 import Assistent from "zaravand-assistent-number";
 import { errorMessage } from "../../../../../utils/message";
 const _asist = new Assistent();
-function Panel({ setConstraintId, setMetricId, setWichIdScope, changePage }) {
+function Panel({
+  setConstraintId,
+  setMetricId,
+  setWichIdScope,
+  changePage,
+  setInformationForm,
+}) {
   const activeHojreh = useSelector((state) => state.User.activeHojreh);
   // state for Saved Sending Unit
   const [SavedSendingUnit, setSavedSendingUnit] = useState([]);
@@ -57,6 +63,7 @@ function Panel({ setConstraintId, setMetricId, setWichIdScope, changePage }) {
     }
   };
   const _handel_click_on_scope = (data) => {
+    setInformationForm(data);
     setWichIdScope(data.id);
     setConstraintId(data.constraint.id);
     setMetricId(data.calculation_metric.id);
@@ -67,7 +74,7 @@ function Panel({ setConstraintId, setMetricId, setWichIdScope, changePage }) {
     <>
       {loaderTable && <LoadingAllPage title="در حال حذف" />}
 
-      {SavedSendingUnit.map((el, index) => (
+      {SavedSendingUnit?.map((el, index) => (
         <div key={index} className={st.wraper}>
           <div className={st.card}>
             <div
@@ -82,13 +89,15 @@ function Panel({ setConstraintId, setMetricId, setWichIdScope, changePage }) {
                 {/* icons */}
 
                 <div className={st.icon_post}>
-                  <Image
-                    layout="responsive"
-                    src={el.logo}
-                    width={30}
-                    height={30}
-                    alt="icon"
-                  />
+                  {el.logo && (
+                    <Image
+                      layout="responsive"
+                      src={el.logo}
+                      width={30}
+                      height={30}
+                      alt="icon"
+                    />
+                  )}
                 </div>
 
                 <div className={st.info_post}>
