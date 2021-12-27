@@ -145,7 +145,7 @@ function Index() {
 
   return (
     <>
-      <Head>
+      {/* <Head>
         <title>آنالیز</title>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
@@ -177,9 +177,7 @@ function Index() {
           </span>
           <span style={{ color: "green" }}>{superShop}</span>
         </div>
-        {/* نمودار */}
 
-        {/* نمودار */}
         <div className={st.wrap_nemodar}>
           <ReactECharts
             option={optionStateShops}
@@ -193,7 +191,7 @@ function Index() {
           />
         </div>
 
-        {/* سرچ */}
+
         <div className={st.wrap_search}>
           <Search
             placeholder="جستجو حجره"
@@ -272,7 +270,7 @@ function Index() {
             </tbody>
           </table>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
