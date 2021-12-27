@@ -63,7 +63,6 @@ function Panel({ setConstraintId, setMetricId, setWichIdScope, changePage }) {
     changePage();
   };
 
-  
   return (
     <>
       {loaderTable && <LoadingAllPage title="در حال حذف" />}
@@ -85,10 +84,10 @@ function Panel({ setConstraintId, setMetricId, setWichIdScope, changePage }) {
                 <div className={st.icon_post}>
                   <Image
                     layout="responsive"
-                    src="/icons/settings/ExpressPost.svg"
+                    src={el.logo}
                     width={30}
                     height={30}
-                    alt="icon-1"
+                    alt="icon"
                   />
                 </div>
 
@@ -99,7 +98,7 @@ function Panel({ setConstraintId, setMetricId, setWichIdScope, changePage }) {
                       src="/icons/settings/products.svg"
                       width={20}
                       height={20}
-                      alt="icon-1"
+                      alt="icon"
                     />
 
                     <span>
@@ -114,7 +113,7 @@ function Panel({ setConstraintId, setMetricId, setWichIdScope, changePage }) {
                       src="/icons/settings/cities.svg"
                       width={20}
                       height={20}
-                      alt="icon-1"
+                      alt="icon"
                     />
                     <span>
                       {el.cities_count == 0
@@ -147,7 +146,7 @@ function Panel({ setConstraintId, setMetricId, setWichIdScope, changePage }) {
                     src="/icons/settings/trash.svg"
                     width={20}
                     height={20}
-                    alt="icon-1"
+                    alt="icon"
                   />
                 </div>
               </div>
