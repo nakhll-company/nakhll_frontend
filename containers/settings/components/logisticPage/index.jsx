@@ -2,13 +2,16 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import CheckboxTreeCities from "../../../../components/CheckboxTree/CheckboxTree";
+import LoadingAllPage from "../../../../components/loadingAllPage";
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 import InputUseForm from "../../../creat/component/inputUseForm";
+import { errorMessage } from "../../../utils/message";
 import ActiveSendBox from "./components/ActiveSendBox";
 import BtnSetting from "./components/btnSetting";
 import CheckBoxSend from "./components/checkBoxSend";
 import Explain from "./components/explain";
 import HeaderTitle from "./components/headerTitle";
+
 import Panel from "./components/panel";
 import Products from "./components/products";
 import Search from "./components/search";
@@ -20,6 +23,9 @@ import st from "./logisticPage.module.scss";
 
 function LogisticPage() {
   const activeHojreh = useSelector((state) => state.User.activeHojreh);
+
+  // state for loader
+  const [loader, setLoader] = useState(false);
 
   // state for handel page
   const [wichPage, setWichPage] = useState(1);
@@ -112,16 +118,16 @@ function LogisticPage() {
     );
 
     if (response.status == 200) {
-      console.log(`response.data.`, response.data);
       setProductsShop(response.data.products);
       setCheckedCities(response.data.cities);
     }
   };
 
   const _handle_update_data_scope = async () => {
+    setLoader(true);
     let response = await ApiRegister().apiRequest(
       {
-        cities: checkedCities,
+        cities: checkedCities.length > 0 ? checkedCities : null,
       },
       "PATCH",
       `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
@@ -131,6 +137,11 @@ function LogisticPage() {
     console.log(`response.data`, response.data);
     if (response.status == 200) {
       upPage();
+      setLoader(false);
+    } else {
+      setLoader(false);
+
+      errorMessage("باری دیگر تلاش کنید.");
     }
   };
 
@@ -170,6 +181,8 @@ function LogisticPage() {
 
   return (
     <>
+      {loader && <LoadingAllPage title="در حال به روز رسانی ..." />}
+
       <div className={st.main}>
         {wichPage == 1 && (
           <>

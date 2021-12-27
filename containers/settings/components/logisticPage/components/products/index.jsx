@@ -101,7 +101,14 @@ function Products({
       <div className="d-flex justify-content-center pt-2 pb-2">
         <nav aria-label="Page navigation">
           <ul className="pagination">
-            <li className="page-item">
+            <li
+              onClick={() => {
+                if (currentPage > 1) {
+                  setCurrentPage(currentPage - 1);
+                }
+              }}
+              className="page-item"
+            >
               <div className="page-link">
                 <span aria-hidden="true">&laquo;</span>
               </div>
@@ -110,13 +117,34 @@ function Products({
             <li className="page-item">
               <div className="page-link bg-info">{currentPage}</div>
             </li>
-            <li className="page-item">
+            <li
+              onClick={() => {
+                if (currentPage < allPages.length) {
+                  setCurrentPage(currentPage + 1);
+                }
+              }}
+              className="page-item"
+            >
               <div className="page-link ">{currentPage + 1}</div>
             </li>
-            <li className="page-item">
+            <li
+              onClick={() => {
+                if (currentPage < allPages.length) {
+                  setCurrentPage(currentPage + 1);
+                }
+              }}
+              className="page-item"
+            >
               <div className="page-link">{currentPage + 2}</div>
             </li>
-            <li className="page-item">
+            <li
+              onClick={() => {
+                if (currentPage < allPages.length) {
+                  setCurrentPage(currentPage + 1);
+                }
+              }}
+              className="page-item"
+            >
               <div className="page-link" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
               </div>

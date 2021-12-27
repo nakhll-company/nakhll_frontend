@@ -51,7 +51,9 @@ function Panel({ setConstraintId, setMetricId, setWichIdScope, changePage }) {
       setLoaderTable(false);
     } else {
       setLoaderTable(false);
+
       errorMessage("باری دیگر تلاش کنید.");
+      
     }
   };
   const _handel_click_on_scope = (data) => {
@@ -64,6 +66,7 @@ function Panel({ setConstraintId, setMetricId, setWichIdScope, changePage }) {
 
   return (
     <>
+
       {loaderTable && <LoadingAllPage title="در حال حذف" />}
 
       {SavedSendingUnit.map((el, index) => (
