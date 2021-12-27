@@ -174,6 +174,19 @@ function LogisticPage() {
     }
   }, [constraintId]);
 
+  const _handle_send_all_cities = async () => {
+    let response = await ApiRegister().apiRequest(
+      {
+        products: [],
+      },
+      "PATCH",
+      `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
+      true,
+      ""
+    );
+    upPage();
+  };
+
   return (
     <>
       {loader && <LoadingAllPage title="در حال به روز رسانی ..." />}
@@ -196,7 +209,7 @@ function LogisticPage() {
 
             <Panel
               setConstraintId={setConstraintId}
-              setMetricId={setConstraintId}
+              setMetricId={setMetricId}
               setWichIdScope={setWichIdScope}
               changePage={upPage}
             />
@@ -241,7 +254,7 @@ function LogisticPage() {
             />
             {checkedSelectAllProducts && (
               <BtnSetting
-                onClick={() => alert("تمام محصولات")}
+                onClick={() => _handle_send_all_cities()}
                 title="مرحله بعد"
               />
             )}
@@ -266,33 +279,21 @@ function LogisticPage() {
 
             <form onSubmit={handleSubmit(_handle_send_info_scope)}>
               <InputUseForm title="نام روش" error={errors.name}>
-                <input
-                  {...register("name", {
-                    required: "هشدار سقف و پیش فرض هزینه ها",
-                  })}
-                />
+                <input {...register("name")} />
               </InputUseForm>
               <InputUseForm
                 title="هزینه پست به ازای هر کیلوگرم"
                 error={errors.price_per_kg}
                 text="تومان"
               >
-                <input
-                  {...register("price_per_kg", {
-                    required: "هشدار سقف و پیش فرض هزینه ها",
-                  })}
-                />
+                <input type="number" {...register("price_per_kg")} />
               </InputUseForm>
               <InputUseForm
                 title="هزینه پست به ازای هر کیلوگرم اضافه تر"
                 error={errors.price_per_extra_kg}
                 text="تومان"
               >
-                <input
-                  {...register("price_per_extra_kg", {
-                    required: "هشدار سقف و پیش فرض هزینه ها",
-                  })}
-                />
+                <input type="number" {...register("price_per_extra_kg")} />
               </InputUseForm>
 
               <InputUseForm
@@ -300,11 +301,7 @@ function LogisticPage() {
                 error={errors.minPrice}
                 text="تومان"
               >
-                <input
-                  {...register("minPrice", {
-                    required: "هشدار",
-                  })}
-                />
+                <input type="number" {...register("minPrice")} />
               </InputUseForm>
 
               <BtnSetting type="submit" title="ثبت" />

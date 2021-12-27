@@ -57,13 +57,13 @@ function Panel({ setConstraintId, setMetricId, setWichIdScope, changePage }) {
     }
   };
   const _handel_click_on_scope = (data) => {
-    
     setWichIdScope(data.id);
     setConstraintId(data.constraint.id);
     setMetricId(data.calculation_metric.id);
     changePage();
   };
 
+  
   return (
     <>
       {loaderTable && <LoadingAllPage title="در حال حذف" />}
