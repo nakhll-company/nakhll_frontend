@@ -53,11 +53,9 @@ function Panel({ setConstraintId, setMetricId, setWichIdScope, changePage }) {
       setLoaderTable(false);
 
       errorMessage("باری دیگر تلاش کنید.");
-      
     }
   };
   const _handel_click_on_scope = (data) => {
-   
     setWichIdScope(data.id);
     setConstraintId(data.constraint_id);
     setMetricId(data.metric_id);
@@ -66,7 +64,6 @@ function Panel({ setConstraintId, setMetricId, setWichIdScope, changePage }) {
 
   return (
     <>
-
       {loaderTable && <LoadingAllPage title="در حال حذف" />}
 
       {SavedSendingUnit.map((el, index) => (
@@ -103,7 +100,11 @@ function Panel({ setConstraintId, setMetricId, setWichIdScope, changePage }) {
                       alt="icon-1"
                     />
 
-                    <span>{_asist.PSeparator(el.products_count)} محصول</span>
+                    <span>
+                      {el.products_count == 0
+                        ? "تمام محصولات"
+                        : `${_asist.PSeparator(el.products_count)} محصول`}
+                    </span>
                   </div>
                   <div className={st.info_line}>
                     <Image
@@ -113,7 +114,11 @@ function Panel({ setConstraintId, setMetricId, setWichIdScope, changePage }) {
                       height={20}
                       alt="icon-1"
                     />
-                    <span>{_asist.PSeparator(el.cities_count)} شهر</span>
+                    <span>
+                      {el.cities_count == 0
+                        ? "تمام شهرها"
+                        : `${_asist.PSeparator(el.cities_count)} شهر`}
+                    </span>
                   </div>
                 </div>
               </div>

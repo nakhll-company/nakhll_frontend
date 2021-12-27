@@ -99,7 +99,7 @@ function Products({
         onChange={(e) => _handel_search(e.target.value)}
       />
       <div className="d-flex justify-content-center pt-2 pb-2">
-        <nav aria-label="Page navigation">
+        <nav style={{ cursor: "pointer" }} aria-label="Page navigation">
           <ul className="pagination">
             <li
               onClick={() => {
@@ -163,8 +163,8 @@ function Products({
             style={{ float: "right", cursor: "pointer" }}
             className="form-check-input"
             type="checkbox"
-            id={`Check_${index}_Default`}
-            onClick={() => _handel_selected_id_product(el)}
+            id={`Check_${el.ID}_Default`}
+            onChange={() => _handel_selected_id_product(el)}
             checked={el.is_checked}
           />
           <label
@@ -173,7 +173,7 @@ function Products({
               color: "#000000A1",
               cursor: "pointer",
             }}
-            htmlFor={`Check_${index}_Default`}
+            htmlFor={`Check_${el.ID}_Default`}
           >
             {getHighlightText(el.Title, wordSearch)}
           </label>
