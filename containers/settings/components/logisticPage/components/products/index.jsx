@@ -74,7 +74,7 @@ function Products({
 
     let response = await ApiRegister().apiRequest(
       {
-        products: arrayForSend,
+        products: arrayForSend.length > 0 ? arrayForSend : [],
       },
       "PATCH",
       `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
