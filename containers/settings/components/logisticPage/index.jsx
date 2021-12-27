@@ -104,10 +104,11 @@ function LogisticPage() {
     );
 
     if (response.status == 201) {
+      console.log(`response.data`, response.data);
       setWichIdScope(response.data.id);
 
-      setConstraintId(response.data.constraint_id);
-      setMetricId(response.data.metric_id);
+      setConstraintId(response.data.constraint.id);
+      setMetricId(response.data.calculation_metric.id);
       upPage();
     }
   };

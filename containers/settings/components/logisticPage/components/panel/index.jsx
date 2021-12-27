@@ -58,8 +58,8 @@ function Panel({ setConstraintId, setMetricId, setWichIdScope, changePage }) {
   };
   const _handel_click_on_scope = (data) => {
     setWichIdScope(data.id);
-    setConstraintId(data.constraint_id);
-    setMetricId(data.metric_id);
+    setConstraintId(data.constraint.id);
+    setMetricId(data.calculation_metric.id);
     changePage();
   };
 
