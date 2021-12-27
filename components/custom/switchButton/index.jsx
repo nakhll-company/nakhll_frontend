@@ -8,8 +8,8 @@ function SwitchButton({ id }) {
           type="checkbox"
           id={`switch__${id}`}
           className={styles.custom_switch__input}
-          // onChange={onChange}
-          // defaultChecked={defaultChecked}
+          onChange={onChange}
+          defaultChecked={defaultChecked}
         />{" "}
         <label
           htmlFor={`switch__${id}`}

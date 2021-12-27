@@ -1,12 +1,12 @@
-import SwitchButton from "../../../../../../components/custom/switchButton";
 import st from "./sendBox.module.scss";
+import SwitchButtonSetting from "./switchButton";
 
-function SendBox({ title, description }) {
+function SendBox({ title, description, isActive, id, onClick }) {
   return (
     <>
       <div className={st.box}>
         {/* icon */}
-        <div className={st.rigth}>
+        <div onClick={onClick} className={st.rigth}>
           <div className={st.icon}></div>
           {/* text */}
           <div className={st.text}>
@@ -16,7 +16,7 @@ function SendBox({ title, description }) {
         </div>
         {/* checkBox */}
         <div className={st.radio_btn}>
-          <SwitchButton id="one" />
+          <SwitchButtonSetting id={id} isActive={isActive} />
         </div>
       </div>
     </>

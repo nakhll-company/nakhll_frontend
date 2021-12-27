@@ -13,3 +13,10 @@
         cursor: pointer;
     }
 }
+.nameTable {
+    cursor: pointer;
+    transition: all 0.4s;
+    &:hover {
+        font-size: 18px;
+    }
+}

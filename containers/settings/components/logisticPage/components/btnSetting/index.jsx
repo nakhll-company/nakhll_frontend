@@ -1,9 +1,11 @@
 import st from "./btnSetting.module.scss";
-function BtnSetting({ title }) {
+function BtnSetting({ title, onClick, type = "button" }) {
   return (
     <>
       <div className={st.wrapBtn}>
-        <button className={st.btn}>{title}</button>
+        <button type={type} className={st.btn} onClick={onClick}>
+          {title}
+        </button>
       </div>
     </>
   );

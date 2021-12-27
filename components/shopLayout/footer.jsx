@@ -76,6 +76,7 @@ const Footer = () => {
                         style={{ width: "30px" }}
                         href="https://www.aparat.com/nakhll"
                         target="_blank"
+                        rel="noreferrer"
                         aria-label="آپارات بازار اجتماعی نخل"
                         rel="noreferrer"
                       >
@@ -487,12 +488,14 @@ const Footer = () => {
                     style={{ width: "30px" }}
                     href="https://www.aparat.com/nakhll"
                     target="_blank"
+                    rel="noreferrer"
                     aria-label="آپارات بازار اجتماعی نخل"
                     rel="noreferrer"
                   >
                     <Image
                       src="/icons/footer/aparat.png"
                       layout="responsive"
+                      alt="آپارات"
                       width={200}
                       height={200}
                       alt="آپارات"
@@ -503,6 +506,7 @@ const Footer = () => {
                     target="_blank"
                     rel="noreferrer"
                     aria-label="اینستاگرام"
+                    rel="noreferrer"
                     style={{ fontSize: "30px", display: "flex" }}
                   >
                     <i className="fab fa-instagram"></i>
