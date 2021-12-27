@@ -12,6 +12,7 @@ import CustomAccordionSend from "../../../components/custom/customAccordionSend"
 import Number from "../../../components/number";
 function Send() {
   const [ListItems, setListItems] = useState([]);
+  const [invoice, setInvoice] = useState({});
   const router = useRouter();
   const { invoice_id } = router.query;
 
@@ -29,7 +30,8 @@ function Send() {
     );
     let data = response.data;
     if (response.status === 200) {
-      setListItems(response.data.items);
+      setListItems(response.data.logistic_unit_details);
+      setInvoice(response.data);
       console.log(`response.data`, response.data);
     }
   };
@@ -64,38 +66,46 @@ function Send() {
             <section className={st.body_address}>
               <div className={st.address_head}>
                 <span>روش ارسال محصول خود را انتخاب نمایید.</span>
-                <span className={st.explain_price}>قیمت برحسب تومان می باشد</span>
+                <span className={st.explain_price}>
+                  قیمت برحسب تومان می باشد
+                </span>
               </div>
 
               {ListItems.map((el, index) => (
                 <CustomAccordionSend
                   key={index}
-                  title={el.shop_name}
+                  title={` حجره ${el.shop_name}`}
                   item={`Send_${index}_acor`}
                   close={true}
+                  logistic_price={invoice.logistic_price}
+                  logistic_units={el.logistic_units}
                 >
-                  {[1, 1, 1, 1, 1, 1].map((ef) => (
+                  {Object.values(el.logistic_units).map((ef) => (
                     <>
-                      <div className={st.wrap_one_product}>
-                        <div
-                          style={{
-                            height: "50px",
-                            width: "50px",
-                            borderRadius: "5px",
-                            backgroundColor: "blueviolet",
-                            overflow: "hidden",
-                          }}
-                          className=""
-                        >
-                          <Image
-                            src={el.image}
-                            layout="responsive"
-                            height={50}
-                            width={50}
-                            alt=""
-                          />
-                        </div>
-                        <div className={st.select_way}>
+                      {console.log(`elllll`, el)}
+                      {ef.name}
+                      {ef.products.map((product, index) => (
+                        <>
+                          <div className={st.wrap_one_product}>
+                            <div
+                              style={{
+                                height: "50px",
+                                width: "50px",
+                                borderRadius: "5px",
+                                backgroundColor: "blueviolet",
+                                overflow: "hidden",
+                              }}
+                              className=""
+                            >
+                              <Image
+                                src={product.image}
+                                layout="responsive"
+                                height={50}
+                                width={50}
+                                alt=""
+                              />
+                            </div>
+                            {/* <div className={st.select_way}>
                           <select
                             id="select-shop"
                             // onChange={(a) => {
@@ -118,12 +128,15 @@ function Send() {
                               one
                             </option>
                           </select>
-                        </div>
-                        <div className={st.price}>
-                          <Number num="2500000" />
-                        </div>
-                      </div>
-                      <div className={st.liner}></div>
+                        </div> */}
+
+                            {/* <div className={st.price}>
+                              <Number num="2500000" />
+                            </div> */}
+                          </div>
+                          <div className={st.liner}></div>
+                        </>
+                      ))}
                     </>
                   ))}
 

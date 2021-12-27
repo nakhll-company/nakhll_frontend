@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./customAccordionSend.module.scss";
-export const CustomAccordionSend = ({ children, title, item, callApi }) => {
+import Image from "next/image";
+import Number from "../../number";
+
+export const CustomAccordionSend = ({
+  children,
+  title,
+  item,
+  logistic_units,
+  callApi,
+  logistic_price,
+}) => {
+  const [allMiniPic, setAllMiniPic] = useState(Object.values(logistic_units));
+
+  console.log(`logistic_units`, Object.values(logistic_units));
   const _handel_according = (accord, icon, images) => {
     let element = document.getElementById(accord);
     if (element.style.height == "0px") {
@@ -58,8 +71,19 @@ export const CustomAccordionSend = ({ children, title, item, callApi }) => {
                 </span>
 
                 <div id={`pic_${item}`} className={styles.wrap_mini_pic}>
-                  {[1, 1, 1, 1, 1].map((el) => (
-                    <div className={styles.mini_pic}></div>
+                  {allMiniPic?.map((el, index) => (
+                    <div key={index} className={styles.mini_pic}>
+                      {el.products.map((elIn, indexIn) => (
+                        <Image
+                          src={elIn.image}
+                          layout="fixed"
+                          width={30}
+                          height={30}
+                          alt=""
+                          key={indexIn}
+                        />
+                      ))}
+                    </div>
                   ))}
                 </div>
               </div>
@@ -86,7 +110,9 @@ export const CustomAccordionSend = ({ children, title, item, callApi }) => {
               <span>توضیحات برای ارسال و رایگان شدن سبد حجره</span>
             </div>
             <div className="">
-              <span>جمع قیمت</span>
+              <span>
+                <Number num={logistic_price} />
+              </span>
             </div>
           </div>
         </div>
