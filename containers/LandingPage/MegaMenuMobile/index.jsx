@@ -48,16 +48,19 @@ function MegaMenuMobile({ category }) {
             {element.childrens.length > 0 &&
               element.childrens.map((subElement, index) => (
                 <li key={index}>
-                  <Link href={`/search?q=&new_category=${subElement.id}`}>
-                    <a
-                      onClick={() => {
-                        document.getElementById("SlideMenu").style.right =
-                          "-100%";
-                      }}
-                    >
-                      {subElement.name}
-                    </a>
-                  </Link>
+                  {/* <Link href={`/search?q=&new_category=${subElement.id}`}> */}
+                  <div
+                    onClick={() => {
+                      location.replace(
+                        `/search?q=&new_category=${subElement.id}`
+                      );
+                      // document.getElementById("SlideMenu").style.right =
+                      //   "-100%";
+                    }}
+                  >
+                    {subElement.name}
+                  </div>
+                  {/* </Link> */}
                 </li>
               ))}
           </ul>
