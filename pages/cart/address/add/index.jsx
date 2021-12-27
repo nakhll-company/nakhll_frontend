@@ -34,8 +34,11 @@ const NewAddress = () => {
         await setLoading(false);
     };
 
-    useEffect(async () => {
-        setSelectState(await getStates());
+    useEffect(() => {
+        async function fetchData() {
+            setSelectState(await getStates());
+        }
+        fetchData();
     }, []);
 
     return (
@@ -150,7 +153,7 @@ const NewAddress = () => {
                                             message: 'شماره موبایل باید یازده رقمی باشد' // JS only: <p>error message</p> TS only support string
                                         },
                                         pattern: {
-                                            value: /^09(0[2-5]|1[0-9]|3[0-9]|2[1-9]|9[0-9])-?[0-9]{3}-?[0-9]{4}$/ || /^۰۹(۰[۲-۵]|۱[۰-۹]|۳[۱-۹]|۲[۱-۹]|۹[۰-۹])-?[۰-۹]{3}-?[۰-۹]{4}$/,
+                                            value: /^09(0[2-5]|1[0-9]|3[0-9]|2[1-9]|9[0-9])-?[0-9]{3}-?[0-9]{4}$/ || /^۰۹(۰[۲-۵]|۱[۰-۹]|۳[۰-۹]|۲[۱-۹]|۹[۰-۹])-?[۰-۹]{3}-?[۰-۹]{4}$/,
                                             message: 'لطفا شماره موبایل خود را صحیح وارد نمایید' // JS only: <p>error message</p> TS only support string
                                         }
                                     })} />
