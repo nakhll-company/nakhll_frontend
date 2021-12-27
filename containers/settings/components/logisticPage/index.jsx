@@ -36,8 +36,6 @@ function LogisticPage() {
   // for save id scope
   const [wichIdScope, setWichIdScope] = useState("");
 
-  // State for get card
-  const [cardSend, setCardSend] = useState([]);
   // for Save cities
   const [checkedCities, setCheckedCities] = useState([]);
 
@@ -72,23 +70,6 @@ function LogisticPage() {
     mode: "all",
   });
 
-  useEffect(() => {
-    async function fetchData() {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "GET",
-        `/api/v1/logistic/shop-logistic-unit/?shop=${activeHojreh}`,
-        true,
-        ""
-      );
-      if (response.status == 200) {
-        setCardSend(response.data);
-      }
-    }
-
-    fetchData();
-  }, []);
-
   // function for Create Shop Logistic Unit Constraint
 
   const _handle_add_new_scope = async () => {
@@ -104,7 +85,6 @@ function LogisticPage() {
     );
 
     if (response.status == 201) {
-      console.log(`response.data`, response.data);
       setWichIdScope(response.data.id);
 
       setConstraintId(response.data.constraint.id);
@@ -139,7 +119,7 @@ function LogisticPage() {
       true,
       ""
     );
-    console.log(`response.data`, response.data);
+
     if (response.status == 200) {
       upPage();
       setLoader(false);
@@ -153,18 +133,28 @@ function LogisticPage() {
   // functoin for send data for price per kg
 
   const _handle_send_info_scope = async (data) => {
-    console.log(`data`, data);
-    // let response = await ApiRegister().apiRequest(
-    //   data,
-    //   "PATCH",
-    //   `/api/v1/logistic/shop-logistic-unit-constraint-parameter/${wichIdScope}/`,
-    //   true,
-    //   ""
-    // );
-
-    // if (response.status == 200) {
-    //   upPage();
-    // }
+    let response = await ApiRegister().apiRequest(
+      {
+        name: data.name ? data.name : "بدون نام",
+        calculation_metric: {
+          price_per_kilogram: data.price_per_kg ? data.price_per_kg : 0,
+          price_per_extra_kilogram: data.price_per_extra_kg
+            ? data.price_per_extra_kg
+            : 0,
+        },
+        constraint: {
+          min_cart_price: data.minPrice ? data.minPrice : 0,
+        },
+      },
+      "PATCH",
+      `/api/v1/logistic/shop-logistic-unit/${wichIdScope}/`,
+      true,
+      ""
+    );
+    console.log(`response`, response);
+    if (response.status == 200) {
+      upPage();
+    }
   };
 
   const upPage = (num = 1) => {
@@ -179,10 +169,10 @@ function LogisticPage() {
 
   // for get all data for scope
   useEffect(() => {
-    if (wichIdScope !== "") {
+    if (constraintId !== "") {
       _handel_get_all_data_scope();
     }
-  }, [wichIdScope]);
+  }, [constraintId]);
 
   return (
     <>
