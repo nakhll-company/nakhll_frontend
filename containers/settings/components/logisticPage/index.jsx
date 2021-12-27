@@ -127,7 +127,7 @@ function LogisticPage() {
     setLoader(true);
     let response = await ApiRegister().apiRequest(
       {
-        cities: checkedCities.length > 0 ? checkedCities : null,
+        cities: checkedCities.length > 0 ? checkedCities : [],
       },
       "PATCH",
       `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,

@@ -40,7 +40,8 @@ function Panel({ setConstraintId, setMetricId, setWichIdScope, changePage }) {
     let response = await ApiRegister().apiRequest(
       null,
       "DELETE",
-      `/api/v1/logistic/shop-logistic-unit-constraint/${id}/`,
+
+      `/api/v1/logistic/shop-logistic-unit/${id}/`,
       true,
       ""
     );
