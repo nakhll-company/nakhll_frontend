@@ -13,7 +13,6 @@ export const CustomAccordionSend = ({
 }) => {
   const [allMiniPic, setAllMiniPic] = useState(Object.values(logistic_units));
 
-  console.log(`logistic_units`, Object.values(logistic_units));
   const _handel_according = (accord, icon, images) => {
     let element = document.getElementById(accord);
     if (element.style.height == "0px") {
@@ -34,7 +33,8 @@ export const CustomAccordionSend = ({
       <div
         className={styles.wraper}
         style={{
-          background: "#fff",
+          background: "#224E821A",
+
           padding: ".4rem !important",
 
           borderRadius: "1.2rem",
@@ -42,7 +42,7 @@ export const CustomAccordionSend = ({
         }}
       >
         <div style={{ border: "none" }}>
-          <h2>
+          <h2 style={{ padding: "15px 15px 0px 15px" }}>
             <button
               className={styles.header}
               style={{
@@ -58,11 +58,11 @@ export const CustomAccordionSend = ({
                 );
               }}
             >
-              <div>
+              <div style={{ width: "100%" }}>
                 <span
                   style={{
                     textAlign: "right",
-                    marginBottom: "9px",
+                    marginBottom: "16px",
                     display: "block",
                   }}
                 >
@@ -72,16 +72,17 @@ export const CustomAccordionSend = ({
 
                 <div id={`pic_${item}`} className={styles.wrap_mini_pic}>
                   {allMiniPic?.map((el, index) => (
-                    <div key={index} className={styles.mini_pic}>
+                    <div style={{ display: "flex" }} key={index}>
                       {el.products.map((elIn, indexIn) => (
-                        <Image
-                          src={elIn.image}
-                          layout="fixed"
-                          width={30}
-                          height={30}
-                          alt=""
-                          key={indexIn}
-                        />
+                        <div key={indexIn} className={styles.mini_pic}>
+                          <Image
+                            src={elIn.image}
+                            layout="fixed"
+                            width={40}
+                            height={40}
+                            alt=""
+                          />
+                        </div>
                       ))}
                     </div>
                   ))}
@@ -104,14 +105,20 @@ export const CustomAccordionSend = ({
               {children}
             </div>
           </div>
-          <div className={styles.liner}></div>
+          <div style={{ padding: "0px 15px" }}>
+            <div className={styles.liner}></div>
+          </div>
           <div className={styles.footer}>
             <div className="">
-              <span>توضیحات برای ارسال و رایگان شدن سبد حجره</span>
+              <span style={{ color: "#000" }}>مجموع هزینه ارسال:</span>
             </div>
             <div className="">
-              <span>
-                <Number num={logistic_price} />
+              <span style={{ color: "#224E82", fontWeight: "bold" }}>
+                {logistic_price == 0 ? (
+                  "رایگان"
+                ) : (
+                  <Number num={logistic_price} />
+                )}
               </span>
             </div>
           </div>

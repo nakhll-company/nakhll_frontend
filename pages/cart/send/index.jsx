@@ -67,7 +67,7 @@ function Send() {
               <div className={st.address_head}>
                 <span>روش ارسال محصول خود را انتخاب نمایید.</span>
                 <span className={st.explain_price}>
-                  قیمت برحسب تومان می باشد
+                  قیمت برحسب تومان می باشد.
                 </span>
               </div>
 
@@ -82,61 +82,42 @@ function Send() {
                 >
                   {Object.values(el.logistic_units).map((ef) => (
                     <>
-                      {console.log(`elllll`, el)}
-                      {ef.name}
-                      {ef.products.map((product, index) => (
-                        <>
-                          <div className={st.wrap_one_product}>
-                            <div
-                              style={{
-                                height: "50px",
-                                width: "50px",
-                                borderRadius: "5px",
-                                backgroundColor: "blueviolet",
-                                overflow: "hidden",
-                              }}
-                              className=""
-                            >
-                              <Image
-                                src={product.image}
-                                layout="responsive"
-                                height={50}
-                                width={50}
-                                alt=""
-                              />
-                            </div>
-                            {/* <div className={st.select_way}>
-                          <select
-                            id="select-shop"
-                            // onChange={(a) => {
-                            //   setselectShop(a.target.value);
-                            //   setSlugHojreh(a.target.value);
-                            //   getActiveHojreh(a.target.value);
-                            //   ForHeader(a);
-                            // }}
+                      <div style={{ background: "#fff", padding: "10px 15px" }}>
+                        <div style={{ marginTop: "20px" }}>
+                          <span style={{ color: "#000" }}>روش : </span>
+                          <span
+                            style={{ color: "#224E82", fontWeight: "bold" }}
                           >
-                            <option key="ddd" value="dddd">
-                              one
-                            </option>
-                            <option key="ddd" value="dddd">
-                              one
-                            </option>
-                            <option key="ddd" value="dddd">
-                              one
-                            </option>
-                            <option key="ddd" value="dddd">
-                              one
-                            </option>
-                          </select>
-                        </div> */}
+                            {ef.name}
+                          </span>
+                        </div>
+                        <div className={st.liner}></div>
+                        <div className={st.wrap_one_product}>
+                          {ef.products.map((product, index) => (
+                            <>
+                              <div
+                                style={{
+                                  height: "60px",
+                                  width: "60px",
+                                  borderRadius: "5px",
 
-                            {/* <div className={st.price}>
-                              <Number num="2500000" />
-                            </div> */}
-                          </div>
-                          <div className={st.liner}></div>
-                        </>
-                      ))}
+                                  overflow: "hidden",
+                                  marginLeft: "15px",
+                                }}
+                                className=""
+                              >
+                                <Image
+                                  src={product.image}
+                                  layout="responsive"
+                                  height={60}
+                                  width={60}
+                                  alt=""
+                                />
+                              </div>
+                            </>
+                          ))}
+                        </div>
+                      </div>
                     </>
                   ))}
 
