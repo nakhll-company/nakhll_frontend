@@ -25,8 +25,13 @@ const EditProfile = ({ dataProfile }) => {
   let [selectState, setSelectState] = useState([]);
   let [selectBigCities, setSelectBigCities] = useState([]);
   let [selectCities, setSelectCities] = useState([]);
-  const [imgProfile, setImgProfile] = useState(dataProfile.Image);
+  const [imgProfile, setImgProfile] = useState(null);
 
+  useEffect(() => {
+    if (dataProfile.Image) {
+      setImgProfile(dataProfile.Image);
+    }
+  }, [dataProfile]);
   const onSubmit = async (data) => {
     data.Image = imgProfile;
     data.FK_User = {
