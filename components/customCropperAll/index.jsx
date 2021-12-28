@@ -1,18 +1,14 @@
-import React, { useCallback, useState } from "react";
 import Cropper from "react-easy-crop";
+import React, { useCallback, useState } from "react";
 // methods
-import { selectImage } from "./methods/selectImage";
 import { getCroppedImg } from "./methods/getCropImage";
-
 // scss
 import styles from "./customCropper.module.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { showCropper } from "../../redux/actions/liveEdit/showCropper";
 import { _updatePicture } from "../../redux/actions/liveEdit/_updatePicture";
+
 function CustomCropperAll({
   setImageSrc,
   image,
-
   setShowCropper,
   ratio = 1,
 }) {
@@ -32,14 +28,11 @@ function CustomCropperAll({
         croppedAreaPixels,
         rotation
       );
-
       setImageSrc(croppedImage);
-
-      // dispatch(_updatePicture(croppedImage));
     } catch (e) {
       console.error(e);
     }
-  }, [image, croppedAreaPixels, rotation]);
+  }, [image, croppedAreaPixels, rotation, setImageSrc]);
 
   return (
     <>
@@ -47,12 +40,9 @@ function CustomCropperAll({
         <div>
           <div className={styles.cropper_wrapper}>
             <div className={styles.wrapper_close}>
-              <i
-                className="fas fa-window-close"
-                onClick={() => {
-                  setShowCropper(false);
-                }}
-              ></i>
+              <i className="fa fa-times" onClick={() => {
+                setShowCropper(false);
+              }}></i>
             </div>
             <Cropper
               image={image}
