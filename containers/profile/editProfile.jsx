@@ -25,10 +25,10 @@ const EditProfile = ({ dataProfile }) => {
   let [selectState, setSelectState] = useState([]);
   let [selectBigCities, setSelectBigCities] = useState([]);
   let [selectCities, setSelectCities] = useState([]);
-  const [imgProfile, setImgProfile] = useState(null);
+  const [imgProfile, setImgProfile] = useState(dataProfile.Image);
 
   const onSubmit = async (data) => {
-      data.Image=imgProfile;
+    data.Image = imgProfile;
     data.FK_User = {
       first_name: data.first_name,
       last_name: data.last_name,
@@ -101,23 +101,21 @@ const EditProfile = ({ dataProfile }) => {
           />
         </div> */}
         <div className={styles.wrap_all}>
-            <div className={styles.Parent_imageProfile}>
-              {true && (
-                <Image
-                  src={imgProfile ? imgProfile : "/icons/iconpro.png"}
-                  width={120}
-                  height={120}
-                  alt=""
-                ></Image>
-              )}
-            </div>
-            <div className={styles.btnProfile}>
-              <InputPictureSetting
-                setImageSrc={setImgProfile}
-                image={imgProfile}
-                ratio={1}
-              />
-            </div>
+          <div className={styles.Parent_imageProfile}>
+            <Image
+              src={imgProfile ? imgProfile : "/icons/iconpro.png"}
+              width={120}
+              height={120}
+              alt=""
+            ></Image>
+          </div>
+          <div className={styles.btnProfile}>
+            <InputPictureSetting
+              setImageSrc={setImgProfile}
+              image={imgProfile}
+              ratio={1}
+            />
+          </div>
         </div>
       </div>
       <div className="form-group d-flex mt-4">
