@@ -1,53 +1,36 @@
 // node
-import { useEffect, useState } from "react";
 import Head from "next/head";
-
+import { useEffect, useState } from "react";
 // component
-import ListCardBuy from "../../containers/card/ListCardBuy";
-import MiniCardBuy from "../../containers/card/MiniCardBuy";
 import SumBuy from "../../containers/card/SumBuy";
 import ShopLayout from "../../components/shopLayout";
+import ListCardBuy from "../../containers/card/ListCardBuy";
 // metods
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import ContextProduct from "../../containers/card/Context/context";
-import { CustomToast } from "../../components/custom/customToast/CustomToast";
-
 // LIBRARY
-import { ToastContainer, toast } from "react-toastify";
-import { LoadingDelet } from "../../components/custom/Loading/LoadingDelet/LoadingDelet";
+import { ToastContainer } from "react-toastify";
+import { Empty } from "../../components/custom/Empty/Empty";
 import { MenuMobile } from "../../containers/card/MenuMobile";
 import { Loading } from "../../components/custom/Loading/Loading";
-import { Empty } from "../../components/custom/Empty/Empty";
-
-// Styles
-import styles from "../../styles/pages/cart/cart.module.scss";
-
 // Redux
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getProducts } from "../../redux/actions/cart/getProducts";
 
 export default function Cart() {
   const dispatch = useDispatch();
-  const AllProduct = useSelector((state) => state.Cart.allProduct);
   // STATE FOR SAVE PRODUCTS
   const [All_product_list_buy, setAll_product_list_buy] = useState({});
-
   // STATE FOR SHOW LOADING
   const [showLoading, setShowLoading] = useState(true);
-
   // FUNCTION FOR GET ALL DATA FOR CARTS
   const _handleRequestApiAll = async () => {
     try {
       let token = localStorage.getItem("accessToken");
-      let params = {};
-      let loadData = null;
-      let dataUrl = `/cart2/api/carts/my/`;
       let response = await ApiRegister().apiRequest(
-        loadData,
-        "get",
-        dataUrl,
-        token ? true : false,
-        params
+        null, "get",
+        `/cart2/api/carts/my/`,
+        token ? true : false, {}
       );
       setAll_product_list_buy(await response.data);
       setShowLoading(false);
@@ -55,17 +38,13 @@ export default function Cart() {
   };
 
   // CALL API  &  GET PRODUCT LIST  & SET DATA IN "All_product_list_buy"
-
   useEffect(() => {
     _handleRequestApiAll();
     dispatch(getProducts());
-  }, []);
+  }, [dispatch]);
 
   return (
     <ContextProduct.Provider value={{}}>
-      {/* <Loading /> */}
-      {/* <Empty /> */}
-
       <div className="all">
         <Head>
           <title>سبد خرید</title>

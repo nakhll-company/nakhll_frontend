@@ -19,7 +19,7 @@ export const _addProduct = (productId) => {
         params
       );
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         await dispatch({
           type: "ADD_PRODUCT",
           payload: response.data,

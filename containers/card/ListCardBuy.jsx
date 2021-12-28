@@ -1,21 +1,20 @@
-import React, { useState, Fragment } from "react";
 import Link from "next/link";
+import Image from 'next/image';
 import { useContext } from "react";
-import Assistent from "zaravand-assistent-number";
 import ContextProduct from "./Context/context";
 import Loading from "../../components/loading";
+import React, { useState, Fragment } from "react";
+import Assistent from "zaravand-assistent-number";
 import styles from "../../styles/pages/cart/cart.module.scss";
-const _asist = new Assistent();
-
 // REDUX
-
 import { useDispatch, useSelector } from "react-redux";
 import { _addProduct } from "../../redux/actions/cart/_addProduct";
 import { _reduceProduct } from "../../redux/actions/cart/_reduceProduct";
 import { _deleteProduct } from "../../redux/actions/cart/_deleteProduct";
-
 // LODASH
-import { isElement, isEmpty } from "lodash";
+import { isEmpty } from "lodash";
+
+const _asist = new Assistent();
 
 export default function ListCardBuy() {
   const dispatch = useDispatch();
@@ -66,27 +65,7 @@ export default function ListCardBuy() {
                       </Link>
                     </div>
                   )}
-                {/*</mnbvcxz> IF CHANGE IN PRODUCT IN LIST */}
-
-                {/* <div className="align-items-center nakhl-label d-flex justify-content-between mx-3 mt-3 p-2 rounded  border border-danger text-danger">
-                <div className="mb-0 pr-2 font-size-sm">
-                  <div style={{ fontSize: "15px", fontWeight: "400" }}>
-                    از محصول روان نویس (خودکار) یونیکورن (اسب تک شاخ)به اندازه
-                    کافی موجود نمی‌باشد
-                  </div>
-                  <div>قیمت محصول تغییر کرده است</div>
-                </div>{" "}
-                <span className="dd-flex align-items-center mr-2 pointer font-size-sm text-nowrap">
-                  حذف
-                  <i
-                    className="fas fa-times-circle"
-                    style={{ fontSize: "20px", marginRight: "5px" }}
-                  ></i>
-                </span>
-              </div> */}
-
                 {/*^^^^^^^^^^^ IF CHANGE IN PRODUCT IN LIST ^^^^^^^^^^^*/}
-
                 <div className="p-3 mt-2 cart-product-item">
                   {loading && productId === El.product.ID ? (
                     <div>
@@ -97,9 +76,10 @@ export default function ListCardBuy() {
                       <div className="d-flex flex-wrap justify-content-between">
                         <div className="d-flex w-100">
                           <a className="product-link">
-                            <img
+                            <Image
                               src={El.product.Image_medium_url}
                               className={`${styles.cart_product_item_img} ${styles.rounded}`}
+                              alt=""
                             />
                           </a>
                           <div className="d-flex flex-column justify-content-between mr-3 w-100 overflow-hidden">
@@ -172,9 +152,6 @@ export default function ListCardBuy() {
                                           await dispatch(
                                             _addProduct(El.product.ID)
                                           );
-                                          // await handel_AddProductTOList(
-                                          //   El.product.id
-                                          // );
                                           await setLoading(false);
                                         }}
                                       ></i>
@@ -205,7 +182,6 @@ export default function ListCardBuy() {
                                           await setProductId(El.product.ID);
                                           await setLoading(true);
                                           await dispatch(_reduceProduct(El.id));
-
                                           await setLoading(false);
                                         }}
                                       ></i>
@@ -214,7 +190,6 @@ export default function ListCardBuy() {
                                 </div>
                                 <span className="d-inline-block font-size-9 mr-3 pointer">
                                   {" "}
-                                  {/* حذف؟{" "} */}
                                 </span>
                               </div>
                               <div className="mr-auto">
@@ -235,7 +210,6 @@ export default function ListCardBuy() {
                           </div>
                         </div>
                       </div>
-
                       <div
                         className="v-portal"
                         style={{ display: "none" }}
@@ -255,14 +229,14 @@ export default function ListCardBuy() {
                     style={{ position: "relative" }}
                   >
                     {/*^^^^^^^^^^^ IF CHANGE IN PRODUCT IN LIST ^^^^^^^^^^^*/}
-
                     <div className="p-3  cart-product-item margin_top_zero">
                       <div className="d-flex flex-wrap justify-content-between">
                         <div className="d-flex w-100">
                           <a className="product-link">
-                            <img
+                            <Image
                               src={El.product.Image_medium_url}
                               className={`${styles.cart_product_item_img} ${styles.rounded}`}
+                              alt=""
                             />
                           </a>
                           <div className="d-flex flex-column justify-content-between mr-3 w-100 overflow-hidden">
@@ -349,7 +323,6 @@ export default function ListCardBuy() {
                                 </div>
                                 <span className="d-inline-block font-size-9 mr-3 pointer">
                                   {" "}
-                                  {/* حذف؟{" "} */}
                                 </span>
                               </div>
                               <div className="mr-auto">
@@ -369,7 +342,6 @@ export default function ListCardBuy() {
                           </div>
                         </div>
                       </div>
-
                       <div
                         className="v-portal"
                         style={{ display: "none" }}
