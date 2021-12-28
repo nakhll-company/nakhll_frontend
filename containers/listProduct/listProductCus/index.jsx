@@ -3,21 +3,18 @@ import router from "next/router";
 import CheckboxTree from "react-checkbox-tree";
 import Assistent from "zaravand-assistent-number";
 import React, { useEffect, useState } from "react";
-
 import InfiniteScroll from "react-infinite-scroll-component";
 // components
 import { TopBar } from "../TopBar";
 import { errorMessage } from "../../utils/message";
 import Search from "../../../components/search/Search";
 import AddFavorites from "../../../components/AddFavorites";
-
 import { allCites } from "../../../components/custom/data/data";
 import CustomSwitch from "../../../components/custom/customSwitch";
 import ProductCard from "../../../components/ProductCart/ProductCard";
 import CustomAccordion from "../../../components/custom/customAccordion";
 import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
 import MultiRangeSlider from "../../../components/custom/customMultiRangeSlider/MultiRangeSlider";
-
 // methods
 import { ApiReference } from "../../../Api";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
@@ -101,7 +98,7 @@ function ListProductCus({ data }) {
       if (response.status === 200) {
         setCategories(response.data);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   const _handel_Add_category = (id) => {
@@ -162,12 +159,9 @@ function ListProductCus({ data }) {
         setTotalcount(response.data.total_count);
 
         setIsLoading(false);
-      } else {
-        errorMessage("خطایی رخ داده است");
       }
     } catch (e) {
       setIsLoading(false);
-      errorMessage("خطایی رخ داده است");
     }
   };
 
@@ -207,7 +201,7 @@ function ListProductCus({ data }) {
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
   // Get all shops
   const _get_all_shops = async () => {
@@ -237,8 +231,11 @@ function ListProductCus({ data }) {
 
   // START
   // for filters in sidebar
-  useEffect(async () => {
-    await _handel_filters();
+  useEffect(() => {
+    async function fetchData() {
+      await _handel_filters();
+    }
+    fetchData();
   }, [
     isAvailableGoods,
     isReadyForSend,
@@ -249,7 +246,7 @@ function ListProductCus({ data }) {
     clickOnRange,
     changePage,
     hojreh,
-    searchWord,
+    searchWord
   ]);
 
   useEffect(() => {
@@ -282,8 +279,10 @@ function ListProductCus({ data }) {
     wantCategories,
     whichOrdering,
     clickOnRange,
-
+    maxPrice,
+    minPrice,
     hojreh,
+    searchWord
   ]);
 
   // for filters in sidebar

@@ -1,12 +1,9 @@
 import React from "react";
-import { useRouter } from "next/router";
 import Head from "next/head";
-
 import ListWitOutFilters from "../../containers/listProduct/ListWithOutFilters";
 import ListProductCus from "../../containers/listProduct/listProductCus";
 
 function Product({ ap, data }) {
-  const router = useRouter();
 
   return (
     <>
