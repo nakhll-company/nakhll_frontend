@@ -117,7 +117,7 @@ export const CustomAccordionSend = ({
                 {logistic_price == 0 ? (
                   "رایگان"
                 ) : (
-                  <Number num={logistic_price} />
+                  <Number num={logistic_price / 10} />
                 )}
               </span>
             </div>
