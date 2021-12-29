@@ -19,6 +19,7 @@
         "dom7": "^3.0.0",
         "echarts": "^5.2.2",
         "echarts-for-react": "^3.0.2",
+        "file-saver": "^2.0.5",
         "fontawesome": "^5.6.3",
         "formik": "^2.2.9",
         "gsap": "^3.8.0",
@@ -48,6 +49,7 @@
         "sass": "^1.35.2",
         "swiper": "^6.8.4",
         "uuid": "^8.3.2",
+        "xlsx": "^0.17.4",
         "yup": "^0.32.9",
         "zaravand-assistent-number": "^1.1.0"
     },

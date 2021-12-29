@@ -11,10 +11,41 @@ import styles from "../../../styles/pages/product/desktopList.module.scss";
 //functions
 import { groupProductResponse } from "../groupProduct/methods/groupProductResponse";
 import { groupProductResponseEdit } from "../groupProduct/methods/groupProductResponseEdit";
+import getExcel from "../groupProduct/methods/getExcel";
+import { useEffect, useState } from "react";
 
-export default function Desktop({ loading, productList, activeHojreh, getProduct, userInfo }) {
+import * as FileSaver from "file-saver";
+import * as XLSX from "xlsx";
 
+export default function Desktop({
+  loading,
+  productList,
+  activeHojreh,
+  getProduct,
+  userInfo,
+}) {
   const router = useRouter();
+  const [Excel, setExcel] = useState("");
+
+  const exportToCSV = (apiData, fileName) => {
+    const fileType =
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
+    const ws = XLSX.utils.json_to_sheet(apiData);
+    const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
+    const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+    const data = new Blob([excelBuffer], { type: fileType });
+    FileSaver.saveAs(data, fileName + ".xlsx");
+  };
+
+  useEffect(() => {
+    async function getData() {
+      let res = await getExcel(userInfo, activeHojreh, router);
+      setExcel(res);
+    }
+    if (activeHojreh) {
+      getData();
+    }
+  }, [activeHojreh]);
 
   return (
     <div className={styles.wrapper}>
@@ -28,18 +59,39 @@ export default function Desktop({ loading, productList, activeHojreh, getProduct
               ایجاد کالا جدید
             </a>
           </Link>
-          <button className={styles.button_add_group} onClick={() => groupProductResponse(userInfo, activeHojreh, router)}>
-            <a className="d-flex align-items-center">
-              <i className="fa fa-plus" style={{ marginLeft: "10px" }}></i>
-              ایجاد کالای گروهی
-            </a>
+          <button
+            className={styles.button_add_group}
+            onClick={() => groupProductResponse(userInfo, activeHojreh, router)}
+          >
+            <a className="d-flex align-items-center">ایجاد کالای گروهی</a>
           </button>
-          <button className={styles.button_add_group} onClick={() => groupProductResponseEdit(userInfo, activeHojreh, router)}>
+          <button
+            className={styles.button_add_group}
+            onClick={() =>
+              groupProductResponseEdit(userInfo, activeHojreh, router)
+            }
+          >
             <a className="d-flex align-items-center">
-              <i className="far fa-edit" style={{ marginLeft: "10px", fontWeight: "bold" }}></i>
+              <i
+                className="far fa-edit"
+                style={{ marginLeft: "10px", fontWeight: "bold" }}
+              ></i>
               ویرایش کالای گروهی
             </a>
           </button>
+
+          {Excel !== "" && (
+            <>
+              {console.log(`Excel`, Excel)}
+              <button
+                download="product.xlsx"
+                className={styles.button_add_group}
+                onClick={() => exportToCSV(Excel, "product")}
+              >
+                <a className="d-flex align-items-center">دریافت اکسل</a>
+              </button>
+            </>
+          )}
         </div>
         <table className={styles.product_tabel}>
           <thead>
@@ -57,17 +109,31 @@ export default function Desktop({ loading, productList, activeHojreh, getProduct
             {loading ? (
               <tr>
                 <td colSpan={7} className={styles.one_colmne}>
-                  <Image src="/loading.svg" alt="loding" width="40px" height="40px" />
+                  <Image
+                    src="/loading.svg"
+                    alt="loding"
+                    width="40px"
+                    height="40px"
+                  />
                 </td>
               </tr>
             ) : productList.results && productList.results.length > 0 ? (
               productList.results.map((value, index) => {
                 return (
-                  <Link href={`/fp/product/update/product/${value.ID}`} key={index}>
+                  <Link
+                    href={`/fp/product/update/product/${value.ID}`}
+                    key={index}
+                  >
                     <tr>
                       <td>{index + 1}</td>
                       <td style={{ display: "flex" }}>
-                        <Image src={value.image_thumbnail_url} alt="product" layout="responsive" width={45} height={45} />
+                        <Image
+                          src={value.image_thumbnail_url}
+                          alt="product"
+                          layout="responsive"
+                          width={45}
+                          height={45}
+                        />
                         <div style={{ margin: "0px 20px" }}>
                           {value.Title}
                           <br />
@@ -97,7 +163,10 @@ export default function Desktop({ loading, productList, activeHojreh, getProduct
                         )}
                       </td>
                       <td>
-                        <CustomBadge title={value.status} color="#089319" backgroundColor="rgba(8, 147, 25, 0.15)"
+                        <CustomBadge
+                          title={value.status}
+                          color="#089319"
+                          backgroundColor="rgba(8, 147, 25, 0.15)"
                           customBadgeStyle={{
                             borderRadius: "3px",
                             padding: "2px 6px",
@@ -123,7 +192,11 @@ export default function Desktop({ loading, productList, activeHojreh, getProduct
             )}
           </tbody>
           <tfoot>
-            <DesktopFooter productList={productList} getProduct={getProduct} activeHojreh={activeHojreh} />
+            <DesktopFooter
+              productList={productList}
+              getProduct={getProduct}
+              activeHojreh={activeHojreh}
+            />
           </tfoot>
         </table>
       </div>
