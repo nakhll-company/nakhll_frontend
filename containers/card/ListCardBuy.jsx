@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from 'next/image';
+import Image from "next/image";
 import { useContext } from "react";
 import ContextProduct from "./Context/context";
 import Loading from "../../components/loading";
@@ -37,34 +37,34 @@ export default function ListCardBuy() {
                   !(
                     index > 0 &&
                     El.product.FK_Shop.slug ==
-                    All_product_list_buy.ordered_items[index - 1].product.FK_Shop
-                      .slug
+                      All_product_list_buy.ordered_items[index - 1].product
+                        .FK_Shop.slug
                   )
                     ? { position: "relative" }
                     : {
-                      position: "relative",
-                      marginTop: "-12px",
-                      borderTop: "2px dashed hsl(213deg 59% 26%)",
-                      borderTopLeftRadius: "inherit",
-                      borderTopRightRadius: "inherit",
-                    }
+                        position: "relative",
+                        marginTop: "-12px",
+                        borderTop: "2px dashed hsl(213deg 59% 26%)",
+                        borderTopLeftRadius: "inherit",
+                        borderTopRightRadius: "inherit",
+                      }
                 }
               >
                 {!(
                   index > 0 &&
                   El.product.FK_Shop.slug ==
-                  All_product_list_buy.ordered_items[index - 1].product.FK_Shop
-                    .slug
+                    All_product_list_buy.ordered_items[index - 1].product
+                      .FK_Shop.slug
                 ) && (
-                    <div className="pt-3 pb-1 px-3">
-                      <span className="font-size1">از حجره: </span>{" "}
-                      <Link href={`/shop/${El.product.FK_Shop.slug}/`}>
-                        <a className="vendor-link font-size1 font-weight-bold link-body font-weight-normal txtcut">
-                          {El.product.FK_Shop.title}
-                        </a>
-                      </Link>
-                    </div>
-                  )}
+                  <div className="pt-3 pb-1 px-3">
+                    <span className="font-size1">از حجره: </span>{" "}
+                    <Link href={`/shop/${El.product.FK_Shop.slug}/`}>
+                      <a className="vendor-link font-size1 font-weight-bold link-body font-weight-normal txtcut">
+                        {El.product.FK_Shop.title}
+                      </a>
+                    </Link>
+                  </div>
+                )}
                 {/*^^^^^^^^^^^ IF CHANGE IN PRODUCT IN LIST ^^^^^^^^^^^*/}
                 <div className="p-3 mt-2 cart-product-item">
                   {loading && productId === El.product.ID ? (
@@ -76,7 +76,7 @@ export default function ListCardBuy() {
                       <div className="d-flex flex-wrap justify-content-between">
                         <div className="d-flex w-100">
                           <a className="product-link">
-                            <Image
+                            <img
                               src={El.product.Image_medium_url}
                               className={`${styles.cart_product_item_img} ${styles.rounded}`}
                               alt=""
@@ -89,7 +89,9 @@ export default function ListCardBuy() {
                                 justifyContent: "space-between",
                               }}
                             >
-                              <Link href={`/shop/${El.product.FK_Shop.slug}/product/${El.product.Slug}/`}>
+                              <Link
+                                href={`/shop/${El.product.FK_Shop.slug}/product/${El.product.Slug}/`}
+                              >
                                 <a className="product-link d-block font-size1 link-body font-weight-bold text-truncate">
                                   {_asist.number(El.product.Title)}
                                 </a>
@@ -118,8 +120,9 @@ export default function ListCardBuy() {
                               className={styles.cart_product_item_remain_stock}
                             ></div>
                             <div
-                              className={`nakhl-label mr-auto small teaberry-light ${El.product.discount == 0 && "opacity_none"
-                                }`}
+                              className={`nakhl-label mr-auto small teaberry-light ${
+                                El.product.discount == 0 && "opacity_none"
+                              }`}
                             >
                               {_asist.number(El.product.discount)}
                               <span> %</span>
@@ -195,9 +198,11 @@ export default function ListCardBuy() {
                               <div className="mr-auto">
                                 <span
                                   style={{ display: "block" }}
-                                  className={`${styles.cart_product_item_primary_price
-                                    } ${El.product.discount == 0 && "opacity_none"
-                                    }`}
+                                  className={`${
+                                    styles.cart_product_item_primary_price
+                                  } ${
+                                    El.product.discount == 0 && "opacity_none"
+                                  }`}
                                 >
                                   {_asist.PSeparator(El.total_old_price / 10)}
                                 </span>{" "}
@@ -222,8 +227,8 @@ export default function ListCardBuy() {
               {false &&
                 index !== 0 &&
                 El.product.FK_Shop.slug ==
-                All_product_list_buy.ordered_items[index - 1].product.FK_Shop
-                  .slug && (
+                  All_product_list_buy.ordered_items[index - 1].product.FK_Shop
+                    .slug && (
                   <div
                     className="mt-0 cart-product-group bg-white"
                     style={{ position: "relative" }}
@@ -267,8 +272,9 @@ export default function ListCardBuy() {
                             </div>
                             <div className="cart-product-item-remain-stock"></div>
                             <div
-                              className={`nakhl-label mr-auto small teaberry-light ${El.product.discount == 0 && "opacity_none"
-                                }`}
+                              className={`nakhl-label mr-auto small teaberry-light ${
+                                El.product.discount == 0 && "opacity_none"
+                              }`}
                             >
                               {_asist.number(El.product.discount)}
                               <span> %</span>
@@ -327,9 +333,11 @@ export default function ListCardBuy() {
                               </div>
                               <div className="mr-auto">
                                 <span
-                                  className={`${styles.cart_product_item_primary_price
-                                    } ${El.product.discount == 0 && "opacity_none"
-                                    }`}
+                                  className={`${
+                                    styles.cart_product_item_primary_price
+                                  } ${
+                                    El.product.discount == 0 && "opacity_none"
+                                  }`}
                                 >
                                   {_asist.PSeparator(El.total_old_price / 10)}
                                 </span>{" "}

@@ -80,7 +80,7 @@ export default function Desktop({
             </a>
           </button>
 
-          {Excel !== "" && (
+          {false && Excel !== "" && (
             <>
               {console.log(`Excel`, Excel)}
               <button
