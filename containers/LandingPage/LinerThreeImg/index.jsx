@@ -62,7 +62,7 @@ function LinerThreeImg({ dataLinerThreeImg }) {
           {/* for Desktop */}
           <div className="container d-none d-lg-block">
             <div className={`${styles.parent}  row`}>
-              <div style={{ padding: "0px" }} className="col-5">
+              <div style={{ padding: "0px" }} className="col-6">
                 <Link href={dataLinerThreeImg[0].url}>
                   <a
                     title={dataLinerThreeImg[0].description}
@@ -80,7 +80,7 @@ function LinerThreeImg({ dataLinerThreeImg }) {
               </div>
               <div
                 style={{ paddingRight: "22px" }}
-                className={`${styles.left_side} col-7`}
+                className={`${styles.left_side} col-6`}
               >
                 <div style={{ marginLeft: "6px" }} className="col-6">
                   <Link href={dataLinerThreeImg[1].url}>
