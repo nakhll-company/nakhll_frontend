@@ -70,7 +70,7 @@ function LinerThreeImg({ dataLinerThreeImg }) {
                   >
                     <Image
                       layout="responsive"
-                      width={200}
+                      width={600}
                       height={100}
                       src={dataLinerThreeImg[0].image}
                       alt={dataLinerThreeImg[0].title}
@@ -90,8 +90,8 @@ function LinerThreeImg({ dataLinerThreeImg }) {
                     >
                       <Image
                         layout="responsive"
-                        width={400}
-                        height={300}
+                        width={300}
+                        height={100}
                         src={dataLinerThreeImg[1].image}
                         alt={dataLinerThreeImg[1].title}
                       />
@@ -106,8 +106,8 @@ function LinerThreeImg({ dataLinerThreeImg }) {
                     >
                       <Image
                         layout="responsive"
-                        width={400}
-                        height={300}
+                        width={300}
+                        height={100}
                         src={dataLinerThreeImg[2].image}
                         alt={dataLinerThreeImg[2].title}
                       />
