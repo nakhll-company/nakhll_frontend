@@ -65,9 +65,13 @@ function Send() {
             </header>
             <section className={st.body_address}>
               <div className={st.address_head}>
-                <span>روش ارسال محصول خود را انتخاب نمایید.</span>
+                <span>روش ارسال محصولات :</span>
                 <span className={st.explain_price}>
-                  قیمت برحسب تومان می باشد.
+                  مجموع هزینه :<span> </span>
+                  <span>
+                    <Number num={invoice.logistic_price / 10} />
+                  </span>
+                  <span> تومان </span>
                 </span>
               </div>
 
@@ -77,9 +81,10 @@ function Send() {
                   title={` حجره ${el.shop_name}`}
                   item={`Send_${index}_acor`}
                   close={true}
-                  logistic_price={invoice.logistic_price}
+                  logistic_price={el.price}
                   logistic_units={el.logistic_units}
                 >
+                  {console.log(`el`, el)}
                   {Object.values(el.logistic_units).map((ef) => (
                     <>
                       <div style={{ background: "#fff", padding: "10px 15px" }}>

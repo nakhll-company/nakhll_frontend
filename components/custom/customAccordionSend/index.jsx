@@ -12,7 +12,7 @@ export const CustomAccordionSend = ({
   logistic_price,
 }) => {
   const [allMiniPic, setAllMiniPic] = useState(Object.values(logistic_units));
-
+  console.log(`logistic_price`, logistic_price);
   const _handel_according = (accord, icon, images) => {
     let element = document.getElementById(accord);
     if (element.style.height == "0px") {
@@ -117,7 +117,11 @@ export const CustomAccordionSend = ({
                 {logistic_price == 0 ? (
                   "رایگان"
                 ) : (
-                  <Number num={logistic_price / 10} />
+                  <>
+                    <Number num={`${logistic_price / 10}`} />
+
+                    <span> تومان</span>
+                  </>
                 )}
               </span>
             </div>
