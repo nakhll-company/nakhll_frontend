@@ -1,6 +1,6 @@
 // node libraries
 import { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 
 // scss
 import styles from "../../../styles/pages/setting/setting.module.scss";
@@ -8,6 +8,8 @@ import styles from "../../../styles/pages/setting/setting.module.scss";
 // methods
 import { mapState } from "../methods/mapState";
 import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
+
+import MyLayout from "../../../components/layout/Layout";
 
 // components
 import { Loading } from "../../../components/custom/Loading/Loading";
@@ -19,7 +21,8 @@ import { callApiAllData } from "../../../api/settings";
 import TopPictures from "../components/topPictures";
 import LogisticPage from "../components/logisticPage";
 
-const DesktopSetting = ({ activeHojreh, userInfo }) => {
+const DesktopSetting = () => {
+  const activeHojreh = useSelector((state) => state.User.activeHojreh);
   const [apiSetting, setApiSetting] = useState({});
   const [MainLoading, setMainLoading] = useState(true);
   const [onMenu, setOnMenu] = useState("1");
@@ -88,6 +91,4 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
   );
 };
 
-// export
-const connector = connect(mapState, { getUserInfo });
-export default connector(DesktopSetting);
+export default DesktopSetting;

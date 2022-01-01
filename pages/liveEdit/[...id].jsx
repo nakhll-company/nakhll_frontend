@@ -13,6 +13,7 @@ import { _updateDataLanding } from "../../redux/actions/liveEdit/_updateDataLand
 import SaveLanding from "../../containers/liveEdit/SaveLanding";
 import { ApiReference } from "../../Api";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import EmptyLayout from "../../components/layout/EmptyLayout";
 
 function LiveEdit({ idLanding }) {
   let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}`;
@@ -409,3 +410,5 @@ export async function getServerSideProps(context) {
     props: { idLanding },
   };
 }
+
+LiveEdit.Layout = EmptyLayout;

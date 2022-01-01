@@ -12,6 +12,7 @@ import ListProductCusTest from "../../../containers/listProduct/listProductCusTe
 // methods
 import { ApiReference } from "../../../Api";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+import ShopLayout from "../../../components/shopLayout";
 
 // fetch data
 const fetchData = async (id) => {
@@ -23,7 +24,6 @@ const fetchData = async (id) => {
     false,
     ""
   );
-  
 
   if (response.status === 200) {
     return {
@@ -116,7 +116,9 @@ export async function getServerSideProps(context) {
   return {
     props: {
       data: context.query,
-      dataShop
+      dataShop,
     },
   };
 }
+
+Shop.Layout = ShopLayout;
