@@ -20,7 +20,7 @@ import "../styles/tailwind.css";
 
 function MyApp({ Component, pageProps }) {
   // Use the layout defined at the page level, if available
-  const Layout = Component.Layout || EmptyLayout;
+  const Layout = Component.Layout || MyLayout;
   const router = useRouter();
   return (
     <>

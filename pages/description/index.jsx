@@ -7,7 +7,8 @@ import Process from "../../containers/description/components/Process";
 import Sliders from "../../containers/description/components/Sliders";
 
 import styles from "./description.module.scss";
-function index() {
+import ShopLayout from "../../components/shopLayout";
+function Description() {
   return (
     <div className={styles.wrapper}>
       {/* Video */}
@@ -39,4 +40,6 @@ function index() {
   );
 }
 
-export default index;
+export default Description;
+
+Description.Layout = ShopLayout;

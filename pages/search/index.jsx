@@ -2,9 +2,9 @@ import React from "react";
 import Head from "next/head";
 import ListWitOutFilters from "../../containers/listProduct/ListWithOutFilters";
 import ListProductCus from "../../containers/listProduct/listProductCus";
+import ShopLayout from "../../components/shopLayout";
 
 function Product({ ap, data }) {
-
   return (
     <>
       <Head>
@@ -36,3 +36,5 @@ export async function getServerSideProps(context) {
     },
   };
 }
+
+Product.Layout = ShopLayout;

@@ -10,6 +10,7 @@ import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { useRouter } from "next/router";
 import LinerTwoImg from "../../containers/LandingPage/LinerTwoImg";
 import LinerTwoImgSm from "../../containers/LandingPage/LinerTwoImgSm";
+import ShopLayout from "../../components/shopLayout";
 function ShowLanding({ idLanding }) {
   let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}`;
 
@@ -92,3 +93,5 @@ export async function getServerSideProps(context) {
     props: { idLanding },
   };
 }
+
+ShowLanding.Layout = ShopLayout;

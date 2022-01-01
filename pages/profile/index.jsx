@@ -16,6 +16,7 @@ import OrderDetail from "../../containers/profile/ordersDetail";
 import { getUserData } from "../../containers/profile/methods/getUserData";
 // scss
 import styles from "./profile.module.scss";
+import ShopLayout from "../../components/shopLayout";
 /**
  * component profile
  */
@@ -303,3 +304,5 @@ const Profile = () => {
 };
 // export
 export default Profile;
+
+Profile.Layout = ShopLayout;
