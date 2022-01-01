@@ -10,6 +10,7 @@ import useViewport from "../../../../components/viewPort";
 import ProductDetailMobile from "../../../../containers/productDetail/mobile";
 import ProductDetailDesktop from "../../../../containers/productDetail/desktop";
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
+import ShopLayout from "../../../../components/shopLayout";
 
 // fetch data
 const fetchData = async (id) => {
@@ -92,8 +93,10 @@ export default ProductDetail;
 // function server side
 export async function getServerSideProps(context) {
   const data = await fetchData(context.query.productSlug);
-  
+
   return {
     props: { data },
   };
 }
+
+ProductDetail.Layout = ShopLayout;

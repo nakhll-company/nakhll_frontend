@@ -19,58 +19,81 @@ import "../styles/General/font-awesome/css/font-awesome.css";
 import "../styles/tailwind.css";
 
 function MyApp({ Component, pageProps }) {
+  // Use the layout defined at the page level, if available
+  const Layout = Component.Layout || EmptyLayout;
   const router = useRouter();
-
-  if (router.pathname.startsWith("/fp")) {
-    return (
-      <>
-        <DefaultSeo {...SEO} />
-        <General />
-        <Script id="testChat" strategy="lazyOnload">
-          {`
-       !function(){var i="TgjSlF",a=window,d=document;function g(){var g=d.createElement("script"),s="https://www.goftino.com/widget/"+i,l=localStorage.getItem("goftino_"+i);g.async=!0,g.src=l?s+"?o="+l:s;d.getElementsByTagName("head")[0].appendChild(g);}"complete"===d.readyState?g():a.attachEvent?a.attachEvent("onload",g):a.addEventListener("load",g,!1);}();
-      
-      `}
-        </Script>
-        <Provider store={Store}>
-          <MyLayout>
-            <Component {...pageProps} />
-          </MyLayout>
-        </Provider>
-      </>
-    );
-  } else if (
-    router.pathname.startsWith("/liveEdit") ||
-    router.pathname.startsWith("/login")
-  ) {
-    return (
-      <>
-        <DefaultSeo {...SEO} />
-        <General />
-        <Provider store={Store}>
+  return (
+    <>
+      <DefaultSeo {...SEO} />
+      <General />
+      <Script id="testChat" strategy="lazyOnload">
+        {`
+   !function(){var i="TgjSlF",a=window,d=document;function g(){var g=d.createElement("script"),s="https://www.goftino.com/widget/"+i,l=localStorage.getItem("goftino_"+i);g.async=!0,g.src=l?s+"?o="+l:s;d.getElementsByTagName("head")[0].appendChild(g);}"complete"===d.readyState?g():a.attachEvent?a.attachEvent("onload",g):a.addEventListener("load",g,!1);}();
+  
+  `}
+      </Script>
+      <Provider store={Store}>
+        {/* <ShopLayout> */}
+        <Layout>
           <Component {...pageProps} />
-        </Provider>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <DefaultSeo {...SEO} />
-        <General />
-        <Script id="testChat" strategy="lazyOnload">
-          {`
-       !function(){var i="TgjSlF",a=window,d=document;function g(){var g=d.createElement("script"),s="https://www.goftino.com/widget/"+i,l=localStorage.getItem("goftino_"+i);g.async=!0,g.src=l?s+"?o="+l:s;d.getElementsByTagName("head")[0].appendChild(g);}"complete"===d.readyState?g():a.attachEvent?a.attachEvent("onload",g):a.addEventListener("load",g,!1);}();
-      
-      `}
-        </Script>
-        <Provider store={Store}>
-          <ShopLayout>
-            <Component {...pageProps} />
-          </ShopLayout>
-        </Provider>
-      </>
-    );
-  }
+        </Layout>
+        {/* </ShopLayout> */}
+      </Provider>
+    </>
+  );
+
+  // if (router.pathname.startsWith("/fp")) {
+  //   return (
+  //     <>
+  //       <DefaultSeo {...SEO} />
+  //       <General />
+  //       <Script id="testChat" strategy="lazyOnload">
+  //         {`
+  //      !function(){var i="TgjSlF",a=window,d=document;function g(){var g=d.createElement("script"),s="https://www.goftino.com/widget/"+i,l=localStorage.getItem("goftino_"+i);g.async=!0,g.src=l?s+"?o="+l:s;d.getElementsByTagName("head")[0].appendChild(g);}"complete"===d.readyState?g():a.attachEvent?a.attachEvent("onload",g):a.addEventListener("load",g,!1);}();
+
+  //     `}
+  //       </Script>
+  //       <Provider store={Store}>
+  //         <MyLayout>
+  //           <Component {...pageProps} />
+  //         </MyLayout>
+  //       </Provider>
+  //     </>
+  //   );
+  // } else if (
+  //   router.pathname.startsWith("/liveEdit") ||
+  //   router.pathname.startsWith("/login")
+  // ) {
+  //   return (
+  //     <>
+  //       <DefaultSeo {...SEO} />
+  //       <General />
+  //       <Provider store={Store}>
+  //         <Component {...pageProps} />
+  //       </Provider>
+  //     </>
+  //   );
+  // } else {
+  //   return (
+  //     <>
+  //       <DefaultSeo {...SEO} />
+  //       <General />
+  //       <Script id="testChat" strategy="lazyOnload">
+  //         {`
+  //      !function(){var i="TgjSlF",a=window,d=document;function g(){var g=d.createElement("script"),s="https://www.goftino.com/widget/"+i,l=localStorage.getItem("goftino_"+i);g.async=!0,g.src=l?s+"?o="+l:s;d.getElementsByTagName("head")[0].appendChild(g);}"complete"===d.readyState?g():a.attachEvent?a.attachEvent("onload",g):a.addEventListener("load",g,!1);}();
+
+  //     `}
+  //       </Script>
+  //       <Provider store={Store}>
+  //         <ShopLayout>
+  //           <Component {...pageProps} />
+  //         </ShopLayout>
+  //       </Provider>
+  //     </>
+  //   );
+  // }
 }
+
+const EmptyLayout = ({ children }) => <>{children}</>;
 
 export default MyApp;

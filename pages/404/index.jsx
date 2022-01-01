@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ShopLayout from "../../components/shopLayout";
 import styles from "./styles.module.scss";
 function PageNotFound() {
   return (
@@ -12,3 +13,5 @@ function PageNotFound() {
 }
 
 export default PageNotFound;
+
+PageNotFound.Layout = ShopLayout;

@@ -11,6 +11,7 @@ import LinerThreeImg from "../containers/LandingPage/LinerThreeImg";
 import LinerTwoValue from "../containers/LandingPage/LinerTwoValue";
 import { ApiRegister } from "../services/apiRegister/ApiRegister";
 import { ApiReference } from "../Api";
+import ShopLayout from "../components/shopLayout";
 // fetch data
 const fetchData = async () => {
   let all_data_for_component = [];
@@ -50,7 +51,7 @@ const fetchData = async () => {
   }
 };
 
-const index = ({ data }) => {
+const HomePage = ({ data }) => {
   const Sample = {
     1: "اسلایدر تکی",
     2: "بنر تک عکسی",
@@ -161,7 +162,7 @@ const index = ({ data }) => {
   );
 };
 
-export default index;
+export default HomePage;
 
 // function server side
 export async function getServerSideProps(context) {
@@ -171,3 +172,5 @@ export async function getServerSideProps(context) {
     props: { data },
   };
 }
+
+HomePage.Layout = ShopLayout;

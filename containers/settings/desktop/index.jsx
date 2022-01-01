@@ -9,6 +9,8 @@ import styles from "../../../styles/pages/setting/setting.module.scss";
 import { mapState } from "../methods/mapState";
 import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
 
+import MyLayout from "../../../components/layout/Layout";
+
 // components
 import { Loading } from "../../../components/custom/Loading/Loading";
 import Headers from "../components/Headers/Headers";
@@ -91,3 +93,5 @@ const DesktopSetting = ({ activeHojreh, userInfo }) => {
 // export
 const connector = connect(mapState, { getUserInfo });
 export default connector(DesktopSetting);
+
+DesktopSetting.Layout = MyLayout;

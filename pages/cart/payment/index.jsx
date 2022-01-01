@@ -8,6 +8,7 @@ import styles from "../../../styles/pages/cart/payment/payment.module.scss";
 // methods
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import { errorMessage } from "../../../containers/utils/message";
+import ShopLayout from "../../../components/shopLayout";
 
 const _asist = new Assistent();
 
@@ -495,3 +496,5 @@ export default function Cart() {
     </div>
   );
 }
+
+Cart.Layout = ShopLayout;

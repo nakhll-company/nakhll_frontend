@@ -10,6 +10,7 @@ import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
 import CustomAccordionSend from "../../../components/custom/customAccordionSend";
 import Number from "../../../components/number";
+import ShopLayout from "../../../components/shopLayout";
 function Send() {
   const [ListItems, setListItems] = useState([]);
   const [invoice, setInvoice] = useState({});
@@ -142,3 +143,5 @@ function Send() {
 }
 
 export default Send;
+
+Send.Layout = ShopLayout;
