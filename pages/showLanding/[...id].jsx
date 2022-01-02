@@ -37,11 +37,7 @@ function ShowLanding({ idLanding }) {
         return <LinerOneImg dataLinerOneImg={data.data} />;
         break;
       case 3:
-        return (
-          <>
-            <LinerTwoImgSm dataLinerTwoValue={data.data} />
-          </>
-        );
+        return <LinerTwoImgSm dataLinerTwoValue={data.data} />;
         break;
       case 4:
         return <LinerThreeImg dataLinerThreeImg={data.data} />;

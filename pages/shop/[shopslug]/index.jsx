@@ -13,6 +13,7 @@ import ListProductCusTest from "../../../containers/listProduct/listProductCusTe
 import { ApiReference } from "../../../Api";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import ShopLayout from "../../../components/shopLayout";
+import LinerTwoImgSm from "../../../containers/LandingPage/LinerTwoImgSm";
 
 // fetch data
 const fetchData = async (id) => {
@@ -41,11 +42,7 @@ const Shop = ({ dataShop, data }) => {
       case 2:
         return <LinerOneImg dataLinerOneImg={data.data} />;
       case 3:
-        return (
-          <>
-            <LinerTwoImgSm dataLinerTwoValue={data.data} />
-          </>
-        );
+        return <LinerTwoImgSm dataLinerTwoValue={data.data} />;
       case 4:
         return <LinerThreeImg dataLinerThreeImg={data.data} />;
       case 5:
