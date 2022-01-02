@@ -231,7 +231,8 @@ function ListProductCusTest({ data }) {
       {
         pathname: data.shopslug,
         query: {
-          q: searchWord,
+          ...(searchWord !== "" && { q: searchWord }),
+
           ...(whichOrdering !== "" && { ordering: whichOrdering }),
           ...(isReadyForSend && { ready: isReadyForSend }),
           ...(isAvailableGoods && { available: isAvailableGoods }),
@@ -239,7 +240,7 @@ function ListProductCusTest({ data }) {
           ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
           ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
           ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
-          ...(hojreh !== "" && { shop: hojreh }),
+          // ...(hojreh !== "" && { shop: hojreh }),
           ...(wantCategories.length !== 0 && {
             category: wantCategories.toString(),
           }),

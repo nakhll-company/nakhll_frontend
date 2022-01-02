@@ -28,7 +28,7 @@ const fetchData = async (id) => {
 
   if (response.status === 200) {
     return {
-      shop: response.data || [],
+      shop: response.data || [] ,
     };
   }
 };
