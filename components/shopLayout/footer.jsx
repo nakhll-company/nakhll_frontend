@@ -577,7 +577,7 @@ const Footer = () => {
                 <hr className="mt-0" />{" "}
                 <div className="footer-seo">
                   <div className="font-weight-bold pt-3">
-                    نخل، بازار اجتماعی آنلاین
+                    <h1>نخل، بازار اجتماعی آنلاین</h1>
                   </div>{" "}
                   <div>
                     <div
