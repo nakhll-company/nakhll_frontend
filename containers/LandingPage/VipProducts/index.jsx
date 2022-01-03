@@ -1,7 +1,6 @@
-import EmptyLayout from "../../components/layout/EmptyLayout";
-import st from "./aboutMe.module.scss";
+import st from "./vipProducts.module.scss";
 import Image from "next/image";
-function Test() {
+function VipProducts() {
   return (
     <>
       <div className={st.wrapper}>
@@ -58,6 +57,4 @@ function Test() {
   );
 }
 
-export default Test;
-
-Test.Layout = EmptyLayout;
+export default VipProducts;
