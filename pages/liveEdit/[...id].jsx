@@ -6,6 +6,7 @@ import Living from "../../components/liveEdit/living";
 import Head from "next/head";
 // gsap
 import { gsap, Power3 } from "gsap";
+import lottie from "lottie-web";
 
 import ListComponent from "../../containers/liveEdit/ListComponent";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,6 +31,7 @@ function LiveEdit({ idLanding }) {
   // Ref
   let profile = useRef(null);
   let toggleMenu = useRef(null);
+  const nakhlAnim = useRef(null);
   const list = [
     {
       ID: uuidv4(),
@@ -87,6 +89,17 @@ function LiveEdit({ idLanding }) {
       duration: 0.4,
     });
   }, []);
+  useEffect(() => {
+    lottie.loadAnimation({
+      container: nakhlAnim.current,
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      animationData: require("../../public/lottie/Nakhl.json"),
+
+      //   path: "./lottie/animation.json",
+    });
+  }, [openPlaneEditor]);
 
   // Function For Update Landing
   // Start
@@ -326,6 +339,7 @@ function LiveEdit({ idLanding }) {
                   <span className={styles.title}>ثبت نهایی</span>
                 </div>
               </li> */}
+              <div ref={nakhlAnim} className={styles.nakhlAnim}></div>
             </ul>
           )}
           {openPlaneEditor && (

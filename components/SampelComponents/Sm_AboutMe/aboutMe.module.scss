@@ -1,4 +1,5 @@
 .wrapper {
+    position: relative;
     width: 100%;
     background-color: rgb(255, 255, 255);
     display: flex;
@@ -8,6 +9,13 @@
     padding: 10px;
     -webkit-box-shadow: 0 2px 4px 0 hsl(0deg 0% 71% / 11%);
     box-shadow: 0 2px 4px 0 hsl(0deg 0% 71% / 11%);
+    .animation {
+        position: absolute;
+        top: -40px;
+        right: 80px;
+        height: 100px;
+        width: 100px;
+    }
     .title {
         font-size: 20px;
         color: #000;
