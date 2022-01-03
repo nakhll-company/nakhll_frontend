@@ -11,6 +11,7 @@ import Sm_LinerThreeImg_Fix from "../../../components/SampelFixed/Sm_LinerThreeI
 import Sm_LinerTwoImg_Fix from "../../../components/SampelFixed/Sm_LinerTwoImg";
 
 import styles from "./ListComponent.module.scss";
+import AboutMe_Fix from "../../../components/SampelFixed/Sm_AboutMe";
 
 function ListComponent({ _handel_add_component }) {
   // gsap
@@ -95,6 +96,15 @@ function ListComponent({ _handel_add_component }) {
         >
           <Sm_LinerProducts_Fix />
           {/* <span>لیست</span> */}
+          <div className={styles.cover}></div>
+        </div>
+        <div
+          className={styles.holderItems}
+          onClick={() => _handel_add_component(7)}
+          ref={(el) => (partSix = el)}
+        >
+          <AboutMe_Fix />
+
           <div className={styles.cover}></div>
         </div>
 

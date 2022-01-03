@@ -225,6 +225,18 @@ function LiveEdit({ idLanding }) {
         };
       }
 
+      if (type == 7) {
+        newItem = {
+          ID: uuidv4(),
+          type,
+          data: [
+            {
+              text: "",
+            },
+          ],
+        };
+      }
+
       if (element.type == 0) {
         items.splice(index, 1);
         items.splice(index, 0, newItem);
