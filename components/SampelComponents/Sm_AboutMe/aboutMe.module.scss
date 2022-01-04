@@ -9,6 +9,7 @@
     padding: 10px;
     -webkit-box-shadow: 0 2px 4px 0 hsl(0deg 0% 71% / 11%);
     box-shadow: 0 2px 4px 0 hsl(0deg 0% 71% / 11%);
+    overflow: hidden;
     .animation {
         position: absolute;
         top: -40px;
@@ -28,4 +29,15 @@
         color: #000;
         text-align: justify;
     }
+}
+.textarea {
+    background: #ffffff;
+    border: 1px solid #e0e6e9;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 15px;
+    color: #364254;
+    padding: 11px;
+    border-right: 2px solid #224e82;
+    border-left: 2px solid #224e82;
 }

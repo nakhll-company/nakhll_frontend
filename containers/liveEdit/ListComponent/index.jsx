@@ -100,7 +100,25 @@ function ListComponent({ _handel_add_component }) {
         </div>
         <div
           className={styles.holderItems}
-          onClick={() => _handel_add_component(7)}
+          onClick={() => _handel_add_component(8)}
+          ref={(el) => (partSix = el)}
+        >
+          <AboutMe_Fix />
+
+          <div className={styles.cover}></div>
+        </div>
+        <div
+          className={styles.holderItems}
+          onClick={() => _handel_add_component(9)}
+          ref={(el) => (partSix = el)}
+        >
+          <AboutMe_Fix />
+
+          <div className={styles.cover}></div>
+        </div>
+        <div
+          className={styles.holderItems}
+          onClick={() => _handel_add_component(10)}
           ref={(el) => (partSix = el)}
         >
           <AboutMe_Fix />

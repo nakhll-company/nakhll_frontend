@@ -13,6 +13,8 @@ import ListProductCusTest from "../../../containers/listProduct/listProductCusTe
 import { ApiReference } from "../../../Api";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import ShopLayout from "../../../components/shopLayout";
+import AboutMe from "../../../containers/LandingPage/AboutMe";
+import LinerTwoImgSm from "../../../containers/LandingPage/LinerTwoImgSm";
 
 // fetch data
 const fetchData = async (id) => {
@@ -71,6 +73,9 @@ const Shop = ({ dataShop, data }) => {
       //       />
       //     );
       //     break;
+      case 8:
+        return <AboutMe text={data.data[0].text} />;
+        break;
       default:
         null;
     }

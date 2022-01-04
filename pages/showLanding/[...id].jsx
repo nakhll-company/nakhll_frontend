@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import LinerTwoImg from "../../containers/LandingPage/LinerTwoImg";
 import LinerTwoImgSm from "../../containers/LandingPage/LinerTwoImgSm";
 import ShopLayout from "../../components/shopLayout";
+import AboutMe from "../../containers/LandingPage/AboutMe";
 function ShowLanding({ idLanding }) {
   let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}`;
 
@@ -71,6 +72,9 @@ function ShowLanding({ idLanding }) {
       //       />
       //     );
       //     break;
+      case 8:
+        return <AboutMe text={data.data[0].text} />;
+        break;
       default:
         null;
     }

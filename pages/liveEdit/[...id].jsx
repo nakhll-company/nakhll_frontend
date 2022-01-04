@@ -250,6 +250,40 @@ function LiveEdit({ idLanding }) {
         };
       }
 
+      if (type == 8) {
+        newItem = {
+          ID: uuidv4(),
+          type,
+          data: [
+            {
+              text: "درباره حجره خود بنویسید تا دیگران از داستان کسب و کار شما باخبر بشوند",
+            },
+          ],
+        };
+      }
+      if (type == 9) {
+        newItem = {
+          ID: uuidv4(),
+          type,
+          data: [
+            {
+              text: "درباره حجره خود بنویسید تا دیگران از داستان کسب و کار شما باخبر بشوند",
+            },
+          ],
+        };
+      }
+      if (type == 10) {
+        newItem = {
+          ID: uuidv4(),
+          type,
+          data: [
+            {
+              text: "درباره حجره خود بنویسید تا دیگران از داستان کسب و کار شما باخبر بشوند",
+            },
+          ],
+        };
+      }
+
       if (element.type == 0) {
         items.splice(index, 1);
         items.splice(index, 0, newItem);

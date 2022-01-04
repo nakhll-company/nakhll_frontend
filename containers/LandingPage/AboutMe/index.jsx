@@ -1,13 +1,10 @@
-import EmptyLayout from "../../components/layout/EmptyLayout";
 import st from "./aboutMe.module.scss";
-function AboutMe() {
+function AboutMe({ text }) {
   return (
     <>
-      <div className={st.wrapper}>
+      <div className={`${st.wrapper}  container`}>
         <span className={st.title}>درباره ما</span>
-        <span className={st.content}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
-        </span>
+        <span className={st.content}>{text}</span>
       </div>
     </>
   );

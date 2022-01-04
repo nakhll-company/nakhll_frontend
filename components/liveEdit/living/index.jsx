@@ -128,8 +128,16 @@ function Living({ characters, setCharacters, setOpenPlaneEditor, idLanding }) {
         return <Sm_LinerProducts id={id} data={data} />;
         break;
 
-      case 7:
-        return <Sm_AboutMe />;
+      case 8:
+        return <Sm_AboutMe id={id} data={data}  />;
+        break;
+
+      case 9:
+        return <Sm_AboutMe id={id} data={data} />;
+        break;
+
+      case 10:
+        return <Sm_AboutMe id={id} data={data} />;
         break;
     }
   };
