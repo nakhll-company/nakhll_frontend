@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    height: 600px;
+    height: 540px;
     flex-wrap: wrap;
     padding: 30px;
     .card {
@@ -17,7 +17,6 @@
         flex-direction: column;
         box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
         transition: 0.3s ease-in-out;
-        cursor: pointer;
         &:hover {
             height: 420px;
             .content {
@@ -43,6 +42,7 @@
         width: 260px;
         height: 260px;
         top: -60px;
+        border-radius: 10px;
         z-index: 1;
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         .image {
@@ -50,4 +50,9 @@
             overflow: hidden;
         }
     }
+}
+.icon_change_url {
+    position: absolute;
+    left: 10px;
+    bottom: 20px;
 }

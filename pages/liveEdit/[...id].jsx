@@ -267,7 +267,9 @@ function LiveEdit({ idLanding }) {
           type,
           data: [
             {
-              text: "درباره حجره خود بنویسید تا دیگران از داستان کسب و کار شما باخبر بشوند",
+              order: 0,
+
+              products: [],
             },
           ],
         };
@@ -278,7 +280,9 @@ function LiveEdit({ idLanding }) {
           type,
           data: [
             {
-              text: "درباره حجره خود بنویسید تا دیگران از داستان کسب و کار شما باخبر بشوند",
+              order: 0,
+
+              products: [],
             },
           ],
         };
@@ -376,6 +380,7 @@ function LiveEdit({ idLanding }) {
               <div ref={nakhlAnim} className={styles.nakhlAnim}></div>
             </ul>
           )}
+
           {openPlaneEditor && (
             <ListComponent _handel_add_component={_handel_add_component} />
           )}

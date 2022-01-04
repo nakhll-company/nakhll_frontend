@@ -12,6 +12,7 @@ import LinerTwoImg from "../../containers/LandingPage/LinerTwoImg";
 import LinerTwoImgSm from "../../containers/LandingPage/LinerTwoImgSm";
 import ShopLayout from "../../components/shopLayout";
 import AboutMe from "../../containers/LandingPage/AboutMe";
+import VipProducts from "../../containers/LandingPage/VipProducts";
 function ShowLanding({ idLanding }) {
   let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}`;
 
@@ -74,6 +75,10 @@ function ShowLanding({ idLanding }) {
       //     break;
       case 8:
         return <AboutMe text={data.data[0].text} />;
+        break;
+
+      case 9:
+        return <VipProducts dataLinerProducts={data.data[0].products} />;
         break;
       default:
         null;

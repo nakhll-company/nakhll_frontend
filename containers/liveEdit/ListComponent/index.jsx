@@ -39,6 +39,17 @@ function ListComponent({ _handel_add_component }) {
 
       //   path: "./lottie/animation.json",
     });
+
+    lottie.loadAnimation({
+      container: partTen.current,
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      animationData: require("../../../public/lottie/galeryRotate.json"),
+
+      //   path: "./lottie/animation.json",
+    });
+
     tl.from(partOne, {
       opacity: 0,
       scale: 0,
@@ -129,10 +140,8 @@ function ListComponent({ _handel_add_component }) {
         <div
           className={styles.holderItems}
           onClick={() => _handel_add_component(10)}
-          ref={partTen}
         >
-          <AboutMe_Fix />
-
+          <div ref={partTen}></div>
           <div className={styles.cover}></div>
         </div>
 

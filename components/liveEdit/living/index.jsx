@@ -15,6 +15,8 @@ import { _updateDataLanding } from "../../../redux/actions/liveEdit/_updateDataL
 import SelectUrl from "../../../containers/liveEdit/SelectUrl";
 import SaveLanding from "../../../containers/liveEdit/SaveLanding";
 import Sm_AboutMe from "../../SampelComponents/Sm_AboutMe";
+import VipProducts from "../../SampelComponents/Sm_VipProducts";
+import Sm_VipProducts from "../../SampelComponents/Sm_VipProducts";
 
 function Living({ characters, setCharacters, setOpenPlaneEditor, idLanding }) {
   const dispatch = useDispatch();
@@ -129,11 +131,11 @@ function Living({ characters, setCharacters, setOpenPlaneEditor, idLanding }) {
         break;
 
       case 8:
-        return <Sm_AboutMe id={id} data={data}  />;
+        return <Sm_AboutMe id={id} data={data} />;
         break;
 
       case 9:
-        return <Sm_AboutMe id={id} data={data} />;
+        return <Sm_VipProducts id={id} data={data} />;
         break;
 
       case 10:

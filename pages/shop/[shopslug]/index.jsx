@@ -15,6 +15,7 @@ import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import ShopLayout from "../../../components/shopLayout";
 import AboutMe from "../../../containers/LandingPage/AboutMe";
 import LinerTwoImgSm from "../../../containers/LandingPage/LinerTwoImgSm";
+import VipProducts from "../../../containers/LandingPage/VipProducts";
 
 // fetch data
 const fetchData = async (id) => {
@@ -75,6 +76,9 @@ const Shop = ({ dataShop, data }) => {
       //     break;
       case 8:
         return <AboutMe text={data.data[0].text} />;
+        break;
+      case 9:
+        return <VipProducts dataLinerProducts={data.data[0].products} />;
         break;
       default:
         null;
