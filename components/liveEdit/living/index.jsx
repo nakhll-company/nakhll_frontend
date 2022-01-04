@@ -17,6 +17,7 @@ import SaveLanding from "../../../containers/liveEdit/SaveLanding";
 import Sm_AboutMe from "../../SampelComponents/Sm_AboutMe";
 import VipProducts from "../../SampelComponents/Sm_VipProducts";
 import Sm_VipProducts from "../../SampelComponents/Sm_VipProducts";
+import Sm_RotationProducts from "../../SampelComponents/Sm_RotationProducts";
 
 function Living({ characters, setCharacters, setOpenPlaneEditor, idLanding }) {
   const dispatch = useDispatch();
@@ -139,7 +140,7 @@ function Living({ characters, setCharacters, setOpenPlaneEditor, idLanding }) {
         break;
 
       case 10:
-        return <Sm_AboutMe id={id} data={data} />;
+        return <Sm_RotationProducts id={id} data={data} />;
         break;
     }
   };
