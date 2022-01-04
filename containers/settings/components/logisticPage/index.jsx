@@ -135,7 +135,7 @@ function LogisticPage() {
   // functoin for send data for price per kg
 
   const _handle_send_info_scope = async (data) => {
-    console.log(`data`, data);
+
     let response = await ApiRegister().apiRequest(
       {
         name: data.name ? data.name : "بدون نام",
@@ -156,7 +156,6 @@ function LogisticPage() {
       true,
       ""
     );
-    console.log(`response`, response);
     if (response.status == 200) {
       upPage();
     }

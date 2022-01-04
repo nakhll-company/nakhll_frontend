@@ -82,7 +82,6 @@ export default function Desktop({
 
           {false && Excel !== "" && (
             <>
-              {console.log(`Excel`, Excel)}
               <button
                 download="product.xlsx"
                 className={styles.button_add_group}
@@ -123,6 +122,7 @@ export default function Desktop({
                   <Link
                     href={`/fp/product/update/product/${value.ID}`}
                     key={index}
+                    passHref
                   >
                     <tr>
                       <td>{index + 1}</td>

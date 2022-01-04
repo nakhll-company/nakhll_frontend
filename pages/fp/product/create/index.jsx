@@ -221,6 +221,11 @@ const CreateProduct = ({ activeHojreh }) => {
                         width={100}
                       />
                     )}
+                    <div className={styles.deleteBtn}>
+                      <div className={styles.wrapBtn} onClick={() => setImgProduct(null)}>
+                        <i className="fas fa-trash"></i>
+                      </div>
+                    </div>
                   </div>
                   {/* imgProductChild, setImgProductChild */}
                   {imgProduct && (
@@ -260,7 +265,7 @@ const CreateProduct = ({ activeHojreh }) => {
                   error={errors.Net_Weight}
 
                   text="گرم"
-                  
+
                 >
                   <input
                     type="number"
@@ -392,7 +397,7 @@ const CreateProduct = ({ activeHojreh }) => {
                     {...register("Description")}
                   />
                 </TextAreaUseForm>
-                
+
                 {/* inventory */}
                 <InputUseForm
                   title="موجودی"

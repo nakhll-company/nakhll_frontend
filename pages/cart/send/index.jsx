@@ -33,7 +33,6 @@ function Send() {
     if (response.status === 200) {
       setListItems(response.data.logistic_unit_details);
       setInvoice(response.data);
-      console.log(`response.data`, response.data);
     }
   };
 
@@ -85,7 +84,6 @@ function Send() {
                   logistic_price={el.price}
                   logistic_units={el.logistic_units}
                 >
-                  {console.log(`el`, el)}
                   {Object.values(el.logistic_units).map((ef) => (
                     <>
                       <div style={{ background: "#fff", padding: "10px 15px" }}>

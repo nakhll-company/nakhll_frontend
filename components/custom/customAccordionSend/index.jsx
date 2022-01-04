@@ -12,7 +12,6 @@ export const CustomAccordionSend = ({
   logistic_price,
 }) => {
   const [allMiniPic, setAllMiniPic] = useState(Object.values(logistic_units));
-  console.log(`logistic_price`, logistic_price);
   const _handel_according = (accord, icon, images) => {
     let element = document.getElementById(accord);
     if (element.style.height == "0px") {
