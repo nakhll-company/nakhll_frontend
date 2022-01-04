@@ -215,7 +215,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
             <section className={styles.info_card}>
               <div className={styles.info_card_pic}>
                 <div className={styles.info_card_pic_person}>
-                  {(userInfo && userInfo.shops.length > 0 && userInfo.shops[0].image_thumbnail_url) ? <Image src={userInfo.shops[0].image_thumbnail_url} layout="fill" alt="" /> : <Image src="/image/picprofile.png" layout="fill" alt="" />}
+                  {(userInfo && userInfo.shops && userInfo.shops.length > 0 && userInfo.shops[0].image_thumbnail_url) ? <Image src={userInfo.shops[0].image_thumbnail_url} layout="fill" alt="" /> : <Image src="/image/picprofile.png" layout="fill" alt="" />}
                 </div>
               </div>
               <div className={styles.info_cardH}>

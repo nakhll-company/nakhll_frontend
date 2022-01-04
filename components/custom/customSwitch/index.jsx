@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./customSwitch.module.scss";
 
-const CustomSwitch = ({ id, title, onChange, defaultChecked }) => {
+const CustomSwitch = ({ id, title, onChange, defaultChecked, onClick }) => {
   return (
     <div className={styles.filter_box}>
       <div className={`${styles.custom_switch} d-flex align-items-center `}>
@@ -10,6 +10,7 @@ const CustomSwitch = ({ id, title, onChange, defaultChecked }) => {
           id={`switch__${id}`}
           className={styles.custom_switch__input}
           onChange={onChange}
+          onClick={onClick}
           defaultChecked={defaultChecked}
         />{" "}
         <label

@@ -11,6 +11,7 @@ import { errorMessage } from '../utils/message';
 import { ApiRegister } from '../../services/apiRegister/ApiRegister';
 import { deleteItemListLanding } from './methods/deleteItemListLanding';
 import { activeListItemLanding } from './methods/activeListItemLanding';
+import { deActiveListItemLanding } from './methods/deActiveListItemLanding';
 // scss
 import styles from './scss/mobileLanding.module.scss';
 
@@ -24,7 +25,6 @@ const MobileLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
             <MobileHeader type="search" title="فرودها" />
             <div className={styles.wrapper_cart}>
                 <div className={styles.wrapper_links}>
-                    {/* <Link href="/liveEdit"> */}
                     <span className={styles.link_add} onClick={async () => {
                         let response = await ApiRegister().apiRequest(
                             {
@@ -46,33 +46,40 @@ const MobileLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
                         <i className="fa fa-plus ms-2"></i>
                         افزودن فرود
                     </span>
-                    {/* </Link> */}
-                    {/* <Link href={`/fp/options/landing/orders?id=${id}`}>
-                        <a className={styles.link_add}>
-                            سفارشات
-                        </a>
-                    </Link> */}
                 </div>
                 {(landingList && landingList.length > 0) ? landingList.map((value, index) => {
                     return (
-                        <div className={styles.cart_item} key={index}>
-                            <div className="d-flex justify-content-between align-items-center" onClick={() => {
-                                value.status === "inactive" && activeListItemLanding(value.id, activeHojreh, setLandingList);
-                            }}>
-                                <CustomLabel type="normal" value={_asist.number(index + 1)} label="شماره" />
-                                <CustomSwitch defaultChecked={value.status === "active" ? true : false} id="active" />
-                            </div>
-                            <CustomLabel type="normal" value={value.name} label="نام" />
-                            <CustomLabel type="normal" value={_asist.number(value.created_at)} label="تاریخ ثبت" />
-                            <div className="d-flex justify-content-end align-items-center">
-                                <Link href={`/showLanding/${activeHojreh}/${value.id}`}>
-                                    <a>
-                                        <i className="fas fa-eye mx-3"></i>
-                                    </a>
-                                </Link>
-                                <i className="far fa-trash-alt" onClick={() => { deleteItemListLanding(value.id, activeHojreh, setLandingList) }}></i>
-                            </div>
-                        </div>
+                        <Link href={`/liveEdit/${activeHojreh}/${value.id}`} key={index}>
+                            <a>
+                                <div className={styles.cart_item}>
+                                    <div className="d-flex justify-content-between align-items-center" onClick={() => {
+                                        value.status === "inactive" && activeListItemLanding(value.id, activeHojreh, router);
+                                        value.status === "active" && deActiveListItemLanding(value.id, activeHojreh, router);
+                                    }}>
+                                        <CustomLabel type="normal" value={_asist.number(index + 1)} label="شماره" />
+                                        <CustomSwitch defaultChecked={value.status === "active" ? true : false} id="active" />
+                                    </div>
+                                    <CustomLabel type="normal" value={value.name} label="نام" />
+                                    <CustomLabel type="normal" value={_asist.number(value.created_at)} label="تاریخ ثبت" />
+                                    <div className="d-flex justify-content-end align-items-center">
+                                        <Link href={`/liveEdit/${activeHojreh}/${value.id}`}>
+                                            <a>
+                                                <i
+                                                    style={{ fontSize: "18px" }}
+                                                    className="fas fa-edit"
+                                                ></i>
+                                            </a>
+                                        </Link>
+                                        <Link href={`/showLanding/${activeHojreh}/${value.id}`}>
+                                            <a>
+                                                <i style={{ fontSize: "18px" }} className="fas fa-eye mx-3"></i>
+                                            </a>
+                                        </Link>
+                                        <i style={{ fontSize: "18px" }} className="far fa-trash-alt" onClick={() => { deleteItemListLanding(value.id, activeHojreh, setLandingList) }}></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </Link>
                     )
                 }) : <tr>
                     <td colSpan="7">
