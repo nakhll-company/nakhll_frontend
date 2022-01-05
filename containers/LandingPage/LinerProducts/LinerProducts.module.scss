@@ -10,13 +10,15 @@ $color6: #d4d8e1;
     margin-bottom: 15px;
     overflow: hidden;
     position: relative;
+    padding-top: 7px;
+    padding-bottom: 7px;
     &::before {
         content: "";
         position: absolute;
         bottom: 0;
         left: 0;
         width: 100%;
-        height: 10px;
+        height: 5px;
         background: linear-gradient(to top, #f5f5f5, transparent);
     }
     &::after {
@@ -25,7 +27,7 @@ $color6: #d4d8e1;
         top: 0;
         left: 0;
         width: 100%;
-        height: 10px;
+        height: 5px;
         background: linear-gradient(to bottom, #f5f5f5, transparent);
     }
     .header {
