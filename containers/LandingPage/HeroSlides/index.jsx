@@ -25,15 +25,7 @@ function HeroSlides({ dataHeroSlides }) {
                 .slice(0, dataHeroSlides.length - 2)
                 .map((slider, index) => (
                   <SwiperSlide key={index}>
-                    <Link
-                      href={
-                        slider.url === "https://nakhll.com/fp/store/create"
-                          ? Object.keys(userLog).length > 0
-                            ? "/description"
-                            : "/login"
-                          : "/description"
-                      }
-                    >
+                    <Link href={slider.url}>
                       <a>
                         <Image
                           layout="responsive"
