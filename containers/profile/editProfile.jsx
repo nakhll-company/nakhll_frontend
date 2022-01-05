@@ -1,7 +1,7 @@
 // node libraries
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
-import { ToastContainer } from "react-toastify";
+
 // methods
 import { Day, Months, Year } from "../../utils/staticDate";
 import { getStates } from "./methods/getStates";
@@ -21,7 +21,7 @@ const EditProfile = ({ dataProfile }) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  let [previewImageSrc, setPreviewImageSrc] = useState("");
+
   let [selectState, setSelectState] = useState([]);
   let [selectBigCities, setSelectBigCities] = useState([]);
   let [selectCities, setSelectCities] = useState([]);
@@ -32,38 +32,27 @@ const EditProfile = ({ dataProfile }) => {
       setImgProfile(dataProfile.Image);
     }
   }, [dataProfile]);
+
   const onSubmit = async (data) => {
-    data.Image = imgProfile;
+    if (imgProfile.startsWith("data:image")) {
+      data.Image = imgProfile;
+    }
+
     data.FK_User = {
       first_name: data.first_name,
       last_name: data.last_name,
     };
     data.BrithDay = `${data.year}-${data.month}-${data.day}`;
-    // if (data.image.length > 0) {
-    //   let imageProfile = data.image[0];
-    //   let reader = new FileReader();
-    //   reader.onloadend = async function () {
-    //     data.Image = `${reader.result}`;
-    //   };
-    //   reader.readAsDataURL(imageProfile);
-    // }
+
     if (data.BrithDay === "--") {
       delete data.BrithDay;
     }
     if (data.Sex === "") {
       delete data.Sex;
     }
-
-    setTimeout(() => {
-      updatUserProfile(data);
-    }, 1000);
+    updatUserProfile(data);
   };
 
-  function previewImage(e) {
-    if (e.target.files[0]) {
-      setPreviewImageSrc(URL.createObjectURL(e.target.files[0]));
-    }
-  }
   useEffect(async () => {
     // state
     setSelectState(await getStates());
@@ -71,40 +60,7 @@ const EditProfile = ({ dataProfile }) => {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <ToastContainer />
       <div className="d-flex justify-content-center mt-3">
-        {/* <div className={styles.Parent_imageProfile}>
-          <label htmlFor="image" style={{ cursor: "pointer" }}>
-            {previewImageSrc.length === 0 && (
-              <img
-                src={
-                  Object.keys(dataProfile).length > 0
-                    ? dataProfile.image
-                    : "/productDetail/avatar.png"
-                }
-                style={{ width: "90px", height: "90px" }}
-                className={styles.imageProfile}
-              />
-            )}
-            {previewImageSrc.length > 0 && (
-              <img
-                src={previewImageSrc}
-                style={{ width: "90px", height: "90px" }}
-                className={styles.imageProfile}
-              />
-            )}
-          </label>
-          <input
-            type="file"
-            {...register("image")}
-            id="image"
-            accept="image/png, image/jpeg"
-            style={{ visibility: "hidden" }}
-            onChange={(e) => {
-              previewImage(e);
-            }}
-          />
-        </div> */}
         <div className={styles.wrap_all}>
           <div className={styles.Parent_imageProfile}>
             <Image
