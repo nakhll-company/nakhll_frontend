@@ -4,6 +4,7 @@ import CheckboxTree from "react-checkbox-tree";
 import Assistent from "zaravand-assistent-number";
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+import _ from "lodash";
 // components
 import { TopBar } from "../TopBar";
 import { errorMessage } from "../../utils/message";
@@ -22,9 +23,12 @@ import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import styles from "./listProductCus.module.scss";
 import OrderingModalMobile from "./components/OrderingModalMobile";
 import SearchProduct from "./components/searchProduct";
+import { useSelector } from "react-redux";
+
 const _asist = new Assistent();
 
 function ListProductCus({ data }) {
+  const userData = useSelector((state) => state.User.userInfo);
   const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
   const [searchWord, setSearchWord] = useState(data.q ? data.q : "");
   const [listWithFilter, setListWithFilter] = useState([]);
@@ -98,7 +102,7 @@ function ListProductCus({ data }) {
       if (response.status === 200) {
         setCategories(response.data);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   const _handel_Add_category = (id) => {
@@ -201,7 +205,7 @@ function ListProductCus({ data }) {
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
   // Get all shops
   const _get_all_shops = async () => {
@@ -246,7 +250,7 @@ function ListProductCus({ data }) {
     clickOnRange,
     changePage,
     hojreh,
-    searchWord
+    searchWord,
   ]);
 
   useEffect(() => {
@@ -282,7 +286,7 @@ function ListProductCus({ data }) {
     maxPrice,
     minPrice,
     hojreh,
-    searchWord
+    searchWord,
   ]);
 
   // for filters in sidebar
@@ -680,7 +684,7 @@ function ListProductCus({ data }) {
           setIsOpenOrderingModal={setIsOpenOrderingModal}
         />
       )}
-      <AddFavorites />
+      {!_.isEmpty(userData) && <AddFavorites />}
 
       {/* ModalOrdering End */}
 
