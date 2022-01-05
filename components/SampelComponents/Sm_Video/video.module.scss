@@ -28,3 +28,20 @@
 .animation {
     position: absolute;
 }
+.icon_change_url {
+    position: absolute;
+    left: 25px;
+    bottom: 20px;
+    z-index: 2;
+}
+.wrap_icon {
+    i {
+        font-size: 30px;
+        color: rgb(8, 1, 42);
+        transition: all 0.4s;
+        &:hover {
+            color: rgb(34, 77, 130);
+            transform: scale(3);
+        }
+    }
+}

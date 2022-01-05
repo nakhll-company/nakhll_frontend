@@ -288,6 +288,20 @@ function LiveEdit({ idLanding }) {
         };
       }
 
+      if (type == 11) {
+        newItem = {
+          ID: uuidv4(),
+          type,
+          data: [
+            {
+              order: 0,
+
+              video: "",
+            },
+          ],
+        };
+      }
+
       if (element.type == 0) {
         items.splice(index, 1);
         items.splice(index, 0, newItem);

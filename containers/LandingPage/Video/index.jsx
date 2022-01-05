@@ -1,12 +1,11 @@
-import EmptyLayout from "../../components/layout/EmptyLayout";
-import st from "./aboutMe.module.scss";
+import st from "./video.module.scss";
 import lottie from "lottie-web";
 import { useEffect } from "react";
 import { useRef } from "react";
-import Image from "next/image";
+
 import Script from "next/script";
 
-function Test() {
+function Video() {
   const an1 = useRef(null);
   useEffect(() => {
     lottie.loadAnimation({
@@ -14,7 +13,7 @@ function Test() {
       renderer: "svg",
       loop: true,
       autoplay: true,
-      animationData: require("../../public/lottie/bacV4.json"),
+      animationData: require("../../../public/lottie/bacV4.json"),
     });
   }, []);
   return (
@@ -31,6 +30,4 @@ function Test() {
   );
 }
 
-export default Test;
-
-Test.Layout = EmptyLayout;
+export default Video;

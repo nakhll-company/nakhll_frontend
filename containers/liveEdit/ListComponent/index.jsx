@@ -28,6 +28,7 @@ function ListComponent({ _handel_add_component }) {
   let partSix = useRef(null);
   let partNine = useRef(null);
   let partTen = useRef(null);
+  let partEleven = useRef(null);
 
   useEffect(() => {
     lottie.loadAnimation({
@@ -46,6 +47,15 @@ function ListComponent({ _handel_add_component }) {
       loop: true,
       autoplay: true,
       animationData: require("../../../public/lottie/galeryRotate.json"),
+
+      //   path: "./lottie/animation.json",
+    });
+    lottie.loadAnimation({
+      container: partEleven.current,
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      animationData: require("../../../public/lottie/videoDes.json"),
 
       //   path: "./lottie/animation.json",
     });
@@ -144,7 +154,13 @@ function ListComponent({ _handel_add_component }) {
           <div ref={partTen}></div>
           <div className={styles.cover}></div>
         </div>
-
+        <div
+          className={styles.holderItems}
+          onClick={() => _handel_add_component(11)}
+        >
+          <div ref={partEleven}></div>
+          <div className={styles.cover}></div>
+        </div>
         <div style={{ marginTop: "30px" }}></div>
       </div>
     </>

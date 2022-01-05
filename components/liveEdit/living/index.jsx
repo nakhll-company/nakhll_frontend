@@ -18,11 +18,14 @@ import Sm_AboutMe from "../../SampelComponents/Sm_AboutMe";
 import VipProducts from "../../SampelComponents/Sm_VipProducts";
 import Sm_VipProducts from "../../SampelComponents/Sm_VipProducts";
 import Sm_RotationProducts from "../../SampelComponents/Sm_RotationProducts";
+import Video from "../../../containers/LandingPage/Video";
+import Sm_Video from "../../SampelComponents/Sm_Video";
 
 function Living({ characters, setCharacters, setOpenPlaneEditor, idLanding }) {
   const dispatch = useDispatch();
   const showCrop = useSelector((state) => state.showCropper);
   const showSelectorUrl = useSelector((state) => state.showSelectUrl);
+  
 
   // const characters = useSelector((state) => state.allDataLanding);
 
@@ -141,6 +144,10 @@ function Living({ characters, setCharacters, setOpenPlaneEditor, idLanding }) {
 
       case 10:
         return <Sm_RotationProducts id={id} data={data} />;
+        break;
+
+      case 11:
+        return <Sm_Video id={id} data={data} />;
         break;
     }
   };
