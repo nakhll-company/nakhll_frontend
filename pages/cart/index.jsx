@@ -9,7 +9,7 @@ import ListCardBuy from "../../containers/card/ListCardBuy";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import ContextProduct from "../../containers/card/Context/context";
 // LIBRARY
-import { ToastContainer } from "react-toastify";
+
 import { Empty } from "../../components/custom/Empty/Empty";
 import { MenuMobile } from "../../containers/card/MenuMobile";
 import { Loading } from "../../components/custom/Loading/Loading";
@@ -79,7 +79,7 @@ export default function Cart() {
         )}
 
         <MenuMobile />
-        <ToastContainer />
+        
       </div>
     </ContextProduct.Provider>
   );

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import { ToastContainer } from "react-toastify";
+
 // methods
 import { resendCode } from "../../api/auth/resendCode";
 import { completeAuth } from "../../api/auth/completeAuth";
@@ -48,7 +48,7 @@ const Code = () => {
       <Head>
         <title>ورود بازار آنلاین نخل</title>
       </Head>
-      <ToastContainer />
+      
       <div className="d-flex flex-column justify-content-center col-12 col-md-8 col-lg-5 m-auto bg-white shadow-lg p-5 mt-5 rounded">
         <div className="m-auto">
           <Link href="/">

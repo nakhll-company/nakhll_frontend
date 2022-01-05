@@ -1,8 +1,11 @@
 import React from "react";
 import Head from "next/head";
+import dynamic from 'next/dynamic';
 import { NextSeo } from "next-seo";
 
-import HeroSlides from "../containers/LandingPage/HeroSlides";
+
+const DynamicHeroSlides = dynamic(() => import('../containers/LandingPage/HeroSlides'))
+// import HeroSlides from "../containers/LandingPage/HeroSlides";
 import LinerFourImgMobile from "../containers/LandingPage/LinerFourImgMobile";
 import LinerOneImg from "../containers/LandingPage/LinerOneImg";
 import LinerProducts from "../containers/LandingPage/LinerProducts";
@@ -66,7 +69,7 @@ const HomePage = ({ data }) => {
     switch (type.component_type) {
       case 1:
         return (
-          <HeroSlides
+          <DynamicHeroSlides
             key={index}
             dataHeroSlides={data.all_data_for_component[index]}
           />

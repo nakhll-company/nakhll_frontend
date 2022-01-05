@@ -1,4 +1,4 @@
-import { ToastContainer } from "react-toastify";
+
 import { useRouter } from "next/router";
 import Loading from "../../../components/loading";
 import Image from "next/image";
@@ -47,7 +47,7 @@ function Send() {
             crossOrigin="anonymous"
           />
         </Head>
-        <ToastContainer />
+        
         {false ? (
           <div className={`col-12 col-lg-5 py-5 my-2 ${st.wrapper}`}>
             <Loading />
