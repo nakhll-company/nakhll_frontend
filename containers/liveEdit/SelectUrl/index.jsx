@@ -59,6 +59,10 @@ function SelectUrl({ idLanding }) {
                   placeholder="<div id='68272816092'><script type='text/JavaScript' src='https://www.aparat.com/embed/V57nG?data[rnddiv]=68272816092&data[responsive]=yes'></script></div>"
                   // onChange={(e) => setName(e.target.value)}
                 />
+              <button onClick={()=>{
+                dispatch(_updateUrl("www", "فیلم ثبت شده توسط شما"));
+                dispatch(_showSelect_url());
+              }}>ثبت</button>
               </div>
             </div>
 

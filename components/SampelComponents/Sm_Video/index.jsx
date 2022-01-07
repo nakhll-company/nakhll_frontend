@@ -6,7 +6,8 @@ import { useRef } from "react";
 import Script from "next/script";
 import InputUrl from "../../../containers/liveEdit/InputUrl";
 
-function Sm_Video({ id }) {
+function Sm_Video({ id,data }) {
+  console.log('data :>> ', data);
   const [showInputVedio, setShowInputVedio] = useState(false);
   const an1 = useRef(null);
   useEffect(() => {
@@ -25,6 +26,11 @@ function Sm_Video({ id }) {
           <div className={st.wrap_icon}>
             <InputUrl id={id} order={0} />
             {/* <i className="fas fa-video"></i> */}
+            {data[0].title && (
+        <div className={st.titleUrl}>
+          <span>{data[0].title}</span>
+        </div>
+      )}
           </div>
         </div>
         <div ref={an1} className={st.animation}></div>
