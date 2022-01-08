@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import { ToastContainer } from "react-toastify";
+
 import Assistent from "zaravand-assistent-number";
 // componentes
 import Loading from "../../../components/loading";
@@ -45,7 +45,7 @@ const Address = () => {
           crossOrigin="anonymous"
         />
       </Head>
-      <ToastContainer />
+      
       {loading ? (
         <div className={`col-12 col-lg-5 py-5 my-2 ${styles.wrapper}`}>
           <Loading />

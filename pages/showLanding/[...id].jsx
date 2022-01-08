@@ -5,31 +5,33 @@ import LinerFourImgMobile from "../../containers/LandingPage/LinerFourImgMobile"
 import LinerOneImg from "../../containers/LandingPage/LinerOneImg";
 import LinerProducts from "../../containers/LandingPage/LinerProducts";
 import LinerThreeImg from "../../containers/LandingPage/LinerThreeImg";
-import LinerTwoValue from "../../containers/LandingPage/LinerTwoValue";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
-import { useRouter } from "next/router";
-import LinerTwoImg from "../../containers/LandingPage/LinerTwoImg";
 import LinerTwoImgSm from "../../containers/LandingPage/LinerTwoImgSm";
 import ShopLayout from "../../components/shopLayout";
 import AboutMe from "../../containers/LandingPage/AboutMe";
 import VipProducts from "../../containers/LandingPage/VipProducts";
 function ShowLanding({ idLanding }) {
-  let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}`;
 
+  let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}`;
   const [dataLanding, setDataLanding] = useState([]);
 
-  useEffect(async () => {
-    let response = await ApiRegister().apiRequest(
-      null,
-      "get",
-      getDataLanding,
-      true,
-      ""
-    );
-    if (response.status == 200) {
-      setDataLanding(JSON.parse(response.data.page_data));
+  useEffect(() => {
+    async function fetchData() {
+      let response = await ApiRegister().apiRequest(
+        null,
+        "get",
+        getDataLanding,
+        true,
+        ""
+      );
+      if (response.status == 200) {
+        setDataLanding(JSON.parse(response.data.page_data));
+      }
     }
+    fetchData();
+
   }, []);
+
   const _handel_select_component = (data, index) => {
     switch (data.type) {
       case 1:
@@ -39,11 +41,7 @@ function ShowLanding({ idLanding }) {
         return <LinerOneImg dataLinerOneImg={data.data} />;
         break;
       case 3:
-        return (
-          <>
-            <LinerTwoImgSm dataLinerTwoValue={data.data} />
-          </>
-        );
+        return <LinerTwoImgSm dataLinerTwoValue={data.data} />;
         break;
       case 4:
         return <LinerThreeImg dataLinerThreeImg={data.data} />;

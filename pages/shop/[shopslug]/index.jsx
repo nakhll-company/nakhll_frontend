@@ -1,14 +1,26 @@
 // node libraries
 import { NextSeo } from "next-seo";
 import React, { useState } from "react";
+import dynamic from 'next/dynamic';
 // components
-import EnfoLiner from "../../../containers/hojreh/EnfoLiner";
-import HeroSlides from "../../../containers/LandingPage/HeroSlides";
-import LinerOneImg from "../../../containers/LandingPage/LinerOneImg";
-import LinerThreeImg from "../../../containers/LandingPage/LinerThreeImg";
-import LinerFourImgMobile from "../../../containers/LandingPage/LinerFourImgMobile";
-import LinerProducts from "../../../containers/LandingPage/LinerProducts";
-import ListProductCusTest from "../../../containers/listProduct/listProductCusTest";
+// import EnfoLiner from "../../../containers/hojreh/EnfoLiner";
+// import HeroSlides from "../../../containers/LandingPage/HeroSlides";
+// import LinerOneImg from "../../../containers/LandingPage/LinerOneImg";
+// import LinerTwoImgSm from "../../../containers/LandingPage/LinerTwoImgSm";
+// import LinerThreeImg from "../../../containers/LandingPage/LinerThreeImg";
+// import LinerFourImgMobile from "../../../containers/LandingPage/LinerFourImgMobile";
+// import LinerProducts from "../../../containers/LandingPage/LinerProducts";
+// import ListProductCusTest from "../../../containers/listProduct/listProductCusTest";
+
+
+const DynamicEnfoLiner = dynamic(() => import('../../../containers/hojreh/EnfoLiner'))
+const DynamicHeroSlides = dynamic(() => import('../../../containers/LandingPage/HeroSlides'))
+const DynamicLinerOneImg = dynamic(() => import('../../../containers/LandingPage/LinerOneImg'))
+const DynamicLinerTwoImgSm = dynamic(() => import('../../../containers/LandingPage/LinerTwoImgSm'))
+const DynamicLinerThreeImg = dynamic(() => import('../../../containers/LandingPage/LinerThreeImg'))
+const DynamicLinerFourImgMobile = dynamic(() => import('../../../containers/LandingPage/LinerFourImgMobile'))
+const DynamicLinerProducts = dynamic(() => import('../../../containers/LandingPage/LinerProducts'))
+const DynamicListProductCusTest = dynamic(() => import('../../../containers/listProduct/listProductCusTest'))
 // methods
 import { ApiReference } from "../../../Api";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
@@ -30,7 +42,7 @@ const fetchData = async (id) => {
 
   if (response.status === 200) {
     return {
-      shop: response.data || [],
+      shop: response.data || [] ,
     };
   }
 };
@@ -40,22 +52,18 @@ const Shop = ({ dataShop, data }) => {
   const _handel_select_component = (data) => {
     switch (data.type) {
       case 1:
-        return <HeroSlides dataHeroSlides={data.data} />;
+        return <DynamicHeroSlides dataHeroSlides={data.data} />;
       case 2:
-        return <LinerOneImg dataLinerOneImg={data.data} />;
+        return <DynamicLinerOneImg dataLinerOneImg={data.data} />;
       case 3:
-        return (
-          <>
-            <LinerTwoImgSm dataLinerTwoValue={data.data} />
-          </>
-        );
+        return <DynamicLinerTwoImgSm dataLinerTwoValue={data.data} />;
       case 4:
-        return <LinerThreeImg dataLinerThreeImg={data.data} />;
+        return <DynamicLinerThreeImg dataLinerThreeImg={data.data} />;
       case 5:
-        return <LinerFourImgMobile dataLinerFourImgMobile={data.data} />;
+        return <DynamicLinerFourImgMobile dataLinerFourImgMobile={data.data} />;
       case 6:
         return (
-          <LinerProducts
+          <DynamicLinerProducts
             title={data.data[0].titleComponent}
             color={data.data[0].color}
             subTitle={data.data[0].subTitle}
@@ -97,14 +105,14 @@ const Shop = ({ dataShop, data }) => {
       {dataShop.shop.landing_data === null && (
         <>
           <NextSeo {...SEO} />
-          <EnfoLiner
+          <DynamicEnfoLiner
             title={informationShop.title}
             name={dataShop.shop.FK_ShopManager}
             profile={informationShop.image_thumbnail_url}
           />
 
           {/* <ListProductShop shop_products={dataShop.shop.slug} data={data} /> */}
-          <ListProductCusTest data={data} />
+          <DynamicListProductCusTest data={data} />
         </>
       )}
 

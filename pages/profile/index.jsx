@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { ToastContainer } from "react-toastify";
+
 // components
 import useViewport from "../../components/viewPort";
 import Oredrs from "../../containers/profile/orders";
@@ -58,7 +58,7 @@ const Profile = () => {
         />
         <meta name="robots" content="noindex, nofollow" />
       </Head>
-      <ToastContainer />
+
       <div className={`container-fluid ${styles.main_wrapper}`}>
         <div className="row">
           <div

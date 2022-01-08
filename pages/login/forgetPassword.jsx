@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import { ToastContainer } from "react-toastify";
+
 // methods
 import { setPassword } from "../../api/auth/setPassword";
 import EmptyLayout from "../../components/layout/EmptyLayout";
@@ -29,7 +29,7 @@ const ForgetPassword = () => {
       <Head>
         <title>ورود بازار آنلاین نخل</title>
       </Head>
-      <ToastContainer />
+      
       <div className="d-flex flex-column justify-content-center col-12 col-md-8 col-lg-5 m-auto bg-white p-5 mt-5 shadow-lg rounded">
         <div className="m-auto">
           <Link href="/">

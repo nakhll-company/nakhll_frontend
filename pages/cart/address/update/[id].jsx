@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
-import { ToastContainer } from "react-toastify";
+
 // componentes
 import Loading from "../../../../components/loading";
 // methods
@@ -61,7 +61,7 @@ const UpdateAddress = () => {
                     crossOrigin="anonymous"
                 />
             </Head>
-            <ToastContainer />
+            
             {loading ?
                 <div className={`col-12 col-lg-5 py-5 ${styles.wrapper}`} style={{ padding: "50px 0px !important" }}>
                     <Loading />

@@ -48,6 +48,10 @@ function NewStore({ getUserInfo, userInfo }) {
         success: "true",
       });
     } else {
+      setShowSuccessPage({
+        loading: "false",
+        success: "false",
+      });
       errorMessage("خطایی در ایجاد حجره پیش آمده است");
     }
   };

@@ -1,16 +1,8 @@
 // node libraries
 import { useEffect, useState } from "react";
-import { connect, useSelector } from "react-redux";
-
+import { useSelector } from "react-redux";
 // scss
 import styles from "../../../styles/pages/setting/setting.module.scss";
-
-// methods
-import { mapState } from "../methods/mapState";
-import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
-
-import MyLayout from "../../../components/layout/Layout";
-
 // components
 import { Loading } from "../../../components/custom/Loading/Loading";
 import Headers from "../components/Headers/Headers";
@@ -26,8 +18,6 @@ const DesktopSetting = () => {
   const [apiSetting, setApiSetting] = useState({});
   const [MainLoading, setMainLoading] = useState(true);
   const [onMenu, setOnMenu] = useState("1");
-  const [imageSrc, setImageSrc] = useState(null);
-
   // for btn  when click call api again
   const [clicked, setClicked] = useState(false);
 

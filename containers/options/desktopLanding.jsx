@@ -9,6 +9,7 @@ import { errorMessage } from "../utils/message";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { deleteItemListLanding } from "./methods/deleteItemListLanding";
 import { activeListItemLanding } from "./methods/activeListItemLanding";
+import { deActiveListItemLanding } from "./methods/deActiveListItemLanding";
 // scss
 import styles from "./scss/desktopLanding.module.scss";
 
@@ -21,7 +22,6 @@ const DesktopLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
     <div className={styles.wrapper}>
       <div className={styles.header}>
         <h1 className={styles.title}>فرودها</h1>
-        {/* <Link href="/liveEdit"> */}
         <span
           className={styles.link_add}
           onClick={async () => {
@@ -46,10 +46,6 @@ const DesktopLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
           <i className="fa fa-plus ms-2"></i>
           افزودن فرود
         </span>
-        {/* </Link> */}
-        {/* <Link href={`/fp/options/landing/orders?id=${id}`}>
-          <a className={styles.link_add}>سفارشات</a>
-        </Link> */}
       </div>
       <table className={styles.table}>
         <thead>
@@ -73,18 +69,22 @@ const DesktopLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
                   <td>{_asist.number(value.created_at)}</td>
                   <td
                     className="d-flex justify-content-center pb-3"
-                    onClick={() => {
-                      value.status === "inactive" &&
-                        activeListItemLanding(
-                          value.id,
-                          activeHojreh,
-                          setLandingList
-                        );
-                    }}
                   >
                     <CustomSwitch
                       defaultChecked={value.status === "active" ? true : false}
-                      id="active"
+                      onClick={() => {
+                        value.status === "inactive" && activeListItemLanding(
+                          value.id,
+                          activeHojreh,
+                          router
+                        );
+                        value.status === "active" && deActiveListItemLanding(
+                          value.id,
+                          activeHojreh,
+                          router
+                        );
+                      }}
+                      id={value.id}
                     />
                   </td>
                   <td>
@@ -104,7 +104,6 @@ const DesktopLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
                       </a>
                     </Link>
                   </td>
-
                   <td>
                     <i
                       className="far fa-trash-alt"

@@ -16,7 +16,6 @@ function SwitchButtonSetting({ id, isActive }) {
       true,
       ""
     );
-    console.log(`response`, response);
     if (response.status == 200) {
     }
   };
@@ -30,7 +29,7 @@ function SwitchButtonSetting({ id, isActive }) {
           onChange={handel_chamnge_status}
           // defaultChecked={isActive}
           checked={Activer}
-          // value={isActive}
+        // value={isActive}
         />{" "}
         <label
           htmlFor={`switch__${id}`}
