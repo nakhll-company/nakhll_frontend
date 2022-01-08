@@ -10,8 +10,9 @@ import LinerTwoImgSm from "../../containers/LandingPage/LinerTwoImgSm";
 import ShopLayout from "../../components/shopLayout";
 import AboutMe from "../../containers/LandingPage/AboutMe";
 import VipProducts from "../../containers/LandingPage/VipProducts";
+import RotationProducts from "../../containers/LandingPage/RotationProducts";
+import Video from "../../containers/LandingPage/Video";
 function ShowLanding({ idLanding }) {
-
   let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}`;
   const [dataLanding, setDataLanding] = useState([]);
 
@@ -29,7 +30,6 @@ function ShowLanding({ idLanding }) {
       }
     }
     fetchData();
-
   }, []);
 
   const _handel_select_component = (data, index) => {
@@ -77,6 +77,14 @@ function ShowLanding({ idLanding }) {
 
       case 9:
         return <VipProducts dataLinerProducts={data.data[0].products} />;
+        break;
+
+      case 10:
+        return <RotationProducts id={id} data={data} />;
+        break;
+
+      case 11:
+        return <Video data={data} />;
         break;
       default:
         null;

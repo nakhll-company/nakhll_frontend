@@ -14,6 +14,7 @@ import { errorMessage } from "../../utils/message";
 
 const _asist = new Assistent();
 function SelectUrl({ idLanding }) {
+  const [showInput, setShowInput] = useState(false);
   // useform
   const {
     setValue,
@@ -49,16 +50,24 @@ function SelectUrl({ idLanding }) {
     let str = data.video;
 
     if (str.includes("https://www.aparat.com/embed/")) {
-      let id = str.substring(str.indexOf("id=") + 4, str.indexOf(">") - 1);
-      let src = str.substring(
-        str.indexOf('src="') + 5,
-        str.indexOf("</script>") - 2
-      );
+      let indexStartId = str.indexOf("id=");
 
-      dispatch(_updateVideo(data.video, "فیلم هس"));
-      dispatch(_showSelect_url());
+      let indexStartScript = str.indexOf('src="');
+
+      if (indexStartId == "-1" || indexStartScript == "-1") {
+        errorMessage("لطفا یک ویدیو آپارات را وارد کنید");
+      } else {
+        let id = str.substring(str.indexOf("id=") + 4, str.indexOf(">") - 1);
+
+        let src = str.substring(
+          str.indexOf('src="') + 5,
+          str.indexOf("</script>") - 2
+        );
+
+        dispatch(_updateVideo(data.video, " اسکریپت فیلم موجود است."));
+        dispatch(_showSelect_url());
+      }
     } else {
-      // alert("لطفا یک ویدیو آپارات را وارد کنید");
       errorMessage("لطفا یک ویدیو آپارات را وارد کنید");
     }
   };
@@ -85,35 +94,37 @@ function SelectUrl({ idLanding }) {
           </span>
           <div className={styles.table}>
             <div className={styles.header}>لیست صفحات شما</div>
-
-            <div className={styles.video_input}>
-              <div className={styles.headerEmpty}>
-                اسکریپت فیلم خود را از سایت آپارات اضافه کنید :
-                <div className={styles.wrapInput}>
-                  <form onSubmit={handleSubmit(onSubmit)}>
-                    <TextAreaUseForm title="">
-                      <textarea
-                        rows="3"
-                        type="text"
-                        placeholder="<div id='68272816092'><script type='text/JavaScript' src='https://www.aparat.com/embed/V57nG?data[rnddiv]=68272816092&data[responsive]=yes'></script></div>"
-                        {...register("video")}
-                      />
-                    </TextAreaUseForm>
-                    <SubButton title="ثبت ویدیو" />
-                    <div className={styles.wrapBtn}>
-                      {/* <button
-                        onClick={() => {
-                          dispatch(_updateUrl("www", "فیلم ثبت شده توسط شما"));
-                          dispatch(_showSelect_url());
-                        }}
-                      >
-                        ثبت
-                      </button> */}
-                    </div>
-                  </form>
+            <button onClick={() => setShowInput((st) => !st)}>.</button>
+            {showInput && (
+              <div className={styles.video_input}>
+                <div className={styles.headerEmpty}>
+                  اسکریپت فیلم خود را از سایت آپارات اضافه کنید :
+                  <div className={styles.wrapInput}>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                      <TextAreaUseForm title="">
+                        <textarea
+                          rows="3"
+                          type="text"
+                          placeholder="<div id='68272816092'><script type='text/JavaScript' src='https://www.aparat.com/embed/V57nG?data[rnddiv]=68272816092&data[responsive]=yes'></script></div>"
+                          {...register("video")}
+                        />
+                      </TextAreaUseForm>
+                      <SubButton title="ثبت ویدیو" />
+                      <div className={styles.wrapBtn}>
+                        {/* <button
+                          onClick={() => {
+                            dispatch(_updateUrl("www", "فیلم ثبت شده توسط شما"));
+                            dispatch(_showSelect_url());
+                          }}
+                        >
+                          ثبت
+                        </button> */}
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
             <div className={styles.list}>
               {list.map((el, index) => (

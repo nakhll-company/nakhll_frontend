@@ -19,14 +19,16 @@ function Test() {
   }, []);
   return (
     <>
-      <div className={st.wrapper}>
-        <div ref={an1} className={st.animation}></div>
-        <div id="76822050591" className={st.wrap_video}>
-          <div className={st.video}>
-            {/* <Script src="https://www.aparat.com/embed/B6lLS?data[rnddiv]=76822050591&data[responsive]=yes" /> */}
+      {false && (
+        <div className={st.wrapper}>
+          <div ref={an1} className={st.animation}></div>
+          <div id="76822050591" className={st.wrap_video}>
+            <div className={st.video}>
+              {/* <Script src="https://www.aparat.com/embed/B6lLS?data[rnddiv]=76822050591&data[responsive]=yes" /> */}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 }

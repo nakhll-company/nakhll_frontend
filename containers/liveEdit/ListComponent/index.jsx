@@ -131,7 +131,7 @@ function ListComponent({ _handel_add_component }) {
           {/* <span>لیست</span> */}
           <div className={styles.cover}></div>
         </div>
-        <div
+        {/* <div
           className={styles.holderItems}
           onClick={() => _handel_add_component(8)}
           ref={(el) => (partSix = el)}
@@ -153,7 +153,7 @@ function ListComponent({ _handel_add_component }) {
         >
           <div ref={partTen}></div>
           <div className={styles.cover}></div>
-        </div>
+        </div> */}
         <div
           className={styles.holderItems}
           onClick={() => _handel_add_component(11)}

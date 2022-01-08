@@ -1,7 +1,7 @@
 // node libraries
 import { NextSeo } from "next-seo";
 import React, { useState } from "react";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 // components
 // import EnfoLiner from "../../../containers/hojreh/EnfoLiner";
 // import HeroSlides from "../../../containers/LandingPage/HeroSlides";
@@ -12,15 +12,30 @@ import dynamic from 'next/dynamic';
 // import LinerProducts from "../../../containers/LandingPage/LinerProducts";
 // import ListProductCusTest from "../../../containers/listProduct/listProductCusTest";
 
-
-const DynamicEnfoLiner = dynamic(() => import('../../../containers/hojreh/EnfoLiner'))
-const DynamicHeroSlides = dynamic(() => import('../../../containers/LandingPage/HeroSlides'))
-const DynamicLinerOneImg = dynamic(() => import('../../../containers/LandingPage/LinerOneImg'))
-const DynamicLinerTwoImgSm = dynamic(() => import('../../../containers/LandingPage/LinerTwoImgSm'))
-const DynamicLinerThreeImg = dynamic(() => import('../../../containers/LandingPage/LinerThreeImg'))
-const DynamicLinerFourImgMobile = dynamic(() => import('../../../containers/LandingPage/LinerFourImgMobile'))
-const DynamicLinerProducts = dynamic(() => import('../../../containers/LandingPage/LinerProducts'))
-const DynamicListProductCusTest = dynamic(() => import('../../../containers/listProduct/listProductCusTest'))
+const DynamicEnfoLiner = dynamic(() =>
+  import("../../../containers/hojreh/EnfoLiner")
+);
+const DynamicHeroSlides = dynamic(() =>
+  import("../../../containers/LandingPage/HeroSlides")
+);
+const DynamicLinerOneImg = dynamic(() =>
+  import("../../../containers/LandingPage/LinerOneImg")
+);
+const DynamicLinerTwoImgSm = dynamic(() =>
+  import("../../../containers/LandingPage/LinerTwoImgSm")
+);
+const DynamicLinerThreeImg = dynamic(() =>
+  import("../../../containers/LandingPage/LinerThreeImg")
+);
+const DynamicLinerFourImgMobile = dynamic(() =>
+  import("../../../containers/LandingPage/LinerFourImgMobile")
+);
+const DynamicLinerProducts = dynamic(() =>
+  import("../../../containers/LandingPage/LinerProducts")
+);
+const DynamicListProductCusTest = dynamic(() =>
+  import("../../../containers/listProduct/listProductCusTest")
+);
 // methods
 import { ApiReference } from "../../../Api";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
@@ -28,6 +43,8 @@ import ShopLayout from "../../../components/shopLayout";
 import AboutMe from "../../../containers/LandingPage/AboutMe";
 import LinerTwoImgSm from "../../../containers/LandingPage/LinerTwoImgSm";
 import VipProducts from "../../../containers/LandingPage/VipProducts";
+import RotationProducts from "../../../containers/LandingPage/RotationProducts";
+import Video from "../../../containers/LandingPage/Video";
 
 // fetch data
 const fetchData = async (id) => {
@@ -42,7 +59,7 @@ const fetchData = async (id) => {
 
   if (response.status === 200) {
     return {
-      shop: response.data || [] ,
+      shop: response.data || [],
     };
   }
 };
@@ -87,6 +104,14 @@ const Shop = ({ dataShop, data }) => {
         break;
       case 9:
         return <VipProducts dataLinerProducts={data.data[0].products} />;
+        break;
+
+      case 10:
+        return <RotationProducts id={id} data={data} />;
+        break;
+
+      case 11:
+        return <Video data={data} />;
         break;
       default:
         null;
