@@ -296,7 +296,7 @@ function LiveEdit({ idLanding }) {
             {
               order: 0,
 
-              video: "",
+              video: { id: "", src: "" },
             },
           ],
         };

@@ -5,7 +5,8 @@ export const _updateVideo = (video, title) => {
     let dataLanding = [...getState().allDataLanding];
     dataLanding.map((El, index) => {
       if (El.ID == id.id) {
-        dataLanding[index].data[id.order].video = video;
+        dataLanding[index].data[id.order].video.src = video.src;
+        dataLanding[index].data[id.order].video.id = video.id;
         dataLanding[index].data[id.order].title = title;
       }
     });

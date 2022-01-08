@@ -63,8 +63,12 @@ function SelectUrl({ idLanding }) {
           str.indexOf('src="') + 5,
           str.indexOf("</script>") - 2
         );
+        src.replace(">", "");
+        src.replace("<", '"');
 
-        dispatch(_updateVideo(data.video, " اسکریپت فیلم موجود است."));
+        dispatch(
+          _updateVideo({ id: id, src: src }, " اسکریپت فیلم موجود است.")
+        );
         dispatch(_showSelect_url());
       }
     } else {
@@ -94,7 +98,12 @@ function SelectUrl({ idLanding }) {
           </span>
           <div className={styles.table}>
             <div className={styles.header}>لیست صفحات شما</div>
-            <button onClick={() => setShowInput((st) => !st)}>.</button>
+            <div className="">
+              <button onClick={() => setShowInput((st) => !st)}>
+                <i className="fas fa-video"></i>
+              </button>
+            </div>
+
             {showInput && (
               <div className={styles.video_input}>
                 <div className={styles.headerEmpty}>

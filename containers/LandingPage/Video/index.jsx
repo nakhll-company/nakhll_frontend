@@ -6,29 +6,34 @@ import { useRef } from "react";
 import Script from "next/script";
 
 function Video({ data }) {
-  const video = data.data[0].video;
-  const [videoAparat, setVideoAparat] = useState({ id: "", src: "" });
-
-  const an1 = useRef(null);
+  console.log(`datazzzzzzzzzzzzzzzzzz`, data);
+  // const video = data.data[0].video;
+  const [videoAparat, setVideoAparat] = useState(
+    data.data[0].video ? data.data[0].video : { id: "", src: "" }
+  );
   useEffect(() => {
-    let id = video.substring(video.indexOf("id=") + 4, video.indexOf(">") - 1);
+    console.log(`videoAparat`, videoAparat);
+  }, [videoAparat]);
 
-    let src = video.substring(
-      video.indexOf('src="') + 5,
-      video.indexOf("</script>") - 2
-    );
-    let indexStartId = video.indexOf("id=");
+  // useEffect(() => {
+  //   let id = video.substring(video.indexOf("id=") + 4, video.indexOf(">") - 1);
 
-    let indexStartScript = video.indexOf('src="');
+  //   let src = video.substring(
+  //     video.indexOf('src="') + 5,
+  //     video.indexOf("</script>") - 2
+  //   );
+  //   let indexStartId = video.indexOf("id=");
 
-    if (indexStartId !== "-1" || indexStartScript !== "-1") {
-      setVideoAparat({ id: id, src: src });
-    }
-  }, []);
+  //   let indexStartScript = video.indexOf('src="');
+
+  //   if (indexStartId !== "-1" || indexStartScript !== "-1") {
+  //     setVideoAparat({ id: id, src: src });
+  //   }
+  // }, []);
 
   return (
     <>
-      {videoAparat.id !== "" && (
+      { videoAparat.id !== "" && (
         <div className={st.wrapper}>
           <div className={st.wrap_video}>
             <div id={videoAparat.id} className={st.video}>
