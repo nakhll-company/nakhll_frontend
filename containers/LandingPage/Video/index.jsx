@@ -6,14 +6,11 @@ import { useRef } from "react";
 import Script from "next/script";
 
 function Video({ data }) {
-  console.log(`datazzzzzzzzzzzzzzzzzz`, data);
+  console.log(`data`, data);
   // const video = data.data[0].video;
   const [videoAparat, setVideoAparat] = useState(
     data.data[0].video ? data.data[0].video : { id: "", src: "" }
   );
-  useEffect(() => {
-    console.log(`videoAparat`, videoAparat);
-  }, [videoAparat]);
 
   // useEffect(() => {
   //   let id = video.substring(video.indexOf("id=") + 4, video.indexOf(">") - 1);
@@ -33,7 +30,7 @@ function Video({ data }) {
 
   return (
     <>
-      { videoAparat.id !== "" && (
+      {videoAparat.id !== "" && (
         <div className={st.wrapper}>
           <div className={st.wrap_video}>
             <div id={videoAparat.id} className={st.video}>

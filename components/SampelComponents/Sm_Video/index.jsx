@@ -7,8 +7,6 @@ import Script from "next/script";
 import InputUrl from "../../../containers/liveEdit/InputUrl";
 
 function Sm_Video({ id, data }) {
- 
-
   const [showInputVedio, setShowInputVedio] = useState(false);
   const an1 = useRef(null);
   useEffect(() => {
