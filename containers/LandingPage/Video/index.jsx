@@ -41,9 +41,9 @@ function Video({ data }) {
       {videoAparat.id !== "" && (
         <div className={st.wrapper}>
           <div ref={an1} className={st.animation}></div>
-          <div id={videoAparat.id} className={st.wrap_video}>
-            <div className={st.video}>
-              <Script src={videoAparat.src} />
+          <div className={st.wrap_video}>
+            <div id={videoAparat.id} className={st.video}>
+              <Script strategy="lazyOnload" src={`${videoAparat.src}`} />
             </div>
           </div>
         </div>
