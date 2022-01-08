@@ -4,9 +4,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
-
 // componentes
 import Loading from "../../../../components/loading";
+import ShopLayout from "../../../../components/shopLayout";
 // methods
 import { getCities } from "../../../../api/general/getCities";
 import { getStates } from "../../../../api/general/getStates";
@@ -61,7 +61,7 @@ const UpdateAddress = () => {
                     crossOrigin="anonymous"
                 />
             </Head>
-            
+
             {loading ?
                 <div className={`col-12 col-lg-5 py-5 ${styles.wrapper}`} style={{ padding: "50px 0px !important" }}>
                     <Loading />
@@ -194,3 +194,5 @@ const UpdateAddress = () => {
 }
 // export
 export default UpdateAddress;
+
+UpdateAddress.Layout = ShopLayout;
