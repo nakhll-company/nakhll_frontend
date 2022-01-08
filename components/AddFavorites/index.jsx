@@ -49,7 +49,7 @@ function AddFavorites() {
         link: `https://nakhll.com${link}`,
         name: textInput == "" ? "بدون عنوان" : textInput,
       };
-      console.log(newFav);
+      
 
       let response = await ApiRegister().apiRequest(
         newFav,
