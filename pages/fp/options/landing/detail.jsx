@@ -18,8 +18,11 @@ const LandingDetail = () => {
     const [detailData, setDetailData] = useState({});
     const activeHojreh = useSelector((state) => state.User.activeHojreh);
 
-    useEffect(async () => {
-        setDetailData(await landingDetal(id));
+    useEffect(() => {
+        async function fetchData() {
+            setDetailData(await landingDetal(id));
+        }
+        fetchData();
     }, [id]);
 
     return (

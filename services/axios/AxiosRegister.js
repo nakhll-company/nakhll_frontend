@@ -63,6 +63,7 @@ instanceAxiosWithToken.interceptors.request.use(
 
 instanceAxiosWithToken.interceptors.response.use(
     function (response) {
+        console.log(response);
         return response;
     },
     function (error) {

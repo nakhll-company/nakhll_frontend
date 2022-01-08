@@ -13,9 +13,12 @@ const LandingDetail = ({ id, activeHojreh }) => {
 
     const [detailData, setDetailData] = useState({});
 
-    useEffect(async () => {
-        setDetailData(await landingDetal(id));
-    }, []);
+    useEffect(() => {
+        async function fetchData() {
+            setDetailData(await landingDetal(id));
+        }
+        fetchData();
+    }, [id]);
 
     return (
         <>
