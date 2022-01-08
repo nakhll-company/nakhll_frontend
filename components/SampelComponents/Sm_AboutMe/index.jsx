@@ -6,26 +6,13 @@ import { _selectId } from "../../../redux/actions/liveEdit/_selectId";
 import { _updateTextAboutMe } from "../../../redux/actions/liveEdit/_updateTextAboutMe";
 
 function Sm_AboutMe({ id, data }) {
-  const an1 = useRef(null);
-
   const [toggle, setToggle] = useState(true);
   const [name, setName] = useState(data[0].text);
   const dispatch = useDispatch();
-  useEffect(() => {
-    lottie.loadAnimation({
-      container: an1.current,
-      renderer: "svg",
-      loop: true,
-      autoplay: true,
-      animationData: require("../../../public/lottie/dinoDance.json"),
 
-      //   path: "./lottie/animation.json",
-    });
-  }, []);
   return (
     <>
       <div className={st.wrapper}>
-        <div ref={an1} className={st.animation}></div>
         <span className={st.title}>درباره ما</span>
 
         {toggle ? (

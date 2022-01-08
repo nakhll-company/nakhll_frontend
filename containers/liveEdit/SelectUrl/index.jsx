@@ -98,7 +98,7 @@ function SelectUrl({ idLanding }) {
           </span>
           <div className={styles.table}>
             <div className={styles.header}>لیست صفحات شما</div>
-            <div className="">
+            <div className={styles.wrap_btn}>
               <button onClick={() => setShowInput((st) => !st)}>
                 <i className="fas fa-video"></i>
               </button>
