@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    height: 600px;
+    min-height: 600px;
     flex-wrap: wrap;
     padding: 30px;
     .card {
@@ -48,6 +48,32 @@
         .image {
             border-radius: 10px;
             overflow: hidden;
+        }
+    }
+}
+@media (max-width: 768px) {
+    .wrapper {
+        .card {
+            position: relative;
+            max-width: 300px;
+            height: 420px;
+            background: #fff;
+            margin: 30px 10px;
+            padding: 20px 15px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            transition: 0.3s ease-in-out;
+            cursor: pointer;
+            .content {
+                visibility: visible;
+                opacity: 1;
+                position: relative;
+                margin-top: -40px;
+                padding: 10px 15px;
+                text-align: center;
+                color: #111;
+            }
         }
     }
 }

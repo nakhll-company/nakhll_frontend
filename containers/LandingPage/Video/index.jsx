@@ -1,5 +1,5 @@
 import st from "./video.module.scss";
-import lottie from "lottie-web";
+
 import { useEffect, useState } from "react";
 import { useRef } from "react";
 
@@ -25,22 +25,11 @@ function Video({ data }) {
       setVideoAparat({ id: id, src: src });
     }
   }, []);
-  useEffect(() => {
-    if (videoAparat.id !== "") {
-      lottie.loadAnimation({
-        container: an1.current,
-        renderer: "svg",
-        loop: true,
-        autoplay: true,
-        animationData: require("../../../public/lottie/bacV4.json"),
-      });
-    }
-  }, [videoAparat]);
+
   return (
     <>
       {videoAparat.id !== "" && (
         <div className={st.wrapper}>
-          <div ref={an1} className={st.animation}></div>
           <div className={st.wrap_video}>
             <div id={videoAparat.id} className={st.video}>
               <Script strategy="lazyOnload" src={`${videoAparat.src}`} />

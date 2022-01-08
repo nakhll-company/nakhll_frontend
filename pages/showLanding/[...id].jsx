@@ -80,7 +80,7 @@ function ShowLanding({ idLanding }) {
         break;
 
       case 10:
-        return <RotationProducts id={id} data={data} />;
+        return <RotationProducts data={data.data[0].products} />;
         break;
 
       case 11:

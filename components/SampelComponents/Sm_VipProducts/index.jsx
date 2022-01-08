@@ -13,7 +13,7 @@ function Sm_VipProducts({ id, data }) {
   useEffect(() => {
     async function fetchData() {
       let Queries = { page_size: "3" };
-      if (data[0].url !== "") {
+      if (data[0].url !== "" && data[0].url !== undefined) {
         let url = data[0].url;
         if (url.split("?")[1]) {
           let partTwoUrl = url.split("?")[1].split("&");
@@ -90,7 +90,6 @@ function Sm_VipProducts({ id, data }) {
                 </div>
                 <div className={st.content}>
                   <span>نام محصول</span>
-                  
                 </div>
               </div>
             ))}
