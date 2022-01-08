@@ -7,8 +7,7 @@
     position: relative;
     .wrap_video {
         max-width: 56.75 em;
-        min-height: 490px;
-        min-width: 490px;
+        min-width: 60%;
         margin: 3 em auto;
         z-index: 1;
         box-shadow: -10px 10px 80px rgb(0 0 0 / 10%);
@@ -27,4 +26,9 @@
 }
 .animation {
     position: absolute;
+}
+@media (max-width: 768px) {
+    .wrap_video {
+        width: 98%;
+    }
 }
