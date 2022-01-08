@@ -1,14 +1,33 @@
 import React, { useEffect, useState } from "react";
 import styles from "./SelectUrl.module.scss";
 import Assistent from "zaravand-assistent-number";
+import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { _showSelect_url } from "../../../redux/actions/liveEdit/_showSelect_url";
 import { _updateUrl } from "../../../redux/actions/liveEdit/_updateUrl";
 import { ApiReference } from "../../../Api";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+import TextAreaUseForm from "../../creat/component/textAreaUseForm";
+import SubButton from "../../settings/components/subButton";
+import { _updateVideo } from "../../../redux/actions/liveEdit/_updateVideo";
+import { errorMessage } from "../../utils/message";
 
 const _asist = new Assistent();
 function SelectUrl({ idLanding }) {
+  // useform
+  const {
+    setValue,
+    getValues,
+    clearErrors,
+    register,
+    setError,
+
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    criteriaMode: "all",
+    mode: "all",
+  });
   let apiListPinned = ApiReference.PinnedURL.PinnedList.url;
   const dispatch = useDispatch();
   const [list, setList] = useState([]);
@@ -25,6 +44,24 @@ function SelectUrl({ idLanding }) {
       setList(response.data);
     }
   }, []);
+
+  const onSubmit = async (data) => {
+    let str = data.video;
+
+    if (str.includes("https://www.aparat.com/embed/")) {
+      let id = str.substring(str.indexOf("id=") + 4, str.indexOf(">") - 1);
+      let src = str.substring(
+        str.indexOf('src="') + 5,
+        str.indexOf("</script>") - 2
+      );
+
+      dispatch(_updateVideo(data.video, "فیلم هس"));
+      dispatch(_showSelect_url());
+    } else {
+      // alert("لطفا یک ویدیو آپارات را وارد کنید");
+      errorMessage("لطفا یک ویدیو آپارات را وارد کنید");
+    }
+  };
 
   return (
     <>
@@ -52,17 +89,29 @@ function SelectUrl({ idLanding }) {
             <div className={styles.video_input}>
               <div className={styles.headerEmpty}>
                 اسکریپت فیلم خود را از سایت آپارات اضافه کنید :
-                <textarea
-                  className={styles.textarea}
-                  type="text"
-                  rows="3"
-                  placeholder="<div id='68272816092'><script type='text/JavaScript' src='https://www.aparat.com/embed/V57nG?data[rnddiv]=68272816092&data[responsive]=yes'></script></div>"
-                  // onChange={(e) => setName(e.target.value)}
-                />
-              <button onClick={()=>{
-                dispatch(_updateUrl("www", "فیلم ثبت شده توسط شما"));
-                dispatch(_showSelect_url());
-              }}>ثبت</button>
+                <div className={styles.wrapInput}>
+                  <form onSubmit={handleSubmit(onSubmit)}>
+                    <TextAreaUseForm title="">
+                      <textarea
+                        rows="3"
+                        type="text"
+                        placeholder="<div id='68272816092'><script type='text/JavaScript' src='https://www.aparat.com/embed/V57nG?data[rnddiv]=68272816092&data[responsive]=yes'></script></div>"
+                        {...register("video")}
+                      />
+                    </TextAreaUseForm>
+                    <SubButton title="ثبت ویدیو" />
+                    <div className={styles.wrapBtn}>
+                      {/* <button
+                        onClick={() => {
+                          dispatch(_updateUrl("www", "فیلم ثبت شده توسط شما"));
+                          dispatch(_showSelect_url());
+                        }}
+                      >
+                        ثبت
+                      </button> */}
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
 

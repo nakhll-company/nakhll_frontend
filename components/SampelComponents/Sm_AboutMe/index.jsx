@@ -6,6 +6,20 @@ import { _selectId } from "../../../redux/actions/liveEdit/_selectId";
 import { _updateTextAboutMe } from "../../../redux/actions/liveEdit/_updateTextAboutMe";
 
 function Sm_AboutMe({ id, data }) {
+  // useform
+  const {
+    setValue,
+    getValues,
+    clearErrors,
+    register,
+    setError,
+
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    criteriaMode: "all",
+    mode: "all",
+  });
   const an1 = useRef(null);
   console.log(`id`, id);
   const [toggle, setToggle] = useState(true);

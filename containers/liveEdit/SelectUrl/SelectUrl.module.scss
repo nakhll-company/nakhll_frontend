@@ -5,8 +5,8 @@
     right: 0;
     bottom: 0;
     top: 0;
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.1);
+    // backdrop-filter: blur(20px);
     z-index: 3;
     display: flex;
     justify-content: center;
@@ -243,4 +243,11 @@
     border-left: 2px solid #224e82;
     width: 90%;
     text-align: left;
+}
+.wrapInput {
+    width: 90%;
+}
+.wrapBtn {
+    display: flex;
+    justify-content: center;
 }

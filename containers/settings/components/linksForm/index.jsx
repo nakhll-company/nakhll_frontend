@@ -97,7 +97,9 @@ function FormInputs({ apiSetting, setClicked, activeHojreh }) {
             </h3>
           </div>
         )}
+
         <SubButton title="به روز رسانی" />
+        
       </form>
     </>
   );
