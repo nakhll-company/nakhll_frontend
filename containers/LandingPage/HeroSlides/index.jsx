@@ -15,16 +15,17 @@ SwiperCore.use([Pagination]);
 import styles from "./HeroSlides.module.scss";
 
 function HeroSlides({ dataHeroSlides }) {
-  const [videoAparat, setVideoAparat] = useState(
-    dataHeroSlides[1].video ? dataHeroSlides[1].video : { id: "", src: "" }
-  );
+  console.log(">>>>", dataHeroSlides);
+  // const [videoAparat, setVideoAparat] = useState(
+  //   dataHeroSlides[1].video ? dataHeroSlides[1].video : { id: "", src: "" }
+  // );
 
-  useEffect(() => {
-    setVideoAparat(
-      dataHeroSlides[1].video ? dataHeroSlides[1].video : { id: "", src: "" }
-    );
-  }, [dataHeroSlides]);
-  const userLog = useSelector((state) => state.User.userInfo);
+  // useEffect(() => {
+  //   setVideoAparat(
+  //     dataHeroSlides[1].video ? dataHeroSlides[1].video : { id: "", src: "" }
+  //   );
+  // }, [dataHeroSlides]);
+  // const userLog = useSelector((state) => state.User.userInfo);
   return (
     <div style={{ marginTop: "5px" }} className="container ">
       <div className={`row ${styles.slide}`}>
@@ -51,14 +52,14 @@ function HeroSlides({ dataHeroSlides }) {
           </Swiper>
         </div>
         <div className={`col-md-4  ${styles.lefter}  d-none d-md-flex`}>
-          {videoAparat.id !== "" && (
+          {/* {videoAparat.id !== "" && (
             <div className={styles.wrap_video}>
               <div id={videoAparat.id}>
                 <Script strategy="lazyOnload" src={`${videoAparat.src}`} />
               </div>
             </div>
-          )}
-          {videoAparat.id == "" && (
+          )} */}
+          {/* {videoAparat.id == "" && (
             <Link
               href={
                 dataHeroSlides && dataHeroSlides[dataHeroSlides.length - 2].url
@@ -77,9 +78,9 @@ function HeroSlides({ dataHeroSlides }) {
                 />
               </a>
             </Link>
-          )}
+          )} */}
 
-          <Link
+          {/* <Link
             href={
               dataHeroSlides && dataHeroSlides[dataHeroSlides.length - 1].url
             }
@@ -96,7 +97,7 @@ function HeroSlides({ dataHeroSlides }) {
                 }
               />
             </a>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>
