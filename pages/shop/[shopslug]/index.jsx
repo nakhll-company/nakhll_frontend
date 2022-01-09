@@ -2,6 +2,7 @@
 import { NextSeo } from "next-seo";
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
+import Script from "next/script";
 // components
 // import EnfoLiner from "../../../containers/hojreh/EnfoLiner";
 // import HeroSlides from "../../../containers/LandingPage/HeroSlides";
@@ -129,6 +130,18 @@ const Shop = ({ dataShop, data }) => {
     <>
       {dataShop.shop.landing_data === null && (
         <>
+          <Script id={dataShop.shop.yektanet_advertisement}>
+            {`!function (t, e, n) {
+        t.yektanetAnalyticsObject = n, t[n] = t[n] || function () {
+            t[n].q.push(arguments)
+        }, t[n].q = t[n].q || [];
+        var a = new Date, r = a.getFullYear().toString() + "0" + a.getMonth() + "0" + a.getDate() + "0" + a.getHours(),
+            c = e.getElementsByTagName("script")[0], s = e.createElement("script");
+        s.id = "${dataShop.shop.yektanet_advertisement}"; s.dataset.analyticsobject = n;
+        s.async = 1; s.type = "text/javascript";
+        s.src = "https://cdn.yektanet.com/rg_woebegone/scripts_v3/${dataShop.shop.yektanet_advertisement}/rg.complete.js?v=" + r, c.parentNode.insertBefore(s, c)
+    }(window, document, "yektanet");`}
+          </Script>
           <NextSeo {...SEO} />
           <DynamicEnfoLiner
             title={informationShop.title}
