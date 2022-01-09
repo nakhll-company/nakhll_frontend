@@ -2,6 +2,8 @@
     width: 100%;
     display: flex;
     gap: 10px;
+    margin-top: 16px;
+    margin-bottom: 16px;
     .right {
         flex-basis: 50%;
         position: relative;
@@ -35,7 +37,6 @@
         }
     }
 }
-
 .icon_change_pic {
     position: absolute;
     right: 10px;
@@ -43,7 +44,6 @@
     visibility: hidden;
     transition: all 0.3s ease;
 }
-
 .icon_change_url {
     position: absolute;
     left: 10px;
