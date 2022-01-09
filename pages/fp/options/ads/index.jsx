@@ -41,12 +41,13 @@ const Ads = () => {
                     </a>
                 </Link>
                 <div className={styles.switch_wrapper}>
-                    {adsData && <CustomSwitch checked={adsData.yektanet_status} onClick={() => {
+                    {adsData && <CustomSwitch checked={adsData.yektanet_status} onClick={async () => {
                         let data = {
                             yektanet_status: adsData.yektanet_status ? 0 : 1,
                             yektanet_id: adsData.yektanet_id
                         }
-                        setAdsData(editAdvertisment(activeHojreh, data));
+                        let res = await editAdvertisment(activeHojreh, data);
+                        setAdsData(res);
                     }} />}
                 </div>
             </div>

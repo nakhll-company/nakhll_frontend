@@ -13,34 +13,40 @@ import styles from "../../../../containers/options/scss/yektanet.module.scss";
 
 const Yektanet = () => {
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm();
     const activeHojreh = useSelector((state) => state.User.activeHojreh);
     const [adsData, setAdsData] = useState({});
 
     const onSubmit = async (data) => {
         let response = await editAdvertisment(activeHojreh, data);
+        setAdsData(response);
     };
 
     useEffect(() => {
         async function getData() {
             let response = await getAdvertisement(activeHojreh);
             setAdsData(response);
+            setValue("yektanet_id", adsData.yektanet_id);
         }
         activeHojreh && getData();
-    }, [activeHojreh]);
+    }, [activeHojreh, setValue, adsData.yektanet_id]);
 
     return (
         <div className={styles.wrapper}>
             <header>
                 <h1>یکتانت</h1>
                 <div>
-                    <CustomSwitch title={adsData.yektanet_status ? "فعال" : "فعال نشده"} checked={adsData.yektanet_status} onClick={() => {
-                        let data = {
-                            yektanet_status: adsData.yektanet_status ? 0 : 1,
-                            yektanet_id: adsData.yektanet_id
-                        }
-                        setAdsData(editAdvertisment(activeHojreh, data));
-                    }} />
+                    <CustomSwitch title={adsData.yektanet_status ? "فعال" : "فعال نشده"}
+                        id={adsData.id}
+                        checked={adsData.yektanet_status} onClick={async () => {
+                            let data = {
+                                yektanet_status: adsData.yektanet_status ? 0 : 1,
+                                yektanet_id: adsData.yektanet_id
+                            }
+                            let res = await editAdvertisment(activeHojreh, data);
+
+                            setAdsData(res);
+                        }} />
                 </div>
                 <Link href="/fp/options/ads">
                     <a>
@@ -50,7 +56,10 @@ const Yektanet = () => {
             </header>
             <p className={styles.discrption}>بعد از ورود به پنل یکتانت در قسمت هدر گزینه اسکریپت یکتانت را انتخاب کرده و id اسکریپت را کپی و در محل زیر جای گذاری کنید.</p>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <input type="text" defaultValue={adsData.yektanet_id} placeholder="id" {...register("yektanet_id", { required: true })} />
+                <input type="text"
+                    placeholder="id" {...register("yektanet_id", { required: true })}
+                    id="anid"
+                />
                 {errors.yektanet_id && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
                 <button type="submit">ثبت</button>
             </form>
