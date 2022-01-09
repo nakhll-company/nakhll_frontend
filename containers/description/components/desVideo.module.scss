@@ -1,0 +1,11 @@
+.content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #fff;
+    .title {
+        background-color: red;
+    }
+    .video {
+        background-color: #e2e8ed;
+    }
+}
