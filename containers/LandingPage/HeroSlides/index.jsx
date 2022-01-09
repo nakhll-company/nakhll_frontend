@@ -15,7 +15,6 @@ SwiperCore.use([Pagination]);
 import styles from "./HeroSlides.module.scss";
 
 function HeroSlides({ dataHeroSlides }) {
-  console.log(`dataHeroSlides`, dataHeroSlides);
   const [videoAparat, setVideoAparat] = useState(
     dataHeroSlides[1].video ? dataHeroSlides[1].video : { id: "", src: "" }
   );
@@ -42,11 +41,7 @@ function HeroSlides({ dataHeroSlides }) {
                           layout="responsive"
                           width={1000}
                           height={500}
-                          src={
-                            slider.image !== ""
-                              ? slider.image.url
-                              : `/image/sample/2_1.jpg`
-                          }
+                          src={slider.image}
                           alt="بنر"
                         />
                       </a>
@@ -74,11 +69,7 @@ function HeroSlides({ dataHeroSlides }) {
                   layout="responsive"
                   width={200}
                   height={100}
-                  src={
-                    dataHeroSlides[dataHeroSlides.length - 2].image !== ""
-                      ? dataHeroSlides[dataHeroSlides.length - 2].image
-                      : `/image/sample/2_1.jpg`
-                  }
+                  src={dataHeroSlides[dataHeroSlides.length - 2].image}
                   alt={
                     dataHeroSlides &&
                     dataHeroSlides[dataHeroSlides.length - 2].title
@@ -98,11 +89,7 @@ function HeroSlides({ dataHeroSlides }) {
                 layout="responsive"
                 width={200}
                 height={100}
-                src={
-                  dataHeroSlides[dataHeroSlides.length - 1].image !== ""
-                    ? dataHeroSlides[dataHeroSlides.length - 1].image
-                    : `/image/sample/2_1.jpg`
-                }
+                src={dataHeroSlides[dataHeroSlides.length - 1].image}
                 alt={
                   dataHeroSlides &&
                   dataHeroSlides[dataHeroSlides.length - 1].title
