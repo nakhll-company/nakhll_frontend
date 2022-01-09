@@ -25,7 +25,6 @@ function Living({ characters, setCharacters, setOpenPlaneEditor, idLanding }) {
   const dispatch = useDispatch();
   const showCrop = useSelector((state) => state.showCropper);
   const showSelectorUrl = useSelector((state) => state.showSelectUrl);
-  
 
   // const characters = useSelector((state) => state.allDataLanding);
 
@@ -45,18 +44,21 @@ function Living({ characters, setCharacters, setOpenPlaneEditor, idLanding }) {
             image: "",
             url: "",
             title: "",
+            video: { id: "", src: "" },
             order: 0,
           },
           {
             image: "",
             url: "",
             title: "",
+            video: { id: "", src: "" },
             order: 1,
           },
           {
             image: "",
             url: "",
             title: "",
+            video: { id: "", src: "" },
             order: 2,
           },
         ],
