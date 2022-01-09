@@ -1,8 +1,8 @@
 // node libraries
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 // components
 import CustomSwitch from "../../../../components/custom/customSwitch";
 // api

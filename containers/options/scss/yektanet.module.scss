@@ -16,6 +16,18 @@
         font-size: 20px;
         text-align: right;
         color: #224E82;
+        div{
+            font-weight: bold;
+            font-size: 16px;
+            text-align: right;
+            color: #8E8E8E;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex-grow: 2;
+            line-height: 17px;
+            padding-bottom: 10px;
+        }
     }
     // discription
     .discrption{

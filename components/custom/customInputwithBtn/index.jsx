@@ -20,7 +20,6 @@ const CustomInputWithBtn = ({ label, explain }) => {
           <div className={styles.center}>
             <input
               type="number"
-              type="number"
               min="0"
               max="500"
               value={Add}
@@ -40,7 +39,7 @@ const CustomInputWithBtn = ({ label, explain }) => {
         <h4 className={styles.explain}>{explain}</h4>
       </div>
     </div>
-  
+
   );
 };
 // export
