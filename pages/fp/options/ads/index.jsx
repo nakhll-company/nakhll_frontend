@@ -43,7 +43,8 @@ const Ads = () => {
                 <div className={styles.switch_wrapper}>
                     {adsData && <CustomSwitch checked={adsData.yektanet_status} onClick={() => {
                         let data = {
-                            yektanet_status: adsData.yektanet_status ? 0 : 1
+                            yektanet_status: adsData.yektanet_status ? 0 : 1,
+                            yektanet_id: adsData.yektanet_id
                         }
                         setAdsData(editAdvertisment(activeHojreh, data));
                     }} />}

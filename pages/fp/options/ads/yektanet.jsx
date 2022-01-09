@@ -36,7 +36,8 @@ const Yektanet = () => {
                 <div>
                     <CustomSwitch title={adsData.yektanet_status ? "فعال" : "فعال نشده"} checked={adsData.yektanet_status} onClick={() => {
                         let data = {
-                            yektanet_status: adsData.yektanet_status ? 0 : 1
+                            yektanet_status: adsData.yektanet_status ? 0 : 1,
+                            yektanet_id: adsData.yektanet_id
                         }
                         setAdsData(editAdvertisment(activeHojreh, data));
                     }} />
@@ -49,7 +50,7 @@ const Yektanet = () => {
             </header>
             <p className={styles.discrption}>بعد از ورود به پنل یکتانت در قسمت هدر گزینه اسکریپت یکتانت را انتخاب کرده و id اسکریپت را کپی و در محل زیر جای گذاری کنید.</p>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <input type="text" placeholder="id" {...register("yektanet_id", { required: true })} />
+                <input type="text" defaultValue={adsData.yektanet_id} placeholder="id" {...register("yektanet_id", { required: true })} />
                 {errors.yektanet_id && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
                 <button type="submit">ثبت</button>
             </form>
