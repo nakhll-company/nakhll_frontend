@@ -15,7 +15,7 @@ import MyLayout from "../components/layout/Layout";
 import "bootstrap/dist/css/bootstrap.css";
 import "../styles/globals.scss";
 import "../styles/General/font-awesome/css/font-awesome.css";
-import "../styles/tailwind.css";
+
 import LogRocket from "logrocket";
 
 function MyApp({ Component, pageProps }) {
