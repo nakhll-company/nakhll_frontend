@@ -24,6 +24,8 @@ const ProductCard = ({
   _blank = false,
   dataProduct,
 }) => {
+  console.log(`dataProduct`, dataProduct);
+
   let product = {
     id: dataProduct.ID,
     imageUrl: dataProduct.Image_medium_url,
@@ -59,11 +61,30 @@ const ProductCard = ({
       height={100}
       width={100}
       src={product.imageUrl}
-      className={`card-img-top _product_card_rounded animationCart ${product.unavailable && "_unavailable_product"
-        }`}
+      className={`card-img-top _product_card_rounded animationCart ${
+        product.unavailable && "_unavailable_product"
+      }`}
       alt={product.title}
     />
   );
+  let campBadge = (
+    <>
+      <div
+        className={styles._product_card_camp_badge}
+        type="button"
+        style={{ bottom: "-7px", right: "-5px" }}
+      >
+        <Image
+          layout="fixed"
+          height={100}
+          width={100}
+          src="/image/mahsol.svg"
+          alt="camp"
+        />
+      </div>
+    </>
+  );
+
   const handel_webhook = async () => {
     let data = {};
     if (userData !== undefined) {
@@ -136,10 +157,11 @@ const ProductCard = ({
 
   return (
     <div
-      className={`animationCartParent ${col
+      className={`animationCartParent ${
+        col
           ? `col-${col}`
           : `col-${xs} col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
-        } ${padding ? `px-${padding}` : ""} mb-3`}
+      } ${padding ? `px-${padding}` : ""} mb-3`}
     >
       {product.iconClose && (
         <span
@@ -167,14 +189,16 @@ const ProductCard = ({
       <div className={`card ${styles._product_card} _product_card_rounded p-2`}>
         <div className={styles.paterImage}>
           {cardBadge}
+          {false && campBadge}
           <Link href={product.url}>
             <a className={styles.links}>{cardImg}</a>
           </Link>
         </div>
 
         <div
-          className={`card-body mt-2 p-1 ${product.unavailable && "_unavailable_product"
-            }`}
+          className={`card-body mt-2 p-1 ${
+            product.unavailable && "_unavailable_product"
+          }`}
         >
           <div className=" mb-3">
             <Link href={product.url}>
