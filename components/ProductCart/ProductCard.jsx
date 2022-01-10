@@ -2,18 +2,18 @@
 import Link from "next/link";
 import Image from "next/image";
 import Assistent from "zaravand-assistent-number";
-import { useDispatch } from "react-redux";
 // methods
 import { addToCart } from "./methods/addToCart";
-import { getUserInfo } from "../../redux/actions/user/getUserInfo";
 import { addToFavoritesList } from "./methods/addToFavotitesList";
 import { deleteFromFavoritesList } from "./methods/deleteFromFavoritesList";
 // scss
 import styles from "./ProductCard.module.scss";
+import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 
 const _asist = new Assistent();
 
 const ProductCard = ({
+  userData,
   sm = 6,
   md = 5,
   lg = 4,
@@ -24,11 +24,10 @@ const ProductCard = ({
   _blank = false,
   product,
 }) => {
-  const dispatch = useDispatch();
   let cardBadge = (
     <>
       <div
-        className="_product_card_badge"
+        className={styles._product_card_badge}
         type="button"
         style={{ bottom: ".75rem" }}
         onClick={() => {
@@ -52,6 +51,75 @@ const ProductCard = ({
       alt={product.title}
     />
   );
+  const handel_webhook = async () => {
+    let data = {};
+    if (userData !== undefined) {
+      data = {
+        content: `:teddy_bear: `,
+        embeds: [
+          {
+            color: 14811281,
+            author: {
+              name: `\n${userData.user.first_name} ${userData.user.last_name}\n${userData.user.username}`,
+            },
+          },
+
+          {
+            title: product.title,
+            description: "",
+            url: `https://nakhll.com/${product.url}`,
+            color: 5814783,
+
+            footer: {
+              text: "دکمه کوچک",
+            },
+            image: {
+              url: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fstatic.vecteezy.com%2Fpacks%2Fmedia%2Fcomponents%2Fglobal%2Fsearch-explore-nav%2Fimg%2Fvectors%2Fterm-bg-1-666de2d941529c25aa511dc18d727160.jpg&imgrefurl=https%3A%2F%2Fwww.vecteezy.com%2F&tbnid=l5RllJHFLw5NyM&vet=12ahUKEwiAuZn85fL0AhUP8BoKHeDmDx0QMygDegUIARCrAQ..i&docid=LOSptVP0p_ZwUM&w=550&h=549&itg=1&q=image&ved=2ahUKEwiAuZn85fL0AhUP8BoKHeDmDx0QMygDegUIARCrAQ",
+            },
+            thumbnail: {
+              url: "https://nakhll.com/shop/yaskala/product/yas-steelon-storm-w/",
+            },
+          },
+          {
+            color: 11403008,
+            author: {
+              name: userData.big_city,
+            },
+          },
+        ],
+      };
+    } else {
+      data = {
+        content: `:teddy_bear: `,
+        embeds: [
+          {
+            title: product.title,
+            description: "",
+            url: `https://nakhll.com/${product.url}`,
+            color: 5814783,
+
+            footer: {
+              text: "دکمه کوچک",
+            },
+            image: {
+              url: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fstatic.vecteezy.com%2Fpacks%2Fmedia%2Fcomponents%2Fglobal%2Fsearch-explore-nav%2Fimg%2Fvectors%2Fterm-bg-1-666de2d941529c25aa511dc18d727160.jpg&imgrefurl=https%3A%2F%2Fwww.vecteezy.com%2F&tbnid=l5RllJHFLw5NyM&vet=12ahUKEwiAuZn85fL0AhUP8BoKHeDmDx0QMygDegUIARCrAQ..i&docid=LOSptVP0p_ZwUM&w=550&h=549&itg=1&q=image&ved=2ahUKEwiAuZn85fL0AhUP8BoKHeDmDx0QMygDegUIARCrAQ",
+            },
+            thumbnail: {
+              url: "https://nakhll.com/shop/yaskala/product/yas-steelon-storm-w/",
+            },
+          },
+        ],
+      };
+    }
+
+    let response = await ApiRegister().apiRequest(
+      data,
+      "post",
+      `https://discord.com/api/webhooks/922069011955609671/i8FC-UEv6XnK-kMsgme7Y9xSl9X7Sr3gTPgA3jVZZelPMxoAyFSdsJPmTFXXZzy6qtkd`,
+      false,
+      ""
+    );
+  };
 
   return (
     <div
@@ -84,7 +152,7 @@ const ProductCard = ({
           ></i>
         </span>
       )}
-      <div className="card _product_card _product_card_rounded p-2">
+      <div className={`card ${styles._product_card} _product_card_rounded p-2`}>
         <div className={styles.paterImage}>
           {cardBadge}
           <Link href={product.url}>
@@ -132,10 +200,11 @@ const ProductCard = ({
           <div className="_product_card_price mb-2">
             <div>
               <button
+                aria-label="خرید"
                 className={`btn ${styles._product_card_add_to_cart}`}
                 onClick={async () => {
                   await addToCart(product.id);
-                  await dispatch(getUserInfo());
+                  handel_webhook();
                 }}
               >
                 <i className="fas fa-plus" />

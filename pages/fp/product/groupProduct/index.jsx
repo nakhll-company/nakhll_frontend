@@ -110,6 +110,7 @@ const GroupProduct = () => {
             type="submit"
             id="sumbitButton"
             className={`${styles.form_buttonSubmit} mx-5`}
+            style={{ fontSize: "18px", width: "200px" }}
           >
             ثبت محصولات
           </button>
@@ -117,6 +118,7 @@ const GroupProduct = () => {
             type="button"
             id="buttonUodo"
             className={styles.form_buttonSubmit}
+            style={{ fontSize: "18px", width: "200px" }}
             onClick={async () => {
               let response = await ApiRegister().apiRequest(
                 null, "get",
@@ -138,7 +140,7 @@ const GroupProduct = () => {
         <span>تعداد کل سطرها: {showResult.total_rows}</span>
         <span>تعداد ستون های خالی: {showResult.na_rows}</span>
         <span>مجموع سطر هایی که نام محصول تکراری است: {showResult.slug_duplicate_rows}</span>
-        <span>تعداد محصولات بروزرسانی شده: {showResult.old_products}</span>
+        {/* <span>تعداد محصولات بروزرسانی شده: {showResult.old_products}</span> */}
         <span>تعداد محصولاتی که جدید ایجاد شده: {showResult.new}</span>
       </div>
     </div>

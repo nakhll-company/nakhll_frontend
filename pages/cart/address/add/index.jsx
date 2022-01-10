@@ -1,54 +1,44 @@
-//////////////////////////////////////// AddAddress /////////////////////////////////////////////////////////
-// In this page user can add new address                                                                   //
-// Data that we get from user: reciver full name, state, big city, city, zipe code, address, mobile number //
-// All fileds are necessary                                                                                //
-// Check validation page with package react form hook                                                      //
-// programmer : sahar shafiee                                                                              //
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // node libraries
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
-import { ToastContainer } from "react-toastify";
+import { useState, useEffect } from 'react';
 // componentes
 import Loading from "../../../../components/loading";
+import ShopLayout from "../../../../components/shopLayout";
 // methods
-import { getStates } from "../../../../containers/store/methods/getStates";
-import { getBigCities } from "../../../../containers/store/methods/getBigCities";
-import { getCities } from "../../../../containers/store/methods/getCities";
-import { postAddress } from "../../../../containers/cartAddress/methods/postAddress";
+import { getCities } from "../../../../api/general/getCities";
+import { getStates } from "../../../../api/general/getStates";
+import { getBigCities } from "../../../../api/general/getBigCities";
+import { addAddress } from "../../../../api/cartAddress/addAddress";
 // styles
 import styles from "../../../../styles/pages/cart/newAddress.module.scss";
-/**
- * component new address 
- * @param {}  => 
- */
+
 const NewAddress = () => {
 
     const router = useRouter();
     const { invoice_id } = router.query;
-
     const { register, handleSubmit, formState: { errors } } = useForm();
+    let [selectState, setSelectState] = useState([]);
+    let [selectBigCities, setSelectBigCities] = useState([]);
+    let [selectCities, setSelectCities] = useState([]);
+    let [loading, setLoading] = useState(false);
 
     const onSubmit = async (data) => {
         await setLoading(true);
-        let response = await postAddress(data);
+        let response = await addAddress(data);
         if (response === true) {
             router.push(`/cart/address?invoice_id=${invoice_id}`);
         }
         await setLoading(false);
     };
 
-    let [selectState, setSelectState] = useState([]);
-    let [selectBigCities, setSelectBigCities] = useState([]);
-    let [selectCities, setSelectCities] = useState([]);
-    let [loading, setLoading] = useState(false);
-
-    useEffect(async () => {
-        // state
-        setSelectState(await getStates());
+    useEffect(() => {
+        async function fetchData() {
+            setSelectState(await getStates());
+        }
+        fetchData();
     }, []);
 
     return (
@@ -61,7 +51,7 @@ const NewAddress = () => {
                     crossOrigin="anonymous"
                 ></link>
             </Head>
-            <ToastContainer />
+
             {loading ?
                 <div className={`col-12 col-lg-5 py-5 ${styles.wrapper}`} style={{ padding: "20px!important" }}>
                     <Loading />
@@ -137,18 +127,37 @@ const NewAddress = () => {
                             <div className={styles.form_row}>
                                 <div className={`${styles.form_group} col-md-6 col-sm-12`}>
                                     <label>کد پستی:</label>
-                                    <input type="text" className="form-control" {...register("zip_code", {
+                                    <input type="number" className="form-control" {...register("zip_code", {
+                                        required: 'لطفا این گزینه را پر کنید',
                                         minLength: {
                                             value: 10,
                                             message: 'کدپستی باید ده رقمی باشد'
+                                        },
+                                        maxLength: {
+                                            value: 10,
+                                            message: 'کدپستی باید ده رقمی باشد' // JS only: <p>error message</p> TS only support string
                                         }
                                     })} />
                                     {errors.zip_code && <span className={styles.form_errors}>{errors.zip_code.message}</span>}
                                 </div>
                                 <div className={`${styles.form_group} col-md-6 col-sm-12`}>
                                     <label>موبایل گیرندۀ سفارش:</label>
-                                    <input type="number" className="form-control" {...register("receiver_mobile_number", { required: true })} />
-                                    {errors.receiver_mobile_number && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
+                                    <input type="number" placeholder="*******0913" className="form-control" {...register("receiver_mobile_number", {
+                                        required: 'لطفا این گزینه را پر کنید',
+                                        minLength: {
+                                            value: 11,
+                                            message: 'شماره موبایل باید یازده رقمی باشد'
+                                        },
+                                        maxLength: {
+                                            value: 11,
+                                            message: 'شماره موبایل باید یازده رقمی باشد' // JS only: <p>error message</p> TS only support string
+                                        },
+                                        pattern: {
+                                            value: /^09(0[2-5]|1[0-9]|3[0-9]|2[1-9]|9[0-9])-?[0-9]{3}-?[0-9]{4}$/ || /^۰۹(۰[۲-۵]|۱[۰-۹]|۳[۰-۹]|۲[۱-۹]|۹[۰-۹])-?[۰-۹]{3}-?[۰-۹]{4}$/,
+                                            message: 'لطفا شماره موبایل خود را صحیح وارد نمایید' // JS only: <p>error message</p> TS only support string
+                                        }
+                                    })} />
+                                    {errors.receiver_mobile_number && <span className={styles.form_errors}>{errors.receiver_mobile_number.message}</span>}
                                 </div>
                             </div>
                             <div className={`${styles.form_row} d-flex justify-content-between pt-3`}>
@@ -169,3 +178,5 @@ const NewAddress = () => {
 }
 // export
 export default NewAddress;
+
+NewAddress.Layout = ShopLayout;

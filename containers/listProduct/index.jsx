@@ -66,7 +66,7 @@ function ListProduct({
       if (response.status === 200) {
         setCategories(response.data);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   const _handel_Add_category = (id) => {
@@ -107,7 +107,7 @@ function ListProduct({
         null,
         "get",
         `/api/v1/products/`,
-        true,
+        false,
         params
       );
       if (response.status === 200) {
@@ -135,7 +135,7 @@ function ListProduct({
         null,
         "get",
         `/api/v1/products/`,
-        true,
+        false,
         {
           ...(witchFilter ? witchFilter : null),
           search: searchWord,
@@ -166,7 +166,7 @@ function ListProduct({
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   // START

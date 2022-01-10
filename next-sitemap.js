@@ -1,14 +1,11 @@
-const siteUrl = "https://nakhll.com/";
-
 module.exports = {
-    siteUrl,
+    siteUrl: 'https://nakhll.com/',
     generateRobotsTxt: true,
     robotsTxtOptions: {
-        policies: [{ userAgent: "*", disallow: ["/game", "/fp"] }],
+        policies: [{ userAgent: "*", disallow: ["/fp"] }],
         additionalSitemaps: [
-            `${siteUrl}server-sitemap.xml`,
-            `${siteUrl}sitemap.xml`,
-        ],
-    },
-    exclude: ["/game"],
+            'https://nakhll.com/server-sitemap.xml',
+            'https://nakhll.com/sitemap.xml',
+        ]
+    }
 };

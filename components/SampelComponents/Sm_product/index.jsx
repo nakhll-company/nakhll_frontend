@@ -1,24 +1,32 @@
 import React from "react";
+import Image from "next/image";
 import styles from "./Sm_product.module.scss";
 import Assistent from "zaravand-assistent-number";
 
 function Sm_product({ data }) {
+  
   const _asist = new Assistent();
   return (
     <>
       <div className={styles.product}>
         <div className={styles.product_img}>
-          <img src={data.image_thumbnail_url} alt="" />
+          <Image
+            layout="responsive"
+            width={100}
+            height={100}
+            src={data.Image_medium_url}
+            alt=""
+          />
         </div>
         <div className={styles.product_name}>
-          <span>{data.title}</span>
+          <span>{data.Title}</span>
         </div>
         <div className={styles.product_detail}>
-          <span>{data.shop.state}</span>
+          <span>{data.FK_Shop.state}</span>
           <span>
             ‍<i className="fa fa-angle-left px-1"></i>
           </span>
-          <span>{data.shop.title}</span>
+          <span>{data.FK_Shop.title}</span>
         </div>
         <div className={styles.product_price}>
           <div className={styles.plus}>
@@ -26,7 +34,7 @@ function Sm_product({ data }) {
               <i className="fas fa-plus"></i>
             </span>
           </div>
-          <div className={styles.price}>{_asist.PSeparator(data.price)}</div>
+          <div className={styles.price}>{_asist.PSeparator(data.Price)}</div>
         </div>
       </div>
     </>

@@ -7,7 +7,7 @@ export const CustomToast = () => {
     <div>
       <ToastContainer />
       {toast.success("داده ها با موفقیت ثبت شده اند", {
-        position: "top-right",
+        position: "top-center",
         closeOnClick: true,
       })}
     </div>

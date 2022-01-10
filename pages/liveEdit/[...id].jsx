@@ -6,6 +6,7 @@ import Living from "../../components/liveEdit/living";
 import Head from "next/head";
 // gsap
 import { gsap, Power3 } from "gsap";
+import lottie from "lottie-web";
 
 import ListComponent from "../../containers/liveEdit/ListComponent";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,8 +14,9 @@ import { _updateDataLanding } from "../../redux/actions/liveEdit/_updateDataLand
 import SaveLanding from "../../containers/liveEdit/SaveLanding";
 import { ApiReference } from "../../Api";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import EmptyLayout from "../../components/layout/EmptyLayout";
 
-function index({ idLanding }) {
+function LiveEdit({ idLanding }) {
   let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}`;
   // idLanding=[slugShop,idLanding]
   let apiUpdateLanding = `${ApiReference.landing.update.url}${idLanding[0]}/${idLanding[1]}/`;
@@ -29,6 +31,7 @@ function index({ idLanding }) {
   // Ref
   let profile = useRef(null);
   let toggleMenu = useRef(null);
+  const nakhlAnim = useRef(null);
   const list = [
     {
       ID: uuidv4(),
@@ -86,6 +89,17 @@ function index({ idLanding }) {
       duration: 0.4,
     });
   }, []);
+  useEffect(() => {
+    lottie.loadAnimation({
+      container: nakhlAnim.current,
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      animationData: require("../../public/lottie/Nakhl.json"),
+
+      //   path: "./lottie/animation.json",
+    });
+  }, [openPlaneEditor]);
 
   // Function For Update Landing
   // Start
@@ -155,18 +169,21 @@ function index({ idLanding }) {
               image: "",
               url: "",
               title: "",
+              video: { id: "", src: "" },
               order: 0,
             },
             {
               image: "",
               url: "",
               title: "",
+              video: { id: "", src: "" },
               order: 1,
             },
             {
               image: "",
               url: "",
               title: "",
+              video: { id: "", src: "" },
               order: 2,
             },
           ],
@@ -224,6 +241,70 @@ function index({ idLanding }) {
         };
       }
 
+      if (type == 7) {
+        newItem = {
+          ID: uuidv4(),
+          type,
+          data: [
+            {
+              text: "",
+            },
+          ],
+        };
+      }
+
+      if (type == 8) {
+        newItem = {
+          ID: uuidv4(),
+          type,
+          data: [
+            {
+              text: "درباره حجره خود بنویسید تا دیگران از داستان کسب و کار شما باخبر بشوند",
+            },
+          ],
+        };
+      }
+      if (type == 9) {
+        newItem = {
+          ID: uuidv4(),
+          type,
+          data: [
+            {
+              order: 0,
+
+              products: [],
+            },
+          ],
+        };
+      }
+      if (type == 10) {
+        newItem = {
+          ID: uuidv4(),
+          type,
+          data: [
+            {
+              order: 0,
+
+              products: [],
+            },
+          ],
+        };
+      }
+
+      if (type == 11) {
+        newItem = {
+          ID: uuidv4(),
+          type,
+          data: [
+            {
+              order: 0,
+
+              video: { id: "", src: "" },
+            },
+          ],
+        };
+      }
+
       if (element.type == 0) {
         items.splice(index, 1);
         items.splice(index, 0, newItem);
@@ -242,6 +323,7 @@ function index({ idLanding }) {
           integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
           crossOrigin="anonymous"
         ></link>
+        <meta name="robots" content="noindex, nofollow" />
       </Head>
       <div className={styles.container}>
         <div id="navigation" className={styles.navigation}>
@@ -312,8 +394,10 @@ function index({ idLanding }) {
                   <span className={styles.title}>ثبت نهایی</span>
                 </div>
               </li> */}
+              <div ref={nakhlAnim} className={styles.nakhlAnim}></div>
             </ul>
           )}
+
           {openPlaneEditor && (
             <ListComponent _handel_add_component={_handel_add_component} />
           )}
@@ -398,7 +482,7 @@ function index({ idLanding }) {
   );
 }
 
-export default index;
+export default LiveEdit;
 
 // function server side
 export async function getServerSideProps(context) {
@@ -408,3 +492,5 @@ export async function getServerSideProps(context) {
     props: { idLanding },
   };
 }
+
+LiveEdit.Layout = EmptyLayout;

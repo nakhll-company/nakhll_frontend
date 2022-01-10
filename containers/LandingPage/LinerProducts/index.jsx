@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import ProductCard from "../../../components/ProductCart/ProductCard";
 import styles from "./LinerProducts.module.scss";
+import { useSelector } from "react-redux";
 
 function LinerProducts({
   noScroll = false,
@@ -18,9 +19,10 @@ function LinerProducts({
   sm = 6,
   xs = 5,
 }) {
-  if (dataLinerProducts.results) {
+  if (dataLinerProducts && dataLinerProducts.results) {
     dataLinerProducts = dataLinerProducts.results;
   }
+  const userData = useSelector((state) => state.User.userInfo);
 
   return (
     <>
@@ -32,14 +34,17 @@ function LinerProducts({
         {title && (
           <div className={styles.header}>
             <div className={styles.title}>
-              <h1>{title}</h1>
-              <h5>{subTitle}</h5>
+              <h3>{title}</h3>
+            
+              {subTitle !== null && <h5>{subTitle}</h5>}
             </div>
             <div className={styles.Button}>
               <button>
                 <Link
                   href={`${
-                    url.includes("search=") ? `${url}` : `/search?ap=${url}`
+                    url.includes("search=") || url.includes("q=")
+                      ? `${url}`
+                      : `/search?ap=${url}`
                   }`}
                 >
                   <a>مشاهده همه</a>
@@ -52,9 +57,11 @@ function LinerProducts({
           style={{ overflowX: noScroll ? "unset" : "auto" }}
           className={`${styles.products} row`}
         >
-          {dataLinerProducts.length > 0 &&
+          {dataLinerProducts &&
+            dataLinerProducts.length > 0 &&
             dataLinerProducts.slice(0, num).map((product, index) => (
               <ProductCard
+              userData={userData}
                 xl={xl}
                 md={md}
                 lg={lg}
@@ -91,8 +98,9 @@ function LinerProducts({
         {title && (
           <div className={`${styles.header} px-5 pt-3`}>
             <div className={styles.title}>
-              <h1>{title}</h1>
-              <h5>{subTitle}</h5>
+              <h3>{title}</h3>
+              {subTitle !== null &&
+              <h5>{subTitle}</h5>}
             </div>
             <div className={styles.Button}>
               <button>
@@ -113,7 +121,8 @@ function LinerProducts({
           style={{ overflowX: noScroll ? "unset" : "auto" }}
           className={`${styles.products} row px-5`}
         >
-          {dataLinerProducts.length > 0 &&
+          {dataLinerProducts &&
+            dataLinerProducts.length > 0 &&
             dataLinerProducts.slice(0, num).map((oneProduct, index) => (
               <ProductCard
                 xl={xl}

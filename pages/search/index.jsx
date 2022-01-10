@@ -1,13 +1,10 @@
 import React from "react";
-import { useRouter } from "next/router";
 import Head from "next/head";
-
 import ListWitOutFilters from "../../containers/listProduct/ListWithOutFilters";
 import ListProductCus from "../../containers/listProduct/listProductCus";
+import ShopLayout from "../../components/shopLayout";
 
-function product({ ap, data }) {
-  const router = useRouter();
-
+function Product({ ap, data }) {
   return (
     <>
       <Head>
@@ -28,15 +25,16 @@ function product({ ap, data }) {
   );
 }
 
-export default product;
+export default Product;
 
 // function server side
 export async function getServerSideProps(context) {
   return {
     props: {
       data: context.query,
-
       ap: context.query.ap || "",
     },
   };
 }
+
+Product.Layout = ShopLayout;

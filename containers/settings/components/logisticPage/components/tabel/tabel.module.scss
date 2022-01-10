@@ -1,0 +1,22 @@
+.header {
+    th {
+        background: #dadada;
+    }
+}
+.status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    i {
+        font-size: 30px;
+        color: #ff0000;
+        cursor: pointer;
+    }
+}
+.nameTable {
+    cursor: pointer;
+    transition: all 0.4s;
+    &:hover {
+        font-size: 18px;
+    }
+}

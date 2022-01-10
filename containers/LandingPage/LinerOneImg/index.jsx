@@ -6,10 +6,10 @@ import styles from "./LinerOneImg.module.scss";
 function LinerOneImg({ dataLinerOneImg }) {
   return (
     <>
-      {dataLinerOneImg.length > 0 && (
+      {dataLinerOneImg && dataLinerOneImg.length > 0 && (
         <div className={`${styles.linearImages} container`}>
           <div className="row ">
-            <div className={` d-none d-md-block ${styles.righter}`}>
+            <div className={`  ${styles.righter}`}>
               <Link href={dataLinerOneImg[0].url}>
                 <a>
                   <Image
@@ -22,7 +22,7 @@ function LinerOneImg({ dataLinerOneImg }) {
                 </a>
               </Link>
             </div>
-            <div className={`col-12 d-md-none  ${styles.righter}`}>
+            {/* <div className={`col-12 d-md-none  ${styles.righter}`}>
               <Link href={dataLinerOneImg[0].url}>
                 <a>
                   <Image
@@ -34,7 +34,7 @@ function LinerOneImg({ dataLinerOneImg }) {
                   />
                 </a>
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       )}

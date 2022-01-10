@@ -5,7 +5,7 @@ import styles from "./LinerTwoValue.module.scss";
 function LinerTwoValue({ dataLinerTwoValue }) {
   return (
     <>
-      {dataLinerTwoValue.length >= 2 && (
+      {dataLinerTwoValue && dataLinerTwoValue.length >= 2 && (
         <>
           {/* for mobile */}
           <div className={`container d-lg-none ${styles.mobile}`}>

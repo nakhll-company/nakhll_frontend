@@ -1,7 +1,11 @@
 import React from "react";
 import Head from "next/head";
+import dynamic from 'next/dynamic';
+import { NextSeo } from "next-seo";
 
-import HeroSlides from "../containers/LandingPage/HeroSlides";
+
+const DynamicHeroSlides = dynamic(() => import('../containers/LandingPage/HeroSlides'))
+// import HeroSlides from "../containers/LandingPage/HeroSlides";
 import LinerFourImgMobile from "../containers/LandingPage/LinerFourImgMobile";
 import LinerOneImg from "../containers/LandingPage/LinerOneImg";
 import LinerProducts from "../containers/LandingPage/LinerProducts";
@@ -10,6 +14,7 @@ import LinerThreeImg from "../containers/LandingPage/LinerThreeImg";
 import LinerTwoValue from "../containers/LandingPage/LinerTwoValue";
 import { ApiRegister } from "../services/apiRegister/ApiRegister";
 import { ApiReference } from "../Api";
+import ShopLayout from "../components/shopLayout";
 // fetch data
 const fetchData = async () => {
   let all_data_for_component = [];
@@ -30,7 +35,7 @@ const fetchData = async () => {
         null,
         "GET",
         Schema.data[index].data,
-        true,
+        false,
         ""
       );
       if (one_Component.status === 200) {
@@ -49,7 +54,7 @@ const fetchData = async () => {
   }
 };
 
-const index = ({ data }) => {
+const HomePage = ({ data }) => {
   const Sample = {
     1: "اسلایدر تکی",
     2: "بنر تک عکسی",
@@ -64,7 +69,7 @@ const index = ({ data }) => {
     switch (type.component_type) {
       case 1:
         return (
-          <HeroSlides
+          <DynamicHeroSlides
             key={index}
             dataHeroSlides={data.all_data_for_component[index]}
           />
@@ -134,15 +139,17 @@ const index = ({ data }) => {
     }
   };
 
+  const SEO = {
+    title: "بازار اجتماعی نخل",
+    description:
+      "نخل سرزمینی است برای یادآوری سنت‌های اصیل ایرانی‌مان، برای شکوفایی استعدادها و بهتر دیده‌شدن‌تان، کالاها و خدمات خود را در سرزمین نخل به اشتراک بگذارید. اینجا راهی برای پیشبرد هدف‌هایتان وجود دارد.",
+  };
+
   return (
     <>
+      <NextSeo {...SEO} />
       <Head>
-        <title>بازار اجتماعی نخل</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta
-          name="description"
-          content="نخل سرزمینی است برای یادآوری سنت‌های اصیل ایرانی‌مان، برای شکوفایی استعدادها و بهتر دیده‌شدن‌تان، کالاها و خدمات خود را در سرزمین نخل به اشتراک بگذارید. اینجا راهی برای پیشبرد هدف‌هایتان وجود دارد."
-        />
         <meta
           name="keywords"
           content=" نخل به وسعت یک سرزمین،بازار نخل،نخل،بازار اجتماعی نخل،بازار آنلاین نخل"
@@ -158,13 +165,15 @@ const index = ({ data }) => {
   );
 };
 
-export default index;
+export default HomePage;
 
 // function server side
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const data = await fetchData();
 
   return {
     props: { data },
   };
 }
+
+HomePage.Layout = ShopLayout;

@@ -6,7 +6,7 @@ if (process.browser) {
 }
 //=================================================================\\
 export const instanceAxiosWithOutToken = Axios.create({
-    // withCredentials: true,
+    withCredentials: true,
     baseURL: process.env.BASE_URL,
     headers: {
         "Content-Type": " application/json",

@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Assistent from "zaravand-assistent-number";
 // components
 import MyLayout from "../../../../components/layout/Layout";
 import Loading from "../../../../components/loading/index";
@@ -25,6 +26,7 @@ import {
 
 const CreateProduct = ({ activeHojreh }) => {
   const router = useRouter();
+  const _asist = new Assistent();
 
   // useform
   const {
@@ -41,7 +43,57 @@ const CreateProduct = ({ activeHojreh }) => {
     mode: "all",
   });
 
+  // states
+  const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState("");
+  const [data, setData] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [submarketId, setSubmarketId] = useState(null);
+  const [isLoad, setIsLoad] = useState(false);
+
+  // stat for test image
+  const [imgProduct, setImgProduct] = useState(null);
+  const [imgProductOne, setImgProductOne] = useState(null);
+  const [imgProductTwo, setImgProductTwo] = useState(null);
+  const [imgProductThree, setImgProductThree] = useState(null);
+  const [imgProductFour, setImgProductFour] = useState(null);
+  const [imgProductFive, setImgProductFive] = useState(null);
+  const [imgProductSix, setImgProductSix] = useState(null);
+
+  // loading for create product
+  const [isloadingForCreate, setIsloadingForCreate] = useState(false);
+
+  // for Save cities
+  const [checkedCities, setCheckedCities] = useState([]);
+
+  // state for show word price
+  const [wordPrice, setWordPrice] = useState("");
+  const [wordOldPrice, setWordOldPrice] = useState("");
+
+  // state for precent
+  const [precentPrice, setPrecentPrice] = useState(0);
+  const [precentOldPrice, setprecentOldPrice] = useState(0);
+
+  // use effect
+  useEffect(async () => {
+    const response_categories = await _ApiGetCategories();
+
+    if (response_categories.status === 200) {
+      setIsLoad(true);
+      setData(response_categories.data); //==> output: {}
+      setCategories(response_categories.data);
+    }
+  }, [activeHojreh]);
+
+  // select Submarket
+  const _selectSubmarket = () => {
+    let element = document.getElementById("wrapperMarkets");
+    element.style.display = "block";
+    let elementProduct = document.getElementById("wrapper_product");
+    elementProduct.style.display = "none";
+  };
+
   const onSubmit = async (data) => {
+    setIsloadingForCreate(true);
     let Product_Banner = [];
     if (imgProductOne) {
       Product_Banner.push({ Image: imgProductOne });
@@ -79,43 +131,6 @@ const CreateProduct = ({ activeHojreh }) => {
     }
   };
 
-  // states
-  const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState("");
-  const [data, setData] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [submarketId, setSubmarketId] = useState(null);
-  const [isLoad, setIsLoad] = useState(false);
-  // stat for test image
-  const [imgProduct, setImgProduct] = useState(null);
-  const [imgProductOne, setImgProductOne] = useState(null);
-  const [imgProductTwo, setImgProductTwo] = useState(null);
-  const [imgProductThree, setImgProductThree] = useState(null);
-  const [imgProductFour, setImgProductFour] = useState(null);
-  const [imgProductFive, setImgProductFive] = useState(null);
-  const [imgProductSix, setImgProductSix] = useState(null);
-
-  // for Save cities
-  const [checkedCities, setCheckedCities] = useState([]);
-
-  // use effect
-  useEffect(async () => {
-    const response_categories = await _ApiGetCategories();
-   
-    if (response_categories.status === 200) {
-      setIsLoad(true);
-      setData(response_categories.data); //==> output: {}
-      setCategories(response_categories.data);
-    }
-  }, [activeHojreh]);
-
-  // select Submarket
-  const _selectSubmarket = () => {
-    let element = document.getElementById("wrapperMarkets");
-    element.style.display = "block";
-    let elementProduct = document.getElementById("wrapper_product");
-    elementProduct.style.display = "none";
-  };
-
   if (isLoad) {
     return (
       <>
@@ -137,15 +152,27 @@ const CreateProduct = ({ activeHojreh }) => {
                   <label className={styles.lable_product} htmlFor="Title">
                     دسته بندی
                   </label>
+
                   <input
+                    style={{ paddingRight: "10px" }}
                     className={styles.input_product}
-                    value={placeholderSubmarckets}
+                    value={placeholderSubmarckets.name}
                     id="submark"
                     name="submark"
                     type="text"
                     onClick={_selectSubmarket}
                     {...register("submark")}
                   />
+                  <i
+                    style={{
+                      color: "#1b3e68",
+                      left: "10px",
+                      top: "64%",
+                      position: "absolute",
+                    }}
+                    className="fas fa-chevron-down"
+                  ></i>
+
                   {errors.submark && (
                     <span style={{ color: "red", fontSize: "14px" }}>
                       لطفا این گزینه را پر کنید
@@ -179,6 +206,7 @@ const CreateProduct = ({ activeHojreh }) => {
                     </div>
                     {imgProduct ? (
                       <Image
+                        alt="عکس اصلی"
                         src={imgProduct}
                         layout="responsive"
                         height={100}
@@ -186,12 +214,18 @@ const CreateProduct = ({ activeHojreh }) => {
                       />
                     ) : (
                       <Image
-                        src="/image/sample/2_1.jpg"
+                        alt="عکس اصلی"
+                        src="/image/sample/pic.jpg"
                         layout="responsive"
                         height={100}
                         width={100}
                       />
                     )}
+                    <div className={styles.deleteBtn}>
+                      <div className={styles.wrapBtn} onClick={() => setImgProduct(null)}>
+                        <i className="fas fa-trash"></i>
+                      </div>
+                    </div>
                   </div>
                   {/* imgProductChild, setImgProductChild */}
                   {imgProduct && (
@@ -229,10 +263,15 @@ const CreateProduct = ({ activeHojreh }) => {
                 <InputUseForm
                   title="وزن خالص محصول"
                   error={errors.Net_Weight}
+
                   text="گرم"
+
                 >
                   <input
                     type="number"
+                    onWheel={(event) => {
+                      event.currentTarget.blur();
+                    }}
                     {...register("Net_Weight", {
                       required: "لطفا این گزینه را پرنمایید",
                       min: {
@@ -250,6 +289,9 @@ const CreateProduct = ({ activeHojreh }) => {
                 >
                   <input
                     type="number"
+                    onWheel={(event) => {
+                      event.currentTarget.blur();
+                    }}
                     {...register("Weight_With_Packing", {
                       required: "لطفا این گزینه را پرنمایید",
                       min: {
@@ -270,15 +312,29 @@ const CreateProduct = ({ activeHojreh }) => {
                 >
                   <input
                     type="number"
+                    onWheel={(event) => {
+                      event.currentTarget.blur();
+                    }}
                     {...register("Price", {
                       required: "لطفا این گزینه را پرنمایید",
                       min: {
                         value: 500,
-                        message: "لطفا اعداد بزرگتر از 500 وارد نمایید",
+                        message: "لطفا اعداد بزرگتر از ۵۰۰ وارد نمایید",
                       },
                     })}
+                    onChange={(e) => {
+                      setPrecentPrice(e.target.value);
+                      setWordPrice(_asist.word(e.target.value));
+                    }}
                   />
                 </InputUseForm>
+                {wordPrice !== "صفر" && wordPrice !== "" && (
+                  <div className={styles.previewPrice}>
+                    قیمت محصول : {wordPrice}
+                    {"  "}
+                    تومان
+                  </div>
+                )}
                 {/* price with discount */}
                 <InputUseForm
                   title="قیمت محصول با تخفیف (اختیاری)"
@@ -287,6 +343,9 @@ const CreateProduct = ({ activeHojreh }) => {
                 >
                   <input
                     type="number"
+                    onWheel={(event) => {
+                      event.currentTarget.blur();
+                    }}
                     defaultValue={0}
                     {...register("OldPrice", {
                       min: {
@@ -297,9 +356,39 @@ const CreateProduct = ({ activeHojreh }) => {
                         parseInt(value) < parseInt(getValues("Price")) ||
                         "قیمت با تخفیف باید کمتر از قیمت اصلی باشد",
                     })}
+                    onChange={(e) => {
+                      if (e.target.value == "" || e.target.value == 0) {
+                        setValue("OldPrice", 0);
+                        setprecentOldPrice(0);
+                      } else {
+                        setprecentOldPrice(e.target.value);
+
+                        setWordOldPrice(_asist.word(e.target.value));
+                      }
+                    }}
                   />
                 </InputUseForm>
+                {wordOldPrice !== "صفر" && wordOldPrice !== "" && (
+                  <div className={styles.previewPrice}>
+                    قیمت محصول با تخفیف : {wordOldPrice} تومان
+                  </div>
+                )}
+                {precentOldPrice !== 0 && (
+                  <>
+                    <span style={{ margin: "8px 0", fontSize: "14px" }}>
+                      تخفیف کالا شما:
+                      <span style={{ fontSize: "13px" }}>درصد رند شده</span>
+                    </span>
+                    <div className={styles.precent_wrper}>
+                      {Math.ceil(
+                        ((precentPrice - precentOldPrice) / precentPrice) * 100
+                      )}
+                      %
+                    </div>
+                  </>
+                )}
                 {/* discription */}
+
                 <TextAreaUseForm title="توضیحات محصول (اختیاری)">
                   <textarea
                     rows="10"
@@ -308,6 +397,7 @@ const CreateProduct = ({ activeHojreh }) => {
                     {...register("Description")}
                   />
                 </TextAreaUseForm>
+
                 {/* inventory */}
                 <InputUseForm
                   title="موجودی"
@@ -316,6 +406,9 @@ const CreateProduct = ({ activeHojreh }) => {
                 >
                   <input
                     type="number"
+                    onWheel={(event) => {
+                      event.currentTarget.blur();
+                    }}
                     {...register("Inventory", {
                       required: "لطفا این گزینه را پرنمایید",
                       min: {
@@ -335,6 +428,9 @@ const CreateProduct = ({ activeHojreh }) => {
                 >
                   <input
                     type="number"
+                    onWheel={(event) => {
+                      event.currentTarget.blur();
+                    }}
                     {...register("PreparationDays", {
                       required: "لطفا این گزینه را پرنمایید",
                       min: {
@@ -381,6 +477,14 @@ const CreateProduct = ({ activeHojreh }) => {
             categories={categories}
           />
         </div>
+
+        {isloadingForCreate && (
+          <>
+            <div className={styles.create_product}>
+              <div className={styles.create_messege}>در حال ساخت محصول ...</div>
+            </div>
+          </>
+        )}
       </>
     );
   } else {

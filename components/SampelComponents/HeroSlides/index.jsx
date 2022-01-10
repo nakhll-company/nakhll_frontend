@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import InputPicture from "../../../containers/liveEdit/InputPicture";
 import InputUrl from "../../../containers/liveEdit/InputUrl";
 import styles from "./HeroSlides.module.scss";

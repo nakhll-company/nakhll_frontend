@@ -3,21 +3,19 @@ import router from "next/router";
 import CheckboxTree from "react-checkbox-tree";
 import Assistent from "zaravand-assistent-number";
 import React, { useEffect, useState } from "react";
-
 import InfiniteScroll from "react-infinite-scroll-component";
+import _ from "lodash";
 // components
 import { TopBar } from "../TopBar";
 import { errorMessage } from "../../utils/message";
 import Search from "../../../components/search/Search";
 import AddFavorites from "../../../components/AddFavorites";
-import MenuMobile from "../../../components/layout/MenuMobile";
 import { allCites } from "../../../components/custom/data/data";
 import CustomSwitch from "../../../components/custom/customSwitch";
 import ProductCard from "../../../components/ProductCart/ProductCard";
 import CustomAccordion from "../../../components/custom/customAccordion";
 import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
 import MultiRangeSlider from "../../../components/custom/customMultiRangeSlider/MultiRangeSlider";
-
 // methods
 import { ApiReference } from "../../../Api";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
@@ -25,9 +23,12 @@ import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import styles from "./listProductCus.module.scss";
 import OrderingModalMobile from "./components/OrderingModalMobile";
 import SearchProduct from "./components/searchProduct";
+import { useSelector } from "react-redux";
+
 const _asist = new Assistent();
 
 function ListProductCus({ data }) {
+  const userData = useSelector((state) => state.User.userInfo);
   const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
   const [searchWord, setSearchWord] = useState(data.q ? data.q : "");
   const [listWithFilter, setListWithFilter] = useState([]);
@@ -55,13 +56,13 @@ function ListProductCus({ data }) {
 
   // Array for cateGory
   const [categories, setCategories] = useState([
-    ...(data.category
-      ? data.category.split(",").map((el) => parseInt(el))
+    ...(data.new_category
+      ? data.new_category.split(",").map((el) => parseInt(el))
       : []),
   ]);
   const [wantCategories, setWantCategories] = useState([
-    ...(data.category
-      ? data.category.split(",").map((el) => parseInt(el))
+    ...(data.new_category
+      ? data.new_category.split(",").map((el) => parseInt(el))
       : []),
   ]);
 
@@ -87,15 +88,15 @@ function ListProductCus({ data }) {
   const [searchShops, setSearchShops] = useState([]);
   // state for change page
   const [changePage, setChangePage] = useState(1);
-  const [NameHojreh, setNameHojreh] = useState("")
+  const [NameHojreh, setNameHojreh] = useState("");
 
   const _handel_category = async () => {
-        try {
+    try {
       let response = await ApiRegister().apiRequest(
         null,
         "get",
         `/api/v1/categories/category_product_count/?q=${searchWord}`,
-        true,
+        false,
         {}
       );
       if (response.status === 200) {
@@ -145,13 +146,12 @@ function ListProductCus({ data }) {
         null,
         "get",
         `/api/v1/products/`,
-        true,
+        false,
         params
       );
       if (response.status === 200) {
         setListWithFilter(response.data.results);
-        setNameHojreh(response.data.results[0].FK_Shop.title)
-        
+        setNameHojreh(response.data.results[0].FK_Shop.title);
 
         if (
           response.data.results.length === 0 ||
@@ -163,12 +163,9 @@ function ListProductCus({ data }) {
         setTotalcount(response.data.total_count);
 
         setIsLoading(false);
-      } else {
-        errorMessage("خطایی رخ داده است");
       }
     } catch (e) {
       setIsLoading(false);
-      errorMessage("خطایی رخ داده است");
     }
   };
 
@@ -178,7 +175,7 @@ function ListProductCus({ data }) {
         null,
         "get",
         `/api/v1/products/`,
-        true,
+        false,
         {
           ...(witchFilter ? witchFilter : null),
           search: searchWord,
@@ -217,7 +214,7 @@ function ListProductCus({ data }) {
         null,
         "GET",
         ApiReference.allShops,
-        true,
+        false,
         ""
       );
 
@@ -238,8 +235,11 @@ function ListProductCus({ data }) {
 
   // START
   // for filters in sidebar
-  useEffect(async () => {
-    await _handel_filters();
+  useEffect(() => {
+    async function fetchData() {
+      await _handel_filters();
+    }
+    fetchData();
   }, [
     isAvailableGoods,
     isReadyForSend,
@@ -250,8 +250,8 @@ function ListProductCus({ data }) {
     clickOnRange,
     changePage,
     hojreh,
+    searchWord,
   ]);
-  
 
   useEffect(() => {
     router.push(
@@ -268,7 +268,7 @@ function ListProductCus({ data }) {
           ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
           ...(hojreh !== "" && { shop: hojreh }),
           ...(wantCategories.length !== 0 && {
-            category: wantCategories.toString(),
+            new_category: wantCategories.toString(),
           }),
         },
       },
@@ -283,8 +283,10 @@ function ListProductCus({ data }) {
     wantCategories,
     whichOrdering,
     clickOnRange,
-
+    maxPrice,
+    minPrice,
     hojreh,
+    searchWord,
   ]);
 
   // for filters in sidebar
@@ -458,9 +460,22 @@ function ListProductCus({ data }) {
               handel_OrderingModal={handel_OrderingModal}
             />
             {/* inja */}
-            <div style={{position:"sticky",position:"-webkit-sticky",top:"0",zIndex:"999"}}>
-              {hojreh !== "" && <SearchProduct searchWord={searchWord} NameHojreh={NameHojreh} hojreh={hojreh}/>}
-              
+            <div
+              style={{
+                position: "sticky",
+                position: "-webkit-sticky",
+                top: "0",
+                zIndex: "999",
+              }}
+            >
+              {hojreh !== "" && (
+                <SearchProduct
+                  setSearchWord={setSearchWord}
+                  searchWord={searchWord}
+                  NameHojreh={NameHojreh}
+                  hojreh={hojreh}
+                />
+              )}
             </div>
             <div className="mx-auto row">
               {isLoading ? (
@@ -581,7 +596,11 @@ function ListProductCus({ data }) {
               </div>
             </CustomAccordion>
             {categories.length > 0 && (
-              <CustomAccordion title="دسته بندی" item="1mobile" callApi={() => _handel_category()}>
+              <CustomAccordion
+                title="دسته بندی"
+                item="1mobile"
+                callApi={() => _handel_category()}
+              >
                 {categories.map((ele, index) => (
                   <div
                     key={`one${index}`}
@@ -665,14 +684,14 @@ function ListProductCus({ data }) {
           setIsOpenOrderingModal={setIsOpenOrderingModal}
         />
       )}
-      <AddFavorites />
+      {!_.isEmpty(userData) && <AddFavorites />}
 
       {/* ModalOrdering End */}
 
       {/* END MODAL */}
 
       {/* MenuMobile */}
-      <MenuMobile />
+      {/* <MenuMobile /> */}
       {/* MenuMobile */}
     </>
   );

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTransition, animated } from "react-spring";
 import { useRouter } from "next/router";
-import { v4 as uuidv4 } from "uuid";
+
 import styles from "./AddFavorites.module.scss";
 import Assistent from "zaravand-assistent-number";
 import { useDispatch, useSelector } from "react-redux";
@@ -42,23 +42,31 @@ function AddFavorites() {
 
   // function add page to favourite
   const _handel_add_page_to_favourit = async () => {
-    const link = router.asPath;
+    if (textInput !== "") {
+      const link = router.asPath;
 
-    const newFav = {
-      link: `https://nakhll.com${link}`,
-      name: textInput == "" ? "بدون عنوان" : textInput,
-    };
+      const newFav = {
+        link: `https://nakhll.com${link}`,
+        name: textInput == "" ? "بدون عنوان" : textInput,
+      };
+      
 
-    let response = await ApiRegister().apiRequest(
-      newFav,
-      "POST",
-      apiCreat,
-      true,
-      ""
-    );
+      let response = await ApiRegister().apiRequest(
+        newFav,
+        "POST",
+        apiCreat,
+        true,
+        ""
+      );
+     
+      if (response.status === 201) {
+        dispatch(_addToWishList(newFav));
+        setListFav([...listFav, newFav]);
+        settextInput("");
+      }
 
-    setListFav([...listFav, newFav]);
-    settextInput("");
+      
+    }
   };
 
   // function Delete form fav

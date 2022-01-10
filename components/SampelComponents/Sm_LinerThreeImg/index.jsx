@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import styles from "./Sm_LinerThreeImg.module.scss";
 import InputPicture from "../../../containers/liveEdit/InputPicture";

@@ -1,7 +1,7 @@
 import React from "react";
 
-function index(props) {
+function Edit(props) {
   return <div></div>;
 }
 
-export default index;
+export default Edit;

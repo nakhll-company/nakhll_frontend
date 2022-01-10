@@ -13,7 +13,22 @@ export async function activeDemo(id, activeShop, router) {
     );
 
     if (response.status === 200) {
-        router.push(`/fp/options/landing/orders?id=${id}`);
+        let response = await ApiRegister().apiRequest(
+            {
+                name: "صفحه بدون نام",
+                page_data: "",
+                shop: activeShop,
+            },
+            "post",
+            `/api/v1/shop_landing/${activeShop}/`,
+            true,
+            ""
+        );
+        if (response.status === 201) {
+            router.push(`/liveEdit/${activeShop}/${response.data.id}`);
+        } else {
+            errorMessage("خطایی رخ داده است");
+        }
     } else {
         errorMessage(response.response.data.error);
     }

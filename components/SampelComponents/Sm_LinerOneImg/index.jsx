@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import Image from "next/image";
 import styles from "./Sm_LinerOneImg.module.scss";
 
 import { _selectId } from "../../../redux/actions/liveEdit/_selectId";
@@ -20,6 +21,7 @@ function Sm_LinerOneImg({ setImageSrc, id, data }) {
           <span>{data[0].title}</span>
         </div>
       )}
+
       <img
         src={data[0].image ? data[0].image : "/image/sample/6_1.jpg"}
         alt=""

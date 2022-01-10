@@ -5,11 +5,12 @@ export const getProducts = () => {
     let params = {};
     let loadData = null;
     let dataUrl = `/cart2/api/carts/my/`;
+    let token = localStorage.getItem("accessToken");
     let response = await ApiRegister().apiRequest(
       loadData,
       "get",
       dataUrl,
-      true,
+      token ? true : false,
       params
     );
 

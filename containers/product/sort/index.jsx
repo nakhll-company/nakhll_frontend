@@ -12,14 +12,14 @@ const Sort = ({ getProduct, setShowModalSort, activeHojreh }) => {
             <header className={styles.header}>ترتیب نمایش</header>
             <div className={styles.sort_item_wrapper}>
                 <button className={styles.sort_item} onClick={() => {
-                    getProduct(activeHojreh, "", "", "", "", "", "total_sell");
+                    getProduct(activeHojreh, "", "", "", "", "", "total_sell", "");
                     setShowModalSort(pre => !pre);
                 }}>
                     {/* <Image src="/image/product/tik.svg" alt="tik" width="15" height="15" /> */}
                     تعداد فروش
                 </button>
                 <button className={styles.sort_item} onClick={() => {
-                    getProduct(activeHojreh, "", "", "", "", "", "title");
+                    getProduct(activeHojreh, "", "", "", "", "", "title", "");
                     setShowModalSort(pre => !pre);
                 }}>
                     {/* <Image src="/image/product/tik.svg" alt="tik" width="15" height="15" /> */}

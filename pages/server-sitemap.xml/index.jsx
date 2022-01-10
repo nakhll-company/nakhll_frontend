@@ -6,7 +6,7 @@ export const getServerSideProps = async (ctx) => {
     null,
     "Get",
     "https://nakhll.com/api/v1/util/shops/",
-    true,
+    false,
     ""
   );
   let fields = [];
@@ -36,4 +36,4 @@ export const getServerSideProps = async (ctx) => {
   return getServerSideSitemap(ctx, fields);
 };
 
-export default function Site() { }
+export default function Site() {}

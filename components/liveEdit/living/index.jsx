@@ -14,8 +14,14 @@ import CustomCropper from "../../customCropper";
 import { _updateDataLanding } from "../../../redux/actions/liveEdit/_updateDataLanding";
 import SelectUrl from "../../../containers/liveEdit/SelectUrl";
 import SaveLanding from "../../../containers/liveEdit/SaveLanding";
+import Sm_AboutMe from "../../SampelComponents/Sm_AboutMe";
+import VipProducts from "../../SampelComponents/Sm_VipProducts";
+import Sm_VipProducts from "../../SampelComponents/Sm_VipProducts";
+import Sm_RotationProducts from "../../SampelComponents/Sm_RotationProducts";
+import Video from "../../../containers/LandingPage/Video";
+import Sm_Video from "../../SampelComponents/Sm_Video";
 
-function Living({ characters, setCharacters, setOpenPlaneEditor,idLanding }) {
+function Living({ characters, setCharacters, setOpenPlaneEditor, idLanding }) {
   const dispatch = useDispatch();
   const showCrop = useSelector((state) => state.showCropper);
   const showSelectorUrl = useSelector((state) => state.showSelectUrl);
@@ -32,24 +38,27 @@ function Living({ characters, setCharacters, setOpenPlaneEditor,idLanding }) {
     if (items.length == 0) {
       const newItem = {
         ID: uuidv4(),
-        type:1,
+        type: 1,
         data: [
           {
             image: "",
             url: "",
             title: "",
+            video: { id: "", src: "" },
             order: 0,
           },
           {
             image: "",
             url: "",
             title: "",
+            video: { id: "", src: "" },
             order: 1,
           },
           {
             image: "",
             url: "",
             title: "",
+            video: { id: "", src: "" },
             order: 2,
           },
         ],
@@ -126,6 +135,22 @@ function Living({ characters, setCharacters, setOpenPlaneEditor,idLanding }) {
       case 6:
         return <Sm_LinerProducts id={id} data={data} />;
         break;
+
+      case 8:
+        return <Sm_AboutMe id={id} data={data} />;
+        break;
+
+      case 9:
+        return <Sm_VipProducts id={id} data={data} />;
+        break;
+
+      case 10:
+        return <Sm_RotationProducts id={id} data={data} />;
+        break;
+
+      case 11:
+        return <Sm_Video id={id} data={data} />;
+        break;
     }
   };
 
@@ -135,7 +160,7 @@ function Living({ characters, setCharacters, setOpenPlaneEditor,idLanding }) {
         <CustomCropper imageSrc={imageSrc} setCroppedImage={setCroppedImage} />
       )}
 
-      {showSelectorUrl && <SelectUrl idLanding={idLanding } />}
+      {showSelectorUrl && <SelectUrl idLanding={idLanding} />}
 
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="characters">

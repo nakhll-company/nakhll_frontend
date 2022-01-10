@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 import Assistent from "zaravand-assistent-number";
 // style
 import styles from "../../styles/components/shopLayout/footer.module.scss";
@@ -9,6 +10,8 @@ import styles from "../../styles/components/shopLayout/footer.module.scss";
 const _asist = new Assistent();
 
 const Footer = () => {
+  const userData = useSelector((state) => state.User.userInfo);
+
   const _handel_according = (accord, icon) => {
     let element = document.getElementById(accord);
     if (element.style.height == "0px") {
@@ -57,36 +60,44 @@ const Footer = () => {
                       </Link>
                     </div>{" "}
                     <div className={styles.footer_social_icon}>
-                      {/* <div>
-                        <a
-                          href=""
-                          rel="noopener noreferrer nofollow"
-                          target="_blank"
-                          aria-label="لینکدین"
-                        >
-                          <i className="fas fa-linkedin"></i>
-                        </a>
-                      </div>{" "} */}
-                      {/* <div>
-                        <a
-                          href=""
-                          rel="noopener noreferrer nofollow"
-                          target="_blank"
-                          aria-label="توییتر"
-                        >
-                          <i className="bi bi-twitter"></i>
-                        </a>
-                      </div>{" "} */}
-                      {/* <div>
-                        <a
-                          href=""
-                          rel="noopener noreferrer nofollow"
-                          target="_blank"
-                          aria-label="اینستاگرام"
-                        >
-                          <i className="bi bi-instagram"></i>
-                        </a>
-                      </div> */}
+                      <a
+                        href="https://www.linkedin.com/company/nakhll/"
+                        target="_blank"
+                        aria-label="لینکدین"
+                        rel="noreferrer"
+                      >
+                        <i
+                          style={{ fontSize: "30px" }}
+                          className="fab fa-linkedin"
+                        ></i>
+                      </a>
+
+                      <a
+                        style={{ width: "30px" }}
+                        href="https://www.aparat.com/nakhll"
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label="آپارات بازار اجتماعی نخل"
+                        rel="noreferrer"
+                      >
+                        <Image
+                          src="/icons/footer/aparat.png"
+                          layout="responsive"
+                          width={200}
+                          height={200}
+                          alt="آپارات"
+                        />
+                      </a>
+
+                      <a
+                        href="https://www.instagram.com/nakhll_com/"
+                        target="_blank"
+                        aria-label="اینستاگرام"
+                        rel="noreferrer"
+                        style={{ fontSize: "30px", display: "flex" }}
+                      >
+                        <i className="fab fa-instagram"></i>
+                      </a>
                     </div>
                   </div>
                   <div className="col-4 col-4 d-flex flex-column">
@@ -132,7 +143,15 @@ const Footer = () => {
                       </Link>
                     </div>
                     <div>
-                      <Link href="/fp">
+                      <Link
+                        href={
+                          userData &&
+                          userData.shops &&
+                          userData.shops.length > 0
+                            ? "/fp"
+                            : "/fp/store/create"
+                        }
+                      >
                         <a className={styles.footer_items}>مدیریت حجره</a>
                       </Link>
                     </div>{" "}
@@ -192,7 +211,7 @@ const Footer = () => {
                           className="d-flex justify-content-center mt-1"
                         >
                           <Link href="https://kerman.irannsr.org/services/trade_unit/319012-%D8%A7%D8%B9%D8%B6%D8%A7%DB%8C-%D8%AD%D9%82%D9%88%D9%82%DB%8C-%D9%86%D9%88%DB%8C%D8%AF-%D8%AA%DB%8C%D9%85%DA%86%D9%87-%D8%AA%D8%AC%D8%A7%D8%B1%D8%AA-%D9%86%DB%8C%D9%84.html?t=%D8%AC%D8%B3%D8%AA%D8%AC%D9%88%DB%8C-%D9%BE%DB%8C%D8%B4%D8%B1%D9%81%D8%AA%D9%87">
-                            <a className="w-100">
+                            <a aria-label="نماد" className="w-100">
                               <Image
                                 layout="responsive"
                                 height={100}
@@ -212,7 +231,7 @@ const Footer = () => {
                           className="d-flex justify-content-center"
                         >
                           <Link href="https://trustseal.enamad.ir/?id=135577&amp;Code=4LVJlUntZdqZWSmXWkA1">
-                            <a className="w-100">
+                            <a aria-label="نماد" className="w-100">
                               <Image
                                 layout="responsive"
                                 height={100}
@@ -233,7 +252,7 @@ const Footer = () => {
                           className="d-flex justify-content-center"
                         >
                           <Link href="https://logo.samandehi.ir/Verify.aspx?id=163029&p=rfthgvkaxlaoobpduiwkpfvl">
-                            <a className="w-100">
+                            <a aria-label="نماد" className="w-100">
                               <Image
                                 layout="responsive"
                                 height={100}
@@ -426,7 +445,13 @@ const Footer = () => {
                     </a>
                   </div> */}
                   <div>
-                    <Link href="/fp">
+                    <Link
+                      href={
+                        userData && userData.shops && userData.shops.length > 0
+                          ? "/fp"
+                          : "/fp/store/create"
+                      }
+                    >
                       <a className={styles.footer_items}>مدیریت حجره</a>
                     </Link>
                   </div>
@@ -440,37 +465,52 @@ const Footer = () => {
                     </button>
                   </a>
                 </div>{" "} */}
-                <div className={styles.footer_social_icon}>
-                  {/* <div>
-                    <a
-                      href=""
-                      rel="noopener noreferrer nofollow"
-                      target="_blank"
-                      aria-label="لینکدین"
-                    >
-                      <i className="bi bi-linkedin"></i>
-                    </a>
-                  </div>{" "} */}
-                  {/* <div>
-                    <a
-                      href=""
-                      rel="noopener noreferrer nofollow"
-                      target="_blank"
-                      aria-label="توییتر"
-                    >
-                      <i className="bi bi-twitter-outline"></i>
-                    </a>
-                  </div>{" "} */}
-                  {/* <div>
-                    <a
-                      href=""
-                      rel="noopener noreferrer nofollow"
-                      target="_blank"
-                      aria-label="اینستاگرام"
-                    >
-                      <i className="bi bi-instagram"></i>
-                    </a>
-                  </div> */}
+                <div
+                  style={{
+                    justifyContent: "space-around",
+                    marginBottom: "15px",
+                  }}
+                  className={styles.footer_social_icon}
+                >
+                  <a
+                    href="https://www.linkedin.com/company/nakhll/"
+                    target="_blank"
+                    aria-label="لینکدین"
+                    rel="noreferrer"
+                  >
+                    <i
+                      style={{ fontSize: "30px" }}
+                      className="fab fa-linkedin"
+                    ></i>
+                  </a>
+
+                  <a
+                    style={{ width: "30px" }}
+                    href="https://www.aparat.com/nakhll"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="آپارات بازار اجتماعی نخل"
+                    rel="noreferrer"
+                  >
+                    <Image
+                      src="/icons/footer/aparat.png"
+                      layout="responsive"
+                      alt="آپارات"
+                      width={200}
+                      height={200}
+                      alt="آپارات"
+                    />
+                  </a>
+                  <a
+                    href="https://www.instagram.com/nakhll_com/"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="اینستاگرام"
+                    rel="noreferrer"
+                    style={{ fontSize: "30px", display: "flex" }}
+                  >
+                    <i className="fab fa-instagram"></i>
+                  </a>
                 </div>
               </div>{" "}
               <div className="row align-items-center d-flex justify-content-between mt-1 row">
@@ -478,6 +518,7 @@ const Footer = () => {
                   <div className="d-flex justify-content-center">
                     <Link href="https://kerman.irannsr.org/services/trade_unit/319012-%D8%A7%D8%B9%D8%B6%D8%A7%DB%8C-%D8%AD%D9%82%D9%88%D9%82%DB%8C-%D9%86%D9%88%DB%8C%D8%AF-%D8%AA%DB%8C%D9%85%DA%86%D9%87-%D8%AA%D8%AC%D8%A7%D8%B1%D8%AA-%D9%86%DB%8C%D9%84.html?t=%D8%AC%D8%B3%D8%AA%D8%AC%D9%88%DB%8C-%D9%BE%DB%8C%D8%B4%D8%B1%D9%81%D8%AA%D9%87">
                       <a
+                        aria-label="نماد"
                         className="w-100"
                         style={{ overflow: "hidden", display: "inline-block" }}
                       >
@@ -497,7 +538,7 @@ const Footer = () => {
                 <div className="col-4 col-md-2">
                   <div className="d-flex justify-content-center mt-1">
                     <Link href="https://trustseal.enamad.ir/?id=135577&Code=4LVJlUntZdqZWSmXWkA1">
-                      <a className="w-100">
+                      <a aria-label="نماد" className="w-100">
                         <Image
                           layout="responsive"
                           height={100}
@@ -515,7 +556,7 @@ const Footer = () => {
                 <div className="col-4 col-md-2">
                   <div className="d-flex justify-content-center">
                     <Link href="https://logo.samandehi.ir/Verify.aspx?id=163029&p=rfthgvkaxlaoobpduiwkpfvl">
-                      <a className="w-100">
+                      <a aria-label="نماد" className="w-100">
                         <Image
                           layout="responsive"
                           height={100}
@@ -536,7 +577,7 @@ const Footer = () => {
                 <hr className="mt-0" />{" "}
                 <div className="footer-seo">
                   <div className="font-weight-bold pt-3">
-                    نخل، بازار اجتماعی آنلاین
+                    <h1>نخل، بازار اجتماعی آنلاین</h1>
                   </div>{" "}
                   <div>
                     <div
@@ -546,7 +587,7 @@ const Footer = () => {
                         className={styles.footer_seo_text}
                         style={{ textAlign: "justify" }}
                       >
-                        <span>
+                        <span style={{ color: "#000" }}>
                           نخل سرزمینی است برای یادآوری سنت­‌های اصیل
                           ایرانی­‌مان. برای شکوفایی استعدادها و
                           بهتردیده­‌شدن‌تان، کالاها و خدمات خود را در سرزمین نخل

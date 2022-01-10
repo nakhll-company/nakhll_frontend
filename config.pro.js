@@ -1,11 +1,15 @@
 module.exports = {
-  env: {
-    BASE_URL: "https://nakhll.com/",
-  },
-  images: {
-    domains: ["nakhll.com", "3007"],
-  },
-  trailingSlash: true,
+    i18n: {
+        locales: ["fa"],
+        defaultLocale: "fa",
+    },
+    env: {
+        BASE_URL: "https://nakhll.com/",
+    },
+    images: {
+        domains: ["nakhll.com", "3007", 'localhost'],
+    },
+    trailingSlash: true,
 };
 
 // const withBundleAnalyzer = require('@next/bundle-analyzer')({

@@ -29,13 +29,13 @@ function Header() {
         null,
         "get",
         `/api/v1/categories/?max_depth=2`,
-        true,
+        false,
         {}
       );
       if (response.status === 200) {
         setCategory(response.data);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   // Get all shops
@@ -45,7 +45,7 @@ function Header() {
         null,
         "GET",
         ApiReference.allShops,
-        true,
+        false,
         ""
       );
 
@@ -78,11 +78,7 @@ function Header() {
       <header className={`${styles.header}`}>
         <div className={styles.topBanner}>
           <Link
-            href={
-              Object.keys(userLog).length > 0
-                ? "/fp/store/create"
-                : "https://nakhll.com/accounts/get-phone/"
-            }
+            href={Object.keys(userLog).length > 0 ? "/description" : "/login"}
           >
             <a>
               <Image
@@ -140,7 +136,7 @@ function Header() {
                     )}
 
                     <Link href={`/search?q=${inputSearch}`}>
-                      <a>
+                      <a aria-label="پروفایل">
                         <i className="fas fa-search"></i>
                       </a>
                     </Link>
@@ -155,7 +151,10 @@ function Header() {
               {Object.keys(userLog).length > 0 ? (
                 <>
                   <Link href="/profile">
-                    <a className={styles.nav_item_link_login}>
+                    <a
+                      aria-label="پروفایل"
+                      className={styles.nav_item_link_login}
+                    >
                       <i
                         style={{ fontSize: "30px", marginLeft: "20px" }}
                         className="fas fa-user-circle"
@@ -171,18 +170,25 @@ function Header() {
                         </div>
                       </a>
                     </Link>
-                    <Link href="/accounts/logout/">
-                      <a>
-                        <div className="">
-                          <i className="fas fa-sign-out-alt "></i>
-                          <span>خروج از حساب کاربری</span>
-                        </div>
-                      </a>
-                    </Link>
+                    <div
+                      onClick={() => {
+                        localStorage.removeItem("refreshToken");
+                        localStorage.removeItem("accessToken");
+                        if (router.pathname === "/profile") {
+                          router.reload(window.location.pathname);
+                          router.push("/");
+                        } else {
+                          router.reload(window.location.pathname);
+                        }
+                      }}
+                    >
+                      <i className="fas fa-sign-out-alt "></i>
+                      <span>خروج از حساب کاربری</span>
+                    </div>
                   </div>
                 </>
               ) : (
-                <Link href="https://nakhll.com/accounts/get-phone/">
+                <Link href="/login">
                   <a
                     style={{ margin: "0px 20px " }}
                     className={styles.nav_item_link_login}
@@ -193,15 +199,15 @@ function Header() {
               )}
               <div
                 onClick={() => {
-                  Object.keys(userLog).length > 0
-                    ? router.push("/cart")
-                    : errorMessage("لطفا ابتدا وارد شوید");
+                  router.push("/cart");
                 }}
               >
                 <div className={styles.bascket_btn}>
                   <i>
-                    <img
-                      style={{ width: "24px" }}
+                    <Image
+                      layout="responsive"
+                      width={10}
+                      height={10}
                       src="/icons/sabad.svg"
                       alt=""
                     />
@@ -232,11 +238,7 @@ function Header() {
       <header className={`${styles.mobile_header} `}>
         <div className={styles.topBanner}>
           <Link
-            href={
-              Object.keys(userLog).length > 0
-                ? "/fp/store/create"
-                : "https://nakhll.com/accounts/get-phone/"
-            }
+            href={Object.keys(userLog).length > 0 ? "/description" : "/login"}
           >
             <a>
               <Image
@@ -289,10 +291,12 @@ function Header() {
               <div className={styles.left_side}>
                 {Object.keys(userLog).length > 0 ? (
                   <Link className={styles.profile_btn} href="/profile">
-                    <i
-                      style={{ fontSize: "25px", marginLeft: "9px" }}
-                      className="fas fa-user-circle"
-                    ></i>
+                    <a>
+                      <i
+                        style={{ fontSize: "25px", marginLeft: "9px" }}
+                        className="fas fa-user-circle"
+                      ></i>
+                    </a>
                   </Link>
                 ) : (
                   <Link
@@ -301,23 +305,23 @@ function Header() {
                       fontSize: "10px",
                       fontWeight: "500",
                     }}
-                    href="https://nakhll.com/accounts/get-phone/"
+                    href="/login"
                   >
                     ورود/ثبت نام
                   </Link>
                 )}
                 <div
                   onClick={() => {
-                    Object.keys(userLog).length > 0
-                      ? router.push("/cart")
-                      : errorMessage("لطفا ابتدا وارد شوید");
+                    router.push("/cart");
                   }}
                 >
                   <div className={styles.bascket_btn}>
                     <i>
-                      <img
+                      <Image
                         style={{ width: "24px", marginLeft: "12px" }}
                         src="/icons/sabad.svg"
+                        width={24}
+                        height={24}
                         alt=""
                       />
                     </i>
@@ -355,7 +359,7 @@ function Header() {
                   <BoxSearch list={searchShops} word={inputSearch} />
                 )}
                 <Link href={`/search?q=${inputSearch}`}>
-                  <a>
+                  <a aria-label="پروفایل">
                     <i className="fas fa-search"></i>
                   </a>
                 </Link>
@@ -373,9 +377,11 @@ function Header() {
             <div className={styles.head_menu}>
               <Link href="/">
                 <a className={styles.menu_logo}>
-                  <img
+                  <Image
                     style={{ maxHeight: "50px" }}
                     src="/icons/logo_Nakhl.svg"
+                    width={200}
+                    height={100}
                     alt=""
                   />
                 </a>

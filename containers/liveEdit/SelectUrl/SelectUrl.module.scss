@@ -12,9 +12,9 @@
     justify-content: center;
     align-items: center;
 }
-
 // cropper wrapper
 .content_wrapper {
+    overflow-y: auto;
     position: relative;
     width: 80vw;
     height: 70vh;
@@ -151,15 +151,17 @@
                 }
             }
         }
-        .emptyList {
+        .video_input {
             .headerEmpty {
                 display: flex;
+                flex-direction: column;
                 justify-content: center;
+                align-items: center;
                 padding-top: 15px;
                 padding-bottom: 15px;
                 font-weight: bold;
                 border-bottom: 2px solid #000;
-                background-color: rgb(226, 132, 255);
+                background-color: rgb(226, 132, 255, 0.4);
             }
             .buttonPages {
                 display: flex;
@@ -228,4 +230,31 @@
             }
         }
     }
+}
+.textarea {
+    background: #ffffff;
+    border: 1px solid #e0e6e9;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 15px;
+    color: #364254;
+    padding: 11px;
+    border-right: 2px solid #224e82;
+    border-left: 2px solid #224e82;
+    width: 90%;
+    text-align: left;
+}
+.wrapInput {
+    width: 90%;
+}
+.wrapBtn {
+    display: flex;
+    justify-content: center;
+}
+.wrap_btn {
+    display: flex;
+    justify-content: end;
+    margin-left: 14px;
+    margin-top: 5px;
+    margin-bottom: 10px;
 }

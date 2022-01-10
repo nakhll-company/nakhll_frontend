@@ -1,5 +1,6 @@
 import { Form, Formik } from "formik";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { callApiUpDataShop } from "../../../../api/settings";
 import { GetBigCities, GetCities, GetStates } from "../../../../utils/states";
 import { dataExp } from "../../data";
@@ -26,8 +27,11 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
   const [selectState, setSelectState] = useState([]);
   const [selectCities, setSelectCities] = useState([]);
 
-  useEffect(async () => {
-    setSelectState(await GetStates());
+  useEffect(() => {
+    async function fetchData() {
+      setSelectState(await GetStates());
+    }
+    fetchData();
   }, []);
   return (
     <>
@@ -40,9 +44,7 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
           NationalCode:
             apiSetting.FK_ShopManager &&
             apiSetting.FK_ShopManager.User_Profile.NationalCode,
-          MobileNumber:
-            apiSetting.FK_ShopManager &&
-            apiSetting.FK_ShopManager.User_Profile.MobileNumber,
+
           PhoneNumber:
             apiSetting.FK_ShopManager &&
             apiSetting.FK_ShopManager.User_Profile.PhoneNumber,
@@ -65,7 +67,7 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
             FK_ShopManager: {
               User_Profile: {
                 NationalCode: data.NationalCode,
-                MobileNumber: data.MobileNumber,
+
                 PhoneNumber: data.PhoneNumber,
                 BigCity: ChoiceBigCity,
                 State: ChoiceState,
@@ -117,12 +119,7 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
 
             <TitleLiner title="مشخصات" />
             <FieldCus name="NationalCode" type="text" title="کد ملی" />
-            <FieldCus
-              name="MobileNumber"
-              type="text"
-              title="شماره تماس اصلی"
-              description={dataExp.MobileNumber}
-            />
+
             <FieldCus name="PhoneNumber" type="text" title="شماره تماس:" />
             <TitleLiner title="آدرس" />
             <div className={styles.forAddress}>

@@ -48,16 +48,17 @@
 }
 .inputWidRtl {
     display: grid;
-    height: 45px;
 }
 .inputWidRtl>input {
     background: #ffffff;
     border: 1px solid #e0e6e9;
     box-sizing: border-box;
     border-radius: 5px;
-    font-size: 15px;
-    color: #364254;
+    font-size: 16px;
+    color: #000000;
     padding: 11px;
+    border-right: 2px solid #224e82;
+    border-left: 2px solid #224e82;
 }
 .inputWidRtlH {
     display: grid;
@@ -70,7 +71,6 @@
     border-radius: 5px;
     font-size: 15px;
     color: #364254;
-    padding: 11px;
 }
 
 /*  End    Input */
@@ -84,14 +84,21 @@
     border-radius: 5px;
     direction: ltr;
     font-size: 15px;
-    color: #364254;
+    font-weight: bolder;
+    border-right: 2px solid #224e82;
+    border-left: 2px solid #224e82;
     padding: 11px;
     align-items: center;
+}
+.text_in_input {
+    color: #224e82;
+    border-right: 2px solid #224e82;
+    margin-right: 11px;
 }
 .inputWid_withWord>input {
     border: 0;
     width: 100%;
-    font-size: 15px;
+    font-size: 16px;
 }
 .inputWid_withWord>input:focus {
     outline: 0;

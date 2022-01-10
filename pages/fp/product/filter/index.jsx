@@ -38,9 +38,16 @@ const FilterProduct = ({ getProduct, activeHojreh }) => {
                     <form id="formFilter" className={styles.form} onSubmit={(event) => {
                         event.preventDefault();
                         let product_status = document.querySelector('input[type=radio]:checked').value;
-                        getProduct(activeHojreh, product_status, filterData.price_from, filterData.price_to, filterData.inventory_from, filterData.inventory_to, "");
+                        let search = document.querySelector('#search').value;
+                        getProduct(activeHojreh, product_status, filterData.price_from, filterData.price_to, filterData.inventory_from, filterData.inventory_to, "", search);
                         router.back();
                     }}>
+                        <div className={styles.form_card}>
+                            <div className={styles.form_status}>
+                                <label htmlFor="search">نام محصول:</label>
+                                <input type="text" name="search" id="search" />
+                            </div>
+                        </div>
                         <div className={styles.form_card}>
                             <h6 className={styles.form_header}>وضعیت محصول:</h6>
                             <div className={styles.form_status}>
