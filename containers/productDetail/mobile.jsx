@@ -117,7 +117,7 @@ const ProductDetailMobile = ({ data }) => {
                   {
                     title:
                       detail.new_category &&
-                      detail.new_category.parents.length > 0
+                        detail.new_category.parents.length > 0
                         ? detail.new_category.parents[0].name
                         : "",
                     url:
@@ -435,7 +435,7 @@ const ProductDetailMobile = ({ data }) => {
                   slides1200={4}
                   data={productShop.map((value, index) => {
                     return (
-                      value.FK_Shop !== undefined && (
+                      (value.FK_Shop !== undefined && value.FK_Shop !== null) && (
                         <ProductCard
                           col="12"
                           product={{
@@ -566,8 +566,9 @@ const ProductDetailMobile = ({ data }) => {
                 <div className="row d-flex">
                   {posts.length > 0 &&
                     posts.map((oneProduct, index) => {
+                      console.log(">>>>", oneProduct);
                       return (
-                        oneProduct.FK_Shop !== undefined && (
+                        (oneProduct.FK_Shop !== undefined && oneProduct.FK_Shop !== null) && (
                           <ProductCard
                             col="6"
                             product={{

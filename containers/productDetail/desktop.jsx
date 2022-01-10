@@ -115,7 +115,7 @@ const ProductDetailDesktop = ({ data }) => {
                   {
                     title:
                       detail.new_category &&
-                      detail.new_category.parents.length > 0
+                        detail.new_category.parents.length > 0
                         ? detail.new_category.parents[0].name
                         : "",
                     url:
@@ -484,7 +484,7 @@ const ProductDetailDesktop = ({ data }) => {
                   slides1200={4}
                   data={productShop.map((oneProduct, index) => {
                     return (
-                      oneProduct.FK_Shop !== undefined && (
+                      (oneProduct.FK_Shop !== undefined && oneProduct.FK_Shop !== null) && (
                         <ProductCard
                           col="12"
                           product={{
@@ -618,7 +618,7 @@ const ProductDetailDesktop = ({ data }) => {
                   {posts.length > 0 &&
                     posts.map((value, index) => {
                       return (
-                        value.FK_Shop !== undefined && (
+                        (value.FK_Shop !== undefined && value.FK_Shop !== null) && (
                           <ProductCard
                             col="3"
                             padding={1}
@@ -628,7 +628,6 @@ const ProductDetailDesktop = ({ data }) => {
                                 ? value.Image_medium_url
                                 : "",
                               url:
-                                value.FK_Shop &&
                                 `/shop/${value.FK_Shop.slug}/product/${value.Slug}`,
                               title: value.Title,
                               chamberTitle: value.FK_Shop
