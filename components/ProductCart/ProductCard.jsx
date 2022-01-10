@@ -22,8 +22,22 @@ const ProductCard = ({
   col,
   padding,
   _blank = false,
-  product,
+  dataProduct,
 }) => {
+  let product = {
+    id: dataProduct.ID,
+    imageUrl: dataProduct.Image_medium_url,
+    url: `/shop/${dataProduct.FK_Shop.slug}/product/${dataProduct.Slug}/`,
+    title: dataProduct.Title,
+    chamberTitle: dataProduct.FK_Shop ? dataProduct.FK_Shop.title : "",
+    chamberUrl: dataProduct.FK_Shop ? `/shop/${dataProduct.FK_Shop.slug} ` : "",
+
+    discount: dataProduct.discount,
+    price: dataProduct.Price / 10,
+    discountNumber: dataProduct.OldPrice / 10,
+    city: dataProduct.FK_Shop && dataProduct.FK_Shop.state,
+    is_advertisement: dataProduct.is_advertisement,
+  };
   let cardBadge = (
     <>
       <div

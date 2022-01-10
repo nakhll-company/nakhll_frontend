@@ -487,24 +487,7 @@ const ProductDetailDesktop = ({ data }) => {
                       oneProduct.FK_Shop !== undefined && (
                         <ProductCard
                           col="12"
-                          product={{
-                            id: oneProduct.ID,
-                            imageUrl: oneProduct.Image_medium_url,
-                            url: `/shop/${oneProduct.FK_Shop.slug}/product/${oneProduct.Slug}/`,
-                            title: oneProduct.Title,
-                            chamberTitle: oneProduct.FK_Shop
-                              ? oneProduct.FK_Shop.title
-                              : "",
-                            chamberUrl: oneProduct.FK_Shop
-                              ? `/shop/${oneProduct.FK_Shop.slug} `
-                              : "",
-                            discount: oneProduct.discount,
-                            price: oneProduct.Price / 10,
-                            discountNumber: oneProduct.OldPrice / 10,
-                            city:
-                              oneProduct.FK_Shop && oneProduct.FK_Shop.state,
-                            is_advertisement: oneProduct.is_advertisement,
-                          }}
+                          dataProduct={oneProduct}
                           key={index}
                         />
                       )
@@ -622,27 +605,7 @@ const ProductDetailDesktop = ({ data }) => {
                           <ProductCard
                             col="3"
                             padding={1}
-                            product={{
-                              id: value.ID,
-                              imageUrl: value.Image_medium_url
-                                ? value.Image_medium_url
-                                : "",
-                              url:
-                                value.FK_Shop &&
-                                `/shop/${value.FK_Shop.slug}/product/${value.Slug}`,
-                              title: value.Title,
-                              chamberTitle: value.FK_Shop
-                                ? value.FK_Shop.title
-                                : " ",
-                              chamberUrl: value.FK_Shop
-                                ? `/shop/${value.FK_Shop.slug} `
-                                : " ",
-                              discount: value.discount,
-                              price: value.Price / 10,
-                              discountNumber: value.OldPrice / 10,
-                              city: value.FK_Shop ? value.FK_Shop.City : " ",
-                              is_advertisement: value.is_advertisement,
-                            }}
+                            dataProduct={value}
                             key={index}
                           />
                         )
