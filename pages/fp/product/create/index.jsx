@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
+
 import Image from "next/image";
 import Assistent from "zaravand-assistent-number";
 // components
@@ -222,7 +223,10 @@ const CreateProduct = ({ activeHojreh }) => {
                       />
                     )}
                     <div className={styles.deleteBtn}>
-                      <div className={styles.wrapBtn} onClick={() => setImgProduct(null)}>
+                      <div
+                        className={styles.wrapBtn}
+                        onClick={() => setImgProduct(null)}
+                      >
                         <i className="fas fa-trash"></i>
                       </div>
                     </div>
@@ -263,9 +267,7 @@ const CreateProduct = ({ activeHojreh }) => {
                 <InputUseForm
                   title="وزن خالص محصول"
                   error={errors.Net_Weight}
-
                   text="گرم"
-
                 >
                   <input
                     type="number"
@@ -388,7 +390,6 @@ const CreateProduct = ({ activeHojreh }) => {
                   </>
                 )}
                 {/* discription */}
-
                 <TextAreaUseForm title="توضیحات محصول (اختیاری)">
                   <textarea
                     rows="10"
@@ -397,7 +398,6 @@ const CreateProduct = ({ activeHojreh }) => {
                     {...register("Description")}
                   />
                 </TextAreaUseForm>
-
                 {/* inventory */}
                 <InputUseForm
                   title="موجودی"

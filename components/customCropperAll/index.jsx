@@ -1,17 +1,13 @@
 import Cropper from "react-easy-crop";
 import React, { useCallback, useState } from "react";
+
 // methods
 import { getCroppedImg } from "./methods/getCropImage";
 // scss
 import styles from "./customCropper.module.scss";
 import { _updatePicture } from "../../redux/actions/liveEdit/_updatePicture";
 
-function CustomCropperAll({
-  setImageSrc,
-  image,
-  setShowCropper,
-  ratio = 1,
-}) {
+function CustomCropperAll({ setImageSrc, image, setShowCropper, ratio = 1 }) {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [rotation, setRotation] = useState(0);
   const [zoom, setZoom] = useState(1);
@@ -28,6 +24,22 @@ function CustomCropperAll({
         croppedAreaPixels,
         rotation
       );
+
+      // const options = {
+      //   maxSizeMB: 1,
+      //   maxWidthOrHeight: 1920,
+      //   useWebWorker: true,
+      // };
+
+      // const compressedFile = await imageCompression(croppedImage, options);
+      // console.log(
+      //   "compressedFile instanceof Blob",
+      //   compressedFile instanceof Blob
+      // ); // true
+      // console.log(
+      //   `compressedFile size ${compressedFile.size / 1024 / 1024} MB`
+      // );
+
       setImageSrc(croppedImage);
     } catch (e) {
       console.error(e);
@@ -40,9 +52,12 @@ function CustomCropperAll({
         <div>
           <div className={styles.cropper_wrapper}>
             <div className={styles.wrapper_close}>
-              <i className="fa fa-times" onClick={() => {
-                setShowCropper(false);
-              }}></i>
+              <i
+                className="fa fa-times"
+                onClick={() => {
+                  setShowCropper(false);
+                }}
+              ></i>
             </div>
             <Cropper
               image={image}
