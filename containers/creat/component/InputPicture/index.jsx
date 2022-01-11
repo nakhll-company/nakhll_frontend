@@ -1,6 +1,8 @@
 // node libraries
 import React, { useRef, useState } from "react";
 import imageCompression from "browser-image-compression";
+// methods
+import { errorMessage } from "../../../../containers/utils/message";
 // components
 import CustomCropperAll from "../../../../components/customCropperAll";
 // scss
