@@ -24,6 +24,7 @@ import {
   _ApiCreateProduct,
   _ApiGetCategories,
 } from "../../../../api/creatProduct";
+import { errorMessage } from "../../../../containers/utils/message";
 
 const CreateProduct = ({ activeHojreh }) => {
   const router = useRouter();
@@ -129,6 +130,9 @@ const CreateProduct = ({ activeHojreh }) => {
 
     if (response.status === 201) {
       router.replace("/fp/product/create/successPageProduct");
+    } else {
+      setIsloadingForCreate(false);
+      errorMessage("مشکل در ایجاد محصول. لطفا دوباره تلاش کنید");
     }
   };
 

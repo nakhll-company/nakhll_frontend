@@ -1,4 +1,5 @@
 import Cropper from "react-easy-crop";
+
 import React, { useCallback, useState } from "react";
 
 // methods
@@ -24,21 +25,6 @@ function CustomCropperAll({ setImageSrc, image, setShowCropper, ratio = 1 }) {
         croppedAreaPixels,
         rotation
       );
-
-      // const options = {
-      //   maxSizeMB: 1,
-      //   maxWidthOrHeight: 1920,
-      //   useWebWorker: true,
-      // };
-
-      // const compressedFile = await imageCompression(croppedImage, options);
-      // console.log(
-      //   "compressedFile instanceof Blob",
-      //   compressedFile instanceof Blob
-      // ); // true
-      // console.log(
-      //   `compressedFile size ${compressedFile.size / 1024 / 1024} MB`
-      // );
 
       setImageSrc(croppedImage);
     } catch (e) {

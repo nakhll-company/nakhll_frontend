@@ -8,6 +8,7 @@ const createImage = (url) =>
         image.setAttribute("crossOrigin", "anonymous"); // needed to avoid cross-origin issues on CodeSandbox
         image.src = url;
     });
+
 const toBase64 = (file) =>
     new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -65,20 +66,18 @@ export async function getCroppedImg(imageSrc, pixelCrop, rotation = 0) {
         Math.round(0 - safeArea / 2 + image.height * 0.5 - pixelCrop.y)
     );
 
-
-
     // As Base64 string
     await imageCompression
         .getFilefromDataUrl(canvas.toDataURL("image/png"))
         .then((file) => imageCompression(file, options))
         .then(toBase64)
         .then((base64) => {
-
             compressImage = base64;
             // setImg(base64);
             // return "HI";
             // return base64.toDataURL("image/png");
         });
+    // console.log(`after`, compressImage);
 
     return compressImage;
     // return canvas.toDataURL("image/png");
