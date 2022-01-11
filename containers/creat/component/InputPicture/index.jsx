@@ -1,9 +1,11 @@
+// node libraries
 import React, { useRef, useState } from "react";
 import imageCompression from "browser-image-compression";
-
+// components
 import CustomCropperAll from "../../../../components/customCropperAll";
-
+// scss
 import styles from "./InputPicture.module.scss";
+
 const toBase64 = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -11,6 +13,7 @@ const toBase64 = (file) =>
     reader.onload = () => resolve(reader.result);
     reader.onerror = (error) => reject(error);
   });
+
 function InputPictureCreat({ setImageSrc, image, ratio }) {
   const [showCropper, setShowCropper] = useState(false);
   const refInput = useRef(null);
@@ -46,18 +49,15 @@ function InputPictureCreat({ setImageSrc, image, ratio }) {
           onChange={async (e) => {
             if (e.target.files && e.target.files.length > 0) {
               if (e.target.files[0].size > 10000000) {
-                alert("حجم عکس باید کمتر از 10 مگابایت باشد");
+                errorMessage("لطفا عکس هایی با حجم کمتر از 10 مگابایت انتخاب کنید");
               } else {
                 const file = e.target.files[0];
-
                 let imageDataUrl = await readFile(file);
-
                 var options = {
                   maxSizeMB: 1,
                   maxWidthOrHeight: 1920,
                   useWebWorker: true,
                 };
-
                 await imageCompression
                   .getFilefromDataUrl(imageDataUrl)
                   .then((file) => imageCompression(file, options))
