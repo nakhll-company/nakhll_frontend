@@ -4,12 +4,12 @@ import { useRouter } from "next/router";
 import Assistent from "zaravand-assistent-number";
 import React, { useState, useEffect } from "react";
 // component
-import MegaMenuDesktop from "../../../containers/LandingPage/MegaMenuDesktop";
+import Timer from "../../timer";
 import MegaMenuMobile from "../../../containers/LandingPage/MegaMenuMobile";
+import MegaMenuDesktop from "../../../containers/LandingPage/MegaMenuDesktop";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
-import { errorMessage } from "../../../containers/utils/message";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // style
 import styles from "./header.module.scss";
@@ -35,7 +35,7 @@ function Header() {
       if (response.status === 200) {
         setCategory(response.data);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   // Get all shops
@@ -84,10 +84,13 @@ function Header() {
                 height={100}
                 width={3000}
                 src="/image/topBanner/topImg.jpg"
-                alt="در نخل حجره دار شوید."
+                alt="نوبت مامانه"
               />
             </a>
           </Link>
+          <div style={{ position: "absolute", top: "10px", left: "520px", fontSize: "16px", fontWeight: "bolder" }}>
+            <Timer date="2022-1-24" />
+          </div>
         </div>
         <div className="container">
           <div className={styles.top_header}>
@@ -246,6 +249,9 @@ function Header() {
               />
             </a>
           </Link>
+          <div style={{ position: "absolute", top: "6px", left: "30px", fontSize: "10px", fontWeight: "bolder" }}>
+            <Timer date="2022-1-24" />
+          </div>
         </div>
         <div className={styles.header_holder}>
           <div className="container">
