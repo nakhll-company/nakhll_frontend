@@ -4,14 +4,6 @@ import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import Script from "next/script";
 // components
-// import EnfoLiner from "../../../containers/hojreh/EnfoLiner";
-// import HeroSlides from "../../../containers/LandingPage/HeroSlides";
-// import LinerOneImg from "../../../containers/LandingPage/LinerOneImg";
-// import LinerTwoImgSm from "../../../containers/LandingPage/LinerTwoImgSm";
-// import LinerThreeImg from "../../../containers/LandingPage/LinerThreeImg";
-// import LinerFourImgMobile from "../../../containers/LandingPage/LinerFourImgMobile";
-// import LinerProducts from "../../../containers/LandingPage/LinerProducts";
-// import ListProductCusTest from "../../../containers/listProduct/listProductCusTest";
 
 const DynamicEnfoLiner = dynamic(() =>
   import("../../../containers/hojreh/EnfoLiner")
@@ -144,6 +136,7 @@ const Shop = ({ dataShop, data }) => {
           </Script>
           <NextSeo {...SEO} />
           <DynamicEnfoLiner
+            data={dataShop}
             title={informationShop.title}
             name={dataShop.shop.FK_ShopManager}
             profile={informationShop.image_thumbnail_url}
