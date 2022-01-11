@@ -24,8 +24,6 @@ const ProductCard = ({
   _blank = false,
   dataProduct,
 }) => {
-  console.log(`dataProduct`, dataProduct);
-
   let product = {
     id: dataProduct.ID,
     imageUrl: dataProduct.Image_medium_url,
@@ -189,7 +187,7 @@ const ProductCard = ({
       <div className={`card ${styles._product_card} _product_card_rounded p-2`}>
         <div className={styles.paterImage}>
           {cardBadge}
-          {false && campBadge}
+          {dataProduct.in_campaign && campBadge}
           <Link href={product.url}>
             <a className={styles.links}>{cardImg}</a>
           </Link>
