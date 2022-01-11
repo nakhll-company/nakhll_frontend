@@ -78,7 +78,6 @@ function HeroSlides({ dataHeroSlides }) {
               </a>
             </Link>
           )}
-
           <Link
             href={
               dataHeroSlides && dataHeroSlides[dataHeroSlides.length - 1].url

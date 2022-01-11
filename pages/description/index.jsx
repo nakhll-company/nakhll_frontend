@@ -1,4 +1,4 @@
-// import "tailwindcss/tailwind.css";
+
 import Image from "next/image";
 
 import st from "./description.module.scss";

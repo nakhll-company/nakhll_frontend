@@ -1,3 +1,5 @@
+import imageCompression from "browser-image-compression";
+
 const createImage = (url) =>
     new Promise((resolve, reject) => {
         const image = new Image();
@@ -5,6 +7,14 @@ const createImage = (url) =>
         image.addEventListener("error", (error) => reject(error));
         image.setAttribute("crossOrigin", "anonymous"); // needed to avoid cross-origin issues on CodeSandbox
         image.src = url;
+    });
+
+const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
     });
 
 function getRadianAngle(degreeValue) {
@@ -18,6 +28,8 @@ function getRadianAngle(degreeValue) {
  * @param {number} rotation - optional rotation parameter
  */
 export async function getCroppedImg(imageSrc, pixelCrop, rotation = 0) {
+    let compressImage = "";
+
     const image = await createImage(imageSrc);
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
@@ -55,14 +67,29 @@ export async function getCroppedImg(imageSrc, pixelCrop, rotation = 0) {
     );
 
     // As Base64 string
-    return canvas.toDataURL("image/png");
+    await imageCompression
+        .getFilefromDataUrl(canvas.toDataURL("image/png"))
+        .then((file) => imageCompression(file, options))
+        .then(toBase64)
+        .then((base64) => {
+            compressImage = base64;
+            // setImg(base64);
+            // return "HI";
+            // return base64.toDataURL("image/png");
+        });
+    // console.log(`after`, compressImage);
+
+    return compressImage;
+    // return canvas.toDataURL("image/png");
 
     // // As a blob
     // return new Promise((resolve) => {
     //     canvas.toBlob((file) => {
-    //         resolve(URL.createObjectURL(file))
-    //     }, 'image/png')
-    // })
+    //         // compress more
+
+    //         resolve(URL.createObjectURL(file));
+    //     }, "image/png");
+    // });
 }
 
 export async function getRotatedImage(imageSrc, rotation = 0) {
@@ -88,6 +115,7 @@ export async function getRotatedImage(imageSrc, rotation = 0) {
     ctx.drawImage(image, -image.width / 2, -image.height / 2);
 
     return new Promise((resolve) => {
+        console.log(`resolve`, resolve);
         canvas.toBlob((file) => {
             resolve(URL.createObjectURL(file));
         }, "image/png");

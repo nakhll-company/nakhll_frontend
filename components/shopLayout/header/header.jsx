@@ -35,7 +35,7 @@ function Header() {
       if (response.status === 200) {
         setCategory(response.data);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   // Get all shops
@@ -77,9 +77,7 @@ function Header() {
     <>
       <header className={`${styles.header}`}>
         <div className={styles.topBanner}>
-          <Link
-            href={Object.keys(userLog).length > 0 ? "/description" : "/login"}
-          >
+          <Link href="/shop/نوبت-مامانه/">
             <a>
               <Image
                 layout="responsive"
@@ -237,9 +235,7 @@ function Header() {
 
       <header className={`${styles.mobile_header} `}>
         <div className={styles.topBanner}>
-          <Link
-            href={Object.keys(userLog).length > 0 ? "/description" : "/login"}
-          >
+          <Link href="/shop/نوبت-مامانه/">
             <a>
               <Image
                 layout="responsive"

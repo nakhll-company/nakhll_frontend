@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
+
 import Image from "next/image";
 import Assistent from "zaravand-assistent-number";
 // components
@@ -23,6 +24,7 @@ import {
   _ApiCreateProduct,
   _ApiGetCategories,
 } from "../../../../api/creatProduct";
+import { errorMessage } from "../../../../containers/utils/message";
 
 const CreateProduct = ({ activeHojreh }) => {
   const router = useRouter();
@@ -128,6 +130,9 @@ const CreateProduct = ({ activeHojreh }) => {
 
     if (response.status === 201) {
       router.replace("/fp/product/create/successPageProduct");
+    } else {
+      setIsloadingForCreate(false);
+      errorMessage("مشکل در ایجاد محصول. لطفا دوباره تلاش کنید");
     }
   };
 
@@ -222,7 +227,10 @@ const CreateProduct = ({ activeHojreh }) => {
                       />
                     )}
                     <div className={styles.deleteBtn}>
-                      <div className={styles.wrapBtn} onClick={() => setImgProduct(null)}>
+                      <div
+                        className={styles.wrapBtn}
+                        onClick={() => setImgProduct(null)}
+                      >
                         <i className="fas fa-trash"></i>
                       </div>
                     </div>
@@ -263,9 +271,7 @@ const CreateProduct = ({ activeHojreh }) => {
                 <InputUseForm
                   title="وزن خالص محصول"
                   error={errors.Net_Weight}
-
                   text="گرم"
-
                 >
                   <input
                     type="number"
@@ -388,7 +394,6 @@ const CreateProduct = ({ activeHojreh }) => {
                   </>
                 )}
                 {/* discription */}
-
                 <TextAreaUseForm title="توضیحات محصول (اختیاری)">
                   <textarea
                     rows="10"
@@ -397,7 +402,6 @@ const CreateProduct = ({ activeHojreh }) => {
                     {...register("Description")}
                   />
                 </TextAreaUseForm>
-
                 {/* inventory */}
                 <InputUseForm
                   title="موجودی"

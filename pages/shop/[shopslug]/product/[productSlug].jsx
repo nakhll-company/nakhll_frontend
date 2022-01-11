@@ -55,6 +55,7 @@ const fetchData = async (id) => {
  * component detail
  */
 const ProductDetail = ({ data }) => {
+  console.log(`data`, data);
   const { width } = useViewport();
   const breakpoint = 620;
   const [posts, setPosts] = useState(Array.from({ length: 20 }));

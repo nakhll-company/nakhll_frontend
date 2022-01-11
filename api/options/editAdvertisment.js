@@ -1,4 +1,4 @@
-import { errorMessage } from "../../containers/utils/message";
+import { errorMessage, successMessage } from "../../containers/utils/message";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 // get advertisment
 export const editAdvertisment = async (shop_slug, data) => {
@@ -9,6 +9,7 @@ export const editAdvertisment = async (shop_slug, data) => {
         true, {}
     );
     if (response.status === 200) {
+        successMessage("با موفقیت ثبت شد");
         return response.data;
     } else if (response.response?.status === 400) {
         Object.values(response.response.data).map((errors) => {
@@ -16,7 +17,9 @@ export const editAdvertisment = async (shop_slug, data) => {
                 errorMessage(error);
             })
         });
+        return {};
     } else {
         errorMessage("خطایی در دریافت دادها پیش آمده است");
+        return {};
     }
 };
