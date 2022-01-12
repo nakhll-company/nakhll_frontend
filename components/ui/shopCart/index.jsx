@@ -37,7 +37,7 @@ function ShopCart({ dataCart }) {
       <div className={st.text_container}>
         <h3>نوبت مامانه</h3>
         <div>
-          <Link href={`shop/${dataCart.Slug}`}>
+          <Link href={`/shop/${dataCart.Slug}`}>
             <a>حجره {dataCart.Title}</a>
           </Link>
         </div>
