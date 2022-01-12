@@ -102,7 +102,11 @@ const Shop = ({ dataShop, data }) => {
 
       case 10:
         // return <RotationProducts id={id} data={data} />;
-        return <LinearShopsCart />;
+        return <LinearShopsCart part={1} />;
+        break;
+      case 13:
+        // return <RotationProducts data={data.data[0].products} />;
+        return <LinearShopsCart part={2} />;
         break;
 
       case 11:

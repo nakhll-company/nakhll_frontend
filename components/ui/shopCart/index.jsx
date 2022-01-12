@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import st from "./shopCart.module.scss";
 function ShopCart({ dataCart }) {
-  console.log(`dataCart`, dataCart);
   return (
     <div className={st.a_box}>
       <div className={st.img_container}>

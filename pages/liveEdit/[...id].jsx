@@ -290,6 +290,19 @@ function LiveEdit({ idLanding }) {
           ],
         };
       }
+      if (type == 13) {
+        newItem = {
+          ID: uuidv4(),
+          type,
+          data: [
+            {
+              order: 0,
+
+              products: [],
+            },
+          ],
+        };
+      }
 
       if (type == 11) {
         newItem = {
