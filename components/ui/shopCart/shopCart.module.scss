@@ -1,9 +1,10 @@
 .a_box {
     display: inline-block;
-    width: 240px;
+    width: 250px;
     text-align: center;
     position: relative;
     padding-bottom: 38px;
+    margin: 0px 20px;
 }
 .icon_container {
     position: absolute;
@@ -56,7 +57,7 @@
 .text_container {
     padding: 120px 20px 20px 20px;
     border-radius: 20px;
-    background: #e5e5e5;
+    background: #e0e0e0;
     margin: -130px 0px 0px 0px;
     height: 230px;
     line-height: 19px;
@@ -64,6 +65,7 @@
 }
 .text_container h3 {
     margin: 20px 0px 10px 0px;
-    color: #04bcff;
+    color: rgb(150, 51, 172);
+    font-weight: bold;
     font-size: 19px;
 }

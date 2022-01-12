@@ -12,6 +12,7 @@ import AboutMe from "../../containers/LandingPage/AboutMe";
 import VipProducts from "../../containers/LandingPage/VipProducts";
 import RotationProducts from "../../containers/LandingPage/RotationProducts";
 import Video from "../../containers/LandingPage/Video";
+import LinearShopsCart from "../../containers/LandingPage/linearShopsCart";
 function ShowLanding({ idLanding }) {
   let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}`;
   const [dataLanding, setDataLanding] = useState([]);
@@ -80,7 +81,8 @@ function ShowLanding({ idLanding }) {
         break;
 
       case 10:
-        return <RotationProducts data={data.data[0].products} />;
+        // return <RotationProducts data={data.data[0].products} />;
+        return <LinearShopsCart />;
         break;
 
       case 11:

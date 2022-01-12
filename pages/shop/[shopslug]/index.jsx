@@ -38,6 +38,7 @@ import LinerTwoImgSm from "../../../containers/LandingPage/LinerTwoImgSm";
 import VipProducts from "../../../containers/LandingPage/VipProducts";
 import RotationProducts from "../../../containers/LandingPage/RotationProducts";
 import Video from "../../../containers/LandingPage/Video";
+import LinearShopsCart from "../../../containers/LandingPage/linearShopsCart";
 
 // fetch data
 const fetchData = async (id) => {
@@ -100,7 +101,8 @@ const Shop = ({ dataShop, data }) => {
         break;
 
       case 10:
-        return <RotationProducts id={id} data={data} />;
+        // return <RotationProducts id={id} data={data} />;
+        return <LinearShopsCart />;
         break;
 
       case 11:

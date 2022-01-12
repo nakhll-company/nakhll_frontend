@@ -38,17 +38,11 @@ function LinearShopsCart({}) {
   }, []);
 
   return (
-    <div className="container ">
-      <div className={` ${styles.slide}`}>
-        <div className={` ${styles.righter}`}>
-          <Swiper pagination={true} spaceBetween={20} slidesPerView={1}>
-            {shopes.map((data, index) => (
-              <SwiperSlide key={index}>
-                <ShopCart dataCart={data} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
+    <div className="container-full ">
+      <div className={styles.wrapcarts}>
+        {shopes.map((data, index) => (
+          <ShopCart key={index} dataCart={data} />
+        ))}
       </div>
     </div>
   );

@@ -1,6 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
 import st from "./shopCart.module.scss";
 function ShopCart({ dataCart }) {
+  console.log(`dataCart`, dataCart);
   return (
     <div className={st.a_box}>
       <div className={st.img_container}>
@@ -34,7 +36,11 @@ function ShopCart({ dataCart }) {
       </div> */}
       <div className={st.text_container}>
         <h3>نوبت مامانه</h3>
-        <div>حجره {dataCart.Title}</div>
+        <div>
+          <Link href={`shop/${dataCart.Slug}`}>
+            <a>حجره {dataCart.Title}</a>
+          </Link>
+        </div>
       </div>
     </div>
   );
