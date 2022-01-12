@@ -4,13 +4,20 @@ import Image from "next/image";
 import styles from "./LinerOneImg.module.scss";
 
 function LinerOneImg({ dataLinerOneImg }) {
+  const isUrl = ({ url }) => {
+    if (url) {
+      return url;
+    } else {
+      return "/";
+    }
+  };
   return (
     <>
       {dataLinerOneImg && dataLinerOneImg.length > 0 && (
         <div className={`${styles.linearImages} container`}>
           <div className="row ">
             <div className={`  ${styles.righter}`}>
-              <Link href={dataLinerOneImg[0].url}>
+              <Link href={isUrl(dataLinerOneImg[0].url)}>
                 <a>
                   <Image
                     layout="responsive"

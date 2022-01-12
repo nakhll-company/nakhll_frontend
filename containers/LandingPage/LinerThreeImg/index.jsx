@@ -4,6 +4,13 @@ import Image from "next/image";
 import styles from "./LinerThreeImg.module.scss";
 
 function LinerThreeImg({ dataLinerThreeImg }) {
+  const isUrl = ({ url }) => {
+    if (url) {
+      return url;
+    } else {
+      return "/";
+    }
+  };
   return (
     <>
       {dataLinerThreeImg && dataLinerThreeImg.length >= 3 && (
@@ -11,7 +18,7 @@ function LinerThreeImg({ dataLinerThreeImg }) {
           {/* for mobile */}
           <div className="container d-lg-none">
             <div className={styles.topImage}>
-              <Link href={dataLinerThreeImg[0].url}>
+              <Link href={isUrl(dataLinerThreeImg[0].url)}>
                 <a title={dataLinerThreeImg[0].description}>
                   <Image
                     layout="responsive"
@@ -25,7 +32,7 @@ function LinerThreeImg({ dataLinerThreeImg }) {
             </div>
             <aside className={styles.section}>
               <div className="col-6">
-                <Link href={dataLinerThreeImg[1].url}>
+                <Link href={isUrl(dataLinerThreeImg[1].url)}>
                   <a
                     title={dataLinerThreeImg[1].description}
                     className={styles.one}
@@ -41,7 +48,7 @@ function LinerThreeImg({ dataLinerThreeImg }) {
                 </Link>
               </div>
               <div className="col-6">
-                <Link href={dataLinerThreeImg[2].url}>
+                <Link href={isUrl(dataLinerThreeImg[2].url)}>
                   <a
                     title={dataLinerThreeImg[2].description}
                     className={styles.two}
