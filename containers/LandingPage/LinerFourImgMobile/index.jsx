@@ -4,20 +4,13 @@ import Image from "next/image";
 import styles from "./LinerFourImgMobile.module.scss";
 
 function LinerFourImgMobile({ dataLinerFourImgMobile }) {
-  const isUrl = ({ url }) => {
-    if (url) {
-      return url;
-    } else {
-      return "/";
-    }
-  };
   return (
     <>
       {dataLinerFourImgMobile && dataLinerFourImgMobile.length >= 4 && (
         <>
           <div className="container">
             <aside className={styles.section}>
-              <Link href={isUrl(dataLinerFourImgMobile[0].url)}>
+              <Link href={dataLinerFourImgMobile[0].url}>
                 <a
                   title={dataLinerFourImgMobile[0].description}
                   className={styles.one}
@@ -32,7 +25,7 @@ function LinerFourImgMobile({ dataLinerFourImgMobile }) {
                   />
                 </a>
               </Link>
-              <Link href={isUrl(dataLinerFourImgMobile[1].url)}>
+              <Link href={dataLinerFourImgMobile[1].url}>
                 <a
                   title={dataLinerFourImgMobile[1].description}
                   className={styles.two}
@@ -49,7 +42,7 @@ function LinerFourImgMobile({ dataLinerFourImgMobile }) {
               </Link>
             </aside>
             <aside className={styles.section}>
-              <Link href={isUrl(dataLinerFourImgMobile[2].url)}>
+              <Link href={dataLinerFourImgMobile[2].url}>
                 <a
                   title={dataLinerFourImgMobile[2].description}
                   className={styles.one}
@@ -64,7 +57,7 @@ function LinerFourImgMobile({ dataLinerFourImgMobile }) {
                   />
                 </a>
               </Link>
-              <Link href={isUrl(dataLinerFourImgMobile[3].url)}>
+              <Link href={dataLinerFourImgMobile[3].url}>
                 <a
                   title={dataLinerFourImgMobile[3].description}
                   className={styles.two}
