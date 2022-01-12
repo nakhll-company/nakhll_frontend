@@ -535,13 +535,38 @@ function ListProductCus({ data }) {
                 style={{ msOverflowX: "hidden" }}
               >
                 <CustomSwitch
+                  defaultChecked={data.available == "true" ? true : false}
                   title="فقط کالاهای موجود"
                   id="Available_goods_mobile"
                   onChange={(e) => {
                     setIsAvailableGoods(e.target.checked);
                   }}
                 />
+                {/* <CustomSwitch
+                  title="فقط کالاهای موجود"
+                  id="Available_goods_mobile"
+                  onChange={(e) => {
+                    setIsAvailableGoods(e.target.checked);
+                  }}
+                /> */}
+
                 <CustomSwitch
+                  defaultChecked={data.ready == "true" ? true : false}
+                  title="آماده ارسال"
+                  id="Ready_to_send_mobile"
+                  onChange={(e) => {
+                    setIsReadyForSend(e.target.checked);
+                  }}
+                />
+                <CustomSwitch
+                  defaultChecked={data.discounted == "true" ? true : false}
+                  title="تخفیف دارها"
+                  id="discounted_mobile"
+                  onChange={(e) => {
+                    setIsDiscountPercentage(e.target.checked);
+                  }}
+                />
+                {/* <CustomSwitch
                   title="آماده ارسال"
                   id="Ready_to_send_mobile"
                   onChange={(e) => {
@@ -554,7 +579,7 @@ function ListProductCus({ data }) {
                   onChange={(e) => {
                     setIsDiscountPercentage(e.target.checked);
                   }}
-                />
+                /> */}
               </div>
             </div>
             <CustomAccordion title="محدوده قیمت" item="2mobile">
