@@ -71,7 +71,7 @@ function MenuMobile({ activeOptions }) {
         <ul>
           {activeOptions ? activeOptions.map((value, index) =>
           (<li key={index} className="mb-3" onClick={() => { document.querySelector("#moreOptions").style.display = "none"; }}>
-            <Link href={`/fp/options/landing/detail?id=${value.id}`}>
+            <Link href={value.name === "صفحه فرود" ? `/fp/options/landing/detail?id=${value.id}` : "/fp/options/ads"}>
               <a>
                 {value.name}
               </a>

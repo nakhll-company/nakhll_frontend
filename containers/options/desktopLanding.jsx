@@ -15,7 +15,7 @@ import styles from "./scss/desktopLanding.module.scss";
 
 const _asist = new Assistent();
 
-const DesktopLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
+const DesktopLanding = ({ landingList, activeHojreh, setLandingList }) => {
   const router = useRouter();
 
   return (
@@ -71,12 +71,14 @@ const DesktopLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
                     className="d-flex justify-content-center pb-3"
                   >
                     <CustomSwitch
-                      defaultChecked={value.status === "active" ? true : false}
+                      // defaultChecked={value.status === "active" ? true : false}
+                      checked={value.status === "active" ? true : false}
                       onClick={() => {
                         value.status === "inactive" && activeListItemLanding(
                           value.id,
                           activeHojreh,
-                          router
+                          router,
+                          setLandingList
                         );
                         value.status === "active" && deActiveListItemLanding(
                           value.id,
