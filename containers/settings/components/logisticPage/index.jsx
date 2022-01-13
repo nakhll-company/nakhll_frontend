@@ -135,7 +135,6 @@ function LogisticPage() {
   // functoin for send data for price per kg
 
   const _handle_send_info_scope = async (data) => {
-
     let response = await ApiRegister().apiRequest(
       {
         name: data.name ? data.name : "بدون نام",
@@ -218,6 +217,71 @@ function LogisticPage() {
             <HeaderTitle
               enabel={false}
               onClick={() => downPage()}
+              title="تنظیمات ارسال"
+            />
+
+            <Explain
+              text="
+
+           آیا ارسال به صورت پس کرایه (پرداخت هزینه توسط مشتری زمان دریافت محصول) است؟
+            "
+            />
+            <CheckBoxSend
+              checked={checkedSelectAllProducts}
+              onChange={() =>
+                setCheckedSelectAllProducts(!checkedSelectAllProducts)
+              }
+              id="selectAllProducts"
+              title="خیر"
+            />
+            <CheckBoxSend
+              checked={checkedSelectAllProducts}
+              onChange={() =>
+                setCheckedSelectAllProducts(!checkedSelectAllProducts)
+              }
+              id="selectAllProducts"
+              title="بله"
+            />
+          </>
+        )}
+
+        {wichPage == 1 && (
+          <>
+            <HeaderTitle
+              enabel={false}
+              onClick={() => downPage()}
+              title="تنظیمات ارسال"
+            />
+
+            <Explain
+              text="
+              آیا میخواید محصولات انتخاب شده به صورت رایگان ارسال شود؟
+
+            "
+            />
+            <CheckBoxSend
+              checked={checkedSelectAllProducts}
+              onChange={() =>
+                setCheckedSelectAllProducts(!checkedSelectAllProducts)
+              }
+              id="selectAllProducts"
+              title="خیر"
+            />
+            <CheckBoxSend
+              checked={checkedSelectAllProducts}
+              onChange={() =>
+                setCheckedSelectAllProducts(!checkedSelectAllProducts)
+              }
+              id="selectAllProducts"
+              title="بله"
+            />
+          </>
+        )}
+        {wichPage == 1 && (
+          <>
+            <HeaderTitle
+              enabel={false}
+              onClick={() => downPage()}
               title="تنظیمات لجستیک"
             />
 
@@ -238,7 +302,7 @@ function LogisticPage() {
           </>
         )}
 
-        {wichPage == 2 && (
+        {wichPage == 1 && (
           <>
             <HeaderTitle
               onClick={() => downPage()}
@@ -257,7 +321,7 @@ function LogisticPage() {
             />
           </>
         )}
-        {wichPage == 3 && (
+        {wichPage == 1 && (
           <>
             <HeaderTitle
               onClick={() => downPage()}
@@ -293,7 +357,7 @@ function LogisticPage() {
           </>
         )}
 
-        {wichPage == 4 && (
+        {wichPage == 1 && (
           <>
             <HeaderTitle onClick={() => downPage()} title="تنظیمات روش ارسال" />
 
