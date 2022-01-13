@@ -24,7 +24,7 @@ const ProductCard = ({
   _blank = false,
   dataProduct,
 }) => {
-  console.log(`dataProduct`, dataProduct);
+
   let product = {
     id: dataProduct.ID,
     imageUrl: dataProduct.Image_medium_url,
@@ -60,9 +60,8 @@ const ProductCard = ({
       height={100}
       width={100}
       src={product.imageUrl}
-      className={`card-img-top _product_card_rounded animationCart ${
-        product.unavailable && "_unavailable_product"
-      }`}
+      className={`card-img-top _product_card_rounded animationCart ${product.unavailable && "_unavailable_product"
+        }`}
       alt={product.title}
     />
   );
@@ -156,11 +155,10 @@ const ProductCard = ({
 
   return (
     <div
-      className={` ${
-        col
+      className={` ${col
           ? `col-${col}`
           : `col-${xs} col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
-      } ${padding ? `px-${padding}` : ""} mb-2`}
+        } ${padding ? `px-${padding}` : ""} mb-2`}
     >
       {product.iconClose && (
         <span
@@ -195,9 +193,8 @@ const ProductCard = ({
         </div>
 
         <div
-          className={`card-body mt-2 p-1 ${
-            product.unavailable && "_unavailable_product"
-          }`}
+          className={`card-body mt-2 p-1 ${product.unavailable && "_unavailable_product"
+            }`}
         >
           <div className=" mb-3">
             <Link href={product.url}>

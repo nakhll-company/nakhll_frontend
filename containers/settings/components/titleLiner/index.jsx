@@ -1,7 +1,6 @@
 import styles from "./titleLiner.module.scss";
 import React from "react";
 function TitleLiner({ title }) {
-  console.log(`render`, "TitleLiner");
   return (
     <>
       <div className={styles.HeadName}>
