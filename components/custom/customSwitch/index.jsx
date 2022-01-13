@@ -1,7 +1,14 @@
 import React from "react";
 import styles from "./customSwitch.module.scss";
 
-const CustomSwitch = ({ id, title, onChange, checked, defaultChecked, onClick }) => {
+const CustomSwitch = ({
+  id,
+  title,
+  onChange,
+  checked,
+  defaultChecked,
+  onClick,
+}) => {
   return (
     <div className={styles.filter_box}>
       <div className={`${styles.custom_switch} d-flex align-items-center `}>

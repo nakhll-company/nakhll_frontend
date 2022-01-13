@@ -1,0 +1,17 @@
+.wrapcarts {
+    overflow-x: auto;
+    display: flex;
+}
+.wrapcarts::-webkit-scrollbar {
+    height: 8px;
+}
+.wrapcarts::-webkit-scrollbar-track {
+    // box-shadow: inset 0 0 6px rgba(221, 2, 2, 0.3);
+    // background-color: rgb(249, 164, 1);
+}
+.wrapcarts::-webkit-scrollbar-thumb {
+    background-color: rgb(229, 229, 229);
+    // height: 20px;
+    // outline: 3px solid slategrey;
+    border-radius: 10px;
+}

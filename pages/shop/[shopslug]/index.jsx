@@ -4,14 +4,6 @@ import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import Script from "next/script";
 // components
-// import EnfoLiner from "../../../containers/hojreh/EnfoLiner";
-// import HeroSlides from "../../../containers/LandingPage/HeroSlides";
-// import LinerOneImg from "../../../containers/LandingPage/LinerOneImg";
-// import LinerTwoImgSm from "../../../containers/LandingPage/LinerTwoImgSm";
-// import LinerThreeImg from "../../../containers/LandingPage/LinerThreeImg";
-// import LinerFourImgMobile from "../../../containers/LandingPage/LinerFourImgMobile";
-// import LinerProducts from "../../../containers/LandingPage/LinerProducts";
-// import ListProductCusTest from "../../../containers/listProduct/listProductCusTest";
 
 const DynamicEnfoLiner = dynamic(() =>
   import("../../../containers/hojreh/EnfoLiner")
@@ -46,6 +38,7 @@ import LinerTwoImgSm from "../../../containers/LandingPage/LinerTwoImgSm";
 import VipProducts from "../../../containers/LandingPage/VipProducts";
 import RotationProducts from "../../../containers/LandingPage/RotationProducts";
 import Video from "../../../containers/LandingPage/Video";
+import LinearShopsCart from "../../../containers/LandingPage/linearShopsCart";
 
 // fetch data
 const fetchData = async (id) => {
@@ -108,7 +101,12 @@ const Shop = ({ dataShop, data }) => {
         break;
 
       case 10:
-        return <RotationProducts id={id} data={data} />;
+        // return <RotationProducts id={id} data={data} />;
+        return <LinearShopsCart part={1} />;
+        break;
+      case 13:
+        // return <RotationProducts data={data.data[0].products} />;
+        return <LinearShopsCart part={2} />;
         break;
 
       case 11:
@@ -144,6 +142,7 @@ const Shop = ({ dataShop, data }) => {
           </Script>
           <NextSeo {...SEO} />
           <DynamicEnfoLiner
+            data={dataShop}
             title={informationShop.title}
             name={dataShop.shop.FK_ShopManager}
             profile={informationShop.image_thumbnail_url}

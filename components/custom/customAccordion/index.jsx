@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./customAccordion.module.scss";
-export const CustomAccordion = ({ children, title, item,callApi }) => {
+export const CustomAccordion = ({ children, title, item, callApi }) => {
   const _handel_according = (accord, icon) => {
     let element = document.getElementById(accord);
     if (element.style.height == "0px") {
@@ -19,7 +19,7 @@ export const CustomAccordion = ({ children, title, item,callApi }) => {
         style={{
           background: "#fff",
           padding: ".4rem !important",
-          
+
           borderRadius: "1.2rem",
           margin: "1rem 0",
         }}
@@ -33,12 +33,12 @@ export const CustomAccordion = ({ children, title, item,callApi }) => {
                 display: "flex",
                 justifyContent: "space-between",
               }}
-              onClick={() =>{
-                _handel_according(`according_${item}`, `icon_${item}`)
-                { callApi && callApi()}
-              
-              }
-              }
+              onClick={() => {
+                _handel_according(`according_${item}`, `icon_${item}`);
+                {
+                  callApi && callApi();
+                }
+              }}
             >
               <span style={{ marginLeft: "auto" }}> {title}</span>
               <i id={`icon_${item}`} className="fas fa-angle-up"></i>

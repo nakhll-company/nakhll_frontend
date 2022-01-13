@@ -170,3 +170,22 @@
         }
     }
 }
+._product_card_camp_badge {
+    display: flex;
+    position: absolute;
+    // left: 1rem;
+    width: 100px;
+    height: 100px;
+    padding: 1px;
+    text-align: center;
+    z-index: 1;
+    border-radius: 50%;
+    background: #fff;
+    color: #343a40;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s;
+    &:hover {
+        transform: scale(1.1) rotate(360deg);
+    }
+}

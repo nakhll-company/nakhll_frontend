@@ -24,6 +24,7 @@ const ProductCard = ({
   _blank = false,
   dataProduct,
 }) => {
+  console.log(`dataProduct`, dataProduct);
   let product = {
     id: dataProduct.ID,
     imageUrl: dataProduct.Image_medium_url,
@@ -155,11 +156,11 @@ const ProductCard = ({
 
   return (
     <div
-      className={`animationCartParent ${
+      className={` ${
         col
           ? `col-${col}`
           : `col-${xs} col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
-      } ${padding ? `px-${padding}` : ""} mb-3`}
+      } ${padding ? `px-${padding}` : ""} mb-2`}
     >
       {product.iconClose && (
         <span
@@ -230,43 +231,48 @@ const ProductCard = ({
           )}
 
           <hr style={{ marginBottom: "5px" }} />
-          <div className="_product_card_price mb-2">
+          <div style={{ height: "50px" }} className="_product_card_price ">
             <div>
-              <button
-                aria-label="خرید"
-                className={`btn ${styles._product_card_add_to_cart}`}
-                onClick={async () => {
-                  await addToCart(product.id);
-                  handel_webhook();
-                }}
-              >
-                <i className="fas fa-plus" />
-              </button>
+              {dataProduct.Inventory == 0 ? (
+                <div className={styles.warp_namojod}>
+                  <Image
+                    src="/icons/namojod.svg"
+                    layout="fixed"
+                    height={40}
+                    width={40}
+                    alt="ناموجود"
+                  />
+                </div>
+              ) : (
+                <button
+                  aria-label="خرید"
+                  className={`btn ${styles._product_card_add_to_cart}`}
+                  onClick={async () => {
+                    await addToCart(product.id);
+                    handel_webhook();
+                  }}
+                >
+                  <i className="fas fa-plus" />
+                </button>
+              )}
             </div>
             <div
               className="_product_card_price_number"
               style={{ display: "flex", flexDirection: "column" }}
             >
-              {product.unavailable ? (
-                <span>ناموجود</span>
-              ) : (
-                <>
-                  <span className="_product_card_orginal_number">
-                    {_asist.PSeparator(product.price)}
-                  </span>
-                  <span
-                    className="_product_card_discount_number"
-                    style={{
-                      display: "flex",
-                      justifyContent: "flex-end",
-                      minHeight: "15px",
-                    }}
-                  >
-                    {product.discountNumber !== 0 &&
-                      _asist.PSeparator(product.discountNumber)}
-                  </span>
-                </>
-              )}
+              <span className="_product_card_orginal_number">
+                {_asist.PSeparator(product.price)}
+              </span>
+              <span
+                className="_product_card_discount_number"
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                }}
+              >
+                {product.discountNumber !== 0 &&
+                  _asist.PSeparator(product.discountNumber)}
+              </span>
             </div>
             <span
               className="_product_card_toman"
