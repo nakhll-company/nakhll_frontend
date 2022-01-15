@@ -32,12 +32,11 @@ const DynamicListProductCusTest = dynamic(() =>
 // methods
 import { ApiReference } from "../../../Api";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+// components
 import ShopLayout from "../../../components/shopLayout";
-import AboutMe from "../../../containers/LandingPage/AboutMe";
-import LinerTwoImgSm from "../../../containers/LandingPage/LinerTwoImgSm";
-import VipProducts from "../../../containers/LandingPage/VipProducts";
-import RotationProducts from "../../../containers/LandingPage/RotationProducts";
 import Video from "../../../containers/LandingPage/Video";
+import AboutMe from "../../../containers/LandingPage/AboutMe";
+import VipProducts from "../../../containers/LandingPage/VipProducts";
 import LinearShopsCart from "../../../containers/LandingPage/linearShopsCart";
 
 // fetch data

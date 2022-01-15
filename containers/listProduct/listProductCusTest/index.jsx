@@ -3,30 +3,28 @@ import router from "next/router";
 import CheckboxTree from "react-checkbox-tree";
 import Assistent from "zaravand-assistent-number";
 import React, { useEffect, useState } from "react";
-
 import InfiniteScroll from "react-infinite-scroll-component";
 // components
 import { TopBar } from "../TopBar";
-import { errorMessage } from "../../utils/message";
-
+import SearchProduct from "./components/searchProduct";
 import MenuMobile from "../../../components/layout/MenuMobile";
 import { allCites } from "../../../components/custom/data/data";
 import CustomSwitch from "../../../components/custom/customSwitch";
+import OrderingModalMobile from "./components/OrderingModalMobile";
 import ProductCard from "../../../components/ProductCart/ProductCard";
 import CustomAccordion from "../../../components/custom/customAccordion";
 import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
 import MultiRangeSlider from "../../../components/custom/customMultiRangeSlider/MultiRangeSlider";
-
 // methods
-import { ApiReference } from "../../../Api";
+import { errorMessage } from "../../utils/message";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // styles
 import styles from "./listProductCus.module.scss";
-import OrderingModalMobile from "./components/OrderingModalMobile";
-import SearchProduct from "./components/searchProduct";
+
 const _asist = new Assistent();
 
 function ListProductCusTest({ data }) {
+
   const [hojreh, setHojreh] = useState(data.shopslug ? data.shopslug : "");
   const [searchWord, setSearchWord] = useState(data.q ? data.q : "");
   const [listWithFilter, setListWithFilter] = useState([]);
@@ -81,9 +79,6 @@ function ListProductCusTest({ data }) {
     data.max_price ? parseInt(data.max_price) : 10000
   );
   const [clickOnRange, setClickOnRange] = useState(1);
-  // save all shopsName
-  const [shopsName, setShopsName] = useState([]);
-  const [searchShops, setSearchShops] = useState([]);
   // state for change page
   const [changePage, setChangePage] = useState(1);
   const [NameHojreh, setNameHojreh] = useState("");
@@ -100,7 +95,7 @@ function ListProductCusTest({ data }) {
       if (response.status === 200) {
         setCategories(response.data);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   const _handel_Add_category = (id) => {
@@ -206,7 +201,7 @@ function ListProductCusTest({ data }) {
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   // START

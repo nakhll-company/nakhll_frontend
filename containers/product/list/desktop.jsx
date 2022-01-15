@@ -11,11 +11,6 @@ import styles from "../../../styles/pages/product/desktopList.module.scss";
 //functions
 import { groupProductResponse } from "../groupProduct/methods/groupProductResponse";
 import { groupProductResponseEdit } from "../groupProduct/methods/groupProductResponseEdit";
-import getExcel from "../groupProduct/methods/getExcel";
-import { useEffect, useState } from "react";
-
-import * as FileSaver from "file-saver";
-import * as XLSX from "xlsx";
 
 export default function Desktop({
   loading,
@@ -25,27 +20,6 @@ export default function Desktop({
   userInfo,
 }) {
   const router = useRouter();
-  const [Excel, setExcel] = useState("");
-
-  const exportToCSV = (apiData, fileName) => {
-    const fileType =
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
-    const ws = XLSX.utils.json_to_sheet(apiData);
-    const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
-    const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
-    const data = new Blob([excelBuffer], { type: fileType });
-    FileSaver.saveAs(data, fileName + ".xlsx");
-  };
-
-  useEffect(() => {
-    async function getData() {
-      let res = await getExcel(userInfo, activeHojreh, router);
-      setExcel(res);
-    }
-    if (activeHojreh) {
-      getData();
-    }
-  }, [activeHojreh]);
 
   return (
     <div className={styles.wrapper}>
@@ -79,18 +53,6 @@ export default function Desktop({
               ویرایش کالای گروهی
             </a>
           </button>
-
-          {false && Excel !== "" && (
-            <>
-              <button
-                download="product.xlsx"
-                className={styles.button_add_group}
-                onClick={() => exportToCSV(Excel, "product")}
-              >
-                <a className="d-flex align-items-center">دریافت اکسل</a>
-              </button>
-            </>
-          )}
         </div>
         <table className={styles.product_tabel}>
           <thead>

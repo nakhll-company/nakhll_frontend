@@ -88,7 +88,7 @@ function Header() {
               />
             </a>
           </Link>
-          <div style={{ position: "absolute", top: "10px", left: "520px", fontSize: "16px", fontWeight: "bolder" }}>
+          <div style={{ position: "absolute", top: "5px", left: "150px", fontSize: "30px", fontWeight: "bolder" }}>
             <Timer date="2022-1-24" />
           </div>
         </div>
@@ -249,7 +249,7 @@ function Header() {
               />
             </a>
           </Link>
-          <div style={{ position: "absolute", top: "6px", left: "30px", fontSize: "10px", fontWeight: "bolder" }}>
+          <div style={{ position: "absolute", top: "5px", left: "5px", fontSize: "11px", fontWeight: "bolder" }}>
             <Timer date="2022-1-24" />
           </div>
         </div>

@@ -550,7 +550,6 @@ const ProductDetailMobile = ({ data }) => {
                 <div className="row d-flex">
                   {posts.length > 0 &&
                     posts.map((oneProduct, index) => {
-                      console.log(">>>>", oneProduct);
                       return (
                         (oneProduct.FK_Shop !== undefined && oneProduct.FK_Shop !== null) && (
                           <ProductCard
