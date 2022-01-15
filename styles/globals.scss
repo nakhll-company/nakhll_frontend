@@ -160,3 +160,6 @@ input[type="number"] {
     right: -100%;
 }
 @import "../styles/normalize.css";
+.infinite-scroll-component__outerdiv {
+    padding: 0 !important;
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 // gsap
 import { gsap } from "gsap";
@@ -16,7 +16,7 @@ import VipProducts from "../../LandingPage/VipProducts";
 
 function ListComponent({ _handel_add_component }) {
   // gsap
-
+  const [numSec, setNumSec] = useState(0);
   let tl = new gsap.timeline();
 
   // Ref
@@ -147,18 +147,39 @@ function ListComponent({ _handel_add_component }) {
           <div ref={partNine}></div>
           <div className={styles.cover}></div>
         </div>
-        {/* <div
+        <div
           className={styles.holderItems}
-          onClick={() => _handel_add_component(10)}
+          onClick={() => {
+            if (numSec == 4) {
+              alert("الان اضافه میشه");
+              _handel_add_component(10);
+            } else {
+              setNumSec((e) => e + 1);
+            }
+          }}
         >
-          <div ref={partTen}></div>
+          {/* <div ref={partTen}></div> */}
           <div className={styles.cover}></div>
-        </div> */}
+        </div>
         <div
           className={styles.holderItems}
           onClick={() => _handel_add_component(11)}
         >
           <div ref={partEleven}></div>
+          <div className={styles.cover}></div>
+        </div>
+        <div
+          className={styles.holderItems}
+          onClick={() => {
+            if (numSec == 4) {
+              alert("الان اضافه میشه");
+              _handel_add_component(13);
+            } else {
+              setNumSec((e) => e + 1);
+            }
+          }}
+        >
+          {/* <div ref={partTen}></div> */}
           <div className={styles.cover}></div>
         </div>
         <div style={{ marginTop: "30px" }}></div>

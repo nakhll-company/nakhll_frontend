@@ -78,7 +78,27 @@
     align-items: center;
     transition: all 0.3s cubic-bezier(0.76, 0, 0.24, 1);
 }
+._product_card_camp_badge {
+    display: flex;
+    position: absolute;
+    // left: 1rem;
+    width: 65px;
+    height: 65px;
+    padding: 1px;
+    text-align: center;
+    z-index: 1;
+    border-radius: 50%;
+    background: #fff;
+    color: #343a40;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+}
 // ._product_card:hover ._product_card_badge {
 //     visibility: unset;
 //     opacity: 1;
 // }
+.warp_namojod {
+    display: flex;
+    justify-content: center;
+}
