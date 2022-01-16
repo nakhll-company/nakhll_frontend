@@ -5,6 +5,7 @@
     justify-content: center;
     flex-direction: column;
     position: relative;
+    padding-top: 50px;
     // login
     .wrapper_login{
         display: flex;
@@ -13,6 +14,12 @@
         width: 764px;
         font-weight: normal;
         font-size: 14px;
+        margin-right: 250px;
+        @media screen and (max-width: 1000px) {
+            flex-direction: column-reverse;
+            width: 310px;
+            margin-right: 0px;
+        }
         // bold text
         b{
             font-weight: 800;
@@ -29,6 +36,12 @@
             line-height: 20px;
             text-align: right;
             color: #273238;
+            width: 540px;
+            text-align: justify;
+            text-justify: inter-word;
+            @media screen and (max-width: 1000px) {
+                width: 310px;
+            }
         }
     }
     // process vector
@@ -38,5 +51,17 @@
         right: 30%;
         width: 700px;
         height: 172px;
+        @media screen and (max-width: 1000px) {
+            width: 340px;
+            height: 340px;
+            top: 180px;
+            right: 100px;
+        }
+        @media screen and (max-width: 600px) {
+            width: 340px;
+            height: 340px;
+            top: 180px;
+            right: -100px;
+        }
     }
 }

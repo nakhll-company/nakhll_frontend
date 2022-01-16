@@ -1,9 +1,13 @@
 // node libraries
 import Image from "next/image";
+// components
+import useViewport from "../../components/viewPort";
 // scss
 import styles from "./scss/processDown.module.scss";
 
 const ProcessDown = ({ title, description, image }) => {
+    const breakpoint = 1000;
+    const { width } = useViewport();
     return (
         <div className={styles.wrapper}>
             <div className={styles.wrapper_login}>
@@ -16,7 +20,11 @@ const ProcessDown = ({ title, description, image }) => {
                 </div>
             </div>
             <div className={styles.process_vector}>
-                <Image src="/image/description/process_down.png" alt="" width={842} height={172} />
+                {width > breakpoint ?
+                    <Image src="/image/description/process_down.svg" alt="" width={842} height={172} />
+                    :
+                    <Image src="/image/description/process_right.svg" width="340" height="340px" alt="" />
+                }
             </div>
         </div>
     )

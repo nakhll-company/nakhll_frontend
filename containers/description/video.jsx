@@ -1,5 +1,5 @@
 // node libraries
-
+import Script from "next/script";
 // scss
 import styles from "./scss/video.module.scss";
 
@@ -13,7 +13,9 @@ function Video() {
         <button>حجره خودتو بساز</button>
       </div>
       <div className={styles.video}>
-        <p>fdgdfg</p>
+        <div id="70341046536" className={styles.video}>
+          <Script type="text/JavaScript" src="https://www.aparat.com/embed/B6lLS?data[rnddiv]=70341046536&data[responsive]=yes&recom=none"></Script>
+        </div>
       </div>
     </div>
   );
