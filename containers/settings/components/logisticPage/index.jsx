@@ -30,6 +30,8 @@ import SoRent from "./ui/soRent";
 function LogisticPage() {
   const activeHojreh = useSelector((state) => state.User.activeHojreh);
 
+  // state for free post
+
   // state for loader
   const [loader, setLoader] = useState(false);
 
@@ -228,12 +230,7 @@ function LogisticPage() {
             <Explain text="با استفاده از ثبت واحد ارسال جدید شهرها، محصولات، روش و هزینه ارسال دلخواه را انتخاب کنید." />
 
             <BtnSetting
-              onClick={
-                _handle_add_new_scope
-                // () => {
-                //   upPage();
-                // }
-              }
+              onClick={_handle_add_new_scope}
               title="ثبت واحد ارسال جدید"
             />
 
@@ -260,13 +257,7 @@ function LogisticPage() {
               setCheckedCity={setCheckedCities}
             />
 
-            <BtnSetting
-              onClick={() => {
-                // _handle_update_data_scope()
-                upPage();
-              }}
-              title="مرحله بعد"
-            />
+            <BtnSetting onClick={_handle_update_data_scope} title="مرحله بعد" />
           </>
         )}
         {wichPage == 3 && (
@@ -287,13 +278,7 @@ function LogisticPage() {
               title="تمام محصولات"
             />
             {checkedSelectAllProducts && (
-              <BtnSetting
-                onClick={() => {
-                  // _handle_send_all_cities()
-                  upPage();
-                }}
-                title="مرحله بعد"
-              />
+              <BtnSetting onClick={_handle_send_all_cities} title="مرحله بعد" />
             )}
 
             {!checkedSelectAllProducts && (
