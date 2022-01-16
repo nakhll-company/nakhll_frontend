@@ -22,6 +22,7 @@ import Tabel from "./components/tabel";
 
 import st from "./logisticPage.module.scss";
 import FreeQuestion from "./ui/freeQuestion";
+import ResultOperation from "./ui/resultOperation";
 import SelectIcon from "./ui/selectIcon";
 import SoRent from "./ui/soRent";
 
@@ -400,18 +401,8 @@ function LogisticPage() {
 
         {wichPage == 8 && (
           <>
-            <div className="d-flex justify-content-center w-100">
-              <div className="pt-3 pb-3">
-                <h1 style={{ color: "green" }}>
-                  محدوده جدید با موفقیت ایجاد گردید.
-                </h1>
-                <BtnSetting
-                  onClick={() => setWichPage(1)}
-                  type="submit"
-                  title="بازگشت"
-                />
-              </div>
-            </div>
+          <ResultOperation  pageController={upPage}/>
+            
           </>
         )}
       </div>
