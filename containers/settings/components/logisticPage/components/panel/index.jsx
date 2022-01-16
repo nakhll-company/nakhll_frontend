@@ -15,6 +15,7 @@ function Panel({
   setWichIdScope,
   changePage,
   setInformationForm,
+  setWichPage,
 }) {
   console.log(`Ren`, "Panel");
   const activeHojreh = useSelector((state) => state.User.activeHojreh);
@@ -79,7 +80,10 @@ function Panel({
         <div key={index} className={st.wraper}>
           <div className={st.card}>
             <div
-              onClick={() => _handel_click_on_scope(el)}
+              onClick={() =>
+                // _handel_click_on_scope(el)
+                setWichPage(9)
+              }
               className={st.card_right}
             >
               <div className={st.card_right_top}>

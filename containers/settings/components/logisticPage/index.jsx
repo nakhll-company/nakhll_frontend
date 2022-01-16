@@ -21,6 +21,7 @@ import SendBoxCu from "./components/sendBoxCu";
 import Tabel from "./components/tabel";
 
 import st from "./logisticPage.module.scss";
+import AllEdit from "./ui/allEdit";
 import FreeQuestion from "./ui/freeQuestion";
 import ResultOperation from "./ui/resultOperation";
 import SelectIcon from "./ui/selectIcon";
@@ -228,10 +229,10 @@ function LogisticPage() {
 
             <BtnSetting
               onClick={
-                // _handle_add_new_scope
-                () => {
-                  upPage();
-                }
+                _handle_add_new_scope
+                // () => {
+                //   upPage();
+                // }
               }
               title="ثبت واحد ارسال جدید"
             />
@@ -242,6 +243,7 @@ function LogisticPage() {
               setWichIdScope={setWichIdScope}
               changePage={upPage}
               setInformationForm={setInformationForm}
+              setWichPage={setWichPage}
             />
           </>
         )}
@@ -401,8 +403,19 @@ function LogisticPage() {
 
         {wichPage == 8 && (
           <>
-          <ResultOperation  pageController={upPage}/>
-            
+            <ResultOperation pageController={upPage} />
+          </>
+        )}
+
+        {wichPage == 9 && (
+          <>
+            <AllEdit
+              checkedCities={checkedCities}
+              setCheckedCities={setCheckedCities}
+              checkedSelectAllProducts={checkedSelectAllProducts}
+              upPage={upPage}
+              downPage={downPage}
+            />
           </>
         )}
       </div>
