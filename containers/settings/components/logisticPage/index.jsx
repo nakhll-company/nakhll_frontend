@@ -21,6 +21,9 @@ import SendBoxCu from "./components/sendBoxCu";
 import Tabel from "./components/tabel";
 
 import st from "./logisticPage.module.scss";
+import FreeQuestion from "./ui/freeQuestion";
+import SelectIcon from "./ui/selectIcon";
+import SoRent from "./ui/soRent";
 
 function LogisticPage() {
   const activeHojreh = useSelector((state) => state.User.activeHojreh);
@@ -177,8 +180,8 @@ function LogisticPage() {
     }
   }, [informationForm]);
 
-  const upPage = (num = 1) => {
-    setWichPage(wichPage + num);
+  const upPage = (num = 1, page = 0) => {
+    page !== 0 ? setWichPage(page) : setWichPage(wichPage + num);
   };
   const downPage = () => {
     setWichPage(wichPage - 1);
@@ -217,78 +220,18 @@ function LogisticPage() {
             <HeaderTitle
               enabel={false}
               onClick={() => downPage()}
-              title="تنظیمات ارسال"
-            />
-
-            <Explain
-              text="
-
-           آیا ارسال به صورت پس کرایه (پرداخت هزینه توسط مشتری زمان دریافت محصول) است؟
-            "
-            />
-            <CheckBoxSend
-              checked={checkedSelectAllProducts}
-              onChange={() =>
-                setCheckedSelectAllProducts(!checkedSelectAllProducts)
-              }
-              id="selectAllProducts"
-              title="خیر"
-            />
-            <CheckBoxSend
-              checked={checkedSelectAllProducts}
-              onChange={() =>
-                setCheckedSelectAllProducts(!checkedSelectAllProducts)
-              }
-              id="selectAllProducts"
-              title="بله"
-            />
-          </>
-        )}
-
-        {wichPage == 1 && (
-          <>
-            <HeaderTitle
-              enabel={false}
-              onClick={() => downPage()}
-              title="تنظیمات ارسال"
-            />
-
-            <Explain
-              text="
-              آیا میخواید محصولات انتخاب شده به صورت رایگان ارسال شود؟
-
-            "
-            />
-            <CheckBoxSend
-              checked={checkedSelectAllProducts}
-              onChange={() =>
-                setCheckedSelectAllProducts(!checkedSelectAllProducts)
-              }
-              id="selectAllProducts"
-              title="خیر"
-            />
-            <CheckBoxSend
-              checked={checkedSelectAllProducts}
-              onChange={() =>
-                setCheckedSelectAllProducts(!checkedSelectAllProducts)
-              }
-              id="selectAllProducts"
-              title="بله"
-            />
-          </>
-        )}
-        {wichPage == 1 && (
-          <>
-            <HeaderTitle
-              enabel={false}
-              onClick={() => downPage()}
               title="تنظیمات لجستیک"
             />
 
             <Explain text="با استفاده از ثبت واحد ارسال جدید شهرها، محصولات، روش و هزینه ارسال دلخواه را انتخاب کنید." />
 
             <BtnSetting
-              onClick={_handle_add_new_scope}
+              onClick={
+                // _handle_add_new_scope
+                () => {
+                  upPage();
+                }
+              }
               title="ثبت واحد ارسال جدید"
             />
 
@@ -301,8 +244,7 @@ function LogisticPage() {
             />
           </>
         )}
-
-        {wichPage == 1 && (
+        {wichPage == 2 && (
           <>
             <HeaderTitle
               onClick={() => downPage()}
@@ -316,12 +258,15 @@ function LogisticPage() {
             />
 
             <BtnSetting
-              onClick={() => _handle_update_data_scope()}
+              onClick={() => {
+                // _handle_update_data_scope()
+                upPage();
+              }}
               title="مرحله بعد"
             />
           </>
         )}
-        {wichPage == 1 && (
+        {wichPage == 3 && (
           <>
             <HeaderTitle
               onClick={() => downPage()}
@@ -340,7 +285,10 @@ function LogisticPage() {
             />
             {checkedSelectAllProducts && (
               <BtnSetting
-                onClick={() => _handle_send_all_cities()}
+                onClick={() => {
+                  // _handle_send_all_cities()
+                  upPage();
+                }}
                 title="مرحله بعد"
               />
             )}
@@ -356,20 +304,27 @@ function LogisticPage() {
             )}
           </>
         )}
+        {wichPage == 4 && (
+          <SoRent pageController={upPage} downPage={downPage} />
+        )}
 
-        {wichPage == 1 && (
+        {wichPage == 5 && (
+          <FreeQuestion pageController={upPage} downPage={downPage} />
+        )}
+
+        {wichPage == 6 && (
           <>
-            <HeaderTitle onClick={() => downPage()} title="تنظیمات روش ارسال" />
+            <HeaderTitle onClick={() => downPage()} title="تنظیمات  ارسال" />
 
             <Explain text="" />
 
             <form onSubmit={handleSubmit(_handle_send_info_scope)}>
-              <InputUseForm title="نام روش" error={errors.name}>
+              {/* <InputUseForm title="نام روش" error={errors.name}>
                 <input {...register("name")} />
-              </InputUseForm>
+              </InputUseForm> */}
 
               <InputUseForm
-                title="هزینه پست به ازای هر کیلوگرم"
+                title="هزینه پست به ازای هر واحد"
                 error={errors.price_per_kg}
                 text="تومان"
               >
@@ -383,7 +338,7 @@ function LogisticPage() {
               </InputUseForm>
 
               <InputUseForm
-                title="هزینه پست به ازای هر کیلوگرم اضافه تر"
+                title="هزینه پست به ازای هر واحد اضافه تر"
                 error={errors.price_per_extra_kg}
                 text="تومان"
               >
@@ -396,7 +351,7 @@ function LogisticPage() {
                 />
               </InputUseForm>
 
-              <InputUseForm
+              {/* <InputUseForm
                 title="حداقل هزینه سفارش"
                 error={errors.minPrice}
                 text="تومان"
@@ -408,8 +363,8 @@ function LogisticPage() {
                   type="number"
                   {...register("minPrice")}
                 />
-              </InputUseForm>
-              <InputUseForm
+              </InputUseForm> */}
+              {/* <InputUseForm
                 title="حداکثر وزن مرسوله"
                 error={errors.max_weight}
                 text="کیلوگرم"
@@ -421,22 +376,29 @@ function LogisticPage() {
                   type="number"
                   {...register("max_weight")}
                 />
-              </InputUseForm>
-              <TextAreaUseForm title="توضیح روش ارسال">
+              </InputUseForm> */}
+              {/* <TextAreaUseForm title="توضیح روش ارسال">
                 <textarea
                   rows="7"
                   type="text"
                   placeholder="در روش ارسال من محصولتون در کمترین زمان  بدستتون میرسه.پس با خیال راحت قهوه بنوشید و منتظر  شنیدن صدای زنگ در باشید."
                   {...register("description")}
                 />
-              </TextAreaUseForm>
+              </TextAreaUseForm> */}
+              {/* type="submit" */}
 
-              <BtnSetting type="submit" title="ثبت" />
+              <BtnSetting onClick={() => upPage()} title="مرحله بعد" />
             </form>
           </>
         )}
+        {wichPage == 7 && (
+          <>
+            <HeaderTitle onClick={() => downPage()} title="تنظیمات  ارسال" />
+            <SelectIcon pageController={upPage} />
+          </>
+        )}
 
-        {wichPage == 5 && (
+        {wichPage == 8 && (
           <>
             <div className="d-flex justify-content-center w-100">
               <div className="pt-3 pb-3">

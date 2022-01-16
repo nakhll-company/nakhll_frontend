@@ -40,7 +40,6 @@
     background: #ffffff;
     border: 1px solid #e0e6e9;
     box-sizing: border-box;
-    border-radius: 5px;
     direction: ltr;
     font-size: 15px;
     color: #364254;
@@ -53,12 +52,10 @@
     background: #ffffff;
     border: 1px solid #e0e6e9;
     box-sizing: border-box;
-    border-radius: 5px;
+    border-radius: 20px;
     font-size: 16px;
     color: #000000;
     padding: 11px;
-    border-right: 2px solid #224e82;
-    border-left: 2px solid #224e82;
 }
 .inputWidRtlH {
     display: grid;
@@ -79,14 +76,14 @@
     display: flex;
     height: 45px;
     background: #ffffff;
-    border: 1px solid #e0e6e9;
+    border: 1px solid rgba(122, 161, 206, 0.72);
     box-sizing: border-box;
-    border-radius: 5px;
+    border-radius: 20px;
     direction: ltr;
     font-size: 15px;
     font-weight: bolder;
-    border-right: 2px solid #224e82;
-    border-left: 2px solid #224e82;
+    // border-right: 2px solid #224e82;
+    // border-left: 2px solid #224e82;
     padding: 11px;
     align-items: center;
 }

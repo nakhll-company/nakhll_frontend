@@ -16,6 +16,7 @@ function Panel({
   changePage,
   setInformationForm,
 }) {
+  console.log(`Ren`, "Panel");
   const activeHojreh = useSelector((state) => state.User.activeHojreh);
   // state for Saved Sending Unit
   const [SavedSendingUnit, setSavedSendingUnit] = useState([]);
