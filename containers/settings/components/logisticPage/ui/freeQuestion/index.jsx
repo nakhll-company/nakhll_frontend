@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import InputUseForm from "../../../../../creat/component/inputUseForm";
@@ -7,13 +7,14 @@ import CheckBoxSend from "../../components/checkBoxSend";
 import Explain from "../../components/explain";
 import HeaderTitle from "../../components/headerTitle";
 
-function FreeQuestion({ pageController, downPage }) {
+function FreeQuestion({ pageController, setPayer, setMin_cart_price }) {
   console.log(`Ren`, "FreeQuestion");
   const [checkNoFree, setCheckNoFree] = useState(true);
   const [checkYesFree, setCheckYesFree] = useState(false);
-  // state for Saved Sending Unit
-  // const [SavedSendingUnit, setSavedSendingUnit] = useState([]);
-  // useform
+  useEffect(() => {
+    checkNoFree ? setPayer("cust") : setPayer("shop");
+  }, [checkNoFree]);
+
   const {
     setValue,
     getValues,
@@ -28,10 +29,16 @@ function FreeQuestion({ pageController, downPage }) {
     mode: "all",
   });
 
+  const _handle_form_free = (data) => {
+    if (data.minPrice !== "") {
+      setMin_cart_price(data.minPrice);
+    }
+
+    pageController(1, 7);
+  };
+
   return (
     <>
-      <HeaderTitle onClick={() => downPage()} title="تنظیمات ارسال" />
-
       <Explain
         text="
               آیا میخواید محصولات انتخاب شده به صورت رایگان ارسال شود؟
@@ -61,7 +68,7 @@ function FreeQuestion({ pageController, downPage }) {
 
       {checkYesFree && (
         <>
-          <form onSubmit={handleSubmit(() => {})}>
+          <form onSubmit={handleSubmit(_handle_form_free)}>
             <InputUseForm
               title="حداقل سفارش برای رایگان شدن ارسال"
               error={errors.minPrice}
@@ -76,16 +83,19 @@ function FreeQuestion({ pageController, downPage }) {
                 {...register("minPrice")}
               />
             </InputUseForm>
+            <BtnSetting type="submit" title="مرحله بعد" />
           </form>
         </>
       )}
 
-      <BtnSetting
-        onClick={() => {
-          checkNoFree ? pageController() : pageController(1, 7);
-        }}
-        title="مرحله بعد"
-      />
+      {!checkYesFree && (
+        <BtnSetting
+          onClick={() => {
+            checkNoFree ? pageController() : pageController(1, 7);
+          }}
+          title="مرحله بعد"
+        />
+      )}
     </>
   );
 }

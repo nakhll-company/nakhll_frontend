@@ -30,7 +30,11 @@ import SoRent from "./ui/soRent";
 function LogisticPage() {
   const activeHojreh = useSelector((state) => state.User.activeHojreh);
 
-  // state for free post
+  // state for send data
+  const [payer, setPayer] = useState("cust");
+  const [pay_time, setPay_time] = useState("when_buying");
+
+  const [min_cart_price, setMin_cart_price] = useState(0);
 
   // state for loader
   const [loader, setLoader] = useState(false);
@@ -141,29 +145,17 @@ function LogisticPage() {
 
   // functoin for send data for price per kg
 
-  const _handle_send_info_scope = async (data) => {
+  const _handle_send_info_scope = async (data, page = 0) => {
+    console.log(`data`, data);
     let response = await ApiRegister().apiRequest(
-      {
-        name: data.name ? data.name : "بدون نام",
-        description: data.description ? data.description : "",
-        calculation_metric: {
-          price_per_kilogram: data.price_per_kg ? data.price_per_kg : 0,
-          price_per_extra_kilogram: data.price_per_extra_kg
-            ? data.price_per_extra_kg
-            : 0,
-        },
-        constraint: {
-          min_cart_price: data.minPrice ? data.minPrice : 0,
-          max_weight: data.max_weight,
-        },
-      },
+      data,
       "PATCH",
       `/api/v1/logistic/shop-logistic-unit/${wichIdScope}/`,
       true,
       ""
     );
     if (response.status == 200) {
-      upPage();
+      upPage(1, page);
     }
   };
 
@@ -293,11 +285,27 @@ function LogisticPage() {
           </>
         )}
         {wichPage == 4 && (
-          <SoRent pageController={upPage} downPage={downPage} />
+          <>
+            <HeaderTitle onClick={() => downPage()} title="تنظیمات ارسال" />
+
+            <SoRent
+              _handle_send_info_scope={_handle_send_info_scope}
+              pageController={upPage}
+              setPay_time={setPay_time}
+            />
+          </>
         )}
 
         {wichPage == 5 && (
-          <FreeQuestion pageController={upPage} downPage={downPage} />
+          <>
+            <HeaderTitle onClick={() => downPage()} title="تنظیمات ارسال" />
+
+            <FreeQuestion
+              pageController={upPage}
+              setPayer={setPayer}
+              setMin_cart_price={setMin_cart_price}
+            />
+          </>
         )}
 
         {wichPage == 6 && (
@@ -306,11 +314,20 @@ function LogisticPage() {
 
             <Explain text="" />
 
-            <form onSubmit={handleSubmit(_handle_send_info_scope)}>
-              {/* <InputUseForm title="نام روش" error={errors.name}>
-                <input {...register("name")} />
-              </InputUseForm> */}
-
+            <form
+              onSubmit={handleSubmit((data) =>
+                _handle_send_info_scope({
+                  calculation_metric: {
+                    price_per_kilogram: data.price_per_kg
+                      ? data.price_per_kg
+                      : 0,
+                    price_per_extra_kilogram: data.price_per_extra_kg
+                      ? data.price_per_extra_kg
+                      : 0,
+                  },
+                })
+              )}
+            >
               <InputUseForm
                 title="هزینه پست به ازای هر واحد"
                 error={errors.price_per_kg}
@@ -339,50 +356,17 @@ function LogisticPage() {
                 />
               </InputUseForm>
 
-              {/* <InputUseForm
-                title="حداقل هزینه سفارش"
-                error={errors.minPrice}
-                text="تومان"
-              >
-                <input
-                  onWheel={(event) => {
-                    event.currentTarget.blur();
-                  }}
-                  type="number"
-                  {...register("minPrice")}
-                />
-              </InputUseForm> */}
-              {/* <InputUseForm
-                title="حداکثر وزن مرسوله"
-                error={errors.max_weight}
-                text="کیلوگرم"
-              >
-                <input
-                  onWheel={(event) => {
-                    event.currentTarget.blur();
-                  }}
-                  type="number"
-                  {...register("max_weight")}
-                />
-              </InputUseForm> */}
-              {/* <TextAreaUseForm title="توضیح روش ارسال">
-                <textarea
-                  rows="7"
-                  type="text"
-                  placeholder="در روش ارسال من محصولتون در کمترین زمان  بدستتون میرسه.پس با خیال راحت قهوه بنوشید و منتظر  شنیدن صدای زنگ در باشید."
-                  {...register("description")}
-                />
-              </TextAreaUseForm> */}
-              {/* type="submit" */}
-
-              <BtnSetting onClick={() => upPage()} title="مرحله بعد" />
+              <BtnSetting type="submit" title="مرحله بعد" />
             </form>
           </>
         )}
         {wichPage == 7 && (
           <>
             <HeaderTitle onClick={() => downPage()} title="تنظیمات  ارسال" />
-            <SelectIcon pageController={upPage} />
+            <SelectIcon
+              pageController={upPage}
+              _handle_send_info_scope={_handle_send_info_scope}
+            />
           </>
         )}
 

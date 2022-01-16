@@ -13,7 +13,7 @@ const icons = [
   { src: "/icons/settings/plus.svg" },
 ];
 
-function SelectIcon({ pageController }) {
+function SelectIcon({ pageController, _handle_send_info_scope }) {
   console.log(`Ren`, "SelectIcon");
 
   const {
@@ -31,30 +31,35 @@ function SelectIcon({ pageController }) {
   });
   return (
     <>
-      <form onSubmit={handleSubmit(() => {})}>
+      {/* name: data.name ? data.name : "بدون نام" */}
+      <form
+        onSubmit={handleSubmit((data) =>
+          _handle_send_info_scope({ name: data.name ? data.name : "بدون نام" })
+        )}
+      >
         <InputUseForm title="عنوان روش ارسال" error={errors.name}>
           <input {...register("name")} />
         </InputUseForm>
-      </form>
 
-      <div className={st.header}>
-        <span>لوگو روش ارسال</span>
-      </div>
-      {/* icones */}
-      <div className={st.warpperIcons}>
-        {icons.map((icon, index) => (
-          <div key={index} className={st.wrappIcon}>
-            <Image
-              src={icon.src}
-              layout="fixed"
-              height={50}
-              width={50}
-              alt="banner"
-            />
-          </div>
-        ))}
-      </div>
-      <BtnSetting onClick={() => pageController()} title="ثبت" />
+        <div className={st.header}>
+          <span>لوگو روش ارسال</span>
+        </div>
+        {/* icones */}
+        <div className={st.warpperIcons}>
+          {icons.map((icon, index) => (
+            <div key={index} className={st.wrappIcon}>
+              <Image
+                src={icon.src}
+                layout="fixed"
+                height={50}
+                width={50}
+                alt="banner"
+              />
+            </div>
+          ))}
+        </div>
+        <BtnSetting type="submit" title="ثبت" />
+      </form>
     </>
   );
 }
