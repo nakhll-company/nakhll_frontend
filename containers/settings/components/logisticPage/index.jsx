@@ -304,6 +304,7 @@ function LogisticPage() {
               pageController={upPage}
               setPayer={setPayer}
               setMin_cart_price={setMin_cart_price}
+              _handle_send_info_scope={_handle_send_info_scope}
             />
           </>
         )}

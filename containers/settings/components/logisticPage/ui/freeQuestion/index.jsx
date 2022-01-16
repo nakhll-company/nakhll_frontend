@@ -7,7 +7,12 @@ import CheckBoxSend from "../../components/checkBoxSend";
 import Explain from "../../components/explain";
 import HeaderTitle from "../../components/headerTitle";
 
-function FreeQuestion({ pageController, setPayer, setMin_cart_price }) {
+function FreeQuestion({
+  pageController,
+  setPayer,
+  setMin_cart_price,
+  _handle_send_info_scope,
+}) {
   console.log(`Ren`, "FreeQuestion");
   const [checkNoFree, setCheckNoFree] = useState(true);
   const [checkYesFree, setCheckYesFree] = useState(false);
@@ -30,11 +35,12 @@ function FreeQuestion({ pageController, setPayer, setMin_cart_price }) {
   });
 
   const _handle_form_free = (data) => {
-    if (data.minPrice !== "") {
-      setMin_cart_price(data.minPrice);
-    }
+    console.log(`data`, data);
+    // if (data.minPrice !== "") {
+    //   setMin_cart_price(data.minPrice);
+    // }
 
-    pageController(1, 7);
+    // pageController(1, 7);
   };
 
   return (
@@ -68,7 +74,21 @@ function FreeQuestion({ pageController, setPayer, setMin_cart_price }) {
 
       {checkYesFree && (
         <>
-          <form onSubmit={handleSubmit(_handle_form_free)}>
+          <form
+            onSubmit={handleSubmit((data) =>
+              _handle_send_info_scope(
+                {
+                  constraint: {
+                    min_cart_price: data.minPrice != "" ? data.minPrice : 0,
+                  },
+                  calculation_metric: {
+                    payer: "shop",
+                  },
+                },
+                7
+              )
+            )}
+          >
             <InputUseForm
               title="حداقل سفارش برای رایگان شدن ارسال"
               error={errors.minPrice}
