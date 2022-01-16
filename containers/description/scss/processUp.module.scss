@@ -1,0 +1,42 @@
+// wrapper
+.wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    // login
+    .wrapper_login{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 764px;
+        font-weight: normal;
+        font-size: 14px;
+        // bold text
+        b{
+            font-weight: 800;
+            font-size: 18px;
+            line-height: 25px;
+            text-align: center;
+            color: #224E82;
+        }
+        // paragraph
+        p{
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 20px;
+            text-align: right;
+            color: #273238;
+        }
+    }
+    // process vector
+    .process_vector{
+        position: absolute;
+        top: 80%;
+        right: 30%;
+        width: 700px;
+        height: 172px;
+    }
+}

@@ -1,7 +1,10 @@
 .wrapper {
-    background: rgb(245, 245, 245);
-    min-height: 100vh;
-}
-.header {
-    margin: 48px auto;
+    background: #fff;
+    // header
+    .header {
+        padding: 53px 100px 43px 100px;
+        @media screen and (max-width: 767px) {
+            padding: 10px;
+        }
+    }
 }
