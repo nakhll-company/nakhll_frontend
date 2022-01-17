@@ -13,7 +13,7 @@ function FreeQuestion({
   setMin_cart_price,
   _handle_send_info_scope,
 }) {
-  console.log(`Ren`, "FreeQuestion");
+  
   const [checkNoFree, setCheckNoFree] = useState(true);
   const [checkYesFree, setCheckYesFree] = useState(false);
   useEffect(() => {

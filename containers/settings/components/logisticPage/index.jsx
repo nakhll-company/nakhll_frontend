@@ -138,7 +138,7 @@ function LogisticPage() {
   // functoin for send data for price per kg
 
   const _handle_send_info_scope = async (data, page = 0) => {
-    console.log(`data`, data);
+    
     let response = await ApiRegister().apiRequest(
       data,
       "PATCH",

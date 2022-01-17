@@ -30,7 +30,7 @@ function Send() {
     );
     let data = response.data;
     if (response.status === 200) {
-      console.log(`response.data`, response.data);
+      
       setListItems(response.data.logistic_unit_details.logistic_units);
       setInvoice(response.data);
     }

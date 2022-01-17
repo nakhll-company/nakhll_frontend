@@ -14,7 +14,7 @@ const icons = [
 ];
 
 function SelectIcon({ pageController, _handle_send_info_scope }) {
-  console.log(`Ren`, "SelectIcon");
+  
 
   const {
     setValue,

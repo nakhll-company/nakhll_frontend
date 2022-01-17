@@ -35,7 +35,7 @@ function AllEdit({
   _handle_update_data_scope,
   wichIdScope,
 }) {
-  console.log(`informationForm`, informationForm);
+  
   const [checkNO, setCheckNO] = useState(true);
   const [checkYes, setCheckYes] = useState(false);
   const [checkNoFree, setCheckNoFree] = useState(true);
@@ -67,7 +67,7 @@ function AllEdit({
     );
 
     if (response.status == 200) {
-      console.log(`response.data`, response.data);
+      
       setEditProductsShop(response.data.products);
       setEditCheckedCities(response.data.cities);
       if (response.data.products.length > 1) {
