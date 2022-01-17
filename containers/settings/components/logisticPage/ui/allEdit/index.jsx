@@ -21,6 +21,10 @@ const icons = [
   { src: "/icons/settings/peik.svg" },
   { src: "/icons/settings/plus.svg" },
 ];
+const CUSTOMER = "cust";
+const SHOP = "shop";
+const AT_DELIVERY = "at_delivery";
+const WHEN_BUYING = "when_byuing";
 function AllEdit({
   checkedSelectAllProducts,
   upPage,
@@ -71,6 +75,21 @@ function AllEdit({
       }
     }
   };
+
+  const _update_cities = async (data) => {
+    let response = await ApiRegister().apiRequest(
+      data,
+      "PATCH",
+      `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
+      true,
+      ""
+    );
+
+    if (response.status == 200) {
+    } else {
+      errorMessage("در بارگذاری شهرها مشکلی پیش آمده.مجدد تلاش کنید.");
+    }
+  };
   // set data in form
   useEffect(() => {
     if (Object.keys(informationForm).length > 0) {
@@ -85,7 +104,7 @@ function AllEdit({
       );
       setValue("edit_minPrice", informationForm.constraint.min_cart_price);
       // when send is free
-      if (informationForm.calculation_metric.payer == "shop") {
+      if (informationForm.calculation_metric.payer == SHOP) {
         setCheckYesFree(true);
         setCheckNoFree(false);
       }
@@ -93,8 +112,8 @@ function AllEdit({
       // when send is at delivery
 
       if (
-        informationForm.calculation_metric.payer == "cust" &&
-        informationForm.calculation_metric.pay_time == "at_delivery"
+        informationForm.calculation_metric.payer == CUSTOMER &&
+        informationForm.calculation_metric.pay_time == AT_DELIVERY
       ) {
         setCheckNO(false);
         setCheckYes(true);
@@ -107,6 +126,13 @@ function AllEdit({
       _handel_get_all_data_scope();
     }
   }, [constraintId]);
+
+  useEffect(() => {
+    if (checkYes) {
+      setCheckYesFree(false);
+      setCheckNoFree(true);
+    }
+  }, [checkYes]);
 
   return (
     <>
@@ -186,7 +212,7 @@ function AllEdit({
       {/* four */}
       <form
         onSubmit={handleSubmit(
-          (data) =>
+          (data) => {
             _handle_send_info_scope(
               {
                 name: data.edit_name ? data.edit_name : "بدون نام",
@@ -198,8 +224,8 @@ function AllEdit({
                     ? data.edit_price_per_extra_kg
                     : 0,
 
-                  payer: "shop",
-                  pay_time: "at_delivery",
+                  payer: checkYesFree ? SHOP : CUSTOMER,
+                  pay_time: checkYes ? AT_DELIVERY : WHEN_BUYING,
                 },
                 constraint: {
                   min_cart_price:
@@ -207,7 +233,12 @@ function AllEdit({
                 },
               },
               8
-            )
+            );
+
+            _update_cities({
+              cities: editCheckedCities.length > 0 ? editCheckedCities : [],
+            });
+          }
           // _handle_send_info_scope({ name: data.name ? data.name : "بدون نام" })
         )}
       >
