@@ -36,6 +36,7 @@ function AllEdit({
   const [checkYes, setCheckYes] = useState(false);
   const [checkNoFree, setCheckNoFree] = useState(true);
   const [checkYesFree, setCheckYesFree] = useState(false);
+  const [editCheckedCities, setEditCheckedCities] = useState([]);
 
   const {
     setValue,
@@ -62,7 +63,7 @@ function AllEdit({
     if (response.status == 200) {
       console.log(`response.data`, response.data);
       // setProductsShop(response.data.products);
-      // setCheckedCities(response.data.cities);
+      setEditCheckedCities(response.data.cities);
     }
   };
   // set data in form
@@ -115,8 +116,8 @@ function AllEdit({
 
       {/* <Explain text="توضیحات به حجره دار" /> */}
       <CheckboxTreeCities
-        checkedCity={checkedCities}
-        setCheckedCity={setCheckedCities}
+        checkedCity={editCheckedCities}
+        setCheckedCity={setEditCheckedCities}
       />
 
       {/* two */}
