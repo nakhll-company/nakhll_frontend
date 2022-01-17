@@ -106,21 +106,6 @@ function LogisticPage() {
     }
   };
 
-  const _handel_get_all_data_scope = async () => {
-    let response = await ApiRegister().apiRequest(
-      null,
-      "get",
-      `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
-      true,
-      ""
-    );
-
-    if (response.status == 200) {
-      setProductsShop(response.data.products);
-      setCheckedCities(response.data.cities);
-    }
-  };
-
   const _handle_update_data_scope = async () => {
     setLoader(true);
     let response = await ApiRegister().apiRequest(
@@ -159,23 +144,6 @@ function LogisticPage() {
     }
   };
 
-  // set data in form
-  useEffect(() => {
-    if (Object.keys(informationForm).length > 0) {
-      setValue("name", informationForm.name);
-      setValue(
-        "price_per_kg",
-        informationForm.calculation_metric.price_per_kilogram
-      );
-      setValue(
-        "price_per_extra_kg",
-        informationForm.calculation_metric.price_per_extra_kilogram
-      );
-      setValue("minPrice", informationForm.constraint.min_cart_price);
-      setValue("max_weight", informationForm.constraint.max_weight);
-    }
-  }, [informationForm]);
-
   const upPage = (num = 1, page = 0) => {
     page !== 0 ? setWichPage(page) : setWichPage(wichPage + num);
   };
@@ -185,13 +153,6 @@ function LogisticPage() {
   const setIdWithWay = (id) => {
     setWhichMethod(id);
   };
-
-  // for get all data for scope
-  useEffect(() => {
-    if (constraintId !== "") {
-      _handel_get_all_data_scope();
-    }
-  }, [constraintId]);
 
   const _handle_send_all_cities = async () => {
     let response = await ApiRegister().apiRequest(
@@ -380,11 +341,14 @@ function LogisticPage() {
         {wichPage == 9 && (
           <>
             <AllEdit
+              constraintId={constraintId}
               checkedCities={checkedCities}
               setCheckedCities={setCheckedCities}
               checkedSelectAllProducts={checkedSelectAllProducts}
               upPage={upPage}
               downPage={downPage}
+              informationForm={informationForm}
+              _handle_send_info_scope={_handle_send_info_scope}
             />
           </>
         )}

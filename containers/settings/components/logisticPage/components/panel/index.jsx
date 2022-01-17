@@ -13,7 +13,7 @@ function Panel({
   setConstraintId,
   setMetricId,
   setWichIdScope,
-  changePage,
+
   setInformationForm,
   setWichPage,
 }) {
@@ -69,7 +69,7 @@ function Panel({
     setWichIdScope(data.id);
     setConstraintId(data.constraint.id);
     setMetricId(data.calculation_metric.id);
-    changePage();
+    setWichPage(9);
   };
 
   return (
@@ -80,10 +80,7 @@ function Panel({
         <div key={index} className={st.wraper}>
           <div className={st.card}>
             <div
-              onClick={() =>
-                // _handel_click_on_scope(el)
-                setWichPage(9)
-              }
+              onClick={() => _handel_click_on_scope(el)}
               className={st.card_right}
             >
               <div className={st.card_right_top}>

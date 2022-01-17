@@ -34,15 +34,6 @@ function FreeQuestion({
     mode: "all",
   });
 
-  const _handle_form_free = (data) => {
-    console.log(`data`, data);
-    // if (data.minPrice !== "") {
-    //   setMin_cart_price(data.minPrice);
-    // }
-
-    // pageController(1, 7);
-  };
-
   return (
     <>
       <Explain

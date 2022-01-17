@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-
+import Image from "next/image";
 import CheckboxTreeCities from "../../../../../../components/CheckboxTree/CheckboxTree";
 import InputUseForm from "../../../../../creat/component/inputUseForm";
 import BtnSetting from "../../components/btnSetting";
@@ -10,22 +10,33 @@ import Products from "../../components/products";
 import SelectIcon from "../selectIcon";
 import FreeQuestion from "../../ui/freeQuestion";
 import SoRent from "../../ui/soRent";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import { ApiRegister } from "../../../../../../services/apiRegister/ApiRegister";
+import st from "./allEdit.module.scss";
+const icons = [
+  { src: "/icons/settings/pishtaz.svg" },
+  { src: "/icons/settings/sefareshi.svg" },
+  { src: "/icons/settings/free.svg" },
+  { src: "/icons/settings/pasKeraieh.svg" },
+  { src: "/icons/settings/peik.svg" },
+  { src: "/icons/settings/plus.svg" },
+];
 function AllEdit({
   checkedCities,
   setCheckedCities,
   checkedSelectAllProducts,
   upPage,
   downPage,
+  constraintId,
+  informationForm,
+  _handle_send_info_scope,
 }) {
+  console.log(`informationForm`, informationForm);
   const [checkNO, setCheckNO] = useState(true);
   const [checkYes, setCheckYes] = useState(false);
   const [checkNoFree, setCheckNoFree] = useState(true);
   const [checkYesFree, setCheckYesFree] = useState(false);
-  // state for Saved Sending Unit
-  // const [SavedSendingUnit, setSavedSendingUnit] = useState([]);
-  // useform
+
   const {
     setValue,
     getValues,
@@ -39,6 +50,42 @@ function AllEdit({
     criteriaMode: "all",
     mode: "all",
   });
+  const _handel_get_all_data_scope = async () => {
+    let response = await ApiRegister().apiRequest(
+      null,
+      "get",
+      `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
+      true,
+      ""
+    );
+
+    if (response.status == 200) {
+      console.log(`response.data`, response.data);
+      // setProductsShop(response.data.products);
+      // setCheckedCities(response.data.cities);
+    }
+  };
+  // set data in form
+  useEffect(() => {
+    if (Object.keys(informationForm).length > 0) {
+      setValue("edit_name", informationForm.name);
+      setValue(
+        "edit_price_per_kg",
+        informationForm.calculation_metric.price_per_kilogram
+      );
+      setValue(
+        "edit_price_per_extra_kg",
+        informationForm.calculation_metric.price_per_extra_kilogram
+      );
+      setValue("edit_minPrice", informationForm.constraint.min_cart_price);
+    }
+  }, [informationForm]);
+
+  useEffect(() => {
+    if (constraintId !== "") {
+      _handel_get_all_data_scope();
+    }
+  }, [constraintId]);
 
   return (
     <>
@@ -115,40 +162,66 @@ function AllEdit({
       </>
 
       {/* four */}
-      <>
-        <Explain
-          text="
+      <form
+        onSubmit={handleSubmit(
+          (data) =>
+            _handle_send_info_scope(
+              {
+                name: data.edit_name ? data.edit_name : "بدون نام",
+                calculation_metric: {
+                  price_per_kilogram: data.edit_price_per_kg
+                    ? data.edit_price_per_kg
+                    : 0,
+                  price_per_extra_kilogram: data.edit_price_per_extra_kg
+                    ? data.edit_price_per_extra_kg
+                    : 0,
+
+                  payer: "shop",
+                  pay_time: "at_delivery",
+                },
+                constraint: {
+                  min_cart_price:
+                    data.edit_minPrice != "" ? data.edit_minPrice : 0,
+                },
+              },
+              8
+            )
+          // _handle_send_info_scope({ name: data.name ? data.name : "بدون نام" })
+        )}
+      >
+        <>
+          <Explain
+            text="
               آیا میخواید محصولات انتخاب شده به صورت رایگان ارسال شود؟
 
             "
-        />
-        <CheckBoxSend
-          checked={checkNoFree}
-          onChange={() => {
-            !checkNoFree
-              ? (setCheckNoFree(true), setCheckYesFree(false))
-              : (setCheckNoFree(false), setCheckYesFree(true));
-          }}
-          id="selectNoFree"
-          title="خیر"
-        />
-        <CheckBoxSend
-          checked={checkYesFree}
-          onChange={() =>
-            !checkYesFree
-              ? (setCheckYesFree(true), setCheckNoFree(false))
-              : (setCheckYesFree(false), setCheckNoFree(true))
-          }
-          id="selectYesFree"
-          title="بله"
-        />
+          />
+          <CheckBoxSend
+            checked={checkNoFree}
+            onChange={() => {
+              !checkNoFree
+                ? (setCheckNoFree(true), setCheckYesFree(false))
+                : (setCheckNoFree(false), setCheckYesFree(true));
+            }}
+            id="selectNoFree"
+            title="خیر"
+          />
+          <CheckBoxSend
+            checked={checkYesFree}
+            onChange={() =>
+              !checkYesFree
+                ? (setCheckYesFree(true), setCheckNoFree(false))
+                : (setCheckYesFree(false), setCheckNoFree(true))
+            }
+            id="selectYesFree"
+            title="بله"
+          />
 
-        {checkYesFree && (
-          <>
-            <form onSubmit={handleSubmit(() => {})}>
+          {checkYesFree && (
+            <>
               <InputUseForm
                 title="حداقل سفارش برای رایگان شدن ارسال"
-                error={errors.minPrice}
+                error={errors.edit_minPrice}
                 text="تومان"
               >
                 <input
@@ -157,25 +230,23 @@ function AllEdit({
                   }}
                   type="number"
                   placeholder="۲۵,۰۰۰"
-                  {...register("minPrice")}
+                  {...register("edit_minPrice")}
                 />
               </InputUseForm>
-            </form>
-          </>
-        )}
-      </>
-      {/* five */}
+            </>
+          )}
+        </>
+        {/* five */}
 
-      <Explain text="" />
+        <Explain text="" />
 
-      <form onSubmit={handleSubmit(() => {})}>
         {/* <InputUseForm title="نام روش" error={errors.name}>
                 <input {...register("name")} />
               </InputUseForm> */}
 
         <InputUseForm
           title="هزینه پست به ازای هر واحد"
-          error={errors.price_per_kg}
+          error={errors.edit_price_per_kg}
           text="تومان"
         >
           <input
@@ -183,13 +254,13 @@ function AllEdit({
               event.currentTarget.blur();
             }}
             type="number"
-            {...register("price_per_kg")}
+            {...register("edit_price_per_kg")}
           />
         </InputUseForm>
 
         <InputUseForm
           title="هزینه پست به ازای هر واحد اضافه تر"
-          error={errors.price_per_extra_kg}
+          error={errors.edit_price_per_extra_kg}
           text="تومان"
         >
           <input
@@ -197,14 +268,35 @@ function AllEdit({
               event.currentTarget.blur();
             }}
             type="number"
-            {...register("price_per_extra_kg")}
+            {...register("edit_price_per_extra_kg")}
           />
         </InputUseForm>
+
+        {/* six */}
+
+        <InputUseForm title="عنوان روش ارسال" error={errors.name}>
+          <input {...register("edit_name")} />
+        </InputUseForm>
+
+        <div className={st.header}>
+          <span>لوگو روش ارسال</span>
+        </div>
+        {/* icones */}
+        <div className={st.warpperIcons}>
+          {icons.map((icon, index) => (
+            <div key={index} className={st.wrappIcon}>
+              <Image
+                src={icon.src}
+                layout="fixed"
+                height={50}
+                width={50}
+                alt="banner"
+              />
+            </div>
+          ))}
+        </div>
+        <BtnSetting type="submit" title="ثبت" />
       </form>
-
-      {/* six */}
-
-      <SelectIcon pageController={upPage} />
     </>
   );
 }
