@@ -78,9 +78,20 @@ function AllEdit({
         informationForm.calculation_metric.price_per_extra_kilogram
       );
       setValue("edit_minPrice", informationForm.constraint.min_cart_price);
+      // when send is free
       if (informationForm.calculation_metric.payer == "shop") {
         setCheckYesFree(true);
         setCheckNoFree(false);
+      }
+
+      // when send is at delivery
+
+      if (
+        informationForm.calculation_metric.payer == "cust" &&
+        informationForm.calculation_metric.pay_time == "at_delivery"
+      ) {
+        setCheckNO(false);
+        setCheckYes(true);
       }
     }
   }, [informationForm]);
@@ -193,94 +204,97 @@ function AllEdit({
           // _handle_send_info_scope({ name: data.name ? data.name : "بدون نام" })
         )}
       >
-        <>
-          <Explain
-            text="
+        {checkNO && (
+          <>
+            <>
+              <Explain
+                text="
               آیا میخواید محصولات انتخاب شده به صورت رایگان ارسال شود؟
 
             "
-          />
-          <CheckBoxSend
-            checked={checkNoFree}
-            onChange={() => {
-              !checkNoFree
-                ? (setCheckNoFree(true),
-                  setValue("edit_minPrice", 0),
-                  setCheckYesFree(false))
-                : (setCheckNoFree(false), setCheckYesFree(true));
-            }}
-            id="selectNoFree"
-            title="خیر"
-          />
-          <CheckBoxSend
-            checked={checkYesFree}
-            onChange={() =>
-              !checkYesFree
-                ? (setCheckYesFree(true),
-                  setCheckNoFree(false),
-                  setValue("edit_minPrice", 0))
-                : (setCheckYesFree(false), setCheckNoFree(true))
-            }
-            id="selectYesFree"
-            title="بله"
-          />
+              />
+              <CheckBoxSend
+                checked={checkNoFree}
+                onChange={() => {
+                  !checkNoFree
+                    ? (setCheckNoFree(true),
+                      setValue("edit_minPrice", 0),
+                      setCheckYesFree(false))
+                    : (setCheckNoFree(false), setCheckYesFree(true));
+                }}
+                id="selectNoFree"
+                title="خیر"
+              />
+              <CheckBoxSend
+                checked={checkYesFree}
+                onChange={() =>
+                  !checkYesFree
+                    ? (setCheckYesFree(true),
+                      setCheckNoFree(false),
+                      setValue("edit_minPrice", 0))
+                    : (setCheckYesFree(false), setCheckNoFree(true))
+                }
+                id="selectYesFree"
+                title="بله"
+              />
 
-          {checkYesFree && (
-            <>
-              <InputUseForm
-                title="حداقل سفارش برای رایگان شدن ارسال"
-                error={errors.edit_minPrice}
-                text="تومان"
-              >
-                <input
-                  onWheel={(event) => {
-                    event.currentTarget.blur();
-                  }}
-                  type="number"
-                  placeholder="۲۵,۰۰۰"
-                  {...register("edit_minPrice")}
-                />
-              </InputUseForm>
+              {checkYesFree && (
+                <>
+                  <InputUseForm
+                    title="حداقل سفارش برای رایگان شدن ارسال"
+                    error={errors.edit_minPrice}
+                    text="تومان"
+                  >
+                    <input
+                      onWheel={(event) => {
+                        event.currentTarget.blur();
+                      }}
+                      type="number"
+                      placeholder="۲۵,۰۰۰"
+                      {...register("edit_minPrice")}
+                    />
+                  </InputUseForm>
+                </>
+              )}
             </>
-          )}
-        </>
-        {/* five */}
+            {/* five */}
 
-        <Explain text="" />
+            <Explain text="" />
 
-        {!checkYesFree && (
-          <>
-            <InputUseForm
-              title="هزینه پست به ازای هر واحد"
-              error={errors.edit_price_per_kg}
-              text="تومان"
-            >
-              <input
-                onWheel={(event) => {
-                  event.currentTarget.blur();
-                }}
-                type="number"
-                {...register("edit_price_per_kg")}
-              />
-            </InputUseForm>
+            {!checkYesFree && (
+              <>
+                <InputUseForm
+                  title="هزینه پست به ازای هر واحد"
+                  error={errors.edit_price_per_kg}
+                  text="تومان"
+                >
+                  <input
+                    onWheel={(event) => {
+                      event.currentTarget.blur();
+                    }}
+                    type="number"
+                    {...register("edit_price_per_kg")}
+                  />
+                </InputUseForm>
 
-            <InputUseForm
-              title="هزینه پست به ازای هر واحد اضافه تر"
-              error={errors.edit_price_per_extra_kg}
-              text="تومان"
-            >
-              <input
-                onWheel={(event) => {
-                  event.currentTarget.blur();
-                }}
-                type="number"
-                {...register("edit_price_per_extra_kg")}
-              />
-            </InputUseForm>
+                <InputUseForm
+                  title="هزینه پست به ازای هر واحد اضافه تر"
+                  error={errors.edit_price_per_extra_kg}
+                  text="تومان"
+                >
+                  <input
+                    onWheel={(event) => {
+                      event.currentTarget.blur();
+                    }}
+                    type="number"
+                    {...register("edit_price_per_extra_kg")}
+                  />
+                </InputUseForm>
+              </>
+            )}
+            {/* six */}
           </>
         )}
-        {/* six */}
-
         <InputUseForm title="عنوان روش ارسال" error={errors.name}>
           <input {...register("edit_name")} />
         </InputUseForm>
