@@ -24,7 +24,7 @@ const icons = [
 const CUSTOMER = "cust";
 const SHOP = "shop";
 const AT_DELIVERY = "at_delivery";
-const WHEN_BUYING = "when_byuing";
+const WHEN_BUYING = "when_buying";
 function AllEdit({
   checkedSelectAllProducts,
   upPage,
@@ -35,7 +35,6 @@ function AllEdit({
   _handle_update_data_scope,
   wichIdScope,
 }) {
-  
   const [checkNO, setCheckNO] = useState(true);
   const [checkYes, setCheckYes] = useState(false);
   const [checkNoFree, setCheckNoFree] = useState(true);
@@ -67,7 +66,6 @@ function AllEdit({
     );
 
     if (response.status == 200) {
-      
       setEditProductsShop(response.data.products);
       setEditCheckedCities(response.data.cities);
       if (response.data.products.length > 1) {
