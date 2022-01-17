@@ -78,6 +78,10 @@ function AllEdit({
         informationForm.calculation_metric.price_per_extra_kilogram
       );
       setValue("edit_minPrice", informationForm.constraint.min_cart_price);
+      if (informationForm.calculation_metric.payer == "shop") {
+        setCheckYesFree(true);
+        setCheckNoFree(false);
+      }
     }
   }, [informationForm]);
 
@@ -200,7 +204,9 @@ function AllEdit({
             checked={checkNoFree}
             onChange={() => {
               !checkNoFree
-                ? (setCheckNoFree(true), setCheckYesFree(false))
+                ? (setCheckNoFree(true),
+                  setValue("edit_minPrice", 0),
+                  setCheckYesFree(false))
                 : (setCheckNoFree(false), setCheckYesFree(true));
             }}
             id="selectNoFree"
@@ -210,7 +216,9 @@ function AllEdit({
             checked={checkYesFree}
             onChange={() =>
               !checkYesFree
-                ? (setCheckYesFree(true), setCheckNoFree(false))
+                ? (setCheckYesFree(true),
+                  setCheckNoFree(false),
+                  setValue("edit_minPrice", 0))
                 : (setCheckYesFree(false), setCheckNoFree(true))
             }
             id="selectYesFree"
@@ -240,38 +248,37 @@ function AllEdit({
 
         <Explain text="" />
 
-        {/* <InputUseForm title="نام روش" error={errors.name}>
-                <input {...register("name")} />
-              </InputUseForm> */}
+        {!checkYesFree && (
+          <>
+            <InputUseForm
+              title="هزینه پست به ازای هر واحد"
+              error={errors.edit_price_per_kg}
+              text="تومان"
+            >
+              <input
+                onWheel={(event) => {
+                  event.currentTarget.blur();
+                }}
+                type="number"
+                {...register("edit_price_per_kg")}
+              />
+            </InputUseForm>
 
-        <InputUseForm
-          title="هزینه پست به ازای هر واحد"
-          error={errors.edit_price_per_kg}
-          text="تومان"
-        >
-          <input
-            onWheel={(event) => {
-              event.currentTarget.blur();
-            }}
-            type="number"
-            {...register("edit_price_per_kg")}
-          />
-        </InputUseForm>
-
-        <InputUseForm
-          title="هزینه پست به ازای هر واحد اضافه تر"
-          error={errors.edit_price_per_extra_kg}
-          text="تومان"
-        >
-          <input
-            onWheel={(event) => {
-              event.currentTarget.blur();
-            }}
-            type="number"
-            {...register("edit_price_per_extra_kg")}
-          />
-        </InputUseForm>
-
+            <InputUseForm
+              title="هزینه پست به ازای هر واحد اضافه تر"
+              error={errors.edit_price_per_extra_kg}
+              text="تومان"
+            >
+              <input
+                onWheel={(event) => {
+                  event.currentTarget.blur();
+                }}
+                type="number"
+                {...register("edit_price_per_extra_kg")}
+              />
+            </InputUseForm>
+          </>
+        )}
         {/* six */}
 
         <InputUseForm title="عنوان روش ارسال" error={errors.name}>
