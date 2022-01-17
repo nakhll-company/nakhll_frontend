@@ -22,14 +22,14 @@ const icons = [
   { src: "/icons/settings/plus.svg" },
 ];
 function AllEdit({
-  checkedCities,
-  setCheckedCities,
   checkedSelectAllProducts,
   upPage,
   downPage,
   constraintId,
   informationForm,
   _handle_send_info_scope,
+  _handle_update_data_scope,
+  wichIdScope,
 }) {
   console.log(`informationForm`, informationForm);
   const [checkNO, setCheckNO] = useState(true);
@@ -37,7 +37,9 @@ function AllEdit({
   const [checkNoFree, setCheckNoFree] = useState(true);
   const [checkYesFree, setCheckYesFree] = useState(false);
   const [editCheckedCities, setEditCheckedCities] = useState([]);
-
+  const [editProductsShop, setEditProductsShop] = useState([]);
+  const [editcheckedSelectAllProducts, setEditcheckedSelectAllProducts] =
+    useState(true);
   const {
     setValue,
     getValues,
@@ -62,8 +64,11 @@ function AllEdit({
 
     if (response.status == 200) {
       console.log(`response.data`, response.data);
-      // setProductsShop(response.data.products);
+      setEditProductsShop(response.data.products);
       setEditCheckedCities(response.data.cities);
+      if (response.data.products.length > 1) {
+        setEditcheckedSelectAllProducts(false);
+      }
     }
   };
   // set data in form
@@ -131,19 +136,20 @@ function AllEdit({
       <Explain text="" />
 
       <CheckBoxSend
-        checked={checkedSelectAllProducts}
-        onChange={() => setCheckedSelectAllProducts(!checkedSelectAllProducts)}
+        checked={editcheckedSelectAllProducts}
+        onChange={() =>
+          setEditcheckedSelectAllProducts(!editcheckedSelectAllProducts)
+        }
         id="selectAllProducts"
         title="تمام محصولات"
       />
 
-      {!checkedSelectAllProducts && (
+      {!editcheckedSelectAllProducts && (
         <Products
-          constraintId={constraintId}
-          ProductsShop={ProductsShop}
-          setProductsShop={setProductsShop}
-          changePage={upPage}
-          wichIdScope={wichIdScope}
+          _handle_update_data_scope={_handle_update_data_scope}
+          move={false}
+          ProductsShop={editProductsShop}
+          title="ثبت محصولات"
         />
       )}
 

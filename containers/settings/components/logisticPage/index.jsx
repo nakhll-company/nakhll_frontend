@@ -6,7 +6,7 @@ import LoadingAllPage from "../../../../components/loadingAllPage";
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 import InputUseForm from "../../../creat/component/inputUseForm";
 import TextAreaUseForm from "../../../creat/component/textAreaUseForm";
-import { errorMessage } from "../../../utils/message";
+import { errorMessage, successMessage } from "../../../utils/message";
 import ActiveSendBox from "./components/ActiveSendBox";
 import BtnSetting from "./components/btnSetting";
 import CheckBoxSend from "./components/checkBoxSend";
@@ -106,12 +106,10 @@ function LogisticPage() {
     }
   };
 
-  const _handle_update_data_scope = async () => {
+  const _handle_update_data_scope = async (data, page = 0, move = true) => {
     setLoader(true);
     let response = await ApiRegister().apiRequest(
-      {
-        cities: checkedCities.length > 0 ? checkedCities : [],
-      },
+      data,
       "PATCH",
       `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
       true,
@@ -119,8 +117,11 @@ function LogisticPage() {
     );
 
     if (response.status == 200) {
-      upPage();
+      if (move) {
+        upPage();
+      }
       setLoader(false);
+      successMessage("محصولات با موفقیت ثبت شد.");
     } else {
       setLoader(false);
 
@@ -166,7 +167,25 @@ function LogisticPage() {
     );
     upPage();
   };
+  const _handel_get_all_data_scope = async () => {
+    let response = await ApiRegister().apiRequest(
+      null,
+      "get",
+      `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
+      true,
+      ""
+    );
 
+    if (response.status == 200) {
+      setProductsShop(response.data.products);
+    }
+  };
+
+  useEffect(() => {
+    if (constraintId !== "") {
+      _handel_get_all_data_scope();
+    }
+  }, [constraintId]);
   return (
     <>
       {loader && <LoadingAllPage title="در حال به روز رسانی ..." />}
@@ -210,7 +229,14 @@ function LogisticPage() {
               setCheckedCity={setCheckedCities}
             />
 
-            <BtnSetting onClick={_handle_update_data_scope} title="مرحله بعد" />
+            <BtnSetting
+              onClick={() =>
+                _handle_update_data_scope({
+                  cities: checkedCities.length > 0 ? checkedCities : [],
+                })
+              }
+              title="مرحله بعد"
+            />
           </>
         )}
         {wichPage == 3 && (
@@ -236,11 +262,8 @@ function LogisticPage() {
 
             {!checkedSelectAllProducts && (
               <Products
-                constraintId={constraintId}
+                _handle_update_data_scope={_handle_update_data_scope}
                 ProductsShop={ProductsShop}
-                setProductsShop={setProductsShop}
-                changePage={upPage}
-                wichIdScope={wichIdScope}
               />
             )}
           </>
@@ -342,13 +365,13 @@ function LogisticPage() {
           <>
             <AllEdit
               constraintId={constraintId}
-              checkedCities={checkedCities}
-              setCheckedCities={setCheckedCities}
+              _handle_update_data_scope={_handle_update_data_scope}
               checkedSelectAllProducts={checkedSelectAllProducts}
               upPage={upPage}
               downPage={downPage}
               informationForm={informationForm}
               _handle_send_info_scope={_handle_send_info_scope}
+              wichIdScope={wichIdScope}
             />
           </>
         )}
