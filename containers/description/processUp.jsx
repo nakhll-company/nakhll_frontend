@@ -23,7 +23,7 @@ const ProcessUp = ({ title, description, image, last }) => {
                 {width > breakpoint ?
                     last !== "last" && <Image src="/image/description/process_up.svg" alt="" width={842} height={172} />
                     :
-                    <Image src="/image/description/process_left.svg" width="340" height="340px" alt="" />
+                    <Image src="/image/description/process_left.svg" width="340" height="340px" alt="" className={styles.mobile_image_process} />
                 }
             </div>
         </div>

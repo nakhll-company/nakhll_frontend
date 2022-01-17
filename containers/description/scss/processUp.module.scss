@@ -54,6 +54,9 @@
         right: 30%;
         width: 700px;
         height: 172px;
+        .mobile_image_process{
+            position: absolute;
+        }
         @media screen and (max-width: 1000px) {
             width: 340px;
             height: 340px;

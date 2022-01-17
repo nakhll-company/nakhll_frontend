@@ -1,7 +1,7 @@
 // node libraries
 import Image from "next/image";
 // components
-import ShopLayout from "../../components/shopLayout";
+import EmptyLayout from "../../components/layout/EmptyLayout";
 import Video from "../../containers/description/video";
 import ProcessUp from "../../containers/description/processUp";
 import ProcessDown from "../../containers/description/processDown";
@@ -57,4 +57,5 @@ function Description() {
 }
 // export
 export default Description;
-Description.Layout = ShopLayout;
+
+Description.Layout = EmptyLayout;

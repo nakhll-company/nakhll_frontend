@@ -23,7 +23,7 @@ const ProcessDown = ({ title, description, image }) => {
                 {width > breakpoint ?
                     <Image src="/image/description/process_down.svg" alt="" width={842} height={172} />
                     :
-                    <Image src="/image/description/process_right.svg" width="340" height="340px" alt="" />
+                    <Image src="/image/description/process_right.svg" width="340" height="340px" alt="" className={styles.mobile_image_process} />
                 }
             </div>
         </div>
