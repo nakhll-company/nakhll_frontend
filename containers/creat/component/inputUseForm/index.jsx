@@ -1,7 +1,6 @@
 import styles from "./inputUseForm.module.scss";
 
 function InputUseForm({ title, extraTitle, text, error, children }) {
-
   return (
     <>
       <div className={styles.input_setting}>

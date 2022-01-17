@@ -10,6 +10,7 @@ export const CustomAccordionSend = ({
   logistic_units,
   callApi,
   logistic_price,
+  unit_type,
 }) => {
   const [allMiniPic, setAllMiniPic] = useState(Object.values(logistic_units));
   const _handel_according = (accord, icon, images) => {
@@ -113,7 +114,9 @@ export const CustomAccordionSend = ({
             </div>
             <div className="">
               <span style={{ color: "#224E82", fontWeight: "bold" }}>
-                {logistic_price == 0 ? (
+                {unit_type == "pad" ? (
+                  "پسکرایه"
+                ) : logistic_price == 0 ? (
                   "رایگان"
                 ) : (
                   <>
