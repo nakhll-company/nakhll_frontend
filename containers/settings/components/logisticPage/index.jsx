@@ -86,23 +86,29 @@ function LogisticPage() {
   // function for Create Shop Logistic Unit Constraint
 
   const _handle_add_new_scope = async () => {
-    let response = await ApiRegister().apiRequest(
-      {
-        shop: activeHojreh,
-        name: "بدون نام",
-      },
-      "post",
-      `/api/v1/logistic/shop-logistic-unit/`,
-      true,
-      ""
-    );
+    try {
+      let response = await ApiRegister().apiRequest(
+        {
+          shop: activeHojreh,
+          name: "بدون نام",
+        },
+        "post",
+        `/api/v1/logistic/shop-logistic-unit/`,
+        true,
+        ""
+      );
 
-    if (response.status == 201) {
-      setWichIdScope(response.data.id);
-      setInformationForm(response.data);
-      setConstraintId(response.data.constraint.id);
-      setMetricId(response.data.calculation_metric.id);
-      upPage();
+      if (response.status == 201) {
+        setWichIdScope(response.data.id);
+        setInformationForm(response.data);
+        setConstraintId(response.data.constraint.id);
+        setMetricId(response.data.calculation_metric.id);
+        upPage();
+      } else {
+        setWichPage(13);
+      }
+    } catch (error) {
+      setWichPage(13);
     }
   };
 
@@ -121,7 +127,7 @@ function LogisticPage() {
         upPage();
       }
       setLoader(false);
-      successMessage("محصولات با موفقیت ثبت شد.");
+      successMessage("محصولات بارگذاری شد.");
     } else {
       setLoader(false);
 
@@ -355,11 +361,7 @@ function LogisticPage() {
           </>
         )}
 
-        {wichPage == 8 && (
-          <>
-            <ResultOperation pageController={upPage} />
-          </>
-        )}
+        {wichPage == 8 && <ResultOperation pageController={upPage} />}
 
         {wichPage == 9 && (
           <>
@@ -374,6 +376,9 @@ function LogisticPage() {
               wichIdScope={wichIdScope}
             />
           </>
+        )}
+        {wichPage == 13 && (
+          <ResultOperation type="error" pageController={upPage} />
         )}
       </div>
     </>
