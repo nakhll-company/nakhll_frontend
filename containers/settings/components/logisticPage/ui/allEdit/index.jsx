@@ -72,9 +72,6 @@ function AllEdit({
       console.log(`response.data`, response.data);
       setEditProductsShop(response.data.products);
       setEditCheckedCities(response.data.cities);
-      if (response.data.products.length > 1) {
-        setEditcheckedSelectAllProducts(false);
-      }
     }
   };
 
@@ -123,6 +120,9 @@ function AllEdit({
         setCheckYes(true);
       }
       setIdselectedIcon(informationForm.logo_type);
+      if (informationForm.products_count >= 1) {
+        setEditcheckedSelectAllProducts(false);
+      }
     }
   }, [informationForm]);
 
