@@ -13,12 +13,13 @@ import SoRent from "../../ui/soRent";
 import { useEffect, useState } from "react";
 import { ApiRegister } from "../../../../../../services/apiRegister/ApiRegister";
 import st from "./allEdit.module.scss";
+import diviedNumber from "../../../../../../utils/diviedNumber";
 const ICONS = [
   { src: "/icons/settings/pishtaz.svg", id: 1 },
   { src: "/icons/settings/sefareshi.svg", id: 2 },
-  { src: "/icons/settings/free.svg", id: 3 },
+  { src: "/icons/settings/peik.svg", id: 3 },
   { src: "/icons/settings/pasKeraieh.svg", id: 4 },
-  { src: "/icons/settings/peik.svg", id: 5 },
+  { src: "/icons/settings/free.svg", id: 5 },
   // { src: "/icons/settings/plus.svg", id: 6 },
 ];
 const CUSTOMER = "cust";
@@ -94,6 +95,7 @@ function AllEdit({
   // set data in form
   useEffect(() => {
     if (Object.keys(informationForm).length > 0) {
+      console.log(`informationForm`, informationForm);
       setValue("edit_name", informationForm.name);
       setValue(
         "edit_price_per_kg",
@@ -103,6 +105,7 @@ function AllEdit({
         "edit_price_per_extra_kg",
         informationForm.calculation_metric.price_per_extra_kilogram
       );
+
       setValue("edit_minPrice", informationForm.constraint.min_cart_price);
       // when send is free
       if (informationForm.calculation_metric.payer == SHOP) {
@@ -119,6 +122,7 @@ function AllEdit({
         setCheckNO(false);
         setCheckYes(true);
       }
+      setIdselectedIcon(informationForm.logo_type);
     }
   }, [informationForm]);
 
@@ -217,6 +221,7 @@ function AllEdit({
             _handle_send_info_scope(
               {
                 name: data.edit_name ? data.edit_name : "بدون نام",
+                logo_type: idselectedIcon,
                 calculation_metric: {
                   price_per_kilogram: data.edit_price_per_kg
                     ? data.edit_price_per_kg

@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import Image from "next/image";
 import InputUseForm from "../../../../../creat/component/inputUseForm";
 import BtnSetting from "../../components/btnSetting";
@@ -7,9 +8,9 @@ import st from "./selectIcon.module.scss";
 const ICONS = [
   { src: "/icons/settings/pishtaz.svg", id: 1 },
   { src: "/icons/settings/sefareshi.svg", id: 2 },
-  { src: "/icons/settings/free.svg", id: 3 },
+  { src: "/icons/settings/peik.svg", id: 3 },
   { src: "/icons/settings/pasKeraieh.svg", id: 4 },
-  { src: "/icons/settings/peik.svg", id: 5 },
+  { src: "/icons/settings/free.svg", id: 5 },
   // { src: "/icons/settings/plus.svg", id: 6 },
 ];
 
@@ -33,7 +34,10 @@ function SelectIcon({ pageController, _handle_send_info_scope }) {
       {/* name: data.name ? data.name : "بدون نام" */}
       <form
         onSubmit={handleSubmit((data) =>
-          _handle_send_info_scope({ name: data.name ? data.name : "بدون نام" })
+          _handle_send_info_scope({
+            name: data.name ? data.name : "بدون نام",
+            logo_type: idselectedIcon,
+          })
         )}
       >
         <InputUseForm title="عنوان روش ارسال" error={errors.name}>
