@@ -199,6 +199,13 @@ function LogisticPage() {
     }
   };
 
+  const reset_states = () => {
+    setWitchUnit("kg");
+    setMin_cart_price(0);
+    setPayer("cust");
+    setPay_time("when_buying");
+  };
+
   useEffect(() => {
     if (constraintId !== "") {
       _handel_get_all_data_scope();
@@ -393,7 +400,7 @@ function LogisticPage() {
           </>
         )}
 
-        {wichPage == 8 && <ResultOperation pageController={upPage} />}
+        {wichPage == 8 && <ResultOperation reset_states={reset_states} pageController={upPage} />}
 
         {wichPage == 9 && (
           <>

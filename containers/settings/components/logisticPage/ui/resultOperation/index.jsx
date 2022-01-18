@@ -1,9 +1,10 @@
 import Image from "next/image";
 import { useEffect } from "react";
 import st from "./resultOperation.module.scss";
-function ResultOperation({ pageController, type = "success" }) {
+function ResultOperation({ pageController, type = "success", reset_states }) {
   useEffect(() => {
     setTimeout(() => {
+      reset_states();
       pageController(1, 1);
     }, 2000);
   }, []);
