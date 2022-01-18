@@ -13,13 +13,13 @@ import SoRent from "../../ui/soRent";
 import { useEffect, useState } from "react";
 import { ApiRegister } from "../../../../../../services/apiRegister/ApiRegister";
 import st from "./allEdit.module.scss";
-const icons = [
-  { src: "/icons/settings/pishtaz.svg" },
-  { src: "/icons/settings/sefareshi.svg" },
-  { src: "/icons/settings/free.svg" },
-  { src: "/icons/settings/pasKeraieh.svg" },
-  { src: "/icons/settings/peik.svg" },
-  { src: "/icons/settings/plus.svg" },
+const ICONS = [
+  { src: "/icons/settings/pishtaz.svg", id: 1 },
+  { src: "/icons/settings/sefareshi.svg", id: 2 },
+  { src: "/icons/settings/free.svg", id: 3 },
+  { src: "/icons/settings/pasKeraieh.svg", id: 4 },
+  { src: "/icons/settings/peik.svg", id: 5 },
+  // { src: "/icons/settings/plus.svg", id: 6 },
 ];
 const CUSTOMER = "cust";
 const SHOP = "shop";
@@ -43,6 +43,8 @@ function AllEdit({
   const [editProductsShop, setEditProductsShop] = useState([]);
   const [editcheckedSelectAllProducts, setEditcheckedSelectAllProducts] =
     useState(true);
+
+  const [idselectedIcon, setIdselectedIcon] = useState(1);
   const {
     setValue,
     getValues,
@@ -66,6 +68,7 @@ function AllEdit({
     );
 
     if (response.status == 200) {
+      console.log(`response.data`, response.data);
       setEditProductsShop(response.data.products);
       setEditCheckedCities(response.data.cities);
       if (response.data.products.length > 1) {
@@ -339,9 +342,20 @@ function AllEdit({
           <span>لوگو روش ارسال</span>
         </div>
         {/* icones */}
+
         <div className={st.warpperIcons}>
-          {icons.map((icon, index) => (
-            <div key={index} className={st.wrappIcon}>
+          {ICONS.map((icon, index) => (
+            <div
+              key={index}
+              className={st.wrappIcon}
+              style={{
+                backgroundColor:
+                  icon.id == idselectedIcon
+                    ? "#D09600"
+                    : "rgba(34, 78, 130, 0.1)",
+              }}
+              onClick={() => setIdselectedIcon(icon.id)}
+            >
               <Image
                 src={icon.src}
                 layout="fixed"
@@ -352,6 +366,7 @@ function AllEdit({
             </div>
           ))}
         </div>
+
         <BtnSetting type="submit" title="ثبت" />
       </form>
     </>
