@@ -96,14 +96,14 @@ function AllEdit({
       setValue("edit_name", informationForm.name);
       setValue(
         "edit_price_per_kg",
-        informationForm.calculation_metric.price_per_kilogram
+        informationForm.calculation_metric.price_per_kilogram / 10
       );
       setValue(
         "edit_price_per_extra_kg",
-        informationForm.calculation_metric.price_per_extra_kilogram
+        informationForm.calculation_metric.price_per_extra_kilogram / 10
       );
 
-      setValue("edit_minPrice", informationForm.constraint.min_cart_price);
+      setValue("edit_minPrice", informationForm.constraint.min_cart_price / 10);
       // when send is free
       if (informationForm.calculation_metric.payer == SHOP) {
         setCheckYesFree(true);
@@ -120,9 +120,9 @@ function AllEdit({
         setCheckYes(true);
       }
       setIdselectedIcon(informationForm.logo_type);
-      if (informationForm.products_count >= 1) {
-        setEditcheckedSelectAllProducts(false);
-      }
+      // if (informationForm.products_count >= 1) {
+      //   setEditcheckedSelectAllProducts(false);
+      // }
     }
   }, [informationForm]);
 
@@ -138,6 +138,20 @@ function AllEdit({
       setCheckNoFree(true);
     }
   }, [checkYes]);
+  const [witchUnit, setWitchUnit] = useState("kg");
+
+  const unitConverter = (num) => {
+    // aaaaaaaaaa
+    if (witchUnit == "gr") {
+      return num * 1000;
+    }
+    if (witchUnit == "kg") {
+      return num;
+    }
+    if (witchUnit == "ton") {
+      return num / 1000;
+    }
+  };
 
   return (
     <>
@@ -224,10 +238,10 @@ function AllEdit({
                 logo_type: idselectedIcon,
                 calculation_metric: {
                   price_per_kilogram: data.edit_price_per_kg
-                    ? data.edit_price_per_kg
+                    ? unitConverter(data.edit_price_per_kg) * 10
                     : 0,
                   price_per_extra_kilogram: data.edit_price_per_extra_kg
-                    ? data.edit_price_per_extra_kg
+                    ? unitConverter(data.edit_price_per_extra_kg) * 10
                     : 0,
 
                   payer: checkYesFree ? SHOP : CUSTOMER,
@@ -235,7 +249,7 @@ function AllEdit({
                 },
                 constraint: {
                   min_cart_price:
-                    data.edit_minPrice != "" ? data.edit_minPrice : 0,
+                    data.edit_minPrice != "" ? data.edit_minPrice * 10 : 0,
                 },
               },
               8
@@ -244,6 +258,11 @@ function AllEdit({
             _update_cities({
               cities: editCheckedCities.length > 0 ? editCheckedCities : [],
             });
+            if (editcheckedSelectAllProducts) {
+              _update_cities({
+                products: [],
+              });
+            }
           }
           // _handle_send_info_scope({ name: data.name ? data.name : "بدون نام" })
         )}
@@ -307,19 +326,39 @@ function AllEdit({
 
             {!checkYesFree && (
               <>
-                <InputUseForm
-                  title="هزینه پست به ازای هر واحد"
-                  error={errors.edit_price_per_kg}
-                  text="تومان"
-                >
-                  <input
-                    onWheel={(event) => {
-                      event.currentTarget.blur();
-                    }}
-                    type="number"
-                    {...register("edit_price_per_kg")}
-                  />
-                </InputUseForm>
+                {/* iiiiiii */}
+                <div style={{ position: "relative" }}>
+                  <div className={st.wrap_select}>
+                    <select
+                      id="select-unit"
+                      onChange={(a) => {
+                        console.log(`a.target.value`, a.target.value);
+                        setWitchUnit(a.target.value);
+                        // setselectShop(a.target.value);
+                        // setSlugHojreh(a.target.value);
+                        // getActiveHojreh(a.target.value);
+                        // ForHeader(a);
+                      }}
+                    >
+                      <option value="kg">کیلوگرم</option>
+                      <option value="gr">گرم</option>
+                      <option value="ton">تن</option>
+                    </select>
+                  </div>
+                  <InputUseForm
+                    title="هزینه پست به ازای هر واحد"
+                    error={errors.edit_price_per_kg}
+                    text="تومان"
+                  >
+                    <input
+                      onWheel={(event) => {
+                        event.currentTarget.blur();
+                      }}
+                      type="number"
+                      {...register("edit_price_per_kg")}
+                    />
+                  </InputUseForm>
+                </div>
 
                 <InputUseForm
                   title="هزینه پست به ازای هر واحد اضافه تر"

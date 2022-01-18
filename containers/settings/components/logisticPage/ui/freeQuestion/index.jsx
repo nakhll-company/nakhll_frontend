@@ -69,7 +69,8 @@ function FreeQuestion({
               _handle_send_info_scope(
                 {
                   constraint: {
-                    min_cart_price: data.minPrice != "" ? data.minPrice : 0,
+                    min_cart_price:
+                      data.minPrice != "" ? data.minPrice * 10 : 0,
                   },
                   calculation_metric: {
                     payer: "shop",

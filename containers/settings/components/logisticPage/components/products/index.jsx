@@ -84,8 +84,6 @@ function Products({
     setSearchedProduct(paginateFront(ProductsShop, currentPage, perPage));
   }, [currentPage]);
 
-  useEffect(() => {}, [currentPage, searchedProduct]);
-
   return (
     <>
       <Search

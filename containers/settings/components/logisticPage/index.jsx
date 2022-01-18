@@ -61,7 +61,20 @@ function LogisticPage() {
 
   const [metricId, setMetricId] = useState("");
   const [informationForm, setInformationForm] = useState({});
+  const [witchUnit, setWitchUnit] = useState("kg");
 
+  const unitConverter = (num) => {
+    // aaaaaaaaaa
+    if (witchUnit == "gr") {
+      return num * 1000;
+    }
+    if (witchUnit == "kg") {
+      return num;
+    }
+    if (witchUnit == "ton") {
+      return num / 1000;
+    }
+  };
   // for checkbox
   const [checkedSelectAllProducts, setCheckedSelectAllProducts] =
     useState(true);
@@ -138,7 +151,6 @@ function LogisticPage() {
   // functoin for send data for price per kg
 
   const _handle_send_info_scope = async (data, page = 0) => {
-    
     let response = await ApiRegister().apiRequest(
       data,
       "PATCH",
@@ -310,28 +322,48 @@ function LogisticPage() {
                 _handle_send_info_scope({
                   calculation_metric: {
                     price_per_kilogram: data.price_per_kg
-                      ? data.price_per_kg
+                      ? unitConverter(data.price_per_kg) * 10
                       : 0,
                     price_per_extra_kilogram: data.price_per_extra_kg
-                      ? data.price_per_extra_kg
+                      ? unitConverter(data.price_per_extra_kg) * 10
                       : 0,
                   },
                 })
               )}
             >
-              <InputUseForm
-                title="هزینه پست به ازای هر واحد"
-                error={errors.price_per_kg}
-                text="تومان"
-              >
-                <input
-                  onWheel={(event) => {
-                    event.currentTarget.blur();
-                  }}
-                  type="number"
-                  {...register("price_per_kg")}
-                />
-              </InputUseForm>
+              {/* iiiiiii */}
+              <div style={{ position: "relative" }}>
+                <div className={st.wrap_select}>
+                  <select
+                    id="select-unit"
+                    onChange={(a) => {
+                      console.log(`a.target.value`, a.target.value);
+                      setWitchUnit(a.target.value);
+                      // setselectShop(a.target.value);
+                      // setSlugHojreh(a.target.value);
+                      // getActiveHojreh(a.target.value);
+                      // ForHeader(a);
+                    }}
+                  >
+                    <option value="kg">کیلوگرم</option>
+                    <option value="gr">گرم</option>
+                    <option value="ton">تن</option>
+                  </select>
+                </div>
+                <InputUseForm
+                  title="هزینه پست به ازای هر واحد"
+                  error={errors.price_per_kg}
+                  text="تومان"
+                >
+                  <input
+                    onWheel={(event) => {
+                      event.currentTarget.blur();
+                    }}
+                    type="number"
+                    {...register("price_per_kg")}
+                  />
+                </InputUseForm>
+              </div>
 
               <InputUseForm
                 title="هزینه پست به ازای هر واحد اضافه تر"
