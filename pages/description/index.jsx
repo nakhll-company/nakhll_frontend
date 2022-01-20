@@ -1,15 +1,22 @@
 // node libraries
 import Link from "next/link";
 import Image from "next/image";
+import { useSelector } from "react-redux";
 // components
 import Video from "../../containers/description/video";
-import EmptyLayout from "../../components/layout/EmptyLayout";
+import ShopLayout from "../../components/shopLayout";
 import ProcessUp from "../../containers/description/processUp";
 import ProcessDown from "../../containers/description/processDown";
 // scss
 import styles from "./description.module.scss";
 
 function Description() {
+
+
+  const userLogin = useSelector((state) => state.User);
+
+  console.log(">>>", userLogin);
+
   return (
     <div className={styles.wrapper}>
       <header className={styles.header}>
@@ -49,12 +56,12 @@ function Description() {
           سوالات متداول و ببینه یا زنگ بزنه پشتیبانی
         </p>
         <div className={styles.wrapper_button}>
-          <Link href="">
+          <Link href={Object.keys(userLogin).length > 0 ? "/fp/store/create/" : "/login"}>
             <a className={styles.button_solid}>
               حجره خودتو بساز
             </a>
           </Link>
-          <Link href="">
+          <Link href="https://nakhll.com/blog/">
             <a className={styles.button_empty}>
               سوالات متداول
             </a>
@@ -67,4 +74,4 @@ function Description() {
 // export
 export default Description;
 
-Description.Layout = EmptyLayout;
+Description.Layout = ShopLayout;

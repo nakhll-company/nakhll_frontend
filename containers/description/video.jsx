@@ -1,17 +1,23 @@
 // node libraries
 import Link from "next/link";
 import Script from "next/script";
+import { useSelector } from "react-redux";
 // scss
 import styles from "./scss/video.module.scss";
 
 function Video() {
+
+  const userLogin = useSelector((state) => state.User.userInfo);
+
+  console.log(">>>", userLogin);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.wrapper_text}>
         <h1>بازار اجتماعی نخل</h1>
         <p>یک بستر آنلاین برای <b> رشد کسب و کارهای کوچک </b> </p>
         <p>جهت <b> فروش اینترنتی </b> است.</p>
-        <Link href="/fp">
+        <Link href={Object.keys(userLogin).length > 0 ? "/fp/store/create/" : "/login"}>
           <a className={styles.button}>
             حجره خودتو بساز
           </a>

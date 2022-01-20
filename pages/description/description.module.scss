@@ -74,6 +74,9 @@
             }
             // button solid
             .button_solid{
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 width: 210px;
                 height: 39px;
                 left: 728px;
@@ -90,6 +93,9 @@
             }
             // button empty
             .button_empty{
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 width: 210px;
                 height: 39px;
                 left: 502px;
