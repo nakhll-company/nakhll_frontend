@@ -1,4 +1,5 @@
 // node libraries
+import Link from "next/link";
 import Script from "next/script";
 // scss
 import styles from "./scss/video.module.scss";
@@ -10,7 +11,11 @@ function Video() {
         <h1>بازار اجتماعی نخل</h1>
         <p>یک بستر آنلاین برای <b> رشد کسب و کارهای کوچک </b> </p>
         <p>جهت <b> فروش اینترنتی </b> است.</p>
-        <button>حجره خودتو بساز</button>
+        <Link href="/fp">
+          <a className={styles.button}>
+            حجره خودتو بساز
+          </a>
+        </Link>
       </div>
       <div className={styles.video}>
         <div id="70341046536" className={styles.video}>

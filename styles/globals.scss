@@ -21,24 +21,14 @@
 /* ./styles/globals.css */
 
 @font-face {
-    font-family: "IRANSansB";
-    src: url("../public/assets/fonts/Shabnam.eot");
-    /* IE9 Compat Modes */
-    src: url("../public/assets/fonts/Shabnam.eot") format("embedded-opentype"), /* IE6-IE8 */
-    url("../public/assets/fonts/Shabnam.woff2") format("woff2"), /* Super Modern Browsers */
-    url("../public/assets/fonts/Shabnam.woff") format("woff"), /* Pretty Modern Browsers */
-    url("../public/assets/fonts/Shabnam.ttf") format("truetype");
-    /* Safari, Android, iOS */
-    /*url('webfont.svg#svgFontName') format('svg'); !* Legacy iOS *!*/
-}
-// Cart Page
-// @import "../styles/pages/cart/cart.module.scss";
-@font-face {
-    font-family: "vazir";
-    src: url("../public/assets/fonts/Vazir.eot") format("eot"), url("../public/assets/fonts/Vazir.woff") format("woff"), url("../public/assets/fonts/Vazir.woff2") format("woff2"), url("../public/assets/fonts/Vazir.ttf") format("ttf");
+    font-family: "bakh";
+    src: url("../public/assets/fonts/Yekan\ Bakh\ Fa-En\ 04\ Regular.eot") format("eot"), /* IE6-IE8 */
+    url("../public/assets/fonts/Yekan\ Bakh\ Fa-En\ 04\ Regular.woff") format("woff"), /* Super Modern Browsers */
+    url("../public/assets/fonts/Yekan\ Bakh\ Fa-En\ 04\ Regular.ttf") format("ttf");
     font-style: normal;
     font-display: fallback;
 }
+
 :root {
     --background1: #e5e5e5;
     --background2: #ffffff;
@@ -58,7 +48,7 @@ html, body {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: "IRANSansB" !important;
+    font-family: "bakh" !important;
     direction: rtl;
     background-color: #f8f8f8;
     text-align: right;

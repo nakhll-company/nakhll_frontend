@@ -1,8 +1,9 @@
 // node libraries
+import Link from "next/link";
 import Image from "next/image";
 // components
-import EmptyLayout from "../../components/layout/EmptyLayout";
 import Video from "../../containers/description/video";
+import EmptyLayout from "../../components/layout/EmptyLayout";
 import ProcessUp from "../../containers/description/processUp";
 import ProcessDown from "../../containers/description/processDown";
 // scss
@@ -48,8 +49,16 @@ function Description() {
           سوالات متداول و ببینه یا زنگ بزنه پشتیبانی
         </p>
         <div className={styles.wrapper_button}>
-          <button type="button" className={styles.button_solid}>حجره خودتو بساز</button>
-          <button type="button" className={styles.button_empty}>سوالات متداول</button>
+          <Link href="">
+            <a className={styles.button_solid}>
+              حجره خودتو بساز
+            </a>
+          </Link>
+          <Link href="">
+            <a className={styles.button_empty}>
+              سوالات متداول
+            </a>
+          </Link>
         </div>
       </footer>
     </div>

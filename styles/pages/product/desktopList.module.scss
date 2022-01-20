@@ -2,7 +2,7 @@
 .wrapper{
     display: flex;
     flex-direction: column;
-    font-family: 'vazir';
+    font-family: 'bakh';
     grid-column: 1/-1;
     grid-row: 1/-1;
     // form
@@ -55,13 +55,13 @@
             }
             // placeholder
             .filds_input::placeholder{
-                font-family: 'vazir';
+                font-family: 'bakh';
                 color: #A4AEBB;
                 font-size: 13px;
             }
             // placeholder
             .filds_input::-moz-placeholder{
-                font-family: 'vazir';
+                font-family: 'bakh';
                 color: #A4AEBB;
                 font-size: 13px;
             }
@@ -78,7 +78,7 @@
                 text-align: center;
                 border: none;
                 outline: none;
-                font-family: 'vazir';
+                font-family: 'bakh';
                 width: 15%;
                 margin: 0px 10px;
             }
@@ -92,7 +92,7 @@
                 border: 1px solid #007AFF;
                 color: #007AFF;
                 background-color: #fff;
-                font-family: 'vazir';
+                font-family: 'bakh';
             }
         }
     }
@@ -131,7 +131,7 @@
                 color: #fff;
                 border: none;
                 outline: none;
-                font-family: 'vazir';
+                font-family: 'bakh';
                 margin: 0px 20px;
             }
             // button add group
@@ -147,7 +147,7 @@
                 color: #fff;
                 border: none;
                 outline: none;
-                font-family: 'vazir';
+                font-family: 'bakh';
                 margin: 0px 10px;
                 a:hover{
                     color: #fff;

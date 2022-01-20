@@ -50,7 +50,7 @@ export const LoadingDelet = () => {
             border-radius: 0px 0px 15px 15px;
             box-shadow: 0px 0px 15px 1px rgba(214, 48, 49, 0.6);
             position: relative;
-            font-family: "Montserrat", sans-serif;
+            font-family: "bakh",Montserrat", sans-serif;
           }
 
           button:after {
