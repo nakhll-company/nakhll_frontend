@@ -8,10 +8,9 @@ import { paginateFront } from "../../../../../../utils/paginateFrontSide";
 
 function Products({
   ProductsShop,
-  setProductsShop,
-  changePage,
-  wichIdScope,
-  constraintId,
+  _handle_update_data_scope,
+  move = true,
+  title = "مرحله بعد",
 }) {
   const [productList, setProductList] = useState(ProductsShop);
   const [searchedProduct, setSearchedProduct] = useState(ProductsShop);
@@ -72,28 +71,18 @@ function Products({
     arraySelectedCities.map((el) => {
       arrayForSend.push(el.ID);
     });
-
-    let response = await ApiRegister().apiRequest(
+    _handle_update_data_scope(
       {
         products: arrayForSend.length > 0 ? arrayForSend : [],
       },
-      "PATCH",
-      `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
-      true,
-      ""
+      0,
+      move
     );
-    changePage();
-    // console.log(`response`, response);
-    // if (response.status == 200) {
-    //   // changePage();
-    // }
   };
 
   useEffect(() => {
     setSearchedProduct(paginateFront(ProductsShop, currentPage, perPage));
   }, [currentPage]);
-
-  useEffect(() => {}, [currentPage, searchedProduct]);
 
   return (
     <>
@@ -183,7 +172,7 @@ function Products({
         </div>
       ))}
 
-      <BtnSetting onClick={_handel_send_selected_cities} title="مرحله بعد" />
+      <BtnSetting onClick={_handel_send_selected_cities} title={title} />
     </>
   );
 }

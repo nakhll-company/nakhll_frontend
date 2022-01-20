@@ -179,11 +179,13 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
     }
   };
 
-  // ############################################
-
-  // END THREE
-
-  // ###########################################
+  //  if checked cities isnot emety select checkbox select cities
+  useEffect(() => {
+    if (checkedCity && checkedCity.length > 1) {
+      setShowModal(true);
+      setIsCheckedAllCities(false);
+    }
+  }, [checkedCity]);
   return (
     <>
       <TitleLiner title=" محدوده ارسال" />
@@ -280,7 +282,6 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
                 }}
                 onExpand={(e) => {
                   setExpandCity(e);
-                  
                 }}
               />
             </div>

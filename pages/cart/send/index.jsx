@@ -1,4 +1,3 @@
-
 import { useRouter } from "next/router";
 import Loading from "../../../components/loading";
 import Image from "next/image";
@@ -31,7 +30,8 @@ function Send() {
     );
     let data = response.data;
     if (response.status === 200) {
-      setListItems(response.data.logistic_unit_details);
+      
+      setListItems(response.data.logistic_unit_details.logistic_units);
       setInvoice(response.data);
     }
   };
@@ -47,7 +47,7 @@ function Send() {
             crossOrigin="anonymous"
           />
         </Head>
-        
+
         {false ? (
           <div className={`col-12 col-lg-5 py-5 my-2 ${st.wrapper}`}>
             <Loading />
@@ -82,6 +82,7 @@ function Send() {
                   item={`Send_${index}_acor`}
                   close={true}
                   logistic_price={el.price}
+                  unit_type={el.unit_type}
                   logistic_units={el.logistic_units}
                 >
                   {Object.values(el.logistic_units).map((ef) => (
@@ -92,7 +93,7 @@ function Send() {
                           <span
                             style={{ color: "#224E82", fontWeight: "bold" }}
                           >
-                            {ef.name}
+                            {ef.unit_name}
                           </span>
                         </div>
                         <div className={st.liner}></div>

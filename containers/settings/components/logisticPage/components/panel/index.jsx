@@ -13,9 +13,11 @@ function Panel({
   setConstraintId,
   setMetricId,
   setWichIdScope,
-  changePage,
+
   setInformationForm,
+  setWichPage,
 }) {
+  
   const activeHojreh = useSelector((state) => state.User.activeHojreh);
   // state for Saved Sending Unit
   const [SavedSendingUnit, setSavedSendingUnit] = useState([]);
@@ -67,7 +69,7 @@ function Panel({
     setWichIdScope(data.id);
     setConstraintId(data.constraint.id);
     setMetricId(data.calculation_metric.id);
-    changePage();
+    setWichPage(9);
   };
 
   return (
