@@ -5,18 +5,17 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-
 // components
 import useViewport from "../../components/viewPort";
 import Oredrs from "../../containers/profile/orders";
+import ShopLayout from "../../components/shopLayout";
 import EditProfile from "../../containers/profile/editProfile";
-import FavoritesList from "../../containers/profile/favoritesList";
 import OrderDetail from "../../containers/profile/ordersDetail";
+import FavoritesList from "../../containers/profile/favoritesList";
 // methods
 import { getUserData } from "../../containers/profile/methods/getUserData";
 // scss
 import styles from "./profile.module.scss";
-import ShopLayout from "../../components/shopLayout";
 /**
  * component profile
  */

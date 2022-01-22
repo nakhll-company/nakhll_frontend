@@ -66,6 +66,10 @@ export async function getCroppedImg(imageSrc, pixelCrop, rotation = 0) {
         Math.round(0 - safeArea / 2 + image.height * 0.5 - pixelCrop.y)
     );
 
+    const options = {
+        maxSizeMB: 10,
+    }
+
     // As Base64 string
     await imageCompression
         .getFilefromDataUrl(canvas.toDataURL("image/png"))

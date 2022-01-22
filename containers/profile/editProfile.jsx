@@ -1,17 +1,17 @@
 // node libraries
+import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
-
 // methods
 import { Day, Months, Year } from "../../utils/staticDate";
 import { getStates } from "./methods/getStates";
 import { getBigCities } from "./methods/getBigCities";
 import { getCities } from "./methods/getCities";
 import { updatUserProfile } from "./methods/updateUserProfile";
+// components
+import InputPictureSetting from "../settings/components/InputPicture";
 // scss
 import styles from "./scss/editProfile.module.scss";
-import InputPictureSetting from "../settings/components/InputPicture";
-import Image from "next/image";
 /**
  * edit profile
  */
@@ -25,13 +25,15 @@ const EditProfile = ({ dataProfile }) => {
   let [selectState, setSelectState] = useState([]);
   let [selectBigCities, setSelectBigCities] = useState([]);
   let [selectCities, setSelectCities] = useState([]);
-  const [imgProfile, setImgProfile] = useState(null);
+  const [imgProfile, setImgProfile] = useState(dataProfile.image ? dataProfile.image : null);
 
-  useEffect(() => {
-    if (dataProfile.Image) {
-      setImgProfile(dataProfile.Image);
-    }
-  }, [dataProfile]);
+  console.log(">>>>", dataProfile.image);
+
+  // useEffect(() => {
+  //   if (dataProfile.Image) {
+  //     setImgProfile(dataProfile.Image);
+  //   }
+  // }, [dataProfile]);
 
   const onSubmit = async (data) => {
     if (imgProfile.startsWith("data:image")) {
@@ -53,9 +55,12 @@ const EditProfile = ({ dataProfile }) => {
     updatUserProfile(data);
   };
 
-  useEffect(async () => {
-    // state
-    setSelectState(await getStates());
+  useEffect(() => {
+    async function fetchData() {
+      // state
+      setSelectState(await getStates());
+    }
+    fetchData();
   }, []);
 
   return (
@@ -63,18 +68,28 @@ const EditProfile = ({ dataProfile }) => {
       <div className="d-flex justify-content-center mt-3">
         <div className={styles.wrap_all}>
           <div className={styles.Parent_imageProfile}>
-            <Image
-              src={imgProfile ? imgProfile : "/icons/iconpro.png"}
-              width={120}
-              height={120}
-              alt=""
-            ></Image>
+            {imgProfile ?
+              <Image
+                src={imgProfile ? imgProfile : "/icons/iconpro.png"}
+                width={120}
+                height={120}
+                alt=""
+              />
+              :
+              <Image
+                src={dataProfile.image ? dataProfile.image : "/icons/iconpro.png"}
+                width={120}
+                height={120}
+                alt=""
+              />
+            }
+
           </div>
           <div className={styles.btnProfile}>
             <InputPictureSetting
               setImageSrc={setImgProfile}
               image={imgProfile}
-              ratio={1}
+            // ratio={1}
             />
           </div>
         </div>
