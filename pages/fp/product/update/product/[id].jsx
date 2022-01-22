@@ -30,57 +30,8 @@ import PictureChildProduct from "../../../../../containers/creat/component/pictu
  * page update product
  * @param {string} activeHojreh => it has slug name
  */
+const _asist = new Assistent();
 const UpdateProduct = ({ activeHojreh }) => {
-  const router = useRouter();
-  const { id } = router.query;
-  const _asist = new Assistent();
-  // get edit date
-
-  useEffect(async () => {
-    if (id) {
-      let params = null;
-      let loadData = null;
-      let dataUrl = `/api/v1/shop/${activeHojreh}/products/${id}/`;
-      let response = await ApiRegister().apiRequest(
-        loadData,
-        "get",
-        dataUrl,
-        true,
-        params
-      );
-
-      if (response.status === 200) {
-        let Data = response.data;
-
-        setValue("Title", Data.Title);
-        setImgProduct(Data.Image);
-
-        setValue("OldPrice", Data.Price / 10);
-        setWordOldPrice(_asist.word(Data.Price / 10));
-        setprecentOldPrice(Data.Price / 10);
-        setValue("Price", Data.OldPrice / 10);
-        setWordPrice(_asist.word(Data.OldPrice / 10));
-        setPrecentPrice(Data.OldPrice / 10);
-        setValue("Inventory", Data.Inventory);
-        setValue("Net_Weight", Data.Net_Weight);
-        setValue("Weight_With_Packing", Data.Weight_With_Packing);
-        setValue("Description", Data.Description);
-        setValue("PreparationDays", Data.PreparationDays);
-        setCheckedCities(Data.post_range_cities);
-        setPlaceholderSubmarckets(Data.new_category);
-        setSubmarketId(Data.new_category.id);
-        // images
-        setImgProductOne(Data.Product_Banner[0]?.Image);
-        setImgProductTwo(Data.Product_Banner[1]?.Image);
-        setImgProductThree(Data.Product_Banner[2]?.Image);
-        setImgProductFour(Data.Product_Banner[3]?.Image);
-        setImgProductFive(Data.Product_Banner[4]?.Image);
-        setImgProductSix(Data.Product_Banner[5]?.Image);
-        setProduct_Banner(Data.Product_Banner);
-      }
-    }
-  }, [id]);
-
   // useform
   const {
     setValue,
@@ -94,6 +45,69 @@ const UpdateProduct = ({ activeHojreh }) => {
     criteriaMode: "all",
     mode: "all",
   });
+  const router = useRouter();
+  const { id } = router.query;
+  // get edit date
+
+  useEffect(() => {
+    async function fetchData() {
+      if (id) {
+        let params = null;
+        let loadData = null;
+        let dataUrl = `/api/v1/shop/${activeHojreh}/products/${id}/`;
+        let response = await ApiRegister().apiRequest(
+          loadData,
+          "get",
+          dataUrl,
+          true,
+          params
+        );
+
+        if (response.status === 200) {
+          let Data = response.data;
+
+          setValue("Title", Data.Title);
+          setImgProduct(Data.Image);
+          if (Data.OldPrice === 0) {
+            setValue("Price", Data.Price / 10);
+            setValue("OldPrice", Data.OldPrice / 10);
+            setWordOldPrice(_asist.word(Data.OldPrice / 10));
+            setprecentOldPrice(Data.OldPrice / 10);
+            setWordPrice(_asist.word(Data.Price / 10));
+            setPrecentPrice(Data.Price / 10);
+          } else {
+            setValue("OldPrice", Data.Price / 10);
+            setValue("Price", Data.OldPrice / 10);
+            setWordOldPrice(_asist.word(Data.Price / 10));
+            setprecentOldPrice(Data.Price / 10);
+            setWordPrice(_asist.word(Data.OldPrice / 10));
+            setPrecentPrice(Data.OldPrice / 10);
+          }
+
+          setValue("Inventory", Data.Inventory);
+          setValue("Net_Weight", Data.Net_Weight);
+          setValue("Weight_With_Packing", Data.Weight_With_Packing);
+          setValue("Description", Data.Description);
+          setValue("PreparationDays", Data.PreparationDays);
+          setCheckedCities(Data.post_range_cities);
+          setPlaceholderSubmarckets(Data.new_category);
+          setSubmarketId(Data.new_category.id);
+          // images
+          setImgProductOne(Data.Product_Banner[0]?.Image);
+          setImgProductTwo(Data.Product_Banner[1]?.Image);
+          setImgProductThree(Data.Product_Banner[2]?.Image);
+          setImgProductFour(Data.Product_Banner[3]?.Image);
+          setImgProductFive(Data.Product_Banner[4]?.Image);
+          setImgProductSix(Data.Product_Banner[5]?.Image);
+          setProduct_Banner(Data.Product_Banner);
+        }
+      }
+    }
+    fetchData();
+
+  }, [id, activeHojreh, setValue]);
+
+
 
   const onSubmit = async (data) => {
     setisLoadingUpdate(true);
@@ -170,14 +184,18 @@ const UpdateProduct = ({ activeHojreh }) => {
   const [precentPrice, setPrecentPrice] = useState(0);
   const [precentOldPrice, setprecentOldPrice] = useState(0);
   // use effect
-  useEffect(async () => {
-    const response_categories = await _ApiGetCategories();
+  useEffect(() => {
+    async function fetchData() {
+      const response_categories = await _ApiGetCategories();
 
-    if (response_categories.status === 200) {
-      setIsLoad(true);
-      setData(response_categories.data); //==> output: {}
-      setCategories(response_categories.data);
+      if (response_categories.status === 200) {
+        setIsLoad(true);
+        setData(response_categories.data); //==> output: {}
+        setCategories(response_categories.data);
+      }
     }
+    fetchData();
+
   }, [activeHojreh]);
 
   // select Submarket
@@ -279,6 +297,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                         layout="responsive"
                         height={100}
                         width={100}
+                        alt=""
                       />
                     ) : (
                       <Image
@@ -286,6 +305,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                         layout="responsive"
                         height={100}
                         width={100}
+                        alt=""
                       />
                     )}
                   </div>

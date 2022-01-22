@@ -76,14 +76,18 @@ const CreateProduct = ({ activeHojreh }) => {
   const [precentOldPrice, setprecentOldPrice] = useState(0);
 
   // use effect
-  useEffect(async () => {
-    const response_categories = await _ApiGetCategories();
+  useEffect(() => {
+    async function fetchData() {
+      const response_categories = await _ApiGetCategories();
 
-    if (response_categories.status === 200) {
-      setIsLoad(true);
-      setData(response_categories.data); //==> output: {}
-      setCategories(response_categories.data);
+      if (response_categories.status === 200) {
+        setIsLoad(true);
+        setData(response_categories.data); //==> output: {}
+        setCategories(response_categories.data);
+      }
     }
+    fetchData();
+
   }, [activeHojreh]);
 
   // select Submarket
