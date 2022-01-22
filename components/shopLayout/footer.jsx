@@ -10,6 +10,8 @@ import styles from "../../styles/components/shopLayout/footer.module.scss";
 const _asist = new Assistent();
 
 const Footer = () => {
+
+  const router = useRouter();
   const userData = useSelector((state) => state.User.userInfo);
 
   const _handel_according = (accord, icon) => {
@@ -24,7 +26,6 @@ const Footer = () => {
     }
   };
 
-  const router = useRouter();
   return (
     <>
       {!router.pathname.startsWith("/cart") && (
@@ -78,7 +79,6 @@ const Footer = () => {
                         target="_blank"
                         rel="noreferrer"
                         aria-label="آپارات بازار اجتماعی نخل"
-                        rel="noreferrer"
                       >
                         <Image
                           src="/icons/footer/aparat.png"
@@ -121,7 +121,7 @@ const Footer = () => {
                       </a>
                     </div> */}
                     <div>
-                      <Link href="/profile">
+                      <Link href={Object.keys(userData).length > 0 ? "/profile" : "/login"}>
                         <a className={styles.footer_items}>پیگیری سفارشات</a>
                       </Link>
                     </div>
@@ -145,11 +145,8 @@ const Footer = () => {
                     <div>
                       <Link
                         href={
-                          userData &&
-                          userData.shops &&
-                          userData.shops.length > 0
-                            ? "/fp"
-                            : "/fp/store/create"
+                          Object.keys(userData).length > 0 ? (userData.shops && userData.shops.length > 0) ? "/fp" : "/fp/store/create"
+                            : "/login"
                         }
                       >
                         <a className={styles.footer_items}>مدیریت حجره</a>
@@ -372,7 +369,7 @@ const Footer = () => {
                     </a>
                   </div> */}
                   <div>
-                    <Link href="/profile">
+                    <Link href={Object.keys(userData).length > 0 ? "/profile" : "/login"}>
                       <a className={styles.footer_items}>پیگیری سفارشات</a>
                     </Link>
                   </div>
@@ -447,9 +444,8 @@ const Footer = () => {
                   <div>
                     <Link
                       href={
-                        userData && userData.shops && userData.shops.length > 0
-                          ? "/fp"
-                          : "/fp/store/create"
+                        Object.keys(userData).length > 0 ? (userData.shops && userData.shops.length > 0) ? "/fp" : "/fp/store/create"
+                          : "/login"
                       }
                     >
                       <a className={styles.footer_items}>مدیریت حجره</a>
@@ -490,7 +486,6 @@ const Footer = () => {
                     target="_blank"
                     rel="noreferrer"
                     aria-label="آپارات بازار اجتماعی نخل"
-                    rel="noreferrer"
                   >
                     <Image
                       src="/icons/footer/aparat.png"
@@ -498,7 +493,6 @@ const Footer = () => {
                       alt="آپارات"
                       width={200}
                       height={200}
-                      alt="آپارات"
                     />
                   </a>
                   <a
@@ -506,7 +500,6 @@ const Footer = () => {
                     target="_blank"
                     rel="noreferrer"
                     aria-label="اینستاگرام"
-                    rel="noreferrer"
                     style={{ fontSize: "30px", display: "flex" }}
                   >
                     <i className="fab fa-instagram"></i>
