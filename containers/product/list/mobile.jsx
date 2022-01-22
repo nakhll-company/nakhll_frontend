@@ -3,16 +3,17 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 // components
+import Sort from "../sort";
+import Edit from "../edit";
+import Footer from "./desktopFooter";
+import MobileHeader from "../../../components/mobileHeader";
 import CustomBadge from "../../../components/custom/customBadge";
 import CustomLabel from "../../../components/custom/customLabel";
 import CustomModal from "../../../components/custom/customModal";
-import MobileHeader from "../../../components/mobileHeader";
-import Sort from "../sort";
-import Edit from "../edit";
 // styles
 import styles from "../../../styles/pages/product/mobileList.module.scss";
 
-const MobileList = ({ loading, productList, activeHojreh }) => {
+const MobileList = ({ loading, productList, activeHojreh, getProduct }) => {
     let [showModalSort, setShowModalSort] = useState(false);
     let [showModalEdit, setShowModalEdit] = useState(false);
 
@@ -47,7 +48,7 @@ const MobileList = ({ loading, productList, activeHojreh }) => {
             ) : productList.results && productList.results.length > 0 ? (
                 productList.results.map((value, index) => {
                     return (
-                        <Link href={`/fp/product/update/product/${value.ID}`} key={index}>
+                        <Link href={`/fp/product/update/product/${value.ID}`} key={index} passHref>
                             <div className={`${styles.product_card}`}>
                                 <div className={styles.first_row}>
                                     <div className={styles.product_name_wrapper}>
@@ -92,6 +93,11 @@ const MobileList = ({ loading, productList, activeHojreh }) => {
                     موردی برای نمایش وجود ندارد
                 </h3>
             )}
+            <Footer
+                productList={productList}
+                getProduct={getProduct}
+                activeHojreh={activeHojreh}
+            />
             <CustomModal
                 show={showModalSort}
                 onClose={() => {

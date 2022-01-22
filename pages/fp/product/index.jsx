@@ -31,7 +31,7 @@ const Product = ({ getProduct, productList, activeHojreh, userInfo }) => {
   return (
     <>
       {width < breakpoint ?
-        <Mobile loading={loading} productList={productList} activeHojreh={activeHojreh} userInfo={userInfo} /> :
+        <Mobile loading={loading} productList={productList} activeHojreh={activeHojreh} getProduct={getProduct} userInfo={userInfo} /> :
         <Desktop loading={loading} productList={productList} activeHojreh={activeHojreh} getProduct={getProduct} userInfo={userInfo} />}
     </>
   );

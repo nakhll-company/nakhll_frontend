@@ -16,8 +16,11 @@ const FavoritesList = () => {
   async function fetch() {
     await getFavoritesList(setList, setLoading);
   }
-  useEffect(async () => {
-    await fetch();
+  useEffect(() => {
+    async function fetchData() {
+      await fetch();
+    }
+    fetchData();
   }, []);
   return (
     <div className={styles.main}>
@@ -37,7 +40,7 @@ const FavoritesList = () => {
                   product={{
                     id: value.id,
                     imageUrl: value.image_thumbnail_url,
-                    url: `/shop/${value.shop.slug}/product/${value.slug}`,
+                    url: `/shop/${value.FK_Shop.slug}/product/${value.slug}`,
                     title: value.title,
                     chamberTitle: value.shop.title,
                     chamberUrl: `/shop/${value.shop.slug}`,

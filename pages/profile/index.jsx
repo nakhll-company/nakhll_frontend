@@ -158,14 +158,6 @@ const Profile = () => {
                 <i className="far fa-bookmark ms-2"></i>
                 لیست علاقمندی ها
               </li>
-              <li className="d-flex align-items-center mb-3">
-                <i className="fas fa-wallet ms-2"></i>
-                موجودی
-                <span className="mx-3">
-                  {Object.keys(dataProfile).length > 0 &&
-                    `${dataProfile.wallet} تومان`}
-                </span>
-              </li>
             </ul>
           </div>
           {width < breakpoint && (
