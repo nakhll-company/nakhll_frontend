@@ -251,35 +251,8 @@ const ProductDetailMobile = ({ data }) => {
                     label="سایز"
                   />
                 )}
-                {detail.attributes.length > 0 &&
-                  detail.attributes.map((value, index) => {
-                    return (
-                      <div key={index}>
-                        <CustomLabel
-                          type="normal"
-                          value={_asist.PSeparator(value.value)}
-                          label={
-                            value.FK_Attribute && value.FK_Attribute.title
-                              ? value.FK_Attribute.title
-                              : ""
-                          }
-                        />
-                      </div>
-                    );
-                  })}
               </div>
             </section>
-            {/* <div className="mt-4">
-              <h2 className={styles.product_section_title}>قیمت محصول</h2>
-              <div className="d-flex align-items-center">
-                <h4 className="ms-4" style={{ color: "#224D82" }}>
-                  {_asist.PSeparator(detail.price / 10)} تومان
-                </h4>
-                <del style={{ fontSize: "1.25rem" }}>
-                  {_asist.PSeparator(detail.old_price / 10)} تومان
-                </del>
-              </div>
-            </div> */}
             <div>
               <div>
                 <h2 className={`${styles.product_section_title} mt-4`}>

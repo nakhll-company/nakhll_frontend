@@ -437,22 +437,6 @@ const ProductDetailDesktop = ({ data }) => {
                     label="سایز"
                   />
                 )}
-                {detail.attributes.length > 0 &&
-                  detail.attributes.map((value, index) => {
-                    return (
-                      <div key={index}>
-                        <CustomLabel
-                          type="normal"
-                          value={_asist.PSeparator(value.value)}
-                          label={
-                            value.FK_Attribute && value.FK_Attribute.title
-                              ? value.FK_Attribute.title
-                              : ""
-                          }
-                        />
-                      </div>
-                    );
-                  })}
               </div>
             </section>
             <div>
