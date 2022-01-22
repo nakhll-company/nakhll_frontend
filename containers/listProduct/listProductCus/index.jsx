@@ -102,7 +102,7 @@ function ListProductCus({ data }) {
       if (response.status === 200) {
         setCategories(response.data);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   const _handel_Add_category = (id) => {
@@ -205,7 +205,7 @@ function ListProductCus({ data }) {
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
   // Get all shops
   const _get_all_shops = async () => {
@@ -549,7 +549,6 @@ function ListProductCus({ data }) {
                     setIsAvailableGoods(e.target.checked);
                   }}
                 /> */}
-
                 <CustomSwitch
                   defaultChecked={data.ready == "true" ? true : false}
                   title="آماده ارسال"
@@ -582,6 +581,30 @@ function ListProductCus({ data }) {
                 /> */}
               </div>
             </div>
+            <CustomAccordion title="جست و جو براساس حجره" item="searchShop">
+              <Search
+                onClick={_get_all_shops}
+                onChange={(e) => _handel_search(e.target.value)}
+              />
+              {searchShops.length > 0 && (
+                <div className={styles.numBag}>
+                  <span> {_asist.PSeparator(searchShops.length)}</span>
+                  حجره
+                </div>
+              )}
+              {searchShops.map((el, index) => (
+                <div
+                  key={index}
+                  className={styles.itemHojreh}
+                  onClick={() => {
+                    setHojreh(el.slug);
+                    setSearchWord("");
+                  }}
+                >
+                  {el.title}
+                </div>
+              ))}
+            </CustomAccordion>
             <CustomAccordion title="محدوده قیمت" item="2mobile">
               <div style={{ direction: "ltr" }}>
                 <MultiRangeSlider
