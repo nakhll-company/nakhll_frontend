@@ -27,8 +27,6 @@ const EditProfile = ({ dataProfile }) => {
   let [selectCities, setSelectCities] = useState([]);
   const [imgProfile, setImgProfile] = useState(dataProfile.image ? dataProfile.image : null);
 
-  console.log(">>>>", dataProfile.image);
-
   // useEffect(() => {
   //   if (dataProfile.Image) {
   //     setImgProfile(dataProfile.Image);

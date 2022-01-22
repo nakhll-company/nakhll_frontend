@@ -7,7 +7,7 @@ import Explain from "../../components/explain";
 import HeaderTitle from "../../components/headerTitle";
 
 function SoRent({ pageController, setPay_time, _handle_send_info_scope }) {
-  console.log(`Ren`, "SoRent");
+
   const [checkNO, setCheckNO] = useState(true);
   const [checkYes, setCheckYes] = useState(false);
   useEffect(() => {
@@ -48,11 +48,11 @@ function SoRent({ pageController, setPay_time, _handle_send_info_scope }) {
           checkNO
             ? pageController()
             : _handle_send_info_scope(
-                {
-                  calculation_metric: { pay_time: "at_delivery" },
-                },
-                7
-              );
+              {
+                calculation_metric: { pay_time: "at_delivery" },
+              },
+              7
+            );
         }}
         title="مرحله بعد"
       />

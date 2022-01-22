@@ -15,8 +15,6 @@ function Description() {
 
   const userLogin = useSelector((state) => state.User);
 
-  console.log(">>>", userLogin);
-
   return (
     <div className={styles.wrapper}>
       <header className={styles.header}>

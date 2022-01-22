@@ -344,7 +344,6 @@ function LogisticPage() {
                   <select
                     id="select-unit"
                     onChange={(a) => {
-                      console.log(`a.target.value`, a.target.value);
                       setWitchUnit(a.target.value);
                       // setselectShop(a.target.value);
                       // setSlugHojreh(a.target.value);

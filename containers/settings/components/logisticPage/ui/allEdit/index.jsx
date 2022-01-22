@@ -69,7 +69,6 @@ function AllEdit({
     );
 
     if (response.status == 200) {
-      console.log(`response.data`, response.data);
       setEditProductsShop(response.data.products);
       setEditCheckedCities(response.data.cities);
     }
@@ -92,7 +91,6 @@ function AllEdit({
   // set data in form
   useEffect(() => {
     if (Object.keys(informationForm).length > 0) {
-      console.log(`informationForm`, informationForm);
       setValue("edit_name", informationForm.name);
       setValue(
         "edit_price_per_kg",
@@ -332,7 +330,6 @@ function AllEdit({
                     <select
                       id="select-unit"
                       onChange={(a) => {
-                        console.log(`a.target.value`, a.target.value);
                         setWitchUnit(a.target.value);
                         // setselectShop(a.target.value);
                         // setSlugHojreh(a.target.value);

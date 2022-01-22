@@ -9,8 +9,6 @@ function Video() {
 
   const userLogin = useSelector((state) => state.User.userInfo);
 
-  console.log(">>>", userLogin);
-
   return (
     <div className={styles.wrapper}>
       <div className={styles.wrapper_text}>
