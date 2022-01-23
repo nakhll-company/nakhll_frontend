@@ -40,7 +40,7 @@ const FilterProduct = ({ getProduct, activeHojreh }) => {
                         let product_status = document.querySelector('input[type=radio]:checked').value;
                         let search = document.querySelector('#search').value;
                         getProduct(activeHojreh, product_status, filterData.price_from, filterData.price_to, filterData.inventory_from, filterData.inventory_to, "", search);
-                        router.back();
+                        router.push("/fp/product?filter=true");
                     }}>
                         <div className={styles.form_card}>
                             <div className={styles.form_status}>

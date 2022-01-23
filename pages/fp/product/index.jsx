@@ -1,11 +1,10 @@
 // next libraries
 import { connect } from "react-redux";
-import { useEffect } from "react";
-// node libraries
-import { useState } from 'react';
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 // components
-import MyLayout from "../../../components/layout/Layout";
 import useViewport from "../../../components/viewPort";
+import MyLayout from "../../../components/layout/Layout";
 import Mobile from "../../../containers/product/list/mobile";
 import Desktop from "../../../containers/product/list/desktop";
 // methods
@@ -14,19 +13,20 @@ import { mapState } from "../../../containers/product/methods/mapState";
 
 
 const Product = ({ getProduct, productList, activeHojreh, userInfo }) => {
-  let [loading, setLoading] = useState(false);
 
-  const { width } = useViewport();
   const breakpoint = 620;
+  const router = useRouter();
+  const { width } = useViewport();
+  let [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function getData() {
       await setLoading(true);
-      activeHojreh && await getProduct(activeHojreh);
+      activeHojreh && !router.query.filter && await getProduct(activeHojreh);
       await setLoading(false);
     }
     getData();
-  }, [getProduct, activeHojreh]);
+  }, [getProduct, activeHojreh, router.query.filter]);
 
   return (
     <>
