@@ -14,7 +14,7 @@ const _asist = new Assistent();
 const OrdersLandingMobile = ({ id, ordersData }) => {
     return (
         <div>
-            <MobileHeader type="search" title="فرودها" />
+            <MobileHeader type="back" title="فرودها" />
             <div className={styles.wrapper_cart}>
                 <div className={styles.wrapper_links}>
                     <Link href={`/fp/options/landing/${id}`}>

@@ -22,7 +22,7 @@ const MobileLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
     const router = useRouter();
     return (
         <div>
-            <MobileHeader type="search" title="فرودها" />
+            <MobileHeader type="back" title="فرودها" />
             <div className={styles.wrapper_cart}>
                 <div className={styles.wrapper_links}>
                     <span className={styles.link_add} onClick={async () => {

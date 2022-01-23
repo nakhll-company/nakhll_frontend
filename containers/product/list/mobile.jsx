@@ -19,7 +19,7 @@ const MobileList = ({ loading, productList, activeHojreh, getProduct }) => {
 
     return (
         <div className={styles.wrapper}>
-            <MobileHeader title="لیست محصولات" type="search" />
+            <MobileHeader title="لیست محصولات" type="search" linkSearch="/fp/product/filter" />
             <div className={styles.product_header}>
                 <Link href={`/fp/product/filter`}>
                     <a className={styles.product_header_link}>
