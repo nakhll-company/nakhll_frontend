@@ -9,6 +9,7 @@ function General(props) {
 
   useEffect(() => {
     hotjar.initialize(2655206, 6);
+    TagManager.initialize({ gtmId: "GTM-MNQT35X" });
   }, []);
   useEffect(() => {
     const handleRouteChange = (url) => {
@@ -19,9 +20,6 @@ function General(props) {
       router.events.off("routeChangeComplete", handleRouteChange);
     };
   }, [router.events]);
-  useEffect(() => {
-    TagManager.initialize({ gtmId: "GTM-MNQT35X" });
-  }, []);
 
   return (
     <>
