@@ -89,9 +89,12 @@ const ProductDetailDesktop = ({ data }) => {
     setPosts((post) => [...post, ...moreProduct.data.results]);
   };
 
-  useEffect(async () => {
-    getMoreProduct();
-    fetchProductShop();
+  useEffect(() => {
+    async function fetchData() {
+      getMoreProduct();
+      fetchProductShop();
+    }
+    fetchData();
   }, []);
 
   return (
@@ -277,7 +280,7 @@ const ProductDetailDesktop = ({ data }) => {
               </div>
             </div>
           </div>
-          <div className="col-lg-8 pe-lg-4">
+          <div className="col-lg-8 pe-lg-4 mx-5">
             <h1 className={styles.product_detail_title}>{detail.title}</h1>
             <div
               className="mb-4"
