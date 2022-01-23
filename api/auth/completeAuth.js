@@ -13,6 +13,10 @@ export async function completeAuth(data) {
             return false;
         }
     } catch (error) {
+        ga('send', 'exception', {
+            'exDescription': error.message,
+            'exFatal': false
+        });
         errorMessage("خطایی رخ داده است");
         return false;
     }
