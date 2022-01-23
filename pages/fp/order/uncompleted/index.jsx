@@ -33,7 +33,7 @@ function Uncompleted({ ordersList, activeHojreh, getUncompleted }) {
         <>
             {width < breakpoint ?
                 <div>
-                    <MobileHeader title="سفارشات تکمیل نشده" type="search" />
+                    <MobileHeader title="سفارشات تکمیل نشده" type="back" />
                     <div style={{ display: "flex", justifyContent: "flex-end" }}>
                         <Link href="/fp/order/completed">
                             <a style={{

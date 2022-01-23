@@ -71,7 +71,7 @@ function NewStore({ getUserInfo, userInfo }) {
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      {width < breakpoint && <MobileHeader title="ثبت حجره" type="close" />}
+      {width < breakpoint && <MobileHeader title="ثبت حجره" type="back" />}
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.form_right}>
           {Object.keys(userInfo).length > 0 && Object.keys(userInfo.user).length > 0 && userInfo.user.first_name.length === 0 && userInfo.user.last_name.length === 0 &&

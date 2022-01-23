@@ -10,7 +10,8 @@ import styles from '../../styles/components/mobileHeader/mobileHeader.module.scs
  */
 function MobileHeader({
     title,
-    type
+    type,
+    linkSearch
 }) {
     const router = useRouter();
     return (
@@ -23,7 +24,9 @@ function MobileHeader({
             }
             <span className={styles.header_span}>{title}</span>
             {type === "search" &&
-                <Image src="/search.svg" alt="header icon" width="18" height="18" />
+                <Image src="/search.svg" alt="header icon" width="18" height="18"
+                    onClick={() => router.push(linkSearch)}
+                />
                 // <i className="fa fa-search" aria-hidden="true"></i>
             }
             {type === "close" &&
