@@ -90,9 +90,12 @@ const ProductDetailMobile = ({ data }) => {
     setPosts((post) => [...post, ...moreProduct.data.results]);
   };
 
-  useEffect(async () => {
-    getMoreProduct();
-    fetchProductShop();
+  useEffect(() => {
+    async function fetchData() {
+      getMoreProduct();
+      fetchProductShop();
+    }
+    fetchData();
   }, []);
 
   return (
