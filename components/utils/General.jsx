@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Script from "next/script";
 import { hotjar } from "react-hotjar";
 import { useRouter } from "next/router";
+import TagManager from "react-gtm-module";
 import * as gtag from "../../lib/gtag";
 function General(props) {
   const router = useRouter();
@@ -18,6 +19,9 @@ function General(props) {
       router.events.off("routeChangeComplete", handleRouteChange);
     };
   }, [router.events]);
+  useEffect(() => {
+    TagManager.initialize({ gtmId: "GTM-MNQT35X" });
+  }, []);
 
   return (
     <>
