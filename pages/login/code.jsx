@@ -48,7 +48,7 @@ const Code = () => {
       <Head>
         <title>ورود بازار آنلاین نخل</title>
       </Head>
-      
+
       <div className="d-flex flex-column justify-content-center col-12 col-md-8 col-lg-5 m-auto bg-white shadow-lg p-5 mt-5 rounded">
         <div className="m-auto">
           <Link href="/">
@@ -92,14 +92,11 @@ const Code = () => {
               },
             })}
           />
-          {errors.user_key && (
-            <span style={{ color: "red", fontSize: "14px" }}>
-              {errors.user_key.message}
-            </span>
+          {errors.user_key && (<span style={{ display: "block", color: "red", fontSize: "14px" }}>
+            {errors.user_key.message}
+          </span>
           )}
-          <span
-            className="text-info"
-            style={{ cursor: "pointer" }}
+          <span className="text-info" style={{ cursor: "pointer" }}
             onClick={() => {
               resendCode({ mobile: sessionStorage.getItem("mobile") });
             }}

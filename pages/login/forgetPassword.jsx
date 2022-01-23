@@ -29,7 +29,7 @@ const ForgetPassword = () => {
       <Head>
         <title>ورود بازار آنلاین نخل</title>
       </Head>
-      
+
       <div className="d-flex flex-column justify-content-center col-12 col-md-8 col-lg-5 m-auto bg-white p-5 mt-5 shadow-lg rounded">
         <div className="m-auto">
           <Link href="/">
@@ -69,7 +69,7 @@ const ForgetPassword = () => {
             })}
           />
           {errors.password && (
-            <span style={{ color: "red", fontSize: "14px" }}>
+            <span style={{ display: "block", color: "red", fontSize: "14px" }}>
               {errors.password.message}
             </span>
           )}
@@ -85,7 +85,7 @@ const ForgetPassword = () => {
             })}
           />
           {errors.repeatPass && (
-            <span style={{ color: "red", fontSize: "14px" }}>
+            <span style={{ display: "block", color: "red", fontSize: "14px" }}>
               {errors.repeatPass.message}
             </span>
           )}

@@ -33,7 +33,7 @@ const Password = () => {
         <title>ورود بازار آنلاین نخل</title>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
-      
+
       <div className="d-flex flex-column justify-content-center col-12 col-md-8 col-lg-5 m-auto bg-white p-5 mt-5 shadow-lg rounded">
         <div className="m-auto">
           <Link href="/">
@@ -70,13 +70,26 @@ const Password = () => {
             })}
           />
           {errors.user_key && (
-            <span style={{ color: "red", fontSize: "14px" }}>
+            <span style={{ display: "block", color: "red", fontSize: "14px" }}>
               {errors.user_key.message}
             </span>
           )}
-          <Link href="/login/code?forgetPass=true">
-            <a className="text-info">فراموشی رمز عبور</a>
-          </Link>
+          <div className="d-flex justify-content-between align-items-center">
+            <Link href="/login/code?forgetPass=true">
+              <a className="text-info">فراموشی رمز عبور</a>
+            </Link>
+            <label htmlFor="showPassword" className="d-flex justify-content-center align-items-center">
+              نمایش رمز عبور
+              <input type="checkbox" name="showPassword" id="showPassword" className="me-3" onClick={() => {
+                let inputPassword = document.querySelector("#user_key");
+                if (inputPassword.type === "password") {
+                  inputPassword.type = "text";
+                } else {
+                  inputPassword.type = "password";
+                }
+              }} />
+            </label>
+          </div>
           <button type="submit" className="btn btn-primary col-12 mt-3">
             ادامه
           </button>
