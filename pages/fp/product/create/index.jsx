@@ -87,7 +87,6 @@ const CreateProduct = ({ activeHojreh }) => {
       }
     }
     fetchData();
-
   }, [activeHojreh]);
 
   // select Submarket
@@ -368,8 +367,8 @@ const CreateProduct = ({ activeHojreh }) => {
                     })}
                     onChange={(e) => {
                       if (e.target.value == "" || e.target.value == 0) {
-                        setValue("OldPrice", 0);
                         setprecentOldPrice(0);
+                        setWordOldPrice("");
                       } else {
                         setprecentOldPrice(e.target.value);
 
@@ -383,7 +382,7 @@ const CreateProduct = ({ activeHojreh }) => {
                     قیمت محصول با تخفیف : {wordOldPrice} تومان
                   </div>
                 )}
-                {precentOldPrice !== 0 && (
+                {precentPrice > precentOldPrice && precentOldPrice > 0 && (
                   <>
                     <span style={{ margin: "8px 0", fontSize: "14px" }}>
                       تخفیف کالا شما:
