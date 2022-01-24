@@ -17,6 +17,7 @@ import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import EmptyLayout from "../../components/layout/EmptyLayout";
 
 function LiveEdit({ idLanding }) {
+  console.log("idLanding :>> ", idLanding);
   let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}`;
   // idLanding=[slugShop,idLanding]
   let apiUpdateLanding = `${ApiReference.landing.update.url}${idLanding[0]}/${idLanding[1]}/`;
@@ -133,7 +134,7 @@ function LiveEdit({ idLanding }) {
           data: [
             {
               image: "",
-              url: "",
+              url: `/shop/${idLanding[0]}`,
               title: "",
               order: "",
             },
@@ -147,13 +148,13 @@ function LiveEdit({ idLanding }) {
           data: [
             {
               image: "",
-              url: "",
+              url: `/shop/${idLanding[0]}`,
               title: "",
               order: 0,
             },
             {
               image: "",
-              url: "",
+              url: `/shop/${idLanding[0]}`,
               title: "",
               order: 1,
             },
@@ -167,21 +168,21 @@ function LiveEdit({ idLanding }) {
           data: [
             {
               image: "",
-              url: "",
+              url: `/shop/${idLanding[0]}`,
               title: "",
               video: { id: "", src: "" },
               order: 0,
             },
             {
               image: "",
-              url: "",
+              url: `/shop/${idLanding[0]}`,
               title: "",
               video: { id: "", src: "" },
               order: 1,
             },
             {
               image: "",
-              url: "",
+              url: `/shop/${idLanding[0]}`,
               title: "",
               video: { id: "", src: "" },
               order: 2,
@@ -196,25 +197,25 @@ function LiveEdit({ idLanding }) {
           data: [
             {
               image: "",
-              url: "",
+              url: `/shop/${idLanding[0]}`,
               title: "",
               order: 0,
             },
             {
               image: "",
-              url: "",
+              url: `/shop/${idLanding[0]}`,
               title: "",
               order: 1,
             },
             {
               image: "",
-              url: "",
+              url: `/shop/${idLanding[0]}`,
               title: "",
               order: 2,
             },
             {
               image: "",
-              url: "",
+              url: `/shop/${idLanding[0]}`,
               title: "",
               order: 3,
             },
