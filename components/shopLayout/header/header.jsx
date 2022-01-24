@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Assistent from "zaravand-assistent-number";
 import React, { useState, useEffect } from "react";
 // component
-import Timer from "../../timer";
+// import Timer from "../../timer";
 import MegaMenuMobile from "../../../containers/LandingPage/MegaMenuMobile";
 import MegaMenuDesktop from "../../../containers/LandingPage/MegaMenuDesktop";
 // Redux
@@ -35,7 +35,7 @@ function Header() {
       if (response.status === 200) {
         setCategory(response.data);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   // Get all shops
@@ -88,8 +88,16 @@ function Header() {
               />
             </a>
           </Link>
-          <div style={{ position: "absolute", top: "5px", left: "150px", fontSize: "30px", fontWeight: "bolder" }}>
-            <Timer date="2022-1-24" />
+          <div
+            style={{
+              position: "absolute",
+              top: "5px",
+              left: "150px",
+              fontSize: "30px",
+              fontWeight: "bolder",
+            }}
+          >
+            {/* <Timer date="2022-1-24" /> */}
           </div>
         </div>
         <div className="container">
@@ -249,9 +257,9 @@ function Header() {
               />
             </a>
           </Link>
-          <div style={{ position: "absolute", top: "5px", left: "5px", fontSize: "11px", fontWeight: "bolder" }}>
+          {/* <div style={{ position: "absolute", top: "5px", left: "5px", fontSize: "11px", fontWeight: "bolder" }}>
             <Timer date="2022-1-24" />
-          </div>
+          </div> */}
         </div>
         <div className={styles.header_holder}>
           <div className="container">
