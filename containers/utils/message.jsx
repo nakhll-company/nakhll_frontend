@@ -8,6 +8,10 @@ export const successMessage = (message) => {
 };
 
 export const errorMessage = (message) => {
+  gtag("testM", "testM", {
+    description: message,
+    fatal: false,
+  });
   toast.error(message, {
     position: "top-center",
     closeOnClick: true,
