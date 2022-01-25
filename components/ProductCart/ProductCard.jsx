@@ -180,7 +180,7 @@ const ProductCard = ({
                     await addToCart(product.id);
 
                     gtag("testM", "testM", {
-                      description: message,
+                      description: "productCard",
                       fatal: false,
                     });
                   }}
