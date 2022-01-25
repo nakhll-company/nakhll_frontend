@@ -24,7 +24,6 @@ const ProductCard = ({
   _blank = false,
   dataProduct,
 }) => {
-
   let product = {
     id: dataProduct.ID,
     imageUrl: dataProduct.Image_medium_url,
@@ -60,8 +59,9 @@ const ProductCard = ({
       height={100}
       width={100}
       src={product.imageUrl}
-      className={`card-img-top _product_card_rounded animationCart ${product.unavailable && "_unavailable_product"
-        }`}
+      className={`card-img-top _product_card_rounded animationCart ${
+        product.unavailable && "_unavailable_product"
+      }`}
       alt={product.title}
     />
   );
@@ -83,82 +83,13 @@ const ProductCard = ({
     </>
   );
 
-  const handel_webhook = async () => {
-    let data = {};
-    if (userData !== undefined) {
-      data = {
-        content: `:teddy_bear: `,
-        embeds: [
-          {
-            color: 14811281,
-            author: {
-              name: `\n${userData.user.first_name} ${userData.user.last_name}\n${userData.user.username}`,
-            },
-          },
-
-          {
-            title: product.title,
-            description: "",
-            url: `https://nakhll.com/${product.url}`,
-            color: 5814783,
-
-            footer: {
-              text: "دکمه کوچک",
-            },
-            image: {
-              url: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fstatic.vecteezy.com%2Fpacks%2Fmedia%2Fcomponents%2Fglobal%2Fsearch-explore-nav%2Fimg%2Fvectors%2Fterm-bg-1-666de2d941529c25aa511dc18d727160.jpg&imgrefurl=https%3A%2F%2Fwww.vecteezy.com%2F&tbnid=l5RllJHFLw5NyM&vet=12ahUKEwiAuZn85fL0AhUP8BoKHeDmDx0QMygDegUIARCrAQ..i&docid=LOSptVP0p_ZwUM&w=550&h=549&itg=1&q=image&ved=2ahUKEwiAuZn85fL0AhUP8BoKHeDmDx0QMygDegUIARCrAQ",
-            },
-            thumbnail: {
-              url: "https://nakhll.com/shop/yaskala/product/yas-steelon-storm-w/",
-            },
-          },
-          {
-            color: 11403008,
-            author: {
-              name: userData.big_city,
-            },
-          },
-        ],
-      };
-    } else {
-      data = {
-        content: `:teddy_bear: `,
-        embeds: [
-          {
-            title: product.title,
-            description: "",
-            url: `https://nakhll.com/${product.url}`,
-            color: 5814783,
-
-            footer: {
-              text: "دکمه کوچک",
-            },
-            image: {
-              url: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fstatic.vecteezy.com%2Fpacks%2Fmedia%2Fcomponents%2Fglobal%2Fsearch-explore-nav%2Fimg%2Fvectors%2Fterm-bg-1-666de2d941529c25aa511dc18d727160.jpg&imgrefurl=https%3A%2F%2Fwww.vecteezy.com%2F&tbnid=l5RllJHFLw5NyM&vet=12ahUKEwiAuZn85fL0AhUP8BoKHeDmDx0QMygDegUIARCrAQ..i&docid=LOSptVP0p_ZwUM&w=550&h=549&itg=1&q=image&ved=2ahUKEwiAuZn85fL0AhUP8BoKHeDmDx0QMygDegUIARCrAQ",
-            },
-            thumbnail: {
-              url: "https://nakhll.com/shop/yaskala/product/yas-steelon-storm-w/",
-            },
-          },
-        ],
-      };
-    }
-
-    let response = await ApiRegister().apiRequest(
-      data,
-      "post",
-      `https://discord.com/api/webhooks/922069011955609671/i8FC-UEv6XnK-kMsgme7Y9xSl9X7Sr3gTPgA3jVZZelPMxoAyFSdsJPmTFXXZzy6qtkd`,
-      false,
-      ""
-    );
-  };
-
   return (
     <div
-      className={` ${col
+      className={` ${
+        col
           ? `col-${col}`
           : `col-${xs} col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
-        } ${padding ? `px-${padding}` : ""} mb-2`}
+      } ${padding ? `px-${padding}` : ""} mb-2`}
     >
       {product.iconClose && (
         <span
@@ -193,8 +124,9 @@ const ProductCard = ({
         </div>
 
         <div
-          className={`card-body mt-2 p-1 ${product.unavailable && "_unavailable_product"
-            }`}
+          className={`card-body mt-2 p-1 ${
+            product.unavailable && "_unavailable_product"
+          }`}
         >
           <div className=" mb-3">
             <Link href={product.url}>
@@ -246,7 +178,11 @@ const ProductCard = ({
                   className={`btn ${styles._product_card_add_to_cart}`}
                   onClick={async () => {
                     await addToCart(product.id);
-                    handel_webhook();
+
+                    gtag("testM", "testM", {
+                      description: message,
+                      fatal: false,
+                    });
                   }}
                 >
                   <i className="fas fa-plus" />
