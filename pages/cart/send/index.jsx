@@ -30,7 +30,6 @@ function Send() {
     );
     let data = response.data;
     if (response.status === 200) {
-      
       setListItems(response.data.logistic_unit_details.logistic_units);
       setInvoice(response.data);
     }
@@ -76,58 +75,62 @@ function Send() {
               </div>
 
               {ListItems.map((el, index) => (
-                <CustomAccordionSend
-                  key={index}
-                  title={` حجره ${el.shop_name}`}
-                  item={`Send_${index}_acor`}
-                  close={true}
-                  logistic_price={el.price}
-                  unit_type={el.unit_type}
-                  logistic_units={el.logistic_units}
-                >
-                  {Object.values(el.logistic_units).map((ef) => (
-                    <>
-                      <div style={{ background: "#fff", padding: "10px 15px" }}>
-                        <div style={{ marginTop: "20px" }}>
-                          <span style={{ color: "#000" }}>روش : </span>
-                          <span
-                            style={{ color: "#224E82", fontWeight: "bold" }}
-                          >
-                            {ef.unit_name}
-                          </span>
-                        </div>
-                        <div className={st.liner}></div>
-                        <div className={st.wrap_one_product}>
-                          {ef.products.map((product, index) => (
-                            <>
-                              <div
-                                style={{
-                                  height: "60px",
-                                  width: "60px",
-                                  borderRadius: "5px",
+                <>
+                  <CustomAccordionSend
+                    key={index}
+                    title={` حجره ${el.shop_name}`}
+                    item={`Send_${index}_acor`}
+                    close={true}
+                    logistic_price={el.price}
+                    unit_type={el.logistic_units[0].unit_type}
+                    logistic_units={el.logistic_units}
+                  >
+                    {Object.values(el.logistic_units).map((ef) => (
+                      <>
+                        <div
+                          style={{ background: "#fff", padding: "10px 15px" }}
+                        >
+                          <div style={{ marginTop: "20px" }}>
+                            <span style={{ color: "#000" }}>روش : </span>
+                            <span
+                              style={{ color: "#224E82", fontWeight: "bold" }}
+                            >
+                              {ef.unit_name}
+                            </span>
+                          </div>
+                          <div className={st.liner}></div>
+                          <div className={st.wrap_one_product}>
+                            {ef.products.map((product, index) => (
+                              <>
+                                <div
+                                  style={{
+                                    height: "60px",
+                                    width: "60px",
+                                    borderRadius: "5px",
 
-                                  overflow: "hidden",
-                                  marginLeft: "15px",
-                                }}
-                                className=""
-                              >
-                                <Image
-                                  src={product.image}
-                                  layout="responsive"
-                                  height={60}
-                                  width={60}
-                                  alt=""
-                                />
-                              </div>
-                            </>
-                          ))}
+                                    overflow: "hidden",
+                                    marginLeft: "15px",
+                                  }}
+                                  className=""
+                                >
+                                  <Image
+                                    src={product.image}
+                                    layout="responsive"
+                                    height={60}
+                                    width={60}
+                                    alt=""
+                                  />
+                                </div>
+                              </>
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    </>
-                  ))}
+                      </>
+                    ))}
 
-                  {/* <div className={st.liner}></div> */}
-                </CustomAccordionSend>
+                    {/* <div className={st.liner}></div> */}
+                  </CustomAccordionSend>
+                </>
               ))}
 
               <button
