@@ -9,6 +9,7 @@ import { deleteFromFavoritesList } from "./methods/deleteFromFavoritesList";
 // scss
 import styles from "./ProductCard.module.scss";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { useState } from "react";
 
 const _asist = new Assistent();
 
@@ -84,6 +85,8 @@ const ProductCard = ({
       </div>
     </>
   );
+
+  const [disablBtn, setDisablBtn] = useState(false);
 
   return (
     <div
@@ -175,20 +178,25 @@ const ProductCard = ({
                   />
                 </div>
               ) : (
-                <button
-                  aria-label="خرید"
-                  className={`btn ${styles._product_card_add_to_cart}`}
-                  onClick={async () => {
-                    await addToCart(product.id);
+                <>
+                  <button
+                    aria-label="خرید"
+                    disabled={disablBtn}
+                    className={`btn ${styles._product_card_add_to_cart}`}
+                    onClick={async () => {
+                      setDisablBtn(true);
+                      await addToCart(product.id);
+                      setDisablBtn(false);
 
-                    gtag("testM", "testM", {
-                      description: "productCard",
-                      fatal: false,
-                    });
-                  }}
-                >
-                  <i className="fas fa-plus" />
-                </button>
+                      gtag("testM", "testM", {
+                        description: "productCard",
+                        fatal: false,
+                      });
+                    }}
+                  >
+                    <i className="fas fa-plus" />
+                  </button>
+                </>
               )}
             </div>
             <div
