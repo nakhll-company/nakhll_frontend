@@ -63,6 +63,8 @@ const ProductCard = ({
         product.unavailable && "_unavailable_product"
       }`}
       alt={product.title}
+      placeholder="blur"
+      blurDataURL="/logoCart.png"
     />
   );
   let campBadge = (
