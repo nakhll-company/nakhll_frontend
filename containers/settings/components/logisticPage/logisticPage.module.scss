@@ -15,3 +15,12 @@
         cursor: pointer;
     }
 }
+.previewPrice {
+    display: flex;
+    font-size: 14px;
+    color: #2600ff;
+    // padding-top: 20px;
+    padding-bottom: 5px;
+    justify-content: space-between;
+    direction: rtl;
+}

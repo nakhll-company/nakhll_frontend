@@ -12,6 +12,7 @@ import BtnSetting from "./components/btnSetting";
 import CheckBoxSend from "./components/checkBoxSend";
 import Explain from "./components/explain";
 import HeaderTitle from "./components/headerTitle";
+import Assistent from "zaravand-assistent-number";
 
 import Panel from "./components/panel";
 import Products from "./components/products";
@@ -28,6 +29,7 @@ import SelectIcon from "./ui/selectIcon";
 import SoRent from "./ui/soRent";
 
 function LogisticPage() {
+  const _asist = new Assistent();
   const activeHojreh = useSelector((state) => state.User.activeHojreh);
 
   // state for send data
@@ -57,6 +59,9 @@ function LogisticPage() {
   // for Save constraintItems
   const [constraintId, setConstraintId] = useState("");
 
+  // state for word price
+  const [wordPricePer, setWordPricePer] = useState("");
+  const [wordExtraPricePer, setWordExtraPricePer] = useState("");
   // for save metricId
 
   const [metricId, setMetricId] = useState("");
@@ -367,9 +372,21 @@ function LogisticPage() {
                     }}
                     type="number"
                     {...register("price_per_kg")}
+                    onChange={(e) => {
+                      if (e.target.value == "" || e.target.value == 0) {
+                        setWordPricePer("");
+                      } else {
+                        setWordPricePer(_asist.word(e.target.value));
+                      }
+                    }}
                   />
                 </InputUseForm>
               </div>
+              {wordPricePer !== "صفر" && wordPricePer !== "" && (
+                <div className={st.previewPrice}>
+                  هزینه پست به ازای هر واحد : {wordPricePer} تومان
+                </div>
+              )}
 
               <InputUseForm
                 title="هزینه پست به ازای هر واحد اضافه تر"
@@ -382,8 +399,20 @@ function LogisticPage() {
                   }}
                   type="number"
                   {...register("price_per_extra_kg")}
+                  onChange={(e) => {
+                    if (e.target.value == "" || e.target.value == 0) {
+                      setWordExtraPricePer("");
+                    } else {
+                      setWordExtraPricePer(_asist.word(e.target.value));
+                    }
+                  }}
                 />
               </InputUseForm>
+              {wordExtraPricePer !== "صفر" && wordExtraPricePer !== "" && (
+                <div className={st.previewPrice}>
+                  هزینه پست به ازای هر واحد اضافه تر : {wordExtraPricePer} تومان
+                </div>
+              )}
 
               <BtnSetting type="submit" title="مرحله بعد" />
             </form>
@@ -399,7 +428,12 @@ function LogisticPage() {
           </>
         )}
 
-        {wichPage == 8 && <ResultOperation reset_states={reset_states} pageController={upPage} />}
+        {wichPage == 8 && (
+          <ResultOperation
+            reset_states={reset_states}
+            pageController={upPage}
+          />
+        )}
 
         {wichPage == 9 && (
           <>
