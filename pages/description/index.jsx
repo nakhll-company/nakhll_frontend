@@ -48,10 +48,10 @@ function Description() {
         />
       </div>
       <footer>
-        <h2>یک شعار تبلیغاتی جذاب در مورد بازار اجتماعی نخل</h2>
+        <h2>نخل، بازار کسب و کارهای اصیل و زندگی پذیر</h2>
         <p>
-          یک توضیح که اگر به راهنمایی بیشتر نیاز داشت میتونه <br />
-          سوالات متداول و ببینه یا زنگ بزنه پشتیبانی
+          برای رشد کسب و کار خود و پاسخ به سوال ها <br />
+          می توانید به وبلاگ نخل سربزنید.
         </p>
         <div className={styles.wrapper_button}>
           <Link href={Object.keys(userLogin).length > 0 ? "/fp/store/create/" : "/login"}>
@@ -59,7 +59,7 @@ function Description() {
               حجره خودتو بساز
             </a>
           </Link>
-          <Link href="https://nakhll.com/blog/">
+          <Link href="https://nakhll.com/blog/%d9%be%d8%a7%d8%b3%d8%ae-%d8%b3%d9%88%d8%a7%d9%84%d8%a7%d8%aa-%d9%be%d8%b1%d8%aa%da%a9%d8%b1%d8%a7%d8%b1-%d9%86%d8%ae%d9%84/">
             <a className={styles.button_empty}>
               سوالات متداول
             </a>
