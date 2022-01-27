@@ -440,9 +440,7 @@ function LiveEdit({ idLanding }) {
               <span className={styles.title}>ثبت نهایی</span>
             </div>
             {/* userImg */}
-            <div ref={(el) => (profile = el)} className={styles.user}>
-              {/* <img src="/image/person.jpeg" alt="" /> */}
-            </div>
+            <div ref={(el) => (profile = el)} className={styles.user}></div>
           </div>
 
           <Living
