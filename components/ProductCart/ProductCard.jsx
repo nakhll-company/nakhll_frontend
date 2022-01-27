@@ -188,10 +188,9 @@ const ProductCard = ({
                       await addToCart(product.id);
                       setDisablBtn(false);
 
-                      gtag("testM", "testM", {
-                        description: "productCard",
-                        fatal: true,
-                      });
+                     
+
+                      
                     }}
                   >
                     <i className="fas fa-plus" />
