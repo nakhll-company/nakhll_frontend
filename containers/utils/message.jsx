@@ -10,7 +10,7 @@ export const successMessage = (message) => {
 export const errorMessage = (message) => {
   gtag("testM", "testM", {
     description: message,
-    fatal: false,
+    fatal: true,
   });
   toast.error(message, {
     position: "top-center",

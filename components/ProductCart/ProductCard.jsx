@@ -190,7 +190,7 @@ const ProductCard = ({
 
                       gtag("testM", "testM", {
                         description: "productCard",
-                        fatal: false,
+                        fatal: true,
                       });
                     }}
                   >
