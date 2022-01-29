@@ -369,12 +369,8 @@ function ListProductShop({ data }) {
             />
             <div className="mx-auto row">
               {isLoading ? (
-                // <Loading />
-                // <BeautyLoading />
                 <WoLoading />
               ) : (
-                // isLoading
-                // <WoLoading />
                 <InfiniteScroll
                   className="mx-auto row"
                   dataLength={listWithFilter.length} //This is important field to render the next data
