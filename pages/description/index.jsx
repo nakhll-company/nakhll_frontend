@@ -13,7 +13,7 @@ import styles from "./description.module.scss";
 function Description() {
 
 
-  const userLogin = useSelector((state) => state.User);
+  const userLogin = useSelector((state) => state.User.userInfo);
 
   return (
     <div className={styles.wrapper}>
