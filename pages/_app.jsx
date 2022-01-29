@@ -7,6 +7,7 @@ import { Store } from "../redux/store";
 import { Provider } from "react-redux";
 // method
 import SEO from "../next-seo.config";
+import { refreshToken } from '../api/auth/refreshToken';
 // components
 import General from "../components/utils/General";
 import MyLayout from "../components/layout/Layout";

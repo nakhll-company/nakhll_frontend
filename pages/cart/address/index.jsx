@@ -2,38 +2,43 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-
 import Assistent from "zaravand-assistent-number";
 // componentes
 import Loading from "../../../components/loading";
+import ShopLayout from "../../../components/shopLayout";
 import CustomModal from "../../../components/custom/customModal";
 import DeleteAddress from "../../../containers/cartAddress/deleteAddress";
 // methods
 import { getAddress } from "../../../api/cartAddress/getAddress";
-import { checkUserLogin } from "../../../api/cartAddress/checkUserLogin";
 import { selectAddress } from "../../../containers/cartAddress/methods/selectAddress";
 import { changeRadioButtonColor } from "../../../containers/cartAddress/methods/changeRadioButtonsColor";
 // styles
 import styles from "../../../styles/pages/cart/address.module.scss";
-import ShopLayout from "../../../components/shopLayout";
 
 const _asist = new Assistent();
+
 const Address = () => {
+
   const router = useRouter();
   const { invoice_id } = router.query;
+  const userLogin = useSelector((state) => state.User.userInfo);
+  let [address, setAddress] = useState([]);
   let [loading, setLoading] = useState(true);
   let [showModal, setShowModal] = useState({
     show: false,
     id: 0,
   });
-  let [address, setAddress] = useState([]);
 
-  useEffect(async () => {
-    await checkUserLogin();
-    await getAddress(setAddress);
-    await setLoading(false);
-  }, []);
+  useEffect(() => {
+    async function fetchData() {
+      Object.keys(userLogin).length > 0 && router.push("/login");
+      await getAddress(setAddress);
+      await setLoading(false);
+    }
+    fetchData();
+  }, [router, userLogin]);
 
   return (
     <>
@@ -45,7 +50,7 @@ const Address = () => {
           crossOrigin="anonymous"
         />
       </Head>
-      
+
       {loading ? (
         <div className={`col-12 col-lg-5 py-5 my-2 ${styles.wrapper}`}>
           <Loading />
@@ -82,18 +87,16 @@ const Address = () => {
                 return (
                   <label
                     key={index}
-                    className={`${styles.address_items_label} ${
-                      index === 0 && styles.active_address
-                    }`}
+                    className={`${styles.address_items_label} ${index === 0 && styles.active_address
+                      }`}
                     onClick={(event) => {
                       changeRadioButtonColor(event, styles, index);
                     }}
                   >
                     <div
                       id={`firstCircle${index}`}
-                      className={`${styles.address_item_circle} ${
-                        index === 0 && styles.active_circle
-                      }`}
+                      className={`${styles.address_item_circle} ${index === 0 && styles.active_circle
+                        }`}
                     >
                       <div className={styles.address_item_embeded_circle}></div>
                     </div>
