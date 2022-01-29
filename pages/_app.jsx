@@ -1,27 +1,32 @@
 // node libraries
-
+import { useEffect } from "react";
 import Script from "next/script";
+import LogRocket from "logrocket";
+import { DefaultSeo } from "next-seo";
 import { Store } from "../redux/store";
 import { Provider } from "react-redux";
-import { useRouter } from "next/router";
-import { DefaultSeo } from "next-seo";
+// method
 import SEO from "../next-seo.config";
 // components
-
 import General from "../components/utils/General";
 import MyLayout from "../components/layout/Layout";
-
-// add bootstrap css
+// styles
 import "bootstrap/dist/css/bootstrap.css";
 import "../styles/globals.scss";
 import "../styles/General/font-awesome/css/font-awesome.css";
-import LogRocket from "logrocket";
-
+const REFRESH_TOKEN_TIMEOUT = 300000;
 function MyApp({ Component, pageProps }) {
+
   LogRocket.init("umu0mf/nakhl");
-  // Use the layout defined at the page level, if available
   const Layout = Component.Layout || MyLayout;
-  const router = useRouter();
+
+  useEffect(() => {
+    // localStorage.getItem("accessToken") && refreshToken();
+    setInterval(() => {
+      localStorage.getItem("accessToken") && refreshToken();
+    }, REFRESH_TOKEN_TIMEOUT);
+  }, []);
+
   return (
     <>
       <DefaultSeo {...SEO} />
