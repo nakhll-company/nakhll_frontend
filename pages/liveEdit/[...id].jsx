@@ -1,11 +1,11 @@
 import React, { useRef, useEffect, useState } from "react";
-import Link from "next/link";
+
 import { v4 as uuidv4 } from "uuid";
 import styles from "./liveEdit.module.scss";
 import Living from "../../components/liveEdit/living";
 import Head from "next/head";
 // gsap
-import { gsap, Power3 } from "gsap";
+import { gsap } from "gsap";
 import lottie from "lottie-web";
 
 import ListComponent from "../../containers/liveEdit/ListComponent";
@@ -15,10 +15,11 @@ import SaveLanding from "../../containers/liveEdit/SaveLanding";
 import { ApiReference } from "../../Api";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import EmptyLayout from "../../components/layout/EmptyLayout";
+import { addComponent } from "../../containers/liveEdit/metodes/addComponent";
 
 function LiveEdit({ idLanding }) {
   console.log("idLanding :>> ", idLanding);
-  let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}`;
+  let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}/`;
   // idLanding=[slugShop,idLanding]
   let apiUpdateLanding = `${ApiReference.landing.update.url}${idLanding[0]}/${idLanding[1]}/`;
   // const userLog = useSelector((state) => state.User.userInfo);
@@ -30,7 +31,7 @@ function LiveEdit({ idLanding }) {
   // gsap
   let tl = new gsap.timeline();
   // Ref
-  let profile = useRef(null);
+
   let toggleMenu = useRef(null);
   const nakhlAnim = useRef(null);
   const list = [
@@ -126,199 +127,7 @@ function LiveEdit({ idLanding }) {
     const items = [...characters];
 
     items.map((element, index) => {
-      let newItem = {};
-      if (type == 2) {
-        newItem = {
-          ID: uuidv4(),
-          type,
-          data: [
-            {
-              image: "",
-              url: `/shop/${idLanding[0]}`,
-              title: "",
-              order: "",
-            },
-          ],
-        };
-      }
-      if (type == 3) {
-        newItem = {
-          ID: uuidv4(),
-          type,
-          data: [
-            {
-              image: "",
-              url: `/shop/${idLanding[0]}`,
-              title: "",
-              order: 0,
-            },
-            {
-              image: "",
-              url: `/shop/${idLanding[0]}`,
-              title: "",
-              order: 1,
-            },
-          ],
-        };
-      }
-      if (type == 4 || type == 1) {
-        newItem = {
-          ID: uuidv4(),
-          type,
-          data: [
-            {
-              image: "",
-              url: `/shop/${idLanding[0]}`,
-              title: "",
-              video: { id: "", src: "" },
-              order: 0,
-            },
-            {
-              image: "",
-              url: `/shop/${idLanding[0]}`,
-              title: "",
-              video: { id: "", src: "" },
-              order: 1,
-            },
-            {
-              image: "",
-              url: `/shop/${idLanding[0]}`,
-              title: "",
-              video: { id: "", src: "" },
-              order: 2,
-            },
-          ],
-        };
-      }
-      if (type == 5) {
-        newItem = {
-          ID: uuidv4(),
-          type,
-          data: [
-            {
-              image: "",
-              url: `/shop/${idLanding[0]}`,
-              title: "",
-              order: 0,
-            },
-            {
-              image: "",
-              url: `/shop/${idLanding[0]}`,
-              title: "",
-              order: 1,
-            },
-            {
-              image: "",
-              url: `/shop/${idLanding[0]}`,
-              title: "",
-              order: 2,
-            },
-            {
-              image: "",
-              url: `/shop/${idLanding[0]}`,
-              title: "",
-              order: 3,
-            },
-          ],
-        };
-      }
-      if (type == 6) {
-        newItem = {
-          ID: uuidv4(),
-          type,
-          data: [
-            {
-              image: "",
-              url: "",
-              order: 0,
-              color: "#a1db43",
-              title: "",
-              titleComponent: "پروفروش ترین",
-              products: [],
-
-              subTitle: "ویژه فصل پاییز",
-            },
-          ],
-        };
-      }
-
-      if (type == 7) {
-        newItem = {
-          ID: uuidv4(),
-          type,
-          data: [
-            {
-              text: "",
-            },
-          ],
-        };
-      }
-
-      if (type == 8) {
-        newItem = {
-          ID: uuidv4(),
-          type,
-          data: [
-            {
-              text: "درباره حجره خود بنویسید تا دیگران از داستان کسب و کار شما باخبر بشوند",
-            },
-          ],
-        };
-      }
-      if (type == 9) {
-        newItem = {
-          ID: uuidv4(),
-          type,
-          data: [
-            {
-              order: 0,
-
-              products: [],
-            },
-          ],
-        };
-      }
-      if (type == 10) {
-        newItem = {
-          ID: uuidv4(),
-          type,
-          data: [
-            {
-              order: 0,
-
-              products: [],
-            },
-          ],
-        };
-      }
-      if (type == 13) {
-        newItem = {
-          ID: uuidv4(),
-          type,
-          data: [
-            {
-              order: 0,
-
-              products: [],
-            },
-          ],
-        };
-      }
-
-      if (type == 11) {
-        newItem = {
-          ID: uuidv4(),
-          type,
-          data: [
-            {
-              order: 0,
-
-              video: { id: "", src: "" },
-            },
-          ],
-        };
-      }
-
+      let newItem = addComponent(type, idLanding);
       if (element.type == 0) {
         items.splice(index, 1);
         items.splice(index, 0, newItem);
@@ -328,6 +137,65 @@ function LiveEdit({ idLanding }) {
     dispatch(_updateDataLanding(items));
     setOpenPlaneEditor(false);
   };
+
+  let menuList = (
+    <ul>
+      <li style={{ pointerEvents: "none" }}>
+        <a className={styles.wrap_item} href="">
+          <span className={styles.icon}>
+            <img
+              style={{
+                height: "40px",
+                width: "40px",
+                pointerEvents: "none",
+              }}
+              src="/iconWhite.png"
+              alt=""
+            />
+          </span>
+          <span className={styles.title} style={{ fontSize: "bold" }}>
+            بازار نخل
+          </span>
+        </a>
+      </li>
+      <li className={styles.activeLink} style={{ pointerEvents: "none" }}>
+        <a className={styles.wrap_item}>
+          <span className={`${styles.icon} fas fa-dice-d20`}></span>
+          <span className={styles.title}>چیدمان</span>
+        </a>
+      </li>
+      <li>
+        <div
+          className={styles.wrap_item}
+          onClick={() => {
+            _handel_update_landing();
+            window.open(`/fp`, "_blank");
+          }}
+        >
+          <span className={`${styles.icon}  fab fa-fort-awesome`}></span>
+          <span className={styles.title}>داشبورد</span>
+        </div>
+      </li>
+      <li>
+        <div
+          className={styles.wrap_item}
+          onClick={() => {
+            _handel_update_landing();
+            window.open(
+              `/showLanding/${idLanding[0]}/${idLanding[1]}/`,
+              "_blank"
+            );
+          }}
+        >
+          <span className={`${styles.icon} fas fa-scroll`}></span>
+          <span className={styles.title}>پیش نمایش</span>
+        </div>
+      </li>
+
+      <div ref={nakhlAnim} className={styles.nakhlAnim}></div>
+    </ul>
+  );
+
   return (
     <>
       <Head>
@@ -341,76 +209,7 @@ function LiveEdit({ idLanding }) {
       </Head>
       <div className={styles.container}>
         <div id="navigation" className={styles.navigation}>
-          {!openPlaneEditor && (
-            <ul>
-              <li style={{ pointerEvents: "none" }}>
-                <a className={styles.wrap_item} href="">
-                  <span className={styles.icon}>
-                    <img
-                      style={{
-                        height: "40px",
-                        width: "40px",
-                        pointerEvents: "none",
-                      }}
-                      src="/iconWhite.png"
-                      alt=""
-                    />
-                  </span>
-                  <span className={styles.title} style={{ fontSize: "bold" }}>
-                    بازار نخل
-                  </span>
-                </a>
-              </li>
-              <li
-                className={styles.activeLink}
-                style={{ pointerEvents: "none" }}
-              >
-                <a className={styles.wrap_item}>
-                  <span className={`${styles.icon} fas fa-dice-d20`}></span>
-                  <span className={styles.title}>چیدمان</span>
-                </a>
-              </li>
-              <li>
-                <div
-                  className={styles.wrap_item}
-                  onClick={() => {
-                    _handel_update_landing();
-                    window.open(`/fp`, "_blank");
-                  }}
-                >
-                  <span
-                    className={`${styles.icon}  fab fa-fort-awesome`}
-                  ></span>
-                  <span className={styles.title}>داشبورد</span>
-                </div>
-              </li>
-              <li>
-                <div
-                  className={styles.wrap_item}
-                  onClick={() => {
-                    _handel_update_landing();
-                    window.open(
-                      `/showLanding/${idLanding[0]}/${idLanding[1]}/`,
-                      "_blank"
-                    );
-                  }}
-                >
-                  <span className={`${styles.icon} fas fa-scroll`}></span>
-                  <span className={styles.title}>پیش نمایش</span>
-                </div>
-              </li>
-              {/* <li>
-                <div
-                  onClick={() => setOpenSaveLanding(true)}
-                  className={styles.wrap_item}
-                >
-                  <span className={`${styles.icon}   fas fa-hat-wizard`}></span>
-                  <span className={styles.title}>ثبت نهایی</span>
-                </div>
-              </li> */}
-              <div ref={nakhlAnim} className={styles.nakhlAnim}></div>
-            </ul>
-          )}
+          {!openPlaneEditor && <>{menuList}</>}
 
           {openPlaneEditor && (
             <ListComponent _handel_add_component={_handel_add_component} />
@@ -440,7 +239,7 @@ function LiveEdit({ idLanding }) {
               <span className={styles.title}>ثبت نهایی</span>
             </div>
             {/* userImg */}
-            <div ref={(el) => (profile = el)} className={styles.user}></div>
+            <div className={styles.user}></div>
           </div>
 
           <Living
