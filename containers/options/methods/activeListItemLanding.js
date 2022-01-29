@@ -1,18 +1,24 @@
-import { ApiRegister } from '../../../services/apiRegister/ApiRegister';
-import { errorMessage } from '../../../containers/utils/message';
+import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+import { errorMessage } from "../../../containers/utils/message";
 
-export async function activeListItemLanding(id, activeHojreh, router, setLandingList) {
-
+export async function activeListItemLanding(
+    id,
+    activeHojreh,
+    router,
+    setLandingList
+) {
     let response = await ApiRegister().apiRequest(
-        null, "GET",
+        null,
+        "GET",
         `/api/v1/shop_landing/${activeHojreh}/${id}/activate_landing/`,
         true, {}
     );
 
     if (response.status === 200) {
         let result = await ApiRegister().apiRequest(
-            null, "get",
-            `/api/v1/shop_landing/${activeHojreh}`,
+            null,
+            "get",
+            `/api/v1/shop_landing/${activeHojreh}/`,
             true, {}
         );
 
