@@ -16,7 +16,6 @@ import CustomAccordion from "../../../components/custom/customAccordion";
 import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
 import MultiRangeSlider from "../../../components/custom/customMultiRangeSlider/MultiRangeSlider";
 // methods
-import { errorMessage } from "../../utils/message";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // styles
 import styles from "./listProductCus.module.scss";
@@ -24,7 +23,6 @@ import styles from "./listProductCus.module.scss";
 const _asist = new Assistent();
 
 function ListProductCusTest({ data }) {
-
   const [hojreh, setHojreh] = useState(data.shopslug ? data.shopslug : "");
   const [searchWord, setSearchWord] = useState(data.q ? data.q : "");
   const [listWithFilter, setListWithFilter] = useState([]);
@@ -95,7 +93,7 @@ function ListProductCusTest({ data }) {
       if (response.status === 200) {
         setCategories(response.data);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   const _handel_Add_category = (id) => {
@@ -156,12 +154,9 @@ function ListProductCusTest({ data }) {
         setTotalcount(response.data.total_count);
 
         setIsLoading(false);
-      } else {
-        errorMessage("خطایی رخ داده است");
       }
     } catch (e) {
       setIsLoading(false);
-      errorMessage("خطایی رخ داده است");
     }
   };
 
@@ -201,7 +196,7 @@ function ListProductCusTest({ data }) {
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   // START

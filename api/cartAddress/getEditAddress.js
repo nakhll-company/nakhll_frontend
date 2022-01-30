@@ -19,10 +19,6 @@ export async function getEditAddress(id, setValue, setEditAddressData) {
             setValue("address", response.data.address);
             setValue("zip_code", response.data.zip_code);
             setValue("receiver_mobile_number", response.data.receiver_mobile_number);
-        } else {
-            errorMessage("خطایی در دریافت داده ها پیش آمده است");
         }
-    } catch (error) {
-        errorMessage("خطایی در دریافت داده ها پیش آمده است");
-    }
+    } catch (error) {}
 }

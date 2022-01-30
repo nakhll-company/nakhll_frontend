@@ -4,16 +4,14 @@ import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 export async function addAddress(data) {
     try {
         let response = await ApiRegister().apiRequest(
-            data, "POST",
+            data,
+            "POST",
             "/logistic/api/address/",
-            true, ""
+            true,
+            ""
         );
         if (response.status === 201) {
             return true;
-        } else {
-            errorMessage("خطایی در دریافت داده ها پیش آمده است");
         }
-    } catch (error) {
-        errorMessage("خطایی در دریافت داده ها پیش آمده است");
-    }
+    } catch (error) {}
 }

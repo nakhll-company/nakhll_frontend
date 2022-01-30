@@ -1,5 +1,4 @@
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-import { errorMessage } from "../../../containers/utils/message";
 
 export async function activeListItemLanding(
     id,
@@ -24,10 +23,6 @@ export async function activeListItemLanding(
 
         if (result.status === 200) {
             await setLandingList(result.data);
-        } else {
-            errorMessage("خطایی رخ داده است");
         }
-    } else {
-        errorMessage(response.response.data.error);
     }
 }

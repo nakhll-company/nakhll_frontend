@@ -7,7 +7,6 @@ import Assistent from "zaravand-assistent-number";
 import styles from "../../../styles/pages/cart/payment/payment.module.scss";
 // methods
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-import { errorMessage } from "../../../containers/utils/message";
 import ShopLayout from "../../../components/shopLayout";
 
 const _asist = new Assistent();
@@ -71,24 +70,13 @@ export default function Cart() {
             await _getListInvoice();
             setIsLoadInvoice(false);
           } else {
-            data.errors.map((item) => {
-              errorMessage(item);
-            });
             setIsLoadInvoice(false);
           }
           // setIsLoadInvoice(false);
         } else {
-          errorMessage("این کد تخفیف معتبر نمی باشد");
           setIsLoadInvoice(false);
         }
-      } catch (e) {
-        let errorData = e.response.data;
-        errorData.coupon.map((item) => {
-          errorMessage(item);
-        });
-        errorMessage(response.coupon[0]);
-        // setMsgCoupon("adkaslkdjksa");
-      }
+      } catch (e) {}
     }
   };
 
@@ -104,8 +92,6 @@ export default function Cart() {
     if (response.status === 200) {
       await _getListInvoice();
       setIsLoadInvoice(false);
-    } else {
-      errorMessage("مشکلی در حذف کوپن پیش آمده");
     }
   };
 
@@ -122,14 +108,8 @@ export default function Cart() {
       if (response.status === 200) {
         let data = await response.data;
         await router.push(data.url);
-      } else if (response.response.status === 400) {
-        errorMessage(`${response.response.data.error}`);
-      } else {
-        errorMessage("مشکلی در رفتن به درگاه پرداخت پیش آمده");
       }
-    } catch (error) {
-      errorMessage("مشکلی در رفتن به درگاه پرداخت پیش آمده");
-    }
+    } catch (error) {}
   };
 
   return (

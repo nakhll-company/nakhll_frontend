@@ -6,7 +6,7 @@ import LoadingAllPage from "../../../../components/loadingAllPage";
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 import InputUseForm from "../../../creat/component/inputUseForm";
 import TextAreaUseForm from "../../../creat/component/textAreaUseForm";
-import { errorMessage, successMessage } from "../../../utils/message";
+import { successMessage } from "../../../utils/message";
 import ActiveSendBox from "./components/ActiveSendBox";
 import BtnSetting from "./components/btnSetting";
 import CheckBoxSend from "./components/checkBoxSend";
@@ -148,8 +148,6 @@ function LogisticPage() {
       successMessage("محصولات بارگذاری شد.");
     } else {
       setLoader(false);
-
-      errorMessage("باری دیگر تلاش کنید.");
     }
   };
 

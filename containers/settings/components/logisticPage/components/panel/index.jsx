@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import st from "./panel.module.scss";
 import Image from "next/image";
 import Assistent from "zaravand-assistent-number";
-import { errorMessage } from "../../../../../utils/message";
 const _asist = new Assistent();
 function Panel({
   setConstraintId,
@@ -17,7 +16,6 @@ function Panel({
   setInformationForm,
   setWichPage,
 }) {
-  
   const activeHojreh = useSelector((state) => state.User.activeHojreh);
   // state for Saved Sending Unit
   const [SavedSendingUnit, setSavedSendingUnit] = useState([]);
@@ -60,8 +58,6 @@ function Panel({
       setLoaderTable(false);
     } else {
       setLoaderTable(false);
-
-      errorMessage("باری دیگر تلاش کنید.");
     }
   };
   const _handel_click_on_scope = (data) => {

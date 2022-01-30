@@ -1,4 +1,3 @@
-import { errorMessage } from "../../containers/utils/message";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 
 export async function getAccessToken(data) {
@@ -14,11 +13,9 @@ export async function getAccessToken(data) {
             localStorage.setItem("refreshToken", response.data.refresh);
             return true;
         } else {
-            errorMessage("خطایی رخ داده است");
             return false;
         }
     } catch (error) {
-        errorMessage("خطایی رخ داده است");
         return false;
     }
 }

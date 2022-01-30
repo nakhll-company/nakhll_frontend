@@ -7,7 +7,6 @@ import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 // components
 import { TopBar } from "../TopBar";
-import { errorMessage } from "../../utils/message";
 
 import MenuMobile from "../../../components/layout/MenuMobile";
 import { allCites } from "../../../components/custom/data/data";
@@ -156,12 +155,9 @@ function ListProductShop({ data }) {
         setTotalcount(response.data.total_count);
 
         setIsLoading(false);
-      } else {
-        errorMessage("خطایی رخ داده است");
       }
     } catch (e) {
       setIsLoading(false);
-      errorMessage("خطایی رخ داده است");
     }
   };
 

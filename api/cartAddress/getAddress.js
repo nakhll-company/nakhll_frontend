@@ -1,4 +1,3 @@
-import { errorMessage } from "../../containers/utils/message";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 // get address of user
 export async function getAddress(setAddress) {
@@ -12,10 +11,6 @@ export async function getAddress(setAddress) {
         );
         if (response.status === 200) {
             setAddress(response.data);
-        } else {
-            errorMessage("خطایی در دریافت داده ها پیش آمده است");
         }
-    } catch (error) {
-        errorMessage("خطایی در دریافت داده ها پیش آمده است");
-    }
+    } catch (error) {}
 }

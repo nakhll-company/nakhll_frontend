@@ -68,9 +68,6 @@ export default function SumBuy() {
                     await router.push(
                       `/cart/address?invoice_id=${result.data.id}`
                     );
-                  } else if (result.response.status === 401) {
-                    errorMessage("لطفا ابتدا وارد شوید");
-                  } else {
                   }
                 }}
               >

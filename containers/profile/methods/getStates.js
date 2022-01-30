@@ -1,5 +1,4 @@
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-import { errorMessage } from "../../utils/message";
 // api state
 export const getStates = async() => {
     let params = {};
@@ -14,7 +13,5 @@ export const getStates = async() => {
     );
     if (response.status === 200) {
         return response.data;
-    } else {
-        errorMessage("خطایی در دریافت دادهای استان پیش آمده است");
     }
 };

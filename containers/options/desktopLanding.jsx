@@ -5,7 +5,7 @@ import Assistent from "zaravand-assistent-number";
 // component
 import CustomSwitch from "../../components/custom/customSwitch";
 // methods
-import { errorMessage } from "../utils/message";
+
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { deleteItemListLanding } from "./methods/deleteItemListLanding";
 import { activeListItemLanding } from "./methods/activeListItemLanding";
@@ -38,8 +38,6 @@ const DesktopLanding = ({ landingList, activeHojreh, setLandingList }) => {
             );
             if (response.status === 201) {
               router.push(`/liveEdit/${activeHojreh}/${response.data.id}`);
-            } else {
-              errorMessage("خطایی رخ داده است");
             }
           }}
         >
@@ -67,24 +65,24 @@ const DesktopLanding = ({ landingList, activeHojreh, setLandingList }) => {
                   <td>{_asist.number(index + 1)}</td>
                   <td>{value.name}</td>
                   <td>{_asist.number(value.created_at)}</td>
-                  <td
-                    className="d-flex justify-content-center pb-3"
-                  >
+                  <td className="d-flex justify-content-center pb-3">
                     <CustomSwitch
                       // defaultChecked={value.status === "active" ? true : false}
                       checked={value.status === "active" ? true : false}
                       onClick={() => {
-                        value.status === "inactive" && activeListItemLanding(
-                          value.id,
-                          activeHojreh,
-                          router,
-                          setLandingList
-                        );
-                        value.status === "active" && deActiveListItemLanding(
-                          value.id,
-                          activeHojreh,
-                          router
-                        );
+                        value.status === "inactive" &&
+                          activeListItemLanding(
+                            value.id,
+                            activeHojreh,
+                            router,
+                            setLandingList
+                          );
+                        value.status === "active" &&
+                          deActiveListItemLanding(
+                            value.id,
+                            activeHojreh,
+                            router
+                          );
                       }}
                       id={value.id}
                     />

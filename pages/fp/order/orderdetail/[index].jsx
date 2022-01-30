@@ -25,7 +25,6 @@ export const getServerSideProps = ({ params }) => {
 };
 
 function HomePage({ id }) {
-
   const VALIDATION_SCHEMA = yup.object().shape({
     codeRahgiri: yup
       .number()
@@ -43,23 +42,25 @@ function HomePage({ id }) {
 
   const _handleRequestApi = async (id) => {
     let response = await ApiRegister().apiRequest(
-      null, "get",
+      null,
+      "get",
       "/app/api/v1/get-factor-details/",
-      true, { factor_id: id }
+      true,
+      { factor_id: id }
     );
     if (response.status === 200) {
       setdata(response.data);
-    } else {
-      errorMessage("در دریافت اطلاعات خطایی رخ داده است");
     }
     setisShow(true);
   };
 
   const confirmedFactor = async () => {
     let response = await ApiRegister().apiRequest(
-      null, "PUT",
+      null,
+      "PUT",
       `/app/api/v1/factor/change-status/confirmed/${id}/`,
-      true, {}
+      true,
+      {}
     );
     setisShow(true);
     if (response.status === 200) {
@@ -92,10 +93,14 @@ function HomePage({ id }) {
                   <div className={styles.title_status_patD}>
                     <div className={styles.title_status}>
                       <h3 style={{ fontSize: "15px", fontWeight: "bold" }}>
-                        {data.status === "wait_store_approv" && "در انتظار تأیید فروشگاه"}
-                        {data.status === "preparing_product" && "در حال آماده سازی"}
-                        {data.status === "wait_customer_approv" && "در انتظار تأیید مشتری"}
-                        {data.status === "wait_store_checkout" && "در انتظار تسویه با فروشگاه"}
+                        {data.status === "wait_store_approv" &&
+                          "در انتظار تأیید فروشگاه"}
+                        {data.status === "preparing_product" &&
+                          "در حال آماده سازی"}
+                        {data.status === "wait_customer_approv" &&
+                          "در انتظار تأیید مشتری"}
+                        {data.status === "wait_store_checkout" &&
+                          "در انتظار تسویه با فروشگاه"}
                         {data.status === "completed" && "تکمیل شده"}
                         {data.status === "canceled" && "لغو شده"}
                       </h3>
@@ -107,21 +112,17 @@ function HomePage({ id }) {
                     {/* تایید سفارش */}
                     <div className={styles.order_status_oneLevel}>
                       {/* منتظر بررسی */}
-                      {(data.status === "wait_store_approv" || data.status === "canceled") && (
+                      {(data.status === "wait_store_approv" ||
+                        data.status === "canceled") && (
                         <div className={styles.place_icon_two}>
-                          <span style={{ fontSize: "20px", color: "#fff" }}
+                          <span
+                            style={{ fontSize: "20px", color: "#fff" }}
                             className="fas fa-clipboard-check "
                           ></span>
                         </div>
                       )}
-                      {(data.status === "preparing_product" || data.status === "completed") && (
-                        <div className={styles.place_icon_three}>
-                          <span style={{ fontSize: "20px", color: "#fff" }}
-                            className="fas fa-clipboard-check "
-                          ></span>
-                        </div>
-                      )}
-                      {(data.status === "wait_customer_approv" || data.status === "wait_store_checkout") && (
+                      {(data.status === "preparing_product" ||
+                        data.status === "completed") && (
                         <div className={styles.place_icon_three}>
                           <span
                             style={{ fontSize: "20px", color: "#fff" }}
@@ -129,27 +130,41 @@ function HomePage({ id }) {
                           ></span>
                         </div>
                       )}
-                      <div className={styles.order_status_right_icon}
+                      {(data.status === "wait_customer_approv" ||
+                        data.status === "wait_store_checkout") && (
+                        <div className={styles.place_icon_three}>
+                          <span
+                            style={{ fontSize: "20px", color: "#fff" }}
+                            className="fas fa-clipboard-check "
+                          ></span>
+                        </div>
+                      )}
+                      <div
+                        className={styles.order_status_right_icon}
                         style={{ marginRight: "20px" }}
-                      >{" "}
+                      >
+                        {" "}
                         <h4 style={{ fontSize: "14px", margin: "0px" }}>
-                          {" "}تایید سفارش
+                          {" "}
+                          تایید سفارش
                         </h4>
                       </div>
                     </div>
-                    <div style={{
-                      width: "19px",
-                      height: "0px",
-                      border: "2px solid #E0E6E9",
-                      marginLeft: "15px",
-                      marginRight: "15px",
-                      marginTop: "auto",
-                      marginBottom: "auto",
-                    }}
+                    <div
+                      style={{
+                        width: "19px",
+                        height: "0px",
+                        border: "2px solid #E0E6E9",
+                        marginLeft: "15px",
+                        marginRight: "15px",
+                        marginTop: "auto",
+                        marginBottom: "auto",
+                      }}
                     ></div>
                     {/* تحویل مرسوله به پست */}
                     <div className={styles.order_status_oneLevel}>
-                      {(data.status === "wait_store_approv" || data.status === "canceled") && (
+                      {(data.status === "wait_store_approv" ||
+                        data.status === "canceled") && (
                         <div className={styles.place_icon}>
                           <span
                             style={{ fontSize: "20px", color: "#fff" }}
@@ -165,7 +180,9 @@ function HomePage({ id }) {
                           ></span>
                         </div>
                       )}
-                      {(data.status === "completed" || data.status === "wait_customer_approv" || data.status === "wait_store_checkout") && (
+                      {(data.status === "completed" ||
+                        data.status === "wait_customer_approv" ||
+                        data.status === "wait_store_checkout") && (
                         <div className={styles.place_icon_three}>
                           <span
                             style={{ fontSize: "20px", color: "#fff" }}
@@ -176,9 +193,11 @@ function HomePage({ id }) {
                       <div
                         className={styles.order_status_right_icon}
                         style={{ marginRight: "20px" }}
-                      >{" "}
+                      >
+                        {" "}
                         <h4 style={{ fontSize: "14px", margin: "0px" }}>
-                          {" "}تحویل سفارش به پست
+                          {" "}
+                          تحویل سفارش به پست
                         </h4>
                       </div>
                     </div>
@@ -195,7 +214,9 @@ function HomePage({ id }) {
                     ></div>
                     {/* تایید مشتری */}
                     <div className={styles.order_status_oneLevel}>
-                      {(data.status === "wait_store_approv" || data.status === "canceled" || data.status === "preparing_product") && (
+                      {(data.status === "wait_store_approv" ||
+                        data.status === "canceled" ||
+                        data.status === "preparing_product") && (
                         <div className={styles.place_icon}>
                           <span
                             style={{ fontSize: "20px", color: "#fff" }}
@@ -211,7 +232,8 @@ function HomePage({ id }) {
                           ></span>
                         </div>
                       )}
-                      {(data.status === "completed" || data.status === "wait_store_checkout") && (
+                      {(data.status === "completed" ||
+                        data.status === "wait_store_checkout") && (
                         <div className={styles.place_icon_three}>
                           <span
                             style={{ fontSize: "20px", color: "#fff" }}
@@ -222,9 +244,11 @@ function HomePage({ id }) {
                       <div
                         className={styles.order_status_right_icon}
                         style={{ marginRight: "20px" }}
-                      >{" "}
+                      >
+                        {" "}
                         <h4 style={{ fontSize: "14px", margin: "0px" }}>
-                          {" "}تایید مشتری
+                          {" "}
+                          تایید مشتری
                         </h4>
                       </div>
                     </div>
@@ -262,9 +286,11 @@ function HomePage({ id }) {
                           };
                           try {
                             let response = await ApiRegister().apiRequest(
-                              sendData, "POST",
+                              sendData,
+                              "POST",
                               `/app/api/v1/factor/change-status/sent/${id}/`,
-                              true, {}
+                              true,
+                              {}
                             );
                             if (response.status === 200) {
                               setshowMessage(1);
@@ -413,10 +439,12 @@ function HomePage({ id }) {
                   </div>
                   <div className={styles.post_informationD_content}>
                     <h4 style={{ fontSize: "14px" }}> موبایل :</h4>
-                    <h3 style={{ fontSize: "15px" }}
+                    <h3
+                      style={{ fontSize: "15px" }}
                       className={styles.post_information_h3}
                     >
-                      {data.address_json && _asist.number(jsonAddress.receiver_mobile_number)}
+                      {data.address_json &&
+                        _asist.number(jsonAddress.receiver_mobile_number)}
                     </h3>
                   </div>
                   <div></div>
@@ -426,7 +454,8 @@ function HomePage({ id }) {
                       style={{ fontSize: "15px" }}
                       className={styles.post_information_h3}
                     >
-                      {data.address_json && `${jsonAddress.state} |  ${jsonAddress.big_city}  |  ${jsonAddress.address}`}
+                      {data.address_json &&
+                        `${jsonAddress.state} |  ${jsonAddress.big_city}  |  ${jsonAddress.address}`}
                     </h3>
                   </div>
                   <div className={styles.post_informationD_content}>
@@ -444,7 +473,8 @@ function HomePage({ id }) {
                       style={{ fontSize: "15px" }}
                       className={styles.post_information_h3}
                     >
-                      {data.items.length > 0 && _asist.number(data.items[0].barcode)}
+                      {data.items.length > 0 &&
+                        _asist.number(data.items[0].barcode)}
                     </h3>
                   </div>
                 </div>
@@ -597,8 +627,7 @@ function HomePage({ id }) {
                                   fontSize: "14px",
                                 }}
                               >
-                                {_asist.PSeparator(e.price_with_discount / 10)}
-                                +{" "}
+                                {_asist.PSeparator(e.price_with_discount / 10)}+{" "}
                                 <span style={{ color: "#5E7488" }}>تومان</span>
                               </h4>
                             </div>
@@ -606,10 +635,7 @@ function HomePage({ id }) {
                               className={styles.good_three_content}
                               style={{ marginBottom: "30px" }}
                             >
-                              <h4 style={{ fontSize: "14px" }}>
-                                {" "}
-                                تخفیف محصول
-                              </h4>
+                              <h4 style={{ fontSize: "14px" }}> تخفیف محصول</h4>
                               <h4
                                 style={{
                                   color: "#D14343",
@@ -618,13 +644,12 @@ function HomePage({ id }) {
                                 }}
                               >
                                 {_asist.PSeparator(
-                                  (e.price_without_discount - e.price_with_discount) /
-                                  10
+                                  (e.price_without_discount -
+                                    e.price_with_discount) /
+                                    10
                                 )}
                                 -{" "}
-                                <span style={{ color: "#5E7488" }}>
-                                  تومان
-                                </span>
+                                <span style={{ color: "#5E7488" }}>تومان</span>
                               </h4>
                             </div>
                           </div>
@@ -658,8 +683,7 @@ function HomePage({ id }) {
                       <span style={{ color: "#5E7488" }}>تومان</span>
                     </h4>
                   </div>
-                  <div className={styles.final_invoice_content}>
-                  </div>
+                  <div className={styles.final_invoice_content}></div>
                 </div>
                 <hr />
               </div>
@@ -670,27 +694,34 @@ function HomePage({ id }) {
             <div className={styles.wrapper}>
               {/* وضعیت سفارش */}
               <div className={styles.order_status}>
-                <h1 style={{ fontSize: "18px", margin: "0px" }} className={styles.header}
+                <h1
+                  style={{ fontSize: "18px", margin: "0px" }}
+                  className={styles.header}
                 >
                   وضعیت سفارش
                 </h1>
                 <hr />
                 <div className={styles.content}>
-                  <h3 style={{
-                    paddingTop: "20px",
-                    textAlign: "center",
-                    fontSize: "15px",
-                  }}
+                  <h3
+                    style={{
+                      paddingTop: "20px",
+                      textAlign: "center",
+                      fontSize: "15px",
+                    }}
                   >
                     وضعیت سفارش
                   </h3>
                   <div className={styles.title_status_pat}>
                     <div className={styles.title_status}>
                       <h3 style={{ fontSize: "15px", fontWeight: "bold" }}>
-                        {data.status === "wait_store_approv" && "در انتظار تأیید فروشگاه"}
-                        {data.status === "preparing_product" && "در حال آماده سازی"}
-                        {data.status === "wait_customer_approv" && "در انتظار تأیید مشتری"}
-                        {data.status === "wait_store_checkout" && "در انتظار تسویه با فروشگاه"}
+                        {data.status === "wait_store_approv" &&
+                          "در انتظار تأیید فروشگاه"}
+                        {data.status === "preparing_product" &&
+                          "در حال آماده سازی"}
+                        {data.status === "wait_customer_approv" &&
+                          "در انتظار تأیید مشتری"}
+                        {data.status === "wait_store_checkout" &&
+                          "در انتظار تسویه با فروشگاه"}
                         {data.status === "completed" && "تکمیل شده"}
                         {data.status === "canceled" && "لغو شده"}
                       </h3>
@@ -700,21 +731,17 @@ function HomePage({ id }) {
                     {/* تایید سفارش */}
                     <div className={styles.order_status_oneLevel}>
                       {/* منتظر بررسی */}
-                      {(data.status === "wait_store_approv" || data.status === "canceled") && (
+                      {(data.status === "wait_store_approv" ||
+                        data.status === "canceled") && (
                         <div className={styles.place_icon_two}>
-                          <span style={{ fontSize: "20px", color: "#fff" }}
+                          <span
+                            style={{ fontSize: "20px", color: "#fff" }}
                             className="fas fa-clipboard-check "
                           ></span>
                         </div>
                       )}
-                      {(data.status === "preparing_product" || data.status === "completed") && (
-                        <div className={styles.place_icon_three}>
-                          <span style={{ fontSize: "20px", color: "#fff" }}
-                            className="fas fa-clipboard-check "
-                          ></span>
-                        </div>
-                      )}
-                      {(data.status === "wait_customer_approv" || data.status === "wait_store_checkout") && (
+                      {(data.status === "preparing_product" ||
+                        data.status === "completed") && (
                         <div className={styles.place_icon_three}>
                           <span
                             style={{ fontSize: "20px", color: "#fff" }}
@@ -722,11 +749,23 @@ function HomePage({ id }) {
                           ></span>
                         </div>
                       )}
-                      <div className={styles.order_status_right_icon}
+                      {(data.status === "wait_customer_approv" ||
+                        data.status === "wait_store_checkout") && (
+                        <div className={styles.place_icon_three}>
+                          <span
+                            style={{ fontSize: "20px", color: "#fff" }}
+                            className="fas fa-clipboard-check "
+                          ></span>
+                        </div>
+                      )}
+                      <div
+                        className={styles.order_status_right_icon}
                         style={{ marginRight: "20px" }}
-                      >{" "}
+                      >
+                        {" "}
                         <h4 style={{ fontSize: "14px", margin: "0px" }}>
-                          {" "}تایید سفارش
+                          {" "}
+                          تایید سفارش
                         </h4>
                       </div>
                     </div>
@@ -742,7 +781,8 @@ function HomePage({ id }) {
                     ></div>
                     {/* تحویل مرسوله به پست */}
                     <div className={styles.order_status_oneLevel}>
-                      {(data.status === "wait_store_approv" || data.status === "canceled") && (
+                      {(data.status === "wait_store_approv" ||
+                        data.status === "canceled") && (
                         <div className={styles.place_icon}>
                           <span
                             style={{ fontSize: "20px", color: "#fff" }}
@@ -758,7 +798,9 @@ function HomePage({ id }) {
                           ></span>
                         </div>
                       )}
-                      {(data.status === "completed" || data.status === "wait_customer_approv" || data.status === "wait_store_checkout") && (
+                      {(data.status === "completed" ||
+                        data.status === "wait_customer_approv" ||
+                        data.status === "wait_store_checkout") && (
                         <div className={styles.place_icon_three}>
                           <span
                             style={{ fontSize: "20px", color: "#fff" }}
@@ -769,9 +811,11 @@ function HomePage({ id }) {
                       <div
                         className={styles.order_status_right_icon}
                         style={{ marginRight: "20px" }}
-                      >{" "}
+                      >
+                        {" "}
                         <h4 style={{ fontSize: "14px", margin: "0px" }}>
-                          {" "}تحویل سفارش به پست
+                          {" "}
+                          تحویل سفارش به پست
                         </h4>
                       </div>
                     </div>
@@ -787,7 +831,9 @@ function HomePage({ id }) {
                     ></div>
                     {/* تایید مشتری */}
                     <div className={styles.order_status_oneLevel}>
-                      {(data.status === "wait_store_approv" || data.status === "canceled" || data.status === "preparing_product") && (
+                      {(data.status === "wait_store_approv" ||
+                        data.status === "canceled" ||
+                        data.status === "preparing_product") && (
                         <div className={styles.place_icon}>
                           <span
                             style={{ fontSize: "20px", color: "#fff" }}
@@ -803,7 +849,8 @@ function HomePage({ id }) {
                           ></span>
                         </div>
                       )}
-                      {(data.status === "completed" || data.status === "wait_store_checkout") && (
+                      {(data.status === "completed" ||
+                        data.status === "wait_store_checkout") && (
                         <div className={styles.place_icon_three}>
                           <span
                             style={{ fontSize: "20px", color: "#fff" }}
@@ -814,9 +861,11 @@ function HomePage({ id }) {
                       <div
                         className={styles.order_status_right_icon}
                         style={{ marginRight: "20px" }}
-                      >{" "}
+                      >
+                        {" "}
                         <h4 style={{ fontSize: "14px", margin: "0px" }}>
-                          {" "}تایید مشتری
+                          {" "}
+                          تایید مشتری
                         </h4>
                       </div>
                     </div>
@@ -857,7 +906,8 @@ function HomePage({ id }) {
                               sendData,
                               "POST",
                               `/app/api/v1/factor/change-status/sent/${id}/`,
-                              true, {}
+                              true,
+                              {}
                             );
 
                             if (response.status === 200) {
@@ -1011,7 +1061,8 @@ function HomePage({ id }) {
                       style={{ fontSize: "15px" }}
                       className={styles.post_information_h3}
                     >
-                      {data.address_json && _asist.number(jsonAddress.receiver_mobile_number)}
+                      {data.address_json &&
+                        _asist.number(jsonAddress.receiver_mobile_number)}
                     </h3>
                   </div>
                   <div className={styles.post_information_content}>
@@ -1020,7 +1071,8 @@ function HomePage({ id }) {
                       style={{ fontSize: "15px" }}
                       className={styles.post_information_h3}
                     >
-                      {data.address_json && `${jsonAddress.state} |  ${jsonAddress.big_city}  |  ${jsonAddress.address}`}
+                      {data.address_json &&
+                        `${jsonAddress.state} |  ${jsonAddress.big_city}  |  ${jsonAddress.address}`}
                     </h3>
                   </div>
                   <div className={styles.post_information_content}>
@@ -1038,7 +1090,8 @@ function HomePage({ id }) {
                       style={{ fontSize: "15px" }}
                       className={styles.post_information_h3}
                     >
-                      {data.items.length > 0 && _asist.number(data.items[0].barcode)}
+                      {data.items.length > 0 &&
+                        _asist.number(data.items[0].barcode)}
                     </h3>
                   </div>
                 </div>
@@ -1078,136 +1131,142 @@ function HomePage({ id }) {
                 </h1>
                 <hr />
 
-                {data.items.length && data.items.map((e, index) => {
-                  return (
-                    <div key={index} className={styles.purchased_good_content}>
-                      <div className={styles.purchased_good_one}>
-                        <Image
-                          src={`${e.image_thumbnail || "/"}`}
-                          width={45}
-                          height={45}
-                        />
-                        <h3
-                          style={{
-                            marginRight: "15px",
-                            fontSize: "15px",
-                            fontWeight: "bold",
-                          }}
-                        >
-                          {_asist.number(e.name)}
-                        </h3>
-                      </div>
+                {data.items.length &&
+                  data.items.map((e, index) => {
+                    return (
                       <div
-                        className={styles.purchased_good_two}
-                        style={{ marginTop: "16px" }}
+                        key={index}
+                        className={styles.purchased_good_content}
                       >
-                        <div style={{ display: "flex" }}>
-                          <h4>قیمت :</h4>
-                          <h4 style={{ color: "#364254" }}>
-                            {_asist.PSeparator(e.price_with_discount / 10)}{" "}
-                            <span style={{ color: "#5E7488" }}>تومان</span>
-                          </h4>
-                        </div>
-                        <div>
-                          <h4 style={{ color: "#364254" }}>
-                            {_asist.number(e.count)}{" "}
-                            <span style={{ fontSize: "14px" }}>عدد</span>
-                          </h4>
-                        </div>
-                      </div>
-                      {isOpen && (
-                        <div className={styles.purchased_good_three}>
-                          <div className={styles.good_three_content}>
-                            <h4
-                              style={{ fontSize: "14px", fontWeight: "bold" }}
-                            >
-                              مجموع هزینه محصول
-                            </h4>
-                            <h4
-                              style={{ color: "#089319", fontWeight: "bold" }}
-                            >
-                              {_asist.PSeparator(e.price_with_discount / 10)}+{" "}
-                              <span
-                                style={{ color: "#5E7488", fontSize: "14px" }}
-                              >
-                                تومان
-                              </span>
-                            </h4>
-                          </div>
-                          <div
-                            className={styles.good_three_content}
-                            style={{ marginBottom: "30px" }}
+                        <div className={styles.purchased_good_one}>
+                          <Image
+                            src={`${e.image_thumbnail || "/"}`}
+                            width={45}
+                            height={45}
+                          />
+                          <h3
+                            style={{
+                              marginRight: "15px",
+                              fontSize: "15px",
+                              fontWeight: "bold",
+                            }}
                           >
-                            <h4>تخفیف محصول</h4>
-                            <h4
-                              style={{
-                                color: "#D14343",
-                                fontWeight: "bold",
-                              }}
-                            >
-                              {_asist.PSeparator(
-                                (e.price_without_discount - e.price_with_discount) / 10
-                              )}
-                              <span
-                                style={{ color: "#5E7488", fontSize: "14px" }}
-                              >
-                                تومان
-                              </span>
+                            {_asist.number(e.name)}
+                          </h3>
+                        </div>
+                        <div
+                          className={styles.purchased_good_two}
+                          style={{ marginTop: "16px" }}
+                        >
+                          <div style={{ display: "flex" }}>
+                            <h4>قیمت :</h4>
+                            <h4 style={{ color: "#364254" }}>
+                              {_asist.PSeparator(e.price_with_discount / 10)}{" "}
+                              <span style={{ color: "#5E7488" }}>تومان</span>
+                            </h4>
+                          </div>
+                          <div>
+                            <h4 style={{ color: "#364254" }}>
+                              {_asist.number(e.count)}{" "}
+                              <span style={{ fontSize: "14px" }}>عدد</span>
                             </h4>
                           </div>
                         </div>
-                      )}
-                      <div className={styles.good_four}>
-                        <button
-                          className={styles.btn}
-                          onClick={() => setIsOpen(!isOpen)}
-                        >
-                          {isOpen ? (
-                            <>
-                              <div
+                        {isOpen && (
+                          <div className={styles.purchased_good_three}>
+                            <div className={styles.good_three_content}>
+                              <h4
+                                style={{ fontSize: "14px", fontWeight: "bold" }}
+                              >
+                                مجموع هزینه محصول
+                              </h4>
+                              <h4
+                                style={{ color: "#089319", fontWeight: "bold" }}
+                              >
+                                {_asist.PSeparator(e.price_with_discount / 10)}+{" "}
+                                <span
+                                  style={{ color: "#5E7488", fontSize: "14px" }}
+                                >
+                                  تومان
+                                </span>
+                              </h4>
+                            </div>
+                            <div
+                              className={styles.good_three_content}
+                              style={{ marginBottom: "30px" }}
+                            >
+                              <h4>تخفیف محصول</h4>
+                              <h4
                                 style={{
-                                  display: "flex",
-                                  alignItems: "center",
+                                  color: "#D14343",
+                                  fontWeight: "bold",
                                 }}
                               >
-                                <h3 style={{ fontSize: "15px", margin: "0" }}>
-                                  جزییات کمتر
-                                </h3>
+                                {_asist.PSeparator(
+                                  (e.price_without_discount -
+                                    e.price_with_discount) /
+                                    10
+                                )}
                                 <span
+                                  style={{ color: "#5E7488", fontSize: "14px" }}
+                                >
+                                  تومان
+                                </span>
+                              </h4>
+                            </div>
+                          </div>
+                        )}
+                        <div className={styles.good_four}>
+                          <button
+                            className={styles.btn}
+                            onClick={() => setIsOpen(!isOpen)}
+                          >
+                            {isOpen ? (
+                              <>
+                                <div
                                   style={{
-                                    fontSize: "16px",
-                                    marginRight: "10px",
+                                    display: "flex",
+                                    alignItems: "center",
                                   }}
-                                  className="fas fa-chevron-up"
-                                ></span>
-                              </div>
-                            </>
-                          ) : (
-                            <>
-                              <div
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                }}
-                              >
-                                <h3 style={{ fontSize: "15px", margin: "0" }}>
-                                  جزییات بیشتر
-                                </h3>
-                                <span
+                                >
+                                  <h3 style={{ fontSize: "15px", margin: "0" }}>
+                                    جزییات کمتر
+                                  </h3>
+                                  <span
+                                    style={{
+                                      fontSize: "16px",
+                                      marginRight: "10px",
+                                    }}
+                                    className="fas fa-chevron-up"
+                                  ></span>
+                                </div>
+                              </>
+                            ) : (
+                              <>
+                                <div
                                   style={{
-                                    fontSize: "16px",
-                                    marginRight: "10px",
+                                    display: "flex",
+                                    alignItems: "center",
                                   }}
-                                  className="fas fa-chevron-down"
-                                ></span>
-                              </div>
-                            </>
-                          )}
-                        </button>
+                                >
+                                  <h3 style={{ fontSize: "15px", margin: "0" }}>
+                                    جزییات بیشتر
+                                  </h3>
+                                  <span
+                                    style={{
+                                      fontSize: "16px",
+                                      marginRight: "10px",
+                                    }}
+                                    className="fas fa-chevron-down"
+                                  ></span>
+                                </div>
+                              </>
+                            )}
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
               </div>
 
               {/* فاکتور نهایی */}
@@ -1232,8 +1291,7 @@ function HomePage({ id }) {
                       </span>
                     </h4>
                   </div>
-                  <div className={styles.final_invoice_content}>
-                  </div>
+                  <div className={styles.final_invoice_content}></div>
                 </div>
                 <hr />
               </div>

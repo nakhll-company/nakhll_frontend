@@ -82,11 +82,6 @@ function AllEdit({
       true,
       ""
     );
-
-    if (response.status == 200) {
-    } else {
-      errorMessage("در بارگذاری شهرها مشکلی پیش آمده.مجدد تلاش کنید.");
-    }
   };
   // set data in form
   useEffect(() => {

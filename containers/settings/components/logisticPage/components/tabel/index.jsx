@@ -5,7 +5,6 @@ import SBSendUnit from "../sendUnit/switchButtonSendUnit";
 import st from "./tabel.module.scss";
 import Assistent from "zaravand-assistent-number";
 import LoadingAllPage from "../../../../../../components/loadingAllPage";
-import { errorMessage } from "../../../../../utils/message";
 const _asist = new Assistent();
 
 function Tabel({ changePage, setWichIdScope }) {
@@ -48,7 +47,6 @@ function Tabel({ changePage, setWichIdScope }) {
       setLoaderTable(false);
     } else {
       setLoaderTable(false);
-      errorMessage("باری دیگر تلاش کنید.");
     }
   };
   const _handel_click_on_scope = (id) => {
@@ -58,7 +56,6 @@ function Tabel({ changePage, setWichIdScope }) {
 
   return (
     <>
-    
       {loaderTable && <LoadingAllPage title="در حال حذف" />}
 
       <table

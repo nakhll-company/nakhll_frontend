@@ -1,8 +1,5 @@
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-import {
-    errorMessage,
-    successMessage,
-} from "../../../containers/utils/message";
+import { successMessage } from "../../../containers/utils/message";
 
 export async function deleteItemListLanding(id, activeHojreh, setLandingList) {
     let response = await ApiRegister().apiRequest(
@@ -23,10 +20,6 @@ export async function deleteItemListLanding(id, activeHojreh, setLandingList) {
 
         if (result.status === 200) {
             setLandingList(await result.data);
-        } else {
-            errorMessage("خطایی رخ داده است");
         }
-    } else {
-        errorMessage(response.response.data.error);
     }
 }
