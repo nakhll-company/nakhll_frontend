@@ -12,10 +12,6 @@ export async function deleteAddress(id) {
         );
         if (response.status === 204) {
             successMessage("آدرس مورد نظر حذف شد");
-        } else {
-            errorMessage("خطایی در دریافت داده ها پیش آمده است");
-        }
-    } catch (error) {
-        errorMessage("خطایی در دریافت داده ها پیش آمده است");
-    }
+        } else {}
+    } catch (error) {}
 }

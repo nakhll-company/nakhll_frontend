@@ -1,9 +1,31 @@
 import Axios from "axios";
+import { errorMessage } from "../../containers/utils/message";
 
 let token = "";
 if (process.browser) {
     token = window.localStorage.getItem("accessToken");
 }
+//=================================================================\\
+// function for handel message
+
+function showMessage(error) {
+    const expectedError =
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status < 500;
+
+    if (expectedError) {
+        let message = "";
+        for (let [key, value] of Object.entries(error.response.data)) {
+            message += value.toString().replace(",", "\n");
+        }
+
+        errorMessage(message);
+    } else {
+        errorMessage("مشکلی از سمت سرور رخ داده است.");
+    }
+}
+
 //=================================================================\\
 export const instanceAxiosWithOutToken = Axios.create({
     withCredentials: true,
@@ -23,7 +45,7 @@ export const instanceAxiosWithToken = Axios.create({
     baseURL: process.env.BASE_URL,
     timeout: 300000,
     headers: {
-        "Authorization": 'Bearer ' + token,
+        Authorization: "Bearer " + token,
         "Content-Type": " application/json",
     },
 });
@@ -32,19 +54,20 @@ export const instanceAxiosWithToken = Axios.create({
 //=================instanceAxiosWithOutToken=======================\\
 //=================================================================\\
 instanceAxiosWithOutToken.interceptors.request.use(
-    function (config) {
+    function(config) {
         return config;
     },
-    function (error) {
+    function(error) {
         return error;
     }
 );
 
 instanceAxiosWithOutToken.interceptors.response.use(
-    function (response) {
+    function(response) {
         return response;
     },
-    function (error) {
+    function(error) {
+        showMessage(error);
         return error;
     }
 );
@@ -53,19 +76,21 @@ instanceAxiosWithOutToken.interceptors.response.use(
 //=================instanceAxiosWithToken==========================\\
 //=================================================================\\
 instanceAxiosWithToken.interceptors.request.use(
-    function (config) {
+    function(config) {
         return config;
     },
-    function (error) {
+    function(error) {
         return error;
     }
 );
 
 instanceAxiosWithToken.interceptors.response.use(
-    function (response) {
+    function(response) {
         return response;
     },
-    function (error) {
+    function(error) {
+        showMessage(error);
+
         return error;
     }
 );

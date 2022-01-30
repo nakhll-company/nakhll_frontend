@@ -1,23 +1,20 @@
-import { errorMessage } from '../../containers/utils/message';
-import { ApiRegister } from '../../services/apiRegister/ApiRegister';
+import { errorMessage } from "../../containers/utils/message";
+import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 
 export async function completeAuth(data) {
     try {
         let response = await ApiRegister().apiRequest(
-            data, "POST", "/api/v1/auth/complete/", false, {}
+            data,
+            "POST",
+            "/api/v1/auth/complete/",
+            false, {}
         );
         if (response.status === 200) {
             return response.data;
         } else {
-            errorMessage("خطایی رخ داده است");
             return false;
         }
     } catch (error) {
-        ga('send', 'exception', {
-            'exDescription': error.message,
-            'exFatal': false
-        });
-        errorMessage("خطایی رخ داده است");
         return false;
     }
 }

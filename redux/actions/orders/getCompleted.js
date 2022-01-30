@@ -27,7 +27,5 @@ export const getCompleted = (activeHojreh) => async(dispatch) => {
                 payload: response.data,
             });
         }
-    } catch (error) {
-        errorMessage("در دریافت داده ها خطایی رخ داده است");
-    }
+    } catch (error) {}
 };

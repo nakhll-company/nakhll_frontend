@@ -13,15 +13,9 @@ export async function sendPhoneNumber(data) {
             sessionStorage.setItem("mobile", data.mobile);
             return response.data;
         } else {
-            errorMessage("خطایی رخ داده است");
             return false;
         }
     } catch (error) {
-        errorMessage("خطایی رخ داده است");
-        ga("send", "exception", {
-            exDescription: error.message,
-            exFatal: false,
-        });
         return false;
     }
 }
