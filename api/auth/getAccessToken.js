@@ -19,7 +19,6 @@ export async function getAccessToken(data) {
         }
     } catch (error) {
         errorMessage("خطایی رخ داده است");
-
         return false;
     }
 }

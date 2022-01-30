@@ -18,10 +18,6 @@ export async function sendPhoneNumber(data) {
         }
     } catch (error) {
         errorMessage("خطایی رخ داده است");
-        ga("send", "exception", {
-            exDescription: error.message,
-            exFatal: false,
-        });
         return false;
     }
 }
