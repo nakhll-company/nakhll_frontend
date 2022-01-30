@@ -1,24 +1,25 @@
-import React, { useRef, useEffect, useState } from "react";
-
-import { v4 as uuidv4 } from "uuid";
-import styles from "./liveEdit.module.scss";
-import Living from "../../components/liveEdit/living";
-import Head from "next/head";
-// gsap
+// node libraies
 import { gsap } from "gsap";
+import Head from "next/head";
 import lottie from "lottie-web";
-
-import ListComponent from "../../containers/liveEdit/ListComponent";
+import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
-import { _updateDataLanding } from "../../redux/actions/liveEdit/_updateDataLanding";
-import SaveLanding from "../../containers/liveEdit/SaveLanding";
-import { ApiReference } from "../../Api";
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import React, { useRef, useEffect, useState } from "react";
+// components
+import Living from "../../components/liveEdit/living";
 import EmptyLayout from "../../components/layout/EmptyLayout";
+import SaveLanding from "../../containers/liveEdit/SaveLanding";
+import ListComponent from "../../containers/liveEdit/ListComponent";
 import { addComponent } from "../../containers/liveEdit/metodes/addComponent";
+// methods
+import { ApiReference } from "../../api/Api";
+import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { _updateDataLanding } from "../../redux/actions/liveEdit/_updateDataLanding";
+// scss
+import styles from "./liveEdit.module.scss";
 
 function LiveEdit({ idLanding }) {
-  console.log("idLanding :>> ", idLanding);
+
   let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}/`;
   // idLanding=[slugShop,idLanding]
   let apiUpdateLanding = `${ApiReference.landing.update.url}${idLanding[0]}/${idLanding[1]}/`;

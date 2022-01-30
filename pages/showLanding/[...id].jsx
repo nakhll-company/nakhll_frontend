@@ -1,18 +1,23 @@
+// node libraries
 import React, { useEffect, useState } from "react";
-import { ApiReference } from "../../Api";
+// components
+import ShopLayout from "../../components/shopLayout";
+import Video from "../../containers/LandingPage/Video";
+import AboutMe from "../../containers/LandingPage/AboutMe";
 import HeroSlides from "../../containers/LandingPage/HeroSlides";
-import LinerFourImgMobile from "../../containers/LandingPage/LinerFourImgMobile";
 import LinerOneImg from "../../containers/LandingPage/LinerOneImg";
+import VipProducts from "../../containers/LandingPage/VipProducts";
 import LinerProducts from "../../containers/LandingPage/LinerProducts";
 import LinerThreeImg from "../../containers/LandingPage/LinerThreeImg";
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import LinerTwoImgSm from "../../containers/LandingPage/LinerTwoImgSm";
-import ShopLayout from "../../components/shopLayout";
-import AboutMe from "../../containers/LandingPage/AboutMe";
-import VipProducts from "../../containers/LandingPage/VipProducts";
-import Video from "../../containers/LandingPage/Video";
 import LinearShopsCart from "../../containers/LandingPage/linearShopsCart";
+import LinerFourImgMobile from "../../containers/LandingPage/LinerFourImgMobile";
+// methods
+import { ApiReference } from "../../api/Api";
+import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+
 function ShowLanding({ idLanding }) {
+
   let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}`;
   const [dataLanding, setDataLanding] = useState([]);
 

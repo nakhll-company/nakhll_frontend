@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from "react";
-import styles from "./SaveLanding.module.scss";
-import Assistent from "zaravand-assistent-number";
-import { useDispatch, useSelector } from "react-redux";
-import { _showSelect_url } from "../../../redux/actions/liveEdit/_showSelect_url";
+// node libraries
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+// methods
+import { ApiReference } from "../../../api/Api";
 import { _updateUrl } from "../../../redux/actions/liveEdit/_updateUrl";
-import { ApiReference } from "../../../Api";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+import { _showSelect_url } from "../../../redux/actions/liveEdit/_showSelect_url";
+// styles
+import styles from "./SaveLanding.module.scss";
 
-const _asist = new Assistent();
 function SaveLanding({ setOpenSaveLanding, idLanding }) {
-  const [inputName, setInputName] = useState("");
-  let apiCreateLanding = `${ApiReference.landing.creat.url}${idLanding[0]}/`;
 
+  const landing = useSelector((state) => state.allDataLanding);
+  const [inputName, setInputName] = useState("");
   let apiUpdateLanding = `${ApiReference.landing.update.url}${idLanding[0]}/${idLanding[1]}/`;
 
-  const dispatch = useDispatch();
-  const landing = useSelector((state) => state.allDataLanding);
 
   let ansapi = {
     name: inputName !== "" ? inputName : "بدون عنوان",
