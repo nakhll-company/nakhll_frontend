@@ -42,21 +42,21 @@ function Living({ characters, setCharacters, setOpenPlaneEditor, idLanding }) {
         data: [
           {
             image: "",
-            url: "",
+            url:  `/shop/${idLanding[0]}`,
             title: "",
             video: { id: "", src: "" },
             order: 0,
           },
           {
             image: "",
-            url: "",
+            url:  `/shop/${idLanding[0]}`,
             title: "",
             video: { id: "", src: "" },
             order: 1,
           },
           {
             image: "",
-            url: "",
+            url: `/shop/${idLanding[0]}`,
             title: "",
             video: { id: "", src: "" },
             order: 2,
