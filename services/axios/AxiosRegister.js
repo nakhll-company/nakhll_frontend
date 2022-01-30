@@ -20,7 +20,7 @@ function showMessage(error) {
             message += value.toString().replace(",", "\n");
         }
 
-        errorMessage(message);
+        errorMessage(message, error.response.status);
     } else {
         errorMessage("مشکلی از سمت سرور رخ داده است.");
     }

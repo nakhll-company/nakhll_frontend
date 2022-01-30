@@ -7,9 +7,11 @@ export const successMessage = (message) => {
   });
 };
 
-export const errorMessage = (message) => {
+export const errorMessage = (message, error = "") => {
+  let excepMessage = error ? `${error} | ${message}` : message;
+
   gtag("event", "exception", {
-    description: message,
+    description: excepMessage,
     fatal: true, // set to true if the error is fatal
   });
 

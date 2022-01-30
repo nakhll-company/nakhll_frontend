@@ -20,10 +20,8 @@ export async function featureIsActive(id, activeShop, setLandingList) {
         if (result.status === 200) {
             setLandingList(await result.data);
             return response.data;
-        } else {
-            errorMessage("خطایی رخ داده است");
         }
     } else {
-        errorMessage("خطایی رخ داده است");
+
     }
 }
