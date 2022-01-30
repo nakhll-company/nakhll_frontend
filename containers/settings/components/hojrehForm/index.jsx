@@ -2,7 +2,9 @@ import { Form, Formik } from "formik";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { callApiUpDataShop } from "../../../../api/settings";
-import { GetBigCities, GetCities, GetStates } from "../../../../utils/states";
+import { getBigCities } from "../../../../api/general/getBigCities";
+import { getCities } from "../../../../api/general/getCities";
+import { getStates } from "../../../../api/general/getStates";
 import { dataExp } from "../../data";
 import { VALIDATION_SCHEMA } from "../../methods/Validation";
 import FieldCus from "../field";
@@ -29,7 +31,7 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
 
   useEffect(() => {
     async function fetchData() {
-      setSelectState(await GetStates());
+      setSelectState(await getStates());
     }
     fetchData();
   }, []);
@@ -130,7 +132,7 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
                 name="State"
                 defaultValue=""
                 onChange={async (event) => {
-                  setSelectBigCities(await GetBigCities(event.target.value));
+                  setSelectBigCities(await getBigCities(event.target.value));
 
                   setChoiceState(event.target[event.target.selectedIndex].text);
                 }}
@@ -152,7 +154,7 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
                 name="BigCity"
                 defaultValue=""
                 onChange={async (event) => {
-                  setSelectCities(await GetCities(event.target.value));
+                  setSelectCities(await getCities(event.target.value));
                   setChoiceBigCity(
                     event.target[event.target.selectedIndex].text
                   );

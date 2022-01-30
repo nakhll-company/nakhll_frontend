@@ -13,7 +13,7 @@ import LinerProductsBg from "../containers/LandingPage/LinerProductsBg";
 import LinerThreeImg from "../containers/LandingPage/LinerThreeImg";
 import LinerTwoValue from "../containers/LandingPage/LinerTwoValue";
 import { ApiRegister } from "../services/apiRegister/ApiRegister";
-import { ApiReference } from "../Api";
+import { ApiReference } from "../api/Api";
 import ShopLayout from "../components/shopLayout";
 // fetch data
 const fetchData = async () => {

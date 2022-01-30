@@ -33,7 +33,7 @@ const Address = () => {
 
   useEffect(() => {
     async function fetchData() {
-      Object.keys(userLogin).length > 0 && router.push("/login");
+      !Object.keys(userLogin).length > 0 && router.push("/login");
       await getAddress(setAddress);
       await setLoading(false);
     }

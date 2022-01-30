@@ -14,7 +14,7 @@ import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // style
 import styles from "./header.module.scss";
 import BoxSearch from "./boxSearch";
-import { ApiReference } from "../../../Api";
+import { ApiReference } from "../../../api/Api";
 
 const _asist = new Assistent();
 

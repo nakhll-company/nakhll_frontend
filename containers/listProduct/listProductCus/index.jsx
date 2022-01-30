@@ -7,7 +7,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import _ from "lodash";
 // components
 import { TopBar } from "../TopBar";
-import { errorMessage } from "../../utils/message";
 import Search from "../../../components/search/Search";
 import AddFavorites from "../../../components/AddFavorites";
 import { allCites } from "../../../components/custom/data/data";
@@ -17,7 +16,7 @@ import CustomAccordion from "../../../components/custom/customAccordion";
 import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
 import MultiRangeSlider from "../../../components/custom/customMultiRangeSlider/MultiRangeSlider";
 // methods
-import { ApiReference } from "../../../Api";
+import { ApiReference } from "../../../api/Api";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // styles
 import styles from "./listProductCus.module.scss";

@@ -7,7 +7,7 @@ import Assistent from "zaravand-assistent-number";
 import { useDispatch, useSelector } from "react-redux";
 import { _addToWishList } from "../../redux/actions/Wishlist/_addToWishList";
 import { _deleteFromWishList } from "../../redux/actions/Wishlist/_deleteFromWishList";
-import { ApiReference } from "../../Api";
+import { ApiReference } from "../../api/Api";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 const _asist = new Assistent();
 
@@ -49,7 +49,7 @@ function AddFavorites() {
         link: `https://nakhll.com${link}`,
         name: textInput == "" ? "بدون عنوان" : textInput,
       };
-      
+
 
       let response = await ApiRegister().apiRequest(
         newFav,
@@ -58,14 +58,14 @@ function AddFavorites() {
         true,
         ""
       );
-     
+
       if (response.status === 201) {
         dispatch(_addToWishList(newFav));
         setListFav([...listFav, newFav]);
         settextInput("");
       }
 
-      
+
     }
   };
 
