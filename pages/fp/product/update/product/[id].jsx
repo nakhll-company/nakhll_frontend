@@ -147,8 +147,6 @@ const UpdateProduct = ({ activeHojreh }) => {
 
     if (response.status === 200) {
       router.replace("/fp/product/update/product/successPageEditProduct");
-    } else {
-      errorMessage("خطایی رخ داده مجدد تلاش فرمایید.");
     }
   };
 

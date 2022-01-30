@@ -48,8 +48,6 @@ const Price = ({ productList }) => {
     );
     if (response.status === 200) {
       successMessage("داده ها با موفقیت ثبت شده اند");
-    } else {
-      errorMessage(" خطایی در ویرایش گروهی رخ داده است.");
     }
   };
 
@@ -110,7 +108,7 @@ const Price = ({ productList }) => {
                         },
                         validate: (value) =>
                           parseInt(value) <=
-                            parseInt(getValues(`Price${index + 100}`)) ||
+                          parseInt(getValues(`Price${index + 100}`)) ||
                           "لطفا قیمت با تخفیف را کمتر از قیمت اصلی وارد نمایید",
                       })}
                       defaultValue={

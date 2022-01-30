@@ -52,7 +52,6 @@ function NewStore({ getUserInfo, userInfo }) {
         loading: "false",
         success: "false",
       });
-      errorMessage("خطایی در ایجاد حجره پیش آمده است");
     }
   };
 

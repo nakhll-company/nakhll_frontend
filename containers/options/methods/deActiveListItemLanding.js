@@ -10,16 +10,5 @@ export async function deActiveListItemLanding(id, activeHojreh, router) {
 
     if (response.status === 200) {
         router.reload(window.location.pathname);
-        // let result = await ApiRegister().apiRequest(
-        //     null, "get",
-        //     `/api/v1/shop_landing/${activeHojreh}`,
-        //     true, {}
-        // );
-
-        // if (result.status === 200) {
-        //     await setLandingList(result.data);
-        // } else {
-        //     errorMessage("خطایی رخ داده است");
-        // }
     }
 }

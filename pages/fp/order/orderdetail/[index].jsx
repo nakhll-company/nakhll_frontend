@@ -5,7 +5,6 @@ import { Formik, Form, Field } from "formik";
 import Assistent from "zaravand-assistent-number";
 import { Fragment, useEffect, useState } from "react";
 // methods
-import { errorMessage } from "../../../../containers/utils/message";
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 // components
 import MyLayout from "../../../../components/layout/Layout";
@@ -65,8 +64,6 @@ function HomePage({ id }) {
     setisShow(true);
     if (response.status === 200) {
       setconfigOrder(true);
-    } else {
-      errorMessage("در دریافت اطلاعات خطایی رخ داده است");
     }
   };
 
@@ -114,31 +111,31 @@ function HomePage({ id }) {
                       {/* منتظر بررسی */}
                       {(data.status === "wait_store_approv" ||
                         data.status === "canceled") && (
-                        <div className={styles.place_icon_two}>
-                          <span
-                            style={{ fontSize: "20px", color: "#fff" }}
-                            className="fas fa-clipboard-check "
-                          ></span>
-                        </div>
-                      )}
+                          <div className={styles.place_icon_two}>
+                            <span
+                              style={{ fontSize: "20px", color: "#fff" }}
+                              className="fas fa-clipboard-check "
+                            ></span>
+                          </div>
+                        )}
                       {(data.status === "preparing_product" ||
                         data.status === "completed") && (
-                        <div className={styles.place_icon_three}>
-                          <span
-                            style={{ fontSize: "20px", color: "#fff" }}
-                            className="fas fa-clipboard-check "
-                          ></span>
-                        </div>
-                      )}
+                          <div className={styles.place_icon_three}>
+                            <span
+                              style={{ fontSize: "20px", color: "#fff" }}
+                              className="fas fa-clipboard-check "
+                            ></span>
+                          </div>
+                        )}
                       {(data.status === "wait_customer_approv" ||
                         data.status === "wait_store_checkout") && (
-                        <div className={styles.place_icon_three}>
-                          <span
-                            style={{ fontSize: "20px", color: "#fff" }}
-                            className="fas fa-clipboard-check "
-                          ></span>
-                        </div>
-                      )}
+                          <div className={styles.place_icon_three}>
+                            <span
+                              style={{ fontSize: "20px", color: "#fff" }}
+                              className="fas fa-clipboard-check "
+                            ></span>
+                          </div>
+                        )}
                       <div
                         className={styles.order_status_right_icon}
                         style={{ marginRight: "20px" }}
@@ -165,13 +162,13 @@ function HomePage({ id }) {
                     <div className={styles.order_status_oneLevel}>
                       {(data.status === "wait_store_approv" ||
                         data.status === "canceled") && (
-                        <div className={styles.place_icon}>
-                          <span
-                            style={{ fontSize: "20px", color: "#fff" }}
-                            className="fas fa-truck "
-                          ></span>
-                        </div>
-                      )}
+                          <div className={styles.place_icon}>
+                            <span
+                              style={{ fontSize: "20px", color: "#fff" }}
+                              className="fas fa-truck "
+                            ></span>
+                          </div>
+                        )}
                       {data.status === "preparing_product" && (
                         <div className={styles.place_icon_two}>
                           <span
@@ -183,13 +180,13 @@ function HomePage({ id }) {
                       {(data.status === "completed" ||
                         data.status === "wait_customer_approv" ||
                         data.status === "wait_store_checkout") && (
-                        <div className={styles.place_icon_three}>
-                          <span
-                            style={{ fontSize: "20px", color: "#fff" }}
-                            className="fas fa-truck "
-                          ></span>
-                        </div>
-                      )}
+                          <div className={styles.place_icon_three}>
+                            <span
+                              style={{ fontSize: "20px", color: "#fff" }}
+                              className="fas fa-truck "
+                            ></span>
+                          </div>
+                        )}
                       <div
                         className={styles.order_status_right_icon}
                         style={{ marginRight: "20px" }}
@@ -217,13 +214,13 @@ function HomePage({ id }) {
                       {(data.status === "wait_store_approv" ||
                         data.status === "canceled" ||
                         data.status === "preparing_product") && (
-                        <div className={styles.place_icon}>
-                          <span
-                            style={{ fontSize: "20px", color: "#fff" }}
-                            className="fas fa-box"
-                          ></span>
-                        </div>
-                      )}
+                          <div className={styles.place_icon}>
+                            <span
+                              style={{ fontSize: "20px", color: "#fff" }}
+                              className="fas fa-box"
+                            ></span>
+                          </div>
+                        )}
                       {data.status === "wait_customer_approv" && (
                         <div className={styles.place_icon_two}>
                           <span
@@ -234,13 +231,13 @@ function HomePage({ id }) {
                       )}
                       {(data.status === "completed" ||
                         data.status === "wait_store_checkout") && (
-                        <div className={styles.place_icon_three}>
-                          <span
-                            style={{ fontSize: "20px", color: "#fff" }}
-                            className="fas fa-box"
-                          ></span>
-                        </div>
-                      )}
+                          <div className={styles.place_icon_three}>
+                            <span
+                              style={{ fontSize: "20px", color: "#fff" }}
+                              className="fas fa-box"
+                            ></span>
+                          </div>
+                        )}
                       <div
                         className={styles.order_status_right_icon}
                         style={{ marginRight: "20px" }}
@@ -297,8 +294,6 @@ function HomePage({ id }) {
                               setIsLoading(false);
                             }
                           } catch (e) {
-                            let masage = e.response.data.barcode[0];
-                            masage && errorMessage(masage);
                             setshowMessage(2);
                             setIsLoading(false);
                           }
@@ -646,7 +641,7 @@ function HomePage({ id }) {
                                 {_asist.PSeparator(
                                   (e.price_without_discount -
                                     e.price_with_discount) /
-                                    10
+                                  10
                                 )}
                                 -{" "}
                                 <span style={{ color: "#5E7488" }}>تومان</span>
@@ -733,31 +728,31 @@ function HomePage({ id }) {
                       {/* منتظر بررسی */}
                       {(data.status === "wait_store_approv" ||
                         data.status === "canceled") && (
-                        <div className={styles.place_icon_two}>
-                          <span
-                            style={{ fontSize: "20px", color: "#fff" }}
-                            className="fas fa-clipboard-check "
-                          ></span>
-                        </div>
-                      )}
+                          <div className={styles.place_icon_two}>
+                            <span
+                              style={{ fontSize: "20px", color: "#fff" }}
+                              className="fas fa-clipboard-check "
+                            ></span>
+                          </div>
+                        )}
                       {(data.status === "preparing_product" ||
                         data.status === "completed") && (
-                        <div className={styles.place_icon_three}>
-                          <span
-                            style={{ fontSize: "20px", color: "#fff" }}
-                            className="fas fa-clipboard-check "
-                          ></span>
-                        </div>
-                      )}
+                          <div className={styles.place_icon_three}>
+                            <span
+                              style={{ fontSize: "20px", color: "#fff" }}
+                              className="fas fa-clipboard-check "
+                            ></span>
+                          </div>
+                        )}
                       {(data.status === "wait_customer_approv" ||
                         data.status === "wait_store_checkout") && (
-                        <div className={styles.place_icon_three}>
-                          <span
-                            style={{ fontSize: "20px", color: "#fff" }}
-                            className="fas fa-clipboard-check "
-                          ></span>
-                        </div>
-                      )}
+                          <div className={styles.place_icon_three}>
+                            <span
+                              style={{ fontSize: "20px", color: "#fff" }}
+                              className="fas fa-clipboard-check "
+                            ></span>
+                          </div>
+                        )}
                       <div
                         className={styles.order_status_right_icon}
                         style={{ marginRight: "20px" }}
@@ -783,13 +778,13 @@ function HomePage({ id }) {
                     <div className={styles.order_status_oneLevel}>
                       {(data.status === "wait_store_approv" ||
                         data.status === "canceled") && (
-                        <div className={styles.place_icon}>
-                          <span
-                            style={{ fontSize: "20px", color: "#fff" }}
-                            className="fas fa-truck "
-                          ></span>
-                        </div>
-                      )}
+                          <div className={styles.place_icon}>
+                            <span
+                              style={{ fontSize: "20px", color: "#fff" }}
+                              className="fas fa-truck "
+                            ></span>
+                          </div>
+                        )}
                       {data.status === "preparing_product" && (
                         <div className={styles.place_icon_two}>
                           <span
@@ -801,13 +796,13 @@ function HomePage({ id }) {
                       {(data.status === "completed" ||
                         data.status === "wait_customer_approv" ||
                         data.status === "wait_store_checkout") && (
-                        <div className={styles.place_icon_three}>
-                          <span
-                            style={{ fontSize: "20px", color: "#fff" }}
-                            className="fas fa-truck "
-                          ></span>
-                        </div>
-                      )}
+                          <div className={styles.place_icon_three}>
+                            <span
+                              style={{ fontSize: "20px", color: "#fff" }}
+                              className="fas fa-truck "
+                            ></span>
+                          </div>
+                        )}
                       <div
                         className={styles.order_status_right_icon}
                         style={{ marginRight: "20px" }}
@@ -834,13 +829,13 @@ function HomePage({ id }) {
                       {(data.status === "wait_store_approv" ||
                         data.status === "canceled" ||
                         data.status === "preparing_product") && (
-                        <div className={styles.place_icon}>
-                          <span
-                            style={{ fontSize: "20px", color: "#fff" }}
-                            className="fas fa-box"
-                          ></span>
-                        </div>
-                      )}
+                          <div className={styles.place_icon}>
+                            <span
+                              style={{ fontSize: "20px", color: "#fff" }}
+                              className="fas fa-box"
+                            ></span>
+                          </div>
+                        )}
                       {data.status === "wait_customer_approv" && (
                         <div className={styles.place_icon_two}>
                           <span
@@ -851,13 +846,13 @@ function HomePage({ id }) {
                       )}
                       {(data.status === "completed" ||
                         data.status === "wait_store_checkout") && (
-                        <div className={styles.place_icon_three}>
-                          <span
-                            style={{ fontSize: "20px", color: "#fff" }}
-                            className="fas fa-box"
-                          ></span>
-                        </div>
-                      )}
+                          <div className={styles.place_icon_three}>
+                            <span
+                              style={{ fontSize: "20px", color: "#fff" }}
+                              className="fas fa-box"
+                            ></span>
+                          </div>
+                        )}
                       <div
                         className={styles.order_status_right_icon}
                         style={{ marginRight: "20px" }}
@@ -915,8 +910,6 @@ function HomePage({ id }) {
                               setIsLoading(false);
                             }
                           } catch (err) {
-                            let masage = err.response.data.barcode[0];
-                            masage && errorMessage(masage);
                             setshowMessage(2);
                             setIsLoading(false);
                           }
@@ -1205,7 +1198,7 @@ function HomePage({ id }) {
                                 {_asist.PSeparator(
                                   (e.price_without_discount -
                                     e.price_with_discount) /
-                                    10
+                                  10
                                 )}
                                 <span
                                   style={{ color: "#5E7488", fontSize: "14px" }}

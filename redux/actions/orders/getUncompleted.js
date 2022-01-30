@@ -1,11 +1,10 @@
-import { errorMessage } from "../../../containers/utils/message";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import * as Types from "../../types/orders"; // constants
+import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // action of accounting list
-export const getUncompleted = (activeHojreh) => async(dispatch) => {
+export const getUncompleted = (activeHojreh) => async (dispatch) => {
     // try
     try {
-        const uncompleted = async() => {
+        const uncompleted = async () => {
             let params = {};
             let loadData = null;
             let dataUrl = `/app/api/v1/factor/shop/${activeHojreh}/uncompleted/`;
@@ -28,6 +27,5 @@ export const getUncompleted = (activeHojreh) => async(dispatch) => {
             });
         }
     } catch (error) {
-        errorMessage("در دریافت داده ها خطایی رخ داده است");
     }
 };

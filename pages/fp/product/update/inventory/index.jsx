@@ -48,8 +48,6 @@ const Inventory = ({ productList }) => {
     );
     if (response.status === 200) {
       successMessage("داده ها با موفقیت ثبت شده اند");
-    } else {
-      errorMessage(" خطایی در ویرایش گروهی رخ داده است.");
     }
   };
 

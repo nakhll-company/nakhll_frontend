@@ -135,7 +135,6 @@ const CreateProduct = ({ activeHojreh }) => {
       router.replace("/fp/product/create/successPageProduct");
     } else {
       setIsloadingForCreate(false);
-      errorMessage("مشکل در ایجاد محصول. لطفا دوباره تلاش کنید");
     }
   };
 

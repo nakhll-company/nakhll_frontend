@@ -25,12 +25,8 @@ export const _addProduct = (productId) => {
           payload: response.data,
         });
         successMessage("داده ها با موفقیت ثبت شده اند");
-      } else {
-        errorMessage("موجودی کافی نمی باشد.");
       }
     } catch (e) {
-      const error = e.response.data[0];
-      errorMessage(error);
     }
   };
 };

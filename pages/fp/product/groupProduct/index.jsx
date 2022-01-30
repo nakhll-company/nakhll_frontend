@@ -37,27 +37,6 @@ const GroupProduct = () => {
           if (response.status === 200) {
             successMessage("محصول با موفقیت بارگزاری شد");
             setShowResult(response.data);
-          } else {
-            switch (response.response.data) {
-              case "Price is required field":
-                errorMessage("ستون قیمت الزامیست یا نام آن اشتباه است");
-                break;
-              case "Title is required field":
-                errorMessage("ستون نام الزامیست یا نام آن اشتباه است");
-                break;
-              case "barcode is required field":
-                errorMessage("ستون بارکد الزامیست یا نام آن اشتباه است");
-                break;
-              case "OldPrice is required field":
-                errorMessage("ستون قیمت با تخفیف الزامیست یا نام آن اشتباه است");
-                break;
-              case "Inventory is required field":
-                errorMessage("ستون موجودی الزامیست یا نام آن اشتباه است");
-                break;
-              default:
-                errorMessage("مشکلی رخ داده است.");
-                break;
-            }
           }
         }}
         className="d-flex flex-column align-items-center"
@@ -127,8 +106,6 @@ const GroupProduct = () => {
               );
               if (response.status === 200) {
                 successMessage("درخواست لغو بارگزاری با موفقیت ارسال شد");
-              } else {
-                errorMessage("خطایی رخ داده است");
               }
             }}
           >
