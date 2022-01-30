@@ -1,11 +1,13 @@
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { callApiUpDataShop, callBankAccount } from "../../../../api/settings";
+import Image from "next/image";
 import InputUseForm from "../../../creat/component/inputUseForm";
-
 
 import SubButton from "../subButton";
 import styles from "./bankAccountForm.module.scss";
+import Assistent from "zaravand-assistent-number";
+const _asist = new Assistent();
 
 function BankAccountForm({ apiSetting, activeHojreh, setClicked }) {
   const [IsLoadingHesab, setIsLoadingHesab] = useState(false);
@@ -35,7 +37,7 @@ function BankAccountForm({ apiSetting, activeHojreh, setClicked }) {
   const onSubmit = async (data) => {
     const dataForSend = {
       bank_account: {
-        iban: data.iban,
+        iban: _asist.Enumber(data.iban),
         owner: data.owner,
       },
     };
