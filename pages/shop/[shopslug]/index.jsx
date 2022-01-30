@@ -30,7 +30,7 @@ const DynamicListProductCusTest = dynamic(() =>
   import("../../../containers/listProduct/listProductCusTest")
 );
 // methods
-import { ApiReference } from "../../../Api";
+import { ApiReference } from "../../../api/Api";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // components
 import ShopLayout from "../../../components/shopLayout";

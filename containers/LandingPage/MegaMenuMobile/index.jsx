@@ -1,8 +1,4 @@
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import { ApiReference } from "../../../Api";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-
+import React from "react";
 import styles from "./MegaMenuMobile.module.scss";
 
 function MegaMenuMobile({ category }) {
