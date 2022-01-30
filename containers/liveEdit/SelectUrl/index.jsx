@@ -1,28 +1,27 @@
-import React, { useEffect, useState } from "react";
-import styles from "./SelectUrl.module.scss";
-import Assistent from "zaravand-assistent-number";
+// node libraries
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { _showSelect_url } from "../../../redux/actions/liveEdit/_showSelect_url";
-import { _updateUrl } from "../../../redux/actions/liveEdit/_updateUrl";
-import { ApiReference } from "../../../Api";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-import TextAreaUseForm from "../../creat/component/textAreaUseForm";
-import SubButton from "../../settings/components/subButton";
-import { _updateVideo } from "../../../redux/actions/liveEdit/_updateVideo";
+import Assistent from "zaravand-assistent-number";
+import React, { useEffect, useState } from "react";
+// methods
+import { ApiReference } from "../../../api/Api";
 import { errorMessage } from "../../utils/message";
+import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+import { _updateUrl } from "../../../redux/actions/liveEdit/_updateUrl";
+import { _updateVideo } from "../../../redux/actions/liveEdit/_updateVideo";
+import { _showSelect_url } from "../../../redux/actions/liveEdit/_showSelect_url";
+// components
+import SubButton from "../../settings/components/subButton";
+import TextAreaUseForm from "../../creat/component/textAreaUseForm";
+// styles
+import styles from "./SelectUrl.module.scss";
 
 const _asist = new Assistent();
 function SelectUrl({ idLanding }) {
   const [showInput, setShowInput] = useState(false);
   // useform
   const {
-    setValue,
-    getValues,
-    clearErrors,
     register,
-    setError,
-
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -32,19 +31,23 @@ function SelectUrl({ idLanding }) {
   let apiListPinned = ApiReference.PinnedURL.PinnedList.url;
   const dispatch = useDispatch();
   const [list, setList] = useState([]);
-  useEffect(async () => {
-    let response = await ApiRegister().apiRequest(
-      null,
-      "get",
-      apiListPinned,
-      true,
-      ""
-    );
+  useEffect(() => {
+    async function fetchData() {
+      let response = await ApiRegister().apiRequest(
+        null,
+        "get",
+        apiListPinned,
+        true,
+        ""
+      );
 
-    if (response.status == 200) {
-      setList(response.data);
+      if (response.status == 200) {
+        setList(response.data);
+      }
     }
-  }, []);
+    fetchData();
+
+  }, [apiListPinned]);
 
   const onSubmit = async (data) => {
     let str = data.video;
