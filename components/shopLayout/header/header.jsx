@@ -8,7 +8,11 @@ import { useDispatch, useSelector } from "react-redux";
 import BoxSearch from "./boxSearch";
 import MegaMenuMobile from "../../../containers/LandingPage/MegaMenuMobile";
 import MegaMenuDesktop from "../../../containers/LandingPage/MegaMenuDesktop";
-import { _call_Category, _get_all_shops, _handel_search } from "../../../api/header";
+import {
+  _call_Category,
+  _get_all_shops,
+  _handel_search,
+} from "../../../api/header";
 // methods
 import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
 // style
@@ -17,8 +21,8 @@ import styles from "./header.module.scss";
 const _asist = new Assistent();
 
 function Header() {
-
   const router = useRouter();
+  console.log("router :>> ", router);
   const dispatch = useDispatch();
   const userLog = useSelector((state) => state.User.userInfo);
   const [category, setCategory] = useState([]);
@@ -26,9 +30,10 @@ function Header() {
   const [searchShops, setSearchShops] = useState([]);
   const [inputSearch, setInputSearch] = useState("");
 
-  useEffect(() => {
+  useEffect(async () => {
     dispatch(getUserInfo());
-    _call_Category(setCategory);
+    let getCategory = await _call_Category();
+    setCategory(getCategory);
   }, []);
 
   return (
@@ -94,10 +99,21 @@ function Header() {
                       type="text"
                       className="form-control"
                       placeholder="جستجو در نخل ..."
-                      onClick={() => {
-                        _get_all_shops(setShopsName, shopsName)
+                      onClick={async () => {
+                        if (shopsName.length == 0) {
+                          let getShopsName = await _get_all_shops(shopsName);
+                          setShopsName(getShopsName);
+                        }
                       }}
-                      onChange={(e) => { _handel_search(e.target.value, setInputSearch, setSearchShops, shopsName) }}
+                      onChange={(e) => {
+                        setInputSearch(e.target.value);
+
+                        let searchedShop = _handel_search(
+                          e.target.value,
+                          shopsName
+                        );
+                        setSearchShops(searchedShop);
+                      }}
                       value={inputSearch}
                     />
                     {searchShops.length > 0 && (
@@ -319,8 +335,18 @@ function Header() {
                 <input
                   type="text"
                   className="form-control"
-                  onClick={() => { _get_all_shops(setShopsName, shopsName) }}
-                  onChange={(e) => { _handel_search(e.target.value, setInputSearch, setSearchShops, shopsName) }}
+                  onClick={async () => {
+                    let getShopsName = await _get_all_shops(shopsName);
+                    setShopsName(getShopsName);
+                  }}
+                  onChange={(e) => {
+                    setInputSearch(e.target.value);
+                    let searchedShop = _handel_search(
+                      e.target.value,
+                      shopsName
+                    );
+                    setSearchShops(searchedShop);
+                  }}
                   value={inputSearch}
                   placeholder="جستجو در نخل ..."
                 />
@@ -328,11 +354,18 @@ function Header() {
                 {searchShops.length > 0 && (
                   <BoxSearch list={searchShops} word={inputSearch} />
                 )}
-                <Link href={`/search?q=${inputSearch}`}>
-                  <a aria-label="پروفایل">
-                    <i className="fas fa-search"></i>
-                  </a>
-                </Link>
+                {/* <Link  href={`/search?q=${inputSearch}`}>
+                  <a aria-label="پروفایل"> */}
+                <div
+                  onClick={() => {
+                    setSearchShops([]);
+                    router.push(`/search?q=${inputSearch}`);
+                  }}
+                >
+                  <i className="fas fa-search"></i>
+                </div>
+                {/* </a>
+                </Link> */}
               </form>
             </div>
           </div>
