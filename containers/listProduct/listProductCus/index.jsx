@@ -27,6 +27,7 @@ import { useSelector } from "react-redux";
 const _asist = new Assistent();
 
 function ListProductCus({ data }) {
+  
   const userData = useSelector((state) => state.User.userInfo);
   const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
   const [searchWord, setSearchWord] = useState(data.q ? data.q : "");
@@ -101,7 +102,7 @@ function ListProductCus({ data }) {
       if (response.status === 200) {
         setCategories(response.data);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   const _handel_Add_category = (id) => {
@@ -204,7 +205,7 @@ function ListProductCus({ data }) {
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) { }
+    } catch (e) {}
   };
   // Get all shops
   const _get_all_shops = async () => {
@@ -231,6 +232,9 @@ function ListProductCus({ data }) {
     }
     setSearchShops(filterArray);
   };
+  useEffect(() => {
+    setSearchWord(data.q);
+  }, [data.q]);
 
   // START
   // for filters in sidebar
@@ -240,6 +244,7 @@ function ListProductCus({ data }) {
     }
     fetchData();
   }, [
+    data,
     isAvailableGoods,
     isReadyForSend,
     isDiscountPercentage,
