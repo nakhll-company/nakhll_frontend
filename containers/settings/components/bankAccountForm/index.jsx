@@ -64,11 +64,11 @@ function BankAccountForm({ apiSetting, activeHojreh, setClicked }) {
             {...register("iban", {
               required: "شماره شبا الزامی است",
               minLength: {
-                value: 23,
+                value: 24,
                 message: "شماره شبا 24 رقم می باشد",
               },
               maxLength: {
-                value: 25,
+                value: 24,
                 message: "شماره شبا 24 رقم می باشد",
               },
             })}

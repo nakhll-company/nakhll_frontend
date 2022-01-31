@@ -27,7 +27,7 @@ import { useSelector } from "react-redux";
 const _asist = new Assistent();
 
 function ListProductCus({ data }) {
-  console.log("data :>> ", data);
+  
   const userData = useSelector((state) => state.User.userInfo);
   const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
   const [searchWord, setSearchWord] = useState(data.q ? data.q : "");
