@@ -33,7 +33,7 @@ const DesktopLanding = ({ landingList, activeHojreh, setLandingList }) => {
               },
               "post",
               `/api/v1/shop_landing/${activeHojreh}/`,
-              true,
+              localStorage.getItem("accessToken"),
               ""
             );
             if (response.status === 201) {

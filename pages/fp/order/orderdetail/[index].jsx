@@ -44,7 +44,7 @@ function HomePage({ id }) {
       null,
       "get",
       "/app/api/v1/get-factor-details/",
-      true,
+      localStorage.getItem("accessToken"),
       { factor_id: id }
     );
     if (response.status === 200) {
@@ -58,7 +58,7 @@ function HomePage({ id }) {
       null,
       "PUT",
       `/app/api/v1/factor/change-status/confirmed/${id}/`,
-      true,
+      localStorage.getItem("accessToken"),
       {}
     );
     setisShow(true);
@@ -286,7 +286,7 @@ function HomePage({ id }) {
                               sendData,
                               "POST",
                               `/app/api/v1/factor/change-status/sent/${id}/`,
-                              true,
+                              localStorage.getItem("accessToken"),
                               {}
                             );
                             if (response.status === 200) {
@@ -901,7 +901,7 @@ function HomePage({ id }) {
                               sendData,
                               "POST",
                               `/app/api/v1/factor/change-status/sent/${id}/`,
-                              true,
+                              localStorage.getItem("accessToken"),
                               {}
                             );
 

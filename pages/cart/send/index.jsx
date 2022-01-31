@@ -25,7 +25,7 @@ function Send() {
       null,
       "GET",
       `/accounting_new/api/invoice/${invoice_id}/`,
-      true,
+      localStorage.getItem("accessToken"),
       {}
     );
     let data = response.data;

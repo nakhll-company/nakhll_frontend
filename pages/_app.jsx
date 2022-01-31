@@ -15,7 +15,7 @@ import MyLayout from "../components/layout/Layout";
 import "bootstrap/dist/css/bootstrap.css";
 import "../styles/globals.scss";
 import "../styles/General/font-awesome/css/font-awesome.css";
-const REFRESH_TOKEN_TIMEOUT = 300000;
+const REFRESH_TOKEN_TIMEOUT = 160000;
 function MyApp({ Component, pageProps }) {
 
   LogRocket.init("umu0mf/nakhl");

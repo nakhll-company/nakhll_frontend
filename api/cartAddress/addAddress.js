@@ -7,11 +7,11 @@ export async function addAddress(data) {
             data,
             "POST",
             "/logistic/api/address/",
-            true,
+            localStorage.getItem("accessToken"),
             ""
         );
         if (response.status === 201) {
             return true;
         }
-    } catch (error) {}
+    } catch (error) { }
 }

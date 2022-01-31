@@ -64,7 +64,7 @@ function AllEdit({
       null,
       "get",
       `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
-      true,
+      localStorage.getItem("accessToken"),
       ""
     );
 
@@ -79,7 +79,7 @@ function AllEdit({
       data,
       "PATCH",
       `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
-      true,
+      localStorage.getItem("accessToken"),
       ""
     );
   };

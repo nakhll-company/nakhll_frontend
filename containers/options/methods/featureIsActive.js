@@ -6,7 +6,7 @@ export async function featureIsActive(id, activeShop, setLandingList) {
         null,
         "get",
         `/api/v1/shop_feature_invoice/${activeShop}/history/?feature=${id}`,
-        true, {}
+        localStorage.getItem("accessToken"), {}
     );
 
     if (response.status === 200) {
@@ -14,7 +14,7 @@ export async function featureIsActive(id, activeShop, setLandingList) {
             null,
             "get",
             `/api/v1/shop_landing/${activeShop}/`,
-            true, {}
+            localStorage.getItem("accessToken"), {}
         );
 
         if (result.status === 200) {

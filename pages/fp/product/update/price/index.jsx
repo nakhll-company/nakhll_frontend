@@ -43,7 +43,7 @@ const Price = ({ productList }) => {
       objArray,
       "PATCH",
       `/api/v1/shop/multiple-update/price/`,
-      true,
+      localStorage.getItem("accessToken"),
       {}
     );
     if (response.status === 200) {

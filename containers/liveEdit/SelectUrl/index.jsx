@@ -37,7 +37,7 @@ function SelectUrl({ idLanding }) {
         null,
         "get",
         apiListPinned,
-        true,
+        localStorage.getItem("accessToken"),
         ""
       );
 

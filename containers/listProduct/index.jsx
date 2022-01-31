@@ -60,13 +60,13 @@ function ListProduct({
         null,
         "get",
         `/api/v1/sub_markets/?q=${searchWord}`,
-        true,
+        localStorage.getItem("accessToken"),
         {}
       );
       if (response.status === 200) {
         setCategories(response.data);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   const _handel_Add_category = (id) => {
@@ -166,7 +166,7 @@ function ListProduct({
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   // START
@@ -326,10 +326,10 @@ function ListProduct({
               />
               <div className="mx-auto row">
                 {isLoading ? (
-                  
+
                   <WoLoading />
                 ) : (
-                  
+
                   <InfiniteScroll
                     className="mx-auto row"
                     dataLength={listWithFilter.length} //This is important field to render the next data

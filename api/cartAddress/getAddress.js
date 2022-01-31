@@ -6,11 +6,11 @@ export async function getAddress(setAddress) {
             null,
             "GET",
             "/logistic/api/address/",
-            true,
+            localStorage.getItem("accessToken"),
             ""
         );
         if (response.status === 200) {
             setAddress(response.data);
         }
-    } catch (error) {}
+    } catch (error) { }
 }

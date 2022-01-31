@@ -231,7 +231,7 @@ export default function OrderDetailMobile({
                         loadData,
                         "POST",
                         dataUrl,
-                        true,
+                        localStorage.getItem("accessToken"),
                         params
                       );
                       // setconfigOrder(response);
@@ -386,7 +386,7 @@ export default function OrderDetailMobile({
                         loadData,
                         "POST",
                         dataUrl,
-                        true,
+                        localStorage.getItem("accessToken"),
                         params
                       );
 

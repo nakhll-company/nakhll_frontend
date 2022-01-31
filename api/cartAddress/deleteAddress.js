@@ -7,11 +7,11 @@ export async function deleteAddress(id) {
             null,
             "DELETE",
             `/logistic/api/address/${id}/`,
-            true,
+            localStorage.getItem("accessToken"),
             ""
         );
         if (response.status === 204) {
             successMessage("آدرس مورد نظر حذف شد");
-        } else {}
-    } catch (error) {}
+        } else { }
+    } catch (error) { }
 }

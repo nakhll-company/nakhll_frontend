@@ -48,7 +48,7 @@ function Dashboard({ activeHojreh }) {
         loadData,
         "get",
         dataUrl,
-        true,
+        localStorage.getItem("accessToken"),
         params
       );
       // check status code
@@ -485,7 +485,7 @@ function Dashboard({ activeHojreh }) {
                   {_asist.number(
                     (api.last_week_total_sell &&
                       api.last_week_total_sell.amont) ||
-                      0
+                    0
                   )}
                 </h1>
                 <h3

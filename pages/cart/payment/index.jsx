@@ -34,7 +34,7 @@ export default function Cart() {
       null,
       "GET",
       `/accounting_new/api/invoice/${invoice_id}/`,
-      true,
+      localStorage.getItem("accessToken"),
       {}
     );
     let data = response.data;
@@ -61,7 +61,7 @@ export default function Cart() {
           { coupon: valueCoupon },
           "PATCH",
           `/accounting_new/api/invoice/${invoice_id}/set_coupon/`,
-          true,
+          localStorage.getItem("accessToken"),
           {}
         );
         let data = response.data;
@@ -76,7 +76,7 @@ export default function Cart() {
         } else {
           setIsLoadInvoice(false);
         }
-      } catch (e) {}
+      } catch (e) { }
     }
   };
 
@@ -86,7 +86,7 @@ export default function Cart() {
       { coupon },
       "PATCH",
       `/accounting_new/api/invoice/${invoice_id}/unset_coupon/`,
-      true,
+      localStorage.getItem("accessToken"),
       {}
     );
     if (response.status === 200) {
@@ -102,14 +102,14 @@ export default function Cart() {
         null,
         "GET",
         `/accounting_new/api/invoice/${invoice_id}/pay/`,
-        true,
+        localStorage.getItem("accessToken"),
         {}
       );
       if (response.status === 200) {
         let data = await response.data;
         await router.push(data.url);
       }
-    } catch (error) {}
+    } catch (error) { }
   };
 
   return (

@@ -27,7 +27,7 @@ function ShowLanding({ idLanding }) {
         null,
         "get",
         getDataLanding,
-        true,
+        localStorage.getItem("accessToken"),
         ""
       );
       if (response.status == 200) {

@@ -59,7 +59,7 @@ const UpdateProduct = ({ activeHojreh }) => {
           loadData,
           "get",
           dataUrl,
-          true,
+          localStorage.getItem("accessToken"),
           params
         );
 

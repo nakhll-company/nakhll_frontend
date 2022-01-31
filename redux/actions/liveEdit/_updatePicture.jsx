@@ -18,7 +18,7 @@ export const _updatePicture = (img) => {
         loadData,
         "POST",
         dataUrl,
-        true,
+        localStorage.getItem("accessToken"),
         params
       );
 

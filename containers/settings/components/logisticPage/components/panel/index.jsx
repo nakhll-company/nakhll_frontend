@@ -29,7 +29,7 @@ function Panel({
         "get",
 
         `/api/v1/logistic/shop-logistic-unit/?shop=${activeHojreh}`,
-        true,
+        localStorage.getItem("accessToken"),
         ""
       );
 
@@ -48,7 +48,7 @@ function Panel({
       "DELETE",
 
       `/api/v1/logistic/shop-logistic-unit/${id}/`,
-      true,
+      localStorage.getItem("accessToken"),
       ""
     );
 

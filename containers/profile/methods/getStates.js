@@ -1,6 +1,6 @@
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // api state
-export const getStates = async() => {
+export const getStates = async () => {
     let params = {};
     let loadData = null;
     let dataUrl = "/app/api/v1/get-all-state/";
@@ -8,7 +8,7 @@ export const getStates = async() => {
         loadData,
         "get",
         dataUrl,
-        true,
+        localStorage.getItem("accessToken"),
         params
     );
     if (response.status === 200) {

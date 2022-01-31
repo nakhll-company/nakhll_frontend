@@ -112,7 +112,7 @@ function LogisticPage() {
         },
         "post",
         `/api/v1/logistic/shop-logistic-unit/`,
-        true,
+        localStorage.getItem("accessToken"),
         ""
       );
 
@@ -136,7 +136,7 @@ function LogisticPage() {
       data,
       "PATCH",
       `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
-      true,
+      localStorage.getItem("accessToken"),
       ""
     );
 
@@ -158,7 +158,7 @@ function LogisticPage() {
       data,
       "PATCH",
       `/api/v1/logistic/shop-logistic-unit/${wichIdScope}/`,
-      true,
+      localStorage.getItem("accessToken"),
       ""
     );
     if (response.status == 200) {
@@ -183,7 +183,7 @@ function LogisticPage() {
       },
       "PATCH",
       `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
-      true,
+      localStorage.getItem("accessToken"),
       ""
     );
     upPage();
@@ -193,7 +193,7 @@ function LogisticPage() {
       null,
       "get",
       `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
-      true,
+      localStorage.getItem("accessToken"),
       ""
     );
 

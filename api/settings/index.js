@@ -1,6 +1,6 @@
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 
-export const callApiAllData = async(activeHojreh) => {
+export const callApiAllData = async (activeHojreh) => {
     let params = {};
     let loadData = null;
     let dataUrl = `/api/v1/shop/${activeHojreh}/settings/`;
@@ -8,7 +8,7 @@ export const callApiAllData = async(activeHojreh) => {
         loadData,
         "get",
         dataUrl,
-        true,
+        localStorage.getItem("accessToken"),
         params
     );
     return response;
@@ -30,12 +30,12 @@ export const linkSetting = (body, activeHojreh) => {
         loadData,
         "put",
         dataUrl,
-        true,
+        localStorage.getItem("accessToken"),
         params
     );
 };
 
-export const callApiUpDataShop = async(dataForSend, activeHojreh) => {
+export const callApiUpDataShop = async (dataForSend, activeHojreh) => {
     let params = {};
     let loadData = dataForSend;
     let dataUrl = `/api/v1/shop/${activeHojreh}/settings/`;
@@ -44,14 +44,14 @@ export const callApiUpDataShop = async(dataForSend, activeHojreh) => {
         loadData,
         "patch",
         dataUrl,
-        true,
+        localStorage.getItem("accessToken"),
         params
     );
 
     return response;
 };
 
-export const callBankAccount = async(dataForSend, activeHojreh) => {
+export const callBankAccount = async (dataForSend, activeHojreh) => {
     let params = {};
     let loadData = dataForSend;
     let dataUrl = `/api/v1/shop/${activeHojreh}/settings/bank_account/`;
@@ -60,13 +60,13 @@ export const callBankAccount = async(dataForSend, activeHojreh) => {
         loadData,
         "put",
         dataUrl,
-        true,
+        localStorage.getItem("accessToken"),
         params
     );
     return response;
 };
 
-export const callApiUpDataPicture = async(dataForSend, activeHojreh) => {
+export const callApiUpDataPicture = async (dataForSend, activeHojreh) => {
     let params = {};
     let loadData = dataForSend;
     let dataUrl = `/api/v1/shop/${activeHojreh}/settings/avatar/`;
@@ -75,7 +75,7 @@ export const callApiUpDataPicture = async(dataForSend, activeHojreh) => {
         loadData,
         "put",
         dataUrl,
-        true,
+        localStorage.getItem("accessToken"),
         params
     );
 

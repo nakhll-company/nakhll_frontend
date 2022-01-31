@@ -5,7 +5,7 @@ export async function buyWaitOrders(id) {
         null,
         "GET",
         `/api/v1/shop_feature_invoice/${id}/pay/`,
-        true, {}
+        localStorage.getItem("accessToken"), {}
     );
 
     if (response.status === 200) {

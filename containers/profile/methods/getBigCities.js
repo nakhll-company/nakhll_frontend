@@ -1,6 +1,6 @@
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // big city
-export const getBigCities = async(id) => {
+export const getBigCities = async (id) => {
     let params = {};
     let loadData = null;
     let dataUrl = `/app/api/v1/get-big-cities/?state_id=${id}`;
@@ -8,7 +8,7 @@ export const getBigCities = async(id) => {
         loadData,
         "get",
         dataUrl,
-        true,
+        localStorage.getItem("accessToken"),
         params
     );
     if (response.status === 200) {

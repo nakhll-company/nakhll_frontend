@@ -5,7 +5,7 @@ export async function deActiveListItemLanding(id, activeHojreh, router) {
         null,
         "GET",
         `/api/v1/shop_landing/${activeHojreh}/${id}/deactivate_landing/`,
-        true, {}
+        localStorage.getItem("accessToken"), {}
     );
 
     if (response.status === 200) {

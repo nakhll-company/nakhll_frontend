@@ -87,13 +87,13 @@ function ListProductCusTest({ data }) {
         null,
         "get",
         `/api/v1/categories/category_product_count/?q=${searchWord}&shop=${hojreh}`,
-        true,
+        localStorage.getItem("accessToken"),
         {}
       );
       if (response.status === 200) {
         setCategories(response.data);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   const _handel_Add_category = (id) => {
@@ -196,7 +196,7 @@ function ListProductCusTest({ data }) {
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   // START

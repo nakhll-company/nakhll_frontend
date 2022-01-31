@@ -7,11 +7,11 @@ export async function updateAddress(id, data) {
             data,
             "PUT",
             `/logistic/api/address/${id}/`,
-            true,
+            localStorage.getItem("accessToken"),
             ""
         );
         if (response.status === 200) {
             successMessage("آدرس مورد نظر با موفقیت ویرایش شد");
         }
-    } catch (error) {}
+    } catch (error) { }
 }

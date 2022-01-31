@@ -90,13 +90,13 @@ function ListProductShop({ data }) {
         null,
         "get",
         `/api/v1/categories/category_product_count/?q=${searchWord}`,
-        true,
+        localStorage.getItem("accessToken"),
         {}
       );
       if (response.status === 200) {
         setCategories(response.data);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   const _handel_Add_category = (id) => {
@@ -197,7 +197,7 @@ function ListProductShop({ data }) {
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   // START

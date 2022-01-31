@@ -15,7 +15,7 @@ export const _call_Category = async () => {
     } else {
       return [];
     }
-  } catch (e) {}
+  } catch (e) { }
 };
 
 // Get all shops
@@ -42,7 +42,5 @@ export const _handel_search = (word, shopsName) => {
   if (word != "") {
     filterArray = copy_Array.filter((el) => el.title.includes(word));
   }
-  console.log("filterArray", filterArray);
-
   return filterArray;
 };

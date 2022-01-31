@@ -22,7 +22,6 @@ const _asist = new Assistent();
 
 function Header() {
   const router = useRouter();
-  console.log("router :>> ", router);
   const dispatch = useDispatch();
   const userLog = useSelector((state) => state.User.userInfo);
   const [category, setCategory] = useState([]);

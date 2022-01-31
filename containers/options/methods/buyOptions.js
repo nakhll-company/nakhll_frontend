@@ -2,12 +2,12 @@ import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
 export async function buyOptions(id, activeShop) {
     let response = await ApiRegister().apiRequest({
-            feature: id,
-            shop: activeShop,
-        },
+        feature: id,
+        shop: activeShop,
+    },
         "POST",
         `/api/v1/shop_feature_invoice/`,
-        true, {}
+        localStorage.getItem("accessToken"), {}
     );
 
     if (response.status === 201) {
@@ -15,7 +15,7 @@ export async function buyOptions(id, activeShop) {
             null,
             "GET",
             `/api/v1/shop_feature_invoice/${response.data.id}/pay/`,
-            true, {}
+            localStorage.getItem("accessToken"), {}
         );
 
         if (result.status === 200) {

@@ -31,7 +31,7 @@ const GroupProduct = (data) => {
         let response = await ApiRegister().apiRequest(
           data, "post",
           `/api/v1/product/group-update/${activeHojreh}/`,
-          true, {}
+          localStorage.getItem("accessToken"), {}
         );
         if (response.status === 200) {
           successMessage("محصول با موفقیت بارگزاری شد");
@@ -87,7 +87,7 @@ const GroupProduct = (data) => {
               let response = await ApiRegister().apiRequest(
                 null, "get",
                 `/api/v1/product/group-undo/${activeHojreh}/`,
-                true, {}
+                localStorage.getItem("accessToken"), {}
               );
               if (response.status === 200) {
                 successMessage("درخواست لغو بارگزاری با موفقیت ارسال شد");

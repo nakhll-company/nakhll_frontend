@@ -1,10 +1,6 @@
 import Axios from "axios";
 import { errorMessage } from "../../containers/utils/message";
 
-let token = "";
-if (process.browser) {
-    token = window.localStorage.getItem("accessToken");
-}
 //=================================================================\\
 // function for handel message
 
@@ -44,7 +40,7 @@ export const instanceAxiosWithToken = Axios.create({
     baseURL: process.env.BASE_URL,
     timeout: 300000,
     headers: {
-        Authorization: "Bearer " + token,
+        Authorization: "Bearer " + (process.browser && localStorage.getItem("accessToken")),
         "Content-Type": " application/json",
     },
 });
@@ -89,7 +85,6 @@ instanceAxiosWithToken.interceptors.response.use(
     },
     function (error) {
         showMessage(error);
-
         return error;
     }
 );

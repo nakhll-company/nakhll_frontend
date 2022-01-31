@@ -13,7 +13,7 @@ function SwitchButtonSetting({ id, isActive }) {
       },
       "put",
       `/api/v1/logistic/shop-logistic-unit/${id}/`,
-      true,
+      localStorage.getItem("accessToken"),
       ""
     );
     if (response.status == 200) {

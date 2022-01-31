@@ -9,6 +9,7 @@ export async function refreshToken() {
         let token = {
             refresh: localStorage.getItem("refreshToken"),
         };
+        localStorage.removeItem("accessToken");
         try {
             let response = await ApiRegister().apiRequest(
                 token,

@@ -2,23 +2,23 @@ import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
 export async function activeDemo(id, activeShop, router) {
     let response = await ApiRegister().apiRequest({
-            feature: id,
-            shop: activeShop,
-        },
+        feature: id,
+        shop: activeShop,
+    },
         "POST",
         `/api/v1/shop_feature_invoice/activate_demo/`,
-        true, {}
+        localStorage.getItem("accessToken"), {}
     );
 
     if (response.status === 200) {
         let response = await ApiRegister().apiRequest({
-                name: "صفحه بدون نام",
-                page_data: "",
-                shop: activeShop,
-            },
+            name: "صفحه بدون نام",
+            page_data: "",
+            shop: activeShop,
+        },
             "post",
             `/api/v1/shop_landing/${activeShop}/`,
-            true,
+            localStorage.getItem("accessToken"),
             ""
         );
         if (response.status === 201) {

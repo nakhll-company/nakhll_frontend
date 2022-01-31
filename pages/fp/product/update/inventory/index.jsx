@@ -43,7 +43,7 @@ const Inventory = ({ productList }) => {
       objArray,
       "PATCH",
       `/api/v1/shop/multiple-update/inventory/`,
-      true,
+      localStorage.getItem("accessToken"),
       {}
     );
     if (response.status === 200) {

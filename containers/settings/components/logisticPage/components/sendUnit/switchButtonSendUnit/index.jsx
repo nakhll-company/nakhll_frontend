@@ -15,7 +15,7 @@ function SBSendUnit({ id, isActive, shop_logistic_unit }) {
       "PATCH",
 
       `/api/v1/logistic/shop-logistic-unit/${id}/`,
-      true,
+      localStorage.getItem("accessToken"),
       ""
     );
 
@@ -35,7 +35,7 @@ function SBSendUnit({ id, isActive, shop_logistic_unit }) {
           // defaultChecked={isActive}
           checked={Activer}
           disabled={disableBtn}
-          // value={isActive}
+        // value={isActive}
         />{" "}
         <label
           htmlFor={`switch__${id}`}

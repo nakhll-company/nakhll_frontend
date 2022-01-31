@@ -6,7 +6,7 @@ export async function deleteItemListLanding(id, activeHojreh, setLandingList) {
         null,
         "DELETE",
         `/api/v1/shop_landing/${activeHojreh}/${id}/`,
-        true, {}
+        localStorage.getItem("accessToken"), {}
     );
 
     if (response.status === 204) {
@@ -15,7 +15,7 @@ export async function deleteItemListLanding(id, activeHojreh, setLandingList) {
             null,
             "get",
             `/api/v1/shop_landing/${activeHojreh}/`,
-            true, {}
+            localStorage.getItem("accessToken"), {}
         );
 
         if (result.status === 200) {
