@@ -3,76 +3,34 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import Assistent from "zaravand-assistent-number";
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 // component
-// import Timer from "../../timer";
+import BoxSearch from "./boxSearch";
 import MegaMenuMobile from "../../../containers/LandingPage/MegaMenuMobile";
 import MegaMenuDesktop from "../../../containers/LandingPage/MegaMenuDesktop";
-// Redux
-import { useDispatch, useSelector } from "react-redux";
+import { _call_Category, _get_all_shops, _handel_search } from "../../../api/header";
+// methods
 import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // style
 import styles from "./header.module.scss";
-import BoxSearch from "./boxSearch";
-import { ApiReference } from "../../../api/Api";
 
 const _asist = new Assistent();
 
 function Header() {
+
   const router = useRouter();
+  const dispatch = useDispatch();
+  const userLog = useSelector((state) => state.User.userInfo);
   const [category, setCategory] = useState([]);
   const [shopsName, setShopsName] = useState([]);
   const [searchShops, setSearchShops] = useState([]);
-  const _call_Category = async () => {
-    try {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        `/api/v1/categories/?max_depth=2`,
-        false,
-        {}
-      );
-      if (response.status === 200) {
-        setCategory(response.data);
-      }
-    } catch (e) { }
-  };
-
-  // Get all shops
-  const _get_all_shops = async () => {
-    if (shopsName.length == 0) {
-      let shops = await ApiRegister().apiRequest(
-        null,
-        "GET",
-        ApiReference.allShops,
-        false,
-        ""
-      );
-
-      if (shops.status === 200) {
-        setShopsName(shops.data);
-      }
-    }
-  };
-
-  // Function for search
-  const _handel_search = (word) => {
-    setInputSearch(word);
-    let copy_Array = [...shopsName];
-    let filterArray = [];
-    if (word != "") {
-      filterArray = copy_Array.filter((el) => el.title.includes(word));
-    }
-    setSearchShops(filterArray);
-  };
-
-  const dispatch = useDispatch();
-  const userLog = useSelector((state) => state.User.userInfo);
   const [inputSearch, setInputSearch] = useState("");
+
   useEffect(() => {
     dispatch(getUserInfo());
-    _call_Category();
+    _call_Category(setCategory);
   }, []);
+
   return (
     <>
       <header className={`${styles.header}`}>
@@ -136,8 +94,10 @@ function Header() {
                       type="text"
                       className="form-control"
                       placeholder="جستجو در نخل ..."
-                      onClick={() => _get_all_shops()}
-                      onChange={(e) => _handel_search(e.target.value)}
+                      onClick={() => {
+                        _get_all_shops(setShopsName, shopsName)
+                      }}
+                      onChange={(e) => { _handel_search(e.target.value, setInputSearch, setSearchShops, shopsName) }}
                       value={inputSearch}
                     />
                     {searchShops.length > 0 && (
@@ -359,8 +319,8 @@ function Header() {
                 <input
                   type="text"
                   className="form-control"
-                  onClick={() => _get_all_shops()}
-                  onChange={(e) => _handel_search(e.target.value)}
+                  onClick={() => { _get_all_shops(setShopsName, shopsName) }}
+                  onChange={(e) => { _handel_search(e.target.value, setInputSearch, setSearchShops, shopsName) }}
                   value={inputSearch}
                   placeholder="جستجو در نخل ..."
                 />

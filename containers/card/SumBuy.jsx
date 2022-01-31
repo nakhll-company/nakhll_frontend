@@ -1,12 +1,9 @@
-import Link from "next/link";
-import { useContext } from "react";
 import { useRouter } from "next/router";
-import Assistent from "zaravand-assistent-number";
-import ContextProduct from "./Context/context";
 import { useSelector } from "react-redux";
+import Assistent from "zaravand-assistent-number";
 // methods
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { errorMessage } from "../utils/message";
+import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 // style
 import styles from "../../styles/pages/cart/cart.module.scss";
 
@@ -34,7 +31,7 @@ export default function SumBuy() {
                 {_asist.PSeparator(
                   (All_product_list_buy.total_old_price -
                     All_product_list_buy.total_price) /
-                    10
+                  10
                 )}
 
                 <span style={{ marginRight: "5px" }}>تومان</span>
@@ -68,6 +65,8 @@ export default function SumBuy() {
                     await router.push(
                       `/cart/address?invoice_id=${result.data.id}`
                     );
+                  } else if (result.response.status === 401) {
+                    errorMessage("لطفا ابتدا وارد شوید")
                   }
                 }}
               >

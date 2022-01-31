@@ -16,11 +16,10 @@ function showMessage(error) {
 
     if (expectedError) {
         let message = "";
-        for (let [key, value] of Object.entries(error.response.data)) {
+        for (let value of Object.values(error.response.data)) {
             message += value.toString().replace(",", "\n");
         }
-
-        errorMessage(message, error.response.status);
+        error.response.status !== 401 && errorMessage(message, error.response.status);
     } else {
         errorMessage("مشکلی از سمت سرور رخ داده است.");
     }
@@ -54,19 +53,19 @@ export const instanceAxiosWithToken = Axios.create({
 //=================instanceAxiosWithOutToken=======================\\
 //=================================================================\\
 instanceAxiosWithOutToken.interceptors.request.use(
-    function(config) {
+    function (config) {
         return config;
     },
-    function(error) {
+    function (error) {
         return error;
     }
 );
 
 instanceAxiosWithOutToken.interceptors.response.use(
-    function(response) {
+    function (response) {
         return response;
     },
-    function(error) {
+    function (error) {
         showMessage(error);
         return error;
     }
@@ -76,19 +75,19 @@ instanceAxiosWithOutToken.interceptors.response.use(
 //=================instanceAxiosWithToken==========================\\
 //=================================================================\\
 instanceAxiosWithToken.interceptors.request.use(
-    function(config) {
+    function (config) {
         return config;
     },
-    function(error) {
+    function (error) {
         return error;
     }
 );
 
 instanceAxiosWithToken.interceptors.response.use(
-    function(response) {
+    function (response) {
         return response;
     },
-    function(error) {
+    function (error) {
         showMessage(error);
 
         return error;
