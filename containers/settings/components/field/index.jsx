@@ -3,13 +3,21 @@ import { useField } from "formik";
 // style
 import styles from "./field.module.scss";
 
-function FieldCus({ title, description, text, extraTitle, withPrefix, ...props }) {
-
+function FieldCus({
+  title,
+  description,
+  text,
+  extraTitle,
+  withPrefix,
+  style = {},
+  styleInput = {},
+  ...props
+}) {
   const [field, meta, helpers] = useField(props);
 
   return (
     <>
-      <div className={styles.wrapper}>
+      <div style={style} className={styles.wrapper}>
         <div className={styles.input_setting}>
           <span
             style={{
@@ -35,7 +43,7 @@ function FieldCus({ title, description, text, extraTitle, withPrefix, ...props }
           </span>
           {!text && (
             <div className={styles.inputWidRtl}>
-              <input {...field} {...props} />
+              <input style={styleInput} {...field} {...props} />
               {meta.touched && meta.error ? (
                 <small className={styles.error}>{meta.error}</small>
               ) : null}
@@ -48,7 +56,7 @@ function FieldCus({ title, description, text, extraTitle, withPrefix, ...props }
                 <div>
                   <span style={{ fontSize: "16px" }}>{text}</span>
                 </div>
-                <input {...field} {...props} />
+                <input style={styleInput} {...field} {...props} />
               </div>
               {meta.touched && meta.error ? (
                 <small className={styles.error}>{meta.error}</small>
@@ -56,24 +64,7 @@ function FieldCus({ title, description, text, extraTitle, withPrefix, ...props }
             </>
           )}
         </div>
-        <div className={styles.explain_section}>
-          <h4
-            className={styles.explain}
-            style={{
-              marginTop: "33px",
-              fontSize: "14px",
-              color: "#a4aebb",
-            }}
-          >
-            {description?.title}
-          </h4>
-          <h4
-            className={styles.explain}
-            style={{ fontSize: "14px", color: "#a4aebb" }}
-          >
-            {description?.cont}
-          </h4>
-        </div>
+        <div></div>
       </div>
     </>
   );

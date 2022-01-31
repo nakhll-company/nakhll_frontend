@@ -18,7 +18,6 @@ import { getBigCities } from "../../../../api/general/getBigCities";
 import styles from "./hojrehForm.module.scss";
 
 function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
-
   const [ChoiceBigCity, setChoiceBigCity] = useState(
     apiSetting.FK_ShopManager.User_Profile.BigCity
   );
@@ -125,7 +124,28 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
             />
             <TitleLiner title="مشخصات" />
             <FieldCus name="NationalCode" type="text" title="کد ملی" />
-            <FieldCus name="PhoneNumber" type="text" title="شماره تلفن ثابت:" />
+            <div style={{ display: "flex" }}>
+              <FieldCus
+                name="PhoneNumber"
+                type="text"
+                title="شماره تلفن ثابت:"
+                styleInput={{ width: "180px" }}
+                style={{
+                  display: "flex",
+                }}
+              />
+              <FieldCus
+                style={{
+                  display: "flex",
+
+                  marginRight: "5px",
+                }}
+                styleInput={{ width: "100px" }}
+                name="CityPerCode"
+                type="text"
+                title="پیش شماره :"
+              />
+            </div>
             <TitleLiner title="آدرس" />
             <div className={styles.forAddress}>
               {/* استان */}
