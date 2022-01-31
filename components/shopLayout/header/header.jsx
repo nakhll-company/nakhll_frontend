@@ -22,7 +22,7 @@ const _asist = new Assistent();
 
 function Header() {
   const router = useRouter();
-  console.log("router :>> ", router);
+  
   const dispatch = useDispatch();
   const userLog = useSelector((state) => state.User.userInfo);
   const [category, setCategory] = useState([]);
@@ -92,7 +92,8 @@ function Header() {
                   <form
                     onSubmit={(event) => {
                       event.preventDefault();
-                      location.replace(`/search?q=${inputSearch}`);
+                      setSearchShops([]);
+                      router.push(`/search?q=${inputSearch}`);
                     }}
                   >
                     <input
