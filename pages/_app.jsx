@@ -1,7 +1,7 @@
 // node libraries
-import { useEffect } from "react";
 import Script from "next/script";
 import LogRocket from "logrocket";
+import { useEffect } from "react";
 import { DefaultSeo } from "next-seo";
 import { Store } from "../redux/store";
 import { Provider } from "react-redux";
@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }) {
   const Layout = Component.Layout || MyLayout;
 
   useEffect(() => {
-    // localStorage.getItem("accessToken") && refreshToken();
+    localStorage.getItem("accessToken") && refreshToken();
     setInterval(() => {
       localStorage.getItem("accessToken") && refreshToken();
     }, REFRESH_TOKEN_TIMEOUT);
