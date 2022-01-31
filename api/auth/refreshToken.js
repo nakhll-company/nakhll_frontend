@@ -9,7 +9,6 @@ export async function refreshToken() {
         let token = {
             refresh: localStorage.getItem("refreshToken"),
         };
-        clearTokenStorage();
         try {
             let response = await ApiRegister().apiRequest(
                 token,
