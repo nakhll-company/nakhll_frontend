@@ -11,7 +11,6 @@ import MyLayout from "../../../../../components/layout/Layout";
 import Category from "../../../../../containers/product/create/category";
 import CheckboxTreeCities from "../../../../../components/CheckboxTree/CheckboxTree";
 // methods
-import { errorMessage } from "../../../../../containers/utils/message";
 import { ApiRegister } from "../../../../../services/apiRegister/ApiRegister";
 import { mapState } from "../../../../../containers/product/methods/mapState";
 // styles

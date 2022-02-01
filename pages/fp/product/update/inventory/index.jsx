@@ -12,10 +12,7 @@ import { mapState } from "../../../../../containers/product/methods/mapState";
 import { ApiRegister } from "../../../../../services/apiRegister/ApiRegister";
 // scss
 import styles from "../../../../../styles/pages/product/editInventory.module.scss";
-import {
-  errorMessage,
-  successMessage,
-} from "../../../../../containers/utils/message";
+import { successMessage } from "../../../../../containers/utils/message";
 
 const Inventory = ({ productList }) => {
   const {

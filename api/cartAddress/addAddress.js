@@ -1,4 +1,3 @@
-import { errorMessage } from "../../containers/utils/message";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 // get address of user
 export async function addAddress(data) {
@@ -13,5 +12,5 @@ export async function addAddress(data) {
         if (response.status === 201) {
             return true;
         }
-    } catch (error) { }
+    } catch (error) {}
 }

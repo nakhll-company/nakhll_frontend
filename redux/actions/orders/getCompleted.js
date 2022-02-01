@@ -1,11 +1,10 @@
-import { errorMessage } from "../../../containers/utils/message";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import * as Types from "../../types/orders"; // constants
 // action of accounting list
-export const getCompleted = (activeHojreh) => async (dispatch) => {
+export const getCompleted = (activeHojreh) => async(dispatch) => {
     // try
     try {
-        const completed = async () => {
+        const completed = async() => {
             let params = {};
             let loadData = null;
             let dataUrl = `/app/api/v1/factor/shop/${activeHojreh}/completed/`;
@@ -27,5 +26,5 @@ export const getCompleted = (activeHojreh) => async (dispatch) => {
                 payload: response.data,
             });
         }
-    } catch (error) { }
+    } catch (error) {}
 };

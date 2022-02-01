@@ -1,9 +1,6 @@
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
-import {
-  errorMessage,
-  successMessage,
-} from "../../../containers/utils/message";
+import { successMessage } from "../../../containers/utils/message";
 export const _addProduct = (productId) => {
   return async (dispatch) => {
     try {
@@ -26,7 +23,6 @@ export const _addProduct = (productId) => {
         });
         successMessage("داده ها با موفقیت ثبت شده اند");
       }
-    } catch (e) {
-    }
+    } catch (e) {}
   };
 };
