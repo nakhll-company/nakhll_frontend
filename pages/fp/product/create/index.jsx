@@ -24,7 +24,6 @@ import {
   _ApiCreateProduct,
   _ApiGetCategories,
 } from "../../../../api/creatProduct";
-import { errorMessage } from "../../../../containers/utils/message";
 
 const CreateProduct = ({ activeHojreh }) => {
   const router = useRouter();

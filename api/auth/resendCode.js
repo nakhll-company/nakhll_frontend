@@ -1,4 +1,3 @@
-import { errorMessage } from "../../containers/utils/message";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 
 export async function resendCode(data) {

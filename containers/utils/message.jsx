@@ -7,8 +7,8 @@ export const successMessage = (message) => {
   });
 };
 
-export const errorMessage = (message, error = "") => {
-  let excepMessage = error ? `${error} | ${message}` : message;
+export const errorMessage = (message, error = "", page = "", api = "") => {
+  let excepMessage = `${error} | ${message} | ${page} | ${api} `;
 
   gtag("event", "exception", {
     description: excepMessage,

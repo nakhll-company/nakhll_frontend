@@ -1,5 +1,4 @@
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-import { errorMessage } from "../../../containers/utils/message";
 
 export async function featureIsActive(id, activeShop, setLandingList) {
     let response = await ApiRegister().apiRequest(

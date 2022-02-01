@@ -24,7 +24,6 @@ import { mapState } from "./methods/mapState";
 import Loading from "../../components/loading";
 // styles
 import styles from "../../styles/pages/dashboard/dashboard.module.scss";
-import { errorMessage } from "../utils/message";
 // import Swiper core and required modules
 SwiperCore.use([EffectFade, Autoplay, Navigation, Pagination, Scrollbar, A11y]);
 /**
@@ -485,7 +484,7 @@ function Dashboard({ activeHojreh }) {
                   {_asist.number(
                     (api.last_week_total_sell &&
                       api.last_week_total_sell.amont) ||
-                    0
+                      0
                   )}
                 </h1>
                 <h3

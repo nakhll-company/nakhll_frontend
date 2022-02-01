@@ -1,14 +1,13 @@
 // node libraries
-import { useState } from 'react';
+import { useState } from "react";
 import { useSelector } from "react-redux";
 // methods
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
-import { errorMessage, successMessage } from "../../../../containers/utils/message";
+import { successMessage } from "../../../../containers/utils/message";
 // scss
 import styles from "./groupProduct.module.scss";
 
 const GroupProduct = () => {
-
   const [showResult, setShowResult] = useState({
     old_products: 0,
     new: 0,
@@ -30,7 +29,8 @@ const GroupProduct = () => {
           data.append("product-zip-file", zipFile);
           successMessage("درحال بارگزاری محصولات...");
           let response = await ApiRegister().apiRequest(
-            data, "post",
+            data,
+            "post",
             `/api/v1/product/group-create/${activeHojreh}/`,
             true, {}
           );
@@ -100,7 +100,8 @@ const GroupProduct = () => {
             style={{ fontSize: "18px", width: "200px" }}
             onClick={async () => {
               let response = await ApiRegister().apiRequest(
-                null, "get",
+                null,
+                "get",
                 `/api/v1/product/group-undo/${activeHojreh}/`,
                 true, {}
               );
@@ -116,7 +117,10 @@ const GroupProduct = () => {
       <div className="d-flex flex-column mt-5">
         <span>تعداد کل سطرها: {showResult.total_rows}</span>
         <span>تعداد ستون های خالی: {showResult.na_rows}</span>
-        <span>مجموع سطر هایی که نام محصول تکراری است: {showResult.slug_duplicate_rows}</span>
+        <span>
+          مجموع سطر هایی که نام محصول تکراری است:{" "}
+          {showResult.slug_duplicate_rows}
+        </span>
         {/* <span>تعداد محصولات بروزرسانی شده: {showResult.old_products}</span> */}
         <span>تعداد محصولاتی که جدید ایجاد شده: {showResult.new}</span>
       </div>

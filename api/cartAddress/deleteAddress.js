@@ -1,5 +1,5 @@
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
-import { errorMessage, successMessage } from "../../containers/utils/message";
+import { successMessage } from "../../containers/utils/message";
 // get address of user
 export async function deleteAddress(id) {
     try {
@@ -12,6 +12,6 @@ export async function deleteAddress(id) {
         );
         if (response.status === 204) {
             successMessage("آدرس مورد نظر حذف شد");
-        } else { }
-    } catch (error) { }
+        } else {}
+    } catch (error) {}
 }

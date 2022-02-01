@@ -1,4 +1,3 @@
-import { errorMessage } from "../../containers/utils/message";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 // get address of user
 export async function getEditAddress(id, setValue, setEditAddressData) {
@@ -20,5 +19,5 @@ export async function getEditAddress(id, setValue, setEditAddressData) {
             setValue("zip_code", response.data.zip_code);
             setValue("receiver_mobile_number", response.data.receiver_mobile_number);
         }
-    } catch (error) { }
+    } catch (error) {}
 }

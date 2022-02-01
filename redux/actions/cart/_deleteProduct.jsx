@@ -1,4 +1,3 @@
-import { toast } from "react-toastify";
 import { errorMessage } from "../../../containers/utils/message";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
