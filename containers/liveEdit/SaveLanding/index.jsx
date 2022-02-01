@@ -27,7 +27,7 @@ function SaveLanding({ setOpenSaveLanding, idLanding }) {
       ansapi,
       "PUT",
       apiUpdateLanding,
-      localStorage.getItem("accessToken"),
+      true,
       ""
     );
 

@@ -34,7 +34,7 @@ export const getProduct =
                             loadData,
                             "get",
                             dataUrl,
-                            localStorage.getItem("accessToken"),
+                            true,
                             params
                         );
                         return response;

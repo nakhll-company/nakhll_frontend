@@ -6,7 +6,7 @@ export const addToFavoritesList = async (idProduct) => {
         null,
         "POST",
         `/api/v1/lists/favotites/${idProduct}/add/`,
-        localStorage.getItem("accessToken"), {}
+        true, {}
     );
     if (response.status === 200) {
         successMessage("محصول با موفقیت به لیست علاقه مندی های شما اضافه شد");

@@ -12,7 +12,7 @@ function LinerTwoImg({ nextApi_LinerTwoImg }) {
         null,
         "get",
         nextApi_LinerTwoImg,
-        localStorage.getItem("accessToken"),
+        true,
         {}
       );
       if (response.status === 200) {

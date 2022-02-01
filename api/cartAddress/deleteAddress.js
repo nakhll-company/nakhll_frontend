@@ -7,7 +7,7 @@ export async function deleteAddress(id) {
             null,
             "DELETE",
             `/logistic/api/address/${id}/`,
-            localStorage.getItem("accessToken"),
+            true,
             ""
         );
         if (response.status === 204) {

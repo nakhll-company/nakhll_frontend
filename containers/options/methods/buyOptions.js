@@ -7,7 +7,7 @@ export async function buyOptions(id, activeShop) {
     },
         "POST",
         `/api/v1/shop_feature_invoice/`,
-        localStorage.getItem("accessToken"), {}
+        true, {}
     );
 
     if (response.status === 201) {
@@ -15,7 +15,7 @@ export async function buyOptions(id, activeShop) {
             null,
             "GET",
             `/api/v1/shop_feature_invoice/${response.data.id}/pay/`,
-            localStorage.getItem("accessToken"), {}
+            true, {}
         );
 
         if (result.status === 200) {

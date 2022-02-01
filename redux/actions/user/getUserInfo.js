@@ -9,7 +9,7 @@ export const getUserInfo = () => async (dispatch) => {
                 null,
                 "get",
                 "/app/api/v1/get-user-info/",
-                localStorage.getItem("accessToken"),
+                true,
                 {}
             );
             return response;

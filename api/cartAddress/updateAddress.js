@@ -7,7 +7,7 @@ export async function updateAddress(id, data) {
             data,
             "PUT",
             `/logistic/api/address/${id}/`,
-            localStorage.getItem("accessToken"),
+            true,
             ""
         );
         if (response.status === 200) {

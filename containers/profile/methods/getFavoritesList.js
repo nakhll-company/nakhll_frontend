@@ -5,7 +5,7 @@ export async function getFavoritesList(setList, setLoading) {
         null,
         "GET",
         "/api/v1/lists/favotites/",
-        localStorage.getItem("accessToken"),
+        true,
         ""
     );
 

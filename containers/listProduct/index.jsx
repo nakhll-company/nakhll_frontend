@@ -60,7 +60,7 @@ function ListProduct({
         null,
         "get",
         `/api/v1/sub_markets/?q=${searchWord}`,
-        localStorage.getItem("accessToken"),
+        true,
         {}
       );
       if (response.status === 200) {

@@ -5,7 +5,7 @@ export const getUserData = async (setDataProfile) => {
         null,
         "get",
         `/api/v1/profile/me/`,
-        localStorage.getItem("accessToken"), {}
+        true, {}
     );
     if (response.status === 200) {
         setDataProfile(response.data);

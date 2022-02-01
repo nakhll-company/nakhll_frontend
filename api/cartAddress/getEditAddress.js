@@ -7,7 +7,7 @@ export async function getEditAddress(id, setValue, setEditAddressData) {
             null,
             "GET",
             `/logistic/api/address/${id}/`,
-            localStorage.getItem("accessToken"),
+            true,
             ""
         );
         if (response.status === 200) {

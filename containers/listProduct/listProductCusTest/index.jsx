@@ -87,7 +87,7 @@ function ListProductCusTest({ data }) {
         null,
         "get",
         `/api/v1/categories/category_product_count/?q=${searchWord}&shop=${hojreh}`,
-        localStorage.getItem("accessToken"),
+        true,
         {}
       );
       if (response.status === 200) {

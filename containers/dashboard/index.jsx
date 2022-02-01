@@ -48,7 +48,7 @@ function Dashboard({ activeHojreh }) {
         loadData,
         "get",
         dataUrl,
-        localStorage.getItem("accessToken"),
+        true,
         params
       );
       // check status code

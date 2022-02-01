@@ -6,7 +6,7 @@ export async function getAddress(setAddress) {
             null,
             "GET",
             "/logistic/api/address/",
-            localStorage.getItem("accessToken"),
+            true,
             ""
         );
         if (response.status === 200) {

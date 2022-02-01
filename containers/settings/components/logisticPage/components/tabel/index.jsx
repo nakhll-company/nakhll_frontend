@@ -19,7 +19,7 @@ function Tabel({ changePage, setWichIdScope }) {
         null,
         "get",
         `/api/v1/logistic/shop-logistic-unit-constraint/`,
-        localStorage.getItem("accessToken"),
+        true,
         { id: 10 }
       );
 
@@ -37,7 +37,7 @@ function Tabel({ changePage, setWichIdScope }) {
       null,
       "DELETE",
       `/api/v1/logistic/shop-logistic-unit-constraint/${id}/`,
-      localStorage.getItem("accessToken"),
+      true,
       ""
     );
 

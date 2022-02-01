@@ -5,7 +5,7 @@ export async function allOptions() {
         null,
         "get",
         "/api/v1/shop_feature/",
-        localStorage.getItem("accessToken"), {}
+        true, {}
     );
     if (response.status === 200) {
         return response.data;

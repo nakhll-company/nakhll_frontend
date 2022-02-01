@@ -6,7 +6,7 @@ export async function sendUserAddress(data, invoiceId) {
             data,
             "PATCH",
             `/accounting_new/api/invoice/${invoiceId}/set_address/`,
-            localStorage.getItem("accessToken"),
+            true,
             ""
         );
         if (response.status === 200) {

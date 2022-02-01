@@ -7,7 +7,7 @@ export const editAdvertisment = async (shop_slug, data) => {
             data,
             "PATCH",
             `/api/v1/shop_advertisement/${shop_slug}/`,
-            localStorage.getItem("accessToken"), {}
+            true, {}
         );
         if (response.status === 200) {
             successMessage("با موفقیت ثبت شد");

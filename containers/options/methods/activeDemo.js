@@ -7,7 +7,7 @@ export async function activeDemo(id, activeShop, router) {
     },
         "POST",
         `/api/v1/shop_feature_invoice/activate_demo/`,
-        localStorage.getItem("accessToken"), {}
+        true, {}
     );
 
     if (response.status === 200) {
@@ -18,7 +18,7 @@ export async function activeDemo(id, activeShop, router) {
         },
             "post",
             `/api/v1/shop_landing/${activeShop}/`,
-            localStorage.getItem("accessToken"),
+            true,
             ""
         );
         if (response.status === 201) {

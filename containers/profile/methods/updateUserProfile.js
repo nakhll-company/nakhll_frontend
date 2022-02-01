@@ -6,7 +6,7 @@ export const updatUserProfile = async (data) => {
         data,
         "PATCH",
         `/api/v1/profile/edit_me/`,
-        localStorage.getItem("accessToken"), {}
+        true, {}
     );
     if (response.status === 200) {
         successMessage("ویرایش اطلاعات با موفقیت صورت گرفت");

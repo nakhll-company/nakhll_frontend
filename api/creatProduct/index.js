@@ -20,7 +20,7 @@ export const _ApiCreateProduct = async (dataForSend, activeHojreh) => {
             dataForSend,
             "post",
             `/api/v1/shop/${activeHojreh}/products/`,
-            localStorage.getItem("accessToken"), {}
+            true, {}
         );
         return response;
     } catch (error) { }
@@ -31,7 +31,7 @@ export const _ApiUpdateProduct = async (dataForSend, activeHojreh, id) => {
         dataForSend,
         "patch",
         `/api/v1/shop/${activeHojreh}/products/${id}/`,
-        localStorage.getItem("accessToken"), {}
+        true, {}
     );
     return response;
 };

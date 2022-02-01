@@ -8,7 +8,7 @@ export const callApiAllData = async (activeHojreh) => {
         loadData,
         "get",
         dataUrl,
-        localStorage.getItem("accessToken"),
+        true,
         params
     );
     return response;
@@ -30,7 +30,7 @@ export const linkSetting = (body, activeHojreh) => {
         loadData,
         "put",
         dataUrl,
-        localStorage.getItem("accessToken"),
+        true,
         params
     );
 };
@@ -44,7 +44,7 @@ export const callApiUpDataShop = async (dataForSend, activeHojreh) => {
         loadData,
         "patch",
         dataUrl,
-        localStorage.getItem("accessToken"),
+        true,
         params
     );
 
@@ -60,7 +60,7 @@ export const callBankAccount = async (dataForSend, activeHojreh) => {
         loadData,
         "put",
         dataUrl,
-        localStorage.getItem("accessToken"),
+        true,
         params
     );
     return response;
@@ -75,7 +75,7 @@ export const callApiUpDataPicture = async (dataForSend, activeHojreh) => {
         loadData,
         "put",
         dataUrl,
-        localStorage.getItem("accessToken"),
+        true,
         params
     );
 

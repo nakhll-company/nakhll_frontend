@@ -6,7 +6,7 @@ export const getAdvertisement = async (shop_slug) => {
             null,
             "get",
             `/api/v1/shop_advertisement/${shop_slug}/`,
-            localStorage.getItem("accessToken"), {}
+            true, {}
         );
         if (response.status === 200) {
             return response.data;

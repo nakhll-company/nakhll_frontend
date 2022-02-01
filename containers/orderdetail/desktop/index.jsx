@@ -34,7 +34,7 @@ export default function OrderDetailDesktop({
         loadData,
         "PUT",
         dataUrl,
-        localStorage.getItem("accessToken"),
+        true,
         params
       );
       if (response.status === 200) {
@@ -259,7 +259,7 @@ export default function OrderDetailDesktop({
                         loadData,
                         "POST",
                         dataUrl,
-                        localStorage.getItem("accessToken"),
+                        true,
                         params
                       );
                       // setconfigOrder(response);
@@ -414,7 +414,7 @@ export default function OrderDetailDesktop({
                         loadData,
                         "POST",
                         dataUrl,
-                        localStorage.getItem("accessToken"),
+                        true,
                         params
                       );
 

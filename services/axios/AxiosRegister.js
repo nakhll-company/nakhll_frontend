@@ -40,7 +40,6 @@ export const instanceAxiosWithToken = Axios.create({
     baseURL: process.env.BASE_URL,
     timeout: 300000,
     headers: {
-        Authorization: "Bearer " + (process.browser && localStorage.getItem("accessToken")),
         "Content-Type": " application/json",
     },
 });
@@ -72,6 +71,7 @@ instanceAxiosWithOutToken.interceptors.response.use(
 //=================================================================\\
 instanceAxiosWithToken.interceptors.request.use(
     function (config) {
+        config.headers['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
         return config;
     },
     function (error) {

@@ -90,7 +90,7 @@ function ListProductShop({ data }) {
         null,
         "get",
         `/api/v1/categories/category_product_count/?q=${searchWord}`,
-        localStorage.getItem("accessToken"),
+        true,
         {}
       );
       if (response.status === 200) {

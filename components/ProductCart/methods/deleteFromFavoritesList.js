@@ -6,7 +6,7 @@ export const deleteFromFavoritesList = async (idProduct) => {
         null,
         "DELETE",
         `/api/v1/lists/favotites/${idProduct}/remove/`,
-        localStorage.getItem("accessToken"), {}
+        true, {}
     );
     if (response.status === 200) {
         successMessage("محصول مورد نظر از لیست علاقه مندی ها حذف شد");

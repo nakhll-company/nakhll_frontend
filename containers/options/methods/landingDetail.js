@@ -5,7 +5,7 @@ export async function landingDetal(id) {
     let response = await ApiRegister().apiRequest(
         null, "get",
         `/api/v1/shop_feature/${id}/`,
-        localStorage.getItem("accessToken"), {}
+        true, {}
     );
 
     if (response.status === 200) {

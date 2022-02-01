@@ -34,7 +34,7 @@ export default function Cart() {
       null,
       "GET",
       `/accounting_new/api/invoice/${invoice_id}/`,
-      localStorage.getItem("accessToken"),
+      true,
       {}
     );
     let data = response.data;
@@ -61,7 +61,7 @@ export default function Cart() {
           { coupon: valueCoupon },
           "PATCH",
           `/accounting_new/api/invoice/${invoice_id}/set_coupon/`,
-          localStorage.getItem("accessToken"),
+          true,
           {}
         );
         let data = response.data;
@@ -86,7 +86,7 @@ export default function Cart() {
       { coupon },
       "PATCH",
       `/accounting_new/api/invoice/${invoice_id}/unset_coupon/`,
-      localStorage.getItem("accessToken"),
+      true,
       {}
     );
     if (response.status === 200) {
@@ -102,7 +102,7 @@ export default function Cart() {
         null,
         "GET",
         `/accounting_new/api/invoice/${invoice_id}/pay/`,
-        localStorage.getItem("accessToken"),
+        true,
         {}
       );
       if (response.status === 200) {

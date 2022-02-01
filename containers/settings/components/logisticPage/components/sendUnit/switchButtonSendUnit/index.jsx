@@ -15,7 +15,7 @@ function SBSendUnit({ id, isActive, shop_logistic_unit }) {
       "PATCH",
 
       `/api/v1/logistic/shop-logistic-unit/${id}/`,
-      localStorage.getItem("accessToken"),
+      true,
       ""
     );
 

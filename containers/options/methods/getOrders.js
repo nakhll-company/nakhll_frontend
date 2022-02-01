@@ -5,7 +5,7 @@ export async function getOrders(id, activeShop) {
         null,
         "GET",
         `/api/v1/shop_feature_invoice/${activeShop}/history/?feature=${id}`,
-        localStorage.getItem("accessToken"), {}
+        true, {}
     );
 
     if (response.status === 200) {

@@ -10,7 +10,7 @@ export async function activeListItemLanding(
         null,
         "GET",
         `/api/v1/shop_landing/${activeHojreh}/${id}/activate_landing/`,
-        localStorage.getItem("accessToken"), {}
+        true, {}
     );
 
     if (response.status === 200) {
@@ -18,7 +18,7 @@ export async function activeListItemLanding(
             null,
             "get",
             `/api/v1/shop_landing/${activeHojreh}/`,
-            localStorage.getItem("accessToken"), {}
+            true, {}
         );
 
         if (result.status === 200) {

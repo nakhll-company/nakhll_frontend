@@ -55,7 +55,7 @@ function AddFavorites() {
         newFav,
         "POST",
         apiCreat,
-        localStorage.getItem("accessToken"),
+        true,
         ""
       );
 
@@ -77,7 +77,7 @@ function AddFavorites() {
       null,
       "DELETE",
       urlDelet,
-      localStorage.getItem("accessToken"),
+      true,
       ""
     );
     let arr = [...listFav];
@@ -91,7 +91,7 @@ function AddFavorites() {
       null,
       "get",
       apiListPinned,
-      localStorage.getItem("accessToken"),
+      true,
       ""
     );
 

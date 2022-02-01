@@ -67,7 +67,7 @@ function LiveEdit({ idLanding }) {
       null,
       "get",
       getDataLanding,
-      localStorage.getItem("accessToken"),
+      true,
       ""
     );
 
@@ -116,7 +116,7 @@ function LiveEdit({ idLanding }) {
       ansapi,
       "patch",
       apiUpdateLanding,
-      localStorage.getItem("accessToken"),
+      true,
       ""
     );
   };

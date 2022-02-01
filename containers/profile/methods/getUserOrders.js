@@ -5,7 +5,7 @@ export const getUserOrders = async (setOrdersList, setLoading) => {
         null,
         "get",
         `/accounting_new/api/invoice/`,
-        localStorage.getItem("accessToken"), {}
+        true, {}
     );
     if (response.status === 200) {
         setOrdersList(response.data);

@@ -58,7 +58,7 @@ export default function SumBuy() {
                     null,
                     "POST",
                     "/accounting_new/api/invoice/",
-                    localStorage.getItem("accessToken"),
+                    true,
                     ""
                   );
                   if (result.status === 200) {

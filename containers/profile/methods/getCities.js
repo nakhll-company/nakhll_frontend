@@ -8,7 +8,7 @@ export const getCities = async (id) => {
         loadData,
         "get",
         dataUrl,
-        localStorage.getItem("accessToken"),
+        true,
         params
     );
     if (response.status === 200) {

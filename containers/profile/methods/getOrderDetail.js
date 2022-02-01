@@ -5,7 +5,7 @@ export const getOrderDetail = async (invoiceId, setDetailData, setLoading) => {
         null,
         "get",
         `/accounting_new/api/invoice/${invoiceId}/`,
-        localStorage.getItem("accessToken"), {}
+        true, {}
     );
     if (response.status === 200) {
         setDetailData(response.data);
