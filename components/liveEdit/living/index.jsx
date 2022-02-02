@@ -89,13 +89,6 @@ function Living({ characters, setCharacters, setOpenPlaneEditor, idLanding }) {
             video: { id: "", src: "" },
             order: 6,
           },
-          {
-            image: "",
-            url: `/shop/${idLanding[0]}`,
-            title: "",
-            video: { id: "", src: "" },
-            order: 7,
-          },
         ],
       };
       items.splice(0, 0, newItem);

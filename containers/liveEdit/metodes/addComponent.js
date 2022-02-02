@@ -86,13 +86,6 @@ export function addComponent(type, idLanding) {
                     video: { id: "", src: "" },
                     order: 6,
                 },
-                {
-                    image: "",
-                    url: `/shop/${idLanding[0]}`,
-                    title: "",
-                    video: { id: "", src: "" },
-                    order: 7,
-                },
             ],
         };
     }

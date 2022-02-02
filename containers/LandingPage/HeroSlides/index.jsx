@@ -33,21 +33,25 @@ function HeroSlides({ dataHeroSlides }) {
             {dataHeroSlides &&
               dataHeroSlides
                 .slice(0, dataHeroSlides.length - 2)
-                .map((slider, index) => (
-                  <SwiperSlide key={index}>
-                    <Link href={slider.url}>
-                      <a>
-                        <Image
-                          layout="responsive"
-                          width={1000}
-                          height={500}
-                          src={slider.image}
-                          alt="بنر"
-                        />
-                      </a>
-                    </Link>
-                  </SwiperSlide>
-                ))}
+                .map((slider, index) => {
+                  if (slider.image !== "") {
+                    return (
+                      <SwiperSlide key={index}>
+                        <Link href={slider.url}>
+                          <a>
+                            <Image
+                              layout="responsive"
+                              width={1000}
+                              height={500}
+                              src={slider.image}
+                              alt="بنر"
+                            />
+                          </a>
+                        </Link>
+                      </SwiperSlide>
+                    );
+                  }
+                })}
           </Swiper>
         </div>
         <div className={`col-md-4  ${styles.lefter}  d-none d-md-flex`}>
