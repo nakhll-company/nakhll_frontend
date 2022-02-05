@@ -2,20 +2,15 @@
 import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-
 // methods
-import { getAccessToken } from "../../api/auth/getAccessToken";
 import { completeAuth } from "../../api/auth/completeAuth";
 import EmptyLayout from "../../components/layout/EmptyLayout";
+import { getAccessToken } from "../../api/auth/getAccessToken";
+
 const Password = () => {
-  const router = useRouter();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+
+  const { register, handleSubmit, formState: { errors }, } = useForm();
 
   const submit = async (data) => {
     data.auth_key = JSON.parse(sessionStorage.getItem("login")).auth_key;

@@ -1,10 +1,9 @@
 // node libraries
-import { NextSeo } from "next-seo";
-import React, { useState } from "react";
-import dynamic from "next/dynamic";
+import React from "react";
 import Script from "next/script";
+import { NextSeo } from "next-seo";
+import dynamic from "next/dynamic";
 // components
-
 const DynamicEnfoLiner = dynamic(() =>
   import("../../../containers/hojreh/EnfoLiner")
 );
@@ -29,15 +28,14 @@ const DynamicLinerProducts = dynamic(() =>
 const DynamicListProductCusTest = dynamic(() =>
   import("../../../containers/listProduct/listProductCusTest")
 );
-// methods
-import { ApiReference } from "../../../api/Api";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-// components
 import ShopLayout from "../../../components/shopLayout";
 import Video from "../../../containers/LandingPage/Video";
 import AboutMe from "../../../containers/LandingPage/AboutMe";
 import VipProducts from "../../../containers/LandingPage/VipProducts";
 import LinearShopsCart from "../../../containers/LandingPage/linearShopsCart";
+// methods
+import { ApiReference } from "../../../api/Api";
+import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
 // fetch data
 const fetchData = async (id) => {
@@ -58,7 +56,7 @@ const fetchData = async (id) => {
 };
 
 const Shop = ({ dataShop, data }) => {
-  const [informationShop, setInformationShop] = useState(dataShop.shop);
+
   const _handel_select_component = (data) => {
     switch (data.type) {
       case 1:
@@ -81,36 +79,16 @@ const Shop = ({ dataShop, data }) => {
             url={data.data[0].url}
           />
         );
-      //   case 7:
-      //     return (
-      //       <LinerProductsBg
-      //         subTitle_LinerProductsBg={type.subtitle}
-      //         dataLinerProductsBg={type.data}
-      //         url_LinerProductsBg={type.url}
-      //         num={4}
-      //         xl={3}
-      //       />
-      //     );
-      //     break;
       case 8:
         return <AboutMe text={data.data[0].text} />;
-        break;
       case 9:
         return <VipProducts dataLinerProducts={data.data[0].products} />;
-        break;
-
       case 10:
-        // return <RotationProducts id={id} data={data} />;
         return <LinearShopsCart part={1} />;
-        break;
       case 13:
-        // return <RotationProducts data={data.data[0].products} />;
         return <LinearShopsCart part={2} />;
-        break;
-
       case 11:
         return <Video data={data} />;
-        break;
       default:
         null;
     }
@@ -142,16 +120,13 @@ const Shop = ({ dataShop, data }) => {
           <NextSeo {...SEO} />
           <DynamicEnfoLiner
             data={dataShop}
-            title={informationShop.title}
+            title={dataShop.shop.title}
             name={dataShop.shop.FK_ShopManager}
-            profile={informationShop.image_thumbnail_url}
+            profile={dataShop.shop.image_thumbnail_url}
           />
-
-          {/* <ListProductShop shop_products={dataShop.shop.slug} data={data} /> */}
           <DynamicListProductCusTest data={data} />
         </>
       )}
-
       {dataShop.shop.landing_data?.page_data &&
         JSON.parse(dataShop.shop.landing_data.page_data).map((data, index) =>
           _handel_select_component(data, index)

@@ -21,3 +21,18 @@ export const _getListInvoice = async (setMsgCoupon, setListInvoice, setLogisticP
         setIsLoadInvoice(false);
     }
 };
+
+
+export const getSendWayList = async (invoice_id, setListItems, setInvoice) => {
+    let response = await ApiRegister().apiRequest(
+        null,
+        "GET",
+        `/accounting_new/api/invoice/${invoice_id}/`,
+        true,
+        {}
+    );
+    if (response.status === 200) {
+        setListItems(response.data.logistic_unit_details.logistic_units);
+        setInvoice(response.data);
+    }
+};

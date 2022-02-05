@@ -1,20 +1,21 @@
+// node libraries
 import React from "react";
 import Head from "next/head";
-import dynamic from 'next/dynamic';
 import { NextSeo } from "next-seo";
-
-
-const DynamicHeroSlides = dynamic(() => import('../containers/LandingPage/HeroSlides'))
-// import HeroSlides from "../containers/LandingPage/HeroSlides";
-import LinerFourImgMobile from "../containers/LandingPage/LinerFourImgMobile";
+import dynamic from 'next/dynamic';
+// components
+import ShopLayout from "../components/shopLayout";
 import LinerOneImg from "../containers/LandingPage/LinerOneImg";
 import LinerProducts from "../containers/LandingPage/LinerProducts";
-import LinerProductsBg from "../containers/LandingPage/LinerProductsBg";
 import LinerThreeImg from "../containers/LandingPage/LinerThreeImg";
 import LinerTwoValue from "../containers/LandingPage/LinerTwoValue";
-import { ApiRegister } from "../services/apiRegister/ApiRegister";
+import LinerProductsBg from "../containers/LandingPage/LinerProductsBg";
+import LinerFourImgMobile from "../containers/LandingPage/LinerFourImgMobile";
+const DynamicHeroSlides = dynamic(() => import('../containers/LandingPage/HeroSlides'))
+// methods
 import { ApiReference } from "../api/Api";
-import ShopLayout from "../components/shopLayout";
+import { ApiRegister } from "../services/apiRegister/ApiRegister";
+
 // fetch data
 const fetchData = async () => {
   let all_data_for_component = [];
@@ -55,15 +56,15 @@ const fetchData = async () => {
 };
 
 const HomePage = ({ data }) => {
-  const Sample = {
-    1: "اسلایدر تکی",
-    2: "بنر تک عکسی",
-    3: " بنر 2تایی در یک ردیف",
-    4: " (یکی بالا دوتا پایین)بنر ۳ تایی",
-    5: " بنر چهارتایی چهارتا کنار هم",
-    6: " ردیف محصولات",
-    7: " ردیف شگفت انگیزا",
-  };
+  // const Sample = {
+  //   1: "اسلایدر تکی",
+  //   2: "بنر تک عکسی",
+  //   3: " بنر 2تایی در یک ردیف",
+  //   4: " (یکی بالا دوتا پایین)بنر ۳ تایی",
+  //   5: " بنر چهارتایی چهارتا کنار هم",
+  //   6: " ردیف محصولات",
+  //   7: " ردیف شگفت انگیزا",
+  // };
 
   const _handel_select_component = (type, index) => {
     switch (type.component_type) {
@@ -74,7 +75,6 @@ const HomePage = ({ data }) => {
             dataHeroSlides={data.all_data_for_component[index]}
           />
         );
-        break;
       case 2:
         return (
           <LinerOneImg
@@ -82,7 +82,6 @@ const HomePage = ({ data }) => {
             dataLinerOneImg={data.all_data_for_component[index]}
           />
         );
-        break;
       case 3:
         return (
           <>
@@ -92,7 +91,6 @@ const HomePage = ({ data }) => {
             />
           </>
         );
-        break;
       case 4:
         return (
           <LinerThreeImg
@@ -100,7 +98,6 @@ const HomePage = ({ data }) => {
             dataLinerThreeImg={data.all_data_for_component[index]}
           />
         );
-        break;
       case 5:
         return (
           <LinerFourImgMobile
@@ -108,7 +105,6 @@ const HomePage = ({ data }) => {
             dataLinerFourImgMobile={data.all_data_for_component[index]}
           />
         );
-        break;
       case 6:
         return (
           <LinerProducts
@@ -120,7 +116,6 @@ const HomePage = ({ data }) => {
             color={data.SchemaIn[index].background_color}
           />
         );
-        break;
       case 7:
         return (
           <LinerProductsBg
@@ -133,7 +128,6 @@ const HomePage = ({ data }) => {
             xl={3}
           />
         );
-        break;
       default:
         null;
     }
@@ -160,7 +154,6 @@ const HomePage = ({ data }) => {
         data.SchemaIn.map((turn, index) =>
           _handel_select_component(turn, index)
         )}
-      ‌‌
     </>
   );
 };
@@ -168,7 +161,7 @@ const HomePage = ({ data }) => {
 export default HomePage;
 
 // function server side
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
   const data = await fetchData();
 
   return {

@@ -7,8 +7,8 @@ import { Fragment, useEffect, useState } from "react";
 // methods
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 // components
-import MyLayout from "../../../../components/layout/Layout";
 import useViewport from "../../../../components/viewPort";
+import MyLayout from "../../../../components/layout/Layout";
 // sass
 import styles from "../../../../styles/pages/order/orderdetail.module.scss";
 
@@ -69,7 +69,7 @@ function HomePage({ id }) {
 
   useEffect(() => {
     _handleRequestApi(id);
-  }, []);
+  }, [id]);
 
   let jsonAddress = data.address_json || "{}";
   jsonAddress = JSON.parse(jsonAddress);
@@ -299,7 +299,7 @@ function HomePage({ id }) {
                           }
                         }}
                       >
-                        {({ values, errors, touched }) => (
+                        {({ errors, touched }) => (
                           <Form>
                             <div className={styles.ButtonsGridD}>
                               <div className={styles.order_statusD_code}>
@@ -338,7 +338,6 @@ function HomePage({ id }) {
                                       style={{
                                         fontSize: "15px",
                                         color: "hsl(211deg 100% 50%)",
-                                        fontSize: "15px",
                                       }}
                                     >
                                       {" "}
@@ -915,7 +914,7 @@ function HomePage({ id }) {
                           }
                         }}
                       >
-                        {({ values, errors, touched }) => (
+                        {({ errors, touched }) => (
                           <Form>
                             <div className={styles.ButtonsGrid}>
                               <div className={styles.order_status_code}>
@@ -1136,6 +1135,7 @@ function HomePage({ id }) {
                             src={`${e.image_thumbnail || "/"}`}
                             width={45}
                             height={45}
+                            alt=""
                           />
                           <h3
                             style={{

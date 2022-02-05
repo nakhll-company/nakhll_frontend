@@ -34,7 +34,9 @@ export default function Cart() {
       );
       setAll_product_list_buy(await response.data);
       setShowLoading(false);
-    } catch (e) { }
+    } catch (e) {
+      return false;
+    }
   };
 
   // CALL API  &  GET PRODUCT LIST  & SET DATA IN "All_product_list_buy"
@@ -79,7 +81,7 @@ export default function Cart() {
         )}
 
         <MenuMobile />
-        
+
       </div>
     </ContextProduct.Provider>
   );

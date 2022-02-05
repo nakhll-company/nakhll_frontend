@@ -25,8 +25,11 @@ const Orders = () => {
     const [ordersData, setOrdersData] = useState([]);
     const activeHojreh = useSelector((state) => state.User.activeHojreh);
 
-    useEffect(async () => {
-        setOrdersData(await getOrders(id, activeHojreh));
+    useEffect(() => {
+        async function fetchData() {
+            setOrdersData(await getOrders(id, activeHojreh));
+        }
+        fetchData();
     }, [id, activeHojreh]);
 
     return (

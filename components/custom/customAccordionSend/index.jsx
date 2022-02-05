@@ -1,19 +1,24 @@
-import React, { useState } from "react";
-import styles from "./customAccordionSend.module.scss";
+// node libraries
+import React from "react";
 import Image from "next/image";
+// methods
 import Number from "../../number";
+// style
+import styles from "./customAccordionSend.module.scss";
 
 export const CustomAccordionSend = ({
   children,
   title,
   item,
   logistic_units,
-  callApi,
   logistic_price,
   unit_type,
 }) => {
-  const [allMiniPic, setAllMiniPic] = useState(Object.values(logistic_units));
+
+  const allMiniPic = Object.values(logistic_units);
+
   const _handel_according = (accord, icon, images) => {
+
     let element = document.getElementById(accord);
     if (element.style.height == "0px") {
       element.style.height = "unset";
@@ -24,7 +29,6 @@ export const CustomAccordionSend = ({
       element.style.height = "0";
       element.style.overflow = "hidden";
       document.getElementById(images).style.height = "unset";
-
       document.getElementById(icon).className = "fas fa-angle-up";
     }
   };

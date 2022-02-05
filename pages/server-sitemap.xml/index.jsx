@@ -1,4 +1,4 @@
-import { getServerSideSitemap, ISitemapField } from "next-sitemap";
+import { getServerSideSitemap } from "next-sitemap";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 
 export const getServerSideProps = async (ctx) => {
@@ -36,4 +36,4 @@ export const getServerSideProps = async (ctx) => {
   return getServerSideSitemap(ctx, fields);
 };
 
-export default function Site() {}
+export default function Site() { }

@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from 'react';
 // methods
 import { activeDemo } from '../../../../containers/options/methods/activeDemo';
-import { buyOptions } from '../../../../containers/options/methods/buyOptions';
 import { landingDetal } from '../../../../containers/options/methods/landingDetail';
 // scss
 import styles from '../../../../containers/options/scss/landingDetail.module.scss';
@@ -48,14 +47,6 @@ const LandingDetail = () => {
                             <span className={styles.link} onClick={() => {
                                 activeDemo(id, activeHojreh, router);
                             }}>فعال سازی دمو</span>
-                            {/* <span className={styles.link} onClick={() => {
-                                buyOptions(id, activeHojreh);
-                            }}>خرید</span>
-                            <Link href={`/fp/options/landing/orders?id=${id}`}>
-                                <a className={styles.link}>
-                                    سفارشات
-                                </a>
-                            </Link> */}
                         </div>
                     </dl>
                 }

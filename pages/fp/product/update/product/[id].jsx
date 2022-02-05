@@ -1,30 +1,26 @@
 // node libraries
+import Image from "next/image";
 import { connect } from "react-redux";
-import Assistent from "zaravand-assistent-number";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
-import Image from "next/image";
+import Assistent from "zaravand-assistent-number";
 // components
 import Loading from "../../../../../components/loading/index";
 import MyLayout from "../../../../../components/layout/Layout";
 import Category from "../../../../../containers/product/create/category";
-import CheckboxTreeCities from "../../../../../components/CheckboxTree/CheckboxTree";
-// methods
-import { ApiRegister } from "../../../../../services/apiRegister/ApiRegister";
-import { mapState } from "../../../../../containers/product/methods/mapState";
-// styles
-import styles from "../../../../../styles/pages/product/create.module.scss";
-import {
-  _ApiCreateProduct,
-  _ApiGetCategories,
-  _ApiUpdateProduct,
-} from "../../../../../api/creatProduct";
-import TitleLiner from "../../../../../containers/settings/components/titleLiner";
 import InputUseForm from "../../../../../containers/creat/component/inputUseForm";
+import TitleLiner from "../../../../../containers/settings/components/titleLiner";
+import CheckboxTreeCities from "../../../../../components/CheckboxTree/CheckboxTree";
 import InputPictureCreat from "../../../../../containers/creat/component/InputPicture";
 import TextAreaUseForm from "../../../../../containers/creat/component/textAreaUseForm";
 import PictureChildProduct from "../../../../../containers/creat/component/pictureChildProduct";
+// methods
+import { ApiRegister } from "../../../../../services/apiRegister/ApiRegister";
+import { mapState } from "../../../../../containers/product/methods/mapState";
+import { _ApiGetCategories, _ApiUpdateProduct, } from "../../../../../api/creatProduct";
+// styles
+import styles from "../../../../../styles/pages/product/create.module.scss";
 /**
  * page update product
  * @param {string} activeHojreh => it has slug name
@@ -37,7 +33,6 @@ const UpdateProduct = ({ activeHojreh }) => {
     getValues,
     clearErrors,
     register,
-    setError,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -534,7 +529,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                 {/* button submit */}
                 {isLoadingUpdate && (
                   <div className={styles.loading}>
-                    <Image src="/loading.svg" width="45" height="45" />
+                    <Image src="/loading.svg" width="45" height="45" alt="loading" />
                     <span>در حال ویرایش محصول ...</span>
                   </div>
                 )}

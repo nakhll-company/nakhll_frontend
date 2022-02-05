@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
+// node libraries
 import Link from "next/link";
+import Image from "next/image";
 import Script from "next/script";
-import { useSelector } from "react-redux";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// import Swiper core and required modules
 import SwiperCore, { Pagination } from "swiper";
-
-// install Swiper modules
+import { Swiper, SwiperSlide } from "swiper/react";
+import React, { useEffect, useState } from "react";
+// style
+import styles from "./HeroSlides.module.scss";
 SwiperCore.use([Pagination]);
 
-import styles from "./HeroSlides.module.scss";
 
 function HeroSlides({ dataHeroSlides }) {
   const [videoAparat, setVideoAparat] = useState(
@@ -24,7 +20,7 @@ function HeroSlides({ dataHeroSlides }) {
       dataHeroSlides[1].video ? dataHeroSlides[1].video : { id: "", src: "" }
     );
   }, [dataHeroSlides]);
-  const userLog = useSelector((state) => state.User.userInfo);
+
   return (
     <div style={{ marginTop: "5px" }} className="container ">
       <div className={`row ${styles.slide}`}>

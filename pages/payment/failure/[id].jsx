@@ -1,11 +1,12 @@
+// node libraries
 import React from "react";
 import Image from "next/image";
-
+import Assistent from "zaravand-assistent-number";
+// components
+import ShopLayout from "../../../components/shopLayout";
 // styles
 import styles from "./faile.module.scss";
 
-import Assistent from "zaravand-assistent-number";
-import ShopLayout from "../../../components/shopLayout";
 const _asist = new Assistent();
 
 const Failed = ({ code }) => {
@@ -32,10 +33,9 @@ const Failed = ({ code }) => {
           <h5 className={styles.text_sub_last_Sup}>
             پشتیبانی :{" "}
             <a
-              style={{ textAlign: "left" }}
+              style={{ textAlign: "left", letterSpacing: "5px" }}
               href="tel://034-32476561"
               className="d-inline-block"
-              style={{ letterSpacing: "5px" }}
             >
               {_asist.number(`034-32476561`)}
             </a>

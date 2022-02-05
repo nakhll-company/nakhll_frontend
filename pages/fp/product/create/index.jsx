@@ -1,84 +1,58 @@
 // node libraries
+import Image from "next/image";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
-
-import Image from "next/image";
 import Assistent from "zaravand-assistent-number";
 // components
-import MyLayout from "../../../../components/layout/Layout";
 import Loading from "../../../../components/loading/index";
+import MyLayout from "../../../../components/layout/Layout";
 import Category from "../../../../containers/product/create/category";
-// methods
-import { mapState } from "../../../../containers/product/methods/mapState";
-// styles
-import styles from "../../../../styles/pages/product/create.module.scss";
+import TitleLiner from "../../../../containers/settings/components/titleLiner";
+import InputUseForm from "../../../../containers/creat/component/inputUseForm";
 import CheckboxTreeCities from "../../../../components/CheckboxTree/CheckboxTree";
 import InputPictureCreat from "../../../../containers/creat/component/InputPicture";
-import TitleLiner from "../../../../containers/settings/components/titleLiner";
-import PictureChildProduct from "../../../../containers/creat/component/pictureChildProduct";
-import InputUseForm from "../../../../containers/creat/component/inputUseForm";
 import TextAreaUseForm from "../../../../containers/creat/component/textAreaUseForm";
-import {
-  _ApiCreateProduct,
-  _ApiGetCategories,
-} from "../../../../api/creatProduct";
+import PictureChildProduct from "../../../../containers/creat/component/pictureChildProduct";
+// methods
+import { mapState } from "../../../../containers/product/methods/mapState";
+import { _ApiCreateProduct, _ApiGetCategories, } from "../../../../api/creatProduct";
+// styles
+import styles from "../../../../styles/pages/product/create.module.scss";
 
 const CreateProduct = ({ activeHojreh }) => {
-  const router = useRouter();
-  const _asist = new Assistent();
 
   // useform
-  const {
-    setValue,
-    getValues,
-    clearErrors,
-    register,
-    setError,
-
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { getValues, clearErrors, register, handleSubmit, formState: { errors }, } = useForm({
     criteriaMode: "all",
     mode: "all",
   });
 
-  // states
-  const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState("");
+  const router = useRouter();
+  const _asist = new Assistent();
   const [data, setData] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [submarketId, setSubmarketId] = useState(null);
   const [isLoad, setIsLoad] = useState(false);
-
-  // stat for test image
+  const [wordPrice, setWordPrice] = useState("");
+  const [categories, setCategories] = useState([]);
   const [imgProduct, setImgProduct] = useState(null);
+  const [precentPrice, setPrecentPrice] = useState(0);
+  const [submarketId, setSubmarketId] = useState(null);
+  const [wordOldPrice, setWordOldPrice] = useState("");
+  const [checkedCities, setCheckedCities] = useState([]);
   const [imgProductOne, setImgProductOne] = useState(null);
   const [imgProductTwo, setImgProductTwo] = useState(null);
-  const [imgProductThree, setImgProductThree] = useState(null);
+  const [imgProductSix, setImgProductSix] = useState(null);
+  const [precentOldPrice, setprecentOldPrice] = useState(0);
   const [imgProductFour, setImgProductFour] = useState(null);
   const [imgProductFive, setImgProductFive] = useState(null);
-  const [imgProductSix, setImgProductSix] = useState(null);
-
-  // loading for create product
+  const [imgProductThree, setImgProductThree] = useState(null);
   const [isloadingForCreate, setIsloadingForCreate] = useState(false);
+  const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState("");
 
-  // for Save cities
-  const [checkedCities, setCheckedCities] = useState([]);
-
-  // state for show word price
-  const [wordPrice, setWordPrice] = useState("");
-  const [wordOldPrice, setWordOldPrice] = useState("");
-
-  // state for precent
-  const [precentPrice, setPrecentPrice] = useState(0);
-  const [precentOldPrice, setprecentOldPrice] = useState(0);
-
-  // use effect
   useEffect(() => {
     async function fetchData() {
       const response_categories = await _ApiGetCategories();
-
       if (response_categories.status === 200) {
         setIsLoad(true);
         setData(response_categories.data); //==> output: {}

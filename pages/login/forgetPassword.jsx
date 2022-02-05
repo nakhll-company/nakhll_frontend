@@ -2,20 +2,14 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-
 // methods
 import { setPassword } from "../../api/auth/setPassword";
 import EmptyLayout from "../../components/layout/EmptyLayout";
 
 const ForgetPassword = () => {
-  const router = useRouter();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+
+  const { register, handleSubmit, formState: { errors }, } = useForm();
 
   const submit = async (data) => {
     delete data.repeatPass;

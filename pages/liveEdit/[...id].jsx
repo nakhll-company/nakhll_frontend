@@ -1,6 +1,7 @@
 // node libraies
 import { gsap } from "gsap";
 import Head from "next/head";
+import Image from "next/image";
 import lottie from "lottie-web";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,78 +21,75 @@ import styles from "./liveEdit.module.scss";
 
 function LiveEdit({ idLanding }) {
 
-  let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}/`;
-  // idLanding=[slugShop,idLanding]
-  let apiUpdateLanding = `${ApiReference.landing.update.url}${idLanding[0]}/${idLanding[1]}/`;
-  // const userLog = useSelector((state) => state.User.userInfo);
+  let toggleMenu = useRef(null);
+  const nakhlAnim = useRef(null);
+  const dispatch = useDispatch();
   const [characters, setCharacters] = useState([]);
   const [openPlaneEditor, setOpenPlaneEditor] = useState(false);
   const [openSaveLanding, setOpenSaveLanding] = useState(false);
-  const dispatch = useDispatch();
-  // Animations
-  // gsap
-  let tl = new gsap.timeline();
-  // Ref
+  const landing = useSelector((state) => state.allDataLanding);
+  let apiUpdateLanding = `${ApiReference.landing.update.url}${idLanding[0]}/${idLanding[1]}/`;
+  let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}/`;
 
-  let toggleMenu = useRef(null);
-  const nakhlAnim = useRef(null);
-  const list = [
-    {
-      ID: uuidv4(),
-      type: 1,
-      data: [
-        {
-          image: "",
-          url: "",
-          title: "",
-          order: 0,
-        },
-        {
-          image: "",
-          url: "",
-          title: "",
-          order: 1,
-        },
-        {
-          image: "",
-          url: "",
-          title: "",
-          order: 2,
-        },
-      ],
-    },
-  ];
+  useEffect(() => {
+    const list = [
+      {
+        ID: uuidv4(),
+        type: 1,
+        data: [
+          {
+            image: "",
+            url: "",
+            title: "",
+            order: 0,
+          },
+          {
+            image: "",
+            url: "",
+            title: "",
+            order: 1,
+          },
+          {
+            image: "",
+            url: "",
+            title: "",
+            order: 2,
+          },
+        ],
+      },
+    ];
+    async function fetchData() {
+      let response = await ApiRegister().apiRequest(
+        null,
+        "get",
+        getDataLanding,
+        true,
+        ""
+      );
 
-  useEffect(async () => {
-    let response = await ApiRegister().apiRequest(
-      null,
-      "get",
-      getDataLanding,
-      true,
-      ""
-    );
-
-    if (response.status == 200) {
-      if (response.data.page_data == "") {
-        setCharacters(list);
-        dispatch(_updateDataLanding(list));
-      } else {
-        let item = JSON.parse(response.data.page_data);
-
-        setCharacters(item);
-        dispatch(_updateDataLanding(item));
+      if (response.status == 200) {
+        if (response.data.page_data == "") {
+          setCharacters(list);
+          dispatch(_updateDataLanding(list));
+        } else {
+          let item = JSON.parse(response.data.page_data);
+          setCharacters(item);
+          dispatch(_updateDataLanding(item));
+        }
       }
     }
+    fetchData();
 
-    // setCharacters(list);
-    // for Animation
+    let tl = new gsap.timeline();
     tl.from(toggleMenu, {
       opacity: 0,
       scale: 0,
       ease: "back",
       duration: 0.4,
     });
-  }, []);
+
+  }, [dispatch, getDataLanding]);
+
   useEffect(() => {
     lottie.loadAnimation({
       container: nakhlAnim.current,
@@ -99,14 +97,9 @@ function LiveEdit({ idLanding }) {
       loop: true,
       autoplay: true,
       animationData: require("../../public/lottie/Nakhl.json"),
-
-      //   path: "./lottie/animation.json",
     });
   }, [openPlaneEditor]);
 
-  // Function For Update Landing
-  // Start
-  const landing = useSelector((state) => state.allDataLanding);
   const _handel_update_landing = async () => {
     let ansapi = {
       shop: idLanding[0],
@@ -119,11 +112,9 @@ function LiveEdit({ idLanding }) {
       true,
       ""
     );
+    return response;
   };
 
-  // End
-
-  // function for add component in empty Place
   const _handel_add_component = (type) => {
     const items = [...characters];
 
@@ -144,7 +135,7 @@ function LiveEdit({ idLanding }) {
       <li style={{ pointerEvents: "none" }}>
         <a className={styles.wrap_item} href="">
           <span className={styles.icon}>
-            <img
+            <Image
               style={{
                 height: "40px",
                 width: "40px",

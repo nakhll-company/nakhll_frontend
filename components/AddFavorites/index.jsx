@@ -1,26 +1,27 @@
+// node libraries
+import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import Assistent from "zaravand-assistent-number";
 import React, { useEffect, useState } from "react";
 import { useTransition, animated } from "react-spring";
-import { useRouter } from "next/router";
-
-import styles from "./AddFavorites.module.scss";
-import Assistent from "zaravand-assistent-number";
-import { useDispatch, useSelector } from "react-redux";
-import { _addToWishList } from "../../redux/actions/Wishlist/_addToWishList";
-import { _deleteFromWishList } from "../../redux/actions/Wishlist/_deleteFromWishList";
+// methods
 import { ApiReference } from "../../api/Api";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { _addToWishList } from "../../redux/actions/Wishlist/_addToWishList";
+// styles
+import styles from "./AddFavorites.module.scss";
+
 const _asist = new Assistent();
 
 function AddFavorites() {
-  // const listFav = useSelector((state) => state.WishList);
-  const [listFav, setListFav] = useState([]);
+
   const router = useRouter();
+  const dispatch = useDispatch();
+  const [listFav, setListFav] = useState([]);
   const [openAdd, setOpenAdd] = useState(true);
+  const [textInput, settextInput] = useState("");
   const [openList, setOpenList] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  // state for input
-  const [textInput, settextInput] = useState("");
-  // state for favourite
   let apiCreat = ApiReference.PinnedURL.creat.url;
   let apiListPinned = ApiReference.PinnedURL.PinnedList.url;
 
@@ -29,8 +30,6 @@ function AddFavorites() {
     enter: { x: 0, y: 0, opacity: 1 },
     leave: { x: 100, y: 800, opacity: 0 },
   });
-  const list = useSelector((state) => state.WishList);
-  const dispatch = useDispatch();
 
   const _handel_menu = () => {
     setIsVisible(!isVisible);
@@ -50,7 +49,6 @@ function AddFavorites() {
         name: textInput == "" ? "بدون عنوان" : textInput,
       };
 
-
       let response = await ApiRegister().apiRequest(
         newFav,
         "POST",
@@ -64,13 +62,10 @@ function AddFavorites() {
         setListFav([...listFav, newFav]);
         settextInput("");
       }
-
-
     }
   };
 
   // function Delete form fav
-
   const _handel_delete_from_fav = async (ID) => {
     let urlDelet = `/api/v1/pinned_url/${ID}/`;
     let deletePinned = await ApiRegister().apiRequest(
@@ -82,23 +77,26 @@ function AddFavorites() {
     );
     let arr = [...listFav];
     let arrDeleted = arr.filter((el) => el.id !== ID);
-
     setListFav(arrDeleted);
+    return deletePinned;
   };
 
-  useEffect(async () => {
-    let response = await ApiRegister().apiRequest(
-      null,
-      "get",
-      apiListPinned,
-      true,
-      ""
-    );
+  useEffect(() => {
+    async function fetchData() {
+      let response = await ApiRegister().apiRequest(
+        null,
+        "get",
+        apiListPinned,
+        true,
+        ""
+      );
 
-    if (response.status == 200) {
-      setListFav(response.data);
+      if (response.status == 200) {
+        setListFav(response.data);
+      }
     }
-  }, []);
+    fetchData();
+  }, [apiListPinned]);
 
   return (
     <div className={styles.content}>

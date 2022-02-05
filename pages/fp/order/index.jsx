@@ -1,5 +1,3 @@
-// node libraries
-import Head from "next/head";
 // component
 import MyLayout from "../../../components/layout/Layout";
 

@@ -17,8 +17,9 @@ import { ApiReference } from "../../api/Api";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 
 function ShowLanding({ idLanding }) {
-  let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}/`;
+
   const [dataLanding, setDataLanding] = useState([]);
+  let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}/`;
 
   useEffect(() => {
     async function fetchData() {
@@ -34,9 +35,9 @@ function ShowLanding({ idLanding }) {
       }
     }
     fetchData();
-  }, []);
+  }, [getDataLanding]);
 
-  const _handel_select_component = (data, index) => {
+  const _handel_select_component = (data) => {
     const handeler = {
       1: <HeroSlides dataHeroSlides={data.data} />,
       2: <LinerOneImg dataLinerOneImg={data.data} />,
@@ -52,13 +53,6 @@ function ShowLanding({ idLanding }) {
           url={data.data[0].url}
         />
       ),
-      // 7:<LinerProductsBg
-      // //         subTitle_LinerProductsBg={type.subtitle}
-      // //         dataLinerProductsBg={type.data}
-      // //         url_LinerProductsBg={type.url}
-      // //         num={4}
-      // //         xl={3}
-      // //       />
       8: <AboutMe text={data.data[0].text} />,
       9: <VipProducts dataLinerProducts={data.data[0].products} />,
       10: <LinearShopsCart part={1} />,

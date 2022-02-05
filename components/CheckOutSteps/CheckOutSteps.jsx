@@ -1,22 +1,22 @@
-import Link from "next/link";
+// node libraries
 import React from "react";
+import Link from "next/link";
+// style
 import styles from "./CheckOutSteps.module.scss";
 /**
  * component for step Level
  * @param {string} step => step =1 or 2 or 3 |||show you are in witch step :)
  */
 export default function CheckOutSteps({ step }) {
+
   let step1 = "";
   let step2 = "";
   let step3 = "";
   let line1 = "";
   let line2 = "";
-  let animationStep = "";
-
   //FOR ASSIGN CSS FOR EACH STEP
   if (step == 1) {
     step1 = styles.active;
-    animationStep = styles.animationStep;
   }
   if (step == 2) {
     step1 = styles.active;
@@ -33,9 +33,7 @@ export default function CheckOutSteps({ step }) {
 
   return (
     <div className={styles.checkout_steps}>
-      {/* LEVEL ONE */}
-
-      <Link style={{ cursor: "pointer" }} href="">
+      <Link style={{ cursor: "pointer" }} href="" passHref>
         <div
           className={`${styles.step_item}  ${step1} `}
           style={{ cursor: "pointer" }}
@@ -43,15 +41,10 @@ export default function CheckOutSteps({ step }) {
           <span className={`${styles.titleInStep}`}>اطلاعات ارسال</span>
         </div>
       </Link>
-      {/* ^^^^^^^^^^ LEVEL ONE ^^^^^^^^^^ */}
-
-      {/* LINE 1 */}
       <div className={styles.line}>
         <div className={`${line1} `}></div>
       </div>
-
-      {/* LEVEL TWO */}
-      <Link href="" style={{ cursor: "pointer" }}>
+      <Link href="" style={{ cursor: "pointer" }} passHref>
         <div
           style={{ cursor: "pointer" }}
           className={`${styles.step_item} ${step2}`}
@@ -61,16 +54,10 @@ export default function CheckOutSteps({ step }) {
           </div>
         </div>
       </Link>
-
-      {/* ^^^^^^^^^^ LEVEL TWO ^^^^^^^^^^ */}
-
-      {/* LINE 1 */}
       <div className={styles.line}>
         <div className={`${line2} `}></div>
       </div>
-
-      {/* LEVEL THREE */}
-      <Link href="" style={{ cursor: "pointer" }}>
+      <Link href="" style={{ cursor: "pointer" }} passHref>
         <div
           style={{ cursor: "pointer" }}
           className={`${styles.step_item} ${step3}`}

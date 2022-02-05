@@ -86,7 +86,7 @@ const Profile = () => {
                 className="d-flex align-items-center mb-3"
                 onClick={(event) => {
                   activeLink(event);
-                  setProfilePages((pre) => {
+                  setProfilePages(() => {
                     return {
                       ordersPage: false,
                       favoritesList: false,
@@ -123,7 +123,7 @@ const Profile = () => {
                 className="d-flex align-items-center mb-3"
                 onClick={(event) => {
                   activeLink(event);
-                  setProfilePages((pre) => {
+                  setProfilePages(() => {
                     return {
                       editProfile: false,
                       favoritesList: false,
@@ -144,7 +144,7 @@ const Profile = () => {
                 className="d-flex align-items-center mb-3"
                 onClick={(event) => {
                   activeLink(event);
-                  setProfilePages((pre) => {
+                  setProfilePages(() => {
                     return {
                       editProfile: false,
                       ordersPage: false,
@@ -168,7 +168,7 @@ const Profile = () => {
                   className="d-flex flex-column align-items-center"
                   onClick={(event) => {
                     activeLink(event);
-                    setProfilePages((pre) => {
+                    setProfilePages(() => {
                       return {
                         ordersPage: false,
                         favoritesList: false,
@@ -212,7 +212,7 @@ const Profile = () => {
                   className="d-flex flex-column align-items-center"
                   onClick={(event) => {
                     activeLink(event);
-                    setProfilePages((pre) => {
+                    setProfilePages(() => {
                       return {
                         editProfile: false,
                         favoritesList: false,
@@ -234,7 +234,7 @@ const Profile = () => {
                   className="d-flex flex-column align-items-center "
                   onClick={(event) => {
                     activeLink(event);
-                    setProfilePages((pre) => {
+                    setProfilePages(() => {
                       return {
                         editProfile: false,
                         ordersPage: false,

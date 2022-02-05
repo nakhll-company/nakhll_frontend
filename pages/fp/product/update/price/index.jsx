@@ -1,20 +1,16 @@
 // node libraries
 import { connect } from "react-redux";
-import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 // component
-import MobileHeader from "../../../../../components/mobileHeader";
 import useViewport from "../../../../../components/viewPort";
+import MobileHeader from "../../../../../components/mobileHeader";
 // methods
+import { successMessage, } from "../../../../../containers/utils/message";
 import { mapState } from "../../../../../containers/product/methods/mapState";
 import { ApiRegister } from "../../../../../services/apiRegister/ApiRegister";
 // scss
 import styles from "../../../../../styles/pages/product/editPrice.module.scss";
-import {
-  errorMessage,
-  successMessage,
-} from "../../../../../containers/utils/message";
 
 const Price = ({ productList }) => {
   const {

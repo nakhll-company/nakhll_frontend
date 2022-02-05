@@ -1,13 +1,13 @@
 // node libraries
 import { useState } from "react";
+import { useSelector } from "react-redux";
 // methods
-import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 import { successMessage } from "../../../../containers/utils/message";
+import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 // scss
 import styles from "./groupProduct.module.scss";
-import { useSelector } from "react-redux";
 
-const GroupProduct = (data) => {
+const GroupProduct = () => {
   const [showResult, setShowResult] = useState({
     old_products: 0,
     new: 0,
