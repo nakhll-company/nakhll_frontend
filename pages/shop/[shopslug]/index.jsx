@@ -1,20 +1,17 @@
-import React, { useState } from "react";
-import Head from "next/head";
+// node libraries
 import { NextSeo } from "next-seo";
-
+import React, { useState } from "react";
+// components
 import EnfoLiner from "../../../containers/hojreh/EnfoLiner";
 import HeroSlides from "../../../containers/LandingPage/HeroSlides";
 import LinerOneImg from "../../../containers/LandingPage/LinerOneImg";
-import LinerTwoValue from "../../../containers/LandingPage/LinerTwoValue";
 import LinerThreeImg from "../../../containers/LandingPage/LinerThreeImg";
 import LinerFourImgMobile from "../../../containers/LandingPage/LinerFourImgMobile";
 import LinerProducts from "../../../containers/LandingPage/LinerProducts";
-import LinerProductsBg from "../../../containers/LandingPage/LinerProductsBg";
-import ListProductCus from "../../../containers/listProduct/listProductCus";
-import ListProductShop from "../../../containers/shop/listProductCus";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-import { ApiReference } from "../../../Api";
 import ListProductCusTest from "../../../containers/listProduct/listProductCusTest";
+// methods
+import { ApiReference } from "../../../Api";
+import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
 // fetch data
 const fetchData = async (id) => {
@@ -40,23 +37,18 @@ const Shop = ({ dataShop, data }) => {
     switch (data.type) {
       case 1:
         return <HeroSlides dataHeroSlides={data.data} />;
-        break;
       case 2:
         return <LinerOneImg dataLinerOneImg={data.data} />;
-        break;
       case 3:
         return (
           <>
             <LinerTwoImgSm dataLinerTwoValue={data.data} />
           </>
         );
-        break;
       case 4:
         return <LinerThreeImg dataLinerThreeImg={data.data} />;
-        break;
       case 5:
         return <LinerFourImgMobile dataLinerFourImgMobile={data.data} />;
-        break;
       case 6:
         return (
           <LinerProducts
@@ -67,7 +59,6 @@ const Shop = ({ dataShop, data }) => {
             url={data.data[0].url}
           />
         );
-        break;
       //   case 7:
       //     return (
       //       <LinerProductsBg
@@ -89,7 +80,7 @@ const Shop = ({ dataShop, data }) => {
 
   return (
     <>
-      {dataShop.shop.landing_data == null && (
+      {dataShop.shop.landing_data === null && (
         <>
           <NextSeo {...SEO} />
           <EnfoLiner
@@ -120,7 +111,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       data: context.query,
-      dataShop,
+      dataShop
     },
   };
 }
