@@ -39,18 +39,25 @@ function Header() {
   return (
     <>
       <header className={`${styles.header}`}>
-        <div className={styles.topBanner}>
-          <Link href="/description">
-            <a>
-              <Image
-                layout="responsive"
-                height={100}
-                width={3000}
-                src="/image/topBanner/topImg.jpg"
-                alt="نوبت مامانه"
-              />
-            </a>
-          </Link>
+        <div
+          onClick={() => {
+
+            gtag('event', 'بنر حجره دار', {
+              'event_category' : 'کلیک',
+              'event_label' : 'کلیک بنر حجره دار'
+            });
+            router.push("/description");
+          }}
+          className={styles.topBanner}
+        >
+          <Image
+            layout="responsive"
+            height={100}
+            width={3000}
+            src="/image/topBanner/topImg.jpg"
+            alt="نوبت مامانه"
+          />
+
           <div
             style={{
               position: "absolute",
@@ -222,18 +229,24 @@ function Header() {
       </header>
 
       <header className={`${styles.mobile_header} `}>
-        <div className={styles.topBanner}>
-          <Link href="/description">
-            <a>
-              <Image
-                layout="responsive"
-                height={100}
-                width={1200}
-                src="/image/topBanner/topImg_mobile.jpg"
-                alt="در نخل حجره دار شوید."
-              />
-            </a>
-          </Link>
+        <div
+          onClick={() => {
+            gtag('event', 'بنر حجره دار', {
+              'event_category' : 'کلیک',
+              'event_label' : 'کلیک بنر حجره دار'
+            });
+            router.push("/description");
+          }}
+          className={styles.topBanner}
+        >
+          <Image
+            layout="responsive"
+            height={100}
+            width={1200}
+            src="/image/topBanner/topImg_mobile.jpg"
+            alt="در نخل حجره دار شوید."
+          />
+
           {/* <div style={{ position: "absolute", top: "5px", left: "5px", fontSize: "11px", fontWeight: "bolder" }}>
             <Timer date="2022-1-24" />
           </div> */}

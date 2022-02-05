@@ -1,42 +1,84 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import InputPicture from "../../../containers/liveEdit/InputPicture";
 import InputUrl from "../../../containers/liveEdit/InputUrl";
 import styles from "./HeroSlides.module.scss";
+import Assistent from "zaravand-assistent-number";
+const _asist = new Assistent();
 
 // type============1
 //  ratio========2/1
 function Sm_HeroSlides({ setImageSrc, id, data }) {
+  const [wichSlide, setWichSlide] = useState(1);
+  const dataSlides = [
+    { order: 0 },
+    { order: 1 },
+    { order: 2 },
+    { order: 3 },
+    { order: 4 },
+  ];
   return (
     <div className={styles.content}>
       <div className={styles.slider}>
         <div className={styles.right}>
-          <div className={styles.icon_change_pic}>
-            <InputPicture
-              setImageSrc={setImageSrc}
-              id={id}
-              order={0}
-              ratio={2}
-            />
+          <div className={styles.counter_number}>
+            {`${_asist.number(wichSlide)}/`}
+            <span style={{ fontSize: "15px" }}>۵</span>
           </div>
-          <div className={styles.icon_change_url}>
-            <InputUrl id={id} order={0} />
+          <div
+            onClick={() => {
+              if (wichSlide !== 1) {
+                setWichSlide((el) => el - 1);
+              }
+            }}
+            className={styles.prev}
+          >
+            &#10094;
           </div>
-          {data[0].title && (
-            <div className={styles.titleUrl}>
-              <span>{data[0].title}</span>
+          <div
+            onClick={() => {
+              if (wichSlide !== 5) {
+                setWichSlide((el) => el + 1);
+              }
+            }}
+            className={styles.next}
+          >
+            &#10095;
+          </div>
+          {wichSlide && (
+            <div>
+              <div className={styles.icon_change_pic}>
+                <InputPicture
+                  setImageSrc={setImageSrc}
+                  id={id}
+                  order={wichSlide - 1}
+                  ratio={2}
+                />
+              </div>
+              <div className={styles.icon_change_url}>
+                <InputUrl id={id} order={wichSlide - 1} />
+              </div>
+              {data[wichSlide - 1]?.title && (
+                <div className={styles.titleUrl}>
+                  <span>{data[wichSlide - 1].title}</span>
+                </div>
+              )}
+              <img
+                src={
+                  data[wichSlide - 1]?.image
+                    ? data[wichSlide - 1].image
+                    : "/image/sample/2_1.jpg"
+                }
+                alt=""
+              />
             </div>
           )}
-          <img
-            src={data[0].image ? data[0].image : "/image/sample/2_1.jpg"}
-            alt=""
-          />
         </div>
         <div className={styles.left}>
           <div className={styles.top}>
             <div className={styles.holderPic}>
               <img
-                src={data[1].image ? data[1].image : "/image/sample/2_1_M.jpg"}
+                src={data[5].image ? data[5].image : "/image/sample/2_1_M.jpg"}
                 alt=""
               />
             </div>
@@ -44,36 +86,36 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
               <InputPicture
                 setImageSrc={setImageSrc}
                 id={id}
-                order={1}
+                order={5}
                 ratio={2}
               />
             </div>
             <div className={styles.icon_change_url}>
-              <InputUrl id={id} order={1} />
+              <InputUrl id={id} order={5} />
             </div>
-            {data[1].title && (
+            {data[5].title && (
               <div className={styles.titleUrl}>
-                <span>{data[1].title}</span>
+                <span>{data[5].title}</span>
               </div>
             )}
           </div>
           <div className={styles.bottom}>
             <div className={styles.holderPic}>
               <img
-                src={data[2].image ? data[2].image : "/image/sample/2_1_M.jpg"}
+                src={data[6].image ? data[6].image : "/image/sample/2_1_M.jpg"}
                 alt=""
               />
             </div>
             <div className={styles.icon_change_pic}>
-              <InputPicture setImageSrc={setImageSrc} id={id} order={2} />
+              <InputPicture setImageSrc={setImageSrc} id={id} order={6} />
             </div>
 
             <div className={styles.icon_change_url}>
-              <InputUrl id={id} order={2} />
+              <InputUrl id={id} order={6} />
             </div>
-            {data[2].title && (
+            {data[6].title && (
               <div className={styles.titleUrl}>
-                <span>{data[2].title}</span>
+                <span>{data[6].title}</span>
               </div>
             )}
           </div>

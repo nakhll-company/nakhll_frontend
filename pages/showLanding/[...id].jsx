@@ -17,8 +17,7 @@ import { ApiReference } from "../../api/Api";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 
 function ShowLanding({ idLanding }) {
-
-  let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}`;
+  let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}/`;
   const [dataLanding, setDataLanding] = useState([]);
 
   useEffect(() => {

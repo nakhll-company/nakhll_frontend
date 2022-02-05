@@ -33,7 +33,63 @@ export function addComponent(type, idLanding) {
             ],
         };
     }
-    if (type == 4 || type == 1) {
+    if (type == 1) {
+        newItem = {
+            ID: uuidv4(),
+            type,
+            data: [{
+                    image: "",
+                    url: `/shop/${idLanding[0]}`,
+                    title: "",
+                    video: { id: "", src: "" },
+                    order: 0,
+                },
+                {
+                    image: "",
+                    url: `/shop/${idLanding[0]}`,
+                    title: "",
+                    video: { id: "", src: "" },
+                    order: 1,
+                },
+                {
+                    image: "",
+                    url: `/shop/${idLanding[0]}`,
+                    title: "",
+                    video: { id: "", src: "" },
+                    order: 2,
+                },
+                {
+                    image: "",
+                    url: `/shop/${idLanding[0]}`,
+                    title: "",
+                    video: { id: "", src: "" },
+                    order: 3,
+                },
+                {
+                    image: "",
+                    url: `/shop/${idLanding[0]}`,
+                    title: "",
+                    video: { id: "", src: "" },
+                    order: 4,
+                },
+                {
+                    image: "",
+                    url: `/shop/${idLanding[0]}`,
+                    title: "",
+                    video: { id: "", src: "" },
+                    order: 5,
+                },
+                {
+                    image: "",
+                    url: `/shop/${idLanding[0]}`,
+                    title: "",
+                    video: { id: "", src: "" },
+                    order: 6,
+                },
+            ],
+        };
+    }
+    if (type == 4) {
         newItem = {
             ID: uuidv4(),
             type,

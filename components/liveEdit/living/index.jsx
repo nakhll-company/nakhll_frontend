@@ -42,14 +42,14 @@ function Living({ characters, setCharacters, setOpenPlaneEditor, idLanding }) {
         data: [
           {
             image: "",
-            url:  `/shop/${idLanding[0]}`,
+            url: `/shop/${idLanding[0]}`,
             title: "",
             video: { id: "", src: "" },
             order: 0,
           },
           {
             image: "",
-            url:  `/shop/${idLanding[0]}`,
+            url: `/shop/${idLanding[0]}`,
             title: "",
             video: { id: "", src: "" },
             order: 1,
@@ -60,6 +60,34 @@ function Living({ characters, setCharacters, setOpenPlaneEditor, idLanding }) {
             title: "",
             video: { id: "", src: "" },
             order: 2,
+          },
+          {
+            image: "",
+            url: `/shop/${idLanding[0]}`,
+            title: "",
+            video: { id: "", src: "" },
+            order: 3,
+          },
+          {
+            image: "",
+            url: `/shop/${idLanding[0]}`,
+            title: "",
+            video: { id: "", src: "" },
+            order: 4,
+          },
+          {
+            image: "",
+            url: `/shop/${idLanding[0]}`,
+            title: "",
+            video: { id: "", src: "" },
+            order: 5,
+          },
+          {
+            image: "",
+            url: `/shop/${idLanding[0]}`,
+            title: "",
+            video: { id: "", src: "" },
+            order: 6,
           },
         ],
       };
