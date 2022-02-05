@@ -120,7 +120,7 @@ const ProductDetailMobile = ({ data }) => {
                   {
                     title:
                       detail.new_category &&
-                        detail.new_category.parents.length > 0
+                      detail.new_category.parents.length > 0
                         ? detail.new_category.parents[0].name
                         : "",
                     url:
@@ -527,7 +527,8 @@ const ProductDetailMobile = ({ data }) => {
                   {posts.length > 0 &&
                     posts.map((oneProduct, index) => {
                       return (
-                        (oneProduct.FK_Shop !== undefined && oneProduct.FK_Shop !== null) && (
+                        oneProduct.FK_Shop !== undefined &&
+                        oneProduct.FK_Shop !== null && (
                           <ProductCard
                             col="6"
                             dataProduct={oneProduct}
@@ -558,6 +559,10 @@ const ProductDetailMobile = ({ data }) => {
           <button
             className={`${styles.product_btn_mobile} btn btn-tprimary rounded-pill font-weight-bold font-size1-5 px-6 py-2 ev-add-to-cart`}
             onClick={async () => {
+              gtag("event", "دکمه خرید", {
+                event_category: `‍‍‍‍${detail.title}`,
+                event_label: "زدن روی دکمه خرید",
+              });
               await addToCart(detail.id);
             }}
           >
