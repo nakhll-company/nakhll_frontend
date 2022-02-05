@@ -118,7 +118,7 @@ const ProductDetailDesktop = ({ data }) => {
                   {
                     title:
                       detail.new_category &&
-                        detail.new_category.parents.length > 0
+                      detail.new_category.parents.length > 0
                         ? detail.new_category.parents[0].name
                         : "",
                     url:
@@ -349,6 +349,10 @@ const ProductDetailDesktop = ({ data }) => {
                     <button
                       className={`product-btn btn rounded-pill font-size1-5  p-1  ${styles.btn_tprimary}`}
                       onClick={async () => {
+                        gtag("event", "دکمه خرید", {
+                          event_category: `‍‍‍‍${detail.title}`,
+                          event_label: "زدن روی دکمه خرید",
+                        });
                         await addToCart(detail.id);
                       }}
                     >
@@ -471,7 +475,8 @@ const ProductDetailDesktop = ({ data }) => {
                   slides1200={4}
                   data={productShop.map((oneProduct, index) => {
                     return (
-                      (oneProduct.FK_Shop !== undefined && oneProduct.FK_Shop !== null) && (
+                      oneProduct.FK_Shop !== undefined &&
+                      oneProduct.FK_Shop !== null && (
                         <ProductCard
                           col="12"
                           dataProduct={oneProduct}
@@ -588,7 +593,8 @@ const ProductDetailDesktop = ({ data }) => {
                   {posts.length > 0 &&
                     posts.map((value, index) => {
                       return (
-                        (value.FK_Shop !== undefined && value.FK_Shop !== null) && (
+                        value.FK_Shop !== undefined &&
+                        value.FK_Shop !== null && (
                           <ProductCard
                             col="3"
                             padding={1}

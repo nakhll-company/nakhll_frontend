@@ -41,10 +41,9 @@ function Header() {
       <header className={`${styles.header}`}>
         <div
           onClick={() => {
-
-            gtag('event', 'بنر حجره دار', {
-              'event_category' : 'کلیک',
-              'event_label' : 'کلیک بنر حجره دار'
+            gtag("event", "بنر حجره دار", {
+              event_category: "کلیک",
+              event_label: "کلیک بنر حجره دار",
             });
             router.push("/description");
           }}
@@ -231,9 +230,9 @@ function Header() {
       <header className={`${styles.mobile_header} `}>
         <div
           onClick={() => {
-            gtag('event', 'بنر حجره دار', {
-              'event_category' : 'کلیک',
-              'event_label' : 'کلیک بنر حجره دار'
+            gtag("event", "بنر حجره دار", {
+              event_category: "کلیک",
+              event_label: "کلیک بنر حجره دار",
             });
             router.push("/description");
           }}
@@ -343,6 +342,10 @@ function Header() {
               <form
                 onSubmit={(event) => {
                   event.preventDefault();
+                  gtag("event", "سرچ", {
+                    event_category: "کلیک",
+                    event_label: "زدن روی سرچ",
+                  });
                   location.replace(`/search?q=${inputSearch}`);
                 }}
               >
@@ -372,6 +375,10 @@ function Header() {
                   <a aria-label="پروفایل"> */}
                 <div
                   onClick={() => {
+                    gtag("event", "سرچ", {
+                      event_category: "کلیک",
+                      event_label: "زدن روی سرچ",
+                    });
                     setSearchShops([]);
                     router.push(`/search?q=${inputSearch}`);
                   }}

@@ -184,13 +184,13 @@ const ProductCard = ({
                     disabled={disablBtn}
                     className={`btn ${styles._product_card_add_to_cart}`}
                     onClick={async () => {
+                      gtag("event", "دکمه خرید", {
+                        event_category: `‍‍‍‍${product.title}`,
+                        event_label: "زدن روی دکمه خرید",
+                      });
                       setDisablBtn(true);
                       await addToCart(product.id);
                       setDisablBtn(false);
-
-                     
-
-                      
                     }}
                   >
                     <i className="fas fa-plus" />
