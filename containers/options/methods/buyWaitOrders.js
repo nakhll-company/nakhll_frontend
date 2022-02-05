@@ -1,17 +1,14 @@
-import { ApiRegister } from '../../../services/apiRegister/ApiRegister';
-import { errorMessage } from '../../../containers/utils/message';
+import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
 export async function buyWaitOrders(id) {
-
     let response = await ApiRegister().apiRequest(
-        null, "GET",
+        null,
+        "GET",
         `/api/v1/shop_feature_invoice/${id}/pay/`,
         true, {}
     );
 
     if (response.status === 200) {
         location.replace(`${response.data.url}`);
-    } else {
-        errorMessage(response.response.data[0]);
     }
 }

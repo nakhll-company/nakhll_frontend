@@ -10,6 +10,7 @@ import useViewport from "../../../../components/viewPort";
 import ProductDetailMobile from "../../../../containers/productDetail/mobile";
 import ProductDetailDesktop from "../../../../containers/productDetail/desktop";
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
+import ShopLayout from "../../../../components/shopLayout";
 
 // fetch data
 const fetchData = async (id) => {
@@ -97,3 +98,5 @@ export async function getServerSideProps(context) {
     props: { data },
   };
 }
+
+ProductDetail.Layout = ShopLayout;

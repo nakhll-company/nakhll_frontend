@@ -1,0 +1,37 @@
+.warpperIcons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 17px;
+}
+.wrappIcon {
+    height: 100px;
+    background: rgba(34, 78, 130, 0.1);
+    border-radius: 20px;
+    flex-basis: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.header {
+    margin-top: 16px;
+    margin-bottom: 10px;
+    span {
+        color: #224e82;
+        font-size: 16px;
+    }
+}
+.wrap_select {
+    position: absolute;
+    left: 10px;
+    top: -5px;
+    select {
+        padding: 2px 10px;
+        border: 1px solid rgba(122, 161, 206, 0.72);
+        background-color: #fff;
+        border-radius: 10px;
+        font-size: 16px;
+        color: #224e82;
+        cursor: pointer;
+    }
+}

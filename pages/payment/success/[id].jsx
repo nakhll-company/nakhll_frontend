@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from 'next/link';
+import Link from "next/link";
 import Confetti from "react-confetti";
 import Assistent from "zaravand-assistent-number";
 import React, { useEffect, useRef, useState } from "react";
@@ -7,6 +7,7 @@ const _asist = new Assistent();
 
 // styles
 import styles from "./success.module.scss";
+import ShopLayout from "../../../components/shopLayout";
 
 const Success = ({ code }) => {
   const [height, setHeight] = useState(null);
@@ -61,3 +62,5 @@ export async function getServerSideProps(context) {
     },
   };
 }
+
+Success.Layout = ShopLayout;

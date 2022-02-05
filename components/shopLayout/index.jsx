@@ -1,5 +1,6 @@
 // node libraries
 import Head from "next/head";
+import Script from "next/script";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 // components
@@ -18,7 +19,7 @@ function ShopLayout({ children }) {
       Goftino.setUser({
         name: `${userData.user.first_name} ${userData.user.last_name}`,
         phone: `${userData.mobile_number}`,
-        about: `${userData.shops.length > 0 && userData.shops[0]} - ${userData.state} - ${userData.big_city} - ${userData.city}`,
+        about: `${userData.shops[0]} - ${userData.state} - ${userData.big_city} - ${userData.city}`,
         forceUpdate: true
       });
     });
@@ -39,13 +40,12 @@ function ShopLayout({ children }) {
           integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
           crossOrigin="anonymous"
         />
-
-        <script
-          src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
-          crossOrigin="anonymous"
-        ></script>
       </Head>
+      <Script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossOrigin="anonymous"
+      />
       <div>
         <ToastContainer />
         <Header />

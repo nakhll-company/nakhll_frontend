@@ -1,0 +1,34 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    position: relative;
+    .wrap_video {
+        max-width: 56.75 em;
+        min-width: 60%;
+        margin: 3 em auto;
+        z-index: 1;
+        box-shadow: -10px 10px 80px rgb(0 0 0 / 10%);
+        border-radius: 5px;
+        padding: 1em;
+        display: flex;
+        align-items: stretch;
+        justify-content: stretch;
+        .video {
+            border-radius: 5px;
+            background-color: #e2e8ed;
+            min-height: 100%;
+            width: 100%;
+        }
+    }
+}
+.animation {
+    position: absolute;
+}
+@media (max-width: 768px) {
+    .wrap_video {
+        width: 98%;
+    }
+}

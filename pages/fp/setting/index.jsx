@@ -1,15 +1,12 @@
 // next libraries
 import Head from "next/head";
-import { connect } from "react-redux";
+
 // components
 import MyLayout from "../../../components/layout/Layout";
 
 import DesktopSettings from "../../../containers/settings/desktop";
 
-// methods
-import { mapState } from "../../../containers/settings/methods/mapState";
-
-function Settings({ activeHojreh }) {
+function Settings() {
   return (
     <>
       <Head>
@@ -23,11 +20,11 @@ function Settings({ activeHojreh }) {
         />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <DesktopSettings activeHojreh={activeHojreh} />
+      <DesktopSettings />
     </>
   );
 }
 // export
-const connector = connect(mapState);
-export default connector(Settings);
+
+export default Settings;
 Settings.Layout = MyLayout;

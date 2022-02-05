@@ -3,11 +3,12 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Assistent from "zaravand-assistent-number";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Fragment, useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+import _ from "lodash";
 // components
 import CustomLabel from "../../components/custom/customLabel";
 import ProductCard from "../../components/ProductCart/ProductCard";
@@ -38,6 +39,7 @@ const ProductDetailMobile = ({ data }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { productSlug } = router.query;
+  const userData = useSelector((state) => state.User.userInfo);
 
   const detail = data.detail;
   const comments = data.comments;
@@ -88,9 +90,12 @@ const ProductDetailMobile = ({ data }) => {
     setPosts((post) => [...post, ...moreProduct.data.results]);
   };
 
-  useEffect(async () => {
-    getMoreProduct();
-    fetchProductShop();
+  useEffect(() => {
+    async function fetchData() {
+      getMoreProduct();
+      fetchProductShop();
+    }
+    fetchData();
   }, []);
 
   return (
@@ -102,7 +107,8 @@ const ProductDetailMobile = ({ data }) => {
         />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <AddFavorites />
+      {!_.isEmpty(userData) && <AddFavorites />}
+
       <div>
         {/* bread_crumb */}
         <div className="product-page-breadcrumb">
@@ -114,7 +120,7 @@ const ProductDetailMobile = ({ data }) => {
                   {
                     title:
                       detail.new_category &&
-                      detail.new_category.parents.length > 0
+                        detail.new_category.parents.length > 0
                         ? detail.new_category.parents[0].name
                         : "",
                     url:
@@ -248,35 +254,8 @@ const ProductDetailMobile = ({ data }) => {
                     label="سایز"
                   />
                 )}
-                {detail.attributes.length > 0 &&
-                  detail.attributes.map((value, index) => {
-                    return (
-                      <div key={index}>
-                        <CustomLabel
-                          type="normal"
-                          value={_asist.PSeparator(value.value)}
-                          label={
-                            value.FK_Attribute && value.FK_Attribute.title
-                              ? value.FK_Attribute.title
-                              : ""
-                          }
-                        />
-                      </div>
-                    );
-                  })}
               </div>
             </section>
-            {/* <div className="mt-4">
-              <h2 className={styles.product_section_title}>قیمت محصول</h2>
-              <div className="d-flex align-items-center">
-                <h4 className="ms-4" style={{ color: "#224D82" }}>
-                  {_asist.PSeparator(detail.price / 10)} تومان
-                </h4>
-                <del style={{ fontSize: "1.25rem" }}>
-                  {_asist.PSeparator(detail.old_price / 10)} تومان
-                </del>
-              </div>
-            </div> */}
             <div>
               <div>
                 <h2 className={`${styles.product_section_title} mt-4`}>
@@ -433,23 +412,7 @@ const ProductDetailMobile = ({ data }) => {
                   data={productShop.map((value, index) => {
                     return (
                       value.FK_Shop !== undefined && (
-                        <ProductCard
-                          col="12"
-                          product={{
-                            id: value.ID,
-                            imageUrl: value.Image_medium_url,
-                            url: `/shop/${value.FK_Shop.slug}/product/${value.Slug}`,
-                            title: value.Title,
-                            chamberTitle: value.FK_Shop.title,
-                            chamberUrl: `/shop/${value.FK_Shop.slug}`,
-                            discount: value.discount,
-                            price: value.Price / 10,
-                            discountNumber: value.OldPrice / 10,
-                            city: value.FK_Shop.state,
-                            is_advertisement: value.is_advertisement,
-                          }}
-                          key={index}
-                        />
+                        <ProductCard col="12" dataProduct={value} key={index} />
                       )
                     );
                   })}
@@ -564,31 +527,10 @@ const ProductDetailMobile = ({ data }) => {
                   {posts.length > 0 &&
                     posts.map((oneProduct, index) => {
                       return (
-                        oneProduct.FK_Shop !== undefined && (
+                        (oneProduct.FK_Shop !== undefined && oneProduct.FK_Shop !== null) && (
                           <ProductCard
                             col="6"
-                            product={{
-                              id: oneProduct.ID,
-                              imageUrl: oneProduct.Image_medium_url
-                                ? oneProduct.Image_medium_url
-                                : "",
-                              url:
-                                oneProduct.FK_Shop &&
-                                `/shop/${oneProduct.FK_Shop.slug}/product/${oneProduct.Slug}/`,
-                              title: oneProduct.Title,
-                              chamberTitle: oneProduct.FK_Shop
-                                ? oneProduct.FK_Shop.title
-                                : "",
-                              chamberUrl: oneProduct.FK_Shop
-                                ? `/shop/${oneProduct.FK_Shop.slug} `
-                                : "",
-                              discount: oneProduct.discount,
-                              price: oneProduct.Price / 10,
-                              discountNumber: oneProduct.OldPrice / 10,
-                              city:
-                                oneProduct.FK_Shop && oneProduct.FK_Shop.state,
-                              is_advertisement: oneProduct.is_advertisement,
-                            }}
+                            dataProduct={oneProduct}
                             key={index}
                           />
                         )

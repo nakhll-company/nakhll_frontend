@@ -2,14 +2,21 @@ import { toast } from "react-toastify";
 
 export const successMessage = (message) => {
   toast.success(message, {
-    position: "top-right",
+    position: "top-center",
     closeOnClick: true,
   });
 };
 
-export const errorMessage = (message) => {
+export const errorMessage = (message, error = "", page = "", api = "") => {
+  let excepMessage = `${error} | ${message} | ${page} | ${api} `;
+
+  gtag("event", "exception", {
+    description: excepMessage,
+    fatal: true, // set to true if the error is fatal
+  });
+
   toast.error(message, {
-    position: "top-right",
+    position: "top-center",
     closeOnClick: true,
   });
 };

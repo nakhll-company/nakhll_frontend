@@ -1,21 +1,14 @@
-import React, { useCallback, useState } from "react";
 import Cropper from "react-easy-crop";
-// methods
-import { selectImage } from "./methods/selectImage";
-import { getCroppedImg } from "./methods/getCropImage";
 
+import React, { useCallback, useState } from "react";
+
+// methods
+import { getCroppedImg } from "./methods/getCropImage";
 // scss
 import styles from "./customCropper.module.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { showCropper } from "../../redux/actions/liveEdit/showCropper";
 import { _updatePicture } from "../../redux/actions/liveEdit/_updatePicture";
-function CustomCropperAll({
-  setImageSrc,
-  image,
 
-  setShowCropper,
-  ratio = 1,
-}) {
+function CustomCropperAll({ setImageSrc, image, setShowCropper, ratio = 1 }) {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [rotation, setRotation] = useState(0);
   const [zoom, setZoom] = useState(1);
@@ -34,18 +27,24 @@ function CustomCropperAll({
       );
 
       setImageSrc(croppedImage);
-
-      // dispatch(_updatePicture(croppedImage));
     } catch (e) {
       console.error(e);
     }
-  }, [image, croppedAreaPixels, rotation]);
+  }, [image, croppedAreaPixels, rotation, setImageSrc]);
 
   return (
     <>
       <div className={styles.modal_wrapper}>
         <div>
           <div className={styles.cropper_wrapper}>
+            <div className={styles.wrapper_close}>
+              <i
+                className="fa fa-times"
+                onClick={() => {
+                  setShowCropper(false);
+                }}
+              ></i>
+            </div>
             <Cropper
               image={image}
               crop={crop}

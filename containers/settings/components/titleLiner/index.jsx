@@ -1,4 +1,5 @@
 import styles from "./titleLiner.module.scss";
+import React from "react";
 function TitleLiner({ title }) {
   return (
     <>
@@ -9,4 +10,4 @@ function TitleLiner({ title }) {
   );
 }
 
-export default TitleLiner;
+export default React.memo(TitleLiner);

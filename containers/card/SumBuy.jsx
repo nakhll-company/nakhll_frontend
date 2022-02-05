@@ -1,12 +1,9 @@
-import Link from "next/link";
-import { useContext } from "react";
 import { useRouter } from "next/router";
-import Assistent from "zaravand-assistent-number";
-import ContextProduct from "./Context/context";
 import { useSelector } from "react-redux";
+import Assistent from "zaravand-assistent-number";
 // methods
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { errorMessage } from "../utils/message";
+import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 // style
 import styles from "../../styles/pages/cart/cart.module.scss";
 
@@ -65,9 +62,11 @@ export default function SumBuy() {
                     ""
                   );
                   if (result.status === 200) {
-                    await router.push(`/cart/address?invoice_id=${result.data.id}`);
-                  } else {
-                    errorMessage("خطایی پیش آمده است");
+                    await router.push(
+                      `/cart/address?invoice_id=${result.data.id}`
+                    );
+                  } else if (result.response.status === 401) {
+                    errorMessage("لطفا ابتدا وارد شوید")
                   }
                 }}
               >
@@ -90,7 +89,9 @@ export default function SumBuy() {
             </div> */}
           </div>
         </div>
-      ) : ""}
+      ) : (
+        ""
+      )}
     </>
   );
 }

@@ -1,0 +1,26 @@
+.main {
+    padding: 15px;
+}
+.wrap_select {
+    position: absolute;
+    left: 10px;
+    top: -5px;
+    select {
+        padding: 2px 10px;
+        border: 1px solid rgba(122, 161, 206, 0.72);
+        background-color: #fff;
+        border-radius: 10px;
+        font-size: 16px;
+        color: #224e82;
+        cursor: pointer;
+    }
+}
+.previewPrice {
+    display: flex;
+    font-size: 14px;
+    color: #2600ff;
+    // padding-top: 20px;
+    padding-bottom: 5px;
+    justify-content: space-between;
+    direction: rtl;
+}

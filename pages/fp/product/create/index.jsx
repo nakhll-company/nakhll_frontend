@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
+
 import Image from "next/image";
+import Assistent from "zaravand-assistent-number";
 // components
 import MyLayout from "../../../../components/layout/Layout";
 import Loading from "../../../../components/loading/index";
@@ -25,6 +27,7 @@ import {
 
 const CreateProduct = ({ activeHojreh }) => {
   const router = useRouter();
+  const _asist = new Assistent();
 
   // useform
   const {
@@ -63,15 +66,26 @@ const CreateProduct = ({ activeHojreh }) => {
   // for Save cities
   const [checkedCities, setCheckedCities] = useState([]);
 
-  // use effect
-  useEffect(async () => {
-    const response_categories = await _ApiGetCategories();
+  // state for show word price
+  const [wordPrice, setWordPrice] = useState("");
+  const [wordOldPrice, setWordOldPrice] = useState("");
 
-    if (response_categories.status === 200) {
-      setIsLoad(true);
-      setData(response_categories.data); //==> output: {}
-      setCategories(response_categories.data);
+  // state for precent
+  const [precentPrice, setPrecentPrice] = useState(0);
+  const [precentOldPrice, setprecentOldPrice] = useState(0);
+
+  // use effect
+  useEffect(() => {
+    async function fetchData() {
+      const response_categories = await _ApiGetCategories();
+
+      if (response_categories.status === 200) {
+        setIsLoad(true);
+        setData(response_categories.data); //==> output: {}
+        setCategories(response_categories.data);
+      }
     }
+    fetchData();
   }, [activeHojreh]);
 
   // select Submarket
@@ -118,6 +132,8 @@ const CreateProduct = ({ activeHojreh }) => {
 
     if (response.status === 201) {
       router.replace("/fp/product/create/successPageProduct");
+    } else {
+      setIsloadingForCreate(false);
     }
   };
 
@@ -144,6 +160,7 @@ const CreateProduct = ({ activeHojreh }) => {
                   </label>
 
                   <input
+                    style={{ paddingRight: "10px" }}
                     className={styles.input_product}
                     value={placeholderSubmarckets.name}
                     id="submark"
@@ -152,6 +169,16 @@ const CreateProduct = ({ activeHojreh }) => {
                     onClick={_selectSubmarket}
                     {...register("submark")}
                   />
+                  <i
+                    style={{
+                      color: "#1b3e68",
+                      left: "10px",
+                      top: "64%",
+                      position: "absolute",
+                    }}
+                    className="fas fa-chevron-down"
+                  ></i>
+
                   {errors.submark && (
                     <span style={{ color: "red", fontSize: "14px" }}>
                       لطفا این گزینه را پر کنید
@@ -185,6 +212,7 @@ const CreateProduct = ({ activeHojreh }) => {
                     </div>
                     {imgProduct ? (
                       <Image
+                        alt="عکس اصلی"
                         src={imgProduct}
                         layout="responsive"
                         height={100}
@@ -192,12 +220,21 @@ const CreateProduct = ({ activeHojreh }) => {
                       />
                     ) : (
                       <Image
+                        alt="عکس اصلی"
                         src="/image/sample/pic.jpg"
                         layout="responsive"
                         height={100}
                         width={100}
                       />
                     )}
+                    <div className={styles.deleteBtn}>
+                      <div
+                        className={styles.wrapBtn}
+                        onClick={() => setImgProduct(null)}
+                      >
+                        <i className="fas fa-trash"></i>
+                      </div>
+                    </div>
                   </div>
                   {/* imgProductChild, setImgProductChild */}
                   {imgProduct && (
@@ -289,11 +326,22 @@ const CreateProduct = ({ activeHojreh }) => {
                       required: "لطفا این گزینه را پرنمایید",
                       min: {
                         value: 500,
-                        message: "لطفا اعداد بزرگتر از 500 وارد نمایید",
+                        message: "لطفا اعداد بزرگتر از ۵۰۰ وارد نمایید",
                       },
                     })}
+                    onChange={(e) => {
+                      setPrecentPrice(e.target.value);
+                      setWordPrice(_asist.word(e.target.value));
+                    }}
                   />
                 </InputUseForm>
+                {wordPrice !== "صفر" && wordPrice !== "" && (
+                  <div className={styles.previewPrice}>
+                    قیمت محصول : {wordPrice}
+                    {"  "}
+                    تومان
+                  </div>
+                )}
                 {/* price with discount */}
                 <InputUseForm
                   title="قیمت محصول با تخفیف (اختیاری)"
@@ -315,8 +363,37 @@ const CreateProduct = ({ activeHojreh }) => {
                         parseInt(value) < parseInt(getValues("Price")) ||
                         "قیمت با تخفیف باید کمتر از قیمت اصلی باشد",
                     })}
+                    onChange={(e) => {
+                      if (e.target.value == "" || e.target.value == 0) {
+                        setprecentOldPrice(0);
+                        setWordOldPrice("");
+                      } else {
+                        setprecentOldPrice(e.target.value);
+
+                        setWordOldPrice(_asist.word(e.target.value));
+                      }
+                    }}
                   />
                 </InputUseForm>
+                {wordOldPrice !== "صفر" && wordOldPrice !== "" && (
+                  <div className={styles.previewPrice}>
+                    قیمت محصول با تخفیف : {wordOldPrice} تومان
+                  </div>
+                )}
+                {precentPrice > precentOldPrice && precentOldPrice > 0 && (
+                  <>
+                    <span style={{ margin: "8px 0", fontSize: "14px" }}>
+                      تخفیف کالا شما:
+                      <span style={{ fontSize: "13px" }}>درصد رند شده</span>
+                    </span>
+                    <div className={styles.precent_wrper}>
+                      {Math.ceil(
+                        ((precentPrice - precentOldPrice) / precentPrice) * 100
+                      )}
+                      %
+                    </div>
+                  </>
+                )}
                 {/* discription */}
                 <TextAreaUseForm title="توضیحات محصول (اختیاری)">
                   <textarea

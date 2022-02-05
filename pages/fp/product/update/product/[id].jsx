@@ -1,6 +1,6 @@
 // node libraries
 import { connect } from "react-redux";
-
+import Assistent from "zaravand-assistent-number";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
@@ -11,7 +11,6 @@ import MyLayout from "../../../../../components/layout/Layout";
 import Category from "../../../../../containers/product/create/category";
 import CheckboxTreeCities from "../../../../../components/CheckboxTree/CheckboxTree";
 // methods
-import { errorMessage } from "../../../../../containers/utils/message";
 import { ApiRegister } from "../../../../../services/apiRegister/ApiRegister";
 import { mapState } from "../../../../../containers/product/methods/mapState";
 // styles
@@ -30,52 +29,8 @@ import PictureChildProduct from "../../../../../containers/creat/component/pictu
  * page update product
  * @param {string} activeHojreh => it has slug name
  */
+const _asist = new Assistent();
 const UpdateProduct = ({ activeHojreh }) => {
-  const router = useRouter();
-  const { id } = router.query;
-  // get edit date
-
-  useEffect(async () => {
-    if (id) {
-      let params = null;
-      let loadData = null;
-      let dataUrl = `/api/v1/shop/${activeHojreh}/products/${id}/`;
-      let response = await ApiRegister().apiRequest(
-        loadData,
-        "get",
-        dataUrl,
-        true,
-        params
-      );
-
-      if (response.status === 200) {
-        let Data = response.data;
-
-        setValue("Title", Data.Title);
-        setImgProduct(Data.Image);
-
-        setValue("OldPrice", Data.Price / 10);
-        setValue("Price", Data.OldPrice / 10);
-        setValue("Inventory", Data.Inventory);
-        setValue("Net_Weight", Data.Net_Weight);
-        setValue("Weight_With_Packing", Data.Weight_With_Packing);
-        setValue("Description", Data.Description);
-        setValue("PreparationDays", Data.PreparationDays);
-        setCheckedCities(Data.post_range_cities);
-        setPlaceholderSubmarckets(Data.new_category);
-        setSubmarketId(Data.new_category.id);
-        // images
-        setImgProductOne(Data.Product_Banner[0]?.Image);
-        setImgProductTwo(Data.Product_Banner[1]?.Image);
-        setImgProductThree(Data.Product_Banner[2]?.Image);
-        setImgProductFour(Data.Product_Banner[3]?.Image);
-        setImgProductFive(Data.Product_Banner[4]?.Image);
-        setImgProductSix(Data.Product_Banner[5]?.Image);
-        setProduct_Banner(Data.Product_Banner);
-      }
-    }
-  }, [id]);
-
   // useform
   const {
     setValue,
@@ -89,6 +44,66 @@ const UpdateProduct = ({ activeHojreh }) => {
     criteriaMode: "all",
     mode: "all",
   });
+  const router = useRouter();
+  const { id } = router.query;
+  // get edit date
+
+  useEffect(() => {
+    async function fetchData() {
+      if (id) {
+        let params = null;
+        let loadData = null;
+        let dataUrl = `/api/v1/shop/${activeHojreh}/products/${id}/`;
+        let response = await ApiRegister().apiRequest(
+          loadData,
+          "get",
+          dataUrl,
+          true,
+          params
+        );
+
+        if (response.status === 200) {
+          let Data = response.data;
+
+          setValue("Title", Data.Title);
+          setImgProduct(Data.Image);
+          if (Data.OldPrice === 0) {
+            setValue("Price", Data.Price / 10);
+            setValue("OldPrice", Data.OldPrice / 10);
+            setWordOldPrice(_asist.word(Data.OldPrice / 10));
+            setprecentOldPrice(Data.OldPrice / 10);
+            setWordPrice(_asist.word(Data.Price / 10));
+            setPrecentPrice(Data.Price / 10);
+          } else {
+            setValue("OldPrice", Data.Price / 10);
+            setValue("Price", Data.OldPrice / 10);
+            setWordOldPrice(_asist.word(Data.Price / 10));
+            setprecentOldPrice(Data.Price / 10);
+            setWordPrice(_asist.word(Data.OldPrice / 10));
+            setPrecentPrice(Data.OldPrice / 10);
+          }
+
+          setValue("Inventory", Data.Inventory);
+          setValue("Net_Weight", Data.Net_Weight);
+          setValue("Weight_With_Packing", Data.Weight_With_Packing);
+          setValue("Description", Data.Description);
+          setValue("PreparationDays", Data.PreparationDays);
+          setCheckedCities(Data.post_range_cities);
+          setPlaceholderSubmarckets(Data.new_category);
+          setSubmarketId(Data.new_category.id);
+          // images
+          setImgProductOne(Data.Product_Banner[0]?.Image);
+          setImgProductTwo(Data.Product_Banner[1]?.Image);
+          setImgProductThree(Data.Product_Banner[2]?.Image);
+          setImgProductFour(Data.Product_Banner[3]?.Image);
+          setImgProductFive(Data.Product_Banner[4]?.Image);
+          setImgProductSix(Data.Product_Banner[5]?.Image);
+          setProduct_Banner(Data.Product_Banner);
+        }
+      }
+    }
+    fetchData();
+  }, [id, activeHojreh, setValue]);
 
   const onSubmit = async (data) => {
     setisLoadingUpdate(true);
@@ -131,8 +146,6 @@ const UpdateProduct = ({ activeHojreh }) => {
 
     if (response.status === 200) {
       router.replace("/fp/product/update/product/successPageEditProduct");
-    } else {
-      errorMessage("خطایی رخ داده مجدد تلاش فرمایید.");
     }
   };
 
@@ -157,16 +170,25 @@ const UpdateProduct = ({ activeHojreh }) => {
 
   // for Save cities
   const [checkedCities, setCheckedCities] = useState([]);
+  // state for show word price
+  const [wordPrice, setWordPrice] = useState("");
+  const [wordOldPrice, setWordOldPrice] = useState("");
 
+  // state for precent
+  const [precentPrice, setPrecentPrice] = useState(0);
+  const [precentOldPrice, setprecentOldPrice] = useState(0);
   // use effect
-  useEffect(async () => {
-    const response_categories = await _ApiGetCategories();
+  useEffect(() => {
+    async function fetchData() {
+      const response_categories = await _ApiGetCategories();
 
-    if (response_categories.status === 200) {
-      setIsLoad(true);
-      setData(response_categories.data); //==> output: {}
-      setCategories(response_categories.data);
+      if (response_categories.status === 200) {
+        setIsLoad(true);
+        setData(response_categories.data); //==> output: {}
+        setCategories(response_categories.data);
+      }
     }
+    fetchData();
   }, [activeHojreh]);
 
   // select Submarket
@@ -216,6 +238,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                       onClick={_selectSubmarket}
                       {...register("submark")}
                     />
+
                     <div style={{ display: "none" }}>
                       <input
                         className={styles.input_product}
@@ -267,6 +290,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                         layout="responsive"
                         height={100}
                         width={100}
+                        alt=""
                       />
                     ) : (
                       <Image
@@ -274,6 +298,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                         layout="responsive"
                         height={100}
                         width={100}
+                        alt=""
                       />
                     )}
                   </div>
@@ -376,8 +401,19 @@ const UpdateProduct = ({ activeHojreh }) => {
                         message: "لطفا اعداد بزرگتر از 500 وارد نمایید",
                       },
                     })}
+                    onChange={(e) => {
+                      setPrecentPrice(e.target.value);
+                      setWordPrice(_asist.word(e.target.value));
+                    }}
                   />
                 </InputUseForm>
+                {wordPrice !== "صفر" && wordPrice !== "" && (
+                  <div className={styles.previewPrice}>
+                    قیمت محصول : {wordPrice}
+                    {"  "}
+                    تومان
+                  </div>
+                )}
                 {/* price with discount */}
                 <InputUseForm
                   title="قیمت محصول با تخفیف (اختیاری)"
@@ -399,8 +435,37 @@ const UpdateProduct = ({ activeHojreh }) => {
                         parseInt(value) < parseInt(getValues("Price")) ||
                         "قیمت با تخفیف باید کمتر از قیمت اصلی باشد",
                     })}
+                    onChange={(e) => {
+                      if (e.target.value == "" || e.target.value == 0) {
+                        setprecentOldPrice(0);
+                        setWordOldPrice("");
+                      } else {
+                        setprecentOldPrice(e.target.value);
+
+                        setWordOldPrice(_asist.word(e.target.value));
+                      }
+                    }}
                   />
                 </InputUseForm>
+                {wordOldPrice !== "صفر" && wordOldPrice !== "" && (
+                  <div className={styles.previewPrice}>
+                    قیمت محصول با تخفیف : {wordOldPrice} تومان
+                  </div>
+                )}
+                {precentPrice > precentOldPrice && precentOldPrice > 0 && (
+                  <>
+                    <span style={{ margin: "8px 0", fontSize: "14px" }}>
+                      تخفیف کالا شما:
+                      <span style={{ fontSize: "13px" }}>درصد رند شده</span>
+                    </span>
+                    <div className={styles.precent_wrper}>
+                      {Math.ceil(
+                        ((precentPrice - precentOldPrice) / precentPrice) * 100
+                      )}
+                      %
+                    </div>
+                  </>
+                )}
                 {/* discription */}
                 <TextAreaUseForm title="توضیحات محصول (اختیاری)">
                   <textarea

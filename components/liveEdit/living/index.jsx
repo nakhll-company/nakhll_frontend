@@ -13,9 +13,15 @@ import Sm_LinerProducts from "../../SampelComponents/Sm_LinerProducts";
 import CustomCropper from "../../customCropper";
 import { _updateDataLanding } from "../../../redux/actions/liveEdit/_updateDataLanding";
 import SelectUrl from "../../../containers/liveEdit/SelectUrl";
-import SaveLanding from "../../../containers/liveEdit/SaveLanding";
 
-function Living({ characters, setCharacters, setOpenPlaneEditor,idLanding }) {
+import Sm_AboutMe from "../../SampelComponents/Sm_AboutMe";
+
+import Sm_VipProducts from "../../SampelComponents/Sm_VipProducts";
+import Sm_RotationProducts from "../../SampelComponents/Sm_RotationProducts";
+
+import Sm_Video from "../../SampelComponents/Sm_Video";
+
+function Living({ characters, setCharacters, setOpenPlaneEditor, idLanding }) {
   const dispatch = useDispatch();
   const showCrop = useSelector((state) => state.showCropper);
   const showSelectorUrl = useSelector((state) => state.showSelectUrl);
@@ -32,24 +38,27 @@ function Living({ characters, setCharacters, setOpenPlaneEditor,idLanding }) {
     if (items.length == 0) {
       const newItem = {
         ID: uuidv4(),
-        type:1,
+        type: 1,
         data: [
           {
             image: "",
-            url: "",
+            url:  `/shop/${idLanding[0]}`,
             title: "",
+            video: { id: "", src: "" },
             order: 0,
           },
           {
             image: "",
-            url: "",
+            url:  `/shop/${idLanding[0]}`,
             title: "",
+            video: { id: "", src: "" },
             order: 1,
           },
           {
             image: "",
-            url: "",
+            url: `/shop/${idLanding[0]}`,
             title: "",
+            video: { id: "", src: "" },
             order: 2,
           },
         ],
@@ -93,49 +102,64 @@ function Living({ characters, setCharacters, setOpenPlaneEditor,idLanding }) {
     dispatch(_updateDataLanding(items));
   };
 
-  // select component from server
   // type
   const _handel_select_component = (type, id, data) => {
-    switch (type) {
-      case 0:
-        return <Sm_InputPlace />;
-        break;
-      case 1:
-        return <Sm_HeroSlides setImageSrc={setImageSrc} id={id} data={data} />;
-        break;
-      case 2:
-        return <Sm_LinerOneImg setImageSrc={setImageSrc} id={id} data={data} />;
-        break;
+    const handel = {
+      0: <Sm_InputPlace />,
+      1: <Sm_HeroSlides setImageSrc={setImageSrc} id={id} data={data} />,
+      2: <Sm_LinerOneImg setImageSrc={setImageSrc} id={id} data={data} />,
+      3: <Sm_LinerTwoImg setImageSrc={setImageSrc} id={id} data={data} />,
+      4: <Sm_LinerThreeImg setImageSrc={setImageSrc} id={id} data={data} />,
+      5: <Sm_LinerFourImg setImageSrc={setImageSrc} id={id} data={data} />,
+      6: <Sm_LinerProducts id={id} data={data} />,
+      8: <Sm_AboutMe id={id} data={data} />,
+      9: <Sm_VipProducts id={id} data={data} />,
+      10: <Sm_RotationProducts id={id} data={data} />,
+      11: <Sm_Video id={id} data={data} />,
+    };
 
-      case 3:
-        return <Sm_LinerTwoImg setImageSrc={setImageSrc} id={id} data={data} />;
-        break;
-
-      case 4:
-        return (
-          <Sm_LinerThreeImg setImageSrc={setImageSrc} id={id} data={data} />
-        );
-        break;
-
-      case 5:
-        return (
-          <Sm_LinerFourImg setImageSrc={setImageSrc} id={id} data={data} />
-        );
-        break;
-
-      case 6:
-        return <Sm_LinerProducts id={id} data={data} />;
-        break;
-    }
+    return handel[type] ? handel[type] : null;
   };
 
+  const icons = (index) => (
+    <>
+      <div className={`${styles.wrapBtn} ${styles.btnBottom}`}>
+        <button
+          className={styles.buttonAdd}
+          role="button"
+          onClick={() => _handel_add_component_bottom(index)}
+        >
+          <i className="fas fa-plus"></i>
+        </button>
+      </div>
+      <div className={`${styles.wrapBtn} ${styles.btnUp}`}>
+        <button
+          className={styles.buttonAdd}
+          role="button"
+          onClick={() => _handel_add_component_top(index)}
+        >
+          <i className="fas fa-plus"></i>
+        </button>
+      </div>
+      <div className={`${styles.wrapBtn} ${styles.btnLeft}`}>
+        <button
+          className={styles.buttonDel}
+          role="button"
+          onClick={() => handelClickOnDeleteBtn(index)}
+        >
+          <i className="fas fa-trash"></i>
+        </button>
+      </div>
+    </>
+  );
+
   return (
-    <div>
+    <>
       {showCrop && (
         <CustomCropper imageSrc={imageSrc} setCroppedImage={setCroppedImage} />
       )}
 
-      {showSelectorUrl && <SelectUrl idLanding={idLanding } />}
+      {showSelectorUrl && <SelectUrl idLanding={idLanding} />}
 
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="characters">
@@ -154,44 +178,8 @@ function Living({ characters, setCharacters, setOpenPlaneEditor,idLanding }) {
                       ref={provided.innerRef}
                       className={styles.child}
                     >
-                      <div className={`${styles.wrapBtn} ${styles.btnBottom}`}>
-                        <button
-                          className={styles.buttonAdd}
-                          role="button"
-                          onClick={() => _handel_add_component_bottom(index)}
-                        >
-                          <i className="fas fa-plus"></i>
-                        </button>
-                      </div>
-                      <div className={`${styles.wrapBtn} ${styles.btnUp}`}>
-                        <button
-                          className={styles.buttonAdd}
-                          role="button"
-                          onClick={() => _handel_add_component_top(index)}
-                        >
-                          <i className="fas fa-plus"></i>
-                        </button>
-                      </div>
-                      <div className={`${styles.wrapBtn} ${styles.btnLeft}`}>
-                        <button
-                          className={styles.buttonDel}
-                          role="button"
-                          onClick={() => handelClickOnDeleteBtn(index)}
-                        >
-                          <i className="fas fa-trash"></i>
-                        </button>
-                      </div>
-                      {/* <div
-                        className={`${styles.wrapBtn} ${styles.btnLeftEdit}`}
-                      >
-                        <button
-                          className={styles.buttonEdit}
-                          role="button"
-                          onClick={() => _handelClickEditComponent(index)}
-                        >
-                          ویرایش
-                        </button>
-                      </div> */}
+                      {icons(index)}
+
                       {_handel_select_component(e.type, e.ID, e.data)}
                     </div>
                   )}
@@ -202,7 +190,7 @@ function Living({ characters, setCharacters, setOpenPlaneEditor,idLanding }) {
           )}
         </Droppable>
       </DragDropContext>
-    </div>
+    </>
   );
 }
 

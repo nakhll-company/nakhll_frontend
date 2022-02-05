@@ -540,9 +540,8 @@ export default function OrderDetailDesktop({
           <div className={styles.post_informationD_content}>
             <h4>نام مشتری</h4>
             <h3 style={{ marginTop: "5px" }}>
-              {`${data.profile && data.profile.user.first_name}  ${
-                data.profile && data.profile.user.last_name
-              }`}
+              {`${data.profile && data.profile.user.first_name}  ${data.profile && data.profile.user.last_name
+                }`}
             </h3>
           </div>
           {/* <div className={styles.post_informationD_content}>

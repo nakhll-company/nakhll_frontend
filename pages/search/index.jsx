@@ -1,13 +1,10 @@
 import React from "react";
-import { useRouter } from "next/router";
 import Head from "next/head";
-
 import ListWitOutFilters from "../../containers/listProduct/ListWithOutFilters";
 import ListProductCus from "../../containers/listProduct/listProductCus";
+import ShopLayout from "../../components/shopLayout";
 
 function Product({ ap, data }) {
-  const router = useRouter();
-
   return (
     <>
       <Head>
@@ -39,3 +36,5 @@ export async function getServerSideProps(context) {
     },
   };
 }
+
+Product.Layout = ShopLayout;

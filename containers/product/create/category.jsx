@@ -75,10 +75,7 @@ const Category = ({
               </h2>
             )}
             {page !== 1 && (
-              <h2 style={{ fontSize: "18px", fontWeight: "bold" }}>
-                {" "}
-                انتخاب زیر دسته از {title}{" "}
-              </h2>
+              <h2 style={{ fontSize: "16px" }}> زیردسته {title} </h2>
             )}
           </div>
           <div className={styles.content}>

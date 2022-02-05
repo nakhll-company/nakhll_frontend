@@ -8,10 +8,13 @@ import { addToFavoritesList } from "./methods/addToFavotitesList";
 import { deleteFromFavoritesList } from "./methods/deleteFromFavoritesList";
 // scss
 import styles from "./ProductCard.module.scss";
+import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { useState } from "react";
 
 const _asist = new Assistent();
 
 const ProductCard = ({
+  userData,
   sm = 6,
   md = 5,
   lg = 4,
@@ -20,8 +23,22 @@ const ProductCard = ({
   col,
   padding,
   _blank = false,
-  product,
+  dataProduct,
 }) => {
+  let product = {
+    id: dataProduct.ID,
+    imageUrl: dataProduct.Image_medium_url,
+    url: `/shop/${dataProduct.FK_Shop.slug}/product/${dataProduct.Slug}/`,
+    title: dataProduct.Title,
+    chamberTitle: dataProduct.FK_Shop ? dataProduct.FK_Shop.title : "",
+    chamberUrl: dataProduct.FK_Shop ? `/shop/${dataProduct.FK_Shop.slug} ` : "",
+
+    discount: dataProduct.discount,
+    price: dataProduct.Price / 10,
+    discountNumber: dataProduct.OldPrice / 10,
+    city: dataProduct.FK_Shop && dataProduct.FK_Shop.state,
+    is_advertisement: dataProduct.is_advertisement,
+  };
   let cardBadge = (
     <>
       <div
@@ -43,18 +60,41 @@ const ProductCard = ({
       height={100}
       width={100}
       src={product.imageUrl}
-      className={`card-img-top _product_card_rounded animationCart ${product.unavailable && "_unavailable_product"
-        }`}
+      className={`card-img-top _product_card_rounded animationCart ${
+        product.unavailable && "_unavailable_product"
+      }`}
       alt={product.title}
+      placeholder="blur"
+      blurDataURL="/logoCart.png"
     />
   );
+  let campBadge = (
+    <>
+      <div
+        className={styles._product_card_camp_badge}
+        type="button"
+        style={{ bottom: "-7px", right: "-5px" }}
+      >
+        <Image
+          layout="fixed"
+          height={100}
+          width={100}
+          src="/image/mahsol.svg"
+          alt="camp"
+        />
+      </div>
+    </>
+  );
+
+  const [disablBtn, setDisablBtn] = useState(false);
 
   return (
     <div
-      className={`animationCartParent ${col
+      className={` ${
+        col
           ? `col-${col}`
           : `col-${xs} col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
-        } ${padding ? `px-${padding}` : ""} mb-3`}
+      } ${padding ? `px-${padding}` : ""} mb-2`}
     >
       {product.iconClose && (
         <span
@@ -82,14 +122,16 @@ const ProductCard = ({
       <div className={`card ${styles._product_card} _product_card_rounded p-2`}>
         <div className={styles.paterImage}>
           {cardBadge}
+          {dataProduct.in_campaign && campBadge}
           <Link href={product.url}>
             <a className={styles.links}>{cardImg}</a>
           </Link>
         </div>
 
         <div
-          className={`card-body mt-2 p-1 ${product.unavailable && "_unavailable_product"
-            }`}
+          className={`card-body mt-2 p-1 ${
+            product.unavailable && "_unavailable_product"
+          }`}
         >
           <div className=" mb-3">
             <Link href={product.url}>
@@ -123,41 +165,56 @@ const ProductCard = ({
           )}
 
           <hr style={{ marginBottom: "5px" }} />
-          <div className="_product_card_price mb-2">
+          <div style={{ height: "50px" }} className="_product_card_price ">
             <div>
-              <button
-                className={`btn ${styles._product_card_add_to_cart}`}
-                onClick={async () => {
-                  await addToCart(product.id);
-                }}
-              >
-                <i className="fas fa-plus" />
-              </button>
+              {dataProduct.Inventory == 0 ? (
+                <div className={styles.warp_namojod}>
+                  <Image
+                    src="/icons/namojod.svg"
+                    layout="fixed"
+                    height={40}
+                    width={40}
+                    alt="ناموجود"
+                  />
+                </div>
+              ) : (
+                <>
+                  <button
+                    aria-label="خرید"
+                    disabled={disablBtn}
+                    className={`btn ${styles._product_card_add_to_cart}`}
+                    onClick={async () => {
+                      setDisablBtn(true);
+                      await addToCart(product.id);
+                      setDisablBtn(false);
+
+                     
+
+                      
+                    }}
+                  >
+                    <i className="fas fa-plus" />
+                  </button>
+                </>
+              )}
             </div>
             <div
               className="_product_card_price_number"
               style={{ display: "flex", flexDirection: "column" }}
             >
-              {product.unavailable ? (
-                <span>ناموجود</span>
-              ) : (
-                <>
-                  <span className="_product_card_orginal_number">
-                    {_asist.PSeparator(product.price)}
-                  </span>
-                  <span
-                    className="_product_card_discount_number"
-                    style={{
-                      display: "flex",
-                      justifyContent: "flex-end",
-                      minHeight: "15px",
-                    }}
-                  >
-                    {product.discountNumber !== 0 &&
-                      _asist.PSeparator(product.discountNumber)}
-                  </span>
-                </>
-              )}
+              <span className="_product_card_orginal_number">
+                {_asist.PSeparator(product.price)}
+              </span>
+              <span
+                className="_product_card_discount_number"
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                }}
+              >
+                {product.discountNumber !== 0 &&
+                  _asist.PSeparator(product.discountNumber)}
+              </span>
             </div>
             <span
               className="_product_card_toman"

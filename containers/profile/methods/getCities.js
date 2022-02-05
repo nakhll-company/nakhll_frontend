@@ -1,5 +1,4 @@
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-import { errorMessage } from "../../utils/message";
 // city
 export const getCities = async (id) => {
     let params = {};
@@ -14,7 +13,5 @@ export const getCities = async (id) => {
     );
     if (response.status === 200) {
         return response.data;
-    } else {
-        errorMessage("خطایی در دریافت دادهای شهر پیش آمده است");
     }
 };

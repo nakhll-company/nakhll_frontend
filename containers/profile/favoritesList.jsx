@@ -16,8 +16,11 @@ const FavoritesList = () => {
   async function fetch() {
     await getFavoritesList(setList, setLoading);
   }
-  useEffect(async () => {
-    await fetch();
+  useEffect(() => {
+    async function fetchData() {
+      await fetch();
+    }
+    fetchData();
   }, []);
   return (
     <div className={styles.main}>
@@ -34,20 +37,7 @@ const FavoritesList = () => {
               <Fragment key={index}>
                 <ProductCart
                   padding={2}
-                  product={{
-                    id: value.id,
-                    imageUrl: value.image_thumbnail_url,
-                    url: `/shop/${value.shop.slug}/product/${value.slug}`,
-                    title: value.title,
-                    chamberTitle: value.shop.title,
-                    chamberUrl: `/shop/${value.shop.slug}`,
-                    discount: value.discount,
-                    price: value.price / 10,
-                    discountNumber: value.old_price / 10,
-                    city: value.shop.city,
-                    is_advertisement: value.is_advertisement,
-                    iconClose: true,
-                  }}
+                  dataProduct={value}
                 />
               </Fragment>
             );

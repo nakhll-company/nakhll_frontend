@@ -20,8 +20,11 @@ const Landing = () => {
     const [featureActive, setFeacureActive] = useState([]);
     const activeHojreh = useSelector((state) => state.User.activeHojreh);
 
-    useEffect(async () => {
-        setFeacureActive(await featureIsActive(id, activeHojreh, setLandingList));
+    useEffect(() => {
+        async function fetchData() {
+            setFeacureActive(await featureIsActive(id, activeHojreh, setLandingList));
+        }
+        fetchData();
     }, [id, activeHojreh]);
 
     return (

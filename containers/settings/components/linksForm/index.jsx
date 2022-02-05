@@ -1,33 +1,36 @@
-import { callApiUpDataShop, linkSetting } from "../../../../api/settings";
+// node libraries
+import Image from "next/image";
 import { useForm } from "react-hook-form";
-import SubButton from "../subButton";
-import styles from "./styles.module.scss";
 import { useEffect, useState } from "react";
+// components
+import SubButton from "../subButton";
 import InputUseForm from "../../../creat/component/inputUseForm";
+// methods
+import { callApiUpDataShop } from "../../../../api/settings";
+// styles
+import styles from "./styles.module.scss";
 
 function FormInputs({ apiSetting, setClicked, activeHojreh }) {
+
   const [IsLoadingHesab, setIsLoadingHesab] = useState(false);
   const [showMessageHesab, setShowMessageHesab] = useState(0);
   // useform
   const {
     setValue,
-    getValues,
-    clearErrors,
     register,
-    setError,
-
     handleSubmit,
     formState: { errors },
   } = useForm({
     criteriaMode: "all",
     mode: "all",
   });
+
   useEffect(() => {
     if (apiSetting.social_media) {
       setValue("telegram", apiSetting.social_media.telegram);
       setValue("instagram", apiSetting.social_media.instagram);
     }
-  }, [apiSetting]);
+  }, [apiSetting, setValue]);
 
   const onSubmit = async (data) => {
     const dataForSend = {
@@ -97,7 +100,9 @@ function FormInputs({ apiSetting, setClicked, activeHojreh }) {
             </h3>
           </div>
         )}
+
         <SubButton title="به روز رسانی" />
+
       </form>
     </>
   );

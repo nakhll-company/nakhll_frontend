@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import styles from "../../styles/components/layout/MenuMobile.module.scss";
 
 function MenuMobile({ activeOptions }) {
+
   const router = useRouter();
   return (
     <div className={styles.menu_mobile}>
@@ -68,17 +69,15 @@ function MenuMobile({ activeOptions }) {
       </span>
       <div id="moreOptions" className={styles.moreOptionsWrapper}>
         <ul>
-          {(activeOptions && activeOptions.lenght > 0) ? activeOptions.map((value, index) => {
-            return (
-              <li key={index} className="mb-3" onClick={() => { document.querySelector("#moreOptions").style.display = "none"; }}>
-                <Link href={`/fp/options/landing/detail?id=${value.id}`}>
-                  <a>
-                    {value.name}
-                  </a>
-                </Link>
-              </li>
-            )
-          }) : <li>قابلیتی وجود ندارد</li>}
+          {activeOptions ? activeOptions.map((value, index) =>
+          (<li key={index} className="mb-3" onClick={() => { document.querySelector("#moreOptions").style.display = "none"; }}>
+            <Link href={value.name === "صفحه فرود" ? `/fp/options/landing/detail?id=${value.id}` : "/fp/options/ads"}>
+              <a>
+                {value.name}
+              </a>
+            </Link>
+          </li>
+          )) : <li>قابلیتی وجود ندارد</li>}
         </ul>
       </div>
     </div>

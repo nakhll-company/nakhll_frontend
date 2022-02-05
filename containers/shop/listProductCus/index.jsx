@@ -7,7 +7,6 @@ import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 // components
 import { TopBar } from "../TopBar";
-import { errorMessage } from "../../utils/message";
 
 import MenuMobile from "../../../components/layout/MenuMobile";
 import { allCites } from "../../../components/custom/data/data";
@@ -156,12 +155,9 @@ function ListProductShop({ data }) {
         setTotalcount(response.data.total_count);
 
         setIsLoading(false);
-      } else {
-        errorMessage("خطایی رخ داده است");
       }
     } catch (e) {
       setIsLoading(false);
-      errorMessage("خطایی رخ داده است");
     }
   };
 
@@ -369,12 +365,8 @@ function ListProductShop({ data }) {
             />
             <div className="mx-auto row">
               {isLoading ? (
-                // <Loading />
-                // <BeautyLoading />
                 <WoLoading />
               ) : (
-                // isLoading
-                // <WoLoading />
                 <InfiniteScroll
                   className="mx-auto row"
                   dataLength={listWithFilter.length} //This is important field to render the next data
@@ -391,24 +383,7 @@ function ListProductShop({ data }) {
                     <ProductCard
                       key={index}
                       padding={1}
-                      product={{
-                        id: oneProduct.ID,
-                        imageUrl: oneProduct.Image_medium_url,
-                        url: `/shop/${oneProduct.FK_Shop.slug}/product/${oneProduct.Slug}/`,
-                        title: oneProduct.Title,
-                        chamberTitle: oneProduct.FK_Shop
-                          ? oneProduct.FK_Shop.title
-                          : "",
-                        chamberUrl: oneProduct.FK_Shop
-                          ? `/shop/${oneProduct.FK_Shop.slug} `
-                          : "",
-
-                        discount: oneProduct.discount,
-                        price: oneProduct.Price / 10,
-                        discountNumber: oneProduct.OldPrice / 10,
-                        city: oneProduct.FK_Shop && oneProduct.FK_Shop.state,
-                        is_advertisement: oneProduct.is_advertisement,
-                      }}
+                      dataProduct={oneProduct}
                     />
                   ))}
                 </InfiniteScroll>

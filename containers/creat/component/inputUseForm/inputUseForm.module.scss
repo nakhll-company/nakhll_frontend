@@ -7,7 +7,7 @@
     margin-left: 50px;
     align-items: center;
     text-align: justify;
-    font-family: IRANSans;
+    font-family: "bakh";
     font-style: normal;
     font-size: 14px;
     line-height: 1.5;
@@ -38,9 +38,8 @@
 }
 .inputWid>input {
     background: #ffffff;
-    border: 1px solid #e0e6e9;
+    border: 1px solid rgba(122, 161, 206, 0.72);
     box-sizing: border-box;
-    border-radius: 5px;
     direction: ltr;
     font-size: 15px;
     color: #364254;
@@ -48,15 +47,14 @@
 }
 .inputWidRtl {
     display: grid;
-    height: 45px;
 }
 .inputWidRtl>input {
     background: #ffffff;
-    border: 1px solid #e0e6e9;
+    border: 1px solid rgba(122, 161, 206, 0.72);
     box-sizing: border-box;
-    border-radius: 5px;
-    font-size: 15px;
-    color: #364254;
+    border-radius: 20px;
+    font-size: 16px;
+    color: #000000;
     padding: 11px;
 }
 .inputWidRtlH {
@@ -70,7 +68,6 @@
     border-radius: 5px;
     font-size: 15px;
     color: #364254;
-    padding: 11px;
 }
 
 /*  End    Input */
@@ -79,19 +76,26 @@
     display: flex;
     height: 45px;
     background: #ffffff;
-    border: 1px solid #e0e6e9;
+    border: 1px solid rgba(122, 161, 206, 0.72);
     box-sizing: border-box;
-    border-radius: 5px;
+    border-radius: 20px;
     direction: ltr;
     font-size: 15px;
-    color: #364254;
+    font-weight: bolder;
+    // border-right: 2px solid #224e82;
+    // border-left: 2px solid #224e82;
     padding: 11px;
     align-items: center;
+}
+.text_in_input {
+    color: #224e82;
+    border-right: 2px solid #224e82;
+    margin-right: 11px;
 }
 .inputWid_withWord>input {
     border: 0;
     width: 100%;
-    font-size: 15px;
+    font-size: 16px;
 }
 .inputWid_withWord>input:focus {
     outline: 0;

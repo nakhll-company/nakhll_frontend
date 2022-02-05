@@ -1,0 +1,60 @@
+// parent
+.wrapper{
+    background-color: #fff;
+    border-radius: 5px;
+    font-family: 'bakh';
+    grid-column: 1/-1;
+    grid-row: 1/-1;
+    padding: 20px;
+    // title
+    .title{
+        font-style: normal;
+        font-weight: bold;
+        font-size: 18px;
+        text-align: right;
+        color: #224E82;
+    }
+    // description
+    .description{
+        font-style: normal;
+        font-weight: bold;
+        font-size: 12px;
+        text-align: right;
+        color: rgba(0, 0, 0, 0.63);
+        padding: 24px 0px;
+    }
+    // card
+    .card{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid #E5E5E5;
+        box-sizing: border-box;
+        border-radius: 10px;
+        padding-right: 10px;
+        // image wrapper
+        .image_wrapper{
+            display: flex;
+            align-items: center;
+            // title card
+            .title_card{
+                font-weight: normal;
+                font-size: 14px;
+                text-align: right;
+                color: #8E8E8E;
+                padding: 0px 15px;
+                b{
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 15px;
+                    text-align: right;
+                    color: #224E82;
+                }
+            }
+        }
+        // switch wrapper
+        .switch_wrapper{
+            width: 80px;
+        }
+    }
+}

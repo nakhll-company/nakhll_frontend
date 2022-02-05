@@ -8,6 +8,19 @@
     border-radius: 5px;
     padding: 10px;
 }
+    .deleteBtn {
+        left: 2px;
+        top: 2px;
+        position: absolute;
+        .wrapBtn {
+            cursor: pointer;
+            font-size: 20px;
+            color: red;
+            &:hover {
+                transform: scale(1.2);
+            }
+        }
+    }
 .Header {
     height: 53px;
     background: #ffffff;
@@ -149,6 +162,7 @@ bottom: 80px;
 .wrapper_input {
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 .lable_product {
     font-size: 14px;
@@ -232,7 +246,7 @@ bottom: 80px;
     .explain {
         align-items: center;
         text-align: justify;
-        font-family: IRANSans;
+        font-family: "bakh";
         font-style: normal;
         font-weight: normal;
         font-size: 14px;
@@ -371,7 +385,6 @@ bottom: 80px;
     display: flex;
     font-size: 14px;
     color: #585858;
-    padding-top: 20px;
     padding-bottom: 5px;
     justify-content: space-between;
     direction: rtl;
@@ -458,4 +471,24 @@ bottom: 80px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+.previewPrice {
+    display: flex;
+    font-size: 14px;
+    color: #2600ff;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    justify-content: space-between;
+    direction: rtl;
+}
+.precent_wrper {
+    margin-top: 0.5 em;
+    margin-bottom: 0.1 em;
+    text-align: center;
+    background-color: #8f8;
+    border: 1 px solid #4e4;
+    color: #080;
+    font-size: 2em;
+    line-height: 2em;
+    padding: 1 em;
 }

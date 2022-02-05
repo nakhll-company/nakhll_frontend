@@ -2,12 +2,14 @@ import React, { useEffect } from "react";
 import Script from "next/script";
 import { hotjar } from "react-hotjar";
 import { useRouter } from "next/router";
+// import TagManager from "react-gtm-module";
 import * as gtag from "../../lib/gtag";
 function General(props) {
   const router = useRouter();
 
   useEffect(() => {
     hotjar.initialize(2655206, 6);
+    // TagManager.initialize({ gtmId: "GTM-MNQT35X" });
   }, []);
   useEffect(() => {
     const handleRouteChange = (url) => {
@@ -22,7 +24,8 @@ function General(props) {
   return (
     <>
       {/* Global Site Tag (gtag.js) - Google Analytics */}
-      <Script
+      {/* test for analytics4 */}
+      {/* <Script
         strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=G-1BKTG72HYN`}
       />
@@ -38,7 +41,7 @@ function General(props) {
           gtag('config', 'G-1BKTG72HYN');
                 `,
         }}
-      />
+      /> */}
       <Script
         strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=UA-156540827-1`}
@@ -69,17 +72,6 @@ function General(props) {
         s.src = "https://cdn.yektanet.com/rg_woebegone/scripts_v3/lPejcfYM/rg.complete.js?v=" + r, c.parentNode.insertBefore(s, c)
     }(window, document, "yektanet");`}
       </Script>
-      {/* <Script
-        id="raychat"
-        strategy="lazyOnload"
-      >{`!function(){function t(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,localStorage.getItem("rayToken")?t.src="https://app.raychat.io/scripts/js/"+o+"?rid="+localStorage.getItem("rayToken")+"&href="+window.location.href:t.src="https://app.raychat.io/scripts/js/"+o+"?href="+window.location.href;var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}var e=document,a=window,o="1b3710ed-495e-4794-bbc7-842af6728c48";"complete"==e.readyState?t():a.attachEvent?a.attachEvent("onload",t):a.addEventListener("load",t,!1)}();`}</Script> */}
-
-      {/* <Script id="testChat" strategy="lazyOnload">
-        {`
-       !function(){var i="TgjSlF",a=window,d=document;function g(){var g=d.createElement("script"),s="https://www.goftino.com/widget/"+i,l=localStorage.getItem("goftino_"+i);g.async=!0,g.src=l?s+"?o="+l:s;d.getElementsByTagName("head")[0].appendChild(g);}"complete"===d.readyState?g():a.attachEvent?a.attachEvent("onload",g):a.addEventListener("load",g,!1);}();
-      
-      `}
-      </Script> */}
     </>
   );
 }

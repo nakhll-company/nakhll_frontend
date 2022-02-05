@@ -17,6 +17,7 @@ export default function DashboardMain() {
           href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
         />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="robots" content="noindex, nofollow" />
       </Head>
       <Dashboard />
     </>

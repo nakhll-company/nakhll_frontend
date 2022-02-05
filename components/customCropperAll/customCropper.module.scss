@@ -20,6 +20,15 @@
     background: #fff;
     z-index: 9999;
 }
+.wrapper_close {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    font-size: 40px;
+    color: red;
+    cursor: pointer;
+    z-index: 999999;
+}
 // button submit
 .button_submit {
     display: flex;

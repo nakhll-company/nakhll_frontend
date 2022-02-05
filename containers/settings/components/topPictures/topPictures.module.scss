@@ -26,10 +26,28 @@
         }
     }
 }
+    .deleteBtn {
+        left: 0px;
+        top: 0px;
+        position: absolute;
+        .wrapBtn {
+            cursor: pointer;
+            background-color: white;
+            padding: 5px;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            font-size: 20px;
+            color: red;
+            &:hover {
+                transform: scale(1.2);
+            }
+        }
+    }
 .btnProfile {
     position: absolute;
-    left: 55%;
-    top: 60%;
+    left: 52%;
+    top:55%;
 }
 .btnBanner {
     position: absolute;

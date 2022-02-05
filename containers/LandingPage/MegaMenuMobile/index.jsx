@@ -1,8 +1,4 @@
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import { ApiReference } from "../../../Api";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-
+import React from "react";
 import styles from "./MegaMenuMobile.module.scss";
 
 function MegaMenuMobile({ category }) {
@@ -10,11 +6,11 @@ function MegaMenuMobile({ category }) {
     let element = document.getElementById(accord);
     if (element.style.height == "0px") {
       element.style.height = "unset";
-      document.getElementById(icon).className = "fas fa-angle-down";
+      document.getElementById(icon).className = "fas fa-angle-up";
     } else {
       element.style.height = "0";
       element.style.overflow = "hidden";
-      document.getElementById(icon).className = "fas fa-angle-up";
+      document.getElementById(icon).className = "fas fa-angle-down";
     }
   };
 
@@ -29,7 +25,7 @@ function MegaMenuMobile({ category }) {
             }
           >
             {element.name}
-            <i id={`icon_${index}`} className="fas fa-angle-up"></i>
+            <i id={`icon_${index}`} className="fas fa-angle-down"></i>
           </a>
           <ul
             id={`according_${index}`}
@@ -48,16 +44,19 @@ function MegaMenuMobile({ category }) {
             {element.childrens.length > 0 &&
               element.childrens.map((subElement, index) => (
                 <li key={index}>
-                  <Link href={`/search?q=&new_category=${subElement.id}`}>
-                    <a
-                      onClick={() => {
-                        document.getElementById("SlideMenu").style.right =
-                          "-100%";
-                      }}
-                    >
-                      {subElement.name}
-                    </a>
-                  </Link>
+                  {/* <Link href={`/search?q=&new_category=${subElement.id}`}> */}
+                  <div
+                    onClick={() => {
+                      location.replace(
+                        `/search?q=&new_category=${subElement.id}`
+                      );
+                      // document.getElementById("SlideMenu").style.right =
+                      //   "-100%";
+                    }}
+                  >
+                    {subElement.name}
+                  </div>
+                  {/* </Link> */}
                 </li>
               ))}
           </ul>

@@ -9,16 +9,14 @@ function TopPictures({ apiSetting, activeHojreh }) {
     apiSetting.image_thumbnail_url ? apiSetting.image_thumbnail_url : null
   );
   const [imgBanner, setImgBanner] = useState(null);
+
   useEffect(() => {
     let dataForSend = {
       image: imgProfile,
     };
+    imgProfile && imgProfile.startsWith("data") && callApiUpDataPicture(dataForSend, activeHojreh);
+  }, [imgProfile, activeHojreh]);
 
-    {
-      imgProfile.startsWith("data") &&
-        callApiUpDataPicture(dataForSend, activeHojreh);
-    }
-  }, [imgProfile]);
   return (
     <>
       <div className={styles.Hojreh_headD}>
@@ -27,6 +25,7 @@ function TopPictures({ apiSetting, activeHojreh }) {
           layout="responsive"
           width={300}
           height={100}
+          alt="بنر"
         ></Image>
 
         <div className={styles.Hojreh_headD_pic}>
@@ -35,8 +34,14 @@ function TopPictures({ apiSetting, activeHojreh }) {
               src={imgProfile ? imgProfile : "/icons/iconpro.png"}
               width={120}
               height={120}
+              alt=""
             ></Image>
           )}
+          <div className={styles.deleteBtn}>
+            <div className={styles.wrapBtn} onClick={() => setImgProfile(null)}>
+              <i className="fas fa-trash"></i>
+            </div>
+          </div>
         </div>
         <div className={styles.btnProfile}>
           <InputPictureSetting

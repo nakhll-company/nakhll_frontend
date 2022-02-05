@@ -1,9 +1,6 @@
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
-import {
-  errorMessage,
-  successMessage,
-} from "../../../containers/utils/message";
+import { successMessage } from "../../../containers/utils/message";
 export const _addProduct = (productId) => {
   return async (dispatch) => {
     try {
@@ -19,18 +16,13 @@ export const _addProduct = (productId) => {
         params
       );
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         await dispatch({
           type: "ADD_PRODUCT",
           payload: response.data,
         });
         successMessage("داده ها با موفقیت ثبت شده اند");
-      } else {
-        errorMessage("موجودی کافی نمی باشد.");
       }
-    } catch (e) {
-      const error = e.response.data[0];
-      errorMessage(error);
-    }
+    } catch (e) {}
   };
 };

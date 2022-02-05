@@ -1,8 +1,11 @@
 import React from "react";
 import Head from "next/head";
+import dynamic from 'next/dynamic';
 import { NextSeo } from "next-seo";
 
-import HeroSlides from "../containers/LandingPage/HeroSlides";
+
+const DynamicHeroSlides = dynamic(() => import('../containers/LandingPage/HeroSlides'))
+// import HeroSlides from "../containers/LandingPage/HeroSlides";
 import LinerFourImgMobile from "../containers/LandingPage/LinerFourImgMobile";
 import LinerOneImg from "../containers/LandingPage/LinerOneImg";
 import LinerProducts from "../containers/LandingPage/LinerProducts";
@@ -10,7 +13,8 @@ import LinerProductsBg from "../containers/LandingPage/LinerProductsBg";
 import LinerThreeImg from "../containers/LandingPage/LinerThreeImg";
 import LinerTwoValue from "../containers/LandingPage/LinerTwoValue";
 import { ApiRegister } from "../services/apiRegister/ApiRegister";
-import { ApiReference } from "../Api";
+import { ApiReference } from "../api/Api";
+import ShopLayout from "../components/shopLayout";
 // fetch data
 const fetchData = async () => {
   let all_data_for_component = [];
@@ -50,7 +54,7 @@ const fetchData = async () => {
   }
 };
 
-const index = ({ data }) => {
+const HomePage = ({ data }) => {
   const Sample = {
     1: "اسلایدر تکی",
     2: "بنر تک عکسی",
@@ -65,7 +69,7 @@ const index = ({ data }) => {
     switch (type.component_type) {
       case 1:
         return (
-          <HeroSlides
+          <DynamicHeroSlides
             key={index}
             dataHeroSlides={data.all_data_for_component[index]}
           />
@@ -161,13 +165,15 @@ const index = ({ data }) => {
   );
 };
 
-export default index;
+export default HomePage;
 
 // function server side
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const data = await fetchData();
 
   return {
     props: { data },
   };
 }
+
+HomePage.Layout = ShopLayout;

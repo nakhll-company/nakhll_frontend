@@ -6,7 +6,7 @@ function PictureChildProduct({ setImageSrc, image, id }) {
   const handel_delet_pic = () => {
     setImageSrc(null);
   };
-  console.log(`id`, id);
+
   return (
     <>
       <div className={styles.child_picture}>
@@ -28,13 +28,12 @@ function PictureChildProduct({ setImageSrc, image, id }) {
             witchIndex={0}
           />
         </div>
-        {id && (
-          <div className={styles.deleteBtn}>
-            <div className={styles.wrapBtn} onClick={() => handel_delet_pic()}>
-              <i className="fas fa-trash"></i>
-            </div>
+
+        <div className={styles.deleteBtn}>
+          <div className={styles.wrapBtn} onClick={() => handel_delet_pic()}>
+            <i className="fas fa-trash"></i>
           </div>
-        )}
+        </div>
       </div>
     </>
   );

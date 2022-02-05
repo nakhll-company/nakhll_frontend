@@ -10,7 +10,7 @@ const _asist = new Assistent();
 const DesktopFooter = ({ productList, getProduct, activeHojreh }) => {
 
     let [numberPage, setNumberPage] = useState(1);
-    let pagination = paginationStructure(numberPage, howManyPage(productList.count, 15));
+    let pagination = paginationStructure(numberPage, howManyPage(productList.total_count, 50));
 
     return (
         <tr>
@@ -21,7 +21,7 @@ const DesktopFooter = ({ productList, getProduct, activeHojreh }) => {
                             return (
                                 <Fragment key={index}>
                                     <li className={`page-item ${value.disabled && "disabled"}`}>
-                                        {value.name === "اولین" && <a class="page-link" href="#" onClick={() => {
+                                        {value.name === "اولین" && <a className="page-link" href="#" onClick={() => {
                                             setNumberPage(value.page);
                                             getProduct(activeHojreh, "", "", "", "", "", "", "", value.page);
                                         }}>اولین</a>}
@@ -51,7 +51,7 @@ const DesktopFooter = ({ productList, getProduct, activeHojreh }) => {
                                         setNumberPage(value.page);
                                         getProduct(activeHojreh, "", "", "", "", "", "", "", value.page);
                                     }}>
-                                        {value.name === "آخرین" && <a class="page-link" href="#">آخرین</a>}
+                                        {value.name === "آخرین" && <a className="page-link" href="#">آخرین</a>}
                                     </li>
                                 </Fragment>
                             )

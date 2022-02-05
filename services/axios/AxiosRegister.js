@@ -1,9 +1,37 @@
 import Axios from "axios";
+import { errorMessage } from "../../containers/utils/message";
 
-let token = "";
-if (process.browser) {
-    token = window.localStorage.getItem("accessToken");
+//=================================================================\\
+// function for handel message
+
+function showMessage(error) {
+    const expectedError =
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status < 500;
+
+    if (expectedError) {
+        let message = "";
+        for (let value of Object.values(error.response.data)) {
+            message += value.toString().replace(",", "\n");
+        }
+        error.response.status !== 401 &&
+            errorMessage(
+                message,
+                error.response.status,
+                location.pathname,
+                error.response.config.url
+            );
+    } else {
+        errorMessage(
+            "مشکلی از سمت سرور رخ داده است.",
+            error.response.status,
+            location.pathname,
+            error.response.config.url
+        );
+    }
 }
+
 //=================================================================\\
 export const instanceAxiosWithOutToken = Axios.create({
     withCredentials: true,
@@ -23,7 +51,6 @@ export const instanceAxiosWithToken = Axios.create({
     baseURL: process.env.BASE_URL,
     timeout: 300000,
     headers: {
-        "Authorization": 'Bearer ' + token,
         "Content-Type": " application/json",
     },
 });
@@ -45,6 +72,7 @@ instanceAxiosWithOutToken.interceptors.response.use(
         return response;
     },
     function (error) {
+        showMessage(error);
         return error;
     }
 );
@@ -54,6 +82,7 @@ instanceAxiosWithOutToken.interceptors.response.use(
 //=================================================================\\
 instanceAxiosWithToken.interceptors.request.use(
     function (config) {
+        config.headers['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
         return config;
     },
     function (error) {
@@ -66,6 +95,7 @@ instanceAxiosWithToken.interceptors.response.use(
         return response;
     },
     function (error) {
+        showMessage(error);
         return error;
     }
 );

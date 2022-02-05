@@ -1,4 +1,8 @@
 module.exports = {
+    i18n: {
+        locales: ["fa"],
+        defaultLocale: "fa",
+    },
     env: {
         BASE_URL: "http://51.89.107.174:8000/",
     },

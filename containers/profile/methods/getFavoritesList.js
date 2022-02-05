@@ -1,8 +1,6 @@
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-import { errorMessage } from "../../utils/message";
 
 export async function getFavoritesList(setList, setLoading) {
-
     let response = await ApiRegister().apiRequest(
         null,
         "GET",
@@ -15,7 +13,6 @@ export async function getFavoritesList(setList, setLoading) {
         setList(response.data);
         setLoading(false);
     } else {
-        errorMessage("خطایی در دریافت داده ها پیش آمده است");
         setLoading(false);
     }
 }

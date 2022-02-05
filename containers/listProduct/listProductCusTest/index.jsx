@@ -3,27 +3,23 @@ import router from "next/router";
 import CheckboxTree from "react-checkbox-tree";
 import Assistent from "zaravand-assistent-number";
 import React, { useEffect, useState } from "react";
-
 import InfiniteScroll from "react-infinite-scroll-component";
 // components
 import { TopBar } from "../TopBar";
-import { errorMessage } from "../../utils/message";
-
+import SearchProduct from "./components/searchProduct";
 import MenuMobile from "../../../components/layout/MenuMobile";
 import { allCites } from "../../../components/custom/data/data";
 import CustomSwitch from "../../../components/custom/customSwitch";
+import OrderingModalMobile from "./components/OrderingModalMobile";
 import ProductCard from "../../../components/ProductCart/ProductCard";
 import CustomAccordion from "../../../components/custom/customAccordion";
 import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
 import MultiRangeSlider from "../../../components/custom/customMultiRangeSlider/MultiRangeSlider";
-
 // methods
-import { ApiReference } from "../../../Api";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // styles
 import styles from "./listProductCus.module.scss";
-import OrderingModalMobile from "./components/OrderingModalMobile";
-import SearchProduct from "./components/searchProduct";
+
 const _asist = new Assistent();
 
 function ListProductCusTest({ data }) {
@@ -81,9 +77,6 @@ function ListProductCusTest({ data }) {
     data.max_price ? parseInt(data.max_price) : 10000
   );
   const [clickOnRange, setClickOnRange] = useState(1);
-  // save all shopsName
-  const [shopsName, setShopsName] = useState([]);
-  const [searchShops, setSearchShops] = useState([]);
   // state for change page
   const [changePage, setChangePage] = useState(1);
   const [NameHojreh, setNameHojreh] = useState("");
@@ -100,7 +93,7 @@ function ListProductCusTest({ data }) {
       if (response.status === 200) {
         setCategories(response.data);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   const _handel_Add_category = (id) => {
@@ -161,12 +154,9 @@ function ListProductCusTest({ data }) {
         setTotalcount(response.data.total_count);
 
         setIsLoading(false);
-      } else {
-        errorMessage("خطایی رخ داده است");
       }
     } catch (e) {
       setIsLoading(false);
-      errorMessage("خطایی رخ داده است");
     }
   };
 
@@ -206,7 +196,7 @@ function ListProductCusTest({ data }) {
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   // START
@@ -231,7 +221,8 @@ function ListProductCusTest({ data }) {
       {
         pathname: data.shopslug,
         query: {
-          q: searchWord,
+          ...(searchWord !== "" && { q: searchWord }),
+
           ...(whichOrdering !== "" && { ordering: whichOrdering }),
           ...(isReadyForSend && { ready: isReadyForSend }),
           ...(isAvailableGoods && { available: isAvailableGoods }),
@@ -239,7 +230,7 @@ function ListProductCusTest({ data }) {
           ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
           ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
           ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
-          ...(hojreh !== "" && { shop: hojreh }),
+          // ...(hojreh !== "" && { shop: hojreh }),
           ...(wantCategories.length !== 0 && {
             category: wantCategories.toString(),
           }),
@@ -414,24 +405,7 @@ function ListProductCusTest({ data }) {
                     <ProductCard
                       key={index}
                       padding={1}
-                      product={{
-                        id: oneProduct.ID,
-                        imageUrl: oneProduct.Image_medium_url,
-                        url: `/shop/${oneProduct.FK_Shop.slug}/product/${oneProduct.Slug}/`,
-                        title: oneProduct.Title,
-                        chamberTitle: oneProduct.FK_Shop
-                          ? oneProduct.FK_Shop.title
-                          : "",
-                        chamberUrl: oneProduct.FK_Shop
-                          ? `/shop/${oneProduct.FK_Shop.slug} `
-                          : "",
-
-                        discount: oneProduct.discount,
-                        price: oneProduct.Price / 10,
-                        discountNumber: oneProduct.OldPrice / 10,
-                        city: oneProduct.FK_Shop && oneProduct.FK_Shop.state,
-                        is_advertisement: oneProduct.is_advertisement,
-                      }}
+                      dataProduct={oneProduct}
                     />
                   ))}
                 </InfiniteScroll>

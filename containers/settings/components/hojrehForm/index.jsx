@@ -1,13 +1,20 @@
+// node libraries
+import Image from "next/image";
 import { Form, Formik } from "formik";
 import { useEffect, useState } from "react";
-import { callApiUpDataShop } from "../../../../api/settings";
-import { GetBigCities, GetCities, GetStates } from "../../../../utils/states";
-import { dataExp } from "../../data";
-import { VALIDATION_SCHEMA } from "../../methods/Validation";
+// components
 import FieldCus from "../field";
-import SubButton from "../subButton";
 import TextArea from "../textArea";
+import SubButton from "../subButton";
 import TitleLiner from "../titleLiner";
+// mehods
+import { dataExp } from "../../data";
+import { callApiUpDataShop } from "../../../../api/settings";
+import { VALIDATION_SCHEMA } from "../../methods/Validation";
+import { getCities } from "../../../../api/general/getCities";
+import { getStates } from "../../../../api/general/getStates";
+import { getBigCities } from "../../../../api/general/getBigCities";
+// style
 import styles from "./hojrehForm.module.scss";
 
 function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
@@ -22,13 +29,17 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
   );
   const [IsLoading, setIsLoading] = useState(false);
   const [showMessage, setshowMessage] = useState(0);
-  const [selectBigCities, setSelectBigCities] = useState([]);
   const [selectState, setSelectState] = useState([]);
   const [selectCities, setSelectCities] = useState([]);
+  const [selectBigCities, setSelectBigCities] = useState([]);
 
-  useEffect(async () => {
-    setSelectState(await GetStates());
+  useEffect(() => {
+    async function fetchData() {
+      setSelectState(await getStates());
+    }
+    fetchData();
   }, []);
+
   return (
     <>
       <Formik
@@ -40,11 +51,12 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
           NationalCode:
             apiSetting.FK_ShopManager &&
             apiSetting.FK_ShopManager.User_Profile.NationalCode,
-
           PhoneNumber:
             apiSetting.FK_ShopManager &&
             apiSetting.FK_ShopManager.User_Profile.PhoneNumber,
-
+          CityPerCode:
+            apiSetting.FK_ShopManager &&
+            apiSetting.FK_ShopManager.User_Profile.CityPerCode,
           Address:
             apiSetting.FK_ShopManager &&
             apiSetting.FK_ShopManager.User_Profile.Address,
@@ -63,8 +75,8 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
             FK_ShopManager: {
               User_Profile: {
                 NationalCode: data.NationalCode,
-
                 PhoneNumber: data.PhoneNumber,
+                CityPerCode: data.CityPerCode,
                 BigCity: ChoiceBigCity,
                 State: ChoiceState,
                 City: ChoiceCity,
@@ -74,11 +86,9 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
             },
           };
           const response = await callApiUpDataShop(dataForSend, activeHojreh);
-
           if (response.status === 200) {
             setIsLoading(false);
             setshowMessage(1);
-
             setClicked((pre) => !pre);
           } else {
             setIsLoading(false);
@@ -112,11 +122,30 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
               title="درباره حجره"
               description={dataExp.Description}
             />
-
             <TitleLiner title="مشخصات" />
             <FieldCus name="NationalCode" type="text" title="کد ملی" />
+            <div style={{ display: "flex" }}>
+              <FieldCus
+                name="PhoneNumber"
+                type="text"
+                title="شماره تلفن ثابت:"
+                styleInput={{ width: "180px" }}
+                style={{
+                  display: "flex",
+                }}
+              />
+              <FieldCus
+                style={{
+                  display: "flex",
 
-            <FieldCus name="PhoneNumber" type="text" title="شماره تماس:" />
+                  marginRight: "5px",
+                }}
+                styleInput={{ width: "100px" }}
+                name="CityPerCode"
+                type="text"
+                title="پیش شماره :"
+              />
+            </div>
             <TitleLiner title="آدرس" />
             <div className={styles.forAddress}>
               {/* استان */}
@@ -126,7 +155,7 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
                 name="State"
                 defaultValue=""
                 onChange={async (event) => {
-                  setSelectBigCities(await GetBigCities(event.target.value));
+                  setSelectBigCities(await getBigCities(event.target.value));
 
                   setChoiceState(event.target[event.target.selectedIndex].text);
                 }}
@@ -148,7 +177,7 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
                 name="BigCity"
                 defaultValue=""
                 onChange={async (event) => {
-                  setSelectCities(await GetCities(event.target.value));
+                  setSelectCities(await getCities(event.target.value));
                   setChoiceBigCity(
                     event.target[event.target.selectedIndex].text
                   );
@@ -186,7 +215,6 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
                 })}
               </select>
             </div>
-
             <TextArea name="Address" type="text" title="آدرس" />
             <FieldCus name="ZipCode" type="text" title="کد پستی" />
             {IsLoading && (

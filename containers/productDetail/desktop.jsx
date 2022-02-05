@@ -7,13 +7,15 @@ import Assistent from "zaravand-assistent-number";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Fragment, useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import _ from "lodash";
+
 // components
 import CustomLabel from "../../components/custom/customLabel";
 import CustomSlider from "../../components/custom/customSlider";
 // methods
 import { addToCart } from "./methods/addToCart";
-import { getUserInfo } from "../../redux/actions/user/getUserInfo";
+
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 // styles
 import styles from "./productDetail.module.scss";
@@ -21,6 +23,7 @@ import ProductCard from "../../components/ProductCart/ProductCard";
 // import Swiper core and required modules
 import SwiperCore, { Navigation, Thumbs } from "swiper";
 import AddFavorites from "../../components/AddFavorites";
+
 // install Swiper modules
 SwiperCore.use([Navigation, Thumbs]);
 /**
@@ -31,6 +34,7 @@ const ProductDetailDesktop = ({ data }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { productSlug } = router.query;
+  const userData = useSelector((state) => state.User.userInfo);
 
   // State for contorol page
 
@@ -85,9 +89,12 @@ const ProductDetailDesktop = ({ data }) => {
     setPosts((post) => [...post, ...moreProduct.data.results]);
   };
 
-  useEffect(async () => {
-    getMoreProduct();
-    fetchProductShop();
+  useEffect(() => {
+    async function fetchData() {
+      getMoreProduct();
+      fetchProductShop();
+    }
+    fetchData();
   }, []);
 
   return (
@@ -99,7 +106,8 @@ const ProductDetailDesktop = ({ data }) => {
         />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <AddFavorites />
+      {!_.isEmpty(userData) && <AddFavorites />}
+
       <div>
         <div className="product-page-breadcrumb">
           <nav>
@@ -109,10 +117,14 @@ const ProductDetailDesktop = ({ data }) => {
                   { title: "خانه", url: "/" },
                   {
                     title:
-                      detail.new_category && detail.new_category.parents.length > 0
+                      detail.new_category &&
+                        detail.new_category.parents.length > 0
                         ? detail.new_category.parents[0].name
                         : "",
-                    url: detail.new_category && detail.new_category.parents.length > 0 && `/search?q=&new_category=${detail?.new_category?.parents[0].id}`,
+                    url:
+                      detail.new_category &&
+                      detail.new_category.parents.length > 0 &&
+                      `/search?q=&new_category=${detail?.new_category?.parents[0].id}`,
                   },
                   {
                     title:
@@ -268,22 +280,24 @@ const ProductDetailDesktop = ({ data }) => {
               </div>
             </div>
           </div>
-          <div className="col-lg-8 pe-lg-4">
+          <div className="col-lg-8 pe-lg-4 mx-5">
             <h1 className={styles.product_detail_title}>{detail.title}</h1>
             <div
               className="mb-4"
               style={{ display: "flex", alignItems: "center" }}
             >
-              {detail.salable && detail.salable === true && <div
-                className="ms-lg-5 mb-3 mb-lg-0"
-                style={{ display: "flex", alignItems: "center" }}
-              >
-                <i
-                  style={{ fontSize: "1.5rem", color: "#7d7d7d" }}
-                  className="far fa-clock ms-3"
-                ></i>
-                <span style={{ fontSize: ".85rem" }}>{detail.status}</span>
-              </div>}
+              {detail.salable && detail.salable === true && (
+                <div
+                  className="ms-lg-5 mb-3 mb-lg-0"
+                  style={{ display: "flex", alignItems: "center" }}
+                >
+                  <i
+                    style={{ fontSize: "1.5rem", color: "#7d7d7d" }}
+                    className="far fa-clock ms-3"
+                  ></i>
+                  <span style={{ fontSize: ".85rem" }}>{detail.status}</span>
+                </div>
+              )}
               <div
                 className="ms-lg-5 mb-3 mb-lg-0"
                 style={{ display: "flex", alignItems: "center" }}
@@ -327,16 +341,21 @@ const ProductDetailDesktop = ({ data }) => {
                       )} عدد باقی مانده`}
                   </div>
                 </div>
-                {detail.salable && detail.salable === true && <div style={{ flex: "0 0 44%" }} className="d-flex flex-column">
-                  <button
-                    className={`product-btn btn rounded-pill font-size1-5  p-1  ${styles.btn_tprimary}`}
-                    onClick={async () => {
-                      await addToCart(detail.id);
-                    }}
+                {detail.salable && detail.salable === true && (
+                  <div
+                    style={{ flex: "0 0 44%" }}
+                    className="d-flex flex-column"
                   >
-                    خرید
-                  </button>
-                </div>}
+                    <button
+                      className={`product-btn btn rounded-pill font-size1-5  p-1  ${styles.btn_tprimary}`}
+                      onClick={async () => {
+                        await addToCart(detail.id);
+                      }}
+                    >
+                      خرید
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
             <div className="d-none d-lg-block mb-4">
@@ -421,22 +440,6 @@ const ProductDetailDesktop = ({ data }) => {
                     label="سایز"
                   />
                 )}
-                {detail.attributes.length > 0 &&
-                  detail.attributes.map((value, index) => {
-                    return (
-                      <div key={index}>
-                        <CustomLabel
-                          type="normal"
-                          value={_asist.PSeparator(value.value)}
-                          label={
-                            value.FK_Attribute && value.FK_Attribute.title
-                              ? value.FK_Attribute.title
-                              : ""
-                          }
-                        />
-                      </div>
-                    );
-                  })}
               </div>
             </section>
             <div>
@@ -463,35 +466,22 @@ const ProductDetailDesktop = ({ data }) => {
               </Link>
             </div>
             <div className="row">
-              {productShop.length > 0 &&
+              {productShop.length > 0 && (
                 <CustomSlider
                   slides1200={4}
                   data={productShop.map((oneProduct, index) => {
                     return (
-                      oneProduct.FK_Shop !== undefined && <ProductCard
-                        col="12"
-                        product={{
-                          id: oneProduct.ID,
-                          imageUrl: oneProduct.Image_medium_url,
-                          url: `/shop/${oneProduct.FK_Shop.slug}/product/${oneProduct.Slug}/`,
-                          title: oneProduct.Title,
-                          chamberTitle: oneProduct.FK_Shop
-                            ? oneProduct.FK_Shop.title
-                            : "",
-                          chamberUrl: oneProduct.FK_Shop
-                            ? `/shop/${oneProduct.FK_Shop.slug} `
-                            : "",
-                          discount: oneProduct.discount,
-                          price: oneProduct.Price / 10,
-                          discountNumber: oneProduct.OldPrice / 10,
-                          city: oneProduct.FK_Shop && oneProduct.FK_Shop.state,
-                          is_advertisement: oneProduct.is_advertisement,
-                        }}
-                        key={index}
-                      />
-                    )
+                      (oneProduct.FK_Shop !== undefined && oneProduct.FK_Shop !== null) && (
+                        <ProductCard
+                          col="12"
+                          dataProduct={oneProduct}
+                          key={index}
+                        />
+                      )
+                    );
                   })}
-                />}
+                />
+              )}
             </div>
             <hr className="my-5" />
             {/* comments */}
@@ -595,30 +585,19 @@ const ProductDetailDesktop = ({ data }) => {
                 style={{ overflow: "hidden", padding: "10px" }}
               >
                 <div className="row">
-                  {posts.length > 0 && posts.map((value, index) => {
-                    return (
-                      value.FK_Shop !== undefined && <ProductCard
-                        col="3"
-                        padding={1}
-                        product={{
-                          id: value.ID,
-                          imageUrl: value.Image_medium_url ? value.Image_medium_url : '',
-                          url: value.FK_Shop && `/shop/${value.FK_Shop.slug}/product/${value.Slug}`,
-                          title: value.Title,
-                          chamberTitle: value.FK_Shop ? value.FK_Shop.title : " ",
-                          chamberUrl: value.FK_Shop
-                            ? `/shop/${value.FK_Shop.slug} `
-                            : " ",
-                          discount: value.discount,
-                          price: value.Price / 10,
-                          discountNumber: value.OldPrice / 10,
-                          city: value.FK_Shop ? value.FK_Shop.City : " ",
-                          is_advertisement: value.is_advertisement,
-                        }}
-                        key={index}
-                      />
-                    )
-                  })}
+                  {posts.length > 0 &&
+                    posts.map((value, index) => {
+                      return (
+                        (value.FK_Shop !== undefined && value.FK_Shop !== null) && (
+                          <ProductCard
+                            col="3"
+                            padding={1}
+                            dataProduct={value}
+                            key={index}
+                          />
+                        )
+                      );
+                    })}
                 </div>
               </InfiniteScroll>
             </section>

@@ -4,9 +4,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from 'react';
-import { ToastContainer } from "react-toastify";
 // componentes
 import Loading from "../../../../components/loading";
+import ShopLayout from "../../../../components/shopLayout";
 // methods
 import { getCities } from "../../../../api/general/getCities";
 import { getStates } from "../../../../api/general/getStates";
@@ -34,8 +34,11 @@ const NewAddress = () => {
         await setLoading(false);
     };
 
-    useEffect(async () => {
-        setSelectState(await getStates());
+    useEffect(() => {
+        async function fetchData() {
+            setSelectState(await getStates());
+        }
+        fetchData();
     }, []);
 
     return (
@@ -48,7 +51,7 @@ const NewAddress = () => {
                     crossOrigin="anonymous"
                 ></link>
             </Head>
-            <ToastContainer />
+
             {loading ?
                 <div className={`col-12 col-lg-5 py-5 ${styles.wrapper}`} style={{ padding: "20px!important" }}>
                     <Loading />
@@ -139,7 +142,7 @@ const NewAddress = () => {
                                 </div>
                                 <div className={`${styles.form_group} col-md-6 col-sm-12`}>
                                     <label>موبایل گیرندۀ سفارش:</label>
-                                    <input type="number" className="form-control" {...register("receiver_mobile_number", {
+                                    <input type="number" placeholder="*******0913" className="form-control" {...register("receiver_mobile_number", {
                                         required: 'لطفا این گزینه را پر کنید',
                                         minLength: {
                                             value: 11,
@@ -150,11 +153,10 @@ const NewAddress = () => {
                                             message: 'شماره موبایل باید یازده رقمی باشد' // JS only: <p>error message</p> TS only support string
                                         },
                                         pattern: {
-                                            value: /^09(0[2-5]|1[0-9]|3[1-9]|2[1-9]|9[0-9])-?[0-9]{3}-?[0-9]{4}$/ || /^۰۹(۰[۲-۵]|۱[۰-۹]|۳[۱-۹]|۲[۱-۹]|۹[۰-۹])-?[۰-۹]{3}-?[۰-۹]{4}$/,
+                                            value: /^09(0[2-5]|1[0-9]|3[0-9]|2[1-9]|9[0-9])-?[0-9]{3}-?[0-9]{4}$/ || /^۰۹(۰[۲-۵]|۱[۰-۹]|۳[۰-۹]|۲[۱-۹]|۹[۰-۹])-?[۰-۹]{3}-?[۰-۹]{4}$/,
                                             message: 'لطفا شماره موبایل خود را صحیح وارد نمایید' // JS only: <p>error message</p> TS only support string
                                         }
                                     })} />
-                                    <small className="form-text text-muted">*******0913</small><br />
                                     {errors.receiver_mobile_number && <span className={styles.form_errors}>{errors.receiver_mobile_number.message}</span>}
                                 </div>
                             </div>
@@ -176,3 +178,5 @@ const NewAddress = () => {
 }
 // export
 export default NewAddress;
+
+NewAddress.Layout = ShopLayout;

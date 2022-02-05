@@ -288,7 +288,10 @@ function ListProduct({
                 )}
 
                 <div className={styles.search_body_filter}>
-                  <div className={styles.modal_body} style={{ msOverflowX: "hidden" }}>
+                  <div
+                    className={styles.modal_body}
+                    style={{ msOverflowX: "hidden" }}
+                  >
                     <CustomSwitch
                       title="فقط کالاهای موجود"
                       id="Available_goods"
@@ -323,12 +326,10 @@ function ListProduct({
               />
               <div className="mx-auto row">
                 {isLoading ? (
-                  // <Loading />
-                  // <BeautyLoading />
+
                   <WoLoading />
                 ) : (
-                  // isLoading
-                  // <WoLoading />
+
                   <InfiniteScroll
                     className="mx-auto row"
                     dataLength={listWithFilter.length} //This is important field to render the next data
@@ -345,24 +346,7 @@ function ListProduct({
                       <ProductCard
                         key={index}
                         padding={1}
-                        product={{
-                          id: oneProduct.id,
-                          imageUrl: oneProduct.image_thumbnail_url,
-                          url: `/shop/${oneProduct.shop.slug}/product/${oneProduct.slug}/`,
-                          title: oneProduct.title,
-                          chamberTitle: oneProduct.shop
-                            ? oneProduct.shop.title
-                            : "",
-                          chamberUrl: oneProduct.shop
-                            ? `/shop/${oneProduct.shop.slug}`
-                            : "",
-
-                          discount: oneProduct.discount,
-                          price: oneProduct.price / 10,
-                          discountNumber: oneProduct.old_price / 10,
-                          city: oneProduct.shop && oneProduct.shop.state,
-                          is_advertisement: oneProduct.is_advertisement,
-                        }}
+                        dataProduct={oneProduct}
                       />
                     ))}
                   </InfiniteScroll>
@@ -395,7 +379,10 @@ function ListProduct({
             </div>
             <div id="sidebar">
               <div className={styles.search_body_filter}>
-                <div className={styles.modal_body} style={{ msOverflowX: "hidden" }}>
+                <div
+                  className={styles.modal_body}
+                  style={{ msOverflowX: "hidden" }}
+                >
                   <CustomSwitch
                     title="فقط کالاهای موجود"
                     id="Available_goods_mobile"
@@ -539,7 +526,10 @@ function ListProduct({
             </div>
             <div id="sidebar">
               <div className={styles.search_body_filter}>
-                <div className={styles.modal_body} style={{ msOverflowX: "hidden" }}>
+                <div
+                  className={styles.modal_body}
+                  style={{ msOverflowX: "hidden" }}
+                >
                   <div
                     style={{
                       padding: "5px",

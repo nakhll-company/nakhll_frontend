@@ -1,5 +1,4 @@
 import { ApiRegister } from '../../../services/apiRegister/ApiRegister';
-import { errorMessage } from '../../../containers/utils/message';
 
 export async function landingDetal(id) {
 
@@ -11,7 +10,5 @@ export async function landingDetal(id) {
 
     if (response.status === 200) {
         return response.data;
-    } else {
-        errorMessage("خطایی رخ داده است");
     }
 }

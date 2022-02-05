@@ -1,14 +1,13 @@
 // node libraries
-import { useState } from 'react';
+import { useState } from "react";
 import { useSelector } from "react-redux";
 // methods
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
-import { errorMessage, successMessage } from "../../../../containers/utils/message";
+import { successMessage } from "../../../../containers/utils/message";
 // scss
 import styles from "./groupProduct.module.scss";
 
 const GroupProduct = () => {
-
   const [showResult, setShowResult] = useState({
     old_products: 0,
     new: 0,
@@ -30,34 +29,14 @@ const GroupProduct = () => {
           data.append("product-zip-file", zipFile);
           successMessage("درحال بارگزاری محصولات...");
           let response = await ApiRegister().apiRequest(
-            data, "post",
+            data,
+            "post",
             `/api/v1/product/group-create/${activeHojreh}/`,
             true, {}
           );
           if (response.status === 200) {
             successMessage("محصول با موفقیت بارگزاری شد");
             setShowResult(response.data);
-          } else {
-            switch (response.response.data) {
-              case "Price is required field":
-                errorMessage("ستون قیمت الزامیست یا نام آن اشتباه است");
-                break;
-              case "Title is required field":
-                errorMessage("ستون نام الزامیست یا نام آن اشتباه است");
-                break;
-              case "barcode is required field":
-                errorMessage("ستون بارکد الزامیست یا نام آن اشتباه است");
-                break;
-              case "OldPrice is required field":
-                errorMessage("ستون قیمت با تخفیف الزامیست یا نام آن اشتباه است");
-                break;
-              case "Inventory is required field":
-                errorMessage("ستون موجودی الزامیست یا نام آن اشتباه است");
-                break;
-              default:
-                errorMessage("مشکلی رخ داده است.");
-                break;
-            }
           }
         }}
         className="d-flex flex-column align-items-center"
@@ -110,6 +89,7 @@ const GroupProduct = () => {
             type="submit"
             id="sumbitButton"
             className={`${styles.form_buttonSubmit} mx-5`}
+            style={{ fontSize: "18px", width: "200px" }}
           >
             ثبت محصولات
           </button>
@@ -117,16 +97,16 @@ const GroupProduct = () => {
             type="button"
             id="buttonUodo"
             className={styles.form_buttonSubmit}
+            style={{ fontSize: "18px", width: "200px" }}
             onClick={async () => {
               let response = await ApiRegister().apiRequest(
-                null, "get",
+                null,
+                "get",
                 `/api/v1/product/group-undo/${activeHojreh}/`,
                 true, {}
               );
               if (response.status === 200) {
                 successMessage("درخواست لغو بارگزاری با موفقیت ارسال شد");
-              } else {
-                errorMessage("خطایی رخ داده است");
               }
             }}
           >
@@ -137,8 +117,11 @@ const GroupProduct = () => {
       <div className="d-flex flex-column mt-5">
         <span>تعداد کل سطرها: {showResult.total_rows}</span>
         <span>تعداد ستون های خالی: {showResult.na_rows}</span>
-        <span>مجموع سطر هایی که نام محصول تکراری است: {showResult.slug_duplicate_rows}</span>
-        <span>تعداد محصولات بروزرسانی شده: {showResult.old_products}</span>
+        <span>
+          مجموع سطر هایی که نام محصول تکراری است:{" "}
+          {showResult.slug_duplicate_rows}
+        </span>
+        {/* <span>تعداد محصولات بروزرسانی شده: {showResult.old_products}</span> */}
         <span>تعداد محصولاتی که جدید ایجاد شده: {showResult.new}</span>
       </div>
     </div>

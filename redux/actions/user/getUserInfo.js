@@ -1,5 +1,4 @@
 import * as Types from "../../types/user"; // constants
-import { errorMessage } from "../../../containers/utils/message";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // action of accounting list
 export const getUserInfo = () => async (dispatch) => {
@@ -25,6 +24,5 @@ export const getUserInfo = () => async (dispatch) => {
             });
         }
     } catch (error) {
-        errorMessage("لطفا ابتدا وارد سایت شوید");
     }
 };

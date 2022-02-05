@@ -1,21 +1,26 @@
-import React, { useRef, useEffect, useState } from "react";
-import Link from "next/link";
-import { v4 as uuidv4 } from "uuid";
-import styles from "./liveEdit.module.scss";
-import Living from "../../components/liveEdit/living";
+// node libraies
+import { gsap } from "gsap";
 import Head from "next/head";
-// gsap
-import { gsap, Power3 } from "gsap";
-
-import ListComponent from "../../containers/liveEdit/ListComponent";
+import lottie from "lottie-web";
+import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
-import { _updateDataLanding } from "../../redux/actions/liveEdit/_updateDataLanding";
+import React, { useRef, useEffect, useState } from "react";
+// components
+import Living from "../../components/liveEdit/living";
+import EmptyLayout from "../../components/layout/EmptyLayout";
 import SaveLanding from "../../containers/liveEdit/SaveLanding";
-import { ApiReference } from "../../Api";
+import ListComponent from "../../containers/liveEdit/ListComponent";
+import { addComponent } from "../../containers/liveEdit/metodes/addComponent";
+// methods
+import { ApiReference } from "../../api/Api";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { _updateDataLanding } from "../../redux/actions/liveEdit/_updateDataLanding";
+// scss
+import styles from "./liveEdit.module.scss";
 
 function LiveEdit({ idLanding }) {
-  let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}`;
+
+  let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}/`;
   // idLanding=[slugShop,idLanding]
   let apiUpdateLanding = `${ApiReference.landing.update.url}${idLanding[0]}/${idLanding[1]}/`;
   // const userLog = useSelector((state) => state.User.userInfo);
@@ -27,8 +32,9 @@ function LiveEdit({ idLanding }) {
   // gsap
   let tl = new gsap.timeline();
   // Ref
-  let profile = useRef(null);
+
   let toggleMenu = useRef(null);
+  const nakhlAnim = useRef(null);
   const list = [
     {
       ID: uuidv4(),
@@ -86,6 +92,17 @@ function LiveEdit({ idLanding }) {
       duration: 0.4,
     });
   }, []);
+  useEffect(() => {
+    lottie.loadAnimation({
+      container: nakhlAnim.current,
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      animationData: require("../../public/lottie/Nakhl.json"),
+
+      //   path: "./lottie/animation.json",
+    });
+  }, [openPlaneEditor]);
 
   // Function For Update Landing
   // Start
@@ -111,119 +128,7 @@ function LiveEdit({ idLanding }) {
     const items = [...characters];
 
     items.map((element, index) => {
-      let newItem = {};
-      if (type == 2) {
-        newItem = {
-          ID: uuidv4(),
-          type,
-          data: [
-            {
-              image: "",
-              url: "",
-              title: "",
-              order: "",
-            },
-          ],
-        };
-      }
-      if (type == 3) {
-        newItem = {
-          ID: uuidv4(),
-          type,
-          data: [
-            {
-              image: "",
-              url: "",
-              title: "",
-              order: 0,
-            },
-            {
-              image: "",
-              url: "",
-              title: "",
-              order: 1,
-            },
-          ],
-        };
-      }
-      if (type == 4 || type == 1) {
-        newItem = {
-          ID: uuidv4(),
-          type,
-          data: [
-            {
-              image: "",
-              url: "",
-              title: "",
-              order: 0,
-            },
-            {
-              image: "",
-              url: "",
-              title: "",
-              order: 1,
-            },
-            {
-              image: "",
-              url: "",
-              title: "",
-              order: 2,
-            },
-          ],
-        };
-      }
-      if (type == 5) {
-        newItem = {
-          ID: uuidv4(),
-          type,
-          data: [
-            {
-              image: "",
-              url: "",
-              title: "",
-              order: 0,
-            },
-            {
-              image: "",
-              url: "",
-              title: "",
-              order: 1,
-            },
-            {
-              image: "",
-              url: "",
-              title: "",
-              order: 2,
-            },
-            {
-              image: "",
-              url: "",
-              title: "",
-              order: 3,
-            },
-          ],
-        };
-      }
-      if (type == 6) {
-        newItem = {
-          ID: uuidv4(),
-          type,
-          data: [
-            {
-              image: "",
-              url: "",
-              order: 0,
-              color: "#a1db43",
-              title: "",
-              titleComponent: "پروفروش ترین",
-              products: [],
-
-              subTitle: "ویژه فصل پاییز",
-            },
-          ],
-        };
-      }
-
+      let newItem = addComponent(type, idLanding);
       if (element.type == 0) {
         items.splice(index, 1);
         items.splice(index, 0, newItem);
@@ -233,6 +138,65 @@ function LiveEdit({ idLanding }) {
     dispatch(_updateDataLanding(items));
     setOpenPlaneEditor(false);
   };
+
+  let menuList = (
+    <ul>
+      <li style={{ pointerEvents: "none" }}>
+        <a className={styles.wrap_item} href="">
+          <span className={styles.icon}>
+            <img
+              style={{
+                height: "40px",
+                width: "40px",
+                pointerEvents: "none",
+              }}
+              src="/iconWhite.png"
+              alt=""
+            />
+          </span>
+          <span className={styles.title} style={{ fontSize: "bold" }}>
+            بازار نخل
+          </span>
+        </a>
+      </li>
+      <li className={styles.activeLink} style={{ pointerEvents: "none" }}>
+        <a className={styles.wrap_item}>
+          <span className={`${styles.icon} fas fa-dice-d20`}></span>
+          <span className={styles.title}>چیدمان</span>
+        </a>
+      </li>
+      <li>
+        <div
+          className={styles.wrap_item}
+          onClick={() => {
+            _handel_update_landing();
+            window.open(`/fp`, "_blank");
+          }}
+        >
+          <span className={`${styles.icon}  fab fa-fort-awesome`}></span>
+          <span className={styles.title}>داشبورد</span>
+        </div>
+      </li>
+      <li>
+        <div
+          className={styles.wrap_item}
+          onClick={() => {
+            _handel_update_landing();
+            window.open(
+              `/showLanding/${idLanding[0]}/${idLanding[1]}/`,
+              "_blank"
+            );
+          }}
+        >
+          <span className={`${styles.icon} fas fa-scroll`}></span>
+          <span className={styles.title}>پیش نمایش</span>
+        </div>
+      </li>
+
+      <div ref={nakhlAnim} className={styles.nakhlAnim}></div>
+    </ul>
+  );
+
   return (
     <>
       <Head>
@@ -242,78 +206,12 @@ function LiveEdit({ idLanding }) {
           integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
           crossOrigin="anonymous"
         ></link>
+        <meta name="robots" content="noindex, nofollow" />
       </Head>
       <div className={styles.container}>
         <div id="navigation" className={styles.navigation}>
-          {!openPlaneEditor && (
-            <ul>
-              <li style={{ pointerEvents: "none" }}>
-                <a className={styles.wrap_item} href="">
-                  <span className={styles.icon}>
-                    <img
-                      style={{
-                        height: "40px",
-                        width: "40px",
-                        pointerEvents: "none",
-                      }}
-                      src="/iconWhite.png"
-                      alt=""
-                    />
-                  </span>
-                  <span className={styles.title} style={{ fontSize: "bold" }}>
-                    بازار نخل
-                  </span>
-                </a>
-              </li>
-              <li
-                className={styles.activeLink}
-                style={{ pointerEvents: "none" }}
-              >
-                <a className={styles.wrap_item}>
-                  <span className={`${styles.icon} fas fa-dice-d20`}></span>
-                  <span className={styles.title}>چیدمان</span>
-                </a>
-              </li>
-              <li>
-                <div
-                  className={styles.wrap_item}
-                  onClick={() => {
-                    _handel_update_landing();
-                    window.open(`/fp`, "_blank");
-                  }}
-                >
-                  <span
-                    className={`${styles.icon}  fab fa-fort-awesome`}
-                  ></span>
-                  <span className={styles.title}>داشبورد</span>
-                </div>
-              </li>
-              <li>
-                <div
-                  className={styles.wrap_item}
-                  onClick={() => {
-                    _handel_update_landing();
-                    window.open(
-                      `/showLanding/${idLanding[0]}/${idLanding[1]}/`,
-                      "_blank"
-                    );
-                  }}
-                >
-                  <span className={`${styles.icon} fas fa-scroll`}></span>
-                  <span className={styles.title}>پیش نمایش</span>
-                </div>
-              </li>
-              {/* <li>
-                <div
-                  onClick={() => setOpenSaveLanding(true)}
-                  className={styles.wrap_item}
-                >
-                  <span className={`${styles.icon}   fas fa-hat-wizard`}></span>
-                  <span className={styles.title}>ثبت نهایی</span>
-                </div>
-              </li> */}
-            </ul>
-          )}
+          {!openPlaneEditor && <>{menuList}</>}
+
           {openPlaneEditor && (
             <ListComponent _handel_add_component={_handel_add_component} />
           )}
@@ -342,9 +240,7 @@ function LiveEdit({ idLanding }) {
               <span className={styles.title}>ثبت نهایی</span>
             </div>
             {/* userImg */}
-            <div ref={(el) => (profile = el)} className={styles.user}>
-              {/* <img src="/image/person.jpeg" alt="" /> */}
-            </div>
+            <div className={styles.user}></div>
           </div>
 
           <Living
@@ -408,3 +304,5 @@ export async function getServerSideProps(context) {
     props: { idLanding },
   };
 }
+
+LiveEdit.Layout = EmptyLayout;

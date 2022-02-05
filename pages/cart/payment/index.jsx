@@ -1,18 +1,17 @@
 import Head from "next/head";
 import Link from "next/link";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Assistent from "zaravand-assistent-number";
 // scss
 import styles from "../../../styles/pages/cart/payment/payment.module.scss";
 // methods
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-import { errorMessage } from "../../../containers/utils/message";
+import ShopLayout from "../../../components/shopLayout";
 
 const _asist = new Assistent();
 
 export default function Cart() {
-
   const router = useRouter();
   const { invoice_id } = router.query;
 
@@ -32,7 +31,11 @@ export default function Cart() {
 
   const _getListInvoice = async () => {
     let response = await ApiRegister().apiRequest(
-      null, "GET", `/accounting_new/api/invoice/${invoice_id}/`, true, {}
+      null,
+      "GET",
+      `/accounting_new/api/invoice/${invoice_id}/`,
+      true,
+      {}
     );
     let data = response.data;
     if (response.status === 200) {
@@ -55,45 +58,40 @@ export default function Cart() {
       setIsLoadInvoice(true);
       try {
         let response = await ApiRegister().apiRequest(
-          { coupon: valueCoupon }, "PATCH", `/accounting_new/api/invoice/${invoice_id}/set_coupon/`, true, {}
+          { coupon: valueCoupon },
+          "PATCH",
+          `/accounting_new/api/invoice/${invoice_id}/set_coupon/`,
+          true,
+          {}
         );
         let data = response.data;
         if (response.status === 200) {
           if (data.result) {
-            await _getListInvoice()
+            await _getListInvoice();
             setIsLoadInvoice(false);
           } else {
-            data.errors.map((item) => {
-              errorMessage(item);
-            });
             setIsLoadInvoice(false);
           }
           // setIsLoadInvoice(false);
         } else {
-          errorMessage("این کد تخفیف معتبر نمی باشد");
           setIsLoadInvoice(false);
         }
-      } catch (e) {
-        let errorData = e.response.data
-        errorData.coupon.map((item) => {
-          errorMessage(item);
-        });
-        errorMessage(response.coupon[0]);
-        // setMsgCoupon("adkaslkdjksa");
-      }
+      } catch (e) { }
     }
   };
 
   const _deleteCoupon = async (coupon) => {
     setIsLoadInvoice(true);
     let response = await ApiRegister().apiRequest(
-      { coupon }, "PATCH", `/accounting_new/api/invoice/${invoice_id}/unset_coupon/`, true, {}
+      { coupon },
+      "PATCH",
+      `/accounting_new/api/invoice/${invoice_id}/unset_coupon/`,
+      true,
+      {}
     );
     if (response.status === 200) {
-      await _getListInvoice()
+      await _getListInvoice();
       setIsLoadInvoice(false);
-    } else {
-      errorMessage("مشکلی در حذف کوپن پیش آمده");
     }
   };
 
@@ -101,20 +99,18 @@ export default function Cart() {
     try {
       setIsLoadInvoice(true);
       let response = await ApiRegister().apiRequest(
-        null, "GET", `/accounting_new/api/invoice/${invoice_id}/pay/`, true, {}
+        null,
+        "GET",
+        `/accounting_new/api/invoice/${invoice_id}/pay/`,
+        true,
+        {}
       );
       if (response.status === 200) {
         let data = await response.data;
         await router.push(data.url);
-      } else if (response.response.status === 400) {
-        errorMessage(`${response.response.data.error}`);
-      } else {
-        errorMessage("مشکلی در رفتن به درگاه پرداخت پیش آمده");
       }
-    } catch (error) {
-      errorMessage("مشکلی در رفتن به درگاه پرداخت پیش آمده");
-    }
-  }
+    } catch (error) { }
+  };
 
   return (
     <div className={styles.steps_wrapper}>
@@ -137,7 +133,7 @@ export default function Cart() {
             className="cart-head d-flex align-items-center py-3 px-3 text-right mb-0 bg-gray-100"
             style={{ borderRadius: "5px 5px 0px 0px" }}
           >
-            <Link href={`/cart/address?invoice_id=${invoice_id}`}>
+            <Link href={`/cart/send?invoice_id=${invoice_id}`}>
               <a
                 className="font-size-8 text-muted"
                 style={{ flexBasis: "43.33%" }}
@@ -164,8 +160,6 @@ export default function Cart() {
             </h2>
           </div>
           <div className={styles.steps_body}>
-
-
             {/* کد تخفیف */}
             <div>
               <h3
@@ -204,21 +198,27 @@ export default function Cart() {
                 </div>
                 <div className={`${styles.input_group_bg} rounded-pill`}></div>
               </form>
-              {msgCoupon && (
+              {msgCoupon &&
                 msgCoupon.map((item, index) => {
                   return (
-                    <div key={index} className="border border-success bg-white font-size-9 py-2 pr-3 mt-3 rounded d-flex flex-wrap justify-content-between align-items-center">
-                      <span className=" text-success ml-3">کوپن شما با مبلغ {item.price_applied / 10
-                      } تومان برای شما فعال گردید.</span>
+                    <div
+                      key={index}
+                      className="border border-success bg-white font-size-9 py-2 pr-3 mt-3 rounded d-flex flex-wrap justify-content-between align-items-center"
+                    >
+                      <span className=" text-success ml-3">
+                        کوپن شما با مبلغ {item.price_applied / 10} تومان برای
+                        شما فعال گردید.
+                      </span>
                       {/* <strong className="text-success ml-3">61,000 تومان</strong> */}
-                      <button onClick={() => _deleteCoupon(item.coupon)} className="btn btn-link text-danger btn-sm mr-auto">
-                        <i className="fas fa-times" ></i>
+                      <button
+                        onClick={() => _deleteCoupon(item.coupon)}
+                        className="btn btn-link text-danger btn-sm mr-auto"
+                      >
+                        <i className="fas fa-times"></i>
                       </button>
                     </div>
-                  )
-                })
-
-              )}
+                  );
+                })}
             </div>
 
             {/* استفاده از اعتبار*/}
@@ -271,19 +271,26 @@ export default function Cart() {
               {/**/}
               {isLoadInvoice && (
                 <div className={styles.loading_box}>
-                  <div className={`${styles.spinner} ${styles.spinner__tiny}`}></div>
+                  <div
+                    className={`${styles.spinner} ${styles.spinner__tiny}`}
+                  ></div>
                 </div>
               )}
               {listInvoice.length > 0 &&
                 listInvoice.map((itemProduct, index) => {
                   return (
-                    <div key={index} className="font-size-sm border-bottom pb-3 mt-3">
+                    <div
+                      key={index}
+                      className="font-size-sm border-bottom pb-3 mt-3"
+                    >
                       <div className="title font-weight-500">
                         از حجره {itemProduct.shop_name}
                       </div>
                       <div className="d-flex align-items-center mt-3">
                         <div className={`${styles.picItemInvoice}`}>
-                          <Link href={`/shop/${itemProduct.shop_slug}/product/${itemProduct.slug}`}>
+                          <Link
+                            href={`/shop/${itemProduct.shop_slug}/product/${itemProduct.slug}`}
+                          >
                             <a>
                               <img
                                 src={itemProduct.image}
@@ -292,21 +299,27 @@ export default function Cart() {
                             </a>
                           </Link>
                         </div>
-                        <div className="mr-3" style={{ minWidth: "1%", marginRight: "1rem" }}>
-                          <Link href={`/shop/${itemProduct.shop_slug}//product/${itemProduct.slug}`}>
-                            <a className="link-body">
-                              {itemProduct.name}
-                            </a>
+                        <div
+                          className="mr-3"
+                          style={{ minWidth: "1%", marginRight: "1rem" }}
+                        >
+                          <Link
+                            href={`/shop/${itemProduct.shop_slug}//product/${itemProduct.slug}`}
+                          >
+                            <a className="link-body">{itemProduct.name}</a>
                           </Link>
                           <div className="mt-2">{itemProduct.count}عدد</div>
                         </div>
-                        <div className="mr-auto" style={{ marginRight: "auto" }}>
-                          {_asist.PSeparator(itemProduct.price_without_discount / 10)}{" "}
+                        <div
+                          className="mr-auto"
+                          style={{ marginRight: "auto" }}
+                        >
+                          {_asist.PSeparator(
+                            itemProduct.price_without_discount / 10
+                          )}{" "}
                           تومان
                         </div>
                       </div>
-
-
                     </div>
                   );
                 })}
@@ -326,7 +339,9 @@ export default function Cart() {
                 {resultCoupon !== 0 && (
                   <div className="d-flex py-1 text-danger">
                     <span>تخفیف قیمت محصولات (-) :</span>
-                    <span className="mr-auto" style={{ marginRight: "auto" }}>{_asist.PSeparator(resultCoupon / 10)} تومان</span>
+                    <span className="mr-auto" style={{ marginRight: "auto" }}>
+                      {_asist.PSeparator(resultCoupon / 10)} تومان
+                    </span>
                   </div>
                 )}
                 {/**/} {/**/}
@@ -334,7 +349,10 @@ export default function Cart() {
                   <span style={{ color: "rgb(27,62,104)" }}>
                     مبلغ قابل پرداخت:
                   </span>
-                  <span className="mr-auto" style={{ color: "rgb(27,62,104)", marginRight: "auto" }}>
+                  <span
+                    className="mr-auto"
+                    style={{ color: "rgb(27,62,104)", marginRight: "auto" }}
+                  >
                     {_asist.PSeparator(finalPrice / 10)} تومان
                   </span>
                 </div>
@@ -344,9 +362,15 @@ export default function Cart() {
             <div className="mt-3 p-3 border rounded font-size-sm my-3 line-height-normal">
               <div className="mx-auto" style={{ textAlign: "center" }}>
                 تمامی بسته‌های پستی به آقا/خانم
-                <strong> {addressReceiver && addressReceiver.receiver_full_name} </strong>
+                <strong>
+                  {" "}
+                  {addressReceiver && addressReceiver.receiver_full_name}{" "}
+                </strong>
                 به آدرس
-                <strong className="font-size-8"> {addressReceiver && addressReceiver.address} </strong>
+                <strong className="font-size-8">
+                  {" "}
+                  {addressReceiver && addressReceiver.address}{" "}
+                </strong>
                 تحویل داده می‌شوند.
               </div>
               <div className="text-left line-height-1 mb-5 mb-md-0">
@@ -392,16 +416,19 @@ export default function Cart() {
                                 </span>
                             </div> */}
             </div>
-            {logisticErrors.length > 0 &&
-              <div style={{ border: "1px solid red", color: "red", padding: "10px" }}>
+            {logisticErrors.length > 0 && (
+              <div
+                style={{
+                  border: "1px solid red",
+                  color: "red",
+                  padding: "10px",
+                }}
+              >
                 {logisticErrors.map((value, index) => (
-                  <p key={index}>
-                    {" "}{value}{" "}
-                    در محدوده ارسال شما قرار ندارد
-                  </p>
+                  <p key={index}> {value} در محدوده ارسال شما قرار ندارد</p>
                 ))}
               </div>
-            }
+            )}
             <div className="d-none d-md-flex justify-content-between mt-4">
               <span
                 className="font-size1  font-weight-bold"
@@ -417,7 +444,7 @@ export default function Cart() {
               </span>
             </div>
 
-            <div className={`${styles.buttonPayment} mt-3`} >
+            <div className={`${styles.buttonPayment} mt-3`}>
               <div className="d-md-none mb-2 font-size-sm text-success d-flex">
                 <span
                   className="font-weight-bold"
@@ -446,8 +473,8 @@ export default function Cart() {
           </div>
         </div>
       </div>
-
     </div>
   );
 }
 
+Cart.Layout = ShopLayout;

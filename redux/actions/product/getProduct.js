@@ -1,6 +1,5 @@
-import { errorMessage } from "../../../containers/utils/message";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import * as Types from "../../types/product"; // constants
+import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // action of accounting list
 export const getProduct =
     (
@@ -52,6 +51,5 @@ export const getProduct =
                     }
                 }
             } catch (error) {
-                errorMessage("در دریافت داده ها خطایی رخ داده است");
             }
         };

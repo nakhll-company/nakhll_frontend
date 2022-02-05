@@ -3,31 +3,32 @@ import router from "next/router";
 import CheckboxTree from "react-checkbox-tree";
 import Assistent from "zaravand-assistent-number";
 import React, { useEffect, useState } from "react";
-
 import InfiniteScroll from "react-infinite-scroll-component";
+import _ from "lodash";
 // components
 import { TopBar } from "../TopBar";
-import { errorMessage } from "../../utils/message";
 import Search from "../../../components/search/Search";
 import AddFavorites from "../../../components/AddFavorites";
-
 import { allCites } from "../../../components/custom/data/data";
 import CustomSwitch from "../../../components/custom/customSwitch";
 import ProductCard from "../../../components/ProductCart/ProductCard";
 import CustomAccordion from "../../../components/custom/customAccordion";
 import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
 import MultiRangeSlider from "../../../components/custom/customMultiRangeSlider/MultiRangeSlider";
-
 // methods
-import { ApiReference } from "../../../Api";
+import { ApiReference } from "../../../api/Api";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // styles
 import styles from "./listProductCus.module.scss";
 import OrderingModalMobile from "./components/OrderingModalMobile";
 import SearchProduct from "./components/searchProduct";
+import { useSelector } from "react-redux";
+
 const _asist = new Assistent();
 
 function ListProductCus({ data }) {
+  
+  const userData = useSelector((state) => state.User.userInfo);
   const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
   const [searchWord, setSearchWord] = useState(data.q ? data.q : "");
   const [listWithFilter, setListWithFilter] = useState([]);
@@ -162,12 +163,9 @@ function ListProductCus({ data }) {
         setTotalcount(response.data.total_count);
 
         setIsLoading(false);
-      } else {
-        errorMessage("خطایی رخ داده است");
       }
     } catch (e) {
       setIsLoading(false);
-      errorMessage("خطایی رخ داده است");
     }
   };
 
@@ -234,12 +232,19 @@ function ListProductCus({ data }) {
     }
     setSearchShops(filterArray);
   };
+  useEffect(() => {
+    setSearchWord(data.q);
+  }, [data.q]);
 
   // START
   // for filters in sidebar
-  useEffect(async () => {
-    await _handel_filters();
+  useEffect(() => {
+    async function fetchData() {
+      await _handel_filters();
+    }
+    fetchData();
   }, [
+    data,
     isAvailableGoods,
     isReadyForSend,
     isDiscountPercentage,
@@ -282,8 +287,10 @@ function ListProductCus({ data }) {
     wantCategories,
     whichOrdering,
     clickOnRange,
-
+    maxPrice,
+    minPrice,
     hojreh,
+    searchWord,
   ]);
 
   // for filters in sidebar
@@ -494,24 +501,7 @@ function ListProductCus({ data }) {
                     <ProductCard
                       key={index}
                       padding={1}
-                      product={{
-                        id: oneProduct.ID,
-                        imageUrl: oneProduct.Image_medium_url,
-                        url: `/shop/${oneProduct.FK_Shop.slug}/product/${oneProduct.Slug}/`,
-                        title: oneProduct.Title,
-                        chamberTitle: oneProduct.FK_Shop
-                          ? oneProduct.FK_Shop.title
-                          : "",
-                        chamberUrl: oneProduct.FK_Shop
-                          ? `/shop/${oneProduct.FK_Shop.slug} `
-                          : "",
-
-                        discount: oneProduct.discount,
-                        price: oneProduct.Price / 10,
-                        discountNumber: oneProduct.OldPrice / 10,
-                        city: oneProduct.FK_Shop && oneProduct.FK_Shop.state,
-                        is_advertisement: oneProduct.is_advertisement,
-                      }}
+                      dataProduct={oneProduct}
                     />
                   ))}
                 </InfiniteScroll>
@@ -549,13 +539,37 @@ function ListProductCus({ data }) {
                 style={{ msOverflowX: "hidden" }}
               >
                 <CustomSwitch
+                  defaultChecked={data.available == "true" ? true : false}
                   title="فقط کالاهای موجود"
                   id="Available_goods_mobile"
                   onChange={(e) => {
                     setIsAvailableGoods(e.target.checked);
                   }}
                 />
+                {/* <CustomSwitch
+                  title="فقط کالاهای موجود"
+                  id="Available_goods_mobile"
+                  onChange={(e) => {
+                    setIsAvailableGoods(e.target.checked);
+                  }}
+                /> */}
                 <CustomSwitch
+                  defaultChecked={data.ready == "true" ? true : false}
+                  title="آماده ارسال"
+                  id="Ready_to_send_mobile"
+                  onChange={(e) => {
+                    setIsReadyForSend(e.target.checked);
+                  }}
+                />
+                <CustomSwitch
+                  defaultChecked={data.discounted == "true" ? true : false}
+                  title="تخفیف دارها"
+                  id="discounted_mobile"
+                  onChange={(e) => {
+                    setIsDiscountPercentage(e.target.checked);
+                  }}
+                />
+                {/* <CustomSwitch
                   title="آماده ارسال"
                   id="Ready_to_send_mobile"
                   onChange={(e) => {
@@ -568,9 +582,33 @@ function ListProductCus({ data }) {
                   onChange={(e) => {
                     setIsDiscountPercentage(e.target.checked);
                   }}
-                />
+                /> */}
               </div>
             </div>
+            <CustomAccordion title="جست و جو براساس حجره" item="searchShop">
+              <Search
+                onClick={_get_all_shops}
+                onChange={(e) => _handel_search(e.target.value)}
+              />
+              {searchShops.length > 0 && (
+                <div className={styles.numBag}>
+                  <span> {_asist.PSeparator(searchShops.length)}</span>
+                  حجره
+                </div>
+              )}
+              {searchShops.map((el, index) => (
+                <div
+                  key={index}
+                  className={styles.itemHojreh}
+                  onClick={() => {
+                    setHojreh(el.slug);
+                    setSearchWord("");
+                  }}
+                >
+                  {el.title}
+                </div>
+              ))}
+            </CustomAccordion>
             <CustomAccordion title="محدوده قیمت" item="2mobile">
               <div style={{ direction: "ltr" }}>
                 <MultiRangeSlider
@@ -681,7 +719,7 @@ function ListProductCus({ data }) {
           setIsOpenOrderingModal={setIsOpenOrderingModal}
         />
       )}
-      <AddFavorites />
+      {!_.isEmpty(userData) && <AddFavorites />}
 
       {/* ModalOrdering End */}
 

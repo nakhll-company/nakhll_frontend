@@ -1,27 +1,27 @@
 // div labels
-.label{
+.label {
     display: inline-block;
     direction: rtl;
-    font-family: 'vazir';
+    font-family: "bakh";
     padding-top: 10px;
     // item label
-    .span_label{
+    .span_label {
         color: #5e7488;
     }
     // item value
-    .span_value{
+    .span_value {
         color: #333333;
         padding: 0px 10px;
         white-space: break-spaces;
         display: inline-block;
+        text-align: justify;
     }
 }
-
-    // custom label
-    .wrapper_custom_label{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-    }
+// custom label
+.wrapper_custom_label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
