@@ -1,4 +1,3 @@
-import { successMessage } from "../../containers/utils/message";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 // city
 export const getCities = async (id) => {
@@ -10,10 +9,7 @@ export const getCities = async (id) => {
         );
         if (response.status === 200) {
             return response.data;
-        } else {
-            successMessage("خطایی در دریافت دادهای شهر پیش آمده است");
         }
     } catch (error) {
-        successMessage("خطایی در دریافت دادهای شهر پیش آمده است");
     }
 };

@@ -1,20 +1,23 @@
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Assistent from "zaravand-assistent-number";
+// components
+import ShopLayout from "../../../components/shopLayout";
 // scss
 import styles from "../../../styles/pages/cart/payment/payment.module.scss";
 // methods
+import { _getListInvoice } from "../../../api/cart";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-import ShopLayout from "../../../components/shopLayout";
 
 const _asist = new Assistent();
 
 export default function Cart() {
+
   const router = useRouter();
   const { invoice_id } = router.query;
-
   const [msgCoupon, setMsgCoupon] = useState([]);
   const [isLoadInvoice, setIsLoadInvoice] = useState(true);
   const [listInvoice, setListInvoice] = useState([]);
@@ -26,30 +29,10 @@ export default function Cart() {
   const [logisticErrors, setLogisticErrors] = useState([]);
 
   useEffect(() => {
-    invoice_id && _getListInvoice();
+    invoice_id && _getListInvoice(setMsgCoupon, setListInvoice, setLogisticPrice, setTotalPrice, setFinalPrice, setAddressReceiver, setResultCoupon, setLogisticErrors, setIsLoadInvoice, invoice_id);
   }, [invoice_id]);
 
-  const _getListInvoice = async () => {
-    let response = await ApiRegister().apiRequest(
-      null,
-      "GET",
-      `/accounting_new/api/invoice/${invoice_id}/`,
-      true,
-      {}
-    );
-    let data = response.data;
-    if (response.status === 200) {
-      setListInvoice(data.items);
-      setLogisticPrice(data.logistic_price);
-      setTotalPrice(data.invoice_price_with_discount);
-      setFinalPrice(data.final_price);
-      setAddressReceiver(data.address);
-      setResultCoupon(data.coupons_total_price);
-      setMsgCoupon(data.coupon_usages);
-      setLogisticErrors(data.logistic_errors);
-      setIsLoadInvoice(false);
-    }
-  };
+
 
   const _addCoupon = async (e) => {
     e.preventDefault();
@@ -72,11 +55,12 @@ export default function Cart() {
           } else {
             setIsLoadInvoice(false);
           }
-          // setIsLoadInvoice(false);
         } else {
           setIsLoadInvoice(false);
         }
-      } catch (e) { }
+      } catch (e) {
+        return false;
+      }
     }
   };
 
@@ -109,7 +93,9 @@ export default function Cart() {
         let data = await response.data;
         await router.push(data.url);
       }
-    } catch (error) { }
+    } catch (error) {
+      return false;
+    }
   };
 
   return (
@@ -209,7 +195,6 @@ export default function Cart() {
                         کوپن شما با مبلغ {item.price_applied / 10} تومان برای
                         شما فعال گردید.
                       </span>
-                      {/* <strong className="text-success ml-3">61,000 تومان</strong> */}
                       <button
                         onClick={() => _deleteCoupon(item.coupon)}
                         className="btn btn-link text-danger btn-sm mr-auto"
@@ -220,42 +205,6 @@ export default function Cart() {
                   );
                 })}
             </div>
-
-            {/* استفاده از اعتبار*/}
-            {/* <div className="mt-3">
-                            <div className="use-credit-box">
-                                <div className="toggle-btn">
-                                    <label data-v-25adc6c0 className="vue-js-switch">
-                                        <input data-v-25adc6c0 type="checkbox" className="v-switch-input" style={{ opacity: 0, position: "absolute", width: "1px", height: "1px" }} />
-                                        <div
-                                            data-v-25adc6c0
-                                            className="v-switch-core"
-                                            style={{
-                                                width: 45,
-                                                height: 25,
-                                                backgroundColor: "rgb(191, 203, 217)",
-                                                borderRadius: 13
-                                            }}
-                                        >
-                                            <div
-                                                data-v-25adc6c0
-                                                className="v-switch-button"
-                                                style={{
-                                                    width: 19,
-                                                    height: 19,
-                                                    transition: "transform 300ms ease 0s",
-                                                    transform: "translate3d(3px, 3px, 0px)",
-                                                    background: "rgb(255, 255, 255)"
-                                                }}
-                                            />
-                                        </div>
-                                    </label>
-                                    <span className="toggle-btn-text pointer">استفاده از اعتبار</span>
-                                </div>
-                                <span className="text-success mr-auto">اعتبار شما 11,000 تومان</span>
-                            </div>
-                        </div> */}
-
             <h3
               style={{
                 marginBottom: "0.5rem",
@@ -292,8 +241,10 @@ export default function Cart() {
                             href={`/shop/${itemProduct.shop_slug}/product/${itemProduct.slug}`}
                           >
                             <a>
-                              <img
+                              <Image
                                 src={itemProduct.image}
+                                width={100}
+                                height={100}
                                 alt={itemProduct.name}
                               />
                             </a>
@@ -381,40 +332,6 @@ export default function Cart() {
                   ویرایش
                 </Link>
               </div>
-
-              {/* <div className="toggle-btn mt-2">
-                                <label data-v-25adc6c0 className="vue-js-switch toggled">
-                                    <input data-v-25adc6c0 type="checkbox" className="v-switch-input" style={{ opacity: 0, position: "absolute", width: "1px", height: "1px" }} />
-                                    <div
-                                        data-v-25adc6c0
-                                        className="v-switch-core"
-                                        style={{
-                                            width: 45,
-                                            height: 25,
-                                            backgroundColor: "rgb(0, 96, 96)",
-                                            borderRadius: 13
-                                        }}
-                                    >
-                                        <div
-                                            data-v-25adc6c0
-                                            className="v-switch-button"
-                                            style={{
-                                                width: 19,
-                                                height: 19,
-                                                transition: "transform 300ms ease 0s",
-                                                transform: "translate3d(23px, 3px, 0px)",
-                                                background: "rgb(255, 255, 255)"
-                                            }}
-                                        />
-                                    </div>
-                                </label>
-                                <span className="toggle-btn-text pointer">
-                                    ارسال شماره من به حجره دار
-                                    <div className="text-secondary font-size-9 d-block d-lg-inline-block mr-lg-2">
-                                        (برای هماهنگی دریافت سفارش)
-                                    </div>
-                                </span>
-                            </div> */}
             </div>
             {logisticErrors.length > 0 && (
               <div
