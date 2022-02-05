@@ -60,7 +60,7 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
               </div>
               {data[wichSlide - 1]?.title && (
                 <div className={styles.titleUrl}>
-                  <span>{data[wichSlide - 1].title}</span>
+                  <span>{data[wichSlide - 1]?.title}</span>
                 </div>
               )}
               <img
@@ -78,7 +78,7 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
           <div className={styles.top}>
             <div className={styles.holderPic}>
               <img
-                src={data[5].image ? data[5].image : "/image/sample/2_1_M.jpg"}
+                src={data[5]?.image ? data[5].image : "/image/sample/2_1_M.jpg"}
                 alt=""
               />
             </div>
@@ -93,16 +93,16 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
             <div className={styles.icon_change_url}>
               <InputUrl id={id} order={5} />
             </div>
-            {data[5].title && (
+            {data[5]?.title && (
               <div className={styles.titleUrl}>
-                <span>{data[5].title}</span>
+                <span>{data[5]?.title}</span>
               </div>
             )}
           </div>
           <div className={styles.bottom}>
             <div className={styles.holderPic}>
               <img
-                src={data[6].image ? data[6].image : "/image/sample/2_1_M.jpg"}
+                src={data[6]?.image ? data[6].image : "/image/sample/2_1_M.jpg"}
                 alt=""
               />
             </div>
@@ -113,9 +113,9 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
             <div className={styles.icon_change_url}>
               <InputUrl id={id} order={6} />
             </div>
-            {data[6].title && (
+            {data[6]?.title && (
               <div className={styles.titleUrl}>
-                <span>{data[6].title}</span>
+                <span>{data[6]?.title}</span>
               </div>
             )}
           </div>
