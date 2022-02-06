@@ -1,102 +1,55 @@
 // node libraries
+import _ from "lodash";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Assistent from "zaravand-assistent-number";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Fragment, useState, useEffect } from "react";
+import SwiperCore, { EffectCube, Pagination } from "swiper";
 import InfiniteScroll from "react-infinite-scroll-component";
-import _ from "lodash";
 // components
+import AddFavorites from "../../components/AddFavorites";
 import CustomLabel from "../../components/custom/customLabel";
-import ProductCard from "../../components/ProductCart/ProductCard";
 import CustomSlider from "../../components/custom/customSlider";
+import ProductCard from "../../components/ProductCart/ProductCard";
 // methods
 import { addToCart } from "./methods/addToCart";
-import { getUserInfo } from "../../redux/actions/user/getUserInfo";
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { fetchProductShop, getMoreProduct } from "../../api/product/detail";
 // styles
 import styles from "./productDetail.module.scss";
-/**
- * component detail
- */
-// import Swiper core and required modules
-import SwiperCore, { EffectCube, Pagination } from "swiper";
-import AddFavorites from "../../components/AddFavorites";
 
-// Icons
 
-const myLoader = ({ src, width, quality }) => {
-  return `https://example.com/${src}?w=${width}&q=${quality || 75}`;
-};
-
-// install Swiper modules
 SwiperCore.use([EffectCube, Pagination]);
 const _asist = new Assistent();
-const ProductDetailMobile = ({ data }) => {
-  const dispatch = useDispatch();
-  const router = useRouter();
-  const { productSlug } = router.query;
-  const userData = useSelector((state) => state.User.userInfo);
 
+const ProductDetailMobile = ({ data }) => {
+
+  const router = useRouter();
   const detail = data.detail;
   const comments = data.comments;
+  const { productSlug } = router.query;
   const relatedProduct = data.relatedProduct;
-  const [hasMore, setHasMore] = useState(true);
   const [pageApi, setPageApi] = useState(1);
-  const [posts, setPosts] = useState([...relatedProduct.results]);
+  const [hasMore, setHasMore] = useState(true);
   const [productShop, setProductShop] = useState([]);
+  const userData = useSelector((state) => state.User.userInfo);
+  const [posts, setPosts] = useState([...relatedProduct.results]);
 
   let thumblineImage = [
-    // { image: detail.shop.image_thumbnail_url, id: 0 },
     ...detail.banners,
     { image: detail.image },
   ];
 
-  async function fetchProductShop() {
-    let response = await ApiRegister().apiRequest(
-      null,
-      "GET",
-      `/api/v1/landing/shop_products/${detail.shop.slug}/`,
-      false,
-      ""
-    );
-    if (response.status === 200) {
-      setProductShop(response.data);
-    } else {
-      return false;
-    }
-  }
-
-  const getMoreProduct = async () => {
-    let moreProduct = await ApiRegister().apiRequest(
-      null,
-      "GET",
-      `/api/v1/product-page/related_products/${productSlug}/`,
-      false,
-      {
-        page: pageApi,
-        page_size: 10,
-      }
-    );
-    if (moreProduct.data.next === null) {
-      setHasMore(false);
-    } else {
-      setHasMore(true);
-      setPageApi(pageApi + 1);
-    }
-    setPosts((post) => [...post, ...moreProduct.data.results]);
-  };
-
   useEffect(() => {
     async function fetchData() {
-      getMoreProduct();
-      fetchProductShop();
+      getMoreProduct(productSlug, pageApi, setHasMore, setPageApi, setPosts);
+      fetchProductShop(detail, setProductShop);
     }
     fetchData();
-  }, []);
+  }, [detail, pageApi, productSlug]);
 
   return (
     <div className={styles.wrapper}>
@@ -108,7 +61,6 @@ const ProductDetailMobile = ({ data }) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       {!_.isEmpty(userData) && <AddFavorites />}
-
       <div>
         {/* bread_crumb */}
         <div className="product-page-breadcrumb">
@@ -120,7 +72,7 @@ const ProductDetailMobile = ({ data }) => {
                   {
                     title:
                       detail.new_category &&
-                      detail.new_category.parents.length > 0
+                        detail.new_category.parents.length > 0
                         ? detail.new_category.parents[0].name
                         : "",
                     url:
@@ -184,19 +136,11 @@ const ProductDetailMobile = ({ data }) => {
           </div>
           <div className="col-lg-8 pe-lg-4 px-3">
             <div className="mb-4">
-              {/* <div className="ms-lg-5 mb-3 mb-lg-0" style={{ display: "flex", alignItems: "center" }}>
-                                <i style={{ fontSize: "1.5rem", color: "#7d7d7d" }} className="fas fa-clipboard-list ms-3"></i>
-                                <span style={{ fontSize: ".85rem" }}>
-                                    <span className="ltr">  تعداد  </span>
-                                    فروش
-                                </span>
-                            </div> */}
               {detail.salable && detail.salable === true && (
                 <div
                   className="ms-lg-5 mb-3 mb-lg-0"
                   style={{ display: "flex", alignItems: "center" }}
                 >
-                  {/* <i style={{ fontSize: "1.5rem", color: "#7d7d7d" }} className="far fa-clock ms-3"></i> */}
                   <Image
                     src="/productDetail/time.png"
                     alt="iran icon"
@@ -224,13 +168,6 @@ const ProductDetailMobile = ({ data }) => {
                   {detail.shop.state}، {detail.shop.big_city}
                 </span>
               </div>
-              {/* <div className="ms-lg-5 mb-3 mb-lg-0" style={{ display: "flex", alignItems: "center" }}>
-                                <Image src="/productDetail/iran.png" alt="iran icon" width="20" height="19" />
-                                <span style={{ fontSize: ".85rem" }} className="me-3">
-                                    <span className="ltr">  به  </span>
-                                    محدوده ارسال
-                                </span>
-                            </div> */}
             </div>
             <section className="mb-4">
               <h2 className={styles.product_section_title}>ویژگی‌های محصول</h2>
@@ -424,9 +361,6 @@ const ProductDetailMobile = ({ data }) => {
             <section className="col-12">
               <div className={styles.comments_header}>
                 <h3>نظر مشتریان ({_asist.number(comments.length)} نظر)</h3>
-                {/* <Link href="/">
-                                    <a>مشاهده همه</a>
-                                </Link> */}
               </div>
               {comments.length > 0 &&
                 comments.map((value, index) => {
@@ -454,15 +388,6 @@ const ProductDetailMobile = ({ data }) => {
                             </span>
                           </div>
                           <span>{value.description}</span>
-                          {/* <div className={styles.likes_icons_wrapper}>
-                                                    <span>
-                                                        <i className="far fa-thumbs-up"></i>
-                                                        {value.number_like > 0 && value.number_like}
-                                                    </span>
-                                                    <span>
-                                                        <i className="far fa-thumbs-down fa-flip-horizontal"></i>
-                                                    </span>
-                                                </div> */}
                         </div>
                       </div>
                       {value.comment_replies.length > 0 &&
@@ -559,10 +484,10 @@ const ProductDetailMobile = ({ data }) => {
           <button
             className={`${styles.product_btn_mobile} btn btn-tprimary rounded-pill font-weight-bold font-size1-5 px-6 py-2 ev-add-to-cart`}
             onClick={async () => {
-              gtag("event", "دکمه خرید", {
-                event_category: `‍‍‍‍${detail.title}`,
-                event_label: "زدن روی دکمه خرید",
-              });
+              // gtag("event", "دکمه خرید", {
+              //   event_category: `‍‍‍‍${detail.title}`,
+              //   event_label: "زدن روی دکمه خرید",
+              // });
               await addToCart(detail.id);
             }}
           >

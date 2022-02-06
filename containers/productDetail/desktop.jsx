@@ -1,101 +1,54 @@
 // node libraries
+import _ from "lodash";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 import Assistent from "zaravand-assistent-number";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Fragment, useEffect, useState } from "react";
+import SwiperCore, { Navigation, Thumbs } from "swiper";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useDispatch, useSelector } from "react-redux";
-import _ from "lodash";
-
 // components
+import AddFavorites from "../../components/AddFavorites";
 import CustomLabel from "../../components/custom/customLabel";
 import CustomSlider from "../../components/custom/customSlider";
+import ProductCard from "../../components/ProductCart/ProductCard";
 // methods
 import { addToCart } from "./methods/addToCart";
-
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { fetchProductShop, getMoreProduct } from "../../api/product/detail";
 // styles
 import styles from "./productDetail.module.scss";
-import ProductCard from "../../components/ProductCart/ProductCard";
-// import Swiper core and required modules
-import SwiperCore, { Navigation, Thumbs } from "swiper";
-import AddFavorites from "../../components/AddFavorites";
 
-// install Swiper modules
-SwiperCore.use([Navigation, Thumbs]);
-/**
- * component detail
- */
 const _asist = new Assistent();
+SwiperCore.use([Navigation, Thumbs]);
+
 const ProductDetailDesktop = ({ data }) => {
-  const dispatch = useDispatch();
+
   const router = useRouter();
-  const { productSlug } = router.query;
-  const userData = useSelector((state) => state.User.userInfo);
-
-  // State for contorol page
-
   const detail = data.detail;
   const comments = data.comments;
-  const relatedProduct = data.relatedProduct;
+  const { productSlug } = router.query;
   const [posts, setPosts] = useState([]);
   const [pageApi, setPageApi] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [productShop, setProductShop] = useState([]);
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const userData = useSelector((state) => state.User.userInfo);
 
   let thumblineImage = [
-    // { image: detail.shop.image_thumbnail_url, id: 0 },
     ...detail.banners,
-    ,
     { image: detail.image },
   ];
-  async function fetchProductShop() {
-    let response = await ApiRegister().apiRequest(
-      null,
-      "GET",
-      `/api/v1/landing/shop_products/${detail.shop.slug}/`,
-      false,
-      ""
-    );
-    if (response.status === 200) {
-      setProductShop(response.data);
-    } else {
-      return false;
-    }
-  }
-
-  const getMoreProduct = async () => {
-    let moreProduct = await ApiRegister().apiRequest(
-      null,
-      "GET",
-      `/api/v1/product-page/related_products/${productSlug}/`,
-      false,
-      {
-        page: pageApi,
-        page_size: 10,
-      }
-    );
-    if (moreProduct.data.next === null) {
-      setHasMore(false);
-    } else {
-      setHasMore(true);
-      setPageApi(pageApi + 1);
-    }
-
-    setPosts((post) => [...post, ...moreProduct.data.results]);
-  };
 
   useEffect(() => {
     async function fetchData() {
-      getMoreProduct();
-      fetchProductShop();
+      getMoreProduct(productSlug, pageApi, setHasMore, setPageApi, setPosts);
+      fetchProductShop(detail, setProductShop);
     }
     fetchData();
-  }, []);
+  }, [detail, pageApi, productSlug]);
 
   return (
     <div className={styles.wrapper}>
@@ -118,7 +71,7 @@ const ProductDetailDesktop = ({ data }) => {
                   {
                     title:
                       detail.new_category &&
-                      detail.new_category.parents.length > 0
+                        detail.new_category.parents.length > 0
                         ? detail.new_category.parents[0].name
                         : "",
                     url:
@@ -180,9 +133,6 @@ const ProductDetailDesktop = ({ data }) => {
                               width="400"
                               height="400"
                               alt={detail.title}
-                              onClick={() => {
-                                setShowModal((showModal) => !showModal);
-                              }}
                             />
                           </SwiperSlide>
                         );
@@ -349,10 +299,10 @@ const ProductDetailDesktop = ({ data }) => {
                     <button
                       className={`product-btn btn rounded-pill font-size1-5  p-1  ${styles.btn_tprimary}`}
                       onClick={async () => {
-                        gtag("event", "دکمه خرید", {
-                          event_category: `‍‍‍‍${detail.title}`,
-                          event_label: "زدن روی دکمه خرید",
-                        });
+                        // gtag("event", "دکمه خرید", {
+                        //   event_category: `‍‍‍‍${detail.title}`,
+                        //   event_label: "زدن روی دکمه خرید",
+                        // });
                         await addToCart(detail.id);
                       }}
                     >
@@ -520,15 +470,6 @@ const ProductDetailDesktop = ({ data }) => {
                             </span>
                           </div>
                           <span>{value.description}</span>
-                          {/* <div className={styles.likes_icons_wrapper}>
-                                                    <span>
-                                                        <i className="far fa-thumbs-up"></i>
-                                                        {value.number_like > 0 && value.number_like}
-                                                    </span>
-                                                    <span>
-                                                        <i className="far fa-thumbs-down fa-flip-horizontal"></i>
-                                                    </span>
-                                                </div> */}
                         </div>
                       </div>
                       {value.comment_replies.length > 0 &&

@@ -1,16 +1,13 @@
 // node libraries
-import { useState } from "react";
 import Head from "next/head";
 import { NextSeo } from "next-seo";
 // components
-
-// methods
-
 import useViewport from "../../../../components/viewPort";
+import ShopLayout from "../../../../components/shopLayout";
 import ProductDetailMobile from "../../../../containers/productDetail/mobile";
 import ProductDetailDesktop from "../../../../containers/productDetail/desktop";
+// methods
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
-import ShopLayout from "../../../../components/shopLayout";
 
 // fetch data
 const fetchData = async (id) => {
@@ -55,17 +52,9 @@ const fetchData = async (id) => {
  * component detail
  */
 const ProductDetail = ({ data }) => {
-  const { width } = useViewport();
-  const breakpoint = 620;
-  const [posts, setPosts] = useState(Array.from({ length: 20 }));
 
-  const getMorePost = async () => {
-    const res = await fetch(
-      `https://jsonplaceholder.typicode.com/todos?_start=${posts.length}&_limit=10`
-    );
-    const newPosts = await res.json();
-    setPosts((post) => [...post, ...newPosts]);
-  };
+  const breakpoint = 620;
+  const { width } = useViewport();
 
   const SEO = {
     title: `خرید و قیمت ${data.detail.title} | نخل`,
