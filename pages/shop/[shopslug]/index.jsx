@@ -1,5 +1,5 @@
 // node libraries
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Script from "next/script";
 import { NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
@@ -33,6 +33,8 @@ import Video from "../../../containers/LandingPage/Video";
 import AboutMe from "../../../containers/LandingPage/AboutMe";
 import VipProducts from "../../../containers/LandingPage/VipProducts";
 import LinearShopsCart from "../../../containers/LandingPage/linearShopsCart";
+import lottie from "lottie-web";
+
 // methods
 import { ApiReference } from "../../../api/Api";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
@@ -56,7 +58,16 @@ const fetchData = async (id) => {
 };
 
 const Shop = ({ dataShop, data }) => {
-
+  const nakhlAnim = useRef(null);
+  useEffect(() => {
+    lottie.loadAnimation({
+      container: nakhlAnim.current,
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      animationData: require("../../../public/lottie/shop.json"),
+    });
+  }, []);
   const _handel_select_component = (data) => {
     switch (data.type) {
       case 1:
@@ -124,7 +135,19 @@ const Shop = ({ dataShop, data }) => {
             name={dataShop.shop.FK_ShopManager}
             profile={dataShop.shop.image_thumbnail_url}
           />
-          <DynamicListProductCusTest data={data} />
+          {dataShop.shop.total_products == 0 && (
+            <div className="d-flex justify-content-center flex-column align-items-center">
+              {" "}
+              <span>
+                <span style={{ fontWeight: "bold" }}>حجره تازه تاسیس :</span>
+                در حال چیدمان...
+              </span>
+              <div style={{ width: "300px" }} ref={nakhlAnim}></div>
+            </div>
+          )}
+          {dataShop.shop.total_products != 0 && (
+            <DynamicListProductCusTest data={data} />
+          )}
         </>
       )}
       {dataShop.shop.landing_data?.page_data &&
