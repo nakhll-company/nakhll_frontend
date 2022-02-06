@@ -1,13 +1,19 @@
-import st from "./rotationProduct.module.scss";
+// node libraries
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+// components
 import InputUrl from "../../../containers/liveEdit/InputUrl";
+// methods
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import { _updateProducts } from "../../../redux/actions/liveEdit/_updateProducts";
+// style
+import st from "./rotationProduct.module.scss";
+
 function Sm_RotationProducts({ id, data }) {
-  const [products, setProducts] = useState([]);
+
   const dispatch = useDispatch();
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -44,7 +50,7 @@ function Sm_RotationProducts({ id, data }) {
       }
     }
     fetchData();
-  }, [data[0].url]);
+  }, [data, dispatch]);
 
   return (
     <>

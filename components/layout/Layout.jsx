@@ -1,13 +1,14 @@
 // node libraries
-import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
+import Image from "next/image";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { ToastContainer } from "react-toastify";
 // components
-import useViewport from "../viewPort/index";
 import MenuMobile from "./MenuMobile";
+import useViewport from "../viewPort/index";
 // methods
 import { mapState } from "./methods/mapState";
 import { allOptions } from "./methods/allOptions";
@@ -15,21 +16,22 @@ import { getUserInfo } from "../../redux/actions/user/getUserInfo";
 import { getActiveHojreh } from "../../redux/actions/user/getActiveHojreh";
 // styles
 import styles from "../../styles/components/layout/layout.module.scss";
-import { ToastContainer } from "react-toastify";
 
 function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
-  const [selectShop, setselectShop] = useState("");
-  const [activeOptions, setActiveOptions] = useState([]);
-  const [isShowOrder, setisShowOrder] = useState(false);
-  const [Title, setTitle] = useState("");
+
+  const breakpoint = 620;
   const router = useRouter();
   const { width } = useViewport();
-  // STATE FOR SET LINK SHOP
+  const [Title, setTitle] = useState("");
   const [slugHojreh, setSlugHojreh] = useState("");
-  const breakpoint = 620;
+  const [selectShop, setselectShop] = useState("");
+  const [isShowOrder, setisShowOrder] = useState(false);
+  const [activeOptions, setActiveOptions] = useState([]);
+
   const ExitDash = () => {
     router.push("/");
   };
+
   useEffect(() => {
     async function fetchData() {
       Object.keys(userInfo).length === 0 && getUserInfo();

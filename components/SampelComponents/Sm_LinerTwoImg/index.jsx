@@ -1,11 +1,11 @@
+// node libraries
 import React from "react";
 import Image from "next/image";
-import InputPicture from "../../../containers/liveEdit/InputPicture";
+// components
 import InputUrl from "../../../containers/liveEdit/InputUrl";
-
+import InputPicture from "../../../containers/liveEdit/InputPicture";
+// style
 import styles from "./Sm_LinerTwoImg.module.scss";
-// type=========3
-// aspect======3
 
 function Sm_LinerTwoImg({ setImageSrc, id, data }) {
   return (
@@ -22,8 +22,7 @@ function Sm_LinerTwoImg({ setImageSrc, id, data }) {
             <span>{data[0].title}</span>
           </div>
         )}
-
-        <img
+        <Image
           src={data[0].image ? data[0].image : "/image/sample/3_1.jpg"}
           alt=""
         />
@@ -35,8 +34,7 @@ function Sm_LinerTwoImg({ setImageSrc, id, data }) {
         <div className={styles.icon_change_url}>
           <InputUrl id={id} order={1} />
         </div>
-
-        <img
+        <Image
           src={data[1].image ? data[1].image : "/image/sample/3_1.jpg"}
           alt=""
         />

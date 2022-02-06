@@ -1,55 +1,64 @@
+// node libraries
+import { useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
-
-import styles from "./Sm_LinerProducts.module.scss";
-
+// components
 import Sm_product from "../Sm_product";
 import InputUrl from "../../../containers/liveEdit/InputUrl";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-import { useDispatch } from "react-redux";
-import { _updateProducts } from "../../../redux/actions/liveEdit/_updateProducts";
+// methods
 import { _selectId } from "../../../redux/actions/liveEdit/_selectId";
+import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+import { _updateProducts } from "../../../redux/actions/liveEdit/_updateProducts";
 import { _updateTitleColorSubtitle } from "../../../redux/actions/liveEdit/_updateTitleColorSubtitle";
+// style
+import styles from "./Sm_LinerProducts.module.scss";
+
 function Sm_LinerProducts({ id, data }) {
-  const [products, setProducts] = useState([]);
+
+  const dispatch = useDispatch();
   const [toggle, setToggle] = useState(true);
+  const [products, setProducts] = useState([]);
+  const [color, setColor] = useState(data[0].color);
   const [name, setName] = useState(data[0].titleComponent);
   const [toggleSubTitle, setToggleSubTitle] = useState(true);
   const [subTitle, setSubTitle] = useState(data[0].subTitle);
-  const [color, setColor] = useState(data[0].color);
-  const dispatch = useDispatch();
-  useEffect(async () => {
-    let Queries = { page_size: "6" };
-    if (data[0].url !== "") {
-      let url = data[0].url;
-      if (url.split("?")[1]) {
-        let partTwoUrl = url.split("?")[1].split("&");
-        let arrayString = partTwoUrl.map((el) => el.split("="));
 
-        arrayString.map((el) => {
-          if (el[0] == "q") {
-            Queries["search"] = decodeURI(el[1]);
-          } else {
-            Queries[el[0]] = decodeURI(el[1]);
+  useEffect(() => {
+    async function fetchData() {
+      let Queries = { page_size: "6" };
+      if (data[0].url !== "") {
+        let url = data[0].url;
+        if (url.split("?")[1]) {
+          let partTwoUrl = url.split("?")[1].split("&");
+          let arrayString = partTwoUrl.map((el) => el.split("="));
+
+          arrayString.map((el) => {
+            if (el[0] == "q") {
+              Queries["search"] = decodeURI(el[1]);
+            } else {
+              Queries[el[0]] = decodeURI(el[1]);
+            }
+          });
+        }
+
+        if (Object.keys(Queries).length > 1) {
+          let response = await ApiRegister().apiRequest(
+            null,
+            "GET",
+            "https://nakhll.com/api/v1/products/",
+            false,
+            Queries
+          );
+
+          if (response.status == 200) {
+            setProducts(response.data.results);
+            dispatch(_updateProducts(response.data.results));
           }
-        });
-      }
-
-      if (Object.keys(Queries).length > 1) {
-        let response = await ApiRegister().apiRequest(
-          null,
-          "GET",
-          "https://nakhll.com/api/v1/products/",
-          false,
-          Queries
-        );
-
-        if (response.status == 200) {
-          setProducts(response.data.results);
-          dispatch(_updateProducts(response.data.results));
         }
       }
     }
-  }, [data[0].url]);
+    fetchData();
+
+  }, [data, dispatch]);
 
   return (
     <div style={{ backgroundColor: color }} className={styles.main}>

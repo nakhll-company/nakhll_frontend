@@ -1,14 +1,19 @@
-import st from "./vipProducts.module.scss";
+// node libraries
 import Image from "next/image";
+import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+// components
 import InputUrl from "../../../containers/liveEdit/InputUrl";
-import { useEffect, useRef, useState } from "react";
+// methods
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import { _updateProducts } from "../../../redux/actions/liveEdit/_updateProducts";
-import { useDispatch } from "react-redux";
+// style
+import st from "./vipProducts.module.scss";
 
 function Sm_VipProducts({ id, data }) {
-  const [products, setProducts] = useState([]);
+
   const dispatch = useDispatch();
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -45,7 +50,7 @@ function Sm_VipProducts({ id, data }) {
       }
     }
     fetchData();
-  }, [data[0].url]);
+  }, [data, dispatch]);
 
   return (
     <>

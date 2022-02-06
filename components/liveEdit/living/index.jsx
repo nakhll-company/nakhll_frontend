@@ -1,35 +1,34 @@
-import React, { useEffect, useState } from "react";
+// node libraries
+import { v4 as uuidv4 } from "uuid";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { v4 as uuidv4 } from "uuid";
-import styles from "./living.module.scss";
+// components
+import CustomCropper from "../../customCropper";
+import Sm_Video from "../../SampelComponents/Sm_Video";
+import Sm_AboutMe from "../../SampelComponents/Sm_AboutMe";
 import Sm_HeroSlides from "../../SampelComponents/HeroSlides";
 import Sm_InputPlace from "../../SampelComponents/InputPlace";
+import SelectUrl from "../../../containers/liveEdit/SelectUrl";
 import Sm_LinerOneImg from "../../SampelComponents/Sm_LinerOneImg";
 import Sm_LinerTwoImg from "../../SampelComponents/Sm_LinerTwoImg";
-import Sm_LinerThreeImg from "../../SampelComponents/Sm_LinerThreeImg";
-import Sm_LinerFourImg from "../../SampelComponents/Sm_LinerFourImg";
-import Sm_LinerProducts from "../../SampelComponents/Sm_LinerProducts";
-import CustomCropper from "../../customCropper";
-import { _updateDataLanding } from "../../../redux/actions/liveEdit/_updateDataLanding";
-import SelectUrl from "../../../containers/liveEdit/SelectUrl";
-
-import Sm_AboutMe from "../../SampelComponents/Sm_AboutMe";
-
 import Sm_VipProducts from "../../SampelComponents/Sm_VipProducts";
+import Sm_LinerFourImg from "../../SampelComponents/Sm_LinerFourImg";
+import Sm_LinerThreeImg from "../../SampelComponents/Sm_LinerThreeImg";
+import Sm_LinerProducts from "../../SampelComponents/Sm_LinerProducts";
 import Sm_RotationProducts from "../../SampelComponents/Sm_RotationProducts";
-
-import Sm_Video from "../../SampelComponents/Sm_Video";
+// methods
+import { _updateDataLanding } from "../../../redux/actions/liveEdit/_updateDataLanding";
+// style
+import styles from "./living.module.scss";
 
 function Living({ characters, setCharacters, setOpenPlaneEditor, idLanding }) {
+
   const dispatch = useDispatch();
-  const showCrop = useSelector((state) => state.showCropper);
-  const showSelectorUrl = useSelector((state) => state.showSelectUrl);
-
-  // const characters = useSelector((state) => state.allDataLanding);
-
   const [imageSrc, setImageSrc] = useState(null);
   const [croppedImage, setCroppedImage] = useState(null);
+  const showCrop = useSelector((state) => state.showCropper);
+  const showSelectorUrl = useSelector((state) => state.showSelectUrl);
 
   // function for when click on delete icon
   const handelClickOnDeleteBtn = (idSelected) => {
@@ -98,7 +97,6 @@ function Living({ characters, setCharacters, setOpenPlaneEditor, idLanding }) {
   };
 
   // function for when click on top plus icon
-
   const _handel_add_component_top = (index) => {
     const items = [...characters];
     const newItem = { ID: uuidv4(), component: <Sm_InputPlace />, type: 0 };
@@ -119,11 +117,9 @@ function Living({ characters, setCharacters, setOpenPlaneEditor, idLanding }) {
   };
 
   // function for Drag components
-
   const handleOnDragEnd = (result) => {
     if (!result.destination) return;
     const items = Array.from(characters);
-
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
     setCharacters(items);
@@ -184,11 +180,9 @@ function Living({ characters, setCharacters, setOpenPlaneEditor, idLanding }) {
   return (
     <>
       {showCrop && (
-        <CustomCropper imageSrc={imageSrc} setCroppedImage={setCroppedImage} />
+        <CustomCropper imageSrc={imageSrc} setCroppedImage={setCroppedImage} croppedImage={croppedImage} />
       )}
-
       {showSelectorUrl && <SelectUrl idLanding={idLanding} />}
-
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="characters">
           {(provided) => (

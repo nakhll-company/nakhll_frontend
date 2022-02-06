@@ -1,20 +1,22 @@
-import st from "./aboutMe.module.scss";
-import lottie from "lottie-web";
-import { useEffect, useRef, useState } from "react";
+// node libraries
+import { useState } from "react";
 import { useDispatch } from "react-redux";
+// components
 import { _selectId } from "../../../redux/actions/liveEdit/_selectId";
 import { _updateTextAboutMe } from "../../../redux/actions/liveEdit/_updateTextAboutMe";
+// style
+import st from "./aboutMe.module.scss";
 
 function Sm_AboutMe({ id, data }) {
+
+  const dispatch = useDispatch();
   const [toggle, setToggle] = useState(true);
   const [name, setName] = useState(data[0].text);
-  const dispatch = useDispatch();
 
   return (
     <>
       <div className={st.wrapper}>
         <span className={st.title}>درباره ما</span>
-
         {toggle ? (
           <span
             className={st.content}

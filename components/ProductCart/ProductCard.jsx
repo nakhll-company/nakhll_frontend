@@ -1,6 +1,7 @@
 // node libraries
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 import Assistent from "zaravand-assistent-number";
 // methods
 import { addToCart } from "./methods/addToCart";
@@ -8,13 +9,10 @@ import { addToFavoritesList } from "./methods/addToFavotitesList";
 import { deleteFromFavoritesList } from "./methods/deleteFromFavoritesList";
 // scss
 import styles from "./ProductCard.module.scss";
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
-import { useState } from "react";
 
 const _asist = new Assistent();
 
 const ProductCard = ({
-  userData,
   sm = 6,
   md = 5,
   lg = 4,
@@ -22,7 +20,6 @@ const ProductCard = ({
   xs = 6,
   col,
   padding,
-  _blank = false,
   dataProduct,
 }) => {
   let product = {
@@ -60,9 +57,8 @@ const ProductCard = ({
       height={100}
       width={100}
       src={product.imageUrl}
-      className={`card-img-top _product_card_rounded animationCart ${
-        product.unavailable && "_unavailable_product"
-      }`}
+      className={`card-img-top _product_card_rounded animationCart ${product.unavailable && "_unavailable_product"
+        }`}
       alt={product.title}
       placeholder="blur"
       blurDataURL="/logoCart.png"
@@ -90,11 +86,10 @@ const ProductCard = ({
 
   return (
     <div
-      className={` ${
-        col
+      className={` ${col
           ? `col-${col}`
           : `col-${xs} col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
-      } ${padding ? `px-${padding}` : ""} mb-2`}
+        } ${padding ? `px-${padding}` : ""} mb-2`}
     >
       {product.iconClose && (
         <span
@@ -129,9 +124,8 @@ const ProductCard = ({
         </div>
 
         <div
-          className={`card-body mt-2 p-1 ${
-            product.unavailable && "_unavailable_product"
-          }`}
+          className={`card-body mt-2 p-1 ${product.unavailable && "_unavailable_product"
+            }`}
         >
           <div className=" mb-3">
             <Link href={product.url}>
@@ -184,10 +178,10 @@ const ProductCard = ({
                     disabled={disablBtn}
                     className={`btn ${styles._product_card_add_to_cart}`}
                     onClick={async () => {
-                      gtag("event", "دکمه خرید", {
-                        event_category: `‍‍‍‍${product.title}`,
-                        event_label: "زدن روی دکمه خرید",
-                      });
+                      // gtag("event", "دکمه خرید", {
+                      //   event_category: `‍‍‍‍${product.title}`,
+                      //   event_label: "زدن روی دکمه خرید",
+                      // });
                       setDisablBtn(true);
                       await addToCart(product.id);
                       setDisablBtn(false);

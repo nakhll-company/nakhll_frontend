@@ -1,17 +1,16 @@
+// node libraries
 import Cropper from "react-easy-crop";
-
 import React, { useCallback, useState } from "react";
-
 // methods
 import { getCroppedImg } from "./methods/getCropImage";
 // scss
 import styles from "./customCropper.module.scss";
-import { _updatePicture } from "../../redux/actions/liveEdit/_updatePicture";
 
 function CustomCropperAll({ setImageSrc, image, setShowCropper, ratio = 1 }) {
-  const [crop, setCrop] = useState({ x: 0, y: 0 });
-  const [rotation, setRotation] = useState(0);
+
   const [zoom, setZoom] = useState(1);
+  const [rotation, setRotation] = useState(0);
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {

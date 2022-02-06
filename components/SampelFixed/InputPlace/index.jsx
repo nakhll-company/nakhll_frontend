@@ -1,7 +1,9 @@
+// node libraries
 import React from "react";
+// style
 import styles from "./InputPlace.module.scss";
 
-function Sm_InputPlace_Fix(props) {
+function Sm_InputPlace_Fix() {
   return (
     <>
       <div className={styles.box_outer}>

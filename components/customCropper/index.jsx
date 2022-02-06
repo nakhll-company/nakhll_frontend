@@ -1,23 +1,24 @@
-import React, { useCallback, useState } from "react";
+// node libraries
 import Cropper from "react-easy-crop";
-// methods
-import { selectImage } from "./methods/selectImage";
-import { getCroppedImg } from "./methods/getCropImage";
-
-// scss
-import styles from "./customCropper.module.scss";
+import React, { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+// methods
+import { getCroppedImg } from "./methods/getCropImage";
 import { showCropper } from "../../redux/actions/liveEdit/showCropper";
 import { _updatePicture } from "../../redux/actions/liveEdit/_updatePicture";
+// scss
+import styles from "./customCropper.module.scss";
+
 function CustomCropper({ imageSrc, setCroppedImage }) {
+
+
+  const dispatch = useDispatch();
+  const [zoom, setZoom] = useState(1);
+  const [rotation, setRotation] = useState(0);
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const Component = useSelector((state) => state.selectIdFormLanding);
 
-  const [crop, setCrop] = useState({ x: 0, y: 0 });
-  const [rotation, setRotation] = useState(0);
-  const [zoom, setZoom] = useState(1);
-  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
-  // const [croppedImage, setCroppedImage] = useState(null);
-  const dispatch = useDispatch();
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
@@ -34,7 +35,8 @@ function CustomCropper({ imageSrc, setCroppedImage }) {
     } catch (e) {
       console.error(e);
     }
-  }, [imageSrc, croppedAreaPixels, rotation]);
+  }, [imageSrc, croppedAreaPixels, rotation, dispatch, setCroppedImage]);
+
   let b = Component.ratio;
 
   return (

@@ -1,30 +1,26 @@
-import React, { useState } from "react";
+// node libraries
+import React from "react";
+// components
+import Sm_product from "../Sm_product";
+// style
 import styles from "./Sm_LinerProducts.module.scss";
 
-import Sm_product from "../Sm_product";
-function Sm_LinerProducts_Fix(props) {
-  const [toggle, setToggle] = useState(true);
-  const [name, setName] = useState("پرفروش ترین");
-  const [toggleSubTitle, setToggleSubTitle] = useState(true);
-  const [subTitle, setSubTitle] = useState("زیرعنوان");
+function Sm_LinerProducts_Fix() {
+
+  const name = "پرفروش ترین";
+  const subTitle = "زیرعنوان";
+
   return (
     <div className={styles.main}>
       <div className={styles.title}>
         <div className={styles.name}>
           <span
             className={styles.mainTitle}
-            onDoubleClick={() => {
-              setToggle(false);
-            }}
           >
             {name}
           </span>
-
           <span
             className={styles.subTitle}
-            onDoubleClick={() => {
-              setToggleSubTitle(false);
-            }}
           >
             {subTitle}
           </span>
