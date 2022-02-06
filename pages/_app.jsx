@@ -12,8 +12,8 @@ import { refreshToken } from '../api/auth/refreshToken';
 import General from "../components/utils/General";
 import MyLayout from "../components/layout/Layout";
 // styles
-import "../styles/globals.scss";
 import "bootstrap/dist/css/bootstrap.css";
+import "../styles/globals.scss";
 import "../styles/General/font-awesome/css/font-awesome.css";
 
 function MyApp({ Component, pageProps }) {

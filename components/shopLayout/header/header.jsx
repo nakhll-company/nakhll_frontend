@@ -1,5 +1,7 @@
+// node libraries
 import Link from "next/link";
 import Image from "next/image";
+import * as gtag from "../../lib/gtag";
 import { useRouter } from "next/router";
 import Assistent from "zaravand-assistent-number";
 import React, { useState, useEffect } from "react";
@@ -8,33 +10,32 @@ import { useDispatch, useSelector } from "react-redux";
 import BoxSearch from "./boxSearch";
 import MegaMenuMobile from "../../../containers/LandingPage/MegaMenuMobile";
 import MegaMenuDesktop from "../../../containers/LandingPage/MegaMenuDesktop";
-import {
-  _call_Category,
-  _get_all_shops,
-  _handel_search,
-} from "../../../api/header";
 // methods
 import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
+import { _call_Category, _get_all_shops, _handel_search } from "../../../api/header";
 // style
 import styles from "./header.module.scss";
 
 const _asist = new Assistent();
 
 function Header() {
-  const router = useRouter();
 
+  const router = useRouter();
   const dispatch = useDispatch();
-  const userLog = useSelector((state) => state.User.userInfo);
   const [category, setCategory] = useState([]);
   const [shopsName, setShopsName] = useState([]);
   const [searchShops, setSearchShops] = useState([]);
   const [inputSearch, setInputSearch] = useState("");
+  const userLog = useSelector((state) => state.User.userInfo);
 
-  useEffect(async () => {
-    dispatch(getUserInfo());
-    let getCategory = await _call_Category();
-    setCategory(getCategory);
-  }, []);
+  useEffect(() => {
+    async function fetchData() {
+      dispatch(getUserInfo());
+      let getCategory = await _call_Category();
+      setCategory(getCategory);
+    }
+    fetchData();
+  }, [dispatch]);
 
   return (
     <>
@@ -78,8 +79,7 @@ function Header() {
                     style={{
                       display: "flex",
                       alignItems: " center",
-                      justifyContent: "space-between",
-                      display: "block",
+                      justifyContent: "space-between"
                     }}
                   >
                     <Image

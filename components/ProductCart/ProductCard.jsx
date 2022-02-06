@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import * as gtag from "../../lib/gtag";
 import Assistent from "zaravand-assistent-number";
 // methods
 import { addToCart } from "./methods/addToCart";
@@ -87,8 +88,8 @@ const ProductCard = ({
   return (
     <div
       className={` ${col
-          ? `col-${col}`
-          : `col-${xs} col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
+        ? `col-${col}`
+        : `col-${xs} col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
         } ${padding ? `px-${padding}` : ""} mb-2`}
     >
       {product.iconClose && (
@@ -178,10 +179,10 @@ const ProductCard = ({
                     disabled={disablBtn}
                     className={`btn ${styles._product_card_add_to_cart}`}
                     onClick={async () => {
-                      // gtag("event", "دکمه خرید", {
-                      //   event_category: `‍‍‍‍${product.title}`,
-                      //   event_label: "زدن روی دکمه خرید",
-                      // });
+                      gtag("event", "دکمه خرید", {
+                        event_category: `‍‍‍‍${product.title}`,
+                        event_label: "زدن روی دکمه خرید",
+                      });
                       setDisablBtn(true);
                       await addToCart(product.id);
                       setDisablBtn(false);

@@ -1,4 +1,5 @@
 import { toast } from "react-toastify";
+import * as gtag from "../../lib/gtag";
 
 export const successMessage = (message) => {
   toast.success(message, {

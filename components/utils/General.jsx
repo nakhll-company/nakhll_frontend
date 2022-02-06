@@ -1,16 +1,18 @@
-import React, { useEffect } from "react";
+// node libraries
 import Script from "next/script";
 import { hotjar } from "react-hotjar";
-import { useRouter } from "next/router";
-// import TagManager from "react-gtm-module";
 import * as gtag from "../../lib/gtag";
-function General(props) {
+import { useRouter } from "next/router";
+import React, { useEffect } from "react";
+
+function General() {
+
   const router = useRouter();
 
   useEffect(() => {
     hotjar.initialize(2655206, 6);
-    // TagManager.initialize({ gtmId: "GTM-MNQT35X" });
   }, []);
+
   useEffect(() => {
     const handleRouteChange = (url) => {
       gtag.pageview(url);
@@ -23,25 +25,6 @@ function General(props) {
 
   return (
     <>
-      {/* Global Site Tag (gtag.js) - Google Analytics */}
-      {/* test for analytics4 */}
-      {/* <Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=G-1BKTG72HYN`}
-      />
-      <Script
-        id="gtag-init_two"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', 'G-1BKTG72HYN');
-                `,
-        }}
-      /> */}
       <Script
         strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=UA-156540827-1`}

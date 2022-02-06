@@ -1,14 +1,19 @@
+// node libraries
 import React from "react";
-import styles from "./Sm_product.module.scss";
+import Image from "next/image";
 import Assistent from "zaravand-assistent-number";
+// style
+import styles from "./Sm_product.module.scss";
 
-function Sm_product_Fix(props) {
+function Sm_product_Fix() {
+
   const _asist = new Assistent();
+
   return (
     <>
       <div className={styles.product}>
         <div className={styles.product_img}>
-          <img src="/image/sample/sample.jpg" alt="" />
+          <Image src="/image/sample/sample.jpg" alt="" />
         </div>
         <div className={styles.product_name}>
           <span>نام محصول</span>
