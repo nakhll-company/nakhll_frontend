@@ -11,17 +11,6 @@ $color_tel_word: rgb(162, 172, 182);
   a {
     font-size: 14px;
     color: #141414;
-    // &::after {
-    //     content: "";
-    //     display: block;
-    //     width: 1px;
-    //     height: 24px;
-    //     background-color: #d1d1d1;
-    //     position: absolute;
-    //     top: 50%;
-    //     transform: translateY(-50%);
-    //     left: 0;
-    // }
     img {
       margin-left: 4px;
       width: 20px;
@@ -138,17 +127,6 @@ $color_tel_word: rgb(162, 172, 182);
         a {
           font-size: 14px;
           color: #141414;
-          // &::after {
-          //     content: "";
-          //     display: block;
-          //     width: 1px;
-          //     height: 24px;
-          //     background-color: #d1d1d1;
-          //     position: absolute;
-          //     top: 50%;
-          //     transform: translateY(-50%);
-          //     left: 0;
-          // }
           img {
             margin-left: 4px;
             width: 20px;
@@ -165,17 +143,6 @@ $color_tel_word: rgb(162, 172, 182);
         padding: 16px 4px;
         position: relative;
         z-index: 10;
-        // &::after {
-        //     content: "";
-        //     display: block;
-        //     width: 1px;
-        //     height: 24px;
-        //     background-color: #d1d1d1;
-        //     position: absolute;
-        //     top: 50%;
-        //     transform: translateY(-50%);
-        //     left: -15px;
-        // }
         &:hover ~ .modalProfile {
           visibility: visible;
           opacity: 1;
@@ -597,4 +564,11 @@ $color_tel_word: rgb(162, 172, 182);
 }
 .logo_name {
   width: 60px;
+}
+.logo_nakhl{
+  cursor: pointer;
+  max-height: 42px;
+}
+.logo_nakhl_mobile{
+  max-height: 50px;
 }

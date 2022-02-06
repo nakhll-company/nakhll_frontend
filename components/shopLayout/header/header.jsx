@@ -1,8 +1,8 @@
 // node libraries
 import Link from "next/link";
 import Image from "next/image";
-import * as gtag from "../../lib/gtag";
 import { useRouter } from "next/router";
+import * as gtag from "../../../lib/gtag";
 import Assistent from "zaravand-assistent-number";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -84,11 +84,11 @@ function Header() {
                   >
                     <Image
                       layout="responsive"
-                      height={100}
-                      width={300}
+                      height="100"
+                      width="300"
                       src="/icons/logo_Nakhl.svg"
                       alt="فروشگاه اینترنتی نخل"
-                      style={{ cursor: "pointer", maxHeight: "42px" }}
+                      className={styles.logo_nakhl}
                     />
                   </a>
                 </Link>
@@ -402,10 +402,10 @@ function Header() {
               <Link href="/">
                 <a className={styles.menu_logo}>
                   <Image
-                    style={{ maxHeight: "50px" }}
+                    className={styles.logo_nakhl_mobile}
                     src="/icons/logo_Nakhl.svg"
-                    width={200}
-                    height={100}
+                    width="200"
+                    height="100"
                     alt=""
                   />
                 </a>
