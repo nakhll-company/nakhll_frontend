@@ -1,51 +1,38 @@
-import { useEffect, useState } from "react";
+// node libraries
 import _ from "lodash";
-import CheckBoxProduct from "../checkBoxProduct";
+import { useEffect, useState } from "react";
+// components
 import Search from "../search";
 import BtnSetting from "../btnSetting";
-import { ApiRegister } from "../../../../../../services/apiRegister/ApiRegister";
+// methods
 import { paginateFront } from "../../../../../../utils/paginateFrontSide";
 
-function Products({
-  ProductsShop,
-  _handle_update_data_scope,
-  move = true,
-  title = "مرحله بعد",
-}) {
-  const [productList, setProductList] = useState(ProductsShop);
-  const [searchedProduct, setSearchedProduct] = useState(ProductsShop);
-  const [PaginatedPages, setPaginatedPages] = useState([]);
-  const [wordSearch, setWordSearch] = useState("");
+function Products({ ProductsShop, _handle_update_data_scope, move = true, title = "مرحله بعد" }) {
 
-  const [perPage, setPerPage] = useState(50);
+  const perPage = 50;
+  const [wordSearch, setWordSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [allPages, setAllPages] = useState(
-    _.range(Math.ceil(ProductsShop.length / 50))
-  );
+  const [productList, setProductList] = useState(ProductsShop);
+  const allPages = _.range(Math.ceil(ProductsShop.length / 50));
+  const [searchedProduct, setSearchedProduct] = useState(ProductsShop);
 
   const _handel_search = (word) => {
     setWordSearch(word);
-
     let searchedArray = productList.filter((el) => el.Title.includes(word));
     setSearchedProduct(searchedArray);
   };
 
   // function for select checkbox and
-
   const _handel_selected_id_product = (data) => {
     let arrayHelpProducts = [...productList];
     let arrayHelpSearch = [...searchedProduct];
-
     data.is_checked = !data.is_checked;
-
     var indexProduct = _.findIndex(arrayHelpSearch, { ID: data.ID });
     var indexSearchProduct = _.findIndex(arrayHelpProducts, { ID: data.ID });
-
     // Replace item at index using native splice
     arrayHelpProducts.splice(indexProduct, 1, data);
     arrayHelpSearch.splice(indexSearchProduct, 1, data);
     setProductList(arrayHelpProducts);
-
     setSearchedProduct(arrayHelpSearch);
   };
   // function for highlight search
@@ -82,7 +69,7 @@ function Products({
 
   useEffect(() => {
     setSearchedProduct(paginateFront(ProductsShop, currentPage, perPage));
-  }, [currentPage]);
+  }, [currentPage, ProductsShop]);
 
   return (
     <>
@@ -145,7 +132,7 @@ function Products({
         </nav>
       </div>
 
-      {searchedProduct.map((el, index) => (
+      {searchedProduct.map((el) => (
         <div
           key={el.ID}
           style={{ marginBottom: "16px" }}

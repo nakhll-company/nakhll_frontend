@@ -1,78 +1,48 @@
-import { useForm } from "react-hook-form";
+// node libraries
 import Image from "next/image";
-import CheckboxTreeCities from "../../../../../../components/CheckboxTree/CheckboxTree";
-import InputUseForm from "../../../../../creat/component/inputUseForm";
-import BtnSetting from "../../components/btnSetting";
-import CheckBoxSend from "../../components/checkBoxSend";
-import Explain from "../../components/explain";
-import HeaderTitle from "../../components/headerTitle";
-import Products from "../../components/products";
-import SelectIcon from "../selectIcon";
-import FreeQuestion from "../../ui/freeQuestion";
-import SoRent from "../../ui/soRent";
+import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
+// components
+import Explain from "../../components/explain";
+import Products from "../../components/products";
+import BtnSetting from "../../components/btnSetting";
+import HeaderTitle from "../../components/headerTitle";
+import CheckBoxSend from "../../components/checkBoxSend";
+import InputUseForm from "../../../../../creat/component/inputUseForm";
+import CheckboxTreeCities from "../../../../../../components/CheckboxTree/CheckboxTree";
+// methods
 import { ApiRegister } from "../../../../../../services/apiRegister/ApiRegister";
+// style
 import st from "./allEdit.module.scss";
-import diviedNumber from "../../../../../../utils/diviedNumber";
+
+const SHOP = "shop";
+const CUSTOMER = "cust";
+const AT_DELIVERY = "at_delivery";
+const WHEN_BUYING = "when_buying";
 const ICONS = [
   { src: "/icons/settings/pishtaz.svg", id: 1 },
   { src: "/icons/settings/sefareshi.svg", id: 2 },
   { src: "/icons/settings/peik.svg", id: 3 },
   { src: "/icons/settings/pasKeraieh.svg", id: 4 },
-  { src: "/icons/settings/free.svg", id: 5 },
-  // { src: "/icons/settings/plus.svg", id: 6 },
+  { src: "/icons/settings/free.svg", id: 5 }
 ];
-const CUSTOMER = "cust";
-const SHOP = "shop";
-const AT_DELIVERY = "at_delivery";
-const WHEN_BUYING = "when_buying";
 function AllEdit({
-  checkedSelectAllProducts,
   upPage,
   downPage,
   constraintId,
   informationForm,
   _handle_send_info_scope,
-  _handle_update_data_scope,
-  wichIdScope,
+  _handle_update_data_scope
 }) {
   const [checkNO, setCheckNO] = useState(true);
   const [checkYes, setCheckYes] = useState(false);
   const [checkNoFree, setCheckNoFree] = useState(true);
   const [checkYesFree, setCheckYesFree] = useState(false);
-  const [editCheckedCities, setEditCheckedCities] = useState([]);
-  const [editProductsShop, setEditProductsShop] = useState([]);
-  const [editcheckedSelectAllProducts, setEditcheckedSelectAllProducts] =
-    useState(true);
-
   const [idselectedIcon, setIdselectedIcon] = useState(1);
-  const {
-    setValue,
-    getValues,
-    clearErrors,
-    register,
-    setError,
-
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    criteriaMode: "all",
-    mode: "all",
-  });
-  const _handel_get_all_data_scope = async () => {
-    let response = await ApiRegister().apiRequest(
-      null,
-      "get",
-      `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
-      true,
-      ""
-    );
-
-    if (response.status == 200) {
-      setEditProductsShop(response.data.products);
-      setEditCheckedCities(response.data.cities);
-    }
-  };
+  const [editProductsShop, setEditProductsShop] = useState([]);
+  const [editCheckedCities, setEditCheckedCities] = useState([]);
+  const [editcheckedSelectAllProducts, setEditcheckedSelectAllProducts] = useState(true);
+  const { setValue, register, handleSubmit, formState: { errors } } = useForm({ criteriaMode: "all", mode: "all" });
 
   const _update_cities = async (data) => {
     let response = await ApiRegister().apiRequest(
@@ -82,6 +52,7 @@ function AllEdit({
       true,
       ""
     );
+    return response;
   };
   // set data in form
   useEffect(() => {
@@ -95,16 +66,11 @@ function AllEdit({
         "edit_price_per_extra_kg",
         informationForm.calculation_metric.price_per_extra_kilogram / 10
       );
-
       setValue("edit_minPrice", informationForm.constraint.min_cart_price / 10);
-      // when send is free
       if (informationForm.calculation_metric.payer == SHOP) {
         setCheckYesFree(true);
         setCheckNoFree(false);
       }
-
-      // when send is at delivery
-
       if (
         informationForm.calculation_metric.payer == CUSTOMER &&
         informationForm.calculation_metric.pay_time == AT_DELIVERY
@@ -113,13 +79,23 @@ function AllEdit({
         setCheckYes(true);
       }
       setIdselectedIcon(informationForm.logo_type);
-      // if (informationForm.products_count >= 1) {
-      //   setEditcheckedSelectAllProducts(false);
-      // }
     }
-  }, [informationForm]);
+  }, [informationForm, setValue]);
 
   useEffect(() => {
+    const _handel_get_all_data_scope = async () => {
+      let response = await ApiRegister().apiRequest(
+        null,
+        "get",
+        `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
+        true,
+        ""
+      );
+      if (response.status == 200) {
+        setEditProductsShop(response.data.products);
+        setEditCheckedCities(response.data.cities);
+      }
+    };
     if (constraintId !== "") {
       _handel_get_all_data_scope();
     }
@@ -156,23 +132,17 @@ function AllEdit({
         onClick={() => downPage()}
         title="انتخاب شهرها"
       />
-
-      {/* <Explain text="توضیحات به حجره دار" /> */}
       <CheckboxTreeCities
         checkedCity={editCheckedCities}
         setCheckedCity={setEditCheckedCities}
       />
-
-      {/* two */}
       <div style={{ marginBottom: "35px" }}></div>
       <HeaderTitle
         enabel={false}
         onClick={() => downPage()}
         title="انتخاب محصولات"
       />
-
       <Explain text="" />
-
       <CheckBoxSend
         checked={editcheckedSelectAllProducts}
         onChange={() =>
@@ -181,7 +151,6 @@ function AllEdit({
         id="selectAllProducts"
         title="تمام محصولات"
       />
-
       {!editcheckedSelectAllProducts && (
         <Products
           _handle_update_data_scope={_handle_update_data_scope}
@@ -190,12 +159,10 @@ function AllEdit({
           title="ثبت محصولات"
         />
       )}
-
       {/* three */}
       <>
         <Explain
           text="
-
            آیا ارسال به صورت پس کرایه (پرداخت هزینه توسط مشتری زمان دریافت محصول) است؟
             "
         />
@@ -257,7 +224,6 @@ function AllEdit({
               });
             }
           }
-          // _handle_send_info_scope({ name: data.name ? data.name : "بدون نام" })
         )}
       >
         {checkNO && (
@@ -266,7 +232,6 @@ function AllEdit({
               <Explain
                 text="
               آیا میخواید محصولات انتخاب شده به صورت رایگان ارسال شود؟
-
             "
               />
               <CheckBoxSend
@@ -314,9 +279,7 @@ function AllEdit({
               )}
             </>
             {/* five */}
-
             <Explain text="" />
-
             {!checkYesFree && (
               <>
                 {/* iiiiiii */}
@@ -326,10 +289,6 @@ function AllEdit({
                       id="select-unit"
                       onChange={(a) => {
                         setWitchUnit(a.target.value);
-                        // setselectShop(a.target.value);
-                        // setSlugHojreh(a.target.value);
-                        // getActiveHojreh(a.target.value);
-                        // ForHeader(a);
                       }}
                     >
                       <option value="kg">کیلوگرم</option>

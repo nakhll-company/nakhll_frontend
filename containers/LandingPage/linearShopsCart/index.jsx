@@ -1,11 +1,16 @@
+// node libraries
 import React, { useEffect, useState } from "react";
-
-import styles from "./HeroSlides.module.scss";
+// components
 import ShopCart from "../../../components/ui/shopCart";
+// methods
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+// style
+import styles from "./HeroSlides.module.scss";
 
 function LinearShopsCart({ part }) {
+
   const [shopes, setShopes] = useState([]);
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -23,10 +28,12 @@ function LinearShopsCart({ part }) {
             setShopes(response.data.slice(15));
           }
         }
-      } catch (error) {}
+      } catch (error) {
+        return false;
+      }
     }
     fetchData();
-  }, []);
+  }, [part]);
 
   return (
     <div className="container-full ">

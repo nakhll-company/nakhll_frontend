@@ -1,85 +1,46 @@
-import React, { useEffect, useState } from "react";
-import Head from "next/head";
-import ContextListProductPage from "./Context/context";
-import CustomAccordion from "../../components/custom/customAccordion";
+// node libraries
 import CheckboxTree from "react-checkbox-tree";
-
-import MultiRangeSlider from "../../components/custom/customMultiRangeSlider/MultiRangeSlider";
-import { allCites } from "../../components/custom/data/data";
-import CustomSwitch from "../../components/custom/customSwitch";
+import Assistent from "zaravand-assistent-number";
+import React, { useEffect, useState } from "react";
+// components
 import { TopBar } from "./TopBar";
-import InfiniteScroll from "react-infinite-scroll-component";
+import ContextListProductPage from "./Context/context";
 import MenuMobile from "../../components/layout/MenuMobile";
+import InfiniteScroll from "react-infinite-scroll-component";
+import CustomSwitch from "../../components/custom/customSwitch";
+import ProductCard from "../../components/ProductCart/ProductCard";
+import CustomAccordion from "../../components/custom/customAccordion";
+import MultiRangeSlider from "../../components/custom/customMultiRangeSlider/MultiRangeSlider";
+// methods
+import { allCites } from "../../components/custom/data/data";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { WoLoading } from "../../components/custom/Loading/woLoading/WoLoading";
-import ProductCard from "../../components/ProductCart/ProductCard";
+// style
 import styles from "./listProduct.module.scss";
-import Assistent from "zaravand-assistent-number";
+
 const _asist = new Assistent();
-function ListProduct({
-  dataFirst,
-  searchWord = "",
-  shop_products = "",
-  categoryIn = "",
-}) {
-  const [listProducts, setlistProducts] = useState([]);
-  const [listWithFilter, setListWithFilter] = useState([]);
-  // state for  show Ordering Modal in mobile
-  const [isOpenModal, setIsOpenModal] = useState(false);
-  const [isOpenOrderingModal, setIsOpenOrderingModal] = useState(false);
-  const [totalcount, setTotalcount] = useState("");
-  // state for show loading
-  const [isLoading, setIsLoading] = useState(false);
-  // state for ordering
-  const [whichOrdering, setWhichOrdering] = useState("");
 
-  // state for on filter
-  const [isDiscountPercentage, setIsDiscountPercentage] = useState(false);
-  const [isReadyForSend, setIsReadyForSend] = useState(false);
-  const [isAvailableGoods, setIsAvailableGoods] = useState(false);
+function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
 
-  // Array for cateGory
-  const [categories, setCategories] = useState([]);
-  const [wantCategories, setWantCategories] = useState([]);
-
-  const [checkedCity, setCheckedCity] = useState([]);
-  const [expandCity, setExpandCity] = useState([]);
-
-  // state for handel pagination in api
+  const listProducts = [];
   const [pageApi, setPageApi] = useState(2);
-  const [hasMore, setHasMore] = useState(false);
-
-  // stat for Range
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+  const [hasMore, setHasMore] = useState(false);
+  const [totalcount, setTotalcount] = useState("");
+  const [categories, setCategories] = useState([]);
+  const [expandCity, setExpandCity] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [checkedCity, setCheckedCity] = useState([]);
   const [clickOnRange, setClickOnRange] = useState(1);
-
-  const _handel_category = async () => {
-    try {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        `/api/v1/sub_markets/?q=${searchWord}`,
-        true,
-        {}
-      );
-      if (response.status === 200) {
-        setCategories(response.data);
-      }
-    } catch (e) { }
-  };
-
-  const _handel_Add_category = (id) => {
-    let copyArray = [...wantCategories];
-
-    let newArray = copyArray.filter((element) => element != id);
-
-    if (copyArray.length == newArray.length) {
-      setWantCategories([...newArray, id]);
-    } else {
-      setWantCategories(newArray);
-    }
-  };
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [whichOrdering, setWhichOrdering] = useState("");
+  const [listWithFilter, setListWithFilter] = useState([]);
+  const [wantCategories, setWantCategories] = useState([]);
+  const [isReadyForSend, setIsReadyForSend] = useState(false);
+  const [isAvailableGoods, setIsAvailableGoods] = useState(false);
+  const [isOpenOrderingModal, setIsOpenOrderingModal] = useState(false);
+  const [isDiscountPercentage, setIsDiscountPercentage] = useState(false);
 
   const _handel_filters = async (witchFilter) => {
     setHasMore(true);
@@ -129,6 +90,16 @@ function ListProduct({
     }
   };
 
+  const _handel_Add_category = (id) => {
+    let copyArray = [...wantCategories];
+    let newArray = copyArray.filter((element) => element != id);
+    if (copyArray.length == newArray.length) {
+      setWantCategories([...newArray, id]);
+    } else {
+      setWantCategories(newArray);
+    }
+  };
+
   const _handel_call_another_page_api = async (witchFilter) => {
     try {
       let response = await ApiRegister().apiRequest(
@@ -157,24 +128,41 @@ function ListProduct({
       );
       if (response.status === 200) {
         const ContinueList = response.data.results;
-
         setListWithFilter([...listWithFilter, ...ContinueList]);
-
         if (ContinueList.length === 0 || ContinueList.length < 50) {
           setHasMore(false);
         }
-
         setPageApi(pageApi + 1);
       }
-    } catch (e) { }
+    } catch (e) { return false; }
   };
 
-  // START
   // for filters in sidebar
-  useEffect(async () => {
-    await _handel_filters();
-    await _handel_category();
+  useEffect(() => {
+    async function fetchData() {
+      const _handel_category = async () => {
+        try {
+          let response = await ApiRegister().apiRequest(
+            null,
+            "get",
+            `/api/v1/sub_markets/?q=${searchWord}`,
+            true,
+            {}
+          );
+          if (response.status === 200) {
+            setCategories(response.data);
+          }
+        } catch (e) { return false; }
+      };
+      await _handel_filters();
+      await _handel_category();
+    }
+    fetchData();
+
   }, [
+    _handel_filters,
+    maxPrice, minPrice, shop_products,
+    searchWord,
     isAvailableGoods,
     isReadyForSend,
     isDiscountPercentage,
@@ -186,8 +174,6 @@ function ListProduct({
   ]);
 
   // for filters in sidebar
-  // END
-
   const handel_filterModal = () => {
     setIsOpenModal(!isOpenModal);
   };

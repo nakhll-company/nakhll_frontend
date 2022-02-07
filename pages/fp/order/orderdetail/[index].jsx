@@ -4,11 +4,11 @@ import Image from "next/image";
 import { Formik, Form, Field } from "formik";
 import Assistent from "zaravand-assistent-number";
 import { Fragment, useEffect, useState } from "react";
-// methods
-import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 // components
 import useViewport from "../../../../components/viewPort";
 import MyLayout from "../../../../components/layout/Layout";
+// methods
+import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 // sass
 import styles from "../../../../styles/pages/order/orderdetail.module.scss";
 
@@ -30,13 +30,13 @@ function HomePage({ id }) {
       .typeError("فقط عدد مجاز است.")
       .required("کد رهگیری الزامی می باشد."),
   });
-  const { width } = useViewport();
   const breakpoint = 620;
-  const [IsLoading, setIsLoading] = useState(false);
-  const [showMessage, setshowMessage] = useState(0);
+  const { width } = useViewport();
   const [data, setdata] = useState({});
   const [isShow, setisShow] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [IsLoading, setIsLoading] = useState(false);
+  const [showMessage, setshowMessage] = useState(0);
   const [configOrder, setconfigOrder] = useState(false);
 
   const _handleRequestApi = async (id) => {

@@ -18,20 +18,15 @@ import { getBigCities } from "../../../../api/general/getBigCities";
 import styles from "./hojrehForm.module.scss";
 
 function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
-  const [ChoiceBigCity, setChoiceBigCity] = useState(
-    apiSetting.FK_ShopManager.User_Profile.BigCity
-  );
-  const [ChoiceCity, setChoiceCity] = useState(
-    apiSetting.FK_ShopManager.User_Profile.City
-  );
-  const [ChoiceState, setChoiceState] = useState(
-    apiSetting.FK_ShopManager.User_Profile.State
-  );
+
   const [IsLoading, setIsLoading] = useState(false);
   const [showMessage, setshowMessage] = useState(0);
   const [selectState, setSelectState] = useState([]);
   const [selectCities, setSelectCities] = useState([]);
   const [selectBigCities, setSelectBigCities] = useState([]);
+  const [ChoiceCity, setChoiceCity] = useState(apiSetting.FK_ShopManager.User_Profile.City);
+  const [ChoiceState, setChoiceState] = useState(apiSetting.FK_ShopManager.User_Profile.State);
+  const [ChoiceBigCity, setChoiceBigCity] = useState(apiSetting.FK_ShopManager.User_Profile.BigCity);
 
   useEffect(() => {
     async function fetchData() {
@@ -97,7 +92,7 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
           }
         }}
       >
-        {(props) => (
+        {() => (
           <Form>
             <TitleLiner title="حجره" />
             <FieldCus

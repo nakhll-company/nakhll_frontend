@@ -3,7 +3,7 @@ import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 // components
 import Number from "../../../components/number";
 import ShopLayout from "../../../components/shopLayout";
@@ -56,9 +56,8 @@ function Send() {
             </span>
           </div>
           {ListItems.map((el, index) => (
-            <>
+            <Fragment key={index}>
               <CustomAccordionSend
-                key={index}
                 title={` حجره ${el.shop_name}`}
                 item={`Send_${index}_acor`}
                 close={true}
@@ -66,8 +65,8 @@ function Send() {
                 unit_type={el.logistic_units[0].unit_type}
                 logistic_units={el.logistic_units}
               >
-                {Object.values(el.logistic_units).map((ef) => (
-                  <>
+                {Object.values(el.logistic_units).map((ef, index) => (
+                  <Fragment key={index}>
                     <div
                       style={{ background: "#fff", padding: "10px 15px" }}
                     >
@@ -104,10 +103,10 @@ function Send() {
                         ))}
                       </div>
                     </div>
-                  </>
+                  </Fragment>
                 ))}
               </CustomAccordionSend>
-            </>
+            </Fragment>
           ))}
           <button
             onClick={() =>

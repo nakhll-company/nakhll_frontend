@@ -1,38 +1,49 @@
-import React, { useEffect, useState } from "react";
+// node libraries
 import Head from "next/head";
-import Link from "next/link";
+import Script from "next/script";
+import React, { useEffect, useState } from "react";
+// components
 import MenuMobile from "../../../components/layout/MenuMobile";
-import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import ProductCard from "../../../components/ProductCart/ProductCard";
+// methods
+import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
 
 function ListWitOutFilters({ api }) {
+
+  const isLoading = false;
   const [listProducts, setlistProducts] = useState([]);
-  // state for show loading
-  const [isLoading, setIsLoading] = useState(false);
-
-  const _Call_Products = async () => {
-    try {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        api,
-        false,
-        {}
-      );
-
-      if (response.status === 200) {
-        setlistProducts(response.data);
-      }
-    } catch (e) {}
-  };
 
   useEffect(() => {
+    const _Call_Products = async () => {
+      try {
+        let response = await ApiRegister().apiRequest(
+          null,
+          "get",
+          api,
+          false,
+          {}
+        );
+        if (response.status === 200) {
+          setlistProducts(response.data);
+        }
+      } catch (e) { return false; }
+    };
     _Call_Products();
-  }, []);
+  }, [api]);
 
   return (
     <>
+      <Script
+        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossOrigin="anonymous"
+      ></Script>
+      <Script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossOrigin="anonymous"
+      ></Script>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
@@ -41,16 +52,6 @@ function ListWitOutFilters({ api }) {
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossOrigin="anonymous"
         />
-        <script
-          src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-          integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-          crossOrigin="anonymous"
-        ></script>
-        <script
-          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-          integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-          crossOrigin="anonymous"
-        ></script>
         <link
           rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
@@ -79,7 +80,6 @@ function ListWitOutFilters({ api }) {
           </div>
         </div>
       </div>
-
       {/* MenuMobile */}
       <MenuMobile />
       {/* MenuMobile */}

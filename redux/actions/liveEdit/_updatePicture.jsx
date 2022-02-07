@@ -22,8 +22,7 @@ export const _updatePicture = (img) => {
         params
       );
 
-      if (response.status === 201) {
-      } else {
+      if (response.status !== 201) {
         alert("در بارگذاری عکس مشکلی پیش آمده");
       }
     } catch (err) {

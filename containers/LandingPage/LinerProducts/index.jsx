@@ -1,8 +1,11 @@
+// node libraries
 import React from "react";
 import Link from "next/link";
-import ProductCard from "../../../components/ProductCart/ProductCard";
-import styles from "./LinerProducts.module.scss";
 import { useSelector } from "react-redux";
+// components
+import ProductCard from "../../../components/ProductCart/ProductCard";
+// style
+import styles from "./LinerProducts.module.scss";
 
 function LinerProducts({
   noScroll = false,
@@ -12,7 +15,6 @@ function LinerProducts({
   subTitle,
   dataLinerProducts,
   url,
-
   xl = 2,
   md = 4,
   lg = 3,
@@ -41,11 +43,10 @@ function LinerProducts({
             <div className={styles.Button}>
               <button>
                 <Link
-                  href={`${
-                    url.includes("search=") || url.includes("q=")
+                  href={`${url.includes("search=") || url.includes("q=")
                       ? `${url}`
                       : `/search?ap=${url}`
-                  }`}
+                    }`}
                 >
                   <a>مشاهده همه</a>
                 </Link>
@@ -92,11 +93,10 @@ function LinerProducts({
             <div className={styles.Button}>
               <button>
                 <Link
-                  href={`${
-                    url.includes("search=") || url.includes("q=")
+                  href={`${url.includes("search=") || url.includes("q=")
                       ? `${url}`
                       : `/search?ap=${url}`
-                  }`}
+                    }`}
                 >
                   <a>مشاهده همه</a>
                 </Link>

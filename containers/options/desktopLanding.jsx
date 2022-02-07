@@ -5,7 +5,6 @@ import Assistent from "zaravand-assistent-number";
 // component
 import CustomSwitch from "../../components/custom/customSwitch";
 // methods
-
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { deleteItemListLanding } from "./methods/deleteItemListLanding";
 import { activeListItemLanding } from "./methods/activeListItemLanding";
@@ -16,6 +15,7 @@ import styles from "./scss/desktopLanding.module.scss";
 const _asist = new Assistent();
 
 const DesktopLanding = ({ landingList, activeHojreh, setLandingList }) => {
+
   const router = useRouter();
 
   return (

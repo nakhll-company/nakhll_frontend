@@ -135,19 +135,19 @@ export default function DesktopOrders({
               ordersList.map((value, index) => {
                 return (
                   <tr key={index}>
-                    <Link href={`/fp/order/orderdetail/${value.id}`}>
+                    <Link href={`/fp/order/orderdetail/${value.id}`} passHref>
                       <td>{_asist.number(index + 1)}</td>
                     </Link>
-                    <Link href={`/fp/order/orderdetail/${value.id}`}>
+                    <Link href={`/fp/order/orderdetail/${value.id}`} passHref>
                       <td>{_asist.number(value.id)}</td>
                     </Link>
-                    <Link href={`/fp/order/orderdetail/${value.id}`}>
+                    <Link href={`/fp/order/orderdetail/${value.id}`} passHref>
                       <td>{value.items[0].buyer}</td>
                     </Link>
-                    <Link href={`/fp/order/orderdetail/${value.id}`}>
+                    <Link href={`/fp/order/orderdetail/${value.id}`} passHref>
                       <td>{_asist.number(value.created_date_jalali)}</td>
                     </Link>
-                    <Link href={`/fp/order/orderdetail/${value.id}`}>
+                    <Link href={`/fp/order/orderdetail/${value.id}`} passHref>
                       <td>
                         {value.status === "awaiting_paying" && <CustomBadge
                           title="در انتظار پرداخت"

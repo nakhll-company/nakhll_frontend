@@ -16,7 +16,7 @@ import styles from "./scss/mobileLanding.module.scss";
 
 const _asist = new Assistent();
 
-const MobileLanding = ({ landingList, id, activeHojreh, setLandingList }) => {
+const MobileLanding = ({ landingList, activeHojreh, setLandingList }) => {
   const router = useRouter();
   return (
     <div>

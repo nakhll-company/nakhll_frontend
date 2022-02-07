@@ -15,9 +15,12 @@ const OrdersDetail = ({ invoiceId }) => {
     const [loading, setLoading] = useState(true);
     const [detailData, setDetailData] = useState({});
 
-    useEffect(async () => {
-        await getOrderDetail(invoiceId, setDetailData, setLoading);
-    }, []);
+    useEffect(() => {
+        async function fetchData() {
+            await getOrderDetail(invoiceId, setDetailData, setLoading);
+        }
+        fetchData();
+    }, [invoiceId]);
 
     let jsonAddress = detailData.address_json || "{}";
     jsonAddress = JSON.parse(jsonAddress);
@@ -91,7 +94,7 @@ const OrdersDetail = ({ invoiceId }) => {
                                 <div className="d-flex align-items-center">
                                     <Link href={`/shop/${value.shop_slug}/product/${value.slug}`}>
                                         <a>
-                                            {value.image && <img src={value.image} alt="" style={{ width: "3.2rem", borderRadius: "1.5rem", marginLeft: "1rem" }} />}
+                                            {value.image && <Image src={value.image} alt="" style={{ width: "3.2rem", borderRadius: "1.5rem", marginLeft: "1rem" }} />}
                                         </a>
                                     </Link>
                                     <div className="d-flex flex-column flex-md-row align-items-center">

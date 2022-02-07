@@ -17,20 +17,15 @@ import TextAreaUseForm from "../../creat/component/textAreaUseForm";
 import styles from "./SelectUrl.module.scss";
 
 const _asist = new Assistent();
+
 function SelectUrl({ idLanding }) {
-  const [showInput, setShowInput] = useState(false);
-  // useform
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    criteriaMode: "all",
-    mode: "all",
-  });
-  let apiListPinned = ApiReference.PinnedURL.PinnedList.url;
+
   const dispatch = useDispatch();
   const [list, setList] = useState([]);
+  const [showInput, setShowInput] = useState(false);
+  let apiListPinned = ApiReference.PinnedURL.PinnedList.url;
+  const { register, handleSubmit } = useForm({ criteriaMode: "all", mode: "all" });
+
   useEffect(() => {
     async function fetchData() {
       let response = await ApiRegister().apiRequest(
@@ -40,7 +35,6 @@ function SelectUrl({ idLanding }) {
         true,
         ""
       );
-
       if (response.status == 200) {
         setList(response.data);
       }
@@ -123,14 +117,6 @@ function SelectUrl({ idLanding }) {
                       </TextAreaUseForm>
                       <SubButton title="ثبت ویدیو" />
                       <div className={styles.wrapBtn}>
-                        {/* <button
-                          onClick={() => {
-                            dispatch(_updateUrl("www", "فیلم ثبت شده توسط شما"));
-                            dispatch(_showSelect_url());
-                          }}
-                        >
-                          ثبت
-                        </button> */}
                       </div>
                     </form>
                   </div>

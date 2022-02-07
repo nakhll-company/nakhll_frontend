@@ -25,8 +25,11 @@ const Orders = ({ setProfilePages, setInvoiceId }) => {
     const [loading, setLoading] = useState(true);
     const [ordersList, setOrdersList] = useState([]);
 
-    useEffect(async () => {
-        await getUserOrders(setOrdersList, setLoading);
+    useEffect(() => {
+        async function fetchData() {
+            await getUserOrders(setOrdersList, setLoading);
+        }
+        fetchData();
     }, []);
 
     return (
@@ -84,7 +87,7 @@ const Orders = ({ setProfilePages, setInvoiceId }) => {
                                                     </span>
                                                     <span style={{ color: "#006060", cursor: "pointer" }} onClick={async () => {
                                                         await setInvoiceId(value.id);
-                                                        await setProfilePages((pre) => {
+                                                        await setProfilePages(() => {
                                                             return {
                                                                 editProfile: false,
                                                                 ordersPage: false,
@@ -96,7 +99,7 @@ const Orders = ({ setProfilePages, setInvoiceId }) => {
                                                     }}>{(value.status === "completed" || value.status === "wait_store_checkout") && "تکمیل شده"}</span>
                                                     <span style={{ color: "#006060", cursor: "pointer" }} onClick={async () => {
                                                         await setInvoiceId(value.id);
-                                                        await setProfilePages((pre) => {
+                                                        await setProfilePages(() => {
                                                             return {
                                                                 editProfile: false,
                                                                 ordersPage: false,
@@ -108,7 +111,7 @@ const Orders = ({ setProfilePages, setInvoiceId }) => {
                                                     }}>{value.status === "wait_store_approv" && "در انتظار تأیید فروشگاه"}</span>
                                                     <span style={{ color: "#006060", cursor: "pointer" }} onClick={async () => {
                                                         await setInvoiceId(value.id);
-                                                        await setProfilePages((pre) => {
+                                                        await setProfilePages(() => {
                                                             return {
                                                                 editProfile: false,
                                                                 ordersPage: false,
@@ -120,7 +123,7 @@ const Orders = ({ setProfilePages, setInvoiceId }) => {
                                                     }}>{value.status === "preparing_product" && "در حال آماده سازی"}</span>
                                                     <span style={{ color: "#006060", cursor: "pointer" }} onClick={async () => {
                                                         await setInvoiceId(value.id);
-                                                        await setProfilePages((pre) => {
+                                                        await setProfilePages(() => {
                                                             return {
                                                                 editProfile: false,
                                                                 ordersPage: false,

@@ -1,5 +1,6 @@
 // node libraries
 import React from 'react';
+import Image from 'next/image';
 // scss
 import styles from '../../styles/pages/productDetail/imagesInModal.module.scss';
 
@@ -21,17 +22,17 @@ const ShowImages = ({
             <h3 className="p-3 mb-3">{productTitle && productTitle}</h3>
             <div className="row">
                 <div className={`col-8 ${styles.orginalImage}`}>
-                    {originalPhoto && <img id="modalOrginal" src={`${originalPhoto}`} alt="originalPhoto" />}
+                    {originalPhoto && <Image id="modalOrginal" src={`${originalPhoto}`} alt="originalPhoto" />}
                 </div>
                 <div className={`col-4 ${styles.imagesWrapper}`}>
-                    {originalPhoto && <img id="modalOrginal" src={`${originalPhoto}`} alt="originalPhoto"
+                    {originalPhoto && <Image id="modalOrginal" src={`${originalPhoto}`} alt="originalPhoto"
                         onClick={(event) => {
                             changeImage(event.target.id);
                         }}
                     />}
                     {thumbnailImages && thumbnailImages.length > 0 && thumbnailImages.map((value, index) => {
                         return (
-                            <img id={`image${index}`} key={index} src={`${value.image}`} alt={`${productTitle}`}
+                            <Image id={`image${index}`} key={index} src={`${value.image}`} alt={`${productTitle}`}
                                 onClick={(event) => {
                                     changeImage(event.target.id);
                                 }}

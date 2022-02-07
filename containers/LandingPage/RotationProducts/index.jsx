@@ -1,6 +1,8 @@
-import st from "./rotationProduct.module.scss";
+// node libraries
 import Image from "next/image";
-import { useState } from "react";
+// style
+import st from "./rotationProduct.module.scss";
+
 function RotationProducts({ data }) {
   return (
     <>

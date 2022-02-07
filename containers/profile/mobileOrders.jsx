@@ -55,7 +55,7 @@ const MobileOrders = ({ ordersList, setProfilePages, setInvoiceId, loading }) =>
                                     {value.items.length > 0 && value.items.map((value, index) => (
                                         <Link href={`shop/${value.shop_slug}/product/${value.slug}`} key={index}>
                                             <a target="_blank" key={index}>
-                                                {value.image && <img src={value.image} alt={value.title} className="rounded-lg ml-2" width="35" height="35" />}
+                                                {value.image && <Image src={value.image} alt={value.title} className="rounded-lg ml-2" width="35" height="35" />}
                                             </a>
                                         </Link>
                                     ))}
@@ -70,7 +70,7 @@ const MobileOrders = ({ ordersList, setProfilePages, setInvoiceId, loading }) =>
                                 <div className={`${styles.detail} p-3`}>
                                     <span className={`btn ${styles.btn_gray} btn-sm font-size-sm flex-grow-1 d-flex`} onClick={async () => {
                                         await setInvoiceId(value.id);
-                                        await setProfilePages((pre) => {
+                                        await setProfilePages(() => {
                                             return {
                                                 editProfile: false,
                                                 ordersPage: false,

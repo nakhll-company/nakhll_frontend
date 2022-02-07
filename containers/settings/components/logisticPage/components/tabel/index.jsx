@@ -1,17 +1,20 @@
+// node libraries
 import { useEffect, useState } from "react";
-
-import { ApiRegister } from "../../../../../../services/apiRegister/ApiRegister";
-import SBSendUnit from "../sendUnit/switchButtonSendUnit";
-import st from "./tabel.module.scss";
 import Assistent from "zaravand-assistent-number";
+// components
+import SBSendUnit from "../sendUnit/switchButtonSendUnit";
 import LoadingAllPage from "../../../../../../components/loadingAllPage";
+// methods
+import { ApiRegister } from "../../../../../../services/apiRegister/ApiRegister";
+// style
+import st from "./tabel.module.scss";
+
 const _asist = new Assistent();
 
 function Tabel({ changePage, setWichIdScope }) {
-  // state for Saved Sending Unit
-  const [SavedSendingUnit, setSavedSendingUnit] = useState([]);
 
   const [loaderTable, setLoaderTable] = useState(false);
+  const [SavedSendingUnit, setSavedSendingUnit] = useState([]);
 
   useEffect(() => {
     async function fetchData() {

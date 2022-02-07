@@ -59,30 +59,7 @@ const MobileOrders = ({ loading, ordersList }) => {
                     label="ثبت"
                     customLabelDiv="wrapper_custom_label"
                   />
-                  {/* <div className={styles.card_details}>
-                    <li className="fas fa-shopping-basket"></li>
-                    <span className={styles.card_details_span}>
-                      {value.factor_posts_count} کالا
-                    </span>
-                    <li className="fas fa-map-marker"></li>
-                    <span className={styles.card_details_span}>
-                      {value.state}-{value.big_city}
-                    </span>
-                  </div> */}
                   <div className={styles.card_image_wrapper}>
-                    {/* {value.image_thumbnail.length > 0 &&
-                      value.factor_posts_summary.map((value, index) => {
-                        return (
-                          <div key={index} className={styles.card_image}>
-                            <Image
-                              src={value.product_image_thumbnail}
-                              alt="sort"
-                              width="45"
-                              height="45"
-                            />
-                          </div>
-                        );
-                      })} */}
                   </div>
                 </a>
               </Link>

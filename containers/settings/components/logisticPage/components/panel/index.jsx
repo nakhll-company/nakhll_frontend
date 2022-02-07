@@ -1,57 +1,55 @@
-import { useEffect, useState } from "react";
-import LoadingAllPage from "../../../../../../components/loadingAllPage";
-import { ApiRegister } from "../../../../../../services/apiRegister/ApiRegister";
-import SendBoxCu from "../sendBoxCu";
-import SBSendUnit from "../sendUnit/switchButtonSendUnit";
-import { useSelector } from "react-redux";
-import st from "./panel.module.scss";
+// node libraries
 import Image from "next/image";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import Assistent from "zaravand-assistent-number";
+// ciomponents
+import SBSendUnit from "../sendUnit/switchButtonSendUnit";
+import LoadingAllPage from "../../../../../../components/loadingAllPage";
+// methods
+import { ApiRegister } from "../../../../../../services/apiRegister/ApiRegister";
+// style
+import st from "./panel.module.scss";
+
 const _asist = new Assistent();
+
 function Panel({
   setConstraintId,
   setMetricId,
   setWichIdScope,
-
   setInformationForm,
   setWichPage,
 }) {
-  const activeHojreh = useSelector((state) => state.User.activeHojreh);
-  // state for Saved Sending Unit
-  const [SavedSendingUnit, setSavedSendingUnit] = useState([]);
 
   const [loaderTable, setLoaderTable] = useState(false);
+  const [SavedSendingUnit, setSavedSendingUnit] = useState([]);
+  const activeHojreh = useSelector((state) => state.User.activeHojreh);
 
   useEffect(() => {
     async function fetchData() {
       let response = await ApiRegister().apiRequest(
         null,
         "get",
-
         `/api/v1/logistic/shop-logistic-unit/?shop=${activeHojreh}`,
         true,
         ""
       );
-
       if (response.status == 200) {
         setSavedSendingUnit(response.data);
       }
     }
-
     fetchData();
-  }, []);
+  }, [activeHojreh]);
 
   const _handle_delete_scope = async (id) => {
     setLoaderTable(true);
     let response = await ApiRegister().apiRequest(
       null,
       "DELETE",
-
       `/api/v1/logistic/shop-logistic-unit/${id}/`,
       true,
       ""
     );
-
     if (response.status == 204) {
       let helpArray = SavedSendingUnit.filter((el) => el.id !== id);
       setSavedSendingUnit(helpArray);
@@ -82,10 +80,8 @@ function Panel({
               <div className={st.card_right_top}>
                 <span>{_asist.PSeparator(_asist.PSeparator(el.name))}</span>
               </div>
-
               <div className={st.card_right_btm}>
                 {/* icons */}
-
                 <div className={st.icon_post}>
                   {el.logo && (
                     <Image
@@ -140,10 +136,6 @@ function Panel({
                     id={el.id}
                   />
                 </div>
-                {/* <i
-                  onClick={() => _handle_delete_scope(el.id)}
-                  className="fas fa-times-circle"
-                ></i> */}
                 <div
                   onClick={() => _handle_delete_scope(el.id)}
                   style={{ cursor: "pointer" }}

@@ -27,68 +27,32 @@ import { useSelector } from "react-redux";
 const _asist = new Assistent();
 
 function ListProductCus({ data }) {
-  
+
+  const changePage = 1;
+  const [pageApi, setPageApi] = useState(2);
+  const [hasMore, setHasMore] = useState(false);
+  const [shopsName, setShopsName] = useState([]);
+  const [NameHojreh, setNameHojreh] = useState("");
+  const [totalcount, setTotalcount] = useState("");
+  const [expandCity, setExpandCity] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [searchShops, setSearchShops] = useState([]);
+  const [clickOnRange, setClickOnRange] = useState(1);
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [listWithFilter, setListWithFilter] = useState([]);
   const userData = useSelector((state) => state.User.userInfo);
   const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
   const [searchWord, setSearchWord] = useState(data.q ? data.q : "");
-  const [listWithFilter, setListWithFilter] = useState([]);
-  // state for  show Ordering Modal in mobile
-  const [isOpenModal, setIsOpenModal] = useState(false);
   const [isOpenOrderingModal, setIsOpenOrderingModal] = useState(false);
-  const [totalcount, setTotalcount] = useState("");
-  // state for show loading
-  const [isLoading, setIsLoading] = useState(false);
-  // state for ordering
-  const [whichOrdering, setWhichOrdering] = useState(
-    data.ordering ? data.ordering : ""
-  );
-  // state for on filter
-  const [isDiscountPercentage, setIsDiscountPercentage] = useState(
-    data.discounted == "true" ? true : false
-  );
-  const [isReadyForSend, setIsReadyForSend] = useState(
-    data.ready == "true" ? true : false
-  );
-  const [isAvailableGoods, setIsAvailableGoods] = useState(
-    data.available == "true" ? true : false
-  );
-  // category
-
-  // Array for cateGory
-  const [categories, setCategories] = useState([
-    ...(data.new_category
-      ? data.new_category.split(",").map((el) => parseInt(el))
-      : []),
-  ]);
-  const [wantCategories, setWantCategories] = useState([
-    ...(data.new_category
-      ? data.new_category.split(",").map((el) => parseInt(el))
-      : []),
-  ]);
-
-  const [checkedCity, setCheckedCity] = useState([
-    ...(data.city ? data.city.split(",").map((el) => parseInt(el)) : []),
-  ]);
-  const [expandCity, setExpandCity] = useState([]);
-
-  // state for handel pagination in api
-  const [pageApi, setPageApi] = useState(2);
-  const [hasMore, setHasMore] = useState(false);
-
-  // stat for Range
-  const [minPrice, setMinPrice] = useState(
-    data.min_price ? parseInt(data.min_price) : 0
-  );
-  const [maxPrice, setMaxPrice] = useState(
-    data.max_price ? parseInt(data.max_price) : 10000
-  );
-  const [clickOnRange, setClickOnRange] = useState(1);
-  // save all shopsName
-  const [shopsName, setShopsName] = useState([]);
-  const [searchShops, setSearchShops] = useState([]);
-  // state for change page
-  const [changePage, setChangePage] = useState(1);
-  const [NameHojreh, setNameHojreh] = useState("");
+  const [whichOrdering, setWhichOrdering] = useState(data.ordering ? data.ordering : "");
+  const [minPrice, setMinPrice] = useState(data.min_price ? parseInt(data.min_price) : 0);
+  const [isReadyForSend, setIsReadyForSend] = useState(data.ready == "true" ? true : false);
+  const [maxPrice, setMaxPrice] = useState(data.max_price ? parseInt(data.max_price) : 10000);
+  const [isAvailableGoods, setIsAvailableGoods] = useState(data.available == "true" ? true : false);
+  const [isDiscountPercentage, setIsDiscountPercentage] = useState(data.discounted == "true" ? true : false);
+  const [checkedCity, setCheckedCity] = useState([...(data.city ? data.city.split(",").map((el) => parseInt(el)) : []),]);
+  const [categories, setCategories] = useState([...(data.new_category ? data.new_category.split(",").map((el) => parseInt(el)) : []),]);
+  const [wantCategories, setWantCategories] = useState([...(data.new_category ? data.new_category.split(",").map((el) => parseInt(el)) : []),]);
 
   const _handel_category = async () => {
     try {
@@ -102,7 +66,7 @@ function ListProductCus({ data }) {
       if (response.status === 200) {
         setCategories(response.data);
       }
-    } catch (e) {}
+    } catch (e) { return false; }
   };
 
   const _handel_Add_category = (id) => {
@@ -114,58 +78,6 @@ function ListProductCus({ data }) {
       setWantCategories([...newArray, id]);
     } else {
       setWantCategories(newArray);
-    }
-  };
-
-  const _handel_filters = async (witchFilter) => {
-    setHasMore(true);
-    setIsLoading(true);
-
-    let params = {
-      ...(witchFilter ? witchFilter : null),
-      search: searchWord,
-      ...(whichOrdering !== "" && { ordering: whichOrdering }),
-      ...(isReadyForSend && { ready: isReadyForSend }),
-      ...(isAvailableGoods && { available: isAvailableGoods }),
-      ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
-
-      ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
-
-      ...(wantCategories.length > 0 && {
-        new_category: wantCategories.toString(),
-      }),
-
-      page_size: 50,
-      ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
-      ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
-      ...(hojreh !== "" && { shop: hojreh }),
-    };
-
-    try {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        `/api/v1/products/`,
-        false,
-        params
-      );
-      if (response.status === 200) {
-        setListWithFilter(response.data.results);
-        setNameHojreh(response.data.results[0].FK_Shop.title);
-
-        if (
-          response.data.results.length === 0 ||
-          response.data.results.length < 50
-        ) {
-          setHasMore(false);
-        }
-
-        setTotalcount(response.data.total_count);
-
-        setIsLoading(false);
-      }
-    } catch (e) {
-      setIsLoading(false);
     }
   };
 
@@ -205,7 +117,7 @@ function ListProductCus({ data }) {
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) {}
+    } catch (e) { return false; }
   };
   // Get all shops
   const _get_all_shops = async () => {
@@ -240,10 +152,62 @@ function ListProductCus({ data }) {
   // for filters in sidebar
   useEffect(() => {
     async function fetchData() {
+      const _handel_filters = async (witchFilter) => {
+        setHasMore(true);
+        setIsLoading(true);
+
+        let params = {
+          ...(witchFilter ? witchFilter : null),
+          search: searchWord,
+          ...(whichOrdering !== "" && { ordering: whichOrdering }),
+          ...(isReadyForSend && { ready: isReadyForSend }),
+          ...(isAvailableGoods && { available: isAvailableGoods }),
+          ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
+
+          ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
+
+          ...(wantCategories.length > 0 && {
+            new_category: wantCategories.toString(),
+          }),
+
+          page_size: 50,
+          ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
+          ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
+          ...(hojreh !== "" && { shop: hojreh }),
+        };
+
+        try {
+          let response = await ApiRegister().apiRequest(
+            null,
+            "get",
+            `/api/v1/products/`,
+            false,
+            params
+          );
+          if (response.status === 200) {
+            setListWithFilter(response.data.results);
+            setNameHojreh(response.data.results[0].FK_Shop.title);
+
+            if (
+              response.data.results.length === 0 ||
+              response.data.results.length < 50
+            ) {
+              setHasMore(false);
+            }
+
+            setTotalcount(response.data.total_count);
+
+            setIsLoading(false);
+          }
+        } catch (e) {
+          setIsLoading(false);
+        }
+      };
       await _handel_filters();
     }
     fetchData();
   }, [
+    maxPrice, minPrice,
     data,
     isAvailableGoods,
     isReadyForSend,
@@ -467,7 +431,6 @@ function ListProductCus({ data }) {
             <div
               style={{
                 position: "sticky",
-                position: "-webkit-sticky",
                 top: "0",
                 zIndex: "999",
               }}
@@ -569,20 +532,6 @@ function ListProductCus({ data }) {
                     setIsDiscountPercentage(e.target.checked);
                   }}
                 />
-                {/* <CustomSwitch
-                  title="آماده ارسال"
-                  id="Ready_to_send_mobile"
-                  onChange={(e) => {
-                    setIsReadyForSend(e.target.checked);
-                  }}
-                />
-                <CustomSwitch
-                  title="تخفیف دارها"
-                  id="discounted_mobile"
-                  onChange={(e) => {
-                    setIsDiscountPercentage(e.target.checked);
-                  }}
-                /> */}
               </div>
             </div>
             <CustomAccordion title="جست و جو براساس حجره" item="searchShop">

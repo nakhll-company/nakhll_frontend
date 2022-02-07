@@ -1,8 +1,11 @@
-import { useForm } from "react-hook-form";
-import { useState } from "react";
+// node libraries
 import Image from "next/image";
-import InputUseForm from "../../../../../creat/component/inputUseForm";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+// components
 import BtnSetting from "../../components/btnSetting";
+import InputUseForm from "../../../../../creat/component/inputUseForm";
+// style
 import st from "./selectIcon.module.scss";
 
 const ICONS = [
@@ -11,27 +14,13 @@ const ICONS = [
   { src: "/icons/settings/peik.svg", id: 3 },
   { src: "/icons/settings/pasKeraieh.svg", id: 4 },
   { src: "/icons/settings/free.svg", id: 5 },
-  // { src: "/icons/settings/plus.svg", id: 6 },
 ];
 
-function SelectIcon({ pageController, _handle_send_info_scope }) {
+function SelectIcon({ _handle_send_info_scope }) {
   const [idselectedIcon, setIdselectedIcon] = useState(1);
-  const {
-    setValue,
-    getValues,
-    clearErrors,
-    register,
-    setError,
-
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    criteriaMode: "all",
-    mode: "all",
-  });
+  const { register, handleSubmit, formState: { errors } } = useForm({ criteriaMode: "all", mode: "all" });
   return (
     <>
-      {/* name: data.name ? data.name : "بدون نام" */}
       <form
         onSubmit={handleSubmit((data) =>
           _handle_send_info_scope({
