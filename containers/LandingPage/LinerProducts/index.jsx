@@ -1,5 +1,5 @@
 // node libraries
-import React from "react";
+import React, { Fragment } from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 // components
@@ -19,7 +19,7 @@ function LinerProducts({
   md = 4,
   lg = 3,
   sm = 6,
-  xs = 5,
+  xs = 5
 }) {
   if (dataLinerProducts && dataLinerProducts.results) {
     dataLinerProducts = dataLinerProducts.results;
@@ -27,7 +27,7 @@ function LinerProducts({
   const userData = useSelector((state) => state.User.userInfo);
 
   return (
-    <>
+    <Fragment key={Math.random() + 4}>
       {/* for mobile */}
       <div
         style={{ backgroundColor: `${color}` }}
@@ -44,8 +44,8 @@ function LinerProducts({
               <button>
                 <Link
                   href={`${url.includes("search=") || url.includes("q=")
-                      ? `${url}`
-                      : `/search?ap=${url}`
+                    ? `${url}`
+                    : `/search?ap=${url}`
                     }`}
                 >
                   <a>مشاهده همه</a>
@@ -94,8 +94,8 @@ function LinerProducts({
               <button>
                 <Link
                   href={`${url.includes("search=") || url.includes("q=")
-                      ? `${url}`
-                      : `/search?ap=${url}`
+                    ? `${url}`
+                    : `/search?ap=${url}`
                     }`}
                 >
                   <a>مشاهده همه</a>
@@ -126,7 +126,7 @@ function LinerProducts({
               ))}
         </div>
       </div>
-    </>
+    </Fragment>
   );
 }
 

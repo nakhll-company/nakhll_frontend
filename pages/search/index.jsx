@@ -1,8 +1,10 @@
+// node libraries
 import React from "react";
 import Head from "next/head";
-import ListWitOutFilters from "../../containers/listProduct/ListWithOutFilters";
-import ListProductCus from "../../containers/listProduct/listProductCus";
+// components
 import ShopLayout from "../../components/shopLayout";
+import ListProductCus from "../../containers/listProduct/listProductCus";
+import ListWitOutFilters from "../../containers/listProduct/ListWithOutFilters";
 
 function Product({ ap, data }) {
   return (

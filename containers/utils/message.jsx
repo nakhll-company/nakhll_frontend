@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import * as gtag from "../../lib/gtag";
+import { gtagGoogleAnalytics } from "../../lib/gtag";
 
 export const successMessage = (message) => {
   toast.success(message, {
@@ -11,7 +11,7 @@ export const successMessage = (message) => {
 export const errorMessage = (message, error = "", page = "", api = "") => {
   let excepMessage = `${error} | ${message} | ${page} | ${api} `;
 
-  gtag("event", "exception", {
+  gtagGoogleAnalytics("event", "exception", {
     description: excepMessage,
     fatal: true, // set to true if the error is fatal
   });

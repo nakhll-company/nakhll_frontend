@@ -1,15 +1,16 @@
-import React, { useContext } from "react";
-
-import styles from "./MenuMobile.module.scss";
-import Assistent from "zaravand-assistent-number";
+// node libraries
 import Link from "next/link";
-
-
+import React, { useContext } from "react";
+import Assistent from "zaravand-assistent-number";
+// methods
+import ContextProduct from "./Context/context";
+// style
+import styles from "./MenuMobile.module.scss";
 
 const _asist = new Assistent();
-import ContextProduct from "./Context/context";
 
 export const MenuMobile = () => {
+
   const { All_product_list_buy } = useContext(ContextProduct);
 
   return (
@@ -18,7 +19,7 @@ export const MenuMobile = () => {
         Object.keys(All_product_list_buy).length > 0 && (
           <div className={styles.fix_bottom}>
             <div>
-              <Link href="/cart/address">
+              <Link href="/cart/address" passHref>
                 <button
                   style={{ width: "120px" }}
                   className={`btn ${styles.btn_Buy} px-2 rounded-pill `}

@@ -3,7 +3,7 @@ import _ from "lodash";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import * as gtag from "../../lib/gtag";
+import { gtagGoogleAnalytics } from "../../lib/gtag";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import Assistent from "zaravand-assistent-number";
@@ -485,7 +485,7 @@ const ProductDetailMobile = ({ data }) => {
           <button
             className={`${styles.product_btn_mobile} btn btn-tprimary rounded-pill font-weight-bold font-size1-5 px-6 py-2 ev-add-to-cart`}
             onClick={async () => {
-              gtag("event", "دکمه خرید", {
+              gtagGoogleAnalytics("event", "دکمه خرید", {
                 event_category: `‍‍‍‍${detail.title}`,
                 event_label: "زدن روی دکمه خرید",
               });

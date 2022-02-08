@@ -71,44 +71,36 @@ const HomePage = ({ data }) => {
       case 1:
         return (
           <DynamicHeroSlides
-            key={index}
             dataHeroSlides={data.all_data_for_component[index]}
           />
         );
       case 2:
         return (
           <LinerOneImg
-            key={index}
             dataLinerOneImg={data.all_data_for_component[index]}
           />
         );
       case 3:
         return (
-          <>
-            <LinerTwoValue
-              key={index}
-              dataLinerTwoValue={data.all_data_for_component[index]}
-            />
-          </>
+          <LinerTwoValue
+            dataLinerTwoValue={data.all_data_for_component[index]}
+          />
         );
       case 4:
         return (
           <LinerThreeImg
-            key={index}
             dataLinerThreeImg={data.all_data_for_component[index]}
           />
         );
       case 5:
         return (
           <LinerFourImgMobile
-            key={index}
             dataLinerFourImgMobile={data.all_data_for_component[index]}
           />
         );
       case 6:
         return (
           <LinerProducts
-            key={index}
             title={type.title}
             subTitle={type.subtitle}
             dataLinerProducts={data.all_data_for_component[index]}
@@ -119,13 +111,13 @@ const HomePage = ({ data }) => {
       case 7:
         return (
           <LinerProductsBg
-            key={index}
             subTitle_LinerProductsBg={type.subtitle}
             dataLinerProductsBg={type.data}
             url_LinerProductsBg={type.url}
             color={data.SchemaIn[index].background_color}
             num={4}
             xl={3}
+            url={type.url}
           />
         );
       default:

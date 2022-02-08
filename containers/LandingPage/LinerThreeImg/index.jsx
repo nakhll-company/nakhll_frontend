@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./LinerThreeImg.module.scss";
 
 function LinerThreeImg({ dataLinerThreeImg }) {
   return (
-    <>
+    <Fragment key={Math.random() + 6}>
       {dataLinerThreeImg && dataLinerThreeImg.length >= 3 && (
         <>
           {/* for mobile */}
@@ -122,7 +122,7 @@ function LinerThreeImg({ dataLinerThreeImg }) {
           </div>
         </>
       )}
-    </>
+    </Fragment>
   );
 }
 

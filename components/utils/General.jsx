@@ -1,7 +1,7 @@
 // node libraries
 import Script from "next/script";
 import { hotjar } from "react-hotjar";
-import * as gtag from "../../lib/gtag";
+import { pageview } from "../../lib/gtag";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 
@@ -15,7 +15,7 @@ function General() {
 
   useEffect(() => {
     const handleRouteChange = (url) => {
-      gtag.pageview(url);
+      pageview(url);
     };
     router.events.on("routeChangeComplete", handleRouteChange);
     return () => {

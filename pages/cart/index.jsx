@@ -1,29 +1,25 @@
 // node
 import Head from "next/head";
+import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 // component
 import SumBuy from "../../containers/card/SumBuy";
 import ShopLayout from "../../components/shopLayout";
 import ListCardBuy from "../../containers/card/ListCardBuy";
 // metods
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
-import ContextProduct from "../../containers/card/Context/context";
-// LIBRARY
-
 import { Empty } from "../../components/custom/Empty/Empty";
 import { MenuMobile } from "../../containers/card/MenuMobile";
 import { Loading } from "../../components/custom/Loading/Loading";
-// Redux
-import { useDispatch } from "react-redux";
 import { getProducts } from "../../redux/actions/cart/getProducts";
+import ContextProduct from "../../containers/card/Context/context";
+import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 
 export default function Cart() {
+
   const dispatch = useDispatch();
-  // STATE FOR SAVE PRODUCTS
-  const [All_product_list_buy, setAll_product_list_buy] = useState({});
-  // STATE FOR SHOW LOADING
   const [showLoading, setShowLoading] = useState(true);
-  // FUNCTION FOR GET ALL DATA FOR CARTS
+  const [All_product_list_buy, setAll_product_list_buy] = useState({});
+
   const _handleRequestApiAll = async () => {
     try {
       let token = localStorage.getItem("accessToken");

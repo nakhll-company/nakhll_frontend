@@ -1,40 +1,23 @@
 // node libraries
-import React, { useEffect, useRef } from "react";
+import lottie from "lottie-web";
 import Script from "next/script";
 import { NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
+import React, { useEffect, useRef } from "react";
 // components
-const DynamicEnfoLiner = dynamic(() =>
-  import("../../../containers/hojreh/EnfoLiner")
-);
-const DynamicHeroSlides = dynamic(() =>
-  import("../../../containers/LandingPage/HeroSlides")
-);
-const DynamicLinerOneImg = dynamic(() =>
-  import("../../../containers/LandingPage/LinerOneImg")
-);
-const DynamicLinerTwoImgSm = dynamic(() =>
-  import("../../../containers/LandingPage/LinerTwoImgSm")
-);
-const DynamicLinerThreeImg = dynamic(() =>
-  import("../../../containers/LandingPage/LinerThreeImg")
-);
-const DynamicLinerFourImgMobile = dynamic(() =>
-  import("../../../containers/LandingPage/LinerFourImgMobile")
-);
-const DynamicLinerProducts = dynamic(() =>
-  import("../../../containers/LandingPage/LinerProducts")
-);
-const DynamicListProductCusTest = dynamic(() =>
-  import("../../../containers/listProduct/listProductCusTest")
-);
 import ShopLayout from "../../../components/shopLayout";
 import Video from "../../../containers/LandingPage/Video";
 import AboutMe from "../../../containers/LandingPage/AboutMe";
 import VipProducts from "../../../containers/LandingPage/VipProducts";
 import LinearShopsCart from "../../../containers/LandingPage/linearShopsCart";
-import lottie from "lottie-web";
-
+const DynamicEnfoLiner = dynamic(() => import("../../../containers/hojreh/EnfoLiner"));
+const DynamicHeroSlides = dynamic(() => import("../../../containers/LandingPage/HeroSlides"));
+const DynamicLinerOneImg = dynamic(() => import("../../../containers/LandingPage/LinerOneImg"));
+const DynamicLinerTwoImgSm = dynamic(() => import("../../../containers/LandingPage/LinerTwoImgSm"));
+const DynamicLinerThreeImg = dynamic(() => import("../../../containers/LandingPage/LinerThreeImg"));
+const DynamicLinerProducts = dynamic(() => import("../../../containers/LandingPage/LinerProducts"));
+const DynamicLinerFourImgMobile = dynamic(() => import("../../../containers/LandingPage/LinerFourImgMobile"));
+const DynamicListProductCusTest = dynamic(() => import("../../../containers/listProduct/listProductCusTest"));
 // methods
 import { ApiReference } from "../../../api/Api";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";

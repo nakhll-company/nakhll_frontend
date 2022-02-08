@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import * as gtag from "../../../lib/gtag";
+import { gtagGoogleAnalytics } from "../../../lib/gtag";
 import Assistent from "zaravand-assistent-number";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -42,7 +42,7 @@ function Header() {
       <header className={`${styles.header}`}>
         <div
           onClick={() => {
-            gtag("event", "بنر حجره دار", {
+            gtagGoogleAnalytics("event", "بنر حجره دار", {
               event_category: "کلیک",
               event_label: "کلیک بنر حجره دار",
             });
@@ -230,7 +230,7 @@ function Header() {
       <header className={`${styles.mobile_header} `}>
         <div
           onClick={() => {
-            gtag("event", "بنر حجره دار", {
+            gtagGoogleAnalytics("event", "بنر حجره دار", {
               event_category: "کلیک",
               event_label: "کلیک بنر حجره دار",
             });
@@ -342,7 +342,7 @@ function Header() {
               <form
                 onSubmit={(event) => {
                   event.preventDefault();
-                  gtag("event", "سرچ", {
+                  gtagGoogleAnalytics("event", "سرچ", {
                     event_category: "کلیک",
                     event_label: "زدن روی سرچ",
                   });
@@ -375,7 +375,7 @@ function Header() {
                   <a aria-label="پروفایل"> */}
                 <div
                   onClick={() => {
-                    gtag("event", "سرچ", {
+                    gtagGoogleAnalytics("event", "سرچ", {
                       event_category: "کلیک",
                       event_label: "زدن روی سرچ",
                     });

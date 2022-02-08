@@ -22,7 +22,7 @@ function HeroSlides({ dataHeroSlides }) {
   }, [dataHeroSlides]);
 
   return (
-    <div style={{ marginTop: "5px" }} className="container ">
+    <div style={{ marginTop: "5px" }} className="container" key={Math.random() + 1}>
       <div className={`row ${styles.slide}`}>
         <div className={`col-12 col-md-8 ${styles.righter}`}>
           <Swiper pagination={true} spaceBetween={20} slidesPerView={1}>

@@ -1,6 +1,5 @@
 // node libraries
 import Script from "next/script";
-import LogRocket from "logrocket";
 import { useEffect } from "react";
 import { DefaultSeo } from "next-seo";
 import { Store } from "../redux/store";
@@ -18,7 +17,6 @@ import "../styles/General/font-awesome/css/font-awesome.css";
 
 function MyApp({ Component, pageProps }) {
 
-  LogRocket.init("umu0mf/nakhl");
   const REFRESH_TOKEN_TIMEOUT = 300000;
   const Layout = Component.Layout || MyLayout;
 

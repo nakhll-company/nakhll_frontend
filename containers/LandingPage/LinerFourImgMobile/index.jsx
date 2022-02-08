@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./LinerFourImgMobile.module.scss";
 
 function LinerFourImgMobile({ dataLinerFourImgMobile }) {
   return (
-    <>
+    <Fragment key={Math.random() + 2}>
       {dataLinerFourImgMobile && dataLinerFourImgMobile.length >= 4 && (
         <>
           <div className="container">
@@ -76,7 +76,7 @@ function LinerFourImgMobile({ dataLinerFourImgMobile }) {
           </div>
         </>
       )}
-    </>
+    </Fragment>
   );
 }
 

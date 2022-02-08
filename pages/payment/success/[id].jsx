@@ -1,18 +1,22 @@
-import Image from "next/image";
+// node libraries
 import Link from "next/link";
+import Image from "next/image";
 import Confetti from "react-confetti";
 import Assistent from "zaravand-assistent-number";
 import React, { useEffect, useRef, useState } from "react";
-const _asist = new Assistent();
-
+// components
+import ShopLayout from "../../../components/shopLayout";
 // styles
 import styles from "./success.module.scss";
-import ShopLayout from "../../../components/shopLayout";
+
+const _asist = new Assistent();
 
 const Success = ({ code }) => {
-  const [height, setHeight] = useState(null);
-  const [width, setWidth] = useState(null);
+
   const confettiRef = useRef(null);
+  const [width, setWidth] = useState(null);
+  const [height, setHeight] = useState(null);
+
   useEffect(() => {
     setHeight(confettiRef.current.clientHeight);
     setWidth(confettiRef.current.clientWidth);

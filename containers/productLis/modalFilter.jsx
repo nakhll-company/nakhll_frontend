@@ -1,9 +1,11 @@
+// node libraries
 import React, { useContext } from "react";
-import CustomAccordion from "../../components/custom/customAccordion";
+// components
 import CustomSwitch from "../../components/custom/customSwitch";
 import ContextListProductPage from "../listProduct/Context/context";
+import CustomAccordion from "../../components/custom/customAccordion";
 
-export const modalFilter = () => {
+export const ModalFilter = () => {
   const { setIsFree, setIsFellowCitizen } = useContext(ContextListProductPage);
   return (
     <div className="modal_filter_products d-none d-lg-block ">

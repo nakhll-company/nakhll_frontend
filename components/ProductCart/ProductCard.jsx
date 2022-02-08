@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import * as gtag from "../../lib/gtag";
+import { gtagGoogleAnalytics } from "../../lib/gtag";
 import Assistent from "zaravand-assistent-number";
 // methods
 import { addToCart } from "./methods/addToCart";
@@ -179,7 +179,7 @@ const ProductCard = ({
                     disabled={disablBtn}
                     className={`btn ${styles._product_card_add_to_cart}`}
                     onClick={async () => {
-                      gtag("event", "دکمه خرید", {
+                      gtagGoogleAnalytics("event", "دکمه خرید", {
                         event_category: `‍‍‍‍${product.title}`,
                         event_label: "زدن روی دکمه خرید",
                       });
