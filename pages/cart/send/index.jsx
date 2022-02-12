@@ -16,13 +16,12 @@ import st from "./send.module.scss";
 function Send() {
 
   const router = useRouter();
-  const { invoice_id } = router.query;
   const [invoice, setInvoice] = useState({});
   const [ListItems, setListItems] = useState([]);
 
   useEffect(() => {
-    invoice_id && getSendWayList(invoice_id, setListItems, setInvoice);
-  }, [invoice_id]);
+    getSendWayList(setListItems, setInvoice);
+  }, []);
 
   return (
     <>
@@ -36,7 +35,7 @@ function Send() {
       </Head>
       <div className={`col-12 col-lg-5 ${st.wrapper}`}>
         <header className={st.header}>
-          <Link href={`/cart/address?invoice_id=${invoice_id}`}>
+          <Link href={`/cart/address`}>
             <a className={st.header_back_link}>
               <i className="fas fa-arrow-right px-2"></i>
               بازگشت
@@ -50,7 +49,7 @@ function Send() {
             <span className={st.explain_price}>
               مجموع هزینه :<span> </span>
               <span>
-                <Number num={invoice.logistic_price / 10} />
+                <Number num={invoice.logistic_details && (invoice.logistic_details.total_price / 10)} />
               </span>
               <span> تومان </span>
             </span>
@@ -110,7 +109,7 @@ function Send() {
           ))}
           <button
             onClick={() =>
-              router.push(`/cart/payment?invoice_id=${invoice_id}`)
+              router.push(`/cart/payment`)
             }
             className={`${st.button_submit} w-100`}
           >

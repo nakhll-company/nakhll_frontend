@@ -1,17 +1,15 @@
-import { useRouter } from "next/router";
+import Link from "next/link";
 import { useSelector } from "react-redux";
 import Assistent from "zaravand-assistent-number";
-// methods
-import { errorMessage } from "../utils/message";
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 // style
 import styles from "../../styles/pages/cart/cart.module.scss";
 
 const _asist = new Assistent();
 
 export default function SumBuy() {
-  const router = useRouter();
+
   const All_product_list_buy = useSelector((state) => state.Cart.allProduct);
+
   return (
     <>
       {All_product_list_buy.total_old_price ? (
@@ -50,29 +48,13 @@ export default function SumBuy() {
               </span>
             </div>
             <div>
-              {/* <Link href="/cart/address"> */}
-              <button
-                className={`btn ${styles.btn_Buy} p-2 rounded-pill w-100 `}
-                onClick={async () => {
-                  let result = await ApiRegister().apiRequest(
-                    null,
-                    "POST",
-                    "/accounting_new/api/invoice/",
-                    true,
-                    ""
-                  );
-                  if (result.status === 200) {
-                    await router.push(
-                      `/cart/address?invoice_id=${result.data.id}`
-                    );
-                  } else if (result.response.status === 401) {
-                    errorMessage("لطفا ابتدا وارد شوید")
-                  }
-                }}
-              >
-                {_asist.number(`ادامه خرید `)}
-              </button>
-              {/* </Link> */}
+              <Link href="/cart/address" passHref>
+                <button
+                  className={`btn ${styles.btn_Buy} p-2 rounded-pill w-100 `}
+                >
+                  {_asist.number(`ادامه خرید `)}
+                </button>
+              </Link>
             </div>
             <div className={styles.cart_invoice_subtitle}>
               <i

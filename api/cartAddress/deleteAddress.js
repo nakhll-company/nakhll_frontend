@@ -6,12 +6,14 @@ export async function deleteAddress(id) {
         let response = await ApiRegister().apiRequest(
             null,
             "DELETE",
-            `/logistic/api/address/${id}/`,
+            `/api/v1/logistic/addresses/${id}/`,
             true,
             ""
         );
         if (response.status === 204) {
             successMessage("آدرس مورد نظر حذف شد");
-        } else {}
-    } catch (error) {}
+        }
+    } catch (error) {
+        return false;
+    }
 }

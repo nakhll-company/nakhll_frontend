@@ -5,12 +5,14 @@ export async function getAddress(setAddress) {
         let response = await ApiRegister().apiRequest(
             null,
             "GET",
-            "/logistic/api/address/",
+            "/api/v1/logistic/addresses/",
             true,
             ""
         );
         if (response.status === 200) {
             setAddress(response.data);
         }
-    } catch (error) { }
+    } catch (error) {
+        return false;
+    }
 }

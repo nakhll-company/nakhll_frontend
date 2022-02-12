@@ -5,7 +5,7 @@ export async function getEditAddress(id, setValue, setEditAddressData) {
         let response = await ApiRegister().apiRequest(
             null,
             "GET",
-            `/logistic/api/address/${id}/`,
+            `/api/v1/logistic/addresses/${id}/`,
             true,
             ""
         );
@@ -19,5 +19,7 @@ export async function getEditAddress(id, setValue, setEditAddressData) {
             setValue("zip_code", response.data.zip_code);
             setValue("receiver_mobile_number", response.data.receiver_mobile_number);
         }
-    } catch (error) {}
+    } catch (error) {
+        return false;
+    }
 }

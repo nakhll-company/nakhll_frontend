@@ -22,7 +22,7 @@ import styles from "../../../../styles/pages/cart/newAddress.module.scss";
 const UpdateAddress = () => {
 
     const router = useRouter();
-    const { invoice_id, prev, id } = router.query;
+    const { prev, id } = router.query;
     const { register, handleSubmit, setValue, formState: { errors } } = useForm();
     let [editAddressData, setEditAddressData] = useState({});
     let [selectState, setSelectState] = useState([]);
@@ -35,9 +35,9 @@ const UpdateAddress = () => {
         await setLoading(true);
         await updateAddress(id, data);
         if (prev) {
-            router.push(`/cart/payment?invoice_id=${invoice_id}`);
+            router.push(`/cart/payment`);
         } else {
-            router.push(`/cart/address?invoice_id=${invoice_id}`);
+            router.push(`/cart/address`);
         }
     };
 
@@ -69,7 +69,7 @@ const UpdateAddress = () => {
                 :
                 <div className={`col-12 col-lg-5 ${styles.wrapper}`}>
                     <header className={styles.header}>
-                        <Link href={prev ? `/cart/payment?invoice_id=${invoice_id}` : `/cart/address?invoice_id=${invoice_id}`}>
+                        <Link href={prev ? `/cart/payment` : `/cart/address`}>
                             <a className={styles.header_back_link}>
                                 <i className="fas fa-arrow-right px-2"></i>
                                 بازگشت
@@ -180,7 +180,7 @@ const UpdateAddress = () => {
                                 </div>
                                 &nbsp;
                                 <div className={`col-md-6 ${styles.buttons_form}`}>
-                                    <Link href={prev ? `/cart/payment?invoice_id=${invoice_id}` : `/cart/address?invoice_id=${invoice_id}`}>
+                                    <Link href={prev ? `/cart/payment` : `/cart/address`}>
                                         <a className="btn btn-secondary w-100"> بازگشت </a>
                                     </Link>
                                 </div>

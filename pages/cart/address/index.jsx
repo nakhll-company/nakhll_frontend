@@ -22,7 +22,6 @@ const _asist = new Assistent();
 const Address = () => {
 
   const router = useRouter();
-  const { invoice_id } = router.query;
   const userLogin = useSelector((state) => state.User.userInfo);
   let [address, setAddress] = useState([]);
   let [loading, setLoading] = useState(true);
@@ -69,7 +68,7 @@ const Address = () => {
           <section className={styles.body_address}>
             <div className={styles.address_head}>
               <span>می خواهید سفارش شما به کدام نشانی ارسال شود :</span>
-              <Link href={`/cart/address/add?invoice_id=${invoice_id}`}>
+              <Link href={`/cart/address/add/`}>
                 <a className={styles.address_head_link}>
                   <i className="fas fa-plus px-2"></i>
                   یک نشانی جدید اضافه کنید
@@ -80,7 +79,7 @@ const Address = () => {
               className={styles.address_items_form}
               onSubmit={async (event) => {
                 event.preventDefault();
-                await selectAddress(invoice_id, router, setLoading);
+                await selectAddress(router, setLoading);
               }}
             >
               {address.map((value, index) => {
@@ -114,7 +113,7 @@ const Address = () => {
                         className="far fa-edit mx-3"
                         onClick={() => {
                           router.push(
-                            `/cart/address/update/${value.id}?invoice_id=${invoice_id}`
+                            `/cart/address/update/${value.id}`
                           );
                         }}
                       ></i>

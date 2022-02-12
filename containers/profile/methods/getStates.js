@@ -1,15 +1,13 @@
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // api state
 export const getStates = async () => {
-    let params = {};
-    let loadData = null;
-    let dataUrl = "/app/api/v1/get-all-state/";
+
     let response = await ApiRegister().apiRequest(
-        loadData,
+        null,
         "get",
-        dataUrl,
+        "/api/v1/get-all-state/",
         true,
-        params
+        {}
     );
     if (response.status === 200) {
         return response.data;

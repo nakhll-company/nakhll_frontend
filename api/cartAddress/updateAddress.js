@@ -6,12 +6,14 @@ export async function updateAddress(id, data) {
         let response = await ApiRegister().apiRequest(
             data,
             "PUT",
-            `/logistic/api/address/${id}/`,
+            `/api/v1/logistic/addresses/${id}/`,
             true,
             ""
         );
         if (response.status === 200) {
             successMessage("آدرس مورد نظر با موفقیت ویرایش شد");
         }
-    } catch (error) { }
+    } catch (error) {
+        return false;
+    }
 }

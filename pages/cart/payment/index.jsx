@@ -17,7 +17,6 @@ const _asist = new Assistent();
 export default function Cart() {
 
   const router = useRouter();
-  const { invoice_id } = router.query;
   const [msgCoupon, setMsgCoupon] = useState([]);
   const [isLoadInvoice, setIsLoadInvoice] = useState(true);
   const [listInvoice, setListInvoice] = useState([]);
@@ -29,8 +28,8 @@ export default function Cart() {
   const [logisticErrors, setLogisticErrors] = useState([]);
 
   useEffect(() => {
-    invoice_id && _getListInvoice(setMsgCoupon, setListInvoice, setLogisticPrice, setTotalPrice, setFinalPrice, setAddressReceiver, setResultCoupon, setLogisticErrors, setIsLoadInvoice, invoice_id);
-  }, [invoice_id]);
+    _getListInvoice(setMsgCoupon, setListInvoice, setLogisticPrice, setTotalPrice, setFinalPrice, setAddressReceiver, setResultCoupon, setLogisticErrors, setIsLoadInvoice);
+  }, []);
 
 
 
@@ -43,7 +42,7 @@ export default function Cart() {
         let response = await ApiRegister().apiRequest(
           { coupon: valueCoupon },
           "PATCH",
-          `/accounting_new/api/invoice/${invoice_id}/set_coupon/`,
+          `/api/v1/cart/set_coupon/`,
           true,
           {}
         );
@@ -69,7 +68,7 @@ export default function Cart() {
     let response = await ApiRegister().apiRequest(
       { coupon },
       "PATCH",
-      `/accounting_new/api/invoice/${invoice_id}/unset_coupon/`,
+      `/api/v1/cart/unset_coupon/`,
       true,
       {}
     );
@@ -84,8 +83,8 @@ export default function Cart() {
       setIsLoadInvoice(true);
       let response = await ApiRegister().apiRequest(
         null,
-        "GET",
-        `/accounting_new/api/invoice/${invoice_id}/pay/`,
+        "POST",
+        `/api/v1/cart/pay/`,
         true,
         {}
       );
@@ -119,7 +118,7 @@ export default function Cart() {
             className="cart-head d-flex align-items-center py-3 px-3 text-right mb-0 bg-gray-100"
             style={{ borderRadius: "5px 5px 0px 0px" }}
           >
-            <Link href={`/cart/send?invoice_id=${invoice_id}`}>
+            <Link href={`/cart/send`}>
               <a
                 className="font-size-8 text-muted"
                 style={{ flexBasis: "43.33%" }}
@@ -233,19 +232,19 @@ export default function Cart() {
                       className="font-size-sm border-bottom pb-3 mt-3"
                     >
                       <div className="title font-weight-500">
-                        از حجره {itemProduct.shop_name}
+                        از حجره {itemProduct.product.FK_Shop.title}
                       </div>
                       <div className="d-flex align-items-center mt-3">
                         <div className={`${styles.picItemInvoice}`}>
                           <Link
-                            href={`/shop/${itemProduct.shop_slug}/product/${itemProduct.slug}`}
+                            href={`/shop/${itemProduct.product.FK_Shop.slug}/product/${itemProduct.product.Slug}`}
                           >
                             <a>
                               <Image
-                                src={itemProduct.image}
+                                src={itemProduct.product.Image_medium_url}
                                 width={100}
                                 height={100}
-                                alt={itemProduct.name}
+                                alt={itemProduct.product.Title}
                               />
                             </a>
                           </Link>
@@ -255,18 +254,18 @@ export default function Cart() {
                           style={{ minWidth: "1%", marginRight: "1rem" }}
                         >
                           <Link
-                            href={`/shop/${itemProduct.shop_slug}//product/${itemProduct.slug}`}
+                            href={`/shop/${itemProduct.product.FK_Shop.slug}/product/${itemProduct.product.Slug}`}
                           >
-                            <a className="link-body">{itemProduct.name}</a>
+                            <a className="link-body">{itemProduct.product.Title}</a>
                           </Link>
-                          <div className="mt-2">{itemProduct.count}عدد</div>
+                          <div className="mt-2">{itemProduct.count} عدد</div>
                         </div>
                         <div
                           className="mr-auto"
                           style={{ marginRight: "auto" }}
                         >
                           {_asist.PSeparator(
-                            itemProduct.price_without_discount / 10
+                            itemProduct.product.Price / 10
                           )}{" "}
                           تومان
                         </div>
@@ -326,7 +325,7 @@ export default function Cart() {
               </div>
               <div className="text-left line-height-1 mb-5 mb-md-0">
                 <Link
-                  href={`/cart/address/update/${addressReceiver.id}?prev=payment&invoice_id=${invoice_id}`}
+                  href={`/cart/address/update/${addressReceiver.id}?prev=payment`}
                   className="font-size-8 link-body"
                 >
                   ویرایش

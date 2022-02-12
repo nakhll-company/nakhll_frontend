@@ -18,7 +18,6 @@ import styles from "../../../../styles/pages/cart/newAddress.module.scss";
 const NewAddress = () => {
 
     const router = useRouter();
-    const { invoice_id } = router.query;
     const { register, handleSubmit, formState: { errors } } = useForm();
     let [selectState, setSelectState] = useState([]);
     let [selectBigCities, setSelectBigCities] = useState([]);
@@ -29,7 +28,7 @@ const NewAddress = () => {
         await setLoading(true);
         let response = await addAddress(data);
         if (response === true) {
-            router.push(`/cart/address?invoice_id=${invoice_id}`);
+            router.push(`/cart/address`);
         }
         await setLoading(false);
     };
@@ -59,7 +58,7 @@ const NewAddress = () => {
                 :
                 <div className={`col-12 col-lg-5 ${styles.wrapper}`}>
                     <header className={styles.header}>
-                        <Link href={`/cart/address?invoice_id=${invoice_id}`}>
+                        <Link href={`/cart/address`}>
                             <a className={styles.header_back_link}>
                                 <i className="fas fa-arrow-right px-2"></i>
                                 بازگشت
@@ -165,7 +164,7 @@ const NewAddress = () => {
                                     <button type="submit" className="btn btn-primary w-100 d-flex justify-content-center align-items-center">تایید</button>
                                 </div>
                                 <div className={`col-md-6 ${styles.buttons_form}`}>
-                                    <Link href={`/cart/address?invoice_id=${invoice_id}`}>
+                                    <Link href={`/cart/address`}>
                                         <a className="btn btn-secondary w-100"> بازگشت </a>
                                     </Link>
                                 </div>

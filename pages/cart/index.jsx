@@ -25,7 +25,7 @@ export default function Cart() {
       let token = localStorage.getItem("accessToken");
       let response = await ApiRegister().apiRequest(
         null, "get",
-        `/cart2/api/carts/my/`,
+        `/api/v1/cart/me/`,
         token ? true : false, {}
       );
       setAll_product_list_buy(await response.data);

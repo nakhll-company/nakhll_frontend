@@ -4,12 +4,13 @@ export const getCities = async (id) => {
     try {
         let response = await ApiRegister().apiRequest(
             null, "get",
-            `/app/api/v1/get-cities/?bigcity_id=${id}`,
+            `/api/v1/get-cities/?bigcity_id=${id}`,
             false, {}
         );
         if (response.status === 200) {
             return response.data;
         }
     } catch (error) {
+        return false;
     }
 };

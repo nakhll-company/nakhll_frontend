@@ -4,7 +4,7 @@ export const getProducts = () => {
   return async (dispatch) => {
     let params = {};
     let loadData = null;
-    let dataUrl = `/cart2/api/carts/my/`;
+    let dataUrl = `/api/v1/cart/me/`;
     let token = localStorage.getItem("accessToken");
     let response = await ApiRegister().apiRequest(
       loadData,

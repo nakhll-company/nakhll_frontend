@@ -1,15 +1,17 @@
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 // big city
-export const getBigCities = async(id) => {
+export const getBigCities = async (id) => {
     try {
         let response = await ApiRegister().apiRequest(
             null,
             "get",
-            `/app/api/v1/get-big-cities/?state_id=${id}`,
+            `api/v1/get-big-cities/?state_id=${id}`,
             false, {}
         );
         if (response.status === 200) {
             return response.data;
-        } else {}
-    } catch (error) {}
+        }
+    } catch (error) {
+        return false;
+    }
 };

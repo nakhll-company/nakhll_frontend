@@ -5,24 +5,26 @@ export const _addProduct = (productId) => {
   return async (dispatch) => {
     try {
       let token = localStorage.getItem("accessToken");
-      let params = {};
-      let loadData = null;
-      let dataUrl = `/cart2/api/cart_items/${productId}/add/`;
       let response = await ApiRegister().apiRequest(
-        loadData,
-        "get",
-        dataUrl,
+        {
+          "product": productId,
+          "count": 1
+        },
+        "post",
+        "/api/v1/cart/items/",
         token ? true : false,
-        params
+        {}
       );
 
-      if (response.status === 200) {
+      if (response.status === 201) {
         await dispatch({
           type: "ADD_PRODUCT",
           payload: response.data,
         });
         successMessage("داده ها با موفقیت ثبت شده اند");
       }
-    } catch (e) {}
+    } catch (e) {
+      return false;
+    }
   };
 };
