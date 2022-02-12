@@ -46,7 +46,9 @@ const Yektanet = () => {
                             let res = await editAdvertisment(activeHojreh, data);
 
                             setAdsData(res);
-                        }} />
+                        }}
+                        onChange={() => { console.log(">>>>"); }}
+                    />
                 </div>
                 <Link href="/fp/options/ads">
                     <a>
@@ -59,6 +61,7 @@ const Yektanet = () => {
                 <input type="text"
                     placeholder="id" {...register("yektanet_id", { required: true })}
                     id="anid"
+                    onChange={() => { }}
                 />
                 {errors.yektanet_id && <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>}
                 <button type="submit">ثبت</button>

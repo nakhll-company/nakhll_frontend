@@ -11,19 +11,19 @@ function Sm_LinerThreeImg_Fix() {
       <div className={styles.wrapper}>
         <Link href="">
           <a>
-            <Image src="/image/sample/6_1.jpg" alt="" />
+            <Image src="/image/sample/6_1.jpg" alt="" layout="fill" />
           </a>
         </Link>
       </div>
       <div className={styles.wrap}>
         <div className={styles.right}>
           <a href="">
-            <Image src="/image/sample/3_1.jpg" alt="" />
+            <Image src="/image/sample/3_1.jpg" alt="" layout="fill" />
           </a>
         </div>
         <div className={styles.left}>
           <a href="">
-            <Image src="/image/sample/3_1.jpg" alt="" />
+            <Image src="/image/sample/3_1.jpg" alt="" layout="fill" />
           </a>
         </div>
       </div>

@@ -136,11 +136,9 @@ function LiveEdit({ idLanding }) {
         <a className={styles.wrap_item} href="">
           <span className={styles.icon}>
             <Image
-              style={{
-                height: "40px",
-                width: "40px",
-                pointerEvents: "none",
-              }}
+              className={styles.icon_nakhll}
+              width={40}
+              height={40}
               src="/iconWhite.png"
               alt=""
             />

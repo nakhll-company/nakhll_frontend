@@ -71,9 +71,10 @@ const MobileLanding = ({ landingList, activeHojreh, setLandingList }) => {
                         label="شماره"
                       />
                       <CustomSwitch
-                        defaultChecked={
+                        checked={
                           value.status === "active" ? true : false
                         }
+                        onChange={() => { }}
                         id="active"
                       />
                     </div>

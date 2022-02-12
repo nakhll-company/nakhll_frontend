@@ -9,12 +9,12 @@ function Sm_LinerTwoImg_Fix() {
     <div className={styles.wrap}>
       <div className={styles.right}>
         <a href="">
-          <Image src="/image/sample/3_1.jpg" alt="" />
+          <Image src="/image/sample/3_1.jpg" alt="" layout="fill" />
         </a>
       </div>
       <div className={styles.left}>
         <a href="">
-          <Image src="/image/sample/3_1.jpg" alt="" />
+          <Image src="/image/sample/3_1.jpg" alt="" layout="fill" />
         </a>
       </div>
     </div>

@@ -222,20 +222,18 @@
 }
 
 .info_card_pic_person {
-    position: absolute;
+    position: relative;
     width: 70px;
     height: 70px;
     border-radius: 50%;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    /* background: url(./person.png); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    // background-color: azure;
     left: 0;
     right: 0;
-    top: 0;
+    top: 20%;
     bottom: 0;
     margin-top: auto;
     margin-bottom: auto;

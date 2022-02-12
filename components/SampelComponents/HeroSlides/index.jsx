@@ -67,6 +67,7 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
                     : "/image/sample/2_1.jpg"
                 }
                 alt=""
+                layout="fill"
               />
             </div>
           )}
@@ -77,6 +78,7 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
               <Image
                 src={data[5]?.image ? data[5].image : "/image/sample/2_1_M.jpg"}
                 alt=""
+                layout="fill"
               />
             </div>
             <div className={styles.icon_change_pic}>
@@ -101,6 +103,7 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
               <Image
                 src={data[6]?.image ? data[6].image : "/image/sample/2_1_M.jpg"}
                 alt=""
+                layout="fill"
               />
             </div>
             <div className={styles.icon_change_pic}>

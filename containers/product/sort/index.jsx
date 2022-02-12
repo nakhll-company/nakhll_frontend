@@ -1,5 +1,4 @@
 // node
-import Image from 'next/image';
 import { connect } from 'react-redux';
 // methods
 import { getProduct } from '../../../redux/actions/product/getProduct';
@@ -15,14 +14,12 @@ const Sort = ({ getProduct, setShowModalSort, activeHojreh }) => {
                     getProduct(activeHojreh, "", "", "", "", "", "total_sell", "");
                     setShowModalSort(pre => !pre);
                 }}>
-                    {/* <Image src="/image/product/tik.svg" alt="tik" width="15" height="15" /> */}
                     تعداد فروش
                 </button>
                 <button className={styles.sort_item} onClick={() => {
                     getProduct(activeHojreh, "", "", "", "", "", "title", "");
                     setShowModalSort(pre => !pre);
                 }}>
-                    {/* <Image src="/image/product/tik.svg" alt="tik" width="15" height="15" /> */}
                     نام محصول
                 </button>
             </div>

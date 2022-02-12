@@ -31,6 +31,7 @@ function Sm_LinerFourImg({ setImageSrc, id, data }) {
         <Image
           src={data[0].image ? data[0].image : "/image/sample/4_3.jpg"}
           alt=""
+          layout="fill"
         />
       </div>
       <div className={styles.wrapImg}>
@@ -53,6 +54,7 @@ function Sm_LinerFourImg({ setImageSrc, id, data }) {
         <Image
           src={data[1].image ? data[1].image : "/image/sample/4_3.jpg"}
           alt=""
+          layout="fill"
         />
       </div>
       <div className={styles.wrapImg}>
@@ -75,6 +77,7 @@ function Sm_LinerFourImg({ setImageSrc, id, data }) {
         <Image
           src={data[2].image ? data[2].image : "/image/sample/4_3.jpg"}
           alt=""
+          layout="fill"
         />
       </div>
       <div className={styles.wrapImg}>
@@ -97,6 +100,7 @@ function Sm_LinerFourImg({ setImageSrc, id, data }) {
         <Image
           src={data[3].image ? data[3].image : "/image/sample/4_3.jpg"}
           alt=""
+          layout="fill"
         />
       </div>
     </div>

@@ -46,11 +46,11 @@ const ProductDetailMobile = ({ data }) => {
 
   useEffect(() => {
     async function fetchData() {
-      getMoreProduct(productSlug, pageApi, setHasMore, setPageApi, setPosts);
-      fetchProductShop(detail, setProductShop);
+      await getMoreProduct(productSlug, pageApi, setHasMore, setPageApi, setPosts);
+      await fetchProductShop(detail, setProductShop);
     }
     fetchData();
-  }, [detail, pageApi, productSlug]);
+  }, []);
 
   return (
     <div className={styles.wrapper}>
@@ -443,7 +443,7 @@ const ProductDetailMobile = ({ data }) => {
               </h2>
               <InfiniteScroll
                 dataLength={posts.length}
-                next={getMoreProduct}
+                next={() => { getMoreProduct(productSlug, pageApi, setHasMore, setPageApi, setPosts) }}
                 hasMore={hasMore}
                 loader={<h3> منتظر بمانید ....</h3>}
                 endMessage={<h4>پایان</h4>}

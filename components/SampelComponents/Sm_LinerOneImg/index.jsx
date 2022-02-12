@@ -25,6 +25,7 @@ function Sm_LinerOneImg({ setImageSrc, id, data }) {
       <Image
         src={data[0].image ? data[0].image : "/image/sample/6_1.jpg"}
         alt=""
+        layout="fill"
       />
     </div>
   );

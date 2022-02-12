@@ -1,63 +1,56 @@
 // node libraries
-import { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import Image from "next/image";
 import Link from "next/link";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-import { useRouter } from "next/router";
+import Image from "next/image";
+import { connect } from "react-redux";
+import { useEffect, useState } from "react";
 import Assistent from "zaravand-assistent-number";
-
-const _asist = new Assistent();
-import SwiperCore, {
-  EffectFade,
-  Autoplay,
-  Navigation,
-  Pagination,
-  Scrollbar,
-  A11y,
-} from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { EffectFade, Autoplay, Navigation, Pagination, Scrollbar, A11y } from "swiper";
 // methods
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { mapState } from "./methods/mapState";
+import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 // components
 import Loading from "../../components/loading";
 // styles
 import styles from "../../styles/pages/dashboard/dashboard.module.scss";
-// import Swiper core and required modules
+
+const _asist = new Assistent();
 SwiperCore.use([EffectFade, Autoplay, Navigation, Pagination, Scrollbar, A11y]);
 /**
  * component for dashboard page
  * @param {string} activeHojreh
  */
 function Dashboard({ activeHojreh }) {
-  const router = useRouter();
-  //  state
+
   const [api, setApi] = useState({});
   let [loading, setLoading] = useState(false);
-  // useeffect
-  useEffect(async () => {
-    await setLoading(true);
-    // api dashboard data
-    const _handleRequestApi = async () => {
-      let params = {};
-      let loadData = null;
-      let dataUrl = `/app/api/v1/dashboard/${activeHojreh}/`;
-      let response = await ApiRegister().apiRequest(
-        loadData,
-        "get",
-        dataUrl,
-        true,
-        params
-      );
-      // check status code
-      if (response.status === 200) {
-        setApi(await response.data);
-      }
-      await setLoading(false);
-    };
 
-    activeHojreh.length > 0 && _handleRequestApi();
+  useEffect(() => {
+
+    async function fetchData() {
+
+      await setLoading(true);
+      const _handleRequestApi = async () => {
+        let params = {};
+        let loadData = null;
+        let dataUrl = `/app/api/v1/dashboard/${activeHojreh}/`;
+        let response = await ApiRegister().apiRequest(
+          loadData,
+          "get",
+          dataUrl,
+          true,
+          params
+        );
+        // check status code
+        if (response.status === 200) {
+          setApi(await response.data);
+        }
+        await setLoading(false);
+      };
+      activeHojreh.length > 0 && _handleRequestApi();
+    }
+    fetchData();
+
   }, [activeHojreh]);
 
   return (
@@ -67,7 +60,7 @@ function Dashboard({ activeHojreh }) {
       ) : (
         <>
           <div dir="rtl" className={styles.left_one}>
-            <Link href="fp/order/uncompleted">
+            <Link href="fp/order/uncompleted" passHref>
               <div className={styles.left_one_1}>
                 <i
                   className="fas fa-cart-plus "
@@ -94,7 +87,7 @@ function Dashboard({ activeHojreh }) {
                 </h4>
               </div>
             </Link>
-            <Link href="/fp/order/completed">
+            <Link href="/fp/order/completed" passHref>
               <div className={styles.left_one_1}>
                 <i
                   className="fas fa-user-clock "
@@ -484,7 +477,7 @@ function Dashboard({ activeHojreh }) {
                   {_asist.number(
                     (api.last_week_total_sell &&
                       api.last_week_total_sell.amont) ||
-                      0
+                    0
                   )}
                 </h1>
                 <h3

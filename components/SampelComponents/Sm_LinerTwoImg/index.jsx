@@ -25,6 +25,7 @@ function Sm_LinerTwoImg({ setImageSrc, id, data }) {
         <Image
           src={data[0].image ? data[0].image : "/image/sample/3_1.jpg"}
           alt=""
+          layout="fill"
         />
       </div>
       <div className={styles.left}>
@@ -37,6 +38,7 @@ function Sm_LinerTwoImg({ setImageSrc, id, data }) {
         <Image
           src={data[1].image ? data[1].image : "/image/sample/3_1.jpg"}
           alt=""
+          layout="fill"
         />
 
         {data[1].title && (

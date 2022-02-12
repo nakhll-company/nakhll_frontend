@@ -76,11 +76,11 @@ function Header() {
               <div className={styles.h_logo}>
                 <Link href="/">
                   <a
-                    style={{
-                      display: "flex",
-                      alignItems: " center",
-                      justifyContent: "space-between"
-                    }}
+                  // style={{
+                  //   display: "flex",
+                  //   alignItems: " center",
+                  //   justifyContent: "space-between"
+                  // }}
                   >
                     <Image
                       layout="responsive"
@@ -268,7 +268,7 @@ function Header() {
                       width={26}
                       src="/icons/Nakhll.png"
                       alt="فروشگاه اینترنتی نخل"
-                      style={{ cursor: "pointer", marginRight: "10px" }}
+                      className={styles.icon_nakhl}
                     />
                   </a>
                 </Link>
@@ -282,7 +282,7 @@ function Header() {
                       width={350}
                       src="/icons/Name_Nakhl.png"
                       alt="فروشگاه اینترنتی نخل"
-                      style={{ cursor: "pointer", width: "130%" }}
+                      className={styles.icon_nakhl_name}
                     />
                   </a>
                 </Link>
@@ -317,7 +317,7 @@ function Header() {
                   <div className={styles.bascket_btn}>
                     <i>
                       <Image
-                        style={{ width: "24px", marginLeft: "12px" }}
+                        className={styles.icon_sabad}
                         src="/icons/sabad.svg"
                         width={24}
                         height={24}

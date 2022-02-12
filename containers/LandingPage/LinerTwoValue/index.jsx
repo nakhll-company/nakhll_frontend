@@ -36,7 +36,7 @@ function LinerTwoValue({ dataLinerTwoValue }) {
             <aside className={styles.section}>
               <div className={styles.rightImg}>
                 <Image
-                  style={{ height: "auto" }}
+                  className={styles.image_on_desctop}
                   src={dataLinerTwoValue[0].image}
                   loading="lazy"
                   alt={dataLinerTwoValue[0].title}
@@ -49,7 +49,7 @@ function LinerTwoValue({ dataLinerTwoValue }) {
 
               <div className={styles.leftImg}>
                 <Image
-                  style={{ height: "auto" }}
+                  className={styles.image_on_desctop}
                   src={dataLinerTwoValue[1].image}
                   loading="lazy"
                   alt={dataLinerTwoValue[1].title}

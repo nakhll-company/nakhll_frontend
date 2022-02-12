@@ -1,11 +1,11 @@
 import React, { useRef } from "react";
-import styles from "./InputPicture.module.scss";
-
+import { useDispatch } from "react-redux";
 // redux
 import { _selectId } from "../../../redux/actions/liveEdit/_selectId";
 import { showCropper } from "../../../redux/actions/liveEdit/showCropper";
-import { useDispatch } from "react-redux";
 import { selectImage } from "../../../components/customCropper/methods/selectImage";
+// style
+import styles from "./InputPicture.module.scss";
 
 function InputPicture({ setImageSrc, id, order = 0, ratio = 2 }) {
   const refInput = useRef(null);

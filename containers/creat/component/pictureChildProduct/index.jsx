@@ -1,8 +1,11 @@
-import InputPictureCreat from "../InputPicture";
+// node libraris
 import Image from "next/image";
+// components
+import InputPictureCreat from "../InputPicture";
+// style
 import styles from "./pictureChildProduct.module.scss";
 
-function PictureChildProduct({ setImageSrc, image, id }) {
+function PictureChildProduct({ setImageSrc, image }) {
   const handel_delet_pic = () => {
     setImageSrc(null);
   };
@@ -11,13 +14,14 @@ function PictureChildProduct({ setImageSrc, image, id }) {
     <>
       <div className={styles.child_picture}>
         {image ? (
-          <Image src={image} layout="responsive" height={100} width={100} />
+          <Image src={image} layout="responsive" height={100} width={100} alt="" />
         ) : (
           <Image
             src="/image/sample/pic.jpg"
             layout="responsive"
             height={100}
             width={100}
+            alt=""
           />
         )}
         <div className={styles.input_picture}>

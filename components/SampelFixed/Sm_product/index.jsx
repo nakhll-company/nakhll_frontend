@@ -13,7 +13,7 @@ function Sm_product_Fix() {
     <>
       <div className={styles.product}>
         <div className={styles.product_img}>
-          <Image src="/image/sample/sample.jpg" alt="" />
+          <Image src="/image/sample/sample.jpg" alt="" layout="fill" />
         </div>
         <div className={styles.product_name}>
           <span>نام محصول</span>

@@ -79,6 +79,8 @@ export default function ListCardBuy() {
                             <Image
                               src={El.product.Image_medium_url}
                               className={`${styles.cart_product_item_img} ${styles.rounded}`}
+                              width={100}
+                              height={100}
                               alt=""
                             />
                           </a>
@@ -237,6 +239,8 @@ export default function ListCardBuy() {
                             <Image
                               src={El.product.Image_medium_url}
                               className={`${styles.cart_product_item_img} ${styles.rounded}`}
+                              width={100}
+                              height={100}
                               alt=""
                             />
                           </a>

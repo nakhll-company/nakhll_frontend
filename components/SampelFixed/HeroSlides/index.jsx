@@ -9,17 +9,17 @@ function Sm_HeroSlides_Fix() {
     <div className={styles.content}>
       <div className={styles.slider}>
         <div className={styles.right}>
-          <Image src="/image/sample/2_1.jpg" alt="" />
+          <Image src="/image/sample/2_1.jpg" alt="" layout="fill" />
         </div>
         <div className={styles.left}>
           <div className={styles.top}>
             <a href="">
-              <Image src="/image/sample/2_1_M.jpg" alt="" />
+              <Image src="/image/sample/2_1_M.jpg" alt="" layout="fill" />
             </a>
           </div>
           <div className={styles.bottom}>
             <a href="">
-              <Image src="/image/sample/2_1_M.jpg" alt="" />
+              <Image src="/image/sample/2_1_M.jpg" alt="" layout="fill" />
             </a>
           </div>
         </div>

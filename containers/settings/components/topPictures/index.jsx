@@ -1,14 +1,18 @@
-import { useEffect, useState } from "react";
-import styles from "./topPictures.module.scss";
+// node libraries
 import Image from "next/image";
+import { useEffect, useState } from "react";
+// components
 import InputPictureSetting from "../InputPicture";
+// methods
 import { callApiUpDataPicture } from "../../../../api/settings";
+// style
+import styles from "./topPictures.module.scss";
 
 function TopPictures({ apiSetting, activeHojreh }) {
   const [imgProfile, setImgProfile] = useState(
     apiSetting.image_thumbnail_url ? apiSetting.image_thumbnail_url : null
   );
-  const [imgBanner, setImgBanner] = useState(null);
+  const imgBanner = null;
 
   useEffect(() => {
     let dataForSend = {

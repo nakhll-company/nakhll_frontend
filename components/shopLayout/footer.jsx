@@ -519,7 +519,6 @@ const Footer = () => {
                           layout="responsive"
                           height={100}
                           width={100}
-                          style={{ objectFit: "fill", width: "100px " }}
                           alt=""
                           src="/icons/footer/fn.png"
                           className="footer-namad"
@@ -540,7 +539,6 @@ const Footer = () => {
                           alt="نماد اعتماد الکترونیکی"
                           src="/icons/footer/namad.png"
                           className="footer-namad"
-                          style={{ width: "100px" }}
                         />
                       </a>
                     </Link>
@@ -557,7 +555,6 @@ const Footer = () => {
                           alt="انجمن کسب و کار های اینترنتی"
                           src="/icons/footer/namadTwo.png"
                           className="footer-namad"
-                          style={{ width: "100px" }}
                         />
                       </a>
                     </Link>

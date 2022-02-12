@@ -1,25 +1,33 @@
-import React, { useEffect, useState } from "react";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+// node libraries
 import Link from 'next/link';
+import Image from 'next/image';
+import React, { useEffect, useState } from "react";
+// method
+import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+// style
 import styles from "./LinerTwoImg.module.scss";
 
 function LinerTwoImg({ nextApi_LinerTwoImg }) {
+
   const [dataLinerTwoImg, setDataLinerTwoImg] = useState([]);
 
-  useEffect(async () => {
-    try {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        nextApi_LinerTwoImg,
-        true,
-        {}
-      );
-      if (response.status === 200) {
-        setDataLinerTwoImg(response.data);
-      }
-    } catch (e) { }
-  }, []);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        let response = await ApiRegister().apiRequest(
+          null,
+          "get",
+          nextApi_LinerTwoImg,
+          true,
+          {}
+        );
+        if (response.status === 200) {
+          setDataLinerTwoImg(response.data);
+        }
+      } catch (e) { return false; }
+    }
+    fetchData();
+  }, [nextApi_LinerTwoImg]);
 
   return (
     <>
@@ -31,10 +39,12 @@ function LinerTwoImg({ nextApi_LinerTwoImg }) {
                 title={dataLinerTwoImg[0].description}
                 className={styles.one}
               >
-                <img
+                <Image
                   src={dataLinerTwoImg[0].image}
                   loading="lazy"
                   alt={dataLinerTwoImg[0].title}
+                  width="100%"
+                  height="100%"
                 />
               </a>
             </Link>
@@ -43,10 +53,12 @@ function LinerTwoImg({ nextApi_LinerTwoImg }) {
                 title={dataLinerTwoImg[1].description}
                 className={styles.two}
               >
-                <img
+                <Image
                   src={dataLinerTwoImg[1].image}
                   loading="lazy"
                   alt={dataLinerTwoImg[1].title}
+                  width="100%"
+                  height="100%"
                 />
               </a>
             </Link>

@@ -52,7 +52,9 @@ const MobileList = ({ loading, productList, activeHojreh, getProduct }) => {
                             <div className={`${styles.product_card}`}>
                                 <div className={styles.first_row}>
                                     <div className={styles.product_name_wrapper}>
-                                        <Image src={value.image_thumbnail_url} alt="product" layout="responsive" width={45} height={45} />
+                                        <div style={{ width: "50px", height: "50px" }}>
+                                            <Image src={value.image_thumbnail_url} alt="product" layout="responsive" width={45} height={45} />
+                                        </div>
                                         <h6 className={`${styles.name_product}`}>{value.Title}</h6>
                                     </div>
                                     <i className={`fas fa-ellipsis-v ${styles.icon_more}`}></i>
@@ -93,11 +95,15 @@ const MobileList = ({ loading, productList, activeHojreh, getProduct }) => {
                     موردی برای نمایش وجود ندارد
                 </h3>
             )}
-            <Footer
-                productList={productList}
-                getProduct={getProduct}
-                activeHojreh={activeHojreh}
-            />
+            <table>
+                <tfoot>
+                    <Footer
+                        productList={productList}
+                        getProduct={getProduct}
+                        activeHojreh={activeHojreh}
+                    />
+                </tfoot>
+            </table>
             <CustomModal
                 show={showModalSort}
                 onClose={() => {

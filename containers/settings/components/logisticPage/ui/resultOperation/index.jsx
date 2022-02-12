@@ -1,13 +1,18 @@
+// node libraries
 import Image from "next/image";
 import { useEffect } from "react";
+// style
 import st from "./resultOperation.module.scss";
+
 function ResultOperation({ pageController, type = "success", reset_states }) {
+
   useEffect(() => {
     setTimeout(() => {
       reset_states();
       pageController(1, 1);
     }, 2000);
-  }, []);
+  }, [pageController, reset_states]);
+
   return (
     <>
       <div className={st.wrapper}>

@@ -1,12 +1,16 @@
+// node libraries
+import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
-import { callApiUpDataShop, callBankAccount } from "../../../../api/settings";
-import Image from "next/image";
-import InputUseForm from "../../../creat/component/inputUseForm";
-
-import SubButton from "../subButton";
-import styles from "./bankAccountForm.module.scss";
 import Assistent from "zaravand-assistent-number";
+// components
+import SubButton from "../subButton";
+import InputUseForm from "../../../creat/component/inputUseForm";
+// methods
+import { callApiUpDataShop } from "../../../../api/settings";
+// style
+import styles from "./bankAccountForm.module.scss";
+
 const _asist = new Assistent();
 
 function BankAccountForm({ apiSetting, activeHojreh, setClicked }) {
@@ -16,11 +20,7 @@ function BankAccountForm({ apiSetting, activeHojreh, setClicked }) {
   // useform
   const {
     setValue,
-    getValues,
-    clearErrors,
     register,
-    setError,
-
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -32,7 +32,7 @@ function BankAccountForm({ apiSetting, activeHojreh, setClicked }) {
       setValue("iban", apiSetting.bank_account.iban);
       setValue("owner", apiSetting.bank_account.owner);
     }
-  }, [apiSetting]);
+  }, [apiSetting, setValue]);
 
   const onSubmit = async (data) => {
     const dataForSend = {

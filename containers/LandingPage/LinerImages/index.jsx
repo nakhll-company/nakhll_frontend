@@ -1,15 +1,18 @@
+// node libraries
 import React from "react";
+import Image from "next/image";
+// style
 import styles from "./LinerImages.module.scss";
 
-function LinearImages(props) {
+function LinearImages() {
   return (
     <div className={`${styles.linearImages} container`}>
       <div className="row ">
         <div className={`col-12 col-md-6 ${styles.righter}`}>
-          <img src="/image/slide/slidB.jpg" alt="" />
+          <Image src="/image/slide/slidB.jpg" alt="" layout="fill" />
         </div>
         <div className={`col-12 col-md-6  ${styles.lefter}`}>
-          <img src="/image/slide/slidLeft.jpg" alt="" />
+          <Image src="/image/slide/slidLeft.jpg" alt="" layout="fill" />
         </div>
       </div>
     </div>

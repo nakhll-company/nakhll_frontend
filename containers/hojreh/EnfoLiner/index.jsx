@@ -41,15 +41,16 @@ function EnfoLiner({ data, title, profile, name }) {
 
         <div className={styles.slide}>
           {data.shop.in_campaign && campBadge}
-          <div className="">
-            <img
+          <div style={{ position: "relative", width: "100%", height: "100%" }}>
+            <Image
               className={styles.imgslid}
               src="/image/back.jpg"
               alt="background"
+              layout="fill"
             />
           </div>
-          <div className={`${styles.profile} d-none d-md-flex `}>
-            <img className={styles.img_profile} src={profile} alt={title} />
+          <div className={`${styles.profile} d-none d-md-flex px-3`}>
+            <Image className={styles.img_profile} src={profile} alt={title} width={100} height={100} />
 
             <div className={styles.information}>
               <h1>{title}</h1>
@@ -61,7 +62,7 @@ function EnfoLiner({ data, title, profile, name }) {
 
           <div className={`${styles.profile_mobile}  d-md-none`}>
             <div className={styles.pater}>
-              <img className={styles.img_profile} src={profile} alt="" />
+              <Image className={styles.img_profile} src={profile} alt="" layout="fill" />
               <div className={styles.information}>
                 <div className={styles.pater_title}>
                   <h1>{title}</h1>

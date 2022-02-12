@@ -25,6 +25,7 @@ function Sm_LinerThreeImg({ setImageSrc, id, data }) {
         <Image
           src={data[0].image ? data[0].image : "/image/sample/6_1.jpg"}
           alt=""
+          layout="fill"
         />
       </div>
       <div className={styles.wrap}>
@@ -48,6 +49,7 @@ function Sm_LinerThreeImg({ setImageSrc, id, data }) {
           <Image
             src={data[1].image ? data[1].image : "/image/sample/3_1.jpg"}
             alt=""
+            layout="fill"
           />
         </div>
         <div className={styles.left}>
@@ -70,6 +72,7 @@ function Sm_LinerThreeImg({ setImageSrc, id, data }) {
           <Image
             src={data[2].image ? data[2].image : "/image/sample/3_1.jpg"}
             alt=""
+            layout="fill"
           />
         </div>
       </div>

@@ -48,7 +48,9 @@ const Ads = () => {
                         }
                         let res = await editAdvertisment(activeHojreh, data);
                         setAdsData(res);
-                    }} />}
+                    }}
+                        onChange={() => { console.log(">>>>"); }}
+                    />}
                 </div>
             </div>
         </div>

@@ -18,8 +18,7 @@ function FormInputs({ apiSetting, setClicked, activeHojreh }) {
   const {
     setValue,
     register,
-    handleSubmit,
-    formState: { errors },
+    handleSubmit
   } = useForm({
     criteriaMode: "all",
     mode: "all",

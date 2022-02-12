@@ -84,6 +84,7 @@ const DesktopLanding = ({ landingList, activeHojreh, setLandingList }) => {
                             router
                           );
                       }}
+                      onChange={() => { }}
                       id={value.id}
                     />
                   </td>

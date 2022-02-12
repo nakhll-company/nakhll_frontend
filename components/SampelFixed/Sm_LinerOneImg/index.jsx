@@ -10,7 +10,7 @@ function Sm_LinerOneImg_Fix() {
     <div className={styles.wrapper}>
       <Link href="">
         <a>
-          <Image src="/image/sample/6_1.jpg" alt="" />
+          <Image src="/image/sample/6_1.jpg" alt="" layout="fill" />
         </a>
       </Link>
     </div>

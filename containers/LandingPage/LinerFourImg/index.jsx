@@ -1,8 +1,9 @@
 import React from "react";
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from "./LinerFourImg.module.scss";
 
-function LinerFourImg({ }) {
+function LinerFourImg() {
   return (
     <>
       <article className={styles.section_desktop}>
@@ -14,10 +15,11 @@ function LinerFourImg({ }) {
                 title="خرید بیشتر، سود بیشتر"
               >
                 <div className="c-adplacement__sponsored_box">
-                  <img
+                  <Image
                     src="https://dkstatics-public.digikala.com/digikala-adservice-banners/8d925b4e17718129b798977572737220ca424b42_1631900612.jpg?x-oss-process=image/quality,q_80"
                     alt="خرید بیشتر، سود بیشتر"
                     loading="lazy"
+                    layout="fill"
                   />
                 </div>
               </a>
@@ -29,10 +31,11 @@ function LinerFourImg({ }) {
                 title="پارتنرشیپ - گلرنگ"
               >
                 <div className="c-adplacement__sponsored_box">
-                  <img
+                  <Image
                     src="https://dkstatics-public.digikala.com/digikala-adservice-banners/4dd9049df412b548053a07d94fb0e655b3b8be98_1632921627.jpg?x-oss-process=image/quality,q_80"
                     alt="پارتنرشیپ - گلرنگ"
                     loading="lazy"
+                    layout="fill"
                   />
                 </div>
               </a>
@@ -44,10 +47,11 @@ function LinerFourImg({ }) {
                 title="پارتنرشیپ - چای احمد"
               >
                 <div className="c-adplacement__sponsored_box">
-                  <img
+                  <Image
                     src="https://dkstatics-public.digikala.com/digikala-adservice-banners/1c0d7ffe6730878cb4299b8d60d84a49c328b3c3_1632918979.jpg?x-oss-process=image/quality,q_80"
                     alt="پارتنرشیپ - چای احمد"
                     loading="lazy"
+                    layout="fill"
                   />
                 </div>
               </a>
@@ -59,10 +63,11 @@ function LinerFourImg({ }) {
                 title="پارتنرشیپ - اوه"
               >
                 <div className="c-adplacement__sponsored_box">
-                  <img
+                  <Image
                     src="https://dkstatics-public.digikala.com/digikala-adservice-banners/d237e59558cd21b3c31787a476b4034396c52ac3_1632920799.jpg?x-oss-process=image/quality,q_80"
                     alt="پارتنرشیپ - اوه"
                     loading="lazy"
+                    layout="fill"
                   />
                 </div>
               </a>
