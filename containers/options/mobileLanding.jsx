@@ -93,7 +93,7 @@ const MobileLanding = ({ landingList, activeHojreh, setLandingList }) => {
                           ></i>
                         </a>
                       </Link>
-                      <Link href={`/showLanding/${activeHojreh}/${value.id}`}>
+                      <Link href={`/liveEdit/preview/${activeHojreh}/${value.id}`}>
                         <a>
                           <i
                             style={{ fontSize: "18px" }}

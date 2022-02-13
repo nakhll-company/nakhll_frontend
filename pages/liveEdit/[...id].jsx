@@ -172,7 +172,7 @@ function LiveEdit({ idLanding }) {
           onClick={() => {
             _handel_update_landing();
             window.open(
-              `/showLanding/${idLanding[0]}/${idLanding[1]}/`,
+              `liveEdit/preview/${idLanding[0]}/${idLanding[1]}/`,
               "_blank"
             );
           }}

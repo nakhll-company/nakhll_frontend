@@ -1,22 +1,22 @@
 // node libraries
 import React, { useEffect, useState } from "react";
 // components
-import ShopLayout from "../../components/shopLayout";
-import Video from "../../containers/LandingPage/Video";
-import AboutMe from "../../containers/LandingPage/AboutMe";
-import HeroSlides from "../../containers/LandingPage/HeroSlides";
-import LinerOneImg from "../../containers/LandingPage/LinerOneImg";
-import VipProducts from "../../containers/LandingPage/VipProducts";
-import LinerProducts from "../../containers/LandingPage/LinerProducts";
-import LinerThreeImg from "../../containers/LandingPage/LinerThreeImg";
-import LinerTwoImgSm from "../../containers/LandingPage/LinerTwoImgSm";
-import LinearShopsCart from "../../containers/LandingPage/linearShopsCart";
-import LinerFourImgMobile from "../../containers/LandingPage/LinerFourImgMobile";
+import ShopLayout from "../../../components/shopLayout";
+import Video from "../../../containers/LandingPage/Video";
+import AboutMe from "../../../containers/LandingPage/AboutMe";
+import HeroSlides from "../../../containers/LandingPage/HeroSlides";
+import VipProducts from "../../../containers/LandingPage/VipProducts";
+import LinerOneImg from "../../../containers/LandingPage/LinerOneImg";
+import LinerTwoImgSm from "../../../containers/LandingPage/LinerTwoImgSm";
+import LinerThreeImg from "../../../containers/LandingPage/LinerThreeImg";
+import LinerProducts from "../../../containers/LandingPage/LinerProducts";
+import LinearShopsCart from "../../../containers/LandingPage/linearShopsCart";
+import LinerFourImgMobile from "../../../containers/LandingPage/LinerFourImgMobile";
 // methods
-import { ApiReference } from "../../api/Api";
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { ApiReference } from "../../../api/Api";
+import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
-function ShowLanding({ idLanding }) {
+function Preview({ idLanding }) {
 
   const [dataLanding, setDataLanding] = useState([]);
   let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}/`;
@@ -70,7 +70,7 @@ function ShowLanding({ idLanding }) {
   );
 }
 
-export default ShowLanding;
+export default Preview;
 
 // function server side
 export async function getServerSideProps(context) {
@@ -81,4 +81,4 @@ export async function getServerSideProps(context) {
   };
 }
 
-ShowLanding.Layout = ShopLayout;
+Preview.Layout = ShopLayout;

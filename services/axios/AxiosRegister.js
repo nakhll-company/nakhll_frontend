@@ -5,7 +5,7 @@ import { errorMessage } from "../../containers/utils/message";
 // function for handel message
 
 function showMessage(error) {
-    console.log(">>>>", error);
+
     const expectedError =
         error.response &&
         error.response.status >= 400 &&

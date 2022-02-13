@@ -99,7 +99,7 @@ const DesktopLanding = ({ landingList, activeHojreh, setLandingList }) => {
                     </Link>
                   </td>
                   <td>
-                    <Link href={`/showLanding/${activeHojreh}/${value.id}`}>
+                    <Link href={`/liveEdit/preview/${activeHojreh}/${value.id}`}>
                       <a>
                         <i className="fas fa-eye"></i>
                       </a>
