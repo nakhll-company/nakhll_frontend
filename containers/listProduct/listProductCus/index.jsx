@@ -27,7 +27,6 @@ import { useSelector } from "react-redux";
 const _asist = new Assistent();
 
 function ListProductCus({ data }) {
-
   const changePage = 1;
   const [pageApi, setPageApi] = useState(2);
   const [hasMore, setHasMore] = useState(false);
@@ -44,15 +43,37 @@ function ListProductCus({ data }) {
   const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
   const [searchWord, setSearchWord] = useState(data.q ? data.q : "");
   const [isOpenOrderingModal, setIsOpenOrderingModal] = useState(false);
-  const [whichOrdering, setWhichOrdering] = useState(data.ordering ? data.ordering : "");
-  const [minPrice, setMinPrice] = useState(data.min_price ? parseInt(data.min_price) : 0);
-  const [isReadyForSend, setIsReadyForSend] = useState(data.ready == "true" ? true : false);
-  const [maxPrice, setMaxPrice] = useState(data.max_price ? parseInt(data.max_price) : 10000);
-  const [isAvailableGoods, setIsAvailableGoods] = useState(data.available == "true" ? true : false);
-  const [isDiscountPercentage, setIsDiscountPercentage] = useState(data.discounted == "true" ? true : false);
-  const [checkedCity, setCheckedCity] = useState([...(data.city ? data.city.split(",").map((el) => parseInt(el)) : []),]);
-  const [categories, setCategories] = useState([...(data.new_category ? data.new_category.split(",").map((el) => parseInt(el)) : []),]);
-  const [wantCategories, setWantCategories] = useState([...(data.new_category ? data.new_category.split(",").map((el) => parseInt(el)) : []),]);
+  const [whichOrdering, setWhichOrdering] = useState(
+    data.ordering ? data.ordering : ""
+  );
+  const [minPrice, setMinPrice] = useState(
+    data.min_price ? parseInt(data.min_price) : 0
+  );
+  const [isReadyForSend, setIsReadyForSend] = useState(
+    data.ready == "true" ? true : false
+  );
+  const [maxPrice, setMaxPrice] = useState(
+    data.max_price ? parseInt(data.max_price) : 10000
+  );
+  const [isAvailableGoods, setIsAvailableGoods] = useState(
+    data.available == "true" ? true : false
+  );
+  const [isDiscountPercentage, setIsDiscountPercentage] = useState(
+    data.discounted == "true" ? true : false
+  );
+  const [checkedCity, setCheckedCity] = useState([
+    ...(data.city ? data.city.split(",").map((el) => parseInt(el)) : []),
+  ]);
+  const [categories, setCategories] = useState([
+    ...(data.new_category
+      ? data.new_category.split(",").map((el) => parseInt(el))
+      : []),
+  ]);
+  const [wantCategories, setWantCategories] = useState([
+    ...(data.new_category
+      ? data.new_category.split(",").map((el) => parseInt(el))
+      : []),
+  ]);
 
   const _handel_category = async () => {
     try {
@@ -66,7 +87,9 @@ function ListProductCus({ data }) {
       if (response.status === 200) {
         setCategories(response.data);
       }
-    } catch (e) { return false; }
+    } catch (e) {
+      return false;
+    }
   };
 
   const _handel_Add_category = (id) => {
@@ -117,7 +140,9 @@ function ListProductCus({ data }) {
 
         setPageApi(pageApi + 1);
       }
-    } catch (e) { return false; }
+    } catch (e) {
+      return false;
+    }
   };
   // Get all shops
   const _get_all_shops = async () => {
@@ -148,9 +173,30 @@ function ListProductCus({ data }) {
     setSearchWord(data.q);
   }, [data.q]);
 
-  // START
-  // for filters in sidebar
+  // data,
+  //   changePage,
   useEffect(() => {
+    router.push(
+      {
+        pathname: router.pathname,
+        query: {
+          q: searchWord,
+          ...(whichOrdering !== "" && { ordering: whichOrdering }),
+          ...(isReadyForSend && { ready: isReadyForSend }),
+          ...(isAvailableGoods && { available: isAvailableGoods }),
+          ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
+          ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
+          ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
+          ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
+          ...(hojreh !== "" && { shop: hojreh }),
+          ...(wantCategories.length !== 0 && {
+            new_category: wantCategories.toString(),
+          }),
+        },
+      },
+      undefined,
+      { scroll: false }
+    );
     async function fetchData() {
       const _handel_filters = async (witchFilter) => {
         setHasMore(true);
@@ -206,43 +252,6 @@ function ListProductCus({ data }) {
       await _handel_filters();
     }
     fetchData();
-  }, [
-    maxPrice, minPrice,
-    data,
-    isAvailableGoods,
-    isReadyForSend,
-    isDiscountPercentage,
-    checkedCity,
-    wantCategories,
-    whichOrdering,
-    clickOnRange,
-    changePage,
-    hojreh,
-    searchWord,
-  ]);
-
-  useEffect(() => {
-    router.push(
-      {
-        pathname: router.pathname,
-        query: {
-          q: searchWord,
-          ...(whichOrdering !== "" && { ordering: whichOrdering }),
-          ...(isReadyForSend && { ready: isReadyForSend }),
-          ...(isAvailableGoods && { available: isAvailableGoods }),
-          ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
-          ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
-          ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
-          ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
-          ...(hojreh !== "" && { shop: hojreh }),
-          ...(wantCategories.length !== 0 && {
-            new_category: wantCategories.toString(),
-          }),
-        },
-      },
-      undefined,
-      { scroll: false }
-    );
   }, [
     isAvailableGoods,
     isReadyForSend,
@@ -447,6 +456,8 @@ function ListProductCus({ data }) {
             <div className="mx-auto row">
               {isLoading ? (
                 <WoLoading />
+              ) : listWithFilter.length == 0 ? (
+                <span className="h5">محصولی یافت نشد...</span>
               ) : (
                 <InfiniteScroll
                   className="mx-auto row"
@@ -460,6 +471,7 @@ function ListProductCus({ data }) {
                     </p>
                   }
                 >
+                  {console.log("milad", listWithFilter.length)}
                   {listWithFilter.map((oneProduct, index) => (
                     <ProductCard
                       key={index}
