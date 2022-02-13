@@ -6,7 +6,7 @@ import { ErrorMessage } from "@hookform/error-message";
 import useViewport from "../../../../../components/viewPort";
 import MobileHeader from "../../../../../components/mobileHeader";
 // methods
-import { successMessage, } from "../../../../../containers/utils/message";
+import { successMessage, } from "../../../../../utils/toastifyMessage";
 import { mapState } from "../../../../../containers/product/methods/mapState";
 import { ApiRegister } from "../../../../../services/apiRegister/ApiRegister";
 // scss

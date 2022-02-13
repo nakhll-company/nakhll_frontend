@@ -1,18 +1,17 @@
 // node libraries
 import { connect } from "react-redux";
-
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 // component
 import Layout from "../../../../../components/layout/Layout";
-import MobileHeader from "../../../../../components/mobileHeader";
 import useViewport from "../../../../../components/viewPort";
+import MobileHeader from "../../../../../components/mobileHeader";
 // methods
+import { successMessage } from "../../../../../utils/toastifyMessage";
 import { mapState } from "../../../../../containers/product/methods/mapState";
 import { ApiRegister } from "../../../../../services/apiRegister/ApiRegister";
 // scss
 import styles from "../../../../../styles/pages/product/editInventory.module.scss";
-import { successMessage } from "../../../../../containers/utils/message";
 
 const Inventory = ({ productList }) => {
   const {

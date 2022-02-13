@@ -1,4 +1,4 @@
-import { successMessage } from "../../../containers/utils/message";
+import { successMessage } from "../../../utils/toastifyMessage";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
 export const _reduceProduct = (productId) => {

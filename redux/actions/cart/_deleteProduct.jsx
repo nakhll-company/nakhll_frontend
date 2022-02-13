@@ -1,4 +1,4 @@
-import { errorMessage } from "../../../containers/utils/message";
+import { errorMessage } from "../../../utils/toastifyMessage";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
 export const _deleteProduct = (productId, productTitle) => {

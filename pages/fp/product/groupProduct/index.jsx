@@ -2,8 +2,8 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 // methods
+import { successMessage } from "../../../../utils/toastifyMessage";
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
-import { successMessage } from "../../../../containers/utils/message";
 // scss
 import styles from "./groupProduct.module.scss";
 

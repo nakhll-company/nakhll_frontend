@@ -1,4 +1,4 @@
-import { successMessage } from "../../containers/utils/message";
+import { successMessage } from "../../utils/toastifyMessage";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 // get advertisment
 export const editAdvertisment = async (shop_slug, data) => {
@@ -13,5 +13,7 @@ export const editAdvertisment = async (shop_slug, data) => {
             successMessage("با موفقیت ثبت شد");
             return response.data;
         }
-    } catch (error) { }
+    } catch (error) {
+        return false;
+    }
 };

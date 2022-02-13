@@ -1,5 +1,5 @@
+import { successMessage } from "../../../utils/toastifyMessage";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-import { successMessage } from "../../../containers/utils/message";
 // api favorites list
 export const deleteFromFavoritesList = async (idProduct) => {
     let response = await ApiRegister().apiRequest(

@@ -1,6 +1,6 @@
+import { successMessage } from "../../../utils/toastifyMessage";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
-import { successMessage } from "../../../containers/utils/message";
 export const _addProduct = (productId) => {
   return async (dispatch) => {
     try {

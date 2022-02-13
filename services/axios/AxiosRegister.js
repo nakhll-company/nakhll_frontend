@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { errorMessage } from "../../containers/utils/message";
+import { errorMessage } from "../../utils/toastifyMessage";
 
 //=================================================================\\
 // function for handel message

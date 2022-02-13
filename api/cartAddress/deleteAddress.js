@@ -1,5 +1,5 @@
+import { successMessage } from "../../utils/toastifyMessage";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
-import { successMessage } from "../../containers/utils/message";
 // get address of user
 export async function deleteAddress(id) {
     try {

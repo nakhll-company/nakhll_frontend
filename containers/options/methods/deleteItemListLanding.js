@@ -1,5 +1,5 @@
+import { successMessage } from "../../../utils/toastifyMessage";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-import { successMessage } from "../../../containers/utils/message";
 
 export async function deleteItemListLanding(id, activeHojreh, setLandingList) {
     let response = await ApiRegister().apiRequest(

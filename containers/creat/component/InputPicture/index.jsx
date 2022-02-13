@@ -2,7 +2,7 @@
 import React, { useRef, useState } from "react";
 import imageCompression from "browser-image-compression";
 // methods
-import { errorMessage } from "../../../../containers/utils/message";
+import { errorMessage } from "../../../../utils/toastifyMessage";
 // components
 import CustomCropperAll from "../../../../components/customCropperAll";
 // scss
