@@ -2,7 +2,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { gtagGoogleAnalytics } from "../../../lib/gtag";
 import Assistent from "zaravand-assistent-number";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,6 +10,7 @@ import BoxSearch from "./boxSearch";
 import MegaMenuMobile from "../../../containers/LandingPage/MegaMenuMobile";
 import MegaMenuDesktop from "../../../containers/LandingPage/MegaMenuDesktop";
 // methods
+import { gtagGoogleAnalytics } from "../../../utils/googleAnalytics";
 import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
 import { _call_Category, _get_all_shops, _handel_search } from "../../../api/header";
 // style

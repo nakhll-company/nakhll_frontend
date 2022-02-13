@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import { gtagGoogleAnalytics } from "../../lib/gtag";
+import { gtagGoogleAnalytics } from "./googleAnalytics";
 
 export const successMessage = (message) => {
   toast.success(message, {

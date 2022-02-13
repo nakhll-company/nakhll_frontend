@@ -2,11 +2,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { gtagGoogleAnalytics } from "../../lib/gtag";
 import Assistent from "zaravand-assistent-number";
 // methods
 import { addToCart } from "./methods/addToCart";
 import { addToFavoritesList } from "./methods/addToFavotitesList";
+import { gtagGoogleAnalytics } from "../../utils/googleAnalytics";
 import { deleteFromFavoritesList } from "./methods/deleteFromFavoritesList";
 // scss
 import styles from "./ProductCard.module.scss";

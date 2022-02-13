@@ -3,7 +3,6 @@ import _ from "lodash";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import { gtagGoogleAnalytics } from "../../lib/gtag";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import Assistent from "zaravand-assistent-number";
@@ -18,6 +17,7 @@ import CustomSlider from "../../components/custom/customSlider";
 import ProductCard from "../../components/ProductCart/ProductCard";
 // methods
 import { addToCart } from "./methods/addToCart";
+import { gtagGoogleAnalytics } from "../../utils/googleAnalytics";
 import { fetchProductShop, getMoreProduct } from "../../api/product/detail";
 // styles
 import styles from "./productDetail.module.scss";

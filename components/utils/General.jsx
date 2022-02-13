@@ -1,9 +1,10 @@
 // node libraries
 import Script from "next/script";
 import { hotjar } from "react-hotjar";
-import { pageview } from "../../lib/gtag";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
+// methods
+import { pageview } from "../../utils/googleAnalytics";
 
 function General() {
 
