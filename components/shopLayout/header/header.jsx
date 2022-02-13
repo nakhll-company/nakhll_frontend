@@ -195,15 +195,13 @@ function Header() {
                 }}
               >
                 <div className={styles.bascket_btn}>
-                  <i>
-                    <Image
-                      layout="responsive"
-                      width={10}
-                      height={10}
-                      src="/icons/sabad.svg"
-                      alt=""
-                    />
-                  </i>
+                  <Image
+                    layout="responsive"
+                    width={10}
+                    height={10}
+                    src="/icons/sabad.svg"
+                    alt=""
+                  />
                   {Object.keys(userLog).length > 0 &&
                     userLog.cart_items_count !== 0 && (
                       <span className={styles.counter_cart}>
@@ -315,15 +313,13 @@ function Header() {
                   }}
                 >
                   <div className={styles.bascket_btn}>
-                    <i>
-                      <Image
-                        className={styles.icon_sabad}
-                        src="/icons/sabad.svg"
-                        width={24}
-                        height={24}
-                        alt=""
-                      />
-                    </i>
+                    <Image
+                      className={styles.icon_sabad}
+                      src="/icons/sabad.svg"
+                      width={24}
+                      height={24}
+                      alt=""
+                    />
                     {Object.keys(userLog).length > 0 &&
                       userLog.cart_items_count !== 0 && (
                         <span className={styles.counter_cart}>

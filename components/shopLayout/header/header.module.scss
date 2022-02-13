@@ -149,16 +149,16 @@ $color_tel_word: rgb(162, 172, 182);
         }
       }
       .bascket_btn {
-        font-size: 20px;
+        width: 60px;
+        height: 60px;
         position: relative;
         cursor: pointer;
-        display: block;
         color: #000;
-        padding: 0 16px 0 0;
+        padding-top: 13px;
         .counter_cart {
           position: absolute;
           right: 8px;
-          bottom: -2px;
+          // bottom: -2px;
           display: block;
           background: #0082fd;
           border-radius: 5px;

@@ -51,11 +51,11 @@ const Address = () => {
       </Head>
 
       {loading ? (
-        <div className={`col-12 col-lg-5 py-5 my-2 ${styles.wrapper}`}>
+        <div className={`col-12 col-lg-5 py-5 my-4 ${styles.wrapper}`}>
           <Loading />
         </div>
       ) : (
-        <div className={`col-12 col-lg-5 ${styles.wrapper}`}>
+        <div className={`col-12 col-lg-5 ${styles.wrapper} mt-4`}>
           <header className={styles.header}>
             <Link href="/cart">
               <a className={styles.header_back_link}>

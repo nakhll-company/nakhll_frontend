@@ -52,11 +52,11 @@ const NewAddress = () => {
             </Head>
 
             {loading ?
-                <div className={`col-12 col-lg-5 py-5 ${styles.wrapper}`} style={{ padding: "20px!important" }}>
+                <div className={`col-12 col-lg-5 py-5 ${styles.wrapper} mt-4`} style={{ padding: "20px!important" }}>
                     <Loading />
                 </div>
                 :
-                <div className={`col-12 col-lg-5 ${styles.wrapper}`}>
+                <div className={`col-12 col-lg-5 ${styles.wrapper} mt-4`}>
                     <header className={styles.header}>
                         <Link href={`/cart/address`}>
                             <a className={styles.header_back_link}>

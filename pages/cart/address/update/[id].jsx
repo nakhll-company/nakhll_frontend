@@ -63,11 +63,11 @@ const UpdateAddress = () => {
             </Head>
 
             {loading ?
-                <div className={`col-12 col-lg-5 py-5 ${styles.wrapper}`} style={{ padding: "50px 0px !important" }}>
+                <div className={`col-12 col-lg-5 py-5 ${styles.wrapper} mt-4`} style={{ padding: "50px 0px !important" }}>
                     <Loading />
                 </div>
                 :
-                <div className={`col-12 col-lg-5 ${styles.wrapper}`}>
+                <div className={`col-12 col-lg-5 ${styles.wrapper} mt-4`}>
                     <header className={styles.header}>
                         <Link href={prev ? `/cart/payment` : `/cart/address`}>
                             <a className={styles.header_back_link}>
@@ -175,11 +175,10 @@ const UpdateAddress = () => {
                                 </div>
                             </div>
                             <div className={`${styles.form_row} pt-3`}>
-                                <div className={`col-md-6 ${styles.buttons_form}`}>
+                                <div className={`col-md-6 ${styles.buttons_form} px-1 py-1`}>
                                     <button type="submit" className="btn btn-primary w-100 d-flex justify-content-center align-items-center">تایید</button>
                                 </div>
-                                &nbsp;
-                                <div className={`col-md-6 ${styles.buttons_form}`}>
+                                <div className={`col-md-6 ${styles.buttons_form} px-1 py-1`}>
                                     <Link href={prev ? `/cart/payment` : `/cart/address`}>
                                         <a className="btn btn-secondary w-100"> بازگشت </a>
                                     </Link>
