@@ -5,30 +5,33 @@ import { errorMessage } from "../../containers/utils/message";
 // function for handel message
 
 function showMessage(error) {
+    console.log(">>>>", error);
     const expectedError =
         error.response &&
         error.response.status >= 400 &&
         error.response.status < 500;
 
-    if (expectedError) {
-        let message = "";
-        for (let value of Object.values(error.response.data)) {
-            message += value.toString().replace(",", "\n");
-        }
-        error.response.status !== 401 &&
+    if (process.window) {
+        if (expectedError) {
+            let message = "";
+            for (let value of Object.values(error.response.data)) {
+                message += value.toString().replace(",", "\n");
+            }
+            error.response.status !== 401 &&
+                errorMessage(
+                    message,
+                    error.response.status,
+                    window.location.pathname,
+                    error.response.config.url
+                );
+        } else {
             errorMessage(
-                message,
+                "مشکلی از سمت سرور رخ داده است.",
                 error.response.status,
-                location.pathname,
+                window.location.pathname,
                 error.response.config.url
             );
-    } else {
-        errorMessage(
-            "مشکلی از سمت سرور رخ داده است.",
-            error.response.status,
-            location.pathname,
-            error.response.config.url
-        );
+        }
     }
 }
 

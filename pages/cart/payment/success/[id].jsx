@@ -5,7 +5,7 @@ import Confetti from "react-confetti";
 import Assistent from "zaravand-assistent-number";
 import React, { useEffect, useRef, useState } from "react";
 // components
-import ShopLayout from "../../../components/shopLayout";
+import ShopLayout from "../../../../components/shopLayout";
 // styles
 import styles from "./success.module.scss";
 
@@ -38,7 +38,7 @@ const Success = ({ code }) => {
           <div className={styles.hol_cont}>
             <h3 className={styles.text}>عملیات خرید با موفقیت انجام شد.</h3>
             <h3 className={styles.tex_sub}>
-              شماره سفارش : {_asist.PSeparator(`${code}`)}
+              شماره سفارش : {_asist.number(`${code}`)}
             </h3>
             <Link href="/profile">
               <a className="w-50">

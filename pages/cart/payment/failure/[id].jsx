@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import Assistent from "zaravand-assistent-number";
 // components
-import ShopLayout from "../../../components/shopLayout";
+import ShopLayout from "../../../../components/shopLayout";
 // styles
 import styles from "./faile.module.scss";
 
@@ -20,10 +20,10 @@ const Failed = ({ code }) => {
             width={400}
             height={400}
           />
-          <h3 className={styles.text}>پرداخت ناموفق.</h3>
+          <h3 className={styles.text}>پرداخت ناموفق</h3>
           <h4 className={styles.text_sub}>
             {" "}
-            شماره سفارش : {_asist.PSeparator(`${code}`)}{" "}
+            شماره سفارش : {_asist.number(`${code}`)}{" "}
           </h4>
           <h5 className={styles.text_sub_last}>
             چنانچه طی این فرایند مبلغی از حساب شما کسر شده است ، طی{" "}

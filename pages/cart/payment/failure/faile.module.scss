@@ -2,7 +2,7 @@
     display: flex;
     align-content: center;
     justify-content: center;
-    margin-bottom: 80px;
+    margin: 20px 0px;
 }
 
 .content {
@@ -25,12 +25,13 @@
     text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.3), 0px -4px 10px rgba(255, 255, 255, 0.3);
     color: rgb(235, 13, 13);
     text-align: center;
+    margin-top: 20px;
 }
 
 .text_sub {
     margin-top: 20px;
     color: rgb(253, 7, 7);
-    text-align: right;
+    text-align: center;
 }
 
 .text_sub_last {
