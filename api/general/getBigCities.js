@@ -5,7 +5,7 @@ export const getBigCities = async (id) => {
         let response = await ApiRegister().apiRequest(
             null,
             "get",
-            `api/v1/get-big-cities/?state_id=${id}`,
+            `app/api/v1/get-big-cities/?state_id=${id}`,
             false, {}
         );
         if (response.status === 200) {
