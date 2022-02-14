@@ -1,0 +1,38 @@
+.wrapper {
+    // background-color: royalblue;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #ff5f6d;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ff5f6d, #ffc371);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ff5f6d, #ffc371);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.image {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 100px;
+    height: 100px;
+}
+@media (max-width: 720px) {
+    .image {
+        right: 0;
+        left: 0;
+        margin: auto;
+    }
+}
+.update_element {
+    width: 70%;
+    height: 80%;
+}
+.update_text {
+    font-size: 30px;
+    font-weight: bolder;
+    position: fixed;
+    bottom: 25px;
+}
