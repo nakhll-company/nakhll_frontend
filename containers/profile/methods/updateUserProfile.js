@@ -1,5 +1,5 @@
+import { successMessage } from "../../../utils/toastifyMessage";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-import { successMessage } from "../../utils/message";
 // get user data
 export const updatUserProfile = async (data) => {
     let response = await ApiRegister().apiRequest(

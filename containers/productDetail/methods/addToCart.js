@@ -1,5 +1,5 @@
+import { successMessage } from "../../../utils/toastifyMessage";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-import { successMessage } from "../../utils/message";
 // big city
 export const addToCart = async (productId) => {
     let token = localStorage.getItem("accessToken");

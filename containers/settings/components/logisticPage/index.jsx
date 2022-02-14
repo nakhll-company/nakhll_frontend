@@ -1,75 +1,46 @@
-import { useEffect, useState } from "react";
+// node libraries
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
-import CheckboxTreeCities from "../../../../components/CheckboxTree/CheckboxTree";
-import LoadingAllPage from "../../../../components/loadingAllPage";
-import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
-import InputUseForm from "../../../creat/component/inputUseForm";
-import TextAreaUseForm from "../../../creat/component/textAreaUseForm";
-import { successMessage } from "../../../utils/message";
-import ActiveSendBox from "./components/ActiveSendBox";
-import BtnSetting from "./components/btnSetting";
-import CheckBoxSend from "./components/checkBoxSend";
-import Explain from "./components/explain";
-import HeaderTitle from "./components/headerTitle";
+import { useEffect, useState } from "react";
 import Assistent from "zaravand-assistent-number";
-
-import Panel from "./components/panel";
-import Products from "./components/products";
-import Search from "./components/search";
-import SendBox from "./components/sendBox";
-import SendBoxCu from "./components/sendBoxCu";
-import Tabel from "./components/tabel";
-
-import st from "./logisticPage.module.scss";
-import AllEdit from "./ui/allEdit";
-import FreeQuestion from "./ui/freeQuestion";
-import ResultOperation from "./ui/resultOperation";
-import SelectIcon from "./ui/selectIcon";
+// components
 import SoRent from "./ui/soRent";
+import AllEdit from "./ui/allEdit";
+import Panel from "./components/panel";
+import SelectIcon from "./ui/selectIcon";
+import Explain from "./components/explain";
+import FreeQuestion from "./ui/freeQuestion";
+import Products from "./components/products";
+import BtnSetting from "./components/btnSetting";
+import HeaderTitle from "./components/headerTitle";
+import ResultOperation from "./ui/resultOperation";
+import CheckBoxSend from "./components/checkBoxSend";
+import InputUseForm from "../../../creat/component/inputUseForm";
+import LoadingAllPage from "../../../../components/loadingAllPage";
+import CheckboxTreeCities from "../../../../components/CheckboxTree/CheckboxTree";
+// methods
+import { successMessage } from "../../../../utils/toastifyMessage";
+import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
+// style
+import st from "./logisticPage.module.scss";
 
 function LogisticPage() {
+
   const _asist = new Assistent();
-  const activeHojreh = useSelector((state) => state.User.activeHojreh);
-
-  // state for send data
-  const [payer, setPayer] = useState("cust");
-  const [pay_time, setPay_time] = useState("when_buying");
-
-  const [min_cart_price, setMin_cart_price] = useState(0);
-
-  // state for loader
   const [loader, setLoader] = useState(false);
-
-  // state for handel page
   const [wichPage, setWichPage] = useState(1);
-
-  // for save type post
-  const [whichMethod, setWhichMethod] = useState("");
-
-  // for save id scope
-  const [wichIdScope, setWichIdScope] = useState("");
-
-  // for Save cities
-  const [checkedCities, setCheckedCities] = useState([]);
-
-  // for Save Products
-  const [ProductsShop, setProductsShop] = useState([]);
-
-  // for Save constraintItems
-  const [constraintId, setConstraintId] = useState("");
-
-  // state for word price
-  const [wordPricePer, setWordPricePer] = useState("");
-  const [wordExtraPricePer, setWordExtraPricePer] = useState("");
-  // for save metricId
-
-  const [metricId, setMetricId] = useState("");
-  const [informationForm, setInformationForm] = useState({});
   const [witchUnit, setWitchUnit] = useState("kg");
+  const [wichIdScope, setWichIdScope] = useState("");
+  const [ProductsShop, setProductsShop] = useState([]);
+  const [constraintId, setConstraintId] = useState("");
+  const [wordPricePer, setWordPricePer] = useState("");
+  const [checkedCities, setCheckedCities] = useState([]);
+  const [informationForm, setInformationForm] = useState({});
+  const [wordExtraPricePer, setWordExtraPricePer] = useState("");
+  const activeHojreh = useSelector((state) => state.User.activeHojreh);
+  const [checkedSelectAllProducts, setCheckedSelectAllProducts] = useState(true);
 
   const unitConverter = (num) => {
-    // aaaaaaaaaa
     if (witchUnit == "gr") {
       return num * 1000;
     }
@@ -80,29 +51,13 @@ function LogisticPage() {
       return num / 1000;
     }
   };
-  // for checkbox
-  const [checkedSelectAllProducts, setCheckedSelectAllProducts] =
-    useState(true);
 
-  // state for Saved Sending Unit
-  // const [SavedSendingUnit, setSavedSendingUnit] = useState([]);
-  // useform
-  const {
-    setValue,
-    getValues,
-    clearErrors,
-    register,
-    setError,
-
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit, formState: { errors } } = useForm({
     criteriaMode: "all",
     mode: "all",
   });
 
   // function for Create Shop Logistic Unit Constraint
-
   const _handle_add_new_scope = async () => {
     try {
       let response = await ApiRegister().apiRequest(
@@ -120,7 +75,6 @@ function LogisticPage() {
         setWichIdScope(response.data.id);
         setInformationForm(response.data);
         setConstraintId(response.data.constraint.id);
-        setMetricId(response.data.calculation_metric.id);
         upPage();
       } else {
         setWichPage(13);
@@ -130,7 +84,7 @@ function LogisticPage() {
     }
   };
 
-  const _handle_update_data_scope = async (data, page = 0, move = true) => {
+  const _handle_update_data_scope = async (data, move = true) => {
     setLoader(true);
     let response = await ApiRegister().apiRequest(
       data,
@@ -152,7 +106,6 @@ function LogisticPage() {
   };
 
   // functoin for send data for price per kg
-
   const _handle_send_info_scope = async (data, page = 0) => {
     let response = await ApiRegister().apiRequest(
       data,
@@ -172,9 +125,7 @@ function LogisticPage() {
   const downPage = () => {
     setWichPage(wichPage - 1);
   };
-  const setIdWithWay = (id) => {
-    setWhichMethod(id);
-  };
+
 
   const _handle_send_all_cities = async () => {
     let response = await ApiRegister().apiRequest(
@@ -187,30 +138,28 @@ function LogisticPage() {
       ""
     );
     upPage();
-  };
-  const _handel_get_all_data_scope = async () => {
-    let response = await ApiRegister().apiRequest(
-      null,
-      "get",
-      `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
-      true,
-      ""
-    );
-
-    if (response.status == 200) {
-      setProductsShop(response.data.products);
-    }
+    return response;
   };
 
   const reset_states = () => {
     setWitchUnit("kg");
-    setMin_cart_price(0);
-    setPayer("cust");
-    setPay_time("when_buying");
   };
 
   useEffect(() => {
     if (constraintId !== "") {
+      const _handel_get_all_data_scope = async () => {
+        let response = await ApiRegister().apiRequest(
+          null,
+          "get",
+          `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
+          true,
+          ""
+        );
+
+        if (response.status == 200) {
+          setProductsShop(response.data.products);
+        }
+      };
       _handel_get_all_data_scope();
     }
   }, [constraintId]);
@@ -236,7 +185,6 @@ function LogisticPage() {
 
             <Panel
               setConstraintId={setConstraintId}
-              setMetricId={setMetricId}
               setWichIdScope={setWichIdScope}
               changePage={upPage}
               setInformationForm={setInformationForm}
@@ -303,7 +251,6 @@ function LogisticPage() {
             <SoRent
               _handle_send_info_scope={_handle_send_info_scope}
               pageController={upPage}
-              setPay_time={setPay_time}
             />
           </>
         )}
@@ -311,11 +258,8 @@ function LogisticPage() {
         {wichPage == 5 && (
           <>
             <HeaderTitle onClick={() => downPage()} title="تنظیمات ارسال" />
-
             <FreeQuestion
               pageController={upPage}
-              setPayer={setPayer}
-              setMin_cart_price={setMin_cart_price}
               _handle_send_info_scope={_handle_send_info_scope}
             />
           </>

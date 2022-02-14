@@ -1,34 +1,18 @@
-import React, { useEffect } from "react";
+// node libraries
+import React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import InputUseForm from "../../../../../creat/component/inputUseForm";
+// components
+import Explain from "../../components/explain";
 import BtnSetting from "../../components/btnSetting";
 import CheckBoxSend from "../../components/checkBoxSend";
-import Explain from "../../components/explain";
-import HeaderTitle from "../../components/headerTitle";
+import InputUseForm from "../../../../../creat/component/inputUseForm";
 
-function FreeQuestion({
-  pageController,
-  setPayer,
-  setMin_cart_price,
-  _handle_send_info_scope,
-}) {
+function FreeQuestion({ pageController, _handle_send_info_scope }) {
+
   const [checkNoFree, setCheckNoFree] = useState(true);
   const [checkYesFree, setCheckYesFree] = useState(false);
-  useEffect(() => {
-    checkNoFree ? setPayer("cust") : setPayer("shop");
-  }, [checkNoFree]);
-
-  const {
-    setValue,
-    getValues,
-    clearErrors,
-    register,
-    setError,
-
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit, formState: { errors }, } = useForm({
     criteriaMode: "all",
     mode: "all",
   });
@@ -38,7 +22,6 @@ function FreeQuestion({
       <Explain
         text="
               آیا میخواید محصولات انتخاب شده به صورت رایگان ارسال شود؟
-
             "
       />
       <CheckBoxSend

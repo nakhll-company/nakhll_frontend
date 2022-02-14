@@ -13,13 +13,7 @@ import st from "./panel.module.scss";
 
 const _asist = new Assistent();
 
-function Panel({
-  setConstraintId,
-  setMetricId,
-  setWichIdScope,
-  setInformationForm,
-  setWichPage,
-}) {
+function Panel({ setConstraintId, setWichIdScope, setInformationForm, setWichPage }) {
 
   const [loaderTable, setLoaderTable] = useState(false);
   const [SavedSendingUnit, setSavedSendingUnit] = useState([]);
@@ -62,7 +56,6 @@ function Panel({
     setInformationForm(data);
     setWichIdScope(data.id);
     setConstraintId(data.constraint.id);
-    setMetricId(data.calculation_metric.id);
     setWichPage(9);
   };
 

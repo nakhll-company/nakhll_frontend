@@ -1,18 +1,15 @@
-import React, { useEffect } from "react";
-
-import { useState } from "react";
+// node libraries
+import React, { useState } from "react";
+// components
+import Explain from "../../components/explain";
 import BtnSetting from "../../components/btnSetting";
 import CheckBoxSend from "../../components/checkBoxSend";
-import Explain from "../../components/explain";
-import HeaderTitle from "../../components/headerTitle";
 
-function SoRent({ pageController, setPay_time, _handle_send_info_scope }) {
+function SoRent({ pageController, _handle_send_info_scope }) {
 
   const [checkNO, setCheckNO] = useState(true);
   const [checkYes, setCheckYes] = useState(false);
-  useEffect(() => {
-    setCheckNO ? setPay_time("when_buying") : setPay_time("at_delivery");
-  }, [checkNO]);
+
   return (
     <>
       <Explain

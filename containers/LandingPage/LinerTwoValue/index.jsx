@@ -40,7 +40,9 @@ function LinerTwoValue({ dataLinerTwoValue }) {
                   src={dataLinerTwoValue[0].image}
                   loading="lazy"
                   alt={dataLinerTwoValue[0].title}
-                  layout={"fill"}
+                  width={110}
+                  height={125}
+                  layout="fixed"
                 />
                 <span style={{ fontSize: "15px" }}>
                   {dataLinerTwoValue[0].title}
@@ -53,7 +55,9 @@ function LinerTwoValue({ dataLinerTwoValue }) {
                   src={dataLinerTwoValue[1].image}
                   loading="lazy"
                   alt={dataLinerTwoValue[1].title}
-                  layout={"fill"}
+                  width={110}
+                  height={125}
+                  layout="fixed"
                 />
                 <span style={{ fontSize: "15px" }}>
                   {dataLinerTwoValue[1].title}
