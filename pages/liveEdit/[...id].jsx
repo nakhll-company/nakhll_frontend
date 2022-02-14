@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useRef, useEffect, useState } from "react";
 // components
-import Living from "../../components/liveEdit/living";
+import Living from "../../components/liveEdit/living/index";
 import EmptyLayout from "../../components/layout/EmptyLayout";
 import SaveLanding from "../../containers/liveEdit/SaveLanding";
 import ListComponent from "../../containers/liveEdit/ListComponent";

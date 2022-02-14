@@ -5,7 +5,7 @@ import Assistent from "zaravand-assistent-number";
 import React, { useEffect, useState } from "react";
 // methods
 import { ApiReference } from "../../../api/Api";
-import { errorMessage } from "../../utils/message";
+import { errorMessage } from "../../../utils/toastifyMessage";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import { _updateUrl } from "../../../redux/actions/liveEdit/_updateUrl";
 import { _updateVideo } from "../../../redux/actions/liveEdit/_updateVideo";
