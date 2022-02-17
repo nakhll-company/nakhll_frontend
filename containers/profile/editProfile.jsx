@@ -15,7 +15,7 @@ import styles from "./scss/editProfile.module.scss";
 /**
  * edit profile
  */
-const EditProfile = ({ dataProfile }) => {
+const EditProfile = ({ dataProfile, setDataProfile }) => {
   const {
     register,
     handleSubmit,
@@ -50,7 +50,7 @@ const EditProfile = ({ dataProfile }) => {
     if (data.Sex === "") {
       delete data.Sex;
     }
-    updatUserProfile(data);
+    updatUserProfile(data, setDataProfile);
   };
 
   useEffect(() => {
