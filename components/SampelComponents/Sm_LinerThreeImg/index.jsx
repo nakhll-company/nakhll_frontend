@@ -1,12 +1,12 @@
-// node libraries
 import React from "react";
 import Image from "next/image";
-// components
-import InputUrl from "../../../containers/liveEdit/InputUrl";
-import InputPicture from "../../../containers/liveEdit/InputPicture";
-// style
+import Link from "next/link";
 import styles from "./Sm_LinerThreeImg.module.scss";
+import InputPicture from "../../../containers/liveEdit/InputPicture";
+import InputUrl from "../../../containers/liveEdit/InputUrl";
 
+// type====================4
+// aspect ratio======6/1  && 3/1
 function Sm_LinerThreeImg({ setImageSrc, id, data }) {
   return (
     <div>
@@ -22,10 +22,9 @@ function Sm_LinerThreeImg({ setImageSrc, id, data }) {
             <span>{data[0].title}</span>
           </div>
         )}
-        <Image
+        <img
           src={data[0].image ? data[0].image : "/image/sample/6_1.jpg"}
           alt=""
-          layout="fill"
         />
       </div>
       <div className={styles.wrap}>
@@ -46,10 +45,9 @@ function Sm_LinerThreeImg({ setImageSrc, id, data }) {
               <span>{data[1].title}</span>
             </div>
           )}
-          <Image
+          <img
             src={data[1].image ? data[1].image : "/image/sample/3_1.jpg"}
             alt=""
-            layout="fill"
           />
         </div>
         <div className={styles.left}>
@@ -69,10 +67,9 @@ function Sm_LinerThreeImg({ setImageSrc, id, data }) {
               <span>{data[2].title}</span>
             </div>
           )}
-          <Image
+          <img
             src={data[2].image ? data[2].image : "/image/sample/3_1.jpg"}
             alt=""
-            layout="fill"
           />
         </div>
       </div>
