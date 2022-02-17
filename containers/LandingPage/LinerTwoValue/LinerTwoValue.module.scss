@@ -22,8 +22,11 @@
     height: 150px;
     position: relative;
     justify-content: space-evenly;
+    .values_until_72{
+        height: auto;
+    }
     span {
-        font-size: 18px;
+        font-size: 15px;
         position: absolute;
         bottom: -20px;
         margin: 0;
@@ -39,8 +42,11 @@
     height: 150px;
     justify-content: space-evenly;
     position: relative;
+    .values_until_72{
+        height: auto;
+    }
     span {
-        font-size: 18px;
+        font-size: 15px;
         position: absolute;
         bottom: -20px;
         margin: 0;
@@ -50,7 +56,6 @@
 
 .mobile {
     display: flex;
-    // margin-bottom: 10px;
     justify-content: space-evenly;
     div {
         height: 100px;
@@ -72,8 +77,6 @@
             width: 60px;
             text-align: right;
             line-height: 1.8;
-            // border-top: 1px solid royalblue;
-            // border-bottom: 1px solid #91a6c1;
         }
     }
 }

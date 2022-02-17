@@ -7,9 +7,9 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import _ from "lodash";
 // components
 import { TopBar } from "../TopBar";
+import { allCites } from "../../../utils/allCities";
 import Search from "../../../components/search/Search";
 import AddFavorites from "../../../components/AddFavorites";
-import { allCites } from "../../../components/custom/data/data";
 import CustomSwitch from "../../../components/custom/customSwitch";
 import ProductCard from "../../../components/ProductCart/ProductCard";
 import CustomAccordion from "../../../components/custom/customAccordion";
@@ -27,7 +27,7 @@ import { useSelector } from "react-redux";
 const _asist = new Assistent();
 
 function ListProductCus({ data }) {
-  const changePage = 1;
+
   const [pageApi, setPageApi] = useState(2);
   const [hasMore, setHasMore] = useState(false);
   const [shopsName, setShopsName] = useState([]);

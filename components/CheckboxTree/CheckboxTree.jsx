@@ -5,7 +5,7 @@ import React, { useEffect, useState, Fragment } from "react";
 // components
 import TitleLiner from "../../containers/settings/components/titleLiner";
 // methods
-import { allCites } from "./data";
+import { allCites } from "../../utils/allCities";
 
 const _asist = new Assistent();
 

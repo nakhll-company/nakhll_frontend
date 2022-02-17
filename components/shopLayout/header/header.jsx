@@ -55,9 +55,8 @@ function Header() {
             height={100}
             width={3000}
             src="/image/topBanner/topImg.jpg"
-            alt="نوبت مامانه"
+            alt="حجره بزن"
           />
-
           <div
             style={{
               position: "absolute",
@@ -67,7 +66,6 @@ function Header() {
               fontWeight: "bolder",
             }}
           >
-            {/* <Timer date="2022-1-24" /> */}
           </div>
         </div>
         <div className="container">
@@ -75,13 +73,7 @@ function Header() {
             <div className={styles.top_header_rightside}>
               <div className={styles.h_logo}>
                 <Link href="/">
-                  <a
-                  // style={{
-                  //   display: "flex",
-                  //   alignItems: " center",
-                  //   justifyContent: "space-between"
-                  // }}
-                  >
+                  <a>
                     <Image
                       layout="responsive"
                       height="100"
@@ -114,7 +106,6 @@ function Header() {
                       }}
                       onChange={(e) => {
                         setInputSearch(e.target.value);
-
                         let searchedShop = _handel_search(
                           e.target.value,
                           shopsName
@@ -126,7 +117,6 @@ function Header() {
                     {searchShops.length > 0 && (
                       <BoxSearch list={searchShops} word={inputSearch} />
                     )}
-
                     <Link href={`/search?q=${inputSearch}`}>
                       <a aria-label="پروفایل">
                         <i className="fas fa-search"></i>
@@ -243,10 +233,6 @@ function Header() {
             src="/image/topBanner/topImg_mobile.jpg"
             alt="در نخل حجره دار شوید."
           />
-
-          {/* <div style={{ position: "absolute", top: "5px", left: "5px", fontSize: "11px", fontWeight: "bolder" }}>
-            <Timer date="2022-1-24" />
-          </div> */}
         </div>
         <div className={styles.header_holder}>
           <div className="container">
@@ -367,8 +353,6 @@ function Header() {
                 {searchShops.length > 0 && (
                   <BoxSearch list={searchShops} word={inputSearch} />
                 )}
-                {/* <Link  href={`/search?q=${inputSearch}`}>
-                  <a aria-label="پروفایل"> */}
                 <div
                   onClick={() => {
                     gtagGoogleAnalytics("event", "سرچ", {
@@ -381,8 +365,6 @@ function Header() {
                 >
                   <i className="fas fa-search"></i>
                 </div>
-                {/* </a>
-                </Link> */}
               </form>
             </div>
           </div>

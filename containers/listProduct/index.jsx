@@ -12,7 +12,7 @@ import ProductCard from "../../components/ProductCart/ProductCard";
 import CustomAccordion from "../../components/custom/customAccordion";
 import MultiRangeSlider from "../../components/custom/customMultiRangeSlider/MultiRangeSlider";
 // methods
-import { allCites } from "../../components/custom/data/data";
+import { allCites } from "../../utils/allCities";
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { WoLoading } from "../../components/custom/Loading/woLoading/WoLoading";
 // style
