@@ -254,7 +254,7 @@ export default function Cart() {
                           style={{ minWidth: "1%", marginRight: "1rem" }}
                         >
                           <Link
-                            href={`/shop/${itemProduct.product.FK_Shop.slug}/product/${itemProduct.product.Slug}`}
+                            href={`/shop/${itemProduct.shop_slug}/product/${itemProduct.slug}`}
                           >
                             <a className="link-body">{itemProduct.product.Title}</a>
                           </Link>

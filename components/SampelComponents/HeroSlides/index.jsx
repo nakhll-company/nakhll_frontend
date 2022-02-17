@@ -1,19 +1,22 @@
-// node libraries
-import Image from "next/image";
 import React, { useState } from "react";
-import Assistent from "zaravand-assistent-number";
-// components
-import InputUrl from "../../../containers/liveEdit/InputUrl";
+import Image from "next/image";
 import InputPicture from "../../../containers/liveEdit/InputPicture";
-// style
+import InputUrl from "../../../containers/liveEdit/InputUrl";
 import styles from "./HeroSlides.module.scss";
-
+import Assistent from "zaravand-assistent-number";
 const _asist = new Assistent();
 
+// type============1
+//  ratio========2/1
 function Sm_HeroSlides({ setImageSrc, id, data }) {
-
   const [wichSlide, setWichSlide] = useState(1);
-
+  const dataSlides = [
+    { order: 0 },
+    { order: 1 },
+    { order: 2 },
+    { order: 3 },
+    { order: 4 },
+  ];
   return (
     <div className={styles.content}>
       <div className={styles.slider}>
@@ -60,14 +63,13 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
                   <span>{data[wichSlide - 1]?.title}</span>
                 </div>
               )}
-              <Image
+              <img
                 src={
                   data[wichSlide - 1]?.image
                     ? data[wichSlide - 1].image
                     : "/image/sample/2_1.jpg"
                 }
                 alt=""
-                layout="fill"
               />
             </div>
           )}
@@ -75,10 +77,9 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
         <div className={styles.left}>
           <div className={styles.top}>
             <div className={styles.holderPic}>
-              <Image
+              <img
                 src={data[5]?.image ? data[5].image : "/image/sample/2_1_M.jpg"}
                 alt=""
-                layout="fill"
               />
             </div>
             <div className={styles.icon_change_pic}>
@@ -100,10 +101,9 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
           </div>
           <div className={styles.bottom}>
             <div className={styles.holderPic}>
-              <Image
+              <img
                 src={data[6]?.image ? data[6].image : "/image/sample/2_1_M.jpg"}
                 alt=""
-                layout="fill"
               />
             </div>
             <div className={styles.icon_change_pic}>

@@ -1,14 +1,13 @@
-// node libraries
-import React from "react";
-import Image from "next/image";
-// components
-import InputUrl from "../../../containers/liveEdit/InputUrl";
-import InputPicture from "../../../containers/liveEdit/InputPicture";
-// style
+import React, { useRef } from "react";
+
 import styles from "./Sm_LinerOneImg.module.scss";
 
+import { _selectId } from "../../../redux/actions/liveEdit/_selectId";
+import InputPicture from "../../../containers/liveEdit/InputPicture";
+import InputUrl from "../../../containers/liveEdit/InputUrl";
+// type component ===============2
+// aspect ratio 6/1
 function Sm_LinerOneImg({ setImageSrc, id, data }) {
-
   return (
     <div className={styles.wrapper}>
       <div className={styles.icon_change_pic}>
@@ -22,10 +21,10 @@ function Sm_LinerOneImg({ setImageSrc, id, data }) {
           <span>{data[0].title}</span>
         </div>
       )}
-      <Image
+
+      <img
         src={data[0].image ? data[0].image : "/image/sample/6_1.jpg"}
         alt=""
-        layout="fill"
       />
     </div>
   );

@@ -277,7 +277,7 @@ const Profile = () => {
           )}
           <div className={`col-md-8 col-lg-9 col-12`}>
             {profilePages.editProfile && (
-              <EditProfile dataProfile={dataProfile} />
+              <EditProfile dataProfile={dataProfile} setDataProfile={setDataProfile} />
             )}
             {profilePages.ordersPage && (
               <Oredrs

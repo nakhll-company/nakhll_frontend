@@ -1,14 +1,13 @@
-// node libraries
 import React from "react";
 import Image from "next/image";
-// components
-import InputUrl from "../../../containers/liveEdit/InputUrl";
 import InputPicture from "../../../containers/liveEdit/InputPicture";
-// style
+import InputUrl from "../../../containers/liveEdit/InputUrl";
 import styles from "./Sm_LinerFourImg.module.scss";
 
-function Sm_LinerFourImg({ setImageSrc, id, data }) {
+// type==============5
+// aspect=================1.33
 
+function Sm_LinerFourImg({ setImageSrc, id, data }) {
   return (
     <div className={styles.wrap}>
       <div className={styles.wrapImg}>
@@ -28,12 +27,12 @@ function Sm_LinerFourImg({ setImageSrc, id, data }) {
             <span>{data[0].title}</span>
           </div>
         )}
-        <Image
+        <img
           src={data[0].image ? data[0].image : "/image/sample/4_3.jpg"}
           alt=""
-          layout="fill"
         />
       </div>
+
       <div className={styles.wrapImg}>
         <div className={styles.icon_change_pic}>
           <InputPicture
@@ -51,12 +50,12 @@ function Sm_LinerFourImg({ setImageSrc, id, data }) {
             <span>{data[1].title}</span>
           </div>
         )}
-        <Image
+        <img
           src={data[1].image ? data[1].image : "/image/sample/4_3.jpg"}
           alt=""
-          layout="fill"
         />
       </div>
+
       <div className={styles.wrapImg}>
         <div className={styles.icon_change_pic}>
           <InputPicture
@@ -74,12 +73,12 @@ function Sm_LinerFourImg({ setImageSrc, id, data }) {
             <span>{data[2].title}</span>
           </div>
         )}
-        <Image
+        <img
           src={data[2].image ? data[2].image : "/image/sample/4_3.jpg"}
           alt=""
-          layout="fill"
         />
       </div>
+
       <div className={styles.wrapImg}>
         <div className={styles.icon_change_pic}>
           <InputPicture
@@ -97,10 +96,9 @@ function Sm_LinerFourImg({ setImageSrc, id, data }) {
             <span>{data[3].title}</span>
           </div>
         )}
-        <Image
+        <img
           src={data[3].image ? data[3].image : "/image/sample/4_3.jpg"}
           alt=""
-          layout="fill"
         />
       </div>
     </div>
