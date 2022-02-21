@@ -9,8 +9,8 @@ export const VALIDATION_SCHEMA = yup.object().shape({
         .number()
         .integer()
         .typeError("فقط عدد مجاز است.")
-        .min(1000000000, "کد ملی ده رقم می باشد.")
-        .max(9999999999, "کد ملی ده رقم می باشد.")
+        // .min(1000000000, "کد ملی ده رقم می باشد.")
+        // .max(9999999999, "کد ملی ده رقم می باشد.")
         .required("کد ملی الزامی می باشد."),
     PhoneNumber: yup.number()
         .integer()
