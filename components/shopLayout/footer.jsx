@@ -18,11 +18,11 @@ const Footer = () => {
     let element = document.getElementById(accord);
     if (element.style.height == "0px") {
       element.style.height = "unset";
-      document.getElementById(icon).className = "fas fa-angle-down";
+      document.getElementById(icon).className = "fas fa-angle-up";
     } else {
       element.style.height = "0";
       element.style.overflow = "hidden";
-      document.getElementById(icon).className = "fas fa-angle-up";
+      document.getElementById(icon).className = "fas fa-angle-down";
     }
   };
 
@@ -159,48 +159,6 @@ const Footer = () => {
                 <div className="row">
                   <div className="col-xx-3"></div>{" "}
                   <div className="col-12 col-xx-9 footer-top-part1">
-                    {/* <div className="pb-3">
-                      <a
-                        href="/dl-app"
-                        className={`${styles.footer_items} font-lg-size1-1 font-weight-500 m-0`}
-                      >
-                        دانلود اپلیکیشن
-                      </a>
-                    </div>{" "} */}
-                    {/* <div className={styles.footer_form_wrapper}>
-                      <form action="" method="POST" target="_blank">
-                        <input
-                          type="email"
-                          name="fields[email]"
-                          placeholder="برای اطلاع از تخفیف‌ها ایمیل خود را وارد کنید"
-                        />{" "}
-                        <button type="submit">اشتراک</button>
-                      </form>
-                    </div>{" "} */}
-                    {/* <div className={styles.footer_downloadApp}>
-                      <a href="">
-                        <img
-                          src=""
-                          alt="دانلود اپ نخل از کافه بازار"
-                          width="140"
-                          height="45"
-                        />
-                      </a>{" "}
-                      <a href=">
-                        <img
-                          src=""
-                          alt="دانلود اپ نخل از گوگل پلی"
-                          width="140"
-                        />
-                      </a>{" "}
-                      <a href="">
-                        <img
-                          src=""
-                          alt="دانلود اپ نخل از مایکت"
-                          width="140"
-                        />
-                      </a>
-                    </div>{" "} */}
                     <div className="row mt-5">
                       <div className="col-6 col-md-3 mb-2 mt-3">
                         <div
@@ -277,7 +235,7 @@ const Footer = () => {
                 >
                   <div className="d-flex justify-content-between">
                     <div className="font-weight-500">نخل</div>{" "}
-                    <i id="icon" className="fas fa-angle-up"></i>
+                    <i id="icon" className="fas fa-angle-down"></i>
                   </div>
                 </div>{" "}
                 <div
@@ -286,6 +244,7 @@ const Footer = () => {
                     transition: "all 1s ease-out",
                     height: "0",
                     overflow: "hidden",
+                    paddingTop: "10px"
                   }}
                   className="is-active"
                 >
@@ -304,24 +263,6 @@ const Footer = () => {
                       <a className={styles.footer_items}>تماس با ما</a>
                     </Link>
                   </div>
-                  {/* <div>
-                    <a
-                      to=""
-                      href=""
-                      className={styles.footer_items}
-                    >
-                      فرصت‌های شغلی
-                    </a>
-                  </div> */}
-                  {/* <div>
-                    <a
-                      to="/guides/how-it-works"
-                      href="/guides/how-it-works"
-                      className={styles.footer_items}
-                    >
-                      نخل چطور کار می‌کند؟
-                    </a>
-                  </div> */}
                   <div>
                     <Link href="https://nakhll.com/blog/%d8%b4%d8%b1%d8%a7%db%8c%d8%b7-%d9%88-%d8%b6%d9%88%d8%a7%d8%a8%d8%b7/">
                       <a className={styles.footer_items}>
@@ -339,7 +280,7 @@ const Footer = () => {
                 >
                   <div className="d-flex justify-content-between">
                     <div className="font-weight-500">پشتیبانی</div>{" "}
-                    <i id="part_two_icon" className="fas fa-angle-up"></i>
+                    <i id="part_two_icon" className="fas fa-angle-down"></i>
                   </div>
                 </div>{" "}
                 <div
@@ -347,6 +288,7 @@ const Footer = () => {
                     transition: "all 1s ease-out",
                     height: "0",
                     overflow: "hidden",
+                    paddingTop: "10px"
                   }}
                   id="part_two"
                   className="is-active"
@@ -363,38 +305,11 @@ const Footer = () => {
                       </a>
                     </div>
                   </div>
-                  {/* <div>
-                    <a to="" href="" className={styles.footer_items}>
-                      پشتیبانی آنلاین
-                    </a>
-                  </div> */}
                   <div>
                     <Link href={Object.keys(userData).length > 0 ? "/profile" : "/login"}>
                       <a className={styles.footer_items}>پیگیری سفارشات</a>
                     </Link>
                   </div>
-                  {/* <div>
-                    <a
-                      href="/guides/return-policy"
-                      className={styles.footer_items}
-                    >
-                      بازگشت کالا
-                    </a>
-                  </div> */}
-                  {/* <div>
-                    <a to="" href="" className={styles.footer_items}>
-                      گزارش تخلف
-                    </a>
-                  </div> */}
-                  {/* <div>
-                    <a
-                      to="/guides/customer-satisfaction"
-                      href="/guides/customer-satisfaction"
-                      className={styles.footer_items}
-                    >
-                      تضمین رضایت مشتری
-                    </a>
-                  </div> */}
                   <div>
                     <Link href="https://nakhll.com/blog/%d8%b3%d9%88%d8%a7%d9%84%d8%a7%d8%aa-%d9%be%d8%b1-%d8%aa%da%a9%d8%b1%d8%a7%d8%b1/">
                       <a className={styles.footer_items}>
@@ -412,7 +327,7 @@ const Footer = () => {
                 >
                   <div className="d-flex justify-content-between">
                     <div className="font-weight-500">خرید و فروش</div>{" "}
-                    <i id="part_three_icon" className="fas fa-angle-up"></i>
+                    <i id="part_three_icon" className="fas fa-angle-down"></i>
                   </div>
                 </div>{" "}
                 <div
@@ -421,6 +336,7 @@ const Footer = () => {
                     transition: "all 1s ease-out",
                     height: "0",
                     overflow: "hidden",
+                    paddingTop: "10px"
                   }}
                 >
                   <div>
@@ -428,19 +344,6 @@ const Footer = () => {
                       <a className={styles.footer_items}>فروش در نخل</a>
                     </Link>
                   </div>
-                  {/* <div>
-                    <a
-                      href="/account/invite"
-                      className="footer-items font-weight-bold"
-                    >
-                      100 هزار تومان هدیه
-                    </a>
-                  </div> */}
-                  {/* <div>
-                    <a href="/account/credit" className={styles.footer_items}>
-                      کیف پول من
-                    </a>
-                  </div> */}
                   <div>
                     <Link
                       href={
@@ -454,13 +357,6 @@ const Footer = () => {
                 </div>
               </div>{" "}
               <div className="align-items-center d-flex justify-content-between mt-3">
-                {/* <div>
-                  <a href="">
-                    <button className="btn rounded-pill border-black">
-                      دانلود اپلیکیشن
-                    </button>
-                  </a>
-                </div>{" "} */}
                 <div
                   style={{
                     justifyContent: "space-around",
@@ -595,13 +491,6 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-            {/* <div className="bg-black text-white py-3">
-              <div className="container font-size-sm">
-                کلیه حقوق مادی و معنوی برای «توسعه و تدبیر جوامع سلام»، بازار
-                اجتماعی آنلاین، محفوظ است.
-              </div>{" "}
-              <div className="mt-5 mt-lg-0 pt-4 pt-lg-0"></div>
-            </div> */}
           </div>
         </>
       )}

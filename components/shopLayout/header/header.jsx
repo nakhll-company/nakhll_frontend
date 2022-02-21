@@ -244,26 +244,24 @@ function Header() {
                 }}
               >
                 <i className="fas fa-bars"></i>
+              </div>
+              <div className={styles.logo_name}>
                 <Link href="/">
-                  <a>
+                  <a className="px-2">
                     <Image
-                      layout="responsive"
-                      height={26}
-                      width={26}
+                      height={30}
+                      width={30}
                       src="/icons/Nakhll.png"
                       alt="فروشگاه اینترنتی نخل"
                       className={styles.icon_nakhl}
                     />
                   </a>
                 </Link>
-              </div>
-              <div className={styles.logo_name}>
                 <Link href="/">
                   <a>
                     <Image
-                      layout="responsive"
-                      height={100}
-                      width={350}
+                      height={30}
+                      width={90}
                       src="/icons/Name_Nakhl.png"
                       alt="فروشگاه اینترنتی نخل"
                       className={styles.icon_nakhl_name}
@@ -303,7 +301,7 @@ function Header() {
                       className={styles.icon_sabad}
                       src="/icons/sabad.svg"
                       width={24}
-                      height={24}
+                      height={22}
                       alt=""
                     />
                     {Object.keys(userLog).length > 0 &&

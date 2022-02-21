@@ -362,17 +362,19 @@ $color_tel_word: rgb(162, 172, 182);
       .left_side {
         display: flex;
         align-items: center;
-        justify-content: flex-end;
+        justify-content: space-between;
         .profile_btn {
           color: #595959;
           font-size: 24px;
           line-height: 0;
         }
         .bascket_btn {
-        width: 50px;
-        height: 50px;
+          display: flex;
+          align-items: center;
+          width: 30px;
+          height: 30px;
           margin-right: 10px;
-          margin-top: 20px;
+          // margin-top: 20px;
           position: relative;
           color: #595959;
           font-size: 24px;
@@ -566,7 +568,11 @@ $color_tel_word: rgb(162, 172, 182);
   }
 }
 .logo_name {
-  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  padding-top: 10px;
 }
 .logo_nakhl{
   cursor: pointer;
@@ -577,12 +583,10 @@ $color_tel_word: rgb(162, 172, 182);
 }
 
 .icon_nakhl{
-  cursor: pointer; 
-  margin-right: 10px;
+  cursor: pointer;
 }
 .icon_nakhl_name{
   cursor: pointer;
-  width: 130%;
 }
 .icon_sabad{
   margin-left: 12px;

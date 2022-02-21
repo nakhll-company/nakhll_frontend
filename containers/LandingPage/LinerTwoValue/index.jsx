@@ -9,9 +9,9 @@ function LinerTwoValue({ dataLinerTwoValue }) {
     <>
       {dataLinerTwoValue && dataLinerTwoValue.length >= 2 && (
         <>
-          <div className="container  d-block mt-2 mb-5">
+          <div className="container d-block my-2">
             <aside className={styles.section}>
-              <div className={styles.rightImg}>
+              <div className={styles.wrapper_values}>
                 <Image
                   className={styles.values_until_72}
                   src={dataLinerTwoValue[0].image}
@@ -20,12 +20,12 @@ function LinerTwoValue({ dataLinerTwoValue }) {
                   width={100}
                   height={100}
                 />
-                <span>
+                <span className="pt-3">
                   {dataLinerTwoValue[0].title}
                 </span>
               </div>
 
-              <div className={styles.leftImg}>
+              <div className={styles.wrapper_values}>
                 <Image
                   className={styles.values_online_shop}
                   src={dataLinerTwoValue[1].image}
@@ -34,7 +34,7 @@ function LinerTwoValue({ dataLinerTwoValue }) {
                   width={100}
                   height={100}
                 />
-                <span>
+                <span className="pt-3">
                   {dataLinerTwoValue[1].title}
                 </span>
               </div>
