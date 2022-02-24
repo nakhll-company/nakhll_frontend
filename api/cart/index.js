@@ -1,6 +1,6 @@
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 
-export const _getListInvoice = async (setMsgCoupon, setListInvoice, setLogisticPrice, setTotalPrice, setFinalPrice, setAddressReceiver, setResultCoupon, setLogisticErrors, setIsLoadInvoice) => {
+export const _getListInvoice = async (setMsgCoupon, setListInvoice, setLogisticPrice, setTotalPrice, setCartPrice, setAddressReceiver, setResultCoupon, setLogisticErrors, setIsLoadInvoice) => {
     let response = await ApiRegister().apiRequest(
         null,
         "GET",
@@ -13,7 +13,7 @@ export const _getListInvoice = async (setMsgCoupon, setListInvoice, setLogisticP
         setListInvoice(data.ordered_items);
         setLogisticPrice(data.logistic_details.total_price);
         setTotalPrice(data.total_price);
-        setFinalPrice(data.total_price + data.logistic_details.total_price);
+        setCartPrice(data.cart_price);
         setAddressReceiver(data.address);
         setResultCoupon(0); // data.coupons_total_price
         setMsgCoupon([]); // data.coupon_usages

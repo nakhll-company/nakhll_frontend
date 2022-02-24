@@ -8,7 +8,7 @@ export const getUserInfo = () => async (dispatch) => {
             let response = await ApiRegister().apiRequest(
                 null,
                 "get",
-                "app/api/v1/get-user-info/",
+                "/api/v1/get-user-info/",
                 true,
                 {}
             );

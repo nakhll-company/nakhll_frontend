@@ -22,13 +22,13 @@ export default function Cart() {
   const [listInvoice, setListInvoice] = useState([]);
   const [logisticPrice, setLogisticPrice] = useState(null);
   const [totalPrice, setTotalPrice] = useState(null);
-  const [finalPrice, setFinalPrice] = useState(null);
+  const [cartPrice, setCartPrice] = useState(null);
   const [addressReceiver, setAddressReceiver] = useState({});
   const [resultCoupon, setResultCoupon] = useState(null);
   const [logisticErrors, setLogisticErrors] = useState([]);
 
   useEffect(() => {
-    _getListInvoice(setMsgCoupon, setListInvoice, setLogisticPrice, setTotalPrice, setFinalPrice, setAddressReceiver, setResultCoupon, setLogisticErrors, setIsLoadInvoice);
+    _getListInvoice(setMsgCoupon, setListInvoice, setLogisticPrice, setTotalPrice, setCartPrice, setAddressReceiver, setResultCoupon, setLogisticErrors, setIsLoadInvoice);
   }, []);
 
 
@@ -277,7 +277,7 @@ export default function Cart() {
                 <div className="d-flex py-1">
                   <span>جمع بهای سفارش:</span>
                   <span className="mr-auto" style={{ marginRight: "auto" }}>
-                    {_asist.PSeparator(totalPrice / 10)} تومان
+                    {_asist.PSeparator(cartPrice / 10)} تومان
                   </span>
                 </div>
                 <div className="d-flex py-1">
@@ -303,7 +303,7 @@ export default function Cart() {
                     className="mr-auto"
                     style={{ color: "rgb(27,62,104)", marginRight: "auto" }}
                   >
-                    {_asist.PSeparator(finalPrice / 10)} تومان
+                    {_asist.PSeparator(totalPrice / 10)} تومان
                   </span>
                 </div>
               </div>
@@ -354,7 +354,7 @@ export default function Cart() {
               </span>
               <span className=" font-size1" style={{ color: "rgb(27,62,104)" }}>
                 <strong className="payableAmount splitNumber font-size1-2">
-                  {_asist.PSeparator(finalPrice / 10)}
+                  {_asist.PSeparator(totalPrice / 10)}
                 </strong>
                 تومان
               </span>
@@ -372,7 +372,7 @@ export default function Cart() {
                   className="mr-auto ml-1"
                   style={{ color: "rgb(27,62,104)" }}
                 >
-                  {_asist.PSeparator(finalPrice / 10)}
+                  {_asist.PSeparator(cartPrice / 10)}
                 </strong>
                 تومان
               </div>

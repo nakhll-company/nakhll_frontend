@@ -12,13 +12,13 @@ export default function SumBuy() {
 
   return (
     <>
-      {All_product_list_buy.total_old_price ? (
+      {All_product_list_buy.cart_old_price ? (
         <div className="col-12 col-md-12 col-lg-4 order-0 order-md-0 order-lg-1">
           <div className={styles.cart_invoice}>
             <div className={styles.cart_invoice_primary_price}>
               <span>قیمت محصولات:</span>{" "}
               <span>
-                {_asist.PSeparator(All_product_list_buy.total_old_price / 10)}
+                {_asist.PSeparator(All_product_list_buy.cart_old_price / 10)}
 
                 <span style={{ marginRight: "5px" }}>تومان</span>
               </span>
@@ -27,8 +27,8 @@ export default function SumBuy() {
               <span>تخفیف محصولات:</span>{" "}
               <span>
                 {_asist.PSeparator(
-                  (All_product_list_buy.total_old_price -
-                    All_product_list_buy.total_price) /
+                  (All_product_list_buy.cart_old_price -
+                    All_product_list_buy.cart_price) /
                   10
                 )}
 
@@ -42,7 +42,7 @@ export default function SumBuy() {
             <div className={styles.cart_invoice_total_price}>
               <span>مبلغ قابل پرداخت</span>{" "}
               <span className="font-weight-500">
-                {_asist.PSeparator(All_product_list_buy.total_price / 10)}
+                {_asist.PSeparator(All_product_list_buy.cart_price / 10)}
 
                 <span style={{ marginRight: "5px" }}>تومان</span>
               </span>

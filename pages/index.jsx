@@ -70,37 +70,37 @@ const HomePage = ({ data }) => {
     switch (type.component_type) {
       case 1:
         return (
-          <DynamicHeroSlides
+          <DynamicHeroSlides key={index}
             dataHeroSlides={data.all_data_for_component[index]}
           />
         );
       case 2:
         return (
-          <LinerOneImg
+          <LinerOneImg key={index}
             dataLinerOneImg={data.all_data_for_component[index]}
           />
         );
       case 3:
         return (
-          <LinerTwoValue
+          <LinerTwoValue key={index}
             dataLinerTwoValue={data.all_data_for_component[index]}
           />
         );
       case 4:
         return (
-          <LinerThreeImg
+          <LinerThreeImg key={index}
             dataLinerThreeImg={data.all_data_for_component[index]}
           />
         );
       case 5:
         return (
-          <LinerFourImgMobile
+          <LinerFourImgMobile key={index}
             dataLinerFourImgMobile={data.all_data_for_component[index]}
           />
         );
       case 6:
         return (
-          <LinerProducts
+          <LinerProducts key={index}
             title={type.title}
             subTitle={type.subtitle}
             dataLinerProducts={data.all_data_for_component[index]}
@@ -110,7 +110,7 @@ const HomePage = ({ data }) => {
         );
       case 7:
         return (
-          <LinerProductsBg
+          <LinerProductsBg key={index}
             subTitle_LinerProductsBg={type.subtitle}
             dataLinerProductsBg={type.data}
             url_LinerProductsBg={type.url}
