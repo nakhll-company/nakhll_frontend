@@ -29,9 +29,6 @@ export default function DesktopOrders({
     { value: "wait_customer_approv", label: "در انتظار تأیید مشتری" },
   ];
 
-  let jsonAddress = ordersList.address_json || "{}";
-  jsonAddress = JSON.parse(jsonAddress);
-
   return (
     <div className={styles.wrapper}>
       <form
@@ -136,6 +133,10 @@ export default function DesktopOrders({
               </tr>
             ) : ordersList.length > 0 ? (
               ordersList.map((value, index) => {
+
+                let jsonAddress = value.address_json || "{}";
+                jsonAddress = JSON.parse(jsonAddress);
+
                 return (
                   <tr key={index}>
                     <Link href={`/fp/order/orderdetail/${value.id}`} passHref>
