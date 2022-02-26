@@ -12,6 +12,9 @@ const _asist = new Assistent();
 
 const MobileOrders = ({ loading, ordersList }) => {
 
+  let jsonAddress = ordersList.address_json || "{}";
+  jsonAddress = JSON.parse(jsonAddress);
+
   return (
     <div className={styles.wrapper}>
       {loading ? (
@@ -49,7 +52,8 @@ const MobileOrders = ({ loading, ordersList }) => {
                   </div>
                   <CustomLabel
                     type="normal"
-                    value={value.items[0].buyer}
+                    value={(value.items && value.items[0].buyer) ||
+                      (value.address_json && jsonAddress.receiver_full_name)}
                     label="خریدار"
                     customLabelDiv="wrapper_custom_label"
                   />
