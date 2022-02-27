@@ -8,6 +8,7 @@ import { Fragment, useEffect, useState } from "react";
 import useViewport from "../../../../components/viewPort";
 import MyLayout from "../../../../components/layout/Layout";
 // methods
+import { successMessage } from "../../../../containers/utils/message";
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 // sass
 import styles from "../../../../styles/pages/order/orderdetail.module.scss";
@@ -37,7 +38,6 @@ function HomePage({ id }) {
   const [isOpen, setIsOpen] = useState(false);
   const [IsLoading, setIsLoading] = useState(false);
   const [showMessage, setshowMessage] = useState(0);
-  const [configOrder, setconfigOrder] = useState(false);
 
   const _handleRequestApi = async (id) => {
     let response = await ApiRegister().apiRequest(
@@ -63,7 +63,8 @@ function HomePage({ id }) {
     );
     setisShow(true);
     if (response.status === 200) {
-      setconfigOrder(true);
+      _handleRequestApi(id);
+      successMessage("سفارش با موفقیت تایید شد");
     }
   };
 
@@ -267,7 +268,7 @@ function HomePage({ id }) {
                       </button>
                     </div>
                   )}
-                  {(configOrder || data.status === "preparing_product") && (
+                  {(data.status === "preparing_product") && (
                     <>
                       <Formik
                         enableReinitialize={true}
@@ -882,7 +883,7 @@ function HomePage({ id }) {
                       </button>
                     </div>
                   )}
-                  {(configOrder || data.status === "preparing_product") && (
+                  {(data.status === "preparing_product") && (
                     <>
                       <Formik
                         enableReinitialize={true}
