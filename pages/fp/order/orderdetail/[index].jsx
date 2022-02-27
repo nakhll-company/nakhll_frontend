@@ -293,6 +293,7 @@ function HomePage({ id }) {
                             if (response.status === 200) {
                               setshowMessage(1);
                               setIsLoading(false);
+                              _handleRequestApi(id);
                             }
                           } catch (e) {
                             setshowMessage(2);
@@ -909,6 +910,7 @@ function HomePage({ id }) {
                             if (response.status === 200) {
                               setshowMessage(1);
                               setIsLoading(false);
+                              _handleRequestApi(id);
                             }
                           } catch (err) {
                             setshowMessage(2);
