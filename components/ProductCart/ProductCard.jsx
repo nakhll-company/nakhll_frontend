@@ -5,7 +5,7 @@ import { useState } from "react";
 import Assistent from "zaravand-assistent-number";
 // methods
 import { addToCart } from "./methods/addToCart";
-import { gtag } from "../../utils/googleAnalytic";
+import { gtag } from "../../utils/googleAnalytics";
 import { addToFavoritesList } from "./methods/addToFavotitesList";
 import { deleteFromFavoritesList } from "./methods/deleteFromFavoritesList";
 // scss
