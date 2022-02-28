@@ -8,7 +8,7 @@ import { Fragment, useEffect, useState } from "react";
 import useViewport from "../../../../components/viewPort";
 import MyLayout from "../../../../components/layout/Layout";
 // methods
-import { successMessage } from "../../../../containers/utils/message";
+import { successMessage } from "../../../../utils/toastifyMessage";
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 // sass
 import styles from "../../../../styles/pages/order/orderdetail.module.scss";

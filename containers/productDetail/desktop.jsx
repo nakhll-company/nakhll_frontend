@@ -71,21 +71,21 @@ const ProductDetailDesktop = ({ data }) => {
                   { title: "خانه", url: "/" },
                   {
                     title:
-                      detail.new_category &&
-                        detail.new_category.parents.length > 0
-                        ? detail.new_category.parents[0].name
+                      detail.category &&
+                        detail.category.parents.length > 0
+                        ? detail.category.parents[0].name
                         : "",
                     url:
-                      detail.new_category &&
-                      detail.new_category.parents.length > 0 &&
-                      `/search?q=&new_category=${detail?.new_category?.parents[0].id}`,
+                      detail.category &&
+                      detail.category.parents.length > 0 &&
+                      `/search?q=&new_category=${detail?.category?.parents[0].id}`,
                   },
                   {
                     title:
-                      detail.new_category && detail.new_category.name
-                        ? detail.new_category.name
+                      detail.category && detail.category.name
+                        ? detail.category.name
                         : "",
-                    url: `/search?q=&new_category=${detail?.new_category?.id}`,
+                    url: `/search?q=&new_category=${detail?.category?.id}`,
                   },
                 ].map((value, index) => {
                   return (
