@@ -33,7 +33,7 @@ function Dashboard({ activeHojreh }) {
       const _handleRequestApi = async () => {
         let params = {};
         let loadData = null;
-        let dataUrl = `/app/api/v1/dashboard/${activeHojreh}/`;
+        let dataUrl = `/api/v1/dashboard/${activeHojreh}/`;
         let response = await ApiRegister().apiRequest(
           loadData,
           "get",

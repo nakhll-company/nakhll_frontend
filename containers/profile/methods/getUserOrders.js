@@ -4,7 +4,7 @@ export const getUserOrders = async (setOrdersList, setLoading) => {
     let response = await ApiRegister().apiRequest(
         null,
         "get",
-        `/accounting_new/api/invoice/`,
+        `/api/v1/invoices/`,
         true, {}
     );
     if (response.status === 200) {

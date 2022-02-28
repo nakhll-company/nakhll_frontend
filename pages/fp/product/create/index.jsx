@@ -96,7 +96,7 @@ const CreateProduct = ({ activeHojreh }) => {
       Status: 1,
       PostRangeType: 1,
       post_range: checkedCities,
-      new_category: submarketId,
+      category: submarketId,
       Image: imgProduct,
       Product_Banner: Product_Banner,
     };

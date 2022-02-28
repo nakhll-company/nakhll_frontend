@@ -27,5 +27,6 @@ export const getUncompleted = (activeHojreh) => async (dispatch) => {
             });
         }
     } catch (error) {
+        return false;
     }
 };

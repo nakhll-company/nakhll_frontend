@@ -84,8 +84,8 @@ const UpdateProduct = ({ activeHojreh }) => {
           setValue("Description", Data.Description);
           setValue("PreparationDays", Data.PreparationDays);
           setCheckedCities(Data.post_range_cities);
-          setPlaceholderSubmarckets(Data.new_category);
-          setSubmarketId(Data.new_category.id);
+          setPlaceholderSubmarckets(Data.category);
+          setSubmarketId(Data.category.id);
           // images
           setImgProductOne(Data.Product_Banner[0]?.Image);
           setImgProductTwo(Data.Product_Banner[1]?.Image);
@@ -127,7 +127,7 @@ const UpdateProduct = ({ activeHojreh }) => {
       Status: 1,
       PostRangeType: 1,
       post_range: checkedCities,
-      new_category: submarketId,
+      category: submarketId,
       Product_Banner: Product_Banner,
     };
 
