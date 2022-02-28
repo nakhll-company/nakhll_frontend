@@ -4,8 +4,8 @@ import Image from "next/image";
 import { useState } from "react";
 import Assistent from "zaravand-assistent-number";
 // methods
-import { gtag } from "../../lib/gtag";
 import { addToCart } from "./methods/addToCart";
+import { gtag } from "../../utils/googleAnalytic";
 import { addToFavoritesList } from "./methods/addToFavotitesList";
 import { deleteFromFavoritesList } from "./methods/deleteFromFavoritesList";
 // scss

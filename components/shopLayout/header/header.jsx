@@ -10,7 +10,7 @@ import BoxSearch from "./boxSearch";
 import MegaMenuMobile from "../../../containers/LandingPage/MegaMenuMobile";
 import MegaMenuDesktop from "../../../containers/LandingPage/MegaMenuDesktop";
 // methods
-import { gtag } from "../../../lib/gtag";
+import { gtag } from "../../../utils/googleAnalytics";
 import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
 import { _call_Category, _get_all_shops, _handel_search } from "../../../api/header";
 // style

@@ -16,8 +16,8 @@ import CustomLabel from "../../components/custom/customLabel";
 import CustomSlider from "../../components/custom/customSlider";
 import ProductCard from "../../components/ProductCart/ProductCard";
 // methods
-import { gtag } from "../../lib/gtag";
 import { addToCart } from "./methods/addToCart";
+import { gtag } from "../../utils/googleAnalytics";
 import { fetchProductShop, getMoreProduct } from "../../api/product/detail";
 // styles
 import styles from "./productDetail.module.scss";
