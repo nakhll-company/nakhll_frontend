@@ -7,12 +7,20 @@ import { useForm } from "react-hook-form";
 import { completeAuth } from "../../api/auth/completeAuth";
 import EmptyLayout from "../../components/layout/EmptyLayout";
 import { getAccessToken } from "../../api/auth/getAccessToken";
+import LoginButton from "../../containers/login/loginButton";
+import { useState } from "react";
 
 const Password = () => {
+  const [loadButton, setLoadButton] = useState(false);
 
-  const { register, handleSubmit, formState: { errors }, } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const submit = async (data) => {
+    setLoadButton(true);
     data.auth_key = JSON.parse(sessionStorage.getItem("login")).auth_key;
     let result = await completeAuth(data);
 
@@ -20,6 +28,7 @@ const Password = () => {
       let response = await getAccessToken(result);
       response === true && location.replace("/");
     }
+    setLoadButton(false);
   };
 
   return (
@@ -73,21 +82,29 @@ const Password = () => {
             <Link href="/login/code?forgetPass=true">
               <a className="text-info">فراموشی رمز عبور</a>
             </Link>
-            <label htmlFor="showPassword" className="d-flex justify-content-center align-items-center">
+            <label
+              htmlFor="showPassword"
+              className="d-flex justify-content-center align-items-center"
+            >
               نمایش رمز عبور
-              <input type="checkbox" name="showPassword" id="showPassword" className="me-3" onClick={() => {
-                let inputPassword = document.querySelector("#user_key");
-                if (inputPassword.type === "password") {
-                  inputPassword.type = "text";
-                } else {
-                  inputPassword.type = "password";
-                }
-              }} />
+              <input
+                type="checkbox"
+                name="showPassword"
+                id="showPassword"
+                className="me-3"
+                onClick={() => {
+                  let inputPassword = document.querySelector("#user_key");
+                  if (inputPassword.type === "password") {
+                    inputPassword.type = "text";
+                  } else {
+                    inputPassword.type = "password";
+                  }
+                }}
+              />
             </label>
           </div>
-          <button type="submit" className="btn btn-primary col-12 mt-3">
-            ادامه
-          </button>
+
+          <LoginButton loader={loadButton} title="ادامه" />
         </form>
       </div>
     </>

@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 
@@ -12,8 +12,10 @@ import { completeAuth } from "../../api/auth/completeAuth";
 import { forgetPassword } from "../../api/auth/forgetPassword";
 import { getAccessToken } from "../../api/auth/getAccessToken";
 import EmptyLayout from "../../components/layout/EmptyLayout";
+import LoginButton from "../../containers/login/loginButton";
 
 const Code = () => {
+  const [loadButton, setLoadButton] = useState(false);
   const router = useRouter();
   const {
     register,
@@ -22,6 +24,7 @@ const Code = () => {
   } = useForm();
 
   const submit = async (data) => {
+    setLoadButton(true);
     data.auth_key = JSON.parse(sessionStorage.getItem("login")).auth_key;
     let result = await completeAuth(data);
 
@@ -37,6 +40,7 @@ const Code = () => {
         response === true && location.replace("/");
       }
     }
+    setLoadButton(false);
   };
 
   useEffect(() => {
@@ -92,20 +96,22 @@ const Code = () => {
               },
             })}
           />
-          {errors.user_key && (<span style={{ display: "block", color: "red", fontSize: "14px" }}>
-            {errors.user_key.message}
-          </span>
+          {errors.user_key && (
+            <span style={{ display: "block", color: "red", fontSize: "14px" }}>
+              {errors.user_key.message}
+            </span>
           )}
-          <span className="text-info" style={{ cursor: "pointer" }}
+          <span
+            className="text-info"
+            style={{ cursor: "pointer" }}
             onClick={() => {
               resendCode({ mobile: sessionStorage.getItem("mobile") });
             }}
           >
             دریافت مجدد کد تایید
           </span>
-          <button type="submit" className="btn btn-primary col-12 mt-3">
-            ادامه
-          </button>
+
+          <LoginButton loader={loadButton} title="ادامه" />
         </form>
       </div>
     </>

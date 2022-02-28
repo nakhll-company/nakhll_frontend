@@ -6,16 +6,24 @@ import { useForm } from "react-hook-form";
 // methods
 import { setPassword } from "../../api/auth/setPassword";
 import EmptyLayout from "../../components/layout/EmptyLayout";
+import LoginButton from "../../containers/login/loginButton";
+import { useState } from "react";
 
 const ForgetPassword = () => {
-
-  const { register, handleSubmit, formState: { errors }, } = useForm();
+  const [loadButton, setLoadButton] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const submit = async (data) => {
+    setLoadButton(true);
     delete data.repeatPass;
     data.auth_secret = sessionStorage.getItem("secret_key");
     let response = await setPassword(data);
     response === true && location.replace("/");
+    setLoadButton(false);
   };
 
   return (
@@ -83,9 +91,8 @@ const ForgetPassword = () => {
               {errors.repeatPass.message}
             </span>
           )}
-          <button type="submit" className="btn btn-primary col-12 mt-2">
-            تغییر رمز عبور
-          </button>
+
+          <LoginButton loader={loadButton} title="تغییر رمز عبور" />
         </form>
       </div>
     </>
