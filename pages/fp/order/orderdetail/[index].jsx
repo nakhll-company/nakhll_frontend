@@ -8,6 +8,7 @@ import { Fragment, useEffect, useState } from "react";
 import useViewport from "../../../../components/viewPort";
 import MyLayout from "../../../../components/layout/Layout";
 // methods
+import { successMessage } from "../../../../containers/utils/message";
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 // sass
 import styles from "../../../../styles/pages/order/orderdetail.module.scss";
@@ -37,7 +38,6 @@ function HomePage({ id }) {
   const [isOpen, setIsOpen] = useState(false);
   const [IsLoading, setIsLoading] = useState(false);
   const [showMessage, setshowMessage] = useState(0);
-  const [configOrder, setconfigOrder] = useState(false);
 
   const _handleRequestApi = async (id) => {
     let response = await ApiRegister().apiRequest(
@@ -63,7 +63,8 @@ function HomePage({ id }) {
     );
     setisShow(true);
     if (response.status === 200) {
-      setconfigOrder(true);
+      _handleRequestApi(id);
+      successMessage("سفارش با موفقیت تایید شد");
     }
   };
 
@@ -267,7 +268,7 @@ function HomePage({ id }) {
                       </button>
                     </div>
                   )}
-                  {(configOrder || data.status === "preparing_product") && (
+                  {(data.status === "preparing_product") && (
                     <>
                       <Formik
                         enableReinitialize={true}
@@ -292,6 +293,7 @@ function HomePage({ id }) {
                             if (response.status === 200) {
                               setshowMessage(1);
                               setIsLoading(false);
+                              _handleRequestApi(id);
                             }
                           } catch (e) {
                             setshowMessage(2);
@@ -428,10 +430,11 @@ function HomePage({ id }) {
                       نام مشتری
                     </h4>
                     <h3 style={{ marginTop: "5px", fontSize: "15px" }}>
-                      {data.items && data.items[0].buyer}
+                      {(data.items && data.items[0].buyer) ||
+                        (data.address_json && jsonAddress.receiver_full_name)}
                     </h3>
                   </div>
-                  <div className={styles.post_informationD_content}>
+                  {/* <div className={styles.post_informationD_content}>
                     <h4 style={{ fontSize: "14px" }}> موبایل :</h4>
                     <h3
                       style={{ fontSize: "15px" }}
@@ -440,8 +443,7 @@ function HomePage({ id }) {
                       {data.address_json &&
                         _asist.number(jsonAddress.receiver_mobile_number)}
                     </h3>
-                  </div>
-                  <div></div>
+                  </div> */}
                   <div className={styles.post_informationD_content}>
                     <h4 style={{ fontSize: "14px" }}> آدرس</h4>
                     <h3
@@ -449,9 +451,10 @@ function HomePage({ id }) {
                       className={styles.post_information_h3}
                     >
                       {data.address_json &&
-                        `${jsonAddress.state} |  ${jsonAddress.big_city}  |  ${jsonAddress.address}`}
+                        `${jsonAddress.state}   |    ${jsonAddress.big_city}   |   ${jsonAddress.address}`}
                     </h3>
                   </div>
+                  <div></div>
                   <div className={styles.post_informationD_content}>
                     <h4 style={{ fontSize: "14px" }}> کد پستی</h4>
                     <h3
@@ -881,7 +884,7 @@ function HomePage({ id }) {
                       </button>
                     </div>
                   )}
-                  {(configOrder || data.status === "preparing_product") && (
+                  {(data.status === "preparing_product") && (
                     <>
                       <Formik
                         enableReinitialize={true}
@@ -907,6 +910,7 @@ function HomePage({ id }) {
                             if (response.status === 200) {
                               setshowMessage(1);
                               setIsLoading(false);
+                              _handleRequestApi(id);
                             }
                           } catch (err) {
                             setshowMessage(2);
@@ -1044,10 +1048,11 @@ function HomePage({ id }) {
                       نام مشتری
                     </h4>
                     <h3 style={{ marginTop: "5px", fontSize: "15px" }}>
-                      {data.items[0].buyer}
+                      {(data.items && data.items[0].buyer) ||
+                        (data.address_json && jsonAddress.receiver_full_name)}
                     </h3>
                   </div>
-                  <div className={styles.post_information_content}>
+                  {/* <div className={styles.post_information_content}>
                     <h4 style={{ fontSize: "14px" }}> موبایل :</h4>
                     <h3
                       style={{ fontSize: "15px" }}
@@ -1056,7 +1061,7 @@ function HomePage({ id }) {
                       {data.address_json &&
                         _asist.number(jsonAddress.receiver_mobile_number)}
                     </h3>
-                  </div>
+                  </div> */}
                   <div className={styles.post_information_content}>
                     <h4 style={{ fontSize: "14px" }}> آدرس</h4>
                     <h3
@@ -1073,7 +1078,7 @@ function HomePage({ id }) {
                       style={{ fontSize: "15px" }}
                       className={styles.post_information_h3}
                     >
-                      {data.address && _asist.number(data.address.zip_code)}
+                      {data.address_json && _asist.number(jsonAddress.zip_code)}
                     </h3>
                   </div>
                   <div className={styles.post_information_content}>

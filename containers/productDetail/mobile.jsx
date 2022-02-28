@@ -16,8 +16,8 @@ import CustomLabel from "../../components/custom/customLabel";
 import CustomSlider from "../../components/custom/customSlider";
 import ProductCard from "../../components/ProductCart/ProductCard";
 // methods
+import { gtag } from "../../lib/gtag";
 import { addToCart } from "./methods/addToCart";
-import { gtagGoogleAnalytics } from "../../utils/googleAnalytics";
 import { fetchProductShop, getMoreProduct } from "../../api/product/detail";
 // styles
 import styles from "./productDetail.module.scss";
@@ -485,7 +485,7 @@ const ProductDetailMobile = ({ data }) => {
           <button
             className={`${styles.product_btn_mobile} btn btn-tprimary rounded-pill font-weight-bold font-size1-5 px-6 py-2 ev-add-to-cart`}
             onClick={async () => {
-              gtagGoogleAnalytics("event", "دکمه خرید", {
+              gtag("event", "دکمه خرید", {
                 event_category: `‍‍‍‍${detail.title}`,
                 event_label: "زدن روی دکمه خرید",
               });

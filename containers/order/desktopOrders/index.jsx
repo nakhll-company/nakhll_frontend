@@ -133,6 +133,10 @@ export default function DesktopOrders({
               </tr>
             ) : ordersList.length > 0 ? (
               ordersList.map((value, index) => {
+
+                let jsonAddress = value.address_json || "{}";
+                jsonAddress = JSON.parse(jsonAddress);
+
                 return (
                   <tr key={index}>
                     <Link href={`/fp/order/orderdetail/${value.id}`} passHref>
@@ -142,7 +146,8 @@ export default function DesktopOrders({
                       <td>{_asist.number(value.id)}</td>
                     </Link>
                     <Link href={`/fp/order/orderdetail/${value.id}`} passHref>
-                      <td>{value.items[0].buyer}</td>
+                      <td>{(value.items && value.items[0].buyer) ||
+                        (value.address_json && jsonAddress.receiver_full_name)}</td>
                     </Link>
                     <Link href={`/fp/order/orderdetail/${value.id}`} passHref>
                       <td>{_asist.number(value.created_date_jalali)}</td>

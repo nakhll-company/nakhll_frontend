@@ -10,7 +10,7 @@ import BoxSearch from "./boxSearch";
 import MegaMenuMobile from "../../../containers/LandingPage/MegaMenuMobile";
 import MegaMenuDesktop from "../../../containers/LandingPage/MegaMenuDesktop";
 // methods
-import { gtagGoogleAnalytics } from "../../../utils/googleAnalytics";
+import { gtag } from "../../../lib/gtag";
 import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
 import { _call_Category, _get_all_shops, _handel_search } from "../../../api/header";
 // style
@@ -42,7 +42,7 @@ function Header() {
       <header className={`${styles.header}`}>
         <div
           onClick={() => {
-            gtagGoogleAnalytics("event", "بنر حجره دار", {
+            gtag("event", "بنر حجره دار", {
               event_category: "کلیک",
               event_label: "کلیک بنر حجره دار",
             });
@@ -218,7 +218,7 @@ function Header() {
       <header className={`${styles.mobile_header} `}>
         <div
           onClick={() => {
-            gtagGoogleAnalytics("event", "بنر حجره دار", {
+            gtag("event", "بنر حجره دار", {
               event_category: "کلیک",
               event_label: "کلیک بنر حجره دار",
             });
@@ -322,7 +322,7 @@ function Header() {
               <form
                 onSubmit={(event) => {
                   event.preventDefault();
-                  gtagGoogleAnalytics("event", "سرچ", {
+                  gtag("event", "سرچ", {
                     event_category: "کلیک",
                     event_label: "زدن روی سرچ",
                   });
@@ -353,7 +353,7 @@ function Header() {
                 )}
                 <div
                   onClick={() => {
-                    gtagGoogleAnalytics("event", "سرچ", {
+                    gtag("event", "سرچ", {
                       event_category: "کلیک",
                       event_label: "زدن روی سرچ",
                     });

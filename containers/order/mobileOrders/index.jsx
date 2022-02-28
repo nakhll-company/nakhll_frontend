@@ -20,6 +20,10 @@ const MobileOrders = ({ loading, ordersList }) => {
         </div>
       ) : ordersList.length > 0 ? (
         ordersList.map((value, index) => {
+
+          let jsonAddress = value.address_json || "{}";
+          jsonAddress = JSON.parse(jsonAddress);
+
           return (
             <div key={index} className={styles.card}>
               <Link key={index} href={`/fp/order/orderdetail/${value.id}`}>
@@ -49,7 +53,8 @@ const MobileOrders = ({ loading, ordersList }) => {
                   </div>
                   <CustomLabel
                     type="normal"
-                    value={value.items[0].buyer}
+                    value={(value.items && value.items[0].buyer) ||
+                      (value.address_json && jsonAddress.receiver_full_name)}
                     label="خریدار"
                     customLabelDiv="wrapper_custom_label"
                   />

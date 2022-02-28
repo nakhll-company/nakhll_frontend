@@ -16,8 +16,8 @@ import CustomLabel from "../../components/custom/customLabel";
 import CustomSlider from "../../components/custom/customSlider";
 import ProductCard from "../../components/ProductCart/ProductCard";
 // methods
+import { gtag } from "../../lib/gtag";
 import { addToCart } from "./methods/addToCart";
-import { gtagGoogleAnalytics } from "../../utils/googleAnalytics";
 import { fetchProductShop, getMoreProduct } from "../../api/product/detail";
 // styles
 import styles from "./productDetail.module.scss";
@@ -300,7 +300,7 @@ const ProductDetailDesktop = ({ data }) => {
                     <button
                       className={`product-btn btn rounded-pill font-size1-5  p-1  ${styles.btn_tprimary}`}
                       onClick={async () => {
-                        gtagGoogleAnalytics("event", "دکمه خرید", {
+                        gtag("event", "دکمه خرید", {
                           event_category: `‍‍‍‍${detail.title}`,
                           event_label: "زدن روی دکمه خرید",
                         });

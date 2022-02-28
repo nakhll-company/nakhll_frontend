@@ -4,9 +4,9 @@ import Image from "next/image";
 import { useState } from "react";
 import Assistent from "zaravand-assistent-number";
 // methods
+import { gtag } from "../../lib/gtag";
 import { addToCart } from "./methods/addToCart";
 import { addToFavoritesList } from "./methods/addToFavotitesList";
-import { gtagGoogleAnalytics } from "../../utils/googleAnalytics";
 import { deleteFromFavoritesList } from "./methods/deleteFromFavoritesList";
 // scss
 import styles from "./ProductCard.module.scss";
@@ -179,7 +179,7 @@ const ProductCard = ({
                     disabled={disablBtn}
                     className={`btn ${styles._product_card_add_to_cart}`}
                     onClick={async () => {
-                      gtagGoogleAnalytics("event", "دکمه خرید", {
+                      gtag("event", "دکمه خرید", {
                         event_category: `‍‍‍‍${product.title}`,
                         event_label: "زدن روی دکمه خرید",
                       });
