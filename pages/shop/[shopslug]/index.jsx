@@ -150,7 +150,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       data: context.query,
-      dataShop,
+      dataShop
     },
   };
 }

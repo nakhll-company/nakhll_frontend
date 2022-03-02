@@ -3,13 +3,16 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 // methods
 import { sendPhoneNumber } from "../../api/auth/sendPhoneNumber";
 import EmptyLayout from "../../components/layout/EmptyLayout";
+import LoginButton from "../../containers/login/loginButton";
 
 const Login = () => {
+  const [loadButton, setLoadButton] = useState(false);
   const router = useRouter();
   const {
     register,
@@ -18,6 +21,7 @@ const Login = () => {
   } = useForm();
 
   const submit = async (data) => {
+    setLoadButton(true);
     let result = await sendPhoneNumber(data);
 
     if (result !== false) {
@@ -29,6 +33,7 @@ const Login = () => {
         router.push("/login/code/");
       }
     }
+    setLoadButton(false);
   };
 
   return (
@@ -56,6 +61,7 @@ const Login = () => {
         >
           ورود / ثبت نام
         </h1>
+
         <form onSubmit={handleSubmit(submit)}>
           <label htmlFor="mobile" className="mb-2" style={{ fontSize: "15px" }}>
             شماره موبایل خود را وارد کنید
@@ -86,9 +92,7 @@ const Login = () => {
               {errors.mobile.message}
             </span>
           )}
-          <button type="submit" className="btn btn-primary col-12 mt-2">
-            ورود
-          </button>
+          <LoginButton loader={loadButton} />
         </form>
       </div>
     </>
