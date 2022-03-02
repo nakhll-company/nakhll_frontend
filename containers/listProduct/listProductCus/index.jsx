@@ -471,7 +471,6 @@ function ListProductCus({ data }) {
                     </p>
                   }
                 >
-                  {console.log("milad", listWithFilter.length)}
                   {listWithFilter.map((oneProduct, index) => (
                     <ProductCard
                       key={index}

@@ -47,7 +47,6 @@ const Yektanet = () => {
 
                             setAdsData(res);
                         }}
-                        onChange={() => { console.log(">>>>"); }}
                     />
                 </div>
                 <Link href="/fp/options/ads">
