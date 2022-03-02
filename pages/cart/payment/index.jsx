@@ -6,11 +6,11 @@ import { useEffect, useState } from "react";
 import Assistent from "zaravand-assistent-number";
 // components
 import ShopLayout from "../../../components/shopLayout";
-// scss
-import styles from "../../../styles/pages/cart/payment/payment.module.scss";
 // methods
 import { _getListInvoice } from "../../../api/cart";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+// scss
+import styles from "../../../styles/pages/cart/payment/payment.module.scss";
 
 const _asist = new Assistent();
 
@@ -18,14 +18,14 @@ export default function Cart() {
 
   const router = useRouter();
   const [msgCoupon, setMsgCoupon] = useState([]);
-  const [isLoadInvoice, setIsLoadInvoice] = useState(true);
-  const [listInvoice, setListInvoice] = useState([]);
-  const [logisticPrice, setLogisticPrice] = useState(null);
-  const [totalPrice, setTotalPrice] = useState(null);
   const [cartPrice, setCartPrice] = useState(null);
-  const [addressReceiver, setAddressReceiver] = useState({});
+  const [totalPrice, setTotalPrice] = useState(null);
+  const [listInvoice, setListInvoice] = useState([]);
   const [resultCoupon, setResultCoupon] = useState(null);
+  const [isLoadInvoice, setIsLoadInvoice] = useState(true);
+  const [logisticPrice, setLogisticPrice] = useState(null);
   const [logisticErrors, setLogisticErrors] = useState([]);
+  const [addressReceiver, setAddressReceiver] = useState({});
 
   useEffect(() => {
     _getListInvoice(setMsgCoupon, setListInvoice, setLogisticPrice, setTotalPrice, setCartPrice, setAddressReceiver, setResultCoupon, setLogisticErrors, setIsLoadInvoice);
@@ -254,7 +254,7 @@ export default function Cart() {
                           style={{ minWidth: "1%", marginRight: "1rem" }}
                         >
                           <Link
-                            href={`/shop/${itemProduct.shop_slug}/product/${itemProduct.slug}`}
+                            href={`/shop/${itemProduct.product.FK_Shop.slug}/product/${itemProduct.product.Slug}`}
                           >
                             <a className="link-body">{itemProduct.product.Title}</a>
                           </Link>
