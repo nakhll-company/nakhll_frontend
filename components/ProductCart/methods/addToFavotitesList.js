@@ -3,9 +3,11 @@ import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // api favorites list
 export const addToFavoritesList = async (idProduct) => {
     let response = await ApiRegister().apiRequest(
-        null,
+        {
+            product: idProduct
+        },
         "POST",
-        `/api/v1/lists/favotites/${idProduct}/add/`,
+        `/api/v1/lists/favotites/add/`,
         true, {}
     );
     if (response.status === 200) {

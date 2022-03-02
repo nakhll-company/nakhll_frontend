@@ -4,7 +4,7 @@ export async function getFavoritesList(setList, setLoading) {
     let response = await ApiRegister().apiRequest(
         null,
         "GET",
-        "/api/v1/lists/favotites/",
+        "/api/v1/lists/favotites/all/",
         true,
         ""
     );
