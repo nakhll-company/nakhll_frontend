@@ -27,7 +27,7 @@ import { useSelector } from "react-redux";
 const _asist = new Assistent();
 
 function ListProductCus({ data }) {
-
+  console.log(">>>>", data);
   const [pageApi, setPageApi] = useState(2);
   const [hasMore, setHasMore] = useState(false);
   const [shopsName, setShopsName] = useState([]);
@@ -65,13 +65,13 @@ function ListProductCus({ data }) {
     ...(data.city ? data.city.split(",").map((el) => parseInt(el)) : []),
   ]);
   const [categories, setCategories] = useState([
-    ...(data.new_category
-      ? data.new_category.split(",").map((el) => parseInt(el))
+    ...(data.category
+      ? data.category.split(",").map((el) => parseInt(el))
       : []),
   ]);
   const [wantCategories, setWantCategories] = useState([
-    ...(data.new_category
-      ? data.new_category.split(",").map((el) => parseInt(el))
+    ...(data.category
+      ? data.category.split(",").map((el) => parseInt(el))
       : []),
   ]);
 
@@ -121,7 +121,7 @@ function ListProductCus({ data }) {
           ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
           ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
           ...(wantCategories.length > 0 && {
-            new_category: wantCategories.toString(),
+            category: wantCategories.toString(),
           }),
           page_size: 50,
           ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
@@ -190,7 +190,7 @@ function ListProductCus({ data }) {
           ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
           ...(hojreh !== "" && { shop: hojreh }),
           ...(wantCategories.length !== 0 && {
-            new_category: wantCategories.toString(),
+            category: wantCategories.toString(),
           }),
         },
       },
@@ -213,7 +213,7 @@ function ListProductCus({ data }) {
           ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
 
           ...(wantCategories.length > 0 && {
-            new_category: wantCategories.toString(),
+            category: wantCategories.toString(),
           }),
 
           page_size: 50,

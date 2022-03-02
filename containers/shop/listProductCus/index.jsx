@@ -68,7 +68,7 @@ function ListProductShop({ data }) {
           discounted: isDiscountPercentage,
           city: checkedCity.toString(),
           ...(wantCategories.length > 0 && {
-            new_category: wantCategories.toString(),
+            category: wantCategories.toString(),
           }),
           page_size: 50,
           min_price: minPrice * 10000,
@@ -100,7 +100,7 @@ function ListProductShop({ data }) {
         discounted: isDiscountPercentage,
         ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
         ...(wantCategories.length > 0 && {
-          new_category: wantCategories.toString(),
+          category: wantCategories.toString(),
         }),
         page_size: 50,
         min_price: minPrice * 10000,

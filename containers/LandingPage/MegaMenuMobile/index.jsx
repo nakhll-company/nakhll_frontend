@@ -46,7 +46,7 @@ function MegaMenuMobile({ category }) {
                   <div
                     onClick={() => {
                       location.replace(
-                        `/search?q=&new_category=${subElement.id}`
+                        `/search?q=&category=${subElement.id}`
                       );
                     }}
                   >

@@ -93,7 +93,7 @@ function ListProductCusTest({ data }) {
           ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
           ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
           ...(wantCategories.length > 0 && {
-            new_category: wantCategories.toString(),
+            category: wantCategories.toString(),
           }),
           page_size: 50,
           ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
@@ -136,7 +136,7 @@ function ListProductCusTest({ data }) {
           ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
 
           ...(wantCategories.length > 0 && {
-            new_category: wantCategories.toString(),
+            category: wantCategories.toString(),
           }),
 
           page_size: 50,

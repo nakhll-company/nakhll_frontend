@@ -78,14 +78,14 @@ const ProductDetailDesktop = ({ data }) => {
                     url:
                       detail.category &&
                       detail.category.parents.length > 0 &&
-                      `/search?q=&new_category=${detail?.category?.parents[0].id}`,
+                      `/search?q=&category=${detail?.category?.parents[0].id}`,
                   },
                   {
                     title:
                       detail.category && detail.category.name
                         ? detail.category.name
                         : "",
-                    url: `/search?q=&new_category=${detail?.category?.id}`,
+                    url: `/search?q=&category=${detail?.category?.id}`,
                   },
                 ].map((value, index) => {
                   return (
