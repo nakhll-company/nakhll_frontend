@@ -6,7 +6,7 @@ export const editAdvertisment = async (shop_slug, data) => {
         let response = await ApiRegister().apiRequest(
             data,
             "PATCH",
-            `/api/v1/shop/advertisements/${shop_slug}/`,
+            `/api/v1/shop/advertisement/${shop_slug}/`,
             true, {}
         );
         if (response.status === 200) {

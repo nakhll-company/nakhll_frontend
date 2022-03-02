@@ -12,7 +12,7 @@ import styles from "./scss/favoritesList.module.scss";
  */
 const FavoritesList = () => {
   const [loading, setLoading] = useState(true);
-  const [list, setList] = useState({ product: [] });
+  const [list, setList] = useState({ products: [] });
   async function fetch() {
     await getFavoritesList(setList, setLoading);
   }
@@ -31,8 +31,8 @@ const FavoritesList = () => {
             <Image src="/loading.svg" alt="loding" width="40" height="40" />
             <h6>لطفا منتظر بمانید</h6>
           </div>
-        ) : list.product.length > 0 ? (
-          list.product.map((value, index) => {
+        ) : list.products.length > 0 ? (
+          list.products.map((value, index) => {
             return (
               <Fragment key={index}>
                 <ProductCart

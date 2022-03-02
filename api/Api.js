@@ -22,17 +22,17 @@ export const ApiReference = {
   },
   landing: {
     creat: {
-      url: "/api/v1/shop_landing/",
+      url: "/api/v1/shop/landing/",
       params: { name: "", page_data: "", shop: "mamaneila" },
       method: "post",
     },
     update: {
-      url: "/api/v1/shop_landing/",
+      url: "/api/v1/shop/landing/",
       urlPath: "id/",
       method: "put",
     },
     getLanding: {
-      url: "/api/v1/shop_landing/",
+      url: "/api/v1/shop/landing/",
       urlPath: "id/",
       method: "Get",
     },

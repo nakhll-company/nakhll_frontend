@@ -6,7 +6,7 @@ export async function buyOptions(id, activeShop) {
         shop: activeShop,
     },
         "POST",
-        `/api/v1/shop_feature_invoice/`,
+        `/api/v1/shop/feature_invoice/`,
         true, {}
     );
 
@@ -14,7 +14,7 @@ export async function buyOptions(id, activeShop) {
         let result = await ApiRegister().apiRequest(
             null,
             "GET",
-            `/api/v1/shop_feature_invoice/${response.data.id}/pay/`,
+            `/api/v1/shop/feature_invoice/${response.data.id}/pay/`,
             true, {}
         );
 

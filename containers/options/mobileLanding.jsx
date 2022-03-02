@@ -33,7 +33,7 @@ const MobileLanding = ({ landingList, activeHojreh, setLandingList }) => {
                   shop: activeHojreh,
                 },
                 "post",
-                `/api/v1/shop_landing/${activeHojreh}/`,
+                `/api/v1/shop/landing/${activeHojreh}/`,
                 true,
                 ""
               );

@@ -9,7 +9,7 @@ export async function activeListItemLanding(
     let response = await ApiRegister().apiRequest(
         null,
         "GET",
-        `/api/v1/shop_landing/${activeHojreh}/${id}/activate_landing/`,
+        `/api/v1/shop/landing/${activeHojreh}/${id}/activate_landing/`,
         true, {}
     );
 
@@ -17,7 +17,7 @@ export async function activeListItemLanding(
         let result = await ApiRegister().apiRequest(
             null,
             "get",
-            `/api/v1/shop_landing/${activeHojreh}/`,
+            `/api/v1/shop/landing/${activeHojreh}/`,
             true, {}
         );
 

@@ -7,10 +7,10 @@ export const addToFavoritesList = async (idProduct) => {
             product: idProduct
         },
         "POST",
-        `/api/v1/lists/favotites/add/`,
+        `/api/v1/lists/favorites/add/`,
         true, {}
     );
-    if (response.status === 200) {
+    if (response.status === 201) {
         successMessage("محصول با موفقیت به لیست علاقه مندی های شما اضافه شد");
     }
 };

@@ -5,7 +5,7 @@ export const deleteFromFavoritesList = async (idProduct) => {
     let response = await ApiRegister().apiRequest(
         null,
         "DELETE",
-        `/api/v1/lists/favotites/${idProduct}/remove/`,
+        `/api/v1/lists/favorites/${idProduct}/remove/`,
         true, {}
     );
     if (response.status === 200) {

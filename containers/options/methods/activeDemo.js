@@ -6,7 +6,7 @@ export async function activeDemo(id, activeShop, router) {
         shop: activeShop,
     },
         "POST",
-        `/api/v1/shop_feature_invoice/activate_demo/`,
+        `/api/v1/shop/feature_invoice/activate_demo/`,
         true, {}
     );
 
@@ -17,7 +17,7 @@ export async function activeDemo(id, activeShop, router) {
             shop: activeShop,
         },
             "post",
-            `/api/v1/shop_landing/${activeShop}/`,
+            `/api/v1/shop/landing/${activeShop}/`,
             true,
             ""
         );
