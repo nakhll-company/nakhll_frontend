@@ -1,9 +1,10 @@
+// node libraries
 import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import styles from "./Sm_LinerThreeImg.module.scss";
-import InputPicture from "../../../containers/liveEdit/InputPicture";
+// components
 import InputUrl from "../../../containers/liveEdit/InputUrl";
+import InputPicture from "../../../containers/liveEdit/InputPicture";
+// style
+import styles from "./Sm_LinerThreeImg.module.scss";
 
 // type====================4
 // aspect ratio======6/1  && 3/1

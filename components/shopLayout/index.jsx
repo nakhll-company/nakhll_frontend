@@ -1,8 +1,8 @@
 // node libraries
 import Head from "next/head";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import Script from "next/script";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 // components
 import Footer from "./footer";
 import Header from "./header/header";
@@ -12,18 +12,18 @@ import styles from "../../styles/components/shopLayout/shopLayout.module.scss";
 
 function ShopLayout({ children }) {
 
-  const userData = useSelector((state) => state.User.userInfo);
+  // const userData = useSelector((state) => state.User.userInfo);
 
-  useEffect(() => {
-    Object.keys(userData).length > 0 && window.addEventListener('goftino_ready', function () {
-      Goftino.setUser({
-        name: userData.user.first_name - userData.user.last_name,
-        phone: userData.mobile_number,
-        about: userData.shops[0] - userData.state - userData.big_city - userData.city,
-        forceUpdate: true
-      });
-    });
-  }, []);
+  // useEffect(() => {
+  //   Object.keys(userData).length > 0 && window.addEventListener('goftino_ready', function () {
+  //     Goftino.setUser({
+  //       name: userData.user.first_name - userData.user.last_name,
+  //       phone: userData.mobile_number,
+  //       about: userData.shops[0] - userData.state - userData.big_city - userData.city,
+  //       forceUpdate: true
+  //     });
+  //   });
+  // }, []);
 
   return (
     <>

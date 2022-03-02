@@ -1,10 +1,10 @@
-import React, { useRef } from "react";
-
-import styles from "./Sm_LinerOneImg.module.scss";
-
-import { _selectId } from "../../../redux/actions/liveEdit/_selectId";
-import InputPicture from "../../../containers/liveEdit/InputPicture";
+// node libraries
+import React from "react";
+// components
 import InputUrl from "../../../containers/liveEdit/InputUrl";
+import InputPicture from "../../../containers/liveEdit/InputPicture";
+// style
+import styles from "./Sm_LinerOneImg.module.scss";
 // type component ===============2
 // aspect ratio 6/1
 function Sm_LinerOneImg({ setImageSrc, id, data }) {

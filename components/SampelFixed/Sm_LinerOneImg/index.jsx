@@ -1,7 +1,10 @@
+// node libraries
 import React from "react";
 import Link from "next/link";
+// style
 import styles from "./Sm_LinerOneImg.module.scss";
-function Sm_LinerOneImg_Fix(props) {
+
+function Sm_LinerOneImg_Fix() {
   return (
     <div className={styles.wrapper}>
       <Link href="">

@@ -1,22 +1,27 @@
+// node libraries
+import { useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
-
-import styles from "./Sm_LinerProducts.module.scss";
-
+// components
 import Sm_product from "../Sm_product";
 import InputUrl from "../../../containers/liveEdit/InputUrl";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
-import { useDispatch } from "react-redux";
-import { _updateProducts } from "../../../redux/actions/liveEdit/_updateProducts";
+// methods
 import { _selectId } from "../../../redux/actions/liveEdit/_selectId";
+import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+import { _updateProducts } from "../../../redux/actions/liveEdit/_updateProducts";
 import { _updateTitleColorSubtitle } from "../../../redux/actions/liveEdit/_updateTitleColorSubtitle";
+// style
+import styles from "./Sm_LinerProducts.module.scss";
+
 function Sm_LinerProducts({ id, data }) {
-  const [products, setProducts] = useState([]);
+
+  const dispatch = useDispatch();
   const [toggle, setToggle] = useState(true);
+  const [products, setProducts] = useState([]);
+  const [color, setColor] = useState(data[0].color);
   const [name, setName] = useState(data[0].titleComponent);
   const [toggleSubTitle, setToggleSubTitle] = useState(true);
   const [subTitle, setSubTitle] = useState(data[0].subTitle);
-  const [color, setColor] = useState(data[0].color);
-  const dispatch = useDispatch();
+
   useEffect(async () => {
     let Queries = { page_size: "6" };
     if (data[0].url !== "") {

@@ -1,7 +1,9 @@
+// node libraries
 import React from "react";
-
+// style
 import styles from "./Sm_LinerTwoImg.module.scss";
-function Sm_LinerTwoImg_Fix(props) {
+
+function Sm_LinerTwoImg_Fix() {
   return (
     <div className={styles.wrap}>
       <div className={styles.right}>

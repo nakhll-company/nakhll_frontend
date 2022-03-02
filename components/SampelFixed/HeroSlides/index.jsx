@@ -1,7 +1,9 @@
+// node libraries
 import React from "react";
+// style
 import styles from "./HeroSlides.module.scss";
 
-function Sm_HeroSlides_Fix(props) {
+function Sm_HeroSlides_Fix() {
   return (
     <div className={styles.content}>
       <div className={styles.slider}>

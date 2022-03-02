@@ -1,22 +1,19 @@
+// node libraries
 import React, { useState } from "react";
-import Image from "next/image";
-import InputPicture from "../../../containers/liveEdit/InputPicture";
-import InputUrl from "../../../containers/liveEdit/InputUrl";
-import styles from "./HeroSlides.module.scss";
 import Assistent from "zaravand-assistent-number";
+// components
+import InputUrl from "../../../containers/liveEdit/InputUrl";
+import InputPicture from "../../../containers/liveEdit/InputPicture";
+// style
+import styles from "./HeroSlides.module.scss";
 const _asist = new Assistent();
 
 // type============1
 //  ratio========2/1
 function Sm_HeroSlides({ setImageSrc, id, data }) {
+
   const [wichSlide, setWichSlide] = useState(1);
-  const dataSlides = [
-    { order: 0 },
-    { order: 1 },
-    { order: 2 },
-    { order: 3 },
-    { order: 4 },
-  ];
+
   return (
     <div className={styles.content}>
       <div className={styles.slider}>

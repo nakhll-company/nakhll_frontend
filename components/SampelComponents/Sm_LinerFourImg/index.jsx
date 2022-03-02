@@ -1,7 +1,9 @@
+// node libraries
 import React from "react";
-import Image from "next/image";
-import InputPicture from "../../../containers/liveEdit/InputPicture";
+// components
 import InputUrl from "../../../containers/liveEdit/InputUrl";
+import InputPicture from "../../../containers/liveEdit/InputPicture";
+// style
 import styles from "./Sm_LinerFourImg.module.scss";
 
 // type==============5

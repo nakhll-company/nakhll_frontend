@@ -1,7 +1,10 @@
+// node libraries
 import React from "react";
 import Link from "next/link";
+// style
 import styles from "./Sm_LinerThreeImg.module.scss";
-function Sm_LinerThreeImg_Fix(props) {
+
+function Sm_LinerThreeImg_Fix() {
   return (
     <div>
       <div className={styles.wrapper}>
