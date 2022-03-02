@@ -10,26 +10,27 @@ function showMessage(error) {
         error.response &&
         error.response.status >= 400 &&
         error.response.status < 500;
-
-    if (expectedError) {
-        let message = "";
-        for (let value of Object.values(error.response.data)) {
-            message += value.toString().replace(",", "\n");
-        }
-        error.response.status !== 401 &&
+    if (typeof window !== "undefined") {
+        if (expectedError) {
+            let message = "";
+            for (let value of Object.values(error.response.data)) {
+                message += value.toString().replace(",", "\n");
+            }
+            error.response.status !== 401 &&
+                errorMessage(
+                    message,
+                    error.response.status,
+                    window.location.pathname,
+                    error.response.config.url
+                );
+        } else {
             errorMessage(
-                message,
+                "مشکلی از سمت سرور رخ داده است.",
                 error.response.status,
                 window.location.pathname,
                 error.response.config.url
             );
-    } else {
-        errorMessage(
-            "مشکلی از سمت سرور رخ داده است.",
-            error.response.status,
-            window.location.pathname,
-            error.response.config.url
-        );
+        }
     }
 }
 

@@ -1,19 +1,17 @@
 // node libraries
 import Head from "next/head";
 import Script from "next/script";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 // components
 import Footer from "./footer";
 import Header from "./header/header";
 import { ToastContainer } from "react-toastify";
-// methods
-import { Goftino } from "../../utils/goftino";
 // style
 import styles from "../../styles/components/shopLayout/shopLayout.module.scss";
 
 function ShopLayout({ children }) {
 
-  const userData = useSelector((state) => state.User.userInfo);
+  // const userData = useSelector((state) => state.User.userInfo);
 
   return (
     <>
@@ -36,16 +34,16 @@ function ShopLayout({ children }) {
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossOrigin="anonymous"
       />
-      <Script id="123456789">
-        {Object.keys(userData).length > 0 && window.addEventListener('goftino_ready', function () {
-          Goftino.setUser({
-            name: `${userData.user.first_name} ${userData.user.last_name}`,
-            phone: `${userData.mobile_number}`,
-            about: `${userData.shops[0]} - ${userData.state} - ${userData.big_city} - ${userData.city}`,
+      {/* <Script id="123456789">
+        {`window.addEventListener('goftino_ready', function () {
+          Goftino.setUser(${{
+            name: (Object.keys(userData).length > 0 ? userData.user.first_name : " "),
+            phone: (Object.keys(userData).length > 0 ? userData.mobile_number : " "),
+            about: (Object.keys(userData).length > 0 ? userData.shops : " "),
             forceUpdate: true
-          });
-        })}
-      </Script>
+          }});
+        })`}
+      </Script> */}
       <div>
         <ToastContainer />
         <Header />
