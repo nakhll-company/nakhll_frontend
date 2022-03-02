@@ -67,7 +67,7 @@ function AddFavorites() {
 
   // function Delete form fav
   const _handel_delete_from_fav = async (ID) => {
-    let urlDelet = `/api/v1/pinned_url/${ID}/`;
+    let urlDelet = `/api/v1/shop/pinned_urls/${ID}/`;
     let deletePinned = await ApiRegister().apiRequest(
       null,
       "DELETE",
