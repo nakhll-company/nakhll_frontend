@@ -5,11 +5,13 @@ export const getAdvertisement = async (shop_slug) => {
         let response = await ApiRegister().apiRequest(
             null,
             "get",
-            `/api/v1/shop_advertisement/${shop_slug}/`,
+            `/api/v1/shop/advertisements/${shop_slug}/`,
             true, {}
         );
         if (response.status === 200) {
             return response.data;
         }
-    } catch (error) { }
+    } catch (error) {
+        return false;
+    }
 };
