@@ -58,8 +58,8 @@ function AddFavorites() {
       );
 
       if (response.status === 201) {
-        dispatch(_addToWishList(newFav));
-        setListFav([...listFav, newFav]);
+        dispatch(_addToWishList(response.data));
+        setListFav([...listFav, response.data]);
         settextInput("");
       }
     }
@@ -67,7 +67,7 @@ function AddFavorites() {
 
   // function Delete form fav
   const _handel_delete_from_fav = async (ID) => {
-    let urlDelet = `/api/v1/shop/pinned_urls/${ID}/`;
+    let urlDelet = `/api/v1/shop/pinned_url/${ID}/`;
     let deletePinned = await ApiRegister().apiRequest(
       null,
       "DELETE",
@@ -192,7 +192,9 @@ function AddFavorites() {
                         <span>{el.name}</span>
                       </a>
                       <i
-                        onClick={() => _handel_delete_from_fav(el.id)}
+                        onClick={() => {
+                          _handel_delete_from_fav(el.id)
+                        }}
                         className="fas fa-times"
                       ></i>
                     </div>

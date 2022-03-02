@@ -7,7 +7,7 @@ export const getCompleted = (activeHojreh) => async (dispatch) => {
         const completed = async () => {
             let params = {};
             let loadData = null;
-            let dataUrl = `/app/api/v1/factor/shop/${activeHojreh}/completed/`;
+            let dataUrl = `/api/v1/factor/shop/${activeHojreh}/completed/`;
             let response = await ApiRegister().apiRequest(
                 loadData,
                 "get",

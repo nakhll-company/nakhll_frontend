@@ -7,7 +7,7 @@ export const getUncompleted = (activeHojreh) => async (dispatch) => {
         const uncompleted = async () => {
             let params = {};
             let loadData = null;
-            let dataUrl = `/app/api/v1/factor/shop/${activeHojreh}/uncompleted/`;
+            let dataUrl = `/api/v1/factor/shop/${activeHojreh}/uncompleted/`;
             let response = await ApiRegister().apiRequest(
                 loadData,
                 "get",

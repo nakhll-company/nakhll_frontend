@@ -8,12 +8,12 @@ export const ApiReference = {
   allShops: "/api/v1/shops/",
   PinnedURL: {
     creat: {
-      url: "/api/v1/shop/pinned_urls/",
+      url: "/api/v1/shop/pinned_url/",
       params: { name: "", link: "" },
       method: "post",
     },
     PinnedList: {
-      url: "/api/v1/shop/pinned_urls/",
+      url: "/api/v1/shop/pinned_url/",
       method: "Get",
     },
     delete: {
