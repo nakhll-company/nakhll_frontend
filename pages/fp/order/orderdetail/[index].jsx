@@ -43,7 +43,7 @@ function HomePage({ id }) {
     let response = await ApiRegister().apiRequest(
       null,
       "get",
-      "/app/api/v1/get-factor-details/",
+      "/api/v1/get-factor-details/",
       true,
       { factor_id: id }
     );
@@ -57,7 +57,7 @@ function HomePage({ id }) {
     let response = await ApiRegister().apiRequest(
       null,
       "PUT",
-      `/app/api/v1/factor/change-status/confirmed/${id}/`,
+      `/api/v1/factor/change-status/confirmed/${id}/`,
       true,
       {}
     );
@@ -286,7 +286,7 @@ function HomePage({ id }) {
                             let response = await ApiRegister().apiRequest(
                               sendData,
                               "POST",
-                              `/app/api/v1/factor/change-status/sent/${id}/`,
+                              `/api/v1/factor/change-status/sent/${id}/`,
                               true,
                               {}
                             );
@@ -430,7 +430,7 @@ function HomePage({ id }) {
                       نام مشتری
                     </h4>
                     <h3 style={{ marginTop: "5px", fontSize: "15px" }}>
-                      {(data.items && data.items[0].buyer) ||
+                      {(data.items.length > 0 && data.items[0].buyer) ||
                         (data.address_json && jsonAddress.receiver_full_name)}
                     </h3>
                   </div>
@@ -513,7 +513,7 @@ function HomePage({ id }) {
                   کالاهای خریداری شده
                 </h1>
                 <hr />
-                {data.items.length &&
+                {data.items.length > 0 &&
                   data.items.map((e, index) => {
                     return (
                       <Fragment key={index}>
@@ -902,7 +902,7 @@ function HomePage({ id }) {
                             let response = await ApiRegister().apiRequest(
                               sendData,
                               "POST",
-                              `/app/api/v1/factor/change-status/sent/${id}/`,
+                              `/api/v1/factor/change-status/sent/${id}/`,
                               true,
                               {}
                             );
@@ -1128,7 +1128,7 @@ function HomePage({ id }) {
                 </h1>
                 <hr />
 
-                {data.items.length &&
+                {data.items.length > 0 &&
                   data.items.map((e, index) => {
                     return (
                       <div
