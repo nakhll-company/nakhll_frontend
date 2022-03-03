@@ -16,11 +16,12 @@ import { selectAddress } from "../../../containers/cartAddress/methods/selectAdd
 import { changeRadioButtonColor } from "../../../containers/cartAddress/methods/changeRadioButtonsColor";
 // styles
 import styles from "../../../styles/pages/cart/address.module.scss";
+import AppButton from "../../../components/AppButton";
 
 const _asist = new Assistent();
 
 const Address = () => {
-
+  const [loaderButton, setLoaderButton] = useState(false);
   const router = useRouter();
   const userLogin = useSelector((state) => state.User.userInfo);
   let [address, setAddress] = useState([]);
@@ -78,24 +79,28 @@ const Address = () => {
             <form
               className={styles.address_items_form}
               onSubmit={async (event) => {
+                setLoaderButton(true);
                 event.preventDefault();
                 await selectAddress(router, setLoading);
+                setLoaderButton(false);
               }}
             >
               {address.map((value, index) => {
                 return (
                   <label
                     key={index}
-                    className={`${styles.address_items_label} ${index === 0 && styles.active_address
-                      }`}
+                    className={`${styles.address_items_label} ${
+                      index === 0 && styles.active_address
+                    }`}
                     onClick={(event) => {
                       changeRadioButtonColor(event, styles, index);
                     }}
                   >
                     <div
                       id={`firstCircle${index}`}
-                      className={`${styles.address_item_circle} ${index === 0 && styles.active_circle
-                        }`}
+                      className={`${styles.address_item_circle} ${
+                        index === 0 && styles.active_circle
+                      }`}
                     >
                       <div className={styles.address_item_embeded_circle}></div>
                     </div>
@@ -112,9 +117,7 @@ const Address = () => {
                       <i
                         className="far fa-edit mx-3"
                         onClick={() => {
-                          router.push(
-                            `/cart/address/update/${value.id}`
-                          );
+                          router.push(`/cart/address/update/${value.id}`);
                         }}
                       ></i>
                       <i
@@ -138,9 +141,12 @@ const Address = () => {
                   </label>
                 );
               })}
-              <button type="submit" className={`${styles.button_submit} w-100`}>
-                ادامه و تایید نشانی
-              </button>
+
+              <AppButton
+                loader={loaderButton}
+                title="ادامه و تایید نشانی"
+                submit
+              />
             </form>
           </section>
         </div>

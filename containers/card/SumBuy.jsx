@@ -1,13 +1,16 @@
-import Link from "next/link";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import Assistent from "zaravand-assistent-number";
+import AppButton from "../../components/AppButton";
+import { useRouter } from "next/router";
 // style
 import styles from "../../styles/pages/cart/cart.module.scss";
 
 const _asist = new Assistent();
 
 export default function SumBuy() {
-
+  const [loaderButton, setLoaderButton] = useState(false);
+  const router = useRouter();
   const All_product_list_buy = useSelector((state) => state.Cart.allProduct);
 
   return (
@@ -29,7 +32,7 @@ export default function SumBuy() {
                 {_asist.PSeparator(
                   (All_product_list_buy.cart_old_price -
                     All_product_list_buy.cart_price) /
-                  10
+                    10
                 )}
 
                 <span style={{ marginRight: "5px" }}>تومان</span>
@@ -48,13 +51,14 @@ export default function SumBuy() {
               </span>
             </div>
             <div>
-              <Link href="/cart/address" passHref>
-                <button
-                  className={`btn ${styles.btn_Buy} p-2 rounded-pill w-100 `}
-                >
-                  {_asist.number(`ادامه خرید `)}
-                </button>
-              </Link>
+              <AppButton
+                loader={loaderButton}
+                title="ادامه خرید"
+                onClick={() => {
+                  setLoaderButton(true);
+                  router.push(`/cart/address`);
+                }}
+              />
             </div>
             <div className={styles.cart_invoice_subtitle}>
               <i

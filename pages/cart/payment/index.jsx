@@ -10,12 +10,12 @@ import ShopLayout from "../../../components/shopLayout";
 import { _getListInvoice } from "../../../api/cart";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // scss
-import styles from "../../../styles/pages/cart/payment/payment.module.scss";
+import styles from "./payment.module.scss";
+import AppButton from "../../../components/AppButton";
 
 const _asist = new Assistent();
 
 export default function Cart() {
-
   const router = useRouter();
   const [msgCoupon, setMsgCoupon] = useState([]);
   const [cartPrice, setCartPrice] = useState(null);
@@ -26,12 +26,21 @@ export default function Cart() {
   const [logisticPrice, setLogisticPrice] = useState(null);
   const [logisticErrors, setLogisticErrors] = useState([]);
   const [addressReceiver, setAddressReceiver] = useState({});
+  const [loaderButton, setLoaderButton] = useState(false);
 
   useEffect(() => {
-    _getListInvoice(setMsgCoupon, setListInvoice, setLogisticPrice, setTotalPrice, setCartPrice, setAddressReceiver, setResultCoupon, setLogisticErrors, setIsLoadInvoice);
+    _getListInvoice(
+      setMsgCoupon,
+      setListInvoice,
+      setLogisticPrice,
+      setTotalPrice,
+      setCartPrice,
+      setAddressReceiver,
+      setResultCoupon,
+      setLogisticErrors,
+      setIsLoadInvoice
+    );
   }, []);
-
-
 
   const _addCoupon = async (e) => {
     e.preventDefault();
@@ -80,6 +89,7 @@ export default function Cart() {
 
   const invoicePay = async () => {
     try {
+      setLoaderButton(true);
       setIsLoadInvoice(true);
       let response = await ApiRegister().apiRequest(
         null,
@@ -91,8 +101,14 @@ export default function Cart() {
       if (response.status === 200) {
         let data = await response.data;
         await router.push(data.url);
+        setLoaderButton(false);
+      } else {
+        setLoaderButton(false);
+        setIsLoadInvoice(false);
       }
     } catch (error) {
+      setLoaderButton(false);
+      setIsLoadInvoice(false);
       return false;
     }
   };
@@ -256,7 +272,9 @@ export default function Cart() {
                           <Link
                             href={`/shop/${itemProduct.product.FK_Shop.slug}/product/${itemProduct.product.Slug}`}
                           >
-                            <a className="link-body">{itemProduct.product.Title}</a>
+                            <a className="link-body">
+                              {itemProduct.product.Title}
+                            </a>
                           </Link>
                           <div className="mt-2">{itemProduct.count} عدد</div>
                         </div>
@@ -264,9 +282,7 @@ export default function Cart() {
                           className="mr-auto"
                           style={{ marginRight: "auto" }}
                         >
-                          {_asist.PSeparator(
-                            itemProduct.product.Price / 10
-                          )}{" "}
+                          {_asist.PSeparator(itemProduct.product.Price / 10)}{" "}
                           تومان
                         </div>
                       </div>
@@ -376,15 +392,12 @@ export default function Cart() {
                 </strong>
                 تومان
               </div>
-              <button
-                style={{ backgroundColor: "rgb(27,62,104)", color: "#fff" }}
-                className={`${styles.cart_button} btn w-100 d-flex justify-content-between align-items-center px-4`}
+
+              <AppButton
+                loader={loaderButton}
                 onClick={invoicePay}
-              >
-                <span className="d-inline-block w-100 text-center font-size1">
-                  پرداخت آنلاین
-                </span>
-              </button>
+                title="پرداخت آنلاین"
+              />
             </div>
           </div>
         </div>

@@ -12,12 +12,13 @@ import CustomAccordionSend from "../../../components/custom/customAccordionSend"
 import { getSendWayList } from "../../../api/cart";
 // style
 import st from "./send.module.scss";
+import AppButton from "../../../components/AppButton";
 
 function Send() {
-
   const router = useRouter();
   const [invoice, setInvoice] = useState({});
   const [ListItems, setListItems] = useState([]);
+  const [loaderButton, setLoaderButton] = useState(false);
 
   useEffect(() => {
     getSendWayList(setListItems, setInvoice);
@@ -49,7 +50,12 @@ function Send() {
             <span className={st.explain_price}>
               مجموع هزینه :<span> </span>
               <span>
-                <Number num={invoice.logistic_details && (invoice.logistic_details.total_price / 10)} />
+                <Number
+                  num={
+                    invoice.logistic_details &&
+                    invoice.logistic_details.total_price / 10
+                  }
+                />
               </span>
               <span> تومان </span>
             </span>
@@ -66,14 +72,10 @@ function Send() {
               >
                 {Object.values(el.logistic_units).map((ef, index) => (
                   <Fragment key={index}>
-                    <div
-                      style={{ background: "#fff", padding: "10px 15px" }}
-                    >
+                    <div style={{ background: "#fff", padding: "10px 15px" }}>
                       <div style={{ marginTop: "20px" }}>
                         <span style={{ color: "#000" }}>روش : </span>
-                        <span
-                          style={{ color: "#224E82", fontWeight: "bold" }}
-                        >
+                        <span style={{ color: "#224E82", fontWeight: "bold" }}>
                           {ef.unit_name}
                         </span>
                       </div>
@@ -107,14 +109,15 @@ function Send() {
               </CustomAccordionSend>
             </Fragment>
           ))}
-          <button
-            onClick={() =>
-              router.push(`/cart/payment`)
-            }
-            className={`${st.button_submit} w-100`}
-          >
-            ادامه
-          </button>
+
+          <AppButton
+            loader={loaderButton}
+            title="ادامه"
+            onClick={() => {
+              setLoaderButton(true);
+              router.push(`/cart/payment`);
+            }}
+          />
         </section>
       </div>
     </>
