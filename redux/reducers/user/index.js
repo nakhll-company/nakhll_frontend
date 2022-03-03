@@ -2,7 +2,8 @@ import * as Types from '../../types/user';
 
 let initialize = {
     userInfo: {},
-    activeHojreh: ""
+    activeHojreh: "",
+
 }
 
 function reducer(state = initialize, actions) {
@@ -11,7 +12,7 @@ function reducer(state = initialize, actions) {
         case Types.USER_INFO:
             return {
                 ...state,
-                userInfo: { ...actions.payload }
+                userInfo: {...actions.payload }
             }
         case Types.ACTIVE_HOJREH:
             return {

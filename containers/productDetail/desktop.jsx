@@ -10,23 +10,25 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Fragment, useEffect, useState } from "react";
 import SwiperCore, { Navigation, Thumbs } from "swiper";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { useDispatch } from "react-redux";
 // components
 import AddFavorites from "../../components/AddFavorites";
 import CustomLabel from "../../components/custom/customLabel";
 import CustomSlider from "../../components/custom/customSlider";
 import ProductCard from "../../components/ProductCart/ProductCard";
 // methods
-import { addToCart } from "./methods/addToCart";
+
 import { gtag } from "../../utils/googleAnalytics";
 import { fetchProductShop, getMoreProduct } from "../../api/product/detail";
 // styles
 import styles from "./productDetail.module.scss";
+import { _addProduct } from "../../redux/actions/cart/_addProduct";
 
 const _asist = new Assistent();
 SwiperCore.use([Navigation, Thumbs]);
 
 const ProductDetailDesktop = ({ data }) => {
-
+  const dispatch = useDispatch();
   const router = useRouter();
   const detail = data.detail;
   const comments = data.comments;
@@ -38,10 +40,7 @@ const ProductDetailDesktop = ({ data }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const userData = useSelector((state) => state.User.userInfo);
 
-  let thumblineImage = [
-    ...detail.banners,
-    { image: detail.image },
-  ];
+  let thumblineImage = [...detail.banners, { image: detail.image }];
 
   useEffect(() => {
     function fetchData() {
@@ -71,8 +70,7 @@ const ProductDetailDesktop = ({ data }) => {
                   { title: "خانه", url: "/" },
                   {
                     title:
-                      detail.category &&
-                        detail.category.parents.length > 0
+                      detail.category && detail.category.parents.length > 0
                         ? detail.category.parents[0].name
                         : "",
                     url:
@@ -300,11 +298,11 @@ const ProductDetailDesktop = ({ data }) => {
                     <button
                       className={`product-btn btn rounded-pill font-size1-5  p-1  ${styles.btn_tprimary}`}
                       onClick={async () => {
+                        await dispatch(_addProduct(detail.id));
                         gtag("event", "دکمه خرید", {
                           event_category: `‍‍‍‍${detail.title}`,
                           event_label: "زدن روی دکمه خرید",
                         });
-                        await addToCart(detail.id);
                       }}
                     >
                       خرید
@@ -525,7 +523,15 @@ const ProductDetailDesktop = ({ data }) => {
               </h2>
               <InfiniteScroll
                 dataLength={posts.length}
-                next={() => { getMoreProduct(productSlug, pageApi, setHasMore, setPageApi, setPosts) }}
+                next={() => {
+                  getMoreProduct(
+                    productSlug,
+                    pageApi,
+                    setHasMore,
+                    setPageApi,
+                    setPosts
+                  );
+                }}
                 hasMore={hasMore}
                 loader={<h3> منتظر بمانید...</h3>}
                 endMessage={<h4>پایان</h4>}

@@ -12,14 +12,17 @@ import MegaMenuDesktop from "../../../containers/LandingPage/MegaMenuDesktop";
 // methods
 import { gtag } from "../../../utils/googleAnalytics";
 import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
-import { _call_Category, _get_all_shops, _handel_search } from "../../../api/header";
+import {
+  _call_Category,
+  _get_all_shops,
+  _handel_search,
+} from "../../../api/header";
 // style
 import styles from "./header.module.scss";
 
 const _asist = new Assistent();
 
 function Header() {
-
   const router = useRouter();
   const dispatch = useDispatch();
   const [category, setCategory] = useState([]);
@@ -27,6 +30,8 @@ function Header() {
   const [searchShops, setSearchShops] = useState([]);
   const [inputSearch, setInputSearch] = useState("");
   const userLog = useSelector((state) => state.User.userInfo);
+  const All_product_list_buy = useSelector((state) => state.Cart.allProduct);
+  console.log("All_product_list_buy :>> ", All_product_list_buy);
 
   useEffect(() => {
     async function fetchData() {
@@ -65,8 +70,7 @@ function Header() {
               fontSize: "30px",
               fontWeight: "bolder",
             }}
-          >
-          </div>
+          ></div>
         </div>
         <div className="container">
           <div className={styles.top_header}>
@@ -188,12 +192,11 @@ function Header() {
                     src="/icons/sabad.svg"
                     alt=""
                   />
-                  {Object.keys(userLog).length > 0 &&
-                    userLog.cart_items_count !== 0 && (
-                      <span className={styles.counter_cart}>
-                        {_asist.number(userLog.cart_items_count)}
-                      </span>
-                    )}
+                  {!!All_product_list_buy?.ordered_items?.length && (
+                    <span className={styles.counter_cart}>
+                      {_asist.number(All_product_list_buy.ordered_items.length)}
+                    </span>
+                  )}
                 </div>
               </div>
             </div>

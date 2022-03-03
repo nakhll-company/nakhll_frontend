@@ -10,24 +10,26 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Fragment, useState, useEffect } from "react";
 import SwiperCore, { EffectCube, Pagination } from "swiper";
 import InfiniteScroll from "react-infinite-scroll-component";
+
 // components
 import AddFavorites from "../../components/AddFavorites";
 import CustomLabel from "../../components/custom/customLabel";
 import CustomSlider from "../../components/custom/customSlider";
 import ProductCard from "../../components/ProductCart/ProductCard";
 // methods
-import { addToCart } from "./methods/addToCart";
+
 import { gtag } from "../../utils/googleAnalytics";
 import { fetchProductShop, getMoreProduct } from "../../api/product/detail";
 // styles
 import styles from "./productDetail.module.scss";
-
+import { useDispatch } from "react-redux";
+import { _addProduct } from "../../redux/actions/cart/_addProduct";
 
 SwiperCore.use([EffectCube, Pagination]);
 const _asist = new Assistent();
 
 const ProductDetailMobile = ({ data }) => {
-
+  const dispatch = useDispatch();
   const router = useRouter();
   const detail = data.detail;
   const comments = data.comments;
@@ -39,14 +41,17 @@ const ProductDetailMobile = ({ data }) => {
   const userData = useSelector((state) => state.User.userInfo);
   const [posts, setPosts] = useState([...relatedProduct.results]);
 
-  let thumblineImage = [
-    ...detail.banners,
-    { image: detail.image },
-  ];
+  let thumblineImage = [...detail.banners, { image: detail.image }];
 
   useEffect(() => {
     async function fetchData() {
-      await getMoreProduct(productSlug, pageApi, setHasMore, setPageApi, setPosts);
+      await getMoreProduct(
+        productSlug,
+        pageApi,
+        setHasMore,
+        setPageApi,
+        setPosts
+      );
       await fetchProductShop(detail, setProductShop);
     }
     fetchData();
@@ -72,8 +77,7 @@ const ProductDetailMobile = ({ data }) => {
                   { title: "خانه", url: "/" },
                   {
                     title:
-                      detail.category &&
-                        detail.category.parents.length > 0
+                      detail.category && detail.category.parents.length > 0
                         ? detail.category.parents[0].name
                         : "",
                     url:
@@ -443,7 +447,15 @@ const ProductDetailMobile = ({ data }) => {
               </h2>
               <InfiniteScroll
                 dataLength={posts.length}
-                next={() => { getMoreProduct(productSlug, pageApi, setHasMore, setPageApi, setPosts) }}
+                next={() => {
+                  getMoreProduct(
+                    productSlug,
+                    pageApi,
+                    setHasMore,
+                    setPageApi,
+                    setPosts
+                  );
+                }}
                 hasMore={hasMore}
                 loader={<h3> منتظر بمانید ....</h3>}
                 endMessage={<h4>پایان</h4>}
@@ -485,11 +497,11 @@ const ProductDetailMobile = ({ data }) => {
           <button
             className={`${styles.product_btn_mobile} btn btn-tprimary rounded-pill font-weight-bold font-size1-5 px-6 py-2 ev-add-to-cart`}
             onClick={async () => {
+              await dispatch(_addProduct(detail.id));
               gtag("event", "دکمه خرید", {
                 event_category: `‍‍‍‍${detail.title}`,
                 event_label: "زدن روی دکمه خرید",
               });
-              await addToCart(detail.id);
             }}
           >
             خرید

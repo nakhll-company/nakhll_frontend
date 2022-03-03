@@ -3,13 +3,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import Assistent from "zaravand-assistent-number";
+import { useDispatch } from "react-redux";
 // methods
-import { addToCart } from "./methods/addToCart";
+
 import { gtag } from "../../utils/googleAnalytics";
 import { addToFavoritesList } from "./methods/addToFavotitesList";
 import { deleteFromFavoritesList } from "./methods/deleteFromFavoritesList";
 // scss
 import styles from "./ProductCard.module.scss";
+
+import { _addProduct } from "../../redux/actions/cart/_addProduct";
 
 const _asist = new Assistent();
 
@@ -23,6 +26,7 @@ const ProductCard = ({
   padding,
   dataProduct,
 }) => {
+  const dispatch = useDispatch();
   let product = {
     id: dataProduct.ID,
     imageUrl: dataProduct.Image_medium_url,
@@ -58,8 +62,9 @@ const ProductCard = ({
       height={100}
       width={100}
       src={product.imageUrl}
-      className={`card-img-top _product_card_rounded animationCart ${product.unavailable && "_unavailable_product"
-        }`}
+      className={`card-img-top _product_card_rounded animationCart ${
+        product.unavailable && "_unavailable_product"
+      }`}
       alt={product.title}
       placeholder="blur"
       blurDataURL="/logoCart.png"
@@ -87,10 +92,11 @@ const ProductCard = ({
 
   return (
     <div
-      className={` ${col
-        ? `col-${col}`
-        : `col-${xs} col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
-        } ${padding ? `px-${padding}` : ""} mb-2`}
+      className={` ${
+        col
+          ? `col-${col}`
+          : `col-${xs} col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
+      } ${padding ? `px-${padding}` : ""} mb-2`}
     >
       {product.iconClose && (
         <span
@@ -125,8 +131,9 @@ const ProductCard = ({
         </div>
 
         <div
-          className={`card-body mt-2 p-1 ${product.unavailable && "_unavailable_product"
-            }`}
+          className={`card-body mt-2 p-1 ${
+            product.unavailable && "_unavailable_product"
+          }`}
         >
           <div className=" mb-3">
             <Link href={product.url}>
@@ -179,13 +186,15 @@ const ProductCard = ({
                     disabled={disablBtn}
                     className={`btn ${styles._product_card_add_to_cart}`}
                     onClick={async () => {
+                      setDisablBtn(true);
+                      await dispatch(_addProduct(product.id));
+
+                      setDisablBtn(false);
+
                       gtag("event", "دکمه خرید", {
                         event_category: `‍‍‍‍${product.title}`,
                         event_label: "زدن روی دکمه خرید",
                       });
-                      setDisablBtn(true);
-                      await addToCart(product.id);
-                      setDisablBtn(false);
                     }}
                   >
                     <i className="fas fa-plus" />
