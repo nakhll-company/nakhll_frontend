@@ -27,8 +27,9 @@ const Password = () => {
     if (result !== false) {
       let response = await getAccessToken(result);
       response === true && location.replace("/");
+    } else {
+      setLoadButton(false);
     }
-    setLoadButton(false);
   };
 
   return (
