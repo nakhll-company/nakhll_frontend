@@ -4,7 +4,7 @@ export async function getOrders(id, activeShop) {
     let response = await ApiRegister().apiRequest(
         null,
         "GET",
-        `/api/v1/shop/feature_invoice/${activeShop}/history/?feature=${id}`,
+        `/api/v1/shop/feature-invoices/${activeShop}/history/?feature=${id}`,
         true, {}
     );
 

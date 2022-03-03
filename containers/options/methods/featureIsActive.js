@@ -4,7 +4,7 @@ export async function featureIsActive(id, activeShop, setLandingList) {
     let response = await ApiRegister().apiRequest(
         null,
         "get",
-        `/api/v1/shop/feature_invoice/${activeShop}/history/?feature=${id}`,
+        `/api/v1/shop/feature-invoices/${activeShop}/history/?feature=${id}`,
         true, {}
     );
 
@@ -12,7 +12,7 @@ export async function featureIsActive(id, activeShop, setLandingList) {
         let result = await ApiRegister().apiRequest(
             null,
             "get",
-            `/api/v1/shop/landing/${activeShop}/`,
+            `/api/v1/shop/landings/${activeShop}/`,
             true, {}
         );
 

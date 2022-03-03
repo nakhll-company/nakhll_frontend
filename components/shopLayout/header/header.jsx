@@ -31,7 +31,6 @@ function Header() {
   const [inputSearch, setInputSearch] = useState("");
   const userLog = useSelector((state) => state.User.userInfo);
   const All_product_list_buy = useSelector((state) => state.Cart.allProduct);
-  console.log("All_product_list_buy :>> ", All_product_list_buy);
 
   useEffect(() => {
     async function fetchData() {

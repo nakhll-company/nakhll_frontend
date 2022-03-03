@@ -7,7 +7,7 @@ export const getCompleted = (activeHojreh) => async (dispatch) => {
         const completed = async () => {
             let params = {};
             let loadData = null;
-            let dataUrl = `/api/v1/factor/shop/${activeHojreh}/completed/`;
+            let dataUrl = `/api/v1/shop/${activeHojreh}/invoices/?is_completed=true`;
             let response = await ApiRegister().apiRequest(
                 loadData,
                 "get",
@@ -23,7 +23,7 @@ export const getCompleted = (activeHojreh) => async (dispatch) => {
             // dispatch
             dispatch({
                 type: Types.COMPLETED,
-                payload: response.data,
+                payload: response.data.results,
             });
         }
     } catch (error) {

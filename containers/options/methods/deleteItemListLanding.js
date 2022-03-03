@@ -5,7 +5,7 @@ export async function deleteItemListLanding(id, activeHojreh, setLandingList) {
     let response = await ApiRegister().apiRequest(
         null,
         "DELETE",
-        `/api/v1/shop/landing/${activeHojreh}/${id}/`,
+        `/api/v1/shop/landings/${activeHojreh}/${id}/`,
         true, {}
     );
 
@@ -14,7 +14,7 @@ export async function deleteItemListLanding(id, activeHojreh, setLandingList) {
         let result = await ApiRegister().apiRequest(
             null,
             "get",
-            `/api/v1/shop/landing/${activeHojreh}/`,
+            `/api/v1/shop/landings/${activeHojreh}/`,
             true, {}
         );
 

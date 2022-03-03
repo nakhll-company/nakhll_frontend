@@ -32,7 +32,7 @@ const DesktopLanding = ({ landingList, activeHojreh, setLandingList }) => {
                 shop: activeHojreh,
               },
               "post",
-              `/api/v1/shop/landing/${activeHojreh}/`,
+              `/api/v1/shop/landings/${activeHojreh}/`,
               true,
               ""
             );

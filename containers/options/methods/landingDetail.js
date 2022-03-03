@@ -4,7 +4,7 @@ export async function landingDetal(id) {
 
     let response = await ApiRegister().apiRequest(
         null, "get",
-        `/api/v1/shop/feature/${id}/`,
+        `/api/v1/shop/features/${id}/`,
         true, {}
     );
 

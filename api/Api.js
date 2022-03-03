@@ -8,12 +8,12 @@ export const ApiReference = {
   allShops: "/api/v1/shops/",
   PinnedURL: {
     creat: {
-      url: "/api/v1/shop/pinned_url/",
+      url: "/api/v1/shop/pinned-urls/",
       params: { name: "", link: "" },
       method: "post",
     },
     PinnedList: {
-      url: "/api/v1/shop/pinned_url/",
+      url: "/api/v1/shop/pinned-urls/",
       method: "Get",
     },
     delete: {
@@ -22,17 +22,17 @@ export const ApiReference = {
   },
   landing: {
     creat: {
-      url: "/api/v1/shop/landing/",
+      url: "/api/v1/shop/landings/",
       params: { name: "", page_data: "", shop: "mamaneila" },
       method: "post",
     },
     update: {
-      url: "/api/v1/shop/landing/",
+      url: "/api/v1/shop/landings/",
       urlPath: "id/",
       method: "put",
     },
     getLanding: {
-      url: "/api/v1/shop/landing/",
+      url: "/api/v1/shop/landings/",
       urlPath: "id/",
       method: "Get",
     },

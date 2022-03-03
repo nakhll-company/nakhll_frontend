@@ -4,7 +4,7 @@ export async function allOptions() {
     let response = await ApiRegister().apiRequest(
         null,
         "get",
-        "/api/v1/shop/feature/",
+        "/api/v1/shop/features/",
         true, {}
     );
     if (response.status === 200) {
