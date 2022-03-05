@@ -7,6 +7,7 @@ import FieldCus from "../field";
 import TextArea from "../textArea";
 import SubButton from "../subButton";
 import TitleLiner from "../titleLiner";
+import AppButton from "../../../../components/AppButton";
 // mehods
 import { dataExp } from "../../data";
 import { callApiUpDataShop } from "../../../../api/settings";
@@ -18,15 +19,21 @@ import { getBigCities } from "../../../../api/general/getBigCities";
 import styles from "./hojrehForm.module.scss";
 
 function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
-
   const [IsLoading, setIsLoading] = useState(false);
   const [showMessage, setshowMessage] = useState(0);
   const [selectState, setSelectState] = useState([]);
   const [selectCities, setSelectCities] = useState([]);
   const [selectBigCities, setSelectBigCities] = useState([]);
-  const [ChoiceCity, setChoiceCity] = useState(apiSetting.FK_ShopManager.User_Profile.City);
-  const [ChoiceState, setChoiceState] = useState(apiSetting.FK_ShopManager.User_Profile.State);
-  const [ChoiceBigCity, setChoiceBigCity] = useState(apiSetting.FK_ShopManager.User_Profile.BigCity);
+  const [ChoiceCity, setChoiceCity] = useState(
+    apiSetting.FK_ShopManager.User_Profile.City
+  );
+  const [ChoiceState, setChoiceState] = useState(
+    apiSetting.FK_ShopManager.User_Profile.State
+  );
+  const [ChoiceBigCity, setChoiceBigCity] = useState(
+    apiSetting.FK_ShopManager.User_Profile.BigCity
+  );
+  const [loaderButton, setLoaderButton] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -62,7 +69,7 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
         validationSchema={VALIDATION_SCHEMA}
         onSubmit={async (data) => {
           setshowMessage(0);
-          // setIsLoading(true);
+          setLoaderButton(true);
           const dataForSend = {
             Title: data.Title,
             Slug: data.slug,
@@ -85,10 +92,12 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
             setIsLoading(false);
             setshowMessage(1);
             setClicked((pre) => !pre);
+            setLoaderButton(false);
           } else {
             setIsLoading(false);
             // Not Good
             setshowMessage(2);
+            setLoaderButton(false);
           }
         }}
       >
@@ -254,7 +263,8 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
                 </h3>
               </div>
             )}
-            <SubButton title="ذخیره اطلاعات" />
+            <AppButton title="ذخیره اطلاعات" loader={loaderButton} submit />
+            {/* <SubButton title="ذخیره اطلاعات" /> */}
             <div style={{ marginTop: "80px" }}></div>
           </Form>
         )}

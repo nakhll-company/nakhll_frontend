@@ -23,9 +23,9 @@ import { successMessage } from "../../../../utils/toastifyMessage";
 import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 // style
 import st from "./logisticPage.module.scss";
+import AppButton from "../../../../components/AppButton";
 
 function LogisticPage() {
-
   const _asist = new Assistent();
   const [loader, setLoader] = useState(false);
   const [wichPage, setWichPage] = useState(1);
@@ -38,8 +38,9 @@ function LogisticPage() {
   const [informationForm, setInformationForm] = useState({});
   const [wordExtraPricePer, setWordExtraPricePer] = useState("");
   const activeHojreh = useSelector((state) => state.User.activeHojreh);
-  const [checkedSelectAllProducts, setCheckedSelectAllProducts] = useState(true);
-
+  const [checkedSelectAllProducts, setCheckedSelectAllProducts] =
+    useState(true);
+  const [loaderBtn, setLoaderBtn] = useState(false);
   const unitConverter = (num) => {
     if (witchUnit == "gr") {
       return num * 1000;
@@ -52,7 +53,11 @@ function LogisticPage() {
     }
   };
 
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     criteriaMode: "all",
     mode: "all",
   });
@@ -60,6 +65,7 @@ function LogisticPage() {
   // function for Create Shop Logistic Unit Constraint
   const _handle_add_new_scope = async () => {
     try {
+      setLoaderBtn(true);
       let response = await ApiRegister().apiRequest(
         {
           shop: activeHojreh,
@@ -76,15 +82,19 @@ function LogisticPage() {
         setInformationForm(response.data);
         setConstraintId(response.data.constraint.id);
         upPage();
+        setLoaderBtn(false);
       } else {
         setWichPage(13);
+        setLoaderBtn(false);
       }
     } catch (error) {
       setWichPage(13);
+      setLoaderBtn(false);
     }
   };
 
   const _handle_update_data_scope = async (data, move = true) => {
+    setLoaderBtn(true);
     setLoader(true);
     let response = await ApiRegister().apiRequest(
       data,
@@ -98,10 +108,12 @@ function LogisticPage() {
       if (move) {
         upPage();
       }
+      setLoaderBtn(false);
       setLoader(false);
       successMessage("محصولات بارگذاری شد.");
     } else {
       setLoader(false);
+      setLoaderBtn(false);
     }
   };
 
@@ -126,8 +138,8 @@ function LogisticPage() {
     setWichPage(wichPage - 1);
   };
 
-
   const _handle_send_all_cities = async () => {
+    setLoaderBtn(true);
     let response = await ApiRegister().apiRequest(
       {
         products: [],
@@ -138,6 +150,7 @@ function LogisticPage() {
       ""
     );
     upPage();
+    setLoaderBtn(false);
     return response;
   };
 
@@ -178,10 +191,12 @@ function LogisticPage() {
 
             <Explain text="با استفاده از ثبت واحد ارسال جدید شهرها، محصولات، روش و هزینه ارسال دلخواه را انتخاب کنید." />
 
-            <BtnSetting
+            <AppButton
               onClick={_handle_add_new_scope}
+              loader={loaderBtn}
               title="ثبت واحد ارسال جدید"
             />
+            <div className="mb-4"></div>
 
             <Panel
               setConstraintId={setConstraintId}
@@ -204,15 +219,17 @@ function LogisticPage() {
               checkedCity={checkedCities}
               setCheckedCity={setCheckedCities}
             />
-
-            <BtnSetting
-              onClick={() =>
-                _handle_update_data_scope({
-                  cities: checkedCities.length > 0 ? checkedCities : [],
-                })
-              }
-              title="مرحله بعد"
-            />
+            <div className="mt-4 mb-4">
+              <AppButton
+                loader={loaderBtn}
+                onClick={() =>
+                  _handle_update_data_scope({
+                    cities: checkedCities.length > 0 ? checkedCities : [],
+                  })
+                }
+                title="مرحله بعد"
+              />
+            </div>
           </>
         )}
         {wichPage == 3 && (
@@ -233,7 +250,12 @@ function LogisticPage() {
               title="تمام محصولات"
             />
             {checkedSelectAllProducts && (
-              <BtnSetting onClick={_handle_send_all_cities} title="مرحله بعد" />
+              <AppButton
+                loader={loaderBtn}
+                onClick={_handle_send_all_cities}
+                title="مرحله بعد"
+              />
+              // <BtnSetting onClick={_handle_send_all_cities} title="مرحله بعد" />
             )}
 
             {!checkedSelectAllProducts && (
@@ -272,8 +294,9 @@ function LogisticPage() {
             <Explain text="" />
 
             <form
-              onSubmit={handleSubmit((data) =>
-                _handle_send_info_scope({
+              onSubmit={handleSubmit(async (data) => {
+                setLoaderBtn(true);
+                await _handle_send_info_scope({
                   calculation_metric: {
                     price_per_kilogram: data.price_per_kg
                       ? unitConverter(data.price_per_kg) * 10
@@ -282,8 +305,9 @@ function LogisticPage() {
                       ? unitConverter(data.price_per_extra_kg) * 10
                       : 0,
                   },
-                })
-              )}
+                });
+                setLoaderBtn(false);
+              })}
             >
               {/* iiiiiii */}
               <div style={{ position: "relative" }}>
@@ -355,8 +379,7 @@ function LogisticPage() {
                   هزینه پست به ازای هر واحد اضافه تر : {wordExtraPricePer} تومان
                 </div>
               )}
-
-              <BtnSetting type="submit" title="مرحله بعد" />
+              <AppButton loader={loaderBtn} title="مرحله بعد" submit />
             </form>
           </>
         )}

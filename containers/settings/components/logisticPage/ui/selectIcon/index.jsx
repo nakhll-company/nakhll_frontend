@@ -7,6 +7,7 @@ import BtnSetting from "../../components/btnSetting";
 import InputUseForm from "../../../../../creat/component/inputUseForm";
 // style
 import st from "./selectIcon.module.scss";
+import AppButton from "../../../../../../components/AppButton";
 
 const ICONS = [
   { src: "/icons/settings/pishtaz.svg", id: 1 },
@@ -18,16 +19,23 @@ const ICONS = [
 
 function SelectIcon({ _handle_send_info_scope }) {
   const [idselectedIcon, setIdselectedIcon] = useState(1);
-  const { register, handleSubmit, formState: { errors } } = useForm({ criteriaMode: "all", mode: "all" });
+  const [loaderBtn, setLoaderBtn] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ criteriaMode: "all", mode: "all" });
   return (
     <>
       <form
-        onSubmit={handleSubmit((data) =>
-          _handle_send_info_scope({
+        onSubmit={handleSubmit(async (data) => {
+          setLoaderBtn(true);
+          await _handle_send_info_scope({
             name: data.name ? data.name : "بدون نام",
             logo_type: idselectedIcon,
-          })
-        )}
+          });
+          setLoaderBtn(false);
+        })}
       >
         <InputUseForm title="عنوان روش ارسال" error={errors.name}>
           <input {...register("name")} />
@@ -60,7 +68,9 @@ function SelectIcon({ _handle_send_info_scope }) {
             </div>
           ))}
         </div>
-        <BtnSetting type="submit" title="ثبت" />
+        <div className="mt-4 mb-4">
+          <AppButton title="ثبت" loader={loaderBtn} submit />
+        </div>
       </form>
     </>
   );

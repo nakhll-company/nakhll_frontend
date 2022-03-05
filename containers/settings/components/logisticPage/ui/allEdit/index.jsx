@@ -192,6 +192,7 @@ function AllEdit({
       <form
         onSubmit={handleSubmit(
           (data) => {
+            
             _handle_send_info_scope(
               {
                 name: data.edit_name ? data.edit_name : "بدون نام",
