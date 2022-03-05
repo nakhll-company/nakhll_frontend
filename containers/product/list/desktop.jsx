@@ -92,7 +92,7 @@ export default function Desktop({
                     <td>
                       <Link href={`/fp/product/update/product/${value.ID}`} passHref>
                         <div style={{ display: "flex" }}>
-                          <div>
+                          <div style={{ position: "relative", width: "50px", height: "50px" }}>
                             <Image
                               src={value.image_thumbnail_url}
                               alt="product"

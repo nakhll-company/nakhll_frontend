@@ -3,10 +3,10 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 // methods
+import { getStates } from "../../api/general/getStates";
+import { getCities } from "../../api/general/getCities";
 import { Day, Months, Year } from "../../utils/staticDate";
-import { getStates } from "./methods/getStates";
-import { getBigCities } from "./methods/getBigCities";
-import { getCities } from "./methods/getCities";
+import { getBigCities } from "../../api/general/getBigCities";
 import { updatUserProfile } from "./methods/updateUserProfile";
 // components
 import InputPictureSetting from "../settings/components/InputPicture";
@@ -26,12 +26,6 @@ const EditProfile = ({ dataProfile, setDataProfile }) => {
   let [selectBigCities, setSelectBigCities] = useState([]);
   let [selectCities, setSelectCities] = useState([]);
   const [imgProfile, setImgProfile] = useState(dataProfile.image ? dataProfile.image : null);
-
-  // useEffect(() => {
-  //   if (dataProfile.Image) {
-  //     setImgProfile(dataProfile.Image);
-  //   }
-  // }, [dataProfile]);
 
   const onSubmit = async (data) => {
     if (imgProfile.startsWith("data:image")) {
