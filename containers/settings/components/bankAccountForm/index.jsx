@@ -10,6 +10,7 @@ import InputUseForm from "../../../creat/component/inputUseForm";
 import { callApiUpDataShop } from "../../../../api/settings";
 // style
 import styles from "./bankAccountForm.module.scss";
+import AppButton from "../../../../components/AppButton";
 
 const _asist = new Assistent();
 
@@ -17,6 +18,7 @@ function BankAccountForm({ apiSetting, activeHojreh, setClicked }) {
   const [IsLoadingHesab, setIsLoadingHesab] = useState(false);
   const [showMessageHesab, setShowMessageHesab] = useState(0);
 
+  const [loaderBtn, setLoaderBtn] = useState(false);
   // useform
   const {
     setValue,
@@ -35,6 +37,7 @@ function BankAccountForm({ apiSetting, activeHojreh, setClicked }) {
   }, [apiSetting, setValue]);
 
   const onSubmit = async (data) => {
+    setLoaderBtn(true);
     const dataForSend = {
       bank_account: {
         iban: _asist.Enumber(data.iban),
@@ -47,11 +50,13 @@ function BankAccountForm({ apiSetting, activeHojreh, setClicked }) {
     if (response.status == 200) {
       setIsLoadingHesab(false);
       setShowMessageHesab(1);
+      setLoaderBtn(false);
 
       setClicked((pre) => !pre);
     } else {
       setIsLoadingHesab(false);
       setShowMessageHesab(2);
+      setLoaderBtn(false);
     }
   };
   return (
@@ -119,7 +124,7 @@ function BankAccountForm({ apiSetting, activeHojreh, setClicked }) {
             </h3>
           </div>
         )}
-        <SubButton title="به روز رسانی" />
+        <AppButton title="به روز رسانی" loader={loaderBtn} submit />
       </form>
     </>
   );

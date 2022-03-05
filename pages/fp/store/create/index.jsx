@@ -17,7 +17,8 @@ import { getStates } from "../../../../api/general/getStates";
 import { getBigCities } from "../../../../api/general/getBigCities";
 import { createStore } from "../../../../containers/store/methods/createStore";
 // styles
-import styles from "../../../../styles/pages/store/createStore.module.scss";
+import styles from "./createStore.module.scss";
+import AppButton from "../../../../components/AppButton";
 
 function NewStore({ getUserInfo, userInfo }) {
   const breakpoint = 620;
@@ -34,8 +35,10 @@ function NewStore({ getUserInfo, userInfo }) {
     loading: "false",
     success: "false",
   });
+  const [loaderBtn, setLoaderBtn] = useState(false);
 
   const onSubmit = async (data) => {
+    setLoaderBtn(true);
     setShowSuccessPage((prev) => {
       return {
         ...prev,
@@ -45,11 +48,13 @@ function NewStore({ getUserInfo, userInfo }) {
     let response = await createStore(data);
     if (response.status === 201) {
       getUserInfo();
+      setLoaderBtn(false);
       setShowSuccessPage({
         loading: "false",
         success: "true",
       });
     } else {
+      setLoaderBtn(false);
       setShowSuccessPage({
         loading: "false",
         success: "false",
@@ -213,9 +218,7 @@ function NewStore({ getUserInfo, userInfo }) {
           </label>
           {/* button submit */}
           <div className={styles.wrapper_submit}>
-            <button className={styles.button_submit} type="submit">
-              ثبت حجره
-            </button>
+            <AppButton loader={loaderBtn} title="ثبت حجره" submit />
           </div>
         </div>
         {/* left side */}

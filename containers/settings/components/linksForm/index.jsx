@@ -9,17 +9,14 @@ import InputUseForm from "../../../creat/component/inputUseForm";
 import { callApiUpDataShop } from "../../../../api/settings";
 // styles
 import styles from "./styles.module.scss";
+import AppButton from "../../../../components/AppButton";
 
 function FormInputs({ apiSetting, setClicked, activeHojreh }) {
-
   const [IsLoadingHesab, setIsLoadingHesab] = useState(false);
   const [showMessageHesab, setShowMessageHesab] = useState(0);
+  const [loaderBtn, setLoaderBtn] = useState(false);
   // useform
-  const {
-    setValue,
-    register,
-    handleSubmit
-  } = useForm({
+  const { setValue, register, handleSubmit } = useForm({
     criteriaMode: "all",
     mode: "all",
   });
@@ -32,6 +29,7 @@ function FormInputs({ apiSetting, setClicked, activeHojreh }) {
   }, [apiSetting, setValue]);
 
   const onSubmit = async (data) => {
+    setLoaderBtn(true);
     const dataForSend = {
       social_media: {
         telegram: data.telegram,
@@ -44,10 +42,11 @@ function FormInputs({ apiSetting, setClicked, activeHojreh }) {
     if (response.status == 200) {
       setIsLoadingHesab(false);
       setShowMessageHesab(1);
-
+      setLoaderBtn(false);
       setClicked((pre) => !pre);
     } else {
       setIsLoadingHesab(false);
+      setLoaderBtn(false);
       setShowMessageHesab(2);
     }
   };
@@ -99,9 +98,7 @@ function FormInputs({ apiSetting, setClicked, activeHojreh }) {
             </h3>
           </div>
         )}
-
-        <SubButton title="به روز رسانی" />
-
+        <AppButton title="به روز رسانی" loader={loaderBtn} submit />
       </form>
     </>
   );

@@ -4,15 +4,20 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 // components
 import Explain from "../../components/explain";
-import BtnSetting from "../../components/btnSetting";
+
 import CheckBoxSend from "../../components/checkBoxSend";
 import InputUseForm from "../../../../../creat/component/inputUseForm";
+import AppButton from "../../../../../../components/AppButton";
 
 function FreeQuestion({ pageController, _handle_send_info_scope }) {
-
   const [checkNoFree, setCheckNoFree] = useState(true);
   const [checkYesFree, setCheckYesFree] = useState(false);
-  const { register, handleSubmit, formState: { errors }, } = useForm({
+  const [loaderBtn, setLoaderBtn] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     criteriaMode: "all",
     mode: "all",
   });
@@ -77,18 +82,23 @@ function FreeQuestion({ pageController, _handle_send_info_scope }) {
                 {...register("minPrice")}
               />
             </InputUseForm>
-            <BtnSetting type="submit" title="مرحله بعد" />
+            <AppButton title="مرحله بعد" loader={loaderBtn} submit />
           </form>
         </>
       )}
 
       {!checkYesFree && (
-        <BtnSetting
-          onClick={() => {
-            checkNoFree ? pageController() : pageController(1, 7);
-          }}
-          title="مرحله بعد"
-        />
+        <>
+          <AppButton
+            onClick={() => {
+              setLoaderBtn(true);
+              checkNoFree ? pageController() : pageController(1, 7);
+              setLoaderBtn(false);
+            }}
+            loader={loaderBtn}
+            title="مرحله بعد"
+          />
+        </>
       )}
     </>
   );

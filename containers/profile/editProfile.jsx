@@ -12,6 +12,7 @@ import { updatUserProfile } from "./methods/updateUserProfile";
 import InputPictureSetting from "../settings/components/InputPicture";
 // scss
 import styles from "./scss/editProfile.module.scss";
+import AppButton from "../../components/AppButton";
 /**
  * edit profile
  */
@@ -25,9 +26,13 @@ const EditProfile = ({ dataProfile, setDataProfile }) => {
   let [selectState, setSelectState] = useState([]);
   let [selectBigCities, setSelectBigCities] = useState([]);
   let [selectCities, setSelectCities] = useState([]);
-  const [imgProfile, setImgProfile] = useState(dataProfile.image ? dataProfile.image : null);
+  const [imgProfile, setImgProfile] = useState(
+    dataProfile.image ? dataProfile.image : null
+  );
+  const [loaderBtn, setLoaderBtn] = useState(false);
 
   const onSubmit = async (data) => {
+    setLoaderBtn(true);
     if (imgProfile.startsWith("data:image")) {
       data.Image = imgProfile;
     }
@@ -45,6 +50,7 @@ const EditProfile = ({ dataProfile, setDataProfile }) => {
       delete data.Sex;
     }
     updatUserProfile(data, setDataProfile);
+    setLoaderBtn(false);
   };
 
   useEffect(() => {
@@ -60,28 +66,29 @@ const EditProfile = ({ dataProfile, setDataProfile }) => {
       <div className="d-flex justify-content-center mt-3">
         <div className={styles.wrap_all}>
           <div className={styles.Parent_imageProfile}>
-            {imgProfile ?
+            {imgProfile ? (
               <Image
                 src={imgProfile ? imgProfile : "/icons/iconpro.png"}
                 width={120}
                 height={120}
                 alt=""
               />
-              :
+            ) : (
               <Image
-                src={dataProfile.image ? dataProfile.image : "/icons/iconpro.png"}
+                src={
+                  dataProfile.image ? dataProfile.image : "/icons/iconpro.png"
+                }
                 width={120}
                 height={120}
                 alt=""
               />
-            }
-
+            )}
           </div>
           <div className={styles.btnProfile}>
             <InputPictureSetting
               setImageSrc={setImgProfile}
               image={imgProfile}
-            // ratio={1}
+              // ratio={1}
             />
           </div>
         </div>
@@ -292,9 +299,9 @@ const EditProfile = ({ dataProfile, setDataProfile }) => {
             </span>
           )}
         </div>
-        <button className={`py-2 mt-4 rounded w-100 ${styles.save_btn}`}>
-          ذخیره تغییرات
-        </button>
+        <div className="mt-4"></div>
+
+        <AppButton title="ذخیره تغییرات" loader={loaderBtn} submit />
       </div>
     </form>
   );
