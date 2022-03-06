@@ -13,9 +13,12 @@ import { forgetPassword } from "../../api/auth/forgetPassword";
 import { getAccessToken } from "../../api/auth/getAccessToken";
 import EmptyLayout from "../../components/layout/EmptyLayout";
 import LoginButton from "../../containers/login/loginButton";
+import AppTimer from "../../containers/login/timer";
 
 const Code = () => {
+  let timingCode = "";
   const [loadButton, setLoadButton] = useState(false);
+  const [timer, setTimer] = useState();
   const router = useRouter();
   const {
     register,
@@ -46,6 +49,13 @@ const Code = () => {
   useEffect(() => {
     router.query.forgetPass === "true" && forgetPassword();
   }, [router.query.forgetPass]);
+  useEffect(() => {
+    timingCode = localStorage.getItem("timing");
+    setTimer(timingCode ? timingCode : 59);
+    return () => {
+      localStorage.removeItem("timing");
+    };
+  }, []);
 
   return (
     <>
@@ -53,7 +63,7 @@ const Code = () => {
         <title>ورود بازار آنلاین نخل</title>
       </Head>
 
-      <div className="d-flex flex-column justify-content-center col-12 col-md-8 col-lg-5 m-auto bg-white shadow-lg p-5 mt-5 rounded">
+      <div className="d-flex flex-column justify-content-center col-12 col-md-8 col-lg-5 m-auto bg-white shadow-lg p-5 mt-5 rounded position-relative">
         <div className="m-auto">
           <Link href="/">
             <a>
@@ -101,15 +111,27 @@ const Code = () => {
               {errors.user_key.message}
             </span>
           )}
+
+          {timer == 0 && (
+            <span
+              className="text-info"
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                resendCode({ mobile: sessionStorage.getItem("mobile") });
+                setTimer(59);
+              }}
+            >
+              دریافت مجدد کد تایید
+            </span>
+          )}
+
           <span
-            className="text-info"
-            style={{ cursor: "pointer" }}
-            onClick={() => {
-              resendCode({ mobile: sessionStorage.getItem("mobile") });
-            }}
+            className="inline-block"
+            style={{ position: "absolute", left: "50px" }}
           >
-            دریافت مجدد کد تایید
+            <AppTimer timer={timer} setTimer={setTimer} />
           </span>
+          {timer !== 0 && <div style={{ height: "24px" }}></div>}
 
           <LoginButton loader={loadButton} title="ادامه" />
         </form>
