@@ -52,19 +52,18 @@ const fetchData = async (id) => {
  * component detail
  */
 const ProductDetail = ({ data }) => {
-
   const breakpoint = 620;
   const { width } = useViewport();
 
   const SEO = {
-    title: `خرید و قیمت ${data.detail.title} | نخل`,
-    description: data.detail.description
-      ? data.detail.description
+    title: `خرید و قیمت ${data?.detail?.title} | نخل`,
+    description: data?.detail?.description
+      ? data?.detail?.description
       : "نخل سرزمینی است برای یادآوری سنت‌های اصیل ایرانی‌مان، برای شکوفایی استعدادها و بهتر دیده‌شدن‌تان، کالاها و خدمات خود را در سرزمین نخل به اشتراک بگذارید. اینجا راهی برای پیشبرد هدف‌هایتان وجود دارد.",
   };
   return (
     <>
-      <NextSeo {...SEO} />
+      {/* <NextSeo {...SEO} /> */}
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
@@ -82,7 +81,16 @@ export default ProductDetail;
 // function server side
 export async function getServerSideProps(context) {
   const data = await fetchData(context.query.productSlug);
-
+  console.log("data ssss:>> ", data);
+  if (!data) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/404",
+      },
+      props: {},
+    };
+  }
   return {
     props: { data },
   };
