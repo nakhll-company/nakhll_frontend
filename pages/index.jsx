@@ -2,7 +2,7 @@
 import React from "react";
 import Head from "next/head";
 import { NextSeo } from "next-seo";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 // components
 import ShopLayout from "../components/shopLayout";
 import LinerOneImg from "../containers/LandingPage/LinerOneImg";
@@ -11,7 +11,9 @@ import LinerThreeImg from "../containers/LandingPage/LinerThreeImg";
 import LinerTwoValue from "../containers/LandingPage/LinerTwoValue";
 import LinerProductsBg from "../containers/LandingPage/LinerProductsBg";
 import LinerFourImgMobile from "../containers/LandingPage/LinerFourImgMobile";
-const DynamicHeroSlides = dynamic(() => import('../containers/LandingPage/HeroSlides'))
+const DynamicHeroSlides = dynamic(() =>
+  import("../containers/LandingPage/HeroSlides")
+);
 // methods
 import { ApiReference } from "../api/Api";
 import { ApiRegister } from "../services/apiRegister/ApiRegister";
@@ -70,37 +72,43 @@ const HomePage = ({ data }) => {
     switch (type.component_type) {
       case 1:
         return (
-          <DynamicHeroSlides key={index}
+          <DynamicHeroSlides
+            key={index}
             dataHeroSlides={data.all_data_for_component[index]}
           />
         );
       case 2:
         return (
-          <LinerOneImg key={index}
+          <LinerOneImg
+            key={index}
             dataLinerOneImg={data.all_data_for_component[index]}
           />
         );
       case 3:
         return (
-          <LinerTwoValue key={index}
+          <LinerTwoValue
+            key={index}
             dataLinerTwoValue={data.all_data_for_component[index]}
           />
         );
       case 4:
         return (
-          <LinerThreeImg key={index}
+          <LinerThreeImg
+            key={index}
             dataLinerThreeImg={data.all_data_for_component[index]}
           />
         );
       case 5:
         return (
-          <LinerFourImgMobile key={index}
+          <LinerFourImgMobile
+            key={index}
             dataLinerFourImgMobile={data.all_data_for_component[index]}
           />
         );
       case 6:
         return (
-          <LinerProducts key={index}
+          <LinerProducts
+            key={index}
             title={type.title}
             subTitle={type.subtitle}
             dataLinerProducts={data.all_data_for_component[index]}
@@ -110,7 +118,8 @@ const HomePage = ({ data }) => {
         );
       case 7:
         return (
-          <LinerProductsBg key={index}
+          <LinerProductsBg
+            key={index}
             subTitle_LinerProductsBg={type.subtitle}
             dataLinerProductsBg={type.data}
             url_LinerProductsBg={type.url}
@@ -155,6 +164,16 @@ export default HomePage;
 // function server side
 export async function getServerSideProps() {
   const data = await fetchData();
+
+  if (!data) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/shop/neil-market-food-store/",
+      },
+      props: {},
+    };
+  }
 
   return {
     props: { data },
