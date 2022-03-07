@@ -2,34 +2,23 @@ import React, { useRef, useState } from "react";
 import EmptyLayout from "../../components/layout/EmptyLayout";
 import s from "./setPassword.module.scss";
 
-// const root = document.documentElement;
-
-// const beam = document.getElementById("beam");
-// const passwordInput = document.getElementById("password");
-
-// root.addEventListener("mousemove", (e) => {
-//   let rect = beam.getBoundingClientRect();
-//   let mouseX = rect.right + rect.width / 2;
-//   let mouseY = rect.top + rect.height / 2;
-//   let rad = Math.atan2(mouseX - e.pageX, mouseY - e.pageY);
-//   let degrees = rad * (20 / Math.PI) * -1 - 350;
-
-//   root.style.setProperty("--beamDegrees", `${degrees}deg`);
-// });
-
 function SetPasswordPage() {
   const [toggleClass, setToggleClass] = useState(false);
-  const [degree, setDegree] = useState(90);
+
   const eye = useRef(null);
   const beam = useRef();
   const passwordInput = useRef(null);
+  const passwordInputRepeat = useRef(null);
   const container = useRef();
+
   const clicEye = () => {
     setToggleClass(!toggleClass);
-    container.current.classList.toggle("show_password");
+
     passwordInput.current.type =
       passwordInput.current.type === "password" ? "text" : "password";
     passwordInput.current.focus();
+    passwordInputRepeat.current.type =
+      passwordInputRepeat.current.type === "password" ? "text" : "password";
   };
 
   return (
@@ -44,7 +33,7 @@ function SetPasswordPage() {
       >
         <form className={s.form}>
           <div className={s.form_item}>
-            <label className={s.label}>رمز جدید</label>
+            <label className={s.label}>رمز قبلی / کد</label>
             <div className={s.input_wrapper}>
               <input
                 style={{
@@ -58,13 +47,44 @@ function SetPasswordPage() {
             </div>
           </div>
           <div className="form-item">
-            <label className={s.label}>تکرار رمز</label>
+            <label className={s.label}>رمز جدید</label>
             <div className={s.input_wrapper}>
               <input
                 ref={passwordInput}
                 className={s.input}
                 type="password"
                 id="password"
+                data-lpignore="true"
+              />
+              <button
+                ref={eye}
+                onClick={clicEye}
+                className={s.eyeball}
+                type="button"
+                id="eyeball"
+              >
+                <div
+                  style={{
+                    borderColor: toggleClass ? "white" : "black",
+                    backgroundColor: "white",
+                  }}
+                  className={s.eye}
+                ></div>
+              </button>
+
+              {toggleClass && (
+                <div ref={beam} className={s.beam} id="beam"></div>
+              )}
+            </div>
+          </div>
+          <div className="form-item">
+            <label className={s.label}>تکرار رمز</label>
+            <div className={s.input_wrapper}>
+              <input
+                ref={passwordInputRepeat}
+                className={s.input}
+                type="password"
+                id="password-repeat"
                 data-lpignore="true"
               />
               <button
