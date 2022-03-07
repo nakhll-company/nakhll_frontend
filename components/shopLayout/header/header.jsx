@@ -155,6 +155,14 @@ function Header() {
                         </div>
                       </a>
                     </Link>
+                    <Link href="/setPassword">
+                      <a>
+                        <div className="flex-row">
+                          <i className="fas fa-user-circle"></i>
+                          <span>تغییر پسورد</span>
+                        </div>
+                      </a>
+                    </Link>
                     <div
                       onClick={() => {
                         localStorage.removeItem("refreshToken");

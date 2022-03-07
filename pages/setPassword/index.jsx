@@ -1,15 +1,41 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import EmptyLayout from "../../components/layout/EmptyLayout";
+import { useRouter } from "next/router";
+import lottie from "lottie-web";
+
 import s from "./setPassword.module.scss";
 
 function SetPasswordPage() {
   const [toggleClass, setToggleClass] = useState(false);
+  const router = useRouter();
 
   const eye = useRef(null);
   const beam = useRef();
   const passwordInput = useRef(null);
+  const passwordLogo = useRef(null);
   const passwordInputRepeat = useRef(null);
   const container = useRef();
+  useEffect(() => {
+    lottie.loadAnimation({
+      container: passwordLogo.current,
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      animationData: require("../../public/lottie/passwordLogo.json"),
+
+      //   path: "./lottie/animation.json",
+    });
+  }, []);
+
+  // lottie.loadAnimation({
+  //   container: partNine.current,
+  //   renderer: "svg",
+  //   loop: true,
+  //   autoplay: true,
+  //   animationData: require("./lottie/wecoverSkel.json"),
+
+  //   //   path: "./lottie/animation.json",
+  // });
 
   const clicEye = () => {
     setToggleClass(!toggleClass);
@@ -31,6 +57,15 @@ function SetPasswordPage() {
         ref={container}
         className={`${s.container} ${toggleClass ? s.show_password : ""}`}
       >
+        <div
+          style={{
+            width: "180px",
+            height: "180px",
+            position: "absolute",
+            top: "10px",
+          }}
+          ref={passwordLogo}
+        ></div>
         <form className={s.form}>
           <div className={s.form_item}>
             <label className={s.label}>رمز قبلی / کد</label>
@@ -108,16 +143,29 @@ function SetPasswordPage() {
               )}
             </div>
           </div>
-          <button
-            style={{
-              backgroundColor: toggleClass ? "white" : "black",
-              color: toggleClass ? "black" : "white",
-            }}
-            className={s.button}
-            id="submit"
-          >
-            ثبت رمز
-          </button>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <button
+              style={{
+                backgroundColor: toggleClass ? "white" : "black",
+                color: toggleClass ? "black" : "white",
+              }}
+              className={s.button}
+              id="submit"
+            >
+              ثبت رمز
+            </button>
+            <button
+              style={{
+                backgroundColor: toggleClass ? "white" : "black",
+                color: toggleClass ? "black" : "white",
+              }}
+              type="button"
+              className={s.button}
+              onClick={() => router.push("/")}
+            >
+              انصراف
+            </button>
+          </div>
         </form>
       </div>
     </>
