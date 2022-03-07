@@ -151,7 +151,7 @@ const HomePage = ({ data }) => {
         />
         <link rel="canonical" href="https://nakhll.com/" />
       </Head>
-      {data.SchemaIn.length > 0 &&
+      {data && data.SchemaIn && data.SchemaIn.length > 0 &&
         data.SchemaIn.map((turn, index) =>
           _handel_select_component(turn, index)
         )}
@@ -163,24 +163,8 @@ export default HomePage;
 
 // function server side
 export async function getServerSideProps() {
-  return {
-    redirect: {
-      permanent: false,
-      destination: "/shop/neil-market-food-store/",
-    },
-    props: {},
-  };
-  const data = await fetchData();
 
-  if (!data) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/shop/neil-market-food-store/",
-      },
-      props: {},
-    };
-  }
+  const data = await fetchData();
 
   return {
     props: { data },
