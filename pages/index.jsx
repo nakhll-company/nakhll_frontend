@@ -163,6 +163,13 @@ export default HomePage;
 
 // function server side
 export async function getServerSideProps() {
+  return {
+    redirect: {
+      permanent: false,
+      destination: "/shop/neil-market-food-store/",
+    },
+    props: {},
+  };
   const data = await fetchData();
 
   if (!data) {
