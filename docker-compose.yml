@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+  react:
+    build: .
+    container_name: react
+    restart: unless-stopped
+    command: yarn dev 
+    ports:
+      - "3007:3007"
