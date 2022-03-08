@@ -1,20 +1,36 @@
 import React, { useEffect, useRef, useState } from "react";
 import EmptyLayout from "../../components/layout/EmptyLayout";
 import { useRouter } from "next/router";
+import { useForm } from "react-hook-form";
 import lottie from "lottie-web";
 
 import s from "./setPassword.module.scss";
 
+import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import rot13 from "../../utils/rout13";
+
 function SetPasswordPage() {
-  const [toggleClass, setToggleClass] = useState(false);
   const router = useRouter();
 
-  const eye = useRef(null);
+  const [code, setcode] = useState(null);
+  const [newPassword, setNewPassword] = useState("");
+  const [repeatNewPas, setRepeatNewPas] = useState("");
+  const [auth_secret, setAuth_secret] = useState("");
+
+  const [toggleClass, setToggleClass] = useState(false);
+
+  const eye = useRef();
   const beam = useRef();
-  const passwordInput = useRef(null);
-  const passwordLogo = useRef(null);
-  const passwordInputRepeat = useRef(null);
+  const passwordInput = useRef();
+  const passwordLogo = useRef();
+  const passwordInputRepeat = useRef();
   const container = useRef();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   useEffect(() => {
     lottie.loadAnimation({
       container: passwordLogo.current,
@@ -26,16 +42,25 @@ function SetPasswordPage() {
       //   path: "./lottie/animation.json",
     });
   }, []);
+  useEffect(() => {
+    setcode(router.query.code);
+  }, [router]);
 
-  // lottie.loadAnimation({
-  //   container: partNine.current,
-  //   renderer: "svg",
-  //   loop: true,
-  //   autoplay: true,
-  //   animationData: require("./lottie/wecoverSkel.json"),
-
-  //   //   path: "./lottie/animation.json",
-  // });
+  // useEffect(async () => {
+  //   if (code) {
+  //     console.log("codessssssssssssssss :>> ", code);
+  //     let response = await ApiRegister().apiRequest(
+  //       {
+  //         auth_key: rot13(code[0]),
+  //         user_key: "",
+  //       },
+  //       "POST",
+  //       "/api/v1/auth/complete/",
+  //       false,
+  //       {}
+  //     );
+  //   }
+  // }, [code]);
 
   const clicEye = () => {
     setToggleClass(!toggleClass);
@@ -46,6 +71,43 @@ function SetPasswordPage() {
     passwordInputRepeat.current.type =
       passwordInputRepeat.current.type === "password" ? "text" : "password";
   };
+  const submitForm = async (data) => {
+    console.log("data :>> ", data);
+    let response = await ApiRegister().apiRequest(
+      {
+        auth_key: rot13(code[0]),
+        user_key: data.user_key,
+      },
+      "POST",
+      "/api/v1/auth/complete/",
+      false,
+      {}
+    );
+    if (response.status === 200) {
+      console.log(response.data);
+      setAuth_secret(response.data.auth_secret);
+      // return response.data;
+    }
+  };
+  useEffect(async () => {
+    if (auth_secret) {
+      let response = await ApiRegister().apiRequest(
+        {
+          auth_secret: auth_secret,
+          password: newPassword,
+        },
+        "POST",
+        "/api/v1/profile/set_password/",
+        false,
+        {}
+      );
+      if (response.status === 200) {
+        console.log(response.data);
+
+        // return response.data;
+      }
+    }
+  }, [auth_secret]);
 
   return (
     <>
@@ -66,9 +128,11 @@ function SetPasswordPage() {
           }}
           ref={passwordLogo}
         ></div>
-        <form className={s.form}>
+        <form className={s.form} onSubmit={handleSubmit(submitForm)}>
           <div className={s.form_item}>
-            <label className={s.label}>رمز قبلی / کد</label>
+            <label className={s.label}>
+              {code && code[1] == "login_pass" ? "رمز قبلی" : "کد ارسالی"}
+            </label>
             <div className={s.input_wrapper}>
               <input
                 style={{
@@ -78,7 +142,24 @@ function SetPasswordPage() {
                 type="text"
                 id="username"
                 data-lpignore="true"
+                {...register("user_key", {
+                  required: `${
+                    code && code[1] == "login_pass" ? "رمز قبلی" : "کد ارسالی"
+                  } را وارد نمایید.`,
+                })}
               />
+              {errors.user_key && (
+                <span
+                  style={{
+                    display: "block",
+                    color: "red",
+                    fontSize: "14px",
+                    marginTop: "10px",
+                  }}
+                >
+                  {errors.user_key.message}
+                </span>
+              )}
             </div>
           </div>
           <div className="form-item">
@@ -90,7 +171,9 @@ function SetPasswordPage() {
                 type="password"
                 id="password"
                 data-lpignore="true"
+                onChange={(e) => setNewPassword(e.target.value)}
               />
+
               <button
                 ref={eye}
                 onClick={clicEye}
@@ -112,6 +195,7 @@ function SetPasswordPage() {
               )}
             </div>
           </div>
+
           <div className="form-item">
             <label className={s.label}>تکرار رمز</label>
             <div className={s.input_wrapper}>
@@ -121,6 +205,7 @@ function SetPasswordPage() {
                 type="password"
                 id="password-repeat"
                 data-lpignore="true"
+                onChange={(e) => setRepeatNewPas(e.target.value)}
               />
               <button
                 ref={eye}
@@ -143,6 +228,18 @@ function SetPasswordPage() {
               )}
             </div>
           </div>
+
+          <span
+            style={{
+              display: "block",
+              color: "red",
+              fontSize: "14px",
+              marginTop: "10px",
+            }}
+          >
+            miala
+          </span>
+
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <button
               style={{

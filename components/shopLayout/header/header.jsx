@@ -19,6 +19,8 @@ import {
 } from "../../../api/header";
 // style
 import styles from "./header.module.scss";
+import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+import rot13 from "../../../utils/rout13";
 
 const _asist = new Assistent();
 
@@ -30,6 +32,7 @@ function Header() {
   const [searchShops, setSearchShops] = useState([]);
   const [inputSearch, setInputSearch] = useState("");
   const userLog = useSelector((state) => state.User.userInfo);
+
   const All_product_list_buy = useSelector((state) => state.Cart.allProduct);
 
   useEffect(() => {
@@ -155,14 +158,35 @@ function Header() {
                         </div>
                       </a>
                     </Link>
-                    <Link href="/setPassword">
+                    {/* <Link href="/setPassword">
                       <a>
                         <div className="flex-row">
                           <i className="fas fa-user-circle"></i>
                           <span>تغییر پسورد</span>
                         </div>
                       </a>
-                    </Link>
+                    </Link> */}
+                    <div
+                      onClick={async () => {
+                        let response = await ApiRegister().apiRequest(
+                          { mobile: userLog.mobile_number },
+                          "POST",
+                          "/api/v1/auth/begin/login_register/",
+                          false,
+                          {}
+                        );
+                        if (response.status < 300) {
+                          router.push(
+                            `/setPassword/${rot13(response?.data?.auth_key)}/${
+                              response?.data?.mobile_status
+                            }`
+                          );
+                        }
+                      }}
+                    >
+                      <i className="fas fa-user-circle "></i>
+                      <span>تغییر پسورد</span>
+                    </div>
                     <div
                       onClick={() => {
                         localStorage.removeItem("refreshToken");
