@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.iconContainer {
+    text-align: center;
+    font-weight: bold;
+    padding: 15px;
+}
