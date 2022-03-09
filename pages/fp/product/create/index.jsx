@@ -23,7 +23,7 @@ import {
 } from "../../../../api/creatProduct";
 // styles
 import styles from "../../../../styles/pages/product/create.module.scss";
-import InputTag from "../../../../components/InputTag";
+// import InputTag from "../../../../components/InputTag";
 
 const CreateProduct = ({ activeHojreh }) => {
   // useform
