@@ -37,7 +37,7 @@ module.exports = {
         defaultLocale: "fa",
     },
     env: {
-        BASE_URL: "http://localhost:8000/",
+        BASE_URL: "https://nakhll.com/",
     },
     images: {
         domains: ["nakhll.com", "3007", "localhost"],
