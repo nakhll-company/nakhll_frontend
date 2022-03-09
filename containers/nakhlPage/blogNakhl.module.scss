@@ -1,0 +1,19 @@
+.container {
+    display: grid;
+    grid-template-columns: 60fr 40fr;
+    grid-template-rows: 25fr 75fr;
+    grid-gap: 10px;
+    background-color: dodgerblue;
+    height: 300px;
+    padding: 20px 50px;
+}
+.partImages {
+    grid-row: 1/3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.postContainer {
+    display: flex;
+}

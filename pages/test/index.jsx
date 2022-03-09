@@ -1,6 +1,7 @@
 import React from "react";
 import EmptyLayout from "../../components/layout/EmptyLayout";
 import LinerProducts from "../../containers/LandingPage/LinerProducts";
+import BlogNakhl from "../../containers/nakhlPage/blogNakhl";
 import HeroSlider from "../../containers/nakhlPage/heroSlider";
 
 import LinerProductsBgLanding from "../../containers/nakhlPage/LinerProductsBg";
@@ -133,6 +134,7 @@ function Test() {
       <SliderNakhl />
       <LinerProducts dataLinerProducts={products} />
       <LinerProducts dataLinerProducts={products} />
+      <BlogNakhl />
     </div>
   );
 }
