@@ -17,14 +17,23 @@ import TextAreaUseForm from "../../../../containers/creat/component/textAreaUseF
 import PictureChildProduct from "../../../../containers/creat/component/pictureChildProduct";
 // methods
 import { mapState } from "../../../../containers/product/methods/mapState";
-import { _ApiCreateProduct, _ApiGetCategories, } from "../../../../api/creatProduct";
+import {
+  _ApiCreateProduct,
+  _ApiGetCategories,
+} from "../../../../api/creatProduct";
 // styles
 import styles from "../../../../styles/pages/product/create.module.scss";
+import InputTag from "../../../../components/InputTag";
 
 const CreateProduct = ({ activeHojreh }) => {
-
   // useform
-  const { getValues, clearErrors, register, handleSubmit, formState: { errors }, } = useForm({
+  const {
+    getValues,
+    clearErrors,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     criteriaMode: "all",
     mode: "all",
   });
@@ -397,6 +406,8 @@ const CreateProduct = ({ activeHojreh }) => {
                     })}
                   />
                 </InputUseForm>
+                {/* input Tags */}
+                {/* <InputTag /> */}
                 {/* information  */}
                 <TitleLiner title=" اطلاعات ارسال" />
                 {/* Preparation Days */}

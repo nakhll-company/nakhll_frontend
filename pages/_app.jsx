@@ -42,6 +42,6 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-// const EmptyLayout = ({ children }) => <>{children}</>;
+
 
 export default MyApp;
