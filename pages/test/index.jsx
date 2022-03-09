@@ -4,6 +4,7 @@ import LinerProducts from "../../containers/LandingPage/LinerProducts";
 import HeroSlider from "../../containers/nakhlPage/heroSlider";
 
 import LinerProductsBgLanding from "../../containers/nakhlPage/LinerProductsBg";
+import SliderNakhl from "../../containers/nakhlPage/sliderNakhl";
 import ValuesPart from "../../containers/nakhlPage/valuesPart";
 
 const products = [
@@ -128,7 +129,8 @@ function Test() {
       <HeroSlider />
       <ValuesPart />
       {/* <LinerProductsBgLanding dataLinerProductsBg={products} /> */}
-
+      <LinerProducts dataLinerProducts={products} />
+      <SliderNakhl />
       <LinerProducts dataLinerProducts={products} />
       <LinerProducts dataLinerProducts={products} />
     </div>
