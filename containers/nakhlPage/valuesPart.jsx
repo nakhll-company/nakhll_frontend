@@ -2,11 +2,12 @@ import Image from "next/image";
 import React from "react";
 import s from "./valuesPart.module.scss";
 const icons = [
-  { name: "حجره اختصاصی رایگان", path: "/icons/shop.svg" },
-  { name: "پشتیبانی ۲۴ ساعته", path: "/icons/call.svg" },
-  { name: "تسویه تا ۷۲ ساعت", path: "/icons/72_H.svg" },
+  { name: "حجره رایگان", path: "/icons/shop.svg" },
   { name: "رشد کسب وکار", path: "/icons/grow.svg" },
+  { name: "پشتیبانی ۲۴ ساعته", path: "/icons/call.svg" },
   { name: "فروش سراسر کشور", path: "/icons/iran.svg" },
+  { name: "تسویه تا ۷۲ ساعت", path: "/icons/72_H.svg" },
+  { name: "فروشگاه اختصاصی", path: "/icons/shop.svg" },
 ];
 function ValuesPart() {
   return (
