@@ -407,7 +407,7 @@ const CreateProduct = ({ activeHojreh }) => {
                   />
                 </InputUseForm>
                 {/* input Tags */}
-                <InputTag />
+                {/* <InputTag /> */}
                 {/* information  */}
                 <TitleLiner title=" اطلاعات ارسال" />
                 {/* Preparation Days */}

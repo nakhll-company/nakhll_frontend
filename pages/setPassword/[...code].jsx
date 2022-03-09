@@ -8,6 +8,7 @@ import s from "./setPassword.module.scss";
 
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import rot13 from "../../utils/rout13";
+import { successMessage } from "../../utils/toastifyMessage";
 
 function SetPasswordPage() {
   const router = useRouter();
@@ -16,8 +17,9 @@ function SetPasswordPage() {
   const [newPassword, setNewPassword] = useState("");
   const [repeatNewPas, setRepeatNewPas] = useState("");
   const [auth_secret, setAuth_secret] = useState("");
-
+  const [error, setError] = useState({ newPassword: "", repeatNewPas: "" });
   const [toggleClass, setToggleClass] = useState(false);
+  const [loader, setLoader] = useState(false);
 
   const eye = useRef();
   const beam = useRef();
@@ -25,42 +27,13 @@ function SetPasswordPage() {
   const passwordLogo = useRef();
   const passwordInputRepeat = useRef();
   const container = useRef();
+  const animationLoad = useRef();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  useEffect(() => {
-    lottie.loadAnimation({
-      container: passwordLogo.current,
-      renderer: "svg",
-      loop: true,
-      autoplay: true,
-      animationData: require("../../public/lottie/passwordLogo.json"),
-
-      //   path: "./lottie/animation.json",
-    });
-  }, []);
-  useEffect(() => {
-    setcode(router.query.code);
-  }, [router]);
-
-  // useEffect(async () => {
-  //   if (code) {
-  //     console.log("codessssssssssssssss :>> ", code);
-  //     let response = await ApiRegister().apiRequest(
-  //       {
-  //         auth_key: rot13(code[0]),
-  //         user_key: "",
-  //       },
-  //       "POST",
-  //       "/api/v1/auth/complete/",
-  //       false,
-  //       {}
-  //     );
-  //   }
-  // }, [code]);
 
   const clicEye = () => {
     setToggleClass(!toggleClass);
@@ -72,7 +45,18 @@ function SetPasswordPage() {
       passwordInputRepeat.current.type === "password" ? "text" : "password";
   };
   const submitForm = async (data) => {
-    console.log("data :>> ", data);
+    if (newPassword == "" || repeatNewPas == "") {
+      setError({ newPassword: "دقت کنید!!", repeatNewPas: "دقت کنید!!" });
+      return;
+    }
+    if (newPassword !== repeatNewPas) {
+      setError({
+        newPassword: "رمز و تکرارش باهم برابر نیستند.",
+        repeatNewPas: "رمز و تکرارش باهم برابر نیستند.",
+      });
+      return;
+    }
+    setLoader(true);
     let response = await ApiRegister().apiRequest(
       {
         auth_key: rot13(code[0]),
@@ -83,12 +67,41 @@ function SetPasswordPage() {
       false,
       {}
     );
-    if (response.status === 200) {
+    if (response.status < 300) {
       console.log(response.data);
       setAuth_secret(response.data.auth_secret);
       // return response.data;
+    } else {
+      setLoader(false);
     }
   };
+
+  useEffect(() => {
+    lottie.loadAnimation({
+      container: passwordLogo.current,
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      animationData: require("../../public/lottie/passwordLogo.json"),
+
+      //   path: "./lottie/animation.json",
+    });
+
+    lottie.loadAnimation({
+      container: animationLoad.current,
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      animationData: require("../../public/lottie/profilePassword.json"),
+
+      //   path: "./lottie/animation.json",
+    });
+  }, []);
+
+  useEffect(() => {
+    setcode(router.query.code);
+  }, [router]);
+
   useEffect(async () => {
     if (auth_secret) {
       let response = await ApiRegister().apiRequest(
@@ -102,15 +115,25 @@ function SetPasswordPage() {
         {}
       );
       if (response.status === 200) {
-        console.log(response.data);
+        successMessage("پسورد با موفقیت تغییر یافت. مجدد وارد شوید.");
+        localStorage.removeItem("refreshToken");
+        localStorage.removeItem("accessToken");
+        router.push("/login");
 
         // return response.data;
+      } else {
+        setLoader(false);
       }
     }
   }, [auth_secret]);
 
   return (
     <>
+      {loader && (
+        <div className={s.loaderPage}>
+          <div ref={animationLoad} className={s.animaitonLoader}></div>
+        </div>
+      )}
       <div
         style={{
           background: toggleClass ? "black" : "white",
@@ -195,6 +218,18 @@ function SetPasswordPage() {
               )}
             </div>
           </div>
+          {error?.repeatNewPas && (
+            <span
+              style={{
+                display: "block",
+                color: "red",
+                fontSize: "14px",
+                marginTop: "10px",
+              }}
+            >
+              {error.repeatNewPas}
+            </span>
+          )}
 
           <div className="form-item">
             <label className={s.label}>تکرار رمز</label>
@@ -228,41 +263,45 @@ function SetPasswordPage() {
               )}
             </div>
           </div>
-
-          <span
-            style={{
-              display: "block",
-              color: "red",
-              fontSize: "14px",
-              marginTop: "10px",
-            }}
-          >
-            miala
-          </span>
-
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <button
+          {error?.repeatNewPas && (
+            <span
               style={{
-                backgroundColor: toggleClass ? "white" : "black",
-                color: toggleClass ? "black" : "white",
+                display: "block",
+                color: "red",
+                fontSize: "14px",
+                marginTop: "10px",
               }}
-              className={s.button}
-              id="submit"
             >
-              ثبت رمز
-            </button>
-            <button
-              style={{
-                backgroundColor: toggleClass ? "white" : "black",
-                color: toggleClass ? "black" : "white",
-              }}
-              type="button"
-              className={s.button}
-              onClick={() => router.push("/")}
-            >
-              انصراف
-            </button>
-          </div>
+              {error.repeatNewPas}
+            </span>
+          )}
+
+          <>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <button
+                style={{
+                  backgroundColor: toggleClass ? "white" : "black",
+                  color: toggleClass ? "black" : "white",
+                }}
+                className={s.button}
+                id="submit"
+              >
+                ثبت رمز
+              </button>
+
+              <button
+                style={{
+                  backgroundColor: toggleClass ? "white" : "black",
+                  color: toggleClass ? "black" : "white",
+                }}
+                type="button"
+                className={s.button}
+                onClick={() => router.push("/")}
+              >
+                انصراف
+              </button>
+            </div>
+          </>
         </form>
       </div>
     </>
