@@ -1,36 +1,44 @@
 import Image from "next/image";
 import React from "react";
 import s from "./blogNakhl.module.scss";
+import ButtonLanding from "./ButtonLanding";
+
 function BlogNakhl() {
   return (
     <div className={s.container}>
       <div className={s.partImages}>
-        <div className={s.postContainer}>
-          <div className="">
-            <Image
-              src="/image/slideNakhl.jpg"
-              layout="fixed"
-              height={100}
-              width={300}
-            />
-          </div>
-          <div className="">
-            <Image
-              src="/image/slideNakhl.jpg"
-              layout="fixed"
-              height={100}
-              width={300}
-            />
-          </div>
+        <div className={s.imageContainer}>
+          <Image
+            className={s.image}
+            src="/image/slideNakhl.jpg"
+            layout="responsive"
+            height={100}
+            width={200}
+            alt=""
+          />
+        </div>
+        <div className={s.imageContainer}>
+          <Image
+            className={s.image}
+            src="/image/slideNakhl.jpg"
+            layout="responsive"
+            height={100}
+            width={200}
+            alt=""
+          />
         </div>
       </div>
 
-      <div className={s.part}>
+      <div className={s.titleContainer}>
         <h2>نخل مرکز رشد کسب و کارهای کوچک</h2>
       </div>
-      <div className={s.part}>
-        <input placeholder="شماره تماس/ایمیل" />
-        <div className="">
+      <div className={s.emailPart}>
+        <div className={s.inputEmailContainer}>
+          <input className={s.input} placeholder="شماره تماس / ایمیل" />
+          <ButtonLanding title="ارسال" />
+        </div>
+
+        <div className={s.information}>
           <span>
             برای آگاهی از دوره های آموزشی شماره تماس یا ایمیل خود را وارد کنید.
           </span>

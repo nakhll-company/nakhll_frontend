@@ -1,19 +1,59 @@
 .container {
-    display: grid;
-    grid-template-columns: 60fr 40fr;
-    grid-template-rows: 25fr 75fr;
-    grid-gap: 10px;
-    background-color: dodgerblue;
-    height: 300px;
-    padding: 20px 50px;
+  display: grid;
+  grid-template-columns: 60fr 40fr;
+  grid-template-rows: 25fr 75fr;
+  background-color: #064d81;
+  background: linear-gradient(
+    to right,
+    #064d81 40%,
+    #0b70b8,
+    rgb(20, 164, 207)
+  );
+  // height: 300px;
+  padding: 20px 50px;
 }
 .partImages {
-    grid-row: 1/3;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+  grid-row: 1/3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 .postContainer {
-    display: flex;
+  display: flex;
+}
+.titleContainer {
+  color: #fff;
+  font-weight: bolder;
+  font-size: 20px;
+}
+.emailPart {
+}
+.inputEmailContainer {
+  display: flex;
+}
+.input {
+  border-radius: 50px;
+  padding-right: 25px;
+  padding-left: 10px;
+  background-color: #fff;
+  margin-left: 20px;
+  flex-grow: 1;
+  outline: none;
+  border: none;
+  &::placeholder {
+    font-size: 16px;
+  }
+}
+.information {
+  color: #fff;
+  margin-top: 20px;
+  font-weight: bold;
+}
+.image {
+  border-radius: 20px;
+}
+.imageContainer {
+  flex-grow: 1;
+  margin: 15px;
 }
