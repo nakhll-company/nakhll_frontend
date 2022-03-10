@@ -1,21 +1,25 @@
 .container {
-    width: 100%;
-    position: relative;
+  width: 100%;
+  position: relative;
 }
 .boxContainer {
-    position: absolute;
-    bottom: 20%;
-    right: 10%;
-    h1 {
-        color: #fff;
-        font-size: 60px;
-        font-weight: bolder;
-        margin: 0;
-    }
-    h2 {
-        color: #fff;
-        font-size: 16px;
-        font-weight: bolder;
-        margin: 15px 0;
-    }
+  position: absolute;
+  bottom: 20%;
+  right: 10%;
+  h1 {
+    color: #fff;
+    font-size: 60px;
+    font-weight: bolder;
+    margin: 0;
+  }
+  h2 {
+    color: #fff;
+    font-size: 16px;
+    font-weight: bolder;
+    margin-top: 15px;
+    margin-bottom: 20px;
+  }
+}
+.searchConatiner {
+  display: flex;
 }

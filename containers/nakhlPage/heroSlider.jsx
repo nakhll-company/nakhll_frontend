@@ -1,7 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import AppButton from "../../components/AppButton";
+import ButtonLanding from "./ButtonLanding";
 import s from "./heroSlider.module.scss";
+import InputLanding from "./InputLanding";
 function HeroSlider() {
   return (
     <div className={s.container}>
@@ -18,8 +21,9 @@ function HeroSlider() {
         <h1>بازار اجتماعی نخل</h1>
         <h2>بستری برای رشد و فروش کسب و کارهای اصیل و زندگی پذیر</h2>
         <div className={s.searchConatiner}>
-          <input placeholder="جست وجو در بیش از هزار فروشگاه..." />
-          <AppButton />
+          <ButtonLanding title="آغاز فروش" />
+          <InputLanding />
+          
         </div>
       </div>
     </div>
