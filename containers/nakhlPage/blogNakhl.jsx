@@ -7,7 +7,7 @@ function BlogNakhl() {
   return (
     <div className={s.container}>
       <div className={s.partImages}>
-        <div className={s.imageContainer}>
+        <div style={{ marginLeft: "5px" }} className={s.imageContainer}>
           <Image
             className={s.image}
             src="/image/slideNakhl.jpg"
@@ -16,8 +16,11 @@ function BlogNakhl() {
             width={200}
             alt=""
           />
+          <div className={s.textImage}>
+            <span>چگونه کالا یا خدمت را قیمت گذاری کنیم؟</span>
+          </div>
         </div>
-        <div className={s.imageContainer}>
+        <div style={{ marginRight: "5px" }} className={s.imageContainer}>
           <Image
             className={s.image}
             src="/image/slideNakhl.jpg"
@@ -26,6 +29,9 @@ function BlogNakhl() {
             width={200}
             alt=""
           />
+          <div className={s.textImage}>
+            <span>چگونه کالا یا خدمت را قیمت گذاری کنیم؟</span>
+          </div>
         </div>
       </div>
 
