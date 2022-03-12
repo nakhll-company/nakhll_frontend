@@ -6,6 +6,7 @@ import Image from "next/image";
 // import LinerProducts from "../LinerProducts";
 // styles
 import styles from "./LinerProductsBg.module.scss";
+import LinerProducts from "../../LandingPage/LinerProducts";
 
 function LinerProductsBgLanding({
   subTitle_LinerProductsBg,
@@ -18,9 +19,6 @@ function LinerProductsBgLanding({
   num,
   url,
 }) {
-  if (dataLinerProductsBg && dataLinerProductsBg.results) {
-    dataLinerProductsBg = dataLinerProductsBg.results;
-  }
   return (
     <div
       styles={{ color: `${color}` }}
@@ -33,17 +31,17 @@ function LinerProductsBgLanding({
       >
         <div className={styles.Button}>
           <div>
-            <Image src="/Values/shegeft.svg" width={100} height={100} alt="" />
+            <Image
+              src="/Values/shegeft.svg"
+              layout="responsive"
+              width={100}
+              height={100}
+              alt=""
+            />
           </div>
 
           <button>
-            <Link
-              href={`${
-                url.includes("search=")
-                  ? `${url_LinerProductsBg}`
-                  : `/search?ap=${url_LinerProductsBg}`
-              }`}
-            >
+            <Link href={``}>
               <a>مشاهده همه</a>
             </Link>
           </button>
@@ -52,13 +50,13 @@ function LinerProductsBgLanding({
       <div className={`${styles.lefter} col-7 col-md-9`}>
         <LinerProducts
           url={url_LinerProductsBg}
-          dataLinerProducts={dataLinerProductsBg}
+          dataLinerProducts={dataLinerProductsBg.slice(0, 4)}
           subTitle={subTitle_LinerProductsBg}
           num={num}
-          xl={xl}
-          md={md}
-          lg={lg}
-          xs={12}
+          xl={3}
+          md={4}
+          lg={4}
+          xs={6}
           noScroll={true}
         />
       </div>

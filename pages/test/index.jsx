@@ -129,8 +129,8 @@ function Test() {
     <div>
       <HeroSlider />
       <ValuesPart />
-      {/* <LinerProductsBgLanding dataLinerProductsBg={products} /> */}
-      <LinerProducts dataLinerProducts={products} />
+      <LinerProductsBgLanding dataLinerProductsBg={products} />
+
       <SliderNakhl />
       <LinerProducts dataLinerProducts={products} />
       <LinerProducts dataLinerProducts={products} />
