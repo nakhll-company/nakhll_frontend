@@ -5,6 +5,7 @@ import BlogNakhl from "../../containers/nakhlPage/blogNakhl";
 import HeroSlider from "../../containers/nakhlPage/heroSlider";
 
 import LinerProductsBgLanding from "../../containers/nakhlPage/LinerProductsBg";
+import Selers from "../../containers/nakhlPage/selers";
 import SliderNakhl from "../../containers/nakhlPage/sliderNakhl";
 import ValuesPart from "../../containers/nakhlPage/valuesPart";
 
@@ -129,6 +130,7 @@ function Test() {
     <div>
       <HeroSlider />
       <ValuesPart />
+      <Selers />
       <LinerProductsBgLanding dataLinerProductsBg={products} />
 
       <SliderNakhl />
