@@ -28,13 +28,24 @@
         margin-top: 5px;
         // background-color: rebeccapurple;
         display: flex;
-        .palyer {
-            flex-grow: 3;
-            background-color: dodgerblue;
-        }
         .wave {
-            flex-grow: 7;
+            flex-grow: 9;
             // background-color: red;
+        }
+        .palyer {
+            flex-grow: 1;
+            display: flex;
+            align-items: baseline;
+            color: #335f8a;
+            justify-content: flex-end;
+            .playBtn {
+                border: none;
+                background: transparent;
+            }
+             :last-child {
+                font-size: 14px;
+                font-weight: bolder;
+            }
         }
     }
 }
