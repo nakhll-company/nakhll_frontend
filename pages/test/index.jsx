@@ -1,13 +1,14 @@
 import React from "react";
-import EmptyLayout from "../../components/layout/EmptyLayout";
-import LinerProducts from "../../containers/LandingPage/LinerProducts";
-import BlogNakhl from "../../containers/nakhlPage/blogNakhl";
-import HeroSlider from "../../containers/nakhlPage/heroSlider";
 
+import BlogNakhl from "../../containers/nakhlPage/blogNakhl";
+import EmptyLayout from "../../components/layout/EmptyLayout";
+import HeroSlider from "../../containers/nakhlPage/heroSlider";
+import NakhlLinerProducts from "../../containers/nakhlPage/LinerProducts";
 import LinerProductsBgLanding from "../../containers/nakhlPage/LinerProductsBg";
 import Selers from "../../containers/nakhlPage/selers";
 import SliderNakhl from "../../containers/nakhlPage/sliderNakhl";
 import ValuesPart from "../../containers/nakhlPage/valuesPart";
+import Footer from "../../components/shopLayout/footer";
 
 const products = [
   {
@@ -134,9 +135,14 @@ function Test() {
       <LinerProductsBgLanding dataLinerProductsBg={products} />
 
       <SliderNakhl />
-      <LinerProducts dataLinerProducts={products} />
-      <LinerProducts dataLinerProducts={products} />
+      <NakhlLinerProducts dataLinerProducts={products} title="مد روز بانوان" />
+      <NakhlLinerProducts
+        dataLinerProducts={products}
+        title="پرفروش های دیجیتال"
+        colorTitle=" #064d80"
+      />
       <BlogNakhl />
+      <Footer />
     </div>
   );
 }

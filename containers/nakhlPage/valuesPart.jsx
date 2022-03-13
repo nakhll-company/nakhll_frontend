@@ -7,7 +7,7 @@ const icons = [
   { name: "پشتیبانی ۲۴ ساعته", path: "/icons/call.svg" },
   { name: "فروش سراسر کشور", path: "/icons/iran.svg" },
   { name: "تسویه تا ۷۲ ساعت", path: "/icons/72_H.svg" },
-  { name: "فروشگاه اختصاصی", path: "/icons/shop.svg" },
+  { name: "فروشگاه اختصاصی", path: "/icons/permium.svg" },
 ];
 function ValuesPart() {
   return (

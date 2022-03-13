@@ -11,7 +11,7 @@ function Selers() {
   }, []);
 
   useEffect(() => {
-    console.log("audio :>> ", audio.currentTime);
+    // console.log("audio :>> ", audio.currentTime);
   }, [audio]);
 
   const playMusic = () => {

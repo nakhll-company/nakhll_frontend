@@ -3,11 +3,15 @@ import Link from "next/link";
 import React from "react";
 import AppButton from "../../components/AppButton";
 import ButtonLanding from "./ButtonLanding";
+import HeaderTitle from "./HeaderTitle";
 import s from "./heroSlider.module.scss";
 import InputLanding from "./InputLanding";
 function HeroSlider() {
   return (
     <div className={s.container}>
+      <div className={s.header}>
+        <HeaderTitle />
+      </div>
       <Image
         src="/image/hero.jpg"
         layout="responsive"
