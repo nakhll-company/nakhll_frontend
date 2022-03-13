@@ -1,0 +1,56 @@
+// Variable
+$color1: #00171f;
+$color2: #1b3e68;
+$color3: #224d82;
+$color4: #597ba1;
+$color5: #91a6c1;
+$color6: #d4d8e1;
+.linearBg {
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: flex;
+    overflow-x: auto;
+    .righter {
+        .Button {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            position: relative;
+            justify-content: space-around;
+            div {
+                width: 100%;
+                img {
+                    width: 100%;
+                    height: auto;
+                    object-fit: fill;
+                }
+            }
+            button {
+                position: relative;
+                width: 80%;
+                margin-left: auto;
+                margin-right: auto;
+                a {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+    .lefter {
+        overflow-x: auto;
+    }
+}
+.Button {
+    button {
+        border: 1px solid $color2;
+        border-radius: 10px;
+        padding: 10px 30px;
+        color: $color2;
+        &:hover {
+            background: $color2;
+            color: #fff;
+        }
+    }
+}

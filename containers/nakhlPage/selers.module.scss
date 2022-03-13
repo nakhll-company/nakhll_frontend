@@ -1,0 +1,87 @@
+.titlePart {
+    margin-right: 30px;
+    margin-bottom: 15px;
+     :first-child {
+        color: #124d81;
+        font-size: 20px;
+        font-weight: bolder;
+    }
+}
+.container {
+    display: flex;
+    overflow-x: auto;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.selerContainer {
+    color: #fff;
+    font-size: 16px;
+    flex-grow: 1;
+    margin-right: 10px;
+    margin-left: 10px;
+    .content {
+        background-color: #124d81;
+        padding: 15px;
+        border-radius: 20px;
+    }
+    .audioContainer {
+        margin-top: 5px;
+        // background-color: rebeccapurple;
+        display: flex;
+        .wave {
+            flex-grow: 9;
+            // background-color: red;
+        }
+        .palyer {
+            flex-grow: 1;
+            display: flex;
+            align-items: baseline;
+            color: #335f8a;
+            justify-content: flex-end;
+            .playBtn {
+                border: none;
+                background: transparent;
+            }
+             :last-child {
+                font-size: 14px;
+                font-weight: bolder;
+            }
+        }
+    }
+}
+.header {
+    display: flex;
+}
+.image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: gray;
+}
+.title {
+    margin-right: 10px;
+    margin-top: 10px;
+     :first-child {
+        font-weight: bolder;
+        font-size: 20px;
+    }
+     :last-child {
+        font-weight: bold;
+        font-size: 18px;
+    }
+}
+.medal {
+    margin-right: auto;
+}
+.images {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    .imageContainer {
+        margin: 2px;
+        flex-grow: 1;
+        .imageProduct {
+            border-radius: 10px;
+        }
+    }
+}
