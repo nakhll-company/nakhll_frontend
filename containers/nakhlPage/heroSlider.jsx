@@ -23,6 +23,7 @@ function HeroSlider() {
       {/* title */}
       <div className={s.boxContainer}>
         <h1>بازار اجتماعی نخل</h1>
+
         <h2>بستری برای رشد و فروش کسب و کارهای اصیل و زندگی پذیر</h2>
         <div className={s.searchConatiner}>
           <ButtonLanding title="آغاز فروش" />
