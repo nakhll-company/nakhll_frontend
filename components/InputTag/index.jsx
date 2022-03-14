@@ -19,7 +19,7 @@ function InputTag() {
   const handleDelete = (i) => {
     setTags(tags.filter((tag, index) => index !== i));
   };
-
+  console.log("tags :>> ", tags);
   const handleAddition = (tag) => {
     setTags([...tags, tag]);
   };
