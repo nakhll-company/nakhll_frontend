@@ -39,3 +39,18 @@
     border-radius: 20px;
     font-weight: bolder;
 }
+@media (max-width: 870px) {
+    .container {
+        justify-content: space-between;
+    }
+    .icon {
+        flex-grow: 1;
+    }
+    .list {
+        display: none;
+    }
+    .menu {
+        flex-grow: 1;
+        justify-content: end;
+    }
+}
