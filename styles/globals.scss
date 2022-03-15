@@ -19,12 +19,22 @@
 /* ./styles/globals.css */
 
 @font-face {
-    font-family: "bakh";
-    src: url("../public/assets/fonts/Yekan\ Bakh\ Fa-En\ 04\ Regular.eot") format("eot"), /* IE6-IE8 */
-    url("../public/assets/fonts/Yekan\ Bakh\ Fa-En\ 04\ Regular.woff") format("woff"), /* Super Modern Browsers */
-    url("../public/assets/fonts/Yekan\ Bakh\ Fa-En\ 04\ Regular.ttf") format("ttf");
+    font-family: Bakh;
     font-style: normal;
-    font-display: fallback;
+    font-weight: normal;
+    src: url("../public/assets/fonts/Yekan-05.ttf") format("truetype");
+}
+@font-face {
+    font-family: Bakh;
+    font-style: normal;
+    font-weight: 800;
+    src: url("../public/assets/fonts/Yekan-07.ttf") format("truetype");
+}
+@font-face {
+    font-family: Bakh;
+    font-style: normal;
+    font-weight: 900;
+    src: url("../public/assets/fonts/Yekan-08.ttf") format("truetype");
 }
 :root {
     --background1: #e5e5e5;
@@ -211,14 +221,14 @@ input[type="number"] {
 /* Styles for selected tags */
 
 .ReactTags__selected span.ReactTags__tag {
-    border: 1px solid #ddd;
-    background: #63bcfd;
+    // border: 1px solid #ddd;
+    background: #1763df;
     color: white;
-    font-size: 12px;
+    font-size: 15px;
     display: inline-block;
     padding: 5px;
-    margin: 0 5px;
-    border-radius: 2px;
+    margin: 5px;
+    border-radius: 4px;
 }
 .ReactTags__selected span.ReactTags__tag:first-child {
     margin-left: 0px;
@@ -260,4 +270,5 @@ input[type="number"] {
     cursor: pointer;
     background: none;
     color: white;
+    font-size: 20px;
 }

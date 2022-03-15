@@ -1,0 +1,29 @@
+.button {
+  padding: 12px 30px;
+  background-color: #d69628;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-size: 20px;
+  font-weight: bolder;
+}
+@media (max-width: 870px) {
+  .button {
+    padding: 12px 20px;
+    
+    color: #fff;
+    border-radius: 30px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 460px) {
+  .button {
+    padding: 10px 10px;
+    
+    
+    font-size: 14px;
+  }
+}
+
+
