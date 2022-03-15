@@ -20,12 +20,14 @@ $color6: #d4d8e1;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 14px;
+            font-size: 15px;
             background-color: $color3;
             color: $color6;
             border-radius: 10px;
             margin-right: 5px;
             margin-left: 5px;
+            padding-top: 5px;
+            padding-bottom: 5px;
         }
     }
     .lefter {
