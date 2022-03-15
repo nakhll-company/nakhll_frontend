@@ -2,13 +2,14 @@
 import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+// components
+import LoginButton from "../../containers/login/loginButton";
+import EmptyLayout from "../../components/layout/EmptyLayout";
 // methods
 import { completeAuth } from "../../api/auth/completeAuth";
-import EmptyLayout from "../../components/layout/EmptyLayout";
 import { getAccessToken } from "../../api/auth/getAccessToken";
-import LoginButton from "../../containers/login/loginButton";
-import { useState } from "react";
 
 const Password = () => {
   const [loadButton, setLoadButton] = useState(false);

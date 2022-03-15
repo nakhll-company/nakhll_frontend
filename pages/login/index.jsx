@@ -1,15 +1,15 @@
 // node libraries
+import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
 import { useState } from "react";
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-
+// components
+import LoginButton from "../../containers/login/loginButton";
+import EmptyLayout from "../../components/layout/EmptyLayout";
 // methods
 import { sendPhoneNumber } from "../../api/auth/sendPhoneNumber";
-import EmptyLayout from "../../components/layout/EmptyLayout";
-import LoginButton from "../../containers/login/loginButton";
 
 const Login = () => {
   const [loadButton, setLoadButton] = useState(false);

@@ -1,42 +1,81 @@
 .main_wrapper{
-    grid-column: 1/-1;
-    grid-row: 1/-1;
-    display: flex;
-    flex-direction: column;
-    // margin-top: 15px;
-    background-color: rgb(255, 255, 255);
-    border-radius: 5px;
-    padding: 100px;
-    font-family: 'bakh';
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  text-align: center;
+  font-family: 'bakh';
+  width: 100%;
 }
-.product_image_container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
+.inputs_wrapper {
+  display: block;
+  width: 100%;
+  padding: 30px;
 }
+
+.input_file_wrapper{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inputs_label{
+  margin-top: 10px; 
+  margin-right: 10px;
+}
+
+.inputs_file{
+  width: 0px; 
+  height: 0px; 
+  opacity: 0px;
+}
+
+.preview_wrapper{
+  width: 180px;
+  height: 120px;
+  color: #000;
+  margin-top: 10px; 
+  margin-right: 10px;
+  font-size: 14px;
+  padding-top: 10px;
+  border: 1px dashed #2185f8;
+}
+
+.button_preview{
+  border: none;
+  color: #fff;
+  outline: none;
+  padding: 5px 15px;  
+  border-radius: 5px;
+  background-color: #007aff;
+}
+
 .add_image_container {
-    border: 1px dashed #2185f8;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #f3faff;
-    height: 100px;
-    width: 150px;
-    color: #3366ff;
+  width: 150px;
+  height: 120px;
+  display: flex;
+  color: #3366ff;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #f3faff;
+  border: 1px dashed #2185f8;
 }
 .form_buttonSubmit {
-    width: 70%;
-    height: 47px;
-    background: #007aff;
-    border-radius: 2px;
-    font-weight: normal;
-    font-size: 20px;
-    text-align: center;
-    color: #ffffff;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    margin-top: 70px;
+  height: 47px;
+  background: #007aff;
+  border-radius: 2px;
+  font-weight: normal;
+  text-align: center;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-top: 70px;
+  font-size: 18px; 
+  width: 200px;
 }

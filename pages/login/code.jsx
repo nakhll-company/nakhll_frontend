@@ -2,18 +2,18 @@
 import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-
+import { useEffect, useState } from "react";
+// components
+import AppTimer from "../../containers/login/timer";
+import LoginButton from "../../containers/login/loginButton";
+import EmptyLayout from "../../components/layout/EmptyLayout";
 // methods
 import { resendCode } from "../../api/auth/resendCode";
 import { completeAuth } from "../../api/auth/completeAuth";
 import { forgetPassword } from "../../api/auth/forgetPassword";
 import { getAccessToken } from "../../api/auth/getAccessToken";
-import EmptyLayout from "../../components/layout/EmptyLayout";
-import LoginButton from "../../containers/login/loginButton";
-import AppTimer from "../../containers/login/timer";
 
 const Code = () => {
   let timingCode = "";
