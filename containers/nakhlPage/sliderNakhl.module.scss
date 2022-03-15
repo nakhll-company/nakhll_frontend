@@ -2,3 +2,15 @@
     background-color: firebrick;
     border-radius: 50px;
 }
+.imageMobile {
+    display: none;
+}
+.imageDesktop {}
+@media (max-width: 870px) {
+    .imageDesktop {
+        display: none;
+    }
+    .imageMobile {
+        display: inline;
+    }
+}

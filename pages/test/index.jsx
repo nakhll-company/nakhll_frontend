@@ -135,6 +135,7 @@ function Test() {
       <LinerProductsBgLanding dataLinerProductsBg={products} />
 
       <SliderNakhl />
+      
       <NakhlLinerProducts dataLinerProducts={products} title="مد روز بانوان" />
       <NakhlLinerProducts
         dataLinerProducts={products}
