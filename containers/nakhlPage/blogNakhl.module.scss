@@ -73,7 +73,7 @@
         filter: none;
     }
 }
-@media (max-width: 768px) {
+@media (max-width: 870px) {
     .container {
         grid-template-columns: 1fr;
         justify-items: center;
@@ -84,6 +84,10 @@
     .emailPart {
         width: 100%;
         margin-top: 10px;
+        margin-right: 0;
+    }
+    .imagDesktop {
+        display: none;
     }
     .imageContainer {
         margin: 0;

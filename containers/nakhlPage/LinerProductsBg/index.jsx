@@ -27,27 +27,23 @@ function LinerProductsBgLanding({
     >
       <div
         style={{ marginLeft: "0 !important", padding: "0 !important" }}
-        className={`${styles.righter} col-5 col-md-3 `}
+        className={`${styles.righter} col-3 col-md-3 `}
       >
-        <div className={styles.Button}>
-          <div>
-            <Image
-              src="/Values/shegeft.svg"
-              layout="responsive"
-              width={100}
-              height={100}
-              alt=""
-            />
-          </div>
+        <Image
+          src="/Values/shegeft.svg"
+          layout="responsive"
+          width={100}
+          height={100}
+          alt=""
+        />
 
-          <button>
-            <Link href={``}>
-              <a>مشاهده همه</a>
-            </Link>
-          </button>
+        <div className={styles.btn}>
+          <Link href={``}>
+            <a>مشاهده همه</a>
+          </Link>
         </div>
       </div>
-      <div className={`${styles.lefter} col-7 col-md-9`}>
+      <div className={`${styles.lefter} col-9 col-md-9`}>
         <LinerProducts
           url={url_LinerProductsBg}
           dataLinerProducts={dataLinerProductsBg.slice(0, 4)}
@@ -57,7 +53,7 @@ function LinerProductsBgLanding({
           md={4}
           lg={4}
           xs={6}
-          noScroll={true}
+          noScroll={false}
         />
       </div>
     </div>
