@@ -12,23 +12,36 @@ function HeroSlider() {
       <div className={s.header}>
         <HeaderTitle />
       </div>
-      <Image
-        src="/image/hero.jpg"
-        layout="responsive"
-        width={1920}
-        height={1080}
-        alt="m"
-      />
+      <div className={s.desktopImage}>
+        <Image
+          src="/image/hero.jpg"
+          layout="responsive"
+          width={1920}
+          height={1080}
+          alt="m"
+        />
+      </div>
+      <div className={s.mobileImage}>
+        <Image
+          src="/image/hero-mobile.jpg"
+          layout="responsive"
+          width={1110}
+          height={1080}
+          alt="m"
+        />
+      </div>
 
       {/* title */}
       <div className={s.boxContainer}>
-        <h1>بازار اجتماعی نخل</h1>
+        <div>
+          <h1>بازار اجتماعی نخل</h1>
 
-        <h2>بستری برای رشد و فروش کسب و کارهای اصیل و زندگی پذیر</h2>
-        <div className={s.searchConatiner}>
-          <ButtonLanding title="آغاز فروش" />
+          <h2>بستری برای رشد و فروش کسب و کارهای اصیل و زندگی پذیر</h2>
+          <div className={s.searchConatiner}>
+            <ButtonLanding title="آغاز فروش" />
 
-          <InputLanding />
+            <InputLanding />
+          </div>
         </div>
       </div>
     </div>

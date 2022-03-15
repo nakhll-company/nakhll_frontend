@@ -17,12 +17,12 @@ function ValuesPart() {
           <Image
             src={item.path}
             layout="fixed"
-            height={100}
-            width={100}
+            height={80}
+            width={80}
             alt={item.name}
           />
 
-          <div className="">{item.name}</div>
+          <div className={s.title}>{item.name}</div>
         </div>
       ))}
     </div>

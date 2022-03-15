@@ -28,3 +28,31 @@
   height: 40px;
   width: 40px;
 }
+
+
+@media (max-width: 870px) {
+  .inputContainer{
+    width: 300px;
+    .input {
+      
+      
+      &::placeholder {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media (max-width: 460px) {
+  .inputContainer{
+    width: 200px;
+    .input {
+      
+      
+      &::placeholder {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
