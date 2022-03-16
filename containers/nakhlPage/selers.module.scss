@@ -19,6 +19,7 @@
     flex-grow: 1;
     margin-right: 10px;
     margin-left: 10px;
+    min-width: 332px;
     .content {
         background-color: #124d81;
         padding: 15px;
@@ -28,6 +29,7 @@
         margin-top: 5px;
         // background-color: rebeccapurple;
         display: flex;
+        align-items: center;
         .wave {
             flex-grow: 9;
             // background-color: red;
@@ -37,7 +39,7 @@
             display: flex;
             align-items: baseline;
             color: #335f8a;
-            justify-content: flex-end;
+            justify-content: space-evenly;
             .playBtn {
                 border: none;
                 background: transparent;

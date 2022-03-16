@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { BsBasket2 } from "react-icons/bs";
 import s from "./HeaderTitle.module.scss";
@@ -18,10 +19,19 @@ const HeaderTitle = () => {
         <ul>
           <li>فروشگاه ها</li>
           <li>حجره ها</li>
-          <li>وبلاگ</li>
+          <li>
+            <Link href="https://nakhll.com/blog/">
+              <a>وبلاگ</a>
+            </Link>
+          </li>
           <li>توان افزایی و هم افزایی</li>
+
           <li>درباره ما</li>
-          <li>تماس با ما</li>
+          <li>
+            <Link href="https://nakhll.com/blog/%d8%aa%d9%85%d8%a7%d8%b3-%d8%a8%d8%a7-%d9%85%d8%a7/">
+              <a>تماس با ما</a>
+            </Link>
+          </li>
         </ul>
       </div>
       <div className={s.menu}>

@@ -1,6 +1,6 @@
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 
-export const _ApiGetCategories = async () => {
+export const _ApiGetCategories = async() => {
     let params = null;
     let loadData = null;
     let dataUrl = "/api/v1/categories/";
@@ -13,8 +13,22 @@ export const _ApiGetCategories = async () => {
     );
     return response;
 };
+export const _ApiGetTags = async(activeHojreh) => {
+    let params = null;
+    let loadData = null;
 
-export const _ApiCreateProduct = async (dataForSend, activeHojreh) => {
+    let dataUrl = `/api/v1/shop/${activeHojreh}/tags/`;
+    let response = await ApiRegister().apiRequest(
+        loadData,
+        "get",
+        dataUrl,
+        true,
+        params
+    );
+    return response;
+};
+
+export const _ApiCreateProduct = async(dataForSend, activeHojreh) => {
     try {
         let response = await ApiRegister().apiRequest(
             dataForSend,
@@ -23,10 +37,10 @@ export const _ApiCreateProduct = async (dataForSend, activeHojreh) => {
             true, {}
         );
         return response;
-    } catch (error) { }
+    } catch (error) {}
 };
 
-export const _ApiUpdateProduct = async (dataForSend, activeHojreh, id) => {
+export const _ApiUpdateProduct = async(dataForSend, activeHojreh, id) => {
     let response = await ApiRegister().apiRequest(
         dataForSend,
         "patch",

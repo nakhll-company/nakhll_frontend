@@ -11,7 +11,7 @@ import MyLayout from "../../../../components/layout/Layout";
 import Category from "../../../../containers/product/create/category";
 import TitleLiner from "../../../../containers/settings/components/titleLiner";
 import InputUseForm from "../../../../containers/creat/component/inputUseForm";
-import CheckboxTreeCities from "../../../../components/CheckboxTree/CheckboxTree";
+
 import InputPictureCreat from "../../../../containers/creat/component/InputPicture";
 import TextAreaUseForm from "../../../../containers/creat/component/textAreaUseForm";
 import PictureChildProduct from "../../../../containers/creat/component/pictureChildProduct";
@@ -20,6 +20,7 @@ import { mapState } from "../../../../containers/product/methods/mapState";
 import {
   _ApiCreateProduct,
   _ApiGetCategories,
+  _ApiGetTags,
 } from "../../../../api/creatProduct";
 // styles
 import styles from "../../../../styles/pages/product/create.module.scss";
@@ -48,7 +49,10 @@ const CreateProduct = ({ activeHojreh }) => {
   const [precentPrice, setPrecentPrice] = useState(0);
   const [submarketId, setSubmarketId] = useState(null);
   const [wordOldPrice, setWordOldPrice] = useState("");
-  const [checkedCities, setCheckedCities] = useState([]);
+  // const [checkedCities, setCheckedCities] = useState([]);
+  const [tagsShop, setTagsShop] = useState([]);
+  const [tags, setTags] = useState([]);
+
   const [imgProductOne, setImgProductOne] = useState(null);
   const [imgProductTwo, setImgProductTwo] = useState(null);
   const [imgProductSix, setImgProductSix] = useState(null);
@@ -61,15 +65,28 @@ const CreateProduct = ({ activeHojreh }) => {
 
   useEffect(() => {
     async function fetchData() {
-      const response_categories = await _ApiGetCategories();
-      if (response_categories.status === 200) {
-        setIsLoad(true);
-        setData(response_categories.data); //==> output: {}
-        setCategories(response_categories.data);
+      if (activeHojreh) {
+        const response_categories = await _ApiGetCategories();
+        if (response_categories.status === 200) {
+          setIsLoad(true);
+          setData(response_categories.data); //==> output: {}
+          setCategories(response_categories.data);
+        }
+        const tags = await _ApiGetTags(activeHojreh);
+        if (response_categories.status < 300) {
+          let newArrTags = [];
+          tags?.data.map((item) => {
+            newArrTags.push({ id: item.text, text: item.text });
+          });
+          setTagsShop(newArrTags);
+        }
       }
     }
     fetchData();
   }, [activeHojreh]);
+  useEffect(() => {
+    console.log("tagsShop :>> ", tagsShop);
+  }, [tagsShop]);
 
   // select Submarket
   const _selectSubmarket = () => {
@@ -104,10 +121,11 @@ const CreateProduct = ({ activeHojreh }) => {
     const externalData = {
       Status: 1,
       PostRangeType: 1,
-      post_range: checkedCities,
+      post_range: [],
       category: submarketId,
       Image: imgProduct,
       Product_Banner: Product_Banner,
+      product_tags: tags,
     };
 
     const dataForSend = Object.assign(data, externalData);
@@ -407,7 +425,14 @@ const CreateProduct = ({ activeHojreh }) => {
                   />
                 </InputUseForm>
                 {/* input Tags */}
-                {/* <InputTag /> */}
+                <InputTag
+                  tags={tags}
+                  setTags={setTags}
+                  suggestions={tagsShop}
+                />
+                <span style={{ padding: "5px" }}>
+                  برای ثبت هر تگ کلید اینتر را بزنید.
+                </span>
                 {/* information  */}
                 <TitleLiner title=" اطلاعات ارسال" />
                 {/* Preparation Days */}
@@ -439,11 +464,6 @@ const CreateProduct = ({ activeHojreh }) => {
                     marginTop: "15px",
                   }}
                 ></div>
-                {/* with Componetn */}
-                <CheckboxTreeCities
-                  checkedCity={checkedCities}
-                  setCheckedCity={setCheckedCities}
-                />
                 {/* button submit */}
                 <div>
                   <button

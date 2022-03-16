@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { gtag } from "../../utils/googleAnalytics";
 import { addToFavoritesList } from "./methods/addToFavotitesList";
 import { deleteFromFavoritesList } from "./methods/deleteFromFavoritesList";
+import { FaRegBookmark, FaPlus } from "react-icons/fa";
 // scss
 import styles from "./ProductCard.module.scss";
 
@@ -51,7 +52,9 @@ const ProductCard = ({
           addToFavoritesList(product.id);
         }}
       >
-        <i className="far fa-bookmark" />
+        <i>
+          <FaRegBookmark size={18} />
+        </i>
       </div>
     </>
   );
@@ -197,7 +200,9 @@ const ProductCard = ({
                       });
                     }}
                   >
-                    <i className="fas fa-plus" />
+                    <i>
+                      <FaPlus />
+                    </i>
                   </button>
                 </>
               )}
