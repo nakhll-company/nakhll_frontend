@@ -24,6 +24,7 @@ import {
 } from "../../../../../api/creatProduct";
 // styles
 import styles from "../../../../../styles/pages/product/create.module.scss";
+import InputTag from "../../../../../components/InputTag";
 /**
  * page update product
  * @param {string} activeHojreh => it has slug name
@@ -31,6 +32,8 @@ import styles from "../../../../../styles/pages/product/create.module.scss";
 const _asist = new Assistent();
 const UpdateProduct = ({ activeHojreh }) => {
   const [tags, setTags] = useState([]);
+  const [tagsShop, setTagsShop] = useState([]);
+
   // useform
   const {
     setValue,
@@ -99,6 +102,11 @@ const UpdateProduct = ({ activeHojreh }) => {
           setImgProductFive(Data.Product_Banner[4]?.Image);
           setImgProductSix(Data.Product_Banner[5]?.Image);
           setProduct_Banner(Data.Product_Banner);
+          let newArrTags = [];
+          Data.product_tags.map((item) => {
+            newArrTags.push({ id: item.text, text: item.text });
+          });
+          setTags(newArrTags);
         }
       }
     }
@@ -134,6 +142,7 @@ const UpdateProduct = ({ activeHojreh }) => {
       post_range: [],
       category: submarketId,
       Product_Banner: Product_Banner,
+      product_tags: tags,
     };
 
     if (imgProduct && !imgProduct.includes("http")) {
@@ -493,6 +502,14 @@ const UpdateProduct = ({ activeHojreh }) => {
                     })}
                   />
                 </InputUseForm>
+                <InputTag
+                  tags={tags}
+                  setTags={setTags}
+                  suggestions={tagsShop}
+                />
+                <span style={{ padding: "5px" }}>
+                  برای ثبت هر تگ کلید اینتر را بزنید.
+                </span>
                 {/* information  */}
                 <TitleLiner title=" اطلاعات ارسال" />
                 {/* Preparation Days */}

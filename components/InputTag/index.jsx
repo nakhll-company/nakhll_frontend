@@ -46,6 +46,7 @@ function InputTag({ tags, setTags, suggestions }) {
         inputFieldPosition="bottom"
         placeholder="تگ های مورد نظر خود را وارد نمایید. "
         autocomplete
+        autofocus={false}
       />
     </div>
   );

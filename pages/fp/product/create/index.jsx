@@ -3,7 +3,7 @@ import Image from "next/image";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Assistent from "zaravand-assistent-number";
 // components
 import Loading from "../../../../components/loading/index";
@@ -24,7 +24,7 @@ import {
 } from "../../../../api/creatProduct";
 // styles
 import styles from "../../../../styles/pages/product/create.module.scss";
-// import InputTag from "../../../../components/InputTag";
+import InputTag from "../../../../components/InputTag";
 
 const CreateProduct = ({ activeHojreh }) => {
   // useform
@@ -84,9 +84,6 @@ const CreateProduct = ({ activeHojreh }) => {
     }
     fetchData();
   }, [activeHojreh]);
-  useEffect(() => {
-    console.log("tagsShop :>> ", tagsShop);
-  }, [tagsShop]);
 
   // select Submarket
   const _selectSubmarket = () => {
