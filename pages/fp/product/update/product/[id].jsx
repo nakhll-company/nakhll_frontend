@@ -11,22 +11,29 @@ import MyLayout from "../../../../../components/layout/Layout";
 import Category from "../../../../../containers/product/create/category";
 import InputUseForm from "../../../../../containers/creat/component/inputUseForm";
 import TitleLiner from "../../../../../containers/settings/components/titleLiner";
-import CheckboxTreeCities from "../../../../../components/CheckboxTree/CheckboxTree";
+
 import InputPictureCreat from "../../../../../containers/creat/component/InputPicture";
 import TextAreaUseForm from "../../../../../containers/creat/component/textAreaUseForm";
 import PictureChildProduct from "../../../../../containers/creat/component/pictureChildProduct";
 // methods
 import { ApiRegister } from "../../../../../services/apiRegister/ApiRegister";
 import { mapState } from "../../../../../containers/product/methods/mapState";
-import { _ApiGetCategories, _ApiUpdateProduct, } from "../../../../../api/creatProduct";
+import {
+  _ApiGetCategories,
+  _ApiUpdateProduct,
+} from "../../../../../api/creatProduct";
 // styles
 import styles from "../../../../../styles/pages/product/create.module.scss";
+import InputTag from "../../../../../components/InputTag";
 /**
  * page update product
  * @param {string} activeHojreh => it has slug name
  */
 const _asist = new Assistent();
 const UpdateProduct = ({ activeHojreh }) => {
+  const [tags, setTags] = useState([]);
+  const [tagsShop, setTagsShop] = useState([]);
+
   // useform
   const {
     setValue,
@@ -62,6 +69,7 @@ const UpdateProduct = ({ activeHojreh }) => {
 
           setValue("Title", Data.Title);
           setImgProduct(Data.Image);
+          console.log("Data :>> ", Data);
           if (Data.OldPrice === 0) {
             setValue("Price", Data.Price / 10);
             setValue("OldPrice", Data.OldPrice / 10);
@@ -83,7 +91,7 @@ const UpdateProduct = ({ activeHojreh }) => {
           setValue("Weight_With_Packing", Data.Weight_With_Packing);
           setValue("Description", Data.Description);
           setValue("PreparationDays", Data.PreparationDays);
-          setCheckedCities(Data.post_range_cities);
+
           setPlaceholderSubmarckets(Data.category);
           setSubmarketId(Data.category.id);
           // images
@@ -94,6 +102,11 @@ const UpdateProduct = ({ activeHojreh }) => {
           setImgProductFive(Data.Product_Banner[4]?.Image);
           setImgProductSix(Data.Product_Banner[5]?.Image);
           setProduct_Banner(Data.Product_Banner);
+          let newArrTags = [];
+          Data.product_tags.map((item) => {
+            newArrTags.push({ id: item.text, text: item.text });
+          });
+          setTags(newArrTags);
         }
       }
     }
@@ -126,9 +139,10 @@ const UpdateProduct = ({ activeHojreh }) => {
     const externalData = {
       Status: 1,
       PostRangeType: 1,
-      post_range: checkedCities,
+      post_range: [],
       category: submarketId,
       Product_Banner: Product_Banner,
+      product_tags: tags,
     };
 
     if (imgProduct && !imgProduct.includes("http")) {
@@ -163,8 +177,6 @@ const UpdateProduct = ({ activeHojreh }) => {
 
   const [Product_Banner, setProduct_Banner] = useState([]);
 
-  // for Save cities
-  const [checkedCities, setCheckedCities] = useState([]);
   // state for show word price
   const [wordPrice, setWordPrice] = useState("");
   const [wordOldPrice, setWordOldPrice] = useState("");
@@ -490,6 +502,14 @@ const UpdateProduct = ({ activeHojreh }) => {
                     })}
                   />
                 </InputUseForm>
+                <InputTag
+                  tags={tags}
+                  setTags={setTags}
+                  suggestions={tagsShop}
+                />
+                <span style={{ padding: "5px" }}>
+                  برای ثبت هر تگ کلید اینتر را بزنید.
+                </span>
                 {/* information  */}
                 <TitleLiner title=" اطلاعات ارسال" />
                 {/* Preparation Days */}
@@ -521,15 +541,15 @@ const UpdateProduct = ({ activeHojreh }) => {
                     marginTop: "15px",
                   }}
                 ></div>
-                {/* with Componetn */}
-                <CheckboxTreeCities
-                  checkedCity={checkedCities}
-                  setCheckedCity={setCheckedCities}
-                />
                 {/* button submit */}
                 {isLoadingUpdate && (
                   <div className={styles.loading}>
-                    <Image src="/loading.svg" width="45" height="45" alt="loading" />
+                    <Image
+                      src="/loading.svg"
+                      width="45"
+                      height="45"
+                      alt="loading"
+                    />
                     <span>در حال ویرایش محصول ...</span>
                   </div>
                 )}

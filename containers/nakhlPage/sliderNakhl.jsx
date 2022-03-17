@@ -11,11 +11,16 @@ import s from "./sliderNakhl.module.scss";
 
 SwiperCore.use([Pagination]);
 const data = [
-  { image: "/image/slideNakhl.jpg", url: "" },
-  { image: "/image/slideNakhl.jpg", url: "" },
-  { image: "/image/slideNakhl.jpg", url: "" },
-  { image: "/image/slideNakhl.jpg", url: "" },
-  { image: "/image/slideNakhl.jpg", url: "" },
+  {
+    image: "/image/NakhlLanding/banners/desktop/one.jpg",
+    imageMobile: "/image/NakhlLanding/banners/mobile/one.jpg",
+    url: "",
+  },
+  {
+    image: "/image/NakhlLanding/banners/desktop/two.jpg",
+    imageMobile: "/image/NakhlLanding/banners/mobile/two.jpg",
+    url: "",
+  },
 ];
 function SliderNakhl() {
   return (
@@ -27,14 +32,26 @@ function SliderNakhl() {
               <SwiperSlide key={index}>
                 <Link href={slider.url}>
                   <a>
-                    <Image
-                      className={s.image}
-                      layout="responsive"
-                      width={400}
-                      height={100}
-                      src={slider.image}
-                      alt="بنر"
-                    />
+                    <div className={s.imageDesktop}>
+                      <Image
+                        className={s.image}
+                        layout="responsive"
+                        width={400}
+                        height={100}
+                        src={slider.image}
+                        alt="بنر"
+                      />
+                    </div>
+                    <div className={s.imageMobile}>
+                      <Image
+                        className={s.image}
+                        layout="responsive"
+                        width={200}
+                        height={100}
+                        src={slider.imageMobile}
+                        alt="بنر"
+                      />
+                    </div>
                   </a>
                 </Link>
               </SwiperSlide>

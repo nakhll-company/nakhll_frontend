@@ -87,7 +87,16 @@ function Selers() {
         </div>
       </div>
       <div className={s.audioContainer}>
-        <div className={s.wave}>milad</div>
+        <div className={s.wave}>
+          <Image
+            className={s.imageProduct}
+            alt="m"
+            src="/icons/voic.svg"
+            layout="responsive"
+            width={100}
+            height={10}
+          />
+        </div>
         <div className={s.palyer}>
           <button className={s.playBtn} onClick={playMusic}>
             {/* #ced7dc */}

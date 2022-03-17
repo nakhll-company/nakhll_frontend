@@ -1,5 +1,5 @@
 import React from "react";
-import EmptyLayout from "../../components/layout/EmptyLayout";
+
 import { WithContext as ReactTags } from "react-tag-input";
 
 import s from "./inputTag.module.scss";
@@ -8,18 +8,13 @@ const KeyCodes = {
   enter: 13,
 };
 
-const delimiters = [KeyCodes.comma, KeyCodes.enter];
-function InputTag() {
-  const [tags, setTags] = React.useState([
-    { id: "Thailand", text: "Thailand" },
-    { id: "India", text: "India" },
-    { id: "Vietnam", text: "Vietnam" },
-    { id: "Turkey", text: "Turkey" },
-  ]);
+const delimiters = [KeyCodes.enter];
+function InputTag({ tags, setTags, suggestions }) {
+  // const [tags, setTags] = React.useState([]);
   const handleDelete = (i) => {
     setTags(tags.filter((tag, index) => index !== i));
   };
-  console.log("tags :>> ", tags);
+
   const handleAddition = (tag) => {
     setTags([...tags, tag]);
   };
@@ -41,20 +36,17 @@ function InputTag() {
     <div className={s.container}>
       <ReactTags
         tags={tags}
-        suggestions={[
-          { id: "milad", text: "milad" },
-          { id: "India", text: "hasani" },
-          { id: "Vietnam", text: "sajad" },
-          { id: "Turkey", text: "qqqqq" },
-        ]}
+        suggestions={suggestions}
+        minQueryLength={1}
         delimiters={delimiters}
         handleDelete={handleDelete}
         handleAddition={handleAddition}
         handleDrag={handleDrag}
         handleTagClick={handleTagClick}
         inputFieldPosition="bottom"
-        placeholder="تگ مورد نظر خود را وارد نمایید."
+        placeholder="تگ های مورد نظر خود را وارد نمایید. "
         autocomplete
+        autofocus={false}
       />
     </div>
   );

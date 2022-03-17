@@ -20,7 +20,10 @@ function BlogNakhl() {
             <span>چگونه کالا یا خدمت را قیمت گذاری کنیم؟</span>
           </div>
         </div>
-        <div style={{ marginRight: "5px" }} className={s.imageContainer}>
+        <div
+          style={{ marginRight: "5px" }}
+          className={`${s.imageContainer} ${s.imagDesktop}`}
+        >
           <Image
             className={s.image}
             src="/image/slideNakhl.jpg"
