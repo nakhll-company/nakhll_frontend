@@ -27,7 +27,6 @@ import { useSelector } from "react-redux";
 const _asist = new Assistent();
 
 function ListProductCus({ data }) {
-
   const [pageApi, setPageApi] = useState(2);
   const [hasMore, setHasMore] = useState(false);
   const [shopsName, setShopsName] = useState([]);
@@ -43,9 +42,18 @@ function ListProductCus({ data }) {
   const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
   const [searchWord, setSearchWord] = useState(data.q ? data.q : "");
   const [isOpenOrderingModal, setIsOpenOrderingModal] = useState(false);
+  // states for shops
+  const [shopesTag, setShopesTag] = useState(userData ? userData.shops : []);
+  const [tags, setTags] = useState([]);
+  const [activeHojreh, setActiveHojreh] = useState();
   const [whichOrdering, setWhichOrdering] = useState(
     data.ordering ? data.ordering : ""
   );
+
+  const [wantTags, setWantTags] = useState([
+    ...(data.tags ? data.tags.split(",").map((el) => parseInt(el)) : []),
+  ]);
+
   const [minPrice, setMinPrice] = useState(
     data.min_price ? parseInt(data.min_price) : 0
   );
@@ -91,6 +99,23 @@ function ListProductCus({ data }) {
       return false;
     }
   };
+  const call_tags = async (activeHojreh) => {
+    try {
+      let dataUrl = `/api/v1/shop/${activeHojreh}/tags/`;
+      let response = await ApiRegister().apiRequest(
+        null,
+        "get",
+        dataUrl,
+        true,
+        null
+      );
+      if (response.status < 300) {
+        setTags(response.data);
+      }
+    } catch (e) {
+      return false;
+    }
+  };
 
   const _handel_Add_category = (id) => {
     let copyArray = [...wantCategories];
@@ -101,6 +126,20 @@ function ListProductCus({ data }) {
       setWantCategories([...newArray, id]);
     } else {
       setWantCategories(newArray);
+    }
+  };
+
+  const _handel_Add_tags = (id) => {
+    let copyArray = [...wantTags];
+
+    let newArray = copyArray.filter((element) => element != id);
+
+    if (copyArray.length == newArray.length) {
+      setWantTags([...newArray, id]);
+      setSearchWord("");
+    } else {
+      setWantTags(newArray);
+      setSearchWord("");
     }
   };
 
@@ -122,6 +161,9 @@ function ListProductCus({ data }) {
           ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
           ...(wantCategories.length > 0 && {
             category: wantCategories.toString(),
+          }),
+          ...(wantTags.length > 0 && {
+            tags: wantTags.toString(),
           }),
           page_size: 50,
           ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
@@ -192,6 +234,9 @@ function ListProductCus({ data }) {
           ...(wantCategories.length !== 0 && {
             category: wantCategories.toString(),
           }),
+          ...(wantTags.length > 0 && {
+            tags: wantTags.toString(),
+          }),
         },
       },
       undefined,
@@ -214,6 +259,9 @@ function ListProductCus({ data }) {
 
           ...(wantCategories.length > 0 && {
             category: wantCategories.toString(),
+          }),
+          ...(wantTags.length > 0 && {
+            tags: wantTags.toString(),
           }),
 
           page_size: 50,
@@ -258,6 +306,7 @@ function ListProductCus({ data }) {
     isDiscountPercentage,
     checkedCity,
     wantCategories,
+    wantTags,
     whichOrdering,
     clickOnRange,
     maxPrice,
@@ -277,6 +326,13 @@ function ListProductCus({ data }) {
   const handel_OrderingModal = () => {
     setIsOpenOrderingModal(!isOpenOrderingModal);
   };
+  console.log("hojreh :>> ", userData.shops);
+
+  useEffect(() => {
+    if (activeHojreh) {
+      call_tags(activeHojreh);
+    }
+  }, [activeHojreh]);
 
   return (
     <>
@@ -391,6 +447,56 @@ function ListProductCus({ data }) {
                     onCheck={(e) => setCheckedCity(e)}
                     onExpand={(e) => setExpandCity(e)}
                   />
+                </CustomAccordion>
+              )}
+              {shopesTag?.length > 0 && (
+                <CustomAccordion title="تگ ها" item="four" close={true}>
+                  <div className={styles.info_cardH}>
+                    <label htmlFor="select-shop" style={{ fontSize: "15px" }}>
+                      {" "}
+                      حجره های شما:
+                      {"     "}‌
+                    </label>
+                    <select
+                      id="select-shop"
+                      onChange={(a) => {
+                        setActiveHojreh(a.target.value);
+                      }}
+                    >
+                      <option value="0">انتخاب نمایید</option>
+                      {shopesTag &&
+                        shopesTag.map((e) => {
+                          return (
+                            <option key={e.id} value={e.slug}>
+                              {e.title}
+                            </option>
+                          );
+                        })}
+                    </select>
+                  </div>
+                  {tags.map((ele, index) => (
+                    <div
+                      key={`tages${index}`}
+                      style={{ marginBottom: "10px", paddingRight: "10px" }}
+                    >
+                      <input
+                        onChange={(e) => {
+                          _handel_Add_tags(e.target.value);
+                        }}
+                        className="form-check-input"
+                        type="checkbox"
+                        value={ele.id}
+                        id={`checkboxTags${index}`}
+                      />
+                      <label
+                        style={{ marginRight: "5px", fontSize: "15px" }}
+                        className="form-check-label"
+                        htmlFor={`checkboxTags${index}`}
+                      >
+                        {ele.text}
+                      </label>
+                    </div>
+                  ))}
                 </CustomAccordion>
               )}
 
