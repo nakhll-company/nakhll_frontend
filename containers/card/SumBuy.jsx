@@ -69,10 +69,9 @@ export default function SumBuy() {
                 `     تضمین رضایت: بازگشت کالا و پول شما تا 7 روز`
               )}
             </div>
-            {/* <div className="border border-danger text-danger p-2 mt-3 rounded">
-              محصولی در سبد خرید تغییر کرده است. برای ادامه وضعیت آن را مشخص
-              کنید.
-            </div> */}
+             <div className="border border-danger text-danger p-2 mt-3 rounded">
+               خرید شما بعد از تاریخ ۵ فروردین ارسال خواهد شد.
+            </div> 
           </div>
         </div>
       ) : (
