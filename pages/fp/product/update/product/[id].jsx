@@ -107,6 +107,15 @@ const UpdateProduct = ({ activeHojreh }) => {
             newArrTags.push({ id: item.text, text: item.text });
           });
           setTags(newArrTags);
+          let allTages = [];
+
+          {
+            Data?.all_tags &&
+              Data.all_tags.map((item) => {
+                allTages.push({ id: item.text, text: item.text });
+              });
+          }
+          setTagsShop(allTages);
         }
       }
     }
