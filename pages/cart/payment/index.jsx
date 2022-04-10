@@ -388,7 +388,7 @@ export default function Cart() {
                   className="mr-auto ml-1"
                   style={{ color: "rgb(27,62,104)" }}
                 >
-                  {_asist.PSeparator(cartPrice / 10)}
+                  {_asist.PSeparator(totalPrice / 10)}
                 </strong>
                 تومان
               </div>
