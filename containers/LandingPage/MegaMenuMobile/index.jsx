@@ -19,7 +19,7 @@ function MegaMenuMobile({ category }) {
 
   return (
     <ul className={styles.ul}>
-      {category.map((element, index) => (
+      {Array.isArray(category) && category.map((element, index) => (
         <li key={index}>
           <a
             onClick={() =>
