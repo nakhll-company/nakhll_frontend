@@ -15,7 +15,6 @@
   "dependencies": {
     "@hookform/error-message": "^2.0.0",
     "@hookform/resolvers": "^2.6.1",
-    "@storybook/react": "^6.4.20",
     "axios": "^0.21.4",
     "bootstrap": "^5.1.0",
     "browser-image-compression": "^1.0.17",
@@ -58,6 +57,9 @@
     "@storybook/addon-essentials": "^6.4.21",
     "@storybook/addon-interactions": "^6.4.21",
     "@storybook/addon-links": "^6.4.21",
+    "@storybook/builder-webpack5": "^6.4.21",
+    "@storybook/manager-webpack5": "^6.4.21",
+    "@storybook/react": "^6.4.21",
     "@storybook/testing-library": "^0.0.9",
     "autoprefixer": "^10.4.0",
     "babel-loader": "^8.2.4",
@@ -68,7 +70,6 @@
     "eslint-plugin-jsx-a11y": "6.5.1",
     "eslint-plugin-react": "7.28.0",
     "eslint-plugin-react-hooks": "4.3.0",
-    "eslint-plugin-storybook": "^0.5.8",
     "postcss": "^8.4.4"
   }
 }

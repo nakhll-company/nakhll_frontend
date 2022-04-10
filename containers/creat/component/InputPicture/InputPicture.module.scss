@@ -1,5 +1,4 @@
 .icon_change_pic {
-    cursor: pointer;
     width: 33px;
     height: 33px;
     background: rgb(255, 255, 255);
@@ -7,6 +6,7 @@
     border-radius: 10px;
     top: 10px;
     transition: all 0.3s ease;
+    cursor: pointer;
     i {
         font-size: 25px;
         color: #2d3192;
