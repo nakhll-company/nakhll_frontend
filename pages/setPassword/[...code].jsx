@@ -116,8 +116,8 @@ function SetPasswordPage() {
       );
       if (response.status === 200) {
         successMessage("پسورد با موفقیت تغییر یافت. مجدد وارد شوید.");
-        localStorage.removeItem("refreshToken");
-        localStorage.removeItem("accessToken");
+        sessionStorage.removeItem("refreshToken");
+        sessionStorage.removeItem("accessToken");
         router.push("/login");
 
         // return response.data;

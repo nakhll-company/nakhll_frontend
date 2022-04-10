@@ -255,8 +255,8 @@ const Profile = () => {
                 <li
                   className="d-flex flex-column align-items-center ms-4"
                   onClick={() => {
-                    localStorage.removeItem("refreshToken");
-                    localStorage.removeItem("accessToken");
+                    sessionStorage.removeItem("refreshToken");
+                    sessionStorage.removeItem("accessToken");
                     router.push("/");
                     router.reload(window.location.pathname);
                   }}

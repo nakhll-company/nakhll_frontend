@@ -9,8 +9,8 @@ export async function getAccessToken(data) {
             false, {}
         );
         if (response.status === 200) {
-            localStorage.setItem("accessToken", response.data.access);
-            localStorage.setItem("refreshToken", response.data.refresh);
+            sessionStorage.setItem("accessToken", response.data.access);
+            sessionStorage.setItem("refreshToken", response.data.refresh);
             return true;
         } else {
             return false;

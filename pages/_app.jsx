@@ -6,7 +6,7 @@ import { Store } from "../redux/store";
 import { Provider } from "react-redux";
 // method
 import SEO from "../next-seo.config";
-import { refreshToken } from '../api/auth/refreshToken';
+import { refreshToken } from "../api/auth/refreshToken";
 // components
 import General from "../components/utils/General";
 import MyLayout from "../components/layout/Layout";
@@ -16,15 +16,14 @@ import "../styles/globals.scss";
 import "../styles/General/font-awesome/css/font-awesome.css";
 
 function MyApp({ Component, pageProps }) {
-
   const REFRESH_TOKEN_TIMEOUT = 300000;
   const Layout = Component.Layout || MyLayout;
 
-  useEffect(() => {
-    setInterval(() => {
-      localStorage.getItem("accessToken") && refreshToken();
-    }, REFRESH_TOKEN_TIMEOUT);
-  }, []);
+  useEffect(()=>{
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+  },[]);
+ 
 
   return (
     <>
@@ -41,7 +40,5 @@ function MyApp({ Component, pageProps }) {
     </>
   );
 }
-
-
 
 export default MyApp;

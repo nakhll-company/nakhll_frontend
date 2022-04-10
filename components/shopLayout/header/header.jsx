@@ -189,8 +189,8 @@ function Header() {
                     </div>
                     <div
                       onClick={() => {
-                        localStorage.removeItem("refreshToken");
-                        localStorage.removeItem("accessToken");
+                        sessionStorage.removeItem("refreshToken");
+                        sessionStorage.removeItem("accessToken");
                         router.push("/");
                         router.reload("/");
                       }}
