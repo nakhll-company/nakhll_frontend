@@ -58,7 +58,25 @@ export default function Cart() {
         let data = response.data;
         if (response.status === 200) {
           if (data.result) {
-            await _getListInvoice();
+            let response = await ApiRegister().apiRequest(
+              null,
+              "GET",
+              `/api/v1/cart/me/`,
+              true,
+              {}
+            );
+            let data = await response.data;
+            if (response.status === 200) {
+              setListInvoice(data.ordered_items);
+              setLogisticPrice(data.logistic_details.total_price);
+              setTotalPrice(data.total_price);
+              setCartPrice(data.cart_price);
+              setAddressReceiver(data.address);
+              setResultCoupon(0); // data.coupons_total_price
+              setMsgCoupon([]); // data.coupon_usages
+              setLogisticErrors(data.logistic_details.errors);
+              setIsLoadInvoice(false);
+            }
             setIsLoadInvoice(false);
           } else {
             setIsLoadInvoice(false);
