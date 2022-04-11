@@ -16,6 +16,7 @@ import FavoritesList from "../../containers/profile/favoritesList";
 import { getUserData } from "../../containers/profile/methods/getUserData";
 // scss
 import styles from "./profile.module.scss";
+import { clearTokenStorage } from "../../api/general/clearTokenStorage";
 /**
  * component profile
  */
@@ -255,8 +256,8 @@ const Profile = () => {
                 <li
                   className="d-flex flex-column align-items-center ms-4"
                   onClick={() => {
-                    sessionStorage.removeItem("refreshToken");
-                    sessionStorage.removeItem("accessToken");
+                    clearTokenStorage()
+                   
                     router.push("/");
                     router.reload(window.location.pathname);
                   }}

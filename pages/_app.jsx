@@ -19,10 +19,7 @@ function MyApp({ Component, pageProps }) {
   const REFRESH_TOKEN_TIMEOUT = 300000;
   const Layout = Component.Layout || MyLayout;
 
-  useEffect(()=>{
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
-  },[]);
+  
  
 
   return (

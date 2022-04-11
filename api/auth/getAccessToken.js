@@ -1,4 +1,5 @@
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { setToken } from "../../utils/setToken";
 
 export async function getAccessToken(data) {
     try {
@@ -9,8 +10,8 @@ export async function getAccessToken(data) {
             false, {}
         );
         if (response.status === 200) {
-            sessionStorage.setItem("accessToken", response.data.access);
-            sessionStorage.setItem("refreshToken", response.data.refresh);
+            setToken(response.data)
+
             return true;
         } else {
             return false;

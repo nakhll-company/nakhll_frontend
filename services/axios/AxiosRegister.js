@@ -84,7 +84,7 @@ instanceAxiosWithOutToken.interceptors.response.use(
 //=================================================================\\
 instanceAxiosWithToken.interceptors.request.use(
     function(config) {
-        config.headers['Authorization'] = `Bearer ${sessionStorage.getItem('accessToken')}`;
+        config.headers['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
         return config;
     },
     function(error) {
