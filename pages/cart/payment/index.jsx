@@ -12,34 +12,19 @@ import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // scss
 import styles from "./payment.module.scss";
 import AppButton from "../../../components/AppButton";
+import { errorMessage } from "../../../utils/toastifyMessage";
 
 const _asist = new Assistent();
 
 export default function Cart() {
   const router = useRouter();
-  const [msgCoupon, setMsgCoupon] = useState([]);
-  const [cartPrice, setCartPrice] = useState(null);
-  const [totalPrice, setTotalPrice] = useState(null);
+  const [dataCart, setDataCart] = useState([]);
   const [listInvoice, setListInvoice] = useState([]);
-  const [resultCoupon, setResultCoupon] = useState(null);
   const [isLoadInvoice, setIsLoadInvoice] = useState(true);
-  const [logisticPrice, setLogisticPrice] = useState(null);
-  const [logisticErrors, setLogisticErrors] = useState([]);
-  const [addressReceiver, setAddressReceiver] = useState({});
   const [loaderButton, setLoaderButton] = useState(false);
 
   useEffect(() => {
-    _getListInvoice(
-      setMsgCoupon,
-      setListInvoice,
-      setLogisticPrice,
-      setTotalPrice,
-      setCartPrice,
-      setAddressReceiver,
-      setResultCoupon,
-      setLogisticErrors,
-      setIsLoadInvoice
-    );
+    _getListInvoice(setDataCart, setListInvoice, setIsLoadInvoice);
   }, []);
 
   const _addCoupon = async (e) => {
@@ -55,32 +40,32 @@ export default function Cart() {
           true,
           {}
         );
-        let data = response.data;
+        let dataCoupen = response.data;
+
         if (response.status === 200) {
-          if (data.result) {
-            let response = await ApiRegister().apiRequest(
-              null,
-              "GET",
-              `/api/v1/cart/me/`,
-              true,
-              {}
-            );
-            let data = await response.data;
-            if (response.status === 200) {
-              setListInvoice(data.ordered_items);
-              setLogisticPrice(data.logistic_details.total_price);
-              setTotalPrice(data.total_price);
-              setCartPrice(data.cart_price);
-              setAddressReceiver(data.address);
-              setResultCoupon(0); // data.coupons_total_price
-              setMsgCoupon([]); // data.coupon_usages
-              setLogisticErrors(data.logistic_details.errors);
-              setIsLoadInvoice(false);
-            }
-            setIsLoadInvoice(false);
-          } else {
+          console.log("dataCoupen?.errors[0] :>> ", dataCoupen?.errors[0]);
+          if (dataCoupen?.errors[0]) {
+            errorMessage(dataCoupen.errors[0]);
+          }
+
+          let response = await ApiRegister().apiRequest(
+            null,
+            "GET",
+            `/api/v1/cart/me/`,
+            true,
+            {}
+          );
+          let data = await response.data;
+          console.log("two :>> ", data);
+          if (response.status === 200) {
+            setDataCart(data);
+            setListInvoice(data.ordered_items);
+
             setIsLoadInvoice(false);
           }
+          setIsLoadInvoice(false);
+
+          setIsLoadInvoice(false);
         } else {
           setIsLoadInvoice(false);
         }
@@ -133,19 +118,6 @@ export default function Cart() {
 
   return (
     <div className={styles.steps_wrapper}>
-      <Head>
-        <link
-          rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-        />
-      </Head>
-
       <div className="col-12 col-lg-5 px-0 mb-3">
         <div className="box box-sm bg-white" style={{ minHeight: "14rem" }}>
           <div
@@ -217,40 +189,36 @@ export default function Cart() {
                 </div>
                 <div className={`${styles.input_group_bg} rounded-pill`}></div>
               </form>
-              {msgCoupon &&
-                msgCoupon.map((item, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className="border border-success bg-white font-size-9 py-2 pr-3 mt-3 rounded d-flex flex-wrap justify-content-between align-items-center"
-                    >
-                      <span className=" text-success ml-3">
-                        کوپن شما با مبلغ {item.price_applied / 10} تومان برای
-                        شما فعال گردید.
-                      </span>
-                      <button
-                        onClick={() => _deleteCoupon(item.coupon)}
-                        className="btn btn-link text-danger btn-sm mr-auto"
+              {dataCart.coupon_details?.coupons &&
+                dataCart.coupon_details.coupons.map(
+                  ({ coupon, price }, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="border border-success bg-white font-size-9 py-2 px-2 pr-3 mt-3 rounded d-flex flex-wrap justify-content-between align-items-center"
                       >
-                        <i className="fas fa-times"></i>
-                      </button>
-                    </div>
-                  );
-                })}
+                        <span className=" text-success ml-3">
+                          کوپن <span className="mx-1">{coupon.title}</span> با
+                          مبلغ{" "}
+                          <span className="mx-1 fs-5">
+                            {_asist.PSeparator(price / 10)}
+                          </span>{" "}
+                          تومان برای شما فعال گردید.
+                        </span>
+                        {/* <button
+                          onClick={() => _deleteCoupon({ coupon: coupon.code })}
+                          className="btn btn-link text-danger btn-sm mr-auto"
+                        >
+                          <i className="fas fa-times"></i>
+                        </button> */}
+                      </div>
+                    );
+                  }
+                )}
             </div>
-            <h3
-              style={{
-                marginBottom: "0.5rem",
-                fontWeight: "500",
-                lineHeight: "1.7",
-              }}
-              className="font-size1 text-dark mt-3"
-            >
-              فاکتور سفارش
-            </h3>
+            <h3 className="font-size1 text-dark mt-3">فاکتور سفارش</h3>
 
             <div className="mt-3 position-relative">
-              {/**/}
               {isLoadInvoice && (
                 <div className={styles.loading_box}>
                   <div
@@ -311,20 +279,24 @@ export default function Cart() {
                 <div className="d-flex py-1">
                   <span>جمع بهای سفارش:</span>
                   <span className="mr-auto" style={{ marginRight: "auto" }}>
-                    {_asist.PSeparator(cartPrice / 10)} تومان
+                    {/* {_asist.PSeparator(cartPrice / 10)} تومان */}
                   </span>
                 </div>
                 <div className="d-flex py-1">
                   <span>هزینه ارسال:</span>{" "}
                   <span className="mr-auto" style={{ marginRight: "auto" }}>
-                    {_asist.PSeparator(logisticPrice / 10)} تومان
+                    {_asist.PSeparator(
+                      dataCart?.logistic_details?.total_price / 10
+                    )}{" "}
+                    تومان
                   </span>
                 </div>
-                {resultCoupon !== 0 && (
+                {!!dataCart?.coupon_details?.total && (
                   <div className="d-flex py-1 text-danger">
-                    <span>تخفیف قیمت محصولات (-) :</span>
+                    <span>کدتخفیف (-) :</span>
                     <span className="mr-auto" style={{ marginRight: "auto" }}>
-                      {_asist.PSeparator(resultCoupon / 10)} تومان
+                      {_asist.PSeparator(dataCart?.coupon_details?.total / 10)}
+                      تومان
                     </span>
                   </div>
                 )}
@@ -337,36 +309,37 @@ export default function Cart() {
                     className="mr-auto"
                     style={{ color: "rgb(27,62,104)", marginRight: "auto" }}
                   >
-                    {_asist.PSeparator(totalPrice / 10)} تومان
+                    {_asist.PSeparator(dataCart.total_price / 10)} تومان
                   </span>
                 </div>
               </div>
             </div>
 
+            {/*inforamation */}
             <div className="mt-3 p-3 border rounded font-size-sm my-3 line-height-normal">
               <div className="mx-auto" style={{ textAlign: "center" }}>
                 تمامی بسته‌های پستی به آقا/خانم
-                <strong>
+                <strong className="mx-1">
                   {" "}
-                  {addressReceiver && addressReceiver.receiver_full_name}{" "}
+                  {dataCart?.address?.receiver_full_name}
                 </strong>
                 به آدرس
-                <strong className="font-size-8">
+                <strong className="font-size-8 mx-1">
                   {" "}
-                  {addressReceiver && addressReceiver.address}{" "}
+                  {dataCart?.address?.address}
                 </strong>
                 تحویل داده می‌شوند.
               </div>
               <div className="text-left line-height-1 mb-5 mb-md-0">
                 <Link
-                  href={`/cart/address/update/${addressReceiver.id}?prev=payment`}
+                  href={`/cart/address/update/${dataCart?.address?.id}?prev=payment`}
                   className="font-size-8 link-body"
                 >
                   ویرایش
                 </Link>
               </div>
             </div>
-            {logisticErrors.length > 0 && (
+            {!!dataCart?.logistic_details?.errors.length && (
               <div
                 style={{
                   border: "1px solid red",
@@ -374,7 +347,7 @@ export default function Cart() {
                   padding: "10px",
                 }}
               >
-                {logisticErrors.map((value, index) => (
+                {dataCart?.logistic_details?.errors.map((value, index) => (
                   <p key={index}> {value} در محدوده ارسال شما قرار ندارد</p>
                 ))}
               </div>
@@ -386,12 +359,17 @@ export default function Cart() {
               >
                 مبلغ قابل‌پرداخت:
               </span>
-              <span className=" font-size1" style={{ color: "rgb(27,62,104)" }}>
-                <strong className="payableAmount splitNumber font-size1-2">
-                  {_asist.PSeparator(totalPrice / 10)}
-                </strong>
-                تومان
-              </span>
+              
+                <span
+                  className=" font-size1"
+                  style={{ color: "rgb(27,62,104)" }}
+                >
+                  <strong className="payableAmount splitNumber font-size1-2">
+                    {_asist.PSeparator(dataCart.total_price  / 10)}
+                  </strong>
+                  تومان
+                </span>
+              
             </div>
 
             <div className={`${styles.buttonPayment} mt-3`}>
@@ -406,7 +384,7 @@ export default function Cart() {
                   className="mr-auto ml-1"
                   style={{ color: "rgb(27,62,104)" }}
                 >
-                  {_asist.PSeparator(totalPrice / 10)}
+                  {_asist.PSeparator(dataCart.total_price / 10)}
                 </strong>
                 تومان
               </div>
