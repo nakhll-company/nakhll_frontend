@@ -279,7 +279,7 @@ export default function Cart() {
                 <div className="d-flex py-1">
                   <span>جمع بهای سفارش:</span>
                   <span className="mr-auto" style={{ marginRight: "auto" }}>
-                    {/* {_asist.PSeparator(cartPrice / 10)} تومان */}
+                    {_asist.PSeparator(dataCart.cart_price  / 10)} تومان
                   </span>
                 </div>
                 <div className="d-flex py-1">
