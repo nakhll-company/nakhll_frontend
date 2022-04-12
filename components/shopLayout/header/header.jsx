@@ -21,6 +21,7 @@ import {
 import styles from "./header.module.scss";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import rot13 from "../../../utils/rout13";
+import { clearTokenStorage } from "../../../api/general/clearTokenStorage";
 
 const _asist = new Assistent();
 
@@ -189,8 +190,8 @@ function Header() {
                     </div>
                     <div
                       onClick={() => {
-                        localStorage.removeItem("refreshToken");
-                        localStorage.removeItem("accessToken");
+                        clearTokenStorage()
+                        
                         router.push("/");
                         router.reload("/");
                       }}

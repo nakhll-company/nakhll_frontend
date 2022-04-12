@@ -1,4 +1,5 @@
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { setToken } from "../../utils/setToken";
 
 export async function setPassword(data) {
     try {
@@ -9,8 +10,8 @@ export async function setPassword(data) {
             false, {}
         );
         if (response.status === 200) {
-            localStorage.setItem("accessToken", response.data.access);
-            localStorage.setItem("refreshToken", response.data.refresh);
+            setToken(response.data)
+
             return true;
         } else {
             return false;

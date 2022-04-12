@@ -25,7 +25,7 @@ const Password = () => {
     data.auth_key = JSON.parse(sessionStorage.getItem("login")).auth_key;
     let result = await completeAuth(data);
 
-    if (result !== false) {
+    if (!!result) {
       let response = await getAccessToken(result);
       response === true && location.replace("/");
     } else {

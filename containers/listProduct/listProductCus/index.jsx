@@ -23,6 +23,7 @@ import styles from "./listProductCus.module.scss";
 import OrderingModalMobile from "./components/OrderingModalMobile";
 import SearchProduct from "./components/searchProduct";
 import { useSelector } from "react-redux";
+import Grouping from "../../searchPage/Grouping";
 
 const _asist = new Assistent();
 
@@ -83,22 +84,6 @@ function ListProductCus({ data }) {
       : []),
   ]);
 
-  const _handel_category = async () => {
-    try {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        `/api/v1/categories/category_product_count/?q=${searchWord}`,
-        false,
-        {}
-      );
-      if (response.status === 200) {
-        setCategories(response.data);
-      }
-    } catch (e) {
-      return false;
-    }
-  };
   const call_tags = async (activeHojreh) => {
     try {
       let dataUrl = `/api/v1/shop/${activeHojreh}/tags/`;
@@ -326,7 +311,6 @@ function ListProductCus({ data }) {
   const handel_OrderingModal = () => {
     setIsOpenOrderingModal(!isOpenOrderingModal);
   };
-  console.log("hojreh :>> ", userData.shops);
 
   useEffect(() => {
     if (activeHojreh) {
@@ -340,39 +324,12 @@ function ListProductCus({ data }) {
         <div className="row ">
           <div className="d-none d-lg-block col-lg-3">
             <div id="sidebar">
-              <CustomAccordion
-                title="دسته بندی"
-                item="one"
-                callApi={() => _handel_category()}
-              >
-                {categories.map((ele, index) => (
-                  <div
-                    key={`one${index}`}
-                    style={{ marginBottom: "10px", paddingRight: "10px" }}
-                  >
-                    <input
-                      onChange={(e) => {
-                        _handel_Add_category(e.target.value);
-                      }}
-                      className="form-check-input"
-                      type="checkbox"
-                      value={ele.id}
-                      id={`checkbox${index}`}
-                    />
-                    <label
-                      style={{
-                        marginRight: "5px",
-                        fontSize: "15px",
-                        cursor: "pointer",
-                      }}
-                      className="form-check-label"
-                      htmlFor={`checkbox${index}`}
-                    >
-                      {ele.name} ({_asist.number(ele.product_count)})
-                    </label>
-                  </div>
-                ))}
-              </CustomAccordion>
+              <Grouping
+                searchWord={searchWord}
+                setCategories={setCategories}
+                categories={categories}
+                _handel_Add_category={_handel_Add_category}
+              />
 
               <CustomAccordion title="محدوده قیمت" item="two" close={true}>
                 <div style={{ direction: "ltr", zIndex: "1000" }}>
@@ -626,13 +583,7 @@ function ListProductCus({ data }) {
                     setIsAvailableGoods(e.target.checked);
                   }}
                 />
-                {/* <CustomSwitch
-                  title="فقط کالاهای موجود"
-                  id="Available_goods_mobile"
-                  onChange={(e) => {
-                    setIsAvailableGoods(e.target.checked);
-                  }}
-                /> */}
+
                 <CustomSwitch
                   defaultChecked={data.ready == "true" ? true : false}
                   title="آماده ارسال"
@@ -697,35 +648,13 @@ function ListProductCus({ data }) {
               </div>
             </CustomAccordion>
             {categories.length > 0 && (
-              <CustomAccordion
-                title="دسته بندی"
+              <Grouping
                 item="1mobile"
-                callApi={() => _handel_category()}
-              >
-                {categories.map((ele, index) => (
-                  <div
-                    key={`one${index}`}
-                    style={{ marginBottom: "10px", paddingRight: "10px" }}
-                  >
-                    <input
-                      onChange={(e) => {
-                        _handel_Add_category(e.target.value);
-                      }}
-                      className="form-check-input"
-                      type="checkbox"
-                      value={ele.id}
-                      id={`checkbox${index}`}
-                    />
-                    <label
-                      style={{ marginRight: "5px", fontSize: "15px" }}
-                      className="form-check-label"
-                      htmlFor={`checkbox${index}`}
-                    >
-                      {ele.name} ({_asist.number(ele.product_count)})
-                    </label>
-                  </div>
-                ))}
-              </CustomAccordion>
+                searchWord={searchWord}
+                setCategories={setCategories}
+                categories={categories}
+                _handel_Add_category={_handel_Add_category}
+              />
             )}
             {hojreh == "" && (
               <CustomAccordion title="استان و شهر حجره دار" item="3mobile">
@@ -786,14 +715,6 @@ function ListProductCus({ data }) {
         />
       )}
       {!_.isEmpty(userData) && <AddFavorites />}
-
-      {/* ModalOrdering End */}
-
-      {/* END MODAL */}
-
-      {/* MenuMobile */}
-      {/* <MenuMobile /> */}
-      {/* MenuMobile */}
     </>
   );
 }
