@@ -3,6 +3,8 @@ import Image from "next/image";
 import { useState, useEffect, Fragment } from "react";
 // components
 import ProductCart from "../../components/ProductCart/ProductCard";
+import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { errorMessage, successMessage } from "../../utils/toastifyMessage";
 // methods
 import { getFavoritesList } from "./methods/getFavoritesList";
 // scss
@@ -10,6 +12,7 @@ import styles from "./scss/favoritesList.module.scss";
 /**
  * favorites List in profile
  */
+
 const FavoritesList = () => {
   const [loading, setLoading] = useState(true);
   const [list, setList] = useState({ products: [] });
@@ -22,6 +25,21 @@ const FavoritesList = () => {
     }
     fetchData();
   }, []);
+
+  const deletProduct = async (idProduct) => {
+    let response = await ApiRegister().apiRequest(
+      null,
+      "DELETE",
+      `/api/v1/lists/favorites/${idProduct}/remove/`,
+      true,
+      {}
+    );
+    if (response.status === 204) {
+      fetch();
+      errorMessage("محصول مورد نظر از لیست علاقه مندی ها حذف شد");
+    }
+  };
+
   return (
     <div className={styles.main}>
       <h1>لیست علاقه مندی ها</h1>
@@ -38,6 +56,7 @@ const FavoritesList = () => {
                 <ProductCart
                   padding={2}
                   dataProduct={value}
+                  deletProduct={() => deletProduct(value.ID)}
                 />
               </Fragment>
             );

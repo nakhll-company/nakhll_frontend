@@ -8,11 +8,10 @@ import { useDispatch } from "react-redux";
 
 import { gtag } from "../../utils/googleAnalytics";
 import { addToFavoritesList } from "./methods/addToFavotitesList";
-import { deleteFromFavoritesList } from "./methods/deleteFromFavoritesList";
-import { FaRegBookmark, FaPlus } from "react-icons/fa";
+
+import { FaRegBookmark, FaPlus, FaWindowClose } from "react-icons/fa";
 // scss
 import styles from "./ProductCard.module.scss";
-
 import { _addProduct } from "../../redux/actions/cart/_addProduct";
 
 const _asist = new Assistent();
@@ -26,6 +25,7 @@ const ProductCard = ({
   col,
   padding,
   dataProduct,
+  deletProduct,
 }) => {
   const dispatch = useDispatch();
   let product = {
@@ -35,7 +35,6 @@ const ProductCard = ({
     title: dataProduct.Title,
     chamberTitle: dataProduct.FK_Shop ? dataProduct.FK_Shop.title : "",
     chamberUrl: dataProduct.FK_Shop ? `/shop/${dataProduct.FK_Shop.slug} ` : "",
-
     discount: dataProduct.discount,
     price: dataProduct.Price / 10,
     discountNumber: dataProduct.OldPrice / 10,
@@ -90,6 +89,21 @@ const ProductCard = ({
       </div>
     </>
   );
+  let deletIcon = (
+    <>
+      <>
+        <div
+          type="button"
+          style={{ top: "-13px", right: "-15px", position: "absolute" }}
+          onClick={deletProduct}
+        >
+          <i>
+            <FaWindowClose color="red" size={20} />
+          </i>
+        </div>
+      </>
+    </>
+  );
 
   const [disablBtn, setDisablBtn] = useState(false);
 
@@ -101,33 +115,11 @@ const ProductCard = ({
           : `col-${xs} col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
       } ${padding ? `px-${padding}` : ""} mb-2`}
     >
-      {product.iconClose && (
-        <span
-          style={{
-            position: "relative",
-            width: "0px",
-            height: "0px",
-            cursor: "pointer",
-          }}
-          onClick={() => {
-            deleteFromFavoritesList(product.id);
-          }}
-        >
-          <i
-            className="fa fa-times-circle"
-            style={{
-              position: "absolute",
-              fontSize: "28px",
-              color: "#4f4f4f",
-              zIndex: "100",
-            }}
-          ></i>
-        </span>
-      )}
       <div className={`card ${styles._product_card} _product_card_rounded p-2`}>
         <div className={styles.paterImage}>
           {cardBadge}
           {dataProduct.in_campaign && campBadge}
+          {deletProduct && deletIcon}
           <Link href={product.url}>
             <a className={styles.links}>{cardImg}</a>
           </Link>

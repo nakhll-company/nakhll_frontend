@@ -1,10 +1,9 @@
-import { successMessage } from "../../../utils/toastifyMessage";
+import { errorMessage, successMessage } from "../../../utils/toastifyMessage";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // api favorites list
-export const addToFavoritesList = async (idProduct) => {
-    let response = await ApiRegister().apiRequest(
-        {
-            product: idProduct
+export const addToFavoritesList = async(idProduct) => {
+    let response = await ApiRegister().apiRequest({
+            product: idProduct,
         },
         "POST",
         `/api/v1/lists/favorites/add/`,

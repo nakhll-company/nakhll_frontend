@@ -272,3 +272,16 @@ input[type="number"] {
     color: white;
     font-size: 20px;
 }
+.hbspt-form {
+    display: flex;
+    direction: rtl !important;
+    padding: 50px;
+    justify-content: center;
+    align-items: center;
+}
+.hs-custom-style {
+    direction: rtl !important;
+}
+.hs-form-private {
+    direction: rtl !important;
+}
