@@ -294,8 +294,7 @@ function ListProductCus({ data }) {
     wantTags,
     whichOrdering,
     clickOnRange,
-    maxPrice,
-    minPrice,
+
     hojreh,
     searchWord,
   ]);
@@ -335,10 +334,10 @@ function ListProductCus({ data }) {
                 <div style={{ direction: "ltr", zIndex: "1000" }}>
                   <MultiRangeSlider
                     min={0}
-                    max={data.max_price ? data.max_price : 10000}
+                    max={data.max_price <= 10000 ? data.max_price : 10000}
                     onChange={({ min, max }) => {
-                      setMinPrice(min);
-                      setMaxPrice(max);
+                      setMinPrice(min * 10000);
+                      setMaxPrice(max * 10000);
                     }}
                   />
                   <div style={{ display: "flex", justifyContent: "center" }}>
