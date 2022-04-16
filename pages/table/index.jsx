@@ -1,6 +1,6 @@
 import React from "react";
-import EmptyLayout from "../../components/layout/EmptyLayout";
 import Script from "next/script";
+import EmptyLayout from "../../components/layout/EmptyLayout";
 
 function Table() {
   return (
@@ -12,10 +12,10 @@ function Table() {
       />
       <Script id="ExtraTable" strategy="lazyOnload">
         {`hbspt.forms.create({
- 	region: "na1",
- 	portalId: "21759198",
- 	formId: "84c62938-a700-413f-ad36-d74274f4a7c6"
- });`}
+          region: "na1",
+          portalId: "21759198",
+          formId: "84c62938-a700-413f-ad36-d74274f4a7c6"
+        });`}
       </Script>
     </div>
   );
