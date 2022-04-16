@@ -1,4 +1,5 @@
 export function tableValidition(key, value) {
+
     if (key === "Title" && (!value || value.trim() === "")) {
         return true;
     } else if (key === "barcode" && (isNaN(value) || value.trim() === "")) {
@@ -15,11 +16,11 @@ export function tableValidition(key, value) {
         return true;
     } else if (key === "Inventory" && (isNaN(value) || value.trim() === "")) {
         return true;
-    } else if (key === "image_1" && value.trim() === "") {
+    } else if (key === "image_1" && (!value || value.trim() === "")) {
         return true;
-    } else if (key === "image_2" && value.trim() === "") {
+    } else if (key === "image_2" && (!value || value.trim() === "")) {
         return true;
-    } else if (key === "image_3" && value.trim() === "") {
+    } else if (key === "image_3" && (!value || value.trim() === "")) {
         return true;
     }
     return false;

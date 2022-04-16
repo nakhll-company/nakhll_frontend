@@ -1,18 +1,16 @@
 // node libraries
 import Head from "next/head";
-import Link from "next/link";
 import { useState } from "react";
-import { CSVLink } from "react-csv";
-import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 // components
 import EmptyLayout from "../../../../components/layout/EmptyLayout";
 // methods
+import { errorMessage } from "../../../../utils/toastifyMessage";
 import { createGroupProducts, undoGroupProducts } from "../../../../api/product/groupProduct";
 import { getGroupProductCsvData } from "../../../../redux/actions/product/getGroupProductCsvData";
 import { previewFileCsv } from "../../../../containers/product/groupProduct/methods/previewFileCsv";
-import { tableValidition } from "../../../../containers/product/groupProduct/methods/tableValidition";
 import { getGroupProductCsvHeader } from "../../../../redux/actions/product/getGroupProductCsvHeader";
+import { tableValidition } from "../../../../containers/product/groupProduct/methods/tableValidition";
 import { changeCsvColumns } from "../../../../containers/product/groupProduct/methods/changeCsvColumns";
 import { calculateFileSize } from "../../../../containers/product/groupProduct/methods/calculateFileSize";
 // scss
@@ -20,7 +18,6 @@ import styles from "./previewCsv.module.scss";
 
 const PreviewCsv = () => {
 
-    const router = useRouter();
     const dispatch = useDispatch();
     const [file, setFile] = useState();
     const [zipFile, setZipFile] = useState();
@@ -33,12 +30,10 @@ const PreviewCsv = () => {
         na_rows: 0,
         slug_duplicate_rows: 0,
     });
-    const [numberOfErrors, setSumberOfErrors] = useState(0);
     const activeHojreh = useSelector((state) => state.User.activeHojreh);
     const groupProductCsvData = useSelector((state) => state.Product.groupProductCsvData);
     const groupProductCsvHeader = useSelector((state) => state.Product.groupProductCsvHeader);
 
-    console.log(">>>", numberOfErrors);
     return (
         <div className={styles.main_wrapper}>
             <Head>
@@ -49,16 +44,17 @@ const PreviewCsv = () => {
                 />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
-            {/* <h1>فایل اکسل بارگذاری شده</h1>
-            <div className="d-flex justify-content-end">
-                <div className={styles.button_export}>
-                    <CSVLink data={groupProductCsvData}>خروجی گرفتن از فایل اکسل</CSVLink>
-                </div>
-                <Link href={"/fp/product/groupProduct/"}><a className={styles.button_back}>بازگشت به صفحه قبل</a></Link>
-            </div> */}
             <div>
                 <h1 className="text-center">بارگذاری محصولات به صورت گروهی</h1>
-                <form id="myform" onSubmit={(event) => { createGroupProducts(event, setShowResult, activeHojreh) }} className="d-flex flex-column align-items-center">
+                <form id="myform" onSubmit={(event) => {
+                    event.preventDefault();
+                    let errors = document.querySelectorAll(`.${styles.error}`);
+                    if (errors.length > 0) {
+                        errorMessage("لطفا خطاهای مشخص شده را برطرف نمایید");
+                    } else {
+                        createGroupProducts(event, setShowResult, activeHojreh);
+                    }
+                }} className="d-flex flex-column align-items-center">
                     <div className={styles.inputs_wrapper}>
                         {/* input csv */}
                         <div className={styles.input_file_wrapper}>
