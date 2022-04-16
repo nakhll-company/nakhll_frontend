@@ -8,15 +8,18 @@ import { getCities } from "../../api/general/getCities";
 import { Day, Months, Year } from "../../utils/staticDate";
 import { getBigCities } from "../../api/general/getBigCities";
 import { updatUserProfile } from "./methods/updateUserProfile";
+import { AiFillDelete } from "react-icons/ai";
 // components
 import InputPictureSetting from "../settings/components/InputPicture";
 // scss
 import styles from "./scss/editProfile.module.scss";
 import AppButton from "../../components/AppButton";
+import { base64Profile } from "../../public/icons/icon";
 /**
  * edit profile
  */
 const EditProfile = ({ dataProfile, setDataProfile }) => {
+  
   const {
     register,
     handleSubmit,
@@ -65,6 +68,28 @@ const EditProfile = ({ dataProfile, setDataProfile }) => {
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <div className="d-flex justify-content-center mt-3">
         <div className={styles.wrap_all}>
+          <div
+            onClick={() =>
+              updatUserProfile(
+                {
+                  Image: base64Profile,
+                  FK_User: {
+                    first_name: dataProfile.FK_User.first_name,
+                    last_name: dataProfile.FK_User.last_name,
+                  },
+                },
+                setDataProfile
+              )
+            }
+            style={{
+              position: "absolute",
+              top: "-10px",
+              left: "-20px",
+              cursor: "pointer",
+            }}
+          >
+            <AiFillDelete size={25} color="red" />
+          </div>
           <div className={styles.Parent_imageProfile}>
             {imgProfile ? (
               <Image
