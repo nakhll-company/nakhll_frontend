@@ -5,12 +5,12 @@ export const CustomAccordion = ({ children, title, item, callApi }) => {
     let element = document.getElementById(accord);
     if (element.style.height == "0px") {
       element.style.height = "unset";
-      document.getElementById(icon).className = "fas fa-angle-down";
+      document.getElementById(icon).className = "fas fa-angle-up";
     } else {
       element.style.height = "0";
       element.style.overflow = "hidden";
-
-      document.getElementById(icon).className = "fas fa-angle-up";
+      
+      document.getElementById(icon).className = "fas fa-angle-down";
     }
   };
   return (
@@ -41,7 +41,7 @@ export const CustomAccordion = ({ children, title, item, callApi }) => {
               }}
             >
               <span style={{ marginLeft: "auto" }}> {title}</span>
-              <i id={`icon_${item}`} className="fas fa-angle-up"></i>
+              <i id={`icon_${item}`} className="fas fa-angle-down"></i>
             </button>
           </h2>
           <div>
