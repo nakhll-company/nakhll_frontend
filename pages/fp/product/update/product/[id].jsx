@@ -93,7 +93,7 @@ const UpdateProduct = ({ activeHojreh }) => {
           setValue("PreparationDays", Data.PreparationDays);
 
           setPlaceholderSubmarckets(Data.category);
-          setSubmarketId(Data.category.id);
+          setSubmarketId(Data.category?.id);
           // images
           setImgProductOne(Data.Product_Banner[0]?.Image);
           setImgProductTwo(Data.Product_Banner[1]?.Image);
@@ -240,14 +240,18 @@ const UpdateProduct = ({ activeHojreh }) => {
                     <span> دسته فعلی :</span>
                     {"   "}
                     <span className={styles.badge_submarket}>
-                      {placeholderSubmarckets.name}
+                      {placeholderSubmarckets && placeholderSubmarckets.name}
                     </span>
                   </div>
 
                   <>
                     <input
                       className={styles.input_product}
-                      value={placeholderSubmarckets.name}
+                      value={
+                        placeholderSubmarckets
+                          ? placeholderSubmarckets.name
+                          : ""
+                      }
                       id="submark"
                       name="submark"
                       type="text"
@@ -258,7 +262,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                     <div style={{ display: "none" }}>
                       <input
                         className={styles.input_product}
-                        value={placeholderSubmarckets.id}
+                        value={placeholderSubmarckets? placeholderSubmarckets.id:''}
                         id="submark"
                         name="submark"
                         type="text"
