@@ -1,5 +1,3 @@
-
-
 export const ApiReference = {
   Landing_Page: "/api/v1/landing/schema/",
   menu: "/api/v1/markets/",
