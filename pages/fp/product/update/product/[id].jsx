@@ -205,6 +205,7 @@ const UpdateProduct = ({ activeHojreh }) => {
       }
     }
     fetchData();
+    window.HubSpotConversations.widget.remove();
   }, [activeHojreh]);
 
   // select Submarket

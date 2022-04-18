@@ -83,6 +83,7 @@ const CreateProduct = ({ activeHojreh }) => {
       }
     }
     fetchData();
+    window.HubSpotConversations.widget.remove();
   }, [activeHojreh]);
 
   // select Submarket

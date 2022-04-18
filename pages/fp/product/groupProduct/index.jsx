@@ -33,6 +33,7 @@ const PreviewCsv = () => {
     const activeHojreh = useSelector((state) => state.User.activeHojreh);
     const groupProductCsvData = useSelector((state) => state.Product.groupProductCsvData);
     const groupProductCsvHeader = useSelector((state) => state.Product.groupProductCsvHeader);
+    console.log(">>>>",activeHojreh);
 
     return (
         <div className={styles.main_wrapper}>
@@ -98,7 +99,7 @@ const PreviewCsv = () => {
                     </div>
                 </form>
             </div>
-            {file && zipFile &&
+            {false && file && zipFile &&
                 <>
                     <hr className="mb-5" />
                     <div>
@@ -128,7 +129,7 @@ const PreviewCsv = () => {
                     </div>
                 </>
             }
-            {nextStep && <>
+            {false && nextStep && <>
                 <hr className="my-5" />
                 <div>
                     <h2 className="mb-4">مرحله دوم - تصحیح داده های جدول</h2>
@@ -210,6 +211,18 @@ const PreviewCsv = () => {
                     <span>تعداد محصولاتی که جدید ایجاد شده: {showResult.new}</span>
                 </div>
             </>}
+            <div className="d-flex justify-content-around">
+                    <button form="myform" type="submit" id="sumbitButton" className={`${styles.form_buttonSubmit} mx-5`}>ثبت محصولات</button>
+                    <button form="myform" type="button" id="buttonUodo" className={styles.form_buttonSubmit} onClick={() => { undoGroupProducts(activeHojreh) }}>لغو بارگزاری</button>
+                </div>
+                <div className="d-flex flex-column mt-5">
+                    <span>تعداد کل سطرها: {showResult.total_rows}</span>
+                    <span>تعداد ستون های خالی: {showResult.na_rows}</span>
+                    <span>مجموع سطر هایی که نام محصول تکراری است:{" "}
+                        {showResult.slug_duplicate_rows}
+                    </span>
+                    <span>تعداد محصولاتی که جدید ایجاد شده: {showResult.new}</span>
+                </div>
         </div>
     );
 }
