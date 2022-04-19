@@ -11,9 +11,9 @@ import { _updateProducts } from "../../../redux/actions/liveEdit/_updateProducts
 import { _updateTitleColorSubtitle } from "../../../redux/actions/liveEdit/_updateTitleColorSubtitle";
 // style
 import styles from "./Sm_LinerProducts.module.scss";
+import { http } from "../../../services/callApi/api";
 
 function Sm_LinerProducts({ id, data }) {
-
   const dispatch = useDispatch();
   const [toggle, setToggle] = useState(true);
   const [products, setProducts] = useState([]);
@@ -40,11 +40,8 @@ function Sm_LinerProducts({ id, data }) {
       }
 
       if (Object.keys(Queries).length > 1) {
-        let response = await ApiRegister().apiRequest(
-          null,
-          "GET",
+        let response = await http.get(
           "https://nakhll.com/api/v1/products/",
-          false,
           Queries
         );
 

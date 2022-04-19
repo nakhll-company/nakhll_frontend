@@ -1,16 +1,11 @@
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { http } from "../../services/callApi/api";
 import { setToken } from "../../utils/setToken";
 
 export async function setPassword(data) {
     try {
-        let response = await ApiRegister().apiRequest(
-            data,
-            "POST",
-            "/api/v1/profile/set_password/",
-            false, {}
-        );
+        let response = await http.post("/api/v1/profile/set_password/", data);
         if (response.status === 200) {
-            setToken(response.data)
+            setToken(response.data);
 
             return true;
         } else {

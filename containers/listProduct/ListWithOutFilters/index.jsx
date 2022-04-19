@@ -8,6 +8,7 @@ import ProductCard from "../../../components/ProductCart/ProductCard";
 // methods
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
+import { http } from "../../../services/callApi/api";
 
 function ListWitOutFilters({ api }) {
 
@@ -17,13 +18,8 @@ function ListWitOutFilters({ api }) {
   useEffect(() => {
     const _Call_Products = async () => {
       try {
-        let response = await ApiRegister().apiRequest(
-          null,
-          "get",
-          api,
-          false,
-          {}
-        );
+        http.get(api)
+        let response = await http.get(api)
         if (response.status === 200) {
           setlistProducts(response.data);
         }

@@ -9,9 +9,9 @@ import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import { _updateProducts } from "../../../redux/actions/liveEdit/_updateProducts";
 // style
 import st from "./rotationProduct.module.scss";
+import { http } from "../../../services/callApi/api";
 
 function Sm_RotationProducts({ id, data }) {
-
   const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
 
@@ -34,11 +34,8 @@ function Sm_RotationProducts({ id, data }) {
         }
 
         if (Object.keys(Queries).length > 1) {
-          let response = await ApiRegister().apiRequest(
-            null,
-            "GET",
+          let response = await http.get(
             "https://nakhll.com/api/v1/products/",
-            false,
             Queries
           );
 

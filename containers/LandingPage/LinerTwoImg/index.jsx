@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // style
 import styles from "./LinerTwoImg.module.scss";
+import { http } from '../../../services/callApi/api';
 
 function LinerTwoImg({ nextApi_LinerTwoImg }) {
 
@@ -14,6 +15,7 @@ function LinerTwoImg({ nextApi_LinerTwoImg }) {
   useEffect(() => {
     async function fetchData() {
       try {
+        
         let response = await ApiRegister().apiRequest(
           null,
           "get",

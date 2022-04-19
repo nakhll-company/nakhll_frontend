@@ -19,11 +19,11 @@ import MultiRangeSlider from "../../../components/custom/customMultiRangeSlider/
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // styles
 import styles from "./listProductCus.module.scss";
+import { http } from "../../../services/callApi/api";
 
 const _asist = new Assistent();
 
 function ListProductCusTest({ data }) {
-
   const changePage = 1;
   const [pageApi, setPageApi] = useState(2);
   const [hasMore, setHasMore] = useState(false);
@@ -37,24 +37,42 @@ function ListProductCusTest({ data }) {
   const [searchWord, setSearchWord] = useState(data.q ? data.q : "");
   const [isOpenOrderingModal, setIsOpenOrderingModal] = useState(false);
   const [hojreh, setHojreh] = useState(data.shopslug ? data.shopslug : "");
-  const [whichOrdering, setWhichOrdering] = useState(data.ordering ? data.ordering : "");
-  const [minPrice, setMinPrice] = useState(data.min_price ? parseInt(data.min_price) : 0);
-  const [isReadyForSend, setIsReadyForSend] = useState(data.ready == "true" ? true : false);
-  const [isDiscountPercentage, setIsDiscountPercentage] = useState(data.discounted == "true" ? true : false);
-  const [isAvailableGoods, setIsAvailableGoods] = useState(data.available == "true" ? true : false);
-  const [categories, setCategories] = useState([...(data.category ? data.category.split(",").map((el) => parseInt(el)) : []),]);
-  const [wantCategories, setWantCategories] = useState([...(data.category ? data.category.split(",").map((el) => parseInt(el)) : []),]);
-  const [checkedCity, setCheckedCity] = useState([...(data.city ? data.city.split(",").map((el) => parseInt(el)) : []),]);
-  const [maxPrice, setMaxPrice] = useState(data.max_price ? parseInt(data.max_price) : 10000);
+  const [whichOrdering, setWhichOrdering] = useState(
+    data.ordering ? data.ordering : ""
+  );
+  const [minPrice, setMinPrice] = useState(
+    data.min_price ? parseInt(data.min_price) : 0
+  );
+  const [isReadyForSend, setIsReadyForSend] = useState(
+    data.ready == "true" ? true : false
+  );
+  const [isDiscountPercentage, setIsDiscountPercentage] = useState(
+    data.discounted == "true" ? true : false
+  );
+  const [isAvailableGoods, setIsAvailableGoods] = useState(
+    data.available == "true" ? true : false
+  );
+  const [categories, setCategories] = useState([
+    ...(data.category
+      ? data.category.split(",").map((el) => parseInt(el))
+      : []),
+  ]);
+  const [wantCategories, setWantCategories] = useState([
+    ...(data.category
+      ? data.category.split(",").map((el) => parseInt(el))
+      : []),
+  ]);
+  const [checkedCity, setCheckedCity] = useState([
+    ...(data.city ? data.city.split(",").map((el) => parseInt(el)) : []),
+  ]);
+  const [maxPrice, setMaxPrice] = useState(
+    data.max_price ? parseInt(data.max_price) : 10000
+  );
 
   const _handel_category = async () => {
     try {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        `/api/v1/categories/category_product_count/?q=${searchWord}&shop=${hojreh}`,
-        true,
-        {}
+      let response = await http.get(
+        `/api/v1/categories/category_product_count/?q=${searchWord}&shop=${hojreh}`
       );
       if (response.status === 200) {
         setCategories(response.data);
@@ -78,29 +96,23 @@ function ListProductCusTest({ data }) {
 
   const _handel_call_another_page_api = async (witchFilter) => {
     try {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        `/api/v1/products/`,
-        false,
-        {
-          ...(witchFilter ? witchFilter : null),
-          search: searchWord,
-          ...(whichOrdering !== "" && { ordering: whichOrdering }),
-          page: pageApi,
-          ...(isReadyForSend && { ready: isReadyForSend }),
-          ...(isAvailableGoods && { available: isAvailableGoods }),
-          ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
-          ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
-          ...(wantCategories.length > 0 && {
-            category: wantCategories.toString(),
-          }),
-          page_size: 50,
-          ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
-          ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
-          ...(hojreh !== "" && { shop: hojreh }),
-        }
-      );
+      let response = await http.get(`/api/v1/products/`, {
+        ...(witchFilter ? witchFilter : null),
+        search: searchWord,
+        ...(whichOrdering !== "" && { ordering: whichOrdering }),
+        page: pageApi,
+        ...(isReadyForSend && { ready: isReadyForSend }),
+        ...(isAvailableGoods && { available: isAvailableGoods }),
+        ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
+        ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
+        ...(wantCategories.length > 0 && {
+          category: wantCategories.toString(),
+        }),
+        page_size: 50,
+        ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
+        ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
+        ...(hojreh !== "" && { shop: hojreh }),
+      });
       if (response.status === 200) {
         const ContinueList = response.data.results;
 
@@ -146,13 +158,7 @@ function ListProductCusTest({ data }) {
         };
 
         try {
-          let response = await ApiRegister().apiRequest(
-            null,
-            "get",
-            `/api/v1/products/`,
-            false,
-            params
-          );
+          let response = await http.get(`/api/v1/products/`, params);
           if (response.status === 200) {
             setListWithFilter(response.data.results);
             setNameHojreh(response.data.results[0].FK_Shop.title);

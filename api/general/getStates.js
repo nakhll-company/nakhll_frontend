@@ -1,13 +1,8 @@
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { http } from "../../services/callApi/api";
 // api state
-export const getStates = async () => {
+export const getStates = async() => {
     try {
-        let response = await ApiRegister().apiRequest(
-            null,
-            "get",
-            "/api/v1/get-all-state/",
-            false, {}
-        );
+        let response = await http.get("/api/v1/get-all-state/");
         if (response.status === 200) {
             return response.data;
         }

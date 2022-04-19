@@ -24,6 +24,7 @@ import OrderingModalMobile from "./components/OrderingModalMobile";
 import SearchProduct from "./components/searchProduct";
 import { useSelector } from "react-redux";
 import Grouping from "../../searchPage/Grouping";
+import { http } from "../../../services/callApi/api";
 
 const _asist = new Assistent();
 
@@ -87,13 +88,8 @@ function ListProductCus({ data }) {
   const call_tags = async (activeHojreh) => {
     try {
       let dataUrl = `/api/v1/shop/${activeHojreh}/tags/`;
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        dataUrl,
-        true,
-        null
-      );
+
+      let response = await http.get(dataUrl);
       if (response.status < 300) {
         setTags(response.data);
       }
@@ -174,13 +170,7 @@ function ListProductCus({ data }) {
   // Get all shops
   const _get_all_shops = async () => {
     if (shopsName.length == 0) {
-      let shops = await ApiRegister().apiRequest(
-        null,
-        "GET",
-        ApiReference.allShops,
-        false,
-        ""
-      );
+      let shops = await http.get(ApiReference.allShops);
 
       if (shops.status === 200) {
         setShopsName(shops.data);
@@ -256,13 +246,7 @@ function ListProductCus({ data }) {
         };
 
         try {
-          let response = await ApiRegister().apiRequest(
-            null,
-            "get",
-            `/api/v1/products/`,
-            false,
-            params
-          );
+          let response = await http.get(`/api/v1/products/`, params);
           if (response.status === 200) {
             setListWithFilter(response.data.results);
             setNameHojreh(response.data.results[0].FK_Shop.title);
@@ -499,9 +483,7 @@ function ListProductCus({ data }) {
               handel_OrderingModal={handel_OrderingModal}
             />
             {/* inja */}
-            <div
-             
-            >
+            <div>
               {hojreh !== "" && (
                 <SearchProduct
                   setSearchWord={setSearchWord}
