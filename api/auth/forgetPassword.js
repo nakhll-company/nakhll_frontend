@@ -1,13 +1,12 @@
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { http } from "../../services/callApi/api";
 
 export async function forgetPassword() {
     try {
         let mobile = sessionStorage.getItem("mobile");
-        let response = await ApiRegister().apiRequest({ mobile: mobile },
-            "POST",
-            "/api/v1/auth/begin/forgot_password/",
-            false, {}
-        );
+        let response = await http.post("/api/v1/auth/begin/forgot_password/", {
+            mobile: mobile,
+        });
         if (response.status === 201) {
             sessionStorage.setItem("login", JSON.stringify(response.data));
             return true;

@@ -10,28 +10,39 @@ import Video from "../../../containers/LandingPage/Video";
 import AboutMe from "../../../containers/LandingPage/AboutMe";
 import VipProducts from "../../../containers/LandingPage/VipProducts";
 import LinearShopsCart from "../../../containers/LandingPage/linearShopsCart";
-const DynamicEnfoLiner = dynamic(() => import("../../../containers/hojreh/EnfoLiner"));
-const DynamicHeroSlides = dynamic(() => import("../../../containers/LandingPage/HeroSlides"));
-const DynamicLinerOneImg = dynamic(() => import("../../../containers/LandingPage/LinerOneImg"));
-const DynamicLinerTwoImgSm = dynamic(() => import("../../../containers/LandingPage/LinerTwoImgSm"));
-const DynamicLinerThreeImg = dynamic(() => import("../../../containers/LandingPage/LinerThreeImg"));
-const DynamicLinerProducts = dynamic(() => import("../../../containers/LandingPage/LinerProducts"));
-const DynamicLinerFourImgMobile = dynamic(() => import("../../../containers/LandingPage/LinerFourImgMobile"));
-const DynamicListProductCusTest = dynamic(() => import("../../../containers/listProduct/listProductCusTest"));
+const DynamicEnfoLiner = dynamic(() =>
+  import("../../../containers/hojreh/EnfoLiner")
+);
+const DynamicHeroSlides = dynamic(() =>
+  import("../../../containers/LandingPage/HeroSlides")
+);
+const DynamicLinerOneImg = dynamic(() =>
+  import("../../../containers/LandingPage/LinerOneImg")
+);
+const DynamicLinerTwoImgSm = dynamic(() =>
+  import("../../../containers/LandingPage/LinerTwoImgSm")
+);
+const DynamicLinerThreeImg = dynamic(() =>
+  import("../../../containers/LandingPage/LinerThreeImg")
+);
+const DynamicLinerProducts = dynamic(() =>
+  import("../../../containers/LandingPage/LinerProducts")
+);
+const DynamicLinerFourImgMobile = dynamic(() =>
+  import("../../../containers/LandingPage/LinerFourImgMobile")
+);
+const DynamicListProductCusTest = dynamic(() =>
+  import("../../../containers/listProduct/listProductCusTest")
+);
 // methods
 import { ApiReference } from "../../../api/Api";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+import { http } from "../../../services/callApi/api";
 
 // fetch data
 const fetchData = async (id) => {
   let Api_Shop = encodeURI(`${ApiReference.shop}${id}/`);
-  let response = await ApiRegister().apiRequest(
-    null,
-    "GET",
-    Api_Shop,
-    false,
-    ""
-  );
+
+  let response = await http.get(Api_Shop);
 
   if (response.status === 200) {
     return {
@@ -150,7 +161,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       data: context.query,
-      dataShop
+      dataShop,
     },
   };
 }
