@@ -1,9 +1,11 @@
 import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { http } from "../../services/callApi/api";
 
 export const _ApiGetCategories = async() => {
     let params = null;
     let loadData = null;
     let dataUrl = "/api/v1/categories/";
+    // http.get(dataUrl)
     let response = await ApiRegister().apiRequest(
         loadData,
         "get",

@@ -18,7 +18,6 @@ import { getActiveHojreh } from "../../redux/actions/user/getActiveHojreh";
 import styles from "../../styles/components/layout/layout.module.scss";
 
 function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
-
   const breakpoint = 620;
   const router = useRouter();
   const { width } = useViewport();
@@ -63,13 +62,6 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
           integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
           crossOrigin="anonymous"
         />
-
-        <link
-          rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
-          integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
-          crossOrigin="anonymous"
-        ></link>
       </Head>
 
       {width > breakpoint && (
@@ -206,10 +198,11 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
       )}
 
       <div
-        className={`${width < breakpoint && router.pathname !== "/"
-          ? styles.wrapperProduct
-          : styles.wrapper
-          }`}
+        className={`${
+          width < breakpoint && router.pathname !== "/"
+            ? styles.wrapperProduct
+            : styles.wrapper
+        }`}
       >
         {/* <!-- Right  SideBar--> */}
         {!(width < breakpoint && router.pathname !== "/fp") && (
@@ -217,7 +210,18 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
             <section className={styles.info_card}>
               <div className={styles.info_card_pic}>
                 <div className={styles.info_card_pic_person}>
-                  {(userInfo && userInfo.shops && userInfo.shops.length > 0 && userInfo.shops[0].image_thumbnail_url) ? <Image src={userInfo.shops[0].image_thumbnail_url} layout="fill" alt="" /> : <Image src="/image/picprofile.png" layout="fill" alt="" />}
+                  {userInfo &&
+                  userInfo.shops &&
+                  userInfo.shops.length > 0 &&
+                  userInfo.shops[0].image_thumbnail_url ? (
+                    <Image
+                      src={userInfo.shops[0].image_thumbnail_url}
+                      layout="fill"
+                      alt=""
+                    />
+                  ) : (
+                    <Image src="/image/picprofile.png" layout="fill" alt="" />
+                  )}
                 </div>
               </div>
               <div className={styles.info_cardH}>
@@ -266,10 +270,11 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                 <Link href="/fp/setting">
                   <a>
                     <div
-                      className={`${router.pathname == "/fp/setting"
-                        ? styles.ActiveMenuBarBig
-                        : ""
-                        }   ${styles.info_card_btn_one} ${styles.forhover}`}
+                      className={`${
+                        router.pathname == "/fp/setting"
+                          ? styles.ActiveMenuBarBig
+                          : ""
+                      }   ${styles.info_card_btn_one} ${styles.forhover}`}
                     >
                       <i
                         style={{ fontSize: "20px" }}
@@ -314,8 +319,8 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
               <Link href={`/fp`}>
                 <a>
                   <span
-                    className={`${styles.menu_card_item} ${router.pathname == "/fp" && styles.selectNav
-                      } mt-5 mb-4`}
+                    className={`${styles.menu_card_item} ${router.pathname ==
+                      "/fp" && styles.selectNav} mt-5 mb-4`}
                   >
                     <i
                       style={{
@@ -433,9 +438,10 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                           alignItems: "center",
                           cursor: "pointer",
                         }}
-                        className={`${styles.subTitleOrder}   ${router.pathname === "/fp/order/completed" &&
-                          styles.selectNav
-                          }`}
+                        className={`${
+                          styles.subTitleOrder
+                        }   ${router.pathname === "/fp/order/completed" &&
+                          styles.selectNav}`}
                       >
                         {/* <span
                         style={{ marginLeft: "18px" }}
@@ -463,9 +469,8 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                           marginBottom: "15px",
                           cursor: "pointer",
                         }}
-                        className={`${styles.subTitleOrder} ${router.pathname == "/fp/order/uncompleted" &&
-                          styles.selectNav
-                          }`}
+                        className={`${styles.subTitleOrder} ${router.pathname ==
+                          "/fp/order/uncompleted" && styles.selectNav}`}
                       >
                         {/* <span
                         style={{ marginLeft: "18px" }}
@@ -489,8 +494,8 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
               <Link href="/fp/product">
                 <a>
                   <span
-                    className={`${styles.menu_card_item} ${router.pathname == "/fp/product" && styles.selectNav
-                      }`}
+                    className={`${styles.menu_card_item} ${router.pathname ==
+                      "/fp/product" && styles.selectNav}`}
                   >
                     <i
                       style={{
@@ -512,8 +517,8 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                 </a>
               </Link>
               <span
-                className={`mt-3 ${styles.menu_card_item} ${router.pathname == "/fp/options" && styles.selectNav
-                  }`}
+                className={`mt-3 ${styles.menu_card_item} ${router.pathname ==
+                  "/fp/options" && styles.selectNav}`}
                 onClick={() => {
                   if (
                     document.querySelector("#options").style.display === "block"
@@ -555,7 +560,11 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                     return (
                       <li key={index}>
                         <Link
-                          href={value.name === "صفحه فرود" ? `/fp/options/landing/detail?id=${value.id}` : "/fp/options/ads"}
+                          href={
+                            value.name === "صفحه فرود"
+                              ? `/fp/options/landing/detail?id=${value.id}`
+                              : "/fp/options/ads"
+                          }
                         >
                           <a>{value.name}</a>
                         </Link>
@@ -571,8 +580,9 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
         )}
         {/* <!-- Left --> */}
         <div
-          className={`${router.pathname == "/" ? styles.left : styles.leftProduct
-            }`}
+          className={`${
+            router.pathname == "/" ? styles.left : styles.leftProduct
+          }`}
         >
           {children}
         </div>

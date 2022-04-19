@@ -17,6 +17,7 @@ const DynamicHeroSlides = dynamic(() =>
 // methods
 import { ApiReference } from "../api/Api";
 import { ApiRegister } from "../services/apiRegister/ApiRegister";
+import { http } from "../services/callApi/api";
 
 // fetch data
 const fetchData = async () => {
@@ -24,23 +25,18 @@ const fetchData = async () => {
   let all_type_for_component = [];
   let urlSchema = encodeURI(ApiReference.Landing_Page);
 
-  let Schema = await ApiRegister().apiRequest(
-    null,
-    "GET",
-    urlSchema,
-    false,
-    ""
-  );
+  let Schema = await http.get(urlSchema);
 
   if (Schema.status === 200) {
     for (let index = 0; index < Schema.data.length; index++) {
-      let one_Component = await ApiRegister().apiRequest(
-        null,
-        "GET",
-        Schema.data[index].data,
-        false,
-        ""
-      );
+      let one_Component = await http.get(Schema.data[index].data)
+      // let one_Component = await ApiRegister().apiRequest(
+      //   null,
+      //   "GET",
+      //   Schema.data[index].data,
+      //   false,
+      //   ""
+      // );
       if (one_Component.status === 200) {
         all_type_for_component.push(Schema.data[index].component_type);
         all_data_for_component.push(one_Component.data);
@@ -151,7 +147,9 @@ const HomePage = ({ data }) => {
         />
         <link rel="canonical" href="https://nakhll.com/" />
       </Head>
-      {data && data.SchemaIn && data.SchemaIn.length > 0 &&
+      {data &&
+        data.SchemaIn &&
+        data.SchemaIn.length > 0 &&
         data.SchemaIn.map((turn, index) =>
           _handel_select_component(turn, index)
         )}
@@ -163,7 +161,6 @@ export default HomePage;
 
 // function server side
 export async function getServerSideProps() {
-
   const data = await fetchData();
 
   return {
