@@ -56,6 +56,11 @@ const ProductDetailMobile = ({ data }) => {
     }
     fetchData();
   }, []);
+  // useEffect(() => {
+  //   if (window.HubSpotConversations) {
+  //     window.HubSpotConversations.widget.remove();
+  //   }
+  // });
 
   return (
     <div className={styles.wrapper}>
