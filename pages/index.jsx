@@ -1,8 +1,9 @@
 // node libraries
-import React from "react";
+import React, { useEffect } from "react";
 import Head from "next/head";
 import { NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
+
 // components
 import ShopLayout from "../components/shopLayout";
 import LinerOneImg from "../containers/LandingPage/LinerOneImg";
@@ -29,8 +30,8 @@ const fetchData = async () => {
 
   if (Schema.status === 200) {
     for (let index = 0; index < Schema.data.length; index++) {
-      let one_Component = await http.get(Schema.data[index].data)
-      
+      let one_Component = await http.get(Schema.data[index].data);
+
       if (one_Component.status === 200) {
         all_type_for_component.push(Schema.data[index].component_type);
         all_data_for_component.push(one_Component.data);
@@ -129,7 +130,7 @@ const HomePage = ({ data }) => {
     description:
       "نخل سرزمینی است برای یادآوری سنت‌های اصیل ایرانی‌مان، برای شکوفایی استعدادها و بهتر دیده‌شدن‌تان، کالاها و خدمات خود را در سرزمین نخل به اشتراک بگذارید. اینجا راهی برای پیشبرد هدف‌هایتان وجود دارد.",
   };
-
+  
   return (
     <>
       <NextSeo {...SEO} />

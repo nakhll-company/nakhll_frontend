@@ -1,16 +1,16 @@
 import * as Types from "../../types/user"; // constants
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // action of accounting list
-export const getUserInfo = () => async (dispatch) => {
+export const getUserInfo = () => async(dispatch) => {
+
     // try
     try {
-        const getProduct = async () => {
+        const getProduct = async() => {
             let response = await ApiRegister().apiRequest(
                 null,
                 "get",
                 "/api/v1/get-user-info/",
-                true,
-                {}
+                true, {}
             );
             return response;
         };
