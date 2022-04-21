@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 // components
 import ShopCart from "../../../components/ui/shopCart";
 // methods
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import { http } from "../../../services/callApi/api";
 // style
 import styles from "./HeroSlides.module.scss";

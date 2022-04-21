@@ -9,9 +9,9 @@ import MobileHeader from "../../../../../components/mobileHeader";
 // methods
 import { successMessage } from "../../../../../utils/toastifyMessage";
 import { mapState } from "../../../../../containers/product/methods/mapState";
-import { ApiRegister } from "../../../../../services/apiRegister/ApiRegister";
 // scss
 import styles from "../../../../../styles/pages/product/editInventory.module.scss";
+import { authhttp } from "../../../../../services/callApi/api";
 
 const Inventory = ({ productList }) => {
   const {
@@ -35,13 +35,7 @@ const Inventory = ({ productList }) => {
       }
     });
 
-    let response = await ApiRegister().apiRequest(
-      objArray,
-      "PATCH",
-      `/api/v1/shop/multiple-update/inventory/`,
-      true,
-      {}
-    );
+    let response = await authhttp.patch(`/api/v1/shop/multiple-update/inventory/`,objArray) 
     if (response.status === 200) {
       successMessage("داده ها با موفقیت ثبت شده اند");
     }

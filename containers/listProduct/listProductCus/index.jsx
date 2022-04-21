@@ -17,7 +17,6 @@ import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoadin
 import MultiRangeSlider from "../../../components/custom/customMultiRangeSlider/MultiRangeSlider";
 // methods
 import { ApiReference } from "../../../api/Api";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 // styles
 import styles from "./listProductCus.module.scss";
 import OrderingModalMobile from "./components/OrderingModalMobile";
@@ -126,32 +125,26 @@ function ListProductCus({ data }) {
 
   const _handel_call_another_page_api = async (witchFilter) => {
     try {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        `/api/v1/products/`,
-        false,
-        {
-          ...(witchFilter ? witchFilter : null),
-          search: searchWord,
-          ...(whichOrdering !== "" && { ordering: whichOrdering }),
-          page: pageApi,
-          ...(isReadyForSend && { ready: isReadyForSend }),
-          ...(isAvailableGoods && { available: isAvailableGoods }),
-          ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
-          ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
-          ...(wantCategories.length > 0 && {
-            category: wantCategories.toString(),
-          }),
-          ...(wantTags.length > 0 && {
-            tags: wantTags.toString(),
-          }),
-          page_size: 50,
-          ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
-          ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
-          ...(hojreh !== "" && { shop: hojreh }),
-        }
-      );
+      let response = await http.get(`/api/v1/products/`, {
+        ...(witchFilter ? witchFilter : null),
+        search: searchWord,
+        ...(whichOrdering !== "" && { ordering: whichOrdering }),
+        page: pageApi,
+        ...(isReadyForSend && { ready: isReadyForSend }),
+        ...(isAvailableGoods && { available: isAvailableGoods }),
+        ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
+        ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
+        ...(wantCategories.length > 0 && {
+          category: wantCategories.toString(),
+        }),
+        ...(wantTags.length > 0 && {
+          tags: wantTags.toString(),
+        }),
+        page_size: 50,
+        ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
+        ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
+        ...(hojreh !== "" && { shop: hojreh }),
+      });
       if (response.status === 200) {
         const ContinueList = response.data.results;
 

@@ -3,9 +3,9 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 // methods
 import { successMessage } from "../../../../utils/toastifyMessage";
-import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 // scss
 import styles from "./groupProduct.module.scss";
+import { authhttp } from "../../../../services/callApi/api";
 
 const GroupProduct = () => {
   const [showResult, setShowResult] = useState({
@@ -19,25 +19,26 @@ const GroupProduct = () => {
 
   return (
     <div className={styles.main_wrapper}>
-      <form onSubmit={async (event) => {
-        event.preventDefault();
-        let excel = document.getElementById('productExcelUpload').files[0];
-        let zipFile = document.getElementById('productZipFile').files[0];
-        let data = new FormData();
-        data.append('product-excel-upload', excel);
-        data.append('product-zip-file', zipFile);
-        successMessage('درحال بارگزاری محصولات...')
-        let response = await ApiRegister().apiRequest(
-          data, "post",
-          `/api/v1/product/group-update/${activeHojreh}/`,
-          true, {}
-        );
-        if (response.status === 200) {
-          successMessage("محصول با موفقیت بارگزاری شد");
-          setShowResult(response.data);
-
-        }
-      }} className="d-flex flex-column align-items-center">
+      <form
+        onSubmit={async (event) => {
+          event.preventDefault();
+          let excel = document.getElementById("productExcelUpload").files[0];
+          let zipFile = document.getElementById("productZipFile").files[0];
+          let data = new FormData();
+          data.append("product-excel-upload", excel);
+          data.append("product-zip-file", zipFile);
+          successMessage("درحال بارگزاری محصولات...");
+          let response = await authhttp.post(
+            `/api/v1/product/group-update/${activeHojreh}/`,
+            data
+          );
+          if (response.status === 200) {
+            successMessage("محصول با موفقیت بارگزاری شد");
+            setShowResult(response.data);
+          }
+        }}
+        className="d-flex flex-column align-items-center"
+      >
         <div className="mt-4" name="mainPhoto">
           <div className={styles.product_image_container}>
             <h6>لطفا فایل مورد نظر خود را وارد نمایید</h6>
@@ -95,11 +96,8 @@ const GroupProduct = () => {
             className={styles.form_buttonSubmit}
             style={{ fontSize: "18px", width: "200px" }}
             onClick={async () => {
-              let response = await ApiRegister().apiRequest(
-                null,
-                "get",
-                `/api/v1/product/group-undo/${activeHojreh}/`,
-                true, {}
+              let response = await authhttp.get(
+                `/api/v1/product/group-undo/${activeHojreh}/`
               );
               if (response.status === 200) {
                 successMessage("درخواست لغو بارگزاری با موفقیت ارسال شد");

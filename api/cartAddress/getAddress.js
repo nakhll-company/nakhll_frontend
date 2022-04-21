@@ -1,14 +1,8 @@
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { authhttp } from "../../services/callApi/api";
 // get address of user
 export async function getAddress(setAddress) {
     try {
-        let response = await ApiRegister().apiRequest(
-            null,
-            "GET",
-            "/api/v1/logistic/addresses/",
-            true,
-            ""
-        );
+        let response = await authhttp.get("/api/v1/logistic/addresses/");
         if (response.status === 200) {
             setAddress(response.data);
         }

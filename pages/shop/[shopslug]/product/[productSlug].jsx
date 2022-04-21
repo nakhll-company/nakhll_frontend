@@ -7,7 +7,6 @@ import ShopLayout from "../../../../components/shopLayout";
 import ProductDetailMobile from "../../../../containers/productDetail/mobile";
 import ProductDetailDesktop from "../../../../containers/productDetail/desktop";
 // methods
-import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 import { http } from "../../../../services/callApi/api";
 
 // fetch data

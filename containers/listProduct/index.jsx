@@ -13,7 +13,6 @@ import CustomAccordion from "../../components/custom/customAccordion";
 import MultiRangeSlider from "../../components/custom/customMultiRangeSlider/MultiRangeSlider";
 // methods
 import { allCites } from "../../utils/allCities";
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { WoLoading } from "../../components/custom/Loading/woLoading/WoLoading";
 // style
 import styles from "./listProduct.module.scss";

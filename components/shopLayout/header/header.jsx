@@ -19,7 +19,6 @@ import {
 } from "../../../api/header";
 // style
 import styles from "./header.module.scss";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import rot13 from "../../../utils/rout13";
 import { clearTokenStorage } from "../../../api/general/clearTokenStorage";
 import { http } from "../../../services/callApi/api";

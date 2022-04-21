@@ -3,8 +3,8 @@ import Image from "next/image";
 import { useState, useEffect, Fragment } from "react";
 // components
 import ProductCart from "../../components/ProductCart/ProductCard";
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
-import { errorMessage, successMessage } from "../../utils/toastifyMessage";
+import { authhttp } from "../../services/callApi/api";
+import { errorMessage } from "../../utils/toastifyMessage";
 // methods
 import { getFavoritesList } from "./methods/getFavoritesList";
 // scss
@@ -27,12 +27,8 @@ const FavoritesList = () => {
   }, []);
 
   const deletProduct = async (idProduct) => {
-    let response = await ApiRegister().apiRequest(
-      null,
-      "DELETE",
-      `/api/v1/lists/favorites/${idProduct}/remove/`,
-      true,
-      {}
+    let response = await authhttp.delete(
+      `/api/v1/lists/favorites/${idProduct}/remove/`
     );
     if (response.status === 204) {
       fetch();

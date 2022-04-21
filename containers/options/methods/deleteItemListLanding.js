@@ -1,22 +1,14 @@
 import { successMessage } from "../../../utils/toastifyMessage";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+import { authhttp } from "../../../services/callApi/api";
 
 export async function deleteItemListLanding(id, activeHojreh, setLandingList) {
-    let response = await ApiRegister().apiRequest(
-        null,
-        "DELETE",
-        `/api/v1/shop/landings/${activeHojreh}/${id}/`,
-        true, {}
+    let response = await authhttp.delete(
+        `/api/v1/shop/landings/${activeHojreh}/${id}/`
     );
 
     if (response.status === 204) {
         successMessage("این مورد حذف شد");
-        let result = await ApiRegister().apiRequest(
-            null,
-            "get",
-            `/api/v1/shop/landings/${activeHojreh}/`,
-            true, {}
-        );
+        let result = await authhttp.get(`/api/v1/shop/landings/${activeHojreh}/`);
 
         if (result.status === 200) {
             setLandingList(await result.data);

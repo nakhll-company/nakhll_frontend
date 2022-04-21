@@ -15,8 +15,7 @@ import ProductCard from "../../../components/ProductCart/ProductCard";
 import CustomAccordion from "../../../components/custom/customAccordion";
 import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
 import MultiRangeSlider from "../../../components/custom/customMultiRangeSlider/MultiRangeSlider";
-// methods
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+
 // styles
 import styles from "./listProductCus.module.scss";
 import { http } from "../../../services/callApi/api";

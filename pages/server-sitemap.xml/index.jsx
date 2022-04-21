@@ -1,5 +1,4 @@
 import { getServerSideSitemap } from "next-sitemap";
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { http } from "../../services/callApi/api";
 
 export const getServerSideProps = async (ctx) => {

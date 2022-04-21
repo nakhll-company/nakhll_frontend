@@ -1,5 +1,4 @@
 import { ApiReference } from "../../api/Api";
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { http } from "../../services/callApi/api";
 
 export const _call_Category = async() => {

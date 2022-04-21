@@ -1,4 +1,3 @@
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { http } from "../../services/callApi/api";
 
 export async function forgetPassword() {

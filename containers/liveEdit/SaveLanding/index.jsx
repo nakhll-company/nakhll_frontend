@@ -4,17 +4,15 @@ import { useSelector } from "react-redux";
 // methods
 import { ApiReference } from "../../../api/Api";
 import { _updateUrl } from "../../../redux/actions/liveEdit/_updateUrl";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import { _showSelect_url } from "../../../redux/actions/liveEdit/_showSelect_url";
 // styles
 import styles from "./SaveLanding.module.scss";
+import { authhttp } from "../../../services/callApi/api";
 
 function SaveLanding({ setOpenSaveLanding, idLanding }) {
-
   const landing = useSelector((state) => state.allDataLanding);
   const [inputName, setInputName] = useState("");
   let apiUpdateLanding = `${ApiReference.landing.update.url}${idLanding[0]}/${idLanding[1]}/`;
-
 
   let ansapi = {
     name: inputName !== "" ? inputName : "بدون عنوان",
@@ -23,13 +21,7 @@ function SaveLanding({ setOpenSaveLanding, idLanding }) {
   };
 
   const _handel_update_landing = async () => {
-    let response = await ApiRegister().apiRequest(
-      ansapi,
-      "PUT",
-      apiUpdateLanding,
-      true,
-      ""
-    );
+    let response = await authhttp.put(apiUpdateLanding, ansapi);
 
     setInputName("");
     setOpenSaveLanding(false);

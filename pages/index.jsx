@@ -17,7 +17,6 @@ const DynamicHeroSlides = dynamic(() =>
 );
 // methods
 import { ApiReference } from "../api/Api";
-import { ApiRegister } from "../services/apiRegister/ApiRegister";
 import { http } from "../services/callApi/api";
 
 // fetch data

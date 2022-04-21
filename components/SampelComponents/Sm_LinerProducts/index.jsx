@@ -6,7 +6,6 @@ import Sm_product from "../Sm_product";
 import InputUrl from "../../../containers/liveEdit/InputUrl";
 // methods
 import { _selectId } from "../../../redux/actions/liveEdit/_selectId";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import { _updateProducts } from "../../../redux/actions/liveEdit/_updateProducts";
 import { _updateTitleColorSubtitle } from "../../../redux/actions/liveEdit/_updateTitleColorSubtitle";
 // style

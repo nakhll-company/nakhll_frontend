@@ -5,17 +5,16 @@ import Assistent from "zaravand-assistent-number";
 // component
 import CustomSwitch from "../../components/custom/customSwitch";
 // methods
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { deleteItemListLanding } from "./methods/deleteItemListLanding";
 import { activeListItemLanding } from "./methods/activeListItemLanding";
 import { deActiveListItemLanding } from "./methods/deActiveListItemLanding";
 // scss
 import styles from "./scss/desktopLanding.module.scss";
+import { authhttp } from "../../services/callApi/api";
 
 const _asist = new Assistent();
 
 const DesktopLanding = ({ landingList, activeHojreh, setLandingList }) => {
-
   const router = useRouter();
 
   return (
@@ -25,16 +24,13 @@ const DesktopLanding = ({ landingList, activeHojreh, setLandingList }) => {
         <span
           className={styles.link_add}
           onClick={async () => {
-            let response = await ApiRegister().apiRequest(
+            let response = await authhttp.post(
+              `/api/v1/shop/landings/${activeHojreh}/`,
               {
                 name: "صفحه بدون نام",
                 page_data: "",
                 shop: activeHojreh,
-              },
-              "post",
-              `/api/v1/shop/landings/${activeHojreh}/`,
-              true,
-              ""
+              }
             );
             if (response.status === 201) {
               router.push(`/liveEdit/${activeHojreh}/${response.data.id}`);
@@ -84,7 +80,7 @@ const DesktopLanding = ({ landingList, activeHojreh, setLandingList }) => {
                             router
                           );
                       }}
-                      onChange={() => { }}
+                      onChange={() => {}}
                       id={value.id}
                     />
                   </td>
@@ -99,7 +95,9 @@ const DesktopLanding = ({ landingList, activeHojreh, setLandingList }) => {
                     </Link>
                   </td>
                   <td>
-                    <Link href={`/liveEdit/preview/${activeHojreh}/${value.id}`}>
+                    <Link
+                      href={`/liveEdit/preview/${activeHojreh}/${value.id}`}
+                    >
                       <a>
                         <i className="fas fa-eye"></i>
                       </a>

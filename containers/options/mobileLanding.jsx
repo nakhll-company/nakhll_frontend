@@ -7,12 +7,12 @@ import MobileHeader from "../../components/mobileHeader";
 import CustomLabel from "../../components/custom/customLabel";
 import CustomSwitch from "../../components/custom/customSwitch";
 // methods
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { deleteItemListLanding } from "./methods/deleteItemListLanding";
 import { activeListItemLanding } from "./methods/activeListItemLanding";
 import { deActiveListItemLanding } from "./methods/deActiveListItemLanding";
 // scss
 import styles from "./scss/mobileLanding.module.scss";
+import { authhttp } from "../../services/callApi/api";
 
 const _asist = new Assistent();
 
@@ -26,16 +26,13 @@ const MobileLanding = ({ landingList, activeHojreh, setLandingList }) => {
           <span
             className={styles.link_add}
             onClick={async () => {
-              let response = await ApiRegister().apiRequest(
+              let response = await authhttp.post(
+                `/api/v1/shop/landings/${activeHojreh}/`,
                 {
                   name: "صفحه بدون نام",
                   page_data: "",
                   shop: activeHojreh,
-                },
-                "post",
-                `/api/v1/shop/landings/${activeHojreh}/`,
-                true,
-                ""
+                }
               );
               if (response.status === 201) {
                 router.push(`/liveEdit/${activeHojreh}/${response.data.id}`);
@@ -71,10 +68,8 @@ const MobileLanding = ({ landingList, activeHojreh, setLandingList }) => {
                         label="شماره"
                       />
                       <CustomSwitch
-                        checked={
-                          value.status === "active" ? true : false
-                        }
-                        onChange={() => { }}
+                        checked={value.status === "active" ? true : false}
+                        onChange={() => {}}
                         id="active"
                       />
                     </div>
@@ -93,7 +88,9 @@ const MobileLanding = ({ landingList, activeHojreh, setLandingList }) => {
                           ></i>
                         </a>
                       </Link>
-                      <Link href={`/liveEdit/preview/${activeHojreh}/${value.id}`}>
+                      <Link
+                        href={`/liveEdit/preview/${activeHojreh}/${value.id}`}
+                      >
                         <a>
                           <i
                             style={{ fontSize: "18px" }}

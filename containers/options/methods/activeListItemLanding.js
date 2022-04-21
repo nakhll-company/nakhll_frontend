@@ -1,4 +1,4 @@
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+import { authhttp } from "../../../services/callApi/api";
 
 export async function activeListItemLanding(
     id,
@@ -6,20 +6,12 @@ export async function activeListItemLanding(
     router,
     setLandingList
 ) {
-    let response = await ApiRegister().apiRequest(
-        null,
-        "GET",
-        `/api/v1/shop/landings/${activeHojreh}/${id}/activate_landing/`,
-        true, {}
+    let response = await authhttp.get(
+        `/api/v1/shop/landings/${activeHojreh}/${id}/activate_landing/`
     );
 
     if (response.status === 200) {
-        let result = await ApiRegister().apiRequest(
-            null,
-            "get",
-            `/api/v1/shop/landings/${activeHojreh}/`,
-            true, {}
-        );
+        let result = await authhttp.get(`/api/v1/shop/landings/${activeHojreh}/`);
 
         if (result.status === 200) {
             await setLandingList(result.data);

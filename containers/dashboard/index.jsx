@@ -5,14 +5,21 @@ import { connect } from "react-redux";
 import { useEffect, useState } from "react";
 import Assistent from "zaravand-assistent-number";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { EffectFade, Autoplay, Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import SwiperCore, {
+  EffectFade,
+  Autoplay,
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+} from "swiper";
 // methods
 import { mapState } from "./methods/mapState";
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 // components
 import Loading from "../../components/loading";
 // styles
 import styles from "../../styles/pages/dashboard/dashboard.module.scss";
+import { authhttp } from "../../services/callApi/api";
 
 const _asist = new Assistent();
 SwiperCore.use([EffectFade, Autoplay, Navigation, Pagination, Scrollbar, A11y]);
@@ -21,26 +28,17 @@ SwiperCore.use([EffectFade, Autoplay, Navigation, Pagination, Scrollbar, A11y]);
  * @param {string} activeHojreh
  */
 function Dashboard({ activeHojreh }) {
-
   const [api, setApi] = useState({});
   let [loading, setLoading] = useState(false);
 
   useEffect(() => {
-
     async function fetchData() {
-
       await setLoading(true);
       const _handleRequestApi = async () => {
         let params = {};
         let loadData = null;
         let dataUrl = `/api/v1/dashboard/${activeHojreh}/`;
-        let response = await ApiRegister().apiRequest(
-          loadData,
-          "get",
-          dataUrl,
-          true,
-          params
-        );
+        let response = await authhttp.get(dataUrl);
         // check status code
         if (response.status === 200) {
           setApi(await response.data);
@@ -50,7 +48,6 @@ function Dashboard({ activeHojreh }) {
       activeHojreh.length > 0 && _handleRequestApi();
     }
     fetchData();
-
   }, [activeHojreh]);
 
   return (
@@ -477,7 +474,7 @@ function Dashboard({ activeHojreh }) {
                   {_asist.number(
                     (api.last_week_total_sell &&
                       api.last_week_total_sell.amont) ||
-                    0
+                      0
                   )}
                 </h1>
                 <h3

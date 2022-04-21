@@ -1,16 +1,8 @@
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { authhttp } from "../../services/callApi/api";
 
-export const callApiAllData = async (activeHojreh) => {
-    let params = {};
-    let loadData = null;
+export const callApiAllData = async(activeHojreh) => {
     let dataUrl = `/api/v1/shop/${activeHojreh}/settings/`;
-    let response = await ApiRegister().apiRequest(
-        loadData,
-        "get",
-        dataUrl,
-        true,
-        params
-    );
+    let response = await authhttp.get(dataUrl);
     return response;
 };
 
@@ -22,62 +14,34 @@ export const linkSetting = (body, activeHojreh) => {
         },
     };
 
-    let params = {};
     let loadData = dataForSendLink;
     let dataUrl = `/api/v1/shop/${activeHojreh}/settings/social_media/`;
 
-    let response = ApiRegister().apiRequest(
-        loadData,
-        "put",
-        dataUrl,
-        true,
-        params
-    );
+    let response = authhttp.put(dataUrl, loadData);
 };
 
-export const callApiUpDataShop = async (dataForSend, activeHojreh) => {
-    let params = {};
+export const callApiUpDataShop = async(dataForSend, activeHojreh) => {
     let loadData = dataForSend;
     let dataUrl = `/api/v1/shop/${activeHojreh}/settings/`;
 
-    const response = await ApiRegister().apiRequest(
-        loadData,
-        "patch",
-        dataUrl,
-        true,
-        params
-    );
+    const response = await authhttp.patch(dataUrl, loadData);
 
     return response;
 };
 
-export const callBankAccount = async (dataForSend, activeHojreh) => {
-    let params = {};
+export const callBankAccount = async(dataForSend, activeHojreh) => {
     let loadData = dataForSend;
     let dataUrl = `/api/v1/shop/${activeHojreh}/settings/bank_account/`;
 
-    let response = await ApiRegister().apiRequest(
-        loadData,
-        "put",
-        dataUrl,
-        true,
-        params
-    );
+    let response = await authhttp.put(dataUrl, loadData);
     return response;
 };
 
-export const callApiUpDataPicture = async (dataForSend, activeHojreh) => {
-    let params = {};
+export const callApiUpDataPicture = async(dataForSend, activeHojreh) => {
     let loadData = dataForSend;
     let dataUrl = `/api/v1/shop/${activeHojreh}/settings/avatar/`;
 
-    const response = await ApiRegister().apiRequest(
-        loadData,
-        "put",
-        dataUrl,
-        true,
-        params
-    );
+    const response = await authhttp.put(dataUrl, loadData);
 
     return response;
 };

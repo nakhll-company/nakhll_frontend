@@ -20,10 +20,10 @@ import LoadingAllPage from "../../../../components/loadingAllPage";
 import CheckboxTreeCities from "../../../../components/CheckboxTree/CheckboxTree";
 // methods
 import { successMessage } from "../../../../utils/toastifyMessage";
-import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
 // style
 import st from "./logisticPage.module.scss";
 import AppButton from "../../../../components/AppButton";
+import { authhttp } from "../../../../services/callApi/api";
 
 function LogisticPage() {
   const _asist = new Assistent();
@@ -66,15 +66,12 @@ function LogisticPage() {
   const _handle_add_new_scope = async () => {
     try {
       setLoaderBtn(true);
-      let response = await ApiRegister().apiRequest(
+      let response = await authhttp.post(
+        `/api/v1/logistic/shop-logistic-unit/`,
         {
           shop: activeHojreh,
           name: "بدون نام",
-        },
-        "post",
-        `/api/v1/logistic/shop-logistic-unit/`,
-        true,
-        ""
+        }
       );
 
       if (response.status == 201) {
@@ -96,14 +93,10 @@ function LogisticPage() {
   const _handle_update_data_scope = async (data, move = true) => {
     setLoaderBtn(true);
     setLoader(true);
-    let response = await ApiRegister().apiRequest(
-      data,
-      "PATCH",
+    let response = await authhttp.patch(
       `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
-      true,
-      ""
+      data
     );
-
     if (response.status == 200) {
       if (move) {
         upPage();
@@ -119,12 +112,9 @@ function LogisticPage() {
 
   // functoin for send data for price per kg
   const _handle_send_info_scope = async (data, page = 0) => {
-    let response = await ApiRegister().apiRequest(
-      data,
-      "PATCH",
+    let response = await authhttp.patch(
       `/api/v1/logistic/shop-logistic-unit/${wichIdScope}/`,
-      true,
-      ""
+      data
     );
     if (response.status == 200) {
       upPage(1, page);
@@ -140,14 +130,11 @@ function LogisticPage() {
 
   const _handle_send_all_cities = async () => {
     setLoaderBtn(true);
-    let response = await ApiRegister().apiRequest(
+    let response = await authhttp.patch(
+      `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
       {
         products: [],
-      },
-      "PATCH",
-      `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
-      true,
-      ""
+      }
     );
     upPage();
     setLoaderBtn(false);
@@ -161,12 +148,8 @@ function LogisticPage() {
   useEffect(() => {
     if (constraintId !== "") {
       const _handel_get_all_data_scope = async () => {
-        let response = await ApiRegister().apiRequest(
-          null,
-          "get",
-          `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
-          true,
-          ""
+        let response = await authhttp.get(
+          `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`
         );
 
         if (response.status == 200) {

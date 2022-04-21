@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 // components
 import InputUrl from "../../../containers/liveEdit/InputUrl";
 // methods
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import { _updateProducts } from "../../../redux/actions/liveEdit/_updateProducts";
 // style
 import st from "./rotationProduct.module.scss";

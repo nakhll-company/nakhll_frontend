@@ -12,7 +12,7 @@ import { MenuMobile } from "../../containers/card/MenuMobile";
 import { Loading } from "../../components/custom/Loading/Loading";
 import { getProducts } from "../../redux/actions/cart/getProducts";
 import ContextProduct from "../../containers/card/Context/context";
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { authhttp } from "../../services/callApi/api";
 
 export default function Cart() {
 
@@ -23,11 +23,7 @@ export default function Cart() {
   const _handleRequestApiAll = async () => {
     try {
       let token = localStorage.getItem("accessToken");
-      let response = await ApiRegister().apiRequest(
-        null, "get",
-        `/api/v1/cart/me/`,
-        token ? true : false, {}
-      );
+      let response = await authhttp.get(`/api/v1/cart/me/`) 
       setAll_product_list_buy(await response.data);
       setShowLoading(false);
     } catch (e) {

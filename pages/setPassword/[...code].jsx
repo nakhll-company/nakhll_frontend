@@ -6,7 +6,7 @@ import lottie from "lottie-web";
 
 import s from "./setPassword.module.scss";
 
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+
 import rot13 from "../../utils/rout13";
 import { successMessage } from "../../utils/toastifyMessage";
 import { clearTokenStorage } from "../../api/general/clearTokenStorage";

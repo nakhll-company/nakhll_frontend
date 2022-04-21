@@ -14,13 +14,12 @@ import ListComponent from "../../containers/liveEdit/ListComponent";
 import { addComponent } from "../../containers/liveEdit/metodes/addComponent";
 // methods
 import { ApiReference } from "../../api/Api";
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { _updateDataLanding } from "../../redux/actions/liveEdit/_updateDataLanding";
 // scss
 import styles from "./liveEdit.module.scss";
+import { authhttp } from "../../services/callApi/api";
 
 function LiveEdit({ idLanding }) {
-
   let toggleMenu = useRef(null);
   const nakhlAnim = useRef(null);
   const dispatch = useDispatch();
@@ -59,13 +58,7 @@ function LiveEdit({ idLanding }) {
       },
     ];
     async function fetchData() {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        getDataLanding,
-        true,
-        ""
-      );
+      let response = await authhttp.get(getDataLanding);
 
       if (response.status == 200) {
         if (response.data.page_data == "") {
@@ -87,7 +80,6 @@ function LiveEdit({ idLanding }) {
       ease: "back",
       duration: 0.4,
     });
-
   }, [dispatch, getDataLanding]);
 
   useEffect(() => {
@@ -105,13 +97,7 @@ function LiveEdit({ idLanding }) {
       shop: idLanding[0],
       page_data: JSON.stringify(landing),
     };
-    let response = await ApiRegister().apiRequest(
-      ansapi,
-      "patch",
-      apiUpdateLanding,
-      true,
-      ""
-    );
+    let response = await authhttp.patch(apiUpdateLanding,ansapi)
     return response;
   };
 

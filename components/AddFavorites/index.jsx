@@ -6,15 +6,14 @@ import React, { useEffect, useState } from "react";
 import { useTransition, animated } from "react-spring";
 // methods
 import { ApiReference } from "../../api/Api";
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { _addToWishList } from "../../redux/actions/Wishlist/_addToWishList";
 // styles
 import styles from "./AddFavorites.module.scss";
+import { authhttp } from "../../services/callApi/api";
 
 const _asist = new Assistent();
 
 function AddFavorites() {
-
   const router = useRouter();
   const dispatch = useDispatch();
   const [listFav, setListFav] = useState([]);
@@ -49,13 +48,7 @@ function AddFavorites() {
         name: textInput == "" ? "بدون عنوان" : textInput,
       };
 
-      let response = await ApiRegister().apiRequest(
-        newFav,
-        "POST",
-        apiCreat,
-        true,
-        ""
-      );
+      let response = await authhttp.post(apiCreat, newFav);
 
       if (response.status === 201) {
         dispatch(_addToWishList(response.data));
@@ -68,13 +61,7 @@ function AddFavorites() {
   // function Delete form fav
   const _handel_delete_from_fav = async (ID) => {
     let urlDelet = `/api/v1/shop/pinned-urls/${ID}/`;
-    let deletePinned = await ApiRegister().apiRequest(
-      null,
-      "DELETE",
-      urlDelet,
-      true,
-      ""
-    );
+    let deletePinned = await authhttp.delete(urlDelet);
     let arr = [...listFav];
     let arrDeleted = arr.filter((el) => el.id !== ID);
     setListFav(arrDeleted);
@@ -83,13 +70,7 @@ function AddFavorites() {
 
   useEffect(() => {
     async function fetchData() {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        apiListPinned,
-        true,
-        ""
-      );
+      let response = await authhttp.get(apiListPinned);
 
       if (response.status == 200) {
         setListFav(response.data);
@@ -193,7 +174,7 @@ function AddFavorites() {
                       </a>
                       <i
                         onClick={() => {
-                          _handel_delete_from_fav(el.id)
+                          _handel_delete_from_fav(el.id);
                         }}
                         className="fas fa-times"
                       ></i>
