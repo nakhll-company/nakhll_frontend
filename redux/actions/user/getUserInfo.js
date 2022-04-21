@@ -5,18 +5,22 @@ import { authhttp } from "../../../services/callApi/api";
 export const getUserInfo = () => async(dispatch) => {
     // try
     try {
-        const getProduct = async() => {
-            let response = await authhttp.get("/api/v1/get-user-info/");
-            return response;
-        };
+        if (localStorage.getItem('accessToken')) {
 
-        let response = await getProduct();
-        if (response.status === 200) {
-            // dispatch
-            dispatch({
-                type: Types.USER_INFO,
-                payload: response.data,
-            });
+
+            const getProduct = async() => {
+                let response = await authhttp.get("/api/v1/get-user-info/");
+                return response;
+            };
+
+            let response = await getProduct();
+            if (response.status === 200) {
+                // dispatch
+                dispatch({
+                    type: Types.USER_INFO,
+                    payload: response.data,
+                });
+            }
         }
     } catch (error) {
         return false;
