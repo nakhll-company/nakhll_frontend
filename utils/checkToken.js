@@ -6,8 +6,10 @@ export const checkToken = async() => {
     const RefreshToken = localStorage.getItem("refreshToken");
 
     if (Token) {
+
         const decodedToken = jwt.decode(Token, { complete: true });
         const dateNow = Date.now() / 1000;
+
         if (decodedToken.payload.exp < dateNow) {
             console.log("عاقا منقضی شده");
             let ans = await http.post("/api/v1/auth/token/refresh/", {

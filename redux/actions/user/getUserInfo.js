@@ -1,17 +1,12 @@
 import * as Types from "../../types/user"; // constants
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+
+import { authhttp } from "../../../services/callApi/api";
 // action of accounting list
 export const getUserInfo = () => async(dispatch) => {
-
     // try
     try {
         const getProduct = async() => {
-            let response = await ApiRegister().apiRequest(
-                null,
-                "get",
-                "/api/v1/get-user-info/",
-                true, {}
-            );
+            let response = await authhttp.get("/api/v1/get-user-info/");
             return response;
         };
 
