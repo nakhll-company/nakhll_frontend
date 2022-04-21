@@ -1,18 +1,9 @@
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+import { authhttp } from "../../../services/callApi/api";
 
 export const getProducts = () => {
   return async (dispatch) => {
-    let params = {};
-    let loadData = null;
     let dataUrl = `/api/v1/cart/me/`;
-    let token = localStorage.getItem("accessToken");
-    let response = await ApiRegister().apiRequest(
-      loadData,
-      "get",
-      dataUrl,
-      token ? true : false,
-      params
-    );
+    let response = await authhttp.get(dataUrl);
 
     await dispatch({
       type: "GET_PRODUCTS",

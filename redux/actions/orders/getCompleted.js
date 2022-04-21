@@ -1,20 +1,12 @@
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+import { authhttp } from "../../../services/callApi/api";
 import * as Types from "../../types/orders"; // constants
 // action of accounting list
-export const getCompleted = (activeHojreh) => async (dispatch) => {
+export const getCompleted = (activeHojreh) => async(dispatch) => {
     // try
     try {
-        const completed = async () => {
-            let params = {};
-            let loadData = null;
+        const completed = async() => {
             let dataUrl = `/api/v1/shop/${activeHojreh}/invoices/?is_completed=true`;
-            let response = await ApiRegister().apiRequest(
-                loadData,
-                "get",
-                dataUrl,
-                true,
-                params
-            );
+            let response = await authhttp.get(dataUrl);
             return response;
         };
 
