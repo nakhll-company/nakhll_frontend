@@ -55,7 +55,7 @@ export const authhttp = axios.create({});
 authhttp.interceptors.request.use(
     async(config) => {
         let token = await checkToken();
-        console.log('token :>> ', token);
+
         if (token) {
             config.headers.authorization = `Bearer ${token}`;
         }

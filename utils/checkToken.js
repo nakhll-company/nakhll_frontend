@@ -11,7 +11,9 @@ export const checkToken = async() => {
         const dateNow = Date.now() / 1000;
 
         if (decodedToken.payload.exp < dateNow) {
-            console.log("عاقا منقضی شده");
+
+
+
             let ans = await http.post("/api/v1/auth/token/refresh/", {
                 refresh: RefreshToken,
             });
@@ -21,7 +23,8 @@ export const checkToken = async() => {
             }
         } else {
             // access Token is valid
-            console.log("هنوز معتبرههه");
+
+
         }
     }
 
