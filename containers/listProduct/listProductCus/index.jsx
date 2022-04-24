@@ -24,6 +24,7 @@ import SearchProduct from "./components/searchProduct";
 import { useSelector } from "react-redux";
 import Grouping from "../../searchPage/Grouping";
 import { http } from "../../../services/callApi/api";
+import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
 const _asist = new Assistent();
 
@@ -125,7 +126,7 @@ function ListProductCus({ data }) {
 
   const _handel_call_another_page_api = async (witchFilter) => {
     try {
-      let response = await http.get(`/api/v1/products/`, {
+      let response = await http.get(`/api/v1/products/`, {params:{
         ...(witchFilter ? witchFilter : null),
         search: searchWord,
         ...(whichOrdering !== "" && { ordering: whichOrdering }),
@@ -144,7 +145,7 @@ function ListProductCus({ data }) {
         ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
         ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
         ...(hojreh !== "" && { shop: hojreh }),
-      });
+      }});
       if (response.status === 200) {
         const ContinueList = response.data.results;
 
@@ -239,7 +240,9 @@ function ListProductCus({ data }) {
         };
 
         try {
-          let response = await http.get(`/api/v1/products/`, params);
+          let response = await http.get(`/api/v1/products/`, {params} );
+          
+          
           if (response.status === 200) {
             setListWithFilter(response.data.results);
             setNameHojreh(response.data.results[0].FK_Shop.title);

@@ -41,7 +41,9 @@ function HomePage({ id }) {
 
   const _handleRequestApi = async (id) => {
     let response = await authhttp.get("/api/v1/get-factor-details/", {
-      factor_id: id,
+      params: {
+        factor_id: id,
+      },
     });
     if (response.status === 200) {
       setdata(response.data);

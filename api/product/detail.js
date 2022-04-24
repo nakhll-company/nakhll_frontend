@@ -20,8 +20,10 @@ export const getMoreProduct = async(
 ) => {
     let moreProduct = await http.get(
         `/api/v1/product-page/related_products/${productSlug}/`, {
-            page: pageApi,
-            page_size: 10,
+            params: {
+                page: pageApi,
+                page_size: 10,
+            },
         }
     );
     if (moreProduct.data.next === null) {

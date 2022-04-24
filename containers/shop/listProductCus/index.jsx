@@ -75,7 +75,7 @@ function ListProductShop({ data }) {
 
   const _handel_call_another_page_api = async () => {
     try {
-      let response = await http.get(`/api/v1/products/`, {
+      let response = await http.get(`/api/v1/products/`, {params:{
         search: searchWord,
         ordering: whichOrdering,
         page: pageApi,
@@ -90,7 +90,7 @@ function ListProductShop({ data }) {
         min_price: minPrice * 10000,
         max_price: maxPrice * 100000,
         shop: hojreh,
-      });
+      }});
       if (response.status === 200) {
         const ContinueList = response.data.results;
         setListWithFilter([...listWithFilter, ...ContinueList]);
@@ -126,7 +126,7 @@ function ListProductShop({ data }) {
       };
 
       try {
-        let response = await http.get(`/api/v1/products/`, params);
+        let response = await http.get(`/api/v1/products/`, {params});
         if (response.status === 200) {
           setListWithFilter(response.data.results);
           if (

@@ -35,7 +35,8 @@ function Sm_RotationProducts({ id, data }) {
         if (Object.keys(Queries).length > 1) {
           let response = await http.get(
             "https://nakhll.com/api/v1/products/",
-            Queries
+            {params: Queries}
+           
           );
 
           if (response.status == 200) {

@@ -63,7 +63,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
     };
 
     try {
-      let response = await http.get(`/api/v1/products/`, params);
+      let response = await http.get(`/api/v1/products/`, {params});
       if (response.status === 200) {
         setListWithFilter(response.data.results);
 
@@ -95,7 +95,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
 
   const _handel_call_another_page_api = async (witchFilter) => {
     try {
-      let response = await http.get(`/api/v1/products/`, {
+      let response = await http.get(`/api/v1/products/`, {params:{
         ...(witchFilter ? witchFilter : null),
         search: searchWord,
         ordering: whichOrdering,
@@ -112,7 +112,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
         min_price: minPrice,
         max_price: maxPrice,
         shop: shop_products,
-      });
+      }});
       if (response.status === 200) {
         const ContinueList = response.data.results;
         setListWithFilter([...listWithFilter, ...ContinueList]);

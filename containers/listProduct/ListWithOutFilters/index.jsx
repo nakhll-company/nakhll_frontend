@@ -16,7 +16,7 @@ function ListWitOutFilters({ api }) {
   useEffect(() => {
     const _Call_Products = async () => {
       try {
-        http.get(api);
+        
         let response = await http.get(api);
         if (response.status === 200) {
           setlistProducts(response.data);
