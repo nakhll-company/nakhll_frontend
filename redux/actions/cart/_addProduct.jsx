@@ -21,7 +21,7 @@ export const _addProduct = (productId) => {
           type: "ADD_PRODUCT",
           payload: response.data,
         });
-        successMessage("داده ها با موفقیت ثبت شده اند");
+        successMessage("محصول با موفقیت به سبد خرید اضافه شد");
       }
     } catch (e) {
       return false;

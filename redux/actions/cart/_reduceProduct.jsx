@@ -16,6 +16,6 @@ export const _reduceProduct = (productId) => {
 
 
     // if (response.status === 200) {
-    successMessage("داده ها با موفقیت ثبت شده اند");
+    successMessage("تعداد محصول با موفقیت کاهش پیدا کرد");
   };
 };
