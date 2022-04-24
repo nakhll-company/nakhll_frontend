@@ -27,7 +27,7 @@ export const checkToken = async() => {
 
         } else {
             // access Token is valid
-            localStorage.removeItem("accessToken")
+
 
         }
     }
