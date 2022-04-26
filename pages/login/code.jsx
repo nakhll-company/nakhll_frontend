@@ -16,26 +16,20 @@ import { forgetPassword } from "../../api/auth/forgetPassword";
 import { getAccessToken } from "../../api/auth/getAccessToken";
 
 const Code = () => {
-  let timingCode = "";
-  const [loadButton, setLoadButton] = useState(false);
-  const [timer, setTimer] = useState();
+
   const router = useRouter();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const [timer, setTimer] = useState(59);
+  const [loadButton, setLoadButton] = useState(false);
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
   const submit = async (data) => {
+
     setLoadButton(true);
     data.auth_key = JSON.parse(sessionStorage.getItem("login")).auth_key;
     let result = await completeAuth(data);
 
     if (result !== false) {
-      if (
-        JSON.parse(sessionStorage.getItem("login")).mobile_status ===
-        "login_pass"
-      ) {
+      if (JSON.parse(sessionStorage.getItem("login")).mobile_status === "login_pass") {
         sessionStorage.setItem("secret_key", result.auth_secret);
         router.push("/login/forgetPassword");
       } else {
@@ -49,13 +43,6 @@ const Code = () => {
   useEffect(() => {
     router.query.forgetPass === "true" && forgetPassword();
   }, [router.query.forgetPass]);
-  useEffect(() => {
-    timingCode = localStorage.getItem("timing");
-    setTimer(timingCode ? timingCode : 59);
-    return () => {
-      localStorage.removeItem("timing");
-    };
-  }, []);
 
   return (
     <>
@@ -67,33 +54,18 @@ const Code = () => {
         <div className="m-auto">
           <Link href="/">
             <a>
-              <Image
-                src="/image/base_logo.png"
-                alt="logo"
-                width="250"
-                height="100"
-              />
+              <Image src="/image/base_logo.png" alt="logo" width="250" height="100" />
             </a>
           </Link>
         </div>
-        <h1
-          className="d-flex justify-content-center font-weight-bold mb-5"
-          style={{ fontSize: "20px" }}
-        >
+        <h1 className="d-flex justify-content-center font-weight-bold mb-5" style={{ fontSize: "20px" }}>
           ورود / ثبت نام
         </h1>
         <form onSubmit={handleSubmit(submit)}>
-          <label
-            htmlFor="user_key"
-            className="mb-2"
-            style={{ fontSize: "15px" }}
-          >
+          <label htmlFor="user_key" className="mb-2" style={{ fontSize: "15px" }}>
             کد تایید برای شماره موبایل وارد شده ارسال گردید
           </label>
-          <input
-            type="number"
-            id="user_key"
-            className="form-control mb-3"
+          <input type="number" id="user_key" className="form-control mb-3"
             {...register("user_key", {
               required: "لطفا این گزینه را پرنمایید",
               maxLength: {
@@ -111,28 +83,17 @@ const Code = () => {
               {errors.user_key.message}
             </span>
           )}
-
-          {timer == 0 && (
-            <span
-              className="text-info"
-              style={{ cursor: "pointer" }}
-              onClick={() => {
-                resendCode({ mobile: sessionStorage.getItem("mobile") });
-                setTimer(59);
-              }}
-            >
-              دریافت مجدد کد تایید
-            </span>
-          )}
-
-          <span
-            className="inline-block"
-            style={{ position: "absolute", left: "50px" }}
+          {timer === 0 && <span className="text-info" style={{ cursor: "pointer" }}
+            onClick={() => {
+              resendCode({ mobile: sessionStorage.getItem("mobile") });
+              setTimer(59);
+            }}
           >
+            دریافت مجدد کد تایید
+          </span>}
+          {timer > 0 && <span className="inline-block float-left">
             <AppTimer timer={timer} setTimer={setTimer} />
-          </span>
-          {timer !== 0 && <div style={{ height: "24px" }}></div>}
-
+          </span>}
           <LoginButton loader={loadButton} title="ادامه" />
         </form>
       </div>
