@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }) {
 
   const REFRESH_TOKEN_TIMEOUT = 300000;
   const Layout = Component.Layout || MyLayout;
-
+  console.log("test");
   useEffect(() => {
     setInterval(() => {
       localStorage.getItem("accessToken") && refreshToken();
