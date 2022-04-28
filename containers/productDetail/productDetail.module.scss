@@ -261,6 +261,7 @@
     .product_purchase {
         display: flex;
         justify-content: space-between;
+        gap: 10px;
         align-items: center;
         position: fixed;
         bottom: 0;
@@ -358,4 +359,13 @@
         display: flex;
         flex-direction: column;
     }
+}
+
+.partChart {
+    flex-grow: 1;
+}
+
+.pricePart {
+    // display: flex;
+    margin-left: 5px;
 }

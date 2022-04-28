@@ -482,17 +482,8 @@ const ProductDetailMobile = ({ data }) => {
         </div>
       </div>
       <div className={`${styles.product_purchase} container py-3`}>
-        <div className="ml-2">
-          <div className={styles.price_mobile_decoration}>
-            <span style={{ fontSize: "1.25rem" }}>
-              {detail.old_price !== 0 && _asist.PSeparator(detail.old_price)}
-            </span>
-          </div>
-          <div className={styles.price_mobile}>
-            <span>{_asist.PSeparator(detail.price / 10)}</span>
-            <span> تومان </span>
-          </div>
-        </div>
+        <div className={styles.partChart}></div>
+
         {detail.salable && detail.salable === true && (
           <button
             className={`${styles.product_btn_mobile} btn btn-tprimary rounded-pill font-weight-bold font-size1-5 px-6 py-2 ev-add-to-cart`}
@@ -507,6 +498,19 @@ const ProductDetailMobile = ({ data }) => {
             خرید
           </button>
         )}
+        <div className= {styles.pricePart} >
+          {detail.old_price !== 0 &&
+          <div className={styles.price_mobile_decoration}>
+            <span style={{ fontSize: "1.25rem" }}>
+                {_asist.PSeparator(detail.old_price)}
+            </span>
+          </div>
+          }
+          <div className={styles.price_mobile}>
+            <span>{_asist.PSeparator(detail.price / 10)}</span>
+            <span> تومان </span>
+          </div>
+        </div>
       </div>
     </div>
   );
