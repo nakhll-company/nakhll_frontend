@@ -3,56 +3,38 @@ import Image from "next/image";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Assistent from "zaravand-assistent-number";
 // components
+import InputTag from "../../../../components/InputTag";
 import Loading from "../../../../components/loading/index";
 import MyLayout from "../../../../components/layout/Layout";
 import Category from "../../../../containers/product/create/category";
 import TitleLiner from "../../../../containers/settings/components/titleLiner";
 import InputUseForm from "../../../../containers/creat/component/inputUseForm";
-
 import InputPictureCreat from "../../../../containers/creat/component/InputPicture";
 import TextAreaUseForm from "../../../../containers/creat/component/textAreaUseForm";
 import PictureChildProduct from "../../../../containers/creat/component/pictureChildProduct";
 // methods
 import { mapState } from "../../../../containers/product/methods/mapState";
-import {
-  _ApiCreateProduct,
-  _ApiGetCategories,
-  _ApiGetTags,
-} from "../../../../api/creatProduct";
+import { _ApiCreateProduct, _ApiGetCategories, _ApiGetTags } from "../../../../api/creatProduct";
 // styles
 import styles from "../../../../styles/pages/product/create.module.scss";
-import InputTag from "../../../../components/InputTag";
 
 const CreateProduct = ({ activeHojreh }) => {
-  // useform
-  const {
-    getValues,
-    clearErrors,
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    criteriaMode: "all",
-    mode: "all",
-  });
 
   const router = useRouter();
   const _asist = new Assistent();
   const [data, setData] = useState([]);
+  const [tags, setTags] = useState([]);
   const [isLoad, setIsLoad] = useState(false);
+  const [tagsShop, setTagsShop] = useState([]);
   const [wordPrice, setWordPrice] = useState("");
   const [categories, setCategories] = useState([]);
   const [imgProduct, setImgProduct] = useState(null);
   const [precentPrice, setPrecentPrice] = useState(0);
   const [submarketId, setSubmarketId] = useState(null);
   const [wordOldPrice, setWordOldPrice] = useState("");
-  // const [checkedCities, setCheckedCities] = useState([]);
-  const [tagsShop, setTagsShop] = useState([]);
-  const [tags, setTags] = useState([]);
-
   const [imgProductOne, setImgProductOne] = useState(null);
   const [imgProductTwo, setImgProductTwo] = useState(null);
   const [imgProductSix, setImgProductSix] = useState(null);
@@ -62,6 +44,10 @@ const CreateProduct = ({ activeHojreh }) => {
   const [imgProductThree, setImgProductThree] = useState(null);
   const [isloadingForCreate, setIsloadingForCreate] = useState(false);
   const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState("");
+  const { getValues, clearErrors, register, handleSubmit, formState: { errors } } = useForm({
+    criteriaMode: "all",
+    mode: "all",
+  });
 
   useEffect(() => {
     async function fetchData() {
@@ -73,7 +59,7 @@ const CreateProduct = ({ activeHojreh }) => {
           setCategories(response_categories.data);
         }
         const tags = await _ApiGetTags(activeHojreh);
-        if (response_categories.status < 300) {
+        if (tags.status < 300) {
           let newArrTags = [];
           tags?.data.map((item) => {
             newArrTags.push({ id: item.text, text: item.text });

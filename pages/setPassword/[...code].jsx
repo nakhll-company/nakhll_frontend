@@ -65,9 +65,7 @@ function SetPasswordPage() {
       user_key: data.user_key,
     });
     if (response.status < 300) {
-      console.log(response.data);
       setAuth_secret(response.data.auth_secret);
-      // return response.data;
     } else {
       setLoader(false);
     }
@@ -80,8 +78,6 @@ function SetPasswordPage() {
       loop: true,
       autoplay: true,
       animationData: require("../../public/lottie/passwordLogo.json"),
-
-      //   path: "./lottie/animation.json",
     });
 
     lottie.loadAnimation({
@@ -157,9 +153,8 @@ function SetPasswordPage() {
                 id="username"
                 data-lpignore="true"
                 {...register("user_key", {
-                  required: `${
-                    code && code[1] == "login_pass" ? "رمز قبلی" : "کد ارسالی"
-                  } را وارد نمایید.`,
+                  required: `${code && code[1] == "login_pass" ? "رمز قبلی" : "کد ارسالی"
+                    } را وارد نمایید.`,
                 })}
               />
               {errors.user_key && (

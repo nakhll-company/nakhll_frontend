@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import { http } from "../services/callApi/api";
 
-export const checkToken = async() => {
+export const checkToken = async () => {
     let Token = localStorage.getItem("accessToken");
     const RefreshToken = localStorage.getItem("refreshToken");
 
@@ -13,12 +13,10 @@ export const checkToken = async() => {
 
         if (decodedToken.payload.exp < dateNow) {
 
-            console.log('منقضی شدههههههه')
             if (decodeRefesfh.payload.exp > dateNow) {
                 let ans = await http.post("/api/v1/auth/token/refresh/", {
                     refresh: RefreshToken,
                 });
-                console.log('توکن جدید :>> ', ans.data);
                 if (ans.status === 200) {
                     Token = ans.data.access;
                     localStorage.setItem("accessToken", Token);
@@ -27,8 +25,6 @@ export const checkToken = async() => {
 
         } else {
             // access Token is valid
-
-
         }
     }
 

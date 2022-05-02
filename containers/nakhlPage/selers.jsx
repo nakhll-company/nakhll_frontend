@@ -10,12 +10,9 @@ function Selers() {
     setAudio(new Audio("/audio/milad.mp3"));
   }, []);
 
-  useEffect(() => {
-    // console.log("audio :>> ", audio.currentTime);
-  }, [audio]);
+  useEffect(() => { }, [audio]);
 
   const playMusic = () => {
-    console.log("duration :>> ", audio.played);
     if (!playing) {
       audio.play();
       setPlaying(true);

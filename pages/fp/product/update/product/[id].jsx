@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import Assistent from "zaravand-assistent-number";
 // components
+import InputTag from "../../../../../components/InputTag";
 import Loading from "../../../../../components/loading/index";
 import MyLayout from "../../../../../components/layout/Layout";
 import Category from "../../../../../containers/product/create/category";
@@ -16,53 +17,60 @@ import InputPictureCreat from "../../../../../containers/creat/component/InputPi
 import TextAreaUseForm from "../../../../../containers/creat/component/textAreaUseForm";
 import PictureChildProduct from "../../../../../containers/creat/component/pictureChildProduct";
 // methods
+import { authhttp } from "../../../../../services/callApi/api";
 import { mapState } from "../../../../../containers/product/methods/mapState";
-import {
-  _ApiGetCategories,
-  _ApiUpdateProduct,
-} from "../../../../../api/creatProduct";
+import { _ApiGetCategories, _ApiUpdateProduct } from "../../../../../api/creatProduct";
 // styles
 import styles from "../../../../../styles/pages/product/create.module.scss";
-import InputTag from "../../../../../components/InputTag";
-import { authhttp } from "../../../../../services/callApi/api";
 /**
  * page update product
  * @param {string} activeHojreh => it has slug name
  */
 const _asist = new Assistent();
-const UpdateProduct = ({ activeHojreh }) => {
-  const [tags, setTags] = useState([]);
-  const [tagsShop, setTagsShop] = useState([]);
 
+const UpdateProduct = ({ activeHojreh }) => {
+
+  const router = useRouter();
+  const { id } = router.query;
+  const [tags, setTags] = useState([]);
+  const [data, setData] = useState([]);
+  const [isLoad, setIsLoad] = useState(false);
+  const [tagsShop, setTagsShop] = useState([]);
+  const [wordPrice, setWordPrice] = useState("");
+  const [categories, setCategories] = useState([]);
+  const [imgProduct, setImgProduct] = useState(null);
+  const [precentPrice, setPrecentPrice] = useState(0);
+  const [wordOldPrice, setWordOldPrice] = useState("");
+  const [submarketId, setSubmarketId] = useState(null);
+  const [imgProductOne, setImgProductOne] = useState(null);
+  const [imgProductTwo, setImgProductTwo] = useState(null);
+  const [imgProductSix, setImgProductSix] = useState(null);
+  const [Product_Banner, setProduct_Banner] = useState([]);
+  const [precentOldPrice, setprecentOldPrice] = useState(0);
+  const [imgProductFour, setImgProductFour] = useState(null);
+  const [imgProductFive, setImgProductFive] = useState(null);
+  const [imgProductThree, setImgProductThree] = useState(null);
+  const [isLoadingUpdate, setisLoadingUpdate] = useState(false);
+  const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState({});
   // useform
-  const {
-    setValue,
-    getValues,
-    clearErrors,
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { setValue, getValues, clearErrors, register, handleSubmit, formState: { errors } } = useForm({
     criteriaMode: "all",
     mode: "all",
   });
-  const router = useRouter();
-  const { id } = router.query;
-  // get edit date
 
   useEffect(() => {
+    // get edit date
     async function fetchData() {
       if (id) {
-        
+
         let dataUrl = `/api/v1/shop/${activeHojreh}/products/${id}/`;
-        let response = await authhttp.get(dataUrl) 
+        let response = await authhttp.get(dataUrl)
 
         if (response.status === 200) {
           let Data = response.data;
 
           setValue("Title", Data.Title);
           setImgProduct(Data.Image);
-          console.log("Data :>> ", Data);
           if (Data.OldPrice === 0) {
             setValue("Price", Data.Price / 10);
             setValue("OldPrice", Data.OldPrice / 10);
@@ -78,13 +86,11 @@ const UpdateProduct = ({ activeHojreh }) => {
             setWordPrice(_asist.word(Data.OldPrice / 10));
             setPrecentPrice(Data.OldPrice / 10);
           }
-
           setValue("Inventory", Data.Inventory);
           setValue("Net_Weight", Data.Net_Weight);
           setValue("Weight_With_Packing", Data.Weight_With_Packing);
           setValue("Description", Data.Description);
           setValue("PreparationDays", Data.PreparationDays);
-
           setPlaceholderSubmarckets(Data.category);
           setSubmarketId(Data.category?.id);
           // images
@@ -160,32 +166,6 @@ const UpdateProduct = ({ activeHojreh }) => {
     }
   };
 
-  // states
-  const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState({});
-  const [data, setData] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [submarketId, setSubmarketId] = useState(null);
-  const [isLoad, setIsLoad] = useState(false);
-
-  // stat for test image
-  const [imgProduct, setImgProduct] = useState(null);
-  const [imgProductOne, setImgProductOne] = useState(null);
-  const [imgProductTwo, setImgProductTwo] = useState(null);
-  const [imgProductThree, setImgProductThree] = useState(null);
-  const [imgProductFour, setImgProductFour] = useState(null);
-  const [imgProductFive, setImgProductFive] = useState(null);
-  const [imgProductSix, setImgProductSix] = useState(null);
-  const [isLoadingUpdate, setisLoadingUpdate] = useState(false);
-
-  const [Product_Banner, setProduct_Banner] = useState([]);
-
-  // state for show word price
-  const [wordPrice, setWordPrice] = useState("");
-  const [wordOldPrice, setWordOldPrice] = useState("");
-
-  // state for precent
-  const [precentPrice, setPrecentPrice] = useState(0);
-  const [precentOldPrice, setprecentOldPrice] = useState(0);
   // use effect
   useEffect(() => {
     async function fetchData() {
@@ -256,7 +236,7 @@ const UpdateProduct = ({ activeHojreh }) => {
                     <div style={{ display: "none" }}>
                       <input
                         className={styles.input_product}
-                        value={placeholderSubmarckets? placeholderSubmarckets.id:''}
+                        value={placeholderSubmarckets ? placeholderSubmarckets.id : ''}
                         id="submark"
                         name="submark"
                         type="text"

@@ -33,7 +33,6 @@ const PreviewCsv = () => {
     const activeHojreh = useSelector((state) => state.User.activeHojreh);
     const groupProductCsvData = useSelector((state) => state.Product.groupProductCsvData);
     const groupProductCsvHeader = useSelector((state) => state.Product.groupProductCsvHeader);
-    console.log(">>>>",activeHojreh);
 
     return (
         <div className={styles.main_wrapper}>
