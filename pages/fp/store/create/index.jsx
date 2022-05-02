@@ -130,11 +130,12 @@ function NewStore({ getUserInfo, userInfo }) {
             className={styles.form_select}
             {...register("State", { required: true })}
             onChange={async (event) => {
-              setSelectBigCities(await getBigCities(event.target.value));
+              let states = await getBigCities(event.target.value);
+              setSelectBigCities(states);
             }}
           >
             <option></option>
-            {selectState.map((value, index) => {
+            {selectState?.map((value, index) => {
               return (
                 <option key={index} value={value.id}>
                   {value.name}
@@ -157,7 +158,7 @@ function NewStore({ getUserInfo, userInfo }) {
             }}
           >
             <option></option>
-            {selectBigCities.map((value, index) => {
+            {selectBigCities?.map((value, index) => {
               return (
                 <option key={index} value={value.id}>
                   {value.name}

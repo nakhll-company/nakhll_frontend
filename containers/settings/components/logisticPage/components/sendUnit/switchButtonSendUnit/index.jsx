@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { ApiRegister } from "../../../../../../../services/apiRegister/ApiRegister";
+import { authhttp } from "../../../../../../../services/callApi/api";
 import styles from "./switchButton.module.scss";
 
 function SBSendUnit({ id, isActive, shop_logistic_unit }) {
@@ -8,15 +8,11 @@ function SBSendUnit({ id, isActive, shop_logistic_unit }) {
   const [disableBtn, setDisableBtn] = useState(false);
   const handel_chamnge_status = async () => {
     setDisableBtn(true);
-    let response = await ApiRegister().apiRequest(
+    let response = await authhttp.patch(
+      `/api/v1/logistic/shop-logistic-unit/${id}/`,
       {
         is_active: !isActive,
-      },
-      "PATCH",
-
-      `/api/v1/logistic/shop-logistic-unit/${id}/`,
-      true,
-      ""
+      }
     );
 
     if (response.status == 200) {
@@ -35,7 +31,7 @@ function SBSendUnit({ id, isActive, shop_logistic_unit }) {
           // defaultChecked={isActive}
           checked={Activer}
           disabled={disableBtn}
-        // value={isActive}
+          // value={isActive}
         />{" "}
         <label
           htmlFor={`switch__${id}`}

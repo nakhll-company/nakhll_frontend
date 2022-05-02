@@ -6,10 +6,11 @@ import lottie from "lottie-web";
 
 import s from "./setPassword.module.scss";
 
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+
 import rot13 from "../../utils/rout13";
 import { successMessage } from "../../utils/toastifyMessage";
 import { clearTokenStorage } from "../../api/general/clearTokenStorage";
+import { http } from "../../services/callApi/api";
 
 function SetPasswordPage() {
   const router = useRouter();
@@ -58,16 +59,11 @@ function SetPasswordPage() {
       return;
     }
     setLoader(true);
-    let response = await ApiRegister().apiRequest(
-      {
-        auth_key: rot13(code[0]),
-        user_key: data.user_key,
-      },
-      "POST",
-      "/api/v1/auth/complete/",
-      false,
-      {}
-    );
+
+    let response = await http.post("/api/v1/auth/complete/", {
+      auth_key: rot13(code[0]),
+      user_key: data.user_key,
+    });
     if (response.status < 300) {
       console.log(response.data);
       setAuth_secret(response.data.auth_secret);
@@ -105,20 +101,14 @@ function SetPasswordPage() {
 
   useEffect(async () => {
     if (auth_secret) {
-      let response = await ApiRegister().apiRequest(
-        {
-          auth_secret: auth_secret,
-          password: newPassword,
-        },
-        "POST",
-        "/api/v1/profile/set_password/",
-        false,
-        {}
-      );
+      let response = await http.post("/api/v1/profile/set_password/", {
+        auth_secret: auth_secret,
+        password: newPassword,
+      });
       if (response.status === 200) {
         successMessage("پسورد با موفقیت تغییر یافت. مجدد وارد شوید.");
-        clearTokenStorage()
-        
+        clearTokenStorage();
+
         router.push("/login");
 
         // return response.data;

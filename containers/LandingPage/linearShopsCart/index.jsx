@@ -3,23 +3,18 @@ import React, { useEffect, useState } from "react";
 // components
 import ShopCart from "../../../components/ui/shopCart";
 // methods
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+import { http } from "../../../services/callApi/api";
 // style
 import styles from "./HeroSlides.module.scss";
 
 function LinearShopsCart({ part }) {
-
   const [shopes, setShopes] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        let response = await ApiRegister().apiRequest(
-          null,
-          "GET",
-          "https://nakhll.com/api/v1/landing/campaign/",
-          false,
-          {}
+        let response = await http.get(
+          "https://nakhll.com/api/v1/landing/campaign/"
         );
         if (response.status === 200) {
           if (part == 1) {

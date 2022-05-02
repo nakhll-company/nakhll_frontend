@@ -1,12 +1,8 @@
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { http } from "../../services/callApi/api";
 
 export async function fetchProductShop(detail, setProductShop) {
-    let response = await ApiRegister().apiRequest(
-        null,
-        "GET",
-        `/api/v1/landing/shop_products/${detail.shop.slug}/`,
-        false,
-        ""
+    let response = await http.get(
+        `/api/v1/landing/shop_products/${detail.shop.slug}/`
     );
     if (response.status === 200) {
         setProductShop(response.data);
@@ -15,15 +11,19 @@ export async function fetchProductShop(detail, setProductShop) {
     }
 }
 
-export const getMoreProduct = async (productSlug, pageApi, setHasMore, setPageApi, setPosts) => {
-    let moreProduct = await ApiRegister().apiRequest(
-        null,
-        "GET",
-        `/api/v1/product-page/related_products/${productSlug}/`,
-        false,
-        {
-            page: pageApi,
-            page_size: 10,
+export const getMoreProduct = async(
+    productSlug,
+    pageApi,
+    setHasMore,
+    setPageApi,
+    setPosts
+) => {
+    let moreProduct = await http.get(
+        `/api/v1/product-page/related_products/${productSlug}/`, {
+            params: {
+                page: pageApi,
+                page_size: 10,
+            },
         }
     );
     if (moreProduct.data.next === null) {

@@ -19,9 +19,9 @@ import {
 } from "../../../api/header";
 // style
 import styles from "./header.module.scss";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import rot13 from "../../../utils/rout13";
 import { clearTokenStorage } from "../../../api/general/clearTokenStorage";
+import { http } from "../../../services/callApi/api";
 
 const _asist = new Assistent();
 
@@ -169,12 +169,9 @@ function Header() {
                     </Link> */}
                     <div
                       onClick={async () => {
-                        let response = await ApiRegister().apiRequest(
-                          { mobile: userLog.mobile_number },
-                          "POST",
+                        let response = await http.post(
                           "/api/v1/auth/begin/login_register/",
-                          false,
-                          {}
+                          { mobile: userLog.mobile_number }
                         );
                         if (response.status < 300) {
                           router.push(
@@ -190,8 +187,8 @@ function Header() {
                     </div>
                     <div
                       onClick={() => {
-                        clearTokenStorage()
-                        
+                        clearTokenStorage();
+
                         router.push("/");
                         router.reload("/");
                       }}

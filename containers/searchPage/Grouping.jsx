@@ -1,16 +1,18 @@
 import React from "react";
 import CustomAccordion from "../../components/custom/customAccordion";
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import {  http } from "../../services/callApi/api";
 
-function Grouping({searchWord,setCategories,categories,_handel_Add_category,item}) {
+function Grouping({
+  searchWord,
+  setCategories,
+  categories,
+  _handel_Add_category,
+  item,
+}) {
   const _handel_category = async () => {
     try {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        `/api/v1/categories/category_product_count/?q=${searchWord}`,
-        false,
-        {}
+      let response = await http.get(
+        `/api/v1/categories/category_product_count/?q=${searchWord}`
       );
       if (response.status === 200) {
         setCategories(response.data);
@@ -23,10 +25,10 @@ function Grouping({searchWord,setCategories,categories,_handel_Add_category,item
     <>
       <CustomAccordion
         title="دسته بندی"
-        item={item?item:"one"}
+        item={item ? item : "one"}
         callApi={() => _handel_category()}
       >
-        {categories.map(({ id, name, product_count },index) => (
+        {categories.map(({ id, name, product_count }, index) => (
           <div
             key={`one${index}`}
             style={{ marginBottom: "10px", paddingRight: "10px" }}

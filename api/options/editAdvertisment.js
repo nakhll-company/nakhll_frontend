@@ -1,13 +1,11 @@
 import { successMessage } from "../../utils/toastifyMessage";
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { authhttp } from "../../services/callApi/api";
 // get advertisment
-export const editAdvertisment = async (shop_slug, data) => {
+export const editAdvertisment = async(shop_slug, data) => {
     try {
-        let response = await ApiRegister().apiRequest(
-            data,
-            "PATCH",
+        let response = await authhttp.patch(
             `/api/v1/shop/advertisements/${shop_slug}/`,
-            true, {}
+            data
         );
         if (response.status === 200) {
             successMessage("با موفقیت ثبت شد");

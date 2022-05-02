@@ -1,21 +1,15 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { ApiRegister } from "../../../../../../../services/apiRegister/ApiRegister";
+import { authhttp } from "../../../../../../../services/callApi/api";
 import styles from "./switchButton.module.scss";
 
 function SwitchButtonSetting({ id, isActive }) {
   const [Activer, setActiver] = useState(isActive);
   const handel_chamnge_status = async () => {
     setActiver((e) => !e);
-    let response = await ApiRegister().apiRequest(
-      {
-        is_active: !isActive,
-      },
-      "put",
-      `/api/v1/logistic/shop-logistic-unit/${id}/`,
-      true,
-      ""
-    );
+    let response = await authhttp.put(`/api/v1/logistic/shop-logistic-unit/${id}/`,{
+      is_active: !isActive,
+    }) 
     if (response.status == 200) {
     }
   };

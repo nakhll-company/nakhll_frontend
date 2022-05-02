@@ -16,7 +16,6 @@ import InputPictureCreat from "../../../../../containers/creat/component/InputPi
 import TextAreaUseForm from "../../../../../containers/creat/component/textAreaUseForm";
 import PictureChildProduct from "../../../../../containers/creat/component/pictureChildProduct";
 // methods
-import { ApiRegister } from "../../../../../services/apiRegister/ApiRegister";
 import { mapState } from "../../../../../containers/product/methods/mapState";
 import {
   _ApiGetCategories,
@@ -25,6 +24,7 @@ import {
 // styles
 import styles from "../../../../../styles/pages/product/create.module.scss";
 import InputTag from "../../../../../components/InputTag";
+import { authhttp } from "../../../../../services/callApi/api";
 /**
  * page update product
  * @param {string} activeHojreh => it has slug name
@@ -53,16 +53,9 @@ const UpdateProduct = ({ activeHojreh }) => {
   useEffect(() => {
     async function fetchData() {
       if (id) {
-        let params = null;
-        let loadData = null;
+        
         let dataUrl = `/api/v1/shop/${activeHojreh}/products/${id}/`;
-        let response = await ApiRegister().apiRequest(
-          loadData,
-          "get",
-          dataUrl,
-          true,
-          params
-        );
+        let response = await authhttp.get(dataUrl) 
 
         if (response.status === 200) {
           let Data = response.data;

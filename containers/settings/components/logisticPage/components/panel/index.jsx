@@ -6,27 +6,26 @@ import Assistent from "zaravand-assistent-number";
 // ciomponents
 import SBSendUnit from "../sendUnit/switchButtonSendUnit";
 import LoadingAllPage from "../../../../../../components/loadingAllPage";
-// methods
-import { ApiRegister } from "../../../../../../services/apiRegister/ApiRegister";
 // style
 import st from "./panel.module.scss";
+import { authhttp } from "../../../../../../services/callApi/api";
 
 const _asist = new Assistent();
 
-function Panel({ setConstraintId, setWichIdScope, setInformationForm, setWichPage }) {
-
+function Panel({
+  setConstraintId,
+  setWichIdScope,
+  setInformationForm,
+  setWichPage,
+}) {
   const [loaderTable, setLoaderTable] = useState(false);
   const [SavedSendingUnit, setSavedSendingUnit] = useState([]);
   const activeHojreh = useSelector((state) => state.User.activeHojreh);
 
   useEffect(() => {
     async function fetchData() {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        `/api/v1/logistic/shop-logistic-unit/?shop=${activeHojreh}`,
-        true,
-        ""
+      let response = await authhttp.get(
+        `/api/v1/logistic/shop-logistic-unit/?shop=${activeHojreh}`
       );
       if (response.status == 200) {
         setSavedSendingUnit(response.data);
@@ -37,13 +36,7 @@ function Panel({ setConstraintId, setWichIdScope, setInformationForm, setWichPag
 
   const _handle_delete_scope = async (id) => {
     setLoaderTable(true);
-    let response = await ApiRegister().apiRequest(
-      null,
-      "DELETE",
-      `/api/v1/logistic/shop-logistic-unit/${id}/`,
-      true,
-      ""
-    );
+    let response = await authhttp.delete(`/api/v1/logistic/shop-logistic-unit/${id}/`)
     if (response.status == 204) {
       let helpArray = SavedSendingUnit.filter((el) => el.id !== id);
       setSavedSendingUnit(helpArray);

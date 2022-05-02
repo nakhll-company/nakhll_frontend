@@ -1,51 +1,35 @@
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { authhttp, http } from "../../services/callApi/api";
+
 
 export const _ApiGetCategories = async() => {
-    let params = null;
-    let loadData = null;
     let dataUrl = "/api/v1/categories/";
-    let response = await ApiRegister().apiRequest(
-        loadData,
-        "get",
-        dataUrl,
-        false,
-        params
-    );
+    let response = await http.get(dataUrl);
     return response;
 };
-export const _ApiGetTags = async(activeHojreh) => {
-    let params = null;
-    let loadData = null;
 
+
+export const _ApiGetTags = async(activeHojreh) => {
     let dataUrl = `/api/v1/shop/${activeHojreh}/tags/`;
-    let response = await ApiRegister().apiRequest(
-        loadData,
-        "get",
-        dataUrl,
-        true,
-        params
-    );
+    let response = await authhttp.get(dataUrl);
     return response;
 };
+
 
 export const _ApiCreateProduct = async(dataForSend, activeHojreh) => {
     try {
-        let response = await ApiRegister().apiRequest(
-            dataForSend,
-            "post",
+        let response = await authhttp.post(
             `/api/v1/shop/${activeHojreh}/products/`,
-            true, {}
+            dataForSend
         );
         return response;
     } catch (error) {}
 };
 
+
 export const _ApiUpdateProduct = async(dataForSend, activeHojreh, id) => {
-    let response = await ApiRegister().apiRequest(
-        dataForSend,
-        "patch",
+    let response = await authhttp.patch(
         `/api/v1/shop/${activeHojreh}/products/${id}/`,
-        true, {}
+        dataForSend
     );
     return response;
 };

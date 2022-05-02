@@ -4,25 +4,21 @@ import Assistent from "zaravand-assistent-number";
 // components
 import SBSendUnit from "../sendUnit/switchButtonSendUnit";
 import LoadingAllPage from "../../../../../../components/loadingAllPage";
-// methods
-import { ApiRegister } from "../../../../../../services/apiRegister/ApiRegister";
+
 // style
 import st from "./tabel.module.scss";
+import { authhttp } from "../../../../../../services/callApi/api";
 
 const _asist = new Assistent();
 
 function Tabel({ changePage, setWichIdScope }) {
-
   const [loaderTable, setLoaderTable] = useState(false);
   const [SavedSendingUnit, setSavedSendingUnit] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
+      let response = await authhttp.get(
         `/api/v1/logistic/shop-logistic-unit-constraint/`,
-        true,
         { id: 10 }
       );
 
@@ -36,12 +32,8 @@ function Tabel({ changePage, setWichIdScope }) {
 
   const _handle_delete_scope = async (id) => {
     setLoaderTable(true);
-    let response = await ApiRegister().apiRequest(
-      null,
-      "DELETE",
-      `/api/v1/logistic/shop-logistic-unit-constraint/${id}/`,
-      true,
-      ""
+    let response = await authhttp.delete(
+      `/api/v1/logistic/shop-logistic-unit-constraint/${id}/`
     );
 
     if (response.status == 204) {

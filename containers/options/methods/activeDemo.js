@@ -1,26 +1,19 @@
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+import { authhttp } from "../../../services/callApi/api";
 
 export async function activeDemo(id, activeShop, router) {
-    let response = await ApiRegister().apiRequest({
-        feature: id,
-        shop: activeShop,
-    },
-        "POST",
-        `/api/v1/shop/feature-invoices/activate_demo/`,
-        true, {}
+    let response = await authhttp.post(
+        `/api/v1/shop/feature-invoices/activate_demo/`, {
+            feature: id,
+            shop: activeShop,
+        }
     );
 
     if (response.status === 200) {
-        let response = await ApiRegister().apiRequest({
+        let response = await authhttp.post(`/api/v1/shop/landings/${activeShop}/`, {
             name: "صفحه بدون نام",
             page_data: "",
             shop: activeShop,
-        },
-            "post",
-            `/api/v1/shop/landings/${activeShop}/`,
-            true,
-            ""
-        );
+        });
         if (response.status === 201) {
             router.push(`/liveEdit/${activeShop}/${response.data.id}`);
         }

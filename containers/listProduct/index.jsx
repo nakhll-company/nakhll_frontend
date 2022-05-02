@@ -13,15 +13,14 @@ import CustomAccordion from "../../components/custom/customAccordion";
 import MultiRangeSlider from "../../components/custom/customMultiRangeSlider/MultiRangeSlider";
 // methods
 import { allCites } from "../../utils/allCities";
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
 import { WoLoading } from "../../components/custom/Loading/woLoading/WoLoading";
 // style
 import styles from "./listProduct.module.scss";
+import { http } from "../../services/callApi/api";
 
 const _asist = new Assistent();
 
 function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
-
   const listProducts = [];
   const [pageApi, setPageApi] = useState(2);
   const [minPrice, setMinPrice] = useState("");
@@ -64,13 +63,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
     };
 
     try {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        `/api/v1/products/`,
-        false,
-        params
-      );
+      let response = await http.get(`/api/v1/products/`, {params});
       if (response.status === 200) {
         setListWithFilter(response.data.results);
 
@@ -102,30 +95,24 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
 
   const _handel_call_another_page_api = async (witchFilter) => {
     try {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        `/api/v1/products/`,
-        false,
-        {
-          ...(witchFilter ? witchFilter : null),
-          search: searchWord,
-          ordering: whichOrdering,
-          page: pageApi,
-          ready: isReadyForSend,
-          available: isAvailableGoods,
-          discounted: isDiscountPercentage,
-          city: checkedCity.toString(),
-          ...(categoryIn !== "" && { category: categoryIn }),
-          ...(wantCategories.length > 0 && {
-            category: wantCategories.toString(),
-          }),
-          page_size: 50,
-          min_price: minPrice,
-          max_price: maxPrice,
-          shop: shop_products,
-        }
-      );
+      let response = await http.get(`/api/v1/products/`, {params:{
+        ...(witchFilter ? witchFilter : null),
+        search: searchWord,
+        ordering: whichOrdering,
+        page: pageApi,
+        ready: isReadyForSend,
+        available: isAvailableGoods,
+        discounted: isDiscountPercentage,
+        city: checkedCity.toString(),
+        ...(categoryIn !== "" && { category: categoryIn }),
+        ...(wantCategories.length > 0 && {
+          category: wantCategories.toString(),
+        }),
+        page_size: 50,
+        min_price: minPrice,
+        max_price: maxPrice,
+        shop: shop_products,
+      }});
       if (response.status === 200) {
         const ContinueList = response.data.results;
         setListWithFilter([...listWithFilter, ...ContinueList]);
@@ -134,7 +121,9 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
         }
         setPageApi(pageApi + 1);
       }
-    } catch (e) { return false; }
+    } catch (e) {
+      return false;
+    }
   };
 
   // for filters in sidebar
@@ -142,26 +131,23 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
     async function fetchData() {
       const _handel_category = async () => {
         try {
-          let response = await ApiRegister().apiRequest(
-            null,
-            "get",
-            `/api/v1/sub_markets/?q=${searchWord}`,
-            true,
-            {}
-          );
+          let response = await http.get(`/api/v1/sub_markets/?q=${searchWord}`);
           if (response.status === 200) {
             setCategories(response.data);
           }
-        } catch (e) { return false; }
+        } catch (e) {
+          return false;
+        }
       };
       await _handel_filters();
       await _handel_category();
     }
     fetchData();
-
   }, [
     _handel_filters,
-    maxPrice, minPrice, shop_products,
+    maxPrice,
+    minPrice,
+    shop_products,
     searchWord,
     isAvailableGoods,
     isReadyForSend,
@@ -312,10 +298,8 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
               />
               <div className="mx-auto row">
                 {isLoading ? (
-
                   <WoLoading />
                 ) : (
-
                   <InfiniteScroll
                     className="mx-auto row"
                     dataLength={listWithFilter.length} //This is important field to render the next data

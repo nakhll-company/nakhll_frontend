@@ -1,15 +1,10 @@
 import { successMessage } from "../../utils/toastifyMessage";
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+
+import { authhttp } from "../../services/callApi/api";
 // get address of user
 export async function deleteAddress(id) {
     try {
-        let response = await ApiRegister().apiRequest(
-            null,
-            "DELETE",
-            `/api/v1/logistic/addresses/${id}/`,
-            true,
-            ""
-        );
+        let response = await authhttp.delete(`/api/v1/logistic/addresses/${id}/`);
         if (response.status === 204) {
             successMessage("آدرس مورد نظر حذف شد");
         }

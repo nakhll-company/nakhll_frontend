@@ -1,12 +1,7 @@
-import { ApiRegister } from '../../../services/apiRegister/ApiRegister';
+import { authhttp } from "../../../services/callApi/api";
 
 export async function landingDetal(id) {
-
-    let response = await ApiRegister().apiRequest(
-        null, "get",
-        `/api/v1/shop/features/${id}/`,
-        true, {}
-    );
+    let response = await authhttp.get(`/api/v1/shop/features/${id}/`);
 
     if (response.status === 200) {
         return response.data;

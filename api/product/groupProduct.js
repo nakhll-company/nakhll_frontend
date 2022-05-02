@@ -1,9 +1,8 @@
 import { successMessage } from "../../utils/toastifyMessage";
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { authhttp } from "../../services/callApi/api";
 
 // create groups product
 export async function createGroupProducts(event, setShowResult, activeHojreh) {
-
     event.preventDefault();
     let data = new FormData();
     let zipFile = document.getElementById("productZipFile").files[0];
@@ -12,11 +11,9 @@ export async function createGroupProducts(event, setShowResult, activeHojreh) {
     data.append("product-excel-upload", excel);
 
     successMessage("درحال بارگزاری محصولات...");
-    let response = await ApiRegister().apiRequest(
-        data,
-        "post",
+    let response = await authhttp.post(
         `/api/v1/product/group-create/${activeHojreh}/`,
-        true, {}
+        dataz
     );
     if (response.status === 200) {
         successMessage("محصول با موفقیت بارگزاری شد");
@@ -25,11 +22,8 @@ export async function createGroupProducts(event, setShowResult, activeHojreh) {
 }
 // undo create groups product
 export async function undoGroupProducts(activeHojreh) {
-    let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        `/api/v1/product/group-undo/${activeHojreh}/`,
-        true, {}
+    let response = await authhttp.get(
+        `/api/v1/product/group-undo/${activeHojreh}/`
     );
     if (response.status === 200) {
         successMessage("درخواست لغو بارگزاری با موفقیت ارسال شد");

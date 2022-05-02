@@ -6,14 +6,13 @@ import Sm_product from "../Sm_product";
 import InputUrl from "../../../containers/liveEdit/InputUrl";
 // methods
 import { _selectId } from "../../../redux/actions/liveEdit/_selectId";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import { _updateProducts } from "../../../redux/actions/liveEdit/_updateProducts";
 import { _updateTitleColorSubtitle } from "../../../redux/actions/liveEdit/_updateTitleColorSubtitle";
 // style
 import styles from "./Sm_LinerProducts.module.scss";
+import { http } from "../../../services/callApi/api";
 
 function Sm_LinerProducts({ id, data }) {
-
   const dispatch = useDispatch();
   const [toggle, setToggle] = useState(true);
   const [products, setProducts] = useState([]);
@@ -40,13 +39,9 @@ function Sm_LinerProducts({ id, data }) {
       }
 
       if (Object.keys(Queries).length > 1) {
-        let response = await ApiRegister().apiRequest(
-          null,
-          "GET",
-          "https://nakhll.com/api/v1/products/",
-          false,
-          Queries
-        );
+        let response = await http.get("https://nakhll.com/api/v1/products/", {
+          params: Queries,
+        });
 
         if (response.status == 200) {
           setProducts(response.data.results);

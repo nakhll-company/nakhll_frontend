@@ -8,11 +8,12 @@ import Assistent from "zaravand-assistent-number";
 import ShopLayout from "../../../components/shopLayout";
 // methods
 import { _getListInvoice } from "../../../api/cart";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+
 // scss
 import styles from "./payment.module.scss";
 import AppButton from "../../../components/AppButton";
 import { errorMessage } from "../../../utils/toastifyMessage";
+import { authhttp } from "../../../services/callApi/api";
 
 const _asist = new Assistent();
 
@@ -33,13 +34,9 @@ export default function Cart() {
     if (valueCoupon) {
       setIsLoadInvoice(true);
       try {
-        let response = await ApiRegister().apiRequest(
-          { coupon: valueCoupon },
-          "PATCH",
-          `/api/v1/cart/set_coupon/`,
-          true,
-          {}
-        );
+        let response = await authhttp.patch(`/api/v1/cart/set_coupon/`, {
+          coupon: valueCoupon,
+        });
         let dataCoupen = response.data;
 
         if (response.status === 200) {
@@ -48,13 +45,7 @@ export default function Cart() {
             errorMessage(dataCoupen.errors[0]);
           }
 
-          let response = await ApiRegister().apiRequest(
-            null,
-            "GET",
-            `/api/v1/cart/me/`,
-            true,
-            {}
-          );
+          let response = await authhttp.get( `/api/v1/cart/me/`) 
           let data = await response.data;
           console.log("two :>> ", data);
           if (response.status === 200) {
@@ -77,13 +68,7 @@ export default function Cart() {
 
   const _deleteCoupon = async (coupon) => {
     setIsLoadInvoice(true);
-    let response = await ApiRegister().apiRequest(
-      { coupon },
-      "PATCH",
-      `/api/v1/cart/unset_coupon/`,
-      true,
-      {}
-    );
+    let response = await authhttp.patch(`/api/v1/cart/unset_coupon/`,{ coupon }) 
     if (response.status === 200) {
       await _getListInvoice();
       setIsLoadInvoice(false);
@@ -94,13 +79,7 @@ export default function Cart() {
     try {
       setLoaderButton(true);
       setIsLoadInvoice(true);
-      let response = await ApiRegister().apiRequest(
-        null,
-        "POST",
-        `/api/v1/cart/pay/`,
-        true,
-        {}
-      );
+      let response = await authhttp.post(`/api/v1/cart/pay/`) 
       if (response.status === 200) {
         let data = await response.data;
         await router.push(data.url);
@@ -279,7 +258,7 @@ export default function Cart() {
                 <div className="d-flex py-1">
                   <span>جمع بهای سفارش:</span>
                   <span className="mr-auto" style={{ marginRight: "auto" }}>
-                    {_asist.PSeparator(dataCart.cart_price  / 10)} تومان
+                    {_asist.PSeparator(dataCart.cart_price / 10)} تومان
                   </span>
                 </div>
                 <div className="d-flex py-1">
@@ -359,17 +338,13 @@ export default function Cart() {
               >
                 مبلغ قابل‌پرداخت:
               </span>
-              
-                <span
-                  className=" font-size1"
-                  style={{ color: "rgb(27,62,104)" }}
-                >
-                  <strong className="payableAmount splitNumber font-size1-2">
-                    {_asist.PSeparator(dataCart.total_price  / 10)}
-                  </strong>
-                  تومان
-                </span>
-              
+
+              <span className=" font-size1" style={{ color: "rgb(27,62,104)" }}>
+                <strong className="payableAmount splitNumber font-size1-2">
+                  {_asist.PSeparator(dataCart.total_price / 10)}
+                </strong>
+                تومان
+              </span>
             </div>
 
             <div className={`${styles.buttonPayment} mt-3`}>

@@ -6,7 +6,6 @@ import React, { useEffect, useState } from "react";
 // methods
 import { ApiReference } from "../../../api/Api";
 import { errorMessage } from "../../../utils/toastifyMessage";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import { _updateUrl } from "../../../redux/actions/liveEdit/_updateUrl";
 import { _updateVideo } from "../../../redux/actions/liveEdit/_updateVideo";
 import { _showSelect_url } from "../../../redux/actions/liveEdit/_showSelect_url";
@@ -15,32 +14,28 @@ import SubButton from "../../settings/components/subButton";
 import TextAreaUseForm from "../../creat/component/textAreaUseForm";
 // styles
 import styles from "./SelectUrl.module.scss";
+import { authhttp } from "../../../services/callApi/api";
 
 const _asist = new Assistent();
 
 function SelectUrl({ idLanding }) {
-
   const dispatch = useDispatch();
   const [list, setList] = useState([]);
   const [showInput, setShowInput] = useState(false);
   let apiListPinned = ApiReference.PinnedURL.PinnedList.url;
-  const { register, handleSubmit } = useForm({ criteriaMode: "all", mode: "all" });
+  const { register, handleSubmit } = useForm({
+    criteriaMode: "all",
+    mode: "all",
+  });
 
   useEffect(() => {
     async function fetchData() {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        apiListPinned,
-        true,
-        ""
-      );
+      let response = await authhttp.get(apiListPinned);
       if (response.status == 200) {
         setList(response.data);
       }
     }
     fetchData();
-
   }, [apiListPinned]);
 
   const onSubmit = async (data) => {
@@ -116,8 +111,7 @@ function SelectUrl({ idLanding }) {
                         />
                       </TextAreaUseForm>
                       <SubButton title="ثبت ویدیو" />
-                      <div className={styles.wrapBtn}>
-                      </div>
+                      <div className={styles.wrapBtn}></div>
                     </form>
                   </div>
                 </div>

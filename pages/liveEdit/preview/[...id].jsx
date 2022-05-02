@@ -14,7 +14,7 @@ import LinearShopsCart from "../../../containers/LandingPage/linearShopsCart";
 import LinerFourImgMobile from "../../../containers/LandingPage/LinerFourImgMobile";
 // methods
 import { ApiReference } from "../../../api/Api";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+import { authhttp } from "../../../services/callApi/api";
 
 function Preview({ idLanding }) {
 
@@ -23,13 +23,7 @@ function Preview({ idLanding }) {
 
   useEffect(() => {
     async function fetchData() {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        getDataLanding,
-        true,
-        ""
-      );
+      let response = await authhttp.get(getDataLanding) 
       if (response.status == 200) {
         setDataLanding(JSON.parse(response.data.page_data));
       }

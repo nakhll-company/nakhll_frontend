@@ -1,14 +1,9 @@
 import { getServerSideSitemap } from "next-sitemap";
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import { http } from "../../services/callApi/api";
 
 export const getServerSideProps = async (ctx) => {
-  let response = await ApiRegister().apiRequest(
-    null,
-    "Get",
-    "https://nakhll.com/api/v1/util/shops/",
-    false,
-    ""
-  );
+  let response = await http.get("https://nakhll.com/api/v1/util/shops/");
+
   let fields = [];
   if (response.status == "200") {
     let ans = [...response.data];
@@ -36,4 +31,4 @@ export const getServerSideProps = async (ctx) => {
   return getServerSideSitemap(ctx, fields);
 };
 
-export default function Site() { }
+export default function Site() {}

@@ -6,28 +6,24 @@ import React, { useEffect, useState } from "react";
 import MenuMobile from "../../../components/layout/MenuMobile";
 import ProductCard from "../../../components/ProductCart/ProductCard";
 // methods
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
+import { http } from "../../../services/callApi/api";
 
 function ListWitOutFilters({ api }) {
-
   const isLoading = false;
   const [listProducts, setlistProducts] = useState([]);
 
   useEffect(() => {
     const _Call_Products = async () => {
       try {
-        let response = await ApiRegister().apiRequest(
-          null,
-          "get",
-          api,
-          false,
-          {}
-        );
+        
+        let response = await http.get(api);
         if (response.status === 200) {
           setlistProducts(response.data);
         }
-      } catch (e) { return false; }
+      } catch (e) {
+        return false;
+      }
     };
     _Call_Products();
   }, [api]);

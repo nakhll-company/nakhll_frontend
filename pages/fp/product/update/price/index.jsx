@@ -6,11 +6,11 @@ import { ErrorMessage } from "@hookform/error-message";
 import useViewport from "../../../../../components/viewPort";
 import MobileHeader from "../../../../../components/mobileHeader";
 // methods
-import { successMessage, } from "../../../../../utils/toastifyMessage";
+import { successMessage } from "../../../../../utils/toastifyMessage";
 import { mapState } from "../../../../../containers/product/methods/mapState";
-import { ApiRegister } from "../../../../../services/apiRegister/ApiRegister";
 // scss
 import styles from "../../../../../styles/pages/product/editPrice.module.scss";
+import { authhttp } from "../../../../../services/callApi/api";
 
 const Price = ({ productList }) => {
   const {
@@ -35,12 +35,9 @@ const Price = ({ productList }) => {
         });
       }
     });
-    let response = await ApiRegister().apiRequest(
-      objArray,
-      "PATCH",
+    let response = await authhttp.patch(
       `/api/v1/shop/multiple-update/price/`,
-      true,
-      {}
+      objArray
     );
     if (response.status === 200) {
       successMessage("داده ها با موفقیت ثبت شده اند");
@@ -104,7 +101,7 @@ const Price = ({ productList }) => {
                         },
                         validate: (value) =>
                           parseInt(value) <=
-                          parseInt(getValues(`Price${index + 100}`)) ||
+                            parseInt(getValues(`Price${index + 100}`)) ||
                           "لطفا قیمت با تخفیف را کمتر از قیمت اصلی وارد نمایید",
                       })}
                       defaultValue={

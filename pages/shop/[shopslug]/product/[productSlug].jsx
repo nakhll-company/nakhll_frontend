@@ -7,7 +7,7 @@ import ShopLayout from "../../../../components/shopLayout";
 import ProductDetailMobile from "../../../../containers/productDetail/mobile";
 import ProductDetailDesktop from "../../../../containers/productDetail/desktop";
 // methods
-import { ApiRegister } from "../../../../services/apiRegister/ApiRegister";
+import { http } from "../../../../services/callApi/api";
 
 // fetch data
 const fetchData = async (id) => {
@@ -16,27 +16,10 @@ const fetchData = async (id) => {
   let urlRelatedProduct = encodeURI(
     `/api/v1/product-page/related_products/${id}/?page_size=10`
   );
-  let comments = await ApiRegister().apiRequest(
-    null,
-    "GET",
-    urlComments,
-    false,
-    ""
-  );
-  let response = await ApiRegister().apiRequest(
-    null,
-    "get",
-    urlResponse,
-    false,
-    ""
-  );
-  let relatedProduct = await ApiRegister().apiRequest(
-    null,
-    "GET",
-    urlRelatedProduct,
-    false,
-    ""
-  );
+
+  let comments = await http.get(urlComments);
+  let response = await http.get(urlResponse);
+  let relatedProduct = await http.get(urlRelatedProduct);
 
   if (response.status === 200) {
     return {

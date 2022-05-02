@@ -1,4 +1,4 @@
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+import { authhttp } from "../../../services/callApi/api";
 
 export const _updatePicture = (img) => {
   return async (dispatch, getState) => {
@@ -6,7 +6,7 @@ export const _updatePicture = (img) => {
     const id = getState().selectIdFormLanding;
 
     try {
-      let params = {};
+      
 
       let loadData = {
         image: img,
@@ -14,13 +14,7 @@ export const _updatePicture = (img) => {
         description: "",
       };
       let dataUrl = `/api/v1/profile/images/`;
-      response = await ApiRegister().apiRequest(
-        loadData,
-        "POST",
-        dataUrl,
-        true,
-        params
-      );
+      response = await authhttp.post(dataUrl,loadData) 
 
       if (response.status !== 201) {
         alert("در بارگذاری عکس مشکلی پیش آمده");

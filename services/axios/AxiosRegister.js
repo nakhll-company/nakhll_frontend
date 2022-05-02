@@ -5,7 +5,6 @@ import { errorMessage } from "../../utils/toastifyMessage";
 // function for handel message
 
 function showMessage(error) {
-
     const expectedError =
         error.response &&
         error.response.status >= 400 &&
@@ -16,13 +15,17 @@ function showMessage(error) {
             for (let value of Object.values(error.response.data)) {
                 message += value.toString().replace(",", "\n");
             }
-            error.response.status !== 401 &&
+
+            if (error.response.status !== 401) {
                 errorMessage(
                     message,
                     error.response.status,
                     window.location.pathname,
                     error.response.config.url
                 );
+            } else {
+                errorMessage("لطفا ابتدا وارد شوید .");
+            }
         } else {
             errorMessage(
                 "مشکلی از سمت سرور رخ داده است.",
@@ -84,7 +87,9 @@ instanceAxiosWithOutToken.interceptors.response.use(
 //=================================================================\\
 instanceAxiosWithToken.interceptors.request.use(
     function(config) {
-        config.headers['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
+        config.headers["Authorization"] = `Bearer ${localStorage.getItem(
+      "accessToken"
+    )}`;
         return config;
     },
     function(error) {

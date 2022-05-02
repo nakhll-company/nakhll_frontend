@@ -10,10 +10,10 @@ import HeaderTitle from "../../components/headerTitle";
 import CheckBoxSend from "../../components/checkBoxSend";
 import InputUseForm from "../../../../../creat/component/inputUseForm";
 import CheckboxTreeCities from "../../../../../../components/CheckboxTree/CheckboxTree";
-// methods
-import { ApiRegister } from "../../../../../../services/apiRegister/ApiRegister";
+
 // style
 import st from "./allEdit.module.scss";
+import { authhttp } from "../../../../../../services/callApi/api";
 
 const SHOP = "shop";
 const CUSTOMER = "cust";
@@ -24,7 +24,7 @@ const ICONS = [
   { src: "/icons/settings/sefareshi.svg", id: 2 },
   { src: "/icons/settings/peik.svg", id: 3 },
   { src: "/icons/settings/pasKeraieh.svg", id: 4 },
-  { src: "/icons/settings/free.svg", id: 5 }
+  { src: "/icons/settings/free.svg", id: 5 },
 ];
 function AllEdit({
   upPage,
@@ -32,7 +32,7 @@ function AllEdit({
   constraintId,
   informationForm,
   _handle_send_info_scope,
-  _handle_update_data_scope
+  _handle_update_data_scope,
 }) {
   const [checkNO, setCheckNO] = useState(true);
   const [checkYes, setCheckYes] = useState(false);
@@ -41,16 +41,19 @@ function AllEdit({
   const [idselectedIcon, setIdselectedIcon] = useState(1);
   const [editProductsShop, setEditProductsShop] = useState([]);
   const [editCheckedCities, setEditCheckedCities] = useState([]);
-  const [editcheckedSelectAllProducts, setEditcheckedSelectAllProducts] = useState(true);
-  const { setValue, register, handleSubmit, formState: { errors } } = useForm({ criteriaMode: "all", mode: "all" });
+  const [editcheckedSelectAllProducts, setEditcheckedSelectAllProducts] =
+    useState(true);
+  const {
+    setValue,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ criteriaMode: "all", mode: "all" });
 
   const _update_cities = async (data) => {
-    let response = await ApiRegister().apiRequest(
-      data,
-      "PATCH",
+    let response = await authhttp.patch(
       `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
-      true,
-      ""
+      data
     );
     return response;
   };
@@ -84,12 +87,8 @@ function AllEdit({
 
   useEffect(() => {
     const _handel_get_all_data_scope = async () => {
-      let response = await ApiRegister().apiRequest(
-        null,
-        "get",
-        `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
-        true,
-        ""
+      let response = await authhttp.get(
+        `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`
       );
       if (response.status == 200) {
         setEditProductsShop(response.data.products);
@@ -190,42 +189,39 @@ function AllEdit({
 
       {/* four */}
       <form
-        onSubmit={handleSubmit(
-          (data) => {
-            
-            _handle_send_info_scope(
-              {
-                name: data.edit_name ? data.edit_name : "بدون نام",
-                logo_type: idselectedIcon,
-                calculation_metric: {
-                  price_per_kilogram: data.edit_price_per_kg
-                    ? unitConverter(data.edit_price_per_kg) * 10
-                    : 0,
-                  price_per_extra_kilogram: data.edit_price_per_extra_kg
-                    ? unitConverter(data.edit_price_per_extra_kg) * 10
-                    : 0,
+        onSubmit={handleSubmit((data) => {
+          _handle_send_info_scope(
+            {
+              name: data.edit_name ? data.edit_name : "بدون نام",
+              logo_type: idselectedIcon,
+              calculation_metric: {
+                price_per_kilogram: data.edit_price_per_kg
+                  ? unitConverter(data.edit_price_per_kg) * 10
+                  : 0,
+                price_per_extra_kilogram: data.edit_price_per_extra_kg
+                  ? unitConverter(data.edit_price_per_extra_kg) * 10
+                  : 0,
 
-                  payer: checkYesFree ? SHOP : CUSTOMER,
-                  pay_time: checkYes ? AT_DELIVERY : WHEN_BUYING,
-                },
-                constraint: {
-                  min_cart_price:
-                    data.edit_minPrice != "" ? data.edit_minPrice * 10 : 0,
-                },
+                payer: checkYesFree ? SHOP : CUSTOMER,
+                pay_time: checkYes ? AT_DELIVERY : WHEN_BUYING,
               },
-              8
-            );
+              constraint: {
+                min_cart_price:
+                  data.edit_minPrice != "" ? data.edit_minPrice * 10 : 0,
+              },
+            },
+            8
+          );
 
+          _update_cities({
+            cities: editCheckedCities.length > 0 ? editCheckedCities : [],
+          });
+          if (editcheckedSelectAllProducts) {
             _update_cities({
-              cities: editCheckedCities.length > 0 ? editCheckedCities : [],
+              products: [],
             });
-            if (editcheckedSelectAllProducts) {
-              _update_cities({
-                products: [],
-              });
-            }
           }
-        )}
+        })}
       >
         {checkNO && (
           <>
