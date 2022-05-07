@@ -25,6 +25,7 @@ import { useSelector } from "react-redux";
 import Grouping from "../../searchPage/Grouping";
 import { http } from "../../../services/callApi/api";
 import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+import FilterPrice from "./components/filterPrice";
 
 const _asist = new Assistent();
 
@@ -44,6 +45,7 @@ function ListProductCus({ data }) {
   const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
   const [searchWord, setSearchWord] = useState(data.q ? data.q : "");
   const [isOpenOrderingModal, setIsOpenOrderingModal] = useState(false);
+  const [ragnePrice, setRagnePrice] = useState({});
   // states for shops
   const [shopesTag, setShopesTag] = useState(userData ? userData.shops : []);
   const [tags, setTags] = useState([]);
@@ -126,26 +128,28 @@ function ListProductCus({ data }) {
 
   const _handel_call_another_page_api = async (witchFilter) => {
     try {
-      let response = await http.get(`/api/v1/products/`, {params:{
-        ...(witchFilter ? witchFilter : null),
-        search: searchWord,
-        ...(whichOrdering !== "" && { ordering: whichOrdering }),
-        page: pageApi,
-        ...(isReadyForSend && { ready: isReadyForSend }),
-        ...(isAvailableGoods && { available: isAvailableGoods }),
-        ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
-        ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
-        ...(wantCategories.length > 0 && {
-          category: wantCategories.toString(),
-        }),
-        ...(wantTags.length > 0 && {
-          tags: wantTags.toString(),
-        }),
-        page_size: 50,
-        ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
-        ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
-        ...(hojreh !== "" && { shop: hojreh }),
-      }});
+      let response = await http.get(`/api/v1/products/`, {
+        params: {
+          ...(witchFilter ? witchFilter : null),
+          search: searchWord,
+          ...(whichOrdering !== "" && { ordering: whichOrdering }),
+          page: pageApi,
+          ...(isReadyForSend && { ready: isReadyForSend }),
+          ...(isAvailableGoods && { available: isAvailableGoods }),
+          ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
+          ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
+          ...(wantCategories.length > 0 && {
+            category: wantCategories.toString(),
+          }),
+          ...(wantTags.length > 0 && {
+            tags: wantTags.toString(),
+          }),
+          page_size: 50,
+          ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
+          ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
+          ...(hojreh !== "" && { shop: hojreh }),
+        },
+      });
       if (response.status === 200) {
         const ContinueList = response.data.results;
 
@@ -180,37 +184,38 @@ function ListProductCus({ data }) {
     }
     setSearchShops(filterArray);
   };
-  useEffect(() => {
-    setSearchWord(data.q);
-  }, [data.q]);
+  // useEffect(() => {
+  //   setSearchWord(data.q);
+  // }, [data.q]);
 
   // data,
   //   changePage,
   useEffect(() => {
-    router.push(
-      {
-        pathname: router.pathname,
-        query: {
-          q: searchWord,
-          ...(whichOrdering !== "" && { ordering: whichOrdering }),
-          ...(isReadyForSend && { ready: isReadyForSend }),
-          ...(isAvailableGoods && { available: isAvailableGoods }),
-          ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
-          ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
-          ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
-          ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
-          ...(hojreh !== "" && { shop: hojreh }),
-          ...(wantCategories.length !== 0 && {
-            category: wantCategories.toString(),
-          }),
-          ...(wantTags.length > 0 && {
-            tags: wantTags.toString(),
-          }),
-        },
-      },
-      undefined,
-      { scroll: false }
-    );
+    
+    // router.push(
+    //   {
+    //     pathname: router.pathname,
+    //     query: {
+    //       q: searchWord,
+    //       ...(whichOrdering !== "" && { ordering: whichOrdering }),
+    //       ...(isReadyForSend && { ready: isReadyForSend }),
+    //       ...(isAvailableGoods && { available: isAvailableGoods }),
+    //       ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
+    //       ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
+    //       ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
+    //       ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
+    //       ...(hojreh !== "" && { shop: hojreh }),
+    //       ...(wantCategories.length !== 0 && {
+    //         category: wantCategories.toString(),
+    //       }),
+    //       ...(wantTags.length > 0 && {
+    //         tags: wantTags.toString(),
+    //       }),
+    //     },
+    //   },
+    //   undefined,
+    //   { shallow: true }
+    // );
     async function fetchData() {
       const _handel_filters = async (witchFilter) => {
         setHasMore(true);
@@ -218,7 +223,7 @@ function ListProductCus({ data }) {
 
         let params = {
           ...(witchFilter ? witchFilter : null),
-          search: searchWord,
+          search: data.q,
           ...(whichOrdering !== "" && { ordering: whichOrdering }),
           ...(isReadyForSend && { ready: isReadyForSend }),
           ...(isAvailableGoods && { available: isAvailableGoods }),
@@ -240,11 +245,14 @@ function ListProductCus({ data }) {
         };
 
         try {
-          let response = await http.get(`/api/v1/products/`, {params} );
-          
-          
+          let response = await http.get(`/api/v1/products/`, { params });
+
           if (response.status === 200) {
             setListWithFilter(response.data.results);
+            setRagnePrice({
+              max_price: response?.data?.max_price,
+              min_price: response?.data?.min_price,
+            });
             setNameHojreh(response.data.results[0].FK_Shop.title);
 
             if (
@@ -266,6 +274,7 @@ function ListProductCus({ data }) {
     }
     fetchData();
   }, [
+    data,
     isAvailableGoods,
     isReadyForSend,
     isDiscountPercentage,
@@ -279,6 +288,33 @@ function ListProductCus({ data }) {
     searchWord,
   ]);
 
+
+      const changeUrl=()=>{
+        router.push(
+      {
+        pathname: router.pathname,
+        query: {
+          q: searchWord,
+          ...(whichOrdering !== "" && { ordering: whichOrdering }),
+          ...(isReadyForSend && { ready: isReadyForSend }),
+          ...(isAvailableGoods && { available: isAvailableGoods }),
+          ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
+          ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
+          ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
+          ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
+          ...(hojreh !== "" && { shop: hojreh }),
+          ...(wantCategories.length !== 0 && {
+            category: wantCategories.toString(),
+          }),
+          ...(wantTags.length > 0 && {
+            tags: wantTags.toString(),
+          }),
+        },
+      },
+      undefined,
+      { shallow: true }
+    );
+      }
   // for filters in sidebar
   // END
 
@@ -312,17 +348,26 @@ function ListProductCus({ data }) {
 
               <CustomAccordion title="محدوده قیمت" item="two" close={true}>
                 <div style={{ direction: "ltr", zIndex: "1000" }}>
-                  <MultiRangeSlider
+                  <FilterPrice
+                    ragnePrice={ragnePrice}
+                    setMinPrice={setMinPrice}
+                    setMaxPrice={setMaxPrice}
+                  />
+                  {/* <MultiRangeSlider
                     min={0}
                     max={data.max_price <= 10000 ? data.max_price : 10000}
                     onChange={({ min, max }) => {
                       setMinPrice(min * 10000);
                       setMaxPrice(max * 10000);
                     }}
-                  />
+                  /> */}
                   <div style={{ display: "flex", justifyContent: "center" }}>
                     <button
-                      className="btn btn-dark "
+                      className="btn"
+                      style={{
+                        backgroundColor: "rgb(27,62,104)",
+                        color: "#fff",
+                      }}
                       onClick={() => setClickOnRange(clickOnRange + 1)}
                     >
                       {" "}
