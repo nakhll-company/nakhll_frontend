@@ -60,19 +60,6 @@ function ListProductCus({ data }) {
     ...(data.tags ? data.tags.split(",").map((el) => parseInt(el)) : []),
   ]);
 
-  const [minPrice, setMinPrice] = useState(
-    data.min_price ? parseInt(data.min_price) : 0
-  );
-  const [isReadyForSend, setIsReadyForSend] = useState(
-    data.ready == "true" ? true : false
-  );
-  const [maxPrice, setMaxPrice] = useState(
-    data.max_price ? parseInt(data.max_price) : 10000
-  );
-  const [isAvailableGoods, setIsAvailableGoods] = useState(
-    data.available == "true" ? true : false
-  );
-
   const [checkedCity, setCheckedCity] = useState([
     ...(data.city ? data.city.split(",").map((el) => parseInt(el)) : []),
   ]);
@@ -100,8 +87,6 @@ function ListProductCus({ data }) {
       undefined,
       {}
     );
-
-    // setDataQuery(filters);
   };
 
   const call_tags = async (activeHojreh) => {
@@ -296,8 +281,6 @@ function ListProductCus({ data }) {
     fetchData();
   }, [
     data,
-    isAvailableGoods,
-    isReadyForSend,
 
     checkedCity,
     wantCategories,
@@ -344,17 +327,9 @@ function ListProductCus({ data }) {
                 <div style={{ direction: "ltr", zIndex: "1000" }}>
                   <FilterPrice
                     ragnePrice={ragnePrice}
-                    setMinPrice={setMinPrice}
-                    setMaxPrice={setMaxPrice}
+                    onChangeFilter={onChangeFilter}
                   />
-                  {/* <MultiRangeSlider
-                    min={0}
-                    max={data.max_price <= 10000 ? data.max_price : 10000}
-                    onChange={({ min, max }) => {
-                      setMinPrice(min * 10000);
-                      setMaxPrice(max * 10000);
-                    }}
-                  /> */}
+
                   <div style={{ display: "flex", justifyContent: "center" }}>
                     <button
                       className="btn"
@@ -485,7 +460,7 @@ function ListProductCus({ data }) {
                     title="فقط کالاهای موجود"
                     id="Available_goods"
                     onChange={(e) => {
-                      setIsAvailableGoods(e.target.checked);
+                      onChangeFilter("available", e.target.checked);
                     }}
                   />
                   <CustomSwitch
@@ -493,7 +468,7 @@ function ListProductCus({ data }) {
                     title="آماده ارسال"
                     id="Ready_to_send"
                     onChange={(e) => {
-                      setIsReadyForSend(e.target.checked);
+                      onChangeFilter("ready", e.target.checked);
                     }}
                   />
                   <CustomSwitch
@@ -593,7 +568,7 @@ function ListProductCus({ data }) {
                   title="فقط کالاهای موجود"
                   id="Available_goods_mobile"
                   onChange={(e) => {
-                    setIsAvailableGoods(e.target.checked);
+                    onChangeFilter("available", e.target.checked);
                   }}
                 />
 
@@ -602,7 +577,7 @@ function ListProductCus({ data }) {
                   title="آماده ارسال"
                   id="Ready_to_send_mobile"
                   onChange={(e) => {
-                    setIsReadyForSend(e.target.checked);
+                    onChangeFilter("ready", e.target.checked);
                   }}
                 />
                 <CustomSwitch
@@ -641,13 +616,9 @@ function ListProductCus({ data }) {
             </CustomAccordion>
             <CustomAccordion title="محدوده قیمت" item="2mobile">
               <div style={{ direction: "ltr" }}>
-                <MultiRangeSlider
-                  min={0}
-                  max={10000}
-                  onChange={({ min, max }) => {
-                    setMinPrice(min * 10000);
-                    setMaxPrice(max * 10000);
-                  }}
+                <FilterPrice
+                  ragnePrice={ragnePrice}
+                  onChangeFilter={onChangeFilter}
                 />
                 <div style={{ display: "flex", justifyContent: "center" }}>
                   <button

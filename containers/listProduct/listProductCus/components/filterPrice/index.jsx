@@ -39,12 +39,12 @@ const Range = ({ ceiling, price, changeValue }) => {
   );
 };
 
-function FilterPrice({ ragnePrice, setMinPrice, setMaxPrice }) {
+function FilterPrice({ ragnePrice, onChangeFilter }) {
   const changeValue = (item, value) => {
     if (item == "min") {
-      setMinPrice(value*10);
+      onChangeFilter("min_price", parseInt(value * 10));
     } else {
-      setMaxPrice(value*10);
+      onChangeFilter("max_price", parseInt(value * 10));
     }
   };
   return (
