@@ -30,7 +30,7 @@ import FilterPrice from "./components/filterPrice";
 const _asist = new Assistent();
 
 function ListProductCus({ data }) {
-  console.log('data :>> ', data);
+  console.log("data :>> ", data);
   const [dataQuery, setDataQuery] = useState(data);
   const [pageApi, setPageApi] = useState(2);
   const [hasMore, setHasMore] = useState(false);
@@ -72,9 +72,7 @@ function ListProductCus({ data }) {
   const [isAvailableGoods, setIsAvailableGoods] = useState(
     data.available == "true" ? true : false
   );
-  const [isDiscountPercentage, setIsDiscountPercentage] = useState(
-    data.discounted == "true" ? true : false
-  );
+
   const [checkedCity, setCheckedCity] = useState([
     ...(data.city ? data.city.split(",").map((el) => parseInt(el)) : []),
   ]);
@@ -92,11 +90,8 @@ function ListProductCus({ data }) {
   const onChangeFilter = (name, value) => {
     console.log("run onChangeFilter :>> ", " run onChangeFilter");
     let filters = data;
-    console.log('injjjja :>> ', data);
+    console.log("injjjja :>> ", data);
     filters[name] = value;
-    
-    
-
     router.push(
       {
         pathname: router.pathname,
@@ -152,26 +147,28 @@ function ListProductCus({ data }) {
   const _handel_call_another_page_api = async (witchFilter) => {
     try {
       let response = await http.get(`/api/v1/products/`, {
-        params: {
-          ...(witchFilter ? witchFilter : null),
-          search: searchWord,
-          ...(whichOrdering !== "" && { ordering: whichOrdering }),
-          page: pageApi,
-          ...(isReadyForSend && { ready: isReadyForSend }),
-          ...(isAvailableGoods && { available: isAvailableGoods }),
-          ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
-          ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
-          ...(wantCategories.length > 0 && {
-            category: wantCategories.toString(),
-          }),
-          ...(wantTags.length > 0 && {
-            tags: wantTags.toString(),
-          }),
-          page_size: 50,
-          ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
-          ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
-          ...(hojreh !== "" && { shop: hojreh }),
-        },
+        params: { ...data, page: pageApi, page_size: 50 },
+
+        // {
+        //   ...(witchFilter ? witchFilter : null),
+        //   search: searchWord,
+        //   ...(whichOrdering !== "" && { ordering: whichOrdering }),
+        //   page: pageApi,
+        //   ...(isReadyForSend && { ready: isReadyForSend }),
+        //   ...(isAvailableGoods && { available: isAvailableGoods }),
+        //   ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
+        //   ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
+        //   ...(wantCategories.length > 0 && {
+        //     category: wantCategories.toString(),
+        //   }),
+        //   ...(wantTags.length > 0 && {
+        //     tags: wantTags.toString(),
+        //   }),
+        //   page_size: 50,
+        //   ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
+        //   ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
+        //   ...(hojreh !== "" && { shop: hojreh }),
+        // },
       });
       if (response.status === 200) {
         const ContinueList = response.data.results;
@@ -301,7 +298,7 @@ function ListProductCus({ data }) {
     data,
     isAvailableGoods,
     isReadyForSend,
-    isDiscountPercentage,
+
     checkedCity,
     wantCategories,
     wantTags,
@@ -312,7 +309,6 @@ function ListProductCus({ data }) {
     searchWord,
   ]);
 
-  
   // for filters in sidebar
   // END
 
@@ -505,7 +501,7 @@ function ListProductCus({ data }) {
                     title="تخفیف دارها"
                     id="discounted"
                     onChange={(e) => {
-                      setIsDiscountPercentage(e.target.checked);
+                      onChangeFilter("discounted", e.target.checked);
                     }}
                   />
                 </div>
@@ -614,7 +610,7 @@ function ListProductCus({ data }) {
                   title="تخفیف دارها"
                   id="discounted_mobile"
                   onChange={(e) => {
-                    setIsDiscountPercentage(e.target.checked);
+                    onChangeFilter("discounted", e.target.checked);
                   }}
                 />
               </div>
