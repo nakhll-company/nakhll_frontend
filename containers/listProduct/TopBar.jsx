@@ -2,10 +2,10 @@ import React from "react";
 import Assistent from "zaravand-assistent-number";
 const _asist = new Assistent();
 export const TopBar = ({
+  onChangeFilter,
   totalcount,
   data,
   handel_filterModal,
-  setWhichOrdering,
   handel_OrderingModal,
 }) => {
   return (
@@ -73,7 +73,7 @@ export const TopBar = ({
                   <a
                     id={"1"}
                     onClick={() => {
-                      setWhichOrdering("");
+                      onChangeFilter("ordering", "");
                     }}
                   >
                     مرتبط‌ترین
@@ -84,7 +84,7 @@ export const TopBar = ({
                 >
                   <a
                     onClick={() => {
-                      setWhichOrdering("Price");
+                      onChangeFilter("ordering", "Price");
                     }}
                   >
                     ارزان‌تر
@@ -96,7 +96,7 @@ export const TopBar = ({
                 >
                   <a
                     onClick={() => {
-                      setWhichOrdering("-Price");
+                      onChangeFilter("ordering", "-Price");
                     }}
                   >
                     گران‌تر
@@ -109,7 +109,7 @@ export const TopBar = ({
                 >
                   <a
                     onClick={() => {
-                      setWhichOrdering("-DiscountPrecentage");
+                      onChangeFilter("ordering", "-DiscountPrecentage");
                     }}
                   >
                     بیشترین تخفیف
@@ -122,7 +122,7 @@ export const TopBar = ({
                 >
                   <a
                     onClick={() => {
-                      setWhichOrdering("-DateCreate");
+                      onChangeFilter("ordering", "-DateCreate");
                     }}
                   >
                     تازه‌ها

@@ -30,6 +30,8 @@ import FilterPrice from "./components/filterPrice";
 const _asist = new Assistent();
 
 function ListProductCus({ data }) {
+  console.log('data :>> ', data);
+  const [dataQuery, setDataQuery] = useState(data);
   const [pageApi, setPageApi] = useState(2);
   const [hasMore, setHasMore] = useState(false);
   const [shopsName, setShopsName] = useState([]);
@@ -87,6 +89,26 @@ function ListProductCus({ data }) {
       : []),
   ]);
 
+  const onChangeFilter = (name, value) => {
+    console.log("run onChangeFilter :>> ", " run onChangeFilter");
+    let filters = data;
+    console.log('injjjja :>> ', data);
+    filters[name] = value;
+    
+    
+
+    router.push(
+      {
+        pathname: router.pathname,
+        query: filters,
+      },
+      undefined,
+      {}
+    );
+
+    // setDataQuery(filters);
+  };
+
   const call_tags = async (activeHojreh) => {
     try {
       let dataUrl = `/api/v1/shop/${activeHojreh}/tags/`;
@@ -122,6 +144,7 @@ function ListProductCus({ data }) {
       setSearchWord("");
     } else {
       setWantTags(newArray);
+
       setSearchWord("");
     }
   };
@@ -191,7 +214,6 @@ function ListProductCus({ data }) {
   // data,
   //   changePage,
   useEffect(() => {
-    
     // router.push(
     //   {
     //     pathname: router.pathname,
@@ -221,31 +243,33 @@ function ListProductCus({ data }) {
         setHasMore(true);
         setIsLoading(true);
 
-        let params = {
-          ...(witchFilter ? witchFilter : null),
-          search: data.q,
-          ...(whichOrdering !== "" && { ordering: whichOrdering }),
-          ...(isReadyForSend && { ready: isReadyForSend }),
-          ...(isAvailableGoods && { available: isAvailableGoods }),
-          ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
+        // let params = {
+        //   ...(witchFilter ? witchFilter : null),
+        //   search: data.q,
+        //   ...(whichOrdering !== "" && { ordering: whichOrdering }),
+        //   ...(isReadyForSend && { ready: isReadyForSend }),
+        //   ...(isAvailableGoods && { available: isAvailableGoods }),
+        //   ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
 
-          ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
+        //   ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
 
-          ...(wantCategories.length > 0 && {
-            category: wantCategories.toString(),
-          }),
-          ...(wantTags.length > 0 && {
-            tags: wantTags.toString(),
-          }),
+        //   ...(wantCategories.length > 0 && {
+        //     category: wantCategories.toString(),
+        //   }),
+        //   ...(wantTags.length > 0 && {
+        //     tags: wantTags.toString(),
+        //   }),
 
-          page_size: 50,
-          ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
-          ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
-          ...(hojreh !== "" && { shop: hojreh }),
-        };
+        //   page_size: 50,
+        //   ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
+        //   ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
+        //   ...(hojreh !== "" && { shop: hojreh }),
+        // };
 
         try {
-          let response = await http.get(`/api/v1/products/`, { params });
+          let response = await http.get(`/api/v1/products/`, {
+            params: data,
+          });
 
           if (response.status === 200) {
             setListWithFilter(response.data.results);
@@ -288,33 +312,7 @@ function ListProductCus({ data }) {
     searchWord,
   ]);
 
-
-      const changeUrl=()=>{
-        router.push(
-      {
-        pathname: router.pathname,
-        query: {
-          q: searchWord,
-          ...(whichOrdering !== "" && { ordering: whichOrdering }),
-          ...(isReadyForSend && { ready: isReadyForSend }),
-          ...(isAvailableGoods && { available: isAvailableGoods }),
-          ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
-          ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
-          ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
-          ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
-          ...(hojreh !== "" && { shop: hojreh }),
-          ...(wantCategories.length !== 0 && {
-            category: wantCategories.toString(),
-          }),
-          ...(wantTags.length > 0 && {
-            tags: wantTags.toString(),
-          }),
-        },
-      },
-      undefined,
-      { shallow: true }
-    );
-      }
+  
   // for filters in sidebar
   // END
 
@@ -516,6 +514,7 @@ function ListProductCus({ data }) {
           </div>{" "}
           <div className="col-12 col-lg-9">
             <TopBar
+              onChangeFilter={onChangeFilter}
               totalcount={totalcount}
               data={data.ordering}
               whichOrdering={whichOrdering}
