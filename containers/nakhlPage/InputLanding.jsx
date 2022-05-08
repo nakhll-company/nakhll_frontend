@@ -1,14 +1,13 @@
-import { FaSearch } from "react-icons/fa";
-import Link from "next/link";
-import s from "./InputLanding.module.scss";
+import { useState } from "react";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import Link from "next/link";
+import { FaSearch } from "react-icons/fa";
+
+import s from "./InputLanding.module.scss";
+
 function InputLanding() {
   const router = useRouter();
   const [inputSearch, setInputSearch] = useState("");
-  useEffect(() => {
-    console.log("inputSearch :>> ", inputSearch);
-  }, [inputSearch]);
 
   return (
     <form
