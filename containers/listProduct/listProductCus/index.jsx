@@ -14,7 +14,6 @@ import CustomSwitch from "../../../components/custom/customSwitch";
 import ProductCard from "../../../components/ProductCart/ProductCard";
 import CustomAccordion from "../../../components/custom/customAccordion";
 import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
-import MultiRangeSlider from "../../../components/custom/customMultiRangeSlider/MultiRangeSlider";
 // methods
 import { ApiReference } from "../../../api/Api";
 // styles
@@ -32,7 +31,6 @@ const _asist = new Assistent();
 
 function ListProductCus({ data }) {
   console.log("data :>> ", data);
-  const [dataQuery, setDataQuery] = useState(data);
   const [pageApi, setPageApi] = useState(2);
   const [hasMore, setHasMore] = useState(false);
   const [shopsName, setShopsName] = useState([]);
@@ -41,7 +39,6 @@ function ListProductCus({ data }) {
   const [expandCity, setExpandCity] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchShops, setSearchShops] = useState([]);
-  const [clickOnRange, setClickOnRange] = useState(1);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [listWithFilter, setListWithFilter] = useState([]);
   const userData = useSelector((state) => state.User.userInfo);
@@ -61,17 +58,25 @@ function ListProductCus({ data }) {
     ...(data.tags ? ParsUrlToArr(data.tags) : []),
   ]);
 
-  const [checkedCity, setCheckedCity] = useState([
-    ...(data.city ? ParsUrlToArr(data.city) : []),
-  ]);
-
   const [categories, setCategories] = useState([
     ...(data.category ? ParsUrlToArr(data.category) : []),
   ]);
- 
-  const onChangeFilter = (name, value) => {
-    let filters = data;
 
+  const onChangeFilter = (name, value, alone = false) => {
+    if (alone) {
+      let filter = [];
+      filter[name] = value;
+      router.push(
+        {
+          pathname: router.pathname,
+          query: filter,
+        },
+        undefined,
+        {}
+      );
+      return;
+    }
+    let filters = data;
     filters[name] = value;
     router.push(
       {
@@ -273,16 +278,7 @@ function ListProductCus({ data }) {
       await _handel_filters();
     }
     fetchData();
-  }, [
-    data,
-    checkedCity,
-    
-    wantTags,
-    whichOrdering,
-    clickOnRange,
-    hojreh,
-    searchWord,
-  ]);
+  }, [data, whichOrdering, hojreh, searchWord]);
 
   // for filters in sidebar
   // END
@@ -343,8 +339,7 @@ function ListProductCus({ data }) {
                     key={index}
                     className={styles.itemHojreh}
                     onClick={() => {
-                      setHojreh(el.slug);
-                      setSearchWord("");
+                      onChangeFilter("shop", el.slug, true);
                     }}
                   >
                     {el.title}
@@ -370,9 +365,12 @@ function ListProductCus({ data }) {
                       parentClose: <span />,
                     }}
                     nodes={allCites}
-                    checked={checkedCity}
+                    checked={data.city ? ParsUrlToArr(data.city) : []}
                     expanded={expandCity}
-                    onCheck={(e) => setCheckedCity(e)}
+                    onCheck={(e) => {
+                      
+                      onChangeFilter("city", e.toString());
+                    }}
                     onExpand={(e) => setExpandCity(e)}
                   />
                 </CustomAccordion>
@@ -585,7 +583,7 @@ function ListProductCus({ data }) {
                   className={styles.itemHojreh}
                   onClick={() => {
                     setHojreh(el.slug);
-                    setSearchWord("");
+                    onChangeFilter("shop", el.slug, true);
                   }}
                 >
                   {el.title}
@@ -623,9 +621,12 @@ function ListProductCus({ data }) {
                     parentClose: <span />,
                   }}
                   nodes={allCites}
-                  checked={checkedCity}
+                  checked={data.city ? ParsUrlToArr(data.city) : []}
                   expanded={expandCity}
-                  onCheck={(e) => setCheckedCity(e)}
+                  onCheck={(e) => {
+                   
+                    onChangeFilter("city", e.toString());
+                  }}
                   onExpand={(e) => setExpandCity(e)}
                 />
               </CustomAccordion>
