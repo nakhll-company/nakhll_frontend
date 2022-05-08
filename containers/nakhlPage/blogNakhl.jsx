@@ -3,6 +3,10 @@ import React from "react";
 import s from "./blogNakhl.module.scss";
 import ButtonLanding from "./ButtonLanding";
 
+const dataBlog = [
+  { img: "/image/NakhlLanding/blog/blog-one.png", title: "افسردگی و روش های مقابله با آن" },
+  { img: "/image/NakhlLanding/blog/blog-two.png", title: "جزیره آشپزخانه و نکاتی برای طراحی آن" },
+];
 function BlogNakhl() {
   return (
     <div className={s.container}>
@@ -10,14 +14,14 @@ function BlogNakhl() {
         <div style={{ marginLeft: "5px" }} className={s.imageContainer}>
           <Image
             className={s.image}
-            src="/image/slideNakhl.jpg"
+            src={dataBlog[0].img}
             layout="responsive"
             height={100}
             width={200}
             alt=""
           />
           <div className={s.textImage}>
-            <span>چگونه کالا یا خدمت را قیمت گذاری کنیم؟</span>
+            <span>{dataBlog[0].title}</span>
           </div>
         </div>
         <div
@@ -26,14 +30,14 @@ function BlogNakhl() {
         >
           <Image
             className={s.image}
-            src="/image/slideNakhl.jpg"
+            src={dataBlog[1].img}
             layout="responsive"
             height={100}
             width={200}
             alt=""
           />
           <div className={s.textImage}>
-            <span>چگونه کالا یا خدمت را قیمت گذاری کنیم؟</span>
+            <span>{dataBlog[1].title}</span>
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { AiFillPauseCircle, AiFillPlayCircle } from "react-icons/ai";
 import s from "./selers.module.scss";
 
-function Selers() {
+function  Selers() {
   // const [audio, setAudio] = useState();
   // const [playing, setPlaying] = useState(false);
   // useEffect(() => {
