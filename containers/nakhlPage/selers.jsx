@@ -4,23 +4,23 @@ import { AiFillPauseCircle, AiFillPlayCircle } from "react-icons/ai";
 import s from "./selers.module.scss";
 
 function Selers() {
-  const [audio, setAudio] = useState();
-  const [playing, setPlaying] = useState(false);
-  useEffect(() => {
-    setAudio(new Audio("/audio/milad.mp3"));
-  }, []);
+  // const [audio, setAudio] = useState();
+  // const [playing, setPlaying] = useState(false);
+  // useEffect(() => {
+  //   setAudio(new Audio("/audio/milad.mp3"));
+  // }, []);
 
-  useEffect(() => { }, [audio]);
+  // useEffect(() => { }, [audio]);
 
-  const playMusic = () => {
-    if (!playing) {
-      audio.play();
-      setPlaying(true);
-    } else {
-      audio.pause();
-      setPlaying(false);
-    }
-  };
+  // const playMusic = () => {
+  //   if (!playing) {
+  //     audio.play();
+  //     setPlaying(true);
+  //   } else {
+  //     audio.pause();
+  //     setPlaying(false);
+  //   }
+  // };
   const cartSeller = (
     <div className={s.selerContainer}>
       <div className={s.content}>
@@ -30,7 +30,7 @@ function Selers() {
             <h5>نیل مارکت</h5>
             <h5>سید مهدی صمدانی</h5>
           </div>
-          <div className={s.medal}>
+          {/* <div className={s.medal}>
             <Image
               layout="fixed"
               width={80}
@@ -38,7 +38,7 @@ function Selers() {
               src="/icons/gold.svg"
               alt="icon"
             />
-          </div>
+          </div> */}
         </div>
         <div className={s.images}>
           <div className={s.imageContainer}>
@@ -83,7 +83,7 @@ function Selers() {
           </div>
         </div>
       </div>
-      <div className={s.audioContainer}>
+      {/* <div className={s.audioContainer}>
         <div className={s.wave}>
           <Image
             className={s.imageProduct}
@@ -96,8 +96,6 @@ function Selers() {
         </div>
         <div className={s.palyer}>
           <button className={s.playBtn} onClick={playMusic}>
-            {/* #ced7dc */}
-            {/* #124d81 */}
             {!playing ? (
               <AiFillPlayCircle color="#124d81" size={35} />
             ) : (
@@ -106,7 +104,7 @@ function Selers() {
           </button>
           <h5>داستان این کسب و کار</h5>
         </div>
-      </div>
+      </div> */}
     </div>
   );
   return (

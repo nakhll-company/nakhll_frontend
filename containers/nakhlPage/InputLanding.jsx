@@ -33,7 +33,7 @@ function InputLanding() {
           </Link>
         )}
       </div>
-    </form>
+     </form>
   );
 }
 

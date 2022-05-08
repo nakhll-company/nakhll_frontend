@@ -17,16 +17,24 @@ const HeaderTitle = () => {
       </div>
       <div className={s.list}>
         <ul>
-          <li>فروشگاه ها</li>
+          {/* <li>فروشگاه ها</li> */}
           <li>حجره ها</li>
           <li>
             <Link href="https://nakhll.com/blog/">
               <a>وبلاگ</a>
             </Link>
           </li>
-          <li>توان افزایی و هم افزایی</li>
+          <li>
+            <Link href="/search/?q=&available=true">
+              <a>محصولات</a>
+            </Link>
+          </li>
 
-          <li>درباره ما</li>
+          <li>
+            <Link href="https://nakhll.com/blog/%d8%af%d8%a7%d8%b3%d8%aa%d8%a7%d9%86-%d8%a8%d8%a7%d8%b2%d8%a7%d8%b1-%d8%a7%d8%ac%d8%aa%d9%85%d8%a7%d8%b9%db%8c-%d9%86%d8%ae%d9%84/">
+              <a>درباره ما</a>
+            </Link>
+          </li>
           <li>
             <Link href="https://nakhll.com/blog/%d8%aa%d9%85%d8%a7%d8%b3-%d8%a8%d8%a7-%d9%85%d8%a7/">
               <a>تماس با ما</a>
