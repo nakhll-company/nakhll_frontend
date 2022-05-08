@@ -24,8 +24,9 @@ import SearchProduct from "./components/searchProduct";
 import { useSelector } from "react-redux";
 import Grouping from "../../searchPage/Grouping";
 import { http } from "../../../services/callApi/api";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
+
 import FilterPrice from "./components/filterPrice";
+import { ParsUrlToArr } from "../../../utils/general";
 
 const _asist = new Assistent();
 
@@ -57,27 +58,20 @@ function ListProductCus({ data }) {
   );
 
   const [wantTags, setWantTags] = useState([
-    ...(data.tags ? data.tags.split(",").map((el) => parseInt(el)) : []),
+    ...(data.tags ? ParsUrlToArr(data.tags) : []),
   ]);
 
   const [checkedCity, setCheckedCity] = useState([
-    ...(data.city ? data.city.split(",").map((el) => parseInt(el)) : []),
-  ]);
-  const [categories, setCategories] = useState([
-    ...(data.category
-      ? data.category.split(",").map((el) => parseInt(el))
-      : []),
-  ]);
-  const [wantCategories, setWantCategories] = useState([
-    ...(data.category
-      ? data.category.split(",").map((el) => parseInt(el))
-      : []),
+    ...(data.city ? ParsUrlToArr(data.city) : []),
   ]);
 
+  const [categories, setCategories] = useState([
+    ...(data.category ? ParsUrlToArr(data.category) : []),
+  ]);
+ 
   const onChangeFilter = (name, value) => {
-    console.log("run onChangeFilter :>> ", " run onChangeFilter");
     let filters = data;
-    console.log("injjjja :>> ", data);
+
     filters[name] = value;
     router.push(
       {
@@ -103,14 +97,14 @@ function ListProductCus({ data }) {
   };
 
   const _handel_Add_category = (id) => {
-    let copyArray = [...wantCategories];
+    let copyArray = [...(data.category ? ParsUrlToArr(data.category) : [])];
 
     let newArray = copyArray.filter((element) => element != id);
 
     if (copyArray.length == newArray.length) {
-      setWantCategories([...newArray, id]);
+      onChangeFilter("category", [...newArray, id].toString());
     } else {
-      setWantCategories(newArray);
+      onChangeFilter("category", newArray.toString());
     }
   };
 
@@ -281,13 +275,11 @@ function ListProductCus({ data }) {
     fetchData();
   }, [
     data,
-
     checkedCity,
-    wantCategories,
+    
     wantTags,
     whichOrdering,
     clickOnRange,
-
     hojreh,
     searchWord,
   ]);
@@ -317,7 +309,7 @@ function ListProductCus({ data }) {
           <div className="d-none d-lg-block col-lg-3">
             <div id="sidebar">
               <Grouping
-                searchWord={searchWord}
+                searchWord={data.q}
                 setCategories={setCategories}
                 categories={categories}
                 _handel_Add_category={_handel_Add_category}
@@ -329,20 +321,6 @@ function ListProductCus({ data }) {
                     ragnePrice={ragnePrice}
                     onChangeFilter={onChangeFilter}
                   />
-
-                  <div style={{ display: "flex", justifyContent: "center" }}>
-                    <button
-                      className="btn"
-                      style={{
-                        backgroundColor: "rgb(27,62,104)",
-                        color: "#fff",
-                      }}
-                      onClick={() => setClickOnRange(clickOnRange + 1)}
-                    >
-                      {" "}
-                      اعمال فیلتر
-                    </button>
-                  </div>
                 </div>
               </CustomAccordion>
               <CustomAccordion
@@ -620,15 +598,6 @@ function ListProductCus({ data }) {
                   ragnePrice={ragnePrice}
                   onChangeFilter={onChangeFilter}
                 />
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                  <button
-                    className="btn btn-dark "
-                    onClick={() => setClickOnRange(clickOnRange + 1)}
-                  >
-                    {" "}
-                    اعمال فیلتر
-                  </button>
-                </div>
               </div>
             </CustomAccordion>
             {categories.length > 0 && (
