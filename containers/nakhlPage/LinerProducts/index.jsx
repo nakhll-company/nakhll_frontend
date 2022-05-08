@@ -15,7 +15,7 @@ function NakhlLinerProducts({
   subTitle,
   dataLinerProducts,
   colorTitle = "#000",
-  url,
+  url='',
   xl = 2,
   md = 4,
   lg = 3,
@@ -43,7 +43,7 @@ function NakhlLinerProducts({
             </div>
             <div className={styles.Button}>
               <button>
-                <Link href={url? url :''}>
+                <Link href={url}>
                   <a>مشاهده همه</a>
                 </Link>
               </button>
@@ -88,7 +88,7 @@ function NakhlLinerProducts({
             </div>
             <div className={styles.Button}>
               <button>
-                <Link href={``}>
+                <Link href={url}>
                   <a>مشاهده همه</a>
                 </Link>
               </button>

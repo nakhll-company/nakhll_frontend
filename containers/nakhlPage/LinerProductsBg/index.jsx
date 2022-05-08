@@ -11,7 +11,7 @@ import LinerProducts from "../../LandingPage/LinerProducts";
 function LinerProductsBgLanding({
   subTitle_LinerProductsBg,
   dataLinerProductsBg,
-  url_LinerProductsBg,
+  url_LinerProductsBg='',
   color,
   xl = 2,
   md = 6,
@@ -38,7 +38,7 @@ function LinerProductsBgLanding({
         />
 
         <div className={styles.btn}>
-          <Link href={``}>
+          <Link href={url_LinerProductsBg}>
             <a>مشاهده محصولات</a>
           </Link>
         </div>

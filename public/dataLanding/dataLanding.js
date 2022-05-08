@@ -1,7 +1,7 @@
 export const dataLanding = {
     Selers: [{}, {}, {}],
     dataAmazingDiscounts: {
-        url: "https://nakhll.com/search/?q=&ordering=-DiscountPrecentage&ready=true&available=true&discounted=true&max_price=100000000&shop=neil-market-food-store",
+        url: "/search/?q=&ordering=-DiscountPrecentage&ready=true&available=true&discounted=true&max_price=100000000&shop=neil-market-food-store",
         products: [{
             ID: "8185d13e-1264-4ba9-8dc0-8ce3d75f48c0",
             Title: "عسل با موم 900 گرمی شافی",
@@ -75,15 +75,15 @@ export const dataLanding = {
     dataSliders: [{
         image: "/image/NakhlLanding/banners/desktop/two.jpg",
         imageMobile: "/image/NakhlLanding/banners/mobile/two.jpg",
-        url: "",
+        url: "/shop/آن-کافی/",
     }, {
         image: "/image/NakhlLanding/banners/desktop/one.jpg",
         imageMobile: "/image/NakhlLanding/banners/mobile/one.jpg",
-        url: "",
+        url: "/shop/neil-market-food-store/",
     }, ],
     linearsProduct: [{
         title: "گیاهان دارویی خاتم",
-        url: "https://nakhll.com/search/?q=&ordering=-DiscountPrecentage&ready=true&available=true&discounted=true&max_price=100000000&shop=%D8%B9%D8%B7%D8%A7%D8%B1%D9%8A-%D8%AE%D8%A7%D8%AA%D9%85",
+        url: "/search/?q=&ordering=-DiscountPrecentage&ready=true&available=true&discounted=true&max_price=100000000&shop=%D8%B9%D8%B7%D8%A7%D8%B1%D9%8A-%D8%AE%D8%A7%D8%AA%D9%85",
         products: [{
             ID: "074d6ed3-1c40-4852-b41d-58471daa67b3",
             Title: "❇️ بذر منداب 100 گرم",

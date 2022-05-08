@@ -129,19 +129,24 @@ const products = [
 ];
 
 function Test() {
-  const { linearsProduct, dataBlog, dataSliders ,dataAmazingDiscounts} = dataLanding;
+  const { linearsProduct, dataBlog, dataSliders, dataAmazingDiscounts } =
+    dataLanding;
   return (
     <div>
       <HeroSlider />
       <ValuesPart />
       <Selers />
-      <LinerProductsBgLanding dataLinerProductsBg={dataAmazingDiscounts.products} />
+      <LinerProductsBgLanding
+        dataLinerProductsBg={dataAmazingDiscounts.products}
+        url_LinerProductsBg={dataAmazingDiscounts.url}
+      />
 
       <SliderNakhl dataSliders={dataSliders} />
 
       <NakhlLinerProducts
         dataLinerProducts={linearsProduct[0].products}
         title={linearsProduct[0].title}
+        url={linearsProduct[0].url}
       />
       <NakhlLinerProducts
         dataLinerProducts={linearsProduct[1].products}
