@@ -2,7 +2,6 @@ import React from "react";
 // node libraries
 import Link from "next/link";
 import Image from "next/image";
-import Script from "next/script";
 import SwiperCore, { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -10,23 +9,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import s from "./sliderNakhl.module.scss";
 
 SwiperCore.use([Pagination]);
-const data = [
-  {
-    image: "/image/NakhlLanding/banners/desktop/one.jpg",
-    imageMobile: "/image/NakhlLanding/banners/mobile/one.jpg",
-    url: "",
-  },
-  {
-    image: "/image/NakhlLanding/banners/desktop/two.jpg",
-    imageMobile: "/image/NakhlLanding/banners/mobile/two.jpg",
-    url: "",
-  },
-];
-function SliderNakhl() {
+
+function SliderNakhl({dataSliders}) {
   return (
     <div className={`${s.container} container`}>
       <Swiper pagination={true} spaceBetween={20} slidesPerView={1}>
-        {data.map((slider, index) => {
+        {dataSliders.map((slider, index) => {
           if (slider.image !== "") {
             return (
               <SwiperSlide key={index}>

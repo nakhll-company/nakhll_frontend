@@ -30,7 +30,7 @@ function LinerProductsBgLanding({
         className={`${styles.righter} col-3 col-md-3 `}
       >
         <Image
-          src="/Values/shegeft.svg"
+          src="/Values/nillMarket.png"
           layout="responsive"
           width={100}
           height={100}
@@ -39,7 +39,7 @@ function LinerProductsBgLanding({
 
         <div className={styles.btn}>
           <Link href={``}>
-            <a>مشاهده همه</a>
+            <a>مشاهده محصولات</a>
           </Link>
         </div>
       </div>

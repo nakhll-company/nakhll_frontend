@@ -43,7 +43,7 @@ function NakhlLinerProducts({
             </div>
             <div className={styles.Button}>
               <button>
-                <Link href={``}>
+                <Link href={url? url :''}>
                   <a>مشاهده همه</a>
                 </Link>
               </button>

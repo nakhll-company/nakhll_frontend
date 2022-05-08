@@ -3,11 +3,7 @@ import React from "react";
 import s from "./blogNakhl.module.scss";
 import ButtonLanding from "./ButtonLanding";
 
-const dataBlog = [
-  { img: "/image/NakhlLanding/blog/blog-one.png", title: "افسردگی و روش های مقابله با آن" },
-  { img: "/image/NakhlLanding/blog/blog-two.png", title: "جزیره آشپزخانه و نکاتی برای طراحی آن" },
-];
-function BlogNakhl() {
+function BlogNakhl({ dataBlog }) {
   return (
     <div className={s.container}>
       <div className={s.partImages}>

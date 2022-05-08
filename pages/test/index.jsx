@@ -9,6 +9,7 @@ import Selers from "../../containers/nakhlPage/selers";
 import SliderNakhl from "../../containers/nakhlPage/sliderNakhl";
 import ValuesPart from "../../containers/nakhlPage/valuesPart";
 import Footer from "../../components/shopLayout/footer";
+import { dataLanding } from "../../public/dataLanding/dataLanding";
 
 const products = [
   {
@@ -126,23 +127,29 @@ const products = [
     in_campaign: false,
   },
 ];
+
 function Test() {
+  const { linearsProduct, dataBlog, dataSliders ,dataAmazingDiscounts} = dataLanding;
   return (
     <div>
       <HeroSlider />
       <ValuesPart />
       <Selers />
-      <LinerProductsBgLanding dataLinerProductsBg={products} />
+      <LinerProductsBgLanding dataLinerProductsBg={dataAmazingDiscounts.products} />
 
-      <SliderNakhl />
+      <SliderNakhl dataSliders={dataSliders} />
 
-      <NakhlLinerProducts dataLinerProducts={products} title="مد روز بانوان" />
       <NakhlLinerProducts
-        dataLinerProducts={products}
-        title="پرفروش های دیجیتال"
-        colorTitle=" #064d80"
+        dataLinerProducts={linearsProduct[0].products}
+        title={linearsProduct[0].title}
       />
-      <BlogNakhl />
+      <NakhlLinerProducts
+        dataLinerProducts={linearsProduct[1].products}
+        title={linearsProduct[1].title}
+        colorTitle=" #064d80"
+        url={linearsProduct[1].url}
+      />
+      <BlogNakhl dataBlog={dataBlog} />
       <Footer />
     </div>
   );
