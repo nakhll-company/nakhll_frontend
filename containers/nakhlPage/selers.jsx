@@ -3,7 +3,24 @@ import React, { useEffect, useRef, useState } from "react";
 import { AiFillPauseCircle, AiFillPlayCircle } from "react-icons/ai";
 import s from "./selers.module.scss";
 
-function  Selers() {
+const dataSelers = [
+  {
+    title: "سیسمونی کودک",
+    name: "فاطمه وکیلی",
+    product: [],
+  },
+  {
+    title: "آریانا رزین",
+    name: "محدثه عامری",
+    product: [],
+  },
+  {
+    title: "جوراب گلدن لیدی",
+    name: "امیر حاتم خانی",
+    product: [],
+  },
+];
+function Selers() {
   // const [audio, setAudio] = useState();
   // const [playing, setPlaying] = useState(false);
   // useEffect(() => {
@@ -21,14 +38,14 @@ function  Selers() {
   //     setPlaying(false);
   //   }
   // };
-  const cartSeller = (
+  const CartSeller = ({ data }) => (
     <div className={s.selerContainer}>
       <div className={s.content}>
         <div className={s.header}>
           <div className={s.image}></div>
           <div className={s.title}>
-            <h5>نیل مارکت</h5>
-            <h5>سید مهدی صمدانی</h5>
+            <h5>{data.title}</h5>
+            <h5>{data.name}</h5>
           </div>
           {/* <div className={s.medal}>
             <Image
@@ -113,9 +130,9 @@ function  Selers() {
         <h3>فروشندگان برتر اسفندماه</h3>
       </div>
       <div className={s.container}>
-        {cartSeller}
-        {cartSeller}
-        {cartSeller}
+        {dataSelers.map((data, index) => (
+          <CartSeller key={index} data={data} />
+        ))}
       </div>
     </>
   );
