@@ -3,7 +3,8 @@ import styles from "./orderingModalMobile.module.scss";
 function OrderingModalMobile({
   handel_OrderingModal,
   handel_filterModal,
-  setWhichOrdering,
+  
+  onChangeFilter,
   setIsOpenOrderingModal
 }) {
   return (
@@ -41,8 +42,7 @@ function OrderingModalMobile({
                   borderBottom: "1px solid gray",
                 }}
                 onClick={() => {
-                  setWhichOrdering("");
-                  setIsOpenOrderingModal(false);
+                  onChangeFilter("ordering", "");
                 }}
               >
                 <span>مرتبط ترین</span>
@@ -55,8 +55,7 @@ function OrderingModalMobile({
                   borderBottom: "1px solid gray",
                 }}
                 onClick={() => {
-                  setWhichOrdering("Price");
-                  setIsOpenOrderingModal(false);
+                  onChangeFilter("ordering", "Price");
                 }}
               >
                 <span>ارزانتر</span>
@@ -69,8 +68,7 @@ function OrderingModalMobile({
                   borderBottom: "1px solid gray",
                 }}
                 onClick={() => {
-                  setWhichOrdering("-Price");
-                  setIsOpenOrderingModal(false);
+                  onChangeFilter("ordering", "-Price");
                 }}
               >
                 <span>گرانتر</span>
@@ -83,8 +81,7 @@ function OrderingModalMobile({
                   borderBottom: "1px solid gray",
                 }}
                 onClick={() => {
-                  setWhichOrdering("-DiscountPrecentage");
-                  setIsOpenOrderingModal(false);
+                  onChangeFilter("ordering", "-DiscountPrecentage");
                 }}
               >
                 <span>بیشترین تخفیف</span>
@@ -97,8 +94,7 @@ function OrderingModalMobile({
                   borderBottom: "1px solid gray",
                 }}
                 onClick={() => {
-                  setWhichOrdering("-DateCreate");
-                  setIsOpenOrderingModal(false);
+                  onChangeFilter("ordering", "-DateCreate");
                 }}
               >
                 <span>تازه ها</span>

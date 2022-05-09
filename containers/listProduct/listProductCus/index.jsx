@@ -49,9 +49,6 @@ function ListProductCus({ data }) {
   const [shopesTag, setShopesTag] = useState(userData ? userData.shops : []);
   const [tags, setTags] = useState([]);
   const [activeHojreh, setActiveHojreh] = useState();
-  const [whichOrdering, setWhichOrdering] = useState(
-    data.ordering ? data.ordering : ""
-  );
 
   const [wantTags, setWantTags] = useState([
     ...(data.tags ? ParsUrlToArr(data.tags) : []),
@@ -164,7 +161,6 @@ function ListProductCus({ data }) {
     setSearchShops(filterArray);
   };
 
-
   useEffect(() => {
     async function fetchData() {
       const _handel_filters = async () => {
@@ -201,7 +197,7 @@ function ListProductCus({ data }) {
       await _handel_filters();
     }
     fetchData();
-  }, [data, whichOrdering, hojreh]);
+  }, [data, hojreh]);
 
   // for filters in sidebar
   // END
@@ -386,9 +382,7 @@ function ListProductCus({ data }) {
               onChangeFilter={onChangeFilter}
               totalcount={totalcount}
               data={data.ordering}
-              whichOrdering={whichOrdering}
               handel_filterModal={handel_filterModal}
-              setWhichOrdering={setWhichOrdering}
               handel_OrderingModal={handel_OrderingModal}
             />
             {/* inja */}
@@ -584,7 +578,7 @@ function ListProductCus({ data }) {
         <OrderingModalMobile
           handel_OrderingModal={handel_OrderingModal}
           handel_filterModal={handel_filterModal}
-          setWhichOrdering={setWhichOrdering}
+          onChangeFilter={onChangeFilter}
           setIsOpenOrderingModal={setIsOpenOrderingModal}
         />
       )}
