@@ -23,17 +23,16 @@ function InputLanding() {
           onChange={(el) => setInputSearch(el.target.value)}
           placeholder="جست وجو در بیش از هزار فروشگاه..."
         />
-        {inputSearch !== "" && (
-          <Link href={`/search?q=${inputSearch}`}>
-            <a>
-              <div className={s.iconContainer}>
-                <FaSearch size="20px" />
-              </div>
-            </a>
-          </Link>
-        )}
+
+        <Link href={inputSearch !== "" ? `/search?q=${inputSearch}` : ""}>
+          <a>
+            <div className={s.iconContainer}>
+              <FaSearch size="20px" />
+            </div>
+          </a>
+        </Link>
       </div>
-     </form>
+    </form>
   );
 }
 
