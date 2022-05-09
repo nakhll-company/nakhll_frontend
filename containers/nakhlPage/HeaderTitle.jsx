@@ -1,9 +1,34 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useEffect } from "react";
 import { BsBasket2 } from "react-icons/bs";
+import { FaUser } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserInfo } from "../../redux/actions/user/getUserInfo";
 import s from "./HeaderTitle.module.scss";
+
+const list = [
+  { title: "محصولات", url: "/search/?q=&available=true" },
+  { title: "حجره دار شوید", url: "https://nakhll.com/description/" },
+  { title: "وبلاگ", url: "https://nakhll.com/blog/" },
+  {
+    title: "درباره ما",
+    url: "https://nakhll.com/blog/%d8%af%d8%a7%d8%b3%d8%aa%d8%a7%d9%86-%d8%a8%d8%a7%d8%b2%d8%a7%d8%b1-%d8%a7%d8%ac%d8%aa%d9%85%d8%a7%d8%b9%db%8c-%d9%86%d8%ae%d9%84/",
+  },
+  {
+    title: "تماس با ما",
+    url: "https://nakhll.com/blog/%d8%aa%d9%85%d8%a7%d8%b3-%d8%a8%d8%a7-%d9%85%d8%a7/",
+  },
+];
 const HeaderTitle = () => {
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const userLog = useSelector((state) => state.User.userInfo);
+  useEffect(() => {
+    dispatch(getUserInfo());
+  }, []);
+
   return (
     <div className={s.container}>
       <div className={s.icon}>
@@ -17,28 +42,46 @@ const HeaderTitle = () => {
       </div>
       <div className={s.list}>
         <ul>
-          <li>فروشگاه ها</li>
-          <li>حجره ها</li>
-          <li>
-            <Link href="https://nakhll.com/blog/">
-              <a>وبلاگ</a>
-            </Link>
-          </li>
-          <li>توان افزایی و هم افزایی</li>
-
-          <li>درباره ما</li>
-          <li>
-            <Link href="https://nakhll.com/blog/%d8%aa%d9%85%d8%a7%d8%b3-%d8%a8%d8%a7-%d9%85%d8%a7/">
-              <a>تماس با ما</a>
-            </Link>
-          </li>
+          {/* <li>فروشگاه ها</li> */}
+          {/* <li>حجره ها</li> */}
+          {list.map((el, index) => (
+            <li key={index}>
+              <Link href={el.url}>
+                <a>{el.title}</a>
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
       <div className={s.menu}>
         <div className={s.buttonContainer}>
-          <button className={s.btn}>ثبت نام / ورود</button>
+          {Object.keys(userLog).length > 0 ? (
+            <div className={s.profile} onClick={() => {
+              router.push("/profile");
+            }}>
+              <FaUser
+                
+                size="35px"
+                color="#064D81"
+              />
+            </div>
+          ) : (
+            <button
+              onClick={() => {
+                router.push("/login");
+              }}
+              className={s.btn}
+            >
+              ثبت نام / ورود
+            </button>
+          )}
         </div>
-        <div className={s.cartContainer}>
+        <div
+          onClick={() => {
+            router.push("/cart");
+          }}
+          className={s.cartContainer}
+        >
           <BsBasket2 size="35px" color="#064D81" />
         </div>
       </div>

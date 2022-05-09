@@ -4,6 +4,9 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import Assistent from "zaravand-assistent-number";
+import { BsLinkedin } from "react-icons/bs";
+import { FiInstagram } from "react-icons/fi";
+
 // style
 import styles from "../../styles/components/shopLayout/footer.module.scss";
 
@@ -67,10 +70,8 @@ const Footer = () => {
                         aria-label="لینکدین"
                         rel="noreferrer"
                       >
-                        <i
-                          style={{ fontSize: "30px" }}
-                          className="fab fa-linkedin"
-                        ></i>
+                        <BsLinkedin size={30}/>
+                        
                       </a>
 
                       <a
@@ -96,7 +97,8 @@ const Footer = () => {
                         rel="noreferrer"
                         style={{ fontSize: "30px", display: "flex" }}
                       >
-                        <i className="fab fa-instagram"></i>
+                        <FiInstagram size={30}/>
+                       
                       </a>
                     </div>
                   </div>
@@ -370,10 +372,8 @@ const Footer = () => {
                     aria-label="لینکدین"
                     rel="noreferrer"
                   >
-                    <i
-                      style={{ fontSize: "30px" }}
-                      className="fab fa-linkedin"
-                    ></i>
+                    <BsLinkedin size={30}/>
+                   
                   </a>
 
                   <a
@@ -398,7 +398,8 @@ const Footer = () => {
                     aria-label="اینستاگرام"
                     style={{ fontSize: "30px", display: "flex" }}
                   >
-                    <i className="fab fa-instagram"></i>
+                    <FiInstagram size={30}/>
+                    
                   </a>
                 </div>
               </div>{" "}

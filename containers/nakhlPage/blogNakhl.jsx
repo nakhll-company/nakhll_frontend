@@ -1,39 +1,42 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React from "react";
 import s from "./blogNakhl.module.scss";
 import ButtonLanding from "./ButtonLanding";
 
-function BlogNakhl() {
+function BlogNakhl({ dataBlog }) {
+ const router= useRouter();
   return (
     <div className={s.container}>
       <div className={s.partImages}>
-        <div style={{ marginLeft: "5px" }} className={s.imageContainer}>
+        <div onClick={()=>router.push(dataBlog[0].url)} style={{ marginLeft: "5px" }} className={s.imageContainer}>
           <Image
             className={s.image}
-            src="/image/slideNakhl.jpg"
+            src={dataBlog[0].img}
             layout="responsive"
             height={100}
             width={200}
             alt=""
           />
           <div className={s.textImage}>
-            <span>چگونه کالا یا خدمت را قیمت گذاری کنیم؟</span>
+            <span>{dataBlog[0].title}</span>
           </div>
         </div>
         <div
+        onClick={()=>router.push(dataBlog[0].url)}
           style={{ marginRight: "5px" }}
           className={`${s.imageContainer} ${s.imagDesktop}`}
         >
           <Image
             className={s.image}
-            src="/image/slideNakhl.jpg"
+            src={dataBlog[1].img}
             layout="responsive"
             height={100}
             width={200}
             alt=""
           />
           <div className={s.textImage}>
-            <span>چگونه کالا یا خدمت را قیمت گذاری کنیم؟</span>
+            <span>{dataBlog[1].title}</span>
           </div>
         </div>
       </div>

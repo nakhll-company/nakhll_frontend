@@ -11,7 +11,7 @@ import LinerProducts from "../../LandingPage/LinerProducts";
 function LinerProductsBgLanding({
   subTitle_LinerProductsBg,
   dataLinerProductsBg,
-  url_LinerProductsBg,
+  url_LinerProductsBg='',
   color,
   xl = 2,
   md = 6,
@@ -27,19 +27,19 @@ function LinerProductsBgLanding({
     >
       <div
         style={{ marginLeft: "0 !important", padding: "0 !important" }}
-        className={`${styles.righter} col-3 col-md-3 `}
+        className={`${styles.righter} col-4 col-md-3 `}
       >
         <Image
-          src="/Values/shegeft.svg"
+          src="/Values/nillMarket.png"
           layout="responsive"
-          width={100}
-          height={100}
+          width={120}
+          height={120}
           alt=""
         />
 
         <div className={styles.btn}>
-          <Link href={``}>
-            <a>مشاهده همه</a>
+          <Link href={url_LinerProductsBg}>
+            <a style={{whiteSpace:'nowrap'}}>مشاهده محصولات</a>
           </Link>
         </div>
       </div>

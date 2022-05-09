@@ -3,12 +3,14 @@
     align-items: center;
     padding-top: 10px;
 }
+
 .icon {
     flex-grow: 1;
     margin-left: 60px;
     margin-right: 10px;
     justify-self: start;
 }
+
 .list {
     flex-grow: 4;
     ul {
@@ -24,6 +26,7 @@
         }
     }
 }
+
 .menu {
     flex-grow: 1;
     display: flex;
@@ -31,6 +34,7 @@
     justify-content: center;
     gap: 20px;
 }
+
 .btn {
     all: unset;
     background-color: #104b82;
@@ -39,6 +43,15 @@
     border-radius: 20px;
     font-weight: bolder;
 }
+
+.cartContainer {
+    cursor: pointer;
+}
+
+.profile {
+    cursor: pointer;
+}
+
 @media (max-width: 870px) {
     .container {
         justify-content: space-between;
