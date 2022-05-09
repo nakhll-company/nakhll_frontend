@@ -43,7 +43,6 @@ function ListProductCus({ data }) {
   const [listWithFilter, setListWithFilter] = useState([]);
   const userData = useSelector((state) => state.User.userInfo);
   const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
-  const [searchWord, setSearchWord] = useState(data.q ? data.q : "");
   const [isOpenOrderingModal, setIsOpenOrderingModal] = useState(false);
   const [ragnePrice, setRagnePrice] = useState({});
   // states for shops
@@ -120,11 +119,8 @@ function ListProductCus({ data }) {
 
     if (copyArray.length == newArray.length) {
       setWantTags([...newArray, id]);
-      setSearchWord("");
     } else {
       setWantTags(newArray);
-
-      setSearchWord("");
     }
   };
 
@@ -132,27 +128,6 @@ function ListProductCus({ data }) {
     try {
       let response = await http.get(`/api/v1/products/`, {
         params: { ...data, page: pageApi, page_size: 50 },
-
-        // {
-        //   ...(witchFilter ? witchFilter : null),
-        //   search: searchWord,
-        //   ...(whichOrdering !== "" && { ordering: whichOrdering }),
-        //   page: pageApi,
-        //   ...(isReadyForSend && { ready: isReadyForSend }),
-        //   ...(isAvailableGoods && { available: isAvailableGoods }),
-        //   ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
-        //   ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
-        //   ...(wantCategories.length > 0 && {
-        //     category: wantCategories.toString(),
-        //   }),
-        //   ...(wantTags.length > 0 && {
-        //     tags: wantTags.toString(),
-        //   }),
-        //   page_size: 50,
-        //   ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
-        //   ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
-        //   ...(hojreh !== "" && { shop: hojreh }),
-        // },
       });
       if (response.status === 200) {
         const ContinueList = response.data.results;
@@ -188,68 +163,16 @@ function ListProductCus({ data }) {
     }
     setSearchShops(filterArray);
   };
-  // useEffect(() => {
-  //   setSearchWord(data.q);
-  // }, [data.q]);
 
-  // data,
   //   changePage,
   useEffect(() => {
-    // router.push(
-    //   {
-    //     pathname: router.pathname,
-    //     query: {
-    //       q: searchWord,
-    //       ...(whichOrdering !== "" && { ordering: whichOrdering }),
-    //       ...(isReadyForSend && { ready: isReadyForSend }),
-    //       ...(isAvailableGoods && { available: isAvailableGoods }),
-    //       ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
-    //       ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
-    //       ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
-    //       ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
-    //       ...(hojreh !== "" && { shop: hojreh }),
-    //       ...(wantCategories.length !== 0 && {
-    //         category: wantCategories.toString(),
-    //       }),
-    //       ...(wantTags.length > 0 && {
-    //         tags: wantTags.toString(),
-    //       }),
-    //     },
-    //   },
-    //   undefined,
-    //   { shallow: true }
-    // );
     async function fetchData() {
       const _handel_filters = async (witchFilter) => {
         setHasMore(true);
         setIsLoading(true);
-
-        // let params = {
-        //   ...(witchFilter ? witchFilter : null),
-        //   search: data.q,
-        //   ...(whichOrdering !== "" && { ordering: whichOrdering }),
-        //   ...(isReadyForSend && { ready: isReadyForSend }),
-        //   ...(isAvailableGoods && { available: isAvailableGoods }),
-        //   ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
-
-        //   ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
-
-        //   ...(wantCategories.length > 0 && {
-        //     category: wantCategories.toString(),
-        //   }),
-        //   ...(wantTags.length > 0 && {
-        //     tags: wantTags.toString(),
-        //   }),
-
-        //   page_size: 50,
-        //   ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
-        //   ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
-        //   ...(hojreh !== "" && { shop: hojreh }),
-        // };
-
         try {
           let response = await http.get(`/api/v1/products/`, {
-            params: data,
+            params: { ...data, page_size: 50 },
           });
 
           if (response.status === 200) {
@@ -278,7 +201,7 @@ function ListProductCus({ data }) {
       await _handel_filters();
     }
     fetchData();
-  }, [data, whichOrdering, hojreh, searchWord]);
+  }, [data, whichOrdering, hojreh]);
 
   // for filters in sidebar
   // END
@@ -368,7 +291,6 @@ function ListProductCus({ data }) {
                     checked={data.city ? ParsUrlToArr(data.city) : []}
                     expanded={expandCity}
                     onCheck={(e) => {
-                      
                       onChangeFilter("city", e.toString());
                     }}
                     onExpand={(e) => setExpandCity(e)}
@@ -471,12 +393,11 @@ function ListProductCus({ data }) {
             />
             {/* inja */}
             <div>
-              {hojreh !== "" && (
+              {data.shop !== "" && (
                 <SearchProduct
-                  setSearchWord={setSearchWord}
-                  searchWord={searchWord}
+                  onChangeFilter={onChangeFilter}
+                  searchWord={data.q}
                   NameHojreh={NameHojreh}
-                  hojreh={hojreh}
                 />
               )}
             </div>
@@ -601,7 +522,7 @@ function ListProductCus({ data }) {
             {categories.length > 0 && (
               <Grouping
                 item="1mobile"
-                searchWord={searchWord}
+                searchWord={data.q}
                 setCategories={setCategories}
                 categories={categories}
                 _handel_Add_category={_handel_Add_category}
@@ -624,7 +545,6 @@ function ListProductCus({ data }) {
                   checked={data.city ? ParsUrlToArr(data.city) : []}
                   expanded={expandCity}
                   onCheck={(e) => {
-                   
                     onChangeFilter("city", e.toString());
                   }}
                   onExpand={(e) => setExpandCity(e)}
