@@ -9,6 +9,7 @@ import { getUserInfo } from "../../redux/actions/user/getUserInfo";
 import s from "./HeaderTitle.module.scss";
 
 const list = [
+  { title: "حجره دار شوید", url: "https://nakhll.com/description/" },
   { title: "وبلاگ", url: "https://nakhll.com/blog/" },
   { title: "محصولات", url: "/search/?q=&available=true" },
   {
@@ -24,11 +25,9 @@ const HeaderTitle = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const userLog = useSelector((state) => state.User.userInfo);
-  console.log('userLog :>> ', userLog);
   useEffect(() => {
     dispatch(getUserInfo());
-  }, [])
-  
+  }, []);
 
   return (
     <div className={s.container}>
@@ -57,7 +56,15 @@ const HeaderTitle = () => {
       <div className={s.menu}>
         <div className={s.buttonContainer}>
           {Object.keys(userLog).length > 0 ? (
-            <FaUser size="35px" color="#064D81" />
+            <div className={s.profile} onClick={() => {
+              router.push("/profile");
+            }}>
+              <FaUser
+                
+                size="35px"
+                color="#064D81"
+              />
+            </div>
           ) : (
             <button
               onClick={() => {

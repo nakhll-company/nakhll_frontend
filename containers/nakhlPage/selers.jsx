@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import { AiFillPauseCircle, AiFillPlayCircle } from "react-icons/ai";
 import s from "./selers.module.scss";
@@ -7,6 +8,7 @@ const dataSelers = [
   {
     title: "سیسمونی کودک",
     name: "فاطمه وکیلی",
+    url:'/shop/nakhllsismooni/',
     products: [
 
       {
@@ -86,6 +88,7 @@ const dataSelers = [
   {
     title: "آریانا رزین",
     name: "محدثه عامری",
+    url:'/shop/aryaana/',
     products: [
       {
         "ID": "32122e10-f192-4a9a-8180-e3bc71c3bf5d",
@@ -164,6 +167,7 @@ const dataSelers = [
   {
     title: "جوراب گلدن لیدی",
     name: "امیر حاتم خانی",
+    url:'/shop/jorab-parizian/',
     products: [{
       "ID": "d2ed813d-6b27-488e-b0f6-38c884073ce1",
       "Title": "پک 4جفتی میکس جوراب نخی دخترانه پسرانه. لطافت و ظرافتی برای مصرف طولانی",
@@ -239,6 +243,7 @@ const dataSelers = [
   },
 ];
 function Selers() {
+  const router=useRouter();
   // const [audio, setAudio] = useState();
   // const [playing, setPlaying] = useState(false);
   // useEffect(() => {
@@ -257,7 +262,8 @@ function Selers() {
   //   }
   // };
   const CartSeller = ({ data }) => (
-    <div className={s.selerContainer}>
+    <div onClick={()=>router.push(data.url)} className={s.selerContainer}>
+      
       <div className={s.content}>
         <div className={s.header}>
           {/* <div className={s.image}></div> */}

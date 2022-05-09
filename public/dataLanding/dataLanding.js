@@ -297,8 +297,10 @@ export const dataLanding = {
     dataBlog: [{
         img: "/image/NakhlLanding/blog/blog-one.png",
         title: "افسردگی و روش های مقابله با آن",
+        url: 'https://nakhll.com/blog/%d8%b1%d9%88%d8%b4%db%8c-%d8%a2%d8%b3%d8%a7%d9%86-%d8%a8%d8%b1%d8%a7%db%8c-%d9%85%d9%82%d8%a7%d8%a8%d9%84%d9%87-%d8%a8%d8%a7-%d8%a7%d9%81%d8%b3%d8%b1%d8%af%da%af%db%8c/'
     }, {
         img: "/image/NakhlLanding/blog/blog-two.png",
         title: "جزیره آشپزخانه و نکاتی برای طراحی آن",
+        url: 'https://nakhll.com/blog/kitchen-island-and-7-tips-for-its-design/'
     }, ],
 };
