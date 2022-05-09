@@ -124,7 +124,7 @@ function ListProductCus({ data }) {
     }
   };
 
-  const _handel_call_another_page_api = async (witchFilter) => {
+  const _handel_call_another_page_api = async () => {
     try {
       let response = await http.get(`/api/v1/products/`, {
         params: { ...data, page: pageApi, page_size: 50 },
@@ -164,10 +164,10 @@ function ListProductCus({ data }) {
     setSearchShops(filterArray);
   };
 
-  //   changePage,
+
   useEffect(() => {
     async function fetchData() {
-      const _handel_filters = async (witchFilter) => {
+      const _handel_filters = async () => {
         setHasMore(true);
         setIsLoading(true);
         try {
