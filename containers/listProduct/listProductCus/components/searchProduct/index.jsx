@@ -1,5 +1,5 @@
 import React from "react";
-import router from "next/router";
+
 import styles from "./searchProduct.module.scss";
 import { useForm } from "react-hook-form";
 

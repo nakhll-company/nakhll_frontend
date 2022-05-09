@@ -377,14 +377,16 @@ function ListProductCus({ data }) {
               </div>
             </div>
           </div>{" "}
-          <div className="col-12 col-lg-9">
-            <TopBar
-              onChangeFilter={onChangeFilter}
-              totalcount={totalcount}
-              data={data.ordering}
-              handel_filterModal={handel_filterModal}
-              handel_OrderingModal={handel_OrderingModal}
-            />
+          <div style={{position:'relative'}} className="col-12 col-lg-9">
+            <div style={{position:'sticky',top:'0',zIndex:'2'}}>
+              <TopBar
+                onChangeFilter={onChangeFilter}
+                totalcount={totalcount}
+                data={data.ordering}
+                handel_filterModal={handel_filterModal}
+                handel_OrderingModal={handel_OrderingModal}
+              />
+            </div>
             {/* inja */}
             <div>
               {data.shop !== "" && (
