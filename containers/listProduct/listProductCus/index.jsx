@@ -26,6 +26,7 @@ import { http } from "../../../services/callApi/api";
 
 import FilterPrice from "./components/filterPrice";
 import { ParsUrlToArr } from "../../../utils/general";
+import FiltersPart from "../../searchPage/filtersPart";
 
 const _asist = new Assistent();
 
@@ -223,6 +224,8 @@ function ListProductCus({ data }) {
         <div className="row ">
           <div className="d-none d-lg-block col-lg-3">
             <div id="sidebar">
+              
+              <FiltersPart filters={data}/>
               <Grouping
                 searchWord={data.q}
                 setCategories={setCategories}
@@ -389,7 +392,8 @@ function ListProductCus({ data }) {
             </div>
             {/* inja */}
             <div>
-              {data.shop !== "" && (
+              
+              {data.shop && (
                 <SearchProduct
                   onChangeFilter={onChangeFilter}
                   searchWord={data.q}
