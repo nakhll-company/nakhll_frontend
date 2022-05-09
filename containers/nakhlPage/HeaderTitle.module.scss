@@ -9,6 +9,8 @@
     margin-left: 60px;
     margin-right: 10px;
     justify-self: start;
+    display: flex;
+    align-items: center;
 }
 
 .list {
@@ -33,6 +35,10 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
+}
+
+.slideMenu {
+    display: none;
 }
 
 .btn {
@@ -61,6 +67,9 @@
     }
     .list {
         display: none;
+    }
+    .slideMenu {
+        display: inline;
     }
     .menu {
         flex-grow: 1;

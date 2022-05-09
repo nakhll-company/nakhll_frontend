@@ -7,6 +7,7 @@ import { FaUser } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "../../redux/actions/user/getUserInfo";
 import s from "./HeaderTitle.module.scss";
+import SlideMenu from "./slideMenu";
 
 const list = [
   { title: "محصولات", url: "/search/?q=&available=true" },
@@ -31,11 +32,15 @@ const HeaderTitle = () => {
 
   return (
     <div className={s.container}>
+      <div className={s.slideMenu}>
+
+      <SlideMenu />
+      </div>
       <div className={s.icon}>
         <Image
-          layout="responsive"
-          width={205}
-          height={50}
+          layout="fixed"
+          width={100}
+          height={25}
           src="/icons/nakhllIcon.svg"
           alt="nakhll-icon"
         />

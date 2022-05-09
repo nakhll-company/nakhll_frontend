@@ -6,6 +6,7 @@ import ButtonLanding from "./ButtonLanding";
 import HeaderTitle from "./HeaderTitle";
 import s from "./heroSlider.module.scss";
 import InputLanding from "./InputLanding";
+
 function HeroSlider() {
   return (
     <div className={s.container}>
@@ -22,6 +23,7 @@ function HeroSlider() {
         />
       </div>
       <div className={s.mobileImage}>
+        
         <Image
           src="/image/hero-mobile.jpg"
           layout="responsive"
