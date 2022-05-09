@@ -146,6 +146,7 @@ function Test() {
       <NakhlLinerProducts
         dataLinerProducts={linearsProduct[0].products}
         title={linearsProduct[0].title}
+        colorTitle=" #064d80"
         url={linearsProduct[0].url}
       />
       <NakhlLinerProducts

@@ -324,7 +324,7 @@ function Selers() {
   return (
     <>
       <div className={s.titlePart}>
-        <h3>فروشندگان برتر فروردین ماه</h3>
+        <h3>حجره داران </h3>
       </div>
       <div className={s.container}>
         {dataSelers.map((data, index) => (

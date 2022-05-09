@@ -39,7 +39,7 @@ function LinerProductsBgLanding({
 
         <div className={styles.btn}>
           <Link href={url_LinerProductsBg}>
-            <a>مشاهده همه</a>
+            <a style={{whiteSpace:'nowrap'}}>مشاهده محصولات</a>
           </Link>
         </div>
       </div>
