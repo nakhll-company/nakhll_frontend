@@ -27,19 +27,19 @@ function LinerProductsBgLanding({
     >
       <div
         style={{ marginLeft: "0 !important", padding: "0 !important" }}
-        className={`${styles.righter} col-3 col-md-3 `}
+        className={`${styles.righter} col-4 col-md-3 `}
       >
         <Image
           src="/Values/nillMarket.png"
           layout="responsive"
-          width={100}
-          height={100}
+          width={120}
+          height={120}
           alt=""
         />
 
         <div className={styles.btn}>
           <Link href={url_LinerProductsBg}>
-            <a>مشاهده محصولات</a>
+            <a>مشاهده همه</a>
           </Link>
         </div>
       </div>

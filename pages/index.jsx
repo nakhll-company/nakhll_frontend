@@ -1,165 +1,164 @@
-// node libraries
-import React, { useEffect } from "react";
-import Head from "next/head";
-import { NextSeo } from "next-seo";
-import dynamic from "next/dynamic";
+import React from "react";
 
-// components
-import ShopLayout from "../components/shopLayout";
-import LinerOneImg from "../containers/LandingPage/LinerOneImg";
-import LinerProducts from "../containers/LandingPage/LinerProducts";
-import LinerThreeImg from "../containers/LandingPage/LinerThreeImg";
-import LinerTwoValue from "../containers/LandingPage/LinerTwoValue";
-import LinerProductsBg from "../containers/LandingPage/LinerProductsBg";
-import LinerFourImgMobile from "../containers/LandingPage/LinerFourImgMobile";
-const DynamicHeroSlides = dynamic(() =>
-  import("../containers/LandingPage/HeroSlides")
-);
-// methods
-import { ApiReference } from "../api/Api";
-import { http } from "../services/callApi/api";
+import BlogNakhl from "../containers/nakhlPage/blogNakhl";
+import EmptyLayout from "../components/layout/EmptyLayout";
+import HeroSlider from "../containers/nakhlPage/heroSlider";
+import NakhlLinerProducts from "../containers/nakhlPage/LinerProducts";
+import LinerProductsBgLanding from "../containers/nakhlPage/LinerProductsBg";
+import Selers from "../containers/nakhlPage/selers";
+import SliderNakhl from "../containers/nakhlPage/sliderNakhl";
+import ValuesPart from "../containers/nakhlPage/valuesPart";
+import Footer from "../components/shopLayout/footer";
+import { dataLanding } from "../public/dataLanding/dataLanding";
 
-// fetch data
-const fetchData = async () => {
-  let all_data_for_component = [];
-  let all_type_for_component = [];
-  let urlSchema = encodeURI(ApiReference.Landing_Page);
+const products = [
+  {
+    ID: "fb7adfdb-d0a7-4982-b9f0-4eef2b094a2b",
+    Title: "میوه خوری ریز گل",
+    Slug: "میوه-خوری-ریز-گل",
+    Inventory: 20,
+    Image_medium_url:
+      "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/TWRi2N/4d966e120bb946a3fa645b95d13da4a4.jpg",
+    FK_Shop: {
+      ID: "a230c61e-a598-47da-8de3-261fa04a3587",
+      slug: "سرای-مس-سرحدی",
+      title: "سرای مس سرحدی",
+      state: "کرمان",
+    },
+    Price: 4000000,
+    OldPrice: 4950000,
+    discount: 19,
+    is_advertisement: false,
+    in_campaign: false,
+  },
+  {
+    ID: "829bba04-56e1-43d1-a81a-2aa78801c9ab",
+    Title: "گلدان فیروزه کوب",
+    Slug: "گلدان-فیروزه-کوب",
+    Inventory: 2,
+    Image_medium_url:
+      "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/zrCcUp/ba3b9dfb6fa12ee31a84d9cc0b49ca65.jpg",
+    FK_Shop: {
+      ID: "a230c61e-a598-47da-8de3-261fa04a3587",
+      slug: "سرای-مس-سرحدی",
+      title: "سرای مس سرحدی",
+      state: "کرمان",
+    },
+    Price: 9000000,
+    OldPrice: 10000000,
+    discount: 10,
+    is_advertisement: false,
+    in_campaign: false,
+  },
+  {
+    ID: "39db5955-f261-481c-8f32-e324fe1fb5f1",
+    Title: "شکلات خوري سه پایه گوشواره دار",
+    Slug: "شکلات-خوري-سه-پایه-گوشواره-دار",
+    Inventory: 100,
+    Image_medium_url:
+      "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/649PGm/064e93448efd934c2e1ab5986fd222a2.jpg",
+    FK_Shop: {
+      ID: "a230c61e-a598-47da-8de3-261fa04a3587",
+      slug: "سرای-مس-سرحدی",
+      title: "سرای مس سرحدی",
+      state: "کرمان",
+    },
+    Price: 1250000,
+    OldPrice: 1350000,
+    discount: 7,
+    is_advertisement: false,
+    in_campaign: false,
+  },
+  {
+    ID: "b1227e34-77de-4234-af64-2ac3c89d4f0a",
+    Title: "سماور رو گازی مسی",
+    Slug: "سماور-رو-گازی-مسی",
+    Inventory: 10,
+    Image_medium_url:
+      "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/xkqQiS/d7e35194814d9a44a73ce355d84ee2ee.jpg",
+    FK_Shop: {
+      ID: "a230c61e-a598-47da-8de3-261fa04a3587",
+      slug: "سرای-مس-سرحدی",
+      title: "سرای مس سرحدی",
+      state: "کرمان",
+    },
+    Price: 5550000,
+    OldPrice: 6000000,
+    discount: 7,
+    is_advertisement: false,
+    in_campaign: false,
+  },
+  {
+    ID: "8da2c3ec-1dae-4b6d-a24d-40acae09d7b8",
+    Title: "گیلاس",
+    Slug: "گیلاس",
+    Inventory: 100,
+    Image_medium_url:
+      "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/f5WbRG/58b6ab66bcb680d719e3596b6cd16323.jpg",
+    FK_Shop: {
+      ID: "a230c61e-a598-47da-8de3-261fa04a3587",
+      slug: "سرای-مس-سرحدی",
+      title: "سرای مس سرحدی",
+      state: "کرمان",
+    },
+    Price: 850000,
+    OldPrice: 900000,
+    discount: 5,
+    is_advertisement: false,
+    in_campaign: false,
+  },
+  {
+    ID: "dae80d4d-6a89-4b66-ae38-935886753568",
+    Title: "چراغ علاالدین",
+    Slug: "چراغ-علاالدین",
+    Inventory: 10,
+    Image_medium_url:
+      "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/8Be6ng/9508b6171489f3cc29b083a4b810d80e.jpg",
+    FK_Shop: {
+      ID: "a230c61e-a598-47da-8de3-261fa04a3587",
+      slug: "سرای-مس-سرحدی",
+      title: "سرای مس سرحدی",
+      state: "کرمان",
+    },
+    Price: 2300000,
+    OldPrice: 2350000,
+    discount: 2,
+    is_advertisement: false,
+    in_campaign: false,
+  },
+];
 
-  let Schema = await http.get(urlSchema);
-
-  if (Schema.status === 200) {
-    for (let index = 0; index < Schema.data.length; index++) {
-      let one_Component = await http.get(Schema.data[index].data);
-
-      if (one_Component.status === 200) {
-        all_type_for_component.push(Schema.data[index].component_type);
-        all_data_for_component.push(one_Component.data);
-      }
-    }
-
-    return {
-      SchemaIn: Schema.data,
-      all_type_for_component,
-      all_data_for_component,
-    };
-  } else {
-    return null;
-  }
-};
-
-const HomePage = ({ data }) => {
-  // const Sample = {
-  //   1: "اسلایدر تکی",
-  //   2: "بنر تک عکسی",
-  //   3: " بنر 2تایی در یک ردیف",
-  //   4: " (یکی بالا دوتا پایین)بنر ۳ تایی",
-  //   5: " بنر چهارتایی چهارتا کنار هم",
-  //   6: " ردیف محصولات",
-  //   7: " ردیف شگفت انگیزا",
-  // };
-
-  const _handel_select_component = (type, index) => {
-    switch (type.component_type) {
-      case 1:
-        return (
-          <DynamicHeroSlides
-            key={index}
-            dataHeroSlides={data.all_data_for_component[index]}
-          />
-        );
-      case 2:
-        return (
-          <LinerOneImg
-            key={index}
-            dataLinerOneImg={data.all_data_for_component[index]}
-          />
-        );
-      case 3:
-        return (
-          <LinerTwoValue
-            key={index}
-            dataLinerTwoValue={data.all_data_for_component[index]}
-          />
-        );
-      case 4:
-        return (
-          <LinerThreeImg
-            key={index}
-            dataLinerThreeImg={data.all_data_for_component[index]}
-          />
-        );
-      case 5:
-        return (
-          <LinerFourImgMobile
-            key={index}
-            dataLinerFourImgMobile={data.all_data_for_component[index]}
-          />
-        );
-      case 6:
-        return (
-          <LinerProducts
-            key={index}
-            title={type.title}
-            subTitle={type.subtitle}
-            dataLinerProducts={data.all_data_for_component[index]}
-            url={type.url}
-            color={data.SchemaIn[index].background_color}
-          />
-        );
-      case 7:
-        return (
-          <LinerProductsBg
-            key={index}
-            subTitle_LinerProductsBg={type.subtitle}
-            dataLinerProductsBg={type.data}
-            url_LinerProductsBg={type.url}
-            color={data.SchemaIn[index].background_color}
-            num={4}
-            xl={3}
-            url={type.url}
-          />
-        );
-      default:
-        null;
-    }
-  };
-
-  const SEO = {
-    title: "بازار اجتماعی نخل",
-    description:
-      "نخل سرزمینی است برای یادآوری سنت‌های اصیل ایرانی‌مان، برای شکوفایی استعدادها و بهتر دیده‌شدن‌تان، کالاها و خدمات خود را در سرزمین نخل به اشتراک بگذارید. اینجا راهی برای پیشبرد هدف‌هایتان وجود دارد.",
-  };
-  
+function Test() {
+  const { linearsProduct, dataBlog, dataSliders, dataAmazingDiscounts } =
+    dataLanding;
   return (
-    <>
-      <NextSeo {...SEO} />
-      <Head>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta
-          name="keywords"
-          content=" نخل به وسعت یک سرزمین،بازار نخل،نخل،بازار اجتماعی نخل،بازار آنلاین نخل"
-        />
-        <link rel="canonical" href="https://nakhll.com/" />
-      </Head>
-      {data &&
-        data.SchemaIn &&
-        data.SchemaIn.length > 0 &&
-        data.SchemaIn.map((turn, index) =>
-          _handel_select_component(turn, index)
-        )}
-    </>
+    <div>
+      <HeroSlider />
+      <ValuesPart />
+      <Selers />
+      <LinerProductsBgLanding
+        dataLinerProductsBg={dataAmazingDiscounts.products}
+        url_LinerProductsBg={dataAmazingDiscounts.url}
+      />
+
+      <SliderNakhl dataSliders={dataSliders} />
+
+      <NakhlLinerProducts
+        dataLinerProducts={linearsProduct[0].products}
+        title={linearsProduct[0].title}
+        url={linearsProduct[0].url}
+      />
+      <NakhlLinerProducts
+        dataLinerProducts={linearsProduct[1].products}
+        title={linearsProduct[1].title}
+        colorTitle=" #064d80"
+        url={linearsProduct[1].url}
+      />
+      <BlogNakhl dataBlog={dataBlog} />
+      <Footer />
+    </div>
   );
-};
-
-export default HomePage;
-
-// function server side
-export async function getServerSideProps() {
-  const data = await fetchData();
-
-  return {
-    props: { data },
-  };
 }
 
-HomePage.Layout = ShopLayout;
+export default Test;
+Test.Layout = EmptyLayout;
