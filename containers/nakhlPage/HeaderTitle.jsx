@@ -1,8 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
 import { BsBasket2 } from "react-icons/bs";
+import { FaUser } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserInfo } from "../../redux/actions/user/getUserInfo";
 import s from "./HeaderTitle.module.scss";
 
 const list = [
@@ -18,7 +21,15 @@ const list = [
   },
 ];
 const HeaderTitle = () => {
-  const router=useRouter()
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const userLog = useSelector((state) => state.User.userInfo);
+  console.log('userLog :>> ', userLog);
+  useEffect(() => {
+    dispatch(getUserInfo());
+  }, [])
+  
+
   return (
     <div className={s.container}>
       <div className={s.icon}>
@@ -45,7 +56,18 @@ const HeaderTitle = () => {
       </div>
       <div className={s.menu}>
         <div className={s.buttonContainer}>
-          <button className={s.btn}>ثبت نام / ورود</button>
+          {Object.keys(userLog).length > 0 ? (
+            <FaUser size="35px" color="#064D81" />
+          ) : (
+            <button
+              onClick={() => {
+                router.push("/login");
+              }}
+              className={s.btn}
+            >
+              ثبت نام / ورود
+            </button>
+          )}
         </div>
         <div
           onClick={() => {
