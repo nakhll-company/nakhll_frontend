@@ -21,6 +21,7 @@ export const TopBar = ({
             }}
             className="d-lg-none"
           >
+            
             <i className="fas fa-filter"></i>
             <button className="btn px-2" onClick={handel_filterModal}>
               <span style={{ marginLeft: "45px" }}>فیلترها</span>
@@ -47,6 +48,7 @@ export const TopBar = ({
               </span>
             </button>
           </div>{" "}
+          
           <div className="search-sorts mb-0  productPage_top_filter">
             <div className="d-flex align-items-center">
               <div

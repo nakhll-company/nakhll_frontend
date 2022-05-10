@@ -85,6 +85,19 @@ function ListProductCus({ data }) {
     );
   };
 
+  const removeFilter = (name) => {
+    let filters = data;
+    delete filters[name];
+    router.push(
+      {
+        pathname: router.pathname,
+        query: filters,
+      },
+      undefined,
+      {}
+    );
+  };
+
   const call_tags = async (activeHojreh) => {
     try {
       let dataUrl = `/api/v1/shop/${activeHojreh}/tags/`;
@@ -221,11 +234,10 @@ function ListProductCus({ data }) {
   return (
     <>
       <div className={styles.container_N}>
-        <div className="row ">
+        <div style={{justifyContent:'center'}} className="row ">
           <div className="d-none d-lg-block col-lg-3">
             <div id="sidebar">
-              
-              <FiltersPart filters={data}/>
+              <FiltersPart filters={data} removeFilter={removeFilter} />
               <Grouping
                 searchWord={data.q}
                 setCategories={setCategories}
@@ -380,8 +392,8 @@ function ListProductCus({ data }) {
               </div>
             </div>
           </div>{" "}
-          <div style={{position:'relative'}} className="col-12 col-lg-9">
-            <div style={{position:'sticky',top:'0',zIndex:'2'}}>
+          <div style={{ position: "relative" }} className="col-12 col-lg-9">
+            <div style={{ position: "sticky", top: "0", zIndex: "2" }}>
               <TopBar
                 onChangeFilter={onChangeFilter}
                 totalcount={totalcount}
@@ -392,7 +404,6 @@ function ListProductCus({ data }) {
             </div>
             {/* inja */}
             <div>
-              
               {data.shop && (
                 <SearchProduct
                   onChangeFilter={onChangeFilter}
@@ -401,7 +412,7 @@ function ListProductCus({ data }) {
                 />
               )}
             </div>
-            <div className="mx-auto row">
+            <div style={{justifyContent:'center'}} className="mx-auto row">
               {isLoading ? (
                 <WoLoading />
               ) : listWithFilter.length == 0 ? (
