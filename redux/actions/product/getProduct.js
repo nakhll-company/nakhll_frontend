@@ -1,5 +1,7 @@
 import * as Types from "../../types/product"; // constants
-import { authhttp } from "../../../services/callApi/api";
+import {
+    authhttp
+} from "../../../services/callApi/api";
 // action of accounting list
 export const getProduct =
     (
@@ -30,7 +32,9 @@ export const getProduct =
                     };
 
                     let dataUrl = `/api/v1/shop/${activeHojreh}/products/`;
-                    let response = await authhttp.get(dataUrl, params)
+                    let response = await authhttp.get(dataUrl, {
+                        params
+                    })
                     return response;
                 };
 
