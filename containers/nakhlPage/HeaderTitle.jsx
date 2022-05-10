@@ -7,6 +7,7 @@ import { FaUser } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "../../redux/actions/user/getUserInfo";
 import s from "./HeaderTitle.module.scss";
+import SlideMenu from "./slideMenu";
 
 const list = [
   { title: "محصولات", url: "/search/?q=&available=true" },
@@ -25,17 +26,22 @@ const HeaderTitle = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const userLog = useSelector((state) => state.User.userInfo);
+  const All_product_list_buy = useSelector((state) => state.Cart.allProduct);
+  console.log('All_product_list_buy  :>> ', All_product_list_buy );
   useEffect(() => {
     dispatch(getUserInfo());
   }, []);
 
   return (
     <div className={s.container}>
+      <div className={s.slideMenu}>
+        <SlideMenu />
+      </div>
       <div className={s.icon}>
         <Image
-          layout="responsive"
-          width={205}
-          height={50}
+          layout="fixed"
+          width={100}
+          height={25}
           src="/icons/nakhllIcon.svg"
           alt="nakhll-icon"
         />
@@ -56,14 +62,13 @@ const HeaderTitle = () => {
       <div className={s.menu}>
         <div className={s.buttonContainer}>
           {Object.keys(userLog).length > 0 ? (
-            <div className={s.profile} onClick={() => {
-              router.push("/profile");
-            }}>
-              <FaUser
-                
-                size="35px"
-                color="#064D81"
-              />
+            <div
+              className={s.profile}
+              onClick={() => {
+                router.push("/profile");
+              }}
+            >
+              <FaUser className={s.icons}  color="#064D81" />
             </div>
           ) : (
             <button
@@ -82,7 +87,13 @@ const HeaderTitle = () => {
           }}
           className={s.cartContainer}
         >
-          <BsBasket2 size="35px" color="#064D81" />
+          {!!All_product_list_buy?.ordered_items?.length && (
+            <span className={s.numberLabel}>
+              {All_product_list_buy.ordered_items.length}
+            </span>
+          )}
+
+          <BsBasket2  className={s.icons} color="#064D81" />
         </div>
       </div>
     </div>

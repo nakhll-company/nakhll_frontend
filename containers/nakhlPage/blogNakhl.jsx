@@ -9,7 +9,7 @@ function BlogNakhl({ dataBlog }) {
   return (
     <div className={s.container}>
       <div className={s.partImages}>
-        <div onClick={()=>router.push(dataBlog[0].url)} style={{ marginLeft: "5px" }} className={s.imageContainer}>
+        <div onClick={()=>{window.open(dataBlog[0].url,'_blank')}} style={{ marginLeft: "5px" }} className={s.imageContainer}>
           <Image
             className={s.image}
             src={dataBlog[0].img}
@@ -23,7 +23,7 @@ function BlogNakhl({ dataBlog }) {
           </div>
         </div>
         <div
-        onClick={()=>router.push(dataBlog[0].url)}
+        onClick={()=>{window.open(dataBlog[1].url,'_blank')}}
           style={{ marginRight: "5px" }}
           className={`${s.imageContainer} ${s.imagDesktop}`}
         >

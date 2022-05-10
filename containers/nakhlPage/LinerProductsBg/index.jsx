@@ -37,11 +37,11 @@ function LinerProductsBgLanding({
           alt=""
         />
 
-        <div className={styles.btn}>
           <Link href={url_LinerProductsBg}>
+        <div className={styles.btn}>
             <a style={{whiteSpace:'nowrap'}}>مشاهده محصولات</a>
-          </Link>
         </div>
+          </Link>
       </div>
       <div className={`${styles.lefter} col-9 col-md-9`}>
         <LinerProducts

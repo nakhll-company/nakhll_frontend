@@ -1,11 +1,9 @@
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
-import AppButton from "../../components/AppButton";
-import ButtonLanding from "./ButtonLanding";
 import HeaderTitle from "./HeaderTitle";
 import s from "./heroSlider.module.scss";
 import InputLanding from "./InputLanding";
+
 function HeroSlider() {
   return (
     <div className={s.container}>

@@ -9,6 +9,8 @@
     margin-left: 60px;
     margin-right: 10px;
     justify-self: start;
+    display: flex;
+    align-items: center;
 }
 
 .list {
@@ -35,6 +37,10 @@
     gap: 20px;
 }
 
+.slideMenu {
+    display: none;
+}
+
 .btn {
     all: unset;
     background-color: #104b82;
@@ -46,10 +52,32 @@
 
 .cartContainer {
     cursor: pointer;
+    position: relative;
+}
+
+.numberLabel {
+    width: 20px;
+    height: 20px;
+    color: #fff;
+    font-weight: bolder;
+    text-align: center;
+    background-color: #114b82;
+    vertical-align: middle;
+    position: absolute;
+    bottom: -15px;
+    right: -10px;
+    border-radius: 50%;
 }
 
 .profile {
     cursor: pointer;
+}
+
+.icons {
+    font-size: 35px;
+    @media (max-width: 870px) {
+        font-size: 25px;
+    }
 }
 
 @media (max-width: 870px) {
@@ -61,6 +89,9 @@
     }
     .list {
         display: none;
+    }
+    .slideMenu {
+        display: inline;
     }
     .menu {
         flex-grow: 1;
