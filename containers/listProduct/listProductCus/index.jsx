@@ -74,7 +74,12 @@ function ListProductCus({ data }) {
       return;
     }
     let filters = data;
-    filters[name] = value;
+    if(value=='' || !value){
+      delete filters[name]
+    }else{
+
+      filters[name] = value;
+    }
     router.push(
       {
         pathname: router.pathname,
