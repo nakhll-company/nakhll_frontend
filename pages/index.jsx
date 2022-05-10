@@ -1,165 +1,48 @@
-// node libraries
-import React, { useEffect } from "react";
-import Head from "next/head";
-import { NextSeo } from "next-seo";
-import dynamic from "next/dynamic";
+import React from "react";
 
-// components
-import ShopLayout from "../components/shopLayout";
-import LinerOneImg from "../containers/LandingPage/LinerOneImg";
-import LinerProducts from "../containers/LandingPage/LinerProducts";
-import LinerThreeImg from "../containers/LandingPage/LinerThreeImg";
-import LinerTwoValue from "../containers/LandingPage/LinerTwoValue";
-import LinerProductsBg from "../containers/LandingPage/LinerProductsBg";
-import LinerFourImgMobile from "../containers/LandingPage/LinerFourImgMobile";
-const DynamicHeroSlides = dynamic(() =>
-  import("../containers/LandingPage/HeroSlides")
-);
-// methods
-import { ApiReference } from "../api/Api";
-import { http } from "../services/callApi/api";
+import BlogNakhl from "../containers/nakhlPage/blogNakhl";
+import EmptyLayout from "../components/layout/EmptyLayout";
+import HeroSlider from "../containers/nakhlPage/heroSlider";
+import NakhlLinerProducts from "../containers/nakhlPage/LinerProducts";
+import LinerProductsBgLanding from "../containers/nakhlPage/LinerProductsBg";
+import Selers from "../containers/nakhlPage/selers";
+import SliderNakhl from "../containers/nakhlPage/sliderNakhl";
+import ValuesPart from "../containers/nakhlPage/valuesPart";
+import Footer from "../components/shopLayout/footer";
+import { dataLanding } from "../public/dataLanding/dataLanding";
 
-// fetch data
-const fetchData = async () => {
-  let all_data_for_component = [];
-  let all_type_for_component = [];
-  let urlSchema = encodeURI(ApiReference.Landing_Page);
-
-  let Schema = await http.get(urlSchema);
-
-  if (Schema.status === 200) {
-    for (let index = 0; index < Schema.data.length; index++) {
-      let one_Component = await http.get(Schema.data[index].data);
-
-      if (one_Component.status === 200) {
-        all_type_for_component.push(Schema.data[index].component_type);
-        all_data_for_component.push(one_Component.data);
-      }
-    }
-
-    return {
-      SchemaIn: Schema.data,
-      all_type_for_component,
-      all_data_for_component,
-    };
-  } else {
-    return null;
-  }
-};
-
-const HomePage = ({ data }) => {
-  // const Sample = {
-  //   1: "اسلایدر تکی",
-  //   2: "بنر تک عکسی",
-  //   3: " بنر 2تایی در یک ردیف",
-  //   4: " (یکی بالا دوتا پایین)بنر ۳ تایی",
-  //   5: " بنر چهارتایی چهارتا کنار هم",
-  //   6: " ردیف محصولات",
-  //   7: " ردیف شگفت انگیزا",
-  // };
-
-  const _handel_select_component = (type, index) => {
-    switch (type.component_type) {
-      case 1:
-        return (
-          <DynamicHeroSlides
-            key={index}
-            dataHeroSlides={data.all_data_for_component[index]}
-          />
-        );
-      case 2:
-        return (
-          <LinerOneImg
-            key={index}
-            dataLinerOneImg={data.all_data_for_component[index]}
-          />
-        );
-      case 3:
-        return (
-          <LinerTwoValue
-            key={index}
-            dataLinerTwoValue={data.all_data_for_component[index]}
-          />
-        );
-      case 4:
-        return (
-          <LinerThreeImg
-            key={index}
-            dataLinerThreeImg={data.all_data_for_component[index]}
-          />
-        );
-      case 5:
-        return (
-          <LinerFourImgMobile
-            key={index}
-            dataLinerFourImgMobile={data.all_data_for_component[index]}
-          />
-        );
-      case 6:
-        return (
-          <LinerProducts
-            key={index}
-            title={type.title}
-            subTitle={type.subtitle}
-            dataLinerProducts={data.all_data_for_component[index]}
-            url={type.url}
-            color={data.SchemaIn[index].background_color}
-          />
-        );
-      case 7:
-        return (
-          <LinerProductsBg
-            key={index}
-            subTitle_LinerProductsBg={type.subtitle}
-            dataLinerProductsBg={type.data}
-            url_LinerProductsBg={type.url}
-            color={data.SchemaIn[index].background_color}
-            num={4}
-            xl={3}
-            url={type.url}
-          />
-        );
-      default:
-        null;
-    }
-  };
-
-  const SEO = {
-    title: "بازار اجتماعی نخل",
-    description:
-      "نخل سرزمینی است برای یادآوری سنت‌های اصیل ایرانی‌مان، برای شکوفایی استعدادها و بهتر دیده‌شدن‌تان، کالاها و خدمات خود را در سرزمین نخل به اشتراک بگذارید. اینجا راهی برای پیشبرد هدف‌هایتان وجود دارد.",
-  };
-  
+function Test() {
+  const { linearsProduct, dataBlog, dataSliders, dataAmazingDiscounts } =
+    dataLanding;
   return (
-    <>
-      <NextSeo {...SEO} />
-      <Head>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta
-          name="keywords"
-          content=" نخل به وسعت یک سرزمین،بازار نخل،نخل،بازار اجتماعی نخل،بازار آنلاین نخل"
-        />
-        <link rel="canonical" href="https://nakhll.com/" />
-      </Head>
-      {data &&
-        data.SchemaIn &&
-        data.SchemaIn.length > 0 &&
-        data.SchemaIn.map((turn, index) =>
-          _handel_select_component(turn, index)
-        )}
-    </>
+    <div>
+      <HeroSlider />
+      <ValuesPart />
+      <Selers />
+      <LinerProductsBgLanding
+        dataLinerProductsBg={dataAmazingDiscounts.products}
+        url_LinerProductsBg={dataAmazingDiscounts.url}
+      />
+
+      <SliderNakhl dataSliders={dataSliders} />
+
+      <NakhlLinerProducts
+        dataLinerProducts={linearsProduct[0].products}
+        title={linearsProduct[0].title}
+        colorTitle=" #064d80"
+        url={linearsProduct[0].url}
+      />
+      <NakhlLinerProducts
+        dataLinerProducts={linearsProduct[1].products}
+        title={linearsProduct[1].title}
+        colorTitle=" #064d80"
+        url={linearsProduct[1].url}
+      />
+      <BlogNakhl dataBlog={dataBlog} />
+      <Footer />
+    </div>
   );
-};
-
-export default HomePage;
-
-// function server side
-export async function getServerSideProps() {
-  const data = await fetchData();
-
-  return {
-    props: { data },
-  };
 }
 
-HomePage.Layout = ShopLayout;
+export default Test;
+Test.Layout = EmptyLayout;

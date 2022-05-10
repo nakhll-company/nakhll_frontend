@@ -20,7 +20,7 @@ $color6: #d4d8e1;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 15px;
+            font-size: 14px;
             background-color: $color3;
             color: $color6;
             border-radius: 10px;
@@ -34,6 +34,7 @@ $color6: #d4d8e1;
         overflow-x: auto;
     }
 }
+
 .Button {
     button {
         border: 1px solid $color2;

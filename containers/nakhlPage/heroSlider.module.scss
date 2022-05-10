@@ -2,6 +2,7 @@
     width: 100%;
     position: relative;
 }
+
 .header {
     position: absolute;
     top: 10px;
@@ -9,6 +10,7 @@
     left: 10px;
     z-index: 1;
 }
+
 .boxContainer {
     position: absolute;
     bottom: 20%;
@@ -27,13 +29,16 @@
         margin-bottom: 20px;
     }
 }
+
 .searchConatiner {
     display: flex;
     align-items: center;
 }
+
 .mobileImage {
     display: none;
 }
+
 @media (max-width: 870px) {
     .desktopImage {
         display: none;
@@ -42,7 +47,7 @@
         display: inline;
     }
     .boxContainer {
-        bottom: 7%;
+        bottom: 2%;
         right: 2%;
         left: 0;
         display: flex;

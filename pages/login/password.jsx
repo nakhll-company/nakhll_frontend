@@ -10,8 +10,13 @@ import EmptyLayout from "../../components/layout/EmptyLayout";
 // methods
 import { completeAuth } from "../../api/auth/completeAuth";
 import { getAccessToken } from "../../api/auth/getAccessToken";
+import { useDispatch } from "react-redux";
+import { getProducts } from "../../redux/actions/cart/getProducts";
+import { useRouter } from "next/router";
 
 const Password = () => {
+  const router=useRouter()
+  const dispatch = useDispatch();
   const [loadButton, setLoadButton] = useState(false);
 
   const {
@@ -27,7 +32,8 @@ const Password = () => {
 
     if (!!result) {
       let response = await getAccessToken(result);
-      response === true && location.replace("/");
+      await dispatch(getProducts());
+      response === true && router.push('/') ;
     } else {
       setLoadButton(false);
     }
