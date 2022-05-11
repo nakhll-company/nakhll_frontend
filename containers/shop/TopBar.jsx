@@ -45,7 +45,7 @@ export const TopBar = ({
               </span>
             </button>
           </div>{" "}
-          <div className="search-sorts mb-0  productPage_top_filter">
+          <div className="search-sorts mb-0 ">
             <div className="d-flex align-items-center">
               <div
                 className="title"

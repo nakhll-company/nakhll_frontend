@@ -1,148 +1,130 @@
-import React from "react";
-import Assistent from "zaravand-assistent-number";
-const _asist = new Assistent();
+import { BsSortDownAlt, BsFilter } from "react-icons/bs";
+import s from "./TopBar.module.scss";
+
+const CustomList = ({ className, onClick, title }) => {
+  return (
+    <li className={`sort-item  ${className && " active"} `}>
+      <a id={"1"} onClick={onClick}>
+        {title}
+      </a>
+    </li>
+  );
+};
+
+const TotalNum = ({ number }) => {
+  return (
+    <span style={{ marginLeft: "20px" }}>
+      {" "}
+      تعداد کالا:
+      <span style={{ marginRight: "10px", fontWeight: "bolder" }}>
+        {" "}
+        {number}
+      </span>
+    </span>
+  );
+};
+
+const showFilter = (data) => {
+  let message = {
+    Price: "ارزانتر",
+    "-Price": "گرانتر",
+    "-DiscountPrecentage": "بیشترین تخفیف",
+    "-DateCreate": "تازه ها",
+  };
+  if (data == undefined) {
+    return "مرتبط‌ترین";
+  }
+  return message[data];
+};
+
 export const TopBar = ({
   onChangeFilter,
   totalcount,
   data,
   handel_filterModal,
   handel_OrderingModal,
-  
 }) => {
   return (
     <>
-      <div style={{ marginTop: "0px" }}>
-        <div className=" product-filters mb-4">
-          <div
-            style={{
-              cursor: "pointer",
-              backgroundColor: "#fff",
-              padding: "5px 15px",
-            }}
-            className="d-lg-none"
-          >
-            
-            <i className="fas fa-filter"></i>
-            <button className="btn px-2" onClick={handel_filterModal}>
-              <span style={{ marginLeft: "45px" }}>فیلترها</span>
-            </button>
-            <i className="fas fa-sort-amount-down-alt"></i>
-            <button className="btn px-2" onClick={handel_OrderingModal}>
-              <span>
-                مرتب سازی:
-                <span
-                  style={{
-                    fontSize: "12px",
-                    color: "red",
-                    marginRight: "5px",
-                  }}
-                >
-                  {data == "" && "مرتبط‌ترین"}
-                  {data == "Price" && "ارزانتر"}
-                  {data == "-Price" && "گرانتر"}
-
-                  {data == "DiscountPrecentage" && "بیشترین تخفیف"}
-                  {data == "-DateCreate" && "تازه ها"}
-                </span>
-                <span></span>
-              </span>
-            </button>
-          </div>{" "}
-          
-          <div className="search-sorts mb-0  productPage_top_filter">
-            <div className="d-flex align-items-center">
-              <div
-                className="title"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  color: "rgb(138 137 137)",
-                }}
-              >
-                <i
-                  className="fas fa-sort-amount-down-alt"
-                  style={{ fontSize: "18px" }}
-                ></i>{" "}
-                <span
-                  className="d-none d-lg-block"
-                  style={{ color: "rgb(138 137 137)" }}
-                >
-                  {" "}
-                  مرتب‌سازی براساس :{" "}
-                </span>
-              </div>{" "}
-              <ul>
-                <li className={`sort-item  ${data ? " " : "active"} `}>
-                  <a
-                    id={"1"}
-                    onClick={() => {
-                      onChangeFilter("ordering", "");
-                    }}
-                  >
-                    مرتبط‌ترین
-                  </a>
-                </li>
-                <li
-                  className={`sort-item  ${data == "Price" ? " active" : ""} `}
-                >
-                  <a
-                    onClick={() => {
-                      onChangeFilter("ordering", "Price");
-                    }}
-                  >
-                    ارزان‌تر
-                  </a>
-                </li>
-                <li
-                  id={"3"}
-                  className={`sort-item  ${data == "-Price" ? " active" : ""} `}
-                >
-                  <a
-                    onClick={() => {
-                      onChangeFilter("ordering", "-Price");
-                    }}
-                  >
-                    گران‌تر
-                  </a>
-                </li>
-                <li
-                  className={`sort-item  ${
-                    data == "-DiscountPrecentage" ? " active" : ""
-                  } `}
-                >
-                  <a
-                    onClick={() => {
-                      onChangeFilter("ordering", "-DiscountPrecentage");
-                    }}
-                  >
-                    بیشترین تخفیف
-                  </a>
-                </li>
-                <li
-                  className={`sort-item  ${
-                    data == "-DateCreate" ? " active" : ""
-                  } `}
-                >
-                  <a
-                    onClick={() => {
-                      onChangeFilter("ordering", "-DateCreate");
-                    }}
-                  >
-                    تازه‌ها
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <span className="  " style={{ marginLeft: "20px" }}>
-              {" "}
-              تعداد کالا:
-              <span style={{ marginRight: "10px", fontWeight: "bold" }}>
-                {" "}
-                {_asist.number(totalcount)}
-              </span>
+      <div className={s.wrap}>
+        {/* Mobile */}
+        <div className={s.wrap_mobile}>
+          <div onClick={handel_filterModal}>
+            <BsFilter size={20} />
+            <span>فیلترها</span>
+          </div>
+          <div onClick={handel_OrderingModal}>
+            <BsSortDownAlt size={20} />
+            <span>
+              مرتب سازی:
+              <span className={s.filter_name}>{showFilter(data)}</span>
             </span>
-          </div>{" "}
-        </div>
+          </div>
+          <div className="">
+
+          <TotalNum number={totalcount} />
+          </div>
+        </div>{" "}
+        {/* Descktop */}
+        <div className="search-sorts d-none d-lg-flex ">
+          <div className=" d-flex  align-items-center">
+            <div
+              className="title"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                color: "rgb(138 137 137)",
+              }}
+            >
+              <BsSortDownAlt size={20} />
+              <span
+                className="d-none d-lg-block"
+                style={{ color: "rgb(138 137 137)" }}
+              >
+                {" "}
+                مرتب‌سازی براساس :{" "}
+              </span>
+            </div>{" "}
+            <ul>
+              <CustomList
+                className={data == undefined}
+                onClick={() => {
+                  onChangeFilter("ordering", "");
+                }}
+                title="مرتبط ترین"
+              />
+              <CustomList
+                className={data == "Price"}
+                onClick={() => {
+                  onChangeFilter("ordering", "Price");
+                }}
+                title="ارزانتر"
+              />
+              <CustomList
+                className={data == "-Price"}
+                onClick={() => {
+                  onChangeFilter("ordering", "-Price");
+                }}
+                title="گران تر"
+              />
+              <CustomList
+                className={data == "-DiscountPrecentage"}
+                onClick={() => {
+                  onChangeFilter("ordering", "-DiscountPrecentage");
+                }}
+                title="بیشترین تخفیف"
+              />
+              <CustomList
+                className={data == "-DateCreate"}
+                onClick={() => {
+                  onChangeFilter("ordering", "-DateCreate");
+                }}
+                title="تازه ها"
+              />
+            </ul>
+          </div>
+          <TotalNum number={totalcount} />
+        </div>{" "}
       </div>
     </>
   );

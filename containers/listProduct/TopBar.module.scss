@@ -1,0 +1,42 @@
+.wrap {
+    margin-bottom: 16px;
+}
+
+.filter_name {
+    font-size: 12px;
+    color: red;
+    font-weight: bolder;
+    margin-right: 5px;
+}
+
+.wrap_mobile {
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px 15px;
+    justify-content: space-between;
+}
+
+.wrap_desktop {
+    display: none;
+    width: 100%;
+    overflow-x: auto;
+    background: #fff;
+    white-space: nowrap;
+    align-items: center;
+    margin-bottom: 1rem;
+    margin-right: -15px;
+    margin-left: -15px;
+    justify-content: space-between;
+}
+
+@media (min-width: 992px) {
+    .wrap_mobile {
+        display: none;
+    }
+    .wrap_descktop {
+        display: flex;
+    }
+}

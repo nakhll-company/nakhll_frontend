@@ -472,10 +472,12 @@ function ListProductCus({ data }) {
           </div>
           <div id="sidebar">
             <div className={styles.search_body_filter}>
+              
               <div
                 className={styles.modal_body}
                 style={{ msOverflowX: "hidden" }}
               >
+                
                 <CustomSwitch
                   defaultChecked={data.available == "true" ? true : false}
                   title="فقط کالاهای موجود"
