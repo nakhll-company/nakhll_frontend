@@ -208,9 +208,13 @@ function ListProductCus({ data }) {
             setTotalcount(response.data.total_count);
 
             setIsLoading(false);
+          }else{
+            setIsLoading(false);
+          setTotalcount(0);
           }
         } catch (e) {
           setIsLoading(false);
+          setTotalcount(0);
         }
       };
       await _handel_filters();
@@ -421,7 +425,10 @@ function ListProductCus({ data }) {
               {isLoading ? (
                 <WoLoading />
               ) : listWithFilter.length == 0 ? (
-                <span className="h5">محصولی یافت نشد...</span>
+                <div className={styles.wrap_empty}>
+
+                  <span className="h5">محصولی یافت نشد...</span>
+                </div>
               ) : (
                 <InfiniteScroll
                   className="mx-auto row"

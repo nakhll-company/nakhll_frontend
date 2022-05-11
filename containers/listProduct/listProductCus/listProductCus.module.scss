@@ -5,11 +5,13 @@
     margin-right: auto;
     margin-left: auto;
 }
+
 @media (min-width: 576px) {
     .container_N {
         max-width: 540px;
     }
 }
+
 @media (min-width: 768px) {
     .container_N {
         max-width: 760px;
@@ -17,21 +19,25 @@
         padding-left: 3px;
     }
 }
+
 @media (min-width: 992px) {
     .container_N {
         max-width: 960px;
     }
 }
+
 @media (min-width: 1200px) {
     .container_N {
         max-width: 1200px;
     }
 }
+
 @media (min-width: 1440px) {
     .container_N {
         max-width: 1400px;
     }
 }
+
 .search_body_filter {
     display: -webkit-flex;
     display: -moz-box;
@@ -44,10 +50,12 @@
     -moz-box-flex: 1;
     flex-grow: 1;
 }
+
 .modal_body {
     max-height: 100%;
     padding: 0;
 }
+
 .modal_filter_products {
     display: none !important;
     background-color: #fff;
@@ -60,11 +68,13 @@
     bottom: 0;
     z-index: 9999;
 }
+
 @media (max-width: 768px) {
     .modal_filter_products {
         display: block !important;
     }
 }
+
 .itemHojreh {
     display: flex;
     padding-right: 15px;
@@ -78,6 +88,7 @@
         color: #fff;
     }
 }
+
 .numBag {
     display: flex;
     justify-content: center;
@@ -91,6 +102,7 @@
         font-weight: bold;
     }
 }
+
 .info_cardH {
     text-align: center;
     padding-bottom: 10px;
@@ -110,4 +122,11 @@
         border-width: 1px;
         font-weight: 800;
     }
+}
+
+.wrap_empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70Vw;
 }
