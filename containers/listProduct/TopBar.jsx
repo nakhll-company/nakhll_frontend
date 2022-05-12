@@ -3,8 +3,8 @@ import s from "./TopBar.module.scss";
 
 const CustomList = ({ className, onClick, title }) => {
   return (
-    <li className={`sort-item  ${className && " active"} `}>
-      <a  onClick={onClick}>
+    <li className={`sort-item   ${className && " active"} `}>
+      <a   onClick={onClick}>
         {title}
       </a>
     </li>
@@ -13,10 +13,10 @@ const CustomList = ({ className, onClick, title }) => {
 
 const TotalNum = ({ number }) => {
   return (
-    <span style={{ marginLeft: "20px" }}>
+    <span  style={{ marginLeft: "5px",whiteSpace:'nowrap' }}>
       {" "}
       تعداد کالا:
-      <span style={{ marginRight: "10px", fontWeight: "bolder" }}>
+      <span style={{ marginRight: "1px", fontWeight: "bolder" }}>
         {" "}
         {number}
       </span>
@@ -74,11 +74,12 @@ export const TopBar = ({
                 display: "flex",
                 alignItems: "center",
                 color: "rgb(138 137 137)",
+                
               }}
             >
               <BsSortDownAlt size={20} />
               <span
-                className="d-none d-lg-block"
+                className="d-none d-lg-block "
                 style={{ color: "rgb(138 137 137)" }}
               >
                 {" "}
