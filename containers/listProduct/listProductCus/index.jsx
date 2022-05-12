@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import _ from "lodash";
 // components
+import { AiFillCloseCircle } from "react-icons/ai";
 import { TopBar } from "../TopBar";
 import { allCites } from "../../../utils/allCities";
 import Search from "../../../components/search/Search";
@@ -74,10 +75,9 @@ function ListProductCus({ data }) {
       return;
     }
     let filters = data;
-    if(value=='' || !value){
-      delete filters[name]
-    }else{
-
+    if (value == "" || !value) {
+      delete filters[name];
+    } else {
       filters[name] = value;
     }
     router.push(
@@ -208,9 +208,9 @@ function ListProductCus({ data }) {
             setTotalcount(response.data.total_count);
 
             setIsLoading(false);
-          }else{
+          } else {
             setIsLoading(false);
-          setTotalcount(0);
+            setTotalcount(0);
           }
         } catch (e) {
           setIsLoading(false);
@@ -243,7 +243,7 @@ function ListProductCus({ data }) {
   return (
     <>
       <div className={styles.container_N}>
-        <div style={{justifyContent:'center'}} className="row ">
+        <div style={{ justifyContent: "center" }} className="row ">
           <div className="d-none d-lg-block col-lg-3">
             <div id="sidebar">
               <FiltersPart filters={data} removeFilter={removeFilter} />
@@ -421,12 +421,11 @@ function ListProductCus({ data }) {
                 />
               )}
             </div>
-            <div style={{justifyContent:'center'}} className="mx-auto row">
+            <div style={{ justifyContent: "center" }} className="mx-auto row">
               {isLoading ? (
                 <WoLoading />
               ) : listWithFilter.length == 0 ? (
                 <div className={styles.wrap_empty}>
-
                   <span className="h5">محصولی یافت نشد...</span>
                 </div>
               ) : (
@@ -467,24 +466,14 @@ function ListProductCus({ data }) {
               zIndex: "10000",
             }}
           >
-            <i
-              onClick={handel_filterModal}
-              className="far fa-times-circle"
-              style={{
-                fontSize: "25px",
-                marginTop: "5px",
-                marginLeft: "10px",
-              }}
-            ></i>
+            <AiFillCloseCircle size={30} onClick={handel_filterModal} />
           </div>
           <div id="sidebar">
             <div className={styles.search_body_filter}>
-              
               <div
                 className={styles.modal_body}
                 style={{ msOverflowX: "hidden" }}
               >
-                
                 <CustomSwitch
                   defaultChecked={data.available == "true" ? true : false}
                   title="فقط کالاهای موجود"
@@ -607,8 +596,8 @@ function ListProductCus({ data }) {
       {/* ModalOrdering Strat */}
       {isOpenOrderingModal && (
         <OrderingModalMobile
+          data={data.ordering}
           handel_OrderingModal={handel_OrderingModal}
-          handel_filterModal={handel_filterModal}
           onChangeFilter={onChangeFilter}
           setIsOpenOrderingModal={setIsOpenOrderingModal}
         />

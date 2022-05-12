@@ -4,7 +4,7 @@ import s from "./TopBar.module.scss";
 const CustomList = ({ className, onClick, title }) => {
   return (
     <li className={`sort-item  ${className && " active"} `}>
-      <a id={"1"} onClick={onClick}>
+      <a  onClick={onClick}>
         {title}
       </a>
     </li>
