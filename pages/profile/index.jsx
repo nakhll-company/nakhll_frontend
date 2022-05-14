@@ -44,7 +44,11 @@ const Profile = () => {
   }
 
   useEffect(() => {
-    getUserData(setDataProfile);
+    async function fetchData() {
+      let ans = await getUserData();
+      setDataProfile(ans);
+    }
+    fetchData();
   }, []);
 
   return (
@@ -85,8 +89,10 @@ const Profile = () => {
               <hr />
               <li
                 className="d-flex align-items-center mb-3"
-                onClick={(event) => {
+                onClick={async (event) => {
                   activeLink(event);
+                  let ans = await getUserData();
+                  setDataProfile(ans);
                   setProfilePages(() => {
                     return {
                       ordersPage: false,
@@ -256,8 +262,8 @@ const Profile = () => {
                 <li
                   className="d-flex flex-column align-items-center ms-4"
                   onClick={() => {
-                    clearTokenStorage()
-                   
+                    clearTokenStorage();
+
                     router.push("/");
                     router.reload(window.location.pathname);
                   }}
