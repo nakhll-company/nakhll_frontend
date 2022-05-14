@@ -3,6 +3,8 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 // components
 import InputPictureSetting from "../InputPicture";
+import { BsTrash } from "react-icons/bs";
+import { base64Profile } from "../../../../public/icons/icon";
 // methods
 import { callApiUpDataPicture } from "../../../../api/settings";
 // style
@@ -18,7 +20,9 @@ function TopPictures({ apiSetting, activeHojreh }) {
     let dataForSend = {
       image: imgProfile,
     };
-    imgProfile && imgProfile.startsWith("data") && callApiUpDataPicture(dataForSend, activeHojreh);
+    imgProfile &&
+      imgProfile.startsWith("data") &&
+      callApiUpDataPicture(dataForSend, activeHojreh);
   }, [imgProfile, activeHojreh]);
 
   return (
@@ -42,8 +46,13 @@ function TopPictures({ apiSetting, activeHojreh }) {
             ></Image>
           )}
           <div className={styles.deleteBtn}>
-            <div className={styles.wrapBtn} onClick={() => setImgProfile(null)}>
-              <i className="fas fa-trash"></i>
+            <div
+              className={styles.wrapBtn}
+              onClick={() => {
+                setImgProfile(base64Profile);
+              }}
+            >
+              <BsTrash size={25} color="red" />
             </div>
           </div>
         </div>
