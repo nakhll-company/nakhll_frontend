@@ -9,8 +9,10 @@ import { base64Profile } from "../../../../public/icons/icon";
 import { callApiUpDataPicture } from "../../../../api/settings";
 // style
 import styles from "./topPictures.module.scss";
+import { authhttp } from "../../../../services/callApi/api";
+import { successMessage } from "../../../../utils/toastifyMessage";
 
-function TopPictures({ apiSetting, activeHojreh }) {
+function TopPictures({ apiSetting, activeHojreh,setOnMenu }) {
   const [imgProfile, setImgProfile] = useState(
     apiSetting.image_thumbnail_url ? apiSetting.image_thumbnail_url : null
   );
@@ -24,6 +26,16 @@ function TopPictures({ apiSetting, activeHojreh }) {
       imgProfile.startsWith("data") &&
       callApiUpDataPicture(dataForSend, activeHojreh);
   }, [imgProfile, activeHojreh]);
+
+  const callApiDelete=async()=>{
+    let response = await authhttp.delete(`/api/v1/shop/${activeHojreh}/settings/image/`);
+        if (response.status === 204) {
+            successMessage("عکس با موفقیت حذف شد");
+            setOnMenu(5)
+        }
+
+
+  }
 
   return (
     <>
@@ -49,7 +61,8 @@ function TopPictures({ apiSetting, activeHojreh }) {
             <div
               className={styles.wrapBtn}
               onClick={() => {
-                setImgProfile(base64Profile);
+                callApiDelete()
+                // setImgProfile(base64Profile);
               }}
             >
               <BsTrash size={25} color="red" />

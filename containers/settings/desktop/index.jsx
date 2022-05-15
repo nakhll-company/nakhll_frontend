@@ -47,6 +47,7 @@ const DesktopSetting = () => {
                 <TopPictures
                   apiSetting={apiSetting}
                   activeHojreh={activeHojreh}
+                  setOnMenu={setOnMenu}
                 />
 
                 <HojrehForm
