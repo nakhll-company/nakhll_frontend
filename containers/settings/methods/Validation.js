@@ -6,18 +6,20 @@ export const VALIDATION_SCHEMA = yup.object().shape({
     slug: yup.string().required("آدرس اینترنتی حجره الزامی می باشد."),
     Description: yup.string(),
     NationalCode: yup
+        .string()
+        .required("کد ملی الزامی می باشد.")
+        .matches(
+            /^[0-9]{10,10}/,
+            "کد ملی باید ده رقم باشد."
+        ),
+    PhoneNumber: yup
         .number()
-        .integer()
-        .typeError("فقط عدد مجاز است.")
-        .min(1000000000, "کد ملی ده رقم می باشد.")
-        .max(9999999999, "کد ملی ده رقم می باشد.")
-        .required("کد ملی الزامی می باشد."),
-    PhoneNumber: yup.number()
         .integer()
         .typeError("فقط عدد مجاز است.")
         .min(10000000, "تلفن ثابت 8 رقم می باشد.")
         .max(99999999, "تلفن ثابت 8 رقم می باشد."),
-    CityPerCode: yup.number()
+    CityPerCode: yup
+        .number()
         .integer()
         .typeError("فقط عدد مجاز است.")
         .min(10, "پیش شماره سه رقم می باشد.")
