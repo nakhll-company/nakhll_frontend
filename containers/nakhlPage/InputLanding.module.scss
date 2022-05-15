@@ -32,6 +32,14 @@
     width: 40px;
 }
 
+.wrapBox {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 4;
+    margin-top: 9px;
+}
+
 @media (max-width: 870px) {
     .iconContainer {
         height: 30px;
