@@ -13,7 +13,7 @@ export async function createGroupProducts(event, setShowResult, activeHojreh) {
     successMessage("درحال بارگزاری محصولات...");
     let response = await authhttp.post(
         `/api/v1/product/group-create/${activeHojreh}/`,
-        dataz
+        data
     );
     if (response.status === 200) {
         successMessage("محصول با موفقیت بارگزاری شد");
