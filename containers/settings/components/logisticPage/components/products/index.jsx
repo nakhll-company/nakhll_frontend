@@ -62,7 +62,6 @@ function Products({ ProductsShop, _handle_update_data_scope, move = true, title 
       {
         products: arrayForSend.length > 0 ? arrayForSend : [],
       },
-      0,
       move
     );
   };
