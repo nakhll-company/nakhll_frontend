@@ -12,6 +12,8 @@ import BankAccountForm from "../components/bankAccountForm";
 import { callApiAllData } from "../../../api/settings";
 import TopPictures from "../components/topPictures";
 import LogisticPage from "../components/logisticPage";
+import ResultOperation from "../components/logisticPage/ui/resultOperation";
+import SuccessfulMessage from "./SuccessfulMessage";
 
 const DesktopSetting = () => {
   const activeHojreh = useSelector((state) => state.User.activeHojreh);
@@ -53,6 +55,7 @@ const DesktopSetting = () => {
                   apiSetting={apiSetting}
                   activeHojreh={activeHojreh}
                   setClicked={setClicked}
+                  setOnMenu={setOnMenu}
                 />
               </>
             )}
@@ -73,6 +76,11 @@ const DesktopSetting = () => {
                 setClicked={setClicked}
                 activeHojreh={activeHojreh}
               />
+            )}
+            {onMenu == "5" && (
+              <>
+                <SuccessfulMessage  setOnMenu={setOnMenu}/>
+              </>
             )}
           </>
         )}
