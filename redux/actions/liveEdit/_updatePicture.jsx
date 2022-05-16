@@ -6,15 +6,13 @@ export const _updatePicture = (img) => {
     const id = getState().selectIdFormLanding;
 
     try {
-      
-
       let loadData = {
         image: img,
         title: "",
         description: "",
       };
       let dataUrl = `/api/v1/profile/images/`;
-      response = await authhttp.post(dataUrl,loadData) 
+      response = await authhttp.post(dataUrl, loadData);
 
       if (response.status !== 201) {
         alert("در بارگذاری عکس مشکلی پیش آمده");

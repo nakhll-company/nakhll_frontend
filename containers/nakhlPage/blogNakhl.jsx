@@ -5,11 +5,17 @@ import s from "./blogNakhl.module.scss";
 import ButtonLanding from "./ButtonLanding";
 
 function BlogNakhl({ dataBlog }) {
- const router= useRouter();
+  const router = useRouter();
   return (
     <div className={s.container}>
       <div className={s.partImages}>
-        <div onClick={()=>{window.open(dataBlog[0].url,'_blank')}} style={{ marginLeft: "5px" }} className={s.imageContainer}>
+        <div
+          onClick={() => {
+            window.open(dataBlog[0].url, "_blank");
+          }}
+          style={{ marginLeft: "5px" }}
+          className={s.imageContainer}
+        >
           <Image
             className={s.image}
             src={dataBlog[0].img}
@@ -23,7 +29,9 @@ function BlogNakhl({ dataBlog }) {
           </div>
         </div>
         <div
-        onClick={()=>{window.open(dataBlog[1].url,'_blank')}}
+          onClick={() => {
+            window.open(dataBlog[1].url, "_blank");
+          }}
           style={{ marginRight: "5px" }}
           className={`${s.imageContainer} ${s.imagDesktop}`}
         >

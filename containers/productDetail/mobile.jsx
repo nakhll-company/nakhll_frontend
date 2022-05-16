@@ -56,7 +56,7 @@ const ProductDetailMobile = ({ data }) => {
     }
     fetchData();
   }, []);
- 
+
   return (
     <div className={styles.wrapper}>
       <Head>

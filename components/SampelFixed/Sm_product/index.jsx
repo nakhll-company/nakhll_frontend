@@ -6,7 +6,6 @@ import Assistent from "zaravand-assistent-number";
 import styles from "./Sm_product.module.scss";
 
 function Sm_product_Fix() {
-
   const _asist = new Assistent();
 
   return (

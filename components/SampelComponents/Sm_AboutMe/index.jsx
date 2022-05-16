@@ -8,7 +8,6 @@ import { _updateTextAboutMe } from "../../../redux/actions/liveEdit/_updateTextA
 import st from "./aboutMe.module.scss";
 
 function Sm_AboutMe({ id, data }) {
-
   const dispatch = useDispatch();
   const [toggle, setToggle] = useState(true);
   const [name, setName] = useState(data[0].text);

@@ -1,37 +1,36 @@
 /* Start Header */
 
 .header {
-    background-color: #ffffff;
-    border: 1px solid #efefef;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.03);
+  background-color: #ffffff;
+  border: 1px solid #efefef;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.03);
 }
 
 .header_title {
-    padding: 16px;
-    color: #000000;
-    margin-bottom: 30px;
-    display: flex;
+  padding: 16px;
+  color: #000000;
+  margin-bottom: 30px;
+  display: flex;
 }
 
 .header_menu {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .header_menu_btn {
-    background-color: #ffffff;
-    border: 0;
-    cursor: pointer;
+  background-color: #ffffff;
+  border: 0;
+  cursor: pointer;
 }
 
 .header_menu_btn:focus {
-    outline: 0;
+  outline: 0;
 }
 
 .onBtn {
-    border-bottom: 2px solid #007aff;
-    padding-bottom: 8px;
+  border-bottom: 2px solid #007aff;
+  padding-bottom: 8px;
 }
-
 
 /* End Header */

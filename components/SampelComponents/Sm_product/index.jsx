@@ -4,7 +4,6 @@ import styles from "./Sm_product.module.scss";
 import Assistent from "zaravand-assistent-number";
 
 function Sm_product({ data }) {
-  
   const _asist = new Assistent();
   return (
     <>

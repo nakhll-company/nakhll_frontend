@@ -36,7 +36,9 @@ function Panel({
 
   const _handle_delete_scope = async (id) => {
     setLoaderTable(true);
-    let response = await authhttp.delete(`/api/v1/logistic/shop-logistic-unit/${id}/`)
+    let response = await authhttp.delete(
+      `/api/v1/logistic/shop-logistic-unit/${id}/`
+    );
     if (response.status == 204) {
       let helpArray = SavedSendingUnit.filter((el) => el.id !== id);
       setSavedSendingUnit(helpArray);

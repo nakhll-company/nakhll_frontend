@@ -16,13 +16,17 @@ function LinerProductsBg({
   md = 6,
   lg = 6,
   num,
-  url
+  url,
 }) {
   if (dataLinerProductsBg && dataLinerProductsBg.results) {
     dataLinerProductsBg = dataLinerProductsBg.results;
   }
   return (
-    <div styles={{ color: `${color}` }} className={`${styles.linearBg}`} key={Math.random() + 5}>
+    <div
+      styles={{ color: `${color}` }}
+      className={`${styles.linearBg}`}
+      key={Math.random() + 5}
+    >
       <div
         style={{ marginLeft: "0 !important", padding: "0 !important" }}
         className={`${styles.righter} col-5 col-md-3 `}
@@ -34,10 +38,11 @@ function LinerProductsBg({
 
           <button>
             <Link
-              href={`${url.includes("search=")
-                ? `${url_LinerProductsBg}`
-                : `/search?ap=${url_LinerProductsBg}`
-                }`}
+              href={`${
+                url.includes("search=")
+                  ? `${url_LinerProductsBg}`
+                  : `/search?ap=${url_LinerProductsBg}`
+              }`}
             >
               <a>مشاهده همه</a>
             </Link>

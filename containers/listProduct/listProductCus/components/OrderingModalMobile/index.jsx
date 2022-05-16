@@ -4,7 +4,7 @@ function OrderingModalMobile({
   handel_OrderingModal,
   handel_filterModal,
   setWhichOrdering,
-  setIsOpenOrderingModal
+  setIsOpenOrderingModal,
 }) {
   return (
     <>

@@ -10,7 +10,6 @@ import styles from "./MenuMobile.module.scss";
 const _asist = new Assistent();
 
 export const MenuMobile = () => {
-
   const { All_product_list_buy } = useContext(ContextProduct);
 
   return (

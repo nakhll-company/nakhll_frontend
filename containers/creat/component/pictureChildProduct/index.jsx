@@ -14,7 +14,13 @@ function PictureChildProduct({ setImageSrc, image }) {
     <>
       <div className={styles.child_picture}>
         {image ? (
-          <Image src={image} layout="responsive" height={100} width={100} alt="" />
+          <Image
+            src={image}
+            layout="responsive"
+            height={100}
+            width={100}
+            alt=""
+          />
         ) : (
           <Image
             src="/image/sample/pic.jpg"

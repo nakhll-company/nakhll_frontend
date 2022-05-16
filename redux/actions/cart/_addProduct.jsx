@@ -6,9 +6,9 @@ export const _addProduct = (productId) => {
     try {
       let token = localStorage.getItem("accessToken");
       let response = await authhttp.post("/api/v1/cart/items/", {
-        "product": productId,
-        "count": 1
-      })
+        product: productId,
+        count: 1,
+      });
 
       if (response.status === 201) {
         await dispatch({

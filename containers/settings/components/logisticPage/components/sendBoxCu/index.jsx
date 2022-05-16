@@ -4,7 +4,6 @@ import Assistent from "zaravand-assistent-number";
 import st from "./sendBoxCu.module.scss";
 const _asist = new Assistent();
 function SendBoxCu({ data }) {
-
   return (
     <>
       <div className={st.wraper}>

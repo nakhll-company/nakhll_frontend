@@ -17,12 +17,15 @@ import TextAreaUseForm from "../../../../containers/creat/component/textAreaUseF
 import PictureChildProduct from "../../../../containers/creat/component/pictureChildProduct";
 // methods
 import { mapState } from "../../../../containers/product/methods/mapState";
-import { _ApiCreateProduct, _ApiGetCategories, _ApiGetTags } from "../../../../api/creatProduct";
+import {
+  _ApiCreateProduct,
+  _ApiGetCategories,
+  _ApiGetTags,
+} from "../../../../api/creatProduct";
 // styles
 import styles from "../../../../styles/pages/product/create.module.scss";
 
 const CreateProduct = ({ activeHojreh }) => {
-
   const router = useRouter();
   const _asist = new Assistent();
   const [data, setData] = useState([]);
@@ -44,7 +47,13 @@ const CreateProduct = ({ activeHojreh }) => {
   const [imgProductThree, setImgProductThree] = useState(null);
   const [isloadingForCreate, setIsloadingForCreate] = useState(false);
   const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState("");
-  const { getValues, clearErrors, register, handleSubmit, formState: { errors } } = useForm({
+  const {
+    getValues,
+    clearErrors,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     criteriaMode: "all",
     mode: "all",
   });

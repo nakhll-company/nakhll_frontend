@@ -319,8 +319,9 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
               <Link href={`/fp`}>
                 <a>
                   <span
-                    className={`${styles.menu_card_item} ${router.pathname ==
-                      "/fp" && styles.selectNav} mt-5 mb-4`}
+                    className={`${styles.menu_card_item} ${
+                      router.pathname == "/fp" && styles.selectNav
+                    } mt-5 mb-4`}
                   >
                     <i
                       style={{
@@ -438,10 +439,10 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                           alignItems: "center",
                           cursor: "pointer",
                         }}
-                        className={`${
-                          styles.subTitleOrder
-                        }   ${router.pathname === "/fp/order/completed" &&
-                          styles.selectNav}`}
+                        className={`${styles.subTitleOrder}   ${
+                          router.pathname === "/fp/order/completed" &&
+                          styles.selectNav
+                        }`}
                       >
                         {/* <span
                         style={{ marginLeft: "18px" }}
@@ -469,8 +470,10 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                           marginBottom: "15px",
                           cursor: "pointer",
                         }}
-                        className={`${styles.subTitleOrder} ${router.pathname ==
-                          "/fp/order/uncompleted" && styles.selectNav}`}
+                        className={`${styles.subTitleOrder} ${
+                          router.pathname == "/fp/order/uncompleted" &&
+                          styles.selectNav
+                        }`}
                       >
                         {/* <span
                         style={{ marginLeft: "18px" }}
@@ -494,8 +497,9 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
               <Link href="/fp/product">
                 <a>
                   <span
-                    className={`${styles.menu_card_item} ${router.pathname ==
-                      "/fp/product" && styles.selectNav}`}
+                    className={`${styles.menu_card_item} ${
+                      router.pathname == "/fp/product" && styles.selectNav
+                    }`}
                   >
                     <i
                       style={{
@@ -517,8 +521,9 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                 </a>
               </Link>
               <span
-                className={`mt-3 ${styles.menu_card_item} ${router.pathname ==
-                  "/fp/options" && styles.selectNav}`}
+                className={`mt-3 ${styles.menu_card_item} ${
+                  router.pathname == "/fp/options" && styles.selectNav
+                }`}
                 onClick={() => {
                   if (
                     document.querySelector("#options").style.display === "block"

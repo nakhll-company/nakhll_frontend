@@ -6,7 +6,6 @@ import lottie from "lottie-web";
 
 import s from "./setPassword.module.scss";
 
-
 import rot13 from "../../utils/rout13";
 import { successMessage } from "../../utils/toastifyMessage";
 import { clearTokenStorage } from "../../api/general/clearTokenStorage";
@@ -153,8 +152,9 @@ function SetPasswordPage() {
                 id="username"
                 data-lpignore="true"
                 {...register("user_key", {
-                  required: `${code && code[1] == "login_pass" ? "رمز قبلی" : "کد ارسالی"
-                    } را وارد نمایید.`,
+                  required: `${
+                    code && code[1] == "login_pass" ? "رمز قبلی" : "کد ارسالی"
+                  } را وارد نمایید.`,
                 })}
               />
               {errors.user_key && (

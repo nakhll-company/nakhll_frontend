@@ -1,8 +1,6 @@
 import st from "./checkBoxProduct.module.scss";
 
-function CheckBoxProduct({ title, wordSearch,is_checked }) {
-
-
+function CheckBoxProduct({ title, wordSearch, is_checked }) {
   const getHighlightText = (title, wordSearch) => {
     const startIndex = title.indexOf(wordSearch);
     return startIndex !== -1 ? (

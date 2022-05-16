@@ -19,7 +19,10 @@ import PictureChildProduct from "../../../../../containers/creat/component/pictu
 // methods
 import { authhttp } from "../../../../../services/callApi/api";
 import { mapState } from "../../../../../containers/product/methods/mapState";
-import { _ApiGetCategories, _ApiUpdateProduct } from "../../../../../api/creatProduct";
+import {
+  _ApiGetCategories,
+  _ApiUpdateProduct,
+} from "../../../../../api/creatProduct";
 // styles
 import styles from "../../../../../styles/pages/product/create.module.scss";
 /**
@@ -29,7 +32,6 @@ import styles from "../../../../../styles/pages/product/create.module.scss";
 const _asist = new Assistent();
 
 const UpdateProduct = ({ activeHojreh }) => {
-
   const router = useRouter();
   const { id } = router.query;
   const [tags, setTags] = useState([]);
@@ -53,7 +55,14 @@ const UpdateProduct = ({ activeHojreh }) => {
   const [isLoadingUpdate, setisLoadingUpdate] = useState(false);
   const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState({});
   // useform
-  const { setValue, getValues, clearErrors, register, handleSubmit, formState: { errors } } = useForm({
+  const {
+    setValue,
+    getValues,
+    clearErrors,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     criteriaMode: "all",
     mode: "all",
   });
@@ -62,9 +71,8 @@ const UpdateProduct = ({ activeHojreh }) => {
     // get edit date
     async function fetchData() {
       if (id) {
-
         let dataUrl = `/api/v1/shop/${activeHojreh}/products/${id}/`;
-        let response = await authhttp.get(dataUrl)
+        let response = await authhttp.get(dataUrl);
 
         if (response.status === 200) {
           let Data = response.data;
@@ -236,7 +244,11 @@ const UpdateProduct = ({ activeHojreh }) => {
                     <div style={{ display: "none" }}>
                       <input
                         className={styles.input_product}
-                        value={placeholderSubmarckets ? placeholderSubmarckets.id : ''}
+                        value={
+                          placeholderSubmarckets
+                            ? placeholderSubmarckets.id
+                            : ""
+                        }
                         id="submark"
                         name="submark"
                         type="text"

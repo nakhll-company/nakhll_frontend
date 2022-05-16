@@ -12,15 +12,15 @@ import { showSelectUrl } from "./reducers/liveEdit/showSelectUrl";
 
 // object of All reducers
 export const reducerObject = {
-    Product,
-    Orders,
-    User,
-    Cart,
-    showCropper,
-    allDataLanding,
-    selectIdFormLanding,
-    WishList,
-    showSelectUrl,
+  Product,
+  Orders,
+  User,
+  Cart,
+  showCropper,
+  allDataLanding,
+  selectIdFormLanding,
+  WishList,
+  showSelectUrl,
 };
 
 /**

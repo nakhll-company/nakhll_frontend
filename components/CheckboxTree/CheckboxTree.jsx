@@ -10,7 +10,6 @@ import { allCites } from "../../utils/allCities";
 const _asist = new Assistent();
 
 function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
-
   const [allOfCity, setAllOfCity] = useState([]);
   const [expandCity, setExpandCity] = useState([]);
   const [selectCity, setSelectCity] = useState([]);
@@ -125,7 +124,6 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
 
   // function for Delete The State
   const _handel_Delete_State = (id) => {
-
     const copyState = [...allOfCity];
     const ArrayDeleteState = copyState.filter((e) => e.value !== id);
     const stateWithoutLabel = ArrayDeleteState.map((item) => item.value);

@@ -19,7 +19,6 @@ import { base64Profile } from "../../public/icons/icon";
  * edit profile
  */
 const EditProfile = ({ dataProfile, setDataProfile }) => {
-  
   const {
     register,
     handleSubmit,

@@ -9,7 +9,6 @@ import React, { useEffect, useState } from "react";
 import styles from "./HeroSlides.module.scss";
 SwiperCore.use([Pagination]);
 
-
 function HeroSlides({ dataHeroSlides }) {
   const [videoAparat, setVideoAparat] = useState(
     dataHeroSlides[1].video ? dataHeroSlides[1].video : { id: "", src: "" }
@@ -22,7 +21,11 @@ function HeroSlides({ dataHeroSlides }) {
   }, [dataHeroSlides]);
 
   return (
-    <div style={{ marginTop: "5px" }} className="container" key={Math.random() + 1}>
+    <div
+      style={{ marginTop: "5px" }}
+      className="container"
+      key={Math.random() + 1}
+    >
       <div className={`row ${styles.slide}`}>
         <div className={`col-12 col-md-8 ${styles.righter}`}>
           <Swiper pagination={true} spaceBetween={20} slidesPerView={1}>

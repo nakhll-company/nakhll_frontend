@@ -95,23 +95,25 @@ function ListProductCusTest({ data }) {
 
   const _handel_call_another_page_api = async (witchFilter) => {
     try {
-      let response = await http.get(`/api/v1/products/`, {params:{
-        ...(witchFilter ? witchFilter : null),
-        search: searchWord,
-        ...(whichOrdering !== "" && { ordering: whichOrdering }),
-        page: pageApi,
-        ...(isReadyForSend && { ready: isReadyForSend }),
-        ...(isAvailableGoods && { available: isAvailableGoods }),
-        ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
-        ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
-        ...(wantCategories.length > 0 && {
-          category: wantCategories.toString(),
-        }),
-        page_size: 50,
-        ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
-        ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
-        ...(hojreh !== "" && { shop: hojreh }),
-      }});
+      let response = await http.get(`/api/v1/products/`, {
+        params: {
+          ...(witchFilter ? witchFilter : null),
+          search: searchWord,
+          ...(whichOrdering !== "" && { ordering: whichOrdering }),
+          page: pageApi,
+          ...(isReadyForSend && { ready: isReadyForSend }),
+          ...(isAvailableGoods && { available: isAvailableGoods }),
+          ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
+          ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
+          ...(wantCategories.length > 0 && {
+            category: wantCategories.toString(),
+          }),
+          page_size: 50,
+          ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
+          ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
+          ...(hojreh !== "" && { shop: hojreh }),
+        },
+      });
       if (response.status === 200) {
         const ContinueList = response.data.results;
 
@@ -157,7 +159,7 @@ function ListProductCusTest({ data }) {
         };
 
         try {
-          let response = await http.get(`/api/v1/products/`, {params});
+          let response = await http.get(`/api/v1/products/`, { params });
           if (response.status === 200) {
             setListWithFilter(response.data.results);
             setNameHojreh(response.data.results[0].FK_Shop.title);

@@ -35,7 +35,10 @@ const Inventory = ({ productList }) => {
       }
     });
 
-    let response = await authhttp.patch(`/api/v1/shop/multiple-update/inventory/`,objArray) 
+    let response = await authhttp.patch(
+      `/api/v1/shop/multiple-update/inventory/`,
+      objArray
+    );
     if (response.status === 200) {
       successMessage("داده ها با موفقیت ثبت شده اند");
     }

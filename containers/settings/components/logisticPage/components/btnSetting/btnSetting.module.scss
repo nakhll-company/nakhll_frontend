@@ -1,20 +1,20 @@
 .wrapBtn {
-    margin-top: 20px;
-    margin-bottom: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .btn {
-    background-color: #224e82;
-    border: none;
-    width: 100%;
-    padding: 9px;
-    font-size: 15px;
-    font-weight: 700;
-    color: #ffffff;
-    border-radius: 20px;
-    transition: all 0.4s;
-    padding-top: 18px;
-    padding-bottom: 18px;
-    &:hover {
-        background-color: #022652;
-    }
+  background-color: #224e82;
+  border: none;
+  width: 100%;
+  padding: 9px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  border-radius: 20px;
+  transition: all 0.4s;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  &:hover {
+    background-color: #022652;
+  }
 }

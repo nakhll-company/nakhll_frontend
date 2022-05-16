@@ -63,7 +63,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
     };
 
     try {
-      let response = await http.get(`/api/v1/products/`, {params});
+      let response = await http.get(`/api/v1/products/`, { params });
       if (response.status === 200) {
         setListWithFilter(response.data.results);
 
@@ -95,24 +95,26 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
 
   const _handel_call_another_page_api = async (witchFilter) => {
     try {
-      let response = await http.get(`/api/v1/products/`, {params:{
-        ...(witchFilter ? witchFilter : null),
-        search: searchWord,
-        ordering: whichOrdering,
-        page: pageApi,
-        ready: isReadyForSend,
-        available: isAvailableGoods,
-        discounted: isDiscountPercentage,
-        city: checkedCity.toString(),
-        ...(categoryIn !== "" && { category: categoryIn }),
-        ...(wantCategories.length > 0 && {
-          category: wantCategories.toString(),
-        }),
-        page_size: 50,
-        min_price: minPrice,
-        max_price: maxPrice,
-        shop: shop_products,
-      }});
+      let response = await http.get(`/api/v1/products/`, {
+        params: {
+          ...(witchFilter ? witchFilter : null),
+          search: searchWord,
+          ordering: whichOrdering,
+          page: pageApi,
+          ready: isReadyForSend,
+          available: isAvailableGoods,
+          discounted: isDiscountPercentage,
+          city: checkedCity.toString(),
+          ...(categoryIn !== "" && { category: categoryIn }),
+          ...(wantCategories.length > 0 && {
+            category: wantCategories.toString(),
+          }),
+          page_size: 50,
+          min_price: minPrice,
+          max_price: maxPrice,
+          shop: shop_products,
+        },
+      });
       if (response.status === 200) {
         const ContinueList = response.data.results;
         setListWithFilter([...listWithFilter, ...ContinueList]);

@@ -97,7 +97,7 @@ function LiveEdit({ idLanding }) {
       shop: idLanding[0],
       page_data: JSON.stringify(landing),
     };
-    let response = await authhttp.patch(apiUpdateLanding,ansapi)
+    let response = await authhttp.patch(apiUpdateLanding, ansapi);
     return response;
   };
 

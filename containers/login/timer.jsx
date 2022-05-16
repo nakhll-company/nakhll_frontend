@@ -5,7 +5,6 @@ import Assistent from "zaravand-assistent-number";
 const _asist = new Assistent();
 
 function AppTimer({ timer = 59, setTimer }) {
-
   useEffect(() => {
     const timing = setInterval(() => {
       setTimer(timer - 1);
@@ -18,7 +17,9 @@ function AppTimer({ timer = 59, setTimer }) {
     <span style={{ display: "inline-block", direction: "ltr" }}>
       <span> {`۰۰`}</span>
       <span style={{ margin: "0 5px" }}>:</span>
-      <span style={{ minWidth: "20px", display: "inline-block", textAlign: "left" }}>
+      <span
+        style={{ minWidth: "20px", display: "inline-block", textAlign: "left" }}
+      >
         {timer < 10 && "۰"}
         {_asist.number(timer)}
       </span>

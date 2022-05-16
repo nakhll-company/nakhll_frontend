@@ -256,8 +256,8 @@ const Profile = () => {
                 <li
                   className="d-flex flex-column align-items-center ms-4"
                   onClick={() => {
-                    clearTokenStorage()
-                   
+                    clearTokenStorage();
+
                     router.push("/");
                     router.reload(window.location.pathname);
                   }}

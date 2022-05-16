@@ -11,7 +11,6 @@ const _asist = new Assistent();
 // type============1
 //  ratio========2/1
 function Sm_HeroSlides({ setImageSrc, id, data }) {
-
   const [wichSlide, setWichSlide] = useState(1);
 
   return (

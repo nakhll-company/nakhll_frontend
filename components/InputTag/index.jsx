@@ -10,7 +10,6 @@ const KeyCodes = {
 
 const delimiters = [KeyCodes.enter];
 function InputTag({ tags, setTags, suggestions }) {
-
   const handleDelete = (i) => {
     setTags(tags.filter((tag, index) => index !== i));
   };
@@ -27,7 +26,7 @@ function InputTag({ tags, setTags, suggestions }) {
     setTags(newTags);
   };
 
-  const handleTagClick = (index) => { };
+  const handleTagClick = (index) => {};
   return (
     <div className={s.container}>
       <ReactTags

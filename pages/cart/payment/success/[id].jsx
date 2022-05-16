@@ -12,7 +12,6 @@ import styles from "./success.module.scss";
 const _asist = new Assistent();
 
 const Success = ({ code }) => {
-
   const confettiRef = useRef(null);
   const [width, setWidth] = useState(null);
   const [height, setHeight] = useState(null);

@@ -13,7 +13,6 @@ import styles from "../../styles/components/shopLayout/footer.module.scss";
 const _asist = new Assistent();
 
 const Footer = () => {
-
   const router = useRouter();
   const userData = useSelector((state) => state.User.userInfo);
 
@@ -70,8 +69,7 @@ const Footer = () => {
                         aria-label="لینکدین"
                         rel="noreferrer"
                       >
-                        <BsLinkedin size={30}/>
-                        
+                        <BsLinkedin size={30} />
                       </a>
 
                       <a
@@ -97,8 +95,7 @@ const Footer = () => {
                         rel="noreferrer"
                         style={{ fontSize: "30px", display: "flex" }}
                       >
-                        <FiInstagram size={30}/>
-                       
+                        <FiInstagram size={30} />
                       </a>
                     </div>
                   </div>
@@ -123,7 +120,13 @@ const Footer = () => {
                       </a>
                     </div> */}
                     <div>
-                      <Link href={Object.keys(userData).length > 0 ? "/profile" : "/login"}>
+                      <Link
+                        href={
+                          Object.keys(userData).length > 0
+                            ? "/profile"
+                            : "/login"
+                        }
+                      >
                         <a className={styles.footer_items}>پیگیری سفارشات</a>
                       </Link>
                     </div>
@@ -147,7 +150,10 @@ const Footer = () => {
                     <div>
                       <Link
                         href={
-                          Object.keys(userData).length > 0 ? (userData.shops && userData.shops.length > 0) ? "/fp" : "/fp/store/create"
+                          Object.keys(userData).length > 0
+                            ? userData.shops && userData.shops.length > 0
+                              ? "/fp"
+                              : "/fp/store/create"
                             : "/login"
                         }
                       >
@@ -246,7 +252,7 @@ const Footer = () => {
                     transition: "all 1s ease-out",
                     height: "0",
                     overflow: "hidden",
-                    paddingTop: "10px"
+                    paddingTop: "10px",
                   }}
                   className="is-active"
                 >
@@ -290,7 +296,7 @@ const Footer = () => {
                     transition: "all 1s ease-out",
                     height: "0",
                     overflow: "hidden",
-                    paddingTop: "10px"
+                    paddingTop: "10px",
                   }}
                   id="part_two"
                   className="is-active"
@@ -308,7 +314,11 @@ const Footer = () => {
                     </div>
                   </div>
                   <div>
-                    <Link href={Object.keys(userData).length > 0 ? "/profile" : "/login"}>
+                    <Link
+                      href={
+                        Object.keys(userData).length > 0 ? "/profile" : "/login"
+                      }
+                    >
                       <a className={styles.footer_items}>پیگیری سفارشات</a>
                     </Link>
                   </div>
@@ -338,7 +348,7 @@ const Footer = () => {
                     transition: "all 1s ease-out",
                     height: "0",
                     overflow: "hidden",
-                    paddingTop: "10px"
+                    paddingTop: "10px",
                   }}
                 >
                   <div>
@@ -349,7 +359,10 @@ const Footer = () => {
                   <div>
                     <Link
                       href={
-                        Object.keys(userData).length > 0 ? (userData.shops && userData.shops.length > 0) ? "/fp" : "/fp/store/create"
+                        Object.keys(userData).length > 0
+                          ? userData.shops && userData.shops.length > 0
+                            ? "/fp"
+                            : "/fp/store/create"
                           : "/login"
                       }
                     >
@@ -372,8 +385,7 @@ const Footer = () => {
                     aria-label="لینکدین"
                     rel="noreferrer"
                   >
-                    <BsLinkedin size={30}/>
-                   
+                    <BsLinkedin size={30} />
                   </a>
 
                   <a
@@ -398,8 +410,7 @@ const Footer = () => {
                     aria-label="اینستاگرام"
                     style={{ fontSize: "30px", display: "flex" }}
                   >
-                    <FiInstagram size={30}/>
-                    
+                    <FiInstagram size={30} />
                   </a>
                 </div>
               </div>{" "}

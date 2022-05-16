@@ -7,8 +7,12 @@ import BtnSetting from "../btnSetting";
 // methods
 import { paginateFront } from "../../../../../../utils/paginateFrontSide";
 
-function Products({ ProductsShop, _handle_update_data_scope, move = true, title = "مرحله بعد" }) {
-
+function Products({
+  ProductsShop,
+  _handle_update_data_scope,
+  move = true,
+  title = "مرحله بعد",
+}) {
   const perPage = 50;
   const [wordSearch, setWordSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);

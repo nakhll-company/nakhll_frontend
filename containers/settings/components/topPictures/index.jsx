@@ -18,7 +18,9 @@ function TopPictures({ apiSetting, activeHojreh }) {
     let dataForSend = {
       image: imgProfile,
     };
-    imgProfile && imgProfile.startsWith("data") && callApiUpDataPicture(dataForSend, activeHojreh);
+    imgProfile &&
+      imgProfile.startsWith("data") &&
+      callApiUpDataPicture(dataForSend, activeHojreh);
   }, [imgProfile, activeHojreh]);
 
   return (

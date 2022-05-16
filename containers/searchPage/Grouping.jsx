@@ -1,6 +1,6 @@
 import React from "react";
 import CustomAccordion from "../../components/custom/customAccordion";
-import {  http } from "../../services/callApi/api";
+import { http } from "../../services/callApi/api";
 
 function Grouping({
   searchWord,

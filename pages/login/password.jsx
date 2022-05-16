@@ -15,7 +15,7 @@ import { getProducts } from "../../redux/actions/cart/getProducts";
 import { useRouter } from "next/router";
 
 const Password = () => {
-  const router=useRouter()
+  const router = useRouter();
   const dispatch = useDispatch();
   const [loadButton, setLoadButton] = useState(false);
 
@@ -33,7 +33,7 @@ const Password = () => {
     if (!!result) {
       let response = await getAccessToken(result);
       await dispatch(getProducts());
-      response === true && router.push('/') ;
+      response === true && router.push("/");
     } else {
       setLoadButton(false);
     }

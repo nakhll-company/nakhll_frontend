@@ -1,6 +1,6 @@
 export function mapState({ User }) {
-    return {
-        userInfo: User.userInfo,
-        activeHojreh: User.activeHojreh,
-    };
+  return {
+    userInfo: User.userInfo,
+    activeHojreh: User.activeHojreh,
+  };
 }

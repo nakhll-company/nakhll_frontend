@@ -7,9 +7,12 @@ function SwitchButtonSetting({ id, isActive }) {
   const [Activer, setActiver] = useState(isActive);
   const handel_chamnge_status = async () => {
     setActiver((e) => !e);
-    let response = await authhttp.put(`/api/v1/logistic/shop-logistic-unit/${id}/`,{
-      is_active: !isActive,
-    }) 
+    let response = await authhttp.put(
+      `/api/v1/logistic/shop-logistic-unit/${id}/`,
+      {
+        is_active: !isActive,
+      }
+    );
     if (response.status == 200) {
     }
   };
@@ -23,7 +26,7 @@ function SwitchButtonSetting({ id, isActive }) {
           onChange={handel_chamnge_status}
           // defaultChecked={isActive}
           checked={Activer}
-        // value={isActive}
+          // value={isActive}
         />{" "}
         <label
           htmlFor={`switch__${id}`}

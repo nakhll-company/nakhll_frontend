@@ -5,6 +5,6 @@ services:
     build: .
     container_name: react
     restart: unless-stopped
-    command: yarn dev 
+    command: yarn dev
     ports:
       - "3007:3007"

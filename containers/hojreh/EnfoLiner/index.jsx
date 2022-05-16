@@ -4,7 +4,6 @@ import Image from "next/image";
 import styles from "./Enfo.module.scss";
 
 function EnfoLiner({ data, title, profile, name }) {
-
   let campBadge = (
     <>
       <div
@@ -50,19 +49,31 @@ function EnfoLiner({ data, title, profile, name }) {
             />
           </div>
           <div className={`${styles.profile} d-none d-md-flex px-3`}>
-            <Image className={styles.img_profile} src={profile} alt={title} width={100} height={100} />
+            <Image
+              className={styles.img_profile}
+              src={profile}
+              alt={title}
+              width={100}
+              height={100}
+            />
 
             <div className={styles.information}>
               <h1>{title}</h1>
-              <h5>{`${name ? name.first_name : ""}  ${name ? name.last_name : ""
-                }`}</h5>
+              <h5>{`${name ? name.first_name : ""}  ${
+                name ? name.last_name : ""
+              }`}</h5>
             </div>
             {/* <i className="fas fa-share-alt-square"></i> */}
           </div>
 
           <div className={`${styles.profile_mobile}  d-md-none`}>
             <div className={styles.pater}>
-              <Image className={styles.img_profile} src={profile} alt="" layout="fill" />
+              <Image
+                className={styles.img_profile}
+                src={profile}
+                alt=""
+                layout="fill"
+              />
               <div className={styles.information}>
                 <div className={styles.pater_title}>
                   <h1>{title}</h1>

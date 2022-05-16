@@ -1,53 +1,53 @@
 .section {
-    border-bottom: 1px solid #e5e5ea;
-    padding: 20px 0;
-    &_inner {
-        height: 138px;
-        position: relative;
-        overflow: hidden;
-        .container {
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: flex;
-            -webkit-box-pack: justify;
-            -ms-flex-pack: justify;
-            justify-content: space-between;
-            font-size: 10px;
-            font-size: 0.714rem;
-            line-height: 2.2;
-            letter-spacing: 0.2px;
-            color: #000;
-            -ms-flex-wrap: nowrap;
-            flex-wrap: nowrap;
-            position: relative;
-            a {
-                width: 50%;
-                -webkit-box-flex: 0;
-                -ms-flex: 0 0 50%;
-                flex: 0 0 50%;
-                display: block;
-                div {
-                    padding-top: 108px;
-                    background: no-repeat;
-                    font-size: 12px;
-                    font-weight: bold;
-                    background-size: auto 100px;
-                }
-            }
-            .img_one {
-                background-image: url(/Values/72_saat.svg);
-                background-position: 25% 0;
-                span {
-                    padding-right: 35%;
-                }
-            }
-            .img_two {
-                background-image: url(/Values/online_shop.svg);
-                background-position: 75% 0;
-                span {
-                    padding-right: 14%;
-                }
-            }
+  border-bottom: 1px solid #e5e5ea;
+  padding: 20px 0;
+  &_inner {
+    height: 138px;
+    position: relative;
+    overflow: hidden;
+    .container {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      font-size: 10px;
+      font-size: 0.714rem;
+      line-height: 2.2;
+      letter-spacing: 0.2px;
+      color: #000;
+      -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+      position: relative;
+      a {
+        width: 50%;
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        display: block;
+        div {
+          padding-top: 108px;
+          background: no-repeat;
+          font-size: 12px;
+          font-weight: bold;
+          background-size: auto 100px;
         }
+      }
+      .img_one {
+        background-image: url(/Values/72_saat.svg);
+        background-position: 25% 0;
+        span {
+          padding-right: 35%;
+        }
+      }
+      .img_two {
+        background-image: url(/Values/online_shop.svg);
+        background-position: 75% 0;
+        span {
+          padding-right: 14%;
+        }
+      }
     }
+  }
 }

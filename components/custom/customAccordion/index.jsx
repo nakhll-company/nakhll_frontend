@@ -9,7 +9,7 @@ export const CustomAccordion = ({ children, title, item, callApi }) => {
     } else {
       element.style.height = "0";
       element.style.overflow = "hidden";
-      
+
       document.getElementById(icon).className = "fas fa-angle-down";
     }
   };

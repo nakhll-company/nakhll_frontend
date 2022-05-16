@@ -23,7 +23,11 @@ export default function ListCardBuy() {
   let [loading, setLoading] = useState(false);
   let [productId, setProductId] = useState(0);
 
-  const { handel_DeleteProductFromList, handel_AddProductTOList, handel_ReduceProductFromList } = useContext(ContextProduct);
+  const {
+    handel_DeleteProductFromList,
+    handel_AddProductTOList,
+    handel_ReduceProductFromList,
+  } = useContext(ContextProduct);
 
   return (
     <div className="col-12 col-lg-8 mb-3 my-md-3 my-lg-0 order-1 order-md-1 order-lg-0">
@@ -37,34 +41,34 @@ export default function ListCardBuy() {
                   !(
                     index > 0 &&
                     El.product.FK_Shop.slug ==
-                    All_product_list_buy.ordered_items[index - 1].product
-                      .FK_Shop.slug
+                      All_product_list_buy.ordered_items[index - 1].product
+                        .FK_Shop.slug
                   )
                     ? { position: "relative" }
                     : {
-                      position: "relative",
-                      marginTop: "-12px",
-                      borderTop: "2px dashed hsl(213deg 59% 26%)",
-                      borderTopLeftRadius: "inherit",
-                      borderTopRightRadius: "inherit",
-                    }
+                        position: "relative",
+                        marginTop: "-12px",
+                        borderTop: "2px dashed hsl(213deg 59% 26%)",
+                        borderTopLeftRadius: "inherit",
+                        borderTopRightRadius: "inherit",
+                      }
                 }
               >
                 {!(
                   index > 0 &&
                   El.product.FK_Shop.slug ==
-                  All_product_list_buy.ordered_items[index - 1].product
-                    .FK_Shop.slug
+                    All_product_list_buy.ordered_items[index - 1].product
+                      .FK_Shop.slug
                 ) && (
-                    <div className="pt-3 pb-1 px-3">
-                      <span className="font-size1">از حجره: </span>{" "}
-                      <Link href={`/shop/${El.product.FK_Shop.slug}/`}>
-                        <a className="vendor-link font-size1 font-weight-bold link-body font-weight-normal txtcut">
-                          {El.product.FK_Shop.title}
-                        </a>
-                      </Link>
-                    </div>
-                  )}
+                  <div className="pt-3 pb-1 px-3">
+                    <span className="font-size1">از حجره: </span>{" "}
+                    <Link href={`/shop/${El.product.FK_Shop.slug}/`}>
+                      <a className="vendor-link font-size1 font-weight-bold link-body font-weight-normal txtcut">
+                        {El.product.FK_Shop.title}
+                      </a>
+                    </Link>
+                  </div>
+                )}
                 {/*^^^^^^^^^^^ IF CHANGE IN PRODUCT IN LIST ^^^^^^^^^^^*/}
                 <div className="p-3 mt-2 cart-product-item">
                   {loading && productId === El.product.ID ? (
@@ -121,8 +125,9 @@ export default function ListCardBuy() {
                               className={styles.cart_product_item_remain_stock}
                             ></div>
                             <div
-                              className={`nakhl-label mr-auto small teaberry-light ${El.product.discount == 0 && "opacity_none"
-                                }`}
+                              className={`nakhl-label mr-auto small teaberry-light ${
+                                El.product.discount == 0 && "opacity_none"
+                              }`}
                             >
                               {_asist.number(El.product.discount)}
                               <span> %</span>
@@ -198,9 +203,11 @@ export default function ListCardBuy() {
                               <div className="mr-auto">
                                 <span
                                   style={{ display: "block" }}
-                                  className={`${styles.cart_product_item_primary_price
-                                    } ${El.product.discount == 0 && "opacity_none"
-                                    }`}
+                                  className={`${
+                                    styles.cart_product_item_primary_price
+                                  } ${
+                                    El.product.discount == 0 && "opacity_none"
+                                  }`}
                                 >
                                   {_asist.PSeparator(El.total_old_price / 10)}
                                 </span>{" "}
@@ -225,8 +232,8 @@ export default function ListCardBuy() {
               {false &&
                 index !== 0 &&
                 El.product.FK_Shop.slug ==
-                All_product_list_buy.ordered_items[index - 1].product.FK_Shop
-                  .slug && (
+                  All_product_list_buy.ordered_items[index - 1].product.FK_Shop
+                    .slug && (
                   <div
                     className="mt-0 cart-product-group bg-white"
                     style={{ position: "relative" }}
@@ -271,8 +278,9 @@ export default function ListCardBuy() {
                             </div>
                             <div className="cart-product-item-remain-stock"></div>
                             <div
-                              className={`nakhl-label mr-auto small teaberry-light ${El.product.discount == 0 && "opacity_none"
-                                }`}
+                              className={`nakhl-label mr-auto small teaberry-light ${
+                                El.product.discount == 0 && "opacity_none"
+                              }`}
                             >
                               {_asist.number(El.product.discount)}
                               <span> %</span>
@@ -331,9 +339,11 @@ export default function ListCardBuy() {
                               </div>
                               <div className="mr-auto">
                                 <span
-                                  className={`${styles.cart_product_item_primary_price
-                                    } ${El.product.discount == 0 && "opacity_none"
-                                    }`}
+                                  className={`${
+                                    styles.cart_product_item_primary_price
+                                  } ${
+                                    El.product.discount == 0 && "opacity_none"
+                                  }`}
                                 >
                                   {_asist.PSeparator(El.total_old_price / 10)}
                                 </span>{" "}

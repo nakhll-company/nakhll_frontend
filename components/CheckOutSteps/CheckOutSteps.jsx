@@ -8,7 +8,6 @@ import styles from "./CheckOutSteps.module.scss";
  * @param {string} step => step =1 or 2 or 3 |||show you are in witch step :)
  */
 export default function CheckOutSteps({ step }) {
-
   let step1 = "";
   let step2 = "";
   let step3 = "";

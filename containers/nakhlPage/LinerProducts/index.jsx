@@ -15,7 +15,7 @@ function NakhlLinerProducts({
   subTitle,
   dataLinerProducts,
   colorTitle = "#000",
-  url='',
+  url = "",
   xl = 2,
   md = 4,
   lg = 3,

@@ -34,11 +34,9 @@ function Sm_VipProducts({ id, data }) {
         }
 
         if (Object.keys(Queries).length > 1) {
-          let response = await http.get(
-            "https://nakhll.com/api/v1/products/",
-            {params:Queries}
-            
-          );
+          let response = await http.get("https://nakhll.com/api/v1/products/", {
+            params: Queries,
+          });
 
           if (response.status == 200) {
             setProducts(response.data.results);

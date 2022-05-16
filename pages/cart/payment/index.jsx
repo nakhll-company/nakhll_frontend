@@ -44,7 +44,7 @@ export default function Cart() {
             errorMessage(dataCoupen.errors[0]);
           }
 
-          let response = await authhttp.get(`/api/v1/cart/me/`)
+          let response = await authhttp.get(`/api/v1/cart/me/`);
           let data = await response.data;
           if (response.status === 200) {
             setDataCart(data);
@@ -66,7 +66,9 @@ export default function Cart() {
 
   const _deleteCoupon = async (coupon) => {
     setIsLoadInvoice(true);
-    let response = await authhttp.patch(`/api/v1/cart/unset_coupon/`, { coupon })
+    let response = await authhttp.patch(`/api/v1/cart/unset_coupon/`, {
+      coupon,
+    });
     if (response.status === 200) {
       await _getListInvoice();
       setIsLoadInvoice(false);
@@ -77,7 +79,7 @@ export default function Cart() {
     try {
       setLoaderButton(true);
       setIsLoadInvoice(true);
-      let response = await authhttp.post(`/api/v1/cart/pay/`)
+      let response = await authhttp.post(`/api/v1/cart/pay/`);
       if (response.status === 200) {
         let data = await response.data;
         await router.push(data.url);

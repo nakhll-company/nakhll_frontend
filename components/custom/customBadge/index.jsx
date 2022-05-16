@@ -1,4 +1,4 @@
-import styles from '../../../styles/components/custom/badge.module.scss';
+import styles from "../../../styles/components/custom/badge.module.scss";
 /**
  * component of custom badge
  * @param {string} title => title badge
@@ -9,26 +9,27 @@ import styles from '../../../styles/components/custom/badge.module.scss';
  * @param {string} otherProps => other props
  */
 const CustomBadge = ({
-    title,
-    customBadgeClass,
-    customBadgeStyle,
-    backgroundColor,
-    color,
-    otherProps
+  title,
+  customBadgeClass,
+  customBadgeStyle,
+  backgroundColor,
+  color,
+  otherProps,
 }) => {
-    return (
-        <span className={`${styles.customBadge}
+  return (
+    <span
+      className={`${styles.customBadge}
         ${customBadgeClass !== undefined && customBadgeClass}`}
-            style={{
-                backgroundColor: backgroundColor,
-                color: color,
-                ...customBadgeStyle
-            }}
-            {...otherProps}
-        >
-            {title}
-        </span>
-    );
-}
+      style={{
+        backgroundColor: backgroundColor,
+        color: color,
+        ...customBadgeStyle,
+      }}
+      {...otherProps}
+    >
+      {title}
+    </span>
+  );
+};
 // export
 export default CustomBadge;
