@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import Link from "next/link";
 import Head from "next/head";
@@ -28,10 +29,10 @@ const Password = () => {
   const submit = async (data) => {
     setLoadButton(true);
     data.auth_key = JSON.parse(sessionStorage.getItem("login")).auth_key;
-    let result = await completeAuth(data);
+    const result = await completeAuth(data);
 
     if (!!result) {
-      let response = await getAccessToken(result);
+      const response = await getAccessToken(result);
       await dispatch(getProducts());
       response === true && router.push("/");
     } else {
@@ -101,7 +102,7 @@ const Password = () => {
                 id="showPassword"
                 className="me-3"
                 onClick={() => {
-                  let inputPassword = document.querySelector("#user_key");
+                  const inputPassword = document.querySelector("#user_key");
                   if (inputPassword.type === "password") {
                     inputPassword.type = "text";
                   } else {

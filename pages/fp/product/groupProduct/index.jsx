@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import Head from "next/head";
 import { useState } from "react";
@@ -56,7 +57,7 @@ const PreviewCsv = () => {
           id="myform"
           onSubmit={(event) => {
             event.preventDefault();
-            let errors = document.querySelectorAll(`.${styles.error}`);
+            const errors = document.querySelectorAll(`.${styles.error}`);
             if (errors.length > 0) {
               errorMessage("لطفا خطاهای مشخص شده را برطرف نمایید");
             } else {
@@ -296,7 +297,7 @@ const PreviewCsv = () => {
                               event.currentTarget.removeAttribute("readonly");
                             }}
                             onBlur={(event) => {
-                              let newArray = updateCsv;
+                              const newArray = updateCsv;
                               newArray[index][key] = event.target.value;
                               setUpdateCsv([...newArray]);
                             }}
@@ -308,7 +309,7 @@ const PreviewCsv = () => {
                           className="fas fa-trash"
                           style={{ color: "red", cursor: "pointer" }}
                           onClick={() => {
-                            let newArray = [...updateCsv];
+                            const newArray = [...updateCsv];
                             newArray.splice(index, 1);
                             setUpdateCsv([...newArray]);
                           }}

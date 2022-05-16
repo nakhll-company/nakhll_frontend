@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import Link from "next/link";
 import Head from "next/head";
@@ -28,7 +29,7 @@ const Code = () => {
   const submit = async (data) => {
     setLoadButton(true);
     data.auth_key = JSON.parse(sessionStorage.getItem("login")).auth_key;
-    let result = await completeAuth(data);
+    const result = await completeAuth(data);
 
     if (result !== false) {
       if (
@@ -38,7 +39,7 @@ const Code = () => {
         sessionStorage.setItem("secret_key", result.auth_secret);
         router.push("/login/forgetPassword");
       } else {
-        let response = await getAccessToken(result);
+        const response = await getAccessToken(result);
         response === true && location.replace("/");
       }
     }

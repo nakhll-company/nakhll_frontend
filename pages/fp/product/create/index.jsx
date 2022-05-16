@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import Image from "next/image";
 import { connect } from "react-redux";
@@ -64,12 +65,12 @@ const CreateProduct = ({ activeHojreh }) => {
         const response_categories = await _ApiGetCategories();
         if (response_categories.status === 200) {
           setIsLoad(true);
-          setData(response_categories.data); //==> output: {}
+          setData(response_categories.data); // ==> output: {}
           setCategories(response_categories.data);
         }
         const tags = await _ApiGetTags(activeHojreh);
         if (tags.status < 300) {
-          let newArrTags = [];
+          const newArrTags = [];
           tags?.data.map((item) => {
             newArrTags.push({ id: item.text, text: item.text });
           });
@@ -83,15 +84,15 @@ const CreateProduct = ({ activeHojreh }) => {
 
   // select Submarket
   const _selectSubmarket = () => {
-    let element = document.getElementById("wrapperMarkets");
+    const element = document.getElementById("wrapperMarkets");
     element.style.display = "block";
-    let elementProduct = document.getElementById("wrapper_product");
+    const elementProduct = document.getElementById("wrapper_product");
     elementProduct.style.display = "none";
   };
 
   const onSubmit = async (data) => {
     setIsloadingForCreate(true);
-    let Product_Banner = [];
+    const Product_Banner = [];
     if (imgProductOne) {
       Product_Banner.push({ Image: imgProductOne });
     }

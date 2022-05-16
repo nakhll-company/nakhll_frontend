@@ -1,3 +1,4 @@
+import React from "react";
 // libraries
 import { useRouter } from "next/router";
 import { connect } from "react-redux";
@@ -11,13 +12,9 @@ import { getProduct } from "../../../../redux/actions/product/getProduct";
 import { mapState } from "../../../../containers/product/methods/mapState";
 // scss
 import styles from "../../../../styles/pages/product/filter.module.scss";
-/**
- * filter product component
- * @param
- * @returns void
- */
+
 const FilterProduct = ({ getProduct, activeHojreh }) => {
-  let [filterData, setFilterData] = useState({
+  const [filterData, setFilterData] = useState({
     price_from: 0,
     price_to: 0,
     inventory_from: 0,
@@ -39,10 +36,10 @@ const FilterProduct = ({ getProduct, activeHojreh }) => {
             className={styles.form}
             onSubmit={(event) => {
               event.preventDefault();
-              let product_status = document.querySelector(
+              const product_status = document.querySelector(
                 "input[type=radio]:checked"
               ).value;
-              let search = document.querySelector("#search").value;
+              const search = document.querySelector("#search").value;
               getProduct(
                 activeHojreh,
                 product_status,

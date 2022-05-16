@@ -1,6 +1,7 @@
+import React from "react";
 // node libraries
 import Head from "next/head";
-import { NextSeo } from "next-seo";
+
 // components
 import useViewport from "../../../../components/viewPort";
 import ShopLayout from "../../../../components/shopLayout";
@@ -11,15 +12,15 @@ import { http } from "../../../../services/callApi/api";
 
 // fetch data
 const fetchData = async (id) => {
-  let urlComments = encodeURI(`/api/v1/product-page/comments/${id}/`);
-  let urlResponse = encodeURI(`/api/v1/product-page/details/${id}/`);
-  let urlRelatedProduct = encodeURI(
+  const urlComments = encodeURI(`/api/v1/product-page/comments/${id}/`);
+  const urlResponse = encodeURI(`/api/v1/product-page/details/${id}/`);
+  const urlRelatedProduct = encodeURI(
     `/api/v1/product-page/related_products/${id}/?page_size=10`
   );
 
-  let comments = await http.get(urlComments);
-  let response = await http.get(urlResponse);
-  let relatedProduct = await http.get(urlRelatedProduct);
+  const comments = await http.get(urlComments);
+  const response = await http.get(urlResponse);
+  const relatedProduct = await http.get(urlRelatedProduct);
 
   if (response.status === 200) {
     return {
@@ -46,7 +47,6 @@ const ProductDetail = ({ data }) => {
   };
   return (
     <>
-      {/* <NextSeo {...SEO} /> */}
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
