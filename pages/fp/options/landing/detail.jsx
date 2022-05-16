@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import Head from "next/head";
 import Link from "next/link";

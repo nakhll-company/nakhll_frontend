@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -13,7 +14,7 @@ import { getCompleted } from "../../../../redux/actions/orders/getCompleted";
 import { mapState } from "../../../../containers/order/methods/mapState";
 
 function Completed({ ordersList, activeHojreh, getCompleted }) {
-  let [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { width } = useViewport();
   const breakpoint = 620;
 

@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -13,7 +14,7 @@ import { getUncompleted } from "../../../../redux/actions/orders/getUncompleted"
 import { mapState } from "../../../../containers/order/methods/mapState";
 
 function Uncompleted({ ordersList, activeHojreh, getUncompleted }) {
-  let [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { width } = useViewport();
   const breakpoint = 620;
 

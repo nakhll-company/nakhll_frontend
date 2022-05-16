@@ -1,3 +1,4 @@
+import React from "react";
 import styles from "../../../styles/components/custom/label.module.scss";
 /**
  * component of custom badge

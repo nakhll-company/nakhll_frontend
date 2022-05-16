@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import Head from "next/head";
 import Link from "next/link";
@@ -28,12 +29,12 @@ const UpdateAddress = () => {
     setValue,
     formState: { errors },
   } = useForm();
-  let [editAddressData, setEditAddressData] = useState({});
-  let [selectState, setSelectState] = useState([]);
-  let [selectBigCities, setSelectBigCities] = useState([]);
-  let [selectCities, setSelectCities] = useState([]);
-  let [loading, setLoading] = useState(true);
-  let [emptySelectBox, setEmptySelectBox] = useState(false);
+  const [editAddressData, setEditAddressData] = useState({});
+  const [selectState, setSelectState] = useState([]);
+  const [selectBigCities, setSelectBigCities] = useState([]);
+  const [selectCities, setSelectCities] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [emptySelectBox, setEmptySelectBox] = useState(false);
 
   const onSubmit = async (data) => {
     await setLoading(true);
@@ -110,7 +111,7 @@ const UpdateAddress = () => {
                   className="form-control"
                   {...register("state", { required: true })}
                   onChange={async (event) => {
-                    let optionsArray = Object.values(event.target.options);
+                    const optionsArray = Object.values(event.target.options);
                     setSelectBigCities(
                       await getBigCities(
                         optionsArray[event.target.options.selectedIndex].id
@@ -143,7 +144,7 @@ const UpdateAddress = () => {
                     className="form-control col-sm-12"
                     {...register("big_city", { required: true })}
                     onChange={async (event) => {
-                      let optionsArray = Object.values(event.target.options);
+                      const optionsArray = Object.values(event.target.options);
                       setSelectCities(
                         await getCities(
                           optionsArray[event.target.options.selectedIndex].id

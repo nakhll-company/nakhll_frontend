@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import * as yup from "yup";
 import Image from "next/image";
@@ -40,7 +41,7 @@ function HomePage({ id }) {
   const [showMessage, setshowMessage] = useState(0);
 
   const _handleRequestApi = async (id) => {
-    let response = await authhttp.get("/api/v1/get-factor-details/", {
+    const response = await authhttp.get("/api/v1/get-factor-details/", {
       params: {
         factor_id: id,
       },
@@ -52,7 +53,7 @@ function HomePage({ id }) {
   };
 
   const confirmedFactor = async () => {
-    let response = await authhttp.put(
+    const response = await authhttp.put(
       `/api/v1/factor/change-status/confirmed/${id}/`
     );
     setisShow(true);
@@ -277,7 +278,7 @@ function HomePage({ id }) {
                             barcode: data.codeRahgiri,
                           };
                           try {
-                            let response = await authhttp.post(
+                            const response = await authhttp.post(
                               `/api/v1/factor/change-status/sent/${id}/`,
                               sendData
                             );
@@ -890,7 +891,7 @@ function HomePage({ id }) {
                             barcode: data.codeRahgiri,
                           };
                           try {
-                            let response = await authhttp.post(
+                            const response = await authhttp.post(
                               `/api/v1/factor/change-status/sent/${id}/`,
                               sendData
                             );

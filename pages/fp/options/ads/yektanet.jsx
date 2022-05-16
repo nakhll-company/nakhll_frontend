@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -22,13 +23,13 @@ const Yektanet = () => {
   const [adsData, setAdsData] = useState({});
 
   const onSubmit = async (data) => {
-    let response = await editAdvertisment(activeHojreh, data);
+    const response = await editAdvertisment(activeHojreh, data);
     setAdsData(response);
   };
 
   useEffect(() => {
     async function getData() {
-      let response = await getAdvertisement(activeHojreh);
+      const response = await getAdvertisement(activeHojreh);
       setAdsData(response);
       setValue("yektanet_id", adsData.yektanet_id);
     }
@@ -45,11 +46,11 @@ const Yektanet = () => {
             id={adsData.id}
             checked={adsData.yektanet_status}
             onClick={async () => {
-              let data = {
+              const data = {
                 yektanet_status: adsData.yektanet_status ? 0 : 1,
                 yektanet_id: adsData.yektanet_id,
               };
-              let res = await editAdvertisment(activeHojreh, data);
+              const res = await editAdvertisment(activeHojreh, data);
 
               setAdsData(res);
             }}

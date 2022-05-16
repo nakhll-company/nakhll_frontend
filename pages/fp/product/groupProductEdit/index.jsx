@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -22,13 +23,13 @@ const GroupProduct = () => {
       <form
         onSubmit={async (event) => {
           event.preventDefault();
-          let excel = document.getElementById("productExcelUpload").files[0];
-          let zipFile = document.getElementById("productZipFile").files[0];
-          let data = new FormData();
+          const excel = document.getElementById("productExcelUpload").files[0];
+          const zipFile = document.getElementById("productZipFile").files[0];
+          const data = new FormData();
           data.append("product-excel-upload", excel);
           data.append("product-zip-file", zipFile);
           successMessage("درحال بارگزاری محصولات...");
-          let response = await authhttp.post(
+          const response = await authhttp.post(
             `/api/v1/product/group-update/${activeHojreh}/`,
             data
           );
@@ -96,7 +97,7 @@ const GroupProduct = () => {
             className={styles.form_buttonSubmit}
             style={{ fontSize: "18px", width: "200px" }}
             onClick={async () => {
-              let response = await authhttp.get(
+              const response = await authhttp.get(
                 `/api/v1/product/group-undo/${activeHojreh}/`
               );
               if (response.status === 200) {

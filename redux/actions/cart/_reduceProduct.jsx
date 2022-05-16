@@ -3,8 +3,7 @@ import { authhttp } from "../../../services/callApi/api";
 
 export const _reduceProduct = (productId) => {
   return async (dispatch) => {
-    let token = localStorage.getItem("accessToken");
-    let response = await authhttp.delete(
+    const response = await authhttp.delete(
       `/api/v1/cart/items/${productId}/reduce/`
     );
 

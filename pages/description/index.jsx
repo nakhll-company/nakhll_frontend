@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import Link from "next/link";
 import Image from "next/image";

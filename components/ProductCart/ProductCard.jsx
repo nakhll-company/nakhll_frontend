@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import Link from "next/link";
 import Image from "next/image";
@@ -28,7 +29,7 @@ const ProductCard = ({
   deletProduct,
 }) => {
   const dispatch = useDispatch();
-  let product = {
+  const product = {
     id: dataProduct.ID,
     imageUrl: dataProduct.Image_medium_url,
     url: `/shop/${dataProduct.FK_Shop.slug}/product/${dataProduct.Slug}/`,
@@ -41,7 +42,7 @@ const ProductCard = ({
     city: dataProduct.FK_Shop && dataProduct.FK_Shop.state,
     is_advertisement: dataProduct.is_advertisement,
   };
-  let cardBadge = (
+  const cardBadge = (
     <>
       <div
         className={styles._product_card_badge}
@@ -58,7 +59,7 @@ const ProductCard = ({
     </>
   );
 
-  let cardImg = (
+  const cardImg = (
     <Image
       layout="responsive"
       height={100}
@@ -72,7 +73,7 @@ const ProductCard = ({
       blurDataURL="/logoCart.png"
     />
   );
-  let campBadge = (
+  const campBadge = (
     <>
       <div
         className={styles._product_card_camp_badge}
@@ -89,7 +90,7 @@ const ProductCard = ({
       </div>
     </>
   );
-  let deletIcon = (
+  const deletIcon = (
     <>
       <>
         <div

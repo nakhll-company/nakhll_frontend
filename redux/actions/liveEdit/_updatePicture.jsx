@@ -6,12 +6,12 @@ export const _updatePicture = (img) => {
     const id = getState().selectIdFormLanding;
 
     try {
-      let loadData = {
+      const loadData = {
         image: img,
         title: "",
         description: "",
       };
-      let dataUrl = `/api/v1/profile/images/`;
+      const dataUrl = `/api/v1/profile/images/`;
       response = await authhttp.post(dataUrl, loadData);
 
       if (response.status !== 201) {
@@ -21,7 +21,7 @@ export const _updatePicture = (img) => {
       alert(err);
     }
 
-    let dataLanding = [...getState().allDataLanding];
+    const dataLanding = [...getState().allDataLanding];
     dataLanding.map((El, index) => {
       if (El.ID == id.id) {
         dataLanding[index].data[id.order].image = response.data.image

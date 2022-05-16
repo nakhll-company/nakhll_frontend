@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import Image from "next/image";
 import { connect } from "react-redux";
@@ -71,11 +72,11 @@ const UpdateProduct = ({ activeHojreh }) => {
     // get edit date
     async function fetchData() {
       if (id) {
-        let dataUrl = `/api/v1/shop/${activeHojreh}/products/${id}/`;
-        let response = await authhttp.get(dataUrl);
+        const dataUrl = `/api/v1/shop/${activeHojreh}/products/${id}/`;
+        const response = await authhttp.get(dataUrl);
 
         if (response.status === 200) {
-          let Data = response.data;
+          const Data = response.data;
 
           setValue("Title", Data.Title);
           setImgProduct(Data.Image);
@@ -109,12 +110,12 @@ const UpdateProduct = ({ activeHojreh }) => {
           setImgProductFive(Data.Product_Banner[4]?.Image);
           setImgProductSix(Data.Product_Banner[5]?.Image);
           setProduct_Banner(Data.Product_Banner);
-          let newArrTags = [];
+          const newArrTags = [];
           Data.product_tags.map((item) => {
             newArrTags.push({ id: item.text, text: item.text });
           });
           setTags(newArrTags);
-          let allTages = [];
+          const allTages = [];
 
           {
             Data?.all_tags &&
@@ -131,7 +132,7 @@ const UpdateProduct = ({ activeHojreh }) => {
 
   const onSubmit = async (data) => {
     setisLoadingUpdate(true);
-    let Product_Banner = [];
+    const Product_Banner = [];
 
     if (imgProductOne && !imgProductOne.includes("http")) {
       Product_Banner.push({ Image: imgProductOne });
@@ -181,7 +182,7 @@ const UpdateProduct = ({ activeHojreh }) => {
 
       if (response_categories.status === 200) {
         setIsLoad(true);
-        setData(response_categories.data); //==> output: {}
+        setData(response_categories.data); // ==> output: {}
         setCategories(response_categories.data);
       }
     }
@@ -191,9 +192,9 @@ const UpdateProduct = ({ activeHojreh }) => {
 
   // select Submarket
   const _selectSubmarket = () => {
-    let element = document.getElementById("wrapperMarkets");
+    const element = document.getElementById("wrapperMarkets");
     element.style.display = "block";
-    let elementProduct = document.getElementById("wrapper_product");
+    const elementProduct = document.getElementById("wrapper_product");
     elementProduct.style.display = "none";
   };
 

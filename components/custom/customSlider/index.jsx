@@ -1,3 +1,4 @@
+import React from "react";
 import { Fragment } from "react";
 import SwiperCore, { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";

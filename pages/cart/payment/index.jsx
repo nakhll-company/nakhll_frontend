@@ -1,4 +1,4 @@
-import Head from "next/head";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -30,22 +30,22 @@ export default function Cart() {
 
   const _addCoupon = async (e) => {
     e.preventDefault();
-    let valueCoupon = e.target[0].value;
+    const valueCoupon = e.target[0].value;
     if (valueCoupon) {
       setIsLoadInvoice(true);
       try {
-        let response = await authhttp.patch(`/api/v1/cart/set_coupon/`, {
+        const response = await authhttp.patch(`/api/v1/cart/set_coupon/`, {
           coupon: valueCoupon,
         });
-        let dataCoupen = response.data;
+        const dataCoupen = response.data;
 
         if (response.status === 200) {
           if (dataCoupen?.errors[0]) {
             errorMessage(dataCoupen.errors[0]);
           }
 
-          let response = await authhttp.get(`/api/v1/cart/me/`);
-          let data = await response.data;
+          const response = await authhttp.get(`/api/v1/cart/me/`);
+          const data = await response.data;
           if (response.status === 200) {
             setDataCart(data);
             setListInvoice(data.ordered_items);
@@ -66,7 +66,7 @@ export default function Cart() {
 
   const _deleteCoupon = async (coupon) => {
     setIsLoadInvoice(true);
-    let response = await authhttp.patch(`/api/v1/cart/unset_coupon/`, {
+    const response = await authhttp.patch(`/api/v1/cart/unset_coupon/`, {
       coupon,
     });
     if (response.status === 200) {
@@ -79,9 +79,9 @@ export default function Cart() {
     try {
       setLoaderButton(true);
       setIsLoadInvoice(true);
-      let response = await authhttp.post(`/api/v1/cart/pay/`);
+      const response = await authhttp.post(`/api/v1/cart/pay/`);
       if (response.status === 200) {
-        let data = await response.data;
+        const data = await response.data;
         await router.push(data.url);
         setLoaderButton(false);
       } else {
@@ -294,7 +294,7 @@ export default function Cart() {
               </div>
             </div>
 
-            {/*inforamation */}
+            {/* inforamation */}
             <div className="mt-3 p-3 border rounded font-size-sm my-3 line-height-normal">
               <div className="mx-auto" style={{ textAlign: "center" }}>
                 تمامی بسته‌های پستی به آقا/خانم
