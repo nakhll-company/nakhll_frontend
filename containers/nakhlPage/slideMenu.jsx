@@ -23,7 +23,7 @@ function SlideMenu() {
   const [category, setCategory] = useState([]);
 
   const getCategory = async () => {
-    let response = await http.get(`/api/v1/categories/?max_depth=2`);
+    const response = await http.get(`/api/v1/categories/?max_depth=2`);
     if (response.status === 200) {
       setCategory(response.data);
     } else {

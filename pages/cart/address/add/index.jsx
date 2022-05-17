@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import Head from "next/head";
 import Link from "next/link";
@@ -22,14 +23,14 @@ const NewAddress = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  let [selectState, setSelectState] = useState([]);
-  let [selectBigCities, setSelectBigCities] = useState([]);
-  let [selectCities, setSelectCities] = useState([]);
-  let [loading, setLoading] = useState(false);
+  const [selectState, setSelectState] = useState([]);
+  const [selectBigCities, setSelectBigCities] = useState([]);
+  const [selectCities, setSelectCities] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = async (data) => {
     await setLoading(true);
-    let response = await addAddress(data);
+    const response = await addAddress(data);
     if (response === true) {
       router.push(`/cart/address`);
     }
@@ -99,7 +100,7 @@ const NewAddress = () => {
                   className="form-control"
                   {...register("state", { required: true })}
                   onChange={async (event) => {
-                    let optionsArray = Object.values(event.target.options);
+                    const optionsArray = Object.values(event.target.options);
                     setSelectBigCities(
                       await getBigCities(
                         optionsArray[event.target.options.selectedIndex].id
@@ -129,7 +130,7 @@ const NewAddress = () => {
                     className="form-control col-sm-12"
                     {...register("big_city", { required: true })}
                     onChange={async (event) => {
-                      let optionsArray = Object.values(event.target.options);
+                      const optionsArray = Object.values(event.target.options);
                       setSelectCities(
                         await getCities(
                           optionsArray[event.target.options.selectedIndex].id

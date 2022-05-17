@@ -18,11 +18,11 @@ import { authhttp } from "../../../services/callApi/api";
 
 function Preview({ idLanding }) {
   const [dataLanding, setDataLanding] = useState([]);
-  let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}/`;
+  const getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}/`;
 
   useEffect(() => {
     async function fetchData() {
-      let response = await authhttp.get(getDataLanding);
+      const response = await authhttp.get(getDataLanding);
       if (response.status == 200) {
         setDataLanding(JSON.parse(response.data.page_data));
       }

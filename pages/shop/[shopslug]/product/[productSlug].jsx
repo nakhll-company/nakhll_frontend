@@ -32,19 +32,11 @@ const fetchData = async (id) => {
     return false;
   }
 };
-/**
- * component detail
- */
+
 const ProductDetail = ({ data }) => {
   const breakpoint = 620;
   const { width } = useViewport();
 
-  const SEO = {
-    title: `خرید و قیمت ${data?.detail?.title} | نخل`,
-    description: data?.detail?.description
-      ? data?.detail?.description
-      : "نخل سرزمینی است برای یادآوری سنت‌های اصیل ایرانی‌مان، برای شکوفایی استعدادها و بهتر دیده‌شدن‌تان، کالاها و خدمات خود را در سرزمین نخل به اشتراک بگذارید. اینجا راهی برای پیشبرد هدف‌هایتان وجود دارد.",
-  };
   return (
     <>
       <Head>

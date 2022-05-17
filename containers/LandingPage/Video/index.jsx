@@ -1,7 +1,6 @@
 import st from "./video.module.scss";
 
 import { useEffect, useState } from "react";
-import { useRef } from "react";
 
 import Script from "next/script";
 

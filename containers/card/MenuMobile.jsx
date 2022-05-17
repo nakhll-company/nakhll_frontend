@@ -43,13 +43,11 @@ export const MenuMobile = () => {
                 >
                   {All_product_list_buy.total_old_price !==
                     All_product_list_buy.total_price &&
-                    _asist.PSeparator(
-                      All_product_list_buy.total_old_price / 10
-                    )}
+                    diviedNumber(All_product_list_buy.total_old_price / 10)}
                 </span>
 
                 <span className="font-weight-500" style={{ marginLeft: "5px" }}>
-                  {_asist.PSeparator(All_product_list_buy.total_price / 10)}
+                  {diviedNumber(All_product_list_buy.total_price / 10)}
                 </span>
                 <span>تومان</span>
               </div>

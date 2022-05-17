@@ -70,7 +70,7 @@ function ListProductCusTest({ data }) {
 
   const _handel_category = async () => {
     try {
-      let response = await http.get(
+      const response = await http.get(
         `/api/v1/categories/category_product_count/?q=${searchWord}&shop=${hojreh}`
       );
       if (response.status === 200) {
@@ -82,9 +82,9 @@ function ListProductCusTest({ data }) {
   };
 
   const _handel_Add_category = (id) => {
-    let copyArray = [...wantCategories];
+    const copyArray = [...wantCategories];
 
-    let newArray = copyArray.filter((element) => element != id);
+    const newArray = copyArray.filter((element) => element != id);
 
     if (copyArray.length == newArray.length) {
       setWantCategories([...newArray, id]);
@@ -95,7 +95,7 @@ function ListProductCusTest({ data }) {
 
   const _handel_call_another_page_api = async (witchFilter) => {
     try {
-      let response = await http.get(`/api/v1/products/`, {
+      const response = await http.get(`/api/v1/products/`, {
         params: {
           ...(witchFilter ? witchFilter : null),
           search: searchWord,
@@ -138,7 +138,7 @@ function ListProductCusTest({ data }) {
         setHasMore(true);
         setIsLoading(true);
 
-        let params = {
+        const params = {
           ...(witchFilter ? witchFilter : null),
           search: searchWord,
           ...(whichOrdering !== "" && { ordering: whichOrdering }),
@@ -159,7 +159,7 @@ function ListProductCusTest({ data }) {
         };
 
         try {
-          let response = await http.get(`/api/v1/products/`, { params });
+          const response = await http.get(`/api/v1/products/`, { params });
           if (response.status === 200) {
             setListWithFilter(response.data.results);
             setNameHojreh(response.data.results[0].FK_Shop.title);
@@ -370,7 +370,7 @@ function ListProductCusTest({ data }) {
               ) : (
                 <InfiniteScroll
                   className="mx-auto row"
-                  dataLength={listWithFilter.length} //This is important field to render the next data
+                  dataLength={listWithFilter.length} // This is important field to render the next data
                   next={_handel_call_another_page_api}
                   hasMore={hasMore}
                   loader={<h4>کمی صبر...</h4>}

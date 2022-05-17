@@ -3,17 +3,14 @@ import React from "react";
 import Link from "next/link";
 // style
 import styles from "./CheckOutSteps.module.scss";
-/**
- * component for step Level
- * @param {string} step => step =1 or 2 or 3 |||show you are in witch step :)
- */
+
 export default function CheckOutSteps({ step }) {
   let step1 = "";
   let step2 = "";
   let step3 = "";
   let line1 = "";
   let line2 = "";
-  //FOR ASSIGN CSS FOR EACH STEP
+  // FOR ASSIGN CSS FOR EACH STEP
   if (step == 1) {
     step1 = styles.active;
   }

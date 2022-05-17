@@ -1,6 +1,3 @@
-import Assistent from "zaravand-assistent-number";
-
-const _asist = new Assistent();
 export default function MiniCardBuy() {
   return (
     <div className="col-12 mx-auto " style={{ maxWidth: "72rem" }}>
@@ -8,11 +5,11 @@ export default function MiniCardBuy() {
       <div>
         <div className="py-2 px-3 mt-4 border rounded bg-gray-100 d-flex flex-wrap align-items-center">
           {/* <span className="text-secondary font-size-sm">
-            {_asist.number(736810)}
+            {736810}
           </span>{" "} */}
           <span className="mr-3">سبد خرید</span>{" "}
           {/* <span className="mr-2">
-            {_asist.PSeparator(690000)} <small>تومان</small>
+            {diviedNumber(690000)} <small>تومان</small>
           </span>{" "} */}
           <span className="mr-lg-auto text-teal-dark font-size-sm  w-lg-auto my-2">
             <i className="bi bi-info"></i>

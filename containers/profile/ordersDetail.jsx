@@ -2,13 +2,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import Assistent from "zaravand-assistent-number";
+
+import diviedNumber from "../../utils/diviedNumber";
 // methods
 import { getOrderDetail } from "./methods/getOrderDetail";
 // scss
 import styles from "./scss/ordersDetail.module.scss";
 
-const _asist = new Assistent();
+
 
 const OrdersDetail = ({ invoiceId }) => {
   const [loading, setLoading] = useState(true);
@@ -45,16 +46,14 @@ const OrdersDetail = ({ invoiceId }) => {
                 <span className="text-secondary d-block mb-2">
                   تاریخ ثبت سفارش
                 </span>
-                <span>{`${_asist.number(
-                  detailData.created_date_jalali
-                )} - ${_asist.number(detailData.created_time_jalali)}`}</span>
+                <span>{`${detailData.created_date_jalali} - ${detailData.created_time_jalali}`}</span>
               </div>
               <div className={`${styles.right} p-3`}>
                 <span className="text-secondary d-block mb-2">
                   مبلغ پرداخت شده
                 </span>
                 <span>
-                  {_asist.PSeparator(`${detailData.final_price / 10} تومان`)}
+                  {diviedNumber(`${detailData.final_price / 10} تومان`)}
                 </span>
               </div>
               <div className={`${styles.price} p-3`}>
@@ -62,13 +61,13 @@ const OrdersDetail = ({ invoiceId }) => {
                   کوپن اعمال شده
                 </span>
                 <span>
-                  {_asist.PSeparator(`${detailData.coupons_total_price} تومان`)}
+                  {diviedNumber(`${detailData.coupons_total_price} تومان`)}
                 </span>
               </div>
               <div className={`${styles.right} p-3`}>
                 <span className="text-secondary d-block mb-2">هزینه ارسال</span>
                 <span>
-                  {_asist.PSeparator(`${detailData.logistic_price / 10} تومان`)}
+                  {diviedNumber(`${detailData.logistic_price / 10} تومان`)}
                 </span>
               </div>
               <div className={`${styles.price} p-3`}>
@@ -86,7 +85,7 @@ const OrdersDetail = ({ invoiceId }) => {
                 <span className="text-secondary mb-2"> شماره موبایل :</span>
                 <span>
                   {jsonAddress &&
-                    _asist.number(jsonAddress.receiver_mobile_number)}
+                    diviedNumber(jsonAddress.receiver_mobile_number)}
                 </span>
               </div>
             </div>
@@ -100,7 +99,7 @@ const OrdersDetail = ({ invoiceId }) => {
                       borderBottom: "1px solid #dfdfdf",
                     }}
                   >
-                    <h6>محصول شماره {_asist.number(index + 1)}</h6>
+                    <h6>محصول شماره {index + 1}</h6>
                   </div>
                   <div className={`${styles.right} p-3`}>
                     <span className="d-block text-secondary mb-2">
@@ -114,12 +113,12 @@ const OrdersDetail = ({ invoiceId }) => {
                     <span className="text-secondary d-block mb-2">
                       وزن محصول
                     </span>
-                    <span>{_asist.number(value.weight)}</span>
+                    <span>{value.weight}</span>
                   </div>
                   <div className={`${styles.right} p-3`}>
                     <span className="text-secondary d-block mb-2">مبلغ</span>
                     <span>
-                      {_asist.PSeparator(
+                      {diviedNumber(
                         `${value.price_without_discount / 10} تومان`
                       )}
                     </span>
@@ -129,9 +128,7 @@ const OrdersDetail = ({ invoiceId }) => {
                       مبلغ با تخفیف
                     </span>
                     <span>
-                      {_asist.PSeparator(
-                        `${value.price_with_discount / 10} تومان`
-                      )}
+                      {diviedNumber(`${value.price_with_discount / 10} تومان`)}
                     </span>
                   </div>
                   <div className={`${styles.images} p-3`}>
@@ -164,8 +161,8 @@ const OrdersDetail = ({ invoiceId }) => {
                           </a>
                         </Link>
                         <div className="">
-                          {/* <span className="mx-4">{_asist.PSeparator(`${value.price_with_discount / 10} تومان`)}</span> */}
-                          <span>{_asist.number(value.count)} عدد</span>
+                          {/* <span className="mx-4">{diviedNumber(`${value.price_with_discount / 10} تومان`)}</span> */}
+                          <span>{value.count} عدد</span>
                         </div>
                       </div>
                     </div>
@@ -253,7 +250,7 @@ const OrdersDetail = ({ invoiceId }) => {
                     </div>
                     <div className="d-flex flex-column align-items-center mt-4">
                       <span style={{ textAlign: "center" }}>
-                        کد رهگیری سفارش شما : {_asist.number(value.barcode)}
+                        کد رهگیری سفارش شما : {value.barcode}
                       </span>
                       <br />
                       <Link

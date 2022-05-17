@@ -3,11 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 // scss
 import styles from "../../styles/components/mobileHeader/mobileHeader.module.scss";
-/**
- * component mobile header
- * @param {string} title => title of header
- * @param {string} type => back | search | close | bascket
- */
+
 function MobileHeader({ title, type, linkSearch }) {
   const router = useRouter();
   return (

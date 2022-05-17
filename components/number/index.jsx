@@ -1,10 +1,9 @@
-import Assistent from "zaravand-assistent-number";
-const _asist = new Assistent();
+import diviedNumber from "../../utils/diviedNumber";
 
 function Number({ num }) {
   return (
     <>
-      <span>{_asist.PSeparator(num)}</span>
+      <span>{diviedNumber(num)}</span>
     </>
   );
 }

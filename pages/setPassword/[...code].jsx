@@ -59,7 +59,7 @@ function SetPasswordPage() {
     }
     setLoader(true);
 
-    let response = await http.post("/api/v1/auth/complete/", {
+    const response = await http.post("/api/v1/auth/complete/", {
       auth_key: rot13(code[0]),
       user_key: data.user_key,
     });
@@ -96,7 +96,7 @@ function SetPasswordPage() {
 
   useEffect(async () => {
     if (auth_secret) {
-      let response = await http.post("/api/v1/profile/set_password/", {
+      const response = await http.post("/api/v1/profile/set_password/", {
         auth_secret: auth_secret,
         password: newPassword,
       });

@@ -1,8 +1,10 @@
+import React from "react";
 import Image from "next/image";
 import SBSendUnit from "../sendUnit/switchButtonSendUnit";
-import Assistent from "zaravand-assistent-number";
+
 import st from "./sendBoxCu.module.scss";
-const _asist = new Assistent();
+import diviedNumber from "../../../../../../utils/diviedNumber";
+
 function SendBoxCu({ data }) {
   return (
     <>
@@ -10,7 +12,7 @@ function SendBoxCu({ data }) {
         <div className={st.card}>
           <div className={st.card_right}>
             <div className={st.card_right_top}>
-              <span>{_asist.PSeparator(_asist.PSeparator(data?.title))}</span>
+              <span>{diviedNumber(data?.title)}</span>
             </div>
 
             <div className={st.card_right_btm}>
@@ -36,7 +38,7 @@ function SendBoxCu({ data }) {
                     alt="icon-1"
                   />
 
-                  <span>{_asist.PSeparator(data?.products_count)} محصول</span>
+                  <span>{diviedNumber(data?.products_count)} محصول</span>
                 </div>
                 <div className={st.info_line}>
                   <Image
@@ -46,7 +48,7 @@ function SendBoxCu({ data }) {
                     height={20}
                     alt="icon-1"
                   />
-                  <span>{_asist.PSeparator(data?.cities_count)} شهر</span>
+                  <span>{diviedNumber(data?.cities_count)} شهر</span>
                 </div>
               </div>
             </div>

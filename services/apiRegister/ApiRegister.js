@@ -5,12 +5,6 @@ import {
 
 export const ApiRegister = () => {
     return {
-        /**
-         * @param {* data > any or null if empty }
-         * @param {* method > GET OR POST OR PUT OR DELETE String --> camaleCase}
-         * @param {* url > api url String}
-         * @param {* token > Authorization Boolean}
-         */
         apiRequest: (data, method, url, token, params) =>
             token ?
             instanceAxiosWithToken({

@@ -16,10 +16,7 @@ import { updateAddress } from "../../../../api/cartAddress/updateAddress";
 import { getEditAddress } from "../../../../api/cartAddress/getEditAddress";
 // styles
 import styles from "../../../../styles/pages/cart/newAddress.module.scss";
-/**
- * component new address
- * @param {}  =>
- */
+
 const UpdateAddress = () => {
   const router = useRouter();
   const { prev, id } = router.query;

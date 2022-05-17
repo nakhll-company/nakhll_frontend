@@ -3,7 +3,7 @@ import React from "react";
 import * as yup from "yup";
 import Image from "next/image";
 import { Formik, Form, Field } from "formik";
-import Assistent from "zaravand-assistent-number";
+
 import { Fragment, useEffect, useState } from "react";
 // components
 import useViewport from "../../../../components/viewPort";
@@ -13,8 +13,7 @@ import { successMessage } from "../../../../utils/toastifyMessage";
 // sass
 import styles from "../../../../styles/pages/order/orderdetail.module.scss";
 import { authhttp } from "../../../../services/callApi/api";
-
-const _asist = new Assistent();
+import diviedNumber from "../../../../utils/diviedNumber";
 
 export const getServerSideProps = ({ params }) => {
   // fetch
@@ -433,7 +432,7 @@ function HomePage({ id }) {
                       className={styles.post_information_h3}
                     >
                       {data.address_json &&
-                        _asist.number(jsonAddress.receiver_mobile_number)}
+                        jsonAddress.receiver_mobile_number}
                     </h3>
                   </div> */}
                   <div className={styles.post_informationD_content}>
@@ -453,7 +452,7 @@ function HomePage({ id }) {
                       style={{ fontSize: "15px" }}
                       className={styles.post_information_h3}
                     >
-                      {data.address_json && _asist.number(jsonAddress.zip_code)}
+                      {data.address_json && jsonAddress.zip_code}
                     </h3>
                   </div>
                   <div className={styles.post_informationD_content}>
@@ -462,8 +461,7 @@ function HomePage({ id }) {
                       style={{ fontSize: "15px" }}
                       className={styles.post_information_h3}
                     >
-                      {data.items.length > 0 &&
-                        _asist.number(data.items[0].barcode)}
+                      {data.items.length > 0 && data.items[0].barcode}
                     </h3>
                   </div>
                 </div>
@@ -485,7 +483,7 @@ function HomePage({ id }) {
                       تاریخ ثبت سفارش
                     </h4>
                     <h4 style={{ direction: "ltr", fontSize: "14px" }}>
-                      {_asist.number(data.created_date_jalali)}
+                      {data.created_date_jalali}
                     </h4>
                   </div>
                   <div className={styles.post_details_content}>
@@ -510,9 +508,7 @@ function HomePage({ id }) {
                     return (
                       <Fragment key={index}>
                         <div className={styles.purchased_good_contentD}>
-                          <h3 style={{ fontSize: "15px" }}>
-                            {_asist.number(index + 1)}
-                          </h3>
+                          <h3 style={{ fontSize: "15px" }}>{index + 1}</h3>
                           <div
                             style={{
                               width: "50px",
@@ -536,13 +532,13 @@ function HomePage({ id }) {
 
                           <div style={{ width: "40px" }}>
                             <h4 style={{ color: "#364254", fontSize: "14px" }}>
-                              {_asist.number(e.count)}
+                              {e.count}
                               <span style={{ marginRight: "10px" }}>عدد</span>
                             </h4>
                           </div>
                           <div style={{ width: "94px", display: "flex" }}>
                             <h4 style={{ color: "#364254", fontSize: "14px" }}>
-                              {_asist.PSeparator(e.price_with_discount / 10)}{" "}
+                              {diviedNumber(e.price_with_discount / 10)}{" "}
                               <span style={{ color: "#5E7488" }}>تومان</span>
                             </h4>
                           </div>
@@ -616,7 +612,7 @@ function HomePage({ id }) {
                                   fontSize: "14px",
                                 }}
                               >
-                                {_asist.PSeparator(e.price_with_discount / 10)}+{" "}
+                                {diviedNumber(e.price_with_discount / 10)}+{" "}
                                 <span style={{ color: "#5E7488" }}>تومان</span>
                               </h4>
                             </div>
@@ -632,7 +628,7 @@ function HomePage({ id }) {
                                   fontSize: "14px",
                                 }}
                               >
-                                {_asist.PSeparator(
+                                {diviedNumber(
                                   (e.price_without_discount -
                                     e.price_with_discount) /
                                     10
@@ -668,7 +664,7 @@ function HomePage({ id }) {
                         fontSize: "14px",
                       }}
                     >
-                      {_asist.PSeparator(data.final_price / 10)}+{" "}
+                      {diviedNumber(data.final_price / 10)}+{" "}
                       <span style={{ color: "#5E7488" }}>تومان</span>
                     </h4>
                   </div>
@@ -1048,7 +1044,7 @@ function HomePage({ id }) {
                       className={styles.post_information_h3}
                     >
                       {data.address_json &&
-                        _asist.number(jsonAddress.receiver_mobile_number)}
+                        diviedNumber(jsonAddress.receiver_mobile_number)}
                     </h3>
                   </div> */}
                   <div className={styles.post_information_content}>
@@ -1067,7 +1063,7 @@ function HomePage({ id }) {
                       style={{ fontSize: "15px" }}
                       className={styles.post_information_h3}
                     >
-                      {data.address_json && _asist.number(jsonAddress.zip_code)}
+                      {data.address_json && jsonAddress.zip_code}
                     </h3>
                   </div>
                   <div className={styles.post_information_content}>
@@ -1076,8 +1072,7 @@ function HomePage({ id }) {
                       style={{ fontSize: "15px" }}
                       className={styles.post_information_h3}
                     >
-                      {data.items.length > 0 &&
-                        _asist.number(data.items[0].barcode)}
+                      {data.items.length > 0 && data.items[0].barcode}
                     </h3>
                   </div>
                 </div>
@@ -1098,7 +1093,7 @@ function HomePage({ id }) {
                   <div className={styles.post_details_content}>
                     <h4 style={{ fontSize: "14px" }}> تاریخ ثبت سفارش</h4>
                     <h4 style={{ direction: "ltr", fontSize: "14px" }}>
-                      {_asist.number(data.created_date_jalali)}
+                      {data.created_date_jalali}
                     </h4>
                   </div>
                   <div className={styles.post_details_content}>
@@ -1138,7 +1133,7 @@ function HomePage({ id }) {
                               fontWeight: "bold",
                             }}
                           >
-                            {_asist.number(e.name)}
+                            {e.name}
                           </h3>
                         </div>
                         <div
@@ -1148,13 +1143,13 @@ function HomePage({ id }) {
                           <div style={{ display: "flex" }}>
                             <h4>قیمت :</h4>
                             <h4 style={{ color: "#364254" }}>
-                              {_asist.PSeparator(e.price_with_discount / 10)}{" "}
+                              {diviedNumber(e.price_with_discount / 10)}{" "}
                               <span style={{ color: "#5E7488" }}>تومان</span>
                             </h4>
                           </div>
                           <div>
                             <h4 style={{ color: "#364254" }}>
-                              {_asist.number(e.count)}{" "}
+                              {e.count}{" "}
                               <span style={{ fontSize: "14px" }}>عدد</span>
                             </h4>
                           </div>
@@ -1170,7 +1165,7 @@ function HomePage({ id }) {
                               <h4
                                 style={{ color: "#089319", fontWeight: "bold" }}
                               >
-                                {_asist.PSeparator(e.price_with_discount / 10)}+{" "}
+                                {diviedNumber(e.price_with_discount / 10)}+{" "}
                                 <span
                                   style={{ color: "#5E7488", fontSize: "14px" }}
                                 >
@@ -1189,7 +1184,7 @@ function HomePage({ id }) {
                                   fontWeight: "bold",
                                 }}
                               >
-                                {_asist.PSeparator(
+                                {diviedNumber(
                                   (e.price_without_discount -
                                     e.price_with_discount) /
                                     10
@@ -1272,7 +1267,7 @@ function HomePage({ id }) {
                       مجموع قیمت محصولات
                     </h4>
                     <h4 style={{ color: "#089319", fontWeight: "bold" }}>
-                      {_asist.PSeparator(data.final_price / 10)}+{" "}
+                      {diviedNumber(data.final_price / 10)}+{" "}
                       <span style={{ color: "#5E7488", fontSize: "14px" }}>
                         تومان
                       </span>

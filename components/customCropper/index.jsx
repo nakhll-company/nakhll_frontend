@@ -35,7 +35,7 @@ function CustomCropper({ imageSrc, setCroppedImage }) {
     }
   }, [imageSrc, croppedAreaPixels, rotation, dispatch, setCroppedImage]);
 
-  let b = Component.ratio;
+  const b = Component.ratio;
 
   return (
     <>

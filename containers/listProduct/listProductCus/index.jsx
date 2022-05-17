@@ -1,7 +1,7 @@
 // node libraries
 import router from "next/router";
 import CheckboxTree from "react-checkbox-tree";
-import Assistent from "zaravand-assistent-number";
+
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import _ from "lodash";
@@ -24,9 +24,8 @@ import SearchProduct from "./components/searchProduct";
 import { useSelector } from "react-redux";
 import Grouping from "../../searchPage/Grouping";
 import { http } from "../../../services/callApi/api";
-import { ApiRegister } from "../../../services/apiRegister/ApiRegister";
 
-const _asist = new Assistent();
+import diviedNumber from "../../../utils/diviedNumber";
 
 function ListProductCus({ data }) {
   const [pageApi, setPageApi] = useState(2);
@@ -87,9 +86,9 @@ function ListProductCus({ data }) {
 
   const call_tags = async (activeHojreh) => {
     try {
-      let dataUrl = `/api/v1/shop/${activeHojreh}/tags/`;
+      const dataUrl = `/api/v1/shop/${activeHojreh}/tags/`;
 
-      let response = await http.get(dataUrl);
+      const response = await http.get(dataUrl);
       if (response.status < 300) {
         setTags(response.data);
       }
@@ -99,9 +98,9 @@ function ListProductCus({ data }) {
   };
 
   const _handel_Add_category = (id) => {
-    let copyArray = [...wantCategories];
+    const copyArray = [...wantCategories];
 
-    let newArray = copyArray.filter((element) => element != id);
+    const newArray = copyArray.filter((element) => element != id);
 
     if (copyArray.length == newArray.length) {
       setWantCategories([...newArray, id]);
@@ -111,9 +110,9 @@ function ListProductCus({ data }) {
   };
 
   const _handel_Add_tags = (id) => {
-    let copyArray = [...wantTags];
+    const copyArray = [...wantTags];
 
-    let newArray = copyArray.filter((element) => element != id);
+    const newArray = copyArray.filter((element) => element != id);
 
     if (copyArray.length == newArray.length) {
       setWantTags([...newArray, id]);
@@ -126,7 +125,7 @@ function ListProductCus({ data }) {
 
   const _handel_call_another_page_api = async (witchFilter) => {
     try {
-      let response = await http.get(`/api/v1/products/`, {
+      const response = await http.get(`/api/v1/products/`, {
         params: {
           ...(witchFilter ? witchFilter : null),
           search: searchWord,
@@ -166,7 +165,7 @@ function ListProductCus({ data }) {
   // Get all shops
   const _get_all_shops = async () => {
     if (shopsName.length == 0) {
-      let shops = await http.get(ApiReference.allShops);
+      const shops = await http.get(ApiReference.allShops);
 
       if (shops.status === 200) {
         setShopsName(shops.data);
@@ -174,8 +173,8 @@ function ListProductCus({ data }) {
     }
   };
   // Function for search
-  const _handel_search = (word) => {
-    let copy_Array = [...shopsName];
+  const handelSearch = (word) => {
+    const copy_Array = [...shopsName];
     let filterArray = [];
     if (word != "") {
       filterArray = copy_Array.filter((el) => el.title.includes(word));
@@ -218,7 +217,7 @@ function ListProductCus({ data }) {
         setHasMore(true);
         setIsLoading(true);
 
-        let params = {
+        const params = {
           ...(witchFilter ? witchFilter : null),
           search: searchWord,
           ...(whichOrdering !== "" && { ordering: whichOrdering }),
@@ -242,7 +241,7 @@ function ListProductCus({ data }) {
         };
 
         try {
-          let response = await http.get(`/api/v1/products/`, { params });
+          const response = await http.get(`/api/v1/products/`, { params });
 
           if (response.status === 200) {
             setListWithFilter(response.data.results);
@@ -339,11 +338,11 @@ function ListProductCus({ data }) {
               >
                 <Search
                   onClick={_get_all_shops}
-                  onChange={(e) => _handel_search(e.target.value)}
+                  onChange={(e) => handelSearch(e.target.value)}
                 />
                 {searchShops.length > 0 && (
                   <div className={styles.numBag}>
-                    <span> {_asist.PSeparator(searchShops.length)}</span>
+                    <span> {diviedNumber(searchShops.length)}</span>
                     حجره
                   </div>
                 )}
@@ -498,7 +497,7 @@ function ListProductCus({ data }) {
               ) : (
                 <InfiniteScroll
                   className="mx-auto row"
-                  dataLength={listWithFilter.length} //This is important field to render the next data
+                  dataLength={listWithFilter.length} // This is important field to render the next data
                   next={_handel_call_another_page_api}
                   hasMore={hasMore}
                   loader={<h4>کمی صبر...</h4>}
@@ -579,11 +578,11 @@ function ListProductCus({ data }) {
             <CustomAccordion title="جست و جو براساس حجره" item="searchShop">
               <Search
                 onClick={_get_all_shops}
-                onChange={(e) => _handel_search(e.target.value)}
+                onChange={(e) => handelSearch(e.target.value)}
               />
               {searchShops.length > 0 && (
                 <div className={styles.numBag}>
-                  <span> {_asist.PSeparator(searchShops.length)}</span>
+                  <span> {diviedNumber(searchShops.length)}</span>
                   حجره
                 </div>
               )}

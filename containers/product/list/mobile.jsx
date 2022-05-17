@@ -14,8 +14,8 @@ import CustomModal from "../../../components/custom/customModal";
 import styles from "../../../styles/pages/product/mobileList.module.scss";
 
 const MobileList = ({ loading, productList, activeHojreh, getProduct }) => {
-  let [showModalSort, setShowModalSort] = useState(false);
-  let [showModalEdit, setShowModalEdit] = useState(false);
+  const [showModalSort, setShowModalSort] = useState(false);
+  const [showModalEdit, setShowModalEdit] = useState(false);
 
   return (
     <div className={styles.wrapper}>

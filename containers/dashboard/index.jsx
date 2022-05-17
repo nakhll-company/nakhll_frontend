@@ -23,22 +23,17 @@ import { authhttp } from "../../services/callApi/api";
 
 const _asist = new Assistent();
 SwiperCore.use([EffectFade, Autoplay, Navigation, Pagination, Scrollbar, A11y]);
-/**
- * component for dashboard page
- * @param {string} activeHojreh
- */
+
 function Dashboard({ activeHojreh }) {
   const [api, setApi] = useState({});
-  let [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
       await setLoading(true);
       const _handleRequestApi = async () => {
-        let params = {};
-        let loadData = null;
-        let dataUrl = `/api/v1/dashboard/${activeHojreh}/`;
-        let response = await authhttp.get(dataUrl);
+        const dataUrl = `/api/v1/dashboard/${activeHojreh}/`;
+        const response = await authhttp.get(dataUrl);
         // check status code
         if (response.status === 200) {
           setApi(await response.data);

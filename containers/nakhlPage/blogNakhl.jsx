@@ -1,11 +1,10 @@
 import Image from "next/image";
-import { useRouter } from "next/router";
+
 import React from "react";
 import s from "./blogNakhl.module.scss";
 import ButtonLanding from "./ButtonLanding";
 
 function BlogNakhl({ dataBlog }) {
-  const router = useRouter();
   return (
     <div className={s.container}>
       <div className={s.partImages}>

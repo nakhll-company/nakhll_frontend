@@ -5,7 +5,7 @@ import Image from "next/image";
 import styles from "./Category.module.scss";
 
 function Category() {
-  let root = [
+  const root = [
     { pos: "arayesh.svg", title: "آرایشی" },
     { pos: "atari.svg", title: "عطاری" },
 

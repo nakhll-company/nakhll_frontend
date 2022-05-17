@@ -21,8 +21,8 @@ function AddFavorites() {
   const [textInput, settextInput] = useState("");
   const [openList, setOpenList] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  let apiCreat = ApiReference.PinnedURL.creat.url;
-  let apiListPinned = ApiReference.PinnedURL.PinnedList.url;
+  const apiCreat = ApiReference.PinnedURL.creat.url;
+  const apiListPinned = ApiReference.PinnedURL.PinnedList.url;
 
   const transition = useTransition(isVisible, {
     from: { x: -100, y: 800, opacity: 0 },
@@ -48,7 +48,7 @@ function AddFavorites() {
         name: textInput == "" ? "بدون عنوان" : textInput,
       };
 
-      let response = await authhttp.post(apiCreat, newFav);
+      const response = await authhttp.post(apiCreat, newFav);
 
       if (response.status === 201) {
         dispatch(_addToWishList(response.data));
@@ -60,17 +60,17 @@ function AddFavorites() {
 
   // function Delete form fav
   const _handel_delete_from_fav = async (ID) => {
-    let urlDelet = `/api/v1/shop/pinned-urls/${ID}/`;
-    let deletePinned = await authhttp.delete(urlDelet);
-    let arr = [...listFav];
-    let arrDeleted = arr.filter((el) => el.id !== ID);
+    const urlDelet = `/api/v1/shop/pinned-urls/${ID}/`;
+    const deletePinned = await authhttp.delete(urlDelet);
+    const arr = [...listFav];
+    const arrDeleted = arr.filter((el) => el.id !== ID);
     setListFav(arrDeleted);
     return deletePinned;
   };
 
   useEffect(() => {
     async function fetchData() {
-      let response = await authhttp.get(apiListPinned);
+      const response = await authhttp.get(apiListPinned);
 
       if (response.status == 200) {
         setListFav(response.data);

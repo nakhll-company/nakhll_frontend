@@ -8,7 +8,7 @@ import { ApiReference } from "../../../api/Api";
 import { errorMessage } from "../../../utils/toastifyMessage";
 import { _updateUrl } from "../../../redux/actions/liveEdit/_updateUrl";
 import { _updateVideo } from "../../../redux/actions/liveEdit/_updateVideo";
-import { _showSelect_url } from "../../../redux/actions/liveEdit/_showSelect_url";
+import { showSelectUrl } from "../../../redux/actions/liveEdit/showSelectUrl";
 // components
 import SubButton from "../../settings/components/subButton";
 import TextAreaUseForm from "../../creat/component/textAreaUseForm";
@@ -22,7 +22,7 @@ function SelectUrl({ idLanding }) {
   const dispatch = useDispatch();
   const [list, setList] = useState([]);
   const [showInput, setShowInput] = useState(false);
-  let apiListPinned = ApiReference.PinnedURL.PinnedList.url;
+  const apiListPinned = ApiReference.PinnedURL.PinnedList.url;
   const { register, handleSubmit } = useForm({
     criteriaMode: "all",
     mode: "all",
@@ -30,7 +30,7 @@ function SelectUrl({ idLanding }) {
 
   useEffect(() => {
     async function fetchData() {
-      let response = await authhttp.get(apiListPinned);
+      const response = await authhttp.get(apiListPinned);
       if (response.status == 200) {
         setList(response.data);
       }
@@ -39,19 +39,19 @@ function SelectUrl({ idLanding }) {
   }, [apiListPinned]);
 
   const onSubmit = async (data) => {
-    let str = data.video;
+    const str = data.video;
 
     if (str.includes("https://www.aparat.com/embed/")) {
-      let indexStartId = str.indexOf("id=");
+      const indexStartId = str.indexOf("id=");
 
-      let indexStartScript = str.indexOf('src="');
+      const indexStartScript = str.indexOf('src="');
 
       if (indexStartId == "-1" || indexStartScript == "-1") {
         errorMessage("لطفا یک ویدیو آپارات را وارد کنید");
       } else {
-        let id = str.substring(str.indexOf("id=") + 4, str.indexOf(">") - 1);
+        const id = str.substring(str.indexOf("id=") + 4, str.indexOf(">") - 1);
 
-        let src = str.substring(
+        const src = str.substring(
           str.indexOf('src="') + 5,
           str.indexOf("</script>") - 2
         );
@@ -61,7 +61,7 @@ function SelectUrl({ idLanding }) {
         dispatch(
           _updateVideo({ id: id, src: src }, " اسکریپت فیلم موجود است.")
         );
-        dispatch(_showSelect_url());
+        dispatch(showSelectUrl());
       }
     } else {
       errorMessage("لطفا یک ویدیو آپارات را وارد کنید");
@@ -76,7 +76,7 @@ function SelectUrl({ idLanding }) {
             <i
               className="far fa-times-circle"
               onClick={() => {
-                dispatch(_showSelect_url());
+                dispatch(showSelectUrl());
               }}
             ></i>
           </span>
@@ -125,7 +125,7 @@ function SelectUrl({ idLanding }) {
                   className={styles.wrapItem}
                   onClick={() => {
                     dispatch(_updateUrl(el.link, el.name));
-                    dispatch(_showSelect_url());
+                    dispatch(showSelectUrl());
                   }}
                 >
                   <span className={styles.numbers}>

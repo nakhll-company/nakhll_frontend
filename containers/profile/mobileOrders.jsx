@@ -2,13 +2,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import Assistent from "zaravand-assistent-number";
+
 // methods
 import { checkTimeOrder } from "./methods/checkTimeOrder";
 // scss
 import styles from "./scss/mobileOrders.module.scss";
+import diviedNumber from "../../utils/diviedNumber";
 
-const _asist = new Assistent();
+
 
 const MobileOrders = ({
   ordersList,
@@ -25,7 +26,7 @@ const MobileOrders = ({
         </div>
       ) : ordersList.length > 0 ? (
         ordersList.map((value, index) => {
-          let statusOrder = checkTimeOrder(value.created_time_jalali);
+          const statusOrder = checkTimeOrder(value.created_time_jalali);
           return (
             <div className={styles.list_items} key={index}>
               <div className={`${styles.right} p-3`}>
@@ -33,7 +34,7 @@ const MobileOrders = ({
                   شماره سفارش
                 </span>
                 <span className="text-dark font-weight-bold">
-                  {_asist.number(value.id)}
+                  {value.id}
                 </span>
               </div>
               <div className={`${styles.left} p-3 d-flex align-items-center`}>
@@ -81,7 +82,7 @@ const MobileOrders = ({
                 <span className="text-secondary d-block mb-2 d-lg-none">
                   تاریخ ثبت سفارش
                 </span>
-                <span>{_asist.number(value.created_date_jalali)}</span>
+                <span>{value.created_date_jalali}</span>
               </div>
               <div className={`${styles.price} p-3`}>
                 <span className="text-secondary d-block mb-2 d-lg-none">
@@ -90,7 +91,7 @@ const MobileOrders = ({
                 <span>
                   {value.status !== "awaiting_paying" &&
                     value.status !== "canceled" &&
-                    _asist.PSeparator(`${value.final_price / 10} تومان`)}
+                    diviedNumber(`${value.final_price / 10} تومان`)}
                 </span>
               </div>
               <div className={`${styles.images} p-3`}>

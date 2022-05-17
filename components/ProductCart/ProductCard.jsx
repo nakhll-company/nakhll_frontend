@@ -3,7 +3,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import Assistent from "zaravand-assistent-number";
+
 import { useDispatch } from "react-redux";
 // methods
 
@@ -14,8 +14,7 @@ import { FaRegBookmark, FaPlus, FaWindowClose } from "react-icons/fa";
 // scss
 import styles from "./ProductCard.module.scss";
 import { _addProduct } from "../../redux/actions/cart/_addProduct";
-
-const _asist = new Assistent();
+import diviedNumber from "../../utils/diviedNumber";
 
 const ProductCard = ({
   sm = 6,
@@ -155,7 +154,7 @@ const ProductCard = ({
           </div>
           {product.discountNumber !== 0 && (
             <div className={`_product_card_discount  ${styles.discount_badge}`}>
-              {_asist.number(product.discount)}%
+              {product.discount}%
             </div>
           )}
           {product.is_advertisement && (
@@ -205,7 +204,7 @@ const ProductCard = ({
               style={{ display: "flex", flexDirection: "column" }}
             >
               <span className="_product_card_orginal_number">
-                {_asist.PSeparator(product.price)}
+                {diviedNumber(product.price)}
               </span>
               <span
                 className="_product_card_discount_number"
@@ -215,7 +214,7 @@ const ProductCard = ({
                 }}
               >
                 {product.discountNumber !== 0 &&
-                  _asist.PSeparator(product.discountNumber)}
+                  diviedNumber(product.discountNumber)}
               </span>
             </div>
             <span

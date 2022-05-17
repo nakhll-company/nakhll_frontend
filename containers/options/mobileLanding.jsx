@@ -26,7 +26,7 @@ const MobileLanding = ({ landingList, activeHojreh, setLandingList }) => {
           <span
             className={styles.link_add}
             onClick={async () => {
-              let response = await authhttp.post(
+              const response = await authhttp.post(
                 `/api/v1/shop/landings/${activeHojreh}/`,
                 {
                   name: "صفحه بدون نام",

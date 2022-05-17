@@ -1,4 +1,4 @@
-export const _showSelect_url = () => {
+export const showSelectUrl = () => {
   return async (dispatch) => {
     await dispatch({ type: "SHOW_SELECT_URL" });
   };

@@ -6,7 +6,7 @@ import styles from "./MegaMenuMobile.module.scss";
 
 function MegaMenuMobile({ category }) {
   const _handel_according = (accord, icon) => {
-    let element = document.getElementById(accord);
+    const element = document.getElementById(accord);
     if (element.style.height == "0px") {
       element.style.height = "unset";
       document.getElementById(icon).className = "fas fa-angle-up";

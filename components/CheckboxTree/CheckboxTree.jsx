@@ -1,13 +1,11 @@
 // node libraries
 import CheckboxTree from "react-checkbox-tree";
-import Assistent from "zaravand-assistent-number";
 import React, { useEffect, useState, Fragment } from "react";
 // components
 import TitleLiner from "../../containers/settings/components/titleLiner";
 // methods
 import { allCites } from "../../utils/allCities";
-
-const _asist = new Assistent();
+import diviedNumber from "../../utils/diviedNumber";
 
 function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
   const [allOfCity, setAllOfCity] = useState([]);
@@ -75,13 +73,13 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
 
       selectBigCity.map((bigCity) => {
         if (bigCity.checked) {
-          let trueCopyArray = bigCity.children.map((city) => city);
+          const trueCopyArray = bigCity.children.map((city) => city);
           true_cities_from_BigCity = [
             ...true_cities_from_BigCity,
             ...trueCopyArray,
           ];
         } else {
-          let falseCopyArray = bigCity.children.map((city) => city);
+          const falseCopyArray = bigCity.children.map((city) => city);
           false_cities_from_BigCity = [
             ...false_cities_from_BigCity,
             ...falseCopyArray,
@@ -98,12 +96,12 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
       });
 
       // MIXING ALL STATE
-      let combineTrueCities = [
+      const combineTrueCities = [
         ...cities_from_stat,
         ...true_cities_from_BigCity,
         ...true_cities_from_cities,
       ];
-      let combineFalseCities = [
+      const combineFalseCities = [
         ...false_cities_from_BigCity,
         ...false_cities_from_cities,
       ];
@@ -133,15 +131,15 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
   };
 
   // search from tree
-  const _handel_search = (word) => {
+  const handelSearch = (word) => {
     if (word == "") {
       setSearchCities(allCites);
       setExpandCity([]);
     } else {
-      let secoundLevelSearch = [];
-      let selectIDForExpand = [];
+      const secoundLevelSearch = [];
+      const selectIDForExpand = [];
       allCites.map((States) => {
-        let selectedBigCity = [];
+        const selectedBigCity = [];
         States.children.map((BigCity) => {
           if (BigCity.label.includes(word)) {
             selectedBigCity.push(BigCity);
@@ -226,7 +224,7 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
             }}
             type="search"
             placeholder="جستجو بر اساس شهرستان"
-            onChange={(e) => _handel_search(e.target.value)}
+            onChange={(e) => handelSearch(e.target.value)}
           />
 
           <div
@@ -287,7 +285,7 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
             marginTop: "15px",
           }}
         >
-          شهرهای انتخابی ( {_asist.PSeparator(allOfCity.length)}) :{" "}
+          شهرهای انتخابی ( {diviedNumber(allOfCity.length)}) :{" "}
         </div>
       )}
       <div

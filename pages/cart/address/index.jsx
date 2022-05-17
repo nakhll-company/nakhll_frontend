@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import Head from "next/head";
 import Link from "next/link";
@@ -24,9 +25,9 @@ const Address = () => {
   const [loaderButton, setLoaderButton] = useState(false);
   const router = useRouter();
   const userLogin = useSelector((state) => state.User.userInfo);
-  let [address, setAddress] = useState([]);
-  let [loading, setLoading] = useState(true);
-  let [showModal, setShowModal] = useState({
+  const [address, setAddress] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useState({
     show: false,
     id: 0,
   });

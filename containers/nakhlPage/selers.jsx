@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { useEffect, useRef, useState } from "react";
-import { AiFillPauseCircle, AiFillPlayCircle } from "react-icons/ai";
+import React from "react";
+
 import s from "./selers.module.scss";
 
 const dataSelers = [

@@ -1,3 +1,4 @@
+import React from "react";
 import styles from "./Headers.module.scss";
 
 export default Headers = ({ onMenu, setOnMenu }) => {

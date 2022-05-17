@@ -15,7 +15,7 @@ import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
 import {
   _call_Category,
   _get_all_shops,
-  _handel_search,
+  handelSearch,
 } from "../../../api/header";
 // style
 import styles from "./header.module.scss";
@@ -39,7 +39,7 @@ function Header() {
   useEffect(() => {
     async function fetchData() {
       dispatch(getUserInfo());
-      let getCategory = await _call_Category();
+      const getCategory = await _call_Category();
       setCategory(getCategory);
     }
     fetchData();
@@ -107,13 +107,13 @@ function Header() {
                       placeholder="جستجو در نخل ..."
                       onClick={async () => {
                         if (shopsName.length == 0) {
-                          let getShopsName = await _get_all_shops(shopsName);
+                          const getShopsName = await _get_all_shops(shopsName);
                           setShopsName(getShopsName);
                         }
                       }}
                       onChange={(e) => {
                         setInputSearch(e.target.value);
-                        let searchedShop = _handel_search(
+                        const searchedShop = handelSearch(
                           e.target.value,
                           shopsName
                         );
@@ -169,7 +169,7 @@ function Header() {
                     </Link> */}
                     <div
                       onClick={async () => {
-                        let response = await http.post(
+                        const response = await http.post(
                           "/api/v1/auth/begin/login_register/",
                           { mobile: userLog.mobile_number }
                         );
@@ -361,12 +361,12 @@ function Header() {
                   type="text"
                   className="form-control"
                   onClick={async () => {
-                    let getShopsName = await _get_all_shops(shopsName);
+                    const getShopsName = await _get_all_shops(shopsName);
                     setShopsName(getShopsName);
                   }}
                   onChange={(e) => {
                     setInputSearch(e.target.value);
-                    let searchedShop = _handel_search(
+                    const searchedShop = handelSearch(
                       e.target.value,
                       shopsName
                     );

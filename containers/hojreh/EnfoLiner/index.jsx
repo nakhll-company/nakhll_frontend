@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "./Enfo.module.scss";
 
 function EnfoLiner({ data, title, profile, name }) {
-  let campBadge = (
+  const campBadge = (
     <>
       <div
         className={styles._product_card_camp_badge}

@@ -8,8 +8,8 @@ import { paginationStructure } from "../../../utils/pagination";
 const _asist = new Assistent();
 
 const DesktopFooter = ({ productList, getProduct, activeHojreh }) => {
-  let [numberPage, setNumberPage] = useState(1);
-  let pagination = paginationStructure(
+  const [numberPage, setNumberPage] = useState(1);
+  const pagination = paginationStructure(
     numberPage,
     howManyPage(productList.total_count, 50)
   );

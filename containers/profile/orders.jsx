@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
-import Assistent from "zaravand-assistent-number";
+
 // components
 import MobileOrders from "./mobileOrders";
 import useViewport from "../../components/viewPort";
@@ -12,10 +12,10 @@ import { getUserOrders } from "./methods/getUserOrders";
 import { checkTimeOrder } from "./methods/checkTimeOrder";
 // scss
 import styles from "./scss/orders.module.scss";
+import diviedNumber from "../../utils/diviedNumber";
 /**
  * orders in profile
  */
-const _asist = new Assistent();
 
 const Orders = ({ setProfilePages, setInvoiceId }) => {
   const breakpoint = 900;
@@ -68,16 +68,16 @@ const Orders = ({ setProfilePages, setInvoiceId }) => {
                 </tr>
               ) : ordersList.length > 0 ? (
                 ordersList.map((value, index) => {
-                  let statusOrder = checkTimeOrder(value.created_time_jalali);
+                  const statusOrder = checkTimeOrder(value.created_time_jalali);
                   return (
                     <tr key={index}>
-                      <td>{_asist.number(index + 1)}</td>
-                      <td>{_asist.number(value.id)}</td>
-                      <td>{_asist.number(value.created_date_jalali)}</td>
+                      <td>{index + 1}</td>
+                      <td>{value.id}</td>
+                      <td>{value.created_date_jalali}</td>
                       <td>
                         {value.status !== "awaiting_paying" &&
                           value.status !== "canceled" &&
-                          _asist.PSeparator(`${value.final_price / 10} تومان`)}
+                          diviedNumber(`${value.final_price / 10} تومان`)}
                       </td>
                       <td>
                         {value.items.length > 0 &&

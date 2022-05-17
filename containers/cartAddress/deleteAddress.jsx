@@ -3,9 +3,7 @@ import { getAddress } from "../../api/cartAddress/getAddress";
 import { deleteAddress } from "../../api/cartAddress/deleteAddress";
 // styles
 import styles from "../../styles/pages/cart/deleteAddress.module.scss";
-/**
- * component delete modal
- */
+
 const DeleteAddress = ({ onClose, id, setAddress }) => {
   return (
     <div>

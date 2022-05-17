@@ -8,7 +8,7 @@ import DesktopFooter from "./desktopFooter";
 import CustomBadge from "../../../components/custom/customBadge";
 // scss
 import styles from "../../../styles/pages/product/desktopList.module.scss";
-//functions
+// functions
 import { groupProductResponse } from "../groupProduct/methods/groupProductResponse";
 import { groupProductResponseEdit } from "../groupProduct/methods/groupProductResponseEdit";
 

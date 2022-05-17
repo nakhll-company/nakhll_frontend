@@ -26,8 +26,8 @@ const Failed = ({ code }) => {
             شماره سفارش : {_asist.number(`${code}`)}{" "}
           </h4>
           <h5 className={styles.text_sub_last}>
-            چنانچه طی این فرایند مبلغی از حساب شما کسر شده است ، طی{" "}
-            {_asist.PSeparator(72)} ساعت آینده به حساب شما باز خواهد گشت.
+            چنانچه طی این فرایند مبلغی از حساب شما کسر شده است ، طی 72 ساعت
+            آینده به حساب شما باز خواهد گشت.
           </h5>
 
           <h5 className={styles.text_sub_last_Sup}>

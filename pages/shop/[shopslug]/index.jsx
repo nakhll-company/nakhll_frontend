@@ -40,9 +40,9 @@ import { http } from "../../../services/callApi/api";
 
 // fetch data
 const fetchData = async (id) => {
-  let Api_Shop = encodeURI(`${ApiReference.shop}${id}/`);
+  const Api_Shop = encodeURI(`${ApiReference.shop}${id}/`);
 
-  let response = await http.get(Api_Shop);
+  const response = await http.get(Api_Shop);
 
   if (response.status === 200) {
     return {

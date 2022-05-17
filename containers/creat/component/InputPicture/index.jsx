@@ -56,8 +56,8 @@ function InputPictureCreat({ setImageSrc, image, ratio }) {
                 );
               } else {
                 const file = e.target.files[0];
-                let imageDataUrl = await readFile(file);
-                var options = {
+                const imageDataUrl = await readFile(file);
+                const options = {
                   maxSizeMB: 1,
                   maxWidthOrHeight: 1920,
                   useWebWorker: true,

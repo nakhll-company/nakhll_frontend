@@ -9,7 +9,7 @@ function readFile(file) {
 export const selectImage = async (e, setImageSrc, setShowModal) => {
   if (e.target.files && e.target.files.length > 0) {
     const file = e.target.files[0];
-    let imageDataUrl = await readFile(file);
+    const imageDataUrl = await readFile(file);
     setImageSrc(imageDataUrl);
     setShowModal(true);
   }

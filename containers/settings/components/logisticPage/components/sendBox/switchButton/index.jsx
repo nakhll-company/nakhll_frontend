@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+
 import { authhttp } from "../../../../../../../services/callApi/api";
 import styles from "./switchButton.module.scss";
 
 function SwitchButtonSetting({ id, isActive }) {
   const [Activer, setActiver] = useState(isActive);
-  const handel_chamnge_status = async () => {
+  const handelChamngeStatus = async () => {
     setActiver((e) => !e);
-    let response = await authhttp.put(
+    const response = await authhttp.put(
       `/api/v1/logistic/shop-logistic-unit/${id}/`,
       {
         is_active: !isActive,
@@ -23,7 +23,7 @@ function SwitchButtonSetting({ id, isActive }) {
           type="checkbox"
           id={`switch__${id}`}
           className={styles.custom_switch__input}
-          onChange={handel_chamnge_status}
+          onChange={handelChamngeStatus}
           // defaultChecked={isActive}
           checked={Activer}
           // value={isActive}

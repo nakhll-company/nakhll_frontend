@@ -28,7 +28,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
   const [isShowOrder, setisShowOrder] = useState(false);
   const [activeOptions, setActiveOptions] = useState([]);
 
-  const ExitDash = () => {
+  const exitDash = () => {
     router.push("/");
   };
 
@@ -48,7 +48,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
     fetchData();
   }, [userInfo.shops]);
 
-  const ForHeader = (option) => {
+  const forHeader = (option) => {
     setTitle(option.target[option.target.selectedIndex].text);
   };
 
@@ -237,7 +237,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                     setselectShop(a.target.value);
                     setSlugHojreh(a.target.value);
                     getActiveHojreh(a.target.value);
-                    ForHeader(a);
+                    forHeader(a);
                   }}
                 >
                   {userInfo.shops &&
@@ -297,7 +297,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
 
                 <button
                   className={styles.info_card_btn_one}
-                  onClick={() => ExitDash()}
+                  onClick={() => exitDash()}
                 >
                   <i
                     style={{ fontSize: "20px" }}

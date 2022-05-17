@@ -1,3 +1,4 @@
+import React from "react";
 import st from "./sendBox.module.scss";
 import SwitchButtonSetting from "./switchButton";
 

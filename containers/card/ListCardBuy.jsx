@@ -4,7 +4,7 @@ import { useContext } from "react";
 import ContextProduct from "./Context/context";
 import Loading from "../../components/loading";
 import React, { useState, Fragment } from "react";
-import Assistent from "zaravand-assistent-number";
+
 import styles from "../../styles/pages/cart/cart.module.scss";
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
@@ -13,15 +13,14 @@ import { _reduceProduct } from "../../redux/actions/cart/_reduceProduct";
 import { _deleteProduct } from "../../redux/actions/cart/_deleteProduct";
 // LODASH
 import { isEmpty } from "lodash";
-
-const _asist = new Assistent();
+import diviedNumber from "../../utils/diviedNumber";
 
 export default function ListCardBuy() {
   const dispatch = useDispatch();
   const All_product_list_buy = useSelector((state) => state.Cart.allProduct);
 
-  let [loading, setLoading] = useState(false);
-  let [productId, setProductId] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [productId, setProductId] = useState(0);
 
   const {
     handel_DeleteProductFromList,
@@ -69,7 +68,7 @@ export default function ListCardBuy() {
                     </Link>
                   </div>
                 )}
-                {/*^^^^^^^^^^^ IF CHANGE IN PRODUCT IN LIST ^^^^^^^^^^^*/}
+                {/* ^^^^^^^^^^^ IF CHANGE IN PRODUCT IN LIST ^^^^^^^^^^^*/}
                 <div className="p-3 mt-2 cart-product-item">
                   {loading && productId === El.product.ID ? (
                     <div>
@@ -99,7 +98,7 @@ export default function ListCardBuy() {
                                 href={`/shop/${El.product.FK_Shop.slug}/product/${El.product.Slug}/`}
                               >
                                 <a className="product-link d-block font-size1 link-body font-weight-bold text-truncate">
-                                  {_asist.number(El.product.Title)}
+                                  {El.product.Title}
                                 </a>
                               </Link>
                               <i
@@ -129,7 +128,7 @@ export default function ListCardBuy() {
                                 El.product.discount == 0 && "opacity_none"
                               }`}
                             >
-                              {_asist.number(El.product.discount)}
+                              {El.product.discount}
                               <span> %</span>
                             </div>
                             <div className="d-flex align-items-center">
@@ -169,7 +168,7 @@ export default function ListCardBuy() {
                                     min="0"
                                     type="text"
                                     disabled="disabled"
-                                    value={_asist.number(El.count)}
+                                    value={El.count}
                                     className="bg-white border-0 font-size1-2 font-weight-bold form-control mt-1 px-1 text-center"
                                   />
                                   <div className="input-group-append">
@@ -209,10 +208,10 @@ export default function ListCardBuy() {
                                     El.product.discount == 0 && "opacity_none"
                                   }`}
                                 >
-                                  {_asist.PSeparator(El.total_old_price / 10)}
+                                  {diviedNumber(El.total_old_price / 10)}
                                 </span>{" "}
                                 <span className="font-weight-bold">
-                                  {_asist.PSeparator(El.total_price / 10)}
+                                  {diviedNumber(El.total_price / 10)}
                                 </span>{" "}
                                 <span>تومان</span>
                               </div>
@@ -238,7 +237,7 @@ export default function ListCardBuy() {
                     className="mt-0 cart-product-group bg-white"
                     style={{ position: "relative" }}
                   >
-                    {/*^^^^^^^^^^^ IF CHANGE IN PRODUCT IN LIST ^^^^^^^^^^^*/}
+                    {/* ^^^^^^^^^^^ IF CHANGE IN PRODUCT IN LIST ^^^^^^^^^^^*/}
                     <div className="p-3  cart-product-item margin_top_zero">
                       <div className="d-flex flex-wrap justify-content-between">
                         <div className="d-flex w-100">
@@ -260,7 +259,7 @@ export default function ListCardBuy() {
                             >
                               <Link href={El.product.url}>
                                 <a className="product-link d-block font-size1 link-body font-weight-bold text-truncate">
-                                  {_asist.number(El.product.Title)}
+                                  {El.product.Title}
                                 </a>
                               </Link>
                               <i
@@ -282,7 +281,7 @@ export default function ListCardBuy() {
                                 El.product.discount == 0 && "opacity_none"
                               }`}
                             >
-                              {_asist.number(El.product.discount)}
+                              {El.product.discount}
                               <span> %</span>
                             </div>
                             <div className="d-flex align-items-center">
@@ -315,7 +314,7 @@ export default function ListCardBuy() {
                                     min="0"
                                     type="text"
                                     disabled="disabled"
-                                    value={_asist.number(El.count)}
+                                    value={El.count}
                                     className="bg-white border-0 font-size1-2 font-weight-bold form-control mt-1 px-1 text-center"
                                   />
                                   <div className="input-group-append">
@@ -345,10 +344,10 @@ export default function ListCardBuy() {
                                     El.product.discount == 0 && "opacity_none"
                                   }`}
                                 >
-                                  {_asist.PSeparator(El.total_old_price / 10)}
+                                  {diviedNumber(El.total_old_price / 10)}
                                 </span>{" "}
                                 <span className="font-weight-bold">
-                                  {_asist.PSeparator(El.total_price / 10)}
+                                  {diviedNumber(El.total_price / 10)}
                                 </span>{" "}
                                 <span>تومان</span>
                               </div>

@@ -15,9 +15,7 @@ import InputPictureSetting from "../settings/components/InputPicture";
 import styles from "./scss/editProfile.module.scss";
 import AppButton from "../../components/AppButton";
 import { base64Profile } from "../../public/icons/icon";
-/**
- * edit profile
- */
+
 const EditProfile = ({ dataProfile, setDataProfile }) => {
   const {
     register,
@@ -25,9 +23,9 @@ const EditProfile = ({ dataProfile, setDataProfile }) => {
     formState: { errors },
   } = useForm();
 
-  let [selectState, setSelectState] = useState([]);
-  let [selectBigCities, setSelectBigCities] = useState([]);
-  let [selectCities, setSelectCities] = useState([]);
+  const [selectState, setSelectState] = useState([]);
+  const [selectBigCities, setSelectBigCities] = useState([]);
+  const [selectCities, setSelectCities] = useState([]);
   const [imgProfile, setImgProfile] = useState(
     dataProfile.image ? dataProfile.image : null
   );
@@ -163,7 +161,7 @@ const EditProfile = ({ dataProfile, setDataProfile }) => {
             {...register("State")}
             className="form-control ms-2"
             onChange={async (event) => {
-              let optionsArray = Object.values(event.target.options);
+              const optionsArray = Object.values(event.target.options);
               setSelectBigCities(
                 await getBigCities(
                   optionsArray[event.target.options.selectedIndex].id
@@ -189,7 +187,7 @@ const EditProfile = ({ dataProfile, setDataProfile }) => {
             {...register("BigCity")}
             className="form-control ms-2"
             onChange={async (event) => {
-              let optionsArray = Object.values(event.target.options);
+              const optionsArray = Object.values(event.target.options);
               setSelectCities(
                 await getCities(
                   optionsArray[event.target.options.selectedIndex].id

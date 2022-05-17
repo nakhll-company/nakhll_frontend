@@ -1,15 +1,6 @@
 import React from "react";
 import styles from "../../../styles/components/custom/label.module.scss";
-/**
- * component of custom badge
- * @param {string} value => value of label
- * @param {string} label => label of label
- * @param {string} customLabelDiv => class name of div wrapper of labels
- * @param {string} customLabel => class name of span label
- * @param {string} customValue => class name of span value
- * @param {string} valuePrice => class name of span value
- * @param {string} valueOldPrice => class name of span value
- */
+
 const CustomLabel = ({
   type,
   value,

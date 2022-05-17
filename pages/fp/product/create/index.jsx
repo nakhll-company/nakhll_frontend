@@ -62,11 +62,11 @@ const CreateProduct = ({ activeHojreh }) => {
   useEffect(() => {
     async function fetchData() {
       if (activeHojreh) {
-        const response_categories = await _ApiGetCategories();
-        if (response_categories.status === 200) {
+        const responseCategories = await _ApiGetCategories();
+        if (responseCategories.status === 200) {
           setIsLoad(true);
-          setData(response_categories.data); // ==> output: {}
-          setCategories(response_categories.data);
+          setData(responseCategories.data); // ==> output: {}
+          setCategories(responseCategories.data);
         }
         const tags = await _ApiGetTags(activeHojreh);
         if (tags.status < 300) {
@@ -92,24 +92,24 @@ const CreateProduct = ({ activeHojreh }) => {
 
   const onSubmit = async (data) => {
     setIsloadingForCreate(true);
-    const Product_Banner = [];
+    const ProductBanner = [];
     if (imgProductOne) {
-      Product_Banner.push({ Image: imgProductOne });
+      ProductBanner.push({ Image: imgProductOne });
     }
     if (imgProductTwo) {
-      Product_Banner.push({ Image: imgProductTwo });
+      ProductBanner.push({ Image: imgProductTwo });
     }
     if (imgProductThree) {
-      Product_Banner.push({ Image: imgProductThree });
+      ProductBanner.push({ Image: imgProductThree });
     }
     if (imgProductFour) {
-      Product_Banner.push({ Image: imgProductFour });
+      ProductBanner.push({ Image: imgProductFour });
     }
     if (imgProductFive) {
-      Product_Banner.push({ Image: imgProductFive });
+      ProductBanner.push({ Image: imgProductFive });
     }
     if (imgProductSix) {
-      Product_Banner.push({ Image: imgProductSix });
+      ProductBanner.push({ Image: imgProductSix });
     }
 
     const externalData = {
@@ -118,7 +118,7 @@ const CreateProduct = ({ activeHojreh }) => {
       post_range: [],
       category: submarketId,
       Image: imgProduct,
-      Product_Banner: Product_Banner,
+      Product_Banner: ProductBanner,
       product_tags: tags,
     };
 

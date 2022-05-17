@@ -16,7 +16,7 @@ const Product = ({ getProduct, productList, activeHojreh, userInfo }) => {
   const breakpoint = 620;
   const router = useRouter();
   const { width } = useViewport();
-  let [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function getData() {

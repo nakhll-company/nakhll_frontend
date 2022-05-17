@@ -1,4 +1,3 @@
-
 // node libraies
 import { gsap } from "gsap";
 import Head from "next/head";

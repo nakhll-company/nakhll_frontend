@@ -15,7 +15,7 @@ const DesktopFilter = ({ getProduct, activeHojreh }) => {
       onSubmit={(e) => {
         e.preventDefault();
         const data = new FormData(e.target);
-        let result = Object.fromEntries(data.entries());
+        const result = Object.fromEntries(data.entries());
         getProduct(
           activeHojreh,
           result.product_status,

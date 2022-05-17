@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import _ from "lodash";
 import { useEffect, useState } from "react";
@@ -20,19 +21,19 @@ function Products({
   const allPages = _.range(Math.ceil(ProductsShop.length / 50));
   const [searchedProduct, setSearchedProduct] = useState(ProductsShop);
 
-  const _handel_search = (word) => {
+  const handelSearch = (word) => {
     setWordSearch(word);
-    let searchedArray = productList.filter((el) => el.Title.includes(word));
+    const searchedArray = productList.filter((el) => el.Title.includes(word));
     setSearchedProduct(searchedArray);
   };
 
   // function for select checkbox and
-  const _handel_selected_id_product = (data) => {
-    let arrayHelpProducts = [...productList];
-    let arrayHelpSearch = [...searchedProduct];
+  const handelSelectedIdProduct = (data) => {
+    const arrayHelpProducts = [...productList];
+    const arrayHelpSearch = [...searchedProduct];
     data.is_checked = !data.is_checked;
-    var indexProduct = _.findIndex(arrayHelpSearch, { ID: data.ID });
-    var indexSearchProduct = _.findIndex(arrayHelpProducts, { ID: data.ID });
+    const indexProduct = _.findIndex(arrayHelpSearch, { ID: data.ID });
+    const indexSearchProduct = _.findIndex(arrayHelpProducts, { ID: data.ID });
     // Replace item at index using native splice
     arrayHelpProducts.splice(indexProduct, 1, data);
     arrayHelpSearch.splice(indexSearchProduct, 1, data);
@@ -57,8 +58,8 @@ function Products({
 
   // function for send selected cities
   const _handel_send_selected_cities = async () => {
-    let arrayForSend = [];
-    let arraySelectedCities = productList.filter((el) => el.is_checked);
+    const arrayForSend = [];
+    const arraySelectedCities = productList.filter((el) => el.is_checked);
     arraySelectedCities.map((el) => {
       arrayForSend.push(el.ID);
     });
@@ -79,7 +80,7 @@ function Products({
     <>
       <Search
         placeholder="جستجو محصول"
-        onChange={(e) => _handel_search(e.target.value)}
+        onChange={(e) => handelSearch(e.target.value)}
       />
       <div className="d-flex justify-content-center pt-2 pb-2">
         <nav style={{ cursor: "pointer" }} aria-label="Page navigation">
@@ -147,7 +148,7 @@ function Products({
             className="form-check-input"
             type="checkbox"
             id={`Check_${el.ID}_Default`}
-            onChange={() => _handel_selected_id_product(el)}
+            onChange={() => handelSelectedIdProduct(el)}
             checked={el.is_checked}
           />
           <label

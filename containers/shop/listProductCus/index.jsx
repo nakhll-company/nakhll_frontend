@@ -64,8 +64,8 @@ function ListProductShop({ data }) {
   ]);
 
   const _handel_Add_category = (id) => {
-    let copyArray = [...wantCategories];
-    let newArray = copyArray.filter((element) => element != id);
+    const copyArray = [...wantCategories];
+    const newArray = copyArray.filter((element) => element != id);
     if (copyArray.length == newArray.length) {
       setWantCategories([...newArray, id]);
     } else {
@@ -75,7 +75,7 @@ function ListProductShop({ data }) {
 
   const _handel_call_another_page_api = async () => {
     try {
-      let response = await http.get(`/api/v1/products/`, {
+      const response = await http.get(`/api/v1/products/`, {
         params: {
           search: searchWord,
           ordering: whichOrdering,
@@ -111,7 +111,7 @@ function ListProductShop({ data }) {
     const _handel_filters = async () => {
       setHasMore(true);
       setIsLoading(true);
-      let params = {
+      const params = {
         search: searchWord,
         ordering: whichOrdering,
         ready: isReadyForSend,
@@ -128,7 +128,7 @@ function ListProductShop({ data }) {
       };
 
       try {
-        let response = await http.get(`/api/v1/products/`, { params });
+        const response = await http.get(`/api/v1/products/`, { params });
         if (response.status === 200) {
           setListWithFilter(response.data.results);
           if (
@@ -166,7 +166,7 @@ function ListProductShop({ data }) {
   useEffect(() => {
     const _handel_category = async () => {
       try {
-        let response = await authhttp.get(
+        const response = await authhttp.get(
           `/api/v1/categories/category_product_count/?q=${searchWord}`
         );
         if (response.status === 200) {
@@ -334,7 +334,7 @@ function ListProductShop({ data }) {
               ) : (
                 <InfiniteScroll
                   className="mx-auto row"
-                  dataLength={listWithFilter.length} //This is important field to render the next data
+                  dataLength={listWithFilter.length} // This is important field to render the next data
                   next={_handel_call_another_page_api}
                   hasMore={hasMore}
                   loader={<h4>کمی صبر...</h4>}

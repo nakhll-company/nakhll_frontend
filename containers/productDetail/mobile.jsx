@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import Assistent from "zaravand-assistent-number";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Fragment, useState, useEffect } from "react";
 import SwiperCore, { EffectCube, Pagination } from "swiper";
@@ -24,9 +23,10 @@ import { fetchProductShop, getMoreProduct } from "../../api/product/detail";
 import styles from "./productDetail.module.scss";
 import { useDispatch } from "react-redux";
 import { _addProduct } from "../../redux/actions/cart/_addProduct";
+import diviedNumber from "../../utils/diviedNumber";
 
 SwiperCore.use([EffectCube, Pagination]);
-const _asist = new Assistent();
+
 
 const ProductDetailMobile = ({ data }) => {
   const dispatch = useDispatch();
@@ -41,7 +41,7 @@ const ProductDetailMobile = ({ data }) => {
   const userData = useSelector((state) => state.User.userInfo);
   const [posts, setPosts] = useState([...relatedProduct.results]);
 
-  let thumblineImage = [...detail.banners, { image: detail.image }];
+  const thumblineImage = [...detail.banners, { image: detail.image }];
 
   useEffect(() => {
     async function fetchData() {
@@ -179,20 +179,20 @@ const ProductDetailMobile = ({ data }) => {
               <div className={styles.product_attributes}>
                 <CustomLabel
                   type="normal"
-                  value={_asist.PSeparator(detail.net_weight)}
+                  value={diviedNumber(detail.net_weight)}
                   label="وزن خالص"
                 />
                 <CustomLabel
                   type="normal"
-                  value={_asist.PSeparator(detail.weight_with_packing)}
+                  value={diviedNumber(detail.weight_with_packing)}
                   label="وزن خالص با بسته بندی"
                 />
                 {detail.length_with_packing && (
                   <CustomLabel
                     type="normal"
-                    value={`${_asist.PSeparator(
+                    value={`${diviedNumber(
                       detail.length_with_packing
-                    )} * ${_asist.PSeparator(detail.height_with_packaging)}`}
+                    )} * ${diviedNumber(detail.height_with_packaging)}`}
                     label="سایز"
                   />
                 )}
@@ -327,11 +327,12 @@ const ProductDetailMobile = ({ data }) => {
                             className="mb-0"
                           >
                             {parseInt(detail.shop.registered_months) > 1
-                              ? _asist.PSeparator(detail.shop.registered_months)
-                              : _asist.PSeparator(1)}{" "}
+                              ? diviedNumber(detail.shop.registered_months)
+                              : diviedNumber(1)}{" "}
                             ماه در نخل &nbsp;&nbsp;&nbsp;&nbsp;
-                            {_asist.PSeparator(detail.shop.total_products)}{" "}
-                            محصول{" "}
+                            {diviedNumber(
+                              detail.shop.total_products
+                            )} محصول{" "}
                           </a>
                         </Link>
                       </div>
@@ -365,7 +366,7 @@ const ProductDetailMobile = ({ data }) => {
             {/* comments */}
             <section className="col-12">
               <div className={styles.comments_header}>
-                <h3>نظر مشتریان ({_asist.number(comments.length)} نظر)</h3>
+                <h3>نظر مشتریان ({comments.length} نظر)</h3>
               </div>
               {comments.length > 0 &&
                 comments.map((value, index) => {
@@ -389,7 +390,7 @@ const ProductDetailMobile = ({ data }) => {
                               className="text-muted"
                               style={{ fontSize: "13px" }}
                             >
-                              {_asist.number(value.date_create)}
+                              {value.date_create}
                             </span>
                           </div>
                           <span>{value.description}</span>
@@ -422,7 +423,7 @@ const ProductDetailMobile = ({ data }) => {
                                     className="text-muted"
                                     style={{ fontSize: "13px" }}
                                   >
-                                    {_asist.number(value.date_create)}
+                                    {value.date_create}
                                   </span>
                                 </div>
                                 <span>{value.description}</span>
@@ -485,11 +486,11 @@ const ProductDetailMobile = ({ data }) => {
         <div className="ml-2">
           <div className={styles.price_mobile_decoration}>
             <span style={{ fontSize: "1.25rem" }}>
-              {detail.old_price !== 0 && _asist.PSeparator(detail.old_price)}
+              {detail.old_price !== 0 && diviedNumber(detail.old_price)}
             </span>
           </div>
           <div className={styles.price_mobile}>
-            <span>{_asist.PSeparator(detail.price / 10)}</span>
+            <span>{diviedNumber(detail.price / 10)}</span>
             <span> تومان </span>
           </div>
         </div>
