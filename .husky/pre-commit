@@ -1,28 +1,28 @@
-# #!/usr/bin/env sh
-# . "$(dirname -- "$0")/_/husky.sh"
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
 
-# echo 'Nakhll : Styling, testing and building your projet before committing'
+echo 'Nakhll : Styling, testing and building your projet before committing'
 
 
-# # Check Prettier standars
-# npm run check-format || (
-#     echo 'its Raw
-#     Prettier Check Failed.';
-#     false;
-# )
-# #Check ESLint Standars
-# npm run check-lint ||
-# (
-#     echo ' Eslint Check Failed'
-#     false;
-# )
-# #If everything passes.... try run a build
-# echo 'Code looks good to me'
+# Check Prettier standars
+npm run check-format || (
+    echo 'its Raw
+    Prettier Check Failed.';
+    false;
+)
+#Check ESLint Standars
+npm run check-lint ||
+(
+    echo ' Eslint Check Failed'
+    false;
+)
+#If everything passes.... try run a build
+echo 'Code looks good to me'
 
-# npm run build ||
-# (
-#     echo 'Next build failed'
-#     false;
-# )
-# # If it builds we can commit
-# echo ' You win this time... I am committing this now.'
+npm run build ||
+(
+    echo 'Next build failed'
+    false;
+)
+# If it builds we can commit
+echo ' You win this time... I am committing this now.'
