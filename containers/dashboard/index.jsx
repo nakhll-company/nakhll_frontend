@@ -390,7 +390,7 @@ function Dashboard({ activeHojreh }) {
                   {api.current_week_total_sell &&
                   api.current_week_total_sell.amont === null
                     ? "0"
-                    : api.current_week_total_sell.amont}
+                    : api?.current_week_total_sell?.amont}
                 </h1>
                 <h3
                   style={{
@@ -427,7 +427,7 @@ function Dashboard({ activeHojreh }) {
                   {api.last_month_total_sell &&
                   api.last_month_total_sell.amont == null
                     ? "0"
-                    : api.last_month_total_sell.amont}
+                    : api?.last_month_total_sell?.amont}
                 </h1>
                 <h3
                   style={{
