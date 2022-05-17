@@ -19,7 +19,7 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
   const [isCheckedAllCities, setIsCheckedAllCities] = useState(true);
 
   // function for add state and label
-  const _handel_Add_state = (target) => {
+  const handelAddState = (target) => {
     // click on State
     if (!target.isChild) {
       if (target.checked) {
@@ -55,18 +55,18 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
   };
 
   useEffect(() => {
-    const _handel_for_show_all_city = () => {
+    const handelForShowAllCity = () => {
       let finalCities = [];
-      let cities_from_stat = [];
-      let false_cities_from_BigCity = [];
-      let true_cities_from_BigCity = [];
-      let false_cities_from_cities = [];
-      let true_cities_from_cities = [];
+      let citiesFromStat = [];
+      let falseCitiesFromBigCity = [];
+      let trueCitiesFromBigCity = [];
+      let falseCitiesFromCities = [];
+      let trueCitiesFromCities = [];
 
       selectState.map((stats) => {
         stats.children.map((BigCity) =>
           BigCity.children.map(
-            (city) => (cities_from_stat = [...cities_from_stat, city])
+            (city) => (citiesFromStat = [...citiesFromStat, city])
           )
         );
       });
@@ -74,14 +74,11 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
       selectBigCity.map((bigCity) => {
         if (bigCity.checked) {
           const trueCopyArray = bigCity.children.map((city) => city);
-          true_cities_from_BigCity = [
-            ...true_cities_from_BigCity,
-            ...trueCopyArray,
-          ];
+          trueCitiesFromBigCity = [...trueCitiesFromBigCity, ...trueCopyArray];
         } else {
           const falseCopyArray = bigCity.children.map((city) => city);
-          false_cities_from_BigCity = [
-            ...false_cities_from_BigCity,
+          falseCitiesFromBigCity = [
+            ...falseCitiesFromBigCity,
             ...falseCopyArray,
           ];
         }
@@ -89,21 +86,21 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
 
       selectCity.map((city) => {
         if (city.checked) {
-          true_cities_from_cities = [...true_cities_from_BigCity, city];
+          trueCitiesFromCities = [...trueCitiesFromBigCity, city];
         } else {
-          false_cities_from_cities = [...false_cities_from_cities, city];
+          falseCitiesFromCities = [...falseCitiesFromCities, city];
         }
       });
 
       // MIXING ALL STATE
       const combineTrueCities = [
-        ...cities_from_stat,
-        ...true_cities_from_BigCity,
-        ...true_cities_from_cities,
+        ...citiesFromStat,
+        ...trueCitiesFromBigCity,
+        ...trueCitiesFromCities,
       ];
       const combineFalseCities = [
-        ...false_cities_from_BigCity,
-        ...false_cities_from_cities,
+        ...falseCitiesFromBigCity,
+        ...falseCitiesFromCities,
       ];
 
       finalCities = combineTrueCities.filter(
@@ -117,11 +114,11 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
       setForDontRunFirst(2);
     };
 
-    _handel_for_show_all_city();
+    handelForShowAllCity();
   }, [citiesInput, forDontRunFirst, selectState, selectBigCity, selectCity]);
 
   // function for Delete The State
-  const _handel_Delete_State = (id) => {
+  const handelDeleteState = (id) => {
     const copyState = [...allOfCity];
     const ArrayDeleteState = copyState.filter((e) => e.value !== id);
     const stateWithoutLabel = ArrayDeleteState.map((item) => item.value);
@@ -258,7 +255,7 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
                 expanded={expandCity}
                 onCheck={(e, targetNode) => {
                   setCheckedCity(e);
-                  _handel_Add_state(targetNode);
+                  handelAddState(targetNode);
                 }}
                 onExpand={(e) => {
                   setExpandCity(e);
@@ -321,7 +318,7 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
                     marginLeft: "5px",
                     cursor: "pointer",
                   }}
-                  onClick={() => _handel_Delete_State(e.value)}
+                  onClick={() => handelDeleteState(e.value)}
                   className="fas fa-times"
                 ></i>
               </>

@@ -39,7 +39,7 @@ const OrdersDetail = ({ invoiceId }) => {
               <div className={`${styles.right} p-3`}>
                 <span className="d-block text-secondary mb-2">شماره سفارش</span>
                 <span className="text-dark font-weight-bold">
-                  {_asist.number(detailData.id)}
+                  {detailData.id}
                 </span>
               </div>
               <div className={`${styles.price} p-3`}>

@@ -1,7 +1,7 @@
 // node libraries
 import router from "next/router";
 import CheckboxTree from "react-checkbox-tree";
-import Assistent from "zaravand-assistent-number";
+
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 // components
@@ -15,8 +15,6 @@ import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoadin
 import MultiRangeSlider from "../../../components/custom/customMultiRangeSlider/MultiRangeSlider";
 // methods
 import { authhttp, http } from "../../../services/callApi/api";
-
-const _asist = new Assistent();
 
 function ListProductShop({ data }) {
   const changePage = 1;
@@ -261,7 +259,7 @@ function ListProductShop({ data }) {
                         className="form-check-label"
                         htmlFor={`checkbox${index}`}
                       >
-                        {ele.name} ({_asist.number(ele.product_count)})
+                        {ele.name} ({ele.product_count})
                       </label>
                     </div>
                   ))}
@@ -447,7 +445,7 @@ function ListProductShop({ data }) {
                       className="form-check-label"
                       htmlFor={`checkbox${index}`}
                     >
-                      {ele.name} ({_asist.number(ele.product_count)})
+                      {ele.name} ({ele.product_count})
                     </label>
                   </div>
                 ))}

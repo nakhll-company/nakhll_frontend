@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import Assistent from "zaravand-assistent-number";
+
 // componentes
 import Loading from "../../../components/loading";
 import ShopLayout from "../../../components/shopLayout";
@@ -18,8 +18,6 @@ import { changeRadioButtonColor } from "../../../containers/cartAddress/methods/
 // styles
 import styles from "../../../styles/pages/cart/address.module.scss";
 import AppButton from "../../../components/AppButton";
-
-const _asist = new Assistent();
 
 const Address = () => {
   const [loaderButton, setLoaderButton] = useState(false);
@@ -107,12 +105,10 @@ const Address = () => {
                     </div>
                     <div className={styles.address_item_detail}>
                       <b>{value.receiver_full_name}</b> <span>موبایل:</span>{" "}
-                      <b>{_asist.number(`${value.receiver_mobile_number}`)}</b>
+                      <b>{`${value.receiver_mobile_number}`}</b>
                       <br />
                       <b>{value.big_city}</b>
-                      <span>
-                        / {_asist.number(`${value.city} ${value.address}`)}
-                      </span>
+                      <span>/ {`${value.city} ${value.address}`}</span>
                     </div>
                     <div className={styles.address_item_icons}>
                       <i

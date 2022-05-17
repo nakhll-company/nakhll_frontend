@@ -1,13 +1,13 @@
 // node libraries
 import Link from "next/link";
 import React, { useContext } from "react";
-import Assistent from "zaravand-assistent-number";
+
 // methods
 import ContextProduct from "./Context/context";
 // style
 import styles from "./MenuMobile.module.scss";
 
-const _asist = new Assistent();
+
 
 export const MenuMobile = () => {
   const { All_product_list_buy } = useContext(ContextProduct);
@@ -23,7 +23,7 @@ export const MenuMobile = () => {
                   style={{ width: "120px" }}
                   className={`btn ${styles.btn_Buy} px-2 rounded-pill `}
                 >
-                  {_asist.number(`ادامه خرید `)}
+                  {`ادامه خرید `}
                 </button>
               </Link>
             </div>

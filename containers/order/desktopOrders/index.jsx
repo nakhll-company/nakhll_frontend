@@ -1,13 +1,11 @@
 // node libraries
 import Link from "next/link";
 import Image from "next/image";
-import Assistent from "zaravand-assistent-number";
+
 // components
 import CustomBadge from "../../../components/custom/customBadge";
 // scss
 import styles from "../../../styles/pages/order/desktopOrders.module.scss";
-
-const _asist = new Assistent();
 
 export default function DesktopOrders({ loading, ordersList, type }) {
   const statusCompleted = [
@@ -135,10 +133,10 @@ export default function DesktopOrders({ loading, ordersList, type }) {
                 return (
                   <tr key={index}>
                     <Link href={`/fp/order/orderdetail/${value.id}`} passHref>
-                      <td>{_asist.number(index + 1)}</td>
+                      <td>{index + 1}</td>
                     </Link>
                     <Link href={`/fp/order/orderdetail/${value.id}`} passHref>
-                      <td>{_asist.number(value.id)}</td>
+                      <td>{value.id}</td>
                     </Link>
                     <Link href={`/fp/order/orderdetail/${value.id}`} passHref>
                       <td>
@@ -148,7 +146,7 @@ export default function DesktopOrders({ loading, ordersList, type }) {
                       </td>
                     </Link>
                     <Link href={`/fp/order/orderdetail/${value.id}`} passHref>
-                      <td>{_asist.number(value.created_date_jalali)}</td>
+                      <td>{value.created_date_jalali}</td>
                     </Link>
                     <Link href={`/fp/order/orderdetail/${value.id}`} passHref>
                       <td>

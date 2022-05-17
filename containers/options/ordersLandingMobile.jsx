@@ -1,6 +1,6 @@
 // node libraries
 import Link from "next/link";
-import Assistent from "zaravand-assistent-number";
+
 // components
 import MobileHeader from "../../components/mobileHeader";
 import CustomLabel from "../../components/custom/customLabel";
@@ -8,8 +8,6 @@ import CustomLabel from "../../components/custom/customLabel";
 import { buyWaitOrders } from "./methods/buyWaitOrders";
 // scss
 import styles from "./scss/mobileLanding.module.scss";
-
-const _asist = new Assistent();
 
 const OrdersLandingMobile = ({ id, ordersData }) => {
   return (
@@ -29,27 +27,23 @@ const OrdersLandingMobile = ({ id, ordersData }) => {
             return (
               <div className={styles.cart_item} key={index}>
                 <div className="d-flex justify-content-between align-items-center">
+                  <CustomLabel type="normal" value={index + 1} label="شماره" />
                   <CustomLabel
                     type="normal"
-                    value={_asist.number(index + 1)}
-                    label="شماره"
-                  />
-                  <CustomLabel
-                    type="normal"
-                    value={`${_asist.number(
-                      value.bought_price_per_unit
-                    )} / در ${value.bought_unit === "month" && "یک ماه"}`}
+                    value={`${value.bought_price_per_unit} / در ${
+                      value.bought_unit === "month" && "یک ماه"
+                    }`}
                     label="مبلغ"
                   />
                 </div>
                 <CustomLabel
                   type="normal"
-                  value={_asist.number(value.start_datetime)}
+                  value={value.start_datetime}
                   label="تاریخ شروع"
                 />
                 <CustomLabel
                   type="normal"
-                  value={_asist.number(value.expire_datetime)}
+                  value={value.expire_datetime}
                   label="تاریخ انقضا"
                 />
                 <CustomLabel

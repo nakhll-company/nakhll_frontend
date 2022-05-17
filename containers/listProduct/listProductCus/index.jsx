@@ -44,7 +44,7 @@ function ListProductCus({ data }) {
   const [searchWord, setSearchWord] = useState(data.q ? data.q : "");
   const [isOpenOrderingModal, setIsOpenOrderingModal] = useState(false);
   // states for shops
-  const [shopesTag, setShopesTag] = useState(userData ? userData.shops : []);
+  const [shopesTag] = useState(userData ? userData.shops : []);
   const [tags, setTags] = useState([]);
   const [activeHojreh, setActiveHojreh] = useState();
   const [whichOrdering, setWhichOrdering] = useState(

@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import Assistent from "zaravand-assistent-number";
+
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // component
@@ -22,8 +22,6 @@ import styles from "./header.module.scss";
 import rot13 from "../../../utils/rout13";
 import { clearTokenStorage } from "../../../api/general/clearTokenStorage";
 import { http } from "../../../services/callApi/api";
-
-const _asist = new Assistent();
 
 function Header() {
   const router = useRouter();
@@ -335,7 +333,7 @@ function Header() {
                     {Object.keys(userLog).length > 0 &&
                       userLog.cart_items_count !== 0 && (
                         <span className={styles.counter_cart}>
-                          {_asist.number(userLog.cart_items_count)}
+                          {userLog.cart_items_count}
                         </span>
                       )}
                   </div>

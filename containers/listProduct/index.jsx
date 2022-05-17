@@ -1,6 +1,6 @@
 // node libraries
 import CheckboxTree from "react-checkbox-tree";
-import Assistent from "zaravand-assistent-number";
+
 import React, { useEffect, useState } from "react";
 // components
 import { TopBar } from "./TopBar";
@@ -18,7 +18,7 @@ import { WoLoading } from "../../components/custom/Loading/woLoading/WoLoading";
 import styles from "./listProduct.module.scss";
 import { http } from "../../services/callApi/api";
 
-const _asist = new Assistent();
+
 
 function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
   const listProducts = [];
@@ -209,7 +209,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
                           className="form-check-label"
                           htmlFor={`checkbox${index}`}
                         >
-                          {ele.title} ({_asist.number(ele.product_count)})
+                          {ele.title} ({ele.product_count})
                         </label>
                       </div>
                     ))}
@@ -422,7 +422,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
                         className="form-check-label"
                         htmlFor={`checkbox${index}`}
                       >
-                        {ele.title} ({_asist.number(ele.product_count)})
+                        {ele.title} ({ele.product_count})
                       </label>
                     </div>
                   ))}

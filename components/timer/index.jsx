@@ -1,8 +1,5 @@
 // node libraries
 import { useEffect, useState } from "react";
-import Assistent from "zaravand-assistent-number";
-
-const _asist = new Assistent();
 
 function Timer({ date }) {
   const calculateTimeLeft = () => {
@@ -11,10 +8,10 @@ function Timer({ date }) {
 
     if (difference > 0) {
       timeLeft = {
-        روز: _asist.number(Math.floor(difference / (1000 * 60 * 60 * 24))),
-        ساعت: _asist.number(Math.floor((difference / (1000 * 60 * 60)) % 24)),
-        دقیقه: _asist.number(Math.floor((difference / 1000 / 60) % 60)),
-        ثانیه: _asist.number(Math.floor((difference / 1000) % 60)),
+        روز: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        ساعت: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        دقیقه: Math.floor((difference / 1000 / 60) % 60),
+        ثانیه: Math.floor((difference / 1000) % 60),
       };
     }
 

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import Assistent from "zaravand-assistent-number";
+
 // components
 import useViewport from "../../../../components/viewPort";
 import OrdersLandingMobile from "../../../../containers/options/ordersLandingMobile";
@@ -14,8 +14,6 @@ import { getOrders } from "../../../../containers/options/methods/getOrders";
 import { buyWaitOrders } from "../../../../containers/options/methods/buyWaitOrders";
 // scss
 import styles from "../../../../containers/options/scss/desktopLanding.module.scss";
-
-const _asist = new Assistent();
 
 const Orders = () => {
   const breakpoint = 620;
@@ -72,13 +70,13 @@ const Orders = () => {
                 ordersData.map((value, index) => {
                   return (
                     <tr key={index}>
-                      <td>{_asist.number(index + 1)}</td>
+                      <td>{index + 1}</td>
                       <td>
-                        {`${_asist.number(value.bought_price_per_unit)} / `}
+                        {`${value.bought_price_per_unit} / `}
                         {`در ${value.bought_unit === "month" && "یک ماه"}`}
                       </td>
-                      <td>{_asist.number(value.start_datetime)}</td>
-                      <td>{_asist.number(value.expire_datetime)}</td>
+                      <td>{value.start_datetime}</td>
+                      <td>{value.expire_datetime}</td>
                       <td>{value.is_demo === true ? "فعال" : "غیرفعال"}</td>
                       <td>
                         {value.status === "completed" ? (

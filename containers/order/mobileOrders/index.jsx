@@ -1,14 +1,12 @@
 // node
 import Link from "next/link";
 import Image from "next/image";
-import Assistent from "zaravand-assistent-number";
+
 // components
 import CustomLabel from "../../../components/custom/customLabel";
 import CustomBadge from "../../../components/custom/customBadge";
 // scss
 import styles from "../../../styles/pages/order/mobileOrders.module.scss";
-
-const _asist = new Assistent();
 
 const MobileOrders = ({ loading, ordersList }) => {
   return (
@@ -29,7 +27,7 @@ const MobileOrders = ({ loading, ordersList }) => {
                   <div className={styles.card_header}>
                     <CustomLabel
                       type="normal"
-                      value={_asist.number(value.id)}
+                      value={value.id}
                       label="شماره سفارش"
                     />
                     {value.status === "awaiting_paying" && (
@@ -68,7 +66,7 @@ const MobileOrders = ({ loading, ordersList }) => {
                   />
                   <CustomLabel
                     type="normal"
-                    value={`${_asist.number(value.created_date_jalali)}`}
+                    value={`${value.created_date_jalali}`}
                     label="ثبت"
                     customLabelDiv="wrapper_custom_label"
                   />

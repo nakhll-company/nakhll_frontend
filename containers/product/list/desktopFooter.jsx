@@ -1,11 +1,10 @@
 // node libraries
 import { useState, Fragment } from "react";
-import Assistent from "zaravand-assistent-number";
+
 // methods
 import { howManyPage } from "../methods/howManyPage";
 import { paginationStructure } from "../../../utils/pagination";
 // assistment
-const _asist = new Assistent();
 
 const DesktopFooter = ({ productList, getProduct, activeHojreh }) => {
   const [numberPage, setNumberPage] = useState(1);
@@ -89,7 +88,7 @@ const DesktopFooter = ({ productList, getProduct, activeHojreh }) => {
                   >
                     {!isNaN(value.name) && (
                       <a className="page-link" href="#">
-                        {_asist.number(value.name)}
+                        {value.name}
                       </a>
                     )}
                   </li>
