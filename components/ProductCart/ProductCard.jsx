@@ -235,7 +235,7 @@ const ProductCard = ({
                 </div>
                 <div className="mt-1">
                   <p className="_sales_progressbar_text">
-                    %{_asist.number(product.sales)} فروش رفته
+                    %{product.sales} فروش رفته
                   </p>
                 </div>
               </>

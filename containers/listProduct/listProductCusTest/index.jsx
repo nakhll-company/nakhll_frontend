@@ -1,7 +1,7 @@
 // node libraries
 import router from "next/router";
 import CheckboxTree from "react-checkbox-tree";
-import Assistent from "zaravand-assistent-number";
+
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 // components
@@ -20,8 +20,6 @@ import MultiRangeSlider from "../../../components/custom/customMultiRangeSlider/
 import styles from "./listProductCus.module.scss";
 import { http } from "../../../services/callApi/api";
 
-const _asist = new Assistent();
-
 function ListProductCusTest({ data }) {
   const changePage = 1;
   const [pageApi, setPageApi] = useState(2);
@@ -35,7 +33,7 @@ function ListProductCusTest({ data }) {
   const [listWithFilter, setListWithFilter] = useState([]);
   const [searchWord, setSearchWord] = useState(data.q ? data.q : "");
   const [isOpenOrderingModal, setIsOpenOrderingModal] = useState(false);
-  const [hojreh, setHojreh] = useState(data.shopslug ? data.shopslug : "");
+  const [hojreh] = useState(data.shopslug ? data.shopslug : "");
   const [whichOrdering, setWhichOrdering] = useState(
     data.ordering ? data.ordering : ""
   );
@@ -277,7 +275,7 @@ function ListProductCusTest({ data }) {
                       className="form-check-label"
                       htmlFor={`checkbox${index}`}
                     >
-                      {ele.name} ({_asist.number(ele.product_count)})
+                      {ele.name} ({ele.product_count})
                     </label>
                   </div>
                 ))}
@@ -490,7 +488,7 @@ function ListProductCusTest({ data }) {
                       className="form-check-label"
                       htmlFor={`checkbox${index}`}
                     >
-                      {ele.name} ({_asist.number(ele.product_count)})
+                      {ele.name} ({ele.product_count})
                     </label>
                   </div>
                 ))}

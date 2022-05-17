@@ -1,8 +1,5 @@
 // node libraries
 import React, { useEffect } from "react";
-import Assistent from "zaravand-assistent-number";
-
-const _asist = new Assistent();
 
 function AppTimer({ timer = 59, setTimer }) {
   useEffect(() => {
@@ -21,7 +18,7 @@ function AppTimer({ timer = 59, setTimer }) {
         style={{ minWidth: "20px", display: "inline-block", textAlign: "left" }}
       >
         {timer < 10 && "۰"}
-        {_asist.number(timer)}
+        {timer}
       </span>
     </span>
   );

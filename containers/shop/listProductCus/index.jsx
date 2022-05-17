@@ -73,7 +73,7 @@ function ListProductShop({ data }) {
     }
   };
 
-  const _handel_call_another_page_api = async () => {
+  const handelCallAnotherPageApi = async () => {
     try {
       const response = await http.get(`/api/v1/products/`, {
         params: {
@@ -108,7 +108,7 @@ function ListProductShop({ data }) {
 
   // for filters in sidebar
   useEffect(() => {
-    const _handel_filters = async () => {
+    const handelFilters = async () => {
       setHasMore(true);
       setIsLoading(true);
       const params = {
@@ -146,7 +146,7 @@ function ListProductShop({ data }) {
     };
 
     async function fetchData() {
-      await _handel_filters();
+      await handelFilters();
     }
     fetchData();
   }, [
@@ -164,7 +164,7 @@ function ListProductShop({ data }) {
     hojreh,
   ]);
   useEffect(() => {
-    const _handel_category = async () => {
+    const handelCategory = async () => {
       try {
         const response = await authhttp.get(
           `/api/v1/categories/category_product_count/?q=${searchWord}`
@@ -177,7 +177,7 @@ function ListProductShop({ data }) {
       }
     };
     async function fetchData() {
-      await _handel_category();
+      await handelCategory();
     }
     fetchData();
   }, [searchWord]);
@@ -335,7 +335,7 @@ function ListProductShop({ data }) {
                 <InfiniteScroll
                   className="mx-auto row"
                   dataLength={listWithFilter.length} // This is important field to render the next data
-                  next={_handel_call_another_page_api}
+                  next={handelCallAnotherPageApi}
                   hasMore={hasMore}
                   loader={<h4>کمی صبر...</h4>}
                   endMessage={

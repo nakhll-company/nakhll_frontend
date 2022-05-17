@@ -19,7 +19,7 @@ function SaveLanding({ setOpenSaveLanding, idLanding }) {
   };
 
   const _handel_update_landing = async () => {
-    const response = await authhttp.put(apiUpdateLanding, ansapi);
+    await authhttp.put(apiUpdateLanding, ansapi);
 
     setInputName("");
     setOpenSaveLanding(false);

@@ -4,14 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import Assistent from "zaravand-assistent-number";
+
 import { BsLinkedin } from "react-icons/bs";
 import { FiInstagram } from "react-icons/fi";
 
 // style
 import styles from "../../styles/components/shopLayout/footer.module.scss";
-
-const _asist = new Assistent();
 
 const Footer = () => {
   const router = useRouter();
@@ -111,7 +109,7 @@ const Footer = () => {
                       >
                         تلفن تماس:
                         <span className="d-inline-block">
-                          {_asist.number(`034-32476561  034-91001230`)}
+                          {`034-32476561  034-91001230`}
                         </span>
                       </a>
                     </div>
@@ -306,11 +304,11 @@ const Footer = () => {
                     <div className={styles.footer_items}>
                       تلفن تماس:
                       <a href="tel://034-32476561" className="d-inline-block">
-                        {_asist.number(`034-32476561`)}
+                        {`034-32476561`}
                       </a>{" "}
                       <span>و</span>{" "}
                       <a href="tel://034-91001230" className="d-inline-block">
-                        {_asist.number(`034-91001230`)}
+                        {`034-91001230`}
                       </a>
                     </div>
                   </div>

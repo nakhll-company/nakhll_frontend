@@ -12,7 +12,7 @@ import Sm_LinerTwoImg_Fix from "../../../components/SampelFixed/Sm_LinerTwoImg";
 import lottie from "lottie-web";
 import styles from "./ListComponent.module.scss";
 import AboutMe_Fix from "../../../components/SampelFixed/Sm_AboutMe";
-import VipProducts from "../../LandingPage/VipProducts";
+
 
 function ListComponent({ _handel_add_component }) {
   // gsap

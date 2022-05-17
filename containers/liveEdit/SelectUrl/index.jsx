@@ -1,7 +1,7 @@
 // node libraries
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import Assistent from "zaravand-assistent-number";
+
 import React, { useEffect, useState } from "react";
 // methods
 import { ApiReference } from "../../../api/Api";
@@ -15,8 +15,6 @@ import TextAreaUseForm from "../../creat/component/textAreaUseForm";
 // styles
 import styles from "./SelectUrl.module.scss";
 import { authhttp } from "../../../services/callApi/api";
-
-const _asist = new Assistent();
 
 function SelectUrl({ idLanding }) {
   const dispatch = useDispatch();
@@ -128,9 +126,7 @@ function SelectUrl({ idLanding }) {
                     dispatch(showSelectUrl());
                   }}
                 >
-                  <span className={styles.numbers}>
-                    {_asist.number(index + 1)}
-                  </span>
+                  <span className={styles.numbers}>{index + 1}</span>
                   <div className={styles.item}> {el.name}</div>
                   <div className={styles.icon}>
                     <i className="fas fa-check-circle"></i>

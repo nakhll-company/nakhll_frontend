@@ -12,7 +12,7 @@ import SelectIcon from "./ui/selectIcon";
 import Explain from "./components/explain";
 import FreeQuestion from "./ui/freeQuestion";
 import Products from "./components/products";
-import BtnSetting from "./components/btnSetting";
+
 import HeaderTitle from "./components/headerTitle";
 import ResultOperation from "./ui/resultOperation";
 import CheckBoxSend from "./components/checkBoxSend";

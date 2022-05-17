@@ -1,7 +1,7 @@
 // node libraries
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Assistent from "zaravand-assistent-number";
+
 // component
 import CustomSwitch from "../../components/custom/customSwitch";
 // methods
@@ -11,8 +11,6 @@ import { deActiveListItemLanding } from "./methods/deActiveListItemLanding";
 // scss
 import styles from "./scss/desktopLanding.module.scss";
 import { authhttp } from "../../services/callApi/api";
-
-const _asist = new Assistent();
 
 const DesktopLanding = ({ landingList, activeHojreh, setLandingList }) => {
   const router = useRouter();
@@ -58,9 +56,9 @@ const DesktopLanding = ({ landingList, activeHojreh, setLandingList }) => {
             landingList.map((value, index) => {
               return (
                 <tr key={index}>
-                  <td>{_asist.number(index + 1)}</td>
+                  <td>{index + 1}</td>
                   <td>{value.name}</td>
-                  <td>{_asist.number(value.created_at)}</td>
+                  <td>{value.created_at}</td>
                   <td className="d-flex justify-content-center pb-3">
                     <CustomSwitch
                       // defaultChecked={value.status === "active" ? true : false}

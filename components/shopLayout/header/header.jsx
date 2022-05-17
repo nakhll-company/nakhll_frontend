@@ -13,7 +13,7 @@ import MegaMenuDesktop from "../../../containers/LandingPage/MegaMenuDesktop";
 import { gtag } from "../../../utils/googleAnalytics";
 import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
 import {
-  _call_Category,
+  callCategory,
   _get_all_shops,
   handelSearch,
 } from "../../../api/header";
@@ -39,7 +39,7 @@ function Header() {
   useEffect(() => {
     async function fetchData() {
       dispatch(getUserInfo());
-      const getCategory = await _call_Category();
+      const getCategory = await callCategory();
       setCategory(getCategory);
     }
     fetchData();
@@ -223,7 +223,7 @@ function Header() {
                   />
                   {!!All_product_list_buy?.ordered_items?.length && (
                     <span className={styles.counter_cart}>
-                      {_asist.number(All_product_list_buy.ordered_items.length)}
+                      {All_product_list_buy.ordered_items.length}
                     </span>
                   )}
                 </div>

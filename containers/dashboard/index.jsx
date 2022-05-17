@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { connect } from "react-redux";
 import { useEffect, useState } from "react";
-import Assistent from "zaravand-assistent-number";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, {
   EffectFade,
@@ -21,7 +21,6 @@ import Loading from "../../components/loading";
 import styles from "../../styles/pages/dashboard/dashboard.module.scss";
 import { authhttp } from "../../services/callApi/api";
 
-const _asist = new Assistent();
 SwiperCore.use([EffectFade, Autoplay, Navigation, Pagination, Scrollbar, A11y]);
 
 function Dashboard({ activeHojreh }) {
@@ -65,7 +64,7 @@ function Dashboard({ activeHojreh }) {
                     marginBottom: "0px",
                   }}
                 >
-                  {_asist.number(api.uncompleted_fators)}
+                  {api.uncompleted_fators}
                 </h1>
                 <h4
                   style={{
@@ -92,7 +91,7 @@ function Dashboard({ activeHojreh }) {
                     marginBottom: "0px",
                   }}
                 >
-                  {_asist.number(api.uncomfirmed_factors)}
+                  {api.uncomfirmed_factors}
                 </h1>
                 <h4
                   style={{
@@ -118,7 +117,7 @@ function Dashboard({ activeHojreh }) {
                   marginBottom: "0px",
                 }}
               >
-                {_asist.number(api.unread_comments_count)}
+                {api.unread_comments_count}
               </h1>
               <h4
                 style={{
@@ -144,7 +143,7 @@ function Dashboard({ activeHojreh }) {
                   marginBottom: "0px",
                 }}
               >
-                {_asist.number(api.balance)}
+                {api.balance}
                 <span
                   style={{
                     marginRight: "5px",
@@ -240,7 +239,7 @@ function Dashboard({ activeHojreh }) {
                     marginBottom: "0px",
                   }}
                 >
-                  {_asist.number(api.active_products)}
+                  {api.active_products}
                 </h1>
                 <h3
                   style={{
@@ -274,7 +273,7 @@ function Dashboard({ activeHojreh }) {
                     marginBottom: "0px",
                   }}
                 >
-                  {_asist.number(api.nearly_outofstock_products)}
+                  {api.nearly_outofstock_products}
                 </h1>
                 <h3
                   style={{
@@ -308,7 +307,7 @@ function Dashboard({ activeHojreh }) {
                     marginBottom: "0px",
                   }}
                 >
-                  {_asist.number(api.inactive_products)}
+                  {api.inactive_products}
                 </h1>
                 <h3
                   style={{
@@ -342,7 +341,7 @@ function Dashboard({ activeHojreh }) {
                     marginBottom: "0px",
                   }}
                 >
-                  {_asist.number(api.outofstock_products)}
+                  {api.outofstock_products}
                 </h1>
                 <h3
                   style={{
@@ -389,11 +388,9 @@ function Dashboard({ activeHojreh }) {
                   }}
                 >
                   {api.current_week_total_sell &&
-                    _asist.number(
-                      api.current_week_total_sell.amont === null
-                        ? "0"
-                        : api.current_week_total_sell.amont
-                    )}
+                  api.current_week_total_sell.amont === null
+                    ? "0"
+                    : api.current_week_total_sell.amont}
                 </h1>
                 <h3
                   style={{
@@ -428,11 +425,9 @@ function Dashboard({ activeHojreh }) {
                   }}
                 >
                   {api.last_month_total_sell &&
-                    _asist.number(
-                      api.last_month_total_sell.amont == null
-                        ? "0"
-                        : api.last_month_total_sell.amont
-                    )}
+                  api.last_month_total_sell.amont == null
+                    ? "0"
+                    : api.last_month_total_sell.amont}
                 </h1>
                 <h3
                   style={{
@@ -466,11 +461,9 @@ function Dashboard({ activeHojreh }) {
                     marginBottom: "0px",
                   }}
                 >
-                  {_asist.number(
-                    (api.last_week_total_sell &&
-                      api.last_week_total_sell.amont) ||
-                      0
-                  )}
+                  {(api.last_week_total_sell &&
+                    api.last_week_total_sell.amont) ||
+                    0}
                 </h1>
                 <h3
                   style={{

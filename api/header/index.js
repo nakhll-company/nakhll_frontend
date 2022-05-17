@@ -5,7 +5,7 @@ import {
     http
 } from "../../services/callApi/api";
 
-export const _call_Category = async() => {
+export const callCategory = async() => {
     try {
         const response = await http.get(`/api/v1/categories/?max_depth=2`);
         if (response.status === 200) {
