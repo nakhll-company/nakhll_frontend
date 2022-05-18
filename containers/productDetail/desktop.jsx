@@ -40,7 +40,7 @@ const ProductDetailDesktop = ({ data }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const userData = useSelector((state) => state.User.userInfo);
 
-  let thumblineImage = [...detail.banners, { image: detail.image }];
+  let thumblineImage = [{ image: detail.image }, ...detail.banners];
 
   useEffect(() => {
     function fetchData() {

@@ -41,7 +41,7 @@ const ProductDetailMobile = ({ data }) => {
   const userData = useSelector((state) => state.User.userInfo);
   const [posts, setPosts] = useState([...relatedProduct.results]);
 
-  let thumblineImage = [...detail.banners, { image: detail.image }];
+  let thumblineImage = [{ image: detail.image }, ...detail.banners];
 
   useEffect(() => {
     async function fetchData() {
@@ -56,7 +56,7 @@ const ProductDetailMobile = ({ data }) => {
     }
     fetchData();
   }, []);
- 
+
   return (
     <div className={styles.wrapper}>
       <Head>
