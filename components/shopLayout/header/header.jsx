@@ -159,14 +159,6 @@ function Header() {
                         </div>
                       </a>
                     </Link>
-                    {/* <Link href="/setPassword">
-                      <a>
-                        <div className="flex-row">
-                          <i className="fas fa-user-circle"></i>
-                          <span>تغییر پسورد</span>
-                        </div>
-                      </a>
-                    </Link> */}
                     <div
                       onClick={async () => {
                         let response = await http.post(
@@ -175,8 +167,7 @@ function Header() {
                         );
                         if (response.status < 300) {
                           router.push(
-                            `/setPassword/${rot13(response?.data?.auth_key)}/${
-                              response?.data?.mobile_status
+                            `/setPassword/${rot13(response?.data?.auth_key)}/${response?.data?.mobile_status
                             }`
                           );
                         }
@@ -186,11 +177,10 @@ function Header() {
                       <span>تغییر پسورد</span>
                     </div>
                     <div
-                      onClick={() => {
-                        clearTokenStorage();
-
-                        router.push("/");
-                        router.reload("/");
+                      onClick={async () => {
+                        await clearTokenStorage();
+                        await router.push("/");
+                        await router.reload("/");
                       }}
                     >
                       <i className="fas fa-sign-out-alt "></i>

@@ -255,11 +255,10 @@ const Profile = () => {
                 </li>
                 <li
                   className="d-flex flex-column align-items-center ms-4"
-                  onClick={() => {
-                    clearTokenStorage()
-                   
-                    router.push("/");
-                    router.reload(window.location.pathname);
+                  onClick={async () => {
+                    await clearTokenStorage()
+                    await router.push("/");
+                    await router.reload("/");
                   }}
                 >
                   <i
