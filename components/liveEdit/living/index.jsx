@@ -23,7 +23,6 @@ import { _updateDataLanding } from "../../../redux/actions/liveEdit/_updateDataL
 import styles from "./living.module.scss";
 
 function Living({ characters, setCharacters, setOpenPlaneEditor, idLanding }) {
-
   const dispatch = useDispatch();
   const [imageSrc, setImageSrc] = useState(null);
   const [croppedImage, setCroppedImage] = useState(null);
@@ -180,7 +179,11 @@ function Living({ characters, setCharacters, setOpenPlaneEditor, idLanding }) {
   return (
     <>
       {showCrop && (
-        <CustomCropper imageSrc={imageSrc} setCroppedImage={setCroppedImage} croppedImage={croppedImage} />
+        <CustomCropper
+          imageSrc={imageSrc}
+          setCroppedImage={setCroppedImage}
+          croppedImage={croppedImage}
+        />
       )}
       {showSelectorUrl && <SelectUrl idLanding={idLanding} />}
       <DragDropContext onDragEnd={handleOnDragEnd}>

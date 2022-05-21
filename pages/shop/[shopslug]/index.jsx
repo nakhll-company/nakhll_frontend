@@ -40,9 +40,9 @@ import { http } from "../../../services/callApi/api";
 
 // fetch data
 const fetchData = async (id) => {
-  let Api_Shop = encodeURI(`${ApiReference.shop}${id}/`);
+  const apiShop = encodeURI(`${ApiReference.shop}${id}/`);
 
-  let response = await http.get(Api_Shop);
+  const response = await http.get(apiShop);
 
   if (response.status === 200) {
     return {
@@ -62,7 +62,7 @@ const Shop = ({ dataShop, data }) => {
       animationData: require("../../../public/lottie/shop.json"),
     });
   }, []);
-  const _handel_select_component = (data) => {
+  const handelSelectComponent = (data) => {
     switch (data.type) {
       case 1:
         return <DynamicHeroSlides dataHeroSlides={data.data} />;
@@ -146,7 +146,7 @@ const Shop = ({ dataShop, data }) => {
       )}
       {dataShop.shop.landing_data?.page_data &&
         JSON.parse(dataShop.shop.landing_data.page_data).map((data, index) =>
-          _handel_select_component(data, index)
+          handelSelectComponent(data, index)
         )}
     </>
   );

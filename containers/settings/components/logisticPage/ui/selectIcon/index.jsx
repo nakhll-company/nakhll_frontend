@@ -1,9 +1,10 @@
+import React from "react";
 // node libraries
 import Image from "next/image";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 // components
-import BtnSetting from "../../components/btnSetting";
+
 import InputUseForm from "../../../../../creat/component/inputUseForm";
 // style
 import st from "./selectIcon.module.scss";

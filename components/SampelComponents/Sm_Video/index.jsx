@@ -8,7 +8,6 @@ import InputUrl from "../../../containers/liveEdit/InputUrl";
 import st from "./video.module.scss";
 
 function Sm_Video({ id, data }) {
-
   const an1 = useRef(null);
 
   useEffect(() => {
@@ -36,8 +35,7 @@ function Sm_Video({ id, data }) {
         </div>
         <div ref={an1} className={st.animation}></div>
         <div id="76822050591" className={st.wrap_video}>
-          <div ref={an1} className={st.video}>
-          </div>
+          <div ref={an1} className={st.video}></div>
         </div>
       </div>
     </>

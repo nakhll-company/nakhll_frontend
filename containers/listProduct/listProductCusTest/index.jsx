@@ -1,7 +1,7 @@
 // node libraries
 import router from "next/router";
 import CheckboxTree from "react-checkbox-tree";
-import Assistent from "zaravand-assistent-number";
+
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 // components
@@ -20,8 +20,6 @@ import MultiRangeSlider from "../../../components/custom/customMultiRangeSlider/
 import styles from "./listProductCus.module.scss";
 import { http } from "../../../services/callApi/api";
 
-const _asist = new Assistent();
-
 function ListProductCusTest({ data }) {
   const changePage = 1;
   const [pageApi, setPageApi] = useState(2);
@@ -35,7 +33,7 @@ function ListProductCusTest({ data }) {
   const [listWithFilter, setListWithFilter] = useState([]);
   const [searchWord, setSearchWord] = useState(data.q ? data.q : "");
   const [isOpenOrderingModal, setIsOpenOrderingModal] = useState(false);
-  const [hojreh, setHojreh] = useState(data.shopslug ? data.shopslug : "");
+  const [hojreh] = useState(data.shopslug ? data.shopslug : "");
   const [whichOrdering, setWhichOrdering] = useState(
     data.ordering ? data.ordering : ""
   );
@@ -70,7 +68,7 @@ function ListProductCusTest({ data }) {
 
   const _handel_category = async () => {
     try {
-      let response = await http.get(
+      const response = await http.get(
         `/api/v1/categories/category_product_count/?q=${searchWord}&shop=${hojreh}`
       );
       if (response.status === 200) {
@@ -82,9 +80,9 @@ function ListProductCusTest({ data }) {
   };
 
   const _handel_Add_category = (id) => {
-    let copyArray = [...wantCategories];
+    const copyArray = [...wantCategories];
 
-    let newArray = copyArray.filter((element) => element != id);
+    const newArray = copyArray.filter((element) => element != id);
 
     if (copyArray.length == newArray.length) {
       setWantCategories([...newArray, id]);
@@ -95,23 +93,25 @@ function ListProductCusTest({ data }) {
 
   const _handel_call_another_page_api = async (witchFilter) => {
     try {
-      let response = await http.get(`/api/v1/products/`, {params:{
-        ...(witchFilter ? witchFilter : null),
-        search: searchWord,
-        ...(whichOrdering !== "" && { ordering: whichOrdering }),
-        page: pageApi,
-        ...(isReadyForSend && { ready: isReadyForSend }),
-        ...(isAvailableGoods && { available: isAvailableGoods }),
-        ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
-        ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
-        ...(wantCategories.length > 0 && {
-          category: wantCategories.toString(),
-        }),
-        page_size: 50,
-        ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
-        ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
-        ...(hojreh !== "" && { shop: hojreh }),
-      }});
+      const response = await http.get(`/api/v1/products/`, {
+        params: {
+          ...(witchFilter ? witchFilter : null),
+          search: searchWord,
+          ...(whichOrdering !== "" && { ordering: whichOrdering }),
+          page: pageApi,
+          ...(isReadyForSend && { ready: isReadyForSend }),
+          ...(isAvailableGoods && { available: isAvailableGoods }),
+          ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
+          ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
+          ...(wantCategories.length > 0 && {
+            category: wantCategories.toString(),
+          }),
+          page_size: 50,
+          ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
+          ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
+          ...(hojreh !== "" && { shop: hojreh }),
+        },
+      });
       if (response.status === 200) {
         const ContinueList = response.data.results;
 
@@ -136,7 +136,7 @@ function ListProductCusTest({ data }) {
         setHasMore(true);
         setIsLoading(true);
 
-        let params = {
+        const params = {
           ...(witchFilter ? witchFilter : null),
           search: searchWord,
           ...(whichOrdering !== "" && { ordering: whichOrdering }),
@@ -157,7 +157,7 @@ function ListProductCusTest({ data }) {
         };
 
         try {
-          let response = await http.get(`/api/v1/products/`, {params});
+          const response = await http.get(`/api/v1/products/`, { params });
           if (response.status === 200) {
             setListWithFilter(response.data.results);
             setNameHojreh(response.data.results[0].FK_Shop.title);
@@ -275,7 +275,7 @@ function ListProductCusTest({ data }) {
                       className="form-check-label"
                       htmlFor={`checkbox${index}`}
                     >
-                      {ele.name} ({_asist.number(ele.product_count)})
+                      {ele.name} ({ele.product_count})
                     </label>
                   </div>
                 ))}
@@ -368,7 +368,7 @@ function ListProductCusTest({ data }) {
               ) : (
                 <InfiniteScroll
                   className="mx-auto row"
-                  dataLength={listWithFilter.length} //This is important field to render the next data
+                  dataLength={listWithFilter.length} // This is important field to render the next data
                   next={_handel_call_another_page_api}
                   hasMore={hasMore}
                   loader={<h4>کمی صبر...</h4>}
@@ -488,7 +488,7 @@ function ListProductCusTest({ data }) {
                       className="form-check-label"
                       htmlFor={`checkbox${index}`}
                     >
-                      {ele.name} ({_asist.number(ele.product_count)})
+                      {ele.name} ({ele.product_count})
                     </label>
                   </div>
                 ))}

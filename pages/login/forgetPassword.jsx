@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import Head from "next/head";
 import Link from "next/link";
@@ -22,7 +23,7 @@ const ForgetPassword = () => {
     setLoadButton(true);
     delete data.repeatPass;
     data.auth_secret = sessionStorage.getItem("secret_key");
-    let response = await setPassword(data);
+    const response = await setPassword(data);
     response === true && location.replace("/");
     setLoadButton(false);
   };

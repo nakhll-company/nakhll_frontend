@@ -4,7 +4,6 @@ import React from "react";
 import styles from "./MegaMenuDesktop.module.scss";
 
 function MegaMenuDesktop({ category }) {
-
   return (
     <ul className={styles.nav_list}>
       {category &&
@@ -52,4 +51,3 @@ function MegaMenuDesktop({ category }) {
 }
 
 export default MegaMenuDesktop;
-

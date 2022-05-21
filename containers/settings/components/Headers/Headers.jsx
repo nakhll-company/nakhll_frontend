@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import styles from "./Headers.module.scss";
 
 export default Headers = ({ onMenu, setOnMenu }) => {

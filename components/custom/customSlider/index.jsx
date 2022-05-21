@@ -1,3 +1,4 @@
+import React from "react";
 import { Fragment } from "react";
 import SwiperCore, { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -5,32 +6,52 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // install Swiper's Controller component
 SwiperCore.use([Navigation]);
 
-const CustomSlider = ({ data = [], slides320, slides576, slides992, slides1200, title, ...otherSwiperProps }) => {
+const CustomSlider = ({
+  data = [],
+  slides320,
+  slides576,
+  slides992,
+  slides1200,
+  title,
+  ...otherSwiperProps
+}) => {
   return (
     <Fragment>
       <div className="product_row">
-        <section className="product_row_item" >
+        <section className="product_row_item">
           <div className="container">
-            {title &&
+            {title && (
               <div className="explore_components_header">
                 <div className="explore_components_header__content">
-                  <h2 className="explore_components_header__title">لوازم پزشکی</h2>
-                  <span className="explore_components_header__description">منتخب سردبیر</span>
+                  <h2 className="explore_components_header__title">
+                    لوازم پزشکی
+                  </h2>
+                  <span className="explore_components_header__description">
+                    منتخب سردبیر
+                  </span>
                 </div>
                 <div>
                   <a className="explore_components_header__morelink">
                     مشاهده همه
-                    <i className="fas fa-arrow-left" style={{ fontSize: "1rem", display: "inline-block", verticalAlign: "middle", marginRight: 10 }}></i>
+                    <i
+                      className="fas fa-arrow-left"
+                      style={{
+                        fontSize: "1rem",
+                        display: "inline-block",
+                        verticalAlign: "middle",
+                        marginRight: 10,
+                      }}
+                    ></i>
                   </a>
                 </div>
               </div>
-            }
+            )}
           </div>
         </section>
         <Swiper
           breakpoints={{
             320: {
-              slidesPerView: slides320 || 2
+              slidesPerView: slides320 || 2,
             },
             576: {
               slidesPerView: slides576 || 2,
@@ -48,12 +69,12 @@ const CustomSlider = ({ data = [], slides320, slides576, slides992, slides1200, 
           {...otherSwiperProps}
         >
           {data?.map((slide, index) => (
-            <SwiperSlide className="slider_item" key={`slide-${index}`}>{slide}</SwiperSlide>
+            <SwiperSlide className="slider_item" key={`slide-${index}`}>
+              {slide}
+            </SwiperSlide>
           ))}
         </Swiper>
-
       </div>
-
     </Fragment>
   );
 };

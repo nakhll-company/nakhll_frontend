@@ -12,12 +12,12 @@ import Sm_LinerTwoImg_Fix from "../../../components/SampelFixed/Sm_LinerTwoImg";
 import lottie from "lottie-web";
 import styles from "./ListComponent.module.scss";
 import AboutMe_Fix from "../../../components/SampelFixed/Sm_AboutMe";
-import VipProducts from "../../LandingPage/VipProducts";
+
 
 function ListComponent({ _handel_add_component }) {
   // gsap
   const [numSec, setNumSec] = useState(0);
-  let tl = new gsap.timeline();
+  const tl = new gsap.timeline();
 
   // Ref
   let partOne = useRef(null);
@@ -26,9 +26,9 @@ function ListComponent({ _handel_add_component }) {
   let partFour = useRef(null);
   let partFive = useRef(null);
   let partSix = useRef(null);
-  let partNine = useRef(null);
-  let partTen = useRef(null);
-  let partEleven = useRef(null);
+  const partNine = useRef(null);
+  const partTen = useRef(null);
+  const partEleven = useRef(null);
 
   useEffect(() => {
     lottie.loadAnimation({

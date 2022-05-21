@@ -10,7 +10,7 @@ import s from "./sliderNakhl.module.scss";
 
 SwiperCore.use([Pagination]);
 
-function SliderNakhl({dataSliders}) {
+function SliderNakhl({ dataSliders }) {
   return (
     <div className={`${s.container} container`}>
       <Swiper pagination={true} spaceBetween={20} slidesPerView={1}>

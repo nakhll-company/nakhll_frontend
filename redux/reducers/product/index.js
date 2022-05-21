@@ -1,27 +1,28 @@
-import * as Types from '../../types/product';
+import * as Types from "../../types/product";
 
-let initialize = {
+const initialize = {
     productList: {},
     groupProductCsvData: [],
-    groupProductCsvHeader: []
-}
+    groupProductCsvHeader: [],
+};
 
 function reducer(state = initialize, actions) {
     switch (actions.type) {
         case Types.GET_PRODUCT:
             return {
-                productList: { ...actions.payload }
-            }
+                productList: {...actions.payload
+                },
+            };
         case Types.GROUP_PRODUCT_CSV_DATA:
             return {
                 ...state,
-                groupProductCsvData: [...actions.payload]
-            }
+                groupProductCsvData: [...actions.payload],
+            };
         case Types.GROUP_PRODUCT_CSV_HEADER:
             return {
                 ...state,
-                groupProductCsvHeader: [...actions.payload]
-            }
+                groupProductCsvHeader: [...actions.payload],
+            };
         default:
             return state;
     }

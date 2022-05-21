@@ -1,17 +1,14 @@
 // node
 import Link from "next/link";
 import Image from "next/image";
-import Assistent from "zaravand-assistent-number";
+
 // components
 import CustomLabel from "../../../components/custom/customLabel";
 import CustomBadge from "../../../components/custom/customBadge";
 // scss
 import styles from "../../../styles/pages/order/mobileOrders.module.scss";
 
-const _asist = new Assistent();
-
 const MobileOrders = ({ loading, ordersList }) => {
-
   return (
     <div className={styles.wrapper}>
       {loading ? (
@@ -20,7 +17,6 @@ const MobileOrders = ({ loading, ordersList }) => {
         </div>
       ) : ordersList.length > 0 ? (
         ordersList.map((value, index) => {
-
           let jsonAddress = value.address_json || "{}";
           jsonAddress = JSON.parse(jsonAddress);
 
@@ -31,41 +27,50 @@ const MobileOrders = ({ loading, ordersList }) => {
                   <div className={styles.card_header}>
                     <CustomLabel
                       type="normal"
-                      value={_asist.number(value.id)}
+                      value={value.id}
                       label="شماره سفارش"
                     />
-                    {value.status === "awaiting_paying" && <CustomBadge
-                      title="در انتظار پرداخت"
-                      customBadgeStyle={{ fontSize: "12px" }}
-                    />}
-                    {value.status === "wait_store_approv" && <CustomBadge
-                      title="در انتظار تایید فروشگاه"
-                      customBadgeStyle={{ fontSize: "12px" }}
-                    />}
-                    {value.status === "preparing_product" && <CustomBadge
-                      title="در حال آماده سازی"
-                      customBadgeStyle={{ fontSize: "12px" }}
-                    />}
-                    {value.status === "wait_customer_approv" && <CustomBadge
-                      title="در انتظار تایید مشتری"
-                      customBadgeStyle={{ fontSize: "12px" }}
-                    />}
+                    {value.status === "awaiting_paying" && (
+                      <CustomBadge
+                        title="در انتظار پرداخت"
+                        customBadgeStyle={{ fontSize: "12px" }}
+                      />
+                    )}
+                    {value.status === "wait_store_approv" && (
+                      <CustomBadge
+                        title="در انتظار تایید فروشگاه"
+                        customBadgeStyle={{ fontSize: "12px" }}
+                      />
+                    )}
+                    {value.status === "preparing_product" && (
+                      <CustomBadge
+                        title="در حال آماده سازی"
+                        customBadgeStyle={{ fontSize: "12px" }}
+                      />
+                    )}
+                    {value.status === "wait_customer_approv" && (
+                      <CustomBadge
+                        title="در انتظار تایید مشتری"
+                        customBadgeStyle={{ fontSize: "12px" }}
+                      />
+                    )}
                   </div>
                   <CustomLabel
                     type="normal"
-                    value={(value.items && value.items[0].buyer) ||
-                      (value.address_json && jsonAddress.receiver_full_name)}
+                    value={
+                      (value.items && value.items[0].buyer) ||
+                      (value.address_json && jsonAddress.receiver_full_name)
+                    }
                     label="خریدار"
                     customLabelDiv="wrapper_custom_label"
                   />
                   <CustomLabel
                     type="normal"
-                    value={`${_asist.number(value.created_date_jalali)}`}
+                    value={`${value.created_date_jalali}`}
                     label="ثبت"
                     customLabelDiv="wrapper_custom_label"
                   />
-                  <div className={styles.card_image_wrapper}>
-                  </div>
+                  <div className={styles.card_image_wrapper}></div>
                 </a>
               </Link>
             </div>

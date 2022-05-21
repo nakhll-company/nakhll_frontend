@@ -1,16 +1,15 @@
 // node libraries
 import Link from "next/link";
 import React, { useContext } from "react";
-import Assistent from "zaravand-assistent-number";
+
 // methods
 import ContextProduct from "./Context/context";
 // style
 import styles from "./MenuMobile.module.scss";
 
-const _asist = new Assistent();
+
 
 export const MenuMobile = () => {
-
   const { All_product_list_buy } = useContext(ContextProduct);
 
   return (
@@ -24,7 +23,7 @@ export const MenuMobile = () => {
                   style={{ width: "120px" }}
                   className={`btn ${styles.btn_Buy} px-2 rounded-pill `}
                 >
-                  {_asist.number(`ادامه خرید `)}
+                  {`ادامه خرید `}
                 </button>
               </Link>
             </div>
@@ -44,13 +43,11 @@ export const MenuMobile = () => {
                 >
                   {All_product_list_buy.total_old_price !==
                     All_product_list_buy.total_price &&
-                    _asist.PSeparator(
-                      All_product_list_buy.total_old_price / 10
-                    )}
+                    diviedNumber(All_product_list_buy.total_old_price / 10)}
                 </span>
 
                 <span className="font-weight-500" style={{ marginLeft: "5px" }}>
-                  {_asist.PSeparator(All_product_list_buy.total_price / 10)}
+                  {diviedNumber(All_product_list_buy.total_price / 10)}
                 </span>
                 <span>تومان</span>
               </div>

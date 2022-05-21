@@ -21,7 +21,7 @@ function InputPicture({ setImageSrc, id, order = 0, ratio = 2 }) {
         id=""
         onChange={(e) => {
           selectImage(e, setImageSrc);
-          let idSelected = { id, order, ratio };
+          const idSelected = { id, order, ratio };
           dispatch(_selectId(idSelected));
           dispatch(showCropper());
         }}

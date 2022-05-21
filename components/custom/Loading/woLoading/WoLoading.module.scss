@@ -1,78 +1,78 @@
 .container_Loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .parent_loading {
-    width: 300px;
-    height: 300px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 300px;
+  height: 300px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 768px) {
-    .parent_loading {
-        width: 150px;
-        height: 150px;
-    }
+  .parent_loading {
+    width: 150px;
+    height: 150px;
+  }
 }
 
 .parent_loading span {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border: 2px solid rgb(37, 250, 9);
-    animation: animate 5s linear infinite, animateColor 2s linear infinite;
-    border-radius: 49% 51% 53% 47% / 42% 45% 55% 58%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border: 2px solid rgb(37, 250, 9);
+  animation: animate 5s linear infinite, animateColor 2s linear infinite;
+  border-radius: 49% 51% 53% 47% / 42% 45% 55% 58%;
 }
 
 .parent_loading span:nth-child(1) {
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-    animation-direction: reverse;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  animation-direction: reverse;
 }
 
 .parent_loading span:nth-child(2) {
-    border-radius: 14% 86% 25% 75% / 64% 53% 47% 36%;
-    animation-duration: 3s;
+  border-radius: 14% 86% 25% 75% / 64% 53% 47% 36%;
+  animation-duration: 3s;
 }
 
 .parent_loading span:nth-child(3) {
-    border-radius: 69% 31% 19% 81% / 73% 23% 77% 27%;
-    animation-direction: reverse;
+  border-radius: 69% 31% 19% 81% / 73% 23% 77% 27%;
+  animation-direction: reverse;
 }
 
 .parent_loading span:nth-child(3) {
-    top: 50px;
-    bottom: 50px;
-    left: 50px;
-    right: 50px;
-    border-radius: 76% 24% 55% 45% / 59% 26% 74% 41%;
-    animation-direction: 7s;
+  top: 50px;
+  bottom: 50px;
+  left: 50px;
+  right: 50px;
+  border-radius: 76% 24% 55% 45% / 59% 26% 74% 41%;
+  animation-direction: 7s;
 }
 
 .text {
-    position: relative;
+  position: relative;
 }
 
 @keyframes animate {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes animateColor {
-    0% {
-        filter: hue-rotate(0deg);
-    }
-    100% {
-        filter: hue-rotate(360deg);
-    }
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
 }

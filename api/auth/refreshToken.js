@@ -1,17 +1,21 @@
-import { clearTokenStorage } from "../general/clearTokenStorage";
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
+import {
+    clearTokenStorage
+} from "../general/clearTokenStorage";
+import {
+    ApiRegister
+} from "../../services/apiRegister/ApiRegister";
 
 export async function refreshToken() {
     if (
         localStorage.getItem("refreshToken") &&
         localStorage.getItem("accessToken")
     ) {
-        let token = {
+        const token = {
             refresh: localStorage.getItem("refreshToken"),
         };
         localStorage.removeItem("accessToken");
         try {
-            let response = await ApiRegister().apiRequest(
+            const response = await ApiRegister().apiRequest(
                 token,
                 "POST",
                 "/api/v1/auth/token/refresh/",

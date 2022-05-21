@@ -1,9 +1,13 @@
-import { successMessage } from "../../utils/toastifyMessage";
-import { authhttp } from "../../services/callApi/api";
+import {
+    successMessage
+} from "../../utils/toastifyMessage";
+import {
+    authhttp
+} from "../../services/callApi/api";
 // get advertisment
 export const editAdvertisment = async(shop_slug, data) => {
     try {
-        let response = await authhttp.patch(
+        const response = await authhttp.patch(
             `/api/v1/shop/advertisements/${shop_slug}/`,
             data
         );

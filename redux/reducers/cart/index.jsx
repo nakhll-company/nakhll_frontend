@@ -1,4 +1,4 @@
-let initialize = {
+const initialize = {
   allProduct: {},
 };
 

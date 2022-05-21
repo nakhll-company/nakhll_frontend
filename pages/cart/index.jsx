@@ -15,23 +15,21 @@ import ContextProduct from "../../containers/card/Context/context";
 import { authhttp } from "../../services/callApi/api";
 
 export default function Cart() {
-
   const dispatch = useDispatch();
   const [showLoading, setShowLoading] = useState(true);
-  const [All_product_list_buy, setAll_product_list_buy] = useState({});
+  const [allProductListBuy, setAllProductListBuy] = useState({});
 
   const _handleRequestApiAll = async () => {
     try {
-      let token = localStorage.getItem("accessToken");
-      let response = await authhttp.get(`/api/v1/cart/me/`) 
-      setAll_product_list_buy(await response.data);
+      const response = await authhttp.get(`/api/v1/cart/me/`);
+      setAllProductListBuy(await response.data);
       setShowLoading(false);
     } catch (e) {
       return false;
     }
   };
 
-  // CALL API  &  GET PRODUCT LIST  & SET DATA IN "All_product_list_buy"
+  // CALL API  &  GET PRODUCT LIST  & SET DATA IN "allProductListBuy"
   useEffect(() => {
     _handleRequestApiAll();
     dispatch(getProducts());
@@ -60,8 +58,9 @@ export default function Cart() {
           <div style={{ backgroundColor: "#fff" }}>
             <Loading />
           </div>
-        ) : All_product_list_buy &&
-          All_product_list_buy.ordered_items && All_product_list_buy.ordered_items.length > 0 ? (
+        ) : allProductListBuy &&
+          allProductListBuy.ordered_items &&
+          allProductListBuy.ordered_items.length > 0 ? (
           <section className="container container_mob pb-5 ">
             <div className="row mx-auto mt-4" style={{ maxWidth: "72rem" }}>
               <ListCardBuy />
@@ -73,7 +72,6 @@ export default function Cart() {
         )}
 
         <MenuMobile />
-
       </div>
     </ContextProduct.Provider>
   );

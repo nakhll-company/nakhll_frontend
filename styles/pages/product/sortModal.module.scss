@@ -1,39 +1,39 @@
 // wrapper
-.wrapper{
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  direction: rtl;
+  font-family: "bakh";
+  width: 230px;
+  height: 170px;
+  // header
+  .header {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    text-align: center;
+    color: #828e9c;
+    margin-bottom: 30px;
+  }
+  // div item
+  .sort_item_wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    direction: rtl;
-    font-family: 'bakh';
-    width: 230px;
-    height: 170px;
-    // header
-    .header{
-        font-style: normal;
-        font-weight: 500;
-        font-size: 14px;
-        text-align: center;
-        color: #828E9C;
-        margin-bottom: 30px;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 20px;
+    text-align: right;
+    color: #364254;
+    // span
+    .sort_item {
+      margin-bottom: 21px;
+      border: none;
+      outline: none;
+      background-color: #fff;
+      text-align: right;
+      cursor: pointer;
+      font-family: "bakh";
     }
-    // div item
-    .sort_item_wrapper{
-        display: flex;
-        flex-direction: column;
-        font-weight: normal;
-        font-size: 13px;
-        line-height: 20px;
-        text-align: right;
-        color: #364254;
-        // span
-        .sort_item{
-            margin-bottom: 21px;
-            border: none;
-            outline: none;
-            background-color: #fff;
-            text-align: right;
-            cursor: pointer;
-            font-family: 'bakh';
-        }
-    }
+  }
 }

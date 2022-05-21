@@ -2,14 +2,14 @@ import React from "react";
 import styles from "./customAccordion.module.scss";
 export const CustomAccordion = ({ children, title, item, callApi }) => {
   const _handel_according = (accord, icon) => {
-    let element = document.getElementById(accord);
+    const element = document.getElementById(accord);
     if (element.style.height == "0px") {
       element.style.height = "unset";
       document.getElementById(icon).className = "fas fa-angle-up";
     } else {
       element.style.height = "0";
       element.style.overflow = "hidden";
-      
+
       document.getElementById(icon).className = "fas fa-angle-down";
     }
   };

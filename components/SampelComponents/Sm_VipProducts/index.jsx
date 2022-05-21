@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import Image from "next/image";
 import { useDispatch } from "react-redux";
@@ -17,12 +18,12 @@ function Sm_VipProducts({ id, data }) {
 
   useEffect(() => {
     async function fetchData() {
-      let Queries = { page_size: "3" };
+      const Queries = { page_size: "3" };
       if (data[0].url !== "" && data[0].url !== undefined) {
-        let url = data[0].url;
+        const url = data[0].url;
         if (url.split("?")[1]) {
-          let partTwoUrl = url.split("?")[1].split("&");
-          let arrayString = partTwoUrl.map((el) => el.split("="));
+          const partTwoUrl = url.split("?")[1].split("&");
+          const arrayString = partTwoUrl.map((el) => el.split("="));
 
           arrayString.map((el) => {
             if (el[0] == "q") {
@@ -34,10 +35,11 @@ function Sm_VipProducts({ id, data }) {
         }
 
         if (Object.keys(Queries).length > 1) {
-          let response = await http.get(
+          const response = await http.get(
             "https://nakhll.com/api/v1/products/",
-            {params:Queries}
-            
+            {
+              params: Queries,
+            }
           );
 
           if (response.status == 200) {

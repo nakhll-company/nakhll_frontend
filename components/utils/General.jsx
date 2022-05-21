@@ -7,7 +7,6 @@ import React, { useEffect } from "react";
 import { pageview } from "../../utils/googleAnalytics";
 
 function General() {
-
   const router = useRouter();
 
   useEffect(() => {

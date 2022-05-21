@@ -2,11 +2,7 @@
 import MyLayout from "../../../components/layout/Layout";
 
 function Order() {
-
-  return (
-    <div>
-    </div>
-  )
+  return <div></div>;
 }
 
 export default Order;

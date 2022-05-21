@@ -1,27 +1,27 @@
 .wrapper {
-    overflow: hidden;
-    margin-bottom: 5px;
-    img {
-        width: 100%;
-        border-radius: 5px;
-    }
+  overflow: hidden;
+  margin-bottom: 5px;
+  img {
+    width: 100%;
+    border-radius: 5px;
+  }
 }
 
 .wrap {
-    display: flex;
-    gap: 5px;
-    .right {
-        flex-basis: 50%;
-        img {
-            width: 100%;
-            border-radius: 5px;
-        }
+  display: flex;
+  gap: 5px;
+  .right {
+    flex-basis: 50%;
+    img {
+      width: 100%;
+      border-radius: 5px;
     }
-    .left {
-        flex-basis: 50%;
-        img {
-            width: 100%;
-            border-radius: 5px;
-        }
+  }
+  .left {
+    flex-basis: 50%;
+    img {
+      width: 100%;
+      border-radius: 5px;
     }
+  }
 }

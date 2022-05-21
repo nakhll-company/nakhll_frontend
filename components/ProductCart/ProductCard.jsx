@@ -1,8 +1,9 @@
+import React from "react";
 // node libraries
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import Assistent from "zaravand-assistent-number";
+
 import { useDispatch } from "react-redux";
 // methods
 
@@ -13,8 +14,7 @@ import { FaRegBookmark, FaPlus, FaWindowClose } from "react-icons/fa";
 // scss
 import styles from "./ProductCard.module.scss";
 import { _addProduct } from "../../redux/actions/cart/_addProduct";
-
-const _asist = new Assistent();
+import diviedNumber from "../../utils/diviedNumber";
 
 const ProductCard = ({
   sm = 6,
@@ -28,7 +28,7 @@ const ProductCard = ({
   deletProduct,
 }) => {
   const dispatch = useDispatch();
-  let product = {
+  const product = {
     id: dataProduct.ID,
     imageUrl: dataProduct.Image_medium_url,
     url: `/shop/${dataProduct.FK_Shop.slug}/product/${dataProduct.Slug}/`,
@@ -41,7 +41,7 @@ const ProductCard = ({
     city: dataProduct.FK_Shop && dataProduct.FK_Shop.state,
     is_advertisement: dataProduct.is_advertisement,
   };
-  let cardBadge = (
+  const cardBadge = (
     <>
       <div
         className={styles._product_card_badge}
@@ -58,7 +58,7 @@ const ProductCard = ({
     </>
   );
 
-  let cardImg = (
+  const cardImg = (
     <Image
       layout="responsive"
       height={100}
@@ -72,7 +72,7 @@ const ProductCard = ({
       blurDataURL="/logoCart.png"
     />
   );
-  let campBadge = (
+  const campBadge = (
     <>
       <div
         className={styles._product_card_camp_badge}
@@ -89,7 +89,7 @@ const ProductCard = ({
       </div>
     </>
   );
-  let deletIcon = (
+  const deletIcon = (
     <>
       <>
         <div
@@ -154,7 +154,7 @@ const ProductCard = ({
           </div>
           {product.discountNumber !== 0 && (
             <div className={`_product_card_discount  ${styles.discount_badge}`}>
-              {_asist.number(product.discount)}%
+              {product.discount}%
             </div>
           )}
           {product.is_advertisement && (
@@ -204,7 +204,7 @@ const ProductCard = ({
               style={{ display: "flex", flexDirection: "column" }}
             >
               <span className="_product_card_orginal_number">
-                {_asist.PSeparator(product.price)}
+                {diviedNumber(product.price)}
               </span>
               <span
                 className="_product_card_discount_number"
@@ -214,7 +214,7 @@ const ProductCard = ({
                 }}
               >
                 {product.discountNumber !== 0 &&
-                  _asist.PSeparator(product.discountNumber)}
+                  diviedNumber(product.discountNumber)}
               </span>
             </div>
             <span
@@ -235,7 +235,7 @@ const ProductCard = ({
                 </div>
                 <div className="mt-1">
                   <p className="_sales_progressbar_text">
-                    %{_asist.number(product.sales)} فروش رفته
+                    %{product.sales} فروش رفته
                   </p>
                 </div>
               </>

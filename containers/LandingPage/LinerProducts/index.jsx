@@ -19,7 +19,7 @@ function LinerProducts({
   md = 4,
   lg = 3,
   sm = 6,
-  xs = 5
+  xs = 5,
 }) {
   if (dataLinerProducts && dataLinerProducts.results) {
     dataLinerProducts = dataLinerProducts.results;
@@ -43,10 +43,11 @@ function LinerProducts({
             <div className={styles.Button}>
               <button>
                 <Link
-                  href={`${url.includes("search=") || url.includes("q=")
-                    ? `${url}`
-                    : `/search?ap=${url}`
-                    }`}
+                  href={`${
+                    url.includes("search=") || url.includes("q=")
+                      ? `${url}`
+                      : `/search?ap=${url}`
+                  }`}
                 >
                   <a>مشاهده همه</a>
                 </Link>
@@ -93,10 +94,11 @@ function LinerProducts({
             <div className={styles.Button}>
               <button>
                 <Link
-                  href={`${url.includes("search=") || url.includes("q=")
-                    ? `${url}`
-                    : `/search?ap=${url}`
-                    }`}
+                  href={`${
+                    url.includes("search=") || url.includes("q=")
+                      ? `${url}`
+                      : `/search?ap=${url}`
+                  }`}
                 >
                   <a>مشاهده همه</a>
                 </Link>

@@ -22,12 +22,12 @@ function Sm_LinerProducts({ id, data }) {
   const [subTitle, setSubTitle] = useState(data[0].subTitle);
 
   useEffect(async () => {
-    let Queries = { page_size: "6" };
+    const Queries = { page_size: "6" };
     if (data[0].url !== "") {
-      let url = data[0].url;
+      const url = data[0].url;
       if (url.split("?")[1]) {
-        let partTwoUrl = url.split("?")[1].split("&");
-        let arrayString = partTwoUrl.map((el) => el.split("="));
+        const partTwoUrl = url.split("?")[1].split("&");
+        const arrayString = partTwoUrl.map((el) => el.split("="));
 
         arrayString.map((el) => {
           if (el[0] == "q") {
@@ -39,7 +39,7 @@ function Sm_LinerProducts({ id, data }) {
       }
 
       if (Object.keys(Queries).length > 1) {
-        let response = await http.get("https://nakhll.com/api/v1/products/", {
+        const response = await http.get("https://nakhll.com/api/v1/products/", {
           params: Queries,
         });
 

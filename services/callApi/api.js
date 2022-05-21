@@ -1,6 +1,10 @@
 import axios from "axios";
-import { checkToken } from "../../utils/checkToken";
-import { errorMessage } from "../../utils/toastifyMessage";
+import {
+    checkToken
+} from "../../utils/checkToken";
+import {
+    errorMessage
+} from "../../utils/toastifyMessage";
 
 function handelShowMessage(error) {
     const expectedError =
@@ -10,7 +14,7 @@ function handelShowMessage(error) {
     if (typeof window !== "undefined") {
         if (expectedError) {
             let message = "";
-            for (let value of Object.values(error.response.data)) {
+            for (const value of Object.values(error.response.data)) {
                 message += value.toString().replace(",", "\n");
             }
 
@@ -54,7 +58,7 @@ export const authhttp = axios.create({});
 
 authhttp.interceptors.request.use(
     async(config) => {
-        let token = await checkToken();
+        const token = await checkToken();
 
         if (token) {
             config.headers.authorization = `Bearer ${token}`;

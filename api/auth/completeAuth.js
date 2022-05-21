@@ -1,8 +1,10 @@
-import { http } from "../../services/callApi/api";
+import {
+    http
+} from "../../services/callApi/api";
 
 export async function completeAuth(data) {
     try {
-        let response = await http.post("/api/v1/auth/complete/", data);
+        const response = await http.post("/api/v1/auth/complete/", data);
 
         if (response.status === 200) {
             return response.data;

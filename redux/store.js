@@ -1,10 +1,17 @@
 // node libraries
-import { createStore, applyMiddleware } from "redux";
+import {
+    createStore,
+    applyMiddleware
+} from "redux";
 import Logger from "redux-logger";
 import Thunk from "redux-thunk";
 // combine reducers
-import { Reducers } from "./combine";
-import { composeWithDevTools } from "redux-devtools-extension";
+import {
+    Reducers
+} from "./combine";
+import {
+    composeWithDevTools
+} from "redux-devtools-extension";
 
 // this function return sutible middlewares based on app mode
 export function createMiddleWare(env = process.env.NODE_ENV) {
@@ -15,7 +22,7 @@ export function createMiddleWare(env = process.env.NODE_ENV) {
     }
 }
 
-let middlewares = createMiddleWare();
+const middlewares = createMiddleWare();
 
 // create Store
 export const Store = createStore(

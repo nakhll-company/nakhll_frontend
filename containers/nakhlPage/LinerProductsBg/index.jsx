@@ -11,7 +11,7 @@ import LinerProducts from "../../LandingPage/LinerProducts";
 function LinerProductsBgLanding({
   subTitle_LinerProductsBg,
   dataLinerProductsBg,
-  url_LinerProductsBg='',
+  url_LinerProductsBg = "",
   color,
   xl = 2,
   md = 6,
@@ -37,11 +37,11 @@ function LinerProductsBgLanding({
           alt=""
         />
 
-          <Link href={url_LinerProductsBg}>
-        <div className={styles.btn}>
-            <a style={{whiteSpace:'nowrap'}}>مشاهده محصولات</a>
-        </div>
-          </Link>
+        <Link href={url_LinerProductsBg}>
+          <div className={styles.btn}>
+            <a style={{ whiteSpace: "nowrap" }}>مشاهده محصولات</a>
+          </div>
+        </Link>
       </div>
       <div className={`${styles.lefter} col-9 col-md-9`}>
         <LinerProducts

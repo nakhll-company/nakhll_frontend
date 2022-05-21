@@ -1,8 +1,10 @@
-import { authhttp } from "../../services/callApi/api";
+import {
+    authhttp
+} from "../../services/callApi/api";
 
 export const callApiAllData = async(activeHojreh) => {
-    let dataUrl = `/api/v1/shop/${activeHojreh}/settings/`;
-    let response = await authhttp.get(dataUrl);
+    const dataUrl = `/api/v1/shop/${activeHojreh}/settings/`;
+    const response = await authhttp.get(dataUrl);
     return response;
 };
 
@@ -14,15 +16,15 @@ export const linkSetting = (body, activeHojreh) => {
         },
     };
 
-    let loadData = dataForSendLink;
-    let dataUrl = `/api/v1/shop/${activeHojreh}/settings/social_media/`;
+    const loadData = dataForSendLink;
+    const dataUrl = `/api/v1/shop/${activeHojreh}/settings/social_media/`;
 
-    let response = authhttp.put(dataUrl, loadData);
+    authhttp.put(dataUrl, loadData);
 };
 
 export const callApiUpDataShop = async(dataForSend, activeHojreh) => {
-    let loadData = dataForSend;
-    let dataUrl = `/api/v1/shop/${activeHojreh}/settings/`;
+    const loadData = dataForSend;
+    const dataUrl = `/api/v1/shop/${activeHojreh}/settings/`;
 
     const response = await authhttp.patch(dataUrl, loadData);
 
@@ -30,16 +32,16 @@ export const callApiUpDataShop = async(dataForSend, activeHojreh) => {
 };
 
 export const callBankAccount = async(dataForSend, activeHojreh) => {
-    let loadData = dataForSend;
-    let dataUrl = `/api/v1/shop/${activeHojreh}/settings/bank_account/`;
+    const loadData = dataForSend;
+    const dataUrl = `/api/v1/shop/${activeHojreh}/settings/bank_account/`;
 
-    let response = await authhttp.put(dataUrl, loadData);
+    const response = await authhttp.put(dataUrl, loadData);
     return response;
 };
 
 export const callApiUpDataPicture = async(dataForSend, activeHojreh) => {
-    let loadData = dataForSend;
-    let dataUrl = `/api/v1/shop/${activeHojreh}/settings/avatar/`;
+    const loadData = dataForSend;
+    const dataUrl = `/api/v1/shop/${activeHojreh}/settings/avatar/`;
 
     const response = await authhttp.put(dataUrl, loadData);
 

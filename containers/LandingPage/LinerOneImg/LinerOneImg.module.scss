@@ -1,28 +1,28 @@
 .linearImages {
-    box-sizing: border-box;
-    overflow: hidden;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  .righter {
     position: relative;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    .righter {
-        position: relative;
-        margin-bottom: 10px;
-        img {
-            aspect-ratio: 3/1.2;
-            width: 100%;
-            height: auto;
-            border-radius: 20px;
-        }
+    margin-bottom: 10px;
+    img {
+      aspect-ratio: 3/1.2;
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
     }
-    .lefter {
-        margin-bottom: 10px;
-        position: relative;
-        img {
-            display: block;
-            aspect-ratio: 3/1.2;
-            width: 100%;
-            height: auto;
-            border-radius: 15px;
-        }
+  }
+  .lefter {
+    margin-bottom: 10px;
+    position: relative;
+    img {
+      display: block;
+      aspect-ratio: 3/1.2;
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
     }
+  }
 }

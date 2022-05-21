@@ -1,3 +1,4 @@
+import React from "react";
 // node libries
 import { useField } from "formik";
 // style
@@ -13,7 +14,7 @@ function FieldCus({
   styleInput = {},
   ...props
 }) {
-  const [field, meta, helpers] = useField(props);
+  const [field, meta] = useField(props);
 
   return (
     <>

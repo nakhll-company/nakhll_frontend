@@ -1,7 +1,9 @@
 import Axios from "axios";
-import { errorMessage } from "../../utils/toastifyMessage";
+import {
+    errorMessage
+} from "../../utils/toastifyMessage";
 
-//=================================================================\\
+// =================================================================\\
 // function for handel message
 
 function showMessage(error) {
@@ -12,7 +14,7 @@ function showMessage(error) {
     if (typeof window !== "undefined") {
         if (expectedError) {
             let message = "";
-            for (let value of Object.values(error.response.data)) {
+            for (const value of Object.values(error.response.data)) {
                 message += value.toString().replace(",", "\n");
             }
 
@@ -37,7 +39,7 @@ function showMessage(error) {
     }
 }
 
-//=================================================================\\
+// =================================================================\\
 export const instanceAxiosWithOutToken = Axios.create({
     withCredentials: true,
     baseURL: process.env.BASE_URL,
@@ -50,7 +52,7 @@ export const instanceAxiosWithOutToken = Axios.create({
 // instanceAxiosWithOutToken.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
 // instanceAxiosWithOutToken.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 
-//=================================================================\\
+// =================================================================\\
 export const instanceAxiosWithToken = Axios.create({
     withCredentials: true,
     baseURL: process.env.BASE_URL,
@@ -60,9 +62,9 @@ export const instanceAxiosWithToken = Axios.create({
     },
 });
 
-//=================================================================\\
-//=================instanceAxiosWithOutToken=======================\\
-//=================================================================\\
+// =================================================================\\
+// =================instanceAxiosWithOutToken=======================\\
+// =================================================================\\
 instanceAxiosWithOutToken.interceptors.request.use(
     function(config) {
         return config;
@@ -82,9 +84,9 @@ instanceAxiosWithOutToken.interceptors.response.use(
     }
 );
 
-//=================================================================\\
-//=================instanceAxiosWithToken==========================\\
-//=================================================================\\
+// =================================================================\\
+// =================instanceAxiosWithToken==========================\\
+// =================================================================\\
 instanceAxiosWithToken.interceptors.request.use(
     function(config) {
         config.headers["Authorization"] = `Bearer ${localStorage.getItem(

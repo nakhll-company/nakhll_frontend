@@ -1,17 +1,17 @@
 .image {
-    border-radius: 50px;
+  border-radius: 50px;
 }
 .imageMobile {
-    display: none;
+  display: none;
 }
 @media (max-width: 870px) {
-    .image {
-        border-radius: 15px;
-    }
-    .imageDesktop {
-        display: none;
-    }
-    .imageMobile {
-        display: inline;
-    }
+  .image {
+    border-radius: 15px;
+  }
+  .imageDesktop {
+    display: none;
+  }
+  .imageMobile {
+    display: inline;
+  }
 }

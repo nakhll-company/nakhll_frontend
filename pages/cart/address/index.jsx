@@ -1,10 +1,11 @@
+import React from "react";
 // node libraries
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import Assistent from "zaravand-assistent-number";
+
 // componentes
 import Loading from "../../../components/loading";
 import ShopLayout from "../../../components/shopLayout";
@@ -18,15 +19,13 @@ import { changeRadioButtonColor } from "../../../containers/cartAddress/methods/
 import styles from "../../../styles/pages/cart/address.module.scss";
 import AppButton from "../../../components/AppButton";
 
-const _asist = new Assistent();
-
 const Address = () => {
   const [loaderButton, setLoaderButton] = useState(false);
   const router = useRouter();
   const userLogin = useSelector((state) => state.User.userInfo);
-  let [address, setAddress] = useState([]);
-  let [loading, setLoading] = useState(true);
-  let [showModal, setShowModal] = useState({
+  const [address, setAddress] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useState({
     show: false,
     id: 0,
   });
@@ -106,12 +105,10 @@ const Address = () => {
                     </div>
                     <div className={styles.address_item_detail}>
                       <b>{value.receiver_full_name}</b> <span>موبایل:</span>{" "}
-                      <b>{_asist.number(`${value.receiver_mobile_number}`)}</b>
+                      <b>{`${value.receiver_mobile_number}`}</b>
                       <br />
                       <b>{value.big_city}</b>
-                      <span>
-                        / {_asist.number(`${value.city} ${value.address}`)}
-                      </span>
+                      <span>/ {`${value.city} ${value.address}`}</span>
                     </div>
                     <div className={styles.address_item_icons}>
                       <i

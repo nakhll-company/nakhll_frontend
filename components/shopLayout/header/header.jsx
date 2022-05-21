@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import Assistent from "zaravand-assistent-number";
+
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // component
@@ -13,17 +13,15 @@ import MegaMenuDesktop from "../../../containers/LandingPage/MegaMenuDesktop";
 import { gtag } from "../../../utils/googleAnalytics";
 import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
 import {
-  _call_Category,
+  callCategory,
   _get_all_shops,
-  _handel_search,
+  handelSearch,
 } from "../../../api/header";
 // style
 import styles from "./header.module.scss";
 import rot13 from "../../../utils/rout13";
 import { clearTokenStorage } from "../../../api/general/clearTokenStorage";
 import { http } from "../../../services/callApi/api";
-
-const _asist = new Assistent();
 
 function Header() {
   const router = useRouter();
@@ -39,7 +37,7 @@ function Header() {
   useEffect(() => {
     async function fetchData() {
       dispatch(getUserInfo());
-      let getCategory = await _call_Category();
+      const getCategory = await callCategory();
       setCategory(getCategory);
     }
     fetchData();
@@ -107,13 +105,13 @@ function Header() {
                       placeholder="جستجو در نخل ..."
                       onClick={async () => {
                         if (shopsName.length == 0) {
-                          let getShopsName = await _get_all_shops(shopsName);
+                          const getShopsName = await _get_all_shops(shopsName);
                           setShopsName(getShopsName);
                         }
                       }}
                       onChange={(e) => {
                         setInputSearch(e.target.value);
-                        let searchedShop = _handel_search(
+                        const searchedShop = handelSearch(
                           e.target.value,
                           shopsName
                         );
@@ -169,7 +167,7 @@ function Header() {
                     </Link> */}
                     <div
                       onClick={async () => {
-                        let response = await http.post(
+                        const response = await http.post(
                           "/api/v1/auth/begin/login_register/",
                           { mobile: userLog.mobile_number }
                         );
@@ -223,7 +221,7 @@ function Header() {
                   />
                   {!!All_product_list_buy?.ordered_items?.length && (
                     <span className={styles.counter_cart}>
-                      {_asist.number(All_product_list_buy.ordered_items.length)}
+                      {All_product_list_buy.ordered_items.length}
                     </span>
                   )}
                 </div>
@@ -335,7 +333,7 @@ function Header() {
                     {Object.keys(userLog).length > 0 &&
                       userLog.cart_items_count !== 0 && (
                         <span className={styles.counter_cart}>
-                          {_asist.number(userLog.cart_items_count)}
+                          {userLog.cart_items_count}
                         </span>
                       )}
                   </div>
@@ -361,12 +359,12 @@ function Header() {
                   type="text"
                   className="form-control"
                   onClick={async () => {
-                    let getShopsName = await _get_all_shops(shopsName);
+                    const getShopsName = await _get_all_shops(shopsName);
                     setShopsName(getShopsName);
                   }}
                   onChange={(e) => {
                     setInputSearch(e.target.value);
-                    let searchedShop = _handel_search(
+                    const searchedShop = handelSearch(
                       e.target.value,
                       shopsName
                     );

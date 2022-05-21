@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import Image from "next/image";
 import { connect } from "react-redux";
@@ -17,12 +18,15 @@ import TextAreaUseForm from "../../../../containers/creat/component/textAreaUseF
 import PictureChildProduct from "../../../../containers/creat/component/pictureChildProduct";
 // methods
 import { mapState } from "../../../../containers/product/methods/mapState";
-import { _ApiCreateProduct, _ApiGetCategories, _ApiGetTags } from "../../../../api/creatProduct";
+import {
+  _ApiCreateProduct,
+  _ApiGetCategories,
+  _ApiGetTags,
+} from "../../../../api/creatProduct";
 // styles
 import styles from "../../../../styles/pages/product/create.module.scss";
 
 const CreateProduct = ({ activeHojreh }) => {
-
   const router = useRouter();
   const _asist = new Assistent();
   const [data, setData] = useState([]);
@@ -44,7 +48,13 @@ const CreateProduct = ({ activeHojreh }) => {
   const [imgProductThree, setImgProductThree] = useState(null);
   const [isloadingForCreate, setIsloadingForCreate] = useState(false);
   const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState("");
-  const { getValues, clearErrors, register, handleSubmit, formState: { errors } } = useForm({
+  const {
+    getValues,
+    clearErrors,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     criteriaMode: "all",
     mode: "all",
   });
@@ -52,15 +62,15 @@ const CreateProduct = ({ activeHojreh }) => {
   useEffect(() => {
     async function fetchData() {
       if (activeHojreh) {
-        const response_categories = await _ApiGetCategories();
-        if (response_categories.status === 200) {
+        const responseCategories = await _ApiGetCategories();
+        if (responseCategories.status === 200) {
           setIsLoad(true);
-          setData(response_categories.data); //==> output: {}
-          setCategories(response_categories.data);
+          setData(responseCategories.data); // ==> output: {}
+          setCategories(responseCategories.data);
         }
         const tags = await _ApiGetTags(activeHojreh);
         if (tags.status < 300) {
-          let newArrTags = [];
+          const newArrTags = [];
           tags?.data.map((item) => {
             newArrTags.push({ id: item.text, text: item.text });
           });
@@ -74,32 +84,32 @@ const CreateProduct = ({ activeHojreh }) => {
 
   // select Submarket
   const _selectSubmarket = () => {
-    let element = document.getElementById("wrapperMarkets");
+    const element = document.getElementById("wrapperMarkets");
     element.style.display = "block";
-    let elementProduct = document.getElementById("wrapper_product");
+    const elementProduct = document.getElementById("wrapper_product");
     elementProduct.style.display = "none";
   };
 
   const onSubmit = async (data) => {
     setIsloadingForCreate(true);
-    let Product_Banner = [];
+    const ProductBanner = [];
     if (imgProductOne) {
-      Product_Banner.push({ Image: imgProductOne });
+      ProductBanner.push({ Image: imgProductOne });
     }
     if (imgProductTwo) {
-      Product_Banner.push({ Image: imgProductTwo });
+      ProductBanner.push({ Image: imgProductTwo });
     }
     if (imgProductThree) {
-      Product_Banner.push({ Image: imgProductThree });
+      ProductBanner.push({ Image: imgProductThree });
     }
     if (imgProductFour) {
-      Product_Banner.push({ Image: imgProductFour });
+      ProductBanner.push({ Image: imgProductFour });
     }
     if (imgProductFive) {
-      Product_Banner.push({ Image: imgProductFive });
+      ProductBanner.push({ Image: imgProductFive });
     }
     if (imgProductSix) {
-      Product_Banner.push({ Image: imgProductSix });
+      ProductBanner.push({ Image: imgProductSix });
     }
 
     const externalData = {
@@ -108,7 +118,7 @@ const CreateProduct = ({ activeHojreh }) => {
       post_range: [],
       category: submarketId,
       Image: imgProduct,
-      Product_Banner: Product_Banner,
+      Product_Banner: ProductBanner,
       product_tags: tags,
     };
 

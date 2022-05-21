@@ -1,16 +1,20 @@
-import { ApiRegister } from "../../services/apiRegister/ApiRegister";
-import { setToken } from "../../utils/setToken";
+import {
+    ApiRegister
+} from "../../services/apiRegister/ApiRegister";
+import {
+    setToken
+} from "../../utils/setToken";
 
 export async function getAccessToken(data) {
     try {
-        let response = await ApiRegister().apiRequest(
+        const response = await ApiRegister().apiRequest(
             data,
             "POST",
             "/api/v1/auth/token/",
             false, {}
         );
         if (response.status === 200) {
-            setToken(response.data)
+            setToken(response.data);
 
             return true;
         } else {

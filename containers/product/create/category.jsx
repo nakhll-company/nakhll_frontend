@@ -21,9 +21,9 @@ const Category = ({
   }
   // final Click
   function finalClick(e) {
-    let element = document.getElementById("wrapperMarkets");
+    const element = document.getElementById("wrapperMarkets");
     element.style.display = "none";
-    let elementProduct = document.getElementById("wrapper_product");
+    const elementProduct = document.getElementById("wrapper_product");
     elementProduct.style.display = "flex";
     setPlaceholderSubmarckets(e);
     setSubmarketId(e.id);
@@ -34,9 +34,9 @@ const Category = ({
   // Go Back
   function GoBack() {
     if (page === 1) {
-      let element = document.getElementById("wrapperMarkets");
+      const element = document.getElementById("wrapperMarkets");
       element.style.display = "none";
-      let elementProduct = document.getElementById("wrapper_product");
+      const elementProduct = document.getElementById("wrapper_product");
       elementProduct.style.display = "flex";
     } else {
       setPage((page) => page - 1);

@@ -1,14 +1,12 @@
 // node libraries
 import React from "react";
 import Image from "next/image";
-import Assistent from "zaravand-assistent-number";
+
 // style
 import styles from "./Sm_product.module.scss";
+import diviedNumber from "../../../utils/diviedNumber";
 
 function Sm_product_Fix() {
-
-  const _asist = new Assistent();
-
   return (
     <>
       <div className={styles.product}>
@@ -31,7 +29,7 @@ function Sm_product_Fix() {
               <i className="fas fa-plus"></i>
             </span>
           </div>
-          <div className={styles.price}>{_asist.PSeparator(25000)}</div>
+          <div className={styles.price}>{diviedNumber(25000)}</div>
         </div>
       </div>
     </>

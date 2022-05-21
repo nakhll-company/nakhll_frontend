@@ -7,7 +7,6 @@ import { getCroppedImg } from "./methods/getCropImage";
 import styles from "./customCropper.module.scss";
 
 function CustomCropperAll({ setImageSrc, image, setShowCropper, ratio = 1 }) {
-
   const [zoom, setZoom] = useState(1);
   const [rotation, setRotation] = useState(0);
   const [crop, setCrop] = useState({ x: 0, y: 0 });

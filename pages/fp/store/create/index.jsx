@@ -1,3 +1,4 @@
+import React from "react";
 // node libraies
 import Link from "next/link";
 import Head from "next/head";
@@ -28,10 +29,10 @@ function NewStore({ getUserInfo, userInfo }) {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  let [selectState, setSelectState] = useState([]);
-  let [selectBigCities, setSelectBigCities] = useState([]);
-  let [selectCities, setSelectCities] = useState([]);
-  let [showSuccessPage, setShowSuccessPage] = useState({
+  const [selectState, setSelectState] = useState([]);
+  const [selectBigCities, setSelectBigCities] = useState([]);
+  const [selectCities, setSelectCities] = useState([]);
+  const [showSuccessPage, setShowSuccessPage] = useState({
     loading: "false",
     success: "false",
   });
@@ -45,7 +46,7 @@ function NewStore({ getUserInfo, userInfo }) {
         loading: "true",
       };
     });
-    let response = await createStore(data);
+    const response = await createStore(data);
     if (response.status === 201) {
       getUserInfo();
       setLoaderBtn(false);
@@ -130,7 +131,7 @@ function NewStore({ getUserInfo, userInfo }) {
             className={styles.form_select}
             {...register("State", { required: true })}
             onChange={async (event) => {
-              let states = await getBigCities(event.target.value);
+              const states = await getBigCities(event.target.value);
               setSelectBigCities(states);
             }}
           >

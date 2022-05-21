@@ -1,7 +1,7 @@
 // node libraries
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import Assistent from "zaravand-assistent-number";
+
 import React, { useEffect, useState } from "react";
 import { useTransition, animated } from "react-spring";
 // methods
@@ -11,8 +11,6 @@ import { _addToWishList } from "../../redux/actions/Wishlist/_addToWishList";
 import styles from "./AddFavorites.module.scss";
 import { authhttp } from "../../services/callApi/api";
 
-const _asist = new Assistent();
-
 function AddFavorites() {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -21,8 +19,8 @@ function AddFavorites() {
   const [textInput, settextInput] = useState("");
   const [openList, setOpenList] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  let apiCreat = ApiReference.PinnedURL.creat.url;
-  let apiListPinned = ApiReference.PinnedURL.PinnedList.url;
+  const apiCreat = ApiReference.PinnedURL.creat.url;
+  const apiListPinned = ApiReference.PinnedURL.PinnedList.url;
 
   const transition = useTransition(isVisible, {
     from: { x: -100, y: 800, opacity: 0 },
@@ -30,16 +28,16 @@ function AddFavorites() {
     leave: { x: 100, y: 800, opacity: 0 },
   });
 
-  const _handel_menu = () => {
+  const handelMenu = () => {
     setIsVisible(!isVisible);
   };
-  const _handel_tabs = () => {
+  const handelTabs = () => {
     setOpenAdd(!openAdd);
     setOpenList(!openList);
   };
 
   // function add page to favourite
-  const _handel_add_page_to_favourit = async () => {
+  const handelAddPageToFavourit = async () => {
     if (textInput !== "") {
       const link = router.asPath;
 
@@ -48,7 +46,7 @@ function AddFavorites() {
         name: textInput == "" ? "بدون عنوان" : textInput,
       };
 
-      let response = await authhttp.post(apiCreat, newFav);
+      const response = await authhttp.post(apiCreat, newFav);
 
       if (response.status === 201) {
         dispatch(_addToWishList(response.data));
@@ -59,18 +57,18 @@ function AddFavorites() {
   };
 
   // function Delete form fav
-  const _handel_delete_from_fav = async (ID) => {
-    let urlDelet = `/api/v1/shop/pinned-urls/${ID}/`;
-    let deletePinned = await authhttp.delete(urlDelet);
-    let arr = [...listFav];
-    let arrDeleted = arr.filter((el) => el.id !== ID);
+  const handelDeleteFromFav = async (ID) => {
+    const urlDelet = `/api/v1/shop/pinned-urls/${ID}/`;
+    const deletePinned = await authhttp.delete(urlDelet);
+    const arr = [...listFav];
+    const arrDeleted = arr.filter((el) => el.id !== ID);
     setListFav(arrDeleted);
     return deletePinned;
   };
 
   useEffect(() => {
     async function fetchData() {
-      let response = await authhttp.get(apiListPinned);
+      const response = await authhttp.get(apiListPinned);
 
       if (response.status == 200) {
         setListFav(response.data);
@@ -82,7 +80,7 @@ function AddFavorites() {
   return (
     <div className={styles.content}>
       <div className={styles.updater}>
-        <button className={styles.btnPin} onClick={_handel_menu}>
+        <button className={styles.btnPin} onClick={handelMenu}>
           <i
             style={{
               transform: isVisible ? "rotate(0deg)" : "rotate(45deg)",
@@ -103,7 +101,7 @@ function AddFavorites() {
               </div>
               <div className={styles.selectHeader}>
                 <div
-                  onClick={_handel_tabs}
+                  onClick={handelTabs}
                   style={
                     openAdd
                       ? { backgroundColor: "rgb(69, 4, 247)", color: "#fff" }
@@ -119,7 +117,7 @@ function AddFavorites() {
                       ? { backgroundColor: "rgb(69, 4, 247)", color: "#fff" }
                       : {}
                   }
-                  onClick={_handel_tabs}
+                  onClick={handelTabs}
                   className={styles.left}
                 >
                   <span>
@@ -136,7 +134,7 @@ function AddFavorites() {
                       <span style={{ fontSize: "12px", marginLeft: "2px" }}>
                         (
                       </span>
-                      {_asist.number(listFav.length)}
+                      {listFav.length}
                       <span style={{ fontSize: "12px", marginRight: "2px" }}>
                         )
                       </span>
@@ -158,7 +156,7 @@ function AddFavorites() {
                   <div className={styles.wrapButton}>
                     <button
                       className={styles.btnAdd}
-                      onClick={_handel_add_page_to_favourit}
+                      onClick={handelAddPageToFavourit}
                     >
                       <i className="fas fa-plus-square"></i>
                     </button>
@@ -174,7 +172,7 @@ function AddFavorites() {
                       </a>
                       <i
                         onClick={() => {
-                          _handel_delete_from_fav(el.id);
+                          handelDeleteFromFav(el.id);
                         }}
                         className="fas fa-times"
                       ></i>

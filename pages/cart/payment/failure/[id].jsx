@@ -1,13 +1,11 @@
 // node libraries
 import React from "react";
 import Image from "next/image";
-import Assistent from "zaravand-assistent-number";
+
 // components
 import ShopLayout from "../../../../components/shopLayout";
 // styles
 import styles from "./faile.module.scss";
-
-const _asist = new Assistent();
 
 const Failed = ({ code }) => {
   return (
@@ -21,13 +19,10 @@ const Failed = ({ code }) => {
             height={400}
           />
           <h3 className={styles.text}>پرداخت ناموفق</h3>
-          <h4 className={styles.text_sub}>
-            {" "}
-            شماره سفارش : {_asist.number(`${code}`)}{" "}
-          </h4>
+          <h4 className={styles.text_sub}> شماره سفارش : {`${code}`} </h4>
           <h5 className={styles.text_sub_last}>
-            چنانچه طی این فرایند مبلغی از حساب شما کسر شده است ، طی{" "}
-            {_asist.PSeparator(72)} ساعت آینده به حساب شما باز خواهد گشت.
+            چنانچه طی این فرایند مبلغی از حساب شما کسر شده است ، طی 72 ساعت
+            آینده به حساب شما باز خواهد گشت.
           </h5>
 
           <h5 className={styles.text_sub_last_Sup}>
@@ -37,7 +32,7 @@ const Failed = ({ code }) => {
               href="tel://034-32476561"
               className="d-inline-block"
             >
-              {_asist.number(`034-32476561`)}
+              {`034-32476561`}
             </a>
           </h5>
         </div>

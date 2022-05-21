@@ -1,74 +1,74 @@
 @mixin inputPic {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    visibility: hidden;
-    transition: all 0.3s ease;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  visibility: hidden;
+  transition: all 0.3s ease;
 }
 
 .wrap {
+  width: 100%;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  grid-template-areas: "img1 img2 img3 img4";
+  grid-gap: 10px;
+  margin-bottom: 20px;
+  @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: "img1 img2" "img3 img4";
+  }
+  .wrapImg {
+    position: relative;
+    .icon_change_pic {
+      @include inputPic;
+    }
+    &:hover {
+      .icon_change_pic {
+        visibility: visible;
+      }
+      .icon_change_url {
+        visibility: visible;
+      }
+      .titleUrl {
+        visibility: visible;
+      }
+    }
+  }
+  img {
     width: 100%;
-    overflow: hidden;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 1fr;
-    grid-template-areas: "img1 img2 img3 img4";
-    grid-gap: 10px;
-    margin-bottom: 20px;
-    @media screen and (max-width: 768px) {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-areas: "img1 img2" "img3 img4";
-    }
-    .wrapImg {
-        position: relative;
-        .icon_change_pic {
-            @include inputPic;
-        }
-        &:hover {
-            .icon_change_pic {
-                visibility: visible;
-            }
-            .icon_change_url {
-                visibility: visible;
-            }
-            .titleUrl {
-                visibility: visible;
-            }
-        }
-    }
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-        border-radius: 15px;
-    }
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 15px;
+  }
 }
 
 .icon_change_url {
-    position: absolute;
-    left: 10px;
-    bottom: 10px;
-    visibility: hidden;
-    transition: all 0.3s ease;
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  visibility: hidden;
+  transition: all 0.3s ease;
 }
 
 .titleUrl {
-    position: absolute;
-    background: #000;
-    left: 50px;
-    bottom: 10px;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    background: rgba(255, 255, 255);
-    backdrop-filter: blur(15px);
-    box-shadow: 5px 9.9px 9.9px hsl(0deg 0% 0% / 0.35);
-    border-radius: 7px;
-    span {
-        padding: 10px;
-        font-size: 13px;
-        font-weight: bold;
-        position: block;
-        color: #000;
-    }
+  position: absolute;
+  background: #000;
+  left: 50px;
+  bottom: 10px;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255);
+  backdrop-filter: blur(15px);
+  box-shadow: 5px 9.9px 9.9px hsl(0deg 0% 0% / 0.35);
+  border-radius: 7px;
+  span {
+    padding: 10px;
+    font-size: 13px;
+    font-weight: bold;
+    position: block;
+    color: #000;
+  }
 }

@@ -1,6 +1,7 @@
+import React from "react";
 // node libraries
 import { useEffect, useState } from "react";
-import Assistent from "zaravand-assistent-number";
+
 // components
 import SBSendUnit from "../sendUnit/switchButtonSendUnit";
 import LoadingAllPage from "../../../../../../components/loadingAllPage";
@@ -8,8 +9,7 @@ import LoadingAllPage from "../../../../../../components/loadingAllPage";
 // style
 import st from "./tabel.module.scss";
 import { authhttp } from "../../../../../../services/callApi/api";
-
-const _asist = new Assistent();
+import diviedNumber from "../../../../../../utils/diviedNumber";
 
 function Tabel({ changePage, setWichIdScope }) {
   const [loaderTable, setLoaderTable] = useState(false);
@@ -17,7 +17,7 @@ function Tabel({ changePage, setWichIdScope }) {
 
   useEffect(() => {
     async function fetchData() {
-      let response = await authhttp.get(
+      const response = await authhttp.get(
         `/api/v1/logistic/shop-logistic-unit-constraint/`,
         { id: 10 }
       );
@@ -32,12 +32,12 @@ function Tabel({ changePage, setWichIdScope }) {
 
   const _handle_delete_scope = async (id) => {
     setLoaderTable(true);
-    let response = await authhttp.delete(
+    const response = await authhttp.delete(
       `/api/v1/logistic/shop-logistic-unit-constraint/${id}/`
     );
 
     if (response.status == 204) {
-      let helpArray = SavedSendingUnit.filter((el) => el.id !== id);
+      const helpArray = SavedSendingUnit.filter((el) => el.id !== id);
       setSavedSendingUnit(helpArray);
       setLoaderTable(false);
     } else {
@@ -91,10 +91,10 @@ function Tabel({ changePage, setWichIdScope }) {
                 className={st.nameTable}
                 scope="row"
               >
-                {_asist.PSeparator(el.title)}
+                {diviedNumber(el.title)}
               </th>
-              <td>{_asist.PSeparator(el.cities_count)} شهر</td>
-              <td>{_asist.PSeparator(el.products_count)} محصول</td>
+              <td>{diviedNumber(el.cities_count)} شهر</td>
+              <td>{diviedNumber(el.products_count)} محصول</td>
               <td>
                 <div className={st.status}>
                   <div style={{ marginBottom: "10px" }}>

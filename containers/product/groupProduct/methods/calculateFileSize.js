@@ -1,5 +1,5 @@
 export function calculateFileSize(file) {
-    let fSExt = new Array('Bytes', 'KB', 'MB', 'GB');
+    const fSExt = ["Bytes", "KB", "MB", "GB"];
     let fSize = file.size;
     let i = 0;
 
@@ -8,5 +8,5 @@ export function calculateFileSize(file) {
         i++;
     }
 
-    return (Math.round(fSize * 100) / 100) + ' ' + fSExt[i];
+    return Math.round(fSize * 100) / 100 + " " + fSExt[i];
 }

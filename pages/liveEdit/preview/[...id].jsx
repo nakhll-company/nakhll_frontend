@@ -17,13 +17,12 @@ import { ApiReference } from "../../../api/Api";
 import { authhttp } from "../../../services/callApi/api";
 
 function Preview({ idLanding }) {
-
   const [dataLanding, setDataLanding] = useState([]);
-  let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}/`;
+  const getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}/`;
 
   useEffect(() => {
     async function fetchData() {
-      let response = await authhttp.get(getDataLanding) 
+      const response = await authhttp.get(getDataLanding);
       if (response.status == 200) {
         setDataLanding(JSON.parse(response.data.page_data));
       }
@@ -31,7 +30,7 @@ function Preview({ idLanding }) {
     fetchData();
   }, [getDataLanding]);
 
-  const _handel_select_component = (data) => {
+  const handelSelectComponent = (data) => {
     const handeler = {
       1: <HeroSlides dataHeroSlides={data.data} />,
       2: <LinerOneImg dataLinerOneImg={data.data} />,
@@ -58,9 +57,7 @@ function Preview({ idLanding }) {
   };
 
   return (
-    <>
-      {dataLanding.map((data, index) => _handel_select_component(data, index))}
-    </>
+    <>{dataLanding.map((data, index) => handelSelectComponent(data, index))}</>
   );
 }
 

@@ -1,4 +1,5 @@
 // node libraries
+import React from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
@@ -17,9 +18,7 @@ import { getUserData } from "../../containers/profile/methods/getUserData";
 // scss
 import styles from "./profile.module.scss";
 import { clearTokenStorage } from "../../api/general/clearTokenStorage";
-/**
- * component profile
- */
+
 const Profile = () => {
   const breakpoint = 767;
   const router = useRouter();
@@ -36,7 +35,7 @@ const Profile = () => {
   const [dataProfile, setDataProfile] = useState({});
 
   function activeLink(event) {
-    let elementsActive = document.querySelectorAll("li");
+    const elementsActive = document.querySelectorAll("li");
     elementsActive.forEach((value) =>
       value.classList.remove(`${styles.active_link}`)
     );
@@ -256,8 +255,8 @@ const Profile = () => {
                 <li
                   className="d-flex flex-column align-items-center ms-4"
                   onClick={() => {
-                    clearTokenStorage()
-                   
+                    clearTokenStorage();
+
                     router.push("/");
                     router.reload(window.location.pathname);
                   }}

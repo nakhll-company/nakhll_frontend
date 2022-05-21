@@ -1,62 +1,62 @@
 .container {
-    width: 100%;
-    position: relative;
+  width: 100%;
+  position: relative;
 }
 
 .header {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    left: 10px;
-    z-index: 1;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  left: 10px;
+  z-index: 1;
 }
 
 .boxContainer {
-    position: absolute;
-    bottom: 20%;
-    right: 10%;
-    h1 {
-        color: #fff;
-        font-size: 60px;
-        font-weight: 900;
-        margin: 0;
-    }
-    h2 {
-        color: #fff;
-        font-size: 16px;
-        font-weight: 800;
-        margin-top: 15px;
-        margin-bottom: 20px;
-    }
+  position: absolute;
+  bottom: 20%;
+  right: 10%;
+  h1 {
+    color: #fff;
+    font-size: 60px;
+    font-weight: 900;
+    margin: 0;
+  }
+  h2 {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 800;
+    margin-top: 15px;
+    margin-bottom: 20px;
+  }
 }
 
 .searchConatiner {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .mobileImage {
-    display: none;
+  display: none;
 }
 
 @media (max-width: 870px) {
-    .desktopImage {
-        display: none;
+  .desktopImage {
+    display: none;
+  }
+  .mobileImage {
+    display: inline;
+  }
+  .boxContainer {
+    bottom: 2%;
+    right: 2%;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    h1 {
+      font-size: 30px;
     }
-    .mobileImage {
-        display: inline;
+    h2 {
+      font-size: 14px;
     }
-    .boxContainer {
-        bottom: 2%;
-        right: 2%;
-        left: 0;
-        display: flex;
-        flex-direction: column;
-        h1 {
-            font-size: 30px;
-        }
-        h2 {
-            font-size: 14px;
-        }
-    }
+  }
 }

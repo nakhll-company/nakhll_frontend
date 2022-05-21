@@ -1,62 +1,63 @@
 // main wrapper
-.wrapper{
-    background-color: #fff;
-    border-radius: 5px;
-    font-family: 'bakh';
-    grid-column: 1/-1;
-    grid-row: 1/-1;
-    // header
-    .header{
-        display: flex;
-        align-items: center;
-        height: 52px;
-        border-bottom: 1px solid #E0E6E9;
-        font-weight: 500;
-        font-size: 14px;
-        text-align: right;
-        color: #5E7488;
-        padding: 0px 20px;
-        margin-bottom: 20px;
-        .title{
-            font-size: 15px;
-            color: #5E7488;
-            margin: 0px;
-            margin-left: 25px;
-            @media screen and (max-width: 620px)  {
-                font-size: 7vw;
-            }
-        }
-        .link_add{
-            display: flex;
-            align-items: center;
-            background-color: #007AFF;
-            padding: 4px 18px;
-            border-radius: 5px;
-            color:#fff;
-            margin-left: 15px;
-        }
+.wrapper {
+  background-color: #fff;
+  border-radius: 5px;
+  font-family: "bakh";
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+  // header
+  .header {
+    display: flex;
+    align-items: center;
+    height: 52px;
+    border-bottom: 1px solid #e0e6e9;
+    font-weight: 500;
+    font-size: 14px;
+    text-align: right;
+    color: #5e7488;
+    padding: 0px 20px;
+    margin-bottom: 20px;
+    .title {
+      font-size: 15px;
+      color: #5e7488;
+      margin: 0px;
+      margin-left: 25px;
+      @media screen and (max-width: 620px) {
+        font-size: 7vw;
+      }
     }
-    // table
-    .table{
-            border-collapse: collapse;
-            width: 95%;
-            margin: auto;
-            th, td {
-                padding: 8px;
-                text-align: center;
-                border-bottom: 1px solid #ddd;
-            }
-            th{
-                background-color: #F3F6FF;
-                border-radius: 5px;
-                font-weight: 500;
-                font-size: 14px;
-                color: #364254;
-            }
-            td{
-                font-size: 14px;
-                color: #5E7488;
-                cursor: pointer;
-            }
+    .link_add {
+      display: flex;
+      align-items: center;
+      background-color: #007aff;
+      padding: 4px 18px;
+      border-radius: 5px;
+      color: #fff;
+      margin-left: 15px;
     }
+  }
+  // table
+  .table {
+    border-collapse: collapse;
+    width: 95%;
+    margin: auto;
+    th,
+    td {
+      padding: 8px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #f3f6ff;
+      border-radius: 5px;
+      font-weight: 500;
+      font-size: 14px;
+      color: #364254;
+    }
+    td {
+      font-size: 14px;
+      color: #5e7488;
+      cursor: pointer;
+    }
+  }
 }

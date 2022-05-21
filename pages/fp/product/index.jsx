@@ -1,4 +1,5 @@
 // next libraries
+import React from "react";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -11,18 +12,16 @@ import Desktop from "../../../containers/product/list/desktop";
 import { getProduct } from "../../../redux/actions/product/getProduct";
 import { mapState } from "../../../containers/product/methods/mapState";
 
-
 const Product = ({ getProduct, productList, activeHojreh, userInfo }) => {
-
   const breakpoint = 620;
   const router = useRouter();
   const { width } = useViewport();
-  let [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function getData() {
       await setLoading(true);
-      activeHojreh && !router.query.filter && await getProduct(activeHojreh);
+      activeHojreh && !router.query.filter && (await getProduct(activeHojreh));
       await setLoading(false);
     }
     getData();
@@ -30,9 +29,23 @@ const Product = ({ getProduct, productList, activeHojreh, userInfo }) => {
 
   return (
     <>
-      {width < breakpoint ?
-        <Mobile loading={loading} productList={productList} activeHojreh={activeHojreh} getProduct={getProduct} userInfo={userInfo} /> :
-        <Desktop loading={loading} productList={productList} activeHojreh={activeHojreh} getProduct={getProduct} userInfo={userInfo} />}
+      {width < breakpoint ? (
+        <Mobile
+          loading={loading}
+          productList={productList}
+          activeHojreh={activeHojreh}
+          getProduct={getProduct}
+          userInfo={userInfo}
+        />
+      ) : (
+        <Desktop
+          loading={loading}
+          productList={productList}
+          activeHojreh={activeHojreh}
+          getProduct={getProduct}
+          userInfo={userInfo}
+        />
+      )}
     </>
   );
 };

@@ -1,3 +1,4 @@
+import React from "react";
 import styles from "./styles.module.scss";
 
 function HeaderTitle({ title, onClick, enabel = true }) {

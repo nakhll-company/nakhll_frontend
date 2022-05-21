@@ -3,8 +3,6 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 // methods
 import { ApiReference } from "../../../api/Api";
-import { _updateUrl } from "../../../redux/actions/liveEdit/_updateUrl";
-import { _showSelect_url } from "../../../redux/actions/liveEdit/_showSelect_url";
 // styles
 import styles from "./SaveLanding.module.scss";
 import { authhttp } from "../../../services/callApi/api";
@@ -12,16 +10,16 @@ import { authhttp } from "../../../services/callApi/api";
 function SaveLanding({ setOpenSaveLanding, idLanding }) {
   const landing = useSelector((state) => state.allDataLanding);
   const [inputName, setInputName] = useState("");
-  let apiUpdateLanding = `${ApiReference.landing.update.url}${idLanding[0]}/${idLanding[1]}/`;
+  const apiUpdateLanding = `${ApiReference.landing.update.url}${idLanding[0]}/${idLanding[1]}/`;
 
-  let ansapi = {
+  const ansapi = {
     name: inputName !== "" ? inputName : "بدون عنوان",
     shop: idLanding[0],
     page_data: JSON.stringify(landing),
   };
 
   const _handel_update_landing = async () => {
-    let response = await authhttp.put(apiUpdateLanding, ansapi);
+    await authhttp.put(apiUpdateLanding, ansapi);
 
     setInputName("");
     setOpenSaveLanding(false);

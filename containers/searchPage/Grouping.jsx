@@ -1,6 +1,6 @@
 import React from "react";
 import CustomAccordion from "../../components/custom/customAccordion";
-import {  http } from "../../services/callApi/api";
+import { http } from "../../services/callApi/api";
 
 function Grouping({
   searchWord,
@@ -11,7 +11,7 @@ function Grouping({
 }) {
   const _handel_category = async () => {
     try {
-      let response = await http.get(
+      const response = await http.get(
         `/api/v1/categories/category_product_count/?q=${searchWord}`
       );
       if (response.status === 200) {

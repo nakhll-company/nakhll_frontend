@@ -6,7 +6,6 @@ import Sm_product from "../Sm_product";
 import styles from "./Sm_LinerProducts.module.scss";
 
 function Sm_LinerProducts_Fix() {
-
   const name = "پرفروش ترین";
   const subTitle = "زیرعنوان";
 
@@ -14,16 +13,8 @@ function Sm_LinerProducts_Fix() {
     <div className={styles.main}>
       <div className={styles.title}>
         <div className={styles.name}>
-          <span
-            className={styles.mainTitle}
-          >
-            {name}
-          </span>
-          <span
-            className={styles.subTitle}
-          >
-            {subTitle}
-          </span>
+          <span className={styles.mainTitle}>{name}</span>
+          <span className={styles.subTitle}>{subTitle}</span>
         </div>
         <div className={styles.seeAll}>
           <div className={styles.wrapBtn}>

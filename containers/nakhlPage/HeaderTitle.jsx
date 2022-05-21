@@ -27,7 +27,7 @@ const HeaderTitle = () => {
   const dispatch = useDispatch();
   const userLog = useSelector((state) => state.User.userInfo);
   const All_product_list_buy = useSelector((state) => state.Cart.allProduct);
-  console.log('All_product_list_buy  :>> ', All_product_list_buy );
+  console.log("All_product_list_buy  :>> ", All_product_list_buy);
   useEffect(() => {
     dispatch(getUserInfo());
   }, []);
@@ -68,7 +68,7 @@ const HeaderTitle = () => {
                 router.push("/profile");
               }}
             >
-              <FaUser className={s.icons}  color="#064D81" />
+              <FaUser className={s.icons} color="#064D81" />
             </div>
           ) : (
             <button
@@ -93,7 +93,7 @@ const HeaderTitle = () => {
             </span>
           )}
 
-          <BsBasket2  className={s.icons} color="#064D81" />
+          <BsBasket2 className={s.icons} color="#064D81" />
         </div>
       </div>
     </div>

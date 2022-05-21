@@ -27,7 +27,7 @@ const FavoritesList = () => {
   }, []);
 
   const deletProduct = async (idProduct) => {
-    let response = await authhttp.delete(
+    const response = await authhttp.delete(
       `/api/v1/lists/favorites/${idProduct}/remove/`
     );
     if (response.status === 204) {

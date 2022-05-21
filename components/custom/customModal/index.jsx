@@ -3,17 +3,8 @@ import { useState, useEffect } from "react";
 // scss
 import styles from "../../../styles/components/custom/modal.module.scss";
 
-/**
- * component general modal
- * @param {boolean} show => open the modal
- * @param {method} onClose => close the modal
- * @param {string} wrapperClassName => wrapper class
- * @param {string} className => class name of content
- * @param {ReactElement} content => content of modal
- * @returns
- */
 const Modal = ({ show, onClose, wrapperClassName, className, content }) => {
-  let [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   // use effect
   useEffect(() => {
     setOpen(show);

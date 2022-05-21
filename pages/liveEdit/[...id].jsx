@@ -27,8 +27,8 @@ function LiveEdit({ idLanding }) {
   const [openPlaneEditor, setOpenPlaneEditor] = useState(false);
   const [openSaveLanding, setOpenSaveLanding] = useState(false);
   const landing = useSelector((state) => state.allDataLanding);
-  let apiUpdateLanding = `${ApiReference.landing.update.url}${idLanding[0]}/${idLanding[1]}/`;
-  let getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}/`;
+  const apiUpdateLanding = `${ApiReference.landing.update.url}${idLanding[0]}/${idLanding[1]}/`;
+  const getDataLanding = `${ApiReference.landing.getLanding.url}${idLanding[0]}/${idLanding[1]}/`;
 
   useEffect(() => {
     const list = [
@@ -58,14 +58,14 @@ function LiveEdit({ idLanding }) {
       },
     ];
     async function fetchData() {
-      let response = await authhttp.get(getDataLanding);
+      const response = await authhttp.get(getDataLanding);
 
       if (response.status == 200) {
         if (response.data.page_data == "") {
           setCharacters(list);
           dispatch(_updateDataLanding(list));
         } else {
-          let item = JSON.parse(response.data.page_data);
+          const item = JSON.parse(response.data.page_data);
           setCharacters(item);
           dispatch(_updateDataLanding(item));
         }
@@ -73,7 +73,7 @@ function LiveEdit({ idLanding }) {
     }
     fetchData();
 
-    let tl = new gsap.timeline();
+    const tl = new gsap.timeline();
     tl.from(toggleMenu, {
       opacity: 0,
       scale: 0,
@@ -93,11 +93,11 @@ function LiveEdit({ idLanding }) {
   }, [openPlaneEditor]);
 
   const _handel_update_landing = async () => {
-    let ansapi = {
+    const ansapi = {
       shop: idLanding[0],
       page_data: JSON.stringify(landing),
     };
-    let response = await authhttp.patch(apiUpdateLanding,ansapi)
+    const response = await authhttp.patch(apiUpdateLanding, ansapi);
     return response;
   };
 
@@ -105,7 +105,7 @@ function LiveEdit({ idLanding }) {
     const items = [...characters];
 
     items.map((element, index) => {
-      let newItem = addComponent(type, idLanding);
+      const newItem = addComponent(type, idLanding);
       if (element.type == 0) {
         items.splice(index, 1);
         items.splice(index, 0, newItem);
@@ -116,7 +116,7 @@ function LiveEdit({ idLanding }) {
     setOpenPlaneEditor(false);
   };
 
-  let menuList = (
+  const menuList = (
     <ul>
       <li style={{ pointerEvents: "none" }}>
         <a className={styles.wrap_item} href="">
@@ -199,8 +199,8 @@ function LiveEdit({ idLanding }) {
               ref={(el) => (toggleMenu = el)}
               className={styles.toggle}
               onClick={() => {
-                let navigation = document.querySelector("#navigation");
-                let main = document.querySelector("#main");
+                const navigation = document.querySelector("#navigation");
+                const main = document.querySelector("#main");
                 navigation.classList.toggle("active_side_bar_liveEdit");
                 main.classList.toggle("active_hamberg_icon");
               }}

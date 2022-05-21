@@ -1,6 +1,6 @@
 // node libraries
 import CheckboxTree from "react-checkbox-tree";
-import Assistent from "zaravand-assistent-number";
+
 import React, { useEffect, useState } from "react";
 // components
 import { TopBar } from "./TopBar";
@@ -18,7 +18,7 @@ import { WoLoading } from "../../components/custom/Loading/woLoading/WoLoading";
 import styles from "./listProduct.module.scss";
 import { http } from "../../services/callApi/api";
 
-const _asist = new Assistent();
+
 
 function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
   const listProducts = [];
@@ -45,7 +45,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
     setHasMore(true);
     setIsLoading(true);
 
-    let params = {
+    const params = {
       ...(witchFilter ? witchFilter : null),
       search: searchWord,
       ordering: whichOrdering,
@@ -63,7 +63,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
     };
 
     try {
-      let response = await http.get(`/api/v1/products/`, {params});
+      const response = await http.get(`/api/v1/products/`, { params });
       if (response.status === 200) {
         setListWithFilter(response.data.results);
 
@@ -84,8 +84,8 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
   };
 
   const _handel_Add_category = (id) => {
-    let copyArray = [...wantCategories];
-    let newArray = copyArray.filter((element) => element != id);
+    const copyArray = [...wantCategories];
+    const newArray = copyArray.filter((element) => element != id);
     if (copyArray.length == newArray.length) {
       setWantCategories([...newArray, id]);
     } else {
@@ -95,24 +95,26 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
 
   const _handel_call_another_page_api = async (witchFilter) => {
     try {
-      let response = await http.get(`/api/v1/products/`, {params:{
-        ...(witchFilter ? witchFilter : null),
-        search: searchWord,
-        ordering: whichOrdering,
-        page: pageApi,
-        ready: isReadyForSend,
-        available: isAvailableGoods,
-        discounted: isDiscountPercentage,
-        city: checkedCity.toString(),
-        ...(categoryIn !== "" && { category: categoryIn }),
-        ...(wantCategories.length > 0 && {
-          category: wantCategories.toString(),
-        }),
-        page_size: 50,
-        min_price: minPrice,
-        max_price: maxPrice,
-        shop: shop_products,
-      }});
+      const response = await http.get(`/api/v1/products/`, {
+        params: {
+          ...(witchFilter ? witchFilter : null),
+          search: searchWord,
+          ordering: whichOrdering,
+          page: pageApi,
+          ready: isReadyForSend,
+          available: isAvailableGoods,
+          discounted: isDiscountPercentage,
+          city: checkedCity.toString(),
+          ...(categoryIn !== "" && { category: categoryIn }),
+          ...(wantCategories.length > 0 && {
+            category: wantCategories.toString(),
+          }),
+          page_size: 50,
+          min_price: minPrice,
+          max_price: maxPrice,
+          shop: shop_products,
+        },
+      });
       if (response.status === 200) {
         const ContinueList = response.data.results;
         setListWithFilter([...listWithFilter, ...ContinueList]);
@@ -131,7 +133,9 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
     async function fetchData() {
       const _handel_category = async () => {
         try {
-          let response = await http.get(`/api/v1/sub_markets/?q=${searchWord}`);
+          const response = await http.get(
+            `/api/v1/sub_markets/?q=${searchWord}`
+          );
           if (response.status === 200) {
             setCategories(response.data);
           }
@@ -205,7 +209,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
                           className="form-check-label"
                           htmlFor={`checkbox${index}`}
                         >
-                          {ele.title} ({_asist.number(ele.product_count)})
+                          {ele.title} ({ele.product_count})
                         </label>
                       </div>
                     ))}
@@ -302,7 +306,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
                 ) : (
                   <InfiniteScroll
                     className="mx-auto row"
-                    dataLength={listWithFilter.length} //This is important field to render the next data
+                    dataLength={listWithFilter.length} // This is important field to render the next data
                     next={_handel_call_another_page_api}
                     hasMore={hasMore}
                     loader={<h4>کمی صبر...</h4>}
@@ -418,7 +422,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
                         className="form-check-label"
                         htmlFor={`checkbox${index}`}
                       >
-                        {ele.title} ({_asist.number(ele.product_count)})
+                        {ele.title} ({ele.product_count})
                       </label>
                     </div>
                   ))}

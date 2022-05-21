@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+
 import { authhttp } from "../../../../../../../services/callApi/api";
 import styles from "./switchButton.module.scss";
 
-function SBSendUnit({ id, isActive, shop_logistic_unit }) {
+function SBSendUnit({ id, isActive }) {
   const [Activer, setActiver] = useState(isActive);
   const [disableBtn, setDisableBtn] = useState(false);
-  const handel_chamnge_status = async () => {
+  const handelChamngeStatus = async () => {
     setDisableBtn(true);
-    let response = await authhttp.patch(
+    const response = await authhttp.patch(
       `/api/v1/logistic/shop-logistic-unit/${id}/`,
       {
         is_active: !isActive,
@@ -27,7 +27,7 @@ function SBSendUnit({ id, isActive, shop_logistic_unit }) {
           type="checkbox"
           id={`switch__${id}`}
           className={styles.custom_switch__input}
-          onChange={handel_chamnge_status}
+          onChange={handelChamngeStatus}
           // defaultChecked={isActive}
           checked={Activer}
           disabled={disableBtn}

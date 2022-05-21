@@ -1,8 +1,9 @@
+import React from "react";
 import styles from "./field.module.scss";
-import { useField, Form, FormikProps, Formik } from "formik";
+import { useField } from "formik";
 
 function TextArea({ title, description, text, ...props }) {
-  const [field, meta, helpers] = useField(props);
+  const [field, meta] = useField(props);
   return (
     <>
       <div className={styles.wrapper}>

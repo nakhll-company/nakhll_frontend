@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import Link from "next/link";
 import Head from "next/head";
@@ -27,7 +28,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
   const [isShowOrder, setisShowOrder] = useState(false);
   const [activeOptions, setActiveOptions] = useState([]);
 
-  const ExitDash = () => {
+  const exitDash = () => {
     router.push("/");
   };
 
@@ -47,7 +48,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
     fetchData();
   }, [userInfo.shops]);
 
-  const ForHeader = (option) => {
+  const forHeader = (option) => {
     setTitle(option.target[option.target.selectedIndex].text);
   };
 
@@ -236,7 +237,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                     setselectShop(a.target.value);
                     setSlugHojreh(a.target.value);
                     getActiveHojreh(a.target.value);
-                    ForHeader(a);
+                    forHeader(a);
                   }}
                 >
                   {userInfo.shops &&
@@ -296,7 +297,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
 
                 <button
                   className={styles.info_card_btn_one}
-                  onClick={() => ExitDash()}
+                  onClick={() => exitDash()}
                 >
                   <i
                     style={{ fontSize: "20px" }}
@@ -319,8 +320,9 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
               <Link href={`/fp`}>
                 <a>
                   <span
-                    className={`${styles.menu_card_item} ${router.pathname ==
-                      "/fp" && styles.selectNav} mt-5 mb-4`}
+                    className={`${styles.menu_card_item} ${
+                      router.pathname == "/fp" && styles.selectNav
+                    } mt-5 mb-4`}
                   >
                     <i
                       style={{
@@ -438,10 +440,10 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                           alignItems: "center",
                           cursor: "pointer",
                         }}
-                        className={`${
-                          styles.subTitleOrder
-                        }   ${router.pathname === "/fp/order/completed" &&
-                          styles.selectNav}`}
+                        className={`${styles.subTitleOrder}   ${
+                          router.pathname === "/fp/order/completed" &&
+                          styles.selectNav
+                        }`}
                       >
                         {/* <span
                         style={{ marginLeft: "18px" }}
@@ -469,8 +471,10 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                           marginBottom: "15px",
                           cursor: "pointer",
                         }}
-                        className={`${styles.subTitleOrder} ${router.pathname ==
-                          "/fp/order/uncompleted" && styles.selectNav}`}
+                        className={`${styles.subTitleOrder} ${
+                          router.pathname == "/fp/order/uncompleted" &&
+                          styles.selectNav
+                        }`}
                       >
                         {/* <span
                         style={{ marginLeft: "18px" }}
@@ -494,8 +498,9 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
               <Link href="/fp/product">
                 <a>
                   <span
-                    className={`${styles.menu_card_item} ${router.pathname ==
-                      "/fp/product" && styles.selectNav}`}
+                    className={`${styles.menu_card_item} ${
+                      router.pathname == "/fp/product" && styles.selectNav
+                    }`}
                   >
                     <i
                       style={{
@@ -517,8 +522,9 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                 </a>
               </Link>
               <span
-                className={`mt-3 ${styles.menu_card_item} ${router.pathname ==
-                  "/fp/options" && styles.selectNav}`}
+                className={`mt-3 ${styles.menu_card_item} ${
+                  router.pathname == "/fp/options" && styles.selectNav
+                }`}
                 onClick={() => {
                   if (
                     document.querySelector("#options").style.display === "block"

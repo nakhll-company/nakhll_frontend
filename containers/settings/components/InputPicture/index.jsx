@@ -37,7 +37,7 @@ function InputPictureSetting({ setImageSrc, image, ratio }) {
           onChange={async (e) => {
             if (e.target.files && e.target.files.length > 0) {
               const file = e.target.files[0];
-              let imageDataUrl = await readFile(file);
+              const imageDataUrl = await readFile(file);
               setImageSrc(imageDataUrl);
             }
             setShowCropper(true);

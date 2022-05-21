@@ -20,9 +20,7 @@ function LinerTwoValue({ dataLinerTwoValue }) {
                   width={100}
                   height={100}
                 />
-                <span className="pt-3">
-                  {dataLinerTwoValue[0].title}
-                </span>
+                <span className="pt-3">{dataLinerTwoValue[0].title}</span>
               </div>
 
               <div className={styles.wrapper_values}>
@@ -34,9 +32,7 @@ function LinerTwoValue({ dataLinerTwoValue }) {
                   width={100}
                   height={100}
                 />
-                <span className="pt-3">
-                  {dataLinerTwoValue[1].title}
-                </span>
+                <span className="pt-3">{dataLinerTwoValue[1].title}</span>
               </div>
             </aside>
           </div>

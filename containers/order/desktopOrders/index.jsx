@@ -1,19 +1,13 @@
 // node libraries
 import Link from "next/link";
 import Image from "next/image";
-import Assistent from "zaravand-assistent-number";
+
 // components
 import CustomBadge from "../../../components/custom/customBadge";
 // scss
 import styles from "../../../styles/pages/order/desktopOrders.module.scss";
 
-const _asist = new Assistent();
-
-export default function DesktopOrders({
-  loading,
-  ordersList,
-  type
-}) {
+export default function DesktopOrders({ loading, ordersList, type }) {
   const statusCompleted = [
     { value: "", label: "" },
     { value: "wait_store_checkout", label: "در انتظار تسویه با فروشگاه" },
@@ -133,67 +127,77 @@ export default function DesktopOrders({
               </tr>
             ) : ordersList.length > 0 ? (
               ordersList.map((value, index) => {
-
                 let jsonAddress = value.address_json || "{}";
                 jsonAddress = JSON.parse(jsonAddress);
 
                 return (
                   <tr key={index}>
                     <Link href={`/fp/order/orderdetail/${value.id}`} passHref>
-                      <td>{_asist.number(index + 1)}</td>
+                      <td>{index + 1}</td>
                     </Link>
                     <Link href={`/fp/order/orderdetail/${value.id}`} passHref>
-                      <td>{_asist.number(value.id)}</td>
-                    </Link>
-                    <Link href={`/fp/order/orderdetail/${value.id}`} passHref>
-                      <td>{(value.items && value.items[0].buyer) ||
-                        (value.address_json && jsonAddress.receiver_full_name)}</td>
-                    </Link>
-                    <Link href={`/fp/order/orderdetail/${value.id}`} passHref>
-                      <td>{_asist.number(value.created_date_jalali)}</td>
+                      <td>{value.id}</td>
                     </Link>
                     <Link href={`/fp/order/orderdetail/${value.id}`} passHref>
                       <td>
-                        {value.status === "awaiting_paying" && <CustomBadge
-                          title="در انتظار پرداخت"
-                          color="#089319"
-                          backgroundColor="rgba(8, 147, 25, 0.15)"
-                          customBadgeStyle={{
-                            borderRadius: "3px",
-                            padding: "2px 6px",
-                            fontSize: "12px",
-                          }}
-                        />}
-                        {value.status === "wait_store_approv" && <CustomBadge
-                          title="در انتظار تایید فروشگاه"
-                          color="#089319"
-                          backgroundColor="rgba(8, 147, 25, 0.15)"
-                          customBadgeStyle={{
-                            borderRadius: "3px",
-                            padding: "2px 6px",
-                            fontSize: "12px",
-                          }}
-                        />}
-                        {value.status === "preparing_product" && <CustomBadge
-                          title="در حال آماده سازی"
-                          color="#089319"
-                          backgroundColor="rgba(8, 147, 25, 0.15)"
-                          customBadgeStyle={{
-                            borderRadius: "3px",
-                            padding: "2px 6px",
-                            fontSize: "12px",
-                          }}
-                        />}
-                        {value.status === "wait_customer_approv" && <CustomBadge
-                          title="در انتظار تایید مشتری"
-                          color="#089319"
-                          backgroundColor="rgba(8, 147, 25, 0.15)"
-                          customBadgeStyle={{
-                            borderRadius: "3px",
-                            padding: "2px 6px",
-                            fontSize: "12px",
-                          }}
-                        />}
+                        {(value.items && value.items[0].buyer) ||
+                          (value.address_json &&
+                            jsonAddress.receiver_full_name)}
+                      </td>
+                    </Link>
+                    <Link href={`/fp/order/orderdetail/${value.id}`} passHref>
+                      <td>{value.created_date_jalali}</td>
+                    </Link>
+                    <Link href={`/fp/order/orderdetail/${value.id}`} passHref>
+                      <td>
+                        {value.status === "awaiting_paying" && (
+                          <CustomBadge
+                            title="در انتظار پرداخت"
+                            color="#089319"
+                            backgroundColor="rgba(8, 147, 25, 0.15)"
+                            customBadgeStyle={{
+                              borderRadius: "3px",
+                              padding: "2px 6px",
+                              fontSize: "12px",
+                            }}
+                          />
+                        )}
+                        {value.status === "wait_store_approv" && (
+                          <CustomBadge
+                            title="در انتظار تایید فروشگاه"
+                            color="#089319"
+                            backgroundColor="rgba(8, 147, 25, 0.15)"
+                            customBadgeStyle={{
+                              borderRadius: "3px",
+                              padding: "2px 6px",
+                              fontSize: "12px",
+                            }}
+                          />
+                        )}
+                        {value.status === "preparing_product" && (
+                          <CustomBadge
+                            title="در حال آماده سازی"
+                            color="#089319"
+                            backgroundColor="rgba(8, 147, 25, 0.15)"
+                            customBadgeStyle={{
+                              borderRadius: "3px",
+                              padding: "2px 6px",
+                              fontSize: "12px",
+                            }}
+                          />
+                        )}
+                        {value.status === "wait_customer_approv" && (
+                          <CustomBadge
+                            title="در انتظار تایید مشتری"
+                            color="#089319"
+                            backgroundColor="rgba(8, 147, 25, 0.15)"
+                            customBadgeStyle={{
+                              borderRadius: "3px",
+                              padding: "2px 6px",
+                              fontSize: "12px",
+                            }}
+                          />
+                        )}
                       </td>
                     </Link>
                   </tr>
