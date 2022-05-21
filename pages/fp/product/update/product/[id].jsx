@@ -12,7 +12,6 @@ import MyLayout from "../../../../../components/layout/Layout";
 import Category from "../../../../../containers/product/create/category";
 import InputUseForm from "../../../../../containers/creat/component/inputUseForm";
 import TitleLiner from "../../../../../containers/settings/components/titleLiner";
-
 import InputPictureCreat from "../../../../../containers/creat/component/InputPicture";
 import TextAreaUseForm from "../../../../../containers/creat/component/textAreaUseForm";
 import PictureChildProduct from "../../../../../containers/creat/component/pictureChildProduct";
@@ -20,6 +19,7 @@ import PictureChildProduct from "../../../../../containers/creat/component/pictu
 import { authhttp } from "../../../../../services/callApi/api";
 import { mapState } from "../../../../../containers/product/methods/mapState";
 import { _ApiGetCategories, _ApiUpdateProduct } from "../../../../../api/creatProduct";
+import { getBase64Image } from '../../../../../containers/product/methods/getBase64Image';
 // styles
 import styles from "../../../../../styles/pages/product/create.module.scss";
 /**
@@ -94,12 +94,12 @@ const UpdateProduct = ({ activeHojreh }) => {
           setPlaceholderSubmarckets(Data.category);
           setSubmarketId(Data.category?.id);
           // images
-          setImgProductOne(Data.Product_Banner[0]?.Image);
-          setImgProductTwo(Data.Product_Banner[1]?.Image);
-          setImgProductThree(Data.Product_Banner[2]?.Image);
-          setImgProductFour(Data.Product_Banner[3]?.Image);
-          setImgProductFive(Data.Product_Banner[4]?.Image);
-          setImgProductSix(Data.Product_Banner[5]?.Image);
+          getBase64Image(Data.Product_Banner[0]?.Image, setImgProductOne);
+          getBase64Image(Data.Product_Banner[1]?.Image, setImgProductTwo);
+          getBase64Image(Data.Product_Banner[2]?.Image, setImgProductThree);
+          getBase64Image(Data.Product_Banner[3]?.Image, setImgProductFour);
+          getBase64Image(Data.Product_Banner[4]?.Image, setImgProductFive);
+          getBase64Image(Data.Product_Banner[5]?.Image, setImgProductSix);
           setProduct_Banner(Data.Product_Banner);
           let newArrTags = [];
           Data.product_tags.map((item) => {
@@ -122,26 +122,27 @@ const UpdateProduct = ({ activeHojreh }) => {
   }, [id, activeHojreh, setValue]);
 
   const onSubmit = async (data) => {
-    setisLoadingUpdate(true);
-    let Product_Banner = [];
 
-    if (imgProductOne && !imgProductOne.includes("http")) {
-      Product_Banner.push({ Image: imgProductOne });
+    setisLoadingUpdate(true);
+    let image_banners = [];
+
+    if (imgProductOne) {
+      image_banners.push({ Image: imgProductOne });
     }
-    if (imgProductTwo && !imgProductTwo.includes("http")) {
-      Product_Banner.push({ Image: imgProductTwo });
+    if (imgProductTwo) {
+      image_banners.push({ Image: imgProductTwo });
     }
-    if (imgProductThree && !imgProductThree.includes("http")) {
-      Product_Banner.push({ Image: imgProductThree });
+    if (imgProductThree) {
+      image_banners.push({ Image: imgProductThree });
     }
-    if (imgProductFour && !imgProductFour.includes("http")) {
-      Product_Banner.push({ Image: imgProductFour });
+    if (imgProductFour) {
+      image_banners.push({ Image: imgProductFour });
     }
-    if (imgProductFive && !imgProductFive.includes("http")) {
-      Product_Banner.push({ Image: imgProductFive });
+    if (imgProductFive) {
+      image_banners.push({ Image: imgProductFive });
     }
-    if (imgProductSix && !imgProductSix.includes("http")) {
-      Product_Banner.push({ Image: imgProductSix });
+    if (imgProductSix) {
+      image_banners.push({ Image: imgProductSix });
     }
 
     const externalData = {
@@ -149,7 +150,7 @@ const UpdateProduct = ({ activeHojreh }) => {
       PostRangeType: 1,
       post_range: [],
       category: submarketId,
-      Product_Banner: Product_Banner,
+      Product_Banner: image_banners,
       product_tags: tags,
     };
 
