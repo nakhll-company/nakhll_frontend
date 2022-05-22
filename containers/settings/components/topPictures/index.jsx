@@ -11,8 +11,9 @@ import { callApiUpDataPicture } from "../../../../api/settings";
 import styles from "./topPictures.module.scss";
 import { authhttp } from "../../../../services/callApi/api";
 import { successMessage } from "../../../../utils/toastifyMessage";
+import { callApiDelete } from "./callApiDelete";
 
-function TopPictures({ apiSetting, activeHojreh,setOnMenu }) {
+function TopPictures({ apiSetting, activeHojreh, setOnMenu }) {
   const [imgProfile, setImgProfile] = useState(
     apiSetting.image_thumbnail_url ? apiSetting.image_thumbnail_url : null
   );
@@ -26,16 +27,6 @@ function TopPictures({ apiSetting, activeHojreh,setOnMenu }) {
       imgProfile.startsWith("data") &&
       callApiUpDataPicture(dataForSend, activeHojreh);
   }, [imgProfile, activeHojreh]);
-
-  const callApiDelete=async()=>{
-    let response = await authhttp.delete(`/api/v1/shop/${activeHojreh}/settings/image/`);
-        if (response.status === 204) {
-            successMessage("عکس با موفقیت حذف شد");
-            setOnMenu(5)
-        }
-
-
-  }
 
   return (
     <>
@@ -60,8 +51,11 @@ function TopPictures({ apiSetting, activeHojreh,setOnMenu }) {
           <div className={styles.deleteBtn}>
             <div
               className={styles.wrapBtn}
-              onClick={() => {
-                callApiDelete()
+              onClick={async () => {
+                let callApi = await callApiDelete({ activeHojreh });
+                if (callApi) {
+                  setOnMenu(5);
+                }
                 // setImgProfile(base64Profile);
               }}
             >
