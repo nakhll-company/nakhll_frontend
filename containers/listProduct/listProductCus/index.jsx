@@ -32,7 +32,6 @@ import FiltersPart from "../../searchPage/filtersPart";
 const _asist = new Assistent();
 
 function ListProductCus({ data }) {
-  console.log("data :>> ", data);
   const [pageApi, setPageApi] = useState(2);
   const [hasMore, setHasMore] = useState(false);
   const [shopsName, setShopsName] = useState([]);
@@ -86,7 +85,7 @@ function ListProductCus({ data }) {
         query: filters,
       },
       undefined,
-      {}
+      { shallow: true }
     );
   };
 
@@ -99,7 +98,7 @@ function ListProductCus({ data }) {
         query: filters,
       },
       undefined,
-      {}
+      { shallow: true }
     );
   };
 

@@ -4,6 +4,7 @@ import Script from "next/script";
 import { DefaultSeo } from "next-seo";
 import { Store } from "../redux/store";
 import { Provider } from "react-redux";
+import { useRouter } from "next/router";
 // method
 import SEO from "../next-seo.config";
 import { chageIconChatPosition } from "../utils/changeIconChatPosition";
@@ -16,13 +17,12 @@ import "../styles/globals.scss";
 import "../styles/General/font-awesome/css/font-awesome.css";
 
 function MyApp({ Component, pageProps }) {
-
+  const router = useRouter();
   const Layout = Component.Layout || MyLayout;
 
   useEffect(() => {
     chageIconChatPosition();
   }, []);
-
 
   return (
     <>
@@ -39,7 +39,7 @@ function MyApp({ Component, pageProps }) {
 
       <Provider store={Store}>
         <Layout>
-          <Component {...pageProps} />
+          <Component key={router.asPath} {...pageProps} />
         </Layout>
       </Provider>
     </>

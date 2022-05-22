@@ -1,41 +1,8 @@
 import { BsSortDownAlt, BsFilter } from "react-icons/bs";
+import { CustomList } from "./customList";
+import { showFilter } from "./showFilter";
 import s from "./TopBar.module.scss";
-
-const CustomList = ({ className, onClick, title }) => {
-  return (
-    <li className={`sort-item   ${className && " active"} `}>
-      <a   onClick={onClick}>
-        {title}
-      </a>
-    </li>
-  );
-};
-
-const TotalNum = ({ number }) => {
-  return (
-    <span  style={{ marginLeft: "5px",whiteSpace:'nowrap' }}>
-      {" "}
-      تعداد کالا:
-      <span style={{ marginRight: "1px", fontWeight: "bolder" }}>
-        {" "}
-        {number}
-      </span>
-    </span>
-  );
-};
-
-const showFilter = (data) => {
-  let message = {
-    Price: "ارزانتر",
-    "-Price": "گرانتر",
-    "-DiscountPrecentage": "بیشترین تخفیف",
-    "-DateCreate": "تازه ها",
-  };
-  if (data == undefined) {
-    return "مرتبط‌ترین";
-  }
-  return message[data];
-};
+import { TotalNum } from "./totalNum";
 
 export const TopBar = ({
   onChangeFilter,
@@ -50,19 +17,17 @@ export const TopBar = ({
         {/* Mobile */}
         <div className={s.wrap_mobile}>
           <div onClick={handel_filterModal}>
-            <BsFilter size={20} />
+            <BsFilter size={18} />
             <span>فیلترها</span>
           </div>
           <div onClick={handel_OrderingModal}>
-            <BsSortDownAlt size={20} />
+            <BsSortDownAlt size={18} />
             <span>
-              مرتب سازی:
               <span className={s.filter_name}>{showFilter(data)}</span>
             </span>
           </div>
           <div className="">
-
-          <TotalNum number={totalcount} />
+            <TotalNum number={totalcount} />
           </div>
         </div>{" "}
         {/* Descktop */}
@@ -74,7 +39,6 @@ export const TopBar = ({
                 display: "flex",
                 alignItems: "center",
                 color: "rgb(138 137 137)",
-                
               }}
             >
               <BsSortDownAlt size={20} />
