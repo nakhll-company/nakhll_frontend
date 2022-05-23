@@ -25,7 +25,7 @@ import {
   _ApiUpdateProduct,
 } from "../../../../../api/creatProduct";
 // styles
-import styles from "../../../../../styles/pages/product/create.module.scss";
+import styles from "./create.module.scss";
 /**
  * page update product
  * @param {string} activeHojreh => it has slug name

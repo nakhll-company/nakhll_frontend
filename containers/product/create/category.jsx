@@ -1,7 +1,9 @@
 // node libraries
 import { useState } from "react";
+import { FiArrowRightCircle } from "react-icons/fi";
+import { BiArrowBack } from "react-icons/bi";
 // scss
-import styles from "../../../styles/pages/product/create.module.scss";
+import styles from "./create.module.scss";
 
 const Category = ({
   clearErrors,
@@ -11,6 +13,8 @@ const Category = ({
   setData,
   categories,
 }) => {
+  console.log('categories', categories);
+  console.log('data', data)
   const [title, settitle] = useState("");
   const [page, setPage] = useState(1);
 
@@ -39,18 +43,12 @@ const Category = ({
       const elementProduct = document.getElementById("wrapper_product");
       elementProduct.style.display = "flex";
     } else {
-      setPage((page) => page - 1);
+      setData(categories);
+      setPage(1);
     }
   }
   return (
-    <div
-      style={{
-        position: "relative",
-        gridColumn: "1/-1",
-        gridRow: "1/-1",
-        background: "#ffffff",
-      }}
-    >
+    <div className={styles.mainWrapper}>
       <div id="wrapperMarkets" className={styles.markets}>
         <div className={styles.wrapper}>
           <div className={styles.Header}>
@@ -59,24 +57,17 @@ const Category = ({
               onClick={GoBack}
               className={styles.btn_icon}
             >
-              <span
-                className="fas fa-arrow-right"
-                style={{
-                  fontSize: "15px",
-                  color: "#5E7488",
-                  marginLeft: "20px",
-                  marginRight: "20px",
-                }}
-              ></span>
+              <FiArrowRightCircle size={25} style={{marginBottom:'5px'}} />
+              
             </button>
-            {page === 1 && (
-              <h2 style={{ fontSize: "18px", fontWeight: "bold" }}>
+            {page === 1 ? (
+              <h2 style={{margin:0, fontSize: "18px", fontWeight: "bold" }}>
                 انتخاب دسته بندی
               </h2>
-            )}
-            {page !== 1 && (
+            ):(
               <h2 style={{ fontSize: "16px" }}> زیردسته {title} </h2>
-            )}
+              )}
+            
           </div>
           <div className={styles.content}>
             {data.map((value, index) => {
@@ -101,10 +92,8 @@ const Category = ({
                     >
                       {value.name}
                     </h2>
-                    <span
-                      style={{ marginLeft: "14px" }}
-                      className="fas fa-chevron-left "
-                    ></span>
+                    <BiArrowBack size={20} color='#000'/>
+                    
                   </div>
                 </button>
               );

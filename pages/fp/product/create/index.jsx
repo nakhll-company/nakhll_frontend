@@ -24,7 +24,7 @@ import {
   _ApiGetTags,
 } from "../../../../api/creatProduct";
 // styles
-import styles from "../../../../styles/pages/product/create.module.scss";
+import styles from "./create.module.scss";
 
 const CreateProduct = ({ activeHojreh }) => {
   const router = useRouter();
@@ -79,7 +79,7 @@ const CreateProduct = ({ activeHojreh }) => {
       }
     }
     fetchData();
-    window.HubSpotConversations.widget.remove();
+    window?.HubSpotConversations?.widget?.remove();
   }, [activeHojreh]);
 
   // select Submarket
