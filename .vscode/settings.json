@@ -1,4 +1,5 @@
 {
   "debug.showBreakpointsInOverviewRuler": true,
-  "debug.allowBreakpointsEverywhere": true
+  "debug.allowBreakpointsEverywhere": true,
+  "cSpell.words": ["choromium", "lanch"]
 }
