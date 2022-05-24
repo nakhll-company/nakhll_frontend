@@ -1,12 +1,11 @@
+import s from "./totalNum.module.scss";
+
 export const TotalNum = ({ number }) => {
   return (
-    <span style={{ marginLeft: "5px", whiteSpace: "nowrap" }}>
+    <span className={s.title}>
       {" "}
       تعداد کالا:
-      <span style={{ marginRight: "1px", fontWeight: "bolder" }}>
-        {" "}
-        {number}
-      </span>
+      <span className={s.number}> {number}</span>
     </span>
   );
 };

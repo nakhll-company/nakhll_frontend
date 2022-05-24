@@ -4,12 +4,9 @@ const CustomList = ({ title, onClick, className }) => {
     <>
       <div
         style={{
-          padding: "5px",
-          paddingBottom: "10px",
-          paddingTop: "20px",
-          display: "flex",
           fontWeight: className && "bolder",
         }}
+        className={styles.wrap}
         onClick={onClick}
       >
         <div className={className && styles.dot_active}></div>
