@@ -10,7 +10,7 @@ function General() {
   const router = useRouter();
 
   useEffect(() => {
-    hotjar.initialize(2655206, 6);
+    hotjar.initialize(2447146, 6);
   }, []);
 
   useEffect(() => {
