@@ -104,13 +104,11 @@ const Footer = () => {
                     </div>{" "}
                     <div>
                       <a
-                        href="tel://034-32476561"
+                        href="tel://034-91001230"
                         className={styles.footer_items}
                       >
                         تلفن تماس:
-                        <span className="d-inline-block">
-                          {`034-32476561  034-91001230`}
-                        </span>
+                        <span className="d-block">{`  034-91001230`}</span>
                       </a>
                     </div>
                     {/* <div>
@@ -303,10 +301,6 @@ const Footer = () => {
                   <div>
                     <div className={styles.footer_items}>
                       تلفن تماس:
-                      <a href="tel://034-32476561" className="d-inline-block">
-                        {`034-32476561`}
-                      </a>{" "}
-                      <span>و</span>{" "}
                       <a href="tel://034-91001230" className="d-inline-block">
                         {`034-91001230`}
                       </a>
