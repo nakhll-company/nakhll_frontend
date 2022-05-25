@@ -19,6 +19,7 @@ import { getAccessToken } from "../../api/auth/getAccessToken";
 const Code = () => {
   const router = useRouter();
   const [timer, setTimer] = useState(59);
+  const [mobile, setMobile] = useState("");
   const [loadButton, setLoadButton] = useState(false);
   const {
     register,
@@ -45,6 +46,11 @@ const Code = () => {
     }
     setLoadButton(false);
   };
+
+  useEffect(() => {
+    const mobile = sessionStorage.getItem("mobile");
+    setMobile(mobile);
+  }, []);
 
   useEffect(() => {
     router.query.forgetPass === "true" && forgetPassword();
@@ -81,9 +87,8 @@ const Code = () => {
             className="mb-2"
             style={{ fontSize: "15px" }}
           >
-            کد تایید برای شماره موبایل وارد شده ارسال گردید
+            کد تایید برای شماره موبایل {mobile ?? "وارد شده"} ارسال گردید
           </label>
-          <p>{localStorage.setItem("PhoneNumNakhl", JSON.stringify(result))}</p>
           <input
             type="number"
             id="user_key"

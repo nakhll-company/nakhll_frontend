@@ -14,6 +14,7 @@ import { sendPhoneNumber } from "../../api/auth/sendPhoneNumber";
 
 const Login = () => {
   const [loadButton, setLoadButton] = useState(false);
+
   const router = useRouter();
   const {
     register,
@@ -24,7 +25,6 @@ const Login = () => {
   const submit = async (data) => {
     setLoadButton(true);
     const result = await sendPhoneNumber(data);
-    localStorage.setItem("PhoneNumNakhl", JSON.stringify(result));
 
     if (result !== false) {
       sessionStorage.setItem("login", JSON.stringify(result));
