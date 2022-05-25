@@ -83,6 +83,7 @@ const Code = () => {
           >
             کد تایید برای شماره موبایل وارد شده ارسال گردید
           </label>
+          <p>{localStorage.setItem("PhoneNumNakhl", JSON.stringify(result))}</p>
           <input
             type="number"
             id="user_key"

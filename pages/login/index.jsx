@@ -24,10 +24,10 @@ const Login = () => {
   const submit = async (data) => {
     setLoadButton(true);
     const result = await sendPhoneNumber(data);
+    localStorage.setItem("PhoneNumNakhl", JSON.stringify(result));
 
     if (result !== false) {
       sessionStorage.setItem("login", JSON.stringify(result));
-
       if (result.mobile_status === "login_pass") {
         router.push("/login/password/");
       } else {
