@@ -10,7 +10,7 @@ import { _updateProducts } from "../../../redux/actions/liveEdit/_updateProducts
 import st from "./rotationProduct.module.scss";
 import { http } from "../../../services/callApi/api";
 
-function Sm_RotationProducts({ id, data }) {
+function SmRotationProducts({ id, data }) {
   const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
 
@@ -89,4 +89,4 @@ function Sm_RotationProducts({ id, data }) {
   );
 }
 
-export default Sm_RotationProducts;
+export default SmRotationProducts;

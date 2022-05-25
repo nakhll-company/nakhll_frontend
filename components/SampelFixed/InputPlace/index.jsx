@@ -3,7 +3,7 @@ import React from "react";
 // style
 import styles from "./InputPlace.module.scss";
 
-function Sm_InputPlace_Fix() {
+function SmInputPlaceFix() {
   return (
     <>
       <div className={styles.box_outer}>
@@ -25,4 +25,4 @@ function Sm_InputPlace_Fix() {
   );
 }
 
-export default Sm_InputPlace_Fix;
+export default SmInputPlaceFix;

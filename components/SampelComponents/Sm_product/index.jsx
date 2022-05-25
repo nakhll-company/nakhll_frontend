@@ -4,7 +4,7 @@ import styles from "./Sm_product.module.scss";
 
 import diviedNumber from "../../../utils/diviedNumber";
 
-function Sm_product({ data }) {
+function SmProduct({ data }) {
   return (
     <>
       <div className={styles.product}>
@@ -40,4 +40,4 @@ function Sm_product({ data }) {
   );
 }
 
-export default Sm_product;
+export default SmProduct;

@@ -36,13 +36,13 @@ const FilterProduct = ({ getProduct, activeHojreh }) => {
             className={styles.form}
             onSubmit={(event) => {
               event.preventDefault();
-              const product_status = document.querySelector(
+              const productStatus = document.querySelector(
                 "input[type=radio]:checked"
               ).value;
               const search = document.querySelector("#search").value;
               getProduct(
                 activeHojreh,
-                product_status,
+                productStatus,
                 filterData.price_from,
                 filterData.price_to,
                 filterData.inventory_from,

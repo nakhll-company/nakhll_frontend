@@ -8,7 +8,7 @@ import styles from "./Sm_LinerTwoImg.module.scss";
 // type=========3
 // aspect======3
 
-function Sm_LinerTwoImg({ setImageSrc, id, data }) {
+function SmLinerTwoImg({ setImageSrc, id, data }) {
   return (
     <div className={styles.wrap}>
       <div className={styles.right}>
@@ -52,4 +52,4 @@ function Sm_LinerTwoImg({ setImageSrc, id, data }) {
   );
 }
 
-export default Sm_LinerTwoImg;
+export default SmLinerTwoImg;

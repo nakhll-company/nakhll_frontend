@@ -7,7 +7,7 @@ import InputPicture from "../../../containers/liveEdit/InputPicture";
 import styles from "./Sm_LinerOneImg.module.scss";
 // type component ===============2
 // aspect ratio 6/1
-function Sm_LinerOneImg({ setImageSrc, id, data }) {
+function SmLinerOneImg({ setImageSrc, id, data }) {
   return (
     <div className={styles.wrapper}>
       <div className={styles.icon_change_pic}>
@@ -30,4 +30,4 @@ function Sm_LinerOneImg({ setImageSrc, id, data }) {
   );
 }
 
-export default Sm_LinerOneImg;
+export default SmLinerOneImg;

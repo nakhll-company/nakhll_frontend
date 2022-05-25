@@ -48,7 +48,7 @@ const UpdateProduct = ({ activeHojreh }) => {
   const [imgProductOne, setImgProductOne] = useState(null);
   const [imgProductTwo, setImgProductTwo] = useState(null);
   const [imgProductSix, setImgProductSix] = useState(null);
-  const [Product_Banner, setProduct_Banner] = useState([]);
+  const [productBanner, setProductBanner] = useState([]);
   const [precentOldPrice, setprecentOldPrice] = useState(0);
   const [imgProductFour, setImgProductFour] = useState(null);
   const [imgProductFive, setImgProductFive] = useState(null);
@@ -109,7 +109,7 @@ const UpdateProduct = ({ activeHojreh }) => {
           setImgProductFour(Data.Product_Banner[3]?.Image);
           setImgProductFive(Data.Product_Banner[4]?.Image);
           setImgProductSix(Data.Product_Banner[5]?.Image);
-          setProduct_Banner(Data.Product_Banner);
+          setProductBanner(Data.Product_Banner);
           const newArrTags = [];
           Data.product_tags.map((item) => {
             newArrTags.push({ id: item.text, text: item.text });
@@ -132,25 +132,25 @@ const UpdateProduct = ({ activeHojreh }) => {
 
   const onSubmit = async (data) => {
     setisLoadingUpdate(true);
-    const Product_Banner = [];
+    const productBanner = [];
 
     if (imgProductOne && !imgProductOne.includes("http")) {
-      Product_Banner.push({ Image: imgProductOne });
+      productBanner.push({ Image: imgProductOne });
     }
     if (imgProductTwo && !imgProductTwo.includes("http")) {
-      Product_Banner.push({ Image: imgProductTwo });
+      productBanner.push({ Image: imgProductTwo });
     }
     if (imgProductThree && !imgProductThree.includes("http")) {
-      Product_Banner.push({ Image: imgProductThree });
+      productBanner.push({ Image: imgProductThree });
     }
     if (imgProductFour && !imgProductFour.includes("http")) {
-      Product_Banner.push({ Image: imgProductFour });
+      productBanner.push({ Image: imgProductFour });
     }
     if (imgProductFive && !imgProductFive.includes("http")) {
-      Product_Banner.push({ Image: imgProductFive });
+      productBanner.push({ Image: imgProductFive });
     }
     if (imgProductSix && !imgProductSix.includes("http")) {
-      Product_Banner.push({ Image: imgProductSix });
+      productBanner.push({ Image: imgProductSix });
     }
 
     const externalData = {
@@ -158,7 +158,7 @@ const UpdateProduct = ({ activeHojreh }) => {
       PostRangeType: 1,
       post_range: [],
       category: submarketId,
-      Product_Banner: Product_Banner,
+      Product_Banner: productBanner,
       product_tags: tags,
     };
 
@@ -178,12 +178,12 @@ const UpdateProduct = ({ activeHojreh }) => {
   // use effect
   useEffect(() => {
     async function fetchData() {
-      const response_categories = await _ApiGetCategories();
+      const responseCategories = await _ApiGetCategories();
 
-      if (response_categories.status === 200) {
+      if (responseCategories.status === 200) {
         setIsLoad(true);
-        setData(response_categories.data); // ==> output: {}
-        setCategories(response_categories.data);
+        setData(responseCategories.data); // ==> output: {}
+        setCategories(responseCategories.data);
       }
     }
     fetchData();
@@ -315,32 +315,32 @@ const UpdateProduct = ({ activeHojreh }) => {
                       <PictureChildProduct
                         setImageSrc={setImgProductOne}
                         image={imgProductOne}
-                        id={Product_Banner[0]?.id}
+                        id={productBanner[0]?.id}
                       />
                       <PictureChildProduct
                         setImageSrc={setImgProductTwo}
                         image={imgProductTwo}
-                        id={Product_Banner[1]?.id}
+                        id={productBanner[1]?.id}
                       />
                       <PictureChildProduct
                         setImageSrc={setImgProductThree}
                         image={imgProductThree}
-                        id={Product_Banner[2]?.id}
+                        id={productBanner[2]?.id}
                       />
                       <PictureChildProduct
                         setImageSrc={setImgProductFour}
                         image={imgProductFour}
-                        id={Product_Banner[3]?.id}
+                        id={productBanner[3]?.id}
                       />
                       <PictureChildProduct
                         setImageSrc={setImgProductFive}
                         image={imgProductFive}
-                        id={Product_Banner[4]?.id}
+                        id={productBanner[4]?.id}
                       />
                       <PictureChildProduct
                         setImageSrc={setImgProductSix}
                         image={imgProductSix}
-                        id={Product_Banner[5]?.id}
+                        id={productBanner[5]?.id}
                       />
                     </div>
                   )}

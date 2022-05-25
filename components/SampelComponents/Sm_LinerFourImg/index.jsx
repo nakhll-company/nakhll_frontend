@@ -9,7 +9,7 @@ import styles from "./Sm_LinerFourImg.module.scss";
 // type==============5
 // aspect=================1.33
 
-function Sm_LinerFourImg({ setImageSrc, id, data }) {
+function SmLinerFourImg({ setImageSrc, id, data }) {
   return (
     <div className={styles.wrap}>
       <div className={styles.wrapImg}>
@@ -107,4 +107,4 @@ function Sm_LinerFourImg({ setImageSrc, id, data }) {
   );
 }
 
-export default Sm_LinerFourImg;
+export default SmLinerFourImg;

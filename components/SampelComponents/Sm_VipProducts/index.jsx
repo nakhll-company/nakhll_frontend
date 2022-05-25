@@ -12,7 +12,7 @@ import { _updateProducts } from "../../../redux/actions/liveEdit/_updateProducts
 import st from "./vipProducts.module.scss";
 import { http } from "../../../services/callApi/api";
 
-function Sm_VipProducts({ id, data }) {
+function SmVipProducts({ id, data }) {
   const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
 
@@ -105,4 +105,4 @@ function Sm_VipProducts({ id, data }) {
   );
 }
 
-export default Sm_VipProducts;
+export default SmVipProducts;

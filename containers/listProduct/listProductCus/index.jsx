@@ -1,31 +1,30 @@
 // node libraries
+import _ from "lodash";
 import router from "next/router";
+import { useSelector } from "react-redux";
 import CheckboxTree from "react-checkbox-tree";
-
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import _ from "lodash";
 // components
 import { TopBar } from "../TopBar";
+import Grouping from "../../searchPage/Grouping";
 import { allCites } from "../../../utils/allCities";
 import Search from "../../../components/search/Search";
+import SearchProduct from "./components/searchProduct";
 import AddFavorites from "../../../components/AddFavorites";
 import CustomSwitch from "../../../components/custom/customSwitch";
+import OrderingModalMobile from "./components/OrderingModalMobile";
 import ProductCard from "../../../components/ProductCart/ProductCard";
 import CustomAccordion from "../../../components/custom/customAccordion";
 import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
 import MultiRangeSlider from "../../../components/custom/customMultiRangeSlider/MultiRangeSlider";
 // methods
 import { ApiReference } from "../../../api/Api";
+import { http } from "../../../services/callApi/api";
+import diviedNumber from "../../../utils/diviedNumber";
 // styles
 import styles from "./listProductCus.module.scss";
-import OrderingModalMobile from "./components/OrderingModalMobile";
-import SearchProduct from "./components/searchProduct";
-import { useSelector } from "react-redux";
-import Grouping from "../../searchPage/Grouping";
-import { http } from "../../../services/callApi/api";
 
-import diviedNumber from "../../../utils/diviedNumber";
 
 function ListProductCus({ data }) {
   const [pageApi, setPageApi] = useState(2);
@@ -84,7 +83,7 @@ function ListProductCus({ data }) {
       : []),
   ]);
 
-  const call_tags = async (activeHojreh) => {
+  const callTags = async (activeHojreh) => {
     try {
       const dataUrl = `/api/v1/shop/${activeHojreh}/tags/`;
 
@@ -97,7 +96,7 @@ function ListProductCus({ data }) {
     }
   };
 
-  const _handel_Add_category = (id) => {
+  const handelAddCategory = (id) => {
     const copyArray = [...wantCategories];
 
     const newArray = copyArray.filter((element) => element != id);
@@ -109,7 +108,7 @@ function ListProductCus({ data }) {
     }
   };
 
-  const _handel_Add_tags = (id) => {
+  const handelAddTags = (id) => {
     const copyArray = [...wantTags];
 
     const newArray = copyArray.filter((element) => element != id);
@@ -123,7 +122,7 @@ function ListProductCus({ data }) {
     }
   };
 
-  const _handel_call_another_page_api = async (witchFilter) => {
+  const handelCallAnotherPageApi = async (witchFilter) => {
     try {
       const response = await http.get(`/api/v1/products/`, {
         params: {
@@ -163,7 +162,7 @@ function ListProductCus({ data }) {
     }
   };
   // Get all shops
-  const _get_all_shops = async () => {
+  const getAllShops = async () => {
     if (shopsName.length == 0) {
       const shops = await http.get(ApiReference.allShops);
 
@@ -174,10 +173,10 @@ function ListProductCus({ data }) {
   };
   // Function for search
   const handelSearch = (word) => {
-    const copy_Array = [...shopsName];
+    const copyArray = [...shopsName];
     let filterArray = [];
     if (word != "") {
-      filterArray = copy_Array.filter((el) => el.title.includes(word));
+      filterArray = copyArray.filter((el) => el.title.includes(word));
     }
     setSearchShops(filterArray);
   };
@@ -213,7 +212,7 @@ function ListProductCus({ data }) {
       { scroll: false }
     );
     async function fetchData() {
-      const _handel_filters = async (witchFilter) => {
+      const handelFilters = async (witchFilter) => {
         setHasMore(true);
         setIsLoading(true);
 
@@ -262,7 +261,7 @@ function ListProductCus({ data }) {
           setIsLoading(false);
         }
       };
-      await _handel_filters();
+      await handelFilters();
     }
     fetchData();
   }, [
@@ -282,18 +281,18 @@ function ListProductCus({ data }) {
   // for filters in sidebar
   // END
 
-  const handel_filterModal = () => {
+  const handelFilterModal = () => {
     setIsOpenModal(!isOpenModal);
   };
 
   // function for open OrderingModal in mobile
-  const handel_OrderingModal = () => {
+  const handelOrderingModal = () => {
     setIsOpenOrderingModal(!isOpenOrderingModal);
   };
 
   useEffect(() => {
     if (activeHojreh) {
-      call_tags(activeHojreh);
+      callTags(activeHojreh);
     }
   }, [activeHojreh]);
 
@@ -307,7 +306,7 @@ function ListProductCus({ data }) {
                 searchWord={searchWord}
                 setCategories={setCategories}
                 categories={categories}
-                _handel_Add_category={_handel_Add_category}
+                _handel_Add_category={handelAddCategory}
               />
 
               <CustomAccordion title="محدوده قیمت" item="two" close={true}>
@@ -337,7 +336,7 @@ function ListProductCus({ data }) {
                 close={true}
               >
                 <Search
-                  onClick={_get_all_shops}
+                  onClick={getAllShops}
                   onChange={(e) => handelSearch(e.target.value)}
                 />
                 {searchShops.length > 0 && (
@@ -417,7 +416,7 @@ function ListProductCus({ data }) {
                     >
                       <input
                         onChange={(e) => {
-                          _handel_Add_tags(e.target.value);
+                          handelAddTags(e.target.value);
                         }}
                         className="form-check-input"
                         type="checkbox"
@@ -474,9 +473,9 @@ function ListProductCus({ data }) {
               totalcount={totalcount}
               data={data.ordering}
               whichOrdering={whichOrdering}
-              handel_filterModal={handel_filterModal}
+              handel_filterModal={handelFilterModal}
               setWhichOrdering={setWhichOrdering}
-              handel_OrderingModal={handel_OrderingModal}
+              handel_OrderingModal={handelOrderingModal}
             />
             {/* inja */}
             <div>
@@ -498,7 +497,7 @@ function ListProductCus({ data }) {
                 <InfiniteScroll
                   className="mx-auto row"
                   dataLength={listWithFilter.length} // This is important field to render the next data
-                  next={_handel_call_another_page_api}
+                  next={handelCallAnotherPageApi}
                   hasMore={hasMore}
                   loader={<h4>کمی صبر...</h4>}
                   endMessage={
@@ -533,7 +532,7 @@ function ListProductCus({ data }) {
             }}
           >
             <i
-              onClick={handel_filterModal}
+              onClick={handelFilterModal}
               className="far fa-times-circle"
               style={{
                 fontSize: "25px",
@@ -577,7 +576,7 @@ function ListProductCus({ data }) {
             </div>
             <CustomAccordion title="جست و جو براساس حجره" item="searchShop">
               <Search
-                onClick={_get_all_shops}
+                onClick={getAllShops}
                 onChange={(e) => handelSearch(e.target.value)}
               />
               {searchShops.length > 0 && (
@@ -626,7 +625,7 @@ function ListProductCus({ data }) {
                 searchWord={searchWord}
                 setCategories={setCategories}
                 categories={categories}
-                _handel_Add_category={_handel_Add_category}
+                _handel_Add_category={handelAddCategory}
               />
             )}
             {hojreh == "" && (
@@ -665,7 +664,7 @@ function ListProductCus({ data }) {
             }}
           >
             <button
-              onClick={handel_filterModal}
+              onClick={handelFilterModal}
               className="btn btn-dark"
               style={{ width: "90vw", fontSize: "14px" }}
             >
@@ -681,8 +680,8 @@ function ListProductCus({ data }) {
       {/* ModalOrdering Strat */}
       {isOpenOrderingModal && (
         <OrderingModalMobile
-          handel_OrderingModal={handel_OrderingModal}
-          handel_filterModal={handel_filterModal}
+          handel_OrderingModal={handelOrderingModal}
+          handel_filterModal={handelFilterModal}
           setWhichOrdering={setWhichOrdering}
           setIsOpenOrderingModal={setIsOpenOrderingModal}
         />

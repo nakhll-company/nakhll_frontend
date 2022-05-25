@@ -8,7 +8,7 @@ import styles from "./Sm_LinerThreeImg.module.scss";
 
 // type====================4
 // aspect ratio======6/1  && 3/1
-function Sm_LinerThreeImg({ setImageSrc, id, data }) {
+function SmLinerThreeImg({ setImageSrc, id, data }) {
   return (
     <div>
       <div className={styles.wrapper}>
@@ -78,4 +78,4 @@ function Sm_LinerThreeImg({ setImageSrc, id, data }) {
   );
 }
 
-export default Sm_LinerThreeImg;
+export default SmLinerThreeImg;

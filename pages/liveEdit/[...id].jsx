@@ -73,6 +73,7 @@ function LiveEdit({ idLanding }) {
     }
     fetchData();
 
+    // eslint-disable-next-line new-cap
     const tl = new gsap.timeline();
     tl.from(toggleMenu, {
       opacity: 0,
@@ -92,7 +93,7 @@ function LiveEdit({ idLanding }) {
     });
   }, [openPlaneEditor]);
 
-  const _handel_update_landing = async () => {
+  const handelUpdateLanding = async () => {
     const ansapi = {
       shop: idLanding[0],
       page_data: JSON.stringify(landing),
@@ -101,7 +102,7 @@ function LiveEdit({ idLanding }) {
     return response;
   };
 
-  const _handel_add_component = (type) => {
+  const handelAddComponent = (type) => {
     const items = [...characters];
 
     items.map((element, index) => {
@@ -144,7 +145,7 @@ function LiveEdit({ idLanding }) {
         <div
           className={styles.wrap_item}
           onClick={() => {
-            _handel_update_landing();
+            handelUpdateLanding();
             window.open(`/fp`, "_blank");
           }}
         >
@@ -156,7 +157,7 @@ function LiveEdit({ idLanding }) {
         <div
           className={styles.wrap_item}
           onClick={() => {
-            _handel_update_landing();
+            handelUpdateLanding();
             window.open(
               `/liveEdit/preview/${idLanding[0]}/${idLanding[1]}/`,
               "_blank"
@@ -188,7 +189,7 @@ function LiveEdit({ idLanding }) {
           {!openPlaneEditor && <>{menuList}</>}
 
           {openPlaneEditor && (
-            <ListComponent _handel_add_component={_handel_add_component} />
+            <ListComponent handelAddComponent={handelAddComponent} />
           )}
         </div>
 

@@ -15,7 +15,7 @@ const Footer = () => {
   const router = useRouter();
   const userData = useSelector((state) => state.User.userInfo);
 
-  const _handel_according = (accord, icon) => {
+  const handelAccording = (accord, icon) => {
     const element = document.getElementById(accord);
     if (element.style.height == "0px") {
       element.style.height = "unset";
@@ -237,7 +237,7 @@ const Footer = () => {
               <div className="border-bottom border-gray py-3">
                 <div
                   onClick={() => {
-                    _handel_according("part_one", "icon");
+                    handelAccording("part_one", "icon");
                   }}
                 >
                   <div className="d-flex justify-content-between">
@@ -282,7 +282,7 @@ const Footer = () => {
               <div className="border-bottom border-gray py-3">
                 <div
                   onClick={() => {
-                    _handel_according("part_two", "part_two_icon");
+                    handelAccording("part_two", "part_two_icon");
                   }}
                 >
                   <div className="d-flex justify-content-between">
@@ -333,7 +333,7 @@ const Footer = () => {
               <div className="border-bottom border-gray py-3">
                 <div
                   onClick={() => {
-                    _handel_according("part_three", "part_three_icon");
+                    handelAccording("part_three", "part_three_icon");
                   }}
                 >
                   <div className="d-flex justify-content-between">

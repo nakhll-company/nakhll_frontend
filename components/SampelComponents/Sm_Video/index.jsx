@@ -7,7 +7,7 @@ import InputUrl from "../../../containers/liveEdit/InputUrl";
 // style
 import st from "./video.module.scss";
 
-function Sm_Video({ id, data }) {
+function SmVideo({ id, data }) {
   const an1 = useRef(null);
 
   useEffect(() => {
@@ -42,4 +42,4 @@ function Sm_Video({ id, data }) {
   );
 }
 
-export default Sm_Video;
+export default SmVideo;

@@ -2,7 +2,7 @@
 import { useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
 // components
-import Sm_product from "../Sm_product";
+import SmProduct from "../Sm_product";
 import InputUrl from "../../../containers/liveEdit/InputUrl";
 // methods
 import { _selectId } from "../../../redux/actions/liveEdit/_selectId";
@@ -12,7 +12,7 @@ import { _updateTitleColorSubtitle } from "../../../redux/actions/liveEdit/_upda
 import styles from "./Sm_LinerProducts.module.scss";
 import { http } from "../../../services/callApi/api";
 
-function Sm_LinerProducts({ id, data }) {
+function SmLinerProducts({ id, data }) {
   const dispatch = useDispatch();
   const [toggle, setToggle] = useState(true);
   const [products, setProducts] = useState([]);
@@ -181,7 +181,7 @@ function Sm_LinerProducts({ id, data }) {
 
       <div className={styles.wrap}>
         {products.map((product, index) => (
-          <Sm_product key={index} data={product} />
+          <SmProduct key={index} data={product} />
         ))}
         {/* <Sm_product />
         <Sm_product />
@@ -193,4 +193,4 @@ function Sm_LinerProducts({ id, data }) {
   );
 }
 
-export default Sm_LinerProducts;
+export default SmLinerProducts;

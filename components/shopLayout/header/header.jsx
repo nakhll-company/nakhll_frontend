@@ -14,7 +14,7 @@ import { gtag } from "../../../utils/googleAnalytics";
 import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
 import {
   callCategory,
-  _get_all_shops,
+  getAllShops,
   handelSearch,
 } from "../../../api/header";
 // style
@@ -32,7 +32,7 @@ function Header() {
   const [inputSearch, setInputSearch] = useState("");
   const userLog = useSelector((state) => state.User.userInfo);
 
-  const All_product_list_buy = useSelector((state) => state.Cart.allProduct);
+  const allProductListBuy = useSelector((state) => state.Cart.allProduct);
 
   useEffect(() => {
     async function fetchData() {
@@ -105,7 +105,7 @@ function Header() {
                       placeholder="جستجو در نخل ..."
                       onClick={async () => {
                         if (shopsName.length == 0) {
-                          const getShopsName = await _get_all_shops(shopsName);
+                          const getShopsName = await getAllShops(shopsName);
                           setShopsName(getShopsName);
                         }
                       }}
@@ -219,9 +219,9 @@ function Header() {
                     src="/icons/sabad.svg"
                     alt=""
                   />
-                  {!!All_product_list_buy?.ordered_items?.length && (
+                  {!!allProductListBuy?.ordered_items?.length && (
                     <span className={styles.counter_cart}>
-                      {All_product_list_buy.ordered_items.length}
+                      {allProductListBuy.ordered_items.length}
                     </span>
                   )}
                 </div>
@@ -359,7 +359,7 @@ function Header() {
                   type="text"
                   className="form-control"
                   onClick={async () => {
-                    const getShopsName = await _get_all_shops(shopsName);
+                    const getShopsName = await getAllShops(shopsName);
                     setShopsName(getShopsName);
                   }}
                   onChange={(e) => {

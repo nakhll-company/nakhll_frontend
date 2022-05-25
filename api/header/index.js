@@ -17,7 +17,7 @@ export const callCategory = async() => {
 };
 
 // Get all shops
-export const _get_all_shops = async() => {
+export const getAllShops = async() => {
     const shops = await http.get(ApiReference.allShops);
 
     if (shops.status === 200) {
@@ -29,10 +29,10 @@ export const _get_all_shops = async() => {
 
 // Function for search
 export const handelSearch = (word, shopsName) => {
-    const copy_Array = shopsName ? [...shopsName] : [];
+    const copyArray = shopsName ? [...shopsName] : [];
     let filterArray = [];
     if (word != "") {
-        filterArray = copy_Array.filter((el) => el.title.includes(word));
+        filterArray = copyArray.filter((el) => el.title.includes(word));
     }
     return filterArray;
 };

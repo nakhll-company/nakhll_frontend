@@ -5,18 +5,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 // components
 import CustomCropper from "../../customCropper";
-import Sm_Video from "../../SampelComponents/Sm_Video";
-import Sm_AboutMe from "../../SampelComponents/Sm_AboutMe";
-import Sm_HeroSlides from "../../SampelComponents/HeroSlides";
-import Sm_InputPlace from "../../SampelComponents/InputPlace";
+import SmVideo from "../../SampelComponents/Sm_Video";
+import SmAboutMe from "../../SampelComponents/Sm_AboutMe";
+import SmHeroSlides from "../../SampelComponents/HeroSlides";
+import SmInputPlace from "../../SampelComponents/InputPlace";
 import SelectUrl from "../../../containers/liveEdit/SelectUrl";
-import Sm_LinerOneImg from "../../SampelComponents/Sm_LinerOneImg";
-import Sm_LinerTwoImg from "../../SampelComponents/Sm_LinerTwoImg";
-import Sm_VipProducts from "../../SampelComponents/Sm_VipProducts";
-import Sm_LinerFourImg from "../../SampelComponents/Sm_LinerFourImg";
-import Sm_LinerThreeImg from "../../SampelComponents/Sm_LinerThreeImg";
-import Sm_LinerProducts from "../../SampelComponents/Sm_LinerProducts";
-import Sm_RotationProducts from "../../SampelComponents/Sm_RotationProducts";
+import SmLinerOneImg from "../../SampelComponents/Sm_LinerOneImg";
+import SmLinerTwoImg from "../../SampelComponents/Sm_LinerTwoImg";
+import SmVipProducts from "../../SampelComponents/Sm_VipProducts";
+import SmLinerFourImg from "../../SampelComponents/Sm_LinerFourImg";
+import SmLinerThreeImg from "../../SampelComponents/Sm_LinerThreeImg";
+import SmLinerProducts from "../../SampelComponents/Sm_LinerProducts";
+import SmRotationProducts from "../../SampelComponents/Sm_RotationProducts";
 // methods
 import { _updateDataLanding } from "../../../redux/actions/liveEdit/_updateDataLanding";
 // style
@@ -96,9 +96,9 @@ function Living({ characters, setCharacters, setOpenPlaneEditor, idLanding }) {
   };
 
   // function for when click on top plus icon
-  const _handel_add_component_top = (index) => {
+  const handelAddComponentTop = (index) => {
     const items = [...characters];
-    const newItem = { ID: uuidv4(), component: <Sm_InputPlace />, type: 0 };
+    const newItem = { ID: uuidv4(), component: <SmInputPlace />, type: 0 };
     items.splice(index, 0, newItem);
     setCharacters(items);
     setOpenPlaneEditor(true);
@@ -106,9 +106,9 @@ function Living({ characters, setCharacters, setOpenPlaneEditor, idLanding }) {
   };
 
   // function for when click on bottom plus icon
-  const _handel_add_component_bottom = (index) => {
+  const handelAddComponentBottom = (index) => {
     const items = [...characters];
-    const newItem = { ID: uuidv4(), component: <Sm_InputPlace />, type: 0 };
+    const newItem = { ID: uuidv4(), component: <SmInputPlace />, type: 0 };
     items.splice(index + 1, 0, newItem);
     setCharacters(items);
     setOpenPlaneEditor(true);
@@ -126,19 +126,19 @@ function Living({ characters, setCharacters, setOpenPlaneEditor, idLanding }) {
   };
 
   // type
-  const _handel_select_component = (type, id, data) => {
+  const handelSelectComponent = (type, id, data) => {
     const handel = {
-      0: <Sm_InputPlace />,
-      1: <Sm_HeroSlides setImageSrc={setImageSrc} id={id} data={data} />,
-      2: <Sm_LinerOneImg setImageSrc={setImageSrc} id={id} data={data} />,
-      3: <Sm_LinerTwoImg setImageSrc={setImageSrc} id={id} data={data} />,
-      4: <Sm_LinerThreeImg setImageSrc={setImageSrc} id={id} data={data} />,
-      5: <Sm_LinerFourImg setImageSrc={setImageSrc} id={id} data={data} />,
-      6: <Sm_LinerProducts id={id} data={data} />,
-      8: <Sm_AboutMe id={id} data={data} />,
-      9: <Sm_VipProducts id={id} data={data} />,
-      10: <Sm_RotationProducts id={id} data={data} />,
-      11: <Sm_Video id={id} data={data} />,
+      0: <SmInputPlace />,
+      1: <SmHeroSlides setImageSrc={setImageSrc} id={id} data={data} />,
+      2: <SmLinerOneImg setImageSrc={setImageSrc} id={id} data={data} />,
+      3: <SmLinerTwoImg setImageSrc={setImageSrc} id={id} data={data} />,
+      4: <SmLinerThreeImg setImageSrc={setImageSrc} id={id} data={data} />,
+      5: <SmLinerFourImg setImageSrc={setImageSrc} id={id} data={data} />,
+      6: <SmLinerProducts id={id} data={data} />,
+      8: <SmAboutMe id={id} data={data} />,
+      9: <SmVipProducts id={id} data={data} />,
+      10: <SmRotationProducts id={id} data={data} />,
+      11: <SmVideo id={id} data={data} />,
     };
 
     return handel[type] ? handel[type] : null;
@@ -150,7 +150,7 @@ function Living({ characters, setCharacters, setOpenPlaneEditor, idLanding }) {
         <button
           className={styles.buttonAdd}
           role="button"
-          onClick={() => _handel_add_component_bottom(index)}
+          onClick={() => handelAddComponentBottom(index)}
         >
           <i className="fas fa-plus"></i>
         </button>
@@ -159,7 +159,7 @@ function Living({ characters, setCharacters, setOpenPlaneEditor, idLanding }) {
         <button
           className={styles.buttonAdd}
           role="button"
-          onClick={() => _handel_add_component_top(index)}
+          onClick={() => handelAddComponentTop(index)}
         >
           <i className="fas fa-plus"></i>
         </button>
@@ -205,7 +205,7 @@ function Living({ characters, setCharacters, setOpenPlaneEditor, idLanding }) {
                     >
                       {icons(index)}
 
-                      {_handel_select_component(e.type, e.ID, e.data)}
+                      {handelSelectComponent(e.type, e.ID, e.data)}
                     </div>
                   )}
                 </Draggable>

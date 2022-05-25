@@ -6,7 +6,7 @@ import Image from "next/image";
 import styles from "./Sm_product.module.scss";
 import diviedNumber from "../../../utils/diviedNumber";
 
-function Sm_product_Fix() {
+function SmProductFix() {
   return (
     <>
       <div className={styles.product}>
@@ -36,4 +36,4 @@ function Sm_product_Fix() {
   );
 }
 
-export default Sm_product_Fix;
+export default SmProductFix;

@@ -3,7 +3,7 @@ import React from "react";
 // style
 import styles from "./Sm_LinerTwoImg.module.scss";
 
-function Sm_LinerTwoImg_Fix() {
+function SmLinerTwoImgFix() {
   return (
     <div className={styles.wrap}>
       <div className={styles.right}>
@@ -20,4 +20,4 @@ function Sm_LinerTwoImg_Fix() {
   );
 }
 
-export default Sm_LinerTwoImg_Fix;
+export default SmLinerTwoImgFix;

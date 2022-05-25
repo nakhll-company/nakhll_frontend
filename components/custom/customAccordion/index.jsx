@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./customAccordion.module.scss";
 export const CustomAccordion = ({ children, title, item, callApi }) => {
-  const _handel_according = (accord, icon) => {
+  const handelAccording = (accord, icon) => {
     const element = document.getElementById(accord);
     if (element.style.height == "0px") {
       element.style.height = "unset";
@@ -34,7 +34,7 @@ export const CustomAccordion = ({ children, title, item, callApi }) => {
                 justifyContent: "space-between",
               }}
               onClick={() => {
-                _handel_according(`according_${item}`, `icon_${item}`);
+                handelAccording(`according_${item}`, `icon_${item}`);
                 {
                   callApi && callApi();
                 }

@@ -9,7 +9,7 @@ import styles from "./HeroSlides.module.scss";
 
 // type============1
 //  ratio========2/1
-function Sm_HeroSlides({ setImageSrc, id, data }) {
+function SmHeroSlides({ setImageSrc, id, data }) {
   const [wichSlide, setWichSlide] = useState(1);
 
   return (
@@ -120,4 +120,4 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
   );
 }
 
-export default Sm_HeroSlides;
+export default SmHeroSlides;

@@ -8,7 +8,7 @@ import { ApiReference } from "../../../api/Api";
 import { errorMessage } from "../../../utils/toastifyMessage";
 import { _updateUrl } from "../../../redux/actions/liveEdit/_updateUrl";
 import { _updateVideo } from "../../../redux/actions/liveEdit/_updateVideo";
-import { showSelectUrl } from "../../../redux/actions/liveEdit/showSelectUrl";
+import { showSelectUrl } from "../../../redux/actions/liveEdit/_showSelect_url";
 // components
 import SubButton from "../../settings/components/subButton";
 import TextAreaUseForm from "../../creat/component/textAreaUseForm";

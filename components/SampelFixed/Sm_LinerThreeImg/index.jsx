@@ -4,7 +4,7 @@ import Link from "next/link";
 // style
 import styles from "./Sm_LinerThreeImg.module.scss";
 
-function Sm_LinerThreeImg_Fix() {
+function SmLinerThreeImgFix() {
   return (
     <div>
       <div className={styles.wrapper}>
@@ -30,4 +30,4 @@ function Sm_LinerThreeImg_Fix() {
   );
 }
 
-export default Sm_LinerThreeImg_Fix;
+export default SmLinerThreeImgFix;

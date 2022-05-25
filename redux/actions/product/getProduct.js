@@ -6,12 +6,12 @@ import {
 export const getProduct =
     (
         activeHojreh,
-        product_status,
-        price_from,
-        price_to,
-        inventory_from,
-        inventory_to,
-        order_by,
+        productStatus,
+        priceFrom,
+        priceTo,
+        inventoryFrom,
+        inventoryTo,
+        orderBy,
         search,
         page
     ) =>
@@ -22,12 +22,12 @@ export const getProduct =
             if (activeHojreh.length > 0) {
                 const getProduct = async() => {
                     const params = {
-                        product_status,
-                        price_from,
-                        price_to,
-                        inventory_from,
-                        inventory_to,
-                        order_by,
+                        'product_status':productStatus ,
+                        'price_from':priceFrom,
+                        'price_to':priceTo,
+                        'inventory_from':inventoryFrom,
+                        'inventory_to':inventoryTo,
+                        'order_by':orderBy,
                         search,
                         page,
                     };
@@ -49,5 +49,7 @@ export const getProduct =
                     });
                 }
             }
-        } catch (error) {}
+        } catch (error) {
+            return false;
+        }
     };

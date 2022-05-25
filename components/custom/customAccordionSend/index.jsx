@@ -10,13 +10,13 @@ export const CustomAccordionSend = ({
   children,
   title,
   item,
-  logistic_units,
-  logistic_price,
-  unit_type,
+  logisticUnits,
+  logisticPrice,
+  unitType,
 }) => {
-  const allMiniPic = Object.values(logistic_units);
+  const allMiniPic = Object.values(logisticUnits);
 
-  const _handel_according = (accord, icon, images) => {
+  const handelAccording = (accord, icon, images) => {
     const element = document.getElementById(accord);
     if (element.style.height == "0px") {
       element.style.height = "unset";
@@ -53,7 +53,7 @@ export const CustomAccordionSend = ({
                 justifyContent: "space-between",
               }}
               onClick={() => {
-                _handel_according(
+                handelAccording(
                   `according_${item}`,
                   `icon_${item}`,
                   `pic_${item}`
@@ -116,13 +116,13 @@ export const CustomAccordionSend = ({
             </div>
             <div className="">
               <span style={{ color: "#224E82", fontWeight: "bold" }}>
-                {unit_type == "pad" ? (
+                {unitType == "pad" ? (
                   "پسکرایه"
-                ) : logistic_price == 0 ? (
+                ) : logisticPrice == 0 ? (
                   "رایگان"
                 ) : (
                   <>
-                    <Number num={`${logistic_price / 10}`} />
+                    <Number num={`${logisticPrice / 10}`} />
 
                     <span> تومان</span>
                   </>

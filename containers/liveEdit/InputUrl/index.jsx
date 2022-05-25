@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { _selectId } from "../../../redux/actions/liveEdit/_selectId";
-import { showSelectUrl } from "../../../redux/actions/liveEdit/showSelectUrl";
+import { showSelectUrl } from "../../../redux/actions/liveEdit/_showSelect_url";
 
 import styles from "./InputUrl.module.scss";
 
