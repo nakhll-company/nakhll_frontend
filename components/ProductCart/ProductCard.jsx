@@ -38,7 +38,7 @@ const ProductCard = ({
     discount: dataProduct.discount,
     price: dataProduct.Price / 10,
     discountNumber: dataProduct.OldPrice / 10,
-    city: dataProduct.FK_Shop && dataProduct.FK_Shop.state,
+    city: dataProduct.FK_Shop && dataProduct?.FK_Shop?.state?.name,
     is_advertisement: dataProduct.is_advertisement,
   };
   const cardBadge = (
