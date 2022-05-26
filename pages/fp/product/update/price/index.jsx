@@ -7,11 +7,11 @@ import { ErrorMessage } from "@hookform/error-message";
 import useViewport from "../../../../../components/viewPort";
 import MobileHeader from "../../../../../components/mobileHeader";
 // methods
+import { authhttp } from "../../../../../services/callApi/api";
 import { successMessage } from "../../../../../utils/toastifyMessage";
 import { mapState } from "../../../../../containers/product/methods/mapState";
 // scss
 import styles from "../../../../../styles/pages/product/editPrice.module.scss";
-import { authhttp } from "../../../../../services/callApi/api";
 
 const Price = ({ productList }) => {
   const {
@@ -56,17 +56,17 @@ const Price = ({ productList }) => {
             <span>قیمت با تخفیف</span>
           </div>
           <form className={styles.form_edit} onSubmit={handleSubmit(onSubmit)}>
-            {productList.length > 0 ? (
-              productList.map((value, index) => {
+            {productList.results.length > 0 ? (
+              productList.results.map((value, index) => {
                 return (
                   <div key={index} className={styles.form_edit_card}>
                     {/* slug */}
                     <label className={styles.form_edit_label}>
-                      {value.title}
+                      {value.Title}
                     </label>
                     <input
                       type="hidden"
-                      defaultValue={value.slug}
+                      defaultValue={value.Slug}
                       {...register(`Slug${index + 100}`)}
                     />
                     {/* price */}
@@ -77,9 +77,9 @@ const Price = ({ productList }) => {
                         required: "لطفا این گزینه را پر نمایید",
                       })}
                       defaultValue={
-                        value.price > value.old_price
-                          ? value.price / 10
-                          : value.old_price / 10
+                        value.Price > value.OldPrice
+                          ? value.Price / 10
+                          : value.OldPrice / 10
                       }
                     />
                     <ErrorMessage errors={errors} name={`Price${index + 100}`}>
@@ -106,9 +106,9 @@ const Price = ({ productList }) => {
                           "لطفا قیمت با تخفیف را کمتر از قیمت اصلی وارد نمایید",
                       })}
                       defaultValue={
-                        value.price > value.old_price
-                          ? value.old_price / 10
-                          : value.price / 10
+                        value.Price > value.OldPrice
+                          ? value.OldPrice / 10
+                          : value.Price / 10
                       }
                     />
                     <ErrorMessage errors={errors} name={`Old${index + 100}`}>
