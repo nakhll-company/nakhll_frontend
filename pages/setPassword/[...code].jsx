@@ -1,35 +1,35 @@
-import React, { useEffect, useRef, useState } from "react";
-import EmptyLayout from "../../components/layout/EmptyLayout";
+// node libraries
+import lottie from "lottie-web";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import lottie from "lottie-web";
-
-import s from "./setPassword.module.scss";
-
-
+import React, { useEffect, useRef, useState } from "react";
+import EmptyLayout from "../../components/layout/EmptyLayout";
+// methods
 import rot13 from "../../utils/rout13";
+import { http } from "../../services/callApi/api";
 import { successMessage } from "../../utils/toastifyMessage";
 import { clearTokenStorage } from "../../api/general/clearTokenStorage";
-import { http } from "../../services/callApi/api";
+// style
+import s from "./setPassword.module.scss";
 
 function SetPasswordPage() {
-  const router = useRouter();
-
-  const [code, setcode] = useState(null);
-  const [newPassword, setNewPassword] = useState("");
-  const [repeatNewPas, setRepeatNewPas] = useState("");
-  const [auth_secret, setAuth_secret] = useState("");
-  const [error, setError] = useState({ newPassword: "", repeatNewPas: "" });
-  const [toggleClass, setToggleClass] = useState(false);
-  const [loader, setLoader] = useState(false);
 
   const eye = useRef();
   const beam = useRef();
-  const passwordInput = useRef();
-  const passwordLogo = useRef();
-  const passwordInputRepeat = useRef();
   const container = useRef();
+  const router = useRouter();
+  const passwordLogo = useRef();
+  const passwordInput = useRef();
   const animationLoad = useRef();
+  const passwordInputRepeat = useRef();
+  const [code, setcode] = useState(null);
+  const [loader, setLoader] = useState(false);
+  const [authSecret, setAuthSecret] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [repeatNewPas, setRepeatNewPas] = useState("");
+  const [toggleClass, setToggleClass] = useState(false);
+  const [error, setError] = useState({ newPassword: "", repeatNewPas: "" });
+
 
   const {
     register,
@@ -60,12 +60,12 @@ function SetPasswordPage() {
     }
     setLoader(true);
 
-    let response = await http.post("/api/v1/auth/complete/", {
+    const response = await http.post("/api/v1/auth/complete/", {
       auth_key: rot13(code[0]),
       user_key: data.user_key,
     });
     if (response.status < 300) {
-      setAuth_secret(response.data.auth_secret);
+      setAuthSecret(response.data.auth_secret);
     } else {
       setLoader(false);
     }
@@ -96,9 +96,9 @@ function SetPasswordPage() {
   }, [router]);
 
   useEffect(async () => {
-    if (auth_secret) {
-      let response = await http.post("/api/v1/profile/set_password/", {
-        auth_secret: auth_secret,
+    if (authSecret) {
+      const response = await http.post("/api/v1/profile/set_password/", {
+        auth_secret: authSecret,
         password: newPassword,
       });
       if (response.status === 200) {
@@ -112,7 +112,7 @@ function SetPasswordPage() {
         setLoader(false);
       }
     }
-  }, [auth_secret]);
+  }, [authSecret]);
 
   return (
     <>
@@ -153,8 +153,9 @@ function SetPasswordPage() {
                 id="username"
                 data-lpignore="true"
                 {...register("user_key", {
-                  required: `${code && code[1] == "login_pass" ? "رمز قبلی" : "کد ارسالی"
-                    } را وارد نمایید.`,
+                  required: `${
+                    code && code[1] == "login_pass" ? "رمز قبلی" : "کد ارسالی"
+                  } را وارد نمایید.`,
                 })}
               />
               {errors.user_key && (

@@ -1,172 +1,173 @@
 // wrapper
-.wrapper{
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  font-family: "bakh";
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+  // form
+  .form_filter {
     display: flex;
     flex-direction: column;
-    font-family: 'bakh';
-    grid-column: 1/-1;
-    grid-row: 1/-1;
-    // form
-    .form_filter{
-        display: flex;
-        flex-direction: column;
+    background-color: #fff;
+    border: 1px solid #e0e6e9;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+    padding-bottom: 20px;
+    // title
+    .form_title {
+      display: flex;
+      align-items: center;
+      height: 52px;
+      border-bottom: 1px solid #e0e6e9;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 22px;
+      text-align: right;
+      color: #5e7488;
+      margin: 0px;
+      padding: 0px 20px;
+    }
+    // div filter wrapper
+    .filds_wrapper {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      font-size: 14px;
+      color: #364254;
+      padding: 20px 20px 0px 20px;
+      // labels
+      .filds_label {
+        width: 270px;
+        padding: 0px 10px;
+      }
+      // inputs
+      .filds_input {
+        background: #ffffff;
+        border: 1px solid #e0e6e9;
+        box-sizing: border-box;
+        border-radius: 5px;
+        height: 41px;
+        width: 100%;
+        text-align: center;
+      }
+      // placeholder
+      .filds_input::placeholder {
+        font-family: "bakh";
+        color: #a4aebb;
+        font-size: 13px;
+      }
+      // placeholder
+      .filds_input::-moz-placeholder {
+        font-family: "bakh";
+        color: #a4aebb;
+        font-size: 13px;
+      }
+      // half
+      .filds_input_half {
+        width: 49%;
+      }
+      // button submit
+      .button_submit {
+        background: #007aff;
+        border-radius: 5px;
+        height: 41px;
+        color: #fff;
+        text-align: center;
+        border: none;
+        outline: none;
+        font-family: "bakh";
+        width: 15%;
+        margin: 0px 10px;
+      }
+      // button reset
+      .button_reset {
+        border-radius: 5px;
+        height: 41px;
+        text-align: center;
+        border: none;
+        outline: none;
+        border: 1px solid #007aff;
+        color: #007aff;
         background-color: #fff;
-        border: 1px solid #E0E6E9;
-        box-sizing: border-box;
-        box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.05);
-        border-radius: 5px;
-        padding-bottom: 20px;
-        // title
-        .form_title{
-            display: flex;
-            align-items: center;
-            height: 52px;
-            border-bottom: 1px solid #E0E6E9;
-            font-style: normal;
-            font-weight: 500;
-            font-size: 14px;
-            line-height: 22px;
-            text-align: right;
-            color: #5E7488;
-            margin: 0px;
-            padding: 0px 20px;
-        }
-        // div filter wrapper
-        .filds_wrapper{
-            display: flex;
-            flex-direction: row;
-            align-items: flex-end;
-            font-size: 14px;
-            color: #364254;
-            padding: 20px 20px 0px 20px;
-            // labels
-            .filds_label{
-                width: 270px;
-                padding: 0px 10px;
-            }
-            // inputs
-            .filds_input{
-                background: #FFFFFF;
-                border: 1px solid #E0E6E9;
-                box-sizing: border-box;
-                border-radius: 5px;
-                height: 41px;
-                width: 100%;
-                text-align: center;
-            }
-            // placeholder
-            .filds_input::placeholder{
-                font-family: 'bakh';
-                color: #A4AEBB;
-                font-size: 13px;
-            }
-            // placeholder
-            .filds_input::-moz-placeholder{
-                font-family: 'bakh';
-                color: #A4AEBB;
-                font-size: 13px;
-            }
-            // half
-            .filds_input_half{
-                width: 49%;
-            }
-            // button submit
-            .button_submit{
-                background: #007AFF;
-                border-radius: 5px;
-                height: 41px;
-                color: #fff;
-                text-align: center;
-                border: none;
-                outline: none;
-                font-family: 'bakh';
-                width: 15%;
-                margin: 0px 10px;
-            }
-            // button reset
-            .button_reset{
-                border-radius: 5px;
-                height: 41px;
-                text-align: center;
-                border: none;
-                outline: none;
-                border: 1px solid #007AFF;
-                color: #007AFF;
-                background-color: #fff;
-                font-family: 'bakh';
-            }
-        }
+        font-family: "bakh";
+      }
     }
-    // list
-    .orders_list{
-        display: flex;
-        flex-direction: column;
-        background: #FFFFFF;
-        border: 1px solid #E0E6E9;
-        box-sizing: border-box;
-        box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.05);
+  }
+  // list
+  .orders_list {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border: 1px solid #e0e6e9;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+    margin-top: 32px;
+    // title
+    .orders_title {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 52px;
+      border-bottom: 1px solid #e0e6e9;
+      font-weight: 500;
+      font-size: 14px;
+      text-align: right;
+      color: #5e7488;
+      padding: 0px 20px;
+      margin-bottom: 20px;
+      .button_add {
+        width: 100px;
+        height: 33px;
+        background: #007aff;
         border-radius: 5px;
-        margin-top: 32px;
-        // title
-        .orders_title{
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            height: 52px;
-            border-bottom: 1px solid #E0E6E9;
-            font-weight: 500;
-            font-size: 14px;
-            text-align: right;
-            color: #5E7488;
-            padding: 0px 20px;
-            margin-bottom: 20px;
-            .button_add{
-                width: 100px;
-                height: 33px;
-                background: #007AFF;
-                border-radius: 5px;
-                text-align: center;
-                color: #fff;
-                border: none;
-                outline: none;
-                font-family: 'bakh';
-                margin: 0px 20px;
-            }
-        }
-        // tabel
-        .orders_tabel{
-            border-collapse: collapse;
-            width: 95%;
-            margin: auto;
-            th, td {
-                padding: 8px;
-                text-align: right;
-                border-bottom: 1px solid #ddd;
-            }
-            th{
-                background: #F3F6FF;
-                border-radius: 5px;
-                font-weight: 500;
-                font-size: 14px;
-                color: #364254;
-            }
-            td{
-                font-size: 14px;
-                color: #5E7488;
-                cursor: pointer;
-            }
-            .button_ready{
-                width: 100%;
-                height: 34px;
-                background: #F9FAFC;
-                border: 1px solid #CED5D8;
-                box-sizing: border-box;
-                border-radius: 5px;
-                font-size: 13px;
-                color: #5E7488;
-                text-align: center;
-                cursor: pointer;
-                font-family: 'bakh';
-            }
-        }
+        text-align: center;
+        color: #fff;
+        border: none;
+        outline: none;
+        font-family: "bakh";
+        margin: 0px 20px;
+      }
     }
+    // tabel
+    .orders_tabel {
+      border-collapse: collapse;
+      width: 95%;
+      margin: auto;
+      th,
+      td {
+        padding: 8px;
+        text-align: right;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background: #f3f6ff;
+        border-radius: 5px;
+        font-weight: 500;
+        font-size: 14px;
+        color: #364254;
+      }
+      td {
+        font-size: 14px;
+        color: #5e7488;
+        cursor: pointer;
+      }
+      .button_ready {
+        width: 100%;
+        height: 34px;
+        background: #f9fafc;
+        border: 1px solid #ced5d8;
+        box-sizing: border-box;
+        border-radius: 5px;
+        font-size: 13px;
+        color: #5e7488;
+        text-align: center;
+        cursor: pointer;
+        font-family: "bakh";
+      }
+    }
+  }
 }

@@ -1,171 +1,170 @@
 .wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgb(9, 1, 43);
+  .child {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: rgb(9, 1, 43);
-    .child {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 10px;
-        width: 97%;
-        padding-top: 15px;
-        padding-bottom: 15px;
-        text-align: center;
-        cursor: pointer;
-        color: #fff;
-        margin-bottom: 20px;
-        position: relative;
-        &:hover {
-            border: 2px dashed #f4f7fb;
-            .wrapBtn {
-                opacity: 1;
-            }
-        }
+    margin: 10px;
+    width: 97%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    cursor: pointer;
+    color: #fff;
+    margin-bottom: 20px;
+    position: relative;
+    &:hover {
+      border: 2px dashed #f4f7fb;
+      .wrapBtn {
+        opacity: 1;
+      }
     }
+  }
 }
-
 
 /* CSS */
 
 .wrapBtn {
-    opacity: 0;
-    transition: all 0.5s ease-in-out;
-    position: absolute;
-    .buttonAdd {
-        appearance: button;
-        background-color: #094e6e;
-        border: solid transparent;
-        border-radius: 16px;
-        border-width: 0 0 4px;
-        box-sizing: border-box;
-        color: #ffffff;
-        cursor: pointer;
-        display: inline-block;
-        font-family: "bakh", din-round, sans-serif;
-        font-size: 15px;
-        font-weight: 700;
-        letter-spacing: 0.8px;
-        line-height: 20px;
-        margin: 0;
-        outline: none;
-        overflow: visible;
-        padding: 4px 8px;
-        text-align: center;
-        text-transform: uppercase;
-        touch-action: manipulation;
-        transform: translateZ(0);
-        transition: filter 0.2s;
-        user-select: none;
-        -webkit-user-select: none;
-        vertical-align: middle;
-        white-space: nowrap;
-        width: 100%;
-        &::after {
-            background-clip: padding-box;
-            background-color: blue;
-            border: solid transparent;
-            border-radius: 16px;
-            border-width: 0 0 4px;
-            bottom: -4px;
-            content: "";
-            left: 0;
-            position: absolute;
-            right: 0;
-            top: 0;
-            z-index: -1;
-        }
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+  position: absolute;
+  .buttonAdd {
+    appearance: button;
+    background-color: #094e6e;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    box-sizing: border-box;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "bakh", din-round, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    line-height: 20px;
+    margin: 0;
+    outline: none;
+    overflow: visible;
+    padding: 4px 8px;
+    text-align: center;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    transform: translateZ(0);
+    transition: filter 0.2s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 100%;
+    &::after {
+      background-clip: padding-box;
+      background-color: blue;
+      border: solid transparent;
+      border-radius: 16px;
+      border-width: 0 0 4px;
+      bottom: -4px;
+      content: "";
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: -1;
     }
-    .buttonDel {
-        background: transparent;
-        border: none;
-        color: #f34c4c;
-        font-size: 20px;
-         :hover {
-            animation: myAnim 2s ease 0s 1 normal forwards;
-        }
+  }
+  .buttonDel {
+    background: transparent;
+    border: none;
+    color: #f34c4c;
+    font-size: 20px;
+    :hover {
+      animation: myAnim 2s ease 0s 1 normal forwards;
     }
+  }
 }
 
 .btnUp {
-    top: -19px;
+  top: -19px;
 }
 
 .btnBottom {
-    bottom: -19px;
+  bottom: -19px;
 }
 
 .btnLeft {
-    left: 1px;
-    top: -29px;
-    z-index: 10;
-    color: #b71c1c;
+  left: 1px;
+  top: -29px;
+  z-index: 10;
+  color: #b71c1c;
 }
 
 .btnLeftEdit {
-    left: 2px;
-    top: 3px;
-    z-index: 10;
-    color: #57fd09;
-    .buttonEdit {
-        background: #fff;
-        align-items: center;
-        padding: 0 12px;
-        color: #20303c;
-        font-size: 14px;
-        font-weight: 500;
-        height: 30px;
-        background-color: #fcfcfc;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        border-radius: 4px;
-        -webkit-box-shadow: 0 1px 7px 0 rgb(32 48 60 / 40%);
-        box-shadow: 0 1px 7px 0 rgb(32 48 60 / 40%);
-        &:hover {
-            animation: myAnim 2s ease 0s 1 normal forwards;
-            background-color: aqua;
-        }
+  left: 2px;
+  top: 3px;
+  z-index: 10;
+  color: #57fd09;
+  .buttonEdit {
+    background: #fff;
+    align-items: center;
+    padding: 0 12px;
+    color: #20303c;
+    font-size: 14px;
+    font-weight: 500;
+    height: 30px;
+    background-color: #fcfcfc;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 7px 0 rgb(32 48 60 / 40%);
+    box-shadow: 0 1px 7px 0 rgb(32 48 60 / 40%);
+    &:hover {
+      animation: myAnim 2s ease 0s 1 normal forwards;
+      background-color: aqua;
     }
+  }
 }
 
 .buttonAdd:main,
 .buttonAdd:focus {
-    user-select: auto;
+  user-select: auto;
 }
 
 .buttonAdd:hover:not(:disabled) {
-    filter: brightness(1.1);
+  filter: brightness(1.1);
 }
 
 .buttonAdd:disabled {
-    cursor: auto;
+  cursor: auto;
 }
 
 @keyframes myAnim {
-    0%,
-    100% {
-        transform: rotate(0deg);
-        transform-origin: 50% 50%;
-    }
-    10% {
-        transform: rotate(8deg);
-    }
-    20%,
-    40%,
-    60% {
-        transform: rotate(-10deg);
-    }
-    30%,
-    50%,
-    70% {
-        transform: rotate(10deg);
-    }
-    80% {
-        transform: rotate(-8deg);
-    }
-    90% {
-        transform: rotate(8deg);
-    }
+  0%,
+  100% {
+    transform: rotate(0deg);
+    transform-origin: 50% 50%;
+  }
+  10% {
+    transform: rotate(8deg);
+  }
+  20%,
+  40%,
+  60% {
+    transform: rotate(-10deg);
+  }
+  30%,
+  50%,
+  70% {
+    transform: rotate(10deg);
+  }
+  80% {
+    transform: rotate(-8deg);
+  }
+  90% {
+    transform: rotate(8deg);
+  }
 }

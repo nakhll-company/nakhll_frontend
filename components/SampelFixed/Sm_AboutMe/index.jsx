@@ -1,5 +1,5 @@
 import st from "./aboutMe.module.scss";
-function AboutMe_Fix() {
+function AboutMeFix() {
   return (
     <>
       <div className={st.wrapper}>
@@ -12,4 +12,4 @@ function AboutMe_Fix() {
   );
 }
 
-export default AboutMe_Fix;
+export default AboutMeFix;

@@ -1,9 +1,9 @@
-import Head from "next/head";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Assistent from "zaravand-assistent-number";
+
 // components
 import ShopLayout from "../../../components/shopLayout";
 // methods
@@ -14,8 +14,7 @@ import styles from "./payment.module.scss";
 import AppButton from "../../../components/AppButton";
 import { errorMessage } from "../../../utils/toastifyMessage";
 import { authhttp } from "../../../services/callApi/api";
-
-const _asist = new Assistent();
+import diviedNumber from "../../../utils/diviedNumber";
 
 export default function Cart() {
   const router = useRouter();
@@ -30,22 +29,22 @@ export default function Cart() {
 
   const _addCoupon = async (e) => {
     e.preventDefault();
-    let valueCoupon = e.target[0].value;
+    const valueCoupon = e.target[0].value;
     if (valueCoupon) {
       setIsLoadInvoice(true);
       try {
-        let response = await authhttp.patch(`/api/v1/cart/set_coupon/`, {
+        const response = await authhttp.patch(`/api/v1/cart/set_coupon/`, {
           coupon: valueCoupon,
         });
-        let dataCoupen = response.data;
+        const dataCoupen = response.data;
 
         if (response.status === 200) {
           if (dataCoupen?.errors[0]) {
             errorMessage(dataCoupen.errors[0]);
           }
 
-          let response = await authhttp.get(`/api/v1/cart/me/`)
-          let data = await response.data;
+          const response = await authhttp.get(`/api/v1/cart/me/`);
+          const data = await response.data;
           if (response.status === 200) {
             setDataCart(data);
             setListInvoice(data.ordered_items);
@@ -64,22 +63,24 @@ export default function Cart() {
     }
   };
 
-  const _deleteCoupon = async (coupon) => {
-    setIsLoadInvoice(true);
-    let response = await authhttp.patch(`/api/v1/cart/unset_coupon/`, { coupon })
-    if (response.status === 200) {
-      await _getListInvoice();
-      setIsLoadInvoice(false);
-    }
-  };
+  // const _deleteCoupon = async (coupon) => {
+  //   setIsLoadInvoice(true);
+  //   const response = await authhttp.patch(`/api/v1/cart/unset_coupon/`, {
+  //     coupon,
+  //   });
+  //   if (response.status === 200) {
+  //     await _getListInvoice();
+  //     setIsLoadInvoice(false);
+  //   }
+  // };
 
   const invoicePay = async () => {
     try {
       setLoaderButton(true);
       setIsLoadInvoice(true);
-      let response = await authhttp.post(`/api/v1/cart/pay/`)
+      const response = await authhttp.post(`/api/v1/cart/pay/`);
       if (response.status === 200) {
-        let data = await response.data;
+        const data = await response.data;
         await router.push(data.url);
         setLoaderButton(false);
       } else {
@@ -178,7 +179,7 @@ export default function Cart() {
                           کوپن <span className="mx-1">{coupon.title}</span> با
                           مبلغ{" "}
                           <span className="mx-1 fs-5">
-                            {_asist.PSeparator(price / 10)}
+                            {diviedNumber(price / 10)}
                           </span>{" "}
                           تومان برای شما فعال گردید.
                         </span>
@@ -245,8 +246,7 @@ export default function Cart() {
                           className="mr-auto"
                           style={{ marginRight: "auto" }}
                         >
-                          {_asist.PSeparator(itemProduct.product.Price / 10)}{" "}
-                          تومان
+                          {diviedNumber(itemProduct.product.Price / 10)} تومان
                         </div>
                       </div>
                     </div>
@@ -256,15 +256,13 @@ export default function Cart() {
                 <div className="d-flex py-1">
                   <span>جمع بهای سفارش:</span>
                   <span className="mr-auto" style={{ marginRight: "auto" }}>
-                    {_asist.PSeparator(dataCart.cart_price / 10)} تومان
+                    {diviedNumber(dataCart.cart_price / 10)} تومان
                   </span>
                 </div>
                 <div className="d-flex py-1">
                   <span>هزینه ارسال:</span>{" "}
                   <span className="mr-auto" style={{ marginRight: "auto" }}>
-                    {_asist.PSeparator(
-                      dataCart?.logistic_details?.total_price / 10
-                    )}{" "}
+                    {diviedNumber(dataCart?.logistic_details?.total_price / 10)}{" "}
                     تومان
                   </span>
                 </div>
@@ -272,7 +270,7 @@ export default function Cart() {
                   <div className="d-flex py-1 text-danger">
                     <span>کدتخفیف (-) :</span>
                     <span className="mr-auto" style={{ marginRight: "auto" }}>
-                      {_asist.PSeparator(dataCart?.coupon_details?.total / 10)}
+                      {diviedNumber(dataCart?.coupon_details?.total / 10)}
                       تومان
                     </span>
                   </div>
@@ -286,13 +284,13 @@ export default function Cart() {
                     className="mr-auto"
                     style={{ color: "rgb(27,62,104)", marginRight: "auto" }}
                   >
-                    {_asist.PSeparator(dataCart.total_price / 10)} تومان
+                    {diviedNumber(dataCart.total_price / 10)} تومان
                   </span>
                 </div>
               </div>
             </div>
 
-            {/*inforamation */}
+            {/* inforamation */}
             <div className="mt-3 p-3 border rounded font-size-sm my-3 line-height-normal">
               <div className="mx-auto" style={{ textAlign: "center" }}>
                 تمامی بسته‌های پستی به آقا/خانم
@@ -339,7 +337,7 @@ export default function Cart() {
 
               <span className=" font-size1" style={{ color: "rgb(27,62,104)" }}>
                 <strong className="payableAmount splitNumber font-size1-2">
-                  {_asist.PSeparator(dataCart.total_price / 10)}
+                  {diviedNumber(dataCart.total_price / 10)}
                 </strong>
                 تومان
               </span>
@@ -357,7 +355,7 @@ export default function Cart() {
                   className="mr-auto ml-1"
                   style={{ color: "rgb(27,62,104)" }}
                 >
-                  {_asist.PSeparator(dataCart.total_price / 10)}
+                  {diviedNumber(dataCart.total_price / 10)}
                 </strong>
                 تومان
               </div>

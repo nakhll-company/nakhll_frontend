@@ -1,3 +1,4 @@
+import React from "react";
 // next libraries
 import Head from "next/head";
 

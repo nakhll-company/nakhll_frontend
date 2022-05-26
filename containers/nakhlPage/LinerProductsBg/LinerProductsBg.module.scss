@@ -6,44 +6,44 @@ $color4: #597ba1;
 $color5: #91a6c1;
 $color6: #d4d8e1;
 .linearBg {
-    cursor: pointer;
-    width: 100%;
-    margin-bottom: 20px;
-    margin-top: 20px;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  display: flex;
+  overflow-x: auto;
+  .righter {
     display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    .btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      background-color: $color3;
+      color: $color6;
+      border-radius: 10px;
+      margin-right: 5px;
+      margin-left: 5px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+  }
+  .lefter {
     overflow-x: auto;
-    .righter {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        .btn {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 14px;
-            background-color: $color3;
-            color: $color6;
-            border-radius: 10px;
-            margin-right: 5px;
-            margin-left: 5px;
-            padding-top: 5px;
-            padding-bottom: 5px;
-        }
-    }
-    .lefter {
-        overflow-x: auto;
-    }
+  }
 }
 
 .Button {
-    button {
-        border: 1px solid $color2;
-        border-radius: 10px;
-        padding: 10px 30px;
-        color: $color2;
-        &:hover {
-            background: $color2;
-            color: #fff;
-        }
+  button {
+    border: 1px solid $color2;
+    border-radius: 10px;
+    padding: 10px 30px;
+    color: $color2;
+    &:hover {
+      background: $color2;
+      color: #fff;
     }
+  }
 }

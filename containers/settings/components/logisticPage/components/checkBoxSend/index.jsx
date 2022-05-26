@@ -1,3 +1,4 @@
+import React from "react";
 import st from "./checkBoxSend.module.scss";
 
 function CheckBoxSend({ title, id, checked, onChange }) {

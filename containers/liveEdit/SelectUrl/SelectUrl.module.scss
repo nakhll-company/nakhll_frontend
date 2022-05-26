@@ -1,260 +1,260 @@
 // modal wrapper
 .wrap {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(20px);
-    z-index: 3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(20px);
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 // cropper wrapper
 .content_wrapper {
-    overflow-y: auto;
-    position: relative;
-    width: 80vw;
-    height: 70vh;
-    // background: #fff;
-    padding: 10px;
-    border-radius: 10px;
-    background: url("/image/coolbackground.png");
-    background-repeat: no-repeat;
-    .close {
-        position: absolute;
-        left: 5px;
-        i {
-            font-size: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            &:hover {
-                color: red;
-                font-size: 30px;
-            }
-        }
+  overflow-y: auto;
+  position: relative;
+  width: 80vw;
+  height: 70vh;
+  // background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  background: url("/image/coolbackground.png");
+  background-repeat: no-repeat;
+  .close {
+    position: absolute;
+    left: 5px;
+    i {
+      font-size: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      &:hover {
+        color: red;
+        font-size: 30px;
+      }
     }
-    .table {
-        height: 300px;
-        .header {
-            display: flex;
-            justify-content: center;
-            padding: 10px;
+  }
+  .table {
+    height: 300px;
+    .header {
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+      font-weight: bold;
+      border-bottom: 2px solid #000;
+    }
+    .list {
+      overflow-y: auto;
+      .wrapItem {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #000;
+        transition: all 0.4s;
+        cursor: pointer;
+        &:hover {
+          background: #000;
+          color: wheat;
+          font-size: 20px;
+          .item {
+            color: wheat;
+          }
+        }
+        .item {
+          color: #000;
+        }
+        .numbers {
+          padding-right: 5px;
+          padding-left: 5px;
+        }
+        .icon {
+          margin-right: auto;
+          margin-left: 10px;
+          font-size: 24px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: all 0.4s;
+          &:hover {
+            color: rgb(94, 255, 0);
+            font-size: 35px;
+          }
+        }
+      }
+      .buttonPages {
+        display: flex;
+        .btnProductPage {
+          height: 100px;
+          flex-basis: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          cursor: pointer;
+          i {
+            font-size: 30px;
+            transition: transform 0.4s, font-size 0.8s;
+          }
+          span {
+            font-size: 16px;
+            margin-top: 20px;
             font-weight: bold;
-            border-bottom: 2px solid #000;
+            letter-spacing: 1px;
+            transition: all 0.4s;
+          }
+          &:hover {
+            background-color: rgb(0, 247, 255);
+            i {
+              transform: rotateX(60deg);
+              font-size: 40px;
+            }
+            span {
+              font-size: 12px;
+              margin-top: 8px;
+            }
+          }
         }
-        .list {
-            overflow-y: auto;
-            .wrapItem {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                padding-top: 5px;
-                padding-bottom: 5px;
-                border-bottom: 1px solid #000;
-                transition: all 0.4s;
-                cursor: pointer;
-                &:hover {
-                    background: #000;
-                    color: wheat;
-                    font-size: 20px;
-                    .item {
-                        color: wheat;
-                    }
-                }
-                .item {
-                    color: #000;
-                }
-                .numbers {
-                    padding-right: 5px;
-                    padding-left: 5px;
-                }
-                .icon {
-                    margin-right: auto;
-                    margin-left: 10px;
-                    font-size: 24px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    transition: all 0.4s;
-                    &:hover {
-                        color: rgb(94, 255, 0);
-                        font-size: 35px;
-                    }
-                }
+        .btnListProductPage {
+          height: 100px;
+          flex-basis: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          cursor: pointer;
+          i {
+            font-size: 30px;
+            transition: transform 0.4s, font-size 0.8s;
+          }
+          span {
+            font-size: 16px;
+            margin-top: 20px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: all 0.4s;
+          }
+          &:hover {
+            background-color: rgb(0, 247, 255);
+            i {
+              transform: rotateX(60deg);
+              font-size: 40px;
             }
-            .buttonPages {
-                display: flex;
-                .btnProductPage {
-                    height: 100px;
-                    flex-basis: 50%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    flex-direction: column;
-                    cursor: pointer;
-                    i {
-                        font-size: 30px;
-                        transition: transform 0.4s, font-size 0.8s;
-                    }
-                    span {
-                        font-size: 16px;
-                        margin-top: 20px;
-                        font-weight: bold;
-                        letter-spacing: 1px;
-                        transition: all 0.4s;
-                    }
-                    &:hover {
-                        background-color: rgb(0, 247, 255);
-                        i {
-                            transform: rotateX(60deg);
-                            font-size: 40px;
-                        }
-                        span {
-                            font-size: 12px;
-                            margin-top: 8px;
-                        }
-                    }
-                }
-                .btnListProductPage {
-                    height: 100px;
-                    flex-basis: 50%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    flex-direction: column;
-                    cursor: pointer;
-                    i {
-                        font-size: 30px;
-                        transition: transform 0.4s, font-size 0.8s;
-                    }
-                    span {
-                        font-size: 16px;
-                        margin-top: 20px;
-                        font-weight: bold;
-                        letter-spacing: 1px;
-                        transition: all 0.4s;
-                    }
-                    &:hover {
-                        background-color: rgb(0, 247, 255);
-                        i {
-                            transform: rotateX(60deg);
-                            font-size: 40px;
-                        }
-                        span {
-                            font-size: 12px;
-                            margin-top: 8px;
-                        }
-                    }
-                }
+            span {
+              font-size: 12px;
+              margin-top: 8px;
             }
+          }
         }
-        .video_input {
-            .headerEmpty {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                padding-top: 15px;
-                padding-bottom: 15px;
-                font-weight: bold;
-                border-bottom: 2px solid #000;
-                background-color: rgb(226, 132, 255, 0.4);
-            }
-            .buttonPages {
-                display: flex;
-                .btnProductPage {
-                    height: 100px;
-                    flex-basis: 50%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    flex-direction: column;
-                    cursor: pointer;
-                    i {
-                        font-size: 30px;
-                        transition: transform 0.4s, font-size 0.8s;
-                    }
-                    span {
-                        font-size: 16px;
-                        margin-top: 20px;
-                        font-weight: bold;
-                        letter-spacing: 1px;
-                        transition: all 0.4s;
-                    }
-                    &:hover {
-                        background-color: rgb(0, 247, 255);
-                        i {
-                            transform: rotateX(60deg);
-                            font-size: 40px;
-                        }
-                        span {
-                            font-size: 12px;
-                            margin-top: 8px;
-                        }
-                    }
-                }
-                .btnListProductPage {
-                    height: 100px;
-                    flex-basis: 50%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    flex-direction: column;
-                    cursor: pointer;
-                    i {
-                        font-size: 30px;
-                        transition: transform 0.4s, font-size 0.8s;
-                    }
-                    span {
-                        font-size: 16px;
-                        margin-top: 20px;
-                        font-weight: bold;
-                        letter-spacing: 1px;
-                        transition: all 0.4s;
-                    }
-                    &:hover {
-                        background-color: rgb(0, 247, 255);
-                        i {
-                            transform: rotateX(60deg);
-                            font-size: 40px;
-                        }
-                        span {
-                            font-size: 12px;
-                            margin-top: 8px;
-                        }
-                    }
-                }
-            }
-        }
+      }
     }
+    .video_input {
+      .headerEmpty {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        font-weight: bold;
+        border-bottom: 2px solid #000;
+        background-color: rgb(226, 132, 255, 0.4);
+      }
+      .buttonPages {
+        display: flex;
+        .btnProductPage {
+          height: 100px;
+          flex-basis: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          cursor: pointer;
+          i {
+            font-size: 30px;
+            transition: transform 0.4s, font-size 0.8s;
+          }
+          span {
+            font-size: 16px;
+            margin-top: 20px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: all 0.4s;
+          }
+          &:hover {
+            background-color: rgb(0, 247, 255);
+            i {
+              transform: rotateX(60deg);
+              font-size: 40px;
+            }
+            span {
+              font-size: 12px;
+              margin-top: 8px;
+            }
+          }
+        }
+        .btnListProductPage {
+          height: 100px;
+          flex-basis: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          cursor: pointer;
+          i {
+            font-size: 30px;
+            transition: transform 0.4s, font-size 0.8s;
+          }
+          span {
+            font-size: 16px;
+            margin-top: 20px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: all 0.4s;
+          }
+          &:hover {
+            background-color: rgb(0, 247, 255);
+            i {
+              transform: rotateX(60deg);
+              font-size: 40px;
+            }
+            span {
+              font-size: 12px;
+              margin-top: 8px;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 .textarea {
-    background: #ffffff;
-    border: 1px solid #e0e6e9;
-    box-sizing: border-box;
-    border-radius: 5px;
-    font-size: 15px;
-    color: #364254;
-    padding: 11px;
-    border-right: 2px solid #224e82;
-    border-left: 2px solid #224e82;
-    width: 90%;
-    text-align: left;
+  background: #ffffff;
+  border: 1px solid #e0e6e9;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-size: 15px;
+  color: #364254;
+  padding: 11px;
+  border-right: 2px solid #224e82;
+  border-left: 2px solid #224e82;
+  width: 90%;
+  text-align: left;
 }
 .wrapInput {
-    width: 90%;
+  width: 90%;
 }
 .wrapBtn {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 .wrap_btn {
-    display: flex;
-    justify-content: flex-end;
-    margin-left: 14px;
-    margin-top: 5px;
-    margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 14px;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }

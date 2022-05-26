@@ -1,15 +1,15 @@
-.icon_change_url{
-    width: 33px;
-    height: 33px;
-    background: rgba(255, 255, 255);
-    backdrop-filter: blur(15px);
-    border-radius: 10px;
-    top: 10px;
-    transition: all 0.3s ease;
-    box-shadow: 5.0px 9.9px 9.9px hsl(0deg 0% 0% / 0.35);
-    i {
-        font-size: 25px;
-        color: #2d3192;
-        padding-top: 3px;
-    }
+.icon_change_url {
+  width: 33px;
+  height: 33px;
+  background: rgba(255, 255, 255);
+  backdrop-filter: blur(15px);
+  border-radius: 10px;
+  top: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 5px 9.9px 9.9px hsl(0deg 0% 0% / 0.35);
+  i {
+    font-size: 25px;
+    color: #2d3192;
+    padding-top: 3px;
+  }
 }

@@ -1,138 +1,138 @@
 .main {
-    width: 100%;
-    background-color: #a1db43;
-    border-radius: 10px;
-    .title {
+  width: 100%;
+  background-color: #a1db43;
+  border-radius: 10px;
+  .title {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-top: 15px;
+    .name {
+      text-align: right;
+      color: black;
+      .mainTitle {
+        display: block;
+        font-size: 18px;
+        letter-spacing: 1.5px;
+        font-weight: bold;
+      }
+      .input {
+        display: block;
+        font-size: 18px;
+        letter-spacing: 1.5px;
+        font-weight: bold;
+        border: none;
+        background-color: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        border: 3px solid rgb(255, 255, 255);
+        border-radius: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
+      .subTitle {
+        display: block;
+        margin-top: 10px;
+        padding-right: 9px;
+        font-size: 14px;
+        font-weight: bold;
+      }
+    }
+    .seeAll {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .wrapBtn {
+        width: 150px;
+        height: 40px;
+        border-radius: 20px;
+        background-color: #fff;
+        border: 2px solid rgb(27, 62, 104);
+        font-size: 14px;
+        font-weight: bold;
+        color: #000;
+        cursor: pointer;
         display: flex;
-        justify-content: space-between;
-        padding-right: 15px;
-        padding-left: 15px;
-        padding-top: 15px;
-        .name {
-            text-align: right;
-            color: black;
-            .mainTitle {
-                display: block;
-                font-size: 18px;
-                letter-spacing: 1.5px;
-                font-weight: bold;
-            }
-            .input {
-                display: block;
-                font-size: 18px;
-                letter-spacing: 1.5px;
-                font-weight: bold;
-                border: none;
-                background-color: rgba(255, 255, 255, 0.8);
-                backdrop-filter: blur(10px);
-                border: 3px solid rgb(255, 255, 255);
-                border-radius: 5px;
-                padding-top: 5px;
-                padding-bottom: 5px;
-            }
-            .subTitle {
-                display: block;
-                margin-top: 10px;
-                padding-right: 9px;
-                font-size: 14px;
-                font-weight: bold;
-            }
-        }
-        .seeAll {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            .wrapBtn {
-                width: 150px;
-                height: 40px;
-                border-radius: 20px;
-                background-color: #fff;
-                border: 2px solid rgb(27, 62, 104);
-                font-size: 14px;
-                font-weight: bold;
-                color: #000;
-                cursor: pointer;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-        }
+        justify-content: center;
+        align-items: center;
+      }
     }
-    &:hover {
-        .palette {
-            opacity: 1;
-        }
-        .icon_change_url {
-            visibility: visible;
-        }
-        .titleUrl {
-            visibility: visible;
-        }
+  }
+  &:hover {
+    .palette {
+      opacity: 1;
     }
+    .icon_change_url {
+      visibility: visible;
+    }
+    .titleUrl {
+      visibility: visible;
+    }
+  }
 }
 
 .wrap {
-    display: flex;
-    align-items: center;
-    overflow-x: auto;
-    padding: 15px 5px;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  padding: 15px 5px;
 }
 
 .palette {
-    position: absolute;
-    left: 48%;
-    top: 9%;
-    padding: 5px;
-    border-radius: 10px;
-    background: #fc3f93;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-    opacity: 0;
-    transition: all 1s ease-in-out;
-    .wrapIcon {
-        position: relative;
-        width: 30px;
-        height: 30px;
-        cursor: pointer;
-        .colorIcon {
-            position: absolute;
-            left: 5%;
-            top: 2%;
-            transition: all 0.5s;
-            cursor: pointer;
-        }
-        &:hover {
-            .colorIcon {
-                top: -20px;
-                transform: skew(0.312rad);
-            }
-        }
+  position: absolute;
+  left: 48%;
+  top: 9%;
+  padding: 5px;
+  border-radius: 10px;
+  background: #fc3f93;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  opacity: 0;
+  transition: all 1s ease-in-out;
+  .wrapIcon {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    .colorIcon {
+      position: absolute;
+      left: 5%;
+      top: 2%;
+      transition: all 0.5s;
+      cursor: pointer;
     }
+    &:hover {
+      .colorIcon {
+        top: -20px;
+        transform: skew(0.312rad);
+      }
+    }
+  }
 }
 
 .icon_change_url {
-    position: absolute;
-    left: 10px;
-    bottom: 20px;
-    visibility: hidden;
-    transition: all 0.3s ease;
+  position: absolute;
+  left: 10px;
+  bottom: 20px;
+  visibility: hidden;
+  transition: all 0.3s ease;
 }
 
 .titleUrl {
-    position: absolute;
-    background: #000;
-    left: 50px;
-    bottom: 25px;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    background: rgba(255, 255, 255);
-    backdrop-filter: blur(15px);
-    box-shadow: 5px 9.9px 9.9px hsl(0deg 0% 0% / 0.35);
-    border-radius: 7px;
-    span {
-        padding: 10px;
-        font-size: 13px;
-        font-weight: bold;
-        position: block;
-        color: #000;
-    }
+  position: absolute;
+  background: #000;
+  left: 50px;
+  bottom: 25px;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255);
+  backdrop-filter: blur(15px);
+  box-shadow: 5px 9.9px 9.9px hsl(0deg 0% 0% / 0.35);
+  border-radius: 7px;
+  span {
+    padding: 10px;
+    font-size: 13px;
+    font-weight: bold;
+    position: block;
+    color: #000;
+  }
 }

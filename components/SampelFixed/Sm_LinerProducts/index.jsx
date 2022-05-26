@@ -1,12 +1,11 @@
 // node libraries
 import React from "react";
 // components
-import Sm_product from "../Sm_product";
+import SmProduct from "../Sm_product";
 // style
 import styles from "./Sm_LinerProducts.module.scss";
 
-function Sm_LinerProducts_Fix() {
-
+function SmLinerProductsFix() {
   const name = "پرفروش ترین";
   const subTitle = "زیرعنوان";
 
@@ -14,16 +13,8 @@ function Sm_LinerProducts_Fix() {
     <div className={styles.main}>
       <div className={styles.title}>
         <div className={styles.name}>
-          <span
-            className={styles.mainTitle}
-          >
-            {name}
-          </span>
-          <span
-            className={styles.subTitle}
-          >
-            {subTitle}
-          </span>
+          <span className={styles.mainTitle}>{name}</span>
+          <span className={styles.subTitle}>{subTitle}</span>
         </div>
         <div className={styles.seeAll}>
           <div className={styles.wrapBtn}>
@@ -32,12 +23,12 @@ function Sm_LinerProducts_Fix() {
         </div>
       </div>
       <div className={styles.wrap}>
-        <Sm_product />
-        <Sm_product />
-        <Sm_product />
+        <SmProduct />
+        <SmProduct />
+        <SmProduct />
       </div>
     </div>
   );
 }
 
-export default Sm_LinerProducts_Fix;
+export default SmLinerProductsFix;

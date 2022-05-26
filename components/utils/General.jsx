@@ -7,11 +7,10 @@ import React, { useEffect } from "react";
 import { pageview } from "../../utils/googleAnalytics";
 
 function General() {
-
   const router = useRouter();
 
   useEffect(() => {
-    hotjar.initialize(2655206, 6);
+    hotjar.initialize(2447146, 6);
   }, []);
 
   useEffect(() => {

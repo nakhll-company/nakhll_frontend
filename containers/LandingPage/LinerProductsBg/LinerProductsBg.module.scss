@@ -6,66 +6,72 @@ $color4: #597ba1;
 $color5: #91a6c1;
 $color6: #d4d8e1;
 .linearBg {
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    background: rgb(240, 97, 153);
-    background: linear-gradient( 90deg, rgba(240, 97, 153, 1) 0%, rgba(254, 15, 36, 1) 87%);
-    display: flex;
-    overflow-x: auto;
-    .righter {
-        .Button {
-            display: flex;
-            flex-direction: column;
-            align-content: center;
-            position: relative;
-            justify-content: space-around;
-            height: 100%;
-            div {
-                width: 100%;
-                img {
-                    width: 100%;
-                    height: auto;
-                    object-fit: fill;
-                }
-            }
-            button {
-                position: relative;
-                width: 80%;
-                margin-left: auto;
-                margin-right: auto;
-                a {
-                    display: inline-block;
-                }
-            }
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  background: rgb(240, 97, 153);
+  background: linear-gradient(
+    90deg,
+    rgba(240, 97, 153, 1) 0%,
+    rgba(254, 15, 36, 1) 87%
+  );
+  display: flex;
+  overflow-x: auto;
+  .righter {
+    .Button {
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      position: relative;
+      justify-content: space-around;
+      height: 100%;
+      div {
+        width: 100%;
+        img {
+          width: 100%;
+          height: auto;
+          object-fit: fill;
         }
+      }
+      button {
+        position: relative;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        a {
+          display: inline-block;
+        }
+      }
     }
-    .lefter {}
-    &:hover {
-        animation: animateBg 1s linear infinite;
-    }
+  }
+  .lefter {
+  }
+  &:hover {
+    animation: animateBg 1s linear infinite;
+  }
 }
 
 @keyframes animateBg {
-    0% {
-        filter: hue-rotate(0deg);
-    }
-    100% {
-        filter: hue-rotate(360deg);
-    }
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
 }
 
 .Button {
-    button {
-        border: 1px solid $color2;
-        border-radius: 10px;
-        padding: 10px 30px;
-        color: $color2;
-        &:hover {
-            background: $color2;
-            color: #fff;
-        }
+  button {
+    border: 1px solid $color2;
+    border-radius: 10px;
+    padding: 10px 30px;
+    color: $color2;
+    &:hover {
+      background: $color2;
+      color: #fff;
     }
+  }
 }

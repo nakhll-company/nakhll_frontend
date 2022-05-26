@@ -4,11 +4,10 @@ import { authhttp } from "../../../services/callApi/api";
 export const _addProduct = (productId) => {
   return async (dispatch) => {
     try {
-      let token = localStorage.getItem("accessToken");
-      let response = await authhttp.post("/api/v1/cart/items/", {
-        "product": productId,
-        "count": 1
-      })
+      const response = await authhttp.post("/api/v1/cart/items/", {
+        product: productId,
+        count: 1,
+      });
 
       if (response.status === 201) {
         await dispatch({

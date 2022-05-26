@@ -16,13 +16,11 @@ import "../styles/globals.scss";
 import "../styles/General/font-awesome/css/font-awesome.css";
 
 function MyApp({ Component, pageProps }) {
-
   const Layout = Component.Layout || MyLayout;
 
   useEffect(() => {
     chageIconChatPosition();
   }, []);
-
 
   return (
     <>

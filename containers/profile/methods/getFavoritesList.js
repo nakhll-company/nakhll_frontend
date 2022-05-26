@@ -1,7 +1,9 @@
-import { authhttp } from "../../../services/callApi/api";
+import {
+    authhttp
+} from "../../../services/callApi/api";
 
 export async function getFavoritesList(setList, setLoading) {
-    let response = await authhttp.get("/api/v1/lists/favorites/all/");
+    const response = await authhttp.get("/api/v1/lists/favorites/all/");
 
     if (response.status === 200) {
         setList(response.data);

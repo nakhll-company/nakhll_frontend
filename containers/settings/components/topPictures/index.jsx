@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -15,10 +16,12 @@ function TopPictures({ apiSetting, activeHojreh }) {
   const imgBanner = null;
 
   useEffect(() => {
-    let dataForSend = {
+    const dataForSend = {
       image: imgProfile,
     };
-    imgProfile && imgProfile.startsWith("data") && callApiUpDataPicture(dataForSend, activeHojreh);
+    imgProfile &&
+      imgProfile.startsWith("data") &&
+      callApiUpDataPicture(dataForSend, activeHojreh);
   }, [imgProfile, activeHojreh]);
 
   return (

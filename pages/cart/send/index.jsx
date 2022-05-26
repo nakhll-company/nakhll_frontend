@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import Link from "next/link";
 import Head from "next/head";
@@ -66,9 +67,9 @@ function Send() {
                 title={` حجره ${el.shop_name}`}
                 item={`Send_${index}_acor`}
                 close={true}
-                logistic_price={el.price}
-                unit_type={el.logistic_units[0].unit_type}
-                logistic_units={el.logistic_units}
+                logisticPrice={el.price}
+                unitType={el.logistic_units[0].unit_type}
+                logisticUnits={el.logistic_units}
               >
                 {Object.values(el.logistic_units).map((ef, index) => (
                   <Fragment key={index}>

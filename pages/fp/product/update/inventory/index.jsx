@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import { connect } from "react-redux";
 import { useForm } from "react-hook-form";
@@ -25,7 +26,7 @@ const Inventory = ({ productList }) => {
 
   const onSubmit = async (data) => {
     const objArray = [];
-    let formValues = Object.values(data);
+    const formValues = Object.values(data);
     Object.keys(data).forEach((key, index) => {
       if (index % 2 === 0) {
         objArray.push({
@@ -35,7 +36,10 @@ const Inventory = ({ productList }) => {
       }
     });
 
-    let response = await authhttp.patch(`/api/v1/shop/multiple-update/inventory/`,objArray) 
+    const response = await authhttp.patch(
+      `/api/v1/shop/multiple-update/inventory/`,
+      objArray
+    );
     if (response.status === 200) {
       successMessage("داده ها با موفقیت ثبت شده اند");
     }

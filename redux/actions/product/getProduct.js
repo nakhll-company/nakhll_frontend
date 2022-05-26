@@ -15,14 +15,12 @@ export const getProduct =
         search,
         page
     ) =>
-<<<<<<< HEAD
     async(dispatch) => {
-        console.log("page", page);
         // try
         try {
             if (activeHojreh.length > 0) {
                 const getProduct = async() => {
-                    let params = {
+                    const params = {
                         product_status,
                         price_from,
                         price_to,
@@ -30,40 +28,15 @@ export const getProduct =
                         inventory_to,
                         order_by,
                         search,
-                        page
+                        page,
                     };
 
-                    let dataUrl = `/api/v1/shop/${activeHojreh}/products/`;
-                    let response = await authhttp.get(dataUrl, {
-                        params
-                    })
+                    const dataUrl = `/api/v1/shop/${activeHojreh}/products/`;
+                    const response = await authhttp.get(dataUrl, params);
                     return response;
                 };
-=======
-        async (dispatch) => {
-            console.log("page", page);
-            // try
-            try {
-                if (activeHojreh.length > 0) {
-                    const getProduct = async () => {
-                        let params = {
-                            product_status,
-                            price_from,
-                            price_to,
-                            inventory_from,
-                            inventory_to,
-                            order_by,
-                            search,
-                            page
-                        };
 
-                        let dataUrl = `/api/v1/shop/${activeHojreh}/products/`;
-                        let response = await authhttp.get(dataUrl, { params })
-                        return response;
-                    };
->>>>>>> ec753879d524526e566d04356addd50ae7a5279d
-
-                let response = await getProduct();
+                const response = await getProduct();
 
                 if (response.status === 200) {
                     // dispatch

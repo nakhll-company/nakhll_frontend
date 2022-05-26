@@ -13,7 +13,7 @@ function LinearShopsCart({ part }) {
   useEffect(() => {
     async function fetchData() {
       try {
-        let response = await http.get(
+        const response = await http.get(
           "https://nakhll.com/api/v1/landing/campaign/"
         );
         if (response.status === 200) {

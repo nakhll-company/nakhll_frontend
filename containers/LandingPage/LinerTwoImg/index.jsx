@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 
 // style
 import styles from "./LinerTwoImg.module.scss";
-import { authhttp, http } from "../../../services/callApi/api";
+import { authhttp } from "../../../services/callApi/api";
 
 function LinerTwoImg({ nextApi_LinerTwoImg }) {
   const [dataLinerTwoImg, setDataLinerTwoImg] = useState([]);
@@ -13,7 +13,7 @@ function LinerTwoImg({ nextApi_LinerTwoImg }) {
   useEffect(() => {
     async function fetchData() {
       try {
-        let response = await authhttp.get(nextApi_LinerTwoImg);
+        const response = await authhttp.get(nextApi_LinerTwoImg);
         if (response.status === 200) {
           setDataLinerTwoImg(response.data);
         }

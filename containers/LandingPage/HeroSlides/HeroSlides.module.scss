@@ -5,34 +5,34 @@ $color4: #597ba1;
 $color5: #91a6c1;
 $color6: #d4d8e1;
 .slide {
-    @media (min-width: 768px) {
-        margin-top: 19px;
+  @media (min-width: 768px) {
+    margin-top: 19px;
+  }
+  // margin-top: 2px;
+  // margin-bottom: 15px;
+  .righter {
+    position: relative;
+    object-fit: fill;
+    img {
+      width: 100%;
+      border-radius: 15px;
+      // margin-top: 15px;
     }
-    // margin-top: 2px;
-    // margin-bottom: 15px;
-    .righter {
-        position: relative;
-        object-fit: fill;
-        img {
-            width: 100%;
-            border-radius: 15px;
-            // margin-top: 15px;
-        }
+  }
+  .lefter {
+    flex-direction: column;
+    justify-content: space-between;
+    img {
+      width: 100%;
+      border-radius: 15px;
+      // margin-top: 15px;
     }
-    .lefter {
-        flex-direction: column;
-        justify-content: space-between;
-        img {
-            width: 100%;
-            border-radius: 15px;
-            // margin-top: 15px;
-        }
-    }
+  }
 }
 .wrap_video {
-    width: 100%;
-    position: relative;
-    border-radius: 15px;
-    overflow: hidden;
-    margin-bottom: 5px;
+  width: 100%;
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 5px;
 }

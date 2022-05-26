@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import Assistent from "zaravand-assistent-number";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Fragment, useEffect, useState } from "react";
 import SwiperCore, { Navigation, Thumbs } from "swiper";
@@ -23,8 +23,8 @@ import { fetchProductShop, getMoreProduct } from "../../api/product/detail";
 // styles
 import styles from "./productDetail.module.scss";
 import { _addProduct } from "../../redux/actions/cart/_addProduct";
+import diviedNumber from "../../utils/diviedNumber";
 
-const _asist = new Assistent();
 SwiperCore.use([Navigation, Thumbs]);
 
 const ProductDetailDesktop = ({ data }) => {
@@ -40,7 +40,7 @@ const ProductDetailDesktop = ({ data }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const userData = useSelector((state) => state.User.userInfo);
 
-  let thumblineImage = [...detail.banners, { image: detail.image }];
+  const thumblineImage = [...detail.banners, { image: detail.image }];
 
   useEffect(() => {
     function fetchData() {
@@ -215,11 +215,12 @@ const ProductDetailDesktop = ({ data }) => {
                             className="mb-0"
                           >
                             {parseInt(detail.shop.registered_months) > 1
-                              ? _asist.PSeparator(detail.shop.registered_months)
-                              : _asist.PSeparator(1)}{" "}
+                              ? diviedNumber(detail.shop.registered_months)
+                              : 1}{" "}
                             ماه در نخل &nbsp;&nbsp;&nbsp;&nbsp;
-                            {_asist.PSeparator(detail.shop.total_products)}{" "}
-                            محصول{" "}
+                            {diviedNumber(
+                              detail.shop.total_products
+                            )} محصول{" "}
                           </a>
                         </Link>
                       </div>
@@ -272,22 +273,19 @@ const ProductDetailDesktop = ({ data }) => {
                       style={{ fontSize: "1.25rem" }}
                       className={styles.old_price}
                     >
-                      {detail.old_price &&
-                        _asist.PSeparator(detail.old_price / 10)}
+                      {detail.old_price && diviedNumber(detail.old_price / 10)}
                     </del>
                   </div>
                   <div className={`${styles.price} d-inline-block  ms-2 `}>
                     <span>
-                      {detail.price && _asist.PSeparator(detail.price / 10)}
+                      {detail.price && diviedNumber(detail.price / 10)}
                     </span>
                     <span> تومان </span>
                   </div>
                   <div style={{ fontSize: ".7rem" }}>
                     {detail.inventory > 0 &&
                       detail.inventory < 10 &&
-                      `فقط ${_asist.PSeparator(
-                        detail.inventory
-                      )} عدد باقی مانده`}
+                      `فقط ${diviedNumber(detail.inventory)} عدد باقی مانده`}
                   </div>
                 </div>
                 {detail.salable && detail.salable === true && (
@@ -376,20 +374,20 @@ const ProductDetailDesktop = ({ data }) => {
               <div className={styles.product_attributes}>
                 <CustomLabel
                   type="normal"
-                  value={_asist.PSeparator(detail.net_weight)}
+                  value={diviedNumber(detail.net_weight)}
                   label="وزن خالص"
                 />
                 <CustomLabel
                   type="normal"
-                  value={_asist.PSeparator(detail.weight_with_packing)}
+                  value={diviedNumber(detail.weight_with_packing)}
                   label="وزن خالص با بسته بندی"
                 />
                 {detail.length_with_packing && (
                   <CustomLabel
                     type="normal"
-                    value={`${_asist.PSeparator(
+                    value={`${diviedNumber(
                       detail.length_with_packing
-                    )} * ${_asist.PSeparator(detail.height_with_packaging)}`}
+                    )} * ${diviedNumber(detail.height_with_packaging)}`}
                     label="سایز"
                   />
                 )}
@@ -465,7 +463,7 @@ const ProductDetailDesktop = ({ data }) => {
                               className="text-muted"
                               style={{ fontSize: "13px" }}
                             >
-                              {_asist.number(value.date_create)}
+                              {value.date_create}
                             </span>
                           </div>
                           <span>{value.description}</span>
@@ -498,7 +496,7 @@ const ProductDetailDesktop = ({ data }) => {
                                     className="text-muted"
                                     style={{ fontSize: "13px" }}
                                   >
-                                    {_asist.number(value.date_create)}
+                                    {value.date_create}
                                   </span>
                                 </div>
                                 <span>{value.description}</span>

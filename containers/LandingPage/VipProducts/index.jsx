@@ -5,7 +5,6 @@ import Image from "next/image";
 import st from "./vipProducts.module.scss";
 
 function VipProducts({ dataLinerProducts = [] }) {
-
   return (
     <>
       <div className={st.wrapper}>

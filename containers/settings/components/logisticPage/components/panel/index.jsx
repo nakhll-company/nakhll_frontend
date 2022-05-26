@@ -1,16 +1,16 @@
+import React from "react";
 // node libraries
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import Assistent from "zaravand-assistent-number";
+
 // ciomponents
 import SBSendUnit from "../sendUnit/switchButtonSendUnit";
 import LoadingAllPage from "../../../../../../components/loadingAllPage";
 // style
 import st from "./panel.module.scss";
 import { authhttp } from "../../../../../../services/callApi/api";
-
-const _asist = new Assistent();
+import diviedNumber from "../../../../../../utils/diviedNumber";
 
 function Panel({
   setConstraintId,
@@ -24,7 +24,7 @@ function Panel({
 
   useEffect(() => {
     async function fetchData() {
-      let response = await authhttp.get(
+      const response = await authhttp.get(
         `/api/v1/logistic/shop-logistic-unit/?shop=${activeHojreh}`
       );
       if (response.status == 200) {
@@ -36,9 +36,11 @@ function Panel({
 
   const _handle_delete_scope = async (id) => {
     setLoaderTable(true);
-    let response = await authhttp.delete(`/api/v1/logistic/shop-logistic-unit/${id}/`)
+    const response = await authhttp.delete(
+      `/api/v1/logistic/shop-logistic-unit/${id}/`
+    );
     if (response.status == 204) {
-      let helpArray = SavedSendingUnit.filter((el) => el.id !== id);
+      const helpArray = SavedSendingUnit.filter((el) => el.id !== id);
       setSavedSendingUnit(helpArray);
       setLoaderTable(false);
     } else {
@@ -64,7 +66,7 @@ function Panel({
               className={st.card_right}
             >
               <div className={st.card_right_top}>
-                <span>{_asist.PSeparator(_asist.PSeparator(el.name))}</span>
+                <span>{diviedNumber(el.name)}</span>
               </div>
               <div className={st.card_right_btm}>
                 {/* icons */}
@@ -93,7 +95,7 @@ function Panel({
                     <span>
                       {el.products_count == 0
                         ? "تمام محصولات"
-                        : `${_asist.PSeparator(el.products_count)} محصول`}
+                        : `${diviedNumber(el.products_count)} محصول`}
                     </span>
                   </div>
                   <div className={st.info_line}>
@@ -107,7 +109,7 @@ function Panel({
                     <span>
                       {el.cities_count == 0
                         ? "تمام شهرها"
-                        : `${_asist.PSeparator(el.cities_count)} شهر`}
+                        : `${diviedNumber(el.cities_count)} شهر`}
                     </span>
                   </div>
                 </div>

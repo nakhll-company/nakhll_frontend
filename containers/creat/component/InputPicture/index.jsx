@@ -51,11 +51,13 @@ function InputPictureCreat({ setImageSrc, image, ratio }) {
           onChange={async (e) => {
             if (e.target.files && e.target.files.length > 0) {
               if (e.target.files[0].size > 10000000) {
-                errorMessage("لطفا عکس هایی با حجم کمتر از 10 مگابایت انتخاب کنید");
+                errorMessage(
+                  "لطفا عکس هایی با حجم کمتر از 10 مگابایت انتخاب کنید"
+                );
               } else {
                 const file = e.target.files[0];
-                let imageDataUrl = await readFile(file);
-                var options = {
+                const imageDataUrl = await readFile(file);
+                const options = {
                   maxSizeMB: 1,
                   maxWidthOrHeight: 1920,
                   useWebWorker: true,

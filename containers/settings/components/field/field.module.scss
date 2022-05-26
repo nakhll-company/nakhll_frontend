@@ -1,98 +1,98 @@
 .wrapper {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 20px;
 }
 .explain {
-    margin-left: 50px;
-    align-items: center;
-    text-align: justify;
-    font-family: "bakh";
-    font-style: normal;
-    font-size: 14px;
-    line-height: 1.5;
+  margin-left: 50px;
+  align-items: center;
+  text-align: justify;
+  font-family: "bakh";
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1.5;
 }
 .error {
-    font-size: 14px;
-    color: red;
-    margin-top: 8px;
+  font-size: 14px;
+  color: red;
+  margin-top: 8px;
 }
 
 /* Start     Input */
 
 .input_setting {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    @media (max-width: 768px) {
-        grid-column: 1 / -1;
-    }
+  margin-top: 20px;
+  margin-bottom: 20px;
+  @media (max-width: 768px) {
+    grid-column: 1 / -1;
+  }
 }
 .explain_section {
-    @media (max-width: 768px) {
-        display: none;
-    }
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 .inputWid {
-    display: grid;
-    height: 45px;
+  display: grid;
+  height: 45px;
 }
-.inputWid>input {
-    background: #ffffff;
-    border: 1px solid #e0e6e9;
-    box-sizing: border-box;
-    border-radius: 5px;
-    direction: ltr;
-    font-size: 15px;
-    color: #364254;
-    padding: 11px;
+.inputWid > input {
+  background: #ffffff;
+  border: 1px solid #e0e6e9;
+  box-sizing: border-box;
+  border-radius: 5px;
+  direction: ltr;
+  font-size: 15px;
+  color: #364254;
+  padding: 11px;
 }
 .inputWidRtl {
-    display: grid;
-    height: 45px;
+  display: grid;
+  height: 45px;
 }
-.inputWidRtl>input {
-    background: #ffffff;
-    border: 1px solid #e0e6e9;
-    box-sizing: border-box;
-    border-radius: 5px;
-    font-size: 15px;
-    color: #364254;
-    padding: 11px;
+.inputWidRtl > input {
+  background: #ffffff;
+  border: 1px solid #e0e6e9;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-size: 15px;
+  color: #364254;
+  padding: 11px;
 }
 .inputWidRtlH {
-    display: grid;
-    height: 80px;
+  display: grid;
+  height: 80px;
 }
-.inputWidRtlH>textarea {
-    background: #ffffff;
-    border: 1px solid #e0e6e9;
-    box-sizing: border-box;
-    border-radius: 5px;
-    font-size: 15px;
-    color: #364254;
-    padding: 11px;
+.inputWidRtlH > textarea {
+  background: #ffffff;
+  border: 1px solid #e0e6e9;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-size: 15px;
+  color: #364254;
+  padding: 11px;
 }
 
 /*  End    Input */
 
 .inputWid_withWord {
-    display: flex;
-    height: 45px;
-    background: #ffffff;
-    border: 1px solid #e0e6e9;
-    box-sizing: border-box;
-    border-radius: 5px;
-    direction: ltr;
-    font-size: 15px;
-    color: #364254;
-    padding: 11px;
-    align-items: center;
+  display: flex;
+  height: 45px;
+  background: #ffffff;
+  border: 1px solid #e0e6e9;
+  box-sizing: border-box;
+  border-radius: 5px;
+  direction: ltr;
+  font-size: 15px;
+  color: #364254;
+  padding: 11px;
+  align-items: center;
 }
-.inputWid_withWord>input {
-    border: 0;
-    width: 100%;
-    font-size: 15px;
+.inputWid_withWord > input {
+  border: 0;
+  width: 100%;
+  font-size: 15px;
 }
-.inputWid_withWord>input:focus {
-    outline: 0;
+.inputWid_withWord > input:focus {
+  outline: 0;
 }

@@ -1,18 +1,18 @@
 .wrap {
-    display: flex;
-    gap: 10px;
-    .right {
-        flex-basis: 50%;
-        img {
-            width: 100%;
-            border-radius: 5px;
-        }
+  display: flex;
+  gap: 10px;
+  .right {
+    flex-basis: 50%;
+    img {
+      width: 100%;
+      border-radius: 5px;
     }
-    .left {
-        flex-basis: 50%;
-        img {
-            width: 100%;
-            border-radius: 5px;
-        }
+  }
+  .left {
+    flex-basis: 50%;
+    img {
+      width: 100%;
+      border-radius: 5px;
     }
+  }
 }

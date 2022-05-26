@@ -8,7 +8,7 @@ import DesktopFooter from "./desktopFooter";
 import CustomBadge from "../../../components/custom/customBadge";
 // scss
 import styles from "../../../styles/pages/product/desktopList.module.scss";
-//functions
+// functions
 import { groupProductResponse } from "../groupProduct/methods/groupProductResponse";
 import { groupProductResponseEdit } from "../groupProduct/methods/groupProductResponseEdit";
 
@@ -83,16 +83,26 @@ export default function Desktop({
                 return (
                   <tr key={index}>
                     <td>
-                      <Link href={`/fp/product/update/product/${value.ID}`} passHref >
-                        <a>
-                          {index + 1}
-                        </a>
+                      <Link
+                        href={`/fp/product/update/product/${value.ID}`}
+                        passHref
+                      >
+                        <a>{index + 1}</a>
                       </Link>
                     </td>
                     <td>
-                      <Link href={`/fp/product/update/product/${value.ID}`} passHref>
+                      <Link
+                        href={`/fp/product/update/product/${value.ID}`}
+                        passHref
+                      >
                         <div style={{ display: "flex" }}>
-                          <div style={{ position: "relative", width: "50px", height: "50px" }}>
+                          <div
+                            style={{
+                              position: "relative",
+                              width: "50px",
+                              height: "50px",
+                            }}
+                          >
                             <Image
                               src={value.image_thumbnail_url}
                               alt="product"
@@ -118,21 +128,26 @@ export default function Desktop({
                       </Link>
                     </td>
                     <td>
-                      <Link href={`/fp/product/update/product/${value.ID}`} passHref>
-                        <a>
-                          {value.PreparationDays}
-                        </a>
+                      <Link
+                        href={`/fp/product/update/product/${value.ID}`}
+                        passHref
+                      >
+                        <a>{value.PreparationDays}</a>
                       </Link>
                     </td>
                     <td>
-                      <Link href={`/fp/product/update/product/${value.ID}`} passHref>
-                        <a>
-                          {value.Inventory}
-                        </a>
+                      <Link
+                        href={`/fp/product/update/product/${value.ID}`}
+                        passHref
+                      >
+                        <a>{value.Inventory}</a>
                       </Link>
                     </td>
                     <td>
-                      <Link href={`/fp/product/update/product/${value.ID}`} passHref>
+                      <Link
+                        href={`/fp/product/update/product/${value.ID}`}
+                        passHref
+                      >
                         <a>
                           {value.OldPrice === 0 && (
                             <b>{value.Price / 10} تومان</b>
@@ -148,7 +163,10 @@ export default function Desktop({
                       </Link>
                     </td>
                     <td>
-                      <Link href={`/fp/product/update/product/${value.ID}`} passHref>
+                      <Link
+                        href={`/fp/product/update/product/${value.ID}`}
+                        passHref
+                      >
                         <a>
                           <CustomBadge
                             title={value.status}
@@ -164,7 +182,10 @@ export default function Desktop({
                       </Link>
                     </td>
                     <td>
-                      <Link href={`/fp/product/update/product/${value.ID}`} passHref>
+                      <Link
+                        href={`/fp/product/update/product/${value.ID}`}
+                        passHref
+                      >
                         <div className={styles.wrapper_copy}>
                           <li className="fa fa-clone"></li>
                         </div>

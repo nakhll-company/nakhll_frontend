@@ -4,7 +4,7 @@ import Link from "next/link";
 // style
 import styles from "./Sm_LinerOneImg.module.scss";
 
-function Sm_LinerOneImg_Fix() {
+function SmLinerOneImgFix() {
   return (
     <div className={styles.wrapper}>
       <Link href="">
@@ -16,4 +16,4 @@ function Sm_LinerOneImg_Fix() {
   );
 }
 
-export default Sm_LinerOneImg_Fix;
+export default SmLinerOneImgFix;

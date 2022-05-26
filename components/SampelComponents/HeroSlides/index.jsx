@@ -1,17 +1,15 @@
 // node libraries
 import React, { useState } from "react";
-import Assistent from "zaravand-assistent-number";
+
 // components
 import InputUrl from "../../../containers/liveEdit/InputUrl";
 import InputPicture from "../../../containers/liveEdit/InputPicture";
 // style
 import styles from "./HeroSlides.module.scss";
-const _asist = new Assistent();
 
 // type============1
 //  ratio========2/1
-function Sm_HeroSlides({ setImageSrc, id, data }) {
-
+function SmHeroSlides({ setImageSrc, id, data }) {
   const [wichSlide, setWichSlide] = useState(1);
 
   return (
@@ -19,7 +17,7 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
       <div className={styles.slider}>
         <div className={styles.right}>
           <div className={styles.counter_number}>
-            {`${_asist.number(wichSlide)}/`}
+            {`${wichSlide}/`}
             <span style={{ fontSize: "15px" }}>۵</span>
           </div>
           <div
@@ -122,4 +120,4 @@ function Sm_HeroSlides({ setImageSrc, id, data }) {
   );
 }
 
-export default Sm_HeroSlides;
+export default SmHeroSlides;

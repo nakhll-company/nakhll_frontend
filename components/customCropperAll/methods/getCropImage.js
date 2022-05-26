@@ -21,12 +21,6 @@ function getRadianAngle(degreeValue) {
     return (degreeValue * Math.PI) / 180;
 }
 
-/**
- * This function was adapted from the one in the ReadMe of https://github.com/DominicTobias/react-image-crop
- * @param {File} image - Image File url
- * @param {Object} pixelCrop - pixelCrop Object provided by react-easy-crop
- * @param {number} rotation - optional rotation parameter
- */
 export async function getCroppedImg(imageSrc, pixelCrop, rotation = 0) {
     let compressImage = "";
 
@@ -68,7 +62,7 @@ export async function getCroppedImg(imageSrc, pixelCrop, rotation = 0) {
 
     const options = {
         maxSizeMB: 10,
-    }
+    };
 
     // As Base64 string
     await imageCompression

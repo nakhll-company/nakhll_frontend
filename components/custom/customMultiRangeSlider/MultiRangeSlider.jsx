@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import styles from "./multiRangeSlider.module.css";
-import Assistent from "zaravand-assistent-number";
-const _asist = new Assistent();
+
+import diviedNumber from "../../../utils/diviedNumber";
 
 const MultiRangeSlider = ({ min, max, onChange }) => {
   const [minVal, setMinVal] = useState(min);
@@ -78,7 +78,7 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
           className={styles.slider__left_value}
           style={{ color: "#000", direction: "rtl" }}
         >
-          <span>{_asist.PSeparator(minVal * 1000)}</span>
+          <span>{diviedNumber(minVal * 1000)}</span>
           <span
             style={{
               fontSize: "12px",
@@ -94,7 +94,7 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
           className={styles.slider__right_value}
           style={{ color: "#000", direction: "rtl" }}
         >
-          <span>{_asist.PSeparator(maxVal * 1000)}</span>
+          <span>{diviedNumber(maxVal * 1000)}</span>
           <span style={{ fontSize: "12px", marginRight: "5px" }}>تومان</span>
         </div>
       </div>

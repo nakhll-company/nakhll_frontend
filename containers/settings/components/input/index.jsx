@@ -1,3 +1,4 @@
+import React from "react";
 import styles from "./input.module.scss";
 
 function InputSetting({ name, value, title, text }) {

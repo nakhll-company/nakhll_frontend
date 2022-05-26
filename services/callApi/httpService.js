@@ -1,13 +1,12 @@
-import axios from 'axios';
+import axios from "axios";
 
-axios.defaults.headers.post["Content-Type"] = "application/json"
-
+axios.defaults.headers.post["Content-Type"] = "application/json";
 
 // axios.interceptors.response.use(null, )
 
 export default {
-    get: axios.get,
-    post: axios.post,
-    put: axios.put,
-    delete: axios.delete
-}
+  get: axios.get,
+  post: axios.post,
+  put: axios.put,
+  delete: axios.delete,
+};

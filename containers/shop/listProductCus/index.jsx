@@ -1,7 +1,7 @@
 // node libraries
 import router from "next/router";
 import CheckboxTree from "react-checkbox-tree";
-import Assistent from "zaravand-assistent-number";
+
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 // components
@@ -15,8 +15,6 @@ import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoadin
 import MultiRangeSlider from "../../../components/custom/customMultiRangeSlider/MultiRangeSlider";
 // methods
 import { authhttp, http } from "../../../services/callApi/api";
-
-const _asist = new Assistent();
 
 function ListProductShop({ data }) {
   const changePage = 1;
@@ -64,8 +62,8 @@ function ListProductShop({ data }) {
   ]);
 
   const _handel_Add_category = (id) => {
-    let copyArray = [...wantCategories];
-    let newArray = copyArray.filter((element) => element != id);
+    const copyArray = [...wantCategories];
+    const newArray = copyArray.filter((element) => element != id);
     if (copyArray.length == newArray.length) {
       setWantCategories([...newArray, id]);
     } else {
@@ -73,24 +71,26 @@ function ListProductShop({ data }) {
     }
   };
 
-  const _handel_call_another_page_api = async () => {
+  const handelCallAnotherPageApi = async () => {
     try {
-      let response = await http.get(`/api/v1/products/`, {params:{
-        search: searchWord,
-        ordering: whichOrdering,
-        page: pageApi,
-        ready: isReadyForSend,
-        available: isAvailableGoods,
-        discounted: isDiscountPercentage,
-        city: checkedCity.toString(),
-        ...(wantCategories.length > 0 && {
-          category: wantCategories.toString(),
-        }),
-        page_size: 50,
-        min_price: minPrice * 10000,
-        max_price: maxPrice * 100000,
-        shop: hojreh,
-      }});
+      const response = await http.get(`/api/v1/products/`, {
+        params: {
+          search: searchWord,
+          ordering: whichOrdering,
+          page: pageApi,
+          ready: isReadyForSend,
+          available: isAvailableGoods,
+          discounted: isDiscountPercentage,
+          city: checkedCity.toString(),
+          ...(wantCategories.length > 0 && {
+            category: wantCategories.toString(),
+          }),
+          page_size: 50,
+          min_price: minPrice * 10000,
+          max_price: maxPrice * 100000,
+          shop: hojreh,
+        },
+      });
       if (response.status === 200) {
         const ContinueList = response.data.results;
         setListWithFilter([...listWithFilter, ...ContinueList]);
@@ -106,10 +106,10 @@ function ListProductShop({ data }) {
 
   // for filters in sidebar
   useEffect(() => {
-    const _handel_filters = async () => {
+    const handelFilters = async () => {
       setHasMore(true);
       setIsLoading(true);
-      let params = {
+      const params = {
         search: searchWord,
         ordering: whichOrdering,
         ready: isReadyForSend,
@@ -126,7 +126,7 @@ function ListProductShop({ data }) {
       };
 
       try {
-        let response = await http.get(`/api/v1/products/`, {params});
+        const response = await http.get(`/api/v1/products/`, { params });
         if (response.status === 200) {
           setListWithFilter(response.data.results);
           if (
@@ -144,7 +144,7 @@ function ListProductShop({ data }) {
     };
 
     async function fetchData() {
-      await _handel_filters();
+      await handelFilters();
     }
     fetchData();
   }, [
@@ -162,9 +162,9 @@ function ListProductShop({ data }) {
     hojreh,
   ]);
   useEffect(() => {
-    const _handel_category = async () => {
+    const handelCategory = async () => {
       try {
-        let response = await authhttp.get(
+        const response = await authhttp.get(
           `/api/v1/categories/category_product_count/?q=${searchWord}`
         );
         if (response.status === 200) {
@@ -175,7 +175,7 @@ function ListProductShop({ data }) {
       }
     };
     async function fetchData() {
-      await _handel_category();
+      await handelCategory();
     }
     fetchData();
   }, [searchWord]);
@@ -259,7 +259,7 @@ function ListProductShop({ data }) {
                         className="form-check-label"
                         htmlFor={`checkbox${index}`}
                       >
-                        {ele.name} ({_asist.number(ele.product_count)})
+                        {ele.name} ({ele.product_count})
                       </label>
                     </div>
                   ))}
@@ -332,8 +332,8 @@ function ListProductShop({ data }) {
               ) : (
                 <InfiniteScroll
                   className="mx-auto row"
-                  dataLength={listWithFilter.length} //This is important field to render the next data
-                  next={_handel_call_another_page_api}
+                  dataLength={listWithFilter.length} // This is important field to render the next data
+                  next={handelCallAnotherPageApi}
                   hasMore={hasMore}
                   loader={<h4>کمی صبر...</h4>}
                   endMessage={
@@ -445,7 +445,7 @@ function ListProductShop({ data }) {
                       className="form-check-label"
                       htmlFor={`checkbox${index}`}
                     >
-                      {ele.name} ({_asist.number(ele.product_count)})
+                      {ele.name} ({ele.product_count})
                     </label>
                   </div>
                 ))}

@@ -3,21 +3,21 @@ import React, { useEffect, useRef, useState } from "react";
 // gsap
 import { gsap } from "gsap";
 
-import Sm_HeroSlides_Fix from "../../../components/SampelFixed/HeroSlides";
-import Sm_LinerFourImg_Fix from "../../../components/SampelFixed/Sm_LinerFourImg";
-import Sm_LinerOneImg_Fix from "../../../components/SampelFixed/Sm_LinerOneImg";
-import Sm_LinerProducts_Fix from "../../../components/SampelFixed/Sm_LinerProducts";
-import Sm_LinerThreeImg_Fix from "../../../components/SampelFixed/Sm_LinerThreeImg";
-import Sm_LinerTwoImg_Fix from "../../../components/SampelFixed/Sm_LinerTwoImg";
+import SmHeroSlidesFix from "../../../components/SampelFixed/HeroSlides";
+import SmLinerFourImgFix from "../../../components/SampelFixed/Sm_LinerFourImg";
+import SmLinerOneImgFix from "../../../components/SampelFixed/Sm_LinerOneImg";
+import SmLinerProductsFix from "../../../components/SampelFixed/Sm_LinerProducts";
+import SmLinerThreeImgFix from "../../../components/SampelFixed/Sm_LinerThreeImg";
+import SmLinerTwoImgFix from "../../../components/SampelFixed/Sm_LinerTwoImg";
 import lottie from "lottie-web";
 import styles from "./ListComponent.module.scss";
-import AboutMe_Fix from "../../../components/SampelFixed/Sm_AboutMe";
-import VipProducts from "../../LandingPage/VipProducts";
+import AboutMeFix from "../../../components/SampelFixed/Sm_AboutMe";
 
-function ListComponent({ _handel_add_component }) {
+
+function ListComponent({ handelAddComponent }) {
   // gsap
   const [numSec, setNumSec] = useState(0);
-  let tl = new gsap.timeline();
+  const tl = new gsap.timeline();
 
   // Ref
   let partOne = useRef(null);
@@ -26,9 +26,9 @@ function ListComponent({ _handel_add_component }) {
   let partFour = useRef(null);
   let partFive = useRef(null);
   let partSix = useRef(null);
-  let partNine = useRef(null);
-  let partTen = useRef(null);
-  let partEleven = useRef(null);
+  const partNine = useRef(null);
+  const partTen = useRef(null);
+  const partEleven = useRef(null);
 
   useEffect(() => {
     lottie.loadAnimation({
@@ -78,71 +78,71 @@ function ListComponent({ _handel_add_component }) {
       <div className={styles.parent}>
         <div
           className={styles.holderItems}
-          onClick={() => _handel_add_component(1)}
+          onClick={() => handelAddComponent(1)}
           ref={(el) => (partOne = el)}
         >
-          <Sm_HeroSlides_Fix />
+          <SmHeroSlidesFix />
           {/* <span>کامپوننت اسلایدر</span> */}
           <div className={styles.cover}></div>
         </div>
         <div
           className={styles.holderItems}
-          onClick={() => _handel_add_component(2)}
+          onClick={() => handelAddComponent(2)}
           ref={(el) => (partTwo = el)}
         >
-          <Sm_LinerOneImg_Fix />
+          <SmLinerOneImgFix />
           {/* <span>بنر تکی</span> */}
           <div className={styles.cover}></div>
         </div>
         <div
           className={styles.holderItems}
-          onClick={() => _handel_add_component(3)}
+          onClick={() => handelAddComponent(3)}
           ref={(el) => (partThree = el)}
         >
-          <Sm_LinerTwoImg_Fix />
+          <SmLinerTwoImgFix />
           {/* <span>بنر دوتایی</span> */}
           <div className={styles.cover}></div>
         </div>
         <div
           className={styles.holderItems}
-          onClick={() => _handel_add_component(4)}
+          onClick={() => handelAddComponent(4)}
           ref={(el) => (partFour = el)}
         >
-          <Sm_LinerThreeImg_Fix />
+          <SmLinerThreeImgFix />
           {/* <span>بنر سه تایی</span> */}
           <div className={styles.cover}></div>
         </div>
 
         <div
           className={styles.holderItems}
-          onClick={() => _handel_add_component(5)}
+          onClick={() => handelAddComponent(5)}
           ref={(el) => (partFive = el)}
         >
           {/* <span style={{ color: "red" }}>بنر چهارتایی</span> */}
-          <Sm_LinerFourImg_Fix />
+          <SmLinerFourImgFix />
           <div className={styles.cover}></div>
         </div>
         <div
           className={styles.holderItems}
-          onClick={() => _handel_add_component(6)}
+          onClick={() => handelAddComponent(6)}
           ref={(el) => (partSix = el)}
         >
-          <Sm_LinerProducts_Fix />
+          <SmLinerProductsFix />
           {/* <span>لیست</span> */}
           <div className={styles.cover}></div>
         </div>
         <div
           className={styles.holderItems}
-          onClick={() => _handel_add_component(8)}
+          onClick={() => handelAddComponent(8)}
           ref={(el) => (partSix = el)}
         >
-          <AboutMe_Fix />
+          <AboutMeFix />
 
           <div className={styles.cover}></div>
         </div>
         <div
           className={styles.holderItems}
-          onClick={() => _handel_add_component(9)}
+          onClick={() => handelAddComponent(9)}
         >
           <div ref={partNine}></div>
           <div className={styles.cover}></div>
@@ -152,7 +152,7 @@ function ListComponent({ _handel_add_component }) {
           onClick={() => {
             if (numSec == 4) {
               alert("الان اضافه میشه");
-              _handel_add_component(10);
+              handelAddComponent(10);
             } else {
               setNumSec((e) => e + 1);
             }
@@ -163,7 +163,7 @@ function ListComponent({ _handel_add_component }) {
         </div>
         <div
           className={styles.holderItems}
-          onClick={() => _handel_add_component(11)}
+          onClick={() => handelAddComponent(11)}
         >
           <div ref={partEleven}></div>
           <div className={styles.cover}></div>
@@ -173,7 +173,7 @@ function ListComponent({ _handel_add_component }) {
           onClick={() => {
             if (numSec == 4) {
               alert("الان اضافه میشه");
-              _handel_add_component(13);
+              handelAddComponent(13);
             } else {
               setNumSec((e) => e + 1);
             }

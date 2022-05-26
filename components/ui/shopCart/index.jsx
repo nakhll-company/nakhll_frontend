@@ -10,7 +10,11 @@ function ShopCart({ dataCart }) {
       <div className={st.img_container}>
         <div className={st.img_inner}>
           <div className={st.inner_skew}>
-            <Image src={dataCart.products[0].Image_medium_url} alt="" layout="fill" />
+            <Image
+              src={dataCart.products[0].Image_medium_url}
+              alt=""
+              layout="fill"
+            />
           </div>
         </div>
       </div>

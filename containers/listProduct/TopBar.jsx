@@ -1,6 +1,5 @@
 import React from "react";
-import Assistent from "zaravand-assistent-number";
-const _asist = new Assistent();
+
 export const TopBar = ({
   totalcount,
   data,
@@ -135,7 +134,7 @@ export const TopBar = ({
               تعداد کالا:
               <span style={{ marginRight: "10px", fontWeight: "bold" }}>
                 {" "}
-                {_asist.number(totalcount)}
+                {totalcount}
               </span>
             </span>
           </div>{" "}

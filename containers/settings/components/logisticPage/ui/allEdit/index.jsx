@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import Image from "next/image";
 import { useForm } from "react-hook-form";
@@ -51,7 +52,7 @@ function AllEdit({
   } = useForm({ criteriaMode: "all", mode: "all" });
 
   const _update_cities = async (data) => {
-    let response = await authhttp.patch(
+    const response = await authhttp.patch(
       `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
       data
     );
@@ -87,7 +88,7 @@ function AllEdit({
 
   useEffect(() => {
     const _handel_get_all_data_scope = async () => {
-      let response = await authhttp.get(
+      const response = await authhttp.get(
         `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`
       );
       if (response.status == 200) {

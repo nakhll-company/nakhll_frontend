@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import Link from "next/link";
 import Head from "next/head";
@@ -22,7 +23,7 @@ const Login = () => {
 
   const submit = async (data) => {
     setLoadButton(true);
-    let result = await sendPhoneNumber(data);
+    const result = await sendPhoneNumber(data);
 
     if (result !== false) {
       sessionStorage.setItem("login", JSON.stringify(result));

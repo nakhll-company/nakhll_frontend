@@ -1,13 +1,10 @@
+import React from "react";
 // node libraries
 import Head from "next/head";
 // components
 import Layout from "../../components/layout/Layout";
 import Dashboard from "../../containers/dashboard";
 
-/**
- * component dashboard
- * @returns
- */
 export default function DashboardMain() {
   return (
     <>

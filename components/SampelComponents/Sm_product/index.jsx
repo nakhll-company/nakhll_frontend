@@ -1,11 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import styles from "./Sm_product.module.scss";
-import Assistent from "zaravand-assistent-number";
 
-function Sm_product({ data }) {
-  
-  const _asist = new Assistent();
+import diviedNumber from "../../../utils/diviedNumber";
+
+function SmProduct({ data }) {
   return (
     <>
       <div className={styles.product}>
@@ -34,11 +33,11 @@ function Sm_product({ data }) {
               <i className="fas fa-plus"></i>
             </span>
           </div>
-          <div className={styles.price}>{_asist.PSeparator(data.Price)}</div>
+          <div className={styles.price}>{diviedNumber(data.Price)}</div>
         </div>
       </div>
     </>
   );
 }
 
-export default Sm_product;
+export default SmProduct;

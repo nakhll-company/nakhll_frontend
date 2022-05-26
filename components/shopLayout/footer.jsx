@@ -1,24 +1,22 @@
+import React from "react";
 // node libraries
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import Assistent from "zaravand-assistent-number";
+
 import { BsLinkedin } from "react-icons/bs";
 import { FiInstagram } from "react-icons/fi";
 
 // style
 import styles from "../../styles/components/shopLayout/footer.module.scss";
 
-const _asist = new Assistent();
-
 const Footer = () => {
-
   const router = useRouter();
   const userData = useSelector((state) => state.User.userInfo);
 
-  const _handel_according = (accord, icon) => {
-    let element = document.getElementById(accord);
+  const handelAccording = (accord, icon) => {
+    const element = document.getElementById(accord);
     if (element.style.height == "0px") {
       element.style.height = "unset";
       document.getElementById(icon).className = "fas fa-angle-up";
@@ -70,8 +68,7 @@ const Footer = () => {
                         aria-label="لینکدین"
                         rel="noreferrer"
                       >
-                        <BsLinkedin size={30}/>
-                        
+                        <BsLinkedin size={30} />
                       </a>
 
                       <a
@@ -97,8 +94,7 @@ const Footer = () => {
                         rel="noreferrer"
                         style={{ fontSize: "30px", display: "flex" }}
                       >
-                        <FiInstagram size={30}/>
-                       
+                        <FiInstagram size={30} />
                       </a>
                     </div>
                   </div>
@@ -113,7 +109,7 @@ const Footer = () => {
                       >
                         تلفن تماس:
                         <span className="d-inline-block">
-                          {_asist.number(`034-32476561  034-91001230`)}
+                          {`034-32476561  034-91001230`}
                         </span>
                       </a>
                     </div>
@@ -123,7 +119,13 @@ const Footer = () => {
                       </a>
                     </div> */}
                     <div>
-                      <Link href={Object.keys(userData).length > 0 ? "/profile" : "/login"}>
+                      <Link
+                        href={
+                          Object.keys(userData).length > 0
+                            ? "/profile"
+                            : "/login"
+                        }
+                      >
                         <a className={styles.footer_items}>پیگیری سفارشات</a>
                       </Link>
                     </div>
@@ -147,7 +149,10 @@ const Footer = () => {
                     <div>
                       <Link
                         href={
-                          Object.keys(userData).length > 0 ? (userData.shops && userData.shops.length > 0) ? "/fp" : "/fp/store/create"
+                          Object.keys(userData).length > 0
+                            ? userData.shops && userData.shops.length > 0
+                              ? "/fp"
+                              : "/fp/store/create"
                             : "/login"
                         }
                       >
@@ -232,7 +237,7 @@ const Footer = () => {
               <div className="border-bottom border-gray py-3">
                 <div
                   onClick={() => {
-                    _handel_according("part_one", "icon");
+                    handelAccording("part_one", "icon");
                   }}
                 >
                   <div className="d-flex justify-content-between">
@@ -246,7 +251,7 @@ const Footer = () => {
                     transition: "all 1s ease-out",
                     height: "0",
                     overflow: "hidden",
-                    paddingTop: "10px"
+                    paddingTop: "10px",
                   }}
                   className="is-active"
                 >
@@ -277,7 +282,7 @@ const Footer = () => {
               <div className="border-bottom border-gray py-3">
                 <div
                   onClick={() => {
-                    _handel_according("part_two", "part_two_icon");
+                    handelAccording("part_two", "part_two_icon");
                   }}
                 >
                   <div className="d-flex justify-content-between">
@@ -290,7 +295,7 @@ const Footer = () => {
                     transition: "all 1s ease-out",
                     height: "0",
                     overflow: "hidden",
-                    paddingTop: "10px"
+                    paddingTop: "10px",
                   }}
                   id="part_two"
                   className="is-active"
@@ -299,16 +304,20 @@ const Footer = () => {
                     <div className={styles.footer_items}>
                       تلفن تماس:
                       <a href="tel://034-32476561" className="d-inline-block">
-                        {_asist.number(`034-32476561`)}
+                        {`034-32476561`}
                       </a>{" "}
                       <span>و</span>{" "}
                       <a href="tel://034-91001230" className="d-inline-block">
-                        {_asist.number(`034-91001230`)}
+                        {`034-91001230`}
                       </a>
                     </div>
                   </div>
                   <div>
-                    <Link href={Object.keys(userData).length > 0 ? "/profile" : "/login"}>
+                    <Link
+                      href={
+                        Object.keys(userData).length > 0 ? "/profile" : "/login"
+                      }
+                    >
                       <a className={styles.footer_items}>پیگیری سفارشات</a>
                     </Link>
                   </div>
@@ -324,7 +333,7 @@ const Footer = () => {
               <div className="border-bottom border-gray py-3">
                 <div
                   onClick={() => {
-                    _handel_according("part_three", "part_three_icon");
+                    handelAccording("part_three", "part_three_icon");
                   }}
                 >
                   <div className="d-flex justify-content-between">
@@ -338,7 +347,7 @@ const Footer = () => {
                     transition: "all 1s ease-out",
                     height: "0",
                     overflow: "hidden",
-                    paddingTop: "10px"
+                    paddingTop: "10px",
                   }}
                 >
                   <div>
@@ -349,7 +358,10 @@ const Footer = () => {
                   <div>
                     <Link
                       href={
-                        Object.keys(userData).length > 0 ? (userData.shops && userData.shops.length > 0) ? "/fp" : "/fp/store/create"
+                        Object.keys(userData).length > 0
+                          ? userData.shops && userData.shops.length > 0
+                            ? "/fp"
+                            : "/fp/store/create"
                           : "/login"
                       }
                     >
@@ -372,8 +384,7 @@ const Footer = () => {
                     aria-label="لینکدین"
                     rel="noreferrer"
                   >
-                    <BsLinkedin size={30}/>
-                   
+                    <BsLinkedin size={30} />
                   </a>
 
                   <a
@@ -398,8 +409,7 @@ const Footer = () => {
                     aria-label="اینستاگرام"
                     style={{ fontSize: "30px", display: "flex" }}
                   >
-                    <FiInstagram size={30}/>
-                    
+                    <FiInstagram size={30} />
                   </a>
                 </div>
               </div>{" "}

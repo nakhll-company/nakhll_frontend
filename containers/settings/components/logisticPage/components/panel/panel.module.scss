@@ -1,72 +1,72 @@
 .wraper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
 }
 .card {
-    width: 100%;
-    background: #224e821a;
-    border-radius: 20px;
-    // box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 17px 25px;
+  width: 100%;
+  background: #224e821a;
+  border-radius: 20px;
+  // box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 17px 25px;
 }
 .card_right {
-    height: 100%;
-    // background: #ff3300;
-    flex-grow: 4;
-    margin: 10px;
-    cursor: pointer;
+  height: 100%;
+  // background: #ff3300;
+  flex-grow: 4;
+  margin: 10px;
+  cursor: pointer;
 }
 .card_right_top {
-    span {
-        margin-right: 8px;
-        color: #224e82;
-        font-size: 16px;
-        font-weight: bolder;
-    }
+  span {
+    margin-right: 8px;
+    color: #224e82;
+    font-size: 16px;
+    font-weight: bolder;
+  }
 }
 .card_right_btm {
-    display: flex;
-    align-items: center;
-    margin-top: 8px;
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
 }
 .icon_post {
-    width: 60px;
+  width: 60px;
 }
 .info_post {
-    width: 100%;
-    margin-right: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  width: 100%;
+  margin-right: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .info_line {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    min-height: 30px;
-    span {
-        margin-right: 8px;
-        color: #224e82;
-        font-size: 14px;
-    }
+  display: flex;
+  width: 100%;
+  align-items: center;
+  min-height: 30px;
+  span {
+    margin-right: 8px;
+    color: #224e82;
+    font-size: 14px;
+  }
 }
 .card_left {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-end;
-    padding-left: 10px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-left: 10px;
 }
 .wrapper_icons {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
 }

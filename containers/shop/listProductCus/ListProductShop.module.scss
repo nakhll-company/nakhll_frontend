@@ -1,27 +1,27 @@
 .itemHojreh {
-    display: flex;
-    padding-right: 15px;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    border-bottom: 1px solid #e6e6e6;
-    &:hover {
-        background-color: #2e3192;
-        color: #fff;
-    }
+  display: flex;
+  padding-right: 15px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  border-bottom: 1px solid #e6e6e6;
+  &:hover {
+    background-color: #2e3192;
+    color: #fff;
+  }
 }
 
 .numBag {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 3px;
-    span {
-        margin-left: 5px;
-        padding: 2px 7px;
-        border-radius: 5px;
-        background-color: #2e3192;
-        color: #fff;
-        font-weight: bold;
-    }
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3px;
+  span {
+    margin-left: 5px;
+    padding: 2px 7px;
+    border-radius: 5px;
+    background-color: #2e3192;
+    color: #fff;
+    font-weight: bold;
+  }
 }

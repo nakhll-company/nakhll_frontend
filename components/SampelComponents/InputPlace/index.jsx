@@ -3,8 +3,7 @@ import React from "react";
 // style
 import styles from "./InputPlace.module.scss";
 
-function Sm_InputPlace() {
-
+function SmInputPlace() {
   return (
     <>
       <div className={styles.box_outer}>
@@ -26,4 +25,4 @@ function Sm_InputPlace() {
   );
 }
 
-export default Sm_InputPlace;
+export default SmInputPlace;

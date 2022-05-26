@@ -10,8 +10,6 @@ import { _updatePicture } from "../../redux/actions/liveEdit/_updatePicture";
 import styles from "./customCropper.module.scss";
 
 function CustomCropper({ imageSrc, setCroppedImage }) {
-
-
   const dispatch = useDispatch();
   const [zoom, setZoom] = useState(1);
   const [rotation, setRotation] = useState(0);
@@ -37,7 +35,7 @@ function CustomCropper({ imageSrc, setCroppedImage }) {
     }
   }, [imageSrc, croppedAreaPixels, rotation, dispatch, setCroppedImage]);
 
-  let b = Component.ratio;
+  const b = Component.ratio;
 
   return (
     <>

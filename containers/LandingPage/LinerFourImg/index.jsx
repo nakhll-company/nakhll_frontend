@@ -1,6 +1,6 @@
 import React from "react";
-import Link from 'next/link';
-import Image from 'next/image';
+import Link from "next/link";
+import Image from "next/image";
 import styles from "./LinerFourImg.module.scss";
 
 function LinerFourImg() {
@@ -11,9 +11,7 @@ function LinerFourImg() {
           <div className={styles.inner}></div>
           <aside className={styles.container}>
             <Link href="https://www.digikala.com/landings/pakvash/?&amp;promo_name=%D8%AE%D8%B1%DB%8C%D8%AF+%D8%A8%DB%8C%D8%B4%D8%AA%D8%B1%D8%8C+%D8%B3%D9%88%D8%AF+%D8%A8%DB%8C%D8%B4%D8%AA%D8%B1&amp;promo_position=home_top&amp;promo_creative=82998&amp;bCode=82998">
-              <a
-                title="خرید بیشتر، سود بیشتر"
-              >
+              <a title="خرید بیشتر، سود بیشتر">
                 <div className="c-adplacement__sponsored_box">
                   <Image
                     src="https://dkstatics-public.digikala.com/digikala-adservice-banners/8d925b4e17718129b798977572737220ca424b42_1631900612.jpg?x-oss-process=image/quality,q_80"

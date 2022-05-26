@@ -1,14 +1,14 @@
-.wrapper{
-    grid-column: 1/-1;
-    grid-row: 1/-1;
-    width: 100%;
-    height: auto;
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    h1{
-        font-size: 16px;
-    }
+.wrapper {
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+  width: 100%;
+  height: auto;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  h1 {
+    font-size: 16px;
+  }
 }

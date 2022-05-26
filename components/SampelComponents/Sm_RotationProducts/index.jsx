@@ -10,18 +10,18 @@ import { _updateProducts } from "../../../redux/actions/liveEdit/_updateProducts
 import st from "./rotationProduct.module.scss";
 import { http } from "../../../services/callApi/api";
 
-function Sm_RotationProducts({ id, data }) {
+function SmRotationProducts({ id, data }) {
   const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
-      let Queries = { page_size: "8" };
+      const Queries = { page_size: "8" };
       if (data[0].url !== "" && data[0].url !== undefined) {
-        let url = data[0].url;
+        const url = data[0].url;
         if (url.split("?")[1]) {
-          let partTwoUrl = url.split("?")[1].split("&");
-          let arrayString = partTwoUrl.map((el) => el.split("="));
+          const partTwoUrl = url.split("?")[1].split("&");
+          const arrayString = partTwoUrl.map((el) => el.split("="));
 
           arrayString.map((el) => {
             if (el[0] == "q") {
@@ -33,11 +33,9 @@ function Sm_RotationProducts({ id, data }) {
         }
 
         if (Object.keys(Queries).length > 1) {
-          let response = await http.get(
-            "https://nakhll.com/api/v1/products/",
-            {params: Queries}
-           
-          );
+          const response = await http.get("https://nakhll.com/api/v1/products/", {
+            params: Queries,
+          });
 
           if (response.status == 200) {
             setProducts(response.data.results);
@@ -91,4 +89,4 @@ function Sm_RotationProducts({ id, data }) {
   );
 }
 
-export default Sm_RotationProducts;
+export default SmRotationProducts;

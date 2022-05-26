@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import Image from "next/image";
 import { connect } from "react-redux";
@@ -19,7 +20,10 @@ import PictureChildProduct from "../../../../../containers/creat/component/pictu
 // methods
 import { authhttp } from "../../../../../services/callApi/api";
 import { mapState } from "../../../../../containers/product/methods/mapState";
-import { _ApiGetCategories, _ApiUpdateProduct } from "../../../../../api/creatProduct";
+import {
+  _ApiGetCategories,
+  _ApiUpdateProduct,
+} from "../../../../../api/creatProduct";
 // styles
 import styles from "../../../../../styles/pages/product/create.module.scss";
 /**
@@ -29,7 +33,6 @@ import styles from "../../../../../styles/pages/product/create.module.scss";
 const _asist = new Assistent();
 
 const UpdateProduct = ({ activeHojreh }) => {
-
   const router = useRouter();
   const { id } = router.query;
   const [tags, setTags] = useState([]);
@@ -45,7 +48,7 @@ const UpdateProduct = ({ activeHojreh }) => {
   const [imgProductOne, setImgProductOne] = useState(null);
   const [imgProductTwo, setImgProductTwo] = useState(null);
   const [imgProductSix, setImgProductSix] = useState(null);
-  const [Product_Banner, setProduct_Banner] = useState([]);
+  const [productBanner, setProductBanner] = useState([]);
   const [precentOldPrice, setprecentOldPrice] = useState(0);
   const [imgProductFour, setImgProductFour] = useState(null);
   const [imgProductFive, setImgProductFive] = useState(null);
@@ -53,7 +56,14 @@ const UpdateProduct = ({ activeHojreh }) => {
   const [isLoadingUpdate, setisLoadingUpdate] = useState(false);
   const [placeholderSubmarckets, setPlaceholderSubmarckets] = useState({});
   // useform
-  const { setValue, getValues, clearErrors, register, handleSubmit, formState: { errors } } = useForm({
+  const {
+    setValue,
+    getValues,
+    clearErrors,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     criteriaMode: "all",
     mode: "all",
   });
@@ -62,12 +72,11 @@ const UpdateProduct = ({ activeHojreh }) => {
     // get edit date
     async function fetchData() {
       if (id) {
-
-        let dataUrl = `/api/v1/shop/${activeHojreh}/products/${id}/`;
-        let response = await authhttp.get(dataUrl)
+        const dataUrl = `/api/v1/shop/${activeHojreh}/products/${id}/`;
+        const response = await authhttp.get(dataUrl);
 
         if (response.status === 200) {
-          let Data = response.data;
+          const Data = response.data;
 
           setValue("Title", Data.Title);
           setImgProduct(Data.Image);
@@ -100,13 +109,13 @@ const UpdateProduct = ({ activeHojreh }) => {
           setImgProductFour(Data.Product_Banner[3]?.Image);
           setImgProductFive(Data.Product_Banner[4]?.Image);
           setImgProductSix(Data.Product_Banner[5]?.Image);
-          setProduct_Banner(Data.Product_Banner);
-          let newArrTags = [];
+          setProductBanner(Data.Product_Banner);
+          const newArrTags = [];
           Data.product_tags.map((item) => {
             newArrTags.push({ id: item.text, text: item.text });
           });
           setTags(newArrTags);
-          let allTages = [];
+          const allTages = [];
 
           {
             Data?.all_tags &&
@@ -123,25 +132,25 @@ const UpdateProduct = ({ activeHojreh }) => {
 
   const onSubmit = async (data) => {
     setisLoadingUpdate(true);
-    let Product_Banner = [];
+    const productBanner = [];
 
     if (imgProductOne && !imgProductOne.includes("http")) {
-      Product_Banner.push({ Image: imgProductOne });
+      productBanner.push({ Image: imgProductOne });
     }
     if (imgProductTwo && !imgProductTwo.includes("http")) {
-      Product_Banner.push({ Image: imgProductTwo });
+      productBanner.push({ Image: imgProductTwo });
     }
     if (imgProductThree && !imgProductThree.includes("http")) {
-      Product_Banner.push({ Image: imgProductThree });
+      productBanner.push({ Image: imgProductThree });
     }
     if (imgProductFour && !imgProductFour.includes("http")) {
-      Product_Banner.push({ Image: imgProductFour });
+      productBanner.push({ Image: imgProductFour });
     }
     if (imgProductFive && !imgProductFive.includes("http")) {
-      Product_Banner.push({ Image: imgProductFive });
+      productBanner.push({ Image: imgProductFive });
     }
     if (imgProductSix && !imgProductSix.includes("http")) {
-      Product_Banner.push({ Image: imgProductSix });
+      productBanner.push({ Image: imgProductSix });
     }
 
     const externalData = {
@@ -149,7 +158,7 @@ const UpdateProduct = ({ activeHojreh }) => {
       PostRangeType: 1,
       post_range: [],
       category: submarketId,
-      Product_Banner: Product_Banner,
+      Product_Banner: productBanner,
       product_tags: tags,
     };
 
@@ -169,12 +178,12 @@ const UpdateProduct = ({ activeHojreh }) => {
   // use effect
   useEffect(() => {
     async function fetchData() {
-      const response_categories = await _ApiGetCategories();
+      const responseCategories = await _ApiGetCategories();
 
-      if (response_categories.status === 200) {
+      if (responseCategories.status === 200) {
         setIsLoad(true);
-        setData(response_categories.data); //==> output: {}
-        setCategories(response_categories.data);
+        setData(responseCategories.data); // ==> output: {}
+        setCategories(responseCategories.data);
       }
     }
     fetchData();
@@ -183,9 +192,9 @@ const UpdateProduct = ({ activeHojreh }) => {
 
   // select Submarket
   const _selectSubmarket = () => {
-    let element = document.getElementById("wrapperMarkets");
+    const element = document.getElementById("wrapperMarkets");
     element.style.display = "block";
-    let elementProduct = document.getElementById("wrapper_product");
+    const elementProduct = document.getElementById("wrapper_product");
     elementProduct.style.display = "none";
   };
 
@@ -236,7 +245,11 @@ const UpdateProduct = ({ activeHojreh }) => {
                     <div style={{ display: "none" }}>
                       <input
                         className={styles.input_product}
-                        value={placeholderSubmarckets ? placeholderSubmarckets.id : ''}
+                        value={
+                          placeholderSubmarckets
+                            ? placeholderSubmarckets.id
+                            : ""
+                        }
                         id="submark"
                         name="submark"
                         type="text"
@@ -302,32 +315,32 @@ const UpdateProduct = ({ activeHojreh }) => {
                       <PictureChildProduct
                         setImageSrc={setImgProductOne}
                         image={imgProductOne}
-                        id={Product_Banner[0]?.id}
+                        id={productBanner[0]?.id}
                       />
                       <PictureChildProduct
                         setImageSrc={setImgProductTwo}
                         image={imgProductTwo}
-                        id={Product_Banner[1]?.id}
+                        id={productBanner[1]?.id}
                       />
                       <PictureChildProduct
                         setImageSrc={setImgProductThree}
                         image={imgProductThree}
-                        id={Product_Banner[2]?.id}
+                        id={productBanner[2]?.id}
                       />
                       <PictureChildProduct
                         setImageSrc={setImgProductFour}
                         image={imgProductFour}
-                        id={Product_Banner[3]?.id}
+                        id={productBanner[3]?.id}
                       />
                       <PictureChildProduct
                         setImageSrc={setImgProductFive}
                         image={imgProductFive}
-                        id={Product_Banner[4]?.id}
+                        id={productBanner[4]?.id}
                       />
                       <PictureChildProduct
                         setImageSrc={setImgProductSix}
                         image={imgProductSix}
-                        id={Product_Banner[5]?.id}
+                        id={productBanner[5]?.id}
                       />
                     </div>
                   )}

@@ -1,3 +1,4 @@
+import React from "react";
 // node libraries
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
@@ -11,7 +12,7 @@ import SelectIcon from "./ui/selectIcon";
 import Explain from "./components/explain";
 import FreeQuestion from "./ui/freeQuestion";
 import Products from "./components/products";
-import BtnSetting from "./components/btnSetting";
+
 import HeaderTitle from "./components/headerTitle";
 import ResultOperation from "./ui/resultOperation";
 import CheckBoxSend from "./components/checkBoxSend";
@@ -66,7 +67,7 @@ function LogisticPage() {
   const _handle_add_new_scope = async () => {
     try {
       setLoaderBtn(true);
-      let response = await authhttp.post(
+      const response = await authhttp.post(
         `/api/v1/logistic/shop-logistic-unit/`,
         {
           shop: activeHojreh,
@@ -93,7 +94,7 @@ function LogisticPage() {
   const _handle_update_data_scope = async (data, move = true) => {
     setLoaderBtn(true);
     setLoader(true);
-    let response = await authhttp.patch(
+    const response = await authhttp.patch(
       `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
       data
     );
@@ -112,7 +113,7 @@ function LogisticPage() {
 
   // functoin for send data for price per kg
   const _handle_send_info_scope = async (data, page = 0) => {
-    let response = await authhttp.patch(
+    const response = await authhttp.patch(
       `/api/v1/logistic/shop-logistic-unit/${wichIdScope}/`,
       data
     );
@@ -130,7 +131,7 @@ function LogisticPage() {
 
   const _handle_send_all_cities = async () => {
     setLoaderBtn(true);
-    let response = await authhttp.patch(
+    const response = await authhttp.patch(
       `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
       {
         products: [],
@@ -148,7 +149,7 @@ function LogisticPage() {
   useEffect(() => {
     if (constraintId !== "") {
       const _handel_get_all_data_scope = async () => {
-        let response = await authhttp.get(
+        const response = await authhttp.get(
           `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`
         );
 

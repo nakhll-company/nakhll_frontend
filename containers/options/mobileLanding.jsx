@@ -1,7 +1,7 @@
 // node libraries
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Assistent from "zaravand-assistent-number";
+
 // components
 import MobileHeader from "../../components/mobileHeader";
 import CustomLabel from "../../components/custom/customLabel";
@@ -14,8 +14,6 @@ import { deActiveListItemLanding } from "./methods/deActiveListItemLanding";
 import styles from "./scss/mobileLanding.module.scss";
 import { authhttp } from "../../services/callApi/api";
 
-const _asist = new Assistent();
-
 const MobileLanding = ({ landingList, activeHojreh, setLandingList }) => {
   const router = useRouter();
   return (
@@ -26,7 +24,7 @@ const MobileLanding = ({ landingList, activeHojreh, setLandingList }) => {
           <span
             className={styles.link_add}
             onClick={async () => {
-              let response = await authhttp.post(
+              const response = await authhttp.post(
                 `/api/v1/shop/landings/${activeHojreh}/`,
                 {
                   name: "صفحه بدون نام",
@@ -64,7 +62,7 @@ const MobileLanding = ({ landingList, activeHojreh, setLandingList }) => {
                     >
                       <CustomLabel
                         type="normal"
-                        value={_asist.number(index + 1)}
+                        value={index + 1}
                         label="شماره"
                       />
                       <CustomSwitch
@@ -76,7 +74,7 @@ const MobileLanding = ({ landingList, activeHojreh, setLandingList }) => {
                     <CustomLabel type="normal" value={value.name} label="نام" />
                     <CustomLabel
                       type="normal"
-                      value={_asist.number(value.created_at)}
+                      value={value.created_at}
                       label="تاریخ ثبت"
                     />
                     <div className="d-flex justify-content-end align-items-center">

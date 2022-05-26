@@ -1,7 +1,9 @@
-import { http } from "../../services/callApi/api";
+import {
+    http
+} from "../../services/callApi/api";
 
 export async function fetchProductShop(detail, setProductShop) {
-    let response = await http.get(
+    const response = await http.get(
         `/api/v1/landing/shop_products/${detail.shop.slug}/`
     );
     if (response.status === 200) {
@@ -18,7 +20,7 @@ export const getMoreProduct = async(
     setPageApi,
     setPosts
 ) => {
-    let moreProduct = await http.get(
+    const moreProduct = await http.get(
         `/api/v1/product-page/related_products/${productSlug}/`, {
             params: {
                 page: pageApi,
