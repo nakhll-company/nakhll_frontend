@@ -150,12 +150,17 @@ const EditProfile = ({ dataProfile, setDataProfile }) => {
         </div>
       </div>
       <div className="form-group mt-3">
-        <label
-          htmlFor="city_field"
-          className="d-block m-0 my-1 font-size-8 text-gray-800"
-        >
-          محل سکونت
-        </label>
+        <div className="d-flex">
+          <label className="d-block flex-grow-1 m-0 my-1 font-size-8 text-gray-800">
+            استان
+          </label>
+          <label className="d-block flex-grow-1 m-0 my-1 font-size-8 text-gray-800">
+            شهرستان
+          </label>
+          <label className="d-block flex-grow-1 m-0 my-1 font-size-8 text-gray-800">
+            شهر
+          </label>
+        </div>
         <div className="d-flex">
           <select
             {...register("State")}
@@ -177,7 +182,7 @@ const EditProfile = ({ dataProfile, setDataProfile }) => {
                 </option>
               );
             })}
-          </select>
+          </select>{" "}
           {errors.State && (
             <span className={styles.form_errors}>
               لطفا این گزینه را پر کنید
