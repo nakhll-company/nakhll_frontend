@@ -372,22 +372,17 @@ const ProductDetailDesktop = ({ data }) => {
             <section className="mb-4">
               <h2 className={styles.product_section_title}>ویژگی‌های محصول</h2>
               <div className={styles.product_attributes}>
-                {detail.net_weight !== "0" && (
-                  <CustomLabel
-                    type="normal"
-                    value={diviedNumber(detail.net_weight)}
+                <CustomLabel
+                  type="normal"
+                  value={diviedNumber(detail.net_weight)}
+                  label="وزن خالص"
+                />
 
-                    label="وزن خالص"
-                    
-                  />
-                )}
-                {detail.weight_with_packing !== "0" && (
-                  <CustomLabel
-                    type="normal"
-                    value={diviedNumber(detail.weight_with_packing)}
-                    label="وزن خالص با بسته بندی"
-                  />
-                )}
+                <CustomLabel
+                  type="normal"
+                  value={diviedNumber(detail.weight_with_packing)}
+                  label="وزن خالص با بسته بندی"
+                />
 
                 {detail.length_with_packing !== "0" && (
                   <CustomLabel
