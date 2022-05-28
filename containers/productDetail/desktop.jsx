@@ -15,7 +15,7 @@ import { useDispatch } from "react-redux";
 import AddFavorites from "../../components/AddFavorites";
 import CustomLabel from "../../components/custom/customLabel";
 import CustomSlider from "../../components/custom/customSlider";
-import ProductCard from "../../components/ProductCart/ProductCard";
+import ProductCard from "../../components/productCart/ProductCard";
 // methods
 
 import { gtag } from "../../utils/googleAnalytics";

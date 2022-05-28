@@ -9,7 +9,7 @@ import { TopBar } from "../TopBar";
 import { allCites } from "../../../utils/allCities";
 import MenuMobile from "../../../components/layout/MenuMobile";
 import CustomSwitch from "../../../components/custom/customSwitch";
-import ProductCard from "../../../components/ProductCart/ProductCard";
+import ProductCard from "../../../components/productCart/ProductCard";
 import CustomAccordion from "../../../components/custom/customAccordion";
 import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
 import MultiRangeSlider from "../../../components/custom/customMultiRangeSlider/MultiRangeSlider";
