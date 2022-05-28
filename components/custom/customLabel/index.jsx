@@ -13,11 +13,7 @@ const CustomLabel = ({
 }) => {
   return (
     <>
-      {value == 0 ||
-      value == null ||
-      value == "" ||
-      value == undefined ||
-      value == "0" ? (
+      {value || value == "0" ? (
         <></>
       ) : (
         <>
