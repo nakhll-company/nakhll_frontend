@@ -258,7 +258,7 @@ const ProductDetailDesktop = ({ data }) => {
                 ></i>
                 <span style={{ fontSize: ".85rem" }}>
                   <span className="ltr"> از </span>
-                  {detail.shop.state}، {detail.shop.big_city}
+                  {detail.shop.state.name}، {detail.shop.big_city.name}
                 </span>
               </div>
             </div>
@@ -377,12 +377,14 @@ const ProductDetailDesktop = ({ data }) => {
                   value={diviedNumber(detail.net_weight)}
                   label="وزن خالص"
                 />
+
                 <CustomLabel
                   type="normal"
                   value={diviedNumber(detail.weight_with_packing)}
                   label="وزن خالص با بسته بندی"
                 />
-                {detail.length_with_packing && (
+
+                {detail.length_with_packing !== "0" && (
                   <CustomLabel
                     type="normal"
                     value={`${diviedNumber(
