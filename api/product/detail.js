@@ -28,11 +28,13 @@ export const getMoreProduct = async(
             },
         }
     );
-    if (moreProduct.data.next === null) {
-        setHasMore(false);
-    } else {
-        setHasMore(true);
-        setPageApi(pageApi + 1);
+    if (moreProduct.status === 200) {        
+        if (moreProduct.data.next === null) {
+            setHasMore(false);
+        } else {
+            setHasMore(true);
+            setPageApi(pageApi + 1);
+        }
+        setPosts((post) => [...post, ...moreProduct.data.results]);
     }
-    setPosts((post) => [...post, ...moreProduct.data.results]);
 };

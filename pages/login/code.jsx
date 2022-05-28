@@ -53,7 +53,7 @@ const Code = () => {
   return (
     <>
       <Head>
-        <title>ورود بازار آنلاین نخل</title>
+        <title>ورود بازار آنلاین نخل </title>
       </Head>
 
       <div className="d-flex flex-column justify-content-center col-12 col-md-8 col-lg-5 m-auto bg-white shadow-lg p-5 mt-5 rounded position-relative">
