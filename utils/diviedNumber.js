@@ -1,4 +1,4 @@
-function diviedNumber(num) {
+function diviedNumber(num = "") {
   return num
     .toString()
     .replace(/,/g, "")

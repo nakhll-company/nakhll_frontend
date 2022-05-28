@@ -38,7 +38,7 @@ const ProductDetailMobile = ({ data }) => {
   const [hasMore, setHasMore] = useState(true);
   const [productShop, setProductShop] = useState([]);
   const userData = useSelector((state) => state.User.userInfo);
-  const [posts, setPosts] = useState([...relatedProduct.results]);
+  const [posts, setPosts] = useState([]);
 
   const thumblineImage = [...detail.banners, { image: detail.image }];
 
@@ -54,6 +54,8 @@ const ProductDetailMobile = ({ data }) => {
       await fetchProductShop(detail, setProductShop);
     }
     fetchData();
+    
+    relatedProduct.length > 0 ? setPosts(...relatedProduct.results) : [];
   }, []);
 
   return (
