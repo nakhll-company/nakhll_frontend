@@ -67,7 +67,6 @@ function Products({
       {
         products: arrayForSend.length > 0 ? arrayForSend : [],
       },
-      0,
       move
     );
   };
