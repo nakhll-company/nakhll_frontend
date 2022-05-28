@@ -48,12 +48,9 @@ const Code = () => {
   };
 
   useEffect(() => {
+    router.query.forgetPass === "true" && forgetPassword();
     const mobile = sessionStorage.getItem("mobile");
     setMobile(mobile);
-  }, []);
-
-  useEffect(() => {
-    router.query.forgetPass === "true" && forgetPassword();
   }, [router.query.forgetPass]);
 
   return (
@@ -87,7 +84,7 @@ const Code = () => {
             className="mb-2"
             style={{ fontSize: "15px" }}
           >
-            کد تایید برای شماره موبایل {mobile ?? "وارد شده"} ارسال گردید
+            کد تایید برای شماره موبایل { mobile ?? "وارد شده"} ارسال گردید
           </label>
           <input
             type="number"
