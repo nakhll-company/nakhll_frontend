@@ -14,6 +14,7 @@ import { sendPhoneNumber } from "../../api/auth/sendPhoneNumber";
 
 const Login = () => {
   const [loadButton, setLoadButton] = useState(false);
+
   const router = useRouter();
   const {
     register,
@@ -27,7 +28,6 @@ const Login = () => {
 
     if (result !== false) {
       sessionStorage.setItem("login", JSON.stringify(result));
-
       if (result.mobile_status === "login_pass") {
         router.push("/login/password/");
       } else {
