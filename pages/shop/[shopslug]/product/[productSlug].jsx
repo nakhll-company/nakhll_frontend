@@ -19,7 +19,9 @@ const fetchData = async (id) => {
   );
 
   const comments = await http.get(urlComments);
+
   const response = await http.get(urlResponse);
+
   const relatedProduct = await http.get(urlRelatedProduct);
 
   if (response.status === 200) {
