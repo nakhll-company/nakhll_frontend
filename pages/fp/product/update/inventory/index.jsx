@@ -55,7 +55,7 @@ const Inventory = ({ productList }) => {
             <span className={styles.header_last_child}>موجودی</span>
           </div>
           <form className={styles.form_edit} onSubmit={handleSubmit(onSubmit)}>
-            {productList.results.length > 0 ? (
+            {productList?.results?.length > 0 ? (
               productList.results.map((value, index) => {
                 return (
                   <div key={index} className={styles.form_edit_card}>

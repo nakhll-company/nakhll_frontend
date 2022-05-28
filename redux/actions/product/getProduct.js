@@ -16,7 +16,7 @@ export const getProduct =
         page
     ) =>
     async(dispatch) => {
-        console.log("page", page);
+
         // try
         try {
             if (activeHojreh.length > 0) {
