@@ -296,9 +296,9 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
             <div className="col-12 col-lg-9">
               <TopBar
                 whichOrdering={whichOrdering}
-                handel_filterModal={handel_filterModal}
+                handelFilterModal={handel_filterModal}
                 setWhichOrdering={setWhichOrdering}
-                handel_OrderingModal={handel_OrderingModal}
+                handelOrderingModal={handel_OrderingModal}
               />
               <div className="mx-auto row">
                 {isLoading ? (

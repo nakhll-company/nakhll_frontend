@@ -1,7 +1,6 @@
 // node libraries
 import router from "next/router";
 import CheckboxTree from "react-checkbox-tree";
-
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 // components
@@ -15,12 +14,13 @@ import ProductCard from "../../../components/ProductCart/ProductCard";
 import CustomAccordion from "../../../components/custom/customAccordion";
 import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
 import MultiRangeSlider from "../../../components/custom/customMultiRangeSlider/MultiRangeSlider";
-
+// methods
+import { http } from "../../../services/callApi/api";
 // styles
 import styles from "./listProductCus.module.scss";
-import { http } from "../../../services/callApi/api";
 
 function ListProductCusTest({ data }) {
+  
   const changePage = 1;
   const [pageApi, setPageApi] = useState(2);
   const [hasMore, setHasMore] = useState(false);
@@ -66,7 +66,7 @@ function ListProductCusTest({ data }) {
     data.max_price ? parseInt(data.max_price) : 10000
   );
 
-  const _handel_category = async () => {
+  const handelCategory = async () => {
     try {
       const response = await http.get(
         `/api/v1/categories/category_product_count/?q=${searchWord}&shop=${hojreh}`
@@ -79,7 +79,7 @@ function ListProductCusTest({ data }) {
     }
   };
 
-  const _handel_Add_category = (id) => {
+  const handelAddCategory = (id) => {
     const copyArray = [...wantCategories];
 
     const newArray = copyArray.filter((element) => element != id);
@@ -91,7 +91,7 @@ function ListProductCusTest({ data }) {
     }
   };
 
-  const _handel_call_another_page_api = async (witchFilter) => {
+  const handelCallAnotherPageApi = async (witchFilter) => {
     try {
       const response = await http.get(`/api/v1/products/`, {
         params: {
@@ -132,7 +132,7 @@ function ListProductCusTest({ data }) {
   // for filters in sidebar
   useEffect(() => {
     async function fetchData() {
-      const _handel_filters = async (witchFilter) => {
+      const handelFilters = async (witchFilter) => {
         setHasMore(true);
         setIsLoading(true);
 
@@ -177,7 +177,7 @@ function ListProductCusTest({ data }) {
           setIsLoading(false);
         }
       };
-      await _handel_filters();
+      await handelFilters();
     }
     fetchData();
   }, [
@@ -232,12 +232,12 @@ function ListProductCusTest({ data }) {
   ]);
 
   // for filters in sidebar
-  const handel_filterModal = () => {
+  const handelFilterModal = () => {
     setIsOpenModal(!isOpenModal);
   };
 
   // function for open OrderingModal in mobile
-  const handel_OrderingModal = () => {
+  const handelOrderingModal = () => {
     setIsOpenOrderingModal(!isOpenOrderingModal);
   };
 
@@ -250,7 +250,7 @@ function ListProductCusTest({ data }) {
               <CustomAccordion
                 title="دسته بندی"
                 item="one"
-                callApi={() => _handel_category()}
+                callApi={() => handelCategory()}
               >
                 {categories.map((ele, index) => (
                   <div
@@ -259,7 +259,7 @@ function ListProductCusTest({ data }) {
                   >
                     <input
                       onChange={(e) => {
-                        _handel_Add_category(e.target.value);
+                        handelAddCategory(e.target.value);
                       }}
                       className="form-check-input"
                       type="checkbox"
@@ -341,9 +341,9 @@ function ListProductCusTest({ data }) {
               totalcount={totalcount}
               data={data.ordering}
               whichOrdering={whichOrdering}
-              handel_filterModal={handel_filterModal}
+              handel_filterModal={handelFilterModal}
               setWhichOrdering={setWhichOrdering}
-              handel_OrderingModal={handel_OrderingModal}
+              handel_OrderingModal={handelOrderingModal}
             />
             {/* inja */}
             <div
@@ -369,7 +369,7 @@ function ListProductCusTest({ data }) {
                 <InfiniteScroll
                   className="mx-auto row"
                   dataLength={listWithFilter.length} // This is important field to render the next data
-                  next={_handel_call_another_page_api}
+                  next={handelCallAnotherPageApi}
                   hasMore={hasMore}
                   loader={<h4>کمی صبر...</h4>}
                   endMessage={
@@ -404,7 +404,7 @@ function ListProductCusTest({ data }) {
             }}
           >
             <i
-              onClick={handel_filterModal}
+              onClick={handelFilterModal}
               className="far fa-times-circle"
               style={{
                 fontSize: "25px",
@@ -467,7 +467,7 @@ function ListProductCusTest({ data }) {
               <CustomAccordion
                 title="دسته بندی"
                 item="1mobile"
-                callApi={() => _handel_category()}
+                callApi={() => handelCategory()}
               >
                 {categories.map((ele, index) => (
                   <div
@@ -476,7 +476,7 @@ function ListProductCusTest({ data }) {
                   >
                     <input
                       onChange={(e) => {
-                        _handel_Add_category(e.target.value);
+                        handelAddCategory(e.target.value);
                       }}
                       className="form-check-input"
                       type="checkbox"
@@ -530,7 +530,7 @@ function ListProductCusTest({ data }) {
             }}
           >
             <button
-              onClick={handel_filterModal}
+              onClick={handelFilterModal}
               className="btn btn-dark"
               style={{ width: "90vw", fontSize: "14px" }}
             >
@@ -546,8 +546,8 @@ function ListProductCusTest({ data }) {
       {/* ModalOrdering Strat */}
       {isOpenOrderingModal && (
         <OrderingModalMobile
-          handel_OrderingModal={handel_OrderingModal}
-          handel_filterModal={handel_filterModal}
+          handelOrderingModal={handelOrderingModal}
+          handelFilterModal={handelFilterModal}
           setWhichOrdering={setWhichOrdering}
           setIsOpenOrderingModal={setIsOpenOrderingModal}
         />

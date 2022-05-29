@@ -1,10 +1,12 @@
 import styles from "./orderingModalMobile.module.scss";
+import { AiFillCloseCircle } from "react-icons/ai";
+import CustomList from "./customList";
 
 function OrderingModalMobile({
-  handel_OrderingModal,
-  handel_filterModal,
-  setWhichOrdering,
+  handelOrderingModal,
+  onChangeFilter,
   setIsOpenOrderingModal,
+  data,
 }) {
   return (
     <>
@@ -17,15 +19,7 @@ function OrderingModalMobile({
             zIndex: "10000",
           }}
         >
-          <i
-            onClick={handel_OrderingModal}
-            className="far fa-times-circle"
-            style={{
-              fontSize: "25px",
-              marginTop: "5px",
-              marginLeft: "10px",
-            }}
-          ></i>
+          <AiFillCloseCircle size={30} onClick={handelOrderingModal} />
         </div>
         <div id="sidebar">
           <div className={styles.search_body_filter}>
@@ -33,102 +27,52 @@ function OrderingModalMobile({
               className={styles.modal_body}
               style={{ msOverflowX: "hidden" }}
             >
-              <div
-                style={{
-                  padding: "5px",
-                  paddingBottom: "10px",
-                  paddingTop: "20px",
-                  borderBottom: "1px solid gray",
-                }}
+              <CustomList
+                className={data == undefined}
+                title="مرتبط ترین"
                 onClick={() => {
-                  setWhichOrdering("");
+                  onChangeFilter("ordering", "");
                   setIsOpenOrderingModal(false);
                 }}
-              >
-                <span>مرتبط ترین</span>
-              </div>
-              <div
-                style={{
-                  padding: "5px",
-                  paddingBottom: "10px",
-                  paddingTop: "20px",
-                  borderBottom: "1px solid gray",
-                }}
+              />
+              <CustomList
+                className={data == "Price"}
+                title="ارزانتر"
                 onClick={() => {
-                  setWhichOrdering("Price");
+                  onChangeFilter("ordering", "Price");
                   setIsOpenOrderingModal(false);
                 }}
-              >
-                <span>ارزانتر</span>
-              </div>
-              <div
-                style={{
-                  padding: "5px",
-                  paddingBottom: "10px",
-                  paddingTop: "20px",
-                  borderBottom: "1px solid gray",
-                }}
+              />
+
+              <CustomList
+                className={data == "-Price"}
+                title="گرانتر"
                 onClick={() => {
-                  setWhichOrdering("-Price");
+                  onChangeFilter("ordering", "-Price");
                   setIsOpenOrderingModal(false);
                 }}
-              >
-                <span>گرانتر</span>
-              </div>
-              <div
-                style={{
-                  padding: "5px",
-                  paddingBottom: "10px",
-                  paddingTop: "20px",
-                  borderBottom: "1px solid gray",
-                }}
+              />
+
+              <CustomList
+                className={data == "-DiscountPrecentage"}
+                title="بیشترین تخفیف"
                 onClick={() => {
-                  setWhichOrdering("-DiscountPrecentage");
+                  onChangeFilter("ordering", "-DiscountPrecentage");
                   setIsOpenOrderingModal(false);
                 }}
-              >
-                <span>بیشترین تخفیف</span>
-              </div>
-              <div
-                style={{
-                  padding: "5px",
-                  paddingBottom: "10px",
-                  paddingTop: "20px",
-                  borderBottom: "1px solid gray",
-                }}
+              />
+
+              <CustomList
+                className={data == "-DateCreate"}
+                title="تازه ها"
                 onClick={() => {
-                  setWhichOrdering("-DateCreate");
+                  onChangeFilter("ordering", "-DateCreate");
                   setIsOpenOrderingModal(false);
                 }}
-              >
-                <span>تازه ها</span>
-              </div>
+              />
             </div>
           </div>
         </div>
-        <div
-          style={{
-            position: "fixed",
-            bottom: "0",
-            left: "0",
-            right: "0",
-            textAlign: "center",
-            marginTop: "20px",
-            zIndex: "99999",
-            backgroundColor: "#fff",
-            padding: "5px",
-          }}
-        >
-          <button
-            onClick={handel_filterModal}
-            className="btn btn-dark"
-            style={{ width: "90vw", fontSize: "14px" }}
-          >
-            {" "}
-            تایید
-          </button>
-        </div>
-        <div style={{ paddingBottom: "80px" }}></div>
       </div>
     </>
   );
