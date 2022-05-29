@@ -37,6 +37,11 @@
     /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.03); */
     display: flex;
     align-items: center;
+    .categoryTitle{
+        margin:0; 
+        font-size: 18px; 
+        font-weight: bold;
+    }
 }
 
 .content {
@@ -57,6 +62,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    .categoryItems{
+        margin-right: 14px;
+        font-size: 16px;
+        font-weight: bold;
+    }
 }
 
 .btn_icon {
