@@ -4,12 +4,16 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 // components
 import InputPictureSetting from "../InputPicture";
+import { BsTrash } from "react-icons/bs";
+
 // methods
 import { callApiUpDataPicture } from "../../../../api/settings";
 // style
 import styles from "./topPictures.module.scss";
 
-function TopPictures({ apiSetting, activeHojreh }) {
+import { callApiDelete } from "./callApiDelete";
+
+function TopPictures({ apiSetting, activeHojreh, setOnMenu }) {
   const [imgProfile, setImgProfile] = useState(
     apiSetting.image_thumbnail_url ? apiSetting.image_thumbnail_url : null
   );
@@ -45,8 +49,17 @@ function TopPictures({ apiSetting, activeHojreh }) {
             ></Image>
           )}
           <div className={styles.deleteBtn}>
-            <div className={styles.wrapBtn} onClick={() => setImgProfile(null)}>
-              <i className="fas fa-trash"></i>
+            <div
+              className={styles.wrapBtn}
+              onClick={async () => {
+                let callApi = await callApiDelete({ activeHojreh });
+                if (callApi) {
+                  setOnMenu(5);
+                }
+                // setImgProfile(base64Profile);
+              }}
+            >
+              <BsTrash size={25} color="red" />
             </div>
           </div>
         </div>
