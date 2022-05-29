@@ -106,7 +106,7 @@ const UpdateProduct = ({ activeHojreh }) => {
           getBase64Image(Data.Product_Banner[3]?.Image, setImgProductFour);
           getBase64Image(Data.Product_Banner[4]?.Image, setImgProductFive);
           getBase64Image(Data.Product_Banner[5]?.Image, setImgProductSix);
-          setProduct_Banner(Data.Product_Banner);
+          setProductBanner(Data.Product_Banner);
           const newArrTags = [];
           Data.product_tags.map((item) => {
             newArrTags.push({ id: item.text, text: item.text });
