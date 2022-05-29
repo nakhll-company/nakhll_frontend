@@ -1,3 +1,8 @@
+
+export function undiviedNumber(num) {
+    return num.split(',').join('')
+}
+
 function diviedNumber(num = "") {
   return num
     .toString()
