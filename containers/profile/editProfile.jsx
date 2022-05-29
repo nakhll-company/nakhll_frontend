@@ -174,7 +174,9 @@ const EditProfile = ({ dataProfile, setDataProfile }) => {
               );
             }}
           >
-            <option value={dataProfile.State}>{dataProfile.State}</option>
+            <option selected disabled>
+              {dataProfile.State}
+            </option>
             {selectState.map((value, index) => {
               return (
                 <option key={index} value={value.name} id={value.id}>
@@ -200,7 +202,9 @@ const EditProfile = ({ dataProfile, setDataProfile }) => {
               );
             }}
           >
-            <option value={dataProfile.BigCity}>{dataProfile.BigCity}</option>
+            <option selected disabled value={dataProfile.BigCity}>
+              {dataProfile.BigCity}
+            </option>
             {selectBigCities.map((value, index) => {
               return (
                 <option key={index} value={value.name} id={value.id}>
@@ -215,7 +219,9 @@ const EditProfile = ({ dataProfile, setDataProfile }) => {
             </span>
           )}
           <select {...register("City")} className="form-control">
-            <option value={dataProfile.City}>{dataProfile.City}</option>
+            <option selected disabled value={dataProfile.City}>
+              {dataProfile.City}
+            </option>
             {selectCities.map((value, index) => {
               return (
                 <option key={index} value={value.name}>

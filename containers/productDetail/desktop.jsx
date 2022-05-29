@@ -256,7 +256,7 @@ const ProductDetailDesktop = ({ data }) => {
                 ></i>
                 <span style={{ fontSize: ".85rem" }}>
                   <span className="ltr"> از </span>
-                  {detail.shop.state.name}، {detail.shop.big_city.name}
+                  {detail?.shop?.state?.name}، {detail?.shop?.big_city?.name}
                 </span>
               </div>
             </div>
