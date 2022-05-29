@@ -1,3 +1,10 @@
+.wrap {
+    padding: 5px;
+    padding-bottom: 10px;
+    padding-top: 20px;
+    display: flex;
+}
+
 .modal_filter_products {
   display: none !important;
   background-color: #fff;
@@ -10,11 +17,13 @@
   bottom: 0;
   z-index: 9999;
 }
+
 @media (max-width: 768px) {
   .modal_filter_products {
     display: block !important;
   }
 }
+
 .search_body_filter {
   display: -webkit-flex;
   display: -moz-box;
@@ -27,7 +36,17 @@
   -moz-box-flex: 1;
   flex-grow: 1;
 }
+
 .modal_body {
-  max-height: 100%;
-  padding: 0;
+    max-height: 100%;
+    padding: 0;
+}
+
+.dot_active {
+    width: 6px;
+    height: 6px;
+    background-color: rgb(34, 199, 5);
+    border-radius: 50%;
+    margin-left: 4px;
+    margin-top: 5px;
 }

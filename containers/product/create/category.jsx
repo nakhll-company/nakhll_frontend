@@ -1,7 +1,12 @@
 // node libraries
 import { useState } from "react";
+import { BiArrowBack } from "react-icons/bi";
+import { FiArrowRightCircle } from "react-icons/fi";
+// methods
+import {goBack} from './methods/goBack';
+import { finalClick } from './methods/finalClick';
 // scss
-import styles from "../../../styles/pages/product/create.module.scss";
+import styles from "./create.module.scss";
 
 const Category = ({
   clearErrors,
@@ -11,72 +16,34 @@ const Category = ({
   setData,
   categories,
 }) => {
-  const [title, settitle] = useState("");
   const [page, setPage] = useState(1);
+  const [title, settitle] = useState("");
 
   // submarket
   function clickButton(e) {
     setPage(2);
     settitle(e.name);
   }
-  // final Click
-  function finalClick(e) {
-    const element = document.getElementById("wrapperMarkets");
-    element.style.display = "none";
-    const elementProduct = document.getElementById("wrapper_product");
-    elementProduct.style.display = "flex";
-    setPlaceholderSubmarckets(e);
-    setSubmarketId(e.id);
-    setData(categories);
-    setPage((page) => page - 1);
-    clearErrors("submark");
-  }
-  // Go Back
-  function GoBack() {
-    if (page === 1) {
-      const element = document.getElementById("wrapperMarkets");
-      element.style.display = "none";
-      const elementProduct = document.getElementById("wrapper_product");
-      elementProduct.style.display = "flex";
-    } else {
-      setPage((page) => page - 1);
-    }
-  }
+
   return (
-    <div
-      style={{
-        position: "relative",
-        gridColumn: "1/-1",
-        gridRow: "1/-1",
-        background: "#ffffff",
-      }}
-    >
+    <div className={styles.mainWrapper}>
       <div id="wrapperMarkets" className={styles.markets}>
         <div className={styles.wrapper}>
           <div className={styles.Header}>
             <button
               style={{ outline: "unset" }}
-              onClick={GoBack}
+              onClick={()=>{goBack(page,setPage,setData,categories)}}
               className={styles.btn_icon}
             >
-              <span
-                className="fas fa-arrow-right"
-                style={{
-                  fontSize: "15px",
-                  color: "#5E7488",
-                  marginLeft: "20px",
-                  marginRight: "20px",
-                }}
-              ></span>
+              <FiArrowRightCircle size={25} style={{marginBottom:'5px'}} />
             </button>
-            {page === 1 && (
-              <h2 style={{ fontSize: "18px", fontWeight: "bold" }}>
+            {page === 1 ? (
+              <h2 className={styles.categoryTitle}>
                 انتخاب دسته بندی
               </h2>
-            )}
-            {page !== 1 && (
-              <h2 style={{ fontSize: "16px" }}> زیردسته {title} </h2>
-            )}
+            ):(
+              <h2 className={styles.categoryTitle}> زیردسته {title} </h2>
+              )}
           </div>
           <div className={styles.content}>
             {data.map((value, index) => {
@@ -87,24 +54,15 @@ const Category = ({
                   onClick={() => {
                     clickButton(value);
                     value.childrens.length > 0 && setData(value.childrens);
-                    value.childrens.length === 0 && finalClick(value);
+                    value.childrens.length === 0 && finalClick(value,setPlaceholderSubmarckets,setSubmarketId,setData,setPage,clearErrors,categories);
                   }}
                   className={styles.btn}
                 >
                   <div className={styles.in_btn}>
-                    <h2
-                      style={{
-                        marginRight: "14px",
-                        fontSize: "16px",
-                        fontWeight: "bold",
-                      }}
-                    >
+                    <h2 className={styles.categoryItems}>
                       {value.name}
                     </h2>
-                    <span
-                      style={{ marginLeft: "14px" }}
-                      className="fas fa-chevron-left "
-                    ></span>
+                    <BiArrowBack size={20} color='#000'/>
                   </div>
                 </button>
               );

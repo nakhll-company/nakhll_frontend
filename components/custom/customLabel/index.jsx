@@ -13,7 +13,7 @@ const CustomLabel = ({
 }) => {
   return (
     <>
-      {value || value === "0" ? (
+      {!value || value === "0" ? (
         <></>
       ) : (
         <>

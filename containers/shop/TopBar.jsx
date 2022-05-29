@@ -3,9 +3,9 @@ import React from "react";
 export const TopBar = ({
   totalcount,
   data,
-  handel_filterModal,
+  handelFilterModal,
   setWhichOrdering,
-  handel_OrderingModal,
+  handelOrderingModal,
 }) => {
   return (
     <>
@@ -20,11 +20,11 @@ export const TopBar = ({
             className="d-lg-none"
           >
             <i className="fas fa-filter"></i>
-            <button className="btn px-2" onClick={handel_filterModal}>
+            <button className="btn px-2" onClick={handelFilterModal}>
               <span style={{ marginLeft: "45px" }}>فیلترها</span>
             </button>
             <i className="fas fa-sort-amount-down-alt"></i>
-            <button className="btn px-2" onClick={handel_OrderingModal}>
+            <button className="btn px-2" onClick={handelOrderingModal}>
               <span>
                 مرتب سازی:
                 <span
@@ -45,7 +45,7 @@ export const TopBar = ({
               </span>
             </button>
           </div>{" "}
-          <div className="search-sorts mb-0  productPage_top_filter">
+          <div className="search-sorts mb-0 ">
             <div className="d-flex align-items-center">
               <div
                 className="title"

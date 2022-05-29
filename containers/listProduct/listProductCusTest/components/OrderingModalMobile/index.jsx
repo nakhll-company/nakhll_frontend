@@ -1,8 +1,8 @@
 import styles from "./orderingModalMobile.module.scss";
 
 function OrderingModalMobile({
-  handel_OrderingModal,
-  handel_filterModal,
+  handelOrderingModal,
+  handelFilterModal,
   setWhichOrdering,
   setIsOpenOrderingModal,
 }) {
@@ -18,7 +18,7 @@ function OrderingModalMobile({
           }}
         >
           <i
-            onClick={handel_OrderingModal}
+            onClick={handelOrderingModal}
             className="far fa-times-circle"
             style={{
               fontSize: "25px",
@@ -120,7 +120,7 @@ function OrderingModalMobile({
           }}
         >
           <button
-            onClick={handel_filterModal}
+            onClick={handelFilterModal}
             className="btn btn-dark"
             style={{ width: "90vw", fontSize: "14px" }}
           >

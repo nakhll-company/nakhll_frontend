@@ -1,7 +1,6 @@
 // node libraries
 import router from "next/router";
 import CheckboxTree from "react-checkbox-tree";
-
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 // components
@@ -17,6 +16,7 @@ import MultiRangeSlider from "../../../components/custom/customMultiRangeSlider/
 import { authhttp, http } from "../../../services/callApi/api";
 
 function ListProductShop({ data }) {
+
   const changePage = 1;
   const searchWord = data.q ? data.q : "";
   const [pageApi, setPageApi] = useState(2);
@@ -61,7 +61,7 @@ function ListProductShop({ data }) {
       : []),
   ]);
 
-  const _handel_Add_category = (id) => {
+  const handelAddCategory = (id) => {
     const copyArray = [...wantCategories];
     const newArray = copyArray.filter((element) => element != id);
     if (copyArray.length == newArray.length) {
@@ -219,12 +219,12 @@ function ListProductShop({ data }) {
   // for filters in sidebar
   // END
 
-  const handel_filterModal = () => {
+  const handelFilterModal = () => {
     setIsOpenModal(!isOpenModal);
   };
 
   // function for open OrderingModal in mobile
-  const handel_OrderingModal = () => {
+  const handelOrderingModal = () => {
     setIsOpenOrderingModal(!isOpenOrderingModal);
   };
 
@@ -243,7 +243,7 @@ function ListProductShop({ data }) {
                     >
                       <input
                         onChange={(e) => {
-                          _handel_Add_category(e.target.value);
+                          handelAddCategory(e.target.value);
                         }}
                         className="form-check-input"
                         type="checkbox"
@@ -322,9 +322,9 @@ function ListProductShop({ data }) {
             <TopBar
               totalcount={totalcount}
               data={data.ordering}
-              handel_filterModal={handel_filterModal}
+              handelFilterModal={handelFilterModal}
               setWhichOrdering={setWhichOrdering}
-              handel_OrderingModal={handel_OrderingModal}
+              handelOrderingModal={handelOrderingModal}
             />
             <div className="mx-auto row">
               {isLoading ? (
@@ -368,7 +368,7 @@ function ListProductShop({ data }) {
             }}
           >
             <i
-              onClick={handel_filterModal}
+              onClick={handelFilterModal}
               className="far fa-times-circle"
               style={{
                 fontSize: "25px",
@@ -433,7 +433,7 @@ function ListProductShop({ data }) {
                   >
                     <input
                       onChange={(e) => {
-                        _handel_Add_category(e.target.value);
+                        handelAddCategory(e.target.value);
                       }}
                       className="form-check-input"
                       type="checkbox"
@@ -487,7 +487,7 @@ function ListProductShop({ data }) {
             }}
           >
             <button
-              onClick={handel_filterModal}
+              onClick={handelFilterModal}
               className="btn btn-dark"
               style={{ width: "90vw", fontSize: "14px" }}
             >
@@ -512,7 +512,7 @@ function ListProductShop({ data }) {
             }}
           >
             <i
-              onClick={handel_OrderingModal}
+              onClick={handelOrderingModal}
               className="far fa-times-circle"
               style={{
                 fontSize: "25px",
@@ -611,7 +611,7 @@ function ListProductShop({ data }) {
             }}
           >
             <button
-              onClick={handel_filterModal}
+              onClick={handelFilterModal}
               className="btn btn-dark"
               style={{ width: "90vw", fontSize: "14px" }}
             >

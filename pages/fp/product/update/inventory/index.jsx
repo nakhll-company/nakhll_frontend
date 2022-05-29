@@ -55,22 +55,22 @@ const Inventory = ({ productList }) => {
             <span className={styles.header_last_child}>موجودی</span>
           </div>
           <form className={styles.form_edit} onSubmit={handleSubmit(onSubmit)}>
-            {productList.length > 0 ? (
-              productList.map((value, index) => {
+            {productList?.results?.length > 0 ? (
+              productList.results.map((value, index) => {
                 return (
                   <div key={index} className={styles.form_edit_card}>
                     <label className={styles.form_edit_label}>
-                      {value.title}
+                      {value.Title}
                     </label>
                     <input
                       type="hidden"
                       name={`Slug${index + 100}`}
-                      defaultValue={value.slug}
+                      defaultValue={value.Slug}
                     />
                     <input
                       className={styles.form_edit_input}
                       type="number"
-                      defaultValue={value.inventory}
+                      defaultValue={value.Inventory}
                       {...register(`Inventory${index + 100}`, {
                         required: "لطفا این گزینه را پر نمایید",
                       })}

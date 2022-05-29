@@ -1,144 +1,95 @@
-import React from "react";
+import { BsSortDownAlt, BsFilter } from "react-icons/bs";
+import { CustomList } from "./customList";
+import { showFilter } from "./showFilter";
+import s from "./TopBar.module.scss";
+import { TotalNum } from "./totalNum";
 
 export const TopBar = ({
+  onChangeFilter,
   totalcount,
   data,
-  handel_filterModal,
-  setWhichOrdering,
-  handel_OrderingModal,
+  handelFilterModal,
+  handelOrderingModal,
 }) => {
   return (
     <>
-      <div style={{ marginTop: "0px" }}>
-        <div className=" product-filters mb-4">
-          <div
-            style={{
-              cursor: "pointer",
-              backgroundColor: "#fff",
-              padding: "5px 15px",
-            }}
-            className="d-lg-none"
-          >
-            <i className="fas fa-filter"></i>
-            <button className="btn px-2" onClick={handel_filterModal}>
-              <span style={{ marginLeft: "45px" }}>فیلترها</span>
-            </button>
-            <i className="fas fa-sort-amount-down-alt"></i>
-            <button className="btn px-2" onClick={handel_OrderingModal}>
-              <span>
-                مرتب سازی:
-                <span
-                  style={{
-                    fontSize: "12px",
-                    color: "red",
-                    marginRight: "5px",
-                  }}
-                >
-                  {data == "" && "مرتبط‌ترین"}
-                  {data == "Price" && "ارزانتر"}
-                  {data == "-Price" && "گرانتر"}
-
-                  {data == "DiscountPrecentage" && "بیشترین تخفیف"}
-                  {data == "-DateCreate" && "تازه ها"}
-                </span>
-                <span></span>
-              </span>
-            </button>
-          </div>{" "}
-          <div className="search-sorts mb-0  productPage_top_filter">
-            <div className="d-flex align-items-center">
-              <div
-                className="title"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  color: "rgb(138 137 137)",
-                }}
-              >
-                <i
-                  className="fas fa-sort-amount-down-alt"
-                  style={{ fontSize: "18px" }}
-                ></i>{" "}
-                <span
-                  className="d-none d-lg-block"
-                  style={{ color: "rgb(138 137 137)" }}
-                >
-                  {" "}
-                  مرتب‌سازی براساس :{" "}
-                </span>
-              </div>{" "}
-              <ul>
-                <li className={`sort-item  ${data ? " " : "active"} `}>
-                  <a
-                    id={"1"}
-                    onClick={() => {
-                      setWhichOrdering("");
-                    }}
-                  >
-                    مرتبط‌ترین
-                  </a>
-                </li>
-                <li
-                  className={`sort-item  ${data == "Price" ? " active" : ""} `}
-                >
-                  <a
-                    onClick={() => {
-                      setWhichOrdering("Price");
-                    }}
-                  >
-                    ارزان‌تر
-                  </a>
-                </li>
-                <li
-                  id={"3"}
-                  className={`sort-item  ${data == "-Price" ? " active" : ""} `}
-                >
-                  <a
-                    onClick={() => {
-                      setWhichOrdering("-Price");
-                    }}
-                  >
-                    گران‌تر
-                  </a>
-                </li>
-                <li
-                  className={`sort-item  ${
-                    data == "-DiscountPrecentage" ? " active" : ""
-                  } `}
-                >
-                  <a
-                    onClick={() => {
-                      setWhichOrdering("-DiscountPrecentage");
-                    }}
-                  >
-                    بیشترین تخفیف
-                  </a>
-                </li>
-                <li
-                  className={`sort-item  ${
-                    data == "-DateCreate" ? " active" : ""
-                  } `}
-                >
-                  <a
-                    onClick={() => {
-                      setWhichOrdering("-DateCreate");
-                    }}
-                  >
-                    تازه‌ها
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <span className="  " style={{ marginLeft: "20px" }}>
-              {" "}
-              تعداد کالا:
-              <span style={{ marginRight: "10px", fontWeight: "bold" }}>
-                {" "}
-                {totalcount}
-              </span>
+      <div className={s.wrap}>
+        {/* Mobile */}
+        <div className={s.wrap_mobile}>
+          <div onClick={handelFilterModal}>
+            <BsFilter size={18} />
+            <span>فیلترها</span>
+          </div>
+          <div onClick={handelOrderingModal}>
+            <BsSortDownAlt size={18} />
+            <span>
+              <span className={s.filter_name}>{showFilter(data)}</span>
             </span>
-          </div>{" "}
-        </div>
+          </div>
+          <div className="">
+            <TotalNum number={totalcount} />
+          </div>
+        </div>{" "}
+        {/* Descktop */}
+        <div className="search-sorts d-none d-lg-flex ">
+          <div className=" d-flex  align-items-center">
+            <div
+              className="title"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                color: "rgb(138 137 137)",
+              }}
+            >
+              <BsSortDownAlt size={20} />
+              <span
+                className="d-none d-lg-block "
+                style={{ color: "rgb(138 137 137)" }}
+              >
+                {" "}
+                مرتب‌سازی براساس :{" "}
+              </span>
+            </div>{" "}
+            <ul>
+              <CustomList
+                className={data == undefined}
+                onClick={() => {
+                  onChangeFilter("ordering", "");
+                }}
+                title="مرتبط ترین"
+              />
+              <CustomList
+                className={data == "Price"}
+                onClick={() => {
+                  onChangeFilter("ordering", "Price");
+                }}
+                title="ارزانتر"
+              />
+              <CustomList
+                className={data == "-Price"}
+                onClick={() => {
+                  onChangeFilter("ordering", "-Price");
+                }}
+                title="گران تر"
+              />
+              <CustomList
+                className={data == "-DiscountPrecentage"}
+                onClick={() => {
+                  onChangeFilter("ordering", "-DiscountPrecentage");
+                }}
+                title="بیشترین تخفیف"
+              />
+              <CustomList
+                className={data == "-DateCreate"}
+                onClick={() => {
+                  onChangeFilter("ordering", "-DateCreate");
+                }}
+                title="تازه ها"
+              />
+            </ul>
+          </div>
+          <TotalNum number={totalcount} />
+        </div>{" "}
       </div>
     </>
   );

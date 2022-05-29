@@ -4,11 +4,14 @@ import router from "next/router";
 import { useSelector } from "react-redux";
 import CheckboxTree from "react-checkbox-tree";
 import React, { useEffect, useState } from "react";
+import { AiFillCloseCircle } from "react-icons/ai";
 import InfiniteScroll from "react-infinite-scroll-component";
 // components
 import { TopBar } from "../TopBar";
 import Grouping from "../../searchPage/Grouping";
+import FilterPrice from "./components/filterPrice";
 import { allCites } from "../../../utils/allCities";
+import FiltersPart from "../../searchPage/filtersPart";
 import Search from "../../../components/search/Search";
 import SearchProduct from "./components/searchProduct";
 import AddFavorites from "../../../components/AddFavorites";
@@ -17,16 +20,16 @@ import OrderingModalMobile from "./components/OrderingModalMobile";
 import ProductCard from "../../../components/ProductCart/ProductCard";
 import CustomAccordion from "../../../components/custom/customAccordion";
 import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
-import MultiRangeSlider from "../../../components/custom/customMultiRangeSlider/MultiRangeSlider";
 // methods
 import { ApiReference } from "../../../api/Api";
 import { http } from "../../../services/callApi/api";
+import { parsUrlToArr } from "../../../utils/general";
 import diviedNumber from "../../../utils/diviedNumber";
 // styles
 import styles from "./listProductCus.module.scss";
 
-
 function ListProductCus({ data }) {
+
   const [pageApi, setPageApi] = useState(2);
   const [hasMore, setHasMore] = useState(false);
   const [shopsName, setShopsName] = useState([]);
@@ -35,53 +38,67 @@ function ListProductCus({ data }) {
   const [expandCity, setExpandCity] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchShops, setSearchShops] = useState([]);
-  const [clickOnRange, setClickOnRange] = useState(1);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [listWithFilter, setListWithFilter] = useState([]);
   const userData = useSelector((state) => state.User.userInfo);
   const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
-  const [searchWord, setSearchWord] = useState(data.q ? data.q : "");
   const [isOpenOrderingModal, setIsOpenOrderingModal] = useState(false);
+  const [ragnePrice, setRagnePrice] = useState({});
   // states for shops
   const [shopesTag] = useState(userData ? userData.shops : []);
   const [tags, setTags] = useState([]);
   const [activeHojreh, setActiveHojreh] = useState();
-  const [whichOrdering, setWhichOrdering] = useState(
-    data.ordering ? data.ordering : ""
-  );
 
   const [wantTags, setWantTags] = useState([
-    ...(data.tags ? data.tags.split(",").map((el) => parseInt(el)) : []),
+    ...(data.tags ? parsUrlToArr(data.tags) : []),
   ]);
 
-  const [minPrice, setMinPrice] = useState(
-    data.min_price ? parseInt(data.min_price) : 0
-  );
-  const [isReadyForSend, setIsReadyForSend] = useState(
-    data.ready == "true" ? true : false
-  );
-  const [maxPrice, setMaxPrice] = useState(
-    data.max_price ? parseInt(data.max_price) : 10000
-  );
-  const [isAvailableGoods, setIsAvailableGoods] = useState(
-    data.available == "true" ? true : false
-  );
-  const [isDiscountPercentage, setIsDiscountPercentage] = useState(
-    data.discounted == "true" ? true : false
-  );
-  const [checkedCity, setCheckedCity] = useState([
-    ...(data.city ? data.city.split(",").map((el) => parseInt(el)) : []),
-  ]);
   const [categories, setCategories] = useState([
-    ...(data.category
-      ? data.category.split(",").map((el) => parseInt(el))
-      : []),
+    ...(data.category ? parsUrlToArr(data.category) : []),
   ]);
-  const [wantCategories, setWantCategories] = useState([
-    ...(data.category
-      ? data.category.split(",").map((el) => parseInt(el))
-      : []),
-  ]);
+
+  const onChangeFilter = (name, value, alone = false) => {
+    if (alone) {
+      const filter = [];
+      filter[name] = value;
+      router.push(
+        {
+          pathname: router.pathname,
+          query: filter,
+        },
+        undefined,
+        {}
+      );
+      return;
+    }
+    const filters = data;
+    if (value == "" || !value) {
+      delete filters[name];
+    } else {
+      filters[name] = value;
+    }
+    router.push(
+      {
+        pathname: router.pathname,
+        query: filters,
+      },
+      undefined,
+      { shallow: true }
+    );
+  };
+
+  const removeFilter = (name) => {
+    const filters = data;
+    delete filters[name];
+    router.push(
+      {
+        pathname: router.pathname,
+        query: filters,
+      },
+      undefined,
+      { shallow: true }
+    );
+  };
 
   const callTags = async (activeHojreh) => {
     try {
@@ -97,14 +114,14 @@ function ListProductCus({ data }) {
   };
 
   const handelAddCategory = (id) => {
-    const copyArray = [...wantCategories];
+    const copyArray = [...(data.category ? parsUrlToArr(data.category) : [])];
 
     const newArray = copyArray.filter((element) => element != id);
 
     if (copyArray.length == newArray.length) {
-      setWantCategories([...newArray, id]);
+      onChangeFilter("category", [...newArray, id].toString());
     } else {
-      setWantCategories(newArray);
+      onChangeFilter("category", newArray.toString());
     }
   };
 
@@ -115,36 +132,15 @@ function ListProductCus({ data }) {
 
     if (copyArray.length == newArray.length) {
       setWantTags([...newArray, id]);
-      setSearchWord("");
     } else {
       setWantTags(newArray);
-      setSearchWord("");
     }
   };
 
-  const handelCallAnotherPageApi = async (witchFilter) => {
+  const handelCallAnotherPageApi = async () => {
     try {
       const response = await http.get(`/api/v1/products/`, {
-        params: {
-          ...(witchFilter ? witchFilter : null),
-          search: searchWord,
-          ...(whichOrdering !== "" && { ordering: whichOrdering }),
-          page: pageApi,
-          ...(isReadyForSend && { ready: isReadyForSend }),
-          ...(isAvailableGoods && { available: isAvailableGoods }),
-          ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
-          ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
-          ...(wantCategories.length > 0 && {
-            category: wantCategories.toString(),
-          }),
-          ...(wantTags.length > 0 && {
-            tags: wantTags.toString(),
-          }),
-          page_size: 50,
-          ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
-          ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
-          ...(hojreh !== "" && { shop: hojreh }),
-        },
+        params: { ...data, page: pageApi, page_size: 50 },
       });
       if (response.status === 200) {
         const ContinueList = response.data.results;
@@ -180,70 +176,23 @@ function ListProductCus({ data }) {
     }
     setSearchShops(filterArray);
   };
-  useEffect(() => {
-    setSearchWord(data.q);
-  }, [data.q]);
 
-  // data,
-  //   changePage,
   useEffect(() => {
-    router.push(
-      {
-        pathname: router.pathname,
-        query: {
-          q: searchWord,
-          ...(whichOrdering !== "" && { ordering: whichOrdering }),
-          ...(isReadyForSend && { ready: isReadyForSend }),
-          ...(isAvailableGoods && { available: isAvailableGoods }),
-          ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
-          ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
-          ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
-          ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
-          ...(hojreh !== "" && { shop: hojreh }),
-          ...(wantCategories.length !== 0 && {
-            category: wantCategories.toString(),
-          }),
-          ...(wantTags.length > 0 && {
-            tags: wantTags.toString(),
-          }),
-        },
-      },
-      undefined,
-      { scroll: false }
-    );
     async function fetchData() {
-      const handelFilters = async (witchFilter) => {
+      const handelFilters = async () => {
         setHasMore(true);
         setIsLoading(true);
-
-        const params = {
-          ...(witchFilter ? witchFilter : null),
-          search: searchWord,
-          ...(whichOrdering !== "" && { ordering: whichOrdering }),
-          ...(isReadyForSend && { ready: isReadyForSend }),
-          ...(isAvailableGoods && { available: isAvailableGoods }),
-          ...(isDiscountPercentage && { discounted: isDiscountPercentage }),
-
-          ...(checkedCity.length !== 0 && { city: checkedCity.toString() }),
-
-          ...(wantCategories.length > 0 && {
-            category: wantCategories.toString(),
-          }),
-          ...(wantTags.length > 0 && {
-            tags: wantTags.toString(),
-          }),
-
-          page_size: 50,
-          ...(minPrice !== 0 && { min_price: parseInt(minPrice) }),
-          ...(maxPrice !== 10000 && { max_price: parseInt(maxPrice) }),
-          ...(hojreh !== "" && { shop: hojreh }),
-        };
-
         try {
-          const response = await http.get(`/api/v1/products/`, { params });
+          const response = await http.get(`/api/v1/products/`, {
+            params: { ...data, page_size: 50 },
+          });
 
           if (response.status === 200) {
             setListWithFilter(response.data.results);
+            setRagnePrice({
+              max_price: response?.data?.max_price,
+              min_price: response?.data?.min_price,
+            });
             setNameHojreh(response.data.results[0].FK_Shop.title);
 
             if (
@@ -256,27 +205,19 @@ function ListProductCus({ data }) {
             setTotalcount(response.data.total_count);
 
             setIsLoading(false);
+          } else {
+            setIsLoading(false);
+            setTotalcount(0);
           }
         } catch (e) {
           setIsLoading(false);
+          setTotalcount(0);
         }
       };
       await handelFilters();
     }
     fetchData();
-  }, [
-    isAvailableGoods,
-    isReadyForSend,
-    isDiscountPercentage,
-    checkedCity,
-    wantCategories,
-    wantTags,
-    whichOrdering,
-    clickOnRange,
-
-    hojreh,
-    searchWord,
-  ]);
+  }, [data, hojreh]);
 
   // for filters in sidebar
   // END
@@ -299,11 +240,12 @@ function ListProductCus({ data }) {
   return (
     <>
       <div className={styles.container_N}>
-        <div className="row ">
+        <div style={{ justifyContent: "center" }} className="row ">
           <div className="d-none d-lg-block col-lg-3">
             <div id="sidebar">
+              <FiltersPart filters={data} removeFilter={removeFilter} />
               <Grouping
-                searchWord={searchWord}
+                searchWord={data.q}
                 setCategories={setCategories}
                 categories={categories}
                 _handel_Add_category={handelAddCategory}
@@ -311,23 +253,10 @@ function ListProductCus({ data }) {
 
               <CustomAccordion title="محدوده قیمت" item="two" close={true}>
                 <div style={{ direction: "ltr", zIndex: "1000" }}>
-                  <MultiRangeSlider
-                    min={0}
-                    max={data.max_price <= 10000 ? data.max_price : 10000}
-                    onChange={({ min, max }) => {
-                      setMinPrice(min * 10000);
-                      setMaxPrice(max * 10000);
-                    }}
+                  <FilterPrice
+                    ragnePrice={ragnePrice}
+                    onChangeFilter={onChangeFilter}
                   />
-                  <div style={{ display: "flex", justifyContent: "center" }}>
-                    <button
-                      className="btn btn-dark "
-                      onClick={() => setClickOnRange(clickOnRange + 1)}
-                    >
-                      {" "}
-                      اعمال فیلتر
-                    </button>
-                  </div>
                 </div>
               </CustomAccordion>
               <CustomAccordion
@@ -350,8 +279,7 @@ function ListProductCus({ data }) {
                     key={index}
                     className={styles.itemHojreh}
                     onClick={() => {
-                      setHojreh(el.slug);
-                      setSearchWord("");
+                      onChangeFilter("shop", el.slug, true);
                     }}
                   >
                     {el.title}
@@ -377,9 +305,11 @@ function ListProductCus({ data }) {
                       parentClose: <span />,
                     }}
                     nodes={allCites}
-                    checked={checkedCity}
+                    checked={data.city ? parsUrlToArr(data.city) : []}
                     expanded={expandCity}
-                    onCheck={(e) => setCheckedCity(e)}
+                    onCheck={(e) => {
+                      onChangeFilter("city", e.toString());
+                    }}
                     onExpand={(e) => setExpandCity(e)}
                   />
                 </CustomAccordion>
@@ -445,7 +375,7 @@ function ListProductCus({ data }) {
                     title="فقط کالاهای موجود"
                     id="Available_goods"
                     onChange={(e) => {
-                      setIsAvailableGoods(e.target.checked);
+                      onChangeFilter("available", e.target.checked);
                     }}
                   />
                   <CustomSwitch
@@ -453,7 +383,7 @@ function ListProductCus({ data }) {
                     title="آماده ارسال"
                     id="Ready_to_send"
                     onChange={(e) => {
-                      setIsReadyForSend(e.target.checked);
+                      onChangeFilter("ready", e.target.checked);
                     }}
                   />
                   <CustomSwitch
@@ -461,38 +391,40 @@ function ListProductCus({ data }) {
                     title="تخفیف دارها"
                     id="discounted"
                     onChange={(e) => {
-                      setIsDiscountPercentage(e.target.checked);
+                      onChangeFilter("discounted", e.target.checked);
                     }}
                   />
                 </div>
               </div>
             </div>
           </div>{" "}
-          <div className="col-12 col-lg-9">
-            <TopBar
-              totalcount={totalcount}
-              data={data.ordering}
-              whichOrdering={whichOrdering}
-              handel_filterModal={handelFilterModal}
-              setWhichOrdering={setWhichOrdering}
-              handel_OrderingModal={handelOrderingModal}
-            />
+          <div style={{ position: "relative" }} className="col-12 col-lg-9">
+            <div style={{ position: "sticky", top: "0", zIndex: "2" }}>
+              <TopBar
+                onChangeFilter={onChangeFilter}
+                totalcount={totalcount}
+                data={data.ordering}
+                handel_filterModal={handelFilterModal}
+                handel_OrderingModal={handelOrderingModal}
+              />
+            </div>
             {/* inja */}
             <div>
-              {hojreh !== "" && (
+              {data.shop && (
                 <SearchProduct
-                  setSearchWord={setSearchWord}
-                  searchWord={searchWord}
+                  onChangeFilter={onChangeFilter}
+                  searchWord={data.q}
                   NameHojreh={NameHojreh}
-                  hojreh={hojreh}
                 />
               )}
             </div>
-            <div className="mx-auto row">
+            <div style={{ justifyContent: "center" }} className="mx-auto row">
               {isLoading ? (
                 <WoLoading />
               ) : listWithFilter.length == 0 ? (
-                <span className="h5">محصولی یافت نشد...</span>
+                <div className={styles.wrap_empty}>
+                  <span className="h5">محصولی یافت نشد...</span>
+                </div>
               ) : (
                 <InfiniteScroll
                   className="mx-auto row"
@@ -531,15 +463,7 @@ function ListProductCus({ data }) {
               zIndex: "10000",
             }}
           >
-            <i
-              onClick={handelFilterModal}
-              className="far fa-times-circle"
-              style={{
-                fontSize: "25px",
-                marginTop: "5px",
-                marginLeft: "10px",
-              }}
-            ></i>
+            <AiFillCloseCircle size={30} onClick={handelFilterModal} />
           </div>
           <div id="sidebar">
             <div className={styles.search_body_filter}>
@@ -552,7 +476,7 @@ function ListProductCus({ data }) {
                   title="فقط کالاهای موجود"
                   id="Available_goods_mobile"
                   onChange={(e) => {
-                    setIsAvailableGoods(e.target.checked);
+                    onChangeFilter("available", e.target.checked);
                   }}
                 />
 
@@ -561,7 +485,7 @@ function ListProductCus({ data }) {
                   title="آماده ارسال"
                   id="Ready_to_send_mobile"
                   onChange={(e) => {
-                    setIsReadyForSend(e.target.checked);
+                    onChangeFilter("ready", e.target.checked);
                   }}
                 />
                 <CustomSwitch
@@ -569,7 +493,7 @@ function ListProductCus({ data }) {
                   title="تخفیف دارها"
                   id="discounted_mobile"
                   onChange={(e) => {
-                    setIsDiscountPercentage(e.target.checked);
+                    onChangeFilter("discounted", e.target.checked);
                   }}
                 />
               </div>
@@ -591,7 +515,7 @@ function ListProductCus({ data }) {
                   className={styles.itemHojreh}
                   onClick={() => {
                     setHojreh(el.slug);
-                    setSearchWord("");
+                    onChangeFilter("shop", el.slug, true);
                   }}
                 >
                   {el.title}
@@ -600,29 +524,16 @@ function ListProductCus({ data }) {
             </CustomAccordion>
             <CustomAccordion title="محدوده قیمت" item="2mobile">
               <div style={{ direction: "ltr" }}>
-                <MultiRangeSlider
-                  min={0}
-                  max={10000}
-                  onChange={({ min, max }) => {
-                    setMinPrice(min * 10000);
-                    setMaxPrice(max * 10000);
-                  }}
+                <FilterPrice
+                  ragnePrice={ragnePrice}
+                  onChangeFilter={onChangeFilter}
                 />
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                  <button
-                    className="btn btn-dark "
-                    onClick={() => setClickOnRange(clickOnRange + 1)}
-                  >
-                    {" "}
-                    اعمال فیلتر
-                  </button>
-                </div>
               </div>
             </CustomAccordion>
             {categories.length > 0 && (
               <Grouping
                 item="1mobile"
-                searchWord={searchWord}
+                searchWord={data.q}
                 setCategories={setCategories}
                 categories={categories}
                 _handel_Add_category={handelAddCategory}
@@ -642,9 +553,11 @@ function ListProductCus({ data }) {
                     parentClose: <span />,
                   }}
                   nodes={allCites}
-                  checked={checkedCity}
+                  checked={data.city ? parsUrlToArr(data.city) : []}
                   expanded={expandCity}
-                  onCheck={(e) => setCheckedCity(e)}
+                  onCheck={(e) => {
+                    onChangeFilter("city", e.toString());
+                  }}
                   onExpand={(e) => setExpandCity(e)}
                 />
               </CustomAccordion>
@@ -680,9 +593,9 @@ function ListProductCus({ data }) {
       {/* ModalOrdering Strat */}
       {isOpenOrderingModal && (
         <OrderingModalMobile
-          handel_OrderingModal={handelOrderingModal}
-          handel_filterModal={handelFilterModal}
-          setWhichOrdering={setWhichOrdering}
+          data={data.ordering}
+          handelOrderingModal={handelOrderingModal}
+          onChangeFilter={onChangeFilter}
           setIsOpenOrderingModal={setIsOpenOrderingModal}
         />
       )}
