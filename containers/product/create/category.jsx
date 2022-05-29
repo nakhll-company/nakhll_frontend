@@ -13,8 +13,6 @@ const Category = ({
   setData,
   categories,
 }) => {
-  console.log('categories', categories);
-  console.log('data', data)
   const [title, settitle] = useState("");
   const [page, setPage] = useState(1);
 
@@ -57,17 +55,15 @@ const Category = ({
               onClick={GoBack}
               className={styles.btn_icon}
             >
-              <FiArrowRightCircle size={25} style={{marginBottom:'5px'}} />
-              
+              <FiArrowRightCircle size={25} style={{ marginBottom: "5px" }} />
             </button>
             {page === 1 ? (
-              <h2 style={{margin:0, fontSize: "18px", fontWeight: "bold" }}>
+              <h2 style={{ margin: 0, fontSize: "18px", fontWeight: "bold" }}>
                 انتخاب دسته بندی
               </h2>
-            ):(
+            ) : (
               <h2 style={{ fontSize: "16px" }}> زیردسته {title} </h2>
-              )}
-            
+            )}
           </div>
           <div className={styles.content}>
             {data.map((value, index) => {
@@ -92,8 +88,7 @@ const Category = ({
                     >
                       {value.name}
                     </h2>
-                    <BiArrowBack size={20} color='#000'/>
-                    
+                    <BiArrowBack size={20} color="#000" />
                   </div>
                 </button>
               );
