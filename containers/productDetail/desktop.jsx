@@ -5,25 +5,23 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-
+import { useDispatch } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Fragment, useEffect, useState } from "react";
 import SwiperCore, { Navigation, Thumbs } from "swiper";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useDispatch } from "react-redux";
 // components
 import AddFavorites from "../../components/AddFavorites";
 import CustomLabel from "../../components/custom/customLabel";
 import CustomSlider from "../../components/custom/customSlider";
 import ProductCard from "../../components/ProductCart/ProductCard";
 // methods
-
 import { gtag } from "../../utils/googleAnalytics";
+import diviedNumber from "../../utils/diviedNumber";
+import { _addProduct } from "../../redux/actions/cart/_addProduct";
 import { fetchProductShop, getMoreProduct } from "../../api/product/detail";
 // styles
 import styles from "./productDetail.module.scss";
-import { _addProduct } from "../../redux/actions/cart/_addProduct";
-import diviedNumber from "../../utils/diviedNumber";
 
 SwiperCore.use([Navigation, Thumbs]);
 
@@ -40,7 +38,7 @@ const ProductDetailDesktop = ({ data }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const userData = useSelector((state) => state.User.userInfo);
 
-  const thumblineImage = [...detail.banners, { image: detail.image }];
+  const thumblineImage = [{ image: detail.image }, ...detail.banners];
 
   useEffect(() => {
     function fetchData() {
