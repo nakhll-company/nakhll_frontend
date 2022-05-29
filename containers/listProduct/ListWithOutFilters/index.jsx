@@ -4,7 +4,7 @@ import Script from "next/script";
 import React, { useEffect, useState } from "react";
 // components
 import MenuMobile from "../../../components/layout/MenuMobile";
-import ProductCard from "../../../components/ProductCart/ProductCard";
+import ProductCard from "../../../components/productCart/ProductCard";
 // methods
 import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
 import { http } from "../../../services/callApi/api";

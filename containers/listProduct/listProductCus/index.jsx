@@ -17,7 +17,7 @@ import SearchProduct from "./components/searchProduct";
 import AddFavorites from "../../../components/AddFavorites";
 import CustomSwitch from "../../../components/custom/customSwitch";
 import OrderingModalMobile from "./components/OrderingModalMobile";
-import ProductCard from "../../../components/ProductCart/ProductCard";
+import ProductCard from "../../../components/productCart/ProductCard";
 import CustomAccordion from "../../../components/custom/customAccordion";
 import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
 // methods

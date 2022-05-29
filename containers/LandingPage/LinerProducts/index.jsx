@@ -3,7 +3,7 @@ import React, { Fragment } from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 // components
-import ProductCard from "../../../components/ProductCart/ProductCard";
+import ProductCard from "../../../components/productCart/ProductCard";
 // style
 import styles from "./LinerProducts.module.scss";
 

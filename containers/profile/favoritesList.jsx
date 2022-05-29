@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useState, useEffect, Fragment } from "react";
 // components
-import ProductCart from "../../components/ProductCart/ProductCard";
+import ProductCart from "../../components/productCart/ProductCard";
 import { authhttp } from "../../services/callApi/api";
 import { errorMessage } from "../../utils/toastifyMessage";
 // methods
