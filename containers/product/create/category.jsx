@@ -16,7 +16,6 @@ const Category = ({
   setData,
   categories,
 }) => {
-
   const [page, setPage] = useState(1);
   const [title, settitle] = useState("");
 

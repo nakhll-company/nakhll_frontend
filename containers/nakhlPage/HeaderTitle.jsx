@@ -27,7 +27,7 @@ const HeaderTitle = () => {
   const dispatch = useDispatch();
   const userLog = useSelector((state) => state.User.userInfo);
   const All_product_list_buy = useSelector((state) => state.Cart.allProduct);
-  console.log("All_product_list_buy  :>> ", All_product_list_buy);
+
   useEffect(() => {
     dispatch(getUserInfo());
   }, []);
