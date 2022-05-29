@@ -1,14 +1,15 @@
 import { useState } from "react";
-import diviedNumber, {
-  undiviedNumber,
-} from "../../../../../utils/diviedNumber";
+import diviedNumber, { undiviedNumber } from "../../../../../utils/diviedNumber";
+// style
 import s from "./filterPrice.module.scss";
+
 const Range = ({ ceiling, price, changeValue }) => {
+  
   const [valPrice, setValPrice] = useState(price);
 
   const changeInput = (val) => {
-    let valInput = undiviedNumber(val);
-    let isNum = /^\d*$/.test(valInput);
+    const valInput = undiviedNumber(val);
+    const isNum = /^\d*$/.test(valInput);
     if (isNum) {
       setValPrice(valInput);
       if (ceiling) {
