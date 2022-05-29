@@ -168,7 +168,7 @@ const ProductDetailMobile = ({ data }) => {
                 />
                 <span style={{ fontSize: ".85rem" }} className="me-3">
                   <span className="ltr"> از </span>
-                  {detail.shop.state.name}، {detail.shop.big_city.name}
+                  {detail?.shop?.state?.name}، {detail?.shop?.big_city?.name}
                 </span>
               </div>
             </div>
