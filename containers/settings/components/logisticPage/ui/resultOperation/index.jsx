@@ -16,7 +16,7 @@ function ResultOperation({ pageController, type = "success", reset_states }) {
   return (
     <>
       <div className={st.wrapper}>
-        <div className={st.wrappIcon} onClick={() => {}}>
+        <div className={st.wrappIcon}>
           <Image
             layout="fixed"
             height={18}
