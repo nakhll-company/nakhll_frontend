@@ -1,16 +1,19 @@
+// node libraries
+import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { FaSearch } from "react-icons/fa";
-
-import s from "./InputLanding.module.scss";
-import { _get_all_shops, _handel_search } from "../../api/header";
+// methods
+import { handelSearch,getAllShops } from "../../api/header";
 import BoxSearch from "../../components/shopLayout/header/boxSearch";
+// style
+import s from "./InputLanding.module.scss";
 
 function InputLanding() {
+
   const router = useRouter();
-  const [inputSearch, setInputSearch] = useState("");
   const [shopsName, setShopsName] = useState([]);
+  const [inputSearch, setInputSearch] = useState("");
   const [searchShops, setSearchShops] = useState([]);
 
   return (
@@ -27,13 +30,13 @@ function InputLanding() {
             value={inputSearch}
             onClick={async () => {
               if (shopsName.length == 0) {
-                let getShopsName = await _get_all_shops(shopsName);
+                const getShopsName = await getAllShops(shopsName);
                 setShopsName(getShopsName);
               }
             }}
             onChange={(el) => {
               setInputSearch(el.target.value);
-              let searchedShop = _handel_search(el.target.value, shopsName);
+              const searchedShop = handelSearch(el.target.value, shopsName);
               setSearchShops(searchedShop);
             }}
             placeholder="جست وجو در بیش از هزار فروشگاه..."
