@@ -4,13 +4,12 @@ import { useEffect, useState } from "react";
 // components
 import InputPictureSetting from "../InputPicture";
 import { BsTrash } from "react-icons/bs";
-import { base64Profile } from "../../../../public/icons/icon";
+
 // methods
 import { callApiUpDataPicture } from "../../../../api/settings";
 // style
 import styles from "./topPictures.module.scss";
-import { authhttp } from "../../../../services/callApi/api";
-import { successMessage } from "../../../../utils/toastifyMessage";
+
 import { callApiDelete } from "./callApiDelete";
 
 function TopPictures({ apiSetting, activeHojreh, setOnMenu }) {
