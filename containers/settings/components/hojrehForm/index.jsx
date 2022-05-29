@@ -264,9 +264,10 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
                 </h3>
               </div>
             )}
-            <AppButton title="ذخیره اطلاعات" loader={loaderButton} submit />
+            <div style={{ marginTop: "20px", marginBottom: "80px" }}>
+              <AppButton title="ذخیره اطلاعات" loader={loaderButton} submit />
+            </div>
             {/* <SubButton title="ذخیره اطلاعات" /> */}
-            <div style={{ marginTop: "80px" }}></div>
           </Form>
         )}
       </Formik>
