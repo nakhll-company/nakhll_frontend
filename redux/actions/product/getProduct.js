@@ -1,7 +1,5 @@
 import * as Types from "../../types/product"; // constants
-import {
-    authhttp
-} from "../../../services/callApi/api";
+import { authhttp } from "../../../services/callApi/api";
 // action of accounting list
 export const getProduct =
     (
@@ -32,14 +30,14 @@ export const getProduct =
                         page,
                     };
 
-                    const dataUrl = `/api/v1/shop/${activeHojreh}/products/`;
-                    const response = await authhttp.get(dataUrl, {
-                        params,
-                    });
-                    return response;
-                };
+          const dataUrl = `/api/v1/shop/${activeHojreh}/products/`;
+          const response = await authhttp.get(dataUrl, {
+            params,
+          });
+          return response;
+        };
 
-                const response = await getProduct();
+        const response = await getProduct();
 
                 if (response.status === 200) {
                     // dispatch
