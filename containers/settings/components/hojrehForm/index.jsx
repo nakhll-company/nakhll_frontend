@@ -263,7 +263,7 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
                 </h3>
               </div>
             )}
-            <div style={{ marginTop: "20px", marginBottom: "80px" }}>
+            <div className="mt-3 mb-5">
               <AppButton title="ذخیره اطلاعات" loader={loaderButton} submit />
             </div>
             {/* <SubButton title="ذخیره اطلاعات" /> */}
