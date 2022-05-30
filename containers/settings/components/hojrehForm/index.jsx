@@ -1,4 +1,3 @@
-import React from "react";
 // node libraries
 import Image from "next/image";
 import { Form, Formik } from "formik";
@@ -19,14 +18,14 @@ import { getBigCities } from "../../../../api/general/getBigCities";
 // style
 import styles from "./hojrehForm.module.scss";
 
-function HojrehForm({ apiSetting, activeHojreh, setClicked,setOnMenu }) {
+function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
   const [IsLoading, setIsLoading] = useState(false);
   const [showMessage, setshowMessage] = useState(0);
   const [selectState, setSelectState] = useState([]);
   const [selectCities, setSelectCities] = useState([]);
   const [selectBigCities, setSelectBigCities] = useState([]);
   const [ChoiceCity, setChoiceCity] = useState(apiSetting.City);
-  const [ChoiceState, setChoiceState] = useState(apiSetting.State);
+  const [ChoiceState, setChoiceState] = useState(apiSetting.state);
   const [ChoiceBigCity, setChoiceBigCity] = useState(apiSetting.BigCity);
   const [loaderButton, setLoaderButton] = useState(false);
 
@@ -36,11 +35,6 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked,setOnMenu }) {
     }
     fetchData();
   }, []);
-  useEffect(() => {
-    setChoiceCity(apiSetting.City);
-    setChoiceState(apiSetting.state);
-    setChoiceBigCity(apiSetting.BigCity);
-  }, [apiSetting]);
 
   return (
     <>
@@ -59,7 +53,7 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked,setOnMenu }) {
           CityPerCode:
             apiSetting.FK_ShopManager &&
             apiSetting.FK_ShopManager.User_Profile.CityPerCode,
-          Address: apiSetting && apiSetting.Location,
+          Address: apiSetting?.Location,
           ZipCode:
             apiSetting.FK_ShopManager &&
             apiSetting.FK_ShopManager.User_Profile.ZipCode,
@@ -76,21 +70,22 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked,setOnMenu }) {
             BigCity: ChoiceBigCity,
             City: ChoiceCity,
             Location: data.Address,
+            ZipCode: data.ZipCode,
             FK_ShopManager: {
               User_Profile: {
                 NationalCode: data.NationalCode,
                 PhoneNumber: data.PhoneNumber,
                 CityPerCode: data.CityPerCode,
-                BigCity: ChoiceBigCity,
-                ZipCode: data.ZipCode,
+
+                // ZipCode: data.ZipCode,
               },
             },
           };
+
           const response = await callApiUpDataShop(dataForSend, activeHojreh);
           if (response.status === 200) {
             setIsLoading(false);
-            // setshowMessage(1);
-            setOnMenu(5)
+            setshowMessage(1);
             setClicked((pre) => !pre);
             setLoaderButton(false);
           } else {
@@ -161,11 +156,14 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked,setOnMenu }) {
                 onChange={async (event) => {
                   setSelectBigCities(await getBigCities(event.target.value));
 
-                  setChoiceState(event.target[event.target.selectedIndex].text);
+                  setChoiceState({
+                    id: event.target.value,
+                    name: event.target[event.target.selectedIndex].text,
+                  });
                 }}
               >
-                <option value="" disabled selected>
-                  {ChoiceState}
+                <option value="" disabled>
+                  {apiSetting?.state?.name}
                 </option>
                 {selectState.map((value, index) => {
                   return (
@@ -182,13 +180,15 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked,setOnMenu }) {
                 defaultValue=""
                 onChange={async (event) => {
                   setSelectCities(await getCities(event.target.value));
-                  setChoiceBigCity(
-                    event.target[event.target.selectedIndex].text
-                  );
+                  setChoiceBigCity({
+                    id: event.target.value,
+
+                    name: event.target[event.target.selectedIndex].text,
+                  });
                 }}
               >
-                <option value="" selected disabled>
-                  {ChoiceBigCity}
+                <option value="" disabled>
+                  {apiSetting?.BigCity}
                 </option>
                 {selectBigCities.map((value, index) => {
                   return (
@@ -204,15 +204,18 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked,setOnMenu }) {
                 name="City"
                 defaultValue=""
                 onChange={(event) => {
-                  setChoiceCity(event.target.value);
+                  setChoiceCity({
+                    id: event.target.value,
+                    name: event.target[event.target.selectedIndex].text,
+                  });
                 }}
               >
-                <option value="" selected disabled>
-                  {ChoiceCity}{" "}
+                <option value="" disabled>
+                  {apiSetting?.City}{" "}
                 </option>
                 {selectCities.map((value, index) => {
                   return (
-                    <option key={index} value={value.name}>
+                    <option key={index} value={value}>
                       {value.name}
                     </option>
                   );
@@ -266,7 +269,7 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked,setOnMenu }) {
             <div className="mt-3 mb-5">
               <AppButton title="ذخیره اطلاعات" loader={loaderButton} submit />
             </div>
-            <div style={{ marginTop: "80px" }}></div>
+            {/* <SubButton title="ذخیره اطلاعات" /> */}
           </Form>
         )}
       </Formik>
