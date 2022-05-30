@@ -1,22 +1,23 @@
-import React, { useEffect, useRef, useState } from "react";
-
-// gsap
+// node libraries
 import { gsap } from "gsap";
-
+import lottie from "lottie-web";
+import React, { useEffect, useRef, useState } from "react";
+// components
+import AboutMeFix from "../../../components/SampelFixed/Sm_AboutMe";
 import SmHeroSlidesFix from "../../../components/SampelFixed/HeroSlides";
-import SmLinerFourImgFix from "../../../components/SampelFixed/Sm_LinerFourImg";
 import SmLinerOneImgFix from "../../../components/SampelFixed/Sm_LinerOneImg";
+import SmLinerTwoImgFix from "../../../components/SampelFixed/Sm_LinerTwoImg";
+import SmLinerFourImgFix from "../../../components/SampelFixed/Sm_LinerFourImg";
 import SmLinerProductsFix from "../../../components/SampelFixed/Sm_LinerProducts";
 import SmLinerThreeImgFix from "../../../components/SampelFixed/Sm_LinerThreeImg";
-import SmLinerTwoImgFix from "../../../components/SampelFixed/Sm_LinerTwoImg";
-import lottie from "lottie-web";
+// styles
 import styles from "./ListComponent.module.scss";
-import AboutMeFix from "../../../components/SampelFixed/Sm_AboutMe";
 
 
 function ListComponent({ handelAddComponent }) {
   // gsap
   const [numSec, setNumSec] = useState(0);
+  // eslint-disable-next-line new-cap
   const tl = new gsap.timeline();
 
   // Ref

@@ -1,5 +1,5 @@
 export const showFilter = (data) => {
-    let message = {
+    const message = {
         Price: "ارزانتر",
         "-Price": "گرانتر",
         "-DiscountPrecentage": "بیشترین تخفیف",

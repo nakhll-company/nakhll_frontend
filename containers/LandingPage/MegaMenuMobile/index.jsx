@@ -1,21 +1,12 @@
 // node libraries
 import React from "react";
 import Head from "next/head";
+// methods
+import {handelAccording} from './methods/handelAccording';
 // style
 import styles from "./MegaMenuMobile.module.scss";
 
 function MegaMenuMobile({ category }) {
-  const _handel_according = (accord, icon) => {
-    const element = document.getElementById(accord);
-    if (element.style.height == "0px") {
-      element.style.height = "unset";
-      document.getElementById(icon).className = "fas fa-angle-up";
-    } else {
-      element.style.height = "0";
-      element.style.overflow = "hidden";
-      document.getElementById(icon).className = "fas fa-angle-down";
-    }
-  };
 
   return (
     <>
@@ -34,7 +25,7 @@ function MegaMenuMobile({ category }) {
             <li key={index}>
               <a
                 onClick={() =>
-                  _handel_according(`according_${index}`, `icon_${index}`)
+                  handelAccording(`according_${index}`, `icon_${index}`)
                 }
               >
                 {element.name}

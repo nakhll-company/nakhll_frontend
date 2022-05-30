@@ -3,13 +3,14 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 // methods
 import { ApiReference } from "../../../api/Api";
+import { authhttp } from "../../../services/callApi/api";
 // styles
 import styles from "./SaveLanding.module.scss";
-import { authhttp } from "../../../services/callApi/api";
 
 function SaveLanding({ setOpenSaveLanding, idLanding }) {
-  const landing = useSelector((state) => state.allDataLanding);
+
   const [inputName, setInputName] = useState("");
+  const landing = useSelector((state) => state.allDataLanding);
   const apiUpdateLanding = `${ApiReference.landing.update.url}${idLanding[0]}/${idLanding[1]}/`;
 
   const ansapi = {
@@ -18,9 +19,8 @@ function SaveLanding({ setOpenSaveLanding, idLanding }) {
     page_data: JSON.stringify(landing),
   };
 
-  const _handel_update_landing = async () => {
+  const handelUpdateLanding = async () => {
     await authhttp.put(apiUpdateLanding, ansapi);
-
     setInputName("");
     setOpenSaveLanding(false);
   };
@@ -53,7 +53,7 @@ function SaveLanding({ setOpenSaveLanding, idLanding }) {
               />
             </div>
             <div className={styles.wrap_btn}>
-              <button onClick={_handel_update_landing}>ذخیره صفحه</button>
+              <button onClick={handelUpdateLanding}>ذخیره صفحه</button>
             </div>
           </div>
         </div>

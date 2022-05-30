@@ -6,15 +6,15 @@ import React, { useEffect, useState } from "react";
 import MenuMobile from "../../../components/layout/MenuMobile";
 import ProductCard from "../../../components/productCart/ProductCard";
 // methods
-import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
 import { http } from "../../../services/callApi/api";
+import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
 
 function ListWitOutFilters({ api }) {
   const isLoading = false;
   const [listProducts, setlistProducts] = useState([]);
 
   useEffect(() => {
-    const _Call_Products = async () => {
+    const callProducts = async () => {
       try {
         const response = await http.get(api);
         if (response.status === 200) {
@@ -24,7 +24,7 @@ function ListWitOutFilters({ api }) {
         return false;
       }
     };
-    _Call_Products();
+    callProducts();
   }, [api]);
 
   return (
