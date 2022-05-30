@@ -46,6 +46,11 @@ function NewStore({ getUserInfo, userInfo }) {
         loading: "true",
       };
     });
+    
+    data.State = Number(data.State);
+    data.BigCity = Number(data.BigCity);
+    data.City = Number(data.City);
+
     const response = await createStore(data);
     if (response.status === 201) {
       getUserInfo();
@@ -138,7 +143,7 @@ function NewStore({ getUserInfo, userInfo }) {
             <option></option>
             {selectState?.map((value, index) => {
               return (
-                <option key={index} value={value.id}>
+                <option key={index} value={Number(value.id)}>
                   {value.name}
                 </option>
               );
@@ -161,7 +166,7 @@ function NewStore({ getUserInfo, userInfo }) {
             <option></option>
             {selectBigCities?.map((value, index) => {
               return (
-                <option key={index} value={value.id}>
+                <option key={index} value={Number(value.id)}>
                   {value.name}
                 </option>
               );
@@ -181,7 +186,7 @@ function NewStore({ getUserInfo, userInfo }) {
             <option></option>
             {selectCities.map((value, index) => {
               return (
-                <option key={index} value={value.id}>
+                <option key={index} value={Number(value.id)}>
                   {value.name}
                 </option>
               );
