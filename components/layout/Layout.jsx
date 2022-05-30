@@ -86,8 +86,12 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
             <section className={styles.info_card}>
               <div className={styles.info_card_pic}>
                 <div className={styles.info_card_pic_person}>
-                  {userInfo &&
-                  userInfo.shops &&
+                  {console.log("userInfo", userInfo)}
+                  {console.log(" slugHojreh", slugHojreh)}
+
+                  {!!slugHojreh &&
+                  userInfo &&
+                  userInfo?.shops &&
                   userInfo.shops.length > 0 &&
                   userInfo.shops[0].image_thumbnail_url ? (
                     <Image
