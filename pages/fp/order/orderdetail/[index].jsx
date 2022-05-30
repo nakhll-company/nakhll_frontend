@@ -1,19 +1,18 @@
-import React from "react";
 // node libraries
+import React from "react";
 import * as yup from "yup";
 import Image from "next/image";
 import { Formik, Form, Field } from "formik";
-
 import { Fragment, useEffect, useState } from "react";
 // components
 import useViewport from "../../../../components/viewPort";
 import MyLayout from "../../../../components/layout/Layout";
 // methods
+import { authhttp } from "../../../../services/callApi/api";
+import {diviedNumber} from "../../../../utils/diviedNumber";
 import { successMessage } from "../../../../utils/toastifyMessage";
 // sass
 import styles from "../../../../styles/pages/order/orderdetail.module.scss";
-import { authhttp } from "../../../../services/callApi/api";
-import diviedNumber from "../../../../utils/diviedNumber";
 
 export const getServerSideProps = ({ params }) => {
   // fetch

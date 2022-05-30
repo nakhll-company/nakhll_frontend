@@ -1,16 +1,16 @@
-import React from "react";
 // node libraries
+import React from "react";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-
 // ciomponents
 import SBSendUnit from "../sendUnit/switchButtonSendUnit";
 import LoadingAllPage from "../../../../../../components/loadingAllPage";
+// methods
+import { authhttp } from "../../../../../../services/callApi/api";
+import {diviedNumber} from "../../../../../../utils/diviedNumber";
 // style
 import st from "./panel.module.scss";
-import { authhttp } from "../../../../../../services/callApi/api";
-import diviedNumber from "../../../../../../utils/diviedNumber";
 
 function Panel({
   setConstraintId,

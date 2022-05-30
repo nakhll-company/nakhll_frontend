@@ -2,12 +2,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-
 // methods
+import {diviedNumber} from "../../utils/diviedNumber";
 import { checkTimeOrder } from "./methods/checkTimeOrder";
 // scss
 import styles from "./scss/mobileOrders.module.scss";
-import diviedNumber from "../../utils/diviedNumber";
 
 
 

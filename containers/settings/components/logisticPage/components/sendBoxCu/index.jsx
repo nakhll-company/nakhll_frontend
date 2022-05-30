@@ -1,9 +1,12 @@
+// node libraries
 import React from "react";
 import Image from "next/image";
+// components
 import SBSendUnit from "../sendUnit/switchButtonSendUnit";
-
+// methods
+import {diviedNumber} from "../../../../../../utils/diviedNumber";
+// style
 import st from "./sendBoxCu.module.scss";
-import diviedNumber from "../../../../../../utils/diviedNumber";
 
 function SendBoxCu({ data }) {
   return (

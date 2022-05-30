@@ -1,19 +1,20 @@
+// node libraries
 import Link from "next/link";
 import Image from "next/image";
 import { useContext } from "react";
-import ContextProduct from "./Context/context";
-import Loading from "../../components/loading";
 import React, { useState, Fragment } from "react";
-
-import styles from "../../styles/pages/cart/cart.module.scss";
-// REDUX
+// components
+import Loading from "../../components/loading";
+// methods
+import { isEmpty } from "lodash";
+import ContextProduct from "./Context/context";
+import {diviedNumber} from "../../utils/diviedNumber";
 import { useDispatch, useSelector } from "react-redux";
 import { _addProduct } from "../../redux/actions/cart/_addProduct";
 import { _reduceProduct } from "../../redux/actions/cart/_reduceProduct";
 import { _deleteProduct } from "../../redux/actions/cart/_deleteProduct";
-// LODASH
-import { isEmpty } from "lodash";
-import diviedNumber from "../../utils/diviedNumber";
+// style
+import styles from "../../styles/pages/cart/cart.module.scss";
 
 export default function ListCardBuy() {
   const dispatch = useDispatch();

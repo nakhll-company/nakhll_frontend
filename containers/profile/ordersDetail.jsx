@@ -1,17 +1,15 @@
 // node libraries
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
-
-import diviedNumber from "../../utils/diviedNumber";
 // methods
+import {diviedNumber} from "../../utils/diviedNumber";
 import { getOrderDetail } from "./methods/getOrderDetail";
 // scss
 import styles from "./scss/ordersDetail.module.scss";
 
-
-
 const OrdersDetail = ({ invoiceId }) => {
+  
   const [loading, setLoading] = useState(true);
   const [detailData, setDetailData] = useState({});
 

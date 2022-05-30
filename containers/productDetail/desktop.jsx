@@ -17,7 +17,7 @@ import CustomSlider from "../../components/custom/customSlider";
 import ProductCard from "../../components/productCart/ProductCard";
 // methods
 import { gtag } from "../../utils/googleAnalytics";
-import diviedNumber from "../../utils/diviedNumber";
+import {diviedNumber} from "../../utils/diviedNumber";
 import { _addProduct } from "../../redux/actions/cart/_addProduct";
 import { fetchProductShop, getMoreProduct } from "../../api/product/detail";
 // styles

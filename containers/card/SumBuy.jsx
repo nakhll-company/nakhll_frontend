@@ -1,11 +1,13 @@
+// node libraries
 import { useState } from "react";
-import { useSelector } from "react-redux";
-
-import AppButton from "../../components/AppButton";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+// components
+import AppButton from "../../components/AppButton";
+// methods
+import {diviedNumber} from "../../utils/diviedNumber";
 // style
 import styles from "../../styles/pages/cart/cart.module.scss";
-import diviedNumber from "../../utils/diviedNumber";
 
 export default function SumBuy() {
   const [loaderButton, setLoaderButton] = useState(false);

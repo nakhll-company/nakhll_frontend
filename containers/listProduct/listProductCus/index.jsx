@@ -10,7 +10,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { TopBar } from "../TopBar";
 import Grouping from "../../searchPage/Grouping";
 import FilterPrice from "./components/filterPrice";
-import { allCites } from "../../../utils/allCities";
 import FiltersPart from "../../searchPage/filtersPart";
 import Search from "../../../components/search/Search";
 import SearchProduct from "./components/searchProduct";
@@ -22,9 +21,10 @@ import CustomAccordion from "../../../components/custom/customAccordion";
 import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
 // methods
 import { ApiReference } from "../../../api/Api";
+import { allCites } from "../../../utils/allCities";
 import { http } from "../../../services/callApi/api";
-import { parsUrlToArr } from "../../../utils/general";
-import diviedNumber from "../../../utils/diviedNumber";
+import {diviedNumber} from "../../../utils/diviedNumber";
+import { parsUrlToArr } from "../../../utils/parsUrlToArr";
 // styles
 import styles from "./listProductCus.module.scss";
 

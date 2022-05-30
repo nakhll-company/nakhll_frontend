@@ -3,18 +3,15 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-
 import { useDispatch } from "react-redux";
 // methods
-
+import {diviedNumber} from "../../utils/diviedNumber";
 import { gtag } from "../../utils/googleAnalytics";
 import { addToFavoritesList } from "./methods/addToFavotitesList";
-
+import { _addProduct } from "../../redux/actions/cart/_addProduct";
 import { FaRegBookmark, FaPlus, FaWindowClose } from "react-icons/fa";
 // scss
 import styles from "./ProductCard.module.scss";
-import { _addProduct } from "../../redux/actions/cart/_addProduct";
-import diviedNumber from "../../utils/diviedNumber";
 
 const ProductCard = ({
   sm = 6,

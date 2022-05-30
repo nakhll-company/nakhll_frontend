@@ -1,4 +1,4 @@
-import diviedNumber from "../../utils/diviedNumber";
+import {diviedNumber} from "../../utils/diviedNumber";
 
 function Number({ num }) {
   return (

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import diviedNumber, { undiviedNumber } from "../../../../../utils/diviedNumber";
+import { diviedNumber, undiviedNumber } from "../../../../../utils/diviedNumber";
 // style
 import s from "./filterPrice.module.scss";
 
