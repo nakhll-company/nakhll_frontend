@@ -86,9 +86,6 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
             <section className={styles.info_card}>
               <div className={styles.info_card_pic}>
                 <div className={styles.info_card_pic_person}>
-                  {console.log("userInfo", userInfo)}
-                  {console.log(" slugHojreh", slugHojreh)}
-
                   {!!slugHojreh &&
                   userInfo &&
                   userInfo?.shops &&
