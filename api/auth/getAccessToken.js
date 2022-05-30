@@ -1,5 +1,5 @@
 import {
-    ApiRegister
+    apiRegister
 } from "../../services/apiRegister/ApiRegister";
 import {
     setToken
@@ -7,7 +7,7 @@ import {
 
 export async function getAccessToken(data) {
     try {
-        const response = await ApiRegister().apiRequest(
+        const response = await apiRegister().apiRequest(
             data,
             "POST",
             "/api/v1/auth/token/",

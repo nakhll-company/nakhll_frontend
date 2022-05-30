@@ -3,7 +3,7 @@ import {
     instanceAxiosWithOutToken,
 } from "../axios/AxiosRegister";
 
-export const ApiRegister = () => {
+export const apiRegister = () => {
     return {
         apiRequest: (data, method, url, token, params) =>
             token ?

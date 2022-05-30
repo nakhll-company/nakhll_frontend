@@ -2,7 +2,7 @@ import {
     clearTokenStorage
 } from "../general/clearTokenStorage";
 import {
-    ApiRegister
+    apiRegister
 } from "../../services/apiRegister/ApiRegister";
 
 export async function refreshToken() {
@@ -15,7 +15,7 @@ export async function refreshToken() {
         };
         localStorage.removeItem("accessToken");
         try {
-            const response = await ApiRegister().apiRequest(
+            const response = await apiRegister().apiRequest(
                 token,
                 "POST",
                 "/api/v1/auth/token/refresh/",
