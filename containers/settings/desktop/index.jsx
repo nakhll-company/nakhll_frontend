@@ -28,7 +28,8 @@ const DesktopSetting = () => {
     const _handleRequestApi = async () => {
       const response = await callApiAllData(activeHojreh);
       if (response.status === 200) {
-        setApiSetting(await response.data);
+        const data = await response.data;
+        setApiSetting(data);
         setMainLoading(false);
       }
     };
@@ -81,7 +82,7 @@ const DesktopSetting = () => {
             )}
             {onMenu == "5" && (
               <>
-                <SuccessfulMessage  setOnMenu={setOnMenu}/>
+                <SuccessfulMessage setOnMenu={setOnMenu} />
               </>
             )}
           </>
