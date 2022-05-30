@@ -8,7 +8,7 @@ import ContextListProductPage from "./Context/context";
 import MenuMobile from "../../components/layout/MenuMobile";
 import InfiniteScroll from "react-infinite-scroll-component";
 import CustomSwitch from "../../components/custom/customSwitch";
-import ProductCard from "../../components/ProductCart/ProductCard";
+import ProductCard from "../../components/productCart/ProductCard";
 import CustomAccordion from "../../components/custom/customAccordion";
 import MultiRangeSlider from "../../components/custom/customMultiRangeSlider/MultiRangeSlider";
 // methods
@@ -17,8 +17,6 @@ import { WoLoading } from "../../components/custom/Loading/woLoading/WoLoading";
 // style
 import styles from "./listProduct.module.scss";
 import { http } from "../../services/callApi/api";
-
-
 
 function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
   const listProducts = [];

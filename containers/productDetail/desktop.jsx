@@ -14,7 +14,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import AddFavorites from "../../components/AddFavorites";
 import CustomLabel from "../../components/custom/customLabel";
 import CustomSlider from "../../components/custom/customSlider";
-import ProductCard from "../../components/ProductCart/ProductCard";
+import ProductCard from "../../components/productCart/ProductCard";
 // methods
 import { gtag } from "../../utils/googleAnalytics";
 import diviedNumber from "../../utils/diviedNumber";

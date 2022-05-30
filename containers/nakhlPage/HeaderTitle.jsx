@@ -1,13 +1,20 @@
-import Image from "next/image";
+// node libraries
 import Link from "next/link";
+import Image from "next/image";
+import { FaUser } from "react-icons/fa";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { BsBasket2 } from "react-icons/bs";
-import { FaUser } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
+// methods
+import rot13 from "../../utils/rout13";
+import { http } from "../../services/callApi/api";
 import { getUserInfo } from "../../redux/actions/user/getUserInfo";
-import s from "./HeaderTitle.module.scss";
+import { clearTokenStorage } from "../../api/general/clearTokenStorage";
+// components
 import SlideMenu from "./slideMenu";
+// style
+import s from "./HeaderTitle.module.scss";
 
 const list = [
   { title: "محصولات", url: "/search/?q=&available=true" },
@@ -23,10 +30,11 @@ const list = [
   },
 ];
 const HeaderTitle = () => {
+
   const router = useRouter();
   const dispatch = useDispatch();
   const userLog = useSelector((state) => state.User.userInfo);
-  const All_product_list_buy = useSelector((state) => state.Cart.allProduct);
+  const AllProductListBuy = useSelector((state) => state.Cart.allProduct);
 
   useEffect(() => {
     dispatch(getUserInfo());
@@ -48,8 +56,6 @@ const HeaderTitle = () => {
       </div>
       <div className={s.list}>
         <ul>
-          {/* <li>فروشگاه ها</li> */}
-          {/* <li>حجره ها</li> */}
           {list.map((el, index) => (
             <li key={index}>
               <Link href={el.url}>
@@ -62,14 +68,51 @@ const HeaderTitle = () => {
       <div className={s.menu}>
         <div className={s.buttonContainer}>
           {Object.keys(userLog).length > 0 ? (
-            <div
-              className={s.profile}
-              onClick={() => {
-                router.push("/profile");
-              }}
-            >
-              <FaUser className={s.icons} color="#064D81" />
-            </div>
+            <>
+              <div
+                className={s.profile}
+                onClick={() => {
+                  router.push("/profile");
+                }}
+              >
+                <FaUser className={s.icons} color="#064D81" />
+              </div>
+              <div className={s.modalProfile}>
+                <Link href="/profile">
+                  <a>
+                    <div style={{ marginTop: "10px" }} className="flex-row">
+                      <i className="fas fa-user-circle"></i>
+                      <span>پروفایل</span>
+                    </div>
+                  </a>
+                </Link>
+                <div onClick={async () => {
+                  const response = await http.post("/api/v1/auth/begin/login_register/",
+                    { mobile: userLog.mobile_number }
+                  );
+                  if (response.status < 300) {
+                    router.push(
+                      `/setPassword/${rot13(response?.data?.auth_key)}/${response?.data?.mobile_status
+                      }`
+                    );
+                  }
+                }}
+                >
+                  <i className="fas fa-user-circle "></i>
+                  <span>تغییر پسورد</span>
+                </div>
+                <div
+                  onClick={() => {
+                    clearTokenStorage();
+                    router.push("/");
+                    router.reload("/");
+                  }}
+                >
+                  <i className="fas fa-sign-out-alt "></i>
+                  <span>خروج از حساب کاربری</span>
+                </div>
+              </div>
+            </>
           ) : (
             <button
               onClick={() => {
@@ -87,9 +130,9 @@ const HeaderTitle = () => {
           }}
           className={s.cartContainer}
         >
-          {!!All_product_list_buy?.ordered_items?.length && (
+          {!!AllProductListBuy?.ordered_items?.length && (
             <span className={s.numberLabel}>
-              {All_product_list_buy.ordered_items.length}
+              {AllProductListBuy.ordered_items.length}
             </span>
           )}
 
