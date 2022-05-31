@@ -1,21 +1,13 @@
+// node libraries
 import React from "react";
-import CustomAccordion from "../../components/custom/customAccordion";
 import { AiFillCloseCircle } from "react-icons/ai";
+// style
 import s from "./filtersPart.module.scss";
-import { val } from "dom7";
 
-let items = ["دسته بندی", "محدوده قیمت", "حجره", "استان", "کالاهای موجود"];
+
 function FiltersPart({ filters, removeFilter }) {
-  // let fil = {
-  //   category: "",
-  //   min_price: "",
-  //   max_price: "",
-  //   city: "",
-  //   available: "",
-  //   ready: "",
-  //   discounted: "",
-  // };
-  let selectMessage = {
+  
+  const selectMessage = {
     category: "دسته بندی",
     min_price: "محدوده قیمتی",
     max_price: "محدوده قیمتی",
@@ -27,7 +19,8 @@ function FiltersPart({ filters, removeFilter }) {
 
   const showFilters = (queryUrl) => {
     let messageArr = [];
-    for (let [key, value] of Object.entries(queryUrl)) {
+    // eslint-disable-next-line no-unused-vars
+    for (const [key, value] of Object.entries(queryUrl)) {
       if (selectMessage[key]) {
         messageArr = [...messageArr, { key, title: selectMessage[key] }];
       }

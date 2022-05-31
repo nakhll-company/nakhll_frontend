@@ -30,7 +30,7 @@ function Tabel({ changePage, setWichIdScope }) {
     fetchData();
   }, []);
 
-  const _handle_delete_scope = async (id) => {
+  const handleDeleteScope = async (id) => {
     setLoaderTable(true);
     const response = await authhttp.delete(
       `/api/v1/logistic/shop-logistic-unit-constraint/${id}/`
@@ -44,7 +44,7 @@ function Tabel({ changePage, setWichIdScope }) {
       setLoaderTable(false);
     }
   };
-  const _handel_click_on_scope = (id) => {
+  const handelClickOnScope = (id) => {
     setWichIdScope(id);
     changePage();
   };
@@ -87,7 +87,7 @@ function Tabel({ changePage, setWichIdScope }) {
           {SavedSendingUnit.map((el, index) => (
             <tr key={index}>
               <th
-                onClick={() => _handel_click_on_scope(el.id)}
+                onClick={() => handelClickOnScope(el.id)}
                 className={st.nameTable}
                 scope="row"
               >
@@ -105,7 +105,7 @@ function Tabel({ changePage, setWichIdScope }) {
                     />
                   </div>
                   <i
-                    onClick={() => _handle_delete_scope(el.id)}
+                    onClick={() => handleDeleteScope(el.id)}
                     className="fas fa-times-circle"
                   ></i>
                 </div>
