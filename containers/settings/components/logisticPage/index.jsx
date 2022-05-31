@@ -64,7 +64,7 @@ function LogisticPage() {
   });
 
   // function for Create Shop Logistic Unit Constraint
-  const _handle_add_new_scope = async () => {
+  const handleAddNewScope = async () => {
     try {
       setLoaderBtn(true);
       const response = await authhttp.post(
@@ -91,7 +91,7 @@ function LogisticPage() {
     }
   };
 
-  const _handle_update_data_scope = async (data, move = true) => {
+  const handleUpdateDataScope = async (data, move = true) => {
     setLoaderBtn(true);
     setLoader(true);
     const response = await authhttp.patch(
@@ -129,7 +129,8 @@ function LogisticPage() {
     setWichPage(wichPage - 1);
   };
 
-  const _handle_send_all_cities = async () => {
+  const handleSendAllCities = async () => {
+
     setLoaderBtn(true);
     const response = await authhttp.patch(
       `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
@@ -142,13 +143,13 @@ function LogisticPage() {
     return response;
   };
 
-  const reset_states = () => {
+  const resetStates = () => {
     setWitchUnit("kg");
   };
 
   useEffect(() => {
     if (constraintId !== "") {
-      const _handel_get_all_data_scope = async () => {
+      const handelGetAllDataScope = async () => {
         const response = await authhttp.get(
           `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`
         );
@@ -157,7 +158,7 @@ function LogisticPage() {
           setProductsShop(response.data.products);
         }
       };
-      _handel_get_all_data_scope();
+      handelGetAllDataScope();
     }
   }, [constraintId]);
   return (
@@ -176,7 +177,7 @@ function LogisticPage() {
             <Explain text="با استفاده از ثبت واحد ارسال جدید شهرها، محصولات، روش و هزینه ارسال دلخواه را انتخاب کنید." />
 
             <AppButton
-              onClick={_handle_add_new_scope}
+              onClick={handleAddNewScope}
               loader={loaderBtn}
               title="ثبت واحد ارسال جدید"
             />
@@ -207,7 +208,7 @@ function LogisticPage() {
               <AppButton
                 loader={loaderBtn}
                 onClick={() =>
-                  _handle_update_data_scope({
+                  handleUpdateDataScope({
                     cities: checkedCities.length > 0 ? checkedCities : [],
                   })
                 }
@@ -236,15 +237,14 @@ function LogisticPage() {
             {checkedSelectAllProducts && (
               <AppButton
                 loader={loaderBtn}
-                onClick={_handle_send_all_cities}
+                onClick={handleSendAllCities}
                 title="مرحله بعد"
               />
-              // <BtnSetting onClick={_handle_send_all_cities} title="مرحله بعد" />
             )}
 
             {!checkedSelectAllProducts && (
               <Products
-                _handle_update_data_scope={_handle_update_data_scope}
+                handleUpdateDataScope={handleUpdateDataScope}
                 ProductsShop={ProductsShop}
               />
             )}
@@ -379,7 +379,7 @@ function LogisticPage() {
 
         {wichPage == 8 && (
           <ResultOperation
-            reset_states={reset_states}
+            resetStates={resetStates}
             pageController={upPage}
           />
         )}
@@ -388,7 +388,7 @@ function LogisticPage() {
           <>
             <AllEdit
               constraintId={constraintId}
-              _handle_update_data_scope={_handle_update_data_scope}
+              handleUpdateDataScope={handleUpdateDataScope}
               checkedSelectAllProducts={checkedSelectAllProducts}
               upPage={upPage}
               downPage={downPage}

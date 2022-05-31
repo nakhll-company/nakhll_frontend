@@ -1,17 +1,17 @@
-import React from "react";
 // node libraries
+import React from "react";
 import Image from "next/image";
 import { useEffect } from "react";
 // style
 import st from "./resultOperation.module.scss";
 
-function ResultOperation({ pageController, type = "success", reset_states }) {
+function ResultOperation({ pageController, type = "success", resetStates }) {
   useEffect(() => {
     setTimeout(() => {
-      reset_states();
+      resetStates();
       pageController(1, 1);
     }, 2000);
-  }, [pageController, reset_states]);
+  }, [pageController, resetStates]);
 
   return (
     <>
