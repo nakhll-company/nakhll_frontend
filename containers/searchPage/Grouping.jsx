@@ -31,6 +31,7 @@ function Grouping({
         item={item ? item : "one"}
         callApi={() => handelCategory()}
       >
+        {/* eslint-disable-next-line camelcase */}
         {categories.map(({ id, name, product_count }, index) => (
           <div
             key={`one${index}`}
@@ -54,6 +55,7 @@ function Grouping({
               className="form-check-label"
               htmlFor={`checkbox${index}`}
             >
+              {/* eslint-disable-next-line camelcase */}
               {name} ({product_count})
             </label>
           </div>

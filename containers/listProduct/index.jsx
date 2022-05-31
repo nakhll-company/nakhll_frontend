@@ -17,7 +17,7 @@ import { WoLoading } from "../../components/custom/Loading/woLoading/WoLoading";
 import styles from "./listProduct.module.scss";
 import { http } from "../../services/callApi/api";
 
-function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
+function ListProduct({ searchWord = "", shopProducts = "", categoryIn = "" }) {
   const listProducts = [];
   const [pageApi, setPageApi] = useState(2);
   const [minPrice, setMinPrice] = useState("");
@@ -56,7 +56,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
       page_size: 50,
       min_price: minPrice,
       max_price: maxPrice,
-      shop: shop_products,
+      shop: shopProducts,
     };
 
     try {
@@ -109,7 +109,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
           page_size: 50,
           min_price: minPrice,
           max_price: maxPrice,
-          shop: shop_products,
+          shop: shopProducts,
         },
       });
       if (response.status === 200) {
@@ -148,7 +148,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
     handelFilters,
     maxPrice,
     minPrice,
-    shop_products,
+    shopProducts,
     searchWord,
     isAvailableGoods,
     isReadyForSend,
@@ -234,7 +234,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
                     </div>
                   </div>
                 </CustomAccordion>
-                {shop_products == "" && (
+                {shopProducts == "" && (
                   <CustomAccordion
                     title="استان و شهر حجره دار"
                     item="three"
@@ -425,7 +425,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
                   ))}
                 </CustomAccordion>
               )}
-              {shop_products == "" && (
+              {shopProducts == "" && (
                 <CustomAccordion title="استان و شهر حجره دار" item="3mobile">
                   <CheckboxTree
                     // direction="rtl"
