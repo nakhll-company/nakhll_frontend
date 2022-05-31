@@ -4,7 +4,7 @@ import { showFilter } from "./showFilter";
 import s from "./TopBar.module.scss";
 import { TotalNum } from "./totalNum";
 
-export const TopBar = ({
+const TopBar = ({
   onChangeFilter,
   totalcount,
   data,
@@ -94,3 +94,5 @@ export const TopBar = ({
     </>
   );
 };
+// export
+export default TopBar;

@@ -1,9 +1,8 @@
 // node libraries
 import CheckboxTree from "react-checkbox-tree";
-
 import React, { useEffect, useState } from "react";
 // components
-import { TopBar } from "./TopBar";
+import TopBar from "./TopBar";
 import ContextListProductPage from "./Context/context";
 import MenuMobile from "../../components/layout/MenuMobile";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -39,7 +38,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
   const [isOpenOrderingModal, setIsOpenOrderingModal] = useState(false);
   const [isDiscountPercentage, setIsDiscountPercentage] = useState(false);
 
-  const _handel_filters = async (witchFilter) => {
+  const handelFilters = async (witchFilter) => {
     setHasMore(true);
     setIsLoading(true);
 
@@ -81,7 +80,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
     }
   };
 
-  const _handel_Add_category = (id) => {
+  const handelAddCategory = (id) => {
     const copyArray = [...wantCategories];
     const newArray = copyArray.filter((element) => element != id);
     if (copyArray.length == newArray.length) {
@@ -91,7 +90,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
     }
   };
 
-  const _handel_call_another_page_api = async (witchFilter) => {
+  const handelCallAnotherPageApi = async (witchFilter) => {
     try {
       const response = await http.get(`/api/v1/products/`, {
         params: {
@@ -129,7 +128,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
   // for filters in sidebar
   useEffect(() => {
     async function fetchData() {
-      const _handel_category = async () => {
+      const handelCategory = async () => {
         try {
           const response = await http.get(
             `/api/v1/sub_markets/?q=${searchWord}`
@@ -141,12 +140,12 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
           return false;
         }
       };
-      await _handel_filters();
-      await _handel_category();
+      await handelFilters();
+      await handelCategory();
     }
     fetchData();
   }, [
-    _handel_filters,
+    handelFilters,
     maxPrice,
     minPrice,
     shop_products,
@@ -162,12 +161,12 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
   ]);
 
   // for filters in sidebar
-  const handel_filterModal = () => {
+  const handelFilterModal = () => {
     setIsOpenModal(!isOpenModal);
   };
 
   // function for open OrderingModal in mobile
-  const handel_OrderingModal = () => {
+  const handelOrderingModal = () => {
     setIsOpenOrderingModal(!isOpenOrderingModal);
   };
 
@@ -177,8 +176,8 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
         value={{
           listProducts: listProducts,
           totalcount: totalcount,
-          handel_filterModal: handel_filterModal,
-          _handel_filters: _handel_filters,
+          handel_filterModal: handelFilterModal,
+          _handel_filters: handelFilters,
           listWithFilter: listWithFilter,
         }}
       >
@@ -195,7 +194,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
                       >
                         <input
                           onChange={(e) => {
-                            _handel_Add_category(e.target.value);
+                            handelAddCategory(e.target.value);
                           }}
                           className="form-check-input"
                           type="checkbox"
@@ -294,9 +293,9 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
             <div className="col-12 col-lg-9">
               <TopBar
                 whichOrdering={whichOrdering}
-                handelFilterModal={handel_filterModal}
+                handelFilterModal={handelFilterModal}
                 setWhichOrdering={setWhichOrdering}
-                handelOrderingModal={handel_OrderingModal}
+                handelOrderingModal={handelOrderingModal}
               />
               <div className="mx-auto row">
                 {isLoading ? (
@@ -305,7 +304,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
                   <InfiniteScroll
                     className="mx-auto row"
                     dataLength={listWithFilter.length} // This is important field to render the next data
-                    next={_handel_call_another_page_api}
+                    next={handelCallAnotherPageApi}
                     hasMore={hasMore}
                     loader={<h4>کمی صبر...</h4>}
                     endMessage={
@@ -340,7 +339,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
               }}
             >
               <i
-                onClick={handel_filterModal}
+                onClick={handelFilterModal}
                 className="far fa-times-circle"
                 style={{
                   fontSize: "25px",
@@ -408,7 +407,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
                     >
                       <input
                         onChange={(e) => {
-                          _handel_Add_category(e.target.value);
+                          handelAddCategory(e.target.value);
                         }}
                         className="form-check-input"
                         type="checkbox"
@@ -462,7 +461,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
               }}
             >
               <button
-                onClick={handel_filterModal}
+                onClick={handelFilterModal}
                 className="btn btn-dark"
                 style={{ width: "90vw", fontSize: "14px" }}
               >
@@ -487,7 +486,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
               }}
             >
               <i
-                onClick={handel_OrderingModal}
+                onClick={handelOrderingModal}
                 className="far fa-times-circle"
                 style={{
                   fontSize: "25px",
@@ -589,7 +588,7 @@ function ListProduct({ searchWord = "", shop_products = "", categoryIn = "" }) {
               }}
             >
               <button
-                onClick={handel_filterModal}
+                onClick={handelFilterModal}
                 className="btn btn-dark"
                 style={{ width: "90vw", fontSize: "14px" }}
               >

@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
 import InfiniteScroll from "react-infinite-scroll-component";
 // components
-import { TopBar } from "../TopBar";
+import TopBar from "../TopBar";
 import Grouping from "../../searchPage/Grouping";
 import FilterPrice from "./components/filterPrice";
 import FiltersPart from "../../searchPage/filtersPart";
@@ -248,7 +248,7 @@ function ListProductCus({ data }) {
                 searchWord={data.q}
                 setCategories={setCategories}
                 categories={categories}
-                _handel_Add_category={handelAddCategory}
+                handelAddCategory={handelAddCategory}
               />
 
               <CustomAccordion title="محدوده قیمت" item="two" close={true}>
@@ -536,7 +536,7 @@ function ListProductCus({ data }) {
                 searchWord={data.q}
                 setCategories={setCategories}
                 categories={categories}
-                _handel_Add_category={handelAddCategory}
+                handelAddCategory={handelAddCategory}
               />
             )}
             {hojreh == "" && (

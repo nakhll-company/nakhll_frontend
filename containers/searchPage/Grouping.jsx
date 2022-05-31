@@ -1,15 +1,18 @@
+// node libraries
 import React from "react";
+// components
 import CustomAccordion from "../../components/custom/customAccordion";
+// methods
 import { http } from "../../services/callApi/api";
 
 function Grouping({
   searchWord,
   setCategories,
   categories,
-  _handel_Add_category,
+  handelAddCategory,
   item,
 }) {
-  const _handel_category = async () => {
+  const handelCategory = async () => {
     try {
       const response = await http.get(
         `/api/v1/categories/category_product_count/?q=${searchWord}`
@@ -26,7 +29,7 @@ function Grouping({
       <CustomAccordion
         title="دسته بندی"
         item={item ? item : "one"}
-        callApi={() => _handel_category()}
+        callApi={() => handelCategory()}
       >
         {categories.map(({ id, name, product_count }, index) => (
           <div
@@ -35,7 +38,7 @@ function Grouping({
           >
             <input
               onChange={(e) => {
-                _handel_Add_category(e.target.value);
+                handelAddCategory(e.target.value);
               }}
               className="form-check-input"
               type="checkbox"

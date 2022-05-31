@@ -4,7 +4,7 @@ import CheckboxTree from "react-checkbox-tree";
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 // components
-import { TopBar } from "../TopBar";
+import TopBar from "../TopBar";
 import { allCites } from "../../../utils/allCities";
 import SearchProduct from "./components/searchProduct";
 import MenuMobile from "../../../components/layout/MenuMobile";
