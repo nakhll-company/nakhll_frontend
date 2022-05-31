@@ -8,7 +8,7 @@ import {
 export const callApiDelete = async({
     activeHojreh
 }) => {
-    let response = await authhttp.delete(
+    const response = await authhttp.delete(
         `/api/v1/shop/${activeHojreh}/settings/image/`
     );
     if (response.status === 204) {
