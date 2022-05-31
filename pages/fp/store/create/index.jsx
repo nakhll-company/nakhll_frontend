@@ -20,6 +20,7 @@ import { createStore } from "../../../../containers/store/methods/createStore";
 // styles
 import styles from "./createStore.module.scss";
 import AppButton from "../../../../components/AppButton";
+import { checkForCallUserInfo } from "../../../../utils/checkForCallUserInfo";
 
 function NewStore({ getUserInfo, userInfo }) {
   const breakpoint = 620;
@@ -46,14 +47,14 @@ function NewStore({ getUserInfo, userInfo }) {
         loading: "true",
       };
     });
-    
+
     data.State = Number(data.State);
     data.BigCity = Number(data.BigCity);
     data.City = Number(data.City);
 
     const response = await createStore(data);
     if (response.status === 201) {
-      getUserInfo();
+      checkForCallUserInfo() && getUserInfo();
       setLoaderBtn(false);
       setShowSuccessPage({
         loading: "false",
@@ -71,7 +72,9 @@ function NewStore({ getUserInfo, userInfo }) {
   useEffect(() => {
     async function fetchData() {
       setSelectState(await getStates());
-      Object.keys(userInfo).length === 0 && (await getUserInfo());
+      Object.keys(userInfo).length === 0 &&
+        checkForCallUserInfo() &&
+        (await getUserInfo());
     }
     fetchData();
   }, []);

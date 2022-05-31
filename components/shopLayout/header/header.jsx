@@ -12,16 +12,13 @@ import MegaMenuDesktop from "../../../containers/LandingPage/MegaMenuDesktop";
 // methods
 import { gtag } from "../../../utils/googleAnalytics";
 import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
-import {
-  callCategory,
-  getAllShops,
-  handelSearch,
-} from "../../../api/header";
+import { callCategory, getAllShops, handelSearch } from "../../../api/header";
 // style
 import styles from "./header.module.scss";
 import rot13 from "../../../utils/rout13";
 import { clearTokenStorage } from "../../../api/general/clearTokenStorage";
 import { http } from "../../../services/callApi/api";
+import { checkForCallUserInfo } from "../../../utils/checkForCallUserInfo";
 
 function Header() {
   const router = useRouter();
@@ -36,7 +33,7 @@ function Header() {
 
   useEffect(() => {
     async function fetchData() {
-      dispatch(getUserInfo());
+      checkForCallUserInfo() && dispatch(getUserInfo());
       const getCategory = await callCategory();
       setCategory(getCategory);
     }
@@ -165,7 +162,8 @@ function Header() {
                         );
                         if (response.status < 300) {
                           router.push(
-                            `/setPassword/${rot13(response?.data?.auth_key)}/${response?.data?.mobile_status
+                            `/setPassword/${rot13(response?.data?.auth_key)}/${
+                              response?.data?.mobile_status
                             }`
                           );
                         }

@@ -19,6 +19,7 @@ import { getActiveHojreh } from "../../redux/actions/user/getActiveHojreh";
 import styles from "./layout.module.scss";
 import HeaderDesktop from "./fpLayout/headerDesktop";
 import HeaderMobile from "./fpLayout/headerMobile";
+import { checkForCallUserInfo } from "../../utils/checkForCallUserInfo";
 
 function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
   const breakpoint = 620;
@@ -36,7 +37,9 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
 
   useEffect(() => {
     async function fetchData() {
-      Object.keys(userInfo).length === 0 && getUserInfo();
+      Object.keys(userInfo).length === 0 &&
+        checkForCallUserInfo() &&
+        getUserInfo();
       if (
         selectShop.length === 0 &&
         Object.keys(userInfo).length > 0 &&

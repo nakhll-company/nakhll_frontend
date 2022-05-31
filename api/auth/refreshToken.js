@@ -16,9 +16,7 @@ export async function refreshToken() {
         };
         localStorage.removeItem("accessToken");
         try {
-            const response = await http.post("/api/v1/auth/token/refresh/", {
-                token,
-            });
+            const response = await http.post("/api/v1/auth/token/refresh/", token);
             if (response.status === 200) {
                 localStorage.setItem("accessToken", response.data.access);
             } else {
