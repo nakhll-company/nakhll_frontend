@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Empty.module.scss";
 
-export const Empty = () => {
+const Empty = () => {
   return (
     <>
       <div className={styles.seaContainer}>
@@ -85,3 +85,5 @@ export const Empty = () => {
     </>
   );
 };
+// export
+export default Empty;

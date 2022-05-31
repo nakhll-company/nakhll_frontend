@@ -1,7 +1,6 @@
 // node libraries
 import Link from "next/link";
 import React, { useContext } from "react";
-
 // methods
 import ContextProduct from "./Context/context";
 // style
@@ -9,7 +8,7 @@ import styles from "./MenuMobile.module.scss";
 
 
 
-export const MenuMobile = () => {
+const MenuMobile = () => {
   const { All_product_list_buy } = useContext(ContextProduct);
 
   return (
@@ -57,3 +56,5 @@ export const MenuMobile = () => {
     </>
   );
 };
+// export
+export default MenuMobile;

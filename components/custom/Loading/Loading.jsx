@@ -1,8 +1,10 @@
-import Image from "next/image";
+// node libraries
 import React from "react";
+import Image from "next/image";
+// style
 import styles from "./Loading.module.scss";
 
-export const Loading = () => {
+const Loading = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.loader}>
@@ -26,3 +28,5 @@ export const Loading = () => {
     </div>
   );
 };
+// export
+export default Loading;
