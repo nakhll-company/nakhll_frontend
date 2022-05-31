@@ -2,11 +2,11 @@
 import React, { useState } from "react";
 // components
 import Explain from "../../components/explain";
-
 import CheckBoxSend from "../../components/checkBoxSend";
 import AppButton from "../../../../../../components/AppButton";
 
-function SoRent({ pageController, _handle_send_info_scope }) {
+function SoRent({ pageController, handleSendInfoScope }) {
+  
   const [checkNO, setCheckNO] = useState(true);
   const [checkYes, setCheckYes] = useState(false);
   const [loaderBtn, setLoaderBtn] = useState(false);
@@ -45,7 +45,7 @@ function SoRent({ pageController, _handle_send_info_scope }) {
           // checkNO ? pageController() : pageController(1, 7);
           checkNO
             ? pageController()
-            : _handle_send_info_scope(
+            : handleSendInfoScope(
                 {
                   calculation_metric: { pay_time: "at_delivery" },
                 },

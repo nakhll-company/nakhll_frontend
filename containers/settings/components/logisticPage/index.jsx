@@ -1,5 +1,5 @@
-import React from "react";
 // node libraries
+import React from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -12,21 +12,21 @@ import SelectIcon from "./ui/selectIcon";
 import Explain from "./components/explain";
 import FreeQuestion from "./ui/freeQuestion";
 import Products from "./components/products";
-
 import HeaderTitle from "./components/headerTitle";
 import ResultOperation from "./ui/resultOperation";
 import CheckBoxSend from "./components/checkBoxSend";
+import AppButton from "../../../../components/AppButton";
 import InputUseForm from "../../../creat/component/inputUseForm";
 import LoadingAllPage from "../../../../components/loadingAllPage";
 import CheckboxTreeCities from "../../../../components/CheckboxTree/CheckboxTree";
 // methods
+import { authhttp } from "../../../../services/callApi/api";
 import { successMessage } from "../../../../utils/toastifyMessage";
 // style
 import st from "./logisticPage.module.scss";
-import AppButton from "../../../../components/AppButton";
-import { authhttp } from "../../../../services/callApi/api";
 
 function LogisticPage() {
+
   const _asist = new Assistent();
   const [loader, setLoader] = useState(false);
   const [wichPage, setWichPage] = useState(1);
@@ -112,7 +112,7 @@ function LogisticPage() {
   };
 
   // functoin for send data for price per kg
-  const _handle_send_info_scope = async (data, page = 0) => {
+  const handleSendInfoScope = async (data, page = 0) => {
     const response = await authhttp.patch(
       `/api/v1/logistic/shop-logistic-unit/${wichIdScope}/`,
       data
@@ -255,7 +255,7 @@ function LogisticPage() {
             <HeaderTitle onClick={() => downPage()} title="تنظیمات ارسال" />
 
             <SoRent
-              _handle_send_info_scope={_handle_send_info_scope}
+              handleSendInfoScope={handleSendInfoScope}
               pageController={upPage}
             />
           </>
@@ -266,7 +266,7 @@ function LogisticPage() {
             <HeaderTitle onClick={() => downPage()} title="تنظیمات ارسال" />
             <FreeQuestion
               pageController={upPage}
-              _handle_send_info_scope={_handle_send_info_scope}
+              handleSendInfoScope={handleSendInfoScope}
             />
           </>
         )}
@@ -280,7 +280,7 @@ function LogisticPage() {
             <form
               onSubmit={handleSubmit(async (data) => {
                 setLoaderBtn(true);
-                await _handle_send_info_scope({
+                await handleSendInfoScope({
                   calculation_metric: {
                     price_per_kilogram: data.price_per_kg
                       ? unitConverter(data.price_per_kg) * 10
@@ -372,7 +372,7 @@ function LogisticPage() {
             <HeaderTitle onClick={() => downPage()} title="تنظیمات  ارسال" />
             <SelectIcon
               pageController={upPage}
-              _handle_send_info_scope={_handle_send_info_scope}
+              handleSendInfoScope={handleSendInfoScope}
             />
           </>
         )}
@@ -393,7 +393,7 @@ function LogisticPage() {
               upPage={upPage}
               downPage={downPage}
               informationForm={informationForm}
-              _handle_send_info_scope={_handle_send_info_scope}
+              handleSendInfoScope={handleSendInfoScope}
               wichIdScope={wichIdScope}
             />
           </>

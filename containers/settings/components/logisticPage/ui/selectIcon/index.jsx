@@ -1,14 +1,13 @@
-import React from "react";
 // node libraries
+import React from "react";
 import Image from "next/image";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 // components
-
+import AppButton from "../../../../../../components/AppButton";
 import InputUseForm from "../../../../../creat/component/inputUseForm";
 // style
 import st from "./selectIcon.module.scss";
-import AppButton from "../../../../../../components/AppButton";
 
 const ICONS = [
   { src: "/icons/settings/pishtaz.svg", id: 1 },
@@ -18,7 +17,8 @@ const ICONS = [
   { src: "/icons/settings/free.svg", id: 5 },
 ];
 
-function SelectIcon({ _handle_send_info_scope }) {
+function SelectIcon({ handleSendInfoScope }) {
+
   const [idselectedIcon, setIdselectedIcon] = useState(1);
   const [loaderBtn, setLoaderBtn] = useState(false);
   const {
@@ -26,12 +26,13 @@ function SelectIcon({ _handle_send_info_scope }) {
     handleSubmit,
     formState: { errors },
   } = useForm({ criteriaMode: "all", mode: "all" });
+
   return (
     <>
       <form
         onSubmit={handleSubmit(async (data) => {
           setLoaderBtn(true);
-          await _handle_send_info_scope({
+          await handleSendInfoScope({
             name: data.name ? data.name : "بدون نام",
             logo_type: idselectedIcon,
           });

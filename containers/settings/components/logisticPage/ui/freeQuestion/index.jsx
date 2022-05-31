@@ -4,12 +4,12 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 // components
 import Explain from "../../components/explain";
-
 import CheckBoxSend from "../../components/checkBoxSend";
-import InputUseForm from "../../../../../creat/component/inputUseForm";
 import AppButton from "../../../../../../components/AppButton";
+import InputUseForm from "../../../../../creat/component/inputUseForm";
 
-function FreeQuestion({ pageController, _handle_send_info_scope }) {
+function FreeQuestion({ pageController, handleSendInfoScope }) {
+  
   const [checkNoFree, setCheckNoFree] = useState(true);
   const [checkYesFree, setCheckYesFree] = useState(false);
   const [loaderBtn, setLoaderBtn] = useState(false);
@@ -54,7 +54,7 @@ function FreeQuestion({ pageController, _handle_send_info_scope }) {
         <>
           <form
             onSubmit={handleSubmit((data) =>
-              _handle_send_info_scope(
+              handleSendInfoScope(
                 {
                   constraint: {
                     min_cart_price:

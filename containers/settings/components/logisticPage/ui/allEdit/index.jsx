@@ -1,5 +1,5 @@
-import React from "react";
 // node libraries
+import React from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
@@ -11,10 +11,10 @@ import HeaderTitle from "../../components/headerTitle";
 import CheckBoxSend from "../../components/checkBoxSend";
 import InputUseForm from "../../../../../creat/component/inputUseForm";
 import CheckboxTreeCities from "../../../../../../components/CheckboxTree/CheckboxTree";
-
+// methods
+import { authhttp } from "../../../../../../services/callApi/api";
 // style
 import st from "./allEdit.module.scss";
-import { authhttp } from "../../../../../../services/callApi/api";
 
 const SHOP = "shop";
 const CUSTOMER = "cust";
@@ -32,7 +32,7 @@ function AllEdit({
   downPage,
   constraintId,
   informationForm,
-  _handle_send_info_scope,
+  handleSendInfoScope,
   _handle_update_data_scope,
 }) {
   const [checkNO, setCheckNO] = useState(true);
@@ -191,7 +191,7 @@ function AllEdit({
       {/* four */}
       <form
         onSubmit={handleSubmit((data) => {
-          _handle_send_info_scope(
+          handleSendInfoScope(
             {
               name: data.edit_name ? data.edit_name : "بدون نام",
               logo_type: idselectedIcon,
