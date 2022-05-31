@@ -1,9 +1,10 @@
 import {
     clearTokenStorage
 } from "../general/clearTokenStorage";
+
 import {
-    ApiRegister
-} from "../../services/apiRegister/ApiRegister";
+    http
+} from "../../services/callApi/api";
 
 export async function refreshToken() {
     if (
@@ -15,12 +16,9 @@ export async function refreshToken() {
         };
         localStorage.removeItem("accessToken");
         try {
-            const response = await ApiRegister().apiRequest(
+            const response = await http.post("/api/v1/auth/token/refresh/", {
                 token,
-                "POST",
-                "/api/v1/auth/token/refresh/",
-                true, {}
-            );
+            });
             if (response.status === 200) {
                 localStorage.setItem("accessToken", response.data.access);
             } else {
