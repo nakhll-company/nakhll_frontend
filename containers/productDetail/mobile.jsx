@@ -5,10 +5,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Fragment, useState, useEffect } from "react";
 import SwiperCore, { EffectCube, Pagination } from "swiper";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { FaMapMarkedAlt } from "react-icons/fa";
+import { BiTimeFive } from "react-icons/bi";
 // components
 import AddFavorites from "../../components/AddFavorites";
 import CustomLabel from "../../components/custom/customLabel";
@@ -51,7 +53,7 @@ const ProductDetailMobile = ({ data }) => {
       await fetchProductShop(detail, setProductShop);
     }
     fetchData();
-    
+
     relatedProduct.length > 0 ? setPosts(...relatedProduct.results) : [];
   }, []);
 
@@ -144,12 +146,8 @@ const ProductDetailMobile = ({ data }) => {
                   className="ms-lg-5 mb-3 mb-lg-0"
                   style={{ display: "flex", alignItems: "center" }}
                 >
-                  <Image
-                    src="/productDetail/time.png"
-                    alt="iran icon"
-                    width="20"
-                    height="23"
-                  />
+                  <BiTimeFive size={19} color="#000" />
+
                   <span style={{ fontSize: ".85rem" }} className="me-3">
                     {detail.status}
                   </span>
@@ -159,13 +157,8 @@ const ProductDetailMobile = ({ data }) => {
                 className="ms-lg-5 mb-3 mb-lg-0"
                 style={{ display: "flex", alignItems: "center" }}
               >
-                {/* <i style={{ fontSize: "1.5rem", color: "#7d7d7d" }} className="fas fa-map-marker-alt ms-3"></i> */}
-                <Image
-                  src="/productDetail/map.png"
-                  alt="iran icon"
-                  width="19"
-                  height="19"
-                />
+                <FaMapMarkedAlt size={19} color="#000" />
+
                 <span style={{ fontSize: ".85rem" }} className="me-3">
                   <span className="ltr"> از </span>
                   {detail?.shop?.state?.name}، {detail?.shop?.big_city?.name}
