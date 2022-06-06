@@ -1,6 +1,9 @@
-import Image from "next/image";
+// node libraries
 import React from "react";
+import Image from "next/image";
+// style
 import s from "./AppButton.module.scss";
+
 function AppButton({
   onClick = () => {},
   title = "کلیک",

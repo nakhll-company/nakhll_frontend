@@ -1,38 +1,39 @@
+// node libraries
 import Link from "next/link";
 import Image from "next/image";
+import { isEmpty } from "lodash";
 import { useContext } from "react";
-import ContextProduct from "./Context/context";
-import Loading from "../../components/loading";
 import React, { useState, Fragment } from "react";
-
-import styles from "../../styles/pages/cart/cart.module.scss";
-// REDUX
 import { useDispatch, useSelector } from "react-redux";
+// components
+import Loading from "../../components/loading";
+// methods
+import ContextProduct from "./Context/context";
+import {diviedNumber} from "../../utils/diviedNumber";
 import { _addProduct } from "../../redux/actions/cart/_addProduct";
 import { _reduceProduct } from "../../redux/actions/cart/_reduceProduct";
 import { _deleteProduct } from "../../redux/actions/cart/_deleteProduct";
-// LODASH
-import { isEmpty } from "lodash";
-import diviedNumber from "../../utils/diviedNumber";
+// style
+import styles from "../../styles/pages/cart/cart.module.scss";
 
 export default function ListCardBuy() {
   const dispatch = useDispatch();
-  const All_product_list_buy = useSelector((state) => state.Cart.allProduct);
+  const allProductListBuy = useSelector((state) => state.Cart.allProduct);
 
   const [loading, setLoading] = useState(false);
   const [productId, setProductId] = useState(0);
 
   const {
-    handel_DeleteProductFromList,
-    handel_AddProductTOList,
-    handel_ReduceProductFromList,
+    handelDeleteProductFromList,
+    handelAddProductTOList,
+    handelReduceProductFromList,
   } = useContext(ContextProduct);
 
   return (
     <div className="col-12 col-lg-8 mb-3 my-md-3 my-lg-0 order-1 order-md-1 order-lg-0">
       <div className="cart-items mt-2">
-        {!isEmpty(All_product_list_buy) &&
-          All_product_list_buy.ordered_items.map((El, index) => (
+        {!isEmpty(allProductListBuy) &&
+          allProductListBuy.ordered_items.map((El, index) => (
             <Fragment key={index + 10}>
               <div
                 className={`${styles.cart_product_group} bg-white`}
@@ -40,7 +41,7 @@ export default function ListCardBuy() {
                   !(
                     index > 0 &&
                     El.product.FK_Shop.slug ==
-                      All_product_list_buy.ordered_items[index - 1].product
+                      allProductListBuy.ordered_items[index - 1].product
                         .FK_Shop.slug
                   )
                     ? { position: "relative" }
@@ -56,7 +57,7 @@ export default function ListCardBuy() {
                 {!(
                   index > 0 &&
                   El.product.FK_Shop.slug ==
-                    All_product_list_buy.ordered_items[index - 1].product
+                    allProductListBuy.ordered_items[index - 1].product
                       .FK_Shop.slug
                 ) && (
                   <div className="pt-3 pb-1 px-3">
@@ -231,7 +232,7 @@ export default function ListCardBuy() {
               {false &&
                 index !== 0 &&
                 El.product.FK_Shop.slug ==
-                  All_product_list_buy.ordered_items[index - 1].product.FK_Shop
+                  allProductListBuy.ordered_items[index - 1].product.FK_Shop
                     .slug && (
                   <div
                     className="mt-0 cart-product-group bg-white"
@@ -271,7 +272,7 @@ export default function ListCardBuy() {
                                   cursor: "pointer",
                                 }}
                                 onClick={() =>
-                                  handel_DeleteProductFromList(El.id)
+                                  handelDeleteProductFromList(El.id)
                                 }
                               ></i>
                             </div>
@@ -305,7 +306,7 @@ export default function ListCardBuy() {
                                         }}
                                         className="fas fa-plus-square"
                                         onClick={() =>
-                                          handel_AddProductTOList(El.product.ID)
+                                          handelAddProductTOList(El.product.ID)
                                         }
                                       ></i>
                                     </button>
@@ -326,7 +327,7 @@ export default function ListCardBuy() {
                                         }}
                                         className="fas fa-minus-square"
                                         onClick={() =>
-                                          handel_ReduceProductFromList(El.id)
+                                          handelReduceProductFromList(El.id)
                                         }
                                       ></i>
                                     </button>

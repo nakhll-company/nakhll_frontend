@@ -1,26 +1,28 @@
+// node libraries
 import { useState } from "react";
-import { useSelector } from "react-redux";
-
-import AppButton from "../../components/AppButton";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+// components
+import AppButton from "../../components/AppButton";
+// methods
+import {diviedNumber} from "../../utils/diviedNumber";
 // style
 import styles from "../../styles/pages/cart/cart.module.scss";
-import diviedNumber from "../../utils/diviedNumber";
 
 export default function SumBuy() {
   const [loaderButton, setLoaderButton] = useState(false);
   const router = useRouter();
-  const All_product_list_buy = useSelector((state) => state.Cart.allProduct);
+  const allProductListBuy = useSelector((state) => state.Cart.allProduct);
 
   return (
     <>
-      {All_product_list_buy.cart_old_price ? (
+      {allProductListBuy.cart_old_price ? (
         <div className="col-12 col-md-12 col-lg-4 order-0 order-md-0 order-lg-1">
           <div className={styles.cart_invoice}>
             <div className={styles.cart_invoice_primary_price}>
               <span>قیمت محصولات:</span>{" "}
               <span>
-                {diviedNumber(All_product_list_buy.cart_old_price / 10)}
+                {diviedNumber(allProductListBuy.cart_old_price / 10)}
 
                 <span style={{ marginRight: "5px" }}>تومان</span>
               </span>
@@ -29,8 +31,8 @@ export default function SumBuy() {
               <span>تخفیف محصولات:</span>{" "}
               <span>
                 {diviedNumber(
-                  (All_product_list_buy.cart_old_price -
-                    All_product_list_buy.cart_price) /
+                  (allProductListBuy.cart_old_price -
+                    allProductListBuy.cart_price) /
                     10
                 )}
 
@@ -44,7 +46,7 @@ export default function SumBuy() {
             <div className={styles.cart_invoice_total_price}>
               <span>مبلغ قابل پرداخت</span>{" "}
               <span className="font-weight-500">
-                {diviedNumber(All_product_list_buy.cart_price / 10)}
+                {diviedNumber(allProductListBuy.cart_price / 10)}
 
                 <span style={{ marginRight: "5px" }}>تومان</span>
               </span>
@@ -66,9 +68,6 @@ export default function SumBuy() {
               ></i>
               {`     تضمین رضایت: بازگشت کالا و پول شما تا 7 روز`}
             </div>
-            {/* <div className="border border-danger text-danger p-2 mt-3 rounded">
-               خرید شما بعد از تاریخ ۵ فروردین ارسال خواهد شد.
-            </div>  */}
           </div>
         </div>
       ) : (

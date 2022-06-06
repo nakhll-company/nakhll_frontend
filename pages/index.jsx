@@ -1,19 +1,22 @@
+// node libraries
 import React from "react";
-
+// components
+import Selers from "../containers/nakhlPage/selers";
+import Footer from "../components/shopLayout/footer";
 import BlogNakhl from "../containers/nakhlPage/blogNakhl";
 import EmptyLayout from "../components/layout/EmptyLayout";
 import HeroSlider from "../containers/nakhlPage/heroSlider";
+import ValuesPart from "../containers/nakhlPage/valuesPart";
+import SliderNakhl from "../containers/nakhlPage/sliderNakhl";
 import NakhlLinerProducts from "../containers/nakhlPage/LinerProducts";
 import LinerProductsBgLanding from "../containers/nakhlPage/LinerProductsBg";
-import Selers from "../containers/nakhlPage/selers";
-import SliderNakhl from "../containers/nakhlPage/sliderNakhl";
-import ValuesPart from "../containers/nakhlPage/valuesPart";
-import Footer from "../components/shopLayout/footer";
-import { dataLanding } from "../public/dataLanding/dataLanding";
+// methods
+import { dataLanding } from "../utils/dataLanding";
 
-function Test() {
-  const { linearsProduct, dataBlog, dataSliders, dataAmazingDiscounts } =
-    dataLanding;
+function Landing() {
+
+  const { linearsProduct, dataBlog, dataSliders, dataAmazingDiscounts } = dataLanding;
+
   return (
     <div>
       <HeroSlider />
@@ -21,11 +24,9 @@ function Test() {
       <Selers />
       <LinerProductsBgLanding
         dataLinerProductsBg={dataAmazingDiscounts.products}
-        url_LinerProductsBg={dataAmazingDiscounts.url}
+        urlLinerProductsBg={dataAmazingDiscounts.url}
       />
-
       <SliderNakhl dataSliders={dataSliders} />
-
       <NakhlLinerProducts
         dataLinerProducts={linearsProduct[0].products}
         title={linearsProduct[0].title}
@@ -43,6 +44,6 @@ function Test() {
     </div>
   );
 }
-
-export default Test;
-Test.Layout = EmptyLayout;
+// export
+export default Landing;
+Landing.Layout = EmptyLayout;

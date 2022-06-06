@@ -1,4 +1,6 @@
+// style
 import st from "./btnSetting.module.scss";
+
 function BtnSetting({ title, onClick, type = "button" }) {
   return (
     <>

@@ -5,7 +5,7 @@ import React, { useEffect, useState, Fragment } from "react";
 import TitleLiner from "../../containers/settings/components/titleLiner";
 // methods
 import { allCites } from "../../utils/allCities";
-import diviedNumber from "../../utils/diviedNumber";
+import {diviedNumber} from "../../utils/diviedNumber";
 
 function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
   const [allOfCity, setAllOfCity] = useState([]);

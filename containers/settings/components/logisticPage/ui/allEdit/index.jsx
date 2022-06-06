@@ -1,5 +1,5 @@
-import React from "react";
 // node libraries
+import React from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
@@ -11,10 +11,10 @@ import HeaderTitle from "../../components/headerTitle";
 import CheckBoxSend from "../../components/checkBoxSend";
 import InputUseForm from "../../../../../creat/component/inputUseForm";
 import CheckboxTreeCities from "../../../../../../components/CheckboxTree/CheckboxTree";
-
+// methods
+import { authhttp } from "../../../../../../services/callApi/api";
 // style
 import st from "./allEdit.module.scss";
-import { authhttp } from "../../../../../../services/callApi/api";
 
 const SHOP = "shop";
 const CUSTOMER = "cust";
@@ -32,8 +32,8 @@ function AllEdit({
   downPage,
   constraintId,
   informationForm,
-  _handle_send_info_scope,
-  _handle_update_data_scope,
+  handleSendInfoScope,
+  handleUpdateDataScope,
 }) {
   const [checkNO, setCheckNO] = useState(true);
   const [checkYes, setCheckYes] = useState(false);
@@ -51,7 +51,7 @@ function AllEdit({
     formState: { errors },
   } = useForm({ criteriaMode: "all", mode: "all" });
 
-  const _update_cities = async (data) => {
+  const updateCities = async (data) => {
     const response = await authhttp.patch(
       `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
       data
@@ -87,7 +87,7 @@ function AllEdit({
   }, [informationForm, setValue]);
 
   useEffect(() => {
-    const _handel_get_all_data_scope = async () => {
+    const handelGetAllDataScope = async () => {
       const response = await authhttp.get(
         `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`
       );
@@ -97,7 +97,7 @@ function AllEdit({
       }
     };
     if (constraintId !== "") {
-      _handel_get_all_data_scope();
+      handelGetAllDataScope();
     }
   }, [constraintId]);
 
@@ -153,7 +153,7 @@ function AllEdit({
       />
       {!editcheckedSelectAllProducts && (
         <Products
-          _handle_update_data_scope={_handle_update_data_scope}
+          handleUpdateDataScope={handleUpdateDataScope}
           move={false}
           ProductsShop={editProductsShop}
           title="ثبت محصولات"
@@ -191,7 +191,7 @@ function AllEdit({
       {/* four */}
       <form
         onSubmit={handleSubmit((data) => {
-          _handle_send_info_scope(
+          handleSendInfoScope(
             {
               name: data.edit_name ? data.edit_name : "بدون نام",
               logo_type: idselectedIcon,
@@ -214,11 +214,11 @@ function AllEdit({
             8
           );
 
-          _update_cities({
+          updateCities({
             cities: editCheckedCities.length > 0 ? editCheckedCities : [],
           });
           if (editcheckedSelectAllProducts) {
-            _update_cities({
+            updateCities({
               products: [],
             });
           }

@@ -5,16 +5,17 @@ import { useEffect, useState } from "react";
 // component
 import SumBuy from "../../containers/card/SumBuy";
 import ShopLayout from "../../components/shopLayout";
+import Empty from "../../components/custom/Empty/Empty";
+import MenuMobile from "../../containers/card/MenuMobile";
 import ListCardBuy from "../../containers/card/ListCardBuy";
-// metods
-import { Empty } from "../../components/custom/Empty/Empty";
-import { MenuMobile } from "../../containers/card/MenuMobile";
-import { Loading } from "../../components/custom/Loading/Loading";
+import Loading from "../../components/custom/Loading/Loading";
+// methods
+import { authhttp } from "../../services/callApi/api";
 import { getProducts } from "../../redux/actions/cart/getProducts";
 import ContextProduct from "../../containers/card/Context/context";
-import { authhttp } from "../../services/callApi/api";
 
 export default function Cart() {
+
   const dispatch = useDispatch();
   const [showLoading, setShowLoading] = useState(true);
   const [allProductListBuy, setAllProductListBuy] = useState({});

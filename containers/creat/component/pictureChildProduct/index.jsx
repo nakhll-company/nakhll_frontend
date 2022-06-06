@@ -6,7 +6,8 @@ import InputPictureCreat from "../InputPicture";
 import styles from "./pictureChildProduct.module.scss";
 
 function PictureChildProduct({ setImageSrc, image }) {
-  const handel_delet_pic = () => {
+  
+  const handelDeletPic = () => {
     setImageSrc(null);
   };
 
@@ -40,7 +41,7 @@ function PictureChildProduct({ setImageSrc, image }) {
         </div>
 
         <div className={styles.deleteBtn}>
-          <div className={styles.wrapBtn} onClick={() => handel_delet_pic()}>
+          <div className={styles.wrapBtn} onClick={() => handelDeletPic()}>
             <i className="fas fa-trash"></i>
           </div>
         </div>

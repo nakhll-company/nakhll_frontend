@@ -1,6 +1,6 @@
-import React from "react";
 // node libraries
 import _ from "lodash";
+import React from "react";
 import { useEffect, useState } from "react";
 // components
 import Search from "../search";
@@ -10,7 +10,7 @@ import { paginateFront } from "../../../../../../utils/paginateFrontSide";
 
 function Products({
   ProductsShop,
-  _handle_update_data_scope,
+  handleUpdateDataScope,
   move = true,
   title = "مرحله بعد",
 }) {
@@ -57,13 +57,13 @@ function Products({
   };
 
   // function for send selected cities
-  const _handel_send_selected_cities = async () => {
+  const handelSendSelectedCities = async () => {
     const arrayForSend = [];
     const arraySelectedCities = productList.filter((el) => el.is_checked);
     arraySelectedCities.map((el) => {
       arrayForSend.push(el.ID);
     });
-    _handle_update_data_scope(
+    handleUpdateDataScope(
       {
         products: arrayForSend.length > 0 ? arrayForSend : [],
       },
@@ -163,7 +163,7 @@ function Products({
         </div>
       ))}
 
-      <BtnSetting onClick={_handel_send_selected_cities} title={title} />
+      <BtnSetting onClick={handelSendSelectedCities} title={title} />
     </>
   );
 }

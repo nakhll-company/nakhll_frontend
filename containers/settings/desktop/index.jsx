@@ -1,20 +1,20 @@
-import React from "react";
 // node libraries
-import { useEffect, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-// scss
-import styles from "../../../styles/pages/setting/setting.module.scss";
+import { useEffect, useState } from "react";
 // components
-import { Loading } from "../../../components/custom/Loading/Loading";
-import Headers from "../components/Headers/Headers";
 import FormInputs from "../components/linksForm";
 import HojrehForm from "../components/hojrehForm";
-import BankAccountForm from "../components/bankAccountForm";
-import { callApiAllData } from "../../../api/settings";
+import SuccessfulMessage from "./SuccessfulMessage";
+import Headers from "../components/Headers/Headers";
 import TopPictures from "../components/topPictures";
 import LogisticPage from "../components/logisticPage";
-import ResultOperation from "../components/logisticPage/ui/resultOperation";
-import SuccessfulMessage from "./SuccessfulMessage";
+import BankAccountForm from "../components/bankAccountForm";
+import Loading from "../../../components/custom/Loading/Loading";
+// methods
+import { callApiAllData } from "../../../api/settings";
+// scss
+import styles from "../../../styles/pages/setting/setting.module.scss";
 
 const DesktopSetting = () => {
   const activeHojreh = useSelector((state) => state.User.activeHojreh);

@@ -1,16 +1,16 @@
-import React from "react";
 // node libraries
+import React from "react";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-
 // ciomponents
 import SBSendUnit from "../sendUnit/switchButtonSendUnit";
 import LoadingAllPage from "../../../../../../components/loadingAllPage";
+// methods
+import { authhttp } from "../../../../../../services/callApi/api";
+import {diviedNumber} from "../../../../../../utils/diviedNumber";
 // style
 import st from "./panel.module.scss";
-import { authhttp } from "../../../../../../services/callApi/api";
-import diviedNumber from "../../../../../../utils/diviedNumber";
 
 function Panel({
   setConstraintId,
@@ -34,7 +34,7 @@ function Panel({
     fetchData();
   }, [activeHojreh]);
 
-  const _handle_delete_scope = async (id) => {
+  const handleDeleteScope = async (id) => {
     setLoaderTable(true);
     const response = await authhttp.delete(
       `/api/v1/logistic/shop-logistic-unit/${id}/`
@@ -47,7 +47,7 @@ function Panel({
       setLoaderTable(false);
     }
   };
-  const _handel_click_on_scope = (data) => {
+  const handelClickOnScope = (data) => {
     setInformationForm(data);
     setWichIdScope(data.id);
     setConstraintId(data.constraint.id);
@@ -62,7 +62,7 @@ function Panel({
         <div key={index} className={st.wraper}>
           <div className={st.card}>
             <div
-              onClick={() => _handel_click_on_scope(el)}
+              onClick={() => handelClickOnScope(el)}
               className={st.card_right}
             >
               <div className={st.card_right_top}>
@@ -125,7 +125,7 @@ function Panel({
                   />
                 </div>
                 <div
-                  onClick={() => _handle_delete_scope(el.id)}
+                  onClick={() => handleDeleteScope(el.id)}
                   style={{ cursor: "pointer" }}
                 >
                   <Image

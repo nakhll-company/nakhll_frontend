@@ -1,6 +1,6 @@
 import React from "react";
 
-export const TopBar = ({
+const TopBar = ({
   totalcount,
   data,
   handelFilterModal,
@@ -140,3 +140,5 @@ export const TopBar = ({
     </>
   );
 };
+// export
+export default TopBar;

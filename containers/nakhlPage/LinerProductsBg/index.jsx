@@ -3,21 +3,16 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 // components
-// import LinerProducts from "../LinerProducts";
+import LinerProducts from "../../LandingPage/LinerProducts";
 // styles
 import styles from "./LinerProductsBg.module.scss";
-import LinerProducts from "../../LandingPage/LinerProducts";
 
 function LinerProductsBgLanding({
-  subTitle_LinerProductsBg,
+  subTitleLinerProductsBg,
   dataLinerProductsBg,
-  url_LinerProductsBg = "",
+  urlLinerProductsBg = "",
   color,
-  xl = 2,
-  md = 6,
-  lg = 6,
-  num,
-  url,
+  num
 }) {
   return (
     <div
@@ -36,8 +31,7 @@ function LinerProductsBgLanding({
           height={120}
           alt=""
         />
-
-        <Link href={url_LinerProductsBg}>
+        <Link href={urlLinerProductsBg}>
           <div className={styles.btn}>
             <a style={{ whiteSpace: "nowrap" }}>مشاهده محصولات</a>
           </div>
@@ -45,9 +39,9 @@ function LinerProductsBgLanding({
       </div>
       <div className={`${styles.lefter} col-9 col-md-9`}>
         <LinerProducts
-          url={url_LinerProductsBg}
+          url={urlLinerProductsBg}
           dataLinerProducts={dataLinerProductsBg.slice(0, 4)}
-          subTitle={subTitle_LinerProductsBg}
+          subTitle={subTitleLinerProductsBg}
           num={num}
           xl={3}
           md={4}

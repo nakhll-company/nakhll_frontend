@@ -3,18 +3,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-
 // components
+import AppButton from "../../../components/AppButton";
 import ShopLayout from "../../../components/shopLayout";
 // methods
 import { _getListInvoice } from "../../../api/cart";
-
+import { authhttp } from "../../../services/callApi/api";
+import {diviedNumber} from "../../../utils/diviedNumber";
+import { errorMessage } from "../../../utils/toastifyMessage";
 // scss
 import styles from "./payment.module.scss";
-import AppButton from "../../../components/AppButton";
-import { errorMessage } from "../../../utils/toastifyMessage";
-import { authhttp } from "../../../services/callApi/api";
-import diviedNumber from "../../../utils/diviedNumber";
 
 export default function Cart() {
   const router = useRouter();

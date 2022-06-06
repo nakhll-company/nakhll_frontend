@@ -8,9 +8,9 @@ import LinerProducts from "../LinerProducts";
 import styles from "./LinerProductsBg.module.scss";
 
 function LinerProductsBg({
-  subTitle_LinerProductsBg,
+  subTitleLinerProductsBg,
   dataLinerProductsBg,
-  url_LinerProductsBg,
+  urlLinerProductsBg,
   color,
   xl = 2,
   md = 6,
@@ -40,8 +40,8 @@ function LinerProductsBg({
             <Link
               href={`${
                 url.includes("search=")
-                  ? `${url_LinerProductsBg}`
-                  : `/search?ap=${url_LinerProductsBg}`
+                  ? `${urlLinerProductsBg}`
+                  : `/search?ap=${urlLinerProductsBg}`
               }`}
             >
               <a>مشاهده همه</a>
@@ -51,9 +51,9 @@ function LinerProductsBg({
       </div>
       <div className={`${styles.lefter} col-7 col-md-9`}>
         <LinerProducts
-          url={url_LinerProductsBg}
+          url={urlLinerProductsBg}
           dataLinerProducts={dataLinerProductsBg}
-          subTitle={subTitle_LinerProductsBg}
+          subTitle={subTitleLinerProductsBg}
           num={num}
           xl={xl}
           md={md}

@@ -1,7 +1,6 @@
 // node libraries
 import Link from "next/link";
 import React, { useContext } from "react";
-
 // methods
 import ContextProduct from "./Context/context";
 // style
@@ -9,13 +8,13 @@ import styles from "./MenuMobile.module.scss";
 
 
 
-export const MenuMobile = () => {
-  const { All_product_list_buy } = useContext(ContextProduct);
+const MenuMobile = () => {
+  const { allProductListBuy } = useContext(ContextProduct);
 
   return (
     <>
-      {All_product_list_buy != null &&
-        Object.keys(All_product_list_buy).length > 0 && (
+      {allProductListBuy != null &&
+        Object.keys(allProductListBuy).length > 0 && (
           <div className={styles.fix_bottom}>
             <div>
               <Link href="/cart/address" passHref>
@@ -41,13 +40,13 @@ export const MenuMobile = () => {
                     marginLeft: "5px",
                   }}
                 >
-                  {All_product_list_buy.total_old_price !==
-                    All_product_list_buy.total_price &&
-                    diviedNumber(All_product_list_buy.total_old_price / 10)}
+                  {allProductListBuy.total_old_price !==
+                    allProductListBuy.total_price &&
+                    diviedNumber(allProductListBuy.total_old_price / 10)}
                 </span>
 
                 <span className="font-weight-500" style={{ marginLeft: "5px" }}>
-                  {diviedNumber(All_product_list_buy.total_price / 10)}
+                  {diviedNumber(allProductListBuy.total_price / 10)}
                 </span>
                 <span>تومان</span>
               </div>
@@ -57,3 +56,5 @@ export const MenuMobile = () => {
     </>
   );
 };
+// export
+export default MenuMobile;

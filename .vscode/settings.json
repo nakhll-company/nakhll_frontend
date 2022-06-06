@@ -8,5 +8,11 @@
   },
   "debug.showBreakpointsInOverviewRuler": true,
   "debug.allowBreakpointsEverywhere": true,
-  "cSpell.words": ["choromium", "lanch"]
+  "cSpell.words": [
+    "choromium",
+    "lanch"
+  ],
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  }
 }
