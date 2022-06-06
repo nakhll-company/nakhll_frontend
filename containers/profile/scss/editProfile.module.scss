@@ -1,56 +1,53 @@
 .form {
-  margin: 0px 10px;
-  padding: 20px;
-  font-size: 1rem;
-  background: #fff;
-  border-radius: 0.3125rem;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.19);
-  // errors
-  .form_errors {
-    color: red;
-    padding: 10px 10px;
-  }
-  .wrap_all {
-    position: relative;
-  }
-  // parent image
-  .Parent_imageProfile {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 0 auto;
-    display: block;
-    margin-bottom: 20px;
-    position: relative;
-  }
-  .btnProfile {
-    position: absolute;
-    top: 80px;
-  }
-  // image profile
-  .imageProfile {
-    background: rgb(34, 193, 195);
-    background: radial-gradient(
-      circle,
-      rgba(34, 193, 195, 1) 0%,
-      rgba(45, 253, 238, 1) 100%
-    );
-  }
-  // save button
-  .save_btn {
-    color: #fff;
-    background-color: #1b3e68;
-    border: 1px solid #1b3e68;
-    outline: none;
-  }
-  // select
-  select {
-    font-family: "bakh";
-    color: #555555;
-  }
-  // label
-  input {
-    color: #555555;
-  }
+    margin: 0px 10px;
+    padding: 20px;
+    font-size: 1rem;
+    background: #fff;
+    border-radius: 0.3125rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.19);
+    // errors
+    .form_errors {
+        color: red;
+        padding: 10px 10px;
+    }
+    .wrap_all {
+        position: relative;
+    }
+    // parent image
+    .Parent_imageProfile {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto;
+        display: block;
+        margin-bottom: 20px;
+        position: relative;
+        background-color: rebeccapurple;
+    }
+    .btnProfile {
+        position: absolute;
+        top: 80px;
+    }
+    // image profile
+    .imageProfile {
+        background: rgb(34, 193, 195);
+        background: radial-gradient( circle, rgba(34, 193, 195, 1) 0%, rgba(45, 253, 238, 1) 100%);
+    }
+    // save button
+    .save_btn {
+        color: #fff;
+        background-color: #1b3e68;
+        border: 1px solid #1b3e68;
+        outline: none;
+    }
+    // select
+    select {
+        font-family: "bakh";
+        color: #555555;
+    }
+    // label
+    input {
+        color: #555555;
+    }
 }
