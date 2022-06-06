@@ -2,7 +2,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // component
@@ -10,15 +9,16 @@ import BoxSearch from "./boxSearch";
 import MegaMenuMobile from "../../../containers/LandingPage/MegaMenuMobile";
 import MegaMenuDesktop from "../../../containers/LandingPage/MegaMenuDesktop";
 // methods
+import rot13 from "../../../utils/rout13";
+import { http } from "../../../services/callApi/api";
 import { gtag } from "../../../utils/googleAnalytics";
 import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
+import { clearTokenStorage } from "../../../api/general/clearTokenStorage";
+import { checkForCallUserInfo } from "../../../utils/checkForCallUserInfo";
 import { callCategory, getAllShops, handelSearch } from "../../../api/header";
 // style
 import styles from "./header.module.scss";
-import rot13 from "../../../utils/rout13";
-import { clearTokenStorage } from "../../../api/general/clearTokenStorage";
-import { http } from "../../../services/callApi/api";
-import { checkForCallUserInfo } from "../../../utils/checkForCallUserInfo";
+
 
 function Header() {
   const router = useRouter();
@@ -28,7 +28,6 @@ function Header() {
   const [searchShops, setSearchShops] = useState([]);
   const [inputSearch, setInputSearch] = useState("");
   const userLog = useSelector((state) => state.User.userInfo);
-
   const allProductListBuy = useSelector((state) => state.Cart.allProduct);
 
   useEffect(() => {
@@ -219,9 +218,15 @@ function Header() {
         </div>
         <nav>
           <div className="container">
+            {/* <SlideMenu /> */}
             <div className={styles.nav_row}>
               <div className={styles.menu_collaps}>
-                <span className="fas fa-bars"></span>
+                <span
+                  onClick={() => {
+                    document.getElementById("SlideMenu").style.right = "0px";
+                  }}
+                  className="fas fa-bars"
+                ></span>
               </div>
               <MegaMenuDesktop category={category} />
             </div>
