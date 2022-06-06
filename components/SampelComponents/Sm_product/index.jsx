@@ -5,6 +5,7 @@ import styles from "./Sm_product.module.scss";
 import diviedNumber from "../../../utils/diviedNumber";
 
 function SmProduct({ data }) {
+  console.log("data :>> ", data);
   return (
     <>
       <div className={styles.product}>
@@ -21,7 +22,7 @@ function SmProduct({ data }) {
           <span>{data.Title}</span>
         </div>
         <div className={styles.product_detail}>
-          <span>{data.FK_Shop.state}</span>
+          <span>{data.FK_Shop.state.name}</span>
           <span>
             ‍<i className="fa fa-angle-left px-1"></i>
           </span>
