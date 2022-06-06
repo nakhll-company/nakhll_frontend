@@ -184,8 +184,8 @@ $color_tel_word: rgb(162, 172, 182);
     }
     nav {
         border-bottom: 1px solid #d9d9d9;
+        // overflow-x: auto;
         .nav_row {
-            overflow-x: auto;
             height: 48px;
             margin-top: 8px;
             .menu_collaps {

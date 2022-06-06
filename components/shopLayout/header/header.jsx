@@ -161,8 +161,7 @@ function Header() {
                         );
                         if (response.status < 300) {
                           router.push(
-                            `/setPassword/${rot13(response?.data?.auth_key)}/${
-                              response?.data?.mobile_status
+                            `/setPassword/${rot13(response?.data?.auth_key)}/${response?.data?.mobile_status
                             }`
                           );
                         }
@@ -217,17 +216,10 @@ function Header() {
           </div>
         </div>
         <nav>
-          <div className="container">
+          <div style={{ margin: '0px 10px' }}>
             {/* <SlideMenu /> */}
             <div className={styles.nav_row}>
-              <div className={styles.menu_collaps}>
-                <span
-                  onClick={() => {
-                    document.getElementById("SlideMenu").style.right = "0px";
-                  }}
-                  className="fas fa-bars"
-                ></span>
-              </div>
+
               <MegaMenuDesktop category={category} />
             </div>
           </div>

@@ -3,10 +3,13 @@
     align-items: center;
     justify-content: flex-start;
     .nav_item {
-        margin-left: 48px;
+        // margin-left: 48px;
         flex-shrink: 0;
         cursor: pointer;
         @media (max-width: 1399px) {
+            margin-left: 10px;
+        }
+        @media (min-width: 1200px) {
             margin-left: 20px;
         }
         &:hover {
@@ -23,7 +26,7 @@
             position: relative;
             @media (max-width: 1399px) {
                 font-size: 12px;
-                padding-left: 24px;
+                padding-left: 5px;
             }
             i {
                 color: #141414;
