@@ -15,6 +15,7 @@ import { clearTokenStorage } from "../../api/general/clearTokenStorage";
 import SlideMenu from "./slideMenu";
 // style
 import s from "./HeaderTitle.module.scss";
+import { checkForCallUserInfo } from "../../utils/checkForCallUserInfo";
 
 const list = [
   { title: "محصولات", url: "/search/?q=&available=true" },
@@ -30,14 +31,13 @@ const list = [
   },
 ];
 const HeaderTitle = () => {
-
   const router = useRouter();
   const dispatch = useDispatch();
   const userLog = useSelector((state) => state.User.userInfo);
   const AllProductListBuy = useSelector((state) => state.Cart.allProduct);
 
   useEffect(() => {
-    dispatch(getUserInfo());
+    checkForCallUserInfo() && dispatch(getUserInfo());
   }, []);
 
   return (
@@ -86,17 +86,20 @@ const HeaderTitle = () => {
                     </div>
                   </a>
                 </Link>
-                <div onClick={async () => {
-                  const response = await http.post("/api/v1/auth/begin/login_register/",
-                    { mobile: userLog.mobile_number }
-                  );
-                  if (response.status < 300) {
-                    router.push(
-                      `/setPassword/${rot13(response?.data?.auth_key)}/${response?.data?.mobile_status
-                      }`
+                <div
+                  onClick={async () => {
+                    const response = await http.post(
+                      "/api/v1/auth/begin/login_register/",
+                      { mobile: userLog.mobile_number }
                     );
-                  }
-                }}
+                    if (response.status < 300) {
+                      router.push(
+                        `/setPassword/${rot13(response?.data?.auth_key)}/${
+                          response?.data?.mobile_status
+                        }`
+                      );
+                    }
+                  }}
                 >
                   <i className="fas fa-user-circle "></i>
                   <span>تغییر پسورد</span>

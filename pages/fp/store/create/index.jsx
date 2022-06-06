@@ -1,5 +1,5 @@
-import React from "react";
 // node libraies
+import React from "react";
 import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
@@ -7,19 +7,20 @@ import { connect } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 // components
+import AppButton from "../../../../components/AppButton";
 import useViewport from "../../../../components/viewPort";
 import MobileHeader from "../../../../components/mobileHeader";
 import SuccessPage from "../../../../containers/store/successPage";
-import { mapState } from "../../../../containers/store/methods/mapState";
-import { mapDispatch } from "../../../../containers/store/methods/mapDispatch";
 // methods
 import { getCities } from "../../../../api/general/getCities";
 import { getStates } from "../../../../api/general/getStates";
 import { getBigCities } from "../../../../api/general/getBigCities";
+import { mapState } from "../../../../containers/store/methods/mapState";
+import { checkForCallUserInfo } from "../../../../utils/checkForCallUserInfo";
+import { mapDispatch } from "../../../../containers/store/methods/mapDispatch";
 import { createStore } from "../../../../containers/store/methods/createStore";
 // styles
 import styles from "./createStore.module.scss";
-import AppButton from "../../../../components/AppButton";
 
 function NewStore({ getUserInfo, userInfo }) {
   const breakpoint = 620;
@@ -53,7 +54,7 @@ function NewStore({ getUserInfo, userInfo }) {
     const response = await createStore(data);
 
     if (response.status === 201) {
-      getUserInfo();
+      checkForCallUserInfo() && getUserInfo();
       setLoaderBtn(false);
       setShowSuccessPage({
         loading: "false",
@@ -71,7 +72,9 @@ function NewStore({ getUserInfo, userInfo }) {
   useEffect(() => {
     async function fetchData() {
       setSelectState(await getStates());
-      Object.keys(userInfo).length === 0 && (await getUserInfo());
+      Object.keys(userInfo).length === 0 &&
+        checkForCallUserInfo() &&
+        (await getUserInfo());
     }
     fetchData();
   }, []);

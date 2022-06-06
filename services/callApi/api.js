@@ -7,7 +7,6 @@ import {
 } from "../../utils/toastifyMessage";
 
 function handelShowMessage(error) {
-
     const expectedError =
         error.response &&
         error.response.status >= 400 &&

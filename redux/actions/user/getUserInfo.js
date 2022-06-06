@@ -7,7 +7,7 @@ import {
 export const getUserInfo = () => async(dispatch) => {
     // try
     try {
-        if (localStorage.getItem("accessToken")) {
+        if (localStorage.getItem("refreshToken")) {
             const getProduct = async() => {
                 const response = await authhttp.get("/api/v1/get-user-info/");
                 return response;

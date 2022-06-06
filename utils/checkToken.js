@@ -9,15 +9,18 @@ export const checkToken = async() => {
 
     if (Token) {
         const decodedToken = jwt.decode(Token, {
-            complete: true
+            complete: true,
         });
         const decodeRefesfh = jwt.decode(RefreshToken, {
-            complete: true
+            complete: true,
         });
         const dateNow = Date.now() / 1000;
 
         if (decodedToken.payload.exp < dateNow) {
+
             if (decodeRefesfh.payload.exp > dateNow) {
+
+
                 const ans = await http.post("/api/v1/auth/token/refresh/", {
                     refresh: RefreshToken,
                 });

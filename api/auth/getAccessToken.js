@@ -1,18 +1,13 @@
 import {
-    ApiRegister
-} from "../../services/apiRegister/ApiRegister";
+    http
+} from "../../services/callApi/api";
 import {
     setToken
 } from "../../utils/setToken";
 
 export async function getAccessToken(data) {
     try {
-        const response = await ApiRegister().apiRequest(
-            data,
-            "POST",
-            "/api/v1/auth/token/",
-            false, {}
-        );
+        const response = await http.post("/api/v1/auth/token/", data);
         if (response.status === 200) {
             setToken(response.data);
 
