@@ -12,16 +12,13 @@ import MegaMenuDesktop from "../../../containers/LandingPage/MegaMenuDesktop";
 // methods
 import { gtag } from "../../../utils/googleAnalytics";
 import { getUserInfo } from "../../../redux/actions/user/getUserInfo";
-import {
-  callCategory,
-  getAllShops,
-  handelSearch,
-} from "../../../api/header";
+import { callCategory, getAllShops, handelSearch } from "../../../api/header";
 // style
 import styles from "./header.module.scss";
 import rot13 from "../../../utils/rout13";
 import { clearTokenStorage } from "../../../api/general/clearTokenStorage";
 import { http } from "../../../services/callApi/api";
+import SlideMenu from "../../../containers/nakhlPage/slideMenu";
 
 function Header() {
   const router = useRouter();
@@ -165,7 +162,8 @@ function Header() {
                         );
                         if (response.status < 300) {
                           router.push(
-                            `/setPassword/${rot13(response?.data?.auth_key)}/${response?.data?.mobile_status
+                            `/setPassword/${rot13(response?.data?.auth_key)}/${
+                              response?.data?.mobile_status
                             }`
                           );
                         }
@@ -221,9 +219,15 @@ function Header() {
         </div>
         <nav>
           <div className="container">
+            {/* <SlideMenu /> */}
             <div className={styles.nav_row}>
               <div className={styles.menu_collaps}>
-                <span className="fas fa-bars"></span>
+                <span
+                  onClick={() => {
+                    document.getElementById("SlideMenu").style.right = "0px";
+                  }}
+                  className="fas fa-bars"
+                ></span>
               </div>
               <MegaMenuDesktop category={category} />
             </div>
