@@ -136,10 +136,10 @@ function NewStore({ getUserInfo, userInfo }) {
             className={styles.form_select}
             {...register("State", { required: true })}
             onChange={async (event) => {
-              const states = await getBigCities(event.target.value);
-              setSelectBigCities(states);
               const [option] = event.target.selectedOptions;
+              const states = await getBigCities(event.target.value);
               option.value = option.attributes[1].value;
+              setSelectBigCities(states);
             }}
           >
             <option></option>
@@ -162,8 +162,8 @@ function NewStore({ getUserInfo, userInfo }) {
             className={styles.form_select}
             {...register("BigCity", { required: true })}
             onChange={async (event) => {
-              setSelectCities(await getCities(event.target.value));
               const [option] = event.target.selectedOptions;
+              setSelectCities(await getCities(event.target.value));
               option.value = option.attributes[1].value;
             }}
           >
@@ -187,8 +187,8 @@ function NewStore({ getUserInfo, userInfo }) {
             className={styles.form_select}
             {...register("City", { required: true })}
             onChange={async (event) => {
-              const [option] = await event.target.selectedOptions;
-              option.value = await option.attributes[1].value;
+              const [option] = event.target.selectedOptions;
+              option.value = option.attributes[1].value;
             }}
           >
             <option></option>
