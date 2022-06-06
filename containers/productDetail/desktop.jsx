@@ -129,8 +129,8 @@ const ProductDetailDesktop = ({ data }) => {
                           <SwiperSlide key={index}>
                             <Image
                               src={value.image}
-                              width="400"
-                              height="400"
+                              width="390"
+                              height="390"
                               alt={detail.title}
                             />
                           </SwiperSlide>
