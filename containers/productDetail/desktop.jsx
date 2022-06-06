@@ -10,6 +10,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Fragment, useEffect, useState } from "react";
 import SwiperCore, { Navigation, Thumbs } from "swiper";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { FaMapMarkedAlt } from "react-icons/fa";
+import { BiTimeFive } from "react-icons/bi";
 // components
 import AddFavorites from "../../components/AddFavorites";
 import CustomLabel from "../../components/custom/customLabel";
@@ -239,10 +241,11 @@ const ProductDetailDesktop = ({ data }) => {
                   className="ms-lg-5 mb-3 mb-lg-0"
                   style={{ display: "flex", alignItems: "center" }}
                 >
-                  <i
-                    style={{ fontSize: "1.5rem", color: "#7d7d7d" }}
-                    className="far fa-clock ms-3"
-                  ></i>
+                  <BiTimeFive
+                    size={19}
+                    color="#000"
+                    style={{ marginLeft: "5px" }}
+                  />
                   <span style={{ fontSize: ".85rem" }}>{detail.status}</span>
                 </div>
               )}
@@ -250,10 +253,11 @@ const ProductDetailDesktop = ({ data }) => {
                 className="ms-lg-5 mb-3 mb-lg-0"
                 style={{ display: "flex", alignItems: "center" }}
               >
-                <i
-                  style={{ fontSize: "1.5rem", color: "#7d7d7d" }}
-                  className="fas fa-map-marker-alt ms-3"
-                ></i>
+                <FaMapMarkedAlt
+                  size={19}
+                  color="#000"
+                  style={{ margin: "0 10px" }}
+                />
                 <span style={{ fontSize: ".85rem" }}>
                   <span className="ltr"> از </span>
                   {detail?.shop?.state?.name}، {detail?.shop?.big_city?.name}
