@@ -29,7 +29,6 @@ import diviedNumber from "../../../utils/diviedNumber";
 import styles from "./listProductCus.module.scss";
 
 function ListProductCus({ data }) {
-
   const [pageApi, setPageApi] = useState(2);
   const [hasMore, setHasMore] = useState(false);
   const [shopsName, setShopsName] = useState([]);
@@ -404,8 +403,8 @@ function ListProductCus({ data }) {
                 onChangeFilter={onChangeFilter}
                 totalcount={totalcount}
                 data={data.ordering}
-                handel_filterModal={handelFilterModal}
-                handel_OrderingModal={handelOrderingModal}
+                handelFilterModal={handelFilterModal}
+                handelOrderingModal={handelOrderingModal}
               />
             </div>
             {/* inja */}
