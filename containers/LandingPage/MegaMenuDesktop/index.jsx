@@ -1,13 +1,24 @@
 // node libraries
-import React from "react";
+import React, { useEffect, useState } from "react";
+// methods
+import useViewport from "../../../components/viewPort";
+import { numberOfCategory } from "./methods/checkUserScreen";
 // style
 import styles from "./MegaMenuDesktop.module.scss";
 
 function MegaMenuDesktop({ category }) {
+
+  const { width } = useViewport();
+  const [numberOfCategories, setNumberOfCategories] = useState();
+
+  useEffect(() => {
+    numberOfCategory(width, setNumberOfCategories);
+  }, [width]);
+
   return (
     <ul className={styles.nav_list}>
       {category &&
-        category.slice(0, 9).map((element, index) => (
+        category.slice(0, numberOfCategories).map((element, index) => (
           <li
             key={index}
             className={styles.nav_item}
