@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { AiFillCloseCircle } from "react-icons/ai";
 // component
 import BoxSearch from "./boxSearch";
 import MegaMenuMobile from "../../../containers/LandingPage/MegaMenuMobile";
@@ -96,6 +97,13 @@ function Header() {
                       router.push(`/search?q=${inputSearch}`);
                     }}
                   >
+                    {inputSearch != '' &&
+
+                      <div style={{ position: 'absolute', top: '-12px', right: '-10px', cursor: 'pointer' }}
+                        onClick={() => setInputSearch('')}
+                      >
+                        <AiFillCloseCircle size={23} />
+                      </div>}
                     <input
                       type="text"
                       className="form-control"
