@@ -8,7 +8,7 @@ import { BsBasket2 } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 // methods
 import rot13 from "../../utils/rout13";
-import { http } from "../../services/callApi/api";
+import { authhttp, http } from "../../services/callApi/api";
 import { getUserInfo } from "../../redux/actions/user/getUserInfo";
 import { clearTokenStorage } from "../../api/general/clearTokenStorage";
 // components
@@ -16,6 +16,7 @@ import SlideMenu from "./slideMenu";
 // style
 import s from "./HeaderTitle.module.scss";
 import { checkForCallUserInfo } from "../../utils/checkForCallUserInfo";
+import { getProducts } from "../../redux/actions/cart/getProducts";
 
 const list = [
   { title: "محصولات", url: "/search/?q=&available=true" },
@@ -36,8 +37,9 @@ const HeaderTitle = () => {
   const userLog = useSelector((state) => state.User.userInfo);
   const AllProductListBuy = useSelector((state) => state.Cart.allProduct);
 
-  useEffect(() => {
+  useEffect(async () => {
     checkForCallUserInfo() && dispatch(getUserInfo());
+    dispatch(getProducts());
   }, []);
 
   return (

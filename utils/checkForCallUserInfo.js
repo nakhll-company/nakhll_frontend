@@ -1,7 +1,4 @@
 import jwt from "jsonwebtoken";
-import {
-    clearTokenStorage
-} from "./clearTokenStroge";
 
 export const checkForCallUserInfo = () => {
     const RefreshToken = localStorage.getItem("refreshToken");
@@ -14,7 +11,6 @@ export const checkForCallUserInfo = () => {
     });
     // when refresh Token expired
     if (decodeRefresh.payload.exp < dateNow) {
-        clearTokenStorage();
         return false;
     }
 

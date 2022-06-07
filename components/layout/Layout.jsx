@@ -20,6 +20,7 @@ import styles from "./layout.module.scss";
 import HeaderDesktop from "./fpLayout/headerDesktop";
 import HeaderMobile from "./fpLayout/headerMobile";
 import { checkForCallUserInfo } from "../../utils/checkForCallUserInfo";
+import { authhttp } from "../../services/callApi/api";
 
 function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
   const breakpoint = 620;
