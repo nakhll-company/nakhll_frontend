@@ -1,5 +1,5 @@
-import React from "react";
 // node libraries
+import React from "react";
 import Image from "next/image";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
@@ -66,7 +66,6 @@ const CreateProduct = ({ activeHojreh }) => {
         if (responseCategories.status === 200) {
           setIsLoad(true);
           setData(responseCategories.data); // ==> output: {}
-
           setCategories(responseCategories.data);
         }
         const tags = await _ApiGetTags(activeHojreh);

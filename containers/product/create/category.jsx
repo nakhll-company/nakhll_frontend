@@ -16,7 +16,7 @@ const Category = ({
   setData,
   categories,
 }) => {
-  console.log('categories', categories)
+
   const [page, setPage] = useState(1);
   const [title, settitle] = useState("");
 
@@ -47,7 +47,6 @@ const Category = ({
             )}
           </div>
           <div className={styles.content}>
-
             {data.map((value, index) => {
               return (
                 <button
