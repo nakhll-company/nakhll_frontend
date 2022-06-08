@@ -66,6 +66,7 @@ const CreateProduct = ({ activeHojreh }) => {
         if (responseCategories.status === 200) {
           setIsLoad(true);
           setData(responseCategories.data); // ==> output: {}
+
           setCategories(responseCategories.data);
         }
         const tags = await _ApiGetTags(activeHojreh);
