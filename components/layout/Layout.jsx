@@ -1,5 +1,5 @@
-import React from "react";
 // node libraries
+import React from "react";
 import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
@@ -10,19 +10,19 @@ import { ToastContainer } from "react-toastify";
 // components
 import MenuMobile from "./MenuMobile";
 import useViewport from "../viewPort/index";
+import HeaderMobile from "./fpLayout/headerMobile";
+import HeaderDesktop from "./fpLayout/headerDesktop";
 // methods
 import { mapState } from "./methods/mapState";
 import { allOptions } from "./methods/allOptions";
 import { getUserInfo } from "../../redux/actions/user/getUserInfo";
+import { checkForCallUserInfo } from "../../utils/checkForCallUserInfo";
 import { getActiveHojreh } from "../../redux/actions/user/getActiveHojreh";
 // styles
 import styles from "./layout.module.scss";
-import HeaderDesktop from "./fpLayout/headerDesktop";
-import HeaderMobile from "./fpLayout/headerMobile";
-import { checkForCallUserInfo } from "../../utils/checkForCallUserInfo";
-import { authhttp } from "../../services/callApi/api";
 
 function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
+  
   const breakpoint = 620;
   const router = useRouter();
   const { width } = useViewport();
