@@ -10,12 +10,13 @@ import { useDispatch, useSelector } from "react-redux";
 import rot13 from "../../utils/rout13";
 import { http } from "../../services/callApi/api";
 import { getUserInfo } from "../../redux/actions/user/getUserInfo";
+import { getProducts } from "../../redux/actions/cart/getProducts";
 import { clearTokenStorage } from "../../api/general/clearTokenStorage";
+import { checkForCallUserInfo } from "../../utils/checkForCallUserInfo";
 // components
 import SlideMenu from "./slideMenu";
 // style
 import s from "./HeaderTitle.module.scss";
-import { checkForCallUserInfo } from "../../utils/checkForCallUserInfo";
 
 const list = [
   { title: "محصولات", url: "/search/?q=&available=true" },
@@ -38,6 +39,7 @@ const HeaderTitle = () => {
 
   useEffect(() => {
     checkForCallUserInfo() && dispatch(getUserInfo());
+    dispatch(getProducts());
   }, []);
 
   return (
