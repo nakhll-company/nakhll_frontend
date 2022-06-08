@@ -1,12 +1,12 @@
-import React from "react";
 // node libraries
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 // methods
-import { diviedNumber } from "../../utils/diviedNumber";
 import { gtag } from "../../utils/googleAnalytics";
+import { diviedNumber } from "../../utils/diviedNumber";
 import { addToFavoritesList } from "./methods/addToFavotitesList";
 import { _addProduct } from "../../redux/actions/cart/_addProduct";
 import { FaRegBookmark, FaPlus, FaWindowClose } from "react-icons/fa";
@@ -24,8 +24,10 @@ const ProductCard = ({
   dataProduct,
   deletProduct,
 }) => {
-  console.log('dataProduct :>> ', dataProduct);
+
   const dispatch = useDispatch();
+  const [disablBtn, setDisablBtn] = useState(false);
+
   const product = {
     id: dataProduct.ID,
     imageUrl: dataProduct.Image_medium_url,
@@ -39,6 +41,7 @@ const ProductCard = ({
     city: dataProduct.FK_Shop && dataProduct?.FK_Shop?.state?.name,
     is_advertisement: dataProduct.is_advertisement,
   };
+
   const cardBadge = (
     <>
       <div
@@ -69,6 +72,7 @@ const ProductCard = ({
       blurDataURL="/logoCart.png"
     />
   );
+
   const campBadge = (
     <>
       <div
@@ -86,6 +90,7 @@ const ProductCard = ({
       </div>
     </>
   );
+
   const deletIcon = (
     <>
       <>
@@ -101,8 +106,6 @@ const ProductCard = ({
       </>
     </>
   );
-
-  const [disablBtn, setDisablBtn] = useState(false);
 
   return (
     <div
@@ -147,7 +150,7 @@ const ProductCard = ({
               </a>
             </Link>
           </div>
-          {product.discount != 0 && (
+          {product.discount !== 0 && (
             <div className={`_product_card_discount  ${styles.discount_badge}`}>
               {product.discount}%
             </div>
@@ -159,7 +162,7 @@ const ProductCard = ({
           <hr style={{ marginBottom: "5px" }} />
           <div style={{ height: "50px" }} className="_product_card_price ">
             <div>
-              {dataProduct.Inventory == 0 ? (
+              {dataProduct.Inventory === 0 ? (
                 <div className={styles.warp_namojod}>
                   <Image
                     src="/icons/namojod.svg"
@@ -208,7 +211,7 @@ const ProductCard = ({
                   justifyContent: "flex-end",
                 }}
               >
-                {product.discount != 0 &&
+                {product.discount !== 0 &&
                   diviedNumber(product.discountNumber)}
               </span>
             </div>
