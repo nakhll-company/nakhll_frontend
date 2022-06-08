@@ -1,12 +1,12 @@
-import React from "react";
 // node libraries
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 // methods
-import {diviedNumber} from "../../utils/diviedNumber";
 import { gtag } from "../../utils/googleAnalytics";
+import { diviedNumber } from "../../utils/diviedNumber";
 import { addToFavoritesList } from "./methods/addToFavotitesList";
 import { _addProduct } from "../../redux/actions/cart/_addProduct";
 import { FaRegBookmark, FaPlus, FaWindowClose } from "react-icons/fa";
@@ -24,7 +24,10 @@ const ProductCard = ({
   dataProduct,
   deletProduct,
 }) => {
+
   const dispatch = useDispatch();
+  const [disablBtn, setDisablBtn] = useState(false);
+
   const product = {
     id: dataProduct.ID,
     imageUrl: dataProduct.Image_medium_url,
@@ -38,6 +41,7 @@ const ProductCard = ({
     city: dataProduct.FK_Shop && dataProduct?.FK_Shop?.state?.name,
     is_advertisement: dataProduct.is_advertisement,
   };
+
   const cardBadge = (
     <>
       <div
@@ -61,14 +65,14 @@ const ProductCard = ({
       height={100}
       width={100}
       src={product.imageUrl}
-      className={`card-img-top _product_card_rounded animationCart ${
-        product.unavailable && "_unavailable_product"
-      }`}
+      className={`card-img-top _product_card_rounded animationCart ${product.unavailable && "_unavailable_product"
+        }`}
       alt={product.title}
       placeholder="blur"
       blurDataURL="/logoCart.png"
     />
   );
+
   const campBadge = (
     <>
       <div
@@ -86,6 +90,7 @@ const ProductCard = ({
       </div>
     </>
   );
+
   const deletIcon = (
     <>
       <>
@@ -102,15 +107,12 @@ const ProductCard = ({
     </>
   );
 
-  const [disablBtn, setDisablBtn] = useState(false);
-
   return (
     <div
-      className={` ${
-        col
-          ? `col-${col}`
-          : `col-${xs} col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
-      } ${padding ? `px-${padding}` : ""} mb-2`}
+      className={` ${col
+        ? `col-${col}`
+        : `col-${xs} col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
+        } ${padding ? `px-${padding}` : ""} mb-2`}
     >
       <div className={`card ${styles._product_card} _product_card_rounded p-2`}>
         <div className={styles.paterImage}>
@@ -123,9 +125,8 @@ const ProductCard = ({
         </div>
 
         <div
-          className={`card-body mt-2 p-1 ${
-            product.unavailable && "_unavailable_product"
-          }`}
+          className={`card-body mt-2 p-1 ${product.unavailable && "_unavailable_product"
+            }`}
         >
           <div className=" mb-3">
             <Link href={product.url}>
@@ -149,7 +150,7 @@ const ProductCard = ({
               </a>
             </Link>
           </div>
-          {product.discountNumber !== 0 && (
+          {product.discount !== 0 && (
             <div className={`_product_card_discount  ${styles.discount_badge}`}>
               {product.discount}%
             </div>
@@ -161,7 +162,7 @@ const ProductCard = ({
           <hr style={{ marginBottom: "5px" }} />
           <div style={{ height: "50px" }} className="_product_card_price ">
             <div>
-              {dataProduct.Inventory == 0 ? (
+              {dataProduct.Inventory === 0 ? (
                 <div className={styles.warp_namojod}>
                   <Image
                     src="/icons/namojod.svg"
@@ -210,7 +211,7 @@ const ProductCard = ({
                   justifyContent: "flex-end",
                 }}
               >
-                {product.discountNumber !== 0 &&
+                {product.discount !== 0 &&
                   diviedNumber(product.discountNumber)}
               </span>
             </div>
