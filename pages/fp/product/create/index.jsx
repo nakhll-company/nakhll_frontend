@@ -1,5 +1,5 @@
-import React from "react";
 // node libraries
+import React from "react";
 import Image from "next/image";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
