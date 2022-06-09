@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { AiFillCloseCircle } from "react-icons/ai";
 // component
 import BoxSearch from "./boxSearch";
 import MegaMenuMobile from "../../../containers/LandingPage/MegaMenuMobile";
@@ -22,11 +23,12 @@ import styles from "./header.module.scss";
 
 function Header() {
   const router = useRouter();
+
   const dispatch = useDispatch();
   const [category, setCategory] = useState([]);
   const [shopsName, setShopsName] = useState([]);
   const [searchShops, setSearchShops] = useState([]);
-  const [inputSearch, setInputSearch] = useState("");
+  const [inputSearch, setInputSearch] = useState(router?.query?.q ?? "");
   const userLog = useSelector((state) => state.User.userInfo);
   const allProductListBuy = useSelector((state) => state.Cart.allProduct);
 
@@ -95,6 +97,13 @@ function Header() {
                       router.push(`/search?q=${inputSearch}`);
                     }}
                   >
+                    {inputSearch != '' &&
+
+                      <div className={styles.close_btn}
+                        onClick={() => setInputSearch('')}
+                      >
+                        <AiFillCloseCircle size={23} />
+                      </div>}
                     <input
                       type="text"
                       className="form-control"
