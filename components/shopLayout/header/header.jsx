@@ -99,7 +99,7 @@ function Header() {
                   >
                     {inputSearch != '' &&
 
-                      <div style={{ position: 'absolute', top: '-12px', right: '-10px', cursor: 'pointer' }}
+                      <div className={styles.close_btn}
                         onClick={() => setInputSearch('')}
                       >
                         <AiFillCloseCircle size={23} />

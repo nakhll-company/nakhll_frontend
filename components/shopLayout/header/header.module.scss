@@ -571,3 +571,10 @@ $color_tel_word: rgb(162, 172, 182);
 .icon_sabad {
     margin-left: 12px;
 }
+
+.close_btn {
+    position: absolute;
+    top: -12px;
+    right: -10px;
+    cursor: pointer;
+}
