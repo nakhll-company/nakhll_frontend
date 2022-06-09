@@ -115,7 +115,7 @@ const ProductDetailDesktop = ({ data }) => {
                   <div style={{ height: "500px" }}>
                     <Swiper
                       navigation
-                      //   scrollbar={{ draggable: true }}
+
                       pagination={{ clickable: true }}
                       style={{
                         "--swiper-navigation-color": "#fff",

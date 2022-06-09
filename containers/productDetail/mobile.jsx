@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useDispatch, useSelector } from "react-redux";
 import { Fragment, useState, useEffect } from "react";
-import SwiperCore, { EffectCube, Pagination } from "swiper";
+import SwiperCore, { Navigation, EffectCube, Pagination, Thumbs } from "swiper";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FaMapMarkedAlt } from "react-icons/fa";
 import { BiTimeFive } from "react-icons/bi";
@@ -18,13 +18,13 @@ import CustomSlider from "../../components/custom/customSlider";
 import ProductCard from "../../components/productCart/ProductCard";
 // methods
 import { gtag } from "../../utils/googleAnalytics";
-import {diviedNumber} from "../../utils/diviedNumber";
+import { diviedNumber } from "../../utils/diviedNumber";
 import { _addProduct } from "../../redux/actions/cart/_addProduct";
 import { fetchProductShop, getMoreProduct } from "../../api/product/detail";
 // styles
 import styles from "./productDetail.module.scss";
 
-SwiperCore.use([EffectCube, Pagination]);
+SwiperCore.use([Navigation, Thumbs, EffectCube, Pagination]);
 
 const ProductDetailMobile = ({ data }) => {
   const dispatch = useDispatch();
@@ -121,7 +121,7 @@ const ProductDetailMobile = ({ data }) => {
                 {detail.title}
               </h1>
               <div className="px-2">
-                <Swiper grabCursor={true} pagination={true}>
+                <Swiper grabCursor={true} navigation pagination={{ clickable: true }}>
                   {thumblineImage.map((value, index) => {
                     return (
                       <SwiperSlide key={index}>
