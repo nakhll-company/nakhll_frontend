@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Fragment, useEffect, useState } from "react";
-import SwiperCore, { Navigation, Thumbs } from "swiper";
+import SwiperCore, { Navigation, Pagination, Thumbs } from "swiper";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FaMapMarkedAlt } from "react-icons/fa";
 import { BiTimeFive } from "react-icons/bi";
@@ -19,13 +19,13 @@ import CustomSlider from "../../components/custom/customSlider";
 import ProductCard from "../../components/productCart/ProductCard";
 // methods
 import { gtag } from "../../utils/googleAnalytics";
-import {diviedNumber} from "../../utils/diviedNumber";
+import { diviedNumber } from "../../utils/diviedNumber";
 import { _addProduct } from "../../redux/actions/cart/_addProduct";
 import { fetchProductShop, getMoreProduct } from "../../api/product/detail";
 // styles
 import styles from "./productDetail.module.scss";
 
-SwiperCore.use([Navigation, Thumbs]);
+SwiperCore.use([Navigation, Thumbs, Pagination]);
 
 const ProductDetailDesktop = ({ data }) => {
   const dispatch = useDispatch();
@@ -114,6 +114,9 @@ const ProductDetailDesktop = ({ data }) => {
                 <div className={styles.image_slider}>
                   <div style={{ height: "500px" }}>
                     <Swiper
+                      navigation
+                      //   scrollbar={{ draggable: true }}
+                      pagination={{ clickable: true }}
                       style={{
                         "--swiper-navigation-color": "#fff",
                         "--swiper-pagination-color": "#fff",
