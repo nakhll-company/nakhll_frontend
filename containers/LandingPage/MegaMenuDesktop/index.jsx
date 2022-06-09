@@ -5,9 +5,10 @@ import useViewport from "../../../components/viewPort";
 import { numberOfCategory } from "./methods/checkUserScreen";
 // style
 import styles from "./MegaMenuDesktop.module.scss";
+import { useRouter } from "next/router";
 
 function MegaMenuDesktop({ category }) {
-
+  const router = useRouter();
   const { width } = useViewport();
   const [numberOfCategories, setNumberOfCategories] = useState();
 
@@ -44,7 +45,7 @@ function MegaMenuDesktop({ category }) {
                           <div
                             key={index}
                             onClick={() =>
-                              location.replace(
+                              router.push(
                                 `/search?q=&category=${subElement.id}`
                               )
                             }
