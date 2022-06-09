@@ -19,7 +19,7 @@ import CustomSlider from "../../components/custom/customSlider";
 import ProductCard from "../../components/productCart/ProductCard";
 // methods
 import { gtag } from "../../utils/googleAnalytics";
-import {diviedNumber} from "../../utils/diviedNumber";
+import { diviedNumber } from "../../utils/diviedNumber";
 import { _addProduct } from "../../redux/actions/cart/_addProduct";
 import { fetchProductShop, getMoreProduct } from "../../api/product/detail";
 // styles
@@ -275,7 +275,8 @@ const ProductDetailDesktop = ({ data }) => {
                       style={{ fontSize: "1.25rem" }}
                       className={styles.old_price}
                     >
-                      {detail.old_price && diviedNumber(detail.old_price / 10)}
+
+                      {!!detail.old_price && diviedNumber(detail.old_price / 10)}
                     </del>
                   </div>
                   <div className={`${styles.price} d-inline-block  ms-2 `}>
