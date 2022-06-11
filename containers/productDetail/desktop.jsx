@@ -278,7 +278,8 @@ const ProductDetailDesktop = ({ data }) => {
                       style={{ fontSize: "1.25rem" }}
                       className={styles.old_price}
                     >
-                      {detail.old_price && diviedNumber(detail.old_price / 10)}
+
+                      {detail.old_price !== 0 && diviedNumber(detail.old_price / 10)}
                     </del>
                   </div>
                   <div className={`${styles.price} d-inline-block  ms-2 `}>
