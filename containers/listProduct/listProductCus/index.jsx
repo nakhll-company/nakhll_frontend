@@ -29,7 +29,6 @@ import { parsUrlToArr } from "../../../utils/parsUrlToArr";
 import styles from "./listProductCus.module.scss";
 
 function ListProductCus({ data }) {
-
   const [pageApi, setPageApi] = useState(2);
   const [hasMore, setHasMore] = useState(false);
   const [shopsName, setShopsName] = useState([]);
@@ -404,8 +403,8 @@ function ListProductCus({ data }) {
                 onChangeFilter={onChangeFilter}
                 totalcount={totalcount}
                 data={data.ordering}
-                handel_filterModal={handelFilterModal}
-                handel_OrderingModal={handelOrderingModal}
+                handelFilterModal={handelFilterModal}
+                handelOrderingModal={handelOrderingModal}
               />
             </div>
             {/* inja */}
@@ -560,6 +559,56 @@ function ListProductCus({ data }) {
                   }}
                   onExpand={(e) => setExpandCity(e)}
                 />
+              </CustomAccordion>
+            )}
+            {shopesTag?.length > 0 && (
+              <CustomAccordion title="تگ ها" item="fourModalTag" close={true}>
+                <div className={styles.info_cardH}>
+                  <label htmlFor="select-shop" style={{ fontSize: "15px" }}>
+                    {" "}
+                    حجره های شما:
+                    {"     "}‌
+                  </label>
+                  <select
+                    id="select-shop"
+                    onChange={(a) => {
+                      setActiveHojreh(a.target.value);
+                    }}
+                  >
+                    <option value="0">انتخاب نمایید</option>
+                    {shopesTag &&
+                      shopesTag.map((e) => {
+                        return (
+                          <option key={e.id} value={e.slug}>
+                            {e.title}
+                          </option>
+                        );
+                      })}
+                  </select>
+                </div>
+                {tags.map((ele, index) => (
+                  <div
+                    key={`tagesMobile${index}`}
+                    style={{ marginBottom: "10px", paddingRight: "10px" }}
+                  >
+                    <input
+                      onChange={(e) => {
+                        handelAddTags(e.target.value);
+                      }}
+                      className="form-check-input"
+                      type="checkbox"
+                      value={ele.id}
+                      id={`tagesMobile${index}`}
+                    />
+                    <label
+                      style={{ marginRight: "5px", fontSize: "15px" }}
+                      className="form-check-label"
+                      htmlFor={`tagesMobile${index}`}
+                    >
+                      {ele.text}
+                    </label>
+                  </div>
+                ))}
               </CustomAccordion>
             )}
           </div>

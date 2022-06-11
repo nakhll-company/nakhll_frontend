@@ -1,165 +1,165 @@
 .content {
-  position: fixed;
-  left: 5%;
-  bottom: 8%;
-  z-index: 9999;
+    position: fixed;
+    left: 2%;
+    bottom: 10%;
+    z-index: 3;
 }
 
 .updater {
-  position: relative;
-  .btnPin {
-    padding: 10px;
-    background: transparent;
-    border: none;
-    &:hover {
-      i {
-        color: #fff;
-      }
-    }
-    i {
-      color: red;
-      font-size: 30px;
-      transform: rotate(45deg);
-    }
-  }
-  .menu {
-    position: absolute;
-    width: 300px;
-    height: 231.2px;
-    overflow-y: auto;
-    background-color: #fff;
-    top: -223px;
-    left: 10px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    &::-webkit-scrollbar {
-      width: 0.3em;
-    }
-    &::-webkit-scrollbar-track {
-      background: #ffffff;
-    }
-    &::-webkit-scrollbar-thumb {
-      background: rgb(34, 77, 130);
-      border-radius: 5px;
-    }
-    .header {
-      .top {
-        .text {
-          width: 100%;
-          text-align: center;
-          font-size: 18px;
-          padding: 10px 0 5px;
-          font-weight: bold;
-          font-size: 18px;
-          color: #555;
-          line-height: 1.2em;
-          span {
-            font-size: 14px;
-            color: rgb(88, 81, 81);
-            font-weight: 400;
-          }
-        }
-      }
-    }
-    .selectHeader {
-      display: flex;
-      .right {
-        border-left: 2px solid rgb(69, 4, 247);
-        padding-left: 10px;
-        padding-right: 10px;
-        cursor: pointer;
+    position: relative;
+    .btnPin {
+        padding: 10px;
+        background: transparent;
+        border: none;
         &:hover {
-          background-color: rgb(69, 4, 247);
-          color: #fff;
-        }
-      }
-      .left {
-        padding-right: 10px;
-        padding-left: 10px;
-        cursor: pointer;
-        &:hover {
-          background-color: rgb(69, 4, 247);
-          color: #fff;
-        }
-      }
-    }
-    .addPage {
-      padding: 10px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      span {
-        font-size: 14px;
-        color: #000;
-        font-weight: 400;
-        display: block;
-      }
-      .wrapInput {
-        display: flex;
-        justify-content: center;
-        margin-top: 10px;
-        width: 100%;
-        input {
-          width: 100%;
-          border-radius: 10px;
-          outline: unset;
-          border: 1px solid #ccc;
-          height: 35px;
-          padding-right: 10px;
-        }
-      }
-      .wrapButton {
-        margin-top: 10px;
-        .btnAdd {
-          background: transparent;
-          border: none;
-          i {
-            color: blue;
-            font-size: 40px;
-          }
-        }
-      }
-    }
-    .list {
-      padding: 10px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      .items {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-right: 10px;
-        padding-left: 10px;
-        border-bottom: 1px solid #ccc;
-        cursor: pointer;
-        transition: all 0.3s;
-        &:hover {
-          background-color: #49eee6;
-        }
-        a {
-          flex-basis: 90%;
-          padding-top: 10px;
-          padding-bottom: 10px;
-        }
-        span {
-          font-size: 14px;
-          color: #000;
-          font-weight: 400;
-          display: block;
+            i {
+                color: #fff;
+            }
         }
         i {
-          color: red;
-          cursor: pointer;
-          transition: all 0.2s;
-          &:hover {
-            transform: scale(1.9);
-          }
+            color: red;
+            font-size: 30px;
+            transform: rotate(45deg);
         }
-      }
     }
-  }
+    .menu {
+        position: absolute;
+        width: 300px;
+        height: 231.2px;
+        overflow-y: auto;
+        background-color: #fff;
+        top: -223px;
+        left: 10px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        &::-webkit-scrollbar {
+            width: 0.3em;
+        }
+        &::-webkit-scrollbar-track {
+            background: #ffffff;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: rgb(34, 77, 130);
+            border-radius: 5px;
+        }
+        .header {
+            .top {
+                .text {
+                    width: 100%;
+                    text-align: center;
+                    font-size: 18px;
+                    padding: 10px 0 5px;
+                    font-weight: bold;
+                    font-size: 18px;
+                    color: #555;
+                    line-height: 1.2em;
+                    span {
+                        font-size: 14px;
+                        color: rgb(88, 81, 81);
+                        font-weight: 400;
+                    }
+                }
+            }
+        }
+        .selectHeader {
+            display: flex;
+            .right {
+                border-left: 2px solid rgb(69, 4, 247);
+                padding-left: 10px;
+                padding-right: 10px;
+                cursor: pointer;
+                &:hover {
+                    background-color: rgb(69, 4, 247);
+                    color: #fff;
+                }
+            }
+            .left {
+                padding-right: 10px;
+                padding-left: 10px;
+                cursor: pointer;
+                &:hover {
+                    background-color: rgb(69, 4, 247);
+                    color: #fff;
+                }
+            }
+        }
+        .addPage {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            span {
+                font-size: 14px;
+                color: #000;
+                font-weight: 400;
+                display: block;
+            }
+            .wrapInput {
+                display: flex;
+                justify-content: center;
+                margin-top: 10px;
+                width: 100%;
+                input {
+                    width: 100%;
+                    border-radius: 10px;
+                    outline: unset;
+                    border: 1px solid #ccc;
+                    height: 35px;
+                    padding-right: 10px;
+                }
+            }
+            .wrapButton {
+                margin-top: 10px;
+                .btnAdd {
+                    background: transparent;
+                    border: none;
+                    i {
+                        color: blue;
+                        font-size: 40px;
+                    }
+                }
+            }
+        }
+        .list {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .items {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-right: 10px;
+                padding-left: 10px;
+                border-bottom: 1px solid #ccc;
+                cursor: pointer;
+                transition: all 0.3s;
+                &:hover {
+                    background-color: #49eee6;
+                }
+                a {
+                    flex-basis: 90%;
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                }
+                span {
+                    font-size: 14px;
+                    color: #000;
+                    font-weight: 400;
+                    display: block;
+                }
+                i {
+                    color: red;
+                    cursor: pointer;
+                    transition: all 0.2s;
+                    &:hover {
+                        transform: scale(1.9);
+                    }
+                }
+            }
+        }
+    }
 }

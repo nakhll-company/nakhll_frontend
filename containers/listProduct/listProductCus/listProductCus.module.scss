@@ -1,138 +1,138 @@
 .container_N {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 @media (min-width: 576px) {
-  .container_N {
-    max-width: 540px;
-  }
+    .container_N {
+        max-width: 540px;
+    }
 }
 
 @media (min-width: 768px) {
-  .container_N {
-    max-width: 760px;
-    padding-right: 3px;
-    padding-left: 3px;
-  }
+    .container_N {
+        max-width: 760px;
+        padding-right: 3px;
+        padding-left: 3px;
+    }
 }
 
 @media (min-width: 992px) {
-  .container_N {
-    max-width: 960px;
-  }
+    .container_N {
+        max-width: 960px;
+    }
 }
 
 @media (min-width: 1200px) {
-  .container_N {
-    max-width: 1200px;
-  }
+    .container_N {
+        max-width: 1200px;
+    }
 }
 
 @media (min-width: 1440px) {
-  .container_N {
-    max-width: 1400px;
-  }
+    .container_N {
+        max-width: 1400px;
+    }
 }
 
 .search_body_filter {
-  display: -webkit-flex;
-  display: -moz-box;
-  display: flex;
-  -webkit-flex-direction: column;
-  -moz-box-orient: vertical;
-  -moz-box-direction: normal;
-  flex-direction: column;
-  -webkit-flex-grow: 1;
-  -moz-box-flex: 1;
-  flex-grow: 1;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: flex;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    flex-direction: column;
+    -webkit-flex-grow: 1;
+    -moz-box-flex: 1;
+    flex-grow: 1;
 }
 
 .modal_body {
-  max-height: 100%;
-  padding: 0;
+    max-height: 100%;
+    padding: 0;
 }
 
 .modal_filter_products {
-  display: none !important;
-  background-color: #fff;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  overflow-y: auto;
-  bottom: 0;
-  z-index: 9999;
+    display: none !important;
+    background-color: #fff;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    overflow-y: auto;
+    bottom: 0;
+    z-index: 9999;
 }
 
-@media (max-width: 768px) {
-  .modal_filter_products {
-    display: block !important;
-  }
+@media (max-width: 992px) {
+    .modal_filter_products {
+        display: block !important;
+    }
 }
 
 .itemHojreh {
-  display: flex;
-  padding-right: 15px;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  cursor: pointer;
-  border-radius: 5px;
-  border-bottom: 1px solid #e6e6e6;
-  &:hover {
-    background-color: #2e3192;
-    color: #fff;
-  }
+    display: flex;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    border-bottom: 1px solid #e6e6e6;
+    &:hover {
+        background-color: #2e3192;
+        color: #fff;
+    }
 }
 
 .numBag {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 3px;
-  span {
-    margin-left: 5px;
-    padding: 2px 7px;
-    border-radius: 5px;
-    background-color: #2e3192;
-    color: #fff;
-    font-weight: bold;
-  }
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3px;
+    span {
+        margin-left: 5px;
+        padding: 2px 7px;
+        border-radius: 5px;
+        background-color: #2e3192;
+        color: #fff;
+        font-weight: bold;
+    }
 }
 
 .info_cardH {
-  text-align: center;
-  padding-bottom: 10px;
-  select {
-    box-sizing: border-box; // width: 100%;
-    // height: 40px;
     text-align: center;
     padding-bottom: 10px;
     select {
         box-sizing: border-box; // width: 100%;
         // height: 40px;
         text-align: center;
-        padding: 10px;
-        border: 0;
-        background-color: #fff;
-        font-size: 15px;
-        outline: 0;
-        background-color: rgb(255, 255, 255);
-        border-color: rgb(204, 204, 204);
-        border-radius: 4px;
-        border-style: solid;
-        border-width: 1px;
-        font-weight: 800;
+        padding-bottom: 10px;
+        select {
+            box-sizing: border-box; // width: 100%;
+            // height: 40px;
+            text-align: center;
+            padding: 10px;
+            border: 0;
+            background-color: #fff;
+            font-size: 15px;
+            outline: 0;
+            background-color: rgb(255, 255, 255);
+            border-color: rgb(204, 204, 204);
+            border-radius: 4px;
+            border-style: solid;
+            border-width: 1px;
+            font-weight: 800;
+        }
     }
-}
 }
 
 .wrap_empty {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 70Vw;
+    min-height: 70vw;
 }
