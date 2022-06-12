@@ -540,7 +540,7 @@ const ProductDetailDesktop = ({ data }) => {
                 }}
                 hasMore={hasMore}
                 loader={<h3> منتظر بمانید...</h3>}
-                endMessage={<h4>پایان</h4>}
+                endMessage={<h4>به پایان رسیدیم...</h4>}
                 style={{ overflow: "hidden", padding: "10px" }}
               >
                 <div className="row">
