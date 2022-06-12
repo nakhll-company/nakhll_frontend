@@ -39,7 +39,6 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
 
   return (
     <>
-      {console.log("apiSetting", apiSetting)}
       {true && (
         <Formik
           enableReinitialize={true}

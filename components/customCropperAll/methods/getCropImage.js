@@ -75,7 +75,6 @@ export async function getCroppedImg(imageSrc, pixelCrop, rotation = 0) {
             // return "HI";
             // return base64.toDataURL("image/png");
         });
-    // console.log(`after`, compressImage);
 
     return compressImage;
     // return canvas.toDataURL("image/png");
