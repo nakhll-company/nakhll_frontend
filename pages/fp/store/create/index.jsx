@@ -30,9 +30,9 @@ function NewStore({ getUserInfo, userInfo }) {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [selectState, setSelectState] = useState([]);
-  const [selectBigCities, setSelectBigCities] = useState([]);
-  const [selectCities, setSelectCities] = useState([]);
+  const [stateData, setStateData] = useState([]);
+  const [bigCitiesData, setBigCitiesData] = useState([]);
+  const [citiesData, setCitiesData] = useState([]);
   const [showSuccessPage, setShowSuccessPage] = useState({
     loading: "false",
     success: "false",
@@ -47,7 +47,7 @@ function NewStore({ getUserInfo, userInfo }) {
         loading: "true",
       };
     });
-    
+
     data.State = JSON.parse(data.State);
     data.BigCity = JSON.parse(data.BigCity);
     data.City = JSON.parse(data.City);
@@ -71,7 +71,7 @@ function NewStore({ getUserInfo, userInfo }) {
 
   useEffect(() => {
     async function fetchData() {
-      setSelectState(await getStates());
+      setStateData(await getStates());
       Object.keys(userInfo).length === 0 &&
         checkForCallUserInfo() &&
         (await getUserInfo());
@@ -139,16 +139,15 @@ function NewStore({ getUserInfo, userInfo }) {
             className={styles.form_select}
             {...register("State", { required: true })}
             onChange={async (event) => {
-              const [option] = event.target.selectedOptions;
-              const states = await getBigCities(event.target.value);
-              option.value = option.attributes[1].value;
-              setSelectBigCities(states);
+              const optionValue = JSON.parse(event.target.value);
+              const bigCities = await getBigCities(optionValue.id);
+              setBigCitiesData(await bigCities);
             }}
           >
             <option></option>
-            {selectState?.map((value, index) => {
+            {stateData?.map((value, index) => {
               return (
-                <option key={index} value={value.id} data-value={`{"name": "${value.name}","id":${value.id}}`}>
+                <option key={index} value={`{"name": "${value.name}","id":${value.id}}`}>
                   {value.name}
                 </option>
               );
@@ -165,15 +164,15 @@ function NewStore({ getUserInfo, userInfo }) {
             className={styles.form_select}
             {...register("BigCity", { required: true })}
             onChange={async (event) => {
-              const [option] = event.target.selectedOptions;
-              setSelectCities(await getCities(event.target.value));
-              option.value = option.attributes[1].value;
+              const optionValue = JSON.parse(event.target.value);
+              const cities = await getCities(optionValue.id);
+              setCitiesData(await cities);
             }}
           >
             <option></option>
-            {selectBigCities?.map((value, index) => {
+            {bigCitiesData?.map((value, index) => {
               return (
-                <option key={index} value={value.id} data-value={`{"name": "${value.name}","id":${value.id}}`}>
+                <option key={index} value={`{"name": "${value.name}","id":${value.id}}`}>
                   {value.name}
                 </option>
               );
@@ -189,15 +188,11 @@ function NewStore({ getUserInfo, userInfo }) {
           <select
             className={styles.form_select}
             {...register("City", { required: true })}
-            onChange={async (event) => {
-              const [option] = event.target.selectedOptions;
-              option.value = option.attributes[1].value;
-            }}
           >
             <option></option>
-            {selectCities.map((value, index) => {
+            {citiesData.map((value, index) => {
               return (
-                <option key={index} value={value.id} data-value={`{"name": "${value.name}","id":${value.id}}`}>
+                <option key={index} value={`{"name": "${value.name}","id":${value.id}}`}>
                   {value.name}
                 </option>
               );
