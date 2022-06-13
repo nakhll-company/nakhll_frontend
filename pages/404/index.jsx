@@ -8,7 +8,7 @@ function PageNotFound() {
         src="/404.png"
         layout="responsive"
         width={750}
-        height={520}
+        height={519}
         alt="404"
       />
       <div className={styles.wrapBtn}>
