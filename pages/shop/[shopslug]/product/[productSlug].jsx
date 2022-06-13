@@ -11,7 +11,6 @@ import { http } from "../../../../services/callApi/api";
 
 // fetch data
 const fetchData = async (id) => {
-
   const urlComments = encodeURI(`/api/v1/product-page/comments/${id}/`);
   const urlResponse = encodeURI(`/api/v1/product-page/details/${id}/`);
   const urlRelatedProduct = encodeURI(
@@ -26,7 +25,7 @@ const fetchData = async (id) => {
     return {
       detail: response.data,
       comments: comments.data,
-      relatedProduct: relatedProduct.status === 200 ? relatedProduct.data : [] ,
+      relatedProduct: relatedProduct.status === 200 ? relatedProduct.data : [],
     };
   } else {
     return false;

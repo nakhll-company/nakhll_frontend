@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 // components
 import AppButton from "../../components/AppButton";
 // methods
-import {diviedNumber} from "../../utils/diviedNumber";
+import { diviedNumber } from "../../utils/diviedNumber";
 // style
 import styles from "../../styles/pages/cart/cart.module.scss";
 

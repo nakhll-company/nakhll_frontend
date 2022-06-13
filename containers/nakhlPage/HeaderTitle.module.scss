@@ -14,23 +14,22 @@
 }
 
 .list {
-    flex-grow: 4;
+  flex-grow: 4;
 
-    ul {
-        display: flex;
-        margin: 0;
-        padding: 0;
+  ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
 
-        li {
-            margin-left: 30px;
-            list-style-type: none;
-            cursor: pointer;
-            font-weight: 600;
-            margin-top: 5px;
-        }
+    li {
+      margin-left: 30px;
+      list-style-type: none;
+      cursor: pointer;
+      font-weight: 600;
+      margin-top: 5px;
     }
   }
-
+}
 
 .menu {
   flex-grow: 1;
@@ -73,73 +72,72 @@
 }
 
 .profile {
-    cursor: pointer;
+  cursor: pointer;
 
-    &:hover+.modalProfile {
-        visibility: visible;
-        opacity: 1;
-    }
+  &:hover + .modalProfile {
+    visibility: visible;
+    opacity: 1;
+  }
 }
 
 .modalProfile {
-    width: 200px;
-    height: 122px;
-    background-color: rgb(243, 243, 243);
-    position: absolute;
-    top: 45px;
-    left: 15px;
-    z-index: 10;
-    padding: 2px !important;
-    border-radius: 5px;
-    cursor: pointer;
-    visibility: hidden;
-    opacity: 0;
+  width: 200px;
+  height: 122px;
+  background-color: rgb(243, 243, 243);
+  position: absolute;
+  top: 45px;
+  left: 15px;
+  z-index: 10;
+  padding: 2px !important;
+  border-radius: 5px;
+  cursor: pointer;
+  visibility: hidden;
+  opacity: 0;
 
-    &:hover {
-        visibility: visible;
-        opacity: 1;
+  &:hover {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  div {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+
+    i {
+      font-size: 20px;
+      margin-left: 5px;
     }
-
-    div {
-        padding: 5px;
-        display: flex;
-        align-items: center;
-
-        i {
-            font-size: 20px;
-            margin-left: 5px;
-        }
-    }
+  }
 }
 
-
 .icons {
-    font-size: 35px;
+  font-size: 35px;
 
-    @media (max-width: 870px) {
-        font-size: 25px;
-    }
+  @media (max-width: 870px) {
+    font-size: 25px;
+  }
 }
 
 @media (max-width: 870px) {
-    .container {
-        justify-content: space-between;
-    }
+  .container {
+    justify-content: space-between;
+  }
 
-    .icon {
-        flex-grow: 1;
-    }
+  .icon {
+    flex-grow: 1;
+  }
 
-    .list {
-        display: none;
-    }
+  .list {
+    display: none;
+  }
 
-    .slideMenu {
-        display: inline;
-    }
+  .slideMenu {
+    display: inline;
+  }
 
-    .menu {
-        flex-grow: 1;
-        justify-content: end;
-    }
+  .menu {
+    flex-grow: 1;
+    justify-content: end;
+  }
 }

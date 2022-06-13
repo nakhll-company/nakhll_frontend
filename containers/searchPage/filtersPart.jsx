@@ -4,9 +4,7 @@ import { AiFillCloseCircle } from "react-icons/ai";
 // style
 import s from "./filtersPart.module.scss";
 
-
 function FiltersPart({ filters, removeFilter }) {
-  
   const selectMessage = {
     category: "دسته بندی",
     min_price: "محدوده قیمتی",

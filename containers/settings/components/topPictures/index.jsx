@@ -12,7 +12,6 @@ import { callApiUpDataPicture } from "../../../../api/settings";
 import styles from "./topPictures.module.scss";
 
 function TopPictures({ apiSetting, activeHojreh, setOnMenu }) {
-  
   const [imgProfile, setImgProfile] = useState(
     apiSetting.image_thumbnail_url ? apiSetting.image_thumbnail_url : null
   );
@@ -68,8 +67,7 @@ function TopPictures({ apiSetting, activeHojreh, setOnMenu }) {
             ratio={1}
           />
         </div>
-        <div className={styles.btnBanner}>
-        </div>
+        <div className={styles.btnBanner}></div>
       </div>
     </>
   );

@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../components/loading";
 // methods
 import ContextProduct from "./Context/context";
-import {diviedNumber} from "../../utils/diviedNumber";
+import { diviedNumber } from "../../utils/diviedNumber";
 import { _addProduct } from "../../redux/actions/cart/_addProduct";
 import { _reduceProduct } from "../../redux/actions/cart/_reduceProduct";
 import { _deleteProduct } from "../../redux/actions/cart/_deleteProduct";
@@ -41,8 +41,8 @@ export default function ListCardBuy() {
                   !(
                     index > 0 &&
                     El.product.FK_Shop.slug ==
-                      allProductListBuy.ordered_items[index - 1].product
-                        .FK_Shop.slug
+                      allProductListBuy.ordered_items[index - 1].product.FK_Shop
+                        .slug
                   )
                     ? { position: "relative" }
                     : {
@@ -57,8 +57,8 @@ export default function ListCardBuy() {
                 {!(
                   index > 0 &&
                   El.product.FK_Shop.slug ==
-                    allProductListBuy.ordered_items[index - 1].product
-                      .FK_Shop.slug
+                    allProductListBuy.ordered_items[index - 1].product.FK_Shop
+                      .slug
                 ) && (
                   <div className="pt-3 pb-1 px-3">
                     <span className="font-size1">از حجره: </span>{" "}

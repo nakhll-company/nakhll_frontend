@@ -7,7 +7,7 @@ import React, { useState, useEffect } from "react";
 import MobileOrders from "./mobileOrders";
 import useViewport from "../../components/viewPort";
 // methods
-import {diviedNumber} from "../../utils/diviedNumber";
+import { diviedNumber } from "../../utils/diviedNumber";
 import { getUserOrders } from "./methods/getUserOrders";
 import { checkTimeOrder } from "./methods/checkTimeOrder";
 // scss

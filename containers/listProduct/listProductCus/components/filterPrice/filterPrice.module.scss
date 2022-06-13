@@ -1,40 +1,40 @@
 .wrap {
-    padding: 10px;
+  padding: 10px;
 }
 
 .rangeParent {
-    display: flex;
-    direction: rtl;
+  display: flex;
+  direction: rtl;
 }
 
 .word {
-    display: flex;
-    align-items: center;
-    margin: 0px 10px;
-    font-size: 20px;
-    color: rgb(176, 178, 182);
+  display: flex;
+  align-items: center;
+  margin: 0px 10px;
+  font-size: 20px;
+  color: rgb(176, 178, 182);
 }
 
 .unitWord {
-    display: flex;
-    align-items: center;
-    margin-right: 5px;
-    font-size: 16px;
-    color: rgb(18, 18, 19);
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+  font-size: 16px;
+  color: rgb(18, 18, 19);
 }
 
 .inputParent {
-    flex-grow: 1;
-    input {
-        width: 100%;
-        background: #ffffff;
-        border: 1px solid #e0e6e9;
-        box-sizing: border-box;
-        border-radius: 5px;
-        direction: ltr;
-        font-weight: bolder;
-        font-size: 20px;
-        color: #364254;
-        padding: 11px;
-    }
+  flex-grow: 1;
+  input {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #e0e6e9;
+    box-sizing: border-box;
+    border-radius: 5px;
+    direction: ltr;
+    font-weight: bolder;
+    font-size: 20px;
+    color: #364254;
+    padding: 11px;
+  }
 }

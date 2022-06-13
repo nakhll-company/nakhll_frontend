@@ -17,7 +17,7 @@ import AppButton from "../../components/AppButton";
 import { base64Profile } from "../../public/icons/icon";
 
 const EditProfile = ({ dataProfile, setDataProfile }) => {
-  console.log('dataProfile :>> ', dataProfile);
+  console.log("dataProfile :>> ", dataProfile);
   const {
     register,
     handleSubmit,
@@ -111,7 +111,7 @@ const EditProfile = ({ dataProfile, setDataProfile }) => {
             <InputPictureSetting
               setImageSrc={setImgProfile}
               image={imgProfile}
-            // ratio={1}
+              // ratio={1}
             />
           </div>
         </div>

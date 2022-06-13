@@ -121,7 +121,11 @@ const ProductDetailMobile = ({ data }) => {
                 {detail.title}
               </h1>
               <div className="px-2">
-                <Swiper grabCursor={true} navigation pagination={{ clickable: true }}>
+                <Swiper
+                  grabCursor={true}
+                  navigation
+                  pagination={{ clickable: true }}
+                >
                   {thumblineImage.map((value, index) => {
                     return (
                       <SwiperSlide key={index}>

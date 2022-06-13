@@ -23,7 +23,7 @@ import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoadin
 import { ApiReference } from "../../../api/Api";
 import { allCites } from "../../../utils/allCities";
 import { http } from "../../../services/callApi/api";
-import {diviedNumber} from "../../../utils/diviedNumber";
+import { diviedNumber } from "../../../utils/diviedNumber";
 import { parsUrlToArr } from "../../../utils/parsUrlToArr";
 // styles
 import styles from "./listProductCus.module.scss";
