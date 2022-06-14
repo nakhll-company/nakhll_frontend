@@ -38,7 +38,7 @@ function NewStore({ getUserInfo, userInfo }) {
     success: "false",
   });
   const [loaderBtn, setLoaderBtn] = useState(false);
-  console.log("bigCitiesData >>>>>", bigCitiesData);
+
   const onSubmit = async (data) => {
     setLoaderBtn(true);
     setShowSuccessPage((prev) => {
