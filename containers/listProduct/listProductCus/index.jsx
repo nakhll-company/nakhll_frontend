@@ -23,7 +23,7 @@ import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoadin
 import { ApiReference } from "../../../api/Api";
 import { allCites } from "../../../utils/allCities";
 import { http } from "../../../services/callApi/api";
-import {diviedNumber} from "../../../utils/diviedNumber";
+import { diviedNumber } from "../../../utils/diviedNumber";
 import { parsUrlToArr } from "../../../utils/parsUrlToArr";
 // styles
 import styles from "./listProductCus.module.scss";
@@ -250,14 +250,15 @@ function ListProductCus({ data }) {
                 handelAddCategory={handelAddCategory}
               />
 
-              <CustomAccordion title="محدوده قیمت" item="two" close={true}>
-                <div style={{ direction: "ltr", zIndex: "1000" }}>
-                  <FilterPrice
-                    ragnePrice={ragnePrice}
-                    onChangeFilter={onChangeFilter}
-                  />
-                </div>
-              </CustomAccordion>
+              {ragnePrice?.max_price &&
+                <CustomAccordion title="محدوده قیمت" item="two" close={true}>
+                  <div style={{ direction: "ltr", zIndex: "1000" }}>
+                    <FilterPrice
+                      ragnePrice={ragnePrice}
+                      onChangeFilter={onChangeFilter}
+                    />
+                  </div>
+                </CustomAccordion>}
               <CustomAccordion
                 title="جستجو بر اساس حجره"
                 item="searchHoj"
