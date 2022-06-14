@@ -38,7 +38,7 @@ function NewStore({ getUserInfo, userInfo }) {
     success: "false",
   });
   const [loaderBtn, setLoaderBtn] = useState(false);
-
+  console.log("bigCitiesData >>>>>", bigCitiesData);
   const onSubmit = async (data) => {
     setLoaderBtn(true);
     setShowSuccessPage((prev) => {
@@ -141,7 +141,7 @@ function NewStore({ getUserInfo, userInfo }) {
             onChange={async (event) => {
               const optionValue = JSON.parse(event.target.value);
               const bigCities = await getBigCities(optionValue.id);
-              setBigCitiesData(await bigCities);
+              setBigCitiesData(bigCities);
             }}
           >
             <option></option>
@@ -166,7 +166,7 @@ function NewStore({ getUserInfo, userInfo }) {
             onChange={async (event) => {
               const optionValue = JSON.parse(event.target.value);
               const cities = await getCities(optionValue.id);
-              setCitiesData(await cities);
+              setCitiesData(cities);
             }}
           >
             <option></option>
