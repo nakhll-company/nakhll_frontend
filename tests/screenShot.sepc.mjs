@@ -1,11 +1,5 @@
-import {
-    flowRight
-} from "lodash";
-import {
-    chromium,
-    webkit,
-    firefox
-} from "playwright";
+import { flowRight } from "lodash";
+import { chromium, webkit, firefox } from "playwright";
 
 // for (const browserType of[chromium]) {
 //     console.log("runnig", browserType.name());

@@ -6,7 +6,6 @@ import InputPictureCreat from "../InputPicture";
 import styles from "./pictureChildProduct.module.scss";
 
 function PictureChildProduct({ setImageSrc, image }) {
-  
   const handelDeletPic = () => {
     setImageSrc(null);
   };

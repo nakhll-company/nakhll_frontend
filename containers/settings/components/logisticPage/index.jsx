@@ -26,7 +26,6 @@ import { successMessage } from "../../../../utils/toastifyMessage";
 import st from "./logisticPage.module.scss";
 
 function LogisticPage() {
-
   const _asist = new Assistent();
   const [loader, setLoader] = useState(false);
   const [wichPage, setWichPage] = useState(1);
@@ -130,7 +129,6 @@ function LogisticPage() {
   };
 
   const handleSendAllCities = async () => {
-
     setLoaderBtn(true);
     const response = await authhttp.patch(
       `/api/v1/logistic/shop-logistic-unit-constraint/${constraintId}/`,
@@ -378,10 +376,7 @@ function LogisticPage() {
         )}
 
         {wichPage == 8 && (
-          <ResultOperation
-            resetStates={resetStates}
-            pageController={upPage}
-          />
+          <ResultOperation resetStates={resetStates} pageController={upPage} />
         )}
 
         {wichPage == 9 && (

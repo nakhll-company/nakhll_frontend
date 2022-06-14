@@ -4,20 +4,19 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { FaSearch } from "react-icons/fa";
 // methods
-import { handelSearch,getAllShops } from "../../api/header";
+import { handelSearch, getAllShops } from "../../api/header";
 import BoxSearch from "../../components/shopLayout/header/boxSearch";
 // style
 import s from "./InputLanding.module.scss";
 
 function InputLanding() {
-
   const router = useRouter();
   const [shopsName, setShopsName] = useState([]);
   const [inputSearch, setInputSearch] = useState("");
   const [searchShops, setSearchShops] = useState([]);
 
   return (
-    <div style={{position:'relative'}}  >
+    <div style={{ position: "relative" }}>
       <form
         onSubmit={(event) => {
           event.preventDefault();
@@ -50,12 +49,12 @@ function InputLanding() {
           </Link>
         </div>
       </form>
-      <div className={s.wrapBox} >
-      {searchShops.length > 0 && (
-        <BoxSearch list={searchShops} word={inputSearch} />
-      )}
+      <div className={s.wrapBox}>
+        {searchShops.length > 0 && (
+          <BoxSearch list={searchShops} word={inputSearch} />
+        )}
       </div>
-    </div >
+    </div>
   );
 }
 

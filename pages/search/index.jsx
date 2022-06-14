@@ -7,13 +7,13 @@ import ListProductCus from "../../containers/listProduct/listProductCus";
 import ListWitOutFilters from "../../containers/listProduct/ListWithOutFilters";
 import { useRouter } from "next/router";
 
-function Product({ }) {
+function Product({}) {
   const { query } = useRouter();
-  
+
   return (
     <>
       <Head>
-        <title>{`جستجو برای ${query.q?query.q:'محصولات'} | نخل`}</title>
+        <title>{`جستجو برای ${query.q ? query.q : "محصولات"} | نخل`}</title>
         <meta name="robots" content="noindex, nofollow" />
 
         <link rel="canonical" href="https://nakhll.com/search/?q=" />

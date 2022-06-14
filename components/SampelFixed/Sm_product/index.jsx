@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 // methods
-import {diviedNumber} from "../../../utils/diviedNumber";
+import { diviedNumber } from "../../../utils/diviedNumber";
 // style
 import styles from "./Sm_product.module.scss";
 

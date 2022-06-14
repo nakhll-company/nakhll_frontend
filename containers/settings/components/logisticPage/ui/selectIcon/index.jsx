@@ -18,7 +18,6 @@ const ICONS = [
 ];
 
 function SelectIcon({ handleSendInfoScope }) {
-
   const [idselectedIcon, setIdselectedIcon] = useState(1);
   const [loaderBtn, setLoaderBtn] = useState(false);
   const {

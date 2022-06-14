@@ -33,9 +33,12 @@ function SmRotationProducts({ id, data }) {
         }
 
         if (Object.keys(Queries).length > 1) {
-          const response = await http.get("https://nakhll.com/api/v1/products/", {
-            params: Queries,
-          });
+          const response = await http.get(
+            "https://nakhll.com/api/v1/products/",
+            {
+              params: Queries,
+            }
+          );
 
           if (response.status == 200) {
             setProducts(response.data.results);

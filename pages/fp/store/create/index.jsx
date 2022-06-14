@@ -47,7 +47,7 @@ function NewStore({ getUserInfo, userInfo }) {
         loading: "true",
       };
     });
-    
+
     data.State = JSON.parse(data.State);
     data.BigCity = JSON.parse(data.BigCity);
     data.City = JSON.parse(data.City);
@@ -148,7 +148,11 @@ function NewStore({ getUserInfo, userInfo }) {
             <option></option>
             {selectState?.map((value, index) => {
               return (
-                <option key={index} value={value.id} data-value={`{"name": "${value.name}","id":${value.id}}`}>
+                <option
+                  key={index}
+                  value={value.id}
+                  data-value={`{"name": "${value.name}","id":${value.id}}`}
+                >
                   {value.name}
                 </option>
               );
@@ -173,7 +177,11 @@ function NewStore({ getUserInfo, userInfo }) {
             <option></option>
             {selectBigCities?.map((value, index) => {
               return (
-                <option key={index} value={value.id} data-value={`{"name": "${value.name}","id":${value.id}}`}>
+                <option
+                  key={index}
+                  value={value.id}
+                  data-value={`{"name": "${value.name}","id":${value.id}}`}
+                >
                   {value.name}
                 </option>
               );
@@ -197,7 +205,11 @@ function NewStore({ getUserInfo, userInfo }) {
             <option></option>
             {selectCities.map((value, index) => {
               return (
-                <option key={index} value={value.id} data-value={`{"name": "${value.name}","id":${value.id}}`}>
+                <option
+                  key={index}
+                  value={value.id}
+                  data-value={`{"name": "${value.name}","id":${value.id}}`}
+                >
                   {value.name}
                 </option>
               );

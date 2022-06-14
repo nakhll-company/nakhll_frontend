@@ -3,12 +3,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 // methods
-import {diviedNumber} from "../../utils/diviedNumber";
+import { diviedNumber } from "../../utils/diviedNumber";
 import { checkTimeOrder } from "./methods/checkTimeOrder";
 // scss
 import styles from "./scss/mobileOrders.module.scss";
-
-
 
 const MobileOrders = ({
   ordersList,
@@ -32,9 +30,7 @@ const MobileOrders = ({
                 <span className="d-block text-secondary mb-2 d-lg-none">
                   شماره سفارش
                 </span>
-                <span className="text-dark font-weight-bold">
-                  {value.id}
-                </span>
+                <span className="text-dark font-weight-bold">{value.id}</span>
               </div>
               <div className={`${styles.left} p-3 d-flex align-items-center`}>
                 <span

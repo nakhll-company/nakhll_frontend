@@ -9,7 +9,7 @@ import ShopLayout from "../../../components/shopLayout";
 // methods
 import { _getListInvoice } from "../../../api/cart";
 import { authhttp } from "../../../services/callApi/api";
-import {diviedNumber} from "../../../utils/diviedNumber";
+import { diviedNumber } from "../../../utils/diviedNumber";
 import { errorMessage } from "../../../utils/toastifyMessage";
 // scss
 import styles from "./payment.module.scss";

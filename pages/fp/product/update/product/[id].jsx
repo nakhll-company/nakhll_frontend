@@ -19,8 +19,11 @@ import PictureChildProduct from "../../../../../containers/creat/component/pictu
 // methods
 import { authhttp } from "../../../../../services/callApi/api";
 import { mapState } from "../../../../../containers/product/methods/mapState";
-import { _ApiGetCategories, _ApiUpdateProduct } from "../../../../../api/creatProduct";
-import { getBase64Image } from '../../../../../containers/product/methods/getBase64Image';
+import {
+  _ApiGetCategories,
+  _ApiUpdateProduct,
+} from "../../../../../api/creatProduct";
+import { getBase64Image } from "../../../../../containers/product/methods/getBase64Image";
 // styles
 import styles from "./create.module.scss";
 /**
@@ -128,7 +131,6 @@ const UpdateProduct = ({ activeHojreh }) => {
   }, [id, activeHojreh, setValue]);
 
   const onSubmit = async (data) => {
-
     setisLoadingUpdate(true);
     const imageBanners = [];
 

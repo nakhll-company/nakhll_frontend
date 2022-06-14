@@ -41,8 +41,8 @@ export default function ListCardBuy() {
                   !(
                     index > 0 &&
                     El.product.FK_Shop.slug ==
-                    allProductListBuy.ordered_items[index - 1].product
-                      .FK_Shop.slug
+                      allProductListBuy.ordered_items[index - 1].product.FK_Shop
+                        .slug
                   )
                     ? { position: "relative" }
                     : {
@@ -57,8 +57,8 @@ export default function ListCardBuy() {
                 {!(
                   index > 0 &&
                   El.product.FK_Shop.slug ==
-                  allProductListBuy.ordered_items[index - 1].product
-                    .FK_Shop.slug
+                    allProductListBuy.ordered_items[index - 1].product.FK_Shop
+                      .slug
                 ) && (
                     <div className="pt-3 pb-1 px-3">
                       <span className="font-size1">از حجره: </span>{" "}
