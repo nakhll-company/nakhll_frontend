@@ -38,8 +38,12 @@ const HeaderTitle = () => {
   const AllProductListBuy = useSelector((state) => state.Cart.allProduct);
 
   useEffect(() => {
-    checkForCallUserInfo() && dispatch(getUserInfo());
-    dispatch(getProducts());
+    if (checkForCallUserInfo()) {
+      dispatch(getUserInfo());
+      dispatch(getProducts());
+
+
+    }
   }, []);
 
   return (
@@ -96,8 +100,7 @@ const HeaderTitle = () => {
                     );
                     if (response.status < 300) {
                       router.push(
-                        `/setPassword/${rot13(response?.data?.auth_key)}/${
-                          response?.data?.mobile_status
+                        `/setPassword/${rot13(response?.data?.auth_key)}/${response?.data?.mobile_status
                         }`
                       );
                     }
