@@ -5,7 +5,7 @@ import Image from "next/image";
 // components
 import CustomBadge from "../../../components/custom/customBadge";
 // scss
-import styles from "../../../styles/pages/order/desktopOrders.module.scss";
+import styles from "./desktopOrders.module.scss";
 
 export default function DesktopOrders({ loading, ordersList, type }) {
   const statusCompleted = [

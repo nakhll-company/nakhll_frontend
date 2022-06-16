@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../../styles/components/custom/label.module.scss";
+import styles from "./label.module.scss";
 
 const CustomLabel = ({
   type,

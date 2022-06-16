@@ -18,7 +18,7 @@ import { mapState } from "./methods/mapState";
 // components
 import Loading from "../../components/loading";
 // styles
-import styles from "../../styles/pages/dashboard/dashboard.module.scss";
+import styles from "./dashboard.module.scss";
 import { authhttp } from "../../services/callApi/api";
 
 SwiperCore.use([EffectFade, Autoplay, Navigation, Pagination, Scrollbar, A11y]);

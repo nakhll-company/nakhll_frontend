@@ -12,7 +12,7 @@ import { authhttp } from "../../../../services/callApi/api";
 import { diviedNumber } from "../../../../utils/diviedNumber";
 import { successMessage } from "../../../../utils/toastifyMessage";
 // sass
-import styles from "../../../../styles/pages/order/orderdetail.module.scss";
+import styles from "./orderdetail.module.scss";
 
 export const getServerSideProps = ({ params }) => {
   // fetch

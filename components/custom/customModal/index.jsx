@@ -1,7 +1,7 @@
 // node
 import { useState, useEffect } from "react";
 // scss
-import styles from "../../../styles/components/custom/modal.module.scss";
+import styles from "./modal.module.scss";
 
 const Modal = ({ show, onClose, wrapperClassName, className, content }) => {
   const [open, setOpen] = useState(false);

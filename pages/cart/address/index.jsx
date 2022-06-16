@@ -16,7 +16,7 @@ import { getAddress } from "../../../api/cartAddress/getAddress";
 import { selectAddress } from "../../../containers/cartAddress/methods/selectAddress";
 import { changeRadioButtonColor } from "../../../containers/cartAddress/methods/changeRadioButtonsColor";
 // styles
-import styles from "../../../styles/pages/cart/address.module.scss";
+import styles from "./address.module.scss";
 import AppButton from "../../../components/AppButton";
 
 const Address = () => {

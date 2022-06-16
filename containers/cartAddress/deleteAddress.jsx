@@ -2,7 +2,7 @@
 import { getAddress } from "../../api/cartAddress/getAddress";
 import { deleteAddress } from "../../api/cartAddress/deleteAddress";
 // styles
-import styles from "../../styles/pages/cart/deleteAddress.module.scss";
+import styles from "./deleteAddress.module.scss";
 
 const DeleteAddress = ({ onClose, id, setAddress }) => {
   return (

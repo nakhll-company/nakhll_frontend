@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 // scss
-import styles from "../../styles/components/mobileHeader/mobileHeader.module.scss";
+import styles from "./mobileHeader.module.scss";
 
 function MobileHeader({ title, type, linkSearch }) {
   const router = useRouter();

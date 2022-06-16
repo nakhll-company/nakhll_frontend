@@ -1,4 +1,4 @@
-import styles from "../../../styles/components/custom/badge.module.scss";
+import styles from "./badge.module.scss";
 
 const CustomBadge = ({
   title,

@@ -7,7 +7,7 @@ import AppButton from "../../components/AppButton";
 // methods
 import { diviedNumber } from "../../utils/diviedNumber";
 // style
-import styles from "../../styles/pages/cart/cart.module.scss";
+import styles from "./cart.module.scss";
 
 export default function SumBuy() {
   const [loaderButton, setLoaderButton] = useState(false);

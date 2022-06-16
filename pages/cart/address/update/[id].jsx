@@ -15,7 +15,7 @@ import { getBigCities } from "../../../../api/general/getBigCities";
 import { updateAddress } from "../../../../api/cartAddress/updateAddress";
 import { getEditAddress } from "../../../../api/cartAddress/getEditAddress";
 // styles
-import styles from "../../../../styles/pages/cart/newAddress.module.scss";
+import styles from "../newAddress.module.scss";
 
 const UpdateAddress = () => {
   const router = useRouter();

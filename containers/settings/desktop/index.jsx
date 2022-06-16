@@ -14,7 +14,7 @@ import Loading from "../../../components/custom/Loading/Loading";
 // methods
 import { callApiAllData } from "../../../api/settings";
 // scss
-import styles from "../../../styles/pages/setting/setting.module.scss";
+import styles from "./setting.module.scss";
 
 const DesktopSetting = () => {
   const activeHojreh = useSelector((state) => state.User.activeHojreh);

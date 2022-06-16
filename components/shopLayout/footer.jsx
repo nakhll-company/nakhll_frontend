@@ -9,7 +9,7 @@ import { BsLinkedin } from "react-icons/bs";
 import { FiInstagram } from "react-icons/fi";
 
 // style
-import styles from "../../styles/components/shopLayout/footer.module.scss";
+import styles from "./footer.module.scss";
 
 const Footer = () => {
   const router = useRouter();

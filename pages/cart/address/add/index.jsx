@@ -14,7 +14,7 @@ import { getStates } from "../../../../api/general/getStates";
 import { getBigCities } from "../../../../api/general/getBigCities";
 import { addAddress } from "../../../../api/cartAddress/addAddress";
 // styles
-import styles from "../../../../styles/pages/cart/newAddress.module.scss";
+import styles from "../newAddress.module.scss";
 
 const NewAddress = () => {
   const router = useRouter();

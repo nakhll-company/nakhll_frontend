@@ -1,7 +1,7 @@
 // node librairies
 import Image from "next/image";
 // style
-import styles from "../../styles/components/loading/loading.module.scss";
+import styles from "./loading.module.scss";
 
 export default function Loading() {
   return (
