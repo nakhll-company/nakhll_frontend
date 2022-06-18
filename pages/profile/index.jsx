@@ -261,7 +261,7 @@ const Profile = () => {
                 <li
                   className="d-flex flex-column align-items-center ms-4"
                   onClick={async () => {
-                    await clearTokenStorage()
+                    await clearTokenStorage();
                     await router.push("/");
                     await router.reload("/");
                   }}

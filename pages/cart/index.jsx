@@ -15,7 +15,6 @@ import { getProducts } from "../../redux/actions/cart/getProducts";
 import ContextProduct from "../../containers/card/Context/context";
 
 export default function Cart() {
-
   const dispatch = useDispatch();
   const [showLoading, setShowLoading] = useState(true);
   const [allProductListBuy, setAllProductListBuy] = useState({});

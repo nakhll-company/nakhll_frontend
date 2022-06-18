@@ -8,7 +8,6 @@ import { authhttp } from "../../../services/callApi/api";
 import styles from "./SaveLanding.module.scss";
 
 function SaveLanding({ setOpenSaveLanding, idLanding }) {
-
   const [inputName, setInputName] = useState("");
   const landing = useSelector((state) => state.allDataLanding);
   const apiUpdateLanding = `${ApiReference.landing.update.url}${idLanding[0]}/${idLanding[1]}/`;

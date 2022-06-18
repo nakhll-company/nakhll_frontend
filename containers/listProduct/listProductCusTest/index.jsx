@@ -20,7 +20,6 @@ import { http } from "../../../services/callApi/api";
 import styles from "./listProductCus.module.scss";
 
 function ListProductCusTest({ data }) {
-  
   const changePage = 1;
   const [pageApi, setPageApi] = useState(2);
   const [hasMore, setHasMore] = useState(false);

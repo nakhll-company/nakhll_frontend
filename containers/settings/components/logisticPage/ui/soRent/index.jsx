@@ -6,7 +6,6 @@ import CheckBoxSend from "../../components/checkBoxSend";
 import AppButton from "../../../../../../components/AppButton";
 
 function SoRent({ pageController, handleSendInfoScope }) {
-  
   const [checkNO, setCheckNO] = useState(true);
   const [checkYes, setCheckYes] = useState(false);
   const [loaderBtn, setLoaderBtn] = useState(false);

@@ -20,7 +20,6 @@ import { callCategory, getAllShops, handelSearch } from "../../../api/header";
 // style
 import styles from "./header.module.scss";
 
-
 function Header() {
   const router = useRouter();
 
@@ -97,13 +96,14 @@ function Header() {
                       router.push(`/search?q=${inputSearch}`);
                     }}
                   >
-                    {inputSearch != '' &&
-
-                      <div className={styles.close_btn}
-                        onClick={() => setInputSearch('')}
+                    {inputSearch != "" && (
+                      <div
+                        className={styles.close_btn}
+                        onClick={() => setInputSearch("")}
                       >
                         <AiFillCloseCircle size={23} />
-                      </div>}
+                      </div>
+                    )}
                     <input
                       type="text"
                       className="form-control"
@@ -170,7 +170,8 @@ function Header() {
                         );
                         if (response.status < 300) {
                           router.push(
-                            `/setPassword/${rot13(response?.data?.auth_key)}/${response?.data?.mobile_status
+                            `/setPassword/${rot13(response?.data?.auth_key)}/${
+                              response?.data?.mobile_status
                             }`
                           );
                         }
@@ -225,10 +226,9 @@ function Header() {
           </div>
         </div>
         <nav>
-          <div style={{ margin: '0px 10px' }}>
+          <div style={{ margin: "0px 10px" }}>
             {/* <SlideMenu /> */}
             <div className={styles.nav_row}>
-
               <MegaMenuDesktop category={category} />
             </div>
           </div>

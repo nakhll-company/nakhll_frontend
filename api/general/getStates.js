@@ -1,6 +1,4 @@
-import {
-    http
-} from "../../services/callApi/api";
+import { http } from "../../services/callApi/api";
 // api state
 export const getStates = async () => {
     const response = await http.get("/api/v1/get-all-state/");
@@ -8,5 +6,5 @@ export const getStates = async () => {
         return response.data;
     } else {
         return [];
-    }
+  }
 };

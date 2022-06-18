@@ -9,7 +9,6 @@ import AppButton from "../../../../../../components/AppButton";
 import InputUseForm from "../../../../../creat/component/inputUseForm";
 
 function FreeQuestion({ pageController, handleSendInfoScope }) {
-  
   const [checkNoFree, setCheckNoFree] = useState(true);
   const [checkYesFree, setCheckYesFree] = useState(false);
   const [loaderBtn, setLoaderBtn] = useState(false);

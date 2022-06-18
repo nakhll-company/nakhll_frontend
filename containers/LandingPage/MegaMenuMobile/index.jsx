@@ -2,12 +2,11 @@
 import React from "react";
 import Head from "next/head";
 // methods
-import {handelAccording} from './methods/handelAccording';
+import { handelAccording } from "./methods/handelAccording";
 // style
 import styles from "./MegaMenuMobile.module.scss";
 
 function MegaMenuMobile({ category }) {
-
   return (
     <>
       <Head>

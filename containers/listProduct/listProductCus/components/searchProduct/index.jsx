@@ -3,11 +3,7 @@ import React from "react";
 import styles from "./searchProduct.module.scss";
 import { useForm } from "react-hook-form";
 
-function SearchProduct({
-  NameHojreh,
-  searchWord,
-   onChangeFilter,
-}) {
+function SearchProduct({ NameHojreh, searchWord, onChangeFilter }) {
   const { register, handleSubmit } = useForm();
 
   const _handelSearch = (data) => {

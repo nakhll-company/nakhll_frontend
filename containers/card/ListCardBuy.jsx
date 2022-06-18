@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../components/loading";
 // methods
 import ContextProduct from "./Context/context";
-import {diviedNumber} from "../../utils/diviedNumber";
+import { diviedNumber } from "../../utils/diviedNumber";
 import { _addProduct } from "../../redux/actions/cart/_addProduct";
 import { _reduceProduct } from "../../redux/actions/cart/_reduceProduct";
 import { _deleteProduct } from "../../redux/actions/cart/_deleteProduct";
@@ -41,34 +41,34 @@ export default function ListCardBuy() {
                   !(
                     index > 0 &&
                     El.product.FK_Shop.slug ==
-                      allProductListBuy.ordered_items[index - 1].product
-                        .FK_Shop.slug
+                      allProductListBuy.ordered_items[index - 1].product.FK_Shop
+                        .slug
                   )
                     ? { position: "relative" }
                     : {
-                        position: "relative",
-                        marginTop: "-12px",
-                        borderTop: "2px dashed hsl(213deg 59% 26%)",
-                        borderTopLeftRadius: "inherit",
-                        borderTopRightRadius: "inherit",
-                      }
+                      position: "relative",
+                      marginTop: "-12px",
+                      borderTop: "2px dashed hsl(213deg 59% 26%)",
+                      borderTopLeftRadius: "inherit",
+                      borderTopRightRadius: "inherit",
+                    }
                 }
               >
                 {!(
                   index > 0 &&
                   El.product.FK_Shop.slug ==
-                    allProductListBuy.ordered_items[index - 1].product
-                      .FK_Shop.slug
+                    allProductListBuy.ordered_items[index - 1].product.FK_Shop
+                      .slug
                 ) && (
-                  <div className="pt-3 pb-1 px-3">
-                    <span className="font-size1">از حجره: </span>{" "}
-                    <Link href={`/shop/${El.product.FK_Shop.slug}/`}>
-                      <a className="vendor-link font-size1 font-weight-bold link-body font-weight-normal txtcut">
-                        {El.product.FK_Shop.title}
-                      </a>
-                    </Link>
-                  </div>
-                )}
+                    <div className="pt-3 pb-1 px-3">
+                      <span className="font-size1">از حجره: </span>{" "}
+                      <Link href={`/shop/${El.product.FK_Shop.slug}/`}>
+                        <a className="vendor-link font-size1 font-weight-bold link-body font-weight-normal txtcut">
+                          {El.product.FK_Shop.title}
+                        </a>
+                      </Link>
+                    </div>
+                  )}
                 {/* ^^^^^^^^^^^ IF CHANGE IN PRODUCT IN LIST ^^^^^^^^^^^*/}
                 <div className="p-3 mt-2 cart-product-item">
                   {loading && productId === El.product.ID ? (
@@ -124,14 +124,16 @@ export default function ListCardBuy() {
                             <div
                               className={styles.cart_product_item_remain_stock}
                             ></div>
+
                             <div
-                              className={`nakhl-label mr-auto small teaberry-light ${
-                                El.product.discount == 0 && "opacity_none"
-                              }`}
+                              className={`d-block ml-auto small teaberry-light `}
                             >
-                              {El.product.discount}
-                              <span> %</span>
+                              <span className="font-weight-bold">
+                                {diviedNumber(El?.product?.Price / 10)}
+                              </span>{" "}
+                              <span className="pr-1">تومان</span>
                             </div>
+
                             <div className="d-flex align-items-center">
                               <div
                                 className="mt-2 d-flex align-items-center"
@@ -201,16 +203,29 @@ export default function ListCardBuy() {
                                 </span>
                               </div>
                               <div className="mr-auto">
-                                <span
-                                  style={{ display: "block" }}
-                                  className={`${
-                                    styles.cart_product_item_primary_price
-                                  } ${
-                                    El.product.discount == 0 && "opacity_none"
-                                  }`}
-                                >
-                                  {diviedNumber(El.total_old_price / 10)}
-                                </span>{" "}
+                                <div className="d-flex">
+
+                                  <span
+                                    style={{ display: "block" }}
+                                    className={`${styles.cart_product_item_primary_price
+                                      } ${El.product.discount == 0 && "opacity_none"
+                                      }`}
+                                  >
+
+
+                                    {diviedNumber(El.total_old_price / 10)}
+                                  </span>
+                                  <div
+                                    className={`nakhl-label mr-1  small teaberry-light ${El.product.discount == 0 && "opacity_none"
+                                      }`}
+                                  >
+                                    {El.product.discount}
+                                    <span> %</span>
+                                  </div>
+
+
+                                </div>
+                                {" "}
                                 <span className="font-weight-bold">
                                   {diviedNumber(El.total_price / 10)}
                                 </span>{" "}
@@ -232,8 +247,8 @@ export default function ListCardBuy() {
               {false &&
                 index !== 0 &&
                 El.product.FK_Shop.slug ==
-                  allProductListBuy.ordered_items[index - 1].product.FK_Shop
-                    .slug && (
+                allProductListBuy.ordered_items[index - 1].product.FK_Shop
+                  .slug && (
                   <div
                     className="mt-0 cart-product-group bg-white"
                     style={{ position: "relative" }}
@@ -278,9 +293,8 @@ export default function ListCardBuy() {
                             </div>
                             <div className="cart-product-item-remain-stock"></div>
                             <div
-                              className={`nakhl-label mr-auto small teaberry-light ${
-                                El.product.discount == 0 && "opacity_none"
-                              }`}
+                              className={`nakhl-label mr-auto small teaberry-light ${El.product.discount == 0 && "opacity_none"
+                                }`}
                             >
                               {El.product.discount}
                               <span> %</span>
@@ -339,11 +353,9 @@ export default function ListCardBuy() {
                               </div>
                               <div className="mr-auto">
                                 <span
-                                  className={`${
-                                    styles.cart_product_item_primary_price
-                                  } ${
-                                    El.product.discount == 0 && "opacity_none"
-                                  }`}
+                                  className={`${styles.cart_product_item_primary_price
+                                    } ${El.product.discount == 0 && "opacity_none"
+                                    }`}
                                 >
                                   {diviedNumber(El.total_old_price / 10)}
                                 </span>{" "}

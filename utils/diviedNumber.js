@@ -1,6 +1,5 @@
-
 export function undiviedNumber(num) {
-    return num.split(',').join('')
+  return num.split(",").join("");
 }
 
 export function diviedNumber(num = "") {
@@ -9,4 +8,3 @@ export function diviedNumber(num = "") {
     .replace(/,/g, "")
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
-

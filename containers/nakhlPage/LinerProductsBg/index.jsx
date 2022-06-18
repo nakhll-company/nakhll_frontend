@@ -12,7 +12,7 @@ function LinerProductsBgLanding({
   dataLinerProductsBg,
   urlLinerProductsBg = "",
   color,
-  num
+  num,
 }) {
   return (
     <div

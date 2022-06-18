@@ -1,22 +1,20 @@
-import {
-    authhttp
-} from "../../../services/callApi/api";
+import { authhttp } from "../../../services/callApi/api";
 
 export async function activeListItemLanding(
-    id,
-    activeHojreh,
-    router,
-    setLandingList
+  id,
+  activeHojreh,
+  router,
+  setLandingList
 ) {
-    const response = await authhttp.get(
-        `/api/v1/shop/landings/${activeHojreh}/${id}/activate_landing/`
-    );
+  const response = await authhttp.get(
+    `/api/v1/shop/landings/${activeHojreh}/${id}/activate_landing/`
+  );
 
-    if (response.status === 200) {
-        const result = await authhttp.get(`/api/v1/shop/landings/${activeHojreh}/`);
+  if (response.status === 200) {
+    const result = await authhttp.get(`/api/v1/shop/landings/${activeHojreh}/`);
 
-        if (result.status === 200) {
-            await setLandingList(result.data);
-        }
+    if (result.status === 200) {
+      await setLandingList(result.data);
     }
+  }
 }
