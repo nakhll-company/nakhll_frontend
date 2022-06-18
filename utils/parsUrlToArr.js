@@ -1,3 +1,3 @@
-export const parsUrlToArr=(Arr)=>{
-   return Arr.split(",").map((el) => parseInt(el))
-}
+export const parsUrlToArr = (Arr) => {
+  return Arr.split(",").map((el) => parseInt(el));
+};

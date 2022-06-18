@@ -4,7 +4,7 @@ import Image from "next/image";
 // components
 import SBSendUnit from "../sendUnit/switchButtonSendUnit";
 // methods
-import {diviedNumber} from "../../../../../../utils/diviedNumber";
+import { diviedNumber } from "../../../../../../utils/diviedNumber";
 // style
 import st from "./sendBoxCu.module.scss";
 

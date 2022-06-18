@@ -25,11 +25,8 @@ function MegaMenuDesktop({ category }) {
             className={styles.nav_item}
             style={{ position: "relative", display: "inline-block" }}
           >
-            <div style={{ margin: '0 5px' }} className={styles.nav_item_link}>
-              <span style={{ display: 'inline-block' }}>
-
-                {element.name}
-              </span>
+            <div style={{ margin: "0 5px" }} className={styles.nav_item_link}>
+              <span style={{ display: "inline-block" }}>{element.name}</span>
               <i className="fas fa-angle-down"></i>
             </div>
             <div

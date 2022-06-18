@@ -22,8 +22,8 @@ import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoadin
 // methods
 import { ApiReference } from "../../../api/Api";
 import { allCites } from "../../../utils/allCities";
-import { http } from "../../../services/callApi/api";
-import {diviedNumber} from "../../../utils/diviedNumber";
+import { http, authhttp } from "../../../services/callApi/api";
+import { diviedNumber } from "../../../utils/diviedNumber";
 import { parsUrlToArr } from "../../../utils/parsUrlToArr";
 // styles
 import styles from "./listProductCus.module.scss";
@@ -44,17 +44,11 @@ function ListProductCus({ data }) {
   const [isOpenOrderingModal, setIsOpenOrderingModal] = useState(false);
   const [ragnePrice, setRagnePrice] = useState({});
   // states for shops
-  const [shopesTag] = useState(userData ? userData.shops : []);
+  const shopesTag = userData?.shops;
   const [tags, setTags] = useState([]);
   const [activeHojreh, setActiveHojreh] = useState();
-
-  const [wantTags, setWantTags] = useState([
-    ...(data.tags ? parsUrlToArr(data.tags) : []),
-  ]);
-
-  const [categories, setCategories] = useState([
-    ...(data.category ? parsUrlToArr(data.category) : []),
-  ]);
+  const wantTags = [...(data.tags ? parsUrlToArr(data.tags) : [])];
+  const [categories, setCategories] = useState([...(data.category ? parsUrlToArr(data.category) : [])]);
 
   const onChangeFilter = (name, value, alone = false) => {
     if (alone) {
@@ -102,8 +96,7 @@ function ListProductCus({ data }) {
   const callTags = async (activeHojreh) => {
     try {
       const dataUrl = `/api/v1/shop/${activeHojreh}/tags/`;
-
-      const response = await http.get(dataUrl);
+      const response = await authhttp.get(dataUrl);
       if (response.status < 300) {
         setTags(response.data);
       }
@@ -130,9 +123,9 @@ function ListProductCus({ data }) {
     const newArray = copyArray.filter((element) => element != id);
 
     if (copyArray.length == newArray.length) {
-      setWantTags([...newArray, id]);
+      onChangeFilter("tags", [...newArray, id].toString());
     } else {
-      setWantTags(newArray);
+      onChangeFilter("tags", [...newArray, id].toString());
     }
   };
 
@@ -216,7 +209,7 @@ function ListProductCus({ data }) {
       await handelFilters();
     }
     fetchData();
-  }, [data, hojreh]);
+  }, []);
 
   // for filters in sidebar
   // END

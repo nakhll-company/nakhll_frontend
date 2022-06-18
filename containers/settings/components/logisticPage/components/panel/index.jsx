@@ -8,7 +8,7 @@ import SBSendUnit from "../sendUnit/switchButtonSendUnit";
 import LoadingAllPage from "../../../../../../components/loadingAllPage";
 // methods
 import { authhttp } from "../../../../../../services/callApi/api";
-import {diviedNumber} from "../../../../../../utils/diviedNumber";
+import { diviedNumber } from "../../../../../../utils/diviedNumber";
 // style
 import st from "./panel.module.scss";
 

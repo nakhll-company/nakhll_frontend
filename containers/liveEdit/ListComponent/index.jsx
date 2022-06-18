@@ -13,7 +13,6 @@ import SmLinerThreeImgFix from "../../../components/SampelFixed/Sm_LinerThreeImg
 // styles
 import styles from "./ListComponent.module.scss";
 
-
 function ListComponent({ handelAddComponent }) {
   // gsap
   const [numSec, setNumSec] = useState(0);

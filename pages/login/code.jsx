@@ -84,7 +84,7 @@ const Code = () => {
             className="mb-2"
             style={{ fontSize: "15px" }}
           >
-            کد تایید برای شماره موبایل { mobile ?? "وارد شده"} ارسال گردید
+            کد تایید برای شماره موبایل {mobile ?? "وارد شده"} ارسال گردید
           </label>
           <input
             type="number"

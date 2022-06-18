@@ -41,8 +41,8 @@ export default function ListCardBuy() {
                   !(
                     index > 0 &&
                     El.product.FK_Shop.slug ==
-                    allProductListBuy.ordered_items[index - 1].product
-                      .FK_Shop.slug
+                      allProductListBuy.ordered_items[index - 1].product.FK_Shop
+                        .slug
                   )
                     ? { position: "relative" }
                     : {
@@ -124,13 +124,17 @@ export default function ListCardBuy() {
                             <div
                               className={styles.cart_product_item_remain_stock}
                             ></div>
+
                             <div
                               className={`nakhl-label mr-auto small teaberry-light ${El.product.discount == 0 && "opacity_none"
                                 }`}
                             >
-                              {El.product.discount}
-                              <span> %</span>
+                              <span className="font-weight-bold">
+                                {diviedNumber(El?.product?.Price / 10)}
+                              </span>{" "}
+                              <span className="pr-1">تومان</span>
                             </div>
+
                             <div className="d-flex align-items-center">
                               <div
                                 className="mt-2 d-flex align-items-center"
@@ -225,8 +229,6 @@ export default function ListCardBuy() {
                   )}
                 </div>
               </div>
-
-
             </Fragment>
           ))}
       </div>

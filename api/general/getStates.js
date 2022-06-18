@@ -1,14 +1,10 @@
-import {
-    http
-} from "../../services/callApi/api";
+import { http } from "../../services/callApi/api";
 // api state
-export const getStates = async() => {
-    try {
-        const response = await http.get("/api/v1/get-all-state/");
-        if (response.status === 200) {
-            return response.data;
-        }
-    } catch (error) {
-        return false;
-    }
+export const getStates = async () => {
+    const response = await http.get("/api/v1/get-all-state/");
+    if (response.status === 200) {
+        return response.data;
+    } else {
+        return [];
+  }
 };

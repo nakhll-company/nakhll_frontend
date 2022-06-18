@@ -82,7 +82,7 @@
 
 .search-sorts ul a:focus,
 .search-sorts ul a:hover {
-    color: #ed1943;
+  color: #ed1943;
 }
 
 @media (min-width: 992px) {
@@ -101,8 +101,8 @@
 }
 
 @media (max-width: 768px) {
-    .search-sorts {
-        margin-left: 0;
-        margin-right: 0;
-    }
+  .search-sorts {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }

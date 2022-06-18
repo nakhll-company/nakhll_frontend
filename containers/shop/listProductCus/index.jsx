@@ -16,7 +16,6 @@ import MultiRangeSlider from "../../../components/custom/customMultiRangeSlider/
 import { authhttp, http } from "../../../services/callApi/api";
 
 function ListProductShop({ data }) {
-
   const changePage = 1;
   const searchWord = data.q ? data.q : "";
   const [pageApi, setPageApi] = useState(2);
