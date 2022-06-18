@@ -1,13 +1,11 @@
-import {
-    authhttp
-} from "../../../services/callApi/api";
+import { authhttp } from "../../../services/callApi/api";
 
 export async function buyWaitOrders(id) {
-    const response = await authhttp.get(
-        `/api/v1/shop/feature-invoices/${id}/pay/`
-    );
+  const response = await authhttp.get(
+    `/api/v1/shop/feature-invoices/${id}/pay/`
+  );
 
-    if (response.status === 200) {
-        location.replace(`${response.data.url}`);
-    }
+  if (response.status === 200) {
+    location.replace(`${response.data.url}`);
+  }
 }

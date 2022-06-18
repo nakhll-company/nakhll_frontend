@@ -13,7 +13,6 @@ import { clearTokenStorage } from "../../api/general/clearTokenStorage";
 import s from "./setPassword.module.scss";
 
 function SetPasswordPage() {
-
   const eye = useRef();
   const beam = useRef();
   const container = useRef();
@@ -29,7 +28,6 @@ function SetPasswordPage() {
   const [repeatNewPas, setRepeatNewPas] = useState("");
   const [toggleClass, setToggleClass] = useState(false);
   const [error, setError] = useState({ newPassword: "", repeatNewPas: "" });
-
 
   const {
     register,

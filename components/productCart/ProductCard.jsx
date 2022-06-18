@@ -24,7 +24,6 @@ const ProductCard = ({
   dataProduct,
   deletProduct,
 }) => {
-
   const dispatch = useDispatch();
   const [disablBtn, setDisablBtn] = useState(false);
 
@@ -65,8 +64,9 @@ const ProductCard = ({
       height={100}
       width={100}
       src={product.imageUrl}
-      className={`card-img-top _product_card_rounded animationCart ${product.unavailable && "_unavailable_product"
-        }`}
+      className={`card-img-top _product_card_rounded animationCart ${
+        product.unavailable && "_unavailable_product"
+      }`}
       alt={product.title}
       placeholder="blur"
       blurDataURL="/logoCart.png"
@@ -109,10 +109,11 @@ const ProductCard = ({
 
   return (
     <div
-      className={` ${col
-        ? `col-${col}`
-        : `col-${xs} col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
-        } ${padding ? `px-${padding}` : ""} mb-2`}
+      className={` ${
+        col
+          ? `col-${col}`
+          : `col-${xs} col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`
+      } ${padding ? `px-${padding}` : ""} mb-2`}
     >
       <div className={`card ${styles._product_card} _product_card_rounded p-2`}>
         <div className={styles.paterImage}>
@@ -125,8 +126,9 @@ const ProductCard = ({
         </div>
 
         <div
-          className={`card-body mt-2 p-1 ${product.unavailable && "_unavailable_product"
-            }`}
+          className={`card-body mt-2 p-1 ${
+            product.unavailable && "_unavailable_product"
+          }`}
         >
           <div className=" mb-3">
             <Link href={product.url}>
@@ -211,8 +213,7 @@ const ProductCard = ({
                   justifyContent: "flex-end",
                 }}
               >
-                {product.discount !== 0 &&
-                  diviedNumber(product.discountNumber)}
+                {product.discount !== 0 && diviedNumber(product.discountNumber)}
               </span>
             </div>
             <span

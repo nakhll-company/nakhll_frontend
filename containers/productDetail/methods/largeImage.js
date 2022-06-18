@@ -1,6 +1,6 @@
 export function largeImage(id) {
-    const image = document.querySelector(`#${id}`);
-    const orginal = document.querySelector("#orginal");
+  const image = document.querySelector(`#${id}`);
+  const orginal = document.querySelector("#orginal");
 
-    orginal.src = image.src;
+  orginal.src = image.src;
 }

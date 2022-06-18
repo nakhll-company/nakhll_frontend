@@ -9,7 +9,7 @@ import useViewport from "../../../../components/viewPort";
 import MyLayout from "../../../../components/layout/Layout";
 // methods
 import { authhttp } from "../../../../services/callApi/api";
-import {diviedNumber} from "../../../../utils/diviedNumber";
+import { diviedNumber } from "../../../../utils/diviedNumber";
 import { successMessage } from "../../../../utils/toastifyMessage";
 // sass
 import styles from "../../../../styles/pages/order/orderdetail.module.scss";

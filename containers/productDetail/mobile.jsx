@@ -121,7 +121,11 @@ const ProductDetailMobile = ({ data }) => {
                 {detail.title}
               </h1>
               <div className="px-2">
-                <Swiper grabCursor={true} navigation pagination={{ clickable: true }}>
+                <Swiper
+                  grabCursor={true}
+                  navigation
+                  pagination={{ clickable: true }}
+                >
                   {thumblineImage.map((value, index) => {
                     return (
                       <SwiperSlide key={index}>
@@ -452,7 +456,7 @@ const ProductDetailMobile = ({ data }) => {
                 }}
                 hasMore={hasMore}
                 loader={<h3> منتظر بمانید ....</h3>}
-                endMessage={<h4>پایان</h4>}
+                endMessage={<h4>به پایان رسیدیم...</h4>}
                 style={{ overflow: "hidden" }}
               >
                 <div className="row d-flex">

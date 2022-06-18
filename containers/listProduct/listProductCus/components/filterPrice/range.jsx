@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { diviedNumber, undiviedNumber } from "../../../../../utils/diviedNumber";
+import {
+  diviedNumber,
+  undiviedNumber,
+} from "../../../../../utils/diviedNumber";
 // style
 import s from "./filterPrice.module.scss";
 
 const Range = ({ ceiling, price, changeValue }) => {
-  
   const [valPrice, setValPrice] = useState(price);
 
   const changeInput = (val) => {

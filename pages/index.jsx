@@ -14,8 +14,8 @@ import LinerProductsBgLanding from "../containers/nakhlPage/LinerProductsBg";
 import { dataLanding } from "../utils/dataLanding";
 
 function Landing() {
-
-  const { linearsProduct, dataBlog, dataSliders, dataAmazingDiscounts } = dataLanding;
+  const { linearsProduct, dataBlog, dataSliders, dataAmazingDiscounts } =
+    dataLanding;
 
   return (
     <div>

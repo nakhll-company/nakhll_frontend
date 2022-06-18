@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState, useRef } from "react";
 // style
 import styles from "./multiRangeSlider.module.css";
 // methods
-import {diviedNumber} from "../../../utils/diviedNumber";
+import { diviedNumber } from "../../../utils/diviedNumber";
 
 const MultiRangeSlider = ({ min, max, onChange }) => {
   const [minVal, setMinVal] = useState(min);

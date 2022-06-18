@@ -1,0 +1,33 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+
+echo ' Styling, testing and building your project before committing'
+
+
+#Check Prettier standards
+npm run check-format || (
+    echo ' Your styling looks disgusting..
+    
+    Prettier Check Failed. Run npm run format'
+    false;
+)
+
+#Check ESLint Standards
+
+npm run check-lint || (
+    echo 'EsLint Check Failed. Make the required changes '
+    false;
+)
+
+#If everything passes....try to run a build
+echo 'Code looks good to me'
+
+npm run build ||
+(
+    echo 'error in build'
+    false;
+)
+
+#If it builds we can commit
+echo 'YOu win this time'
