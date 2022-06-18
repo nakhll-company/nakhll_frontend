@@ -120,6 +120,7 @@
         font-size: 3.3vw;
         color: #3e3e3e;
         padding: 30px 10px;
+        overflow: hidden;
         span {
           padding-right: 3px;
         }
@@ -158,6 +159,7 @@
     }
   }
 }
+
 // media
 @media only screen and (min-width: 600px) {
   .wrapper {
