@@ -13,6 +13,7 @@ import styles from "./Sm_LinerProducts.module.scss";
 import { http } from "../../../services/callApi/api";
 
 function SmLinerProducts({ id, data }) {
+
   const dispatch = useDispatch();
   const [toggle, setToggle] = useState(true);
   const [products, setProducts] = useState([]);
