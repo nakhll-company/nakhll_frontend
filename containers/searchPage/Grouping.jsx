@@ -1,9 +1,11 @@
 // node libraries
+
 import React from "react";
 // components
 import CustomAccordion from "../../components/custom/customAccordion";
 // methods
 import { http } from "../../services/callApi/api";
+import { useRouter } from "next/router";
 
 function Grouping({
   searchWord,
@@ -12,10 +14,14 @@ function Grouping({
   handelAddCategory,
   item,
 }) {
+  const { query } = useRouter();
   const handelCategory = async () => {
     try {
+
       const response = await http.get(
-        `/api/v1/categories/category_product_count/?q=${searchWord}`
+        `/api/v1/categories/category_product_count/`, {
+        params: { ...query }
+      }
       );
       if (response.status === 200) {
         setCategories(response.data);

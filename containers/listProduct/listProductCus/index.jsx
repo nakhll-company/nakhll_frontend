@@ -245,14 +245,15 @@ function ListProductCus({ data }) {
                 handelAddCategory={handelAddCategory}
               />
 
-              <CustomAccordion title="محدوده قیمت" item="two" close={true}>
-                <div style={{ direction: "ltr", zIndex: "1000" }}>
-                  <FilterPrice
-                    ragnePrice={ragnePrice}
-                    onChangeFilter={onChangeFilter}
-                  />
-                </div>
-              </CustomAccordion>
+              {ragnePrice?.max_price &&
+                <CustomAccordion title="محدوده قیمت" item="two" close={true}>
+                  <div style={{ direction: "ltr", zIndex: "1000" }}>
+                    <FilterPrice
+                      ragnePrice={ragnePrice}
+                      onChangeFilter={onChangeFilter}
+                    />
+                  </div>
+                </CustomAccordion>}
               <CustomAccordion
                 title="جستجو بر اساس حجره"
                 item="searchHoj"

@@ -12,16 +12,12 @@ function FilterPrice({ ragnePrice, onChangeFilter }) {
   };
   return (
     <>
-      {ragnePrice.min_price && (
-        <>
-          <Range price={ragnePrice.min_price / 10} changeValue={changeValue} />
-          <Range
-            price={ragnePrice.max_price / 10}
-            changeValue={changeValue}
-            ceiling
-          />
-        </>
-      )}
+      <Range price={ragnePrice.min_price / 10} changeValue={changeValue} />
+      <Range
+        price={ragnePrice.max_price / 10}
+        changeValue={changeValue}
+        ceiling
+      />
     </>
   );
 }
