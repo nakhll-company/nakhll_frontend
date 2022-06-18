@@ -12,7 +12,7 @@ export const _reduceProduct = (productId, count) => {
 
     if (response.status === 200) {
 
-      if (count == 1) {
+      if (count === 1) {
         errorMessage('محصول از سبد خرید حذف شد')
       } else {
 
