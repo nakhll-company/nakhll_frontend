@@ -46,29 +46,29 @@ export default function ListCardBuy() {
                   )
                     ? { position: "relative" }
                     : {
-                      position: "relative",
-                      marginTop: "-12px",
-                      borderTop: "2px dashed hsl(213deg 59% 26%)",
-                      borderTopLeftRadius: "inherit",
-                      borderTopRightRadius: "inherit",
-                    }
+                        position: "relative",
+                        marginTop: "-12px",
+                        borderTop: "2px dashed hsl(213deg 59% 26%)",
+                        borderTopLeftRadius: "inherit",
+                        borderTopRightRadius: "inherit",
+                      }
                 }
               >
                 {!(
                   index > 0 &&
                   El.product.FK_Shop.slug ==
-                  allProductListBuy.ordered_items[index - 1].product
-                    .FK_Shop.slug
+                    allProductListBuy.ordered_items[index - 1].product.FK_Shop
+                      .slug
                 ) && (
-                    <div className="pt-3 pb-1 px-3">
-                      <span className="font-size1">از حجره: </span>{" "}
-                      <Link href={`/shop/${El.product.FK_Shop.slug}/`}>
-                        <a className="vendor-link font-size1 font-weight-bold link-body font-weight-normal txtcut">
-                          {El.product.FK_Shop.title}
-                        </a>
-                      </Link>
-                    </div>
-                  )}
+                  <div className="pt-3 pb-1 px-3">
+                    <span className="font-size1">از حجره: </span>{" "}
+                    <Link href={`/shop/${El.product.FK_Shop.slug}/`}>
+                      <a className="vendor-link font-size1 font-weight-bold link-body font-weight-normal txtcut">
+                        {El.product.FK_Shop.title}
+                      </a>
+                    </Link>
+                  </div>
+                )}
                 {/* ^^^^^^^^^^^ IF CHANGE IN PRODUCT IN LIST ^^^^^^^^^^^*/}
                 <div className="p-3 mt-2 cart-product-item">
                   {loading && productId === El.product.ID ? (
@@ -126,8 +126,7 @@ export default function ListCardBuy() {
                             ></div>
 
                             <div
-                              className={`nakhl-label mr-auto small teaberry-light ${El.product.discount == 0 && "opacity_none"
-                                }`}
+                              className={`d-block ml-auto small teaberry-light `}
                             >
                               <span className="font-weight-bold">
                                 {diviedNumber(El?.product?.Price / 10)}
@@ -192,7 +191,7 @@ export default function ListCardBuy() {
                                         onClick={async () => {
                                           await setProductId(El.product.ID);
                                           await setLoading(true);
-                                          await dispatch(_reduceProduct(El.id, El.count));
+                                          await dispatch(_reduceProduct(El.id));
                                           await setLoading(false);
                                         }}
                                       ></i>
@@ -204,14 +203,26 @@ export default function ListCardBuy() {
                                 </span>
                               </div>
                               <div className="mr-auto">
-                                <span
-                                  style={{ display: "block" }}
-                                  className={`${styles.cart_product_item_primary_price
-                                    } ${El.product.discount == 0 && "opacity_none"
+                                <div className="d-flex">
+                                  <span
+                                    style={{ display: "block" }}
+                                    className={`${
+                                      styles.cart_product_item_primary_price
+                                    } ${
+                                      El.product.discount == 0 && "opacity_none"
                                     }`}
-                                >
-                                  {diviedNumber(El.total_old_price / 10)}
-                                </span>{" "}
+                                  >
+                                    {diviedNumber(El.total_old_price / 10)}
+                                  </span>
+                                  <div
+                                    className={`nakhl-label mr-1  small teaberry-light ${
+                                      El.product.discount == 0 && "opacity_none"
+                                    }`}
+                                  >
+                                    {El.product.discount}
+                                    <span> %</span>
+                                  </div>
+                                </div>{" "}
                                 <span className="font-weight-bold">
                                   {diviedNumber(El.total_price / 10)}
                                 </span>{" "}
@@ -229,6 +240,141 @@ export default function ListCardBuy() {
                   )}
                 </div>
               </div>
+
+              {false &&
+                index !== 0 &&
+                El.product.FK_Shop.slug ==
+                  allProductListBuy.ordered_items[index - 1].product.FK_Shop
+                    .slug && (
+                  <div
+                    className="mt-0 cart-product-group bg-white"
+                    style={{ position: "relative" }}
+                  >
+                    {/* ^^^^^^^^^^^ IF CHANGE IN PRODUCT IN LIST ^^^^^^^^^^^*/}
+                    <div className="p-3  cart-product-item margin_top_zero">
+                      <div className="d-flex flex-wrap justify-content-between">
+                        <div className="d-flex w-100">
+                          <a className="product-link">
+                            <Image
+                              src={El.product.Image_medium_url}
+                              className={`${styles.cart_product_item_img} ${styles.rounded}`}
+                              width={100}
+                              height={100}
+                              alt=""
+                            />
+                          </a>
+                          <div className="d-flex flex-column justify-content-between mr-3 w-100 overflow-hidden">
+                            <div
+                              style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                              }}
+                            >
+                              <Link href={El.product.url}>
+                                <a className="product-link d-block font-size1 link-body font-weight-bold text-truncate">
+                                  {El.product.Title}
+                                </a>
+                              </Link>
+                              <i
+                                className="fas fa-times-circle"
+                                style={{
+                                  fontSize: "25px",
+                                  marginRight: "5px",
+                                  color: "#1b3e68",
+                                  cursor: "pointer",
+                                }}
+                                onClick={() =>
+                                  handelDeleteProductFromList(El.id)
+                                }
+                              ></i>
+                            </div>
+                            <div className="cart-product-item-remain-stock"></div>
+                            <div
+                              className={`nakhl-label mr-auto small teaberry-light ${
+                                El.product.discount == 0 && "opacity_none"
+                              }`}
+                            >
+                              {El.product.discount}
+                              <span> %</span>
+                            </div>
+                            <div className="d-flex align-items-center">
+                              <div
+                                className="mt-2 d-flex align-items-center"
+                                style={{ witheSpace: "nowrap" }}
+                              >
+                                <div
+                                  className="quantity-box input-group input-group-sm"
+                                  style={{
+                                    width: "7rem",
+                                    alignItems: "center",
+                                  }}
+                                >
+                                  <div className="input-group-prepend">
+                                    <button className="btn  plus-minus-icon">
+                                      <i
+                                        style={{
+                                          fontSize: "25px",
+                                          color: "#1b3e68 ",
+                                        }}
+                                        className="fas fa-plus-square"
+                                        onClick={() =>
+                                          handelAddProductTOList(El.product.ID)
+                                        }
+                                      ></i>
+                                    </button>
+                                  </div>
+                                  <input
+                                    min="0"
+                                    type="text"
+                                    disabled="disabled"
+                                    value={El.count}
+                                    className="bg-white border-0 font-size1-2 font-weight-bold form-control mt-1 px-1 text-center"
+                                  />
+                                  <div className="input-group-append">
+                                    <button className="btn  plus-minus-icon">
+                                      <i
+                                        style={{
+                                          fontSize: "25px",
+                                          color: "#91a6c1 ",
+                                        }}
+                                        className="fas fa-minus-square"
+                                        onClick={() =>
+                                          handelReduceProductFromList(El.id)
+                                        }
+                                      ></i>
+                                    </button>
+                                  </div>
+                                </div>
+                                <span className="d-inline-block font-size-9 mr-3 pointer">
+                                  {" "}
+                                </span>
+                              </div>
+                              <div className="mr-auto">
+                                <span
+                                  className={`${
+                                    styles.cart_product_item_primary_price
+                                  } ${
+                                    El.product.discount == 0 && "opacity_none"
+                                  }`}
+                                >
+                                  {diviedNumber(El.total_old_price / 10)}
+                                </span>{" "}
+                                <span className="font-weight-bold">
+                                  {diviedNumber(El.total_price / 10)}
+                                </span>{" "}
+                                <span>تومان</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="v-portal"
+                        style={{ display: "none" }}
+                      ></div>
+                    </div>
+                  </div>
+                )}
             </Fragment>
           ))}
       </div>

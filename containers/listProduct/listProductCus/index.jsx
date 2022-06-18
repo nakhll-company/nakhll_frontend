@@ -48,7 +48,9 @@ function ListProductCus({ data }) {
   const [tags, setTags] = useState([]);
   const [activeHojreh, setActiveHojreh] = useState();
   const wantTags = [...(data.tags ? parsUrlToArr(data.tags) : [])];
-  const [categories, setCategories] = useState([...(data.category ? parsUrlToArr(data.category) : [])]);
+  const [categories, setCategories] = useState([
+    ...(data.category ? parsUrlToArr(data.category) : []),
+  ]);
 
   const onChangeFilter = (name, value, alone = false) => {
     if (alone) {
