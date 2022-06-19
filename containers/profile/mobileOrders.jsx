@@ -10,7 +10,7 @@ import styles from "./scss/mobileOrders.module.scss";
 
 const MobileOrders = ({
   ordersList,
-  setProfilePages,
+
   setInvoiceId,
   loading,
 }) => {
@@ -125,15 +125,6 @@ const MobileOrders = ({
                     className={`btn ${styles.btn_gray} btn-sm font-size-sm flex-grow-1 d-flex`}
                     onClick={async () => {
                       await setInvoiceId(value.id);
-                      await setProfilePages(() => {
-                        return {
-                          editProfile: false,
-                          ordersPage: false,
-                          shoppingExperiences: false,
-                          favoritesList: false,
-                          orderDetail: true,
-                        };
-                      });
                     }}
                   >
                     <span>جزییات</span>

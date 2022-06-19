@@ -16,7 +16,7 @@ import styles from "./scss/orders.module.scss";
  * orders in profile
  */
 
-const Orders = ({ setProfilePages, setInvoiceId }) => {
+const Orders = ({ setInvoiceId }) => {
   const breakpoint = 900;
   const router = useRouter();
   const { width } = useViewport();
@@ -36,7 +36,6 @@ const Orders = ({ setProfilePages, setInvoiceId }) => {
         <MobileOrders
           loading={loading}
           ordersList={ordersList}
-          setProfilePages={setProfilePages}
           setInvoiceId={setInvoiceId}
         />
       ) : (
@@ -128,15 +127,6 @@ const Orders = ({ setProfilePages, setInvoiceId }) => {
                             style={{ color: "#006060", cursor: "pointer" }}
                             onClick={async () => {
                               await setInvoiceId(value.id);
-                              await setProfilePages(() => {
-                                return {
-                                  editProfile: false,
-                                  ordersPage: false,
-                                  shoppingExperiences: false,
-                                  favoritesList: false,
-                                  orderDetail: true,
-                                };
-                              });
                             }}
                           >
                             {(value.status === "completed" ||
@@ -147,15 +137,6 @@ const Orders = ({ setProfilePages, setInvoiceId }) => {
                             style={{ color: "#006060", cursor: "pointer" }}
                             onClick={async () => {
                               await setInvoiceId(value.id);
-                              await setProfilePages(() => {
-                                return {
-                                  editProfile: false,
-                                  ordersPage: false,
-                                  shoppingExperiences: false,
-                                  favoritesList: false,
-                                  orderDetail: true,
-                                };
-                              });
                             }}
                           >
                             {value.status === "wait_store_approv" &&
@@ -165,15 +146,6 @@ const Orders = ({ setProfilePages, setInvoiceId }) => {
                             style={{ color: "#006060", cursor: "pointer" }}
                             onClick={async () => {
                               await setInvoiceId(value.id);
-                              await setProfilePages(() => {
-                                return {
-                                  editProfile: false,
-                                  ordersPage: false,
-                                  shoppingExperiences: false,
-                                  favoritesList: false,
-                                  orderDetail: true,
-                                };
-                              });
                             }}
                           >
                             {value.status === "preparing_product" &&
@@ -183,15 +155,6 @@ const Orders = ({ setProfilePages, setInvoiceId }) => {
                             style={{ color: "#006060", cursor: "pointer" }}
                             onClick={async () => {
                               await setInvoiceId(value.id);
-                              await setProfilePages(() => {
-                                return {
-                                  editProfile: false,
-                                  ordersPage: false,
-                                  shoppingExperiences: false,
-                                  favoritesList: false,
-                                  orderDetail: true,
-                                };
-                              });
                             }}
                           >
                             {value.status === "wait_customer_approv" &&
