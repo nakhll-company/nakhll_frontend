@@ -65,7 +65,7 @@ function ProfileLayout({ children }) {
       <Header />
 
       <div className={`container-fluid ${styles.main_wrapper}`}>
-        <div className="row">
+        <div className="row" style={{ margin: "20px 10px" }}>
           <div
             className={`col-md-4 col-lg-3 d-none d-md-block ${styles.right_menu}`}
           >
@@ -198,7 +198,7 @@ function ProfileLayout({ children }) {
               </ul>
             </div>
           )}
-          <div className={`col-md-8 col-lg-9 col-12`}>{children}</div>
+          <div className={`col-md-8 col-lg-9 col-12 `}>{children}</div>
         </div>
       </div>
       <Footer />
