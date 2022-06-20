@@ -34,8 +34,6 @@ function ProfileLayout({ children }) {
   function Li({ href, title, children }) {
     let styleActive = {};
     if (href == router.pathname) {
-      console.log("href :>> ", href);
-      console.log("router.pathname :>> ", router.pathname);
       styleActive = {
         backgroundColor: " #A06912",
         boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.25)",

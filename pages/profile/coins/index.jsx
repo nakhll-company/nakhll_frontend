@@ -8,7 +8,7 @@ function CoinsPage() {
   return (
     <>
       <div className={s.wrapper}>
-        <SheetCoins title="لینک دعوتت اینجاست">
+        <SheetCoins title="لینک دعوتت اینجاست" to="coins/warehouse">
           <div className="">
             <div className={s.wrap_explain}>
               <span>
