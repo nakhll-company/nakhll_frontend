@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./progress.module.scss";
-function Progress() {
+function Progress({ precent = 10, coinsObtained = 1 }) {
   return (
     <div className={s.wrapper}>
       <div className={s.wrap_title}>
@@ -8,11 +8,11 @@ function Progress() {
       </div>
       <div className={s.wrap_progress}>
         <div className={s.wrap_information}>
-          <span>1 سکه</span>
+          <span>{`${coinsObtained} سکه`}</span>
         </div>
         <div className={s.progress}>
-          <div className={s.bar}>
-            <span>10</span>
+          <div style={{ width: `${precent}%` }} className={s.bar}>
+            <span>{precent}</span>
             <span>%</span>
           </div>
         </div>

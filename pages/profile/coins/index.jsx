@@ -31,8 +31,8 @@ function CoinsPage() {
               <span>سکه های جمع آوری شده‌:8</span>
               <span>سکه های استفاده شده : 5</span>
             </div>
-            <Progress />
-            <Progress />
+            <Progress precent="90" coinsObtained="1" />
+            <Progress precent="40" coinsObtained="1" />
           </div>
         </SheetCoins>
       </div>
