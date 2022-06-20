@@ -9,11 +9,13 @@
   border: 1px solid #cfd8dd;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
-  padding: 0 15px;
+  height: 100%;
+  position: relative;
   .wrap_title {
     @include center;
     padding-bottom: 23px;
     padding-top: 23px;
+    background-color: #f8f8f8;
     span {
       font-weight: 600;
       font-size: 16px;
@@ -22,15 +24,27 @@
       color: #273238;
     }
   }
-  .wrap_footer {
-    @include center;
-    padding: 10px 0px 20px;
-    span {
-      color: #224d82;
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 17px;
-      cursor: pointer;
-    }
+  .space {
+    height: 80px;
   }
+}
+
+.wrap_footer {
+  @include center;
+  padding: 10px 0px 20px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  span {
+    color: #224d82;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    cursor: pointer;
+  }
+}
+
+.space {
+  height: 50px;
 }

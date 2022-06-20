@@ -1,0 +1,46 @@
+.wrapper {
+  margin: 25px 0;
+  .wrap_title {
+    span {
+      display: block;
+      margin-bottom: 5px;
+    }
+  }
+  .wrap_progress {
+    display: flex;
+    .wrap_information {
+      margin-top: auto;
+      span {
+        display: block;
+        width: 60px;
+      }
+    }
+    .progress {
+      background: #fcfcfc;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      margin-right: 5px;
+      border-radius: 15px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: row-reverse;
+      .bar {
+        width: 100%;
+        background-color: #61bf7a;
+        border: 1px solid #cfd8dd;
+        border-radius: 14.5px;
+        margin: 2px;
+        span {
+          color: #fff;
+          font-size: 14px;
+          margin-left: 2px;
+          font-weight: bolder;
+        }
+        :last-child {
+          margin-right: 8px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
