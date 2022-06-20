@@ -46,6 +46,7 @@ const Profile = () => {
     async function fetchData() {
       const ans = await getUserData();
       setDataProfile(ans);
+      console.log("ans :>> ", ans);
     }
     fetchData();
   }, []);

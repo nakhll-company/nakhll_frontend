@@ -22,12 +22,11 @@ function LinerProducts({
   sm = 6,
   xs = 5,
 }) {
-  const [dataLinerProducts, setDataLinerProducts] = useState([])
+  const [dataLinerProducts, setDataLinerProducts] = useState([]);
 
   useEffect(async () => {
     const Queries = { page_size: "6" };
     if (url !== "") {
-
       if (url.split("?")[1]) {
         const partTwoUrl = url.split("?")[1].split("&");
         const arrayString = partTwoUrl.map((el) => el.split("="));
@@ -48,7 +47,6 @@ function LinerProducts({
 
         if (response.status == 200) {
           setDataLinerProducts(response.data.results);
-
         }
       }
     }
@@ -72,10 +70,11 @@ function LinerProducts({
             <div className={styles.Button}>
               <button>
                 <Link
-                  href={`${url.includes("search=") || url.includes("q=")
-                    ? `${url}`
-                    : `/search?ap=${url}`
-                    }`}
+                  href={`${
+                    url.includes("search=") || url.includes("q=")
+                      ? `${url}`
+                      : `/search?ap=${url}`
+                  }`}
                 >
                   <a>مشاهده همه</a>
                 </Link>
@@ -122,10 +121,11 @@ function LinerProducts({
             <div className={styles.Button}>
               <button>
                 <Link
-                  href={`${url.includes("search=") || url.includes("q=")
-                    ? `${url}`
-                    : `/search?ap=${url}`
-                    }`}
+                  href={`${
+                    url.includes("search=") || url.includes("q=")
+                      ? `${url}`
+                      : `/search?ap=${url}`
+                  }`}
                 >
                   <a>مشاهده همه</a>
                 </Link>

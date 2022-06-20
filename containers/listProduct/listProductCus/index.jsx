@@ -245,7 +245,7 @@ function ListProductCus({ data }) {
                 handelAddCategory={handelAddCategory}
               />
 
-              {ragnePrice?.max_price &&
+              {ragnePrice?.max_price && (
                 <CustomAccordion title="محدوده قیمت" item="two" close={true}>
                   <div style={{ direction: "ltr", zIndex: "1000" }}>
                     <FilterPrice
@@ -253,7 +253,8 @@ function ListProductCus({ data }) {
                       onChangeFilter={onChangeFilter}
                     />
                   </div>
-                </CustomAccordion>}
+                </CustomAccordion>
+              )}
               <CustomAccordion
                 title="جستجو بر اساس حجره"
                 item="searchHoj"
