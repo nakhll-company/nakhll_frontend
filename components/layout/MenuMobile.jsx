@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import styles from "../../styles/components/layout/MenuMobile.module.scss";
+import styles from "./MenuMobile.module.scss";
 
 function MenuMobile({ activeOptions }) {
   const router = useRouter();
