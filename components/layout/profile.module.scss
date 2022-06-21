@@ -61,33 +61,11 @@
 
 .wavy {
   margin: auto;
-  position: relative;
-  width: 100%;
-  height: 50px;
-  overflow: hidden;
+  width: 80%;
+  height: 0.5px;
+  margin-bottom: 15px;
+  background-color: #1a3e68;
 }
 
 .left_menue {
-}
-
-.wavy::before {
-  content: "aaaaaaaaaaaaaaaaaa";
-  position: absolute;
-  top: -42px;
-  left: 0;
-  font-size: 3em;
-  color: transparent;
-  text-decoration-style: wavy;
-  text-decoration-color: #1a3e68;
-  text-decoration-line: underline;
-  // animation: animate 1s linear infinite;
-}
-
-@keyframes animate {
-  0% {
-    transform: translateX(-1px);
-  }
-  100% {
-    transform: translateX(-64px);
-  }
 }

@@ -1,10 +1,10 @@
 import React from "react";
 import s from "./progress.module.scss";
-function Progress({ precent = 10, coinsObtained = 1 }) {
+function Progress({ precent = 10, coinsObtained = 1, title = "دعوت" }) {
   return (
     <div className={s.wrapper}>
       <div className={s.wrap_title}>
-        <span>دعوت: </span>
+        <span>{title}: </span>
       </div>
       <div className={s.wrap_progress}>
         <div className={s.wrap_information}>

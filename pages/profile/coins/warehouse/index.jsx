@@ -53,7 +53,7 @@ function WareHouse() {
       <div className={s.hr}></div>
 
       <Item>
-        <Progress precent="40" coinsObtained="2" />
+        <Progress precent="40" coinsObtained="2" title="ثبت نام" />
         <div className={s.center}>
           <span>
             ۴ نفر از افرادی که دعوت کرده اید در سایت ثبت نام کرده اند.

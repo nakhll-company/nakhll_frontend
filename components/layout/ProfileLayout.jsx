@@ -6,8 +6,9 @@ import React, { useEffect, useState } from "react";
 import { RiUserSettingsFill } from "react-icons/ri";
 import { BsShopWindow } from "react-icons/bs";
 import { getUserData } from "../../containers/profile/methods/getUserData";
-import { MdOutlineFollowTheSigns, MdOutlineFavorite } from "react-icons/md";
+import { MdOutlineFollowTheSigns } from "react-icons/md";
 import { GiTwoCoins } from "react-icons/gi";
+import { BsFillBookmarkFill } from "react-icons/bs";
 import styles from "./profile.module.scss";
 import useViewport from "../viewPort";
 import { useRouter } from "next/router";
@@ -100,7 +101,7 @@ function ProfileLayout({ children }) {
               </Li>
 
               <Li title="لیست علاقمندی ها" href="/profile/favList">
-                <MdOutlineFavorite size={25} style={{ marginLeft: "10px" }} />
+                <BsFillBookmarkFill size={20} style={{ marginLeft: "10px" }} />
               </Li>
 
               <Li title="انبار سکه" href="/profile/coins">
