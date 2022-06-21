@@ -147,7 +147,10 @@ function NewStore({ getUserInfo, userInfo }) {
             <option></option>
             {stateData?.map((value, index) => {
               return (
-                <option key={index} value={`{"name": "${value.name}","id":${value.id}}`}>
+                <option
+                  key={index}
+                  value={`{"name": "${value.name}","id":${value.id}}`}
+                >
                   {value.name}
                 </option>
               );
@@ -172,7 +175,10 @@ function NewStore({ getUserInfo, userInfo }) {
             <option></option>
             {bigCitiesData?.map((value, index) => {
               return (
-                <option key={index} value={`{"name": "${value.name}","id":${value.id}}`}>
+                <option
+                  key={index}
+                  value={`{"name": "${value.name}","id":${value.id}}`}
+                >
                   {value.name}
                 </option>
               );
@@ -192,7 +198,10 @@ function NewStore({ getUserInfo, userInfo }) {
             <option></option>
             {citiesData.map((value, index) => {
               return (
-                <option key={index} value={`{"name": "${value.name}","id":${value.id}}`}>
+                <option
+                  key={index}
+                  value={`{"name": "${value.name}","id":${value.id}}`}
+                >
                   {value.name}
                 </option>
               );
