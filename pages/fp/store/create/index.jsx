@@ -11,16 +11,16 @@ import AppButton from "../../../../components/AppButton";
 import useViewport from "../../../../components/viewPort";
 import MobileHeader from "../../../../components/mobileHeader";
 import SuccessPage from "../../../../containers/store/successPage";
+
 // methods
-import { getCities } from "../../../../api/general/getCities";
-import { getStates } from "../../../../api/general/getStates";
-import { getBigCities } from "../../../../api/general/getBigCities";
+
 import { mapState } from "../../../../containers/store/methods/mapState";
 import { checkForCallUserInfo } from "../../../../utils/checkForCallUserInfo";
 import { mapDispatch } from "../../../../containers/store/methods/mapDispatch";
 import { createStore } from "../../../../containers/store/methods/createStore";
 // styles
 import styles from "./createStore.module.scss";
+import { allCites } from "../../../../utils/allCities";
 
 function NewStore({ getUserInfo, userInfo }) {
   const breakpoint = 620;
@@ -28,19 +28,19 @@ function NewStore({ getUserInfo, userInfo }) {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
-  const [stateData, setStateData] = useState([]);
-  const [bigCitiesData, setBigCitiesData] = useState([]);
-  const [citiesData, setCitiesData] = useState([]);
+  const [selectBigCities, setSelectBigCities] = useState([]);
+  const [selectCities, setSelectCities] = useState([]);
   const [showSuccessPage, setShowSuccessPage] = useState({
     loading: "false",
     success: "false",
   });
   const [loaderBtn, setLoaderBtn] = useState(false);
-
+  const State = watch("State");
+  const BigCities = watch("BigCities");
   const onSubmit = async (data) => {
-    console.log("data :>> ", data);
     setLoaderBtn(true);
     setShowSuccessPage((prev) => {
       return {
@@ -72,13 +72,28 @@ function NewStore({ getUserInfo, userInfo }) {
 
   useEffect(() => {
     async function fetchData() {
-      setStateData(await getStates());
-      Object.keys(userInfo).length === 0 &&
-        checkForCallUserInfo() &&
-        (await getUserInfo());
+      Object.keys(userInfo).length === 0 && (await getUserInfo());
     }
     fetchData();
   }, []);
+  useEffect(() => {
+    const subscription = watch((data) => {
+      allCites?.map((item) => {
+        if (data.State == item.value) {
+          return setSelectBigCities(item);
+        }
+      });
+      selectBigCities?.children?.map((item) => {
+        if (data.BigCity == item.value) {
+          return setSelectCities(item);
+        }
+      });
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [State, BigCities]);
 
   return (
     <div className={styles.mainWrapper}>
@@ -93,35 +108,32 @@ function NewStore({ getUserInfo, userInfo }) {
       {width < breakpoint && <MobileHeader title="ثبت حجره" type="back" />}
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.form_right}>
-          {Object.keys(userInfo).length > 0 &&
-            Object.keys(userInfo.user).length > 0 &&
-            userInfo.user.first_name.length === 0 &&
-            userInfo.user.last_name.length === 0 && (
-              <>
-                {/* name */}
-                <label className={styles.form_label}>نام</label>
-                <input
-                  className={styles.form_input}
-                  {...register("first_name", { required: true })}
-                />
-                {errors.first_name && (
-                  <span className={styles.form_errors}>
-                    لطفا این گزینه را پر کنید
-                  </span>
-                )}
-                {/* family */}
-                <label className={styles.form_label}>نام خانوادگی</label>
-                <input
-                  className={styles.form_input}
-                  {...register("last_name", { required: true })}
-                />
-                {errors.last_name && (
-                  <span className={styles.form_errors}>
-                    لطفا این گزینه را پر کنید
-                  </span>
-                )}
-              </>
-            )}
+          {true && (
+            <>
+              {/* name */}
+              <label className={styles.form_label}>نام</label>
+              <input
+                className={styles.form_input}
+                {...register("first_name", { required: true })}
+              />
+              {errors.first_name && (
+                <span className={styles.form_errors}>
+                  لطفا این گزینه را پر کنید
+                </span>
+              )}
+              {/* family */}
+              <label className={styles.form_label}>نام خانوادگی</label>
+              <input
+                className={styles.form_input}
+                {...register("last_name", { required: true })}
+              />
+              {errors.last_name && (
+                <span className={styles.form_errors}>
+                  لطفا این گزینه را پر کنید
+                </span>
+              )}
+            </>
+          )}
           {/* title */}
           <label className={styles.form_label}>نام حجره</label>
           <input
@@ -139,16 +151,12 @@ function NewStore({ getUserInfo, userInfo }) {
           <select
             className={styles.form_select}
             {...register("State", { required: true })}
-            onChange={async (event) => {
-              const bigCities = await getBigCities(event.target.value);
-              setBigCitiesData(bigCities);
-            }}
           >
             <option></option>
-            {stateData?.map((value, index) => {
+            {allCites?.map((value, index) => {
               return (
-                <option key={index} value={value.id}>
-                  {value.name}
+                <option key={index} value={value.value}>
+                  {value.label}
                 </option>
               );
             })}
@@ -163,16 +171,12 @@ function NewStore({ getUserInfo, userInfo }) {
           <select
             className={styles.form_select}
             {...register("BigCity", { required: true })}
-            onChange={async (event) => {
-              const cities = await getCities(event.target.value);
-              setCitiesData(cities);
-            }}
           >
             <option></option>
-            {bigCitiesData?.map((value, index) => {
+            {selectBigCities?.children?.map((value, index) => {
               return (
-                <option key={index} value={value.id}>
-                  {value.name}
+                <option key={index} value={value.value}>
+                  {value.label}
                 </option>
               );
             })}
@@ -189,10 +193,10 @@ function NewStore({ getUserInfo, userInfo }) {
             {...register("City", { required: true })}
           >
             <option></option>
-            {citiesData.map((value, index) => {
+            {selectCities?.children?.map((value, index) => {
               return (
-                <option key={index} value={value.id}>
-                  {value.name}
+                <option key={index} value={value.value}>
+                  {value.label}
                 </option>
               );
             })}
