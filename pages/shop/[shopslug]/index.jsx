@@ -43,11 +43,14 @@ const fetchData = async (id) => {
   const apiShop = encodeURI(`${ApiReference.shop}${id}/`);
 
   const response = await http.get(apiShop);
+  console.log(response);
 
   if (response.status === 200) {
     return {
       shop: response.data || [],
     };
+  } else {
+    return [];
   }
 };
 
@@ -99,18 +102,18 @@ const Shop = ({ dataShop, data }) => {
     }
   };
   const SEO = {
-    title: `حجره ${dataShop.shop.title} | نخل`,
+    title: `حجره ${dataShop?.shop?.title} | نخل`,
     description:
-      dataShop.shop.Description !== ""
-        ? dataShop.shop.Description
+      dataShop?.shop?.Description !== ""
+        ? dataShop?.shop?.Description
         : "نخل سرزمینی است برای یادآوری سنت‌های اصیل ایرانی‌مان، برای شکوفایی استعدادها و بهتر دیده‌شدن‌تان، کالاها و خدمات خود را در سرزمین نخل به اشتراک بگذارید. اینجا راهی برای پیشبرد هدف‌هایتان وجود دارد.",
   };
 
   return (
     <>
-      {dataShop.shop.landing_data === null && (
+      {dataShop?.shop?.landing_data === null && (
         <>
-          <Script id={dataShop.shop.yektanet_advertisement}>
+          <Script id={dataShop?.shop?.yektanet_advertisement}>
             {`!function (t, e, n) {
         t.yektanetAnalyticsObject = n, t[n] = t[n] || function () {
             t[n].q.push(arguments)
@@ -129,7 +132,7 @@ const Shop = ({ dataShop, data }) => {
             name={dataShop.shop.FK_ShopManager}
             profile={dataShop.shop.image_thumbnail_url}
           />
-          {dataShop.shop.total_products == 0 && (
+          {dataShop?.shop?.total_products == 0 && (
             <div className="d-flex justify-content-center flex-column align-items-center">
               {" "}
               <span>
@@ -139,12 +142,12 @@ const Shop = ({ dataShop, data }) => {
               <div style={{ width: "300px" }} ref={nakhlAnim}></div>
             </div>
           )}
-          {dataShop.shop.total_products != 0 && (
+          {dataShop?.shop?.total_products != 0 && (
             <DynamicListProductCusTest data={data} />
           )}
         </>
       )}
-      {dataShop.shop.landing_data?.page_data &&
+      {dataShop?.shop?.landing_data?.page_data &&
         JSON.parse(dataShop.shop.landing_data.page_data).map((data, index) =>
           handelSelectComponent(data, index)
         )}

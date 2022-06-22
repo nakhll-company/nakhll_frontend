@@ -17,11 +17,11 @@ function Grouping({
   const { query } = useRouter();
   const handelCategory = async () => {
     try {
-
       const response = await http.get(
-        `/api/v1/categories/category_product_count/`, {
-        params: { ...query }
-      }
+        `/api/v1/categories/category_product_count/`,
+        {
+          params: { ...query },
+        }
       );
       if (response.status === 200) {
         setCategories(response.data);
