@@ -17,7 +17,6 @@ import AppButton from "../../components/AppButton";
 import { base64Profile } from "../../public/icons/icon";
 
 const EditProfile = ({ dataProfile, setDataProfile }) => {
-  console.log("dataProfile :>> ", dataProfile);
   const {
     register,
     handleSubmit,

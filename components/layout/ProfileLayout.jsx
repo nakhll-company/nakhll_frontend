@@ -56,6 +56,25 @@ function ProfileLayout({ children }) {
       </li>
     );
   }
+
+  // mini component list in mobile
+  function LiMobile({ href, title, children }) {
+    return (
+      <li
+        className={`d-flex flex-column align-items-center ${
+          href == router.pathname ? styles.active_menu : ""
+        }`}
+      >
+        <Link href={href} scroll={false}>
+          <a className="d-flex  flex-column align-items-center">
+            {children}
+            {title}
+          </a>
+        </Link>
+      </li>
+    );
+  }
+
   return (
     <>
       <Head>
@@ -123,77 +142,31 @@ function ProfileLayout({ children }) {
           {width < breakpoint && (
             <div className={styles.menu_mobile}>
               <ul className="d-flex justify-content-between align-items-center">
-                <hr />
-                <li
-                  className="d-flex flex-column align-items-center"
-                  onClick={(event) => {}}
+                <LiMobile title=" پروفایل" href="/profile">
+                  <RiUserSettingsFill size={25} />
+                </LiMobile>
+                <LiMobile
+                  title=" حجره"
+                  href={
+                    userData && userData.shops && userData.shops.length > 0
+                      ? "/fp"
+                      : "/fp/store/create"
+                  }
                 >
-                  <i
-                    className="fas fa-user-cog"
-                    style={{ fontSize: "18px" }}
-                  ></i>
+                  <BsShopWindow size={25} />
+                </LiMobile>
 
-                  <span>پروفایل</span>
-                </li>
-                <li
-                  onClick={(event) => {
-                    activeLink(event);
-                  }}
-                >
-                  <Link
-                    href={
-                      userData && userData.shops && userData.shops.length > 0
-                        ? "/fp"
-                        : "/fp/store/create"
-                    }
-                  >
-                    <a className="d-flex flex-column align-items-center">
-                      <i
-                        className="fas fa-store"
-                        style={{ fontSize: "18px" }}
-                      ></i>
+                <LiMobile title=" سفارشات" href="/profile/orderdetail">
+                  <MdOutlineFollowTheSigns size={25} />
+                </LiMobile>
 
-                      <span>حجره</span>
-                    </a>
-                  </Link>
-                </li>
-                <li
-                  className="d-flex flex-column align-items-center"
-                  onClick={(event) => {}}
-                >
-                  <i
-                    className="fas fa-box-open"
-                    style={{ fontSize: "18px" }}
-                  ></i>
+                <LiMobile title="علاقمندی ها" href="/profile/favList">
+                  <BsFillBookmarkFill size={20} />
+                </LiMobile>
 
-                  <span>سفارشات</span>
-                </li>
-                <li
-                  className="d-flex flex-column align-items-center "
-                  onClick={(event) => {}}
-                >
-                  <i
-                    className="far fa-bookmark"
-                    style={{ fontSize: "18px" }}
-                  ></i>
-
-                  <span>علاقمندی ها</span>
-                </li>
-                <li
-                  className="d-flex flex-column align-items-center ms-4"
-                  onClick={async () => {
-                    await clearTokenStorage();
-                    await router.push("/");
-                    await router.reload("/");
-                  }}
-                >
-                  <i
-                    className="fas fa-sign-out-alt"
-                    style={{ fontSize: "18px" }}
-                  ></i>
-
-                  <span>خروج</span>
-                </li>
+                <LiMobile title=" سکه" href="/profile/coins">
+                  <GiTwoCoins size={25} />
+                </LiMobile>
               </ul>
             </div>
           )}
