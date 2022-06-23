@@ -1,5 +1,5 @@
 export function chageIconChatPosition() {
-  setInterval(() => {
+  setTimeout(() => {
     if (typeof window) {
       const iconChat = document.getElementById(
         "hubspot-messages-iframe-container"
@@ -11,5 +11,5 @@ export function chageIconChatPosition() {
         }
       }
     }
-  }, 1000);
+  }, 10000);
 }

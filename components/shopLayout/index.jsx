@@ -1,7 +1,7 @@
 // node libraries
 import Head from "next/head";
 import { useEffect } from "react";
-import Script from "next/script";
+
 import { useSelector } from "react-redux";
 // components
 import Footer from "./footer";
