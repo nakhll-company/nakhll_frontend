@@ -6,7 +6,7 @@
 
 // // /** @type {import('@playwright/test').PlaywrightTestConfig} */
 const config = {
-  timeout: 120000,
+  timeout: 150000,
 };
 
 PWDEBUG = 1;
