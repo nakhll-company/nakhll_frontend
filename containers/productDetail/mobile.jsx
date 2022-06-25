@@ -328,7 +328,7 @@ const ProductDetailMobile = ({ data }) => {
                               : diviedNumber(1)}{" "}
                             ماه در نخل &nbsp;&nbsp;&nbsp;&nbsp;
                             {diviedNumber(
-                              detail.shop.total_products
+                              detail.shop.products_count
                             )} محصول{" "}
                           </a>
                         </Link>

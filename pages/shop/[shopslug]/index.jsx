@@ -132,7 +132,7 @@ const Shop = ({ dataShop, data }) => {
             name={dataShop.shop.FK_ShopManager}
             profile={dataShop.shop.image_thumbnail_url}
           />
-          {dataShop?.shop?.total_products == 0 && (
+          {dataShop?.shop?.products_count == 0 && (
             <div className="d-flex justify-content-center flex-column align-items-center">
               {" "}
               <span>
@@ -142,7 +142,7 @@ const Shop = ({ dataShop, data }) => {
               <div style={{ width: "300px" }} ref={nakhlAnim}></div>
             </div>
           )}
-          {dataShop?.shop?.total_products != 0 && (
+          {dataShop?.shop?.products_count != 0 && (
             <DynamicListProductCusTest data={data} />
           )}
         </>
