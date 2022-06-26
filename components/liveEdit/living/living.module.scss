@@ -1,3 +1,4 @@
+@use "../../../styles/abstracts/index" as *;
 .wrap {
   display: flex;
   flex-direction: column;
@@ -36,7 +37,7 @@
     appearance: button;
     background-color: #094e6e;
     border: solid transparent;
-    border-radius: 16px;
+    border-radius: $borderRadius;
     border-width: 0 0 4px;
     box-sizing: border-box;
     color: #ffffff;
@@ -65,7 +66,7 @@
       background-clip: padding-box;
       background-color: blue;
       border: solid transparent;
-      border-radius: 16px;
+      border-radius: $borderRadius;
       border-width: 0 0 4px;
       bottom: -4px;
       content: "";
@@ -119,7 +120,7 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    border-radius: 4px;
+    border-radius: $borderRadius;
     -webkit-box-shadow: 0 1px 7px 0 rgb(32 48 60 / 40%);
     box-shadow: 0 1px 7px 0 rgb(32 48 60 / 40%);
     &:hover {

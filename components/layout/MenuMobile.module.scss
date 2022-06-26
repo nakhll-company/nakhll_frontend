@@ -1,3 +1,4 @@
+@use "../../styles/abstracts/index" as *;
 .menu_mobile {
   position: fixed;
   bottom: 0;
@@ -54,7 +55,7 @@
   display: none;
   width: 60%;
   left: 0px;
-  border-radius: 5px;
+  border-radius: $borderRadius;
   color: #000;
   ul {
     list-style-type: none;

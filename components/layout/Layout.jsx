@@ -327,11 +327,6 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                           styles.selectNav
                         }`}
                       >
-                        {/* <span
-                        style={{ marginLeft: "18px" }}
-                        className={`${styles.dot} ${router.pathname == "/fp/order/completed"
-                          && styles.selectdot}`}
-                      ></span> */}
                         <h2
                           style={{
                             fontSize: "15px",
@@ -358,11 +353,6 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
                           styles.selectNav
                         }`}
                       >
-                        {/* <span
-                        style={{ marginLeft: "18px" }}
-                        className={`${styles.dot} ${router.pathname == "/fp/order/uncompleted"
-                          && styles.selectdot}`}
-                      ></span> */}
                         <h2
                           style={{
                             fontSize: "15px",

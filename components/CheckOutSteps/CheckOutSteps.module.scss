@@ -1,3 +1,4 @@
+@use "../../styles/abstracts/index" as *;
 .checkout_steps {
   list-style: none;
   display: flex;
@@ -39,7 +40,7 @@
 .line {
   width: calc(30vw);
   height: 3px;
-  border-radius: 3.5px;
+  border-radius: $borderRadius;
   background-color: #d0d0d0;
   top: 50%;
   left: 10px;

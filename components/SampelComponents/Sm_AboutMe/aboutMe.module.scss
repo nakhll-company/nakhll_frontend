@@ -1,10 +1,11 @@
+@use "../../../styles/abstracts" as *;
 .wrapper {
   position: relative;
   width: 100%;
   background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
-  border-radius: 8px;
+  border-radius: $borderRadius;
   margin-top: 20px;
   padding: 10px;
   -webkit-box-shadow: 0 2px 4px 0 hsl(0deg 0% 71% / 11%);
@@ -30,11 +31,12 @@
     text-align: justify;
   }
 }
+
 .textarea {
   background: #ffffff;
   border: 1px solid #e0e6e9;
   box-sizing: border-box;
-  border-radius: 5px;
+  border-radius: $borderRadius;
   font-size: 15px;
   color: #364254;
   padding: 11px;

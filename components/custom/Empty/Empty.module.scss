@@ -1,4 +1,4 @@
-//colors
+@use "../../../styles/abstracts/index" as *; //colors
 $bgColor: #130560;
 $subMarineColor: #e30449;
 $lightShadowColor: #ef689e;
@@ -12,12 +12,6 @@ $windowLightColor: #c9e5d9;
 $lightColor: #817e97;
 $seaGroundColor1: #0c0051;
 $seaGroundColor2: #08003b;
-//sizes
-// html,
-// body {
-//     background: #130560;
-//     overflow: hidden;
-// }
 .seaContainer {
   position: absolute;
   top: 0%;
@@ -111,7 +105,7 @@ $seaGroundColor2: #08003b;
   width: 160%;
   height: 10%;
   background: $darkShadowColor;
-  border-radius: 5px;
+  border-radius: $borderRadius;
 }
 
 .dark1 {
@@ -163,7 +157,7 @@ $seaGroundColor2: #08003b;
   top: 50%;
   width: 70px;
   height: 10px;
-  border-radius: 5px;
+  border-radius: $borderRadius;
   transform: translate(-50%, -50%);
   background: $darkShadowColor;
 }
@@ -174,7 +168,7 @@ $seaGroundColor2: #08003b;
   top: 13%;
   width: 100px;
   height: 6px;
-  border-radius: 5px;
+  border-radius: $borderRadius;
   transform: translate(-50%, -50%);
   background: $lightShadowColor;
 }

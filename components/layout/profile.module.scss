@@ -1,21 +1,18 @@
+@use "../../styles/abstracts/index" as *;
 .main_wrapper {
-  // background-color: #eee !important;
-  // right menu
   .right_menu {
     font-size: 1rem;
     background: #fff;
-    border-radius: 0.3125rem;
+    border-radius: $borderRadius;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
     .imageProfile {
-      border-radius: 50% !important;
+      border-radius: $borderRadius;
     }
-    // active link
     .active_link {
       background-color: #597ba1;
       color: #fff;
-      border-radius: 5px;
+      border-radius: $borderRadius;
     }
-    // list
     ul {
       list-style-type: none;
       margin: 0;

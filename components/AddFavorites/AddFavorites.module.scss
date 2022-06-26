@@ -1,3 +1,4 @@
+@use "../../styles/abstracts/index" as *;
 .content {
   position: fixed;
   left: 2%;
@@ -30,7 +31,7 @@
     background-color: #fff;
     top: -223px;
     left: 10px;
-    border-radius: 10px;
+    border-radius: $borderRadius;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     &::-webkit-scrollbar {
       width: 0.3em;
@@ -40,7 +41,7 @@
     }
     &::-webkit-scrollbar-thumb {
       background: rgb(34, 77, 130);
-      border-radius: 5px;
+      border-radius: $borderRadius;
     }
     .header {
       .top {
@@ -102,7 +103,7 @@
         width: 100%;
         input {
           width: 100%;
-          border-radius: 10px;
+          border-radius: $borderRadius;
           outline: unset;
           border: 1px solid #ccc;
           height: 35px;
