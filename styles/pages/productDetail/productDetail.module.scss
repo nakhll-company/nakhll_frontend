@@ -1,3 +1,4 @@
+@use "../../abstracts" as *;
 // div wrapper
 .wrapper {
   font-family: "bakh";
@@ -10,7 +11,7 @@
     font-size: 0.8rem;
     list-style: none;
     color: #7d7d7d;
-    border-radius: 0;
+    border-radius: $borderRadius;
     overflow-x: auto;
     background-color: transparent;
     font-weight: lighter;
@@ -20,7 +21,7 @@
     .breadcrumb_item {
       font-size: 0.8rem;
       color: #7d7d7d;
-      border-radius: 0;
+      border-radius: $borderRadius;
       background-color: transparent !important;
       padding: 0 !important;
     }
@@ -34,12 +35,12 @@
       overflow: hidden;
       position: relative;
       padding-bottom: 100%;
-      border-radius: 0.5rem;
+      border-radius: $borderRadius;
     }
   }
   .images_product {
     cursor: pointer;
-    border-radius: 0.5rem;
+    border-radius: $borderRadius;
   }
   // store wrapper
   .store_wrapper {

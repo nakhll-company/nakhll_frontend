@@ -1,3 +1,4 @@
+@use "../../abstracts/" as *;
 // wwrapper
 .wrapper {
   direction: rtl;
@@ -17,7 +18,7 @@
       border: 1px solid #e0e6e9;
       box-sizing: border-box;
       box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.05);
-      border-radius: 5px;
+      border-radius: $borderRadius;
       margin-bottom: 11px;
       padding: 11px;
       // header
@@ -80,7 +81,7 @@
         width: 30%;
         height: 27px;
         background: #ebebeb;
-        border-radius: 2px;
+        border-radius: $borderRadius;
         border: none;
         outline: none;
         font-weight: normal;
@@ -202,7 +203,7 @@
       width: 60%;
       height: 47px;
       background: #007aff;
-      border-radius: 2px;
+      border-radius: $borderRadius;
       font-weight: normal;
       font-size: 4.3vw;
       text-align: center;
@@ -220,7 +221,7 @@
       background: #ffffff;
       border: 1px solid #007aff;
       box-sizing: border-box;
-      border-radius: 2px;
+      border-radius: $borderRadius;
       font-size: 4.3vw;
       text-align: center;
       color: #007aff;

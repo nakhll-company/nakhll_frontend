@@ -1,3 +1,4 @@
+@use "../../../styles/abstracts/" as *;
 .btn {
   border: none;
   background: none;
@@ -16,8 +17,7 @@
   line-height: 23px;
   text-align: center;
   color: #ffffff;
-  // margin-left: 15px;
-  border-radius: 5px;
+  border-radius: $borderRadius;
   height: 40px;
 }
 
@@ -32,7 +32,7 @@
   margin-right: 15px;
   border: 1px solid #007aff;
   box-sizing: border-box;
-  border-radius: 5px;
+  border-radius: $borderRadius;
   height: 40px;
 }
 
@@ -51,7 +51,7 @@
   border: 1px solid #e0e6e9;
   box-sizing: border-box;
   box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.05);
-  border-radius: 5px;
+  border-radius: $borderRadius;
 }
 
 .header {
@@ -80,7 +80,7 @@
   font-weight: 500;
   line-height: 19px;
   background: rgba(8, 147, 25, 0.15);
-  border-radius: 8px;
+  border-radius: $borderRadius;
   color: #089319;
   padding: 10px;
 }
@@ -145,7 +145,7 @@
   background: #ffffff;
   border: 1px solid #e0e6e9;
   box-sizing: border-box;
-  border-radius: 5px;
+  border-radius: $borderRadius;
 }
 
 .post_information_content {

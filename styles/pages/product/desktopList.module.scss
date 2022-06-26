@@ -1,4 +1,4 @@
-// wrapper
+@use "../../abstracts/index" as *; // wrapper
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -13,7 +13,7 @@
     border: 1px solid #e0e6e9;
     box-sizing: border-box;
     box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.05);
-    border-radius: 5px;
+    border-radius: $borderRadius;
     padding-bottom: 20px;
     // title
     .form_title {
@@ -48,7 +48,7 @@
         background: #ffffff;
         border: 1px solid #e0e6e9;
         box-sizing: border-box;
-        border-radius: 5px;
+        border-radius: $borderRadius;
         height: 41px;
         width: 100%;
         text-align: center;
@@ -72,7 +72,7 @@
       // button submit
       .button_submit {
         background: #007aff;
-        border-radius: 5px;
+        border-radius: $borderRadius;
         height: 41px;
         color: #fff;
         text-align: center;
@@ -84,7 +84,7 @@
       }
       // button reset
       .button_reset {
-        border-radius: 5px;
+        border-radius: $borderRadius;
         height: 41px;
         text-align: center;
         border: none;
@@ -104,7 +104,7 @@
     border: 1px solid #e0e6e9;
     box-sizing: border-box;
     box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.05);
-    border-radius: 5px;
+    border-radius: $borderRadius;
     margin-top: 32px;
     // title
     .product_title {
@@ -126,7 +126,7 @@
         width: 131px;
         height: 33px;
         background: #007aff !important;
-        border-radius: 5px;
+        border-radius: $borderRadius;
         text-align: center;
         color: #fff;
         border: none;
@@ -142,7 +142,7 @@
         width: 150px;
         height: 33px;
         background: #004fa3 !important;
-        border-radius: 5px;
+        border-radius: $borderRadius;
         text-align: center;
         color: #fff;
         border: none;
@@ -167,7 +167,7 @@
       }
       th {
         background: #f3f6ff;
-        border-radius: 5px;
+        border-radius: $borderRadius;
         font-weight: 500;
         font-size: 14px;
         color: #364254;
@@ -186,7 +186,7 @@
         background: #f9fafc;
         border: 1px solid #ced5d8;
         box-sizing: border-box;
-        border-radius: 5px;
+        border-radius: $borderRadius;
       }
       .one_colmne {
         text-align: center;
@@ -196,7 +196,7 @@
         display: inline-block;
         border: 1px solid #e0e6e9;
         box-sizing: border-box;
-        border-radius: 3px;
+        border-radius: $borderRadius;
         margin: 0px 5px;
         padding: 2px;
         text-align: center;

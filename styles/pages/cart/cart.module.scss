@@ -1,3 +1,4 @@
+@use "../../abstracts" as *;
 // ..........................................FOR CARD PAGE.................................
 .all {
   grid-column: 1/-1;
@@ -14,7 +15,7 @@
 
 .cart_product_group {
   margin-top: 0.5rem;
-  border-radius: 1rem;
+  border-radius: $borderRadius;
 }
 
 .cart_product_item_primary_price {
@@ -65,7 +66,7 @@
 
 .nakhl-label {
   text-align: center;
-  border-radius: 0.4rem;
+  border-radius: $borderRadius;
 }
 
 .small {
@@ -155,7 +156,7 @@
 .cart_invoice {
   padding: 1rem;
   background-color: #fff;
-  border-radius: 1rem;
+  border-radius: $borderRadius;
   margin-top: 0.5rem;
 }
 
@@ -234,7 +235,7 @@
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
-  border-radius: 0.3125rem;
+  border-radius: $borderRadius;
   // transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
@@ -262,7 +263,7 @@
 
 .rainbow {
   background-color: #343a40;
-  border-radius: 4px;
+  border-radius: $borderRadius;
   color: #fff;
   cursor: pointer;
   padding: 8px 16px;

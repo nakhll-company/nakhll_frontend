@@ -215,7 +215,7 @@ function CheckboxTreeCities({ checkedCity, setCheckedCity, citiesInput }) {
             style={{
               padding: "10px",
               width: "100%",
-              border: "1px solid  #CED4DA",
+              border: "1px solid  #d1d1d1",
               margin: "10px 0",
               borderRadius: "10px",
             }}

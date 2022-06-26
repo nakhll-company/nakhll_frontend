@@ -1,3 +1,4 @@
+@use "../../abstracts" as *;
 .product-filters .search-sorts .sort-item {
   cursor: pointer;
   position: relative;
@@ -10,7 +11,7 @@
   position: absolute;
   top: 2px;
   left: -10px;
-  border-radius: 0.25rem;
+  border-radius: $borderRadius;
   padding: 0.15rem 0.2rem;
   content: attr(badge-title);
   background-color: #dc3755;
@@ -87,7 +88,7 @@
 
 @media (min-width: 992px) {
   .search-sorts {
-    border-radius: 0.3125rem;
+    border-radius: $borderRadius;
     margin-left: 0;
     margin-right: 0;
   }
