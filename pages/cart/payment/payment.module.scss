@@ -1,14 +1,16 @@
+@import "../../../styles/functions.scss";
 .steps_wrapper {
   margin-top: 20px;
 }
+
 .steps_wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex;
 }
+
 .steps_body {
   padding: 1rem;
 }
+
 .loading_box {
   position: absolute;
   top: 0;
@@ -16,18 +18,18 @@
   right: 0;
   bottom: 0;
   background: hsla(0, 0%, 100%, 0.75);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex;
   flex-direction: column;
   z-index: 99;
   min-height: 5rem;
 }
+
 .loading_box:not(.without-text):after {
   margin-top: 1rem;
   color: #7d7d7d;
   content: "لطفا کمی صبر کنید ...";
 }
+
 .spinner {
   width: 64px;
   height: 64px;
@@ -37,11 +39,13 @@
   -webkit-animation: spin 0.4s linear infinite;
   animation: spin 0.4s linear infinite;
 }
+
 .spinner__tiny {
   width: 15px;
   height: 15px;
   border-width: 2px;
 }
+
 @-webkit-keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -50,6 +54,7 @@
     transform: rotate(1turn);
   }
 }
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -58,10 +63,12 @@
     transform: rotate(1turn);
   }
 }
+
 .input_group__box {
   align-items: center;
   z-index: 1;
 }
+
 .input_group_bg {
   content: "";
   position: absolute;
@@ -74,15 +81,18 @@
   background-color: #fff;
   border-radius: 0.3125rem;
 }
+
 .boxShadowNot {
   box-shadow: none;
   background: transparent;
   border-color: transparent;
 }
+
 .btnCheckCoupon {
   padding: 0.175rem 0.75rem;
   margin: 0.2em;
 }
+
 .picItemInvoice {
   position: relative;
   font-size: 3.28571rem;
@@ -104,6 +114,7 @@
     background: #fff;
   }
 }
+
 @media only screen and (max-width: 768px) {
   .box-sm {
     border-radius: 0 !important;
@@ -138,6 +149,7 @@
     border-top: 1px solid #dfdfdf !important;
   }
 }
+
 @media (min-width: 768px) {
   .picItemInvoice {
     font-size: 3.5rem;
