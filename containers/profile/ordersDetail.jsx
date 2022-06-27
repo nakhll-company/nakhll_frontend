@@ -157,7 +157,7 @@ const OrdersDetail = ({ invoiceId }) => {
                             <span>{value.name}</span>
                           </a>
                         </Link>
-                        <div className="">
+                        <div>
                           {/* <span className="mx-4">{diviedNumber(`${value.price_with_discount / 10} تومان`)}</span> */}
                           <span>{value.count} عدد</span>
                         </div>

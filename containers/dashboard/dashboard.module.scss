@@ -226,7 +226,7 @@
 .left_one {
   cursor: pointer;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 18px 22px;
 }
@@ -320,4 +320,27 @@
   * {
     width: 100% !important;
   }
+}
+
+.h1 {
+  display: inline-block;
+  color: "black";
+  margin-left: 5px;
+  font-size: 18px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.h3 {
+  display: inline-block;
+  color: "black";
+  font-size: 14px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.h4 {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #a4aebb;
 }

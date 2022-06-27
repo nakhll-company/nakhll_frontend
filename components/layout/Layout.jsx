@@ -31,10 +31,6 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
   const [isShowOrder, setisShowOrder] = useState(false);
   const [activeOptions, setActiveOptions] = useState([]);
 
-  const exitDash = () => {
-    router.push("/");
-  };
-
   useEffect(() => {
     async function fetchData() {
       Object.keys(userInfo).length === 0 &&
@@ -179,7 +175,7 @@ function MyLayout({ children, getUserInfo, userInfo, getActiveHojreh }) {
 
                 <button
                   className={styles.info_card_btn_one}
-                  onClick={() => exitDash()}
+                  onClick={() => router.push("/")}
                 >
                   <i
                     style={{ fontSize: "20px" }}

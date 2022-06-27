@@ -65,11 +65,8 @@ function SendBoxCu({ data }) {
                   id={data?.id}
                 />
               </div>
-              {/* <i
-                  onClick={() => _handle_delete_scope(el.id)}
-                  className="fas fa-times-circle"
-                ></i> */}
-              <div className="">
+
+              <div>
                 <Image
                   layout="fixed"
                   src="/icons/settings/trash.svg"
