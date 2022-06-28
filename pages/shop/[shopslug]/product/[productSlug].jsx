@@ -16,20 +16,18 @@ const fetchData = async (id) => {
   const urlRelatedProduct = encodeURI(
     `/api/v1/product-page/related_products/${id}/?page_size=10`
   );
+  const allPromise = Promise.all([
+    http.get(urlResponse),
+    http.get(urlComments),
+    http.get(urlRelatedProduct),
+  ]);
+  const response = await allPromise;
 
-  const comments = await http.get(urlComments);
-  const response = await http.get(urlResponse);
-  const relatedProduct = await http.get(urlRelatedProduct);
-
-  if (response.status === 200) {
-    return {
-      detail: response.data,
-      comments: comments.data,
-      relatedProduct: relatedProduct.status === 200 ? relatedProduct.data : [],
-    };
-  } else {
-    return false;
-  }
+  return {
+    detail: response[0].data ?? [],
+    comments: response[1].data ?? [],
+    relatedProduct: response[2].data ?? [],
+  };
 };
 
 const ProductDetail = ({ data }) => {
