@@ -27,7 +27,7 @@ function handelShowMessage(error) {
     } else {
       errorMessage(
         "مشکلی از سمت سرور رخ داده است.",
-        error.response.status,
+        error?.response?.status,
         window.location.pathname,
         error.response.config.url
       );
