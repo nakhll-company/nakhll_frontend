@@ -25,12 +25,12 @@ function handelShowMessage(error) {
         errorMessage("لطفا ابتدا وارد شوید .");
       }
     } else {
-      errorMessage(
-        "مشکلی از سمت سرور رخ داده است.",
-        error?.response?.status,
-        window.location.pathname,
-        error.response.config.url
-      );
+      // errorMessage(
+      //   "مشکلی از سمت سرور رخ داده است.",
+      //   error?.response?.status,
+      //   window.location.pathname,
+      //   error?.response?.config?.url
+      // );
     }
   }
 }
