@@ -19,14 +19,6 @@ function Landing() {
 
   return (
     <div>
-      <button
-        type="button"
-        onClick={() => {
-          throw new Error(" test for bug");
-        }}
-      >
-        Throw error
-      </button>
       <HeroSlider />
       <ValuesPart />
       <Selers />

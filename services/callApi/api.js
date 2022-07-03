@@ -37,6 +37,7 @@ function handelShowMessage(error) {
 
 axios.defaults.baseURL = process.env.BASE_URL;
 axios.defaults.headers["Content-Type"] = " application/json";
+// axios.defaults.headers["Access-Control-Allow-Origin"] = "*"
 
 export const http = axios.create({});
 
