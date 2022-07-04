@@ -14,8 +14,8 @@ export const getServerSideProps = async (ctx) => {
       priority: "0.9",
     }));
     ans.map((el) => {
-      if (el.products.length > 0) {
-        el.products.map((product) => {
+      if (el.products_slug.length > 0) {
+        el.products_slug.map((product) => {
           const newObj = {
             loc: `https://nakhll.com/shop/${el.Slug}/product/${product}/`,
             lastmod: new Date().toISOString(),
