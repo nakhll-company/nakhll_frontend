@@ -33,7 +33,11 @@ function Header() {
 
   useEffect(() => {
     async function fetchData() {
-      checkForCallUserInfo() && dispatch(getUserInfo());
+      const isRunApi = checkForCallUserInfo();
+
+      if (isRunApi) {
+        dispatch(getUserInfo());
+      }
       const getCategory = await callCategory();
       setCategory(getCategory);
     }

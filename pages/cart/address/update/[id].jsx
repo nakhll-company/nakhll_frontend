@@ -1,6 +1,5 @@
 import React from "react";
 // node libraries
-import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
@@ -54,15 +53,6 @@ const UpdateAddress = () => {
 
   return (
     <>
-      <Head>
-        <link
-          rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
-          integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
-          crossOrigin="anonymous"
-        />
-      </Head>
-
       {loading ? (
         <div
           className={`col-12 col-lg-5 py-5 ${styles.wrapper} mt-4`}
@@ -98,7 +88,7 @@ const UpdateAddress = () => {
                 </small>
                 {errors.receiver_full_name && (
                   <span className={styles.form_errors}>
-                    لطفا این گزینه را پر کنید
+                    نام و نام خانوادگی الزامی می باشد.
                   </span>
                 )}
               </div>
