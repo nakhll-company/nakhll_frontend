@@ -27,9 +27,9 @@ function handelShowMessage(error) {
     } else {
       // errorMessage(
       //   "مشکلی از سمت سرور رخ داده است.",
-      //   error?.response?.status,
+      //   error.response.status,
       //   window.location.pathname,
-      //   error?.response?.config?.url
+      //   error.response.config.url
       // );
     }
   }
@@ -37,6 +37,7 @@ function handelShowMessage(error) {
 
 axios.defaults.baseURL = process.env.BASE_URL;
 axios.defaults.headers["Content-Type"] = " application/json";
+// axios.defaults.headers["Access-Control-Allow-Origin"] = "*"
 
 export const http = axios.create({});
 

@@ -26,7 +26,7 @@ const TopBar = ({
               <span className={s.filter_name}>{showFilter(data)}</span>
             </span>
           </div>
-          <div className="">
+          <div>
             <TotalNum number={totalcount} />
           </div>
         </div>{" "}

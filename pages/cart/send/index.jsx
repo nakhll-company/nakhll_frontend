@@ -91,7 +91,6 @@ function Send() {
                               overflow: "hidden",
                               marginLeft: "15px",
                             }}
-                            className=""
                             key={index}
                           >
                             <Image

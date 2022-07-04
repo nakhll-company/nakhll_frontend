@@ -1,27 +1,16 @@
 // node libraries
 import Link from "next/link";
-import Image from "next/image";
+
 import { connect } from "react-redux";
 import { useEffect, useState } from "react";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, {
-  EffectFade,
-  Autoplay,
-  Navigation,
-  Pagination,
-  Scrollbar,
-  A11y,
-} from "swiper";
 // methods
 import { mapState } from "./methods/mapState";
 // components
 import Loading from "../../components/loading";
 // styles
-import styles from "../../styles/pages/dashboard/dashboard.module.scss";
+import s from "./dashboard.module.scss";
 import { authhttp } from "../../services/callApi/api";
-
-SwiperCore.use([EffectFade, Autoplay, Navigation, Pagination, Scrollbar, A11y]);
 
 function Dashboard({ activeHojreh }) {
   const [api, setApi] = useState({});
@@ -44,450 +33,142 @@ function Dashboard({ activeHojreh }) {
     fetchData();
   }, [activeHojreh]);
 
+  // mini component
+  const Panel = ({ href = "/", num, title, children }) => {
+    return (
+      <>
+        <Link href={href} passHref>
+          <div className={s.left_one_1}>
+            {children}
+
+            <h1 className={s.h1}>{num}</h1>
+            <h4 className={s.h4}>{title}</h4>
+          </div>
+        </Link>
+      </>
+    );
+  };
+  const PanelStatus = ({ title = "عنوان", data = [] }) => {
+    return (
+      <>
+        <div dir="rtl" className={s.left_three}>
+          <div className={s.left_three_head}>
+            <h3 style={{ margin: "15px", color: "#91a6c1", fontSize: "15px" }}>
+              {title}
+            </h3>
+          </div>
+          <div className={s.left_three_content}>
+            {data.map((data, index) => (
+              <div key={index}>
+                <h1 className={s.h1}>{data.num}</h1>
+                <h3 className={s.h3}>{data.unit ?? "عدد"}</h3>
+                <h4 className={s.h4}>{data.explain}</h4>
+              </div>
+            ))}
+          </div>
+        </div>
+      </>
+    );
+  };
+
   return (
     <>
       {loading ? (
         <Loading />
       ) : (
         <>
-          <div dir="rtl" className={styles.left_one}>
-            <Link href="fp/order/uncompleted" passHref>
-              <div className={styles.left_one_1}>
-                <i
-                  className="fas fa-cart-plus "
-                  style={{ color: "#1b3e68", fontSize: "20px" }}
-                ></i>
-                <h1
-                  style={{
-                    fontSize: "18px",
-                    marginTop: "0px",
-                    marginBottom: "0px",
-                  }}
-                >
-                  {api.uncompleted_fators}
-                </h1>
-                <h4
-                  style={{
-                    fontSize: "14px",
-                    color: "#a4aebb",
-                    marginTop: "0px",
-                    marginBottom: "0px",
-                  }}
-                >
+          <div dir="rtl" className={s.left_one}>
+            <Panel
+              href="fp/order/uncompleted"
+              num={api.uncompleted_fators}
+              title="
                   سفارش ها تکمیل نشده
-                </h4>
-              </div>
-            </Link>
-            <Link href="/fp/order/completed" passHref>
-              <div className={styles.left_one_1}>
-                <i
-                  className="fas fa-user-clock "
-                  style={{ color: "#1b3e68", fontSize: "20px" }}
-                ></i>
-                <h1
-                  style={{
-                    fontSize: "18px",
-                    marginTop: "0px",
-                    marginBottom: "0px",
-                  }}
-                >
-                  {api.uncomfirmed_factors}
-                </h1>
-                <h4
-                  style={{
-                    fontSize: "14px",
-                    color: "#a4aebb",
-                    marginTop: "0px",
-                    marginBottom: "0px",
-                  }}
-                >
+                "
+            >
+              <i
+                className="fas fa-cart-plus "
+                style={{ color: "#1b3e68", fontSize: "20px" }}
+              ></i>
+            </Panel>
+            <Panel
+              href="/fp/order/completed"
+              num={api.uncomfirmed_factors}
+              title="
                   سفارش های تکمیل شده
-                </h4>
-              </div>
-            </Link>
-            <div className={styles.left_one_1}>
+                "
+            >
+              <i
+                className="fas fa-user-clock "
+                style={{ color: "#1b3e68", fontSize: "20px" }}
+              ></i>
+            </Panel>
+          </div>
+          <div dir="rtl" className={s.left_one}>
+            <Panel
+              href="/"
+              num={api.unread_comments_count}
+              title="
+                دیدگاه های تازه
+             "
+            >
               <i
                 className="far fa-comment-alt "
                 style={{ color: "#1b3e68", fontSize: "20px" }}
               ></i>
-              <h1
-                style={{
-                  fontSize: "18px",
-                  marginTop: "0px",
-                  marginBottom: "0px",
-                }}
-              >
-                {api.unread_comments_count}
-              </h1>
-              <h4
-                style={{
-                  fontSize: "14px",
-                  color: "#a4aebb",
-                  marginTop: "0px",
-                  marginBottom: "0px",
-                }}
-              >
-                دیدگاه های تازه
-              </h4>
-            </div>
-            <div className={styles.left_one_1}>
+            </Panel>
+            <Panel href="/" num={api.balance} title="موجودی حساب">
               <i
                 className="fas fa-wallet "
                 style={{ color: "#1b3e68", fontSize: "20px" }}
               ></i>
-              <h1
-                style={{
-                  fontSize: "18px",
-
-                  marginTop: "0px",
-                  marginBottom: "0px",
-                }}
-              >
-                {api.balance}
-                <span
-                  style={{
-                    marginRight: "5px",
-                    marginTop: "0px",
-                    marginBottom: "0px",
-                    fontSize: "14px",
-                  }}
-                >
-                  تومان
-                </span>
-              </h1>
-              <h4
-                style={{
-                  fontSize: "14px",
-                  color: "#a4aebb",
-                  marginTop: "0px",
-                  marginBottom: "0px",
-                }}
-              >
-                موجودی حساب{" "}
-              </h4>
-            </div>
+            </Panel>
           </div>
           {/* slider */}
-          <div dir="rtl" className={styles.left_two}>
-            <Swiper
-              slidesPerView={1}
-              navigation
-              //   scrollbar={{ draggable: true }}
-              pagination={{ clickable: true }}
-              autoplay={{
-                delay: 5000,
-                disableOnInteraction: false,
-              }}
-              effect={"fade"}
-            >
-              <SwiperSlide>
-                <div
-                  className={styles.divForSlider}
-                  style={{ height: "269px" }}
-                >
-                  <Image
-                    src="/image/pic2.jpg"
-                    alt="Picture of the author"
-                    layout="fill"
-                  />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div
-                  className={styles.divForSlider}
-                  style={{ height: "269px" }}
-                >
-                  <Image
-                    src="/image/pic1.jpg"
-                    alt="Picture of the author"
-                    layout="fill"
-                  />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div
-                  className={styles.divForSlider}
-                  style={{ height: "269px" }}
-                >
-                  <Image
-                    src="/image/pic3.jpg"
-                    alt="Picture of the author"
-                    layout="fill"
-                  />
-                </div>
-              </SwiperSlide>
-            </Swiper>
-          </div>
+
           {/* product status */}
-          <div dir="rtl" className={styles.left_three}>
-            <div className={styles.left_three_head}>
-              <h3
-                style={{ margin: "15px", color: "#91a6c1", fontSize: "15px" }}
-              >
-                وضعیت محصول
-              </h3>
-            </div>
-            <div className={styles.left_three_content}>
-              <div className="">
-                <h1
-                  style={{
-                    display: "inline-block",
-                    color: " black",
-                    marginLeft: "5px",
-                    fontSize: "18px",
-                    marginTop: "0px",
-                    marginBottom: "0px",
-                  }}
-                >
-                  {api.active_products}
-                </h1>
-                <h3
-                  style={{
-                    display: "inline-block",
-                    color: "black",
-                    marginTop: "0px",
-                    marginBottom: "0px",
-                    fontSize: "14px",
-                  }}
-                >
-                  عدد
-                </h3>
-                <h4
-                  style={{
-                    marginTop: "10px",
-                    fontSize: "14px",
-                    color: "#a4aebb",
-                  }}
-                >
-                  کالاهای فعال
-                </h4>
-              </div>
-              <div className="">
-                <h1
-                  style={{
-                    display: "inline-block",
-                    color: "black",
-                    marginLeft: "5px",
-                    fontSize: "18px",
-                    marginTop: "0px",
-                    marginBottom: "0px",
-                  }}
-                >
-                  {api.nearly_outofstock_products}
-                </h1>
-                <h3
-                  style={{
-                    display: "inline-block",
-                    color: "black",
-                    marginTop: "0px",
-                    marginBottom: "0px",
-                    fontSize: "14px",
-                  }}
-                >
-                  عدد
-                </h3>
-                <h4
-                  style={{
-                    marginTop: "10px",
-                    fontSize: "14px",
-                    color: "#a4aebb",
-                  }}
-                >
-                  کالا های در حال اتمام
-                </h4>
-              </div>
-              <div className="">
-                <h1
-                  style={{
-                    display: "inline-block",
-                    color: "black",
-                    marginLeft: "5px",
-                    fontSize: "18px",
-                    marginTop: "0px",
-                    marginBottom: "0px",
-                  }}
-                >
-                  {api.inactive_products}
-                </h1>
-                <h3
-                  style={{
-                    display: "inline-block",
-                    color: "black",
-                    marginTop: "0px",
-                    marginBottom: "0px",
-                    fontSize: "14px",
-                  }}
-                >
-                  عدد
-                </h3>
-                <h4
-                  style={{
-                    marginTop: "10px",
-                    fontSize: "14px",
-                    color: "#a4aebb",
-                  }}
-                >
-                  کالاهای غیرفعال
-                </h4>
-              </div>
-              <div className="">
-                <h1
-                  style={{
-                    display: "inline-block",
-                    color: " black",
-                    marginLeft: "5px",
-                    fontSize: "18px",
-                    marginTop: "0px",
-                    marginBottom: "0px",
-                  }}
-                >
-                  {api.outofstock_products}
-                </h1>
-                <h3
-                  style={{
-                    display: " inline-block",
-                    color: "black",
-                    marginTop: "0px",
-                    marginBottom: "0px",
-                    fontSize: "14px",
-                  }}
-                >
-                  عدد
-                </h3>
-                <h4
-                  style={{
-                    marginTop: "10px",
-                    fontSize: "14px",
-                    color: "#a4aebb",
-                  }}
-                >
-                  کالاهای ناموجود
-                </h4>
-              </div>
-            </div>
-          </div>
+          <PanelStatus
+            data={[
+              {
+                num: api.active_products,
+                explain: "کالاهای فعال",
+              },
+              {
+                num: api.nearly_outofstock_products,
+                explain: "کالا های در حال اتمام",
+              },
+              {
+                num: api.inactive_products,
+                explain: " کالاهای غیرفعال",
+              },
+              {
+                num: api.outofstock_products,
+                explain: " کالاهای ناموجود",
+              },
+            ]}
+          />
+
           {/* sell status */}
-          <div dir="rtl" className={styles.left_three}>
-            <div className={styles.left_three_head}>
-              <h3
-                style={{ margin: "15px", color: "#91a6c1", fontSize: "15px" }}
-              >
-                وضعیت فروش
-              </h3>
-            </div>
-            <div className={styles.left_three_content}>
-              <div className="">
-                <h1
-                  style={{
-                    display: "inline-block",
-                    color: " black",
-                    marginLeft: "5px",
-                    fontSize: "18px",
-                    marginTop: "0px",
-                    marginBottom: "0px",
-                  }}
-                >
-                  {api.current_week_total_sell &&
-                  api.current_week_total_sell.amont === null
-                    ? "0"
-                    : api?.current_week_total_sell?.amont}
-                </h1>
-                <h3
-                  style={{
-                    display: "inline-block",
-                    color: "black",
-                    marginTop: "0px",
-                    marginBottom: "0px",
-                    fontSize: "14px",
-                  }}
-                >
-                  تومان
-                </h3>
-                <h4
-                  style={{
-                    marginTop: "10px",
-                    fontSize: "14px",
-                    color: "#a4aebb",
-                  }}
-                >
-                  فروش هفته جاری
-                </h4>
-              </div>
-              <div className="">
-                <h1
-                  style={{
-                    display: " inline-block",
-                    color: "black",
-                    marginLeft: "5px",
-                    fontSize: "18px",
-                    marginTop: "0px",
-                    marginBottom: "0px",
-                  }}
-                >
-                  {api.last_month_total_sell &&
-                  api.last_month_total_sell.amont == null
-                    ? "0"
-                    : api?.last_month_total_sell?.amont}
-                </h1>
-                <h3
-                  style={{
-                    display: "inline-block",
-                    color: "black",
-                    marginTop: "0px",
-                    marginBottom: "0px",
-                    fontSize: "14px",
-                  }}
-                >
-                  تومان
-                </h3>
-                <h4
-                  style={{
-                    marginTop: "10px",
-                    fontSize: "14px",
-                    color: "#a4aebb",
-                  }}
-                >
-                  فروش ماه گذشته
-                </h4>
-              </div>
-              <div className="">
-                <h1
-                  style={{
-                    display: "inline-block",
-                    color: "black",
-                    marginLeft: "5px",
-                    fontSize: "18px",
-                    marginTop: "0px",
-                    marginBottom: "0px",
-                  }}
-                >
-                  {(api.last_week_total_sell &&
-                    api.last_week_total_sell.amont) ||
-                    0}
-                </h1>
-                <h3
-                  style={{
-                    display: "inline-block",
-                    color: "black",
-                    marginTop: "0px",
-                    marginBottom: "0px",
-                    fontSize: "14px",
-                  }}
-                >
-                  عدد
-                </h3>
-                <h4
-                  style={{
-                    marginTop: "10px",
-                    fontSize: "14px",
-                    color: "#a4aebb",
-                  }}
-                >
-                  فروش هفته گذشته
-                </h4>
-              </div>
-            </div>
-          </div>
+          <PanelStatus
+            title="وضعیت فروش"
+            data={[
+              {
+                num: api?.current_week_total_sell?.amont ?? "0",
+                explain: "فروش هفته جاری",
+                unit: "تومان",
+              },
+              {
+                num: api?.last_month_total_sell?.amont ?? "0",
+                explain: "فروش ماه گذشته",
+                unit: "تومان",
+              },
+              {
+                num: api?.last_week_total_sell?.amont ?? "0",
+                explain: "فروش هفته گذشته",
+                unit: "تومان",
+              },
+            ]}
+          />
+
           {/* form MARGINNNNNNNNNNNNNNN----------->    :) */}
           <div style={{ marginTop: "70px" }}></div>
         </>

@@ -20,6 +20,7 @@ const moduleExports = {
   trailingSlash: true,
   reactStrictMode: true,
 };
+// module.exports = moduleExports
 
 const sentryWebpackPluginOptions = {
   // Additional config options for the Sentry Webpack plugin. Keep in mind that
@@ -29,6 +30,8 @@ const sentryWebpackPluginOptions = {
   //   urlPrefix, include, ignore
 
   silent: true, // Suppresses all logs
+  dryRun: true,
+  // dryRun: process.env.NODE_ENV == "production",
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options.
 };

@@ -111,10 +111,10 @@ export const CustomAccordionSend = ({
             <div className={styles.liner}></div>
           </div>
           <div className={styles.footer}>
-            <div className="">
+            <div>
               <span style={{ color: "#000" }}>مجموع هزینه ارسال:</span>
             </div>
-            <div className="">
+            <div>
               <span style={{ color: "#224E82", fontWeight: "bold" }}>
                 {unitType == "pad" ? (
                   "پسکرایه"

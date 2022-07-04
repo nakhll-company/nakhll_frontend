@@ -14,6 +14,13 @@ function PageNotFound() {
       <div className={styles.wrapBtn}>
         <button onClick={() => location.replace("/")}>رفتن به صفحه اصلی</button>
       </div>
+      <div
+        onClick={() => {
+          throw new Error(" راهی به سمت سنتری");
+        }}
+      >
+        .
+      </div>
     </div>
   );
 }
