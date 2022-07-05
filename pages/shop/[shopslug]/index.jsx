@@ -43,7 +43,6 @@ const fetchData = async (id) => {
   const apiShop = encodeURI(`${ApiReference.shop}${id}/`);
 
   const response = await http.get(apiShop);
-  console.log(response);
 
   if (response.status === 200) {
     return {
