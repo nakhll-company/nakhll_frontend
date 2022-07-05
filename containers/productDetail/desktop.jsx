@@ -273,6 +273,13 @@ const ProductDetailDesktop = ({ data }) => {
               >
                 <div style={{ flexBasis: "50%" }} className="ms-5 ps-4">
                   <div className={styles.primary_price}>
+                    <span
+                      style={{ fontSize: "1.25rem" }}
+                      className={styles.discount_badge}
+                    >
+                      {detail.old_price !== 0 && detail.discount}
+                      <span>%</span>
+                    </span>
                     <del
                       style={{ fontSize: "1.25rem" }}
                       className={styles.old_price}
