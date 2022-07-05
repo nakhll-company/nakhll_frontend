@@ -1,7 +1,9 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React from "react";
 import styles from "../layout.module.scss";
-function HeaderMobile() {
+function HeaderMobile({ slugHojreh }) {
+  const router = useRouter();
   return (
     <header>
       <div className={styles.hedtop_mobile}>
