@@ -80,10 +80,7 @@ const OrdersDetail = ({ invoiceId }) => {
               </div>
               <div className={`${styles.detail} p-3`}>
                 <span className="text-secondary mb-2"> شماره موبایل :</span>
-                <span>
-                  {jsonAddress &&
-                    diviedNumber(jsonAddress.receiver_mobile_number)}
-                </span>
+                <span>{jsonAddress && jsonAddress.receiver_mobile_number}</span>
               </div>
             </div>
             {detailData.items.length > 0 &&
