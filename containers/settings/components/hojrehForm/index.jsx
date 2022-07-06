@@ -39,169 +39,138 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
 
   return (
     <>
-      {true && (
-        <Formik
-          enableReinitialize={true}
-          initialValues={{
-            Title: apiSetting?.Title,
-            slug: apiSetting?.Slug,
-            Description: apiSetting?.Description,
-            NationalCode:
-              apiSetting?.FK_ShopManager &&
-              apiSetting?.FK_ShopManager?.User_Profile?.NationalCode,
-            PhoneNumber:
-              apiSetting?.FK_ShopManager &&
-              apiSetting?.FK_ShopManager?.User_Profile?.PhoneNumber,
-            CityPerCode:
-              apiSetting?.FK_ShopManager &&
-              apiSetting?.FK_ShopManager?.User_Profile?.CityPerCode,
-            Address: apiSetting?.Location,
-            ZipCode:
-              apiSetting?.FK_ShopManager &&
-              apiSetting?.FK_ShopManager?.User_Profile?.ZipCode,
-          }}
-          validationSchema={VALIDATION_SCHEMA}
-          onSubmit={async (data) => {
-            setshowMessage(0);
-            setLoaderButton(true);
-            const dataForSend = {
-              Title: data.Title,
-              Slug: data.slug,
-              Description: data.Description,
+      <Formik
+        enableReinitialize={true}
+        initialValues={{
+          Title: apiSetting?.Title,
+          slug: apiSetting?.Slug,
+          Description: apiSetting?.Description,
+          NationalCode:
+            apiSetting?.FK_ShopManager &&
+            apiSetting?.FK_ShopManager?.User_Profile?.NationalCode,
+          PhoneNumber:
+            apiSetting?.FK_ShopManager &&
+            apiSetting?.FK_ShopManager?.User_Profile?.PhoneNumber,
+          CityPerCode:
+            apiSetting?.FK_ShopManager &&
+            apiSetting?.FK_ShopManager?.User_Profile?.CityPerCode,
+          Address: apiSetting?.Location,
+          ZipCode:
+            apiSetting?.FK_ShopManager &&
+            apiSetting?.FK_ShopManager?.User_Profile?.ZipCode,
+        }}
+        validationSchema={VALIDATION_SCHEMA}
+        onSubmit={async (data) => {
+          console.log("data :>> ", data);
+          setshowMessage(0);
+          setLoaderButton(true);
+          const dataForSend = {
+            Title: data.Title,
+            Slug: data.slug,
+            Description: data.Description,
 
-              State: ChoiceState,
-              BigCity: ChoiceBigCity,
-              City: ChoiceCity,
-              Location: data.Address,
-              ZipCode: data.ZipCode,
-              FK_ShopManager: {
-                User_Profile: {
-                  NationalCode: data.NationalCode,
-                  PhoneNumber: data.PhoneNumber,
-                  CityPerCode: data.CityPerCode,
-
-                  // ZipCode: data.ZipCode,
-                },
+            State: ChoiceState.id.toString(),
+            BigCity: ChoiceBigCity.id.toString(),
+            City: ++ChoiceCity.id,
+            Location: data.Address,
+            ZipCode: data.ZipCode,
+            FK_ShopManager: {
+              User_Profile: {
+                NationalCode: data.NationalCode,
+                PhoneNumber: data.PhoneNumber,
+                CityPerCode: data.CityPerCode,
               },
-            };
+            },
+          };
 
-            const response = await callApiUpDataShop(dataForSend, activeHojreh);
-            if (response.status === 200) {
-              setIsLoading(false);
-              setshowMessage(1);
-              setClicked((pre) => !pre);
-              setLoaderButton(false);
-            } else {
-              setIsLoading(false);
-              // Not Good
-              setshowMessage(2);
-              setLoaderButton(false);
-            }
-          }}
-        >
-          {() => (
-            <Form>
-              <TitleLiner title="حجره" />
+          const response = await callApiUpDataShop(dataForSend, activeHojreh);
+          if (response.status === 200) {
+            setIsLoading(false);
+            setshowMessage(1);
+            setClicked((pre) => !pre);
+            setLoaderButton(false);
+          } else {
+            setIsLoading(false);
+            // Not Good
+            setshowMessage(2);
+            setLoaderButton(false);
+          }
+        }}
+      >
+        {() => (
+          <Form>
+            <TitleLiner title="حجره" />
+            <FieldCus
+              name="Title"
+              type="text"
+              title="نام حجره"
+              extraTitle="غیر قابل تغییر"
+              description={dataExp.Title}
+              disabled={true}
+            />
+            <FieldCus
+              name="slug"
+              type="text"
+              extraTitle="غیر قابل تغییر"
+              title="آدرس اینترنتی حجره"
+              description={dataExp.slug}
+              disabled={true}
+            />
+            <TextArea
+              name="Description"
+              type="text"
+              title="درباره حجره"
+              description={dataExp.Description}
+            />
+            <TitleLiner title="مشخصات" />
+            <FieldCus name="NationalCode" type="text" title="کد ملی" />
+            <div style={{ display: "flex" }}>
               <FieldCus
-                name="Title"
+                name="PhoneNumber"
                 type="text"
-                title="نام حجره"
-                extraTitle="غیر قابل تغییر"
-                description={dataExp.Title}
-                disabled={true}
+                title="شماره تلفن ثابت:"
+                styleInput={{ width: "180px" }}
+                style={{
+                  display: "flex",
+                }}
               />
               <FieldCus
-                name="slug"
+                style={{
+                  display: "flex",
+
+                  marginRight: "5px",
+                }}
+                styleInput={{ width: "100px" }}
+                name="CityPerCode"
                 type="text"
-                extraTitle="غیر قابل تغییر"
-                title="آدرس اینترنتی حجره"
-                description={dataExp.slug}
-                disabled={true}
+                title="پیش شماره :"
               />
-              <TextArea
-                name="Description"
-                type="text"
-                title="درباره حجره"
-                description={dataExp.Description}
-              />
-              <TitleLiner title="مشخصات" />
-              <FieldCus name="NationalCode" type="text" title="کد ملی" />
-              <div style={{ display: "flex" }}>
-                <FieldCus
-                  name="PhoneNumber"
-                  type="text"
-                  title="شماره تلفن ثابت:"
-                  styleInput={{ width: "180px" }}
-                  style={{
-                    display: "flex",
-                  }}
-                />
-                <FieldCus
-                  style={{
-                    display: "flex",
-
-                    marginRight: "5px",
-                  }}
-                  styleInput={{ width: "100px" }}
-                  name="CityPerCode"
-                  type="text"
-                  title="پیش شماره :"
-                />
-              </div>
-              <TitleLiner title="آدرس" />
-              <div className={styles.forAddress}>
-                {/* استان */}
-                {!!selectBigCities && (
-                  <>
-                    <label className={styles.form_label}>استان</label>
-                    <select
-                      className={styles.form_select}
-                      name="State"
-                      defaultValue=""
-                      onChange={async (event) => {
-                        setSelectBigCities(
-                          await getBigCities(event.target.value)
-                        );
-
-                        setChoiceState({
-                          id: event.target.value,
-                          name: event.target[event.target.selectedIndex].text,
-                        });
-                      }}
-                    >
-                      <option value="" disabled>
-                        {apiSetting?.State?.name}
-                      </option>
-                      {selectState.map((value, index) => {
-                        return (
-                          <option key={index} value={value.id}>
-                            {value.name}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </>
-                )}
-
+            </div>
+            <TitleLiner title="آدرس" />
+            <div className={styles.forAddress}>
+              {/* استان */}
+              {!!selectBigCities && (
                 <>
-                  <label className={styles.form_label}>شهرستان</label>
+                  <label className={styles.form_label}>استان</label>
                   <select
                     className={styles.form_select}
-                    name="BigCity"
+                    name="State"
                     defaultValue=""
                     onChange={async (event) => {
-                      setSelectCities(await getCities(event.target.value));
-                      setChoiceBigCity({
-                        id: event.target.value,
+                      setSelectBigCities(
+                        await getBigCities(event.target.value)
+                      );
 
+                      setChoiceState({
+                        id: event.target.value,
                         name: event.target[event.target.selectedIndex].text,
                       });
                     }}
                   >
                     <option value="" disabled>
-                      {ChoiceBigCity?.name}
+                      {apiSetting?.State?.name}
                     </option>
-                    {selectBigCities.map((value, index) => {
+                    {selectState.map((value, index) => {
                       return (
                         <option key={index} value={value.id}>
                           {value.name}
@@ -210,83 +179,111 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
                     })}
                   </select>
                 </>
+              )}
 
-                <label className={styles.form_label}>شهر</label>
+              <>
+                <label className={styles.form_label}>شهرستان</label>
                 <select
                   className={styles.form_select}
-                  name="City"
+                  name="BigCity"
                   defaultValue=""
-                  onChange={(event) => {
-                    setChoiceCity({
+                  onChange={async (event) => {
+                    setSelectCities(await getCities(event.target.value));
+                    setChoiceBigCity({
                       id: event.target.value,
+
                       name: event.target[event.target.selectedIndex].text,
                     });
                   }}
                 >
                   <option value="" disabled>
-                    {ChoiceCity?.name}{" "}
+                    {ChoiceBigCity?.name}
                   </option>
-                  {selectCities.map((value, index) => {
+                  {selectBigCities.map((value, index) => {
                     return (
-                      <option key={index} value={value}>
+                      <option key={index} value={value.id}>
                         {value.name}
                       </option>
                     );
                   })}
                 </select>
-              </div>
-              <TextArea name="Address" type="text" title="آدرس" />
-              <FieldCus name="ZipCode" type="text" title="کد پستی" />
-              {IsLoading && (
-                <div
+              </>
+
+              <label className={styles.form_label}>شهر</label>
+              <select
+                className={styles.form_select}
+                name="City"
+                defaultValue=""
+                onChange={(event) => {
+                  setChoiceCity({
+                    id: event.target.value,
+                    name: event.target[event.target.selectedIndex].text,
+                  });
+                }}
+              >
+                <option value="" disabled>
+                  {ChoiceCity?.name}{" "}
+                </option>
+                {selectCities.map((value, index) => {
+                  return (
+                    <option key={index} value={value}>
+                      {value.name}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+            <TextArea name="Address" type="text" title="آدرس" />
+            <FieldCus name="ZipCode" type="text" title="کد پستی" />
+            {IsLoading && (
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <div className={styles.loader}>
+                  <Image
+                    src="/image/LOGO_500.png"
+                    alt="Picture of the author"
+                    width={50}
+                    height={50}
+                  />
+                </div>
+                <h3
+                  className={styles.nameLoding}
                   style={{
-                    display: "flex",
-                    alignItems: "center",
+                    fontSize: "15px",
+                    color: "hsl(211deg 100% 50%)",
                   }}
                 >
-                  <div className={styles.loader}>
-                    <Image
-                      src="/image/LOGO_500.png"
-                      alt="Picture of the author"
-                      width={50}
-                      height={50}
-                    />
-                  </div>
-                  <h3
-                    className={styles.nameLoding}
-                    style={{
-                      fontSize: "15px",
-                      color: "hsl(211deg 100% 50%)",
-                    }}
-                  >
-                    {" "}
-                    در حال بروزرسانی ...
-                  </h3>
-                </div>
-              )}
-              {showMessage == 1 && (
-                <div>
-                  <h3 style={{ color: "green" }}>
-                    به روز رسانی با موفقیت انجام شد.
-                  </h3>
-                </div>
-              )}
-              {showMessage == 2 && (
-                <div>
-                  <h3 style={{ color: "red" }}>
-                    عملیات به روز رسانی موفقیت آمیز نبود.لطفا باری دیگر اقدام
-                    کنید.
-                  </h3>
-                </div>
-              )}
-              <div className="mt-3 mb-5">
-                <AppButton title="ذخیره اطلاعات" loader={loaderButton} submit />
+                  {" "}
+                  در حال بروزرسانی ...
+                </h3>
               </div>
-              {/* <SubButton title="ذخیره اطلاعات" /> */}
-            </Form>
-          )}
-        </Formik>
-      )}
+            )}
+            {showMessage == 1 && (
+              <div>
+                <h3 style={{ color: "green" }}>
+                  به روز رسانی با موفقیت انجام شد.
+                </h3>
+              </div>
+            )}
+            {showMessage == 2 && (
+              <div>
+                <h3 style={{ color: "red" }}>
+                  عملیات به روز رسانی موفقیت آمیز نبود.لطفا باری دیگر اقدام
+                  کنید.
+                </h3>
+              </div>
+            )}
+            <div className="mt-3 mb-5">
+              <AppButton title="ذخیره اطلاعات" loader={loaderButton} submit />
+            </div>
+            {/* <SubButton title="ذخیره اطلاعات" /> */}
+          </Form>
+        )}
+      </Formik>
     </>
   );
 }
