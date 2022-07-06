@@ -1,7 +1,6 @@
 import React from "react";
 // node libraries
-import Head from "next/head";
-import Link from "next/link";
+
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
@@ -15,8 +14,9 @@ import { getBigCities } from "../../../../api/general/getBigCities";
 import { updateAddress } from "../../../../api/cartAddress/updateAddress";
 import { getEditAddress } from "../../../../api/cartAddress/getEditAddress";
 // styles
-import styles from "../../../../styles/pages/cart/newAddress.module.scss";
-
+import styles from "../newAddress.module.scss";
+import Modal from "../../../../containers/card/update/modal/Modal";
+import { IoIosArrowRoundForward } from "react-icons/io";
 const UpdateAddress = () => {
   const router = useRouter();
   const { prev, id } = router.query;
@@ -32,6 +32,7 @@ const UpdateAddress = () => {
   const [selectCities, setSelectCities] = useState([]);
   const [loading, setLoading] = useState(true);
   const [emptySelectBox, setEmptySelectBox] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   const onSubmit = async (data) => {
     await setLoading(true);
@@ -45,24 +46,17 @@ const UpdateAddress = () => {
 
   useEffect(() => {
     async function fetchData() {
-      await getEditAddress(id, setValue, setEditAddressData);
-      setSelectState(await getStates());
-      await setLoading(false);
+      if (id) {
+        await getEditAddress(id, setValue, setEditAddressData);
+        setSelectState(await getStates());
+        await setLoading(false);
+      }
     }
     fetchData();
   }, [id, setValue]);
 
   return (
     <>
-      <Head>
-        <link
-          rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
-          integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
-          crossOrigin="anonymous"
-        />
-      </Head>
-
       {loading ? (
         <div
           className={`col-12 col-lg-5 py-5 ${styles.wrapper} mt-4`}
@@ -73,12 +67,14 @@ const UpdateAddress = () => {
       ) : (
         <div className={`col-12 col-lg-5 ${styles.wrapper} mt-4`}>
           <header className={styles.header}>
-            <Link href={prev ? `/cart/payment` : `/cart/address`}>
-              <a className={styles.header_back_link}>
-                <i className="fas fa-arrow-right px-2"></i>
-                بازگشت
-              </a>
-            </Link>
+            <div
+              onClick={() => setOpenModal(true)}
+              className={styles.header_back_link}
+            >
+              <IoIosArrowRoundForward size={25} />
+              بازگشت
+            </div>
+
             <h2 className={styles.header_title}>افزودن نشانی</h2>
           </header>
           <section className={styles.body_address}>
@@ -266,7 +262,7 @@ const UpdateAddress = () => {
                 </div>
               </div>
               <div className={`${styles.form_row} pt-3`}>
-                <div className={`col-md-6 ${styles.buttons_form} px-1 py-1`}>
+                <div className={`col-md-12 ${styles.buttons_form} px-1 py-1`}>
                   <button
                     type="submit"
                     className="btn btn-primary w-100 d-flex justify-content-center align-items-center"
@@ -274,14 +270,10 @@ const UpdateAddress = () => {
                     تایید
                   </button>
                 </div>
-                <div className={`col-md-6 ${styles.buttons_form} px-1 py-1`}>
-                  <Link href={prev ? `/cart/payment` : `/cart/address`}>
-                    <a className="btn btn-secondary w-100"> بازگشت </a>
-                  </Link>
-                </div>
               </div>
             </form>
           </section>
+          {openModal && <Modal setOpenModal={setOpenModal} />}
         </div>
       )}
     </>

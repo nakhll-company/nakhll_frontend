@@ -33,6 +33,7 @@
       color: #7d7d7d !important;
       flex-basis: 43.33%;
       padding: 0px 10px;
+      cursor: pointer;
     }
   }
   // body
@@ -76,12 +77,6 @@
     }
   }
 }
-// media
-// @media only screen and (max-width: 767px) {
-//     #bigCity{
-//         width: 100%;
-//     }
-//     #city{
-//         width: 100%;
-//     }
-// }
+
+.wrapper_modal {
+}
