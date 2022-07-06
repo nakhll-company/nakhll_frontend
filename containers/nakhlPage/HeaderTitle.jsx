@@ -38,8 +38,10 @@ const HeaderTitle = () => {
   const AllProductListBuy = useSelector((state) => state.Cart.allProduct);
 
   useEffect(() => {
-    checkForCallUserInfo() && dispatch(getUserInfo());
-    dispatch(getProducts());
+    if (checkForCallUserInfo()) {
+      dispatch(getUserInfo());
+      dispatch(getProducts());
+    }
   }, []);
 
   return (

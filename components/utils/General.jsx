@@ -3,6 +3,7 @@ import Script from "next/script";
 import { hotjar } from "react-hotjar";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
+import TagManager from "react-gtm-module";
 // methods
 import { pageview } from "../../utils/googleAnalytics";
 
@@ -11,6 +12,10 @@ function General() {
 
   useEffect(() => {
     hotjar.initialize(2447146, 6);
+    const tagManagerArgs = {
+      gtmId: "GTM-MNQT35X",
+    };
+    TagManager.initialize(tagManagerArgs);
   }, []);
 
   useEffect(() => {
