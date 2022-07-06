@@ -14,7 +14,6 @@ import MyLayout from "../components/layout/Layout";
 // styles
 import "bootstrap/dist/css/bootstrap.css";
 import "../styles/globals.scss";
-import "../styles/General/font-awesome/css/font-awesome.css";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
