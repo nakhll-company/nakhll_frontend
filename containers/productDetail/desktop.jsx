@@ -278,7 +278,7 @@ const ProductDetailDesktop = ({ data }) => {
                       className={styles.discount_badge}
                     >
                       {detail.old_price !== 0 && detail.discount}
-                      <span>%</span>
+                      {detail.old_price !== 0 && <span>%</span>}
                     </span>
                     <del
                       style={{ fontSize: "1.25rem" }}
