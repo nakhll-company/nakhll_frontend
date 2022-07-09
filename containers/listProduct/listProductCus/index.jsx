@@ -28,7 +28,7 @@ import { parsUrlToArr } from "../../../utils/parsUrlToArr";
 // styles
 import styles from "./listProductCus.module.scss";
 
-function ListProductCus({ data }) {
+function ListProductCus({ data, certainShop = "" }) {
   const [pageApi, setPageApi] = useState(2);
   const [hasMore, setHasMore] = useState(false);
   const [shopsName, setShopsName] = useState([]);
@@ -41,6 +41,7 @@ function ListProductCus({ data }) {
   const [listWithFilter, setListWithFilter] = useState([]);
   const userData = useSelector((state) => state.User.userInfo);
   const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
+
   const [isOpenOrderingModal, setIsOpenOrderingModal] = useState(false);
   const [ragnePrice, setRagnePrice] = useState({});
   // states for shops
@@ -134,7 +135,12 @@ function ListProductCus({ data }) {
   const handelCallAnotherPageApi = async () => {
     try {
       const response = await http.get(`/api/v1/products/`, {
-        params: { ...data, page: pageApi, page_size: 50 },
+        params: {
+          ...data,
+          page: pageApi,
+          page_size: 50,
+          ...(certainShop !== "" && { shop: certainShop }),
+        },
       });
       if (response.status === 200) {
         const ContinueList = response.data.results;
@@ -178,7 +184,11 @@ function ListProductCus({ data }) {
         setIsLoading(true);
         try {
           const response = await http.get(`/api/v1/products/`, {
-            params: { ...data, page_size: 50 },
+            params: {
+              ...data,
+              page_size: 50,
+              ...(certainShop !== "" && { shop: certainShop }),
+            },
           });
 
           if (response.status === 200) {
@@ -239,6 +249,7 @@ function ListProductCus({ data }) {
             <div id="sidebar">
               <FiltersPart filters={data} removeFilter={removeFilter} />
               <Grouping
+                certainShop={certainShop}
                 searchWord={data.q}
                 setCategories={setCategories}
                 categories={categories}

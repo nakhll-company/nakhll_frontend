@@ -31,12 +31,11 @@ const DynamicLinerProducts = dynamic(() =>
 const DynamicLinerFourImgMobile = dynamic(() =>
   import("../../../containers/LandingPage/LinerFourImgMobile")
 );
-const DynamicListProductCusTest = dynamic(() =>
-  import("../../../containers/listProduct/listProductCusTest")
-);
+
 // methods
 import { ApiReference } from "../../../api/Api";
 import { http } from "../../../services/callApi/api";
+import ListProductCus from "../../../containers/listProduct/listProductCus";
 
 // fetch data
 const fetchData = async (id) => {
@@ -142,7 +141,7 @@ const Shop = ({ dataShop, data }) => {
             </div>
           )}
           {dataShop?.shop?.products_count != 0 && (
-            <DynamicListProductCusTest data={data} />
+            <ListProductCus data={data} certainShop={data.shopslug} />
           )}
         </>
       )}

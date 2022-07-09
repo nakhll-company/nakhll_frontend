@@ -25,9 +25,7 @@ function CustomCropperAll({ setImageSrc, image, setShowCropper, ratio = 1 }) {
       );
 
       setImageSrc(croppedImage);
-    } catch (e) {
-      console.error(e);
-    }
+    } catch (e) {}
   }, [image, croppedAreaPixels, rotation, setImageSrc]);
 
   return (
