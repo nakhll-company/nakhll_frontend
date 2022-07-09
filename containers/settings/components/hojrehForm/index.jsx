@@ -61,7 +61,6 @@ function HojrehForm({ apiSetting, activeHojreh, setClicked }) {
         }}
         validationSchema={VALIDATION_SCHEMA}
         onSubmit={async (data) => {
-          console.log("data :>> ", data);
           setshowMessage(0);
           setLoaderButton(true);
           const dataForSend = {

@@ -8,6 +8,7 @@ import { http } from "../../services/callApi/api";
 import { useRouter } from "next/router";
 
 function Grouping({
+  certainShop,
   searchWord,
   setCategories,
   categories,
@@ -20,7 +21,10 @@ function Grouping({
       const response = await http.get(
         `/api/v1/categories/category_product_count/`,
         {
-          params: { ...query },
+          params: {
+            ...query,
+            ...(certainShop !== "" && { shop: certainShop }),
+          },
         }
       );
       if (response.status === 200) {

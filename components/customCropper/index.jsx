@@ -30,9 +30,7 @@ function CustomCropper({ imageSrc, setCroppedImage }) {
       );
       setCroppedImage(croppedImage);
       dispatch(_updatePicture(croppedImage));
-    } catch (e) {
-      console.error(e);
-    }
+    } catch (e) {}
   }, [imageSrc, croppedAreaPixels, rotation, dispatch, setCroppedImage]);
 
   const b = Component.ratio;
