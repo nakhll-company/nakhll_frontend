@@ -273,20 +273,23 @@ const ProductDetailDesktop = ({ data }) => {
               >
                 <div style={{ flexBasis: "50%" }} className="ms-5 ps-4">
                   <div className={styles.primary_price}>
-                    <span
-                      style={{ fontSize: "1.25rem" }}
-                      className={styles.discount_badge}
-                    >
-                      {detail.old_price !== 0 && detail.discount}
-                      {detail.old_price !== 0 && <span>%</span>}
-                    </span>
-                    <del
-                      style={{ fontSize: "1.25rem" }}
-                      className={styles.old_price}
-                    >
-                      {detail.old_price !== 0 &&
-                        diviedNumber(detail.old_price / 10)}
-                    </del>
+                    {!!detail.discount && (
+                      <>
+                        <span
+                          style={{ fontSize: "1.25rem" }}
+                          className={styles.discount_badge}
+                        >
+                          {detail.discount}
+                          <span>%</span>
+                        </span>
+                        <del
+                          style={{ fontSize: "1.25rem" }}
+                          className={styles.old_price}
+                        >
+                          {diviedNumber(detail.old_price / 10)}
+                        </del>
+                      </>
+                    )}
                   </div>
                   <div className={`${styles.price} d-inline-block  ms-2 `}>
                     <span>
