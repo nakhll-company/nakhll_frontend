@@ -345,3 +345,7 @@ input[type="number"] {
     height: 3rem !important;
     width: 3rem !important;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
