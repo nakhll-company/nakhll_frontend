@@ -60,6 +60,9 @@ function General() {
         s.src = "https://cdn.yektanet.com/rg_woebegone/scripts_v3/lPejcfYM/rg.complete.js?v=" + r, c.parentNode.insertBefore(s, c)
     }(window, document, "yektanet");`}
       </Script>
+      <Script id="sanjaghWebSite" strategy="lazyOnload">
+        {`var h=document.getElementsByTagName("head")[0],s=document.createElement("script");s.async=!0,s.defer=!0,s.type="text/javascript",d=new Date,s.src="https://cdn.sanjagh.com/assets/sdk/www.nakhll.com/client.js?t="+d.getFullYear().toString()+d.getMonth()+d.getDate()+d.getHours(),h.appendChild(s);`}
+      </Script>
     </>
   );
 }
