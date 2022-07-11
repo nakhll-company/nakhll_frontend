@@ -102,8 +102,9 @@ const dataSelers = [
   },
   {
     title: "جنوب کالا",
-    name: "محدثه عامری",
-    url: "سید عباس شریف خوی",
+    name: "سید عباس شریف خوی",
+
+    url: "/shop/جنوب-کالا/",
     products: [
       {
         ID: "43435355-2275-47b2-b10c-723a551c5f41",
@@ -198,7 +199,7 @@ const dataSelers = [
   {
     title: "ملل مارکت",
     name: "میثم نعمتی",
-    url: "/shop/jorab-parizian/",
+    url: "/shop/ملل-مارکت/",
     products: [
       {
         ID: "1ee54f63-b1f7-4774-ad19-5d212ab67d00",
