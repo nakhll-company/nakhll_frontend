@@ -6,253 +6,285 @@ import s from "./selers.module.scss";
 
 const dataSelers = [
   {
-    title: "سیسمونی کودک",
-    name: "فاطمه وکیلی",
-    url: "/shop/nakhllsismooni/",
+    title: "سجاد سیستم",
+    name: "مائده کیانی",
+    url: "/shop/sajadsystem/",
     products: [
       {
-        ID: "dbfcadcf-bdd5-47d4-a633-d6be624bf0a7",
-        Title: "باکس استوانه ای",
-        Slug: "1016",
-        Inventory: 1,
+        ID: "948a18a2-4511-4533-81d4-ff98d565d691",
+        Title: "کابل شارژ سریع میکرو یو اس بی دبلیو یو دبلیو مدل X85",
+        Slug: "wuw-quick-charge-microusb-cable-model-x85",
+        Inventory: 10,
         Image_medium_url:
-          "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/aZwif3/abaa06f82f635a38529306d7486e33bb.jpg",
+          "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/g3Kbxx/746d828d6a498c800f11416706578096.jpg",
         FK_Shop: {
-          ID: "f66a5ff3-9d2d-4782-ba4a-c968f486ceed",
-          slug: "nakhllsismooni",
-          title: "سیسمونی واکسسوری کودک ونوزاد",
-          state: "اصفهان",
+          ID: "8beef712-8240-48cf-8ed4-46c1de8ddf15",
+          slug: "sajadsystem",
+          title: "سجاد سیستم",
+          state: {
+            id: 23,
+            name: "کرمان",
+          },
         },
-        Price: 2800000,
-        OldPrice: 3700000,
-        discount: 24,
+        Price: 320000,
+        OldPrice: 360000,
+        discount: 11,
         is_advertisement: false,
         in_campaign: false,
       },
       {
-        ID: "5c00630c-f349-4c88-b533-ff31df64e6cb",
-        Title: "تشک گارددار",
-        Slug: "1020",
-        Inventory: 1,
+        ID: "f514f886-f9cd-4811-8b67-e323c3114264",
+        Title: "شارژر دیواری فست شارژ دنمن مدل DC01V همراه با کابل",
+        Slug: "denmen-charger-model-dc01v",
+        Inventory: 20,
         Image_medium_url:
-          "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/Ix70FB/913c99f6a9fd2f9d660be3b22a7496b2.jpg",
+          "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/gFZlAq/2937c698f6a85a7e01c8381c327d5014.jpg",
         FK_Shop: {
-          ID: "f66a5ff3-9d2d-4782-ba4a-c968f486ceed",
-          slug: "nakhllsismooni",
-          title: "سیسمونی واکسسوری کودک ونوزاد",
-          state: "اصفهان",
+          ID: "8beef712-8240-48cf-8ed4-46c1de8ddf15",
+          slug: "sajadsystem",
+          title: "سجاد سیستم",
+          state: {
+            id: 23,
+            name: "کرمان",
+          },
         },
-        Price: 4900000,
-        OldPrice: 5600000,
+        Price: 500000,
+        OldPrice: 550000,
+        discount: 9,
+        is_advertisement: false,
+        in_campaign: false,
+      },
+      {
+        ID: "cd33bf2b-c5a5-429c-ac88-3e22072dab51",
+        Title: "کابل شارژ سریع تایپ سی دبلیو یو دبلیو مدل X95",
+        Slug: "wuw-quick-charge-typ-c-cable-model-x95",
+        Inventory: 10,
+        Image_medium_url:
+          "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/hqYDwt/7b67b48e78454f596f8c4b2877d15efa.jpg",
+        FK_Shop: {
+          ID: "8beef712-8240-48cf-8ed4-46c1de8ddf15",
+          slug: "sajadsystem",
+          title: "سجاد سیستم",
+          state: {
+            id: 23,
+            name: "کرمان",
+          },
+        },
+        Price: 510000,
+        OldPrice: 550000,
+        discount: 7,
+        is_advertisement: false,
+        in_campaign: false,
+      },
+      {
+        ID: "98d9a89d-51cc-4ef7-85c7-53496e1a0ba3",
+        Title: "اسپیکر بلوتوثی مدل Charge mini ",
+        Slug: "speaker-charge-mini",
+        Inventory: 2,
+        Image_medium_url:
+          "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/xGAsXZ/702f0e2f3aaf0c5b44db53a7d335072d.jpg",
+        FK_Shop: {
+          ID: "8beef712-8240-48cf-8ed4-46c1de8ddf15",
+          slug: "sajadsystem",
+          title: "سجاد سیستم",
+          state: {
+            id: 23,
+            name: "کرمان",
+          },
+        },
+        Price: 2100000,
+        OldPrice: 3500000,
+        discount: 40,
+        is_advertisement: false,
+        in_campaign: false,
+      },
+    ],
+  },
+  {
+    title: "جنوب کالا",
+    name: "محدثه عامری",
+    url: "سید عباس شریف خوی",
+    products: [
+      {
+        ID: "43435355-2275-47b2-b10c-723a551c5f41",
+        Title: "آسیاب مخلوط کن دوکاره ه‍ایگر مدل hg-295",
+        Slug: "آسیاب-مخلوط-کن-دوکاره-هایگر-مدل-hg-295",
+        Inventory: 8,
+        Image_medium_url:
+          "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/dCzSzA/f9208130442db67c1a235edaa0b488c9.jpg",
+        FK_Shop: {
+          ID: "8accd390-fdb7-47a1-a7d9-ab6a5f763e4f",
+          slug: "جنوب-کالا",
+          title: "جنوب کالا",
+          state: {
+            id: 25,
+            name: "خوزستان",
+          },
+        },
+        Price: 7500000,
+        OldPrice: 8000000,
+        discount: 6,
+        is_advertisement: false,
+        in_campaign: false,
+      },
+      {
+        ID: "e6ca7d7e-8d47-4b98-b012-68779df0d0e1",
+        Title: "ترازوی  آشپزخانه کمری مدل ۴۳۵۰",
+        Slug: "ترازوی-آشپزخانه-کمری-مدل-۴۳۵۰",
+        Inventory: 8,
+        Image_medium_url:
+          "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/1PXTlp/4691000e142c234c4ccb0c559f1b64b3.jpg",
+        FK_Shop: {
+          ID: "8accd390-fdb7-47a1-a7d9-ab6a5f763e4f",
+          slug: "جنوب-کالا",
+          title: "جنوب کالا",
+          state: {
+            id: 25,
+            name: "خوزستان",
+          },
+        },
+        Price: 4800000,
+        OldPrice: 6500000,
+        discount: 26,
+        is_advertisement: false,
+        in_campaign: false,
+      },
+      {
+        ID: "2522ef6a-e3e5-44b7-a141-6e1c356c8ed1",
+        Title: "هواپز دسینی توربو اون",
+        Slug: "هواپز-پسینی-توربو-اون",
+        Inventory: 100,
+        Image_medium_url:
+          "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/eSoKrX/2d238a3e69d1fed2197ed4ec1ff97547.jpg",
+        FK_Shop: {
+          ID: "8accd390-fdb7-47a1-a7d9-ab6a5f763e4f",
+          slug: "جنوب-کالا",
+          title: "جنوب کالا",
+          state: {
+            id: 25,
+            name: "خوزستان",
+          },
+        },
+        Price: 14300000,
+        OldPrice: 18700000,
+        discount: 23,
+        is_advertisement: false,
+        in_campaign: false,
+      },
+      {
+        ID: "c514942c-8d52-4995-81c0-a077b56d45eb",
+        Title: "سشوار ۹۰۰۰وات پاناسونیک مدل pa53hd",
+        Slug: "سشوار-۹۰۰۰وات-پاناسونیک-مدل-pa53hd",
+        Inventory: 50,
+        Image_medium_url:
+          "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/eth8ek/c64a73d4d436d027555baf62b3a8673c.jpg",
+        FK_Shop: {
+          ID: "8accd390-fdb7-47a1-a7d9-ab6a5f763e4f",
+          slug: "جنوب-کالا",
+          title: "جنوب کالا",
+          state: {
+            id: 25,
+            name: "خوزستان",
+          },
+        },
+        Price: 4450000,
+        OldPrice: 4500000,
+        discount: 1,
+        is_advertisement: false,
+        in_campaign: false,
+      },
+    ],
+  },
+  {
+    title: "ملل مارکت",
+    name: "میثم نعمتی",
+    url: "/shop/jorab-parizian/",
+    products: [
+      {
+        ID: "1ee54f63-b1f7-4774-ad19-5d212ab67d00",
+        Title: "ساعت مچی زنانه اسلیم استار",
+        Slug: "ساعت-مچی-زنانه-اسلیم-استار",
+        Inventory: 20,
+        Image_medium_url:
+          "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/76O9hj/54abbf7c50e70da1e1f89ed57983ea8e.jpg",
+        FK_Shop: {
+          ID: "dc9b349a-c1d6-4c40-b7ca-c67ccc6c1b99",
+          slug: "ملل-مارکت",
+          title: "ملل مارکت",
+          state: {
+            id: 23,
+            name: "کرمان",
+          },
+        },
+        Price: 5400000,
+        OldPrice: 6200000,
         discount: 12,
         is_advertisement: false,
         in_campaign: false,
       },
       {
-        ID: "4c8c8975-baae-4375-b612-432fd2ccf473",
-        Title: "سرویس خواب کیفی نوزاد",
-        Slug: "1015",
-        Inventory: 1,
+        ID: "62569e7c-49bc-47c8-ab68-158155b33bf4",
+        Title: "ساعت مچی زنانه دستبندی اورجینال لاروس",
+        Slug: "ساعت-مچی-زنانه-دستبندی-اورجینال-لاروس",
+        Inventory: 199,
         Image_medium_url:
-          "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/QDQgxu/cd78c8fdac08860c955d8322df8ff58b.jpg",
+          "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/y2lQ5o/7ba29d0ca1517d7a8cd5f05d29507415.jpg",
         FK_Shop: {
-          ID: "f66a5ff3-9d2d-4782-ba4a-c968f486ceed",
-          slug: "nakhllsismooni",
-          title: "سیسمونی واکسسوری کودک ونوزاد",
-          state: "اصفهان",
+          ID: "dc9b349a-c1d6-4c40-b7ca-c67ccc6c1b99",
+          slug: "ملل-مارکت",
+          title: "ملل مارکت",
+          state: {
+            id: 23,
+            name: "کرمان",
+          },
         },
-        Price: 4900000,
-        OldPrice: 5500000,
-        discount: 10,
+        Price: 7500000,
+        OldPrice: 9000000,
+        discount: 16,
         is_advertisement: false,
         in_campaign: false,
       },
       {
-        ID: "8bf90984-60ce-4455-876d-baa09aabef62",
-        Title: "جعبه کشودار",
-        Slug: "1820",
-        Inventory: 1,
+        ID: "84f2353c-7b79-4330-ae61-fa307a56b6a9",
+        Title: "ساعت مچی زنانه سرامیکی لاروس",
+        Slug: "ساعت-مچی-زنانه-سرامیکی-لاروس",
+        Inventory: 20,
         Image_medium_url:
-          "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/VdyuUY/ac8c3915dec30d31033c08905c939c79.jpg",
+          "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/27P4ZY/8ea4a343773d8d12ff97a35936bfba0b.jpg",
         FK_Shop: {
-          ID: "f66a5ff3-9d2d-4782-ba4a-c968f486ceed",
-          slug: "nakhllsismooni",
-          title: "سیسمونی واکسسوری کودک ونوزاد",
-          state: "اصفهان",
+          ID: "dc9b349a-c1d6-4c40-b7ca-c67ccc6c1b99",
+          slug: "ملل-مارکت",
+          title: "ملل مارکت",
+          state: {
+            id: 23,
+            name: "کرمان",
+          },
         },
-        Price: 3100000,
-        OldPrice: 0,
-        discount: 0,
-        is_advertisement: false,
-        in_campaign: false,
-      },
-    ],
-  },
-  {
-    title: "آریانا رزین",
-    name: "محدثه عامری",
-    url: "/shop/aryaana/",
-    products: [
-      {
-        ID: "32122e10-f192-4a9a-8180-e3bc71c3bf5d",
-        Title: "شکلات خوری تمام رزین ونشکن",
-        Slug: "resin2",
-        Inventory: 5,
-        Image_medium_url:
-          "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/nOGlkn/243e6f4c45992975a27c3a467091c981.jpg",
-        FK_Shop: {
-          ID: "6576c0ee-d047-43cd-80a9-e64476eac081",
-          slug: "aryaana",
-          title: "آریانا رزین",
-          state: "کرمان",
-        },
-        Price: 1800000,
-        OldPrice: 0,
-        discount: 0,
+        Price: 6500000,
+        OldPrice: 7500000,
+        discount: 13,
         is_advertisement: false,
         in_campaign: false,
       },
       {
-        ID: "aae3bd01-073a-4236-bb3b-6ca639e864a5",
-        Title: "شیرینی خوری دوطبقه تمام رزین",
-        Slug: "resinart",
-        Inventory: 5,
+        ID: "873f40dd-97e2-4722-a3ba-f1c3f52b623f",
+        Title: "ساعت مچی زنانه اورجینال نگین دار لاروس",
+        Slug: "ساعت-مچی-زنانه-اورجینال-نگین-دار-لاروس",
+        Inventory: 20,
         Image_medium_url:
-          "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/c1iCLa/083322dca72889fc74a77c10a70a5889.jpg",
+          "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/YzsdJs/dd7cc0333a4b410df226bacc3660cdd6.jpg",
         FK_Shop: {
-          ID: "6576c0ee-d047-43cd-80a9-e64476eac081",
-          slug: "aryaana",
-          title: "آریانا رزین",
-          state: "کرمان",
-        },
-        Price: 4500000,
-        OldPrice: 0,
-        discount: 0,
-        is_advertisement: false,
-        in_campaign: false,
-      },
-      {
-        ID: "ef1a66e8-e561-451f-a799-62ab590d8f53",
-        Title: "شیرینی خوری تک طبقه تمام رزین",
-        Slug: "resinblack",
-        Inventory: 5,
-        Image_medium_url:
-          "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/3QRl89/87618e09836f374b9f16381ce69dfc5f.jpg",
-        FK_Shop: {
-          ID: "6576c0ee-d047-43cd-80a9-e64476eac081",
-          slug: "aryaana",
-          title: "آریانا رزین",
-          state: "کرمان",
-        },
-        Price: 3800000,
-        OldPrice: 0,
-        discount: 0,
-        is_advertisement: false,
-        in_campaign: false,
-      },
-      {
-        ID: "e20c5fc4-9cc9-44e8-b127-aeceaa1937a3",
-        Title: "میوه خوری تمام رزین",
-        Slug: "resin",
-        Inventory: 5,
-        Image_medium_url:
-          "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/zj3DBi/e8d4fe9abb0afe0bcabfa5f2d2c68078.jpg",
-        FK_Shop: {
-          ID: "6576c0ee-d047-43cd-80a9-e64476eac081",
-          slug: "aryaana",
-          title: "آریانا رزین",
-          state: "کرمان",
+          ID: "dc9b349a-c1d6-4c40-b7ca-c67ccc6c1b99",
+          slug: "ملل-مارکت",
+          title: "ملل مارکت",
+          state: {
+            id: 23,
+            name: "کرمان",
+          },
         },
         Price: 4000000,
-        OldPrice: 0,
-        discount: 0,
-        is_advertisement: false,
-        in_campaign: false,
-      },
-    ],
-  },
-  {
-    title: "جوراب گلدن لیدی",
-    name: "امیر حاتم خانی",
-    url: "/shop/jorab-parizian/",
-    products: [
-      {
-        ID: "d2ed813d-6b27-488e-b0f6-38c884073ce1",
-        Title:
-          "پک 4جفتی میکس جوراب نخی دخترانه پسرانه. لطافت و ظرافتی برای مصرف طولانی",
-        Slug: "پک-۶-جفتی-میکس-جوراب-نخی-دخترانه-پسرانه-لطافت-و-ظرافتی-برای-مصرف-طولانی",
-        Inventory: 160,
-        Image_medium_url:
-          "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/hvnRtn/b5d224367b4f2072019a38fc2187b98d.jpg",
-        FK_Shop: {
-          ID: "d4582ea8-4e9c-4a14-88fb-fbb47e185ca1",
-          slug: "jorab-parizian",
-          title: "جوراب نخی برند ایاق و مجلسی برند گلدن لیدی",
-          state: "تهران",
-        },
-        Price: 600000,
-        OldPrice: 0,
-        discount: 0,
-        is_advertisement: false,
-        in_campaign: false,
-      },
-      {
-        ID: "e7961788-6b32-468d-b619-9fb439978a86",
-        Title:
-          "پک ۶ جفتی میکس جوراب نخی مردانه نیم میکرو. لطافت و ظرافت در تراکم بافتی در حد اعلا  برای مصرف طولانی",
-        Slug: "پک-۶-جفتی-میکس-جوراب-نخی-مردانه-نیم-میکرو-لطافت-و-ظرافت-در-تراکم-بافتی-در-حد-اعلا-برای-مصرف-طولانی",
-        Inventory: 147,
-        Image_medium_url:
-          "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/W86jop/7cb365c96f1b4993521bc914f9a3c200.jpg",
-        FK_Shop: {
-          ID: "d4582ea8-4e9c-4a14-88fb-fbb47e185ca1",
-          slug: "jorab-parizian",
-          title: "جوراب نخی برند ایاق و مجلسی برند گلدن لیدی",
-          state: "تهران",
-        },
-        Price: 1200000,
-        OldPrice: 0,
-        discount: 0,
-        is_advertisement: false,
-        in_campaign: false,
-      },
-      {
-        ID: "155ad43f-9fce-4266-b605-63117c6a9043",
-        Title:
-          "پک ۶ جفتی میکس جوراب نخی مردانه. لطافت و ظرافتی برای مصرف طولانی",
-        Slug: "پک-۶-جفتی-میکس-جوراب-نخی-مردانه-لطافت-و-ظرافتی-برای-مصرف-طولانی",
-        Inventory: 114,
-        Image_medium_url:
-          "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/o5kTOP/0d1c76b05c986496d187d613aa8e19d0.jpg",
-        FK_Shop: {
-          ID: "d4582ea8-4e9c-4a14-88fb-fbb47e185ca1",
-          slug: "jorab-parizian",
-          title: "جوراب نخی برند ایاق و مجلسی برند گلدن لیدی",
-          state: "تهران",
-        },
-        Price: 950000,
-        OldPrice: 0,
-        discount: 0,
-        is_advertisement: false,
-        in_campaign: false,
-      },
-      {
-        ID: "450305a0-118d-4c9a-9160-d20c9f18a5e8",
-        Title:
-          "پک ۶ جفتی میکس جوراب نیم ساق نخی مردانه. لطافت و ظرافتی برای مصرف طولانی",
-        Slug: "پک-۶-جفتی-میکس-جوراب-نیم-ساق-نخی-مردانه-لطافت-و-ظرافتی-برای-مصرف-طولانی",
-        Inventory: 150,
-        Image_medium_url:
-          "https://nakhll.com/media/CACHE/images/media/Pictures/Markets/SubMarkets/Shops/Products/MFH7rW/daf390048fde336396731d368f255ad0.jpg",
-        FK_Shop: {
-          ID: "d4582ea8-4e9c-4a14-88fb-fbb47e185ca1",
-          slug: "jorab-parizian",
-          title: "جوراب نخی برند ایاق و مجلسی برند گلدن لیدی",
-          state: "تهران",
-        },
-        Price: 1220000,
-        OldPrice: 0,
-        discount: 0,
+        OldPrice: 5500000,
+        discount: 27,
         is_advertisement: false,
         in_campaign: false,
       },
@@ -261,23 +293,7 @@ const dataSelers = [
 ];
 function Selers() {
   const router = useRouter();
-  // const [audio, setAudio] = useState();
-  // const [playing, setPlaying] = useState(false);
-  // useEffect(() => {
-  //   setAudio(new Audio("/audio/milad.mp3"));
-  // }, []);
 
-  // useEffect(() => { }, [audio]);
-
-  // const playMusic = () => {
-  //   if (!playing) {
-  //     audio.play();
-  //     setPlaying(true);
-  //   } else {
-  //     audio.pause();
-  //     setPlaying(false);
-  //   }
-  // };
   const CartSeller = ({ data }) => (
     <div onClick={() => router.push(data.url)} className={s.selerContainer}>
       <div className={s.content}>
