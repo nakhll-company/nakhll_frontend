@@ -16,6 +16,7 @@
     "test-all": "npm run check-format && npm run check-lint  && npm run build"
   },
   "dependencies": {
+    "@badrap/bar-of-progress": "^0.2.1",
     "@hookform/error-message": "^2.0.0",
     "@hookform/resolvers": "^2.6.1",
     "@sentry/nextjs": "^7.4.1",

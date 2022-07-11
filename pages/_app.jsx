@@ -5,6 +5,7 @@ import { DefaultSeo } from "next-seo";
 import { Store } from "../redux/store";
 import { Provider } from "react-redux";
 import { useRouter } from "next/router";
+
 // method
 import SEO from "../next-seo.config";
 import { chageIconChatPosition } from "../utils/changeIconChatPosition";
@@ -14,6 +15,18 @@ import MyLayout from "../components/layout/Layout";
 // styles
 import "bootstrap/dist/css/bootstrap.css";
 import "../styles/globals.scss";
+import ProgressBar from "@badrap/bar-of-progress";
+import { Router } from "next/router";
+
+const progress = new ProgressBar({
+  size: 4,
+  color: "#ffab00",
+  className: "z-50",
+  delay: 100,
+});
+Router.events.on("routeChangeStart", progress.start);
+Router.events.on("routeChangeComplete", progress.finish);
+Router.events.on("routeChangeError", progress.finish);
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
