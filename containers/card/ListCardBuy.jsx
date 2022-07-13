@@ -30,7 +30,7 @@ export default function ListCardBuy() {
   } = useContext(ContextProduct);
 
   return (
-    <div className="col-12 col-lg-8 mb-3 my-md-3 my-lg-0 order-1 order-md-1 order-lg-0">
+    <div className="col-12 col-lg-8 my-md-3 my-lg-0 order-md-1 order-lg-0 order-1 mb-3">
       <div className="cart-items mt-2">
         {!isEmpty(allProductListBuy) &&
           allProductListBuy.ordered_items.map((El, index) => (
@@ -60,7 +60,7 @@ export default function ListCardBuy() {
                     allProductListBuy.ordered_items[index - 1].product.FK_Shop
                       .slug
                 ) && (
-                  <div className="pt-3 pb-1 px-3">
+                  <div className="px-3 pt-3 pb-1">
                     <span className="font-size1">از حجره: </span>{" "}
                     <Link href={`/shop/${El.product.FK_Shop.slug}/`}>
                       <a className="vendor-link font-size1 font-weight-bold link-body font-weight-normal txtcut">
@@ -70,14 +70,14 @@ export default function ListCardBuy() {
                   </div>
                 )}
                 {/* ^^^^^^^^^^^ IF CHANGE IN PRODUCT IN LIST ^^^^^^^^^^^*/}
-                <div className="p-3 mt-2 cart-product-item">
+                <div className="cart-product-item mt-2 p-3">
                   {loading && productId === El.product.ID ? (
                     <div>
                       <Loading />
                     </div>
                   ) : (
                     <>
-                      <div className="d-flex flex-wrap justify-content-between">
+                      <div className="d-flex justify-content-between flex-wrap">
                         <div className="d-flex w-100">
                           <a className="product-link">
                             <Image
@@ -88,7 +88,7 @@ export default function ListCardBuy() {
                               alt=""
                             />
                           </a>
-                          <div className="d-flex flex-column justify-content-between mr-3 w-100 overflow-hidden">
+                          <div className="d-flex flex-column justify-content-between w-100 mr-3 overflow-hidden">
                             <div
                               style={{
                                 display: "flex",
@@ -126,7 +126,7 @@ export default function ListCardBuy() {
                             ></div>
 
                             <div
-                              className={`d-block ml-auto small teaberry-light `}
+                              className={`d-block small teaberry-light ml-auto `}
                             >
                               <span className="font-weight-bold">
                                 {diviedNumber(El?.product?.Price / 10)}
@@ -136,7 +136,7 @@ export default function ListCardBuy() {
 
                             <div className="d-flex align-items-center">
                               <div
-                                className="mt-2 d-flex align-items-center"
+                                className="d-flex align-items-center mt-2"
                                 style={{ witheSpace: "nowrap" }}
                               >
                                 <div
@@ -172,7 +172,7 @@ export default function ListCardBuy() {
                                     type="text"
                                     disabled="disabled"
                                     value={El.count}
-                                    className="bg-white border-0 font-size1-2 font-weight-bold form-control mt-1 px-1 text-center"
+                                    className="font-size1-2 font-weight-bold form-control mt-1 border-0 bg-white px-1 text-center"
                                   />
                                   <div className="input-group-append">
                                     <button
@@ -198,7 +198,7 @@ export default function ListCardBuy() {
                                     </button>
                                   </div>
                                 </div>
-                                <span className="d-inline-block font-size-9 mr-3 pointer">
+                                <span className="d-inline-block font-size-9 pointer mr-3">
                                   {" "}
                                 </span>
                               </div>
@@ -215,7 +215,7 @@ export default function ListCardBuy() {
                                     {diviedNumber(El.total_old_price / 10)}
                                   </span>
                                   <div
-                                    className={`nakhl-label mr-1  small teaberry-light ${
+                                    className={`nakhl-label small  teaberry-light mr-1 ${
                                       El.product.discount == 0 && "opacity_none"
                                     }`}
                                   >
@@ -247,12 +247,12 @@ export default function ListCardBuy() {
                   allProductListBuy.ordered_items[index - 1].product.FK_Shop
                     .slug && (
                   <div
-                    className="mt-0 cart-product-group bg-white"
+                    className="cart-product-group mt-0 bg-white"
                     style={{ position: "relative" }}
                   >
                     {/* ^^^^^^^^^^^ IF CHANGE IN PRODUCT IN LIST ^^^^^^^^^^^*/}
-                    <div className="p-3  cart-product-item margin_top_zero">
-                      <div className="d-flex flex-wrap justify-content-between">
+                    <div className="cart-product-item  margin_top_zero p-3">
+                      <div className="d-flex justify-content-between flex-wrap">
                         <div className="d-flex w-100">
                           <a className="product-link">
                             <Image
@@ -263,7 +263,7 @@ export default function ListCardBuy() {
                               alt=""
                             />
                           </a>
-                          <div className="d-flex flex-column justify-content-between mr-3 w-100 overflow-hidden">
+                          <div className="d-flex flex-column justify-content-between w-100 mr-3 overflow-hidden">
                             <div
                               style={{
                                 display: "flex",
@@ -290,7 +290,7 @@ export default function ListCardBuy() {
                             </div>
                             <div className="cart-product-item-remain-stock"></div>
                             <div
-                              className={`nakhl-label mr-auto small teaberry-light ${
+                              className={`nakhl-label small teaberry-light mr-auto ${
                                 El.product.discount == 0 && "opacity_none"
                               }`}
                             >
@@ -299,7 +299,7 @@ export default function ListCardBuy() {
                             </div>
                             <div className="d-flex align-items-center">
                               <div
-                                className="mt-2 d-flex align-items-center"
+                                className="d-flex align-items-center mt-2"
                                 style={{ witheSpace: "nowrap" }}
                               >
                                 <div
@@ -328,7 +328,7 @@ export default function ListCardBuy() {
                                     type="text"
                                     disabled="disabled"
                                     value={El.count}
-                                    className="bg-white border-0 font-size1-2 font-weight-bold form-control mt-1 px-1 text-center"
+                                    className="font-size1-2 font-weight-bold form-control mt-1 border-0 bg-white px-1 text-center"
                                   />
                                   <div className="input-group-append">
                                     <button className="btn  plus-minus-icon">
@@ -345,7 +345,7 @@ export default function ListCardBuy() {
                                     </button>
                                   </div>
                                 </div>
-                                <span className="d-inline-block font-size-9 mr-3 pointer">
+                                <span className="d-inline-block font-size-9 pointer mr-3">
                                   {" "}
                                 </span>
                               </div>

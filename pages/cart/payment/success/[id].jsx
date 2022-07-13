@@ -37,7 +37,7 @@ const Success = ({ code }) => {
             <h3 className={styles.tex_sub}>شماره سفارش : {`${code}`}</h3>
             <Link href="/profile">
               <a className="w-50">
-                <button className={`btn ${styles.btn_Buy} p-2 rounded-pill  `}>
+                <button className={`btn ${styles.btn_Buy} rounded-pill p-2  `}>
                   پیگیری سفارش
                 </button>
               </a>

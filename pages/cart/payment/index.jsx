@@ -94,10 +94,10 @@ export default function Cart() {
 
   return (
     <div className={styles.steps_wrapper}>
-      <div className="px-0 mb-3 col-12 col-lg-5">
-        <div className="bg-white box box-sm" style={{ minHeight: "14rem" }}>
+      <div className="col-12 col-lg-5 mb-3 px-0">
+        <div className="box box-sm bg-white" style={{ minHeight: "14rem" }}>
           <div
-            className="px-3 py-3 mb-0 text-right bg-gray-100 cart-head d-flex align-items-center"
+            className="cart-head d-flex align-items-center mb-0 bg-gray-100 px-3 py-3 text-right"
             style={{ borderRadius: "5px 5px 0px 0px" }}
           >
             <Link href={`/cart/send`}>
@@ -120,7 +120,7 @@ export default function Cart() {
                 fontWeight: "500",
                 lineHeight: "1.7",
               }}
-              className="m-0 font-weight-bold"
+              className="font-weight-bold m-0"
             >
               {" "}
               پرداخت{" "}
@@ -171,12 +171,12 @@ export default function Cart() {
                     return (
                       <div
                         key={index}
-                        className="flex-wrap px-2 py-2 pr-3 mt-3 bg-white border rounded border-success font-size-9 d-flex justify-content-between align-items-center"
+                        className="border-success font-size-9 d-flex justify-content-between align-items-center mt-3 flex-wrap rounded border bg-white px-2 py-2 pr-3"
                       >
-                        <span className="ml-3 text-success">
+                        <span className="text-success ml-3">
                           کوپن <span className="mx-1">{coupon.title}</span> با
                           مبلغ{" "}
-                          <span className="mx-1 fs-5">
+                          <span className="fs-5 mx-1">
                             {diviedNumber(price / 10)}
                           </span>{" "}
                           تومان برای شما فعال گردید.
@@ -192,9 +192,9 @@ export default function Cart() {
                   }
                 )}
             </div>
-            <h3 className="mt-3 font-size1 text-dark">فاکتور سفارش</h3>
+            <h3 className="font-size1 text-dark mt-3">فاکتور سفارش</h3>
 
-            <div className="mt-3 position-relative">
+            <div className="position-relative mt-3">
               {isLoadInvoice && (
                 <div className={styles.loading_box}>
                   <div
@@ -207,12 +207,12 @@ export default function Cart() {
                   return (
                     <div
                       key={index}
-                      className="pb-3 mt-3 font-size-sm border-bottom"
+                      className="font-size-sm border-bottom mt-3 pb-3"
                     >
                       <div className="title font-weight-500">
                         از حجره {itemProduct.product.FK_Shop.title}
                       </div>
-                      <div className="mt-3 d-flex align-items-center">
+                      <div className="d-flex align-items-center mt-3">
                         <div className={`${styles.picItemInvoice}`}>
                           <Link
                             href={`/shop/${itemProduct.product.FK_Shop.slug}/product/${itemProduct.product.Slug}`}
@@ -250,14 +250,14 @@ export default function Cart() {
                     </div>
                   );
                 })}
-              <div className="py-3 font-size-sm border-bottom">
-                <div className="py-1 d-flex">
+              <div className="font-size-sm border-bottom py-3">
+                <div className="d-flex py-1">
                   <span>جمع بهای سفارش:</span>
                   <span className="mr-auto" style={{ marginRight: "auto" }}>
                     {diviedNumber(dataCart.cart_price / 10)} تومان
                   </span>
                 </div>
-                <div className="py-1 d-flex">
+                <div className="d-flex py-1">
                   <span>هزینه ارسال:</span>{" "}
                   <span className="mr-auto" style={{ marginRight: "auto" }}>
                     {diviedNumber(dataCart?.logistic_details?.total_price / 10)}{" "}
@@ -265,7 +265,7 @@ export default function Cart() {
                   </span>
                 </div>
                 {!!dataCart?.coupon_details?.total && (
-                  <div className="py-1 d-flex text-danger">
+                  <div className="d-flex text-danger py-1">
                     <span>کدتخفیف (-) :</span>
                     <span className="mr-auto" style={{ marginRight: "auto" }}>
                       {diviedNumber(dataCart?.coupon_details?.total / 10)}
@@ -274,7 +274,7 @@ export default function Cart() {
                   </div>
                 )}
                 {/**/} {/**/}
-                <div className="py-1 d-flex font-weight-500 ">
+                <div className="d-flex font-weight-500 py-1 ">
                   <span style={{ color: "rgb(27,62,104)" }}>
                     مبلغ قابل پرداخت:
                   </span>
@@ -289,7 +289,7 @@ export default function Cart() {
             </div>
 
             {/* inforamation */}
-            <div className="p-3 my-3 mt-3 border rounded font-size-sm line-height-normal">
+            <div className="font-size-sm line-height-normal my-3 mt-3 rounded border p-3">
               <div className="mx-auto" style={{ textAlign: "center" }}>
                 تمامی بسته‌های پستی به آقا/خانم
                 <strong className="mx-1">
@@ -297,13 +297,13 @@ export default function Cart() {
                   {dataCart?.address?.receiver_full_name}
                 </strong>
                 به آدرس
-                <strong className="mx-1 font-size-8">
+                <strong className="font-size-8 mx-1">
                   {" "}
                   {dataCart?.address?.address}
                 </strong>
                 تحویل داده می‌شوند.
               </div>
-              <div className="mb-5 text-left line-height-1 mb-md-0">
+              <div className="line-height-1 mb-md-0 mb-5 text-left">
                 <Link
                   href={`/cart/address/update/${dataCart?.address?.id}?prev=payment`}
                   className="font-size-8 link-body"
@@ -325,7 +325,7 @@ export default function Cart() {
                 ))}
               </div>
             )}
-            <div className="mt-4 d-none d-md-flex justify-content-between">
+            <div className="d-none d-md-flex justify-content-between mt-4">
               <span
                 className="font-size1 font-weight-bold"
                 style={{ color: "rgb(27,62,104)" }}
@@ -342,7 +342,7 @@ export default function Cart() {
             </div>
 
             <div className={`${styles.buttonPayment} mt-3`}>
-              <div className="mb-2 d-md-none font-size-sm text-success d-flex">
+              <div className="d-md-none font-size-sm text-success d-flex mb-2">
                 <span
                   className="font-weight-bold"
                   style={{ color: "rgb(27,62,104)" }}
@@ -360,18 +360,18 @@ export default function Cart() {
               {false && (
                 <>
                   {" "}
-                  <span className="block mt-4 font-bold">
+                  <span className="mt-4 block font-bold">
                     انتخاب درگاره پرداخت :{" "}
                   </span>
                   <div className="flex ">
-                    <div className="flex items-center ml-5 ">
+                    <div className="ml-5 flex items-center ">
                       <input
                         checked
                         name="pay"
                         id="saderat"
                         type="radio"
                         value=""
-                        className="w-4 h-4 ml-4 bg-gray-100 border-gray-300 rounded cursor-pointer "
+                        className="ml-4 h-4 w-4 cursor-pointer rounded border-gray-300 bg-gray-100 "
                       />
                       <label
                         htmlFor="saderat"
@@ -380,19 +380,19 @@ export default function Cart() {
                         <img className="h-12 " src="/icons/saderat.png" />
                       </label>
                     </div>
-                    <div className="flex items-center my-3">
+                    <div className="my-3 flex items-center">
                       <input
                         name="pay"
                         id="parsian"
                         type="radio"
                         value=""
-                        className="w-4 h-4 ml-4 bg-gray-100 border-gray-300 rounded cursor-pointer "
+                        className="ml-4 h-4 w-4 cursor-pointer rounded border-gray-300 bg-gray-100 "
                       />
                       <label
                         htmlFor="parsian"
                         className="text-base font-bold text-blue-900 dark:text-gray-300"
                       >
-                        <img className="h-10 -mt-2 " src="/icons/pars.jpg" />
+                        <img className="-mt-2 h-10 " src="/icons/pars.jpg" />
                       </label>
                     </div>
                   </div>

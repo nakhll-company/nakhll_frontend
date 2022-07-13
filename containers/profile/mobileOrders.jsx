@@ -27,14 +27,14 @@ const MobileOrders = ({
           return (
             <div className={styles.list_items} key={index}>
               <div className={`${styles.right} p-3`}>
-                <span className="d-block text-secondary mb-2 d-lg-none">
+                <span className="d-block text-secondary d-lg-none mb-2">
                   شماره سفارش
                 </span>
                 <span className="text-dark font-weight-bold">{value.id}</span>
               </div>
-              <div className={`${styles.left} p-3 d-flex align-items-center`}>
+              <div className={`${styles.left} d-flex align-items-center p-3`}>
                 <span
-                  className="d-block text-success px-3 py-2 rounded-pill"
+                  className="d-block text-success rounded-pill px-3 py-2"
                   style={{ backgroundColor: "rgb(238, 238, 238)" }}
                 >
                   <span
@@ -74,13 +74,13 @@ const MobileOrders = ({
                 </span>
               </div>
               <div className={`${styles.right} p-3`}>
-                <span className="text-secondary d-block mb-2 d-lg-none">
+                <span className="text-secondary d-block d-lg-none mb-2">
                   تاریخ ثبت سفارش
                 </span>
                 <span>{value.created_date_jalali}</span>
               </div>
               <div className={`${styles.price} p-3`}>
-                <span className="text-secondary d-block mb-2 d-lg-none">
+                <span className="text-secondary d-block d-lg-none mb-2">
                   مبلغ پرداخت شده
                 </span>
                 <span>
@@ -90,7 +90,7 @@ const MobileOrders = ({
                 </span>
               </div>
               <div className={`${styles.images} p-3`}>
-                <span className="text-secondary d-block mb-2 d-lg-none">
+                <span className="text-secondary d-block d-lg-none mb-2">
                   لیست محصولات
                 </span>
                 <div className="d-flex">
@@ -105,7 +105,7 @@ const MobileOrders = ({
                             <Image
                               src={value.image}
                               alt={value.title}
-                              className="rounded-lg ml-2"
+                              className="ml-2 rounded-lg"
                               width="35"
                               height="35"
                             />

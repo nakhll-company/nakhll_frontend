@@ -61,7 +61,7 @@ export default function Cart() {
         ) : allProductListBuy &&
           allProductListBuy.ordered_items &&
           allProductListBuy.ordered_items.length > 0 ? (
-          <section className="container container_mob pb-5 ">
+          <section className="container_mob container pb-5 ">
             <div className="row mx-auto mt-4" style={{ maxWidth: "72rem" }}>
               <ListCardBuy />
               <SumBuy />

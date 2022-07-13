@@ -107,7 +107,7 @@ const ProductDetailDesktop = ({ data }) => {
           </nav>
         </div>
 
-        <div className="container d-lg-flex px-0 mb-5">
+        <div className="d-lg-flex container mb-5 px-0">
           <div className="col-lg-4">
             <section className="mb-4">
               <div className="slider_product mt-0">
@@ -240,7 +240,7 @@ const ProductDetailDesktop = ({ data }) => {
             >
               {detail.salable && detail.salable === true && (
                 <div
-                  className="ms-lg-5 mb-3 mb-lg-0"
+                  className="ms-lg-5 mb-lg-0 mb-3"
                   style={{ display: "flex", alignItems: "center" }}
                 >
                   <BiTimeFive
@@ -252,7 +252,7 @@ const ProductDetailDesktop = ({ data }) => {
                 </div>
               )}
               <div
-                className="ms-lg-5 mb-3 mb-lg-0"
+                className="ms-lg-5 mb-lg-0 mb-3"
                 style={{ display: "flex", alignItems: "center" }}
               >
                 <FaMapMarkedAlt

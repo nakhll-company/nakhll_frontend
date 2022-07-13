@@ -51,7 +51,7 @@ const Address = () => {
       </Head>
 
       {loading ? (
-        <div className={`col-12 col-lg-5 py-5 my-4 ${styles.wrapper}`}>
+        <div className={`col-12 col-lg-5 my-4 py-5 ${styles.wrapper}`}>
           <Loading />
         </div>
       ) : (

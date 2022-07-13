@@ -55,7 +55,7 @@ function Emalls() {
         </div>
         <div className="mt-4">
           <InfiniteScroll
-            className="mx-auto row"
+            className="row mx-auto"
             dataLength={products.length} // This is important field to render the next data
             next={handelCallAnotherPageApi}
             hasMore={hasMore}
@@ -64,19 +64,19 @@ function Emalls() {
           >
             {products[2] && (
               <>
-                <table className="shadow-xl table-auto">
+                <table className="table-auto shadow-xl">
                   <thead className="border-b">
                     <tr>
-                      <th className="font-black text-center">عنوان</th>
-                      <th className="font-black text-center">تصویر</th>
-                      <th className="mx-2 font-black text-center">قیمت</th>
-                      <th className="font-black text-center">قیمت با تخفیف</th>
+                      <th className="text-center font-black">عنوان</th>
+                      <th className="text-center font-black">تصویر</th>
+                      <th className="mx-2 text-center font-black">قیمت</th>
+                      <th className="text-center font-black">قیمت با تخفیف</th>
                     </tr>
                   </thead>
 
                   <tbody>
                     {products?.map((item) => (
-                      <tr className="py-4 border-bottom" key={item.ID}>
+                      <tr className="border-bottom py-4" key={item.ID}>
                         <td>
                           <a
                             className="mr-4 font-bold"
@@ -88,7 +88,7 @@ function Emalls() {
                           </a>
                         </td>
                         <td className="">
-                          <div className="relative mx-5 shadow-md rounded-lg my-2 w-[80px] h-[80px]">
+                          <div className="relative mx-5 my-2 h-[80px] w-[80px] rounded-lg shadow-md">
                             <Image
                               className="rounded-lg "
                               src={item.Image_medium_url}
@@ -105,7 +105,7 @@ function Emalls() {
                               : item.OldPrice / 10}
                           </div>
                         </td>
-                        <td className="font-semibold text-center">
+                        <td className="text-center font-semibold">
                           {item.Price / 10}
                         </td>
                       </tr>

@@ -5,17 +5,13 @@ function LoginButton({ loader, title = "ورود" }) {
   return (
     <>
       {loader ? (
-        <div
-          style={{ height: "40px" }}
-          className=" d-flex justify-content-center"
-        >
+        <div className="flex h-10 justify-center ">
           <Image src="/loading.svg" width="30" height="30" alt="loading" />
         </div>
       ) : (
         <button
-          style={{ height: "40px" }}
           type="submit"
-          className="btn btn-primary col-12 mt-2 "
+          className="mt-4 h-10 w-full rounded-md bg-cyan-800 font-bold text-white transition duration-200 ease-out hover:scale-95 hover:shadow-2xl active:scale-105"
         >
           {title}
         </button>

@@ -113,7 +113,7 @@ const ProductDetailMobile = ({ data }) => {
             </div>
           </nav>
         </div>
-        <div className="container d-lg-flex px-0 mb-5">
+        <div className="d-lg-flex container mb-5 px-0">
           <div className="col-lg-4">
             {/* image_slider */}
             <section className="mb-4">
@@ -147,7 +147,7 @@ const ProductDetailMobile = ({ data }) => {
             <div className="mb-4">
               {detail.salable && detail.salable === true && (
                 <div
-                  className="ms-lg-5 mb-3 mb-lg-0"
+                  className="ms-lg-5 mb-lg-0 mb-3"
                   style={{ display: "flex", alignItems: "center" }}
                 >
                   <BiTimeFive size={19} color="#000" />
@@ -158,7 +158,7 @@ const ProductDetailMobile = ({ data }) => {
                 </div>
               )}
               <div
-                className="ms-lg-5 mb-3 mb-lg-0"
+                className="ms-lg-5 mb-lg-0 mb-3"
                 style={{ display: "flex", alignItems: "center" }}
               >
                 <FaMapMarkedAlt size={19} color="#000" />
@@ -493,7 +493,7 @@ const ProductDetailMobile = ({ data }) => {
         </div>
         {detail.salable && detail.salable === true && (
           <button
-            className={`${styles.product_btn_mobile} btn btn-tprimary rounded-pill font-weight-bold font-size1-5 px-6 py-2 ev-add-to-cart`}
+            className={`${styles.product_btn_mobile} btn btn-tprimary rounded-pill font-weight-bold font-size1-5 ev-add-to-cart px-6 py-2`}
             onClick={async () => {
               await dispatch(_addProduct(detail.id));
               gtag("event", "دکمه خرید", {

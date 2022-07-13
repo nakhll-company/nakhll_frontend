@@ -1,8 +1,6 @@
 import React from "react";
 // node libraries
-import Link from "next/link";
-import Head from "next/head";
-import Image from "next/image";
+
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
@@ -15,6 +13,7 @@ import { resendCode } from "../../api/auth/resendCode";
 import { completeAuth } from "../../api/auth/completeAuth";
 import { forgetPassword } from "../../api/auth/forgetPassword";
 import { getAccessToken } from "../../api/auth/getAccessToken";
+import LoginLayout from "../../containers/login/LoginLayout";
 
 const Code = () => {
   const router = useRouter();
@@ -55,29 +54,8 @@ const Code = () => {
 
   return (
     <>
-      <Head>
-        <title>ورود بازار آنلاین نخل </title>
-      </Head>
-
-      <div className="d-flex flex-column justify-content-center col-12 col-md-8 col-lg-5 m-auto bg-white shadow-lg p-5 mt-5 rounded position-relative">
-        <div className="m-auto">
-          <Link href="/">
-            <a>
-              <Image
-                src="/image/base_logo.png"
-                alt="logo"
-                width="250"
-                height="100"
-              />
-            </a>
-          </Link>
-        </div>
-        <h1
-          className="d-flex justify-content-center font-weight-bold mb-5"
-          style={{ fontSize: "20px" }}
-        >
-          ورود / ثبت نام
-        </h1>
+      <LoginLayout titleForm="رمز دریافتی">
+        {" "}
         <form onSubmit={handleSubmit(submit)}>
           <label
             htmlFor="user_key"
@@ -120,13 +98,13 @@ const Code = () => {
             </span>
           )}
           {timer > 0 && (
-            <span className="inline-block float-left">
+            <span className="float-left inline-block">
               <AppTimer timer={timer} setTimer={setTimer} />
             </span>
           )}
           <LoginButton loader={loadButton} title="ادامه" />
         </form>
-      </div>
+      </LoginLayout>
     </>
   );
 };
