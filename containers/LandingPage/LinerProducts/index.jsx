@@ -58,7 +58,7 @@ function LinerProducts({
       {/* for mobile */}
       <div
         style={{ backgroundColor: `${color}` }}
-        className={`container d-md-none ${styles.lineProduct}`}
+        className={`d-md-none container ${styles.lineProduct}`}
       >
         {title && (
           <div className={styles.header}>

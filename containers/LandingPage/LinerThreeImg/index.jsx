@@ -9,7 +9,7 @@ function LinerThreeImg({ dataLinerThreeImg }) {
       {dataLinerThreeImg && dataLinerThreeImg.length >= 3 && (
         <>
           {/* for mobile */}
-          <div className="container d-lg-none">
+          <div className="d-lg-none container">
             <div className={styles.topImage}>
               <Link href={dataLinerThreeImg[0].url}>
                 <a title={dataLinerThreeImg[0].description}>
@@ -60,7 +60,7 @@ function LinerThreeImg({ dataLinerThreeImg }) {
           </div>
 
           {/* for Desktop */}
-          <div className="container d-none d-lg-block">
+          <div className="d-none d-lg-block container">
             <div className={`${styles.parent}  row`}>
               <div
                 style={{ padding: "0px", paddingLeft: "6px" }}

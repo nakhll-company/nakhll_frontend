@@ -57,11 +57,11 @@ function ListWitOutFilters({ api }) {
       <div className="container_N">
         <div className="row sidebar-parent">
           <div className="col-12 ">
-            <div className="mx-auto row">
+            <div className="row mx-auto">
               {isLoading ? (
                 <WoLoading />
               ) : (
-                <div className="mx-auto row">
+                <div className="row mx-auto">
                   {listProducts.map((oneProduct, index) => (
                     <ProductCard
                       key={index}

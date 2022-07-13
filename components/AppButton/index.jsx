@@ -26,7 +26,7 @@ function AppButton({
           className={`${s.cart_button} btn w-100 d-flex justify-content-between align-items-center px-4`}
           onClick={onClick}
         >
-          <span className="d-inline-block w-100 text-center font-size1">
+          <span className="d-inline-block w-100 font-size1 text-center">
             {title}
           </span>
         </button>

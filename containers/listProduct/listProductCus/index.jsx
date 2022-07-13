@@ -425,7 +425,7 @@ function ListProductCus({ data, certainShop = "" }) {
                 />
               )}
             </div>
-            <div style={{ justifyContent: "center" }} className="mx-auto row">
+            <div style={{ justifyContent: "center" }} className="row mx-auto">
               {isLoading ? (
                 <WoLoading />
               ) : listWithFilter.length == 0 ? (
@@ -434,7 +434,7 @@ function ListProductCus({ data, certainShop = "" }) {
                 </div>
               ) : (
                 <InfiniteScroll
-                  className="mx-auto row"
+                  className="row mx-auto"
                   dataLength={listWithFilter.length} // This is important field to render the next data
                   next={handelCallAnotherPageApi}
                   hasMore={hasMore}

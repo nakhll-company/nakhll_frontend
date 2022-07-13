@@ -1,8 +1,5 @@
 import React from "react";
-// node libraries
-import Link from "next/link";
-import Head from "next/head";
-import Image from "next/image";
+
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
@@ -11,6 +8,7 @@ import LoginButton from "../../containers/login/loginButton";
 import EmptyLayout from "../../components/layout/EmptyLayout";
 // methods
 import { sendPhoneNumber } from "../../api/auth/sendPhoneNumber";
+import LoginLayout from "../../containers/login/LoginLayout";
 
 const Login = () => {
   const [loadButton, setLoadButton] = useState(false);
@@ -38,65 +36,40 @@ const Login = () => {
   };
 
   return (
-    <>
-      <Head>
-        <title>ورود بازار آنلاین نخل</title>
-      </Head>
-
-      <div className="d-flex flex-column justify-content-center col-12 col-md-8 col-lg-5 m-auto bg-white p-5 mt-5 shadow-lg rounded">
-        <div className="m-auto">
-          <Link href="/">
-            <a>
-              <Image
-                src="/image/base_logo.png"
-                alt="logo"
-                width="250"
-                height="100"
-              />
-            </a>
-          </Link>
-        </div>
-        <h1
-          className="d-flex justify-content-center font-weight-bold mb-5"
-          style={{ fontSize: "20px" }}
-        >
-          ورود / ثبت نام
-        </h1>
-
-        <form onSubmit={handleSubmit(submit)}>
-          <label htmlFor="mobile" className="mb-2" style={{ fontSize: "15px" }}>
-            شماره موبایل خود را وارد کنید
-          </label>
-          <input
-            type="number"
-            id="mobile"
-            className="form-control mb-2"
-            placeholder="مثال : *******0913"
-            {...register("mobile", {
-              required: "لطفا این گزینه را پرنمایید",
-              maxLength: {
-                value: 11,
-                message: "لطفا شماره موبایل خود را صحیح وارد نمایید",
-              },
-              minLength: {
-                value: 11,
-                message: "لطفا شماره موبایل خود را صحیح وارد نمایید",
-              },
-              pattern: {
-                value: /^[0-9]*$/,
-                message: "لطفا شماره موبایل خود را صحیح وارد نمایید",
-              },
-            })}
-          />
-          {errors.mobile && (
-            <span style={{ display: "block", color: "red", fontSize: "14px" }}>
-              {errors.mobile.message}
-            </span>
-          )}
-          <LoginButton loader={loadButton} />
-        </form>
-      </div>
-    </>
+    <LoginLayout headrSite="ورود بازار آنلاین نخل">
+      <form className="mt-4" onSubmit={handleSubmit(submit)}>
+        <label htmlFor="mobile" className="mb-2 block">
+          شماره موبایل:
+        </label>
+        <input
+          type="number"
+          id="mobile"
+          className="mb-2 w-full rounded-md border-2 border-blue-400 p-2 caret-blue-600 focus:outline-none"
+          placeholder="مثال : *******0913"
+          {...register("mobile", {
+            required: "بدون شماره موبایل!!!",
+            maxLength: {
+              value: 11,
+              message: "لطفا شماره موبایل خود را صحیح وارد نمایید",
+            },
+            minLength: {
+              value: 11,
+              message: "لطفا شماره موبایل خود را صحیح وارد نمایید",
+            },
+            pattern: {
+              value: /^[0-9]*$/,
+              message: "لطفا شماره موبایل خود را صحیح وارد نمایید",
+            },
+          })}
+        />
+        {errors.mobile && (
+          <span className="block font-bold text-red-600">
+            {errors.mobile.message}
+          </span>
+        )}
+        <LoginButton loader={loadButton} />
+      </form>
+    </LoginLayout>
   );
 };
 // export

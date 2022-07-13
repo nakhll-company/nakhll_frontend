@@ -17,7 +17,7 @@ const MenuMobile = () => {
             <Link href="/cart/address" passHref>
               <button
                 style={{ width: "120px" }}
-                className={`btn ${styles.btn_Buy} px-2 rounded-pill `}
+                className={`btn ${styles.btn_Buy} rounded-pill px-2 `}
               >
                 {`ادامه خرید `}
               </button>

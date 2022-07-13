@@ -297,12 +297,12 @@ function ListProduct({ searchWord = "", shopProducts = "", categoryIn = "" }) {
                 setWhichOrdering={setWhichOrdering}
                 handelOrderingModal={handelOrderingModal}
               />
-              <div className="mx-auto row">
+              <div className="row mx-auto">
                 {isLoading ? (
                   <WoLoading />
                 ) : (
                   <InfiniteScroll
-                    className="mx-auto row"
+                    className="row mx-auto"
                     dataLength={listWithFilter.length} // This is important field to render the next data
                     next={handelCallAnotherPageApi}
                     hasMore={hasMore}

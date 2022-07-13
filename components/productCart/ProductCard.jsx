@@ -140,9 +140,9 @@ const ProductCard = ({
               </a>
             </Link>
           </div>
-          <div className="mb-3 _product_card_city text-truncate">
+          <div className="_product_card_city text-truncate mb-3">
             <span className="_product_card_subtitle">{product.city}</span>
-            {product.city && <i className="px-1 fa fa-angle-left"></i>}
+            {product.city && <i className="fa fa-angle-left px-1"></i>}
             <Link href={product.chamberUrl}>
               <a
                 title={product.chamberTitle}

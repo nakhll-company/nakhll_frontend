@@ -117,14 +117,14 @@ const EditProfile = ({ dataProfile, setDataProfile }) => {
       </div>
       <div className="form-group d-flex mt-4">
         <div className="col ps-3">
-          <label className="d-block m-0 my-1 font-size-8 text-gray-800">
+          <label className="d-block font-size-8 m-0 my-1 text-gray-800">
             نام
           </label>
           <input
             type="text"
             {...register("first_name", { required: true })}
             defaultValue={dataProfile.FK_User.first_name}
-            className="form-control p-2 font-size-9 text-gray-900"
+            className="form-control font-size-9 p-2 text-gray-900"
           />
           {errors.first_name && (
             <span className={styles.form_errors}>
@@ -133,14 +133,14 @@ const EditProfile = ({ dataProfile, setDataProfile }) => {
           )}
         </div>
         <div className="col">
-          <label className="d-block m-0 my-1 font-size-8 text-gray-800">
+          <label className="d-block font-size-8 m-0 my-1 text-gray-800">
             نام خانوادگی
           </label>
           <input
             type="text"
             {...register("last_name", { required: true })}
             defaultValue={dataProfile.FK_User.last_name}
-            className="form-control p-2 font-size-9 text-gray-900"
+            className="form-control font-size-9 p-2 text-gray-900"
           />
           {errors.last_name && (
             <span className={styles.form_errors}>
@@ -151,13 +151,13 @@ const EditProfile = ({ dataProfile, setDataProfile }) => {
       </div>
       <div className="form-group mt-3">
         <div className="d-flex">
-          <label className="d-block flex-grow-1 m-0 my-1 font-size-8 text-gray-800">
+          <label className="d-block flex-grow-1 font-size-8 m-0 my-1 text-gray-800">
             استان
           </label>
-          <label className="d-block flex-grow-1 m-0 my-1 font-size-8 text-gray-800">
+          <label className="d-block flex-grow-1 font-size-8 m-0 my-1 text-gray-800">
             شهرستان
           </label>
-          <label className="d-block flex-grow-1 m-0 my-1 font-size-8 text-gray-800">
+          <label className="d-block flex-grow-1 font-size-8 m-0 my-1 text-gray-800">
             شهر
           </label>
         </div>
@@ -238,28 +238,28 @@ const EditProfile = ({ dataProfile, setDataProfile }) => {
         </div>
       </div>
       <div className="form-group mt-3">
-        <label className="d-block m-0 my-1 font-size-8 text-gray-800">
+        <label className="d-block font-size-8 m-0 my-1 text-gray-800">
           درباره‌ی من
         </label>
         <textarea
           rows="4"
           {...register("Bio")}
           defaultValue={dataProfile.Bio}
-          className="form-control p-2 font-size-9 text-gray-800"
+          className="form-control font-size-9 p-2 text-gray-800"
         ></textarea>
         {errors.Bio && (
           <span className={styles.form_errors}>لطفا این گزینه را پر کنید</span>
         )}
       </div>
       <div className="form-group mt-3">
-        <label className="d-block m-0 my-1 font-size-8 text-gray-800">
+        <label className="d-block font-size-8 m-0 my-1 text-gray-800">
           جنسیت
         </label>
         <select
           {...register("Sex")}
           defaultValue={dataProfile.Sex}
           id="gender"
-          className="form-control p-2 font-size-9 text-gray-800"
+          className="form-control font-size-9 p-2 text-gray-800"
         >
           <option value="">انتخاب کنید</option>
           <option value="2">آقا</option>
@@ -270,7 +270,7 @@ const EditProfile = ({ dataProfile, setDataProfile }) => {
         )}
       </div>
       <div className="form-group mt-3">
-        <label className="d-block m-0 my-1 font-size-8 text-gray-800">
+        <label className="d-block font-size-8 m-0 my-1 text-gray-800">
           تاریخ تولد
         </label>
         <div className="d-flex">
@@ -279,7 +279,7 @@ const EditProfile = ({ dataProfile, setDataProfile }) => {
             defaultValue={
               dataProfile.BrithDay && dataProfile.BrithDay.slice(8, 10)
             }
-            className="form-control p-2 font-size-9 text-gray-800 ms-2"
+            className="form-control font-size-9 ms-2 p-2 text-gray-800"
           >
             <option value="">روز</option>
             {Day.map((value, index) => (
@@ -298,7 +298,7 @@ const EditProfile = ({ dataProfile, setDataProfile }) => {
             defaultValue={
               dataProfile.BrithDay && dataProfile.BrithDay.slice(5, 7)
             }
-            className="form-control p-2 font-size-9 text-gray-800 ms-2"
+            className="form-control font-size-9 ms-2 p-2 text-gray-800"
           >
             <option value="">ماه</option>
             {Months.map((value, index) => (
@@ -317,7 +317,7 @@ const EditProfile = ({ dataProfile, setDataProfile }) => {
             defaultValue={
               dataProfile.BrithDay && dataProfile.BrithDay.slice(0, 4)
             }
-            className="form-control p-2 font-size-9 text-gray-800"
+            className="form-control font-size-9 p-2 text-gray-800"
           >
             <option value="">سال</option>
             {Year.map((value, index) => (

@@ -9,7 +9,7 @@ function LinerTwoValue({ dataLinerTwoValue }) {
     <>
       {dataLinerTwoValue && dataLinerTwoValue.length >= 2 && (
         <>
-          <div className="container d-block my-2">
+          <div className="d-block container my-2">
             <aside className={styles.section}>
               <div className={styles.wrapper_values}>
                 <Image
