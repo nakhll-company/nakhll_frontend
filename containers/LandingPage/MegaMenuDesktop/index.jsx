@@ -41,11 +41,11 @@ function MegaMenuDesktop({ category }) {
                         element.childrens.map((subElement, index) => (
                           <div
                             key={index}
-                            onClick={() =>
+                            onClick={() => {
                               router.push(
                                 `/search?q=&category=${subElement.id}`
-                              )
-                            }
+                              );
+                            }}
                           >
                             {subElement.name}
                             <i className="icon icon-Left"></i>

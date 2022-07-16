@@ -5,8 +5,10 @@ import Head from "next/head";
 import { handelAccording } from "./methods/handelAccording";
 // style
 import styles from "./MegaMenuMobile.module.scss";
+import { useRouter } from "next/router";
 
 function MegaMenuMobile({ category }) {
+  const router = useRouter();
   return (
     <>
       <Head>
@@ -45,9 +47,9 @@ function MegaMenuMobile({ category }) {
                     <li key={index}>
                       <div
                         onClick={() => {
-                          location.replace(
-                            `/search?q=&category=${subElement.id}`
-                          );
+                          router.push(`/search?q=&category=${subElement.id}`);
+                          document.getElementById("SlideMenu").style.right =
+                            "-100%";
                         }}
                       >
                         {subElement.name}
