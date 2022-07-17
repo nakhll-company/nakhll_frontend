@@ -265,7 +265,7 @@ const UpdateAddress = () => {
                 <div className={`col-md-12 ${styles.buttons_form} px-1 py-1`}>
                   <button
                     type="submit"
-                    className="btn btn-primary w-100 d-flex justify-content-center align-items-center"
+                    className="w-full h-10 mt-4 font-bold text-white transition duration-200 ease-out rounded-md bg-cyan-800 hover:scale-95 hover:shadow-2xl active:scale-105"
                   >
                     تایید
                   </button>
