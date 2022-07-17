@@ -3,7 +3,86 @@ import React from "react";
 import EmptyLayout from "../../components/layout/EmptyLayout";
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon, LocationMarkerIcon } from "@heroicons/react/solid";
+import { PlusCircleIcon } from "@heroicons/react/outline";
 
+const CartShop = () => {
+  return (
+    <>
+      <div className="p-2 bg-white border-2 border-blue-600 shadow-xl w-72 rounded-xl">
+        <h1 className="text-xl font-black text-center ">رایانک</h1>
+        <div className="flex justify-center mt-2">
+          <span className="mx-2 text-sm font-bold text-gray-500 ">
+            میلاد حسنی
+          </span>
+
+          <LocationMarkerIcon className="w-4 h-4 mb-1 text-gray-500 animate-pulse" />
+          <span className="text-sm font-bold text-gray-500 ">کرمان</span>
+        </div>
+        <div className="p-1 rounded-xl">
+          <div className="grid grid-cols-2 gap-2 h-28">
+            <div className="relative border rounded-md ">
+              <Image src="/Values/nillMarket.png" layout="fill" />
+            </div>
+            <div className="relative border rounded-md ">
+              <Image src="/Values/nillMarket.png" layout="fill" />
+            </div>
+          </div>
+          <div className="grid h-20 grid-cols-3 gap-2 mt-2 ">
+            <div className="relative border rounded-md">
+              <Image src="/Values/nillMarket.png" layout="fill" />
+            </div>
+            <div className="relative border rounded-md ">
+              <Image src="/Values/nillMarket.png" layout="fill" />
+            </div>
+            <div className="relative border rounded-md ">
+              <Image src="/Values/nillMarket.png" layout="fill" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+const CartProduct = () => {
+  return (
+    <>
+      <div className="px-4 pt-4 pb-2 border-gray-400 shadow-md border-1 rounded-xl">
+        <div className="">
+          <div className="relative rounded-md w-52 h-52 ">
+            <Image
+              src="/Values/nillMarket.png"
+              layout="fill"
+              objectFit="contain"
+            />
+          </div>
+        </div>
+        <div className="border-b-2 border-gray-300">
+          <h2 className="py-2 font-bold">عسل با موم 900 گرمی شافی</h2>
+          <h4 className="py-2 text-sm font-semibold text-gray-600">
+            نیل مارکت
+          </h4>
+        </div>
+
+        <div className="flex items-center justify-between py-2 cursor-pointer">
+          <PlusCircleIcon className="h-8 text-blue-600 transition-all duration-200 ease-out hover:scale-125 active:scale-95" />
+          <div className="flex items-center">
+            <div className="text-left">
+              <span className="block font-bold ">123000254.214</span>
+              <span className="font-bold text-gray-600 line-through">
+                276.020
+              </span>
+            </div>
+
+            <span className="block text-sm font-light text-gray-800 -rotate-90 ">
+              تومان
+            </span>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
 function TestPage() {
   return (
     <div className="">
@@ -41,43 +120,25 @@ function TestPage() {
 
         {/* last Part */}
         <div className="mx-8 mt-14">
-          <div className="max-w-6xl mx-auto ">
+          <div className="mx-auto max-w-7xl ">
             <h5 className="font-bold">حجره هایی با محصولات مشابه:</h5>
-            <div className="my-4">
-              <div className="p-2 bg-white border-2 border-blue-600 shadow-xl w-72 rounded-xl">
-                <h1 className="text-xl font-black text-center ">رایانک</h1>
-                <div className="flex justify-center mt-2">
-                  <span className="mx-2 text-sm font-bold text-gray-500 ">
-                    میلاد حسنی
-                  </span>
+            <div className="flex flex-wrap justify-center gap-2 my-4 ">
+              <CartShop />
+              <CartShop />
+              <CartShop />
+              <CartShop />
+            </div>
+          </div>
+        </div>
 
-                  <LocationMarkerIcon className="w-4 h-4 mb-1 text-gray-500 animate-pulse" />
-                  <span className="text-sm font-bold text-gray-500 ">
-                    کرمان
-                  </span>
-                </div>
-                <div className="p-1 rounded-xl">
-                  <div className="grid grid-cols-2 gap-2 h-28">
-                    <div className="relative border rounded-md ">
-                      <Image src="/Values/nillMarket.png" layout="fill" />
-                    </div>
-                    <div className="relative border rounded-md ">
-                      <Image src="/Values/nillMarket.png" layout="fill" />
-                    </div>
-                  </div>
-                  <div className="grid h-20 grid-cols-3 gap-2 mt-2 ">
-                    <div className="relative border rounded-md">
-                      <Image src="/Values/nillMarket.png" layout="fill" />
-                    </div>
-                    <div className="relative border rounded-md ">
-                      <Image src="/Values/nillMarket.png" layout="fill" />
-                    </div>
-                    <div className="relative border rounded-md ">
-                      <Image src="/Values/nillMarket.png" layout="fill" />
-                    </div>
-                  </div>
-                </div>
-              </div>
+        <div className="mx-8 mt-14">
+          <div className="mx-auto max-w-7xl ">
+            <h5 className="font-bold">محصولات مشابه :</h5>
+            <div className="flex flex-wrap justify-center gap-2 my-4 ">
+              <CartProduct />
+              <CartProduct />
+              <CartProduct />
+              <CartProduct />
             </div>
           </div>
         </div>
