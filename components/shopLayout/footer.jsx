@@ -53,7 +53,7 @@ const Footer = () => {
         <footer className="p-4 mt-2 bg-white sm:p-6 dark:bg-gray-900">
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0">
-              <a href="https://flowbite.com/" className="flex items-center">
+              <a href="/" className="flex items-center">
                 <img
                   src="/icons/Nakhll.png"
                   className="h-8 mr-3 "
@@ -74,7 +74,7 @@ const Footer = () => {
                     {item.data.map((el, index) => (
                       <li key={index} className="mb-4">
                         <a
-                          href="https://flowbite.com/"
+                          href={el.title}
                           className="hover:underline"
                         >
                           {el.title}
