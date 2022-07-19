@@ -68,10 +68,10 @@ const Profile = () => {
             className={`col-md-4 col-lg-3 d-none d-md-block ${styles.right_menu}`}
           >
             <ul>
-              <li className="d-flex flex-column align-items-center mb-3">
+              <li className="mb-3 d-flex flex-column align-items-center">
                 <Image
                   src={
-                    Object.keys(dataProfile).length > 0
+                    Object.keys(dataProfile ?? {}).length > 0
                       ? dataProfile.image
                       : "/productDetail/avatar.png"
                   }
@@ -81,13 +81,13 @@ const Profile = () => {
                   alt=""
                 />
                 <h6>
-                  {Object.keys(dataProfile).length > 0 &&
+                  {Object.keys(dataProfile ?? {}).length > 0 &&
                     `${dataProfile.FK_User.first_name} ${dataProfile.FK_User.last_name}`}
                 </h6>
               </li>
               <hr />
               <li
-                className="d-flex align-items-center mb-3"
+                className="mb-3 d-flex align-items-center"
                 onClick={async (event) => {
                   activeLink(event);
                   const ans = await getUserData();
@@ -126,7 +126,7 @@ const Profile = () => {
                 </Link>
               </li>
               <li
-                className="d-flex align-items-center mb-3"
+                className="mb-3 d-flex align-items-center"
                 onClick={(event) => {
                   activeLink(event);
                   setProfilePages(() => {
@@ -147,7 +147,7 @@ const Profile = () => {
                 پیگیری سفارشات
               </li>
               <li
-                className="d-flex align-items-center mb-3"
+                className="mb-3 d-flex align-items-center"
                 onClick={(event) => {
                   activeLink(event);
                   setProfilePages(() => {
