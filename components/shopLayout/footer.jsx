@@ -73,10 +73,7 @@ const Footer = () => {
                   <ul className="text-gray-600 dark:text-gray-400">
                     {item.data.map((el, index) => (
                       <li key={index} className="mb-4">
-                        <a
-                          href={el.title}
-                          className="hover:underline"
-                        >
+                        <a href={el.title} className="hover:underline">
                           {el.title}
                         </a>
                       </li>
