@@ -24,6 +24,7 @@ import { _addProduct } from "../../redux/actions/cart/_addProduct";
 import { fetchProductShop, getMoreProduct } from "../../api/product/detail";
 // styles
 import styles from "./productDetail.module.scss";
+import Script from "next/script";
 
 SwiperCore.use([Navigation, Thumbs, Pagination]);
 
@@ -126,6 +127,16 @@ const ProductDetailDesktop = ({ data }) => {
                       thumbs={{ swiper: thumbsSwiper }}
                       className="mySwiper2"
                     >
+                      <SwiperSlide>
+                        <div className=" h-full ">
+                          <div id="70341046536" className="mt-[60px]">
+                            <Script
+                              type="text/JavaScript"
+                              src="https://www.aparat.com/embed/B6lLS?data[rnddiv]=70341046536&data[responsive]=yes&recom=none"
+                            ></Script>
+                          </div>
+                        </div>
+                      </SwiperSlide>
                       {thumblineImage.map((value, index) => {
                         return (
                           <SwiperSlide key={index}>
