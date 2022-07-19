@@ -127,11 +127,14 @@ function Header() {
                     {searchShops.length > 0 && (
                       <BoxSearch list={searchShops} word={inputSearch} />
                     )}
-                    <Link href={`/search?q=${inputSearch}`}>
-                      <a aria-label="پروفایل">
-                        <i className="fas fa-search"></i>
-                      </a>
-                    </Link>
+                    <div
+                      onClick={() => {
+                        setSearchShops([]);
+                        router.push(`/search?q=${inputSearch}`);
+                      }}
+                    >
+                      <i className="fas fa-search"></i>
+                    </div>
                   </form>
                   <div className="result_search">
                     <div className="search_history"></div>
@@ -342,19 +345,18 @@ function Header() {
               <form
                 onSubmit={(event) => {
                   event.preventDefault();
-                  gtag("event", "سرچ", {
-                    event_category: "کلیک",
-                    event_label: "زدن روی سرچ",
-                  });
-                  location.replace(`/search?q=${inputSearch}`);
+                  setSearchShops([]);
+                  router.push(`/search?q=${inputSearch}`);
                 }}
               >
                 <input
                   type="text"
                   className="form-control"
                   onClick={async () => {
-                    const getShopsName = await getAllShops(shopsName);
-                    setShopsName(getShopsName);
+                    if (shopsName.length == 0) {
+                      const getShopsName = await getAllShops(shopsName);
+                      setShopsName(getShopsName);
+                    }
                   }}
                   onChange={(e) => {
                     setInputSearch(e.target.value);
@@ -373,10 +375,6 @@ function Header() {
                 )}
                 <div
                   onClick={() => {
-                    gtag("event", "سرچ", {
-                      event_category: "کلیک",
-                      event_label: "زدن روی سرچ",
-                    });
                     setSearchShops([]);
                     router.push(`/search?q=${inputSearch}`);
                   }}

@@ -16,11 +16,11 @@ const TopBar = ({
       <div className={s.wrap}>
         {/* Mobile */}
         <div className={s.wrap_mobile}>
-          <div onClick={handelFilterModal}>
+          <div className="flex" onClick={handelFilterModal}>
             <BsFilter size={18} />
             <span>فیلترها</span>
           </div>
-          <div onClick={handelOrderingModal}>
+          <div className="flex" onClick={handelOrderingModal}>
             <BsSortDownAlt size={18} />
             <span>
               <span className={s.filter_name}>{showFilter(data)}</span>
@@ -32,7 +32,7 @@ const TopBar = ({
         </div>{" "}
         {/* Descktop */}
         <div className="search-sorts d-none d-lg-flex ">
-          <div className=" d-flex  align-items-center">
+          <div className=" d-flex align-items-center">
             <div
               className="title"
               style={{
