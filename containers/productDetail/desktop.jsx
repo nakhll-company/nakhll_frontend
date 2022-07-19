@@ -39,6 +39,7 @@ const ProductDetailDesktop = ({ data }) => {
   const [hasMore, setHasMore] = useState(true);
   const [productShop, setProductShop] = useState([]);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [scriptVideo, setScriptVideo] = useState("");
   const userData = useSelector((state) => state.User.userInfo);
 
   const thumblineImage = [{ image: detail.image }, ...detail.banners];
@@ -94,7 +95,7 @@ const ProductDetailDesktop = ({ data }) => {
                           {value.title}
                           {index !== 2 && (
                             <i
-                              className="fa fa-angle-left px-3"
+                              className="px-3 fa fa-angle-left"
                               aria-hidden="true"
                             ></i>
                           )}
@@ -108,10 +109,10 @@ const ProductDetailDesktop = ({ data }) => {
           </nav>
         </div>
 
-        <div className="d-lg-flex container mb-5 px-0">
+        <div className="container px-0 mb-5 d-lg-flex">
           <div className="col-lg-4">
             <section className="mb-4">
-              <div className="slider_product mt-0">
+              <div className="mt-0 slider_product">
                 <div className={styles.image_slider}>
                   <div style={{ height: "500px" }}>
                     <Swiper
@@ -128,13 +129,25 @@ const ProductDetailDesktop = ({ data }) => {
                       className="mySwiper2"
                     >
                       <SwiperSlide>
-                        <div className=" h-full ">
-                          <div id="70341046536" className="mt-[60px]">
-                            <Script
-                              type="text/JavaScript"
-                              src="https://www.aparat.com/embed/B6lLS?data[rnddiv]=70341046536&data[responsive]=yes&recom=none"
-                            ></Script>
-                          </div>
+                        <div className=" mt-[60px] ">
+                          {detail.aparat_video_script && (
+                            <div
+                              id={`${
+                                detail.aparat_video_script
+                                  .split('id="')[1]
+                                  .split('">')[0]
+                              }`}
+                            >
+                              <Script
+                                type="text/JavaScript"
+                                src={`${
+                                  detail.aparat_video_script
+                                    .split('src="')[1]
+                                    .split('">')[0]
+                                }`}
+                              ></Script>
+                            </div>
+                          )}
                         </div>
                       </SwiperSlide>
                       {thumblineImage.map((value, index) => {
@@ -179,7 +192,7 @@ const ProductDetailDesktop = ({ data }) => {
 
             <div className={styles.store_wrapper}>
               <div className="d-none d-lg-block">
-                <hr className="d-lg-none mb-4 mt-4"></hr>
+                <hr className="mt-4 mb-4 d-lg-none"></hr>
                 <section>
                   <h2 className={styles.product_section_title}>
                     <span className="d-none d-lg-block">فروشنده این محصول</span>
@@ -243,7 +256,7 @@ const ProductDetailDesktop = ({ data }) => {
               </div>
             </div>
           </div>
-          <div className="col-lg-8 pe-lg-4 mx-5">
+          <div className="mx-5 col-lg-8 pe-lg-4">
             <h1 className={styles.product_detail_title}>{detail.title}</h1>
             <div
               className="mb-4"
@@ -251,7 +264,7 @@ const ProductDetailDesktop = ({ data }) => {
             >
               {detail.salable && detail.salable === true && (
                 <div
-                  className="ms-lg-5 mb-lg-0 mb-3"
+                  className="mb-3 ms-lg-5 mb-lg-0"
                   style={{ display: "flex", alignItems: "center" }}
                 >
                   <BiTimeFive
@@ -263,7 +276,7 @@ const ProductDetailDesktop = ({ data }) => {
                 </div>
               )}
               <div
-                className="ms-lg-5 mb-lg-0 mb-3"
+                className="mb-3 ms-lg-5 mb-lg-0"
                 style={{ display: "flex", alignItems: "center" }}
               >
                 <FaMapMarkedAlt
@@ -280,7 +293,7 @@ const ProductDetailDesktop = ({ data }) => {
             <div style={{ marginTop: "50px" }}>
               <div
                 style={{ width: "33.33rem", maxWidth: "100%" }}
-                className="d-flex align-items-center my-4 "
+                className="my-4 d-flex align-items-center "
               >
                 <div style={{ flexBasis: "50%" }} className="ms-5 ps-4">
                   <div className={styles.primary_price}>
@@ -323,10 +336,6 @@ const ProductDetailDesktop = ({ data }) => {
                       className={`product-btn btn rounded-pill font-size1-5  p-1  ${styles.btn_tprimary}`}
                       onClick={async () => {
                         await dispatch(_addProduct(detail.id));
-                        gtag("event", "دکمه خرید", {
-                          event_category: `‍‍‍‍${detail.title}`,
-                          event_label: "زدن روی دکمه خرید",
-                        });
                       }}
                     >
                       خرید
@@ -335,7 +344,7 @@ const ProductDetailDesktop = ({ data }) => {
                 )}
               </div>
             </div>
-            <div className="d-none d-lg-block mb-4">
+            <div className="mb-4 d-none d-lg-block">
               <div
                 className={`${styles.product_guide} ${styles.product_guide__deaktop} mt-4  mb-5 `}
               >
