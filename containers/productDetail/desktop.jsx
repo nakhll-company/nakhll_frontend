@@ -128,9 +128,9 @@ const ProductDetailDesktop = ({ data }) => {
                       thumbs={{ swiper: thumbsSwiper }}
                       className="mySwiper2"
                     >
-                      <SwiperSlide>
-                        <div className=" mt-[60px] ">
-                          {detail.aparat_video_script && (
+                      {detail.aparat_video_script && (
+                        <SwiperSlide>
+                          <div className=" mt-[60px] ">
                             <div
                               id={`${
                                 detail.aparat_video_script
@@ -147,9 +147,9 @@ const ProductDetailDesktop = ({ data }) => {
                                 }`}
                               ></Script>
                             </div>
-                          )}
-                        </div>
-                      </SwiperSlide>
+                          </div>
+                        </SwiperSlide>
+                      )}
                       {thumblineImage.map((value, index) => {
                         return (
                           <SwiperSlide key={index}>
