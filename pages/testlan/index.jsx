@@ -1,5 +1,6 @@
 import React from "react";
 import EmptyLayout from "../../components/layout/EmptyLayout";
+import LinearProduct from "../../components/LinearProduct";
 import LineShopCart from "../../components/LineShopCart";
 import LineTwoBanner from "../../components/LineTwoBanner";
 
@@ -8,6 +9,7 @@ function NewLanding() {
     <>
       <LineShopCart title="برترین حجره ها" />
       <LineTwoBanner />
+      <LinearProduct />
     </>
   );
 }
