@@ -18,7 +18,7 @@ import CustomLabel from "../../components/custom/customLabel";
 import CustomSlider from "../../components/custom/customSlider";
 import ProductCard from "../../components/productCart/ProductCard";
 // methods
-import { gtag } from "../../utils/googleAnalytics";
+
 import { diviedNumber } from "../../utils/diviedNumber";
 import { _addProduct } from "../../redux/actions/cart/_addProduct";
 import { fetchProductShop, getMoreProduct } from "../../api/product/detail";
@@ -39,7 +39,7 @@ const ProductDetailDesktop = ({ data }) => {
   const [hasMore, setHasMore] = useState(true);
   const [productShop, setProductShop] = useState([]);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const [scriptVideo, setScriptVideo] = useState("");
+
   const userData = useSelector((state) => state.User.userInfo);
 
   const thumblineImage = [{ image: detail.image }, ...detail.banners];
