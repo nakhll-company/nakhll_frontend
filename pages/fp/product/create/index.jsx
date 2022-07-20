@@ -261,6 +261,14 @@ const CreateProduct = ({ activeHojreh }) => {
                     </div>
                   )}
                 </div>
+                {/* <TextAreaUseForm title="ویدیو آپارات">
+                  <textarea
+                    rows="4"
+                    type="text"
+                    placeholder="کد اسکریپت فیلم خود را در آپارات قرار دهید."
+                    {...register("ٰVideoScript")}
+                  />
+                </TextAreaUseForm> */}
                 {/* product detail */}
                 <TitleLiner title=" جزئیات محصول" />
                 {/* weight */}

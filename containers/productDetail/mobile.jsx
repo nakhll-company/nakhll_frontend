@@ -23,6 +23,7 @@ import { _addProduct } from "../../redux/actions/cart/_addProduct";
 import { fetchProductShop, getMoreProduct } from "../../api/product/detail";
 // styles
 import styles from "./productDetail.module.scss";
+import Script from "next/script";
 
 SwiperCore.use([Navigation, Thumbs, EffectCube, Pagination]);
 
@@ -100,7 +101,7 @@ const ProductDetailMobile = ({ data }) => {
                           {value.title}
                           {index !== 2 && (
                             <i
-                              className="fa fa-angle-left px-3"
+                              className="px-3 fa fa-angle-left"
                               aria-hidden="true"
                             ></i>
                           )}
@@ -113,7 +114,7 @@ const ProductDetailMobile = ({ data }) => {
             </div>
           </nav>
         </div>
-        <div className="d-lg-flex container mb-5 px-0">
+        <div className="container px-0 mb-5 d-lg-flex">
           <div className="col-lg-4">
             {/* image_slider */}
             <section className="mb-4">
@@ -126,6 +127,28 @@ const ProductDetailMobile = ({ data }) => {
                   navigation
                   pagination={{ clickable: true }}
                 >
+                  <SwiperSlide>
+                    <div className=" mt-[60px] ">
+                      {detail.aparat_video_script && (
+                        <div
+                          id={`${
+                            detail.aparat_video_script
+                              .split('id="')[1]
+                              .split('">')[0]
+                          }`}
+                        >
+                          <Script
+                            type="text/JavaScript"
+                            src={`${
+                              detail.aparat_video_script
+                                .split('src="')[1]
+                                .split('">')[0]
+                            }`}
+                          ></Script>
+                        </div>
+                      )}
+                    </div>
+                  </SwiperSlide>
                   {thumblineImage.map((value, index) => {
                     return (
                       <SwiperSlide key={index}>
@@ -143,11 +166,11 @@ const ProductDetailMobile = ({ data }) => {
               </div>
             </section>
           </div>
-          <div className="col-lg-8 pe-lg-4 px-3">
+          <div className="px-3 col-lg-8 pe-lg-4">
             <div className="mb-4">
               {detail.salable && detail.salable === true && (
                 <div
-                  className="ms-lg-5 mb-lg-0 mb-3"
+                  className="mb-3 ms-lg-5 mb-lg-0"
                   style={{ display: "flex", alignItems: "center" }}
                 >
                   <BiTimeFive size={19} color="#000" />
@@ -158,7 +181,7 @@ const ProductDetailMobile = ({ data }) => {
                 </div>
               )}
               <div
-                className="ms-lg-5 mb-lg-0 mb-3"
+                className="mb-3 ms-lg-5 mb-lg-0"
                 style={{ display: "flex", alignItems: "center" }}
               >
                 <FaMapMarkedAlt size={19} color="#000" />
@@ -275,7 +298,7 @@ const ProductDetailMobile = ({ data }) => {
             </div>
             <div>
               <div>
-                <hr className="d-lg-none mb-4 mt-1" />
+                <hr className="mt-1 mb-4 d-lg-none" />
                 <section>
                   <h2 className={styles.product_section_title}>
                     <span className="d-none d-lg-block">فروشنده این محصول</span>
