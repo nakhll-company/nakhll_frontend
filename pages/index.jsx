@@ -12,6 +12,7 @@ import NakhlLinerProducts from "../containers/nakhlPage/LinerProducts";
 import LinerProductsBgLanding from "../containers/nakhlPage/LinerProductsBg";
 // methods
 import { dataLanding } from "../utils/dataLanding";
+import PopUP from "../components/PopUP";
 
 function Landing() {
   const { linearsProduct, dataBlog, dataSliders, dataAmazingDiscounts } =
@@ -19,6 +20,7 @@ function Landing() {
 
   return (
     <div>
+      <PopUP />
       <HeroSlider />
       <ValuesPart />
       <Selers />
