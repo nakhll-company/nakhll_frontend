@@ -364,7 +364,7 @@ export default function Cart() {
               <>
                 {" "}
                 <span className="block mt-4 font-bold">
-                  انتخاب درگاره پرداخت :{" "}
+                  انتخاب درگاه پرداخت :{" "}
                 </span>
                 <div className="flex ">
                   <div className="flex items-center ml-5 ">

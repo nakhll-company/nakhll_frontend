@@ -47,9 +47,14 @@ function Products({
 
   // function for send selected cities
   const handelSendSelectedCities = async () => {
+    const arrayForSend = [];
+
+    selectedProduct.map((el) => {
+      arrayForSend.push(el.ID);
+    });
     handleUpdateDataScope(
       {
-        products: selectedProduct,
+        products: arrayForSend,
       },
       move
     );
@@ -62,7 +67,6 @@ function Products({
         (item) => item.Title != data.Title
       );
       setProductList(removedList);
-      setSearchedProduct(removedList);
     }
   };
   const handleCheckInSearch = (event, data) => {
@@ -100,7 +104,7 @@ function Products({
         {selectedProduct.map((el) => (
           <span
             key={el}
-            className="relative inline-block px-2 py-1 pl-4 m-1 rounded-lg shadow-md bg-emerald-300 "
+            className="relative inline-block px-2 py-1 pl-4 m-1 text-sm rounded-lg shadow-md whitespace-nowrap bg-emerald-300 "
           >
             {el.Title}
             <XIcon
