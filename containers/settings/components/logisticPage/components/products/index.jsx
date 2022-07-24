@@ -1,12 +1,10 @@
 // node libraries
-import _ from "lodash";
+// import _ from "lodash";
 import React from "react";
 import { useEffect, useState } from "react";
 // components
 import Search from "../search";
 import BtnSetting from "../btnSetting";
-// methods
-import { paginateFront } from "../../../../../../utils/paginateFrontSide";
 
 function Products({
   ProductsShop,
@@ -14,12 +12,12 @@ function Products({
   move = true,
   title = "مرحله بعد",
 }) {
-  const perPage = 50;
+  console.log("ProductsShop :>> ", ProductsShop);
   const [wordSearch, setWordSearch] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
   const [productList, setProductList] = useState(ProductsShop);
-  const allPages = _.range(Math.ceil(ProductsShop.length / 50));
+
   const [searchedProduct, setSearchedProduct] = useState(ProductsShop);
+  const [selectedProduct, setSelectedProduct] = useState([]);
 
   const handelSearch = (word) => {
     setWordSearch(word);
@@ -28,18 +26,18 @@ function Products({
   };
 
   // function for select checkbox and
-  const handelSelectedIdProduct = (data) => {
-    const arrayHelpProducts = [...productList];
-    const arrayHelpSearch = [...searchedProduct];
-    data.is_checked = !data.is_checked;
-    const indexProduct = _.findIndex(arrayHelpSearch, { ID: data.ID });
-    const indexSearchProduct = _.findIndex(arrayHelpProducts, { ID: data.ID });
-    // Replace item at index using native splice
-    arrayHelpProducts.splice(indexProduct, 1, data);
-    arrayHelpSearch.splice(indexSearchProduct, 1, data);
-    setProductList(arrayHelpProducts);
-    setSearchedProduct(arrayHelpSearch);
-  };
+  // const handelSelectedIdProduct = (data) => {
+  //   const arrayHelpProducts = [...productList];
+  //   const arrayHelpSearch = [...searchedProduct];
+  //   data.is_checked = !data.is_checked;
+  //   const indexProduct = _.findIndex(arrayHelpSearch, { ID: data.ID });
+  //   const indexSearchProduct = _.findIndex(arrayHelpProducts, { ID: data.ID });
+  //   // Replace item at index using native splice
+  //   arrayHelpProducts.splice(indexProduct, 1, data);
+  //   arrayHelpSearch.splice(indexSearchProduct, 1, data);
+  //   setProductList(arrayHelpProducts);
+  //   setSearchedProduct(arrayHelpSearch);
+  // };
   // function for highlight search
   const getHighlightText = (title, wordSearch) => {
     const startIndex = title.indexOf(wordSearch);
@@ -70,71 +68,43 @@ function Products({
       move
     );
   };
+  const handleCheck = (event, data) => {
+    console.log("event :>> ", event.target);
+    console.log("data :>> ", data);
+    if (event.target.checked) {
+      data.is_checked = true;
+      setSelectedProduct([...selectedProduct, data]);
 
-  useEffect(() => {
-    setSearchedProduct(paginateFront(ProductsShop, currentPage, perPage));
-  }, [currentPage, ProductsShop]);
+      setProductList(productList.filter((item) => item.ID != data.ID));
+    }
+    // let updatedList = [...checked];
+    // if (event.target.checked) {
+    //   updatedList = [...checked, event.target.value];
+    // } else {
+    //   updatedList.splice(checked.indexOf(event.target.value), 1);
+    // }
+    // setChecked(updatedList);
+  };
+
+  useEffect(() => {}, []);
 
   return (
     <>
+      <div className="">
+        {selectedProduct.map((el) => (
+          <span
+            key={el}
+            className="inline-block px-2 py-1 m-1 rounded-lg shadow-md bg-emerald-300 "
+          >
+            {el.Title}
+          </span>
+        ))}
+      </div>
       <Search
         placeholder="جستجو محصول"
         onChange={(e) => handelSearch(e.target.value)}
       />
-      <div className="d-flex justify-content-center pt-2 pb-2">
-        <nav style={{ cursor: "pointer" }} aria-label="Page navigation">
-          <ul className="pagination">
-            <li
-              onClick={() => {
-                if (currentPage > 1) {
-                  setCurrentPage(currentPage - 1);
-                }
-              }}
-              className="page-item"
-            >
-              <div className="page-link">
-                <span aria-hidden="true">&laquo;</span>
-              </div>
-            </li>
-
-            <li className="page-item">
-              <div className="page-link bg-info">{currentPage}</div>
-            </li>
-            <li
-              onClick={() => {
-                if (currentPage < allPages.length) {
-                  setCurrentPage(currentPage + 1);
-                }
-              }}
-              className="page-item"
-            >
-              <div className="page-link ">{currentPage + 1}</div>
-            </li>
-            <li
-              onClick={() => {
-                if (currentPage < allPages.length) {
-                  setCurrentPage(currentPage + 1);
-                }
-              }}
-              className="page-item"
-            >
-              <div className="page-link">{currentPage + 2}</div>
-            </li>
-            <li
-              onClick={() => {
-                if (currentPage < allPages.length) {
-                  setCurrentPage(currentPage + 1);
-                }
-              }}
-              className="page-item"
-            >
-              <div className="page-link" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </div>
-            </li>
-          </ul>
-        </nav>
-      </div>
+      <BtnSetting onClick={handelSendSelectedCities} title={title} />
 
       {searchedProduct.map((el) => (
         <div
@@ -146,24 +116,13 @@ function Products({
             style={{ float: "right", cursor: "pointer" }}
             className="form-check-input"
             type="checkbox"
-            id={`Check_${el.ID}_Default`}
-            onChange={() => handelSelectedIdProduct(el)}
-            checked={el.is_checked}
+            onChange={(event) => handleCheck(event, el)}
           />
-          <label
-            style={{
-              marginRight: "25px",
-              color: "#000000A1",
-              cursor: "pointer",
-            }}
-            htmlFor={`Check_${el.ID}_Default`}
-          >
+          <span className="mr-6 text-gray-600 cursor-pointer ">
             {getHighlightText(el.Title, wordSearch)}
-          </label>
+          </span>
         </div>
       ))}
-
-      <BtnSetting onClick={handelSendSelectedCities} title={title} />
     </>
   );
 }
