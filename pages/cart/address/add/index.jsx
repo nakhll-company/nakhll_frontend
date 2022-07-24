@@ -1,6 +1,6 @@
 import React from "react";
 // node libraries
-import Head from "next/head";
+
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
@@ -46,15 +46,6 @@ const NewAddress = () => {
 
   return (
     <>
-      <Head>
-        <link
-          rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
-          integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
-          crossOrigin="anonymous"
-        ></link>
-      </Head>
-
       {loading ? (
         <div
           className={`col-12 col-lg-5 py-5 ${styles.wrapper} mt-4`}
@@ -67,7 +58,7 @@ const NewAddress = () => {
           <header className={styles.header}>
             <Link href={`/cart/address`}>
               <a className={styles.header_back_link}>
-                <i className="fas fa-arrow-right px-2"></i>
+                <i className="px-2 fas fa-arrow-right"></i>
                 بازگشت
               </a>
             </Link>
@@ -244,21 +235,14 @@ const NewAddress = () => {
                   )}
                 </div>
               </div>
-              <div
-                className={`${styles.form_row} d-flex justify-content-between pt-3`}
-              >
-                <div className={`col-md-6 ${styles.buttons_form}`}>
+              <div className={`${styles.form_row} pt-3`}>
+                <div className={`col-md-12 ${styles.buttons_form} px-1 py-1`}>
                   <button
                     type="submit"
-                    className="btn btn-primary w-100 d-flex justify-content-center align-items-center"
+                    className="w-full h-10 mt-4 font-bold text-white transition duration-200 ease-out rounded-md bg-cyan-800 hover:scale-95 hover:shadow-2xl active:scale-105"
                   >
                     تایید
                   </button>
-                </div>
-                <div className={`col-md-6 ${styles.buttons_form}`}>
-                  <Link href={`/cart/address`}>
-                    <a className="btn btn-secondary w-100"> بازگشت </a>
-                  </Link>
                 </div>
               </div>
             </form>
