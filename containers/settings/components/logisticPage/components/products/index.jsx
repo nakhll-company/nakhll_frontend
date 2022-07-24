@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 // components
 import Search from "../search";
 import BtnSetting from "../btnSetting";
+import { XIcon } from "@heroicons/react/solid";
 
 function Products({
   ProductsShop,
@@ -12,32 +13,22 @@ function Products({
   move = true,
   title = "مرحله بعد",
 }) {
-  console.log("ProductsShop :>> ", ProductsShop);
   const [wordSearch, setWordSearch] = useState("");
   const [productList, setProductList] = useState(ProductsShop);
 
-  const [searchedProduct, setSearchedProduct] = useState(ProductsShop);
+  const [searchedProduct, setSearchedProduct] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState([]);
 
   const handelSearch = (word) => {
+    if (word == "") {
+      setSearchedProduct([]);
+      return;
+    }
     setWordSearch(word);
     const searchedArray = productList.filter((el) => el.Title.includes(word));
     setSearchedProduct(searchedArray);
   };
 
-  // function for select checkbox and
-  // const handelSelectedIdProduct = (data) => {
-  //   const arrayHelpProducts = [...productList];
-  //   const arrayHelpSearch = [...searchedProduct];
-  //   data.is_checked = !data.is_checked;
-  //   const indexProduct = _.findIndex(arrayHelpSearch, { ID: data.ID });
-  //   const indexSearchProduct = _.findIndex(arrayHelpProducts, { ID: data.ID });
-  //   // Replace item at index using native splice
-  //   arrayHelpProducts.splice(indexProduct, 1, data);
-  //   arrayHelpSearch.splice(indexSearchProduct, 1, data);
-  //   setProductList(arrayHelpProducts);
-  //   setSearchedProduct(arrayHelpSearch);
-  // };
   // function for highlight search
   const getHighlightText = (title, wordSearch) => {
     const startIndex = title.indexOf(wordSearch);
@@ -56,34 +47,49 @@ function Products({
 
   // function for send selected cities
   const handelSendSelectedCities = async () => {
-    const arrayForSend = [];
-    const arraySelectedCities = productList.filter((el) => el.is_checked);
-    arraySelectedCities.map((el) => {
-      arrayForSend.push(el.ID);
-    });
     handleUpdateDataScope(
       {
-        products: arrayForSend.length > 0 ? arrayForSend : [],
+        products: selectedProduct,
       },
       move
     );
   };
   const handleCheck = (event, data) => {
-    console.log("event :>> ", event.target);
-    console.log("data :>> ", data);
     if (event.target.checked) {
       data.is_checked = true;
       setSelectedProduct([...selectedProduct, data]);
-
-      setProductList(productList.filter((item) => item.ID != data.ID));
+      const removedList = productList.filter(
+        (item) => item.Title != data.Title
+      );
+      setProductList(removedList);
+      setSearchedProduct(removedList);
     }
-    // let updatedList = [...checked];
-    // if (event.target.checked) {
-    //   updatedList = [...checked, event.target.value];
-    // } else {
-    //   updatedList.splice(checked.indexOf(event.target.value), 1);
-    // }
-    // setChecked(updatedList);
+  };
+  const handleCheckInSearch = (event, data) => {
+    if (event.target.checked) {
+      data.is_checked = true;
+      setSelectedProduct([...selectedProduct, data]);
+      const removedList = productList.filter(
+        (item) => item.Title != data.Title
+      );
+      setProductList(removedList);
+    } else {
+      data.is_checked = false;
+      const removedList = selectedProduct.filter(
+        (item) => item.Title != data.Title
+      );
+      setSelectedProduct(removedList);
+
+      setProductList([...productList, data]);
+    }
+  };
+  const deleteProduct = (data) => {
+    data.is_checked = false;
+    const removedList = selectedProduct.filter(
+      (item) => item.Title != data.Title
+    );
+    setSelectedProduct(removedList);
+    setProductList([...productList, data]);
   };
 
   useEffect(() => {}, []);
@@ -94,9 +100,13 @@ function Products({
         {selectedProduct.map((el) => (
           <span
             key={el}
-            className="inline-block px-2 py-1 m-1 rounded-lg shadow-md bg-emerald-300 "
+            className="relative inline-block px-2 py-1 pl-4 m-1 rounded-lg shadow-md bg-emerald-300 "
           >
             {el.Title}
+            <XIcon
+              onClick={() => deleteProduct(el)}
+              className="absolute h-[15px] hover:scale-105 text-red-500 cursor-pointer -left-1 -top-2 "
+            />
           </span>
         ))}
       </div>
@@ -105,24 +115,60 @@ function Products({
         onChange={(e) => handelSearch(e.target.value)}
       />
       <BtnSetting onClick={handelSendSelectedCities} title={title} />
-
-      {searchedProduct.map((el) => (
-        <div
-          key={el.ID}
-          style={{ marginBottom: "16px" }}
-          className="form-check"
-        >
-          <input
-            style={{ float: "right", cursor: "pointer" }}
-            className="form-check-input"
-            type="checkbox"
-            onChange={(event) => handleCheck(event, el)}
-          />
-          <span className="mr-6 text-gray-600 cursor-pointer ">
-            {getHighlightText(el.Title, wordSearch)}
-          </span>
+      {!!searchedProduct.length && (
+        <div className="relative p-2 my-2 border-2 border-gray-900 rounded-md shadow-lg bg-emerald-200">
+          <h4 className="my-2 font-bold text-center text-gray-600 ">
+            نتایج جستجو:
+          </h4>
+          <div
+            className="absolute top-5 left-5 "
+            onClick={() => setSearchedProduct([])}
+          >
+            <XIcon className="h-10 text-red-500 cursor-pointer hover:scale-95" />
+          </div>
+          <div className="">
+            {searchedProduct.map((el) => (
+              <div
+                key={el.ID}
+                style={{ marginBottom: "16px" }}
+                className="form-check"
+              >
+                <input
+                  style={{ float: "right", cursor: "pointer" }}
+                  className="form-check-input"
+                  type="checkbox"
+                  onChange={(event) => handleCheckInSearch(event, el)}
+                />
+                <span className="mr-6 font-bold text-gray-600 cursor-pointer ">
+                  {getHighlightText(el.Title, wordSearch)}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
-      ))}
+      )}
+
+      {productList.map((el) => {
+        if (!el.is_checked) {
+          return (
+            <div
+              key={el.ID}
+              style={{ marginBottom: "16px" }}
+              className="form-check"
+            >
+              <input
+                style={{ float: "right", cursor: "pointer" }}
+                className="form-check-input"
+                type="checkbox"
+                onChange={(event) => handleCheck(event, el)}
+              />
+              <span className="mr-6 text-gray-600 cursor-pointer ">
+                {getHighlightText(el.Title, wordSearch)}
+              </span>
+            </div>
+          );
+        }
+      })}
     </>
   );
 }
