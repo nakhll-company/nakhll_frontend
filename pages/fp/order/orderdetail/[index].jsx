@@ -11,6 +11,8 @@ import MyLayout from "../../../../components/layout/Layout";
 import { authhttp } from "../../../../services/callApi/api";
 import { diviedNumber } from "../../../../utils/diviedNumber";
 import { successMessage } from "../../../../utils/toastifyMessage";
+import { Disclosure } from "@headlessui/react";
+import { ChevronUpIcon } from "@heroicons/react/solid";
 // sass
 import styles from "../../../../styles/pages/order/orderdetail.module.scss";
 
@@ -34,7 +36,6 @@ function HomePage({ id }) {
   const { width } = useViewport();
   const [data, setdata] = useState({});
   const [isShow, setisShow] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
   const [IsLoading, setIsLoading] = useState(false);
   const [showMessage, setshowMessage] = useState(0);
 
@@ -505,140 +506,93 @@ function HomePage({ id }) {
                 {data.items.length > 0 &&
                   data.items.map((e, index) => {
                     return (
-                      <Fragment key={index}>
-                        <div className={styles.purchased_good_contentD}>
-                          <h3 style={{ fontSize: "15px" }}>{index + 1}</h3>
-                          <div
-                            style={{
-                              width: "50px",
-                              height: "50px",
-                            }}
-                          >
-                            <Image
-                              src={e.image_thumbnail || "/"}
-                              alt="Picture of the author"
-                              width={50}
-                              height={50}
-                            />
-                          </div>
-                          <div className={styles.row}>
-                            <h3
-                              style={{ marginRight: "15px", fontSize: "15px" }}
-                            >
-                              {e.name}
-                            </h3>
-                          </div>
-
-                          <div style={{ width: "40px" }}>
-                            <h4 style={{ color: "#364254", fontSize: "14px" }}>
-                              {e.count}
-                              <span style={{ marginRight: "10px" }}>عدد</span>
-                            </h4>
-                          </div>
-                          <div style={{ width: "94px", display: "flex" }}>
-                            <h4 style={{ color: "#364254", fontSize: "14px" }}>
-                              {diviedNumber(e.price_with_discount / 10)}{" "}
-                              <span style={{ color: "#5E7488" }}>تومان</span>
-                            </h4>
-                          </div>
-
-                          <div className={styles.good_four}>
-                            <button
-                              className={styles.btn}
-                              onClick={() => setIsOpen(!isOpen)}
-                            >
-                              {isOpen ? (
-                                <>
-                                  <div
-                                    style={{
-                                      display: "flex",
-                                      alignItems: "center",
-                                    }}
-                                  >
-                                    <h3 style={{ fontSize: "15px" }}>
-                                      جزییات کمتر
-                                    </h3>
-                                    <span
-                                      style={{
-                                        fontSize: "16px",
-                                        marginRight: "10px",
-                                      }}
-                                      className="fas fa-chevron-up"
-                                    ></span>
+                      <>
+                        <div className="m-1">
+                          <Disclosure>
+                            {({ open }) => (
+                              <>
+                                <Disclosure.Button className="flex justify-between w-full px-4 py-2 font-bold text-purple-900 bg-purple-100 rounded-lg text-md hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                                  <div className="flex grow m-[30px] justify-between items-center">
+                                    <h3 className="font-bold ">{index + 1}</h3>
+                                    <div className="block w-16 h-16 rounded-md shadow-md">
+                                      <Image
+                                        src={e.image_thumbnail || "/"}
+                                        alt="Picture of the author"
+                                        className="rounded-md "
+                                        layout="responsive"
+                                        width={50}
+                                        height={50}
+                                      />
+                                    </div>
+                                    <div className="w-[235px]">
+                                      <h3 className="mr-4 ">{e.name}</h3>
+                                    </div>
+                                    <div className="w-10">
+                                      <h4 className="font-bold text-gray-800">
+                                        {e.count}
+                                        <span className="mr-1 text-sm ">
+                                          عدد
+                                        </span>
+                                      </h4>
+                                    </div>
+                                    <div className="flex w-24">
+                                      <h4>
+                                        {diviedNumber(
+                                          e.price_with_discount / 10
+                                        )}{" "}
+                                        <span className="mr-1 text-xs">
+                                          تومان
+                                        </span>
+                                      </h4>
+                                    </div>
                                   </div>
-                                </>
-                              ) : (
-                                <>
-                                  <div
-                                    style={{
-                                      display: "flex",
-                                      alignItems: "center",
-                                    }}
-                                  >
-                                    <h3 style={{ fontSize: "15px" }}>
-                                      جزییات بیشتر
-                                    </h3>
-                                    <span
-                                      style={{
-                                        fontSize: "16px",
-                                        marginRight: "10px",
-                                      }}
-                                      className="fas fa-chevron-down"
-                                    ></span>
+                                  <ChevronUpIcon
+                                    className={`transition duration-300 ease-out    ${
+                                      open ? "rotate-180 transform" : ""
+                                    } h-5 w-5 text-purple-500 my-auto`}
+                                  />
+                                </Disclosure.Button>
+                                <Disclosure.Panel className="px-4 pt-4 pb-2 font-bold leading-10 text-gray-700 text-md">
+                                  <div>
+                                    <div className="flex justify-between mt-6">
+                                      <h4 className="text-base font-bold">
+                                        {" "}
+                                        مجموع هزینه محصول
+                                      </h4>
+                                      <h4 className="text-[#089319] font-bold text-base">
+                                        {diviedNumber(
+                                          e.price_with_discount / 10
+                                        )}
+                                        +{" "}
+                                        <span className="text-gray-600 text-[14px] mr-1">
+                                          تومان
+                                        </span>
+                                      </h4>
+                                    </div>
+                                    <div className="flex justify-between mt-6 mb-6">
+                                      <h4 className="text-base font-bold">
+                                        {" "}
+                                        تخفیف محصول
+                                      </h4>
+                                      <h4 className="text-[#D14343] font-bold text-base">
+                                        {diviedNumber(
+                                          (e.price_without_discount -
+                                            e.price_with_discount) /
+                                            10
+                                        )}
+
+                                        <span className="text-gray-600 text-[14px] mr-1">
+                                          تومان
+                                        </span>
+                                      </h4>
+                                    </div>
                                   </div>
-                                </>
-                              )}
-                            </button>
-                          </div>
+                                </Disclosure.Panel>
+                              </>
+                            )}
+                          </Disclosure>
                         </div>
-                        <div className={styles.lineTable}></div>
-                        {isOpen && (
-                          <div
-                            id={index + 1}
-                            className={styles.purchased_good_threeD}
-                          >
-                            <div className={styles.good_three_content}>
-                              <h4
-                                style={{ fontSize: "14px", fontWeight: "bold" }}
-                              >
-                                {" "}
-                                مجموع هزینه محصول
-                              </h4>
-                              <h4
-                                style={{
-                                  color: "#089319",
-                                  fontWeight: "bold",
-                                  fontSize: "14px",
-                                }}
-                              >
-                                {diviedNumber(e.price_with_discount / 10)}+{" "}
-                                <span style={{ color: "#5E7488" }}>تومان</span>
-                              </h4>
-                            </div>
-                            <div
-                              className={styles.good_three_content}
-                              style={{ marginBottom: "30px" }}
-                            >
-                              <h4 style={{ fontSize: "14px" }}> تخفیف محصول</h4>
-                              <h4
-                                style={{
-                                  color: "#D14343",
-                                  fontWeight: "bold",
-                                  fontSize: "14px",
-                                }}
-                              >
-                                {diviedNumber(
-                                  (e.price_without_discount -
-                                    e.price_with_discount) /
-                                    10
-                                )}
-                                -{" "}
-                                <span style={{ color: "#5E7488" }}>تومان</span>
-                              </h4>
-                            </div>
-                          </div>
-                        )}
-                      </Fragment>
+                      </>
                     );
                   })}
               </div>
@@ -1114,138 +1068,95 @@ function HomePage({ id }) {
                 {data.items.length > 0 &&
                   data.items.map((e, index) => {
                     return (
-                      <div
-                        key={index}
-                        className={styles.purchased_good_content}
-                      >
-                        <div className={styles.purchased_good_one}>
-                          <Image
-                            src={`${e.image_thumbnail || "/"}`}
-                            width={45}
-                            height={45}
-                            alt=""
-                          />
-                          <h3
-                            style={{
-                              marginRight: "15px",
-                              fontSize: "15px",
-                              fontWeight: "bold",
-                            }}
-                          >
-                            {e.name}
-                          </h3>
-                        </div>
-                        <div
-                          className={styles.purchased_good_two}
-                          style={{ marginTop: "16px" }}
-                        >
-                          <div style={{ display: "flex" }}>
-                            <h4>قیمت :</h4>
-                            <h4 style={{ color: "#364254" }}>
-                              {diviedNumber(e.price_with_discount / 10)}{" "}
-                              <span style={{ color: "#5E7488" }}>تومان</span>
-                            </h4>
-                          </div>
-                          <div>
-                            <h4 style={{ color: "#364254" }}>
-                              {e.count}{" "}
-                              <span style={{ fontSize: "14px" }}>عدد</span>
-                            </h4>
-                          </div>
-                        </div>
-                        {isOpen && (
-                          <div className={styles.purchased_good_three}>
-                            <div className={styles.good_three_content}>
-                              <h4
-                                style={{ fontSize: "14px", fontWeight: "bold" }}
-                              >
-                                مجموع هزینه محصول
-                              </h4>
-                              <h4
-                                style={{ color: "#089319", fontWeight: "bold" }}
-                              >
-                                {diviedNumber(e.price_with_discount / 10)}+{" "}
-                                <span
-                                  style={{ color: "#5E7488", fontSize: "14px" }}
-                                >
-                                  تومان
-                                </span>
-                              </h4>
-                            </div>
-                            <div
-                              className={styles.good_three_content}
-                              style={{ marginBottom: "30px" }}
-                            >
-                              <h4>تخفیف محصول</h4>
-                              <h4
-                                style={{
-                                  color: "#D14343",
-                                  fontWeight: "bold",
-                                }}
-                              >
-                                {diviedNumber(
-                                  (e.price_without_discount -
-                                    e.price_with_discount) /
-                                    10
-                                )}
-                                <span
-                                  style={{ color: "#5E7488", fontSize: "14px" }}
-                                >
-                                  تومان
-                                </span>
-                              </h4>
-                            </div>
-                          </div>
-                        )}
-                        <div className={styles.good_four}>
-                          <button
-                            className={styles.btn}
-                            onClick={() => setIsOpen(!isOpen)}
-                          >
-                            {isOpen ? (
+                      <>
+                        <div className="m-1">
+                          <Disclosure>
+                            {({ open }) => (
                               <>
-                                <div
-                                  style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                  }}
-                                >
-                                  <h3 style={{ fontSize: "15px", margin: "0" }}>
-                                    جزییات کمتر
-                                  </h3>
-                                  <span
-                                    style={{
-                                      fontSize: "16px",
-                                      marginRight: "10px",
-                                    }}
-                                    className="fas fa-chevron-up"
-                                  ></span>
-                                </div>
-                              </>
-                            ) : (
-                              <>
-                                <div
-                                  style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                  }}
-                                >
-                                  <h3 style={{ fontSize: "15px", margin: "0" }}>
-                                    جزییات بیشتر
-                                  </h3>
-                                  <span
-                                    style={{
-                                      fontSize: "16px",
-                                      marginRight: "10px",
-                                    }}
-                                    className="fas fa-chevron-down"
-                                  ></span>
-                                </div>
+                                <Disclosure.Button className="flex justify-between w-full p-1 font-bold text-purple-900 bg-purple-100 rounded-lg text-md hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                                  <div className="flex grow m-[15px] justify-between items-center">
+                                    <h3 className="ml-1 font-bold ">
+                                      {index + 1}
+                                    </h3>
+                                    <div className="block w-16 h-16 rounded-md shadow-md">
+                                      <Image
+                                        src={e.image_thumbnail || "/"}
+                                        alt="Picture of the author"
+                                        className="rounded-md "
+                                        layout="responsive"
+                                        width={50}
+                                        height={50}
+                                      />
+                                    </div>
+                                    <div className="w-[235px]">
+                                      <h3 className="mr-4 ">{e.name}</h3>
+                                    </div>
+                                    <div className="w-10">
+                                      <h4 className="font-bold text-gray-800">
+                                        {e.count}
+                                        <span className="mr-1 text-sm ">
+                                          عدد
+                                        </span>
+                                      </h4>
+                                    </div>
+                                    <div className="flex w-24">
+                                      <h4>
+                                        {diviedNumber(
+                                          e.price_with_discount / 10
+                                        )}{" "}
+                                        <span className="mr-1 text-xs">
+                                          تومان
+                                        </span>
+                                      </h4>
+                                    </div>
+                                  </div>
+                                  <ChevronUpIcon
+                                    className={`transition duration-300 ease-out    ${
+                                      open ? "rotate-180 transform" : ""
+                                    } h-5 w-5 text-purple-500 my-auto`}
+                                  />
+                                </Disclosure.Button>
+                                <Disclosure.Panel className="px-4 pt-4 pb-2 font-bold leading-10 text-gray-700 text-md">
+                                  <div>
+                                    <div className="flex justify-between mt-6">
+                                      <h4 className="text-base font-bold">
+                                        {" "}
+                                        مجموع هزینه محصول
+                                      </h4>
+                                      <h4 className="text-[#089319] font-bold text-base">
+                                        {diviedNumber(
+                                          e.price_with_discount / 10
+                                        )}
+                                        +{" "}
+                                        <span className="text-gray-600 text-[14px] mr-1">
+                                          تومان
+                                        </span>
+                                      </h4>
+                                    </div>
+                                    <div className="flex justify-between mt-6 mb-6">
+                                      <h4 className="text-base font-bold">
+                                        {" "}
+                                        تخفیف محصول
+                                      </h4>
+                                      <h4 className="text-[#D14343] font-bold text-base">
+                                        {diviedNumber(
+                                          (e.price_without_discount -
+                                            e.price_with_discount) /
+                                            10
+                                        )}
+
+                                        <span className="text-gray-600 text-[14px] mr-1">
+                                          تومان
+                                        </span>
+                                      </h4>
+                                    </div>
+                                  </div>
+                                </Disclosure.Panel>
                               </>
                             )}
-                          </button>
+                          </Disclosure>
                         </div>
-                      </div>
+                      </>
                     );
                   })}
               </div>
