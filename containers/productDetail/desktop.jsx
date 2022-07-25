@@ -1,6 +1,6 @@
 // node libraries
 import _ from "lodash";
-import Head from "next/head";
+
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -54,13 +54,6 @@ const ProductDetailDesktop = ({ data }) => {
 
   return (
     <div className={styles.wrapper}>
-      <Head>
-        <link
-          rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-        />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
       {!_.isEmpty(userData) && <AddFavorites />}
 
       <div>
