@@ -4,6 +4,7 @@ import Script from "next/script";
 import { NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
 import React, { useEffect, useRef } from "react";
+
 // components
 import ShopLayout from "../../../components/shopLayout";
 import Video from "../../../containers/LandingPage/Video";
@@ -36,6 +37,8 @@ const DynamicLinerFourImgMobile = dynamic(() =>
 import { ApiReference } from "../../../api/Api";
 import { http } from "../../../services/callApi/api";
 import ListProductCus from "../../../containers/listProduct/listProductCus";
+
+import Unpublish from "../../../components/Unpublish";
 
 // fetch data
 const fetchData = async (id) => {
@@ -130,6 +133,8 @@ const Shop = ({ dataShop, data }) => {
             name={dataShop.shop.FK_ShopManager}
             profile={dataShop.shop.image_thumbnail_url}
           />
+
+          {dataShop?.shop?.ID == undefined && <Unpublish />}
           {dataShop?.shop?.products_count == 0 && (
             <div className="d-flex justify-content-center flex-column align-items-center">
               {" "}

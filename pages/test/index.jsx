@@ -1,9 +1,10 @@
 import Image from "next/image";
 import React from "react";
-import EmptyLayout from "../../components/layout/EmptyLayout";
+
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon, LocationMarkerIcon } from "@heroicons/react/solid";
 import { PlusCircleIcon } from "@heroicons/react/outline";
+import ShopLayout from "../../components/shopLayout";
 
 const CartShop = () => {
   return (
@@ -96,7 +97,7 @@ function TestPage() {
           />
         </div>
         {/* secound */}
-        <div className="mx-4">
+        <div className="mx-4 mb-10">
           <div className="w-full max-w-2xl p-2 mx-auto bg-white shadow-md rounded-2xl">
             <Disclosure>
               {({ open }) => (
@@ -109,8 +110,15 @@ function TestPage() {
                       } h-5 w-5 text-purple-500`}
                     />
                   </Disclosure.Button>
-                  <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-700">
-                    هر زمان دلیلش آماده شد میذارم
+
+                  <Disclosure.Panel className="px-4 pt-4 pb-2 font-bold leading-10 text-gray-700 text-md">
+                    این حجره به یکی از دلایل زیر غیرفعال شده است:
+                    <br />
+                    درخواست حجره دار برای غیرفعال سازی حجره
+                    <br />
+                    عدم مسئولیت پذیری و پاسخگویی حجره دار
+                    <br />
+                    عدم ارسال به موقع محصولات و یا لغو سفارشات از سمت حجره دار
                   </Disclosure.Panel>
                 </>
               )}
@@ -119,33 +127,37 @@ function TestPage() {
         </div>
 
         {/* last Part */}
-        <div className="mx-8 mt-14">
-          <div className="mx-auto max-w-7xl ">
-            <h5 className="font-bold">حجره هایی با محصولات مشابه:</h5>
-            <div className="flex flex-wrap justify-center gap-2 my-4 ">
-              <CartShop />
-              <CartShop />
-              <CartShop />
-              <CartShop />
+        {false && (
+          <>
+            <div className="mx-8 mt-14">
+              <div className="mx-auto max-w-7xl ">
+                <h5 className="font-bold">حجره هایی با محصولات مشابه:</h5>
+                <div className="flex flex-wrap justify-center gap-2 my-4 ">
+                  <CartShop />
+                  <CartShop />
+                  <CartShop />
+                  <CartShop />
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
 
-        <div className="mx-8 mt-14">
-          <div className="mx-auto max-w-7xl ">
-            <h5 className="font-bold">محصولات مشابه :</h5>
-            <div className="flex flex-wrap justify-center gap-2 my-4 ">
-              <CartProduct />
-              <CartProduct />
-              <CartProduct />
-              <CartProduct />
+            <div className="mx-8 mt-14">
+              <div className="mx-auto max-w-7xl ">
+                <h5 className="font-bold">محصولات مشابه :</h5>
+                <div className="flex flex-wrap justify-center gap-2 my-4 ">
+                  <CartProduct />
+                  <CartProduct />
+                  <CartProduct />
+                  <CartProduct />
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </>
+        )}
       </section>
     </div>
   );
 }
 
 export default TestPage;
-TestPage.Layout = EmptyLayout;
+TestPage.Layout = ShopLayout;
