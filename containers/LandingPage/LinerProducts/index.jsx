@@ -22,6 +22,7 @@ function LinerProducts({
   sm = 6,
   xs = 5,
 }) {
+  console.log("url", url);
   const [dataLinerProducts, setDataLinerProducts] = useState([]);
 
   useEffect(async () => {
@@ -69,13 +70,7 @@ function LinerProducts({
             </div>
             <div className={styles.Button}>
               <button>
-                <Link
-                  href={`${
-                    url.includes("search=") || url.includes("q=")
-                      ? `${url}`
-                      : `/search?ap=${url}`
-                  }`}
-                >
+                <Link href={`/search/${url.split("/search/")[1]}`}>
                   <a>مشاهده همه</a>
                 </Link>
               </button>
@@ -120,13 +115,7 @@ function LinerProducts({
             </div>
             <div className={styles.Button}>
               <button>
-                <Link
-                  href={`${
-                    url.includes("search=") || url.includes("q=")
-                      ? `${url}`
-                      : `/search?ap=${url}`
-                  }`}
-                >
+                <Link href={`/search/${url.split("/search/")[1]}`}>
                   <a>مشاهده همه</a>
                 </Link>
               </button>
