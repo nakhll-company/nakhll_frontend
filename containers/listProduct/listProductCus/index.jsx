@@ -29,6 +29,7 @@ import { parsUrlToArr } from "../../../utils/parsUrlToArr";
 import styles from "./listProductCus.module.scss";
 
 function ListProductCus({ data, certainShop = "" }) {
+  console.log("data :>> ", data);
   const [pageApi, setPageApi] = useState(2);
   const [hasMore, setHasMore] = useState(false);
   const [shopsName, setShopsName] = useState([]);
@@ -190,7 +191,7 @@ function ListProductCus({ data, certainShop = "" }) {
               ...(certainShop !== "" && { shop: certainShop }),
             },
           });
-
+          console.log("response.data", response.data);
           if (response.status === 200) {
             setListWithFilter(response.data.results);
             setRagnePrice({
@@ -425,7 +426,7 @@ function ListProductCus({ data, certainShop = "" }) {
                 />
               )}
             </div>
-            <div style={{ justifyContent: "center" }} className="row mx-auto">
+            <div style={{ justifyContent: "center" }} className="mx-auto row">
               {isLoading ? (
                 <WoLoading />
               ) : listWithFilter.length == 0 ? (
@@ -434,7 +435,7 @@ function ListProductCus({ data, certainShop = "" }) {
                 </div>
               ) : (
                 <InfiniteScroll
-                  className="row mx-auto"
+                  className="mx-auto row"
                   dataLength={listWithFilter.length} // This is important field to render the next data
                   next={handelCallAnotherPageApi}
                   hasMore={hasMore}
