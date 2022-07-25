@@ -53,6 +53,7 @@ const fetchData = async (id) => {
 };
 
 const Shop = ({ dataShop, data }) => {
+  console.log("dataShop :>> ", dataShop);
   const nakhlAnim = useRef(null);
   useEffect(() => {
     lottie.loadAnimation({
