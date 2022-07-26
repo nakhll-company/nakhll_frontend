@@ -31,6 +31,7 @@ const ProductDetailMobile = ({ data }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const detail = data.detail;
+  console.log("data", data);
   const comments = data.comments;
   const { productSlug } = router.query;
   const relatedProduct = data.relatedProduct;
