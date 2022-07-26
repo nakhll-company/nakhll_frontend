@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "../../../styles/components/custom/label.module.scss";
-import { deletePhoneNumber } from "../../../utils/deletPhoneNumber";
 
 const CustomLabel = ({
   type,
@@ -36,7 +35,7 @@ const CustomLabel = ({
                   customValue !== undefined && styles.customValue
                 }`}
               >
-                {deletePhoneNumber(value)}
+                {value}
               </span>
             </div>
           )}
