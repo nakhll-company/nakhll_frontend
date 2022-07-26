@@ -240,7 +240,7 @@ const ProductDetailMobile = ({ data }) => {
               <div
                 className={`${styles.product_guide} ${styles.product_guide__deaktop} mt-4  mb-3`}
               >
-                <Link href="/" passHref>
+                <Link href="#" passHref>
                   <a className={styles.product_guide__element}>
                     <Image
                       src="/Values/7_roz_zemanat.svg"
@@ -258,7 +258,7 @@ const ProductDetailMobile = ({ data }) => {
                     </span>
                   </a>
                 </Link>
-                <Link href="/" passHref>
+                <Link href="#" passHref>
                   <a className={styles.product_guide__element}>
                     <Image
                       src="/Values/ertebat_mostaghim.svg"
@@ -276,7 +276,7 @@ const ProductDetailMobile = ({ data }) => {
                     </span>
                   </a>
                 </Link>
-                <Link href="/" passHref>
+                <Link href="#" passHref>
                   <a className={styles.product_guide__element}>
                     <Image
                       src="/Values/sedaghat.svg"

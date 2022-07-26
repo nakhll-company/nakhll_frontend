@@ -341,7 +341,7 @@ const ProductDetailDesktop = ({ data }) => {
               <div
                 className={`${styles.product_guide} ${styles.product_guide__deaktop} mt-4  mb-5 `}
               >
-                <Link href="/">
+                <Link href="#">
                   <a className={styles.product_guide__element}>
                     <Image
                       className="mb-2"
@@ -359,7 +359,7 @@ const ProductDetailDesktop = ({ data }) => {
                     </span>
                   </a>
                 </Link>
-                <Link href="/">
+                <Link href="#">
                   <a className={styles.product_guide__element}>
                     <Image
                       className="mb-2"
@@ -377,7 +377,7 @@ const ProductDetailDesktop = ({ data }) => {
                     </span>
                   </a>
                 </Link>
-                <Link href="/">
+                <Link href="#">
                   <a className={styles.product_guide__element}>
                     <Image
                       className="mb-2"
