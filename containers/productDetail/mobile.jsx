@@ -382,79 +382,84 @@ const ProductDetailMobile = ({ data }) => {
                 />
               )}
             </div>
-            <hr />
+
             {/* comments */}
-            <section className="col-12">
-              <div className={styles.comments_header}>
-                <h3>نظر مشتریان ({comments.length} نظر)</h3>
-              </div>
-              {comments.length > 0 &&
-                comments.map((value, index) => {
-                  return (
-                    <Fragment key={index}>
-                      <div className={`${styles.comments_wrapper} mt-2 `}>
-                        <div className={`${styles.avatar_wrapper} pt-2`}>
-                          <Image
-                            src="/productDetail/avatar.png"
-                            alt="avatar"
-                            width="50"
-                            height="50"
-                          />
-                        </div>
-                        <div className={styles.comments_detail}>
-                          <span>
-                            {value.user.first_name} {value.user.last_name}
-                          </span>
-                          <div className={styles.rating_wrapper}>
-                            <span
-                              className="text-muted"
-                              style={{ fontSize: "13px" }}
-                            >
-                              {value.date_create}
-                            </span>
+            {false && (
+              <section className="col-12">
+                <div className={styles.comments_header}>
+                  <h3>نظر مشتریان ({comments.length} نظر)</h3>
+                </div>
+                {comments.length > 0 &&
+                  comments.map((value, index) => {
+                    return (
+                      <Fragment key={index}>
+                        <div className={`${styles.comments_wrapper} mt-2 `}>
+                          <div className={`${styles.avatar_wrapper} pt-2`}>
+                            <Image
+                              src="/productDetail/avatar.png"
+                              alt="avatar"
+                              width="50"
+                              height="50"
+                            />
                           </div>
-                          <span>{value.description}</span>
-                        </div>
-                      </div>
-                      {value.comment_replies.length > 0 &&
-                        value.comment_replies.map((value, index) => {
-                          return (
-                            <div
-                              className={`${styles.comments_wrapper} me-5 mb-3 mt-2`}
-                              key={index}
-                            >
-                              <div className={`${styles.avatar_wrapper} pt-3`}>
-                                <Image
-                                  src="/productDetail/avatar.png"
-                                  alt="avatar"
-                                  width="50"
-                                  height="50"
-                                />
-                              </div>
-                              <div className={`${styles.comments_detail}`}>
-                                <span>
-                                  {value.user.first_name} {value.user.last_name}
-                                </span>
-                                <div
-                                  className={styles.rating_wrapper}
-                                  style={{ width: "200px" }}
-                                >
-                                  <span
-                                    className="text-muted"
-                                    style={{ fontSize: "13px" }}
-                                  >
-                                    {value.date_create}
-                                  </span>
-                                </div>
-                                <span>{value.description}</span>
-                              </div>
+                          <div className={styles.comments_detail}>
+                            <span>
+                              {value.user.first_name} {value.user.last_name}
+                            </span>
+                            <div className={styles.rating_wrapper}>
+                              <span
+                                className="text-muted"
+                                style={{ fontSize: "13px" }}
+                              >
+                                {value.date_create}
+                              </span>
                             </div>
-                          );
-                        })}
-                    </Fragment>
-                  );
-                })}
-            </section>
+                            <span>{value.description}</span>
+                          </div>
+                        </div>
+                        {value.comment_replies.length > 0 &&
+                          value.comment_replies.map((value, index) => {
+                            return (
+                              <div
+                                className={`${styles.comments_wrapper} me-5 mb-3 mt-2`}
+                                key={index}
+                              >
+                                <div
+                                  className={`${styles.avatar_wrapper} pt-3`}
+                                >
+                                  <Image
+                                    src="/productDetail/avatar.png"
+                                    alt="avatar"
+                                    width="50"
+                                    height="50"
+                                  />
+                                </div>
+                                <div className={`${styles.comments_detail}`}>
+                                  <span>
+                                    {value.user.first_name}{" "}
+                                    {value.user.last_name}
+                                  </span>
+                                  <div
+                                    className={styles.rating_wrapper}
+                                    style={{ width: "200px" }}
+                                  >
+                                    <span
+                                      className="text-muted"
+                                      style={{ fontSize: "13px" }}
+                                    >
+                                      {value.date_create}
+                                    </span>
+                                  </div>
+                                  <span>{value.description}</span>
+                                </div>
+                              </div>
+                            );
+                          })}
+                      </Fragment>
+                    );
+                  })}
+              </section>
+            )}
             <hr className="my-5" />
             <section>
               <h2
