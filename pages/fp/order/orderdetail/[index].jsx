@@ -15,6 +15,7 @@ import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
 // sass
 import styles from "../../../../styles/pages/order/orderdetail.module.scss";
+import Link from "next/link";
 
 export const getServerSideProps = ({ params }) => {
   // fetch
@@ -503,6 +504,7 @@ function HomePage({ id }) {
                   کالاهای خریداری شده
                 </h1>
                 <hr />
+                {console.log("data.items", data.items)}
                 {data.items.length > 0 &&
                   data.items.map((e, index) => {
                     return (
@@ -514,19 +516,31 @@ function HomePage({ id }) {
                                 <Disclosure.Button className="flex justify-between w-full px-4 py-2 font-bold text-purple-900 bg-purple-100 rounded-lg text-md hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
                                   <div className="flex grow m-[30px] justify-between items-center">
                                     <h3 className="font-bold ">{index + 1}</h3>
-                                    <div className="block w-16 h-16 rounded-md shadow-md">
-                                      <Image
-                                        src={e.image_thumbnail || "/"}
-                                        alt="Picture of the author"
-                                        className="rounded-md "
-                                        layout="responsive"
-                                        width={50}
-                                        height={50}
-                                      />
-                                    </div>
-                                    <div className="w-[235px]">
-                                      <h3 className="mr-4 ">{e.name}</h3>
-                                    </div>
+                                    <Link
+                                      href={`/shop/${e.shop_slug}/product/${e.slug}`}
+                                    >
+                                      <a target="_blank">
+                                        <div className="block w-16 h-16 ease-out rounded-md shadow-md hover:scale-125">
+                                          <Image
+                                            src={e.image_thumbnail || "/"}
+                                            alt="Picture of the author"
+                                            className="rounded-md "
+                                            layout="responsive"
+                                            width={50}
+                                            height={50}
+                                          />
+                                        </div>
+                                      </a>
+                                    </Link>
+                                    <Link
+                                      href={`/shop/${e.shop_slug}/product/${e.slug}`}
+                                    >
+                                      <a target="_blank">
+                                        <div className="w-[235px] hover:scale-95 ease-in-out">
+                                          <h3 className="mr-4 ">{e.name}</h3>
+                                        </div>
+                                      </a>
+                                    </Link>
                                     <div className="w-10">
                                       <h4 className="font-bold text-gray-800">
                                         {e.count}
