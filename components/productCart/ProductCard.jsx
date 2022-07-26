@@ -121,7 +121,9 @@ const ProductCard = ({
           {dataProduct.in_campaign && campBadge}
           {deletProduct && deletIcon}
           <Link href={product.url}>
-            <a className={styles.links}>{cardImg}</a>
+            <a target="_blank" className={styles.links}>
+              {cardImg}
+            </a>
           </Link>
         </div>
 
@@ -133,6 +135,7 @@ const ProductCard = ({
           <div className="mb-3 ">
             <Link href={product.url}>
               <a
+                target="_blank"
                 style={{ fontWeight: "bold" }}
                 className="_product_card_title text-truncate "
               >
@@ -140,11 +143,12 @@ const ProductCard = ({
               </a>
             </Link>
           </div>
-          <div className="_product_card_city text-truncate mb-3">
+          <div className="mb-3 _product_card_city text-truncate">
             <span className="_product_card_subtitle">{product.city}</span>
-            {product.city && <i className="fa fa-angle-left px-1"></i>}
+            {product.city && <i className="px-1 fa fa-angle-left"></i>}
             <Link href={product.chamberUrl}>
               <a
+                target="_blank"
                 title={product.chamberTitle}
                 className="_product_card_subtitle"
               >
