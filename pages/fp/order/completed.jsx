@@ -2,32 +2,41 @@ import React from "react";
 // node libraries
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 // components
-import MyLayout from "../../../../components/layout/Layout";
-import useViewport from "../../../../components/viewPort";
-import MobileHeader from "../../../../components/mobileHeader";
-import MobileOrders from "../../../../containers/order/mobileOrders";
-import DesktopOrders from "../../../../containers/order/desktopOrders";
+import MyLayout from "../../../components/layout/Layout";
+import useViewport from "../../../components/viewPort";
+import MobileHeader from "../../../components/mobileHeader";
+import MobileOrders from "../../../containers/order/mobileOrders";
+import DesktopOrders from "../../../containers/order/desktopOrders";
 // methods
-import { getCompleted } from "../../../../redux/actions/orders/getCompleted";
-import { mapState } from "../../../../containers/order/methods/mapState";
+import { authhttp } from "../../../services/callApi/api";
 
-function Completed({ ordersList, activeHojreh, getCompleted }) {
+function Completed() {
+  const activeHojreh = useSelector((state) => state.User.activeHojreh);
+  const [ordersList, setOrdersList] = useState([]);
   const [loading, setLoading] = useState(false);
   const { width } = useViewport();
   const breakpoint = 620;
 
   useEffect(() => {
-    async function getData() {
+    async function fetchData() {
       await setLoading(true);
-      if (activeHojreh.length > 0) {
-        await getCompleted(activeHojreh);
-      }
-      await setLoading(false);
+      const _handleRequestApi = async () => {
+        const dataUrl = `/api/v1/shop/${activeHojreh}/invoices/?is_completed=true`;
+        const response = await authhttp.get(dataUrl);
+        // check status code
+        if (response.status === 200) {
+          setOrdersList(response.data.results);
+        }
+        await setLoading(false);
+      };
+      activeHojreh.length > 0 && _handleRequestApi();
     }
-    getData();
-  }, [getCompleted, activeHojreh]);
+    if (activeHojreh) {
+      fetchData();
+    }
+  }, [activeHojreh]);
 
   return (
     <>
@@ -67,6 +76,6 @@ function Completed({ ordersList, activeHojreh, getCompleted }) {
   );
 }
 // export
-const connector = connect(mapState, { getCompleted });
-export default connector(Completed);
+
+export default Completed;
 Completed.Layout = MyLayout;

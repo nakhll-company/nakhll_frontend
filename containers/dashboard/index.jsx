@@ -1,18 +1,18 @@
 // node libraries
 import Link from "next/link";
 
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-// methods
-import { mapState } from "./methods/mapState";
 // components
 import Loading from "../../components/loading";
 // styles
 import s from "./dashboard.module.scss";
 import { authhttp } from "../../services/callApi/api";
 
-function Dashboard({ activeHojreh }) {
+function Dashboard() {
+  const activeHojreh = useSelector((state) => state.User.activeHojreh);
+
   const [api, setApi] = useState({});
   const [loading, setLoading] = useState(false);
 
@@ -30,7 +30,9 @@ function Dashboard({ activeHojreh }) {
       };
       activeHojreh.length > 0 && _handleRequestApi();
     }
-    fetchData();
+    if (activeHojreh) {
+      fetchData();
+    }
   }, [activeHojreh]);
 
   // mini component
@@ -176,6 +178,5 @@ function Dashboard({ activeHojreh }) {
     </>
   );
 }
-// export
-const connector = connect(mapState);
-export default connector(Dashboard);
+
+export default Dashboard;

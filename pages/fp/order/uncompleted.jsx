@@ -2,32 +2,42 @@ import React from "react";
 // node libraries
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 // components
-import MyLayout from "../../../../components/layout/Layout";
-import useViewport from "../../../../components/viewPort";
-import MobileHeader from "../../../../components/mobileHeader";
-import MobileOrders from "../../../../containers/order/mobileOrders";
-import DesktopOrders from "../../../../containers/order/desktopOrders";
+import MyLayout from "../../../components/layout/Layout";
+import useViewport from "../../../components/viewPort";
+import MobileHeader from "../../../components/mobileHeader";
+import MobileOrders from "../../../containers/order/mobileOrders";
+import DesktopOrders from "../../../containers/order/desktopOrders";
 // methods
-import { getUncompleted } from "../../../../redux/actions/orders/getUncompleted";
-import { mapState } from "../../../../containers/order/methods/mapState";
+import { getUncompleted } from "../../../redux/actions/orders/getUncompleted";
+import { authhttp } from "../../../services/callApi/api";
 
-function Uncompleted({ ordersList, activeHojreh, getUncompleted }) {
+function Uncompleted() {
+  const activeHojreh = useSelector((state) => state.User.activeHojreh);
   const [loading, setLoading] = useState(false);
+  const [ordersList, setOrdersList] = useState([]);
   const { width } = useViewport();
   const breakpoint = 620;
 
   useEffect(() => {
-    async function getData() {
+    async function fetchData() {
       await setLoading(true);
-      if (activeHojreh.length > 0) {
-        await getUncompleted(activeHojreh);
-      }
-      await setLoading(false);
+      const _handleRequestApi = async () => {
+        const dataUrl = `/api/v1/shop/${activeHojreh}/invoices/?is_completed=false`;
+        const response = await authhttp.get(dataUrl);
+        // check status code
+        if (response.status === 200) {
+          setOrdersList(response.data.results);
+        }
+        await setLoading(false);
+      };
+      activeHojreh.length > 0 && _handleRequestApi();
     }
-    getData();
-  }, [getUncompleted, activeHojreh]);
+    if (activeHojreh) {
+      fetchData();
+    }
+  }, [activeHojreh]);
 
   return (
     <>
@@ -69,6 +79,6 @@ function Uncompleted({ ordersList, activeHojreh, getUncompleted }) {
   );
 }
 // export
-const connector = connect(mapState, { getUncompleted });
-export default connector(Uncompleted);
+
+export default Uncompleted;
 Uncompleted.Layout = MyLayout;
