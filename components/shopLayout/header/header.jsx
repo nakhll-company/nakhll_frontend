@@ -231,7 +231,7 @@ function Header() {
             </div>
           </div>
         </div>
-        <nav>
+        <nav className="overflow-hidden">
           <div style={{ margin: "0px 10px" }}>
             {/* <SlideMenu /> */}
             <div className={styles.nav_row}>
