@@ -51,15 +51,15 @@ const Footer = () => {
     <>
       {!router.pathname.startsWith("/cart") && (
         <footer className="p-4 mt-2 bg-white sm:p-6 dark:bg-gray-900">
-          <div className="md:flex md:justify-between">
-            <div className="mb-6 md:mb-0">
+          <div className="md:flex md:justify-between ">
+            <div className="mb-6 md:mb-0 md:flex-grow md:flex md:justify-center md:items-center">
               <a href="/" className="flex items-center">
                 <img
                   src="/icons/Nakhll.png"
-                  className="h-8 mr-3 "
+                  className="h-16 mr-3 "
                   alt="FlowBite Logo"
                 />
-                <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                <span className="self-center mr-2 text-2xl font-semibold whitespace-nowrap ">
                   بازار نخل
                 </span>
               </a>
@@ -67,7 +67,7 @@ const Footer = () => {
             <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
               {dataFooter.map((item, index) => (
                 <div key={index}>
-                  <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+                  <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase ">
                     {item.header}
                   </h2>
                   <ul className="text-gray-600 dark:text-gray-400">
