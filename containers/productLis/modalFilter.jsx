@@ -45,7 +45,6 @@ export const ModalFilter = () => {
               title="فقط کالاهای موجود"
               id="Available_goods_mobile"
             />
-            <CustomSwitch title="آماده ارسال" id="Ready_to_send_mobile" />
             <CustomSwitch title="تخفیف دارها" id="discounted_mobile" />
           </div>
         </div>
