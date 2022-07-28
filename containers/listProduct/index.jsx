@@ -33,7 +33,7 @@ function ListProduct({ searchWord = "", shopProducts = "", categoryIn = "" }) {
   const [whichOrdering, setWhichOrdering] = useState("");
   const [listWithFilter, setListWithFilter] = useState([]);
   const [wantCategories, setWantCategories] = useState([]);
-  const [isReadyForSend, setIsReadyForSend] = useState(false);
+  const [isReadyForSend] = useState(false);
   const [isAvailableGoods, setIsAvailableGoods] = useState(false);
   const [isOpenOrderingModal, setIsOpenOrderingModal] = useState(false);
   const [isDiscountPercentage, setIsDiscountPercentage] = useState(false);
@@ -272,13 +272,7 @@ function ListProduct({ searchWord = "", shopProducts = "", categoryIn = "" }) {
                         setIsAvailableGoods(e.target.checked);
                       }}
                     />
-                    <CustomSwitch
-                      title="آماده ارسال"
-                      id="Ready_to_send"
-                      onChange={(e) => {
-                        setIsReadyForSend(e.target.checked);
-                      }}
-                    />
+
                     <CustomSwitch
                       title="تخفیف دارها"
                       id="discounted"
@@ -297,12 +291,12 @@ function ListProduct({ searchWord = "", shopProducts = "", categoryIn = "" }) {
                 setWhichOrdering={setWhichOrdering}
                 handelOrderingModal={handelOrderingModal}
               />
-              <div className="row mx-auto">
+              <div className="mx-auto row">
                 {isLoading ? (
                   <WoLoading />
                 ) : (
                   <InfiniteScroll
-                    className="row mx-auto"
+                    className="mx-auto row"
                     dataLength={listWithFilter.length} // This is important field to render the next data
                     next={handelCallAnotherPageApi}
                     hasMore={hasMore}
@@ -361,13 +355,7 @@ function ListProduct({ searchWord = "", shopProducts = "", categoryIn = "" }) {
                       setIsAvailableGoods(e.target.checked);
                     }}
                   />
-                  <CustomSwitch
-                    title="آماده ارسال"
-                    id="Ready_to_send_mobile"
-                    onChange={(e) => {
-                      setIsReadyForSend(e.target.checked);
-                    }}
-                  />
+
                   <CustomSwitch
                     title="تخفیف دارها"
                     id="discounted_mobile"

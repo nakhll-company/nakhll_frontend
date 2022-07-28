@@ -17,7 +17,6 @@ import AddFavorites from "../../../components/AddFavorites";
 import CustomSwitch from "../../../components/custom/customSwitch";
 import OrderingModalMobile from "./components/OrderingModalMobile";
 import ProductCard from "../../../components/productCart/ProductCard";
-import CustomAccordion from "../../../components/custom/customAccordion";
 import { WoLoading } from "../../../components/custom/Loading/woLoading/WoLoading";
 // methods
 import { ApiReference } from "../../../api/Api";
@@ -27,6 +26,7 @@ import { diviedNumber } from "../../../utils/diviedNumber";
 import { parsUrlToArr } from "../../../utils/parsUrlToArr";
 // styles
 import styles from "./listProductCus.module.scss";
+import AppDisclosure from "../../../components/Disclosure";
 
 function ListProductCus({ data, certainShop = "" }) {
   console.log("data :>> ", data);
@@ -41,7 +41,7 @@ function ListProductCus({ data, certainShop = "" }) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [listWithFilter, setListWithFilter] = useState([]);
   const userData = useSelector((state) => state.User.userInfo);
-  const [hojreh, setHojreh] = useState(data.shop ? data.shop : "");
+  const [hojreh] = useState(data.shop ? data.shop : "");
 
   const [isOpenOrderingModal, setIsOpenOrderingModal] = useState(false);
   const [ragnePrice, setRagnePrice] = useState({});
@@ -258,20 +258,17 @@ function ListProductCus({ data, certainShop = "" }) {
               />
 
               {ragnePrice?.max_price && (
-                <CustomAccordion title="محدوده قیمت" item="two" close={true}>
+                <AppDisclosure title="محدوده قیمت">
                   <div style={{ direction: "ltr", zIndex: "1000" }}>
                     <FilterPrice
                       ragnePrice={ragnePrice}
                       onChangeFilter={onChangeFilter}
                     />
                   </div>
-                </CustomAccordion>
+                </AppDisclosure>
               )}
-              <CustomAccordion
-                title="جستجو بر اساس حجره"
-                item="searchHoj"
-                close={true}
-              >
+
+              <AppDisclosure title="جستجو بر اساس حجره">
                 <Search
                   onClick={getAllShops}
                   onChange={(e) => handelSearch(e.target.value)}
@@ -293,14 +290,10 @@ function ListProductCus({ data, certainShop = "" }) {
                     {el.title}
                   </div>
                 ))}
-              </CustomAccordion>
+              </AppDisclosure>
 
               {hojreh == "" && (
-                <CustomAccordion
-                  title="استان و شهر حجره دار"
-                  item="three"
-                  close={true}
-                >
+                <AppDisclosure title=" استان و شهر حجره دار">
                   <CheckboxTree
                     // direction="rtl"
                     icons={{
@@ -320,10 +313,11 @@ function ListProductCus({ data, certainShop = "" }) {
                     }}
                     onExpand={(e) => setExpandCity(e)}
                   />
-                </CustomAccordion>
+                </AppDisclosure>
               )}
+
               {shopesTag?.length > 0 && (
-                <CustomAccordion title="تگ ها" item="four" close={true}>
+                <AppDisclosure title=" تگ ها">
                   <div className={styles.info_cardH}>
                     <label htmlFor="select-shop" style={{ fontSize: "15px" }}>
                       {" "}
@@ -370,7 +364,7 @@ function ListProductCus({ data, certainShop = "" }) {
                       </label>
                     </div>
                   ))}
-                </CustomAccordion>
+                </AppDisclosure>
               )}
 
               <div className={styles.search_body_filter}>
@@ -386,14 +380,7 @@ function ListProductCus({ data, certainShop = "" }) {
                       onChangeFilter("available", e.target.checked);
                     }}
                   />
-                  <CustomSwitch
-                    defaultChecked={data.ready == "true" ? true : false}
-                    title="آماده ارسال"
-                    id="Ready_to_send"
-                    onChange={(e) => {
-                      onChangeFilter("ready", e.target.checked);
-                    }}
-                  />
+
                   <CustomSwitch
                     defaultChecked={data.discounted == "true" ? true : false}
                     title="تخفیف دارها"
@@ -489,14 +476,6 @@ function ListProductCus({ data, certainShop = "" }) {
                 />
 
                 <CustomSwitch
-                  defaultChecked={data.ready == "true" ? true : false}
-                  title="آماده ارسال"
-                  id="Ready_to_send_mobile"
-                  onChange={(e) => {
-                    onChangeFilter("ready", e.target.checked);
-                  }}
-                />
-                <CustomSwitch
                   defaultChecked={data.discounted == "true" ? true : false}
                   title="تخفیف دارها"
                   id="discounted_mobile"
@@ -506,7 +485,7 @@ function ListProductCus({ data, certainShop = "" }) {
                 />
               </div>
             </div>
-            <CustomAccordion title="جست و جو براساس حجره" item="searchShop">
+            <AppDisclosure title="جستجو بر اساس حجره">
               <Search
                 onClick={getAllShops}
                 onChange={(e) => handelSearch(e.target.value)}
@@ -522,33 +501,32 @@ function ListProductCus({ data, certainShop = "" }) {
                   key={index}
                   className={styles.itemHojreh}
                   onClick={() => {
-                    setHojreh(el.slug);
                     onChangeFilter("shop", el.slug, true);
                   }}
                 >
                   {el.title}
                 </div>
               ))}
-            </CustomAccordion>
-            <CustomAccordion title="محدوده قیمت" item="2mobile">
-              <div style={{ direction: "ltr" }}>
-                <FilterPrice
-                  ragnePrice={ragnePrice}
-                  onChangeFilter={onChangeFilter}
-                />
-              </div>
-            </CustomAccordion>
+            </AppDisclosure>
+            {ragnePrice?.max_price && (
+              <AppDisclosure title="محدوده قیمت">
+                <div style={{ direction: "ltr", zIndex: "1000" }}>
+                  <FilterPrice
+                    ragnePrice={ragnePrice}
+                    onChangeFilter={onChangeFilter}
+                  />
+                </div>
+              </AppDisclosure>
+            )}
             {categories.length > 0 && (
               <Grouping
-                item="1mobile"
-                searchWord={data.q}
                 setCategories={setCategories}
                 categories={categories}
                 handelAddCategory={handelAddCategory}
               />
             )}
             {hojreh == "" && (
-              <CustomAccordion title="استان و شهر حجره دار" item="3mobile">
+              <AppDisclosure title=" استان و شهر حجره دار">
                 <CheckboxTree
                   // direction="rtl"
                   icons={{
@@ -568,10 +546,10 @@ function ListProductCus({ data, certainShop = "" }) {
                   }}
                   onExpand={(e) => setExpandCity(e)}
                 />
-              </CustomAccordion>
+              </AppDisclosure>
             )}
             {shopesTag?.length > 0 && (
-              <CustomAccordion title="تگ ها" item="fourModalTag" close={true}>
+              <AppDisclosure title=" تگ ها">
                 <div className={styles.info_cardH}>
                   <label htmlFor="select-shop" style={{ fontSize: "15px" }}>
                     {" "}
@@ -597,7 +575,7 @@ function ListProductCus({ data, certainShop = "" }) {
                 </div>
                 {tags.map((ele, index) => (
                   <div
-                    key={`tagesMobile${index}`}
+                    key={`tages${index}`}
                     style={{ marginBottom: "10px", paddingRight: "10px" }}
                   >
                     <input
@@ -607,18 +585,18 @@ function ListProductCus({ data, certainShop = "" }) {
                       className="form-check-input"
                       type="checkbox"
                       value={ele.id}
-                      id={`tagesMobile${index}`}
+                      id={`checkboxTags${index}`}
                     />
                     <label
                       style={{ marginRight: "5px", fontSize: "15px" }}
                       className="form-check-label"
-                      htmlFor={`tagesMobile${index}`}
+                      htmlFor={`checkboxTags${index}`}
                     >
                       {ele.text}
                     </label>
                   </div>
                 ))}
-              </CustomAccordion>
+              </AppDisclosure>
             )}
           </div>
           <div

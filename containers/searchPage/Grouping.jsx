@@ -1,22 +1,23 @@
+/* eslint-disable camelcase */
 // node libraries
 
-import React from "react";
-// components
-import CustomAccordion from "../../components/custom/customAccordion";
+import React, { useEffect } from "react";
+
 // methods
 import { http } from "../../services/callApi/api";
 import { useRouter } from "next/router";
+import AppDisclosure from "../../components/Disclosure";
 
 function Grouping({
   certainShop,
-  searchWord,
+
   setCategories,
   categories,
   handelAddCategory,
-  item,
 }) {
   const { query } = useRouter();
-  const handelCategory = async () => {
+
+  useEffect(async () => {
     try {
       const response = await http.get(
         `/api/v1/categories/category_product_count/`,
@@ -33,15 +34,11 @@ function Grouping({
     } catch (e) {
       return false;
     }
-  };
+  }, [query]);
+
   return (
     <>
-      <CustomAccordion
-        title="دسته بندی"
-        item={item ? item : "one"}
-        callApi={() => handelCategory()}
-      >
-        {/* eslint-disable-next-line camelcase */}
+      <AppDisclosure title="دسته بندی">
         {categories.map(({ id, name, product_count }, index) => (
           <div
             key={`one${index}`}
@@ -70,7 +67,7 @@ function Grouping({
             </label>
           </div>
         ))}
-      </CustomAccordion>
+      </AppDisclosure>
     </>
   );
 }
