@@ -1,4 +1,5 @@
 import React from "react";
+import Banners from "../../components/Banners";
 import EmptyLayout from "../../components/layout/EmptyLayout";
 import LinearProduct from "../../components/LinearProduct";
 import LineShopCart from "../../components/LineShopCart";
@@ -11,6 +12,7 @@ function NewLanding() {
   const { dataBlog } = dataLanding;
   return (
     <>
+      <Banners />
       <ValuesPart />
       <LinearProduct />
       <LineTwoBanner />

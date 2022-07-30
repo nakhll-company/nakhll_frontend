@@ -1,9 +1,9 @@
 // Add Swiper
-@import "swiper/swiper-bundle.css";
-@import "swiper/components/navigation/navigation.scss";
-@import "swiper/components/pagination/pagination.scss";
-@import "swiper/components/scrollbar/scrollbar.scss";
-@import "swiper/components/effect-fade/effect-fade.min.css";
+// @import "swiper/swiper-bundle.css";
+// @import "swiper/components/navigation/navigation.scss";
+// @import "swiper/components/pagination/pagination.scss";
+// @import "swiper/components/scrollbar/scrollbar.scss";
+// @import "swiper/components/effect-fade/effect-fade.min.css";
 // CSS TOASTIFY
 @import "../styles/Toastify/Toastify.scss";
 // swiper
@@ -336,16 +336,25 @@ input[type="number"] {
     direction: rtl !important;
 }
 
-.swiper-button-next:after {
-    height: 3rem !important;
-    width: 3rem !important;
-}
-
-.swiper-button-prev:after {
-    height: 3rem !important;
-    width: 3rem !important;
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.swiper-button-next:after {
+    background-color: transparent !important;
+    box-shadow: unset !important;
+}
+
+.swiper-button-prev:after {
+    background-color: transparent !important;
+    box-shadow: unset !important;
+}
+
+.swiper-pagination {
+    text-align: right;
+    padding-right: 32px;
+    padding-bottom: 12px;
+}
+
+.swiper-pagination-bullet {
+    background-color: red !important;
+}

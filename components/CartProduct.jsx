@@ -4,7 +4,7 @@ import { PlusCircleIcon } from "@heroicons/react/outline";
 function CartProduct() {
   return (
     <>
-      <div className="px-4 pt-4 pb-2 bg-white max-w-[240px] border-gray-400 shadow-md border-1 rounded-xl">
+      <div className="px-4  pt-4 pb-2 bg-white max-w-[240px] border-gray-400 shadow-md border-1 rounded-xl">
         <div className="">
           <div className="relative rounded-md w-52 h-52 ">
             <Image
