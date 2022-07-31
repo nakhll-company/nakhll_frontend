@@ -1,7 +1,8 @@
 // scss
+import { authhttp } from "../../../services/callApi/api";
 import styles from "../../../styles/pages/product/desktopList.module.scss";
 
-const DesktopFilter = ({ getProduct, activeHojreh }) => {
+const DesktopFilter = ({ setProductList, activeHojreh }) => {
   const productStatus = [
     { value: "", label: "" },
     { value: 1, label: "آماده در انبار" },
@@ -12,40 +13,28 @@ const DesktopFilter = ({ getProduct, activeHojreh }) => {
   return (
     <form
       className={styles.form_filter}
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault();
         const data = new FormData(e.target);
-        const result = Object.fromEntries(data.entries());
-        getProduct(
-          activeHojreh,
-          result.product_status,
-          result.price_from,
-          result.price_to,
-          result.inventory_from,
-          result.inventory_to,
-          "",
-          result.search
-        );
+        const inputsForm = Object.fromEntries(data.entries());
+        console.log("inputsForm", inputsForm);
+        const dataUrl = `/api/v1/shop/${activeHojreh}/products/`;
+        const response = await authhttp.get(dataUrl, { params: inputsForm });
+        if (response.status === 200) {
+          setProductList(response.data.results);
+          console.log("response.data.results", response.data.results);
+        }
       }}
     >
       <h3 className="p-4 pb-2 text-gray-600 border-b">فیلترها</h3>
-      <div className="flex justify-around">
-        <label className="p-2 text-md">
-          جستجو در نام محصول
-          <br />
-          <input
-            name="search"
-            className="h-12 pr-2 bg-gray-200 border rounded-lg"
-            type="text"
-            placeholder="نام محصول را وارد کنید"
-          />
-        </label>
-        <label className={styles.filds_label}>
-          وضعیت محصول
-          <br />
+      <div className="grid grid-cols-3 gap-2 p-2 gap-y-4">
+        <Item title="نام محصول">
+          <Input name="search" place="نام محصول را وارد کنید" />
+        </Item>
+        <Item title="وضعیت محصول">
           <select
             name="product_status"
-            className="h-12 pr-2 bg-gray-200 border rounded-lg"
+            className="h-12 pr-2 bg-white border rounded-lg"
           >
             {productStatus.map((value, index) => {
               return (
@@ -55,67 +44,64 @@ const DesktopFilter = ({ getProduct, activeHojreh }) => {
               );
             })}
           </select>
-        </label>
-        <label className={styles.filds_label}>
-          قیمت
-          <br />
-          <input
-            name="price_from"
-            className="h-12 pr-2 bg-gray-200 border rounded-lg "
-            type="text"
-            placeholder="از   -   تومان"
-          />
-          &nbsp;
-          <input
-            name="price_to"
-            className="h-12 pr-2 bg-gray-200 border rounded-lg "
-            type="text"
-            placeholder="تا   -   تومان"
-          />
-        </label>
-      </div>
-      <div className="flex justify-around">
-        <label className="">
-          زمان آماده سازی
-          <br />
-          <input
-            className="h-12 pr-2 bg-gray-200 border rounded-lg"
-            type="text"
-            placeholder="از   -   روز"
-          />
-          &nbsp;
-          <input
-            className={`${styles.filds_input} ${styles.filds_input_half}`}
-            type="text"
-            placeholder="تا   -   روز"
-          />
-        </label>
-        <label className={styles.filds_label}>
-          موجودی
-          <br />
-          <input
-            name="inventory_from"
-            className={`${styles.filds_input} ${styles.filds_input_half}`}
-            type="text"
-            placeholder="از   -   عدد"
-          />
-          &nbsp;
-          <input
-            name="inventory_to"
-            className={`${styles.filds_input} ${styles.filds_input_half}`}
-            type="text"
-            placeholder="تا   -   عدد"
-          />
-        </label>
-        <button className={styles.button_submit} type="submit">
-          جستجو
-        </button>
-        <button className={styles.button_reset} type="reset">
-          حذف همه فیلترها
-        </button>
+        </Item>
+
+        <Item title="قیمت">
+          <Input name="price_from" place="از   -   تومان" half />
+          <Input name="price_to" place="تا   -   تومان" half />
+        </Item>
+
+        <Item title="زمان آماده سازی">
+          <Input name="day" place="از   -   روز" half />
+          <Input name="dateDay" place="تا   -   روز" half />
+        </Item>
+        <Item title="موجودی">
+          <Input name="inventory_from" place="از   -   عدد" half />
+
+          <Input name="inventory_to" place="تا   -   عدد" half />
+        </Item>
+
+        <div className="flex items-end justify-center">
+          <button
+            className="h-12 px-4 mx-2 bg-blue-400 shadow-lg rounded-xl active:scale-95"
+            type="submit"
+          >
+            جستجو
+          </button>
+          <button
+            className="h-12 px-4 mx-2 bg-red-300 shadow-lg rounded-xl active:scale-95"
+            type="reset"
+          >
+            حذف همه فیلترها
+          </button>
+        </div>
       </div>
     </form>
   );
 };
 // export
 export default DesktopFilter;
+
+// COMPONENTS
+
+function Input({ name, place, half }) {
+  return (
+    <>
+      <input
+        name={name}
+        className={`h-12 pr-2 border ml-2 rounded-lg ${half && "w-[48%]"}`}
+        type="text"
+        placeholder={place}
+      />
+    </>
+  );
+}
+
+function Item({ title, children }) {
+  return (
+    <div className="">
+      <h4 className="p-2 text-[14px] font-bold text-gray-700">{title}</h4>
+      <div className="flex justify-between">{children}</div>
+    </div>
+  );
+}

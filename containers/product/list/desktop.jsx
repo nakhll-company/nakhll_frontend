@@ -11,19 +11,41 @@ import styles from "../../../styles/pages/product/desktopList.module.scss";
 // functions
 import { groupProductResponse } from "../groupProduct/methods/groupProductResponse";
 import { groupProductResponseEdit } from "../groupProduct/methods/groupProductResponseEdit";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { authhttp } from "../../../services/callApi/api";
 
-export default function Desktop({
-  loading,
-  productList,
-  activeHojreh,
-  getProduct,
-  userInfo,
-}) {
+export default function Desktop() {
+  const [productList, setProductList] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const activeHojreh = useSelector((state) => state.User.activeHojreh);
+  useEffect(() => {
+    async function fetchData() {
+      await setLoading(true);
+      const _handleRequestApi = async () => {
+        const dataUrl = `/api/v1/shop/${activeHojreh}/products/`;
+        const response = await authhttp.get(dataUrl);
+        // check status code
+        if (response.status === 200) {
+          setProductList(await response.data.results);
+        }
+        await setLoading(false);
+      };
+      activeHojreh.length > 0 && _handleRequestApi();
+    }
+    if (activeHojreh) {
+      fetchData();
+    }
+  }, [activeHojreh]);
+
   const router = useRouter();
 
   return (
     <div className={styles.wrapper}>
-      <DesktopFilter getProduct={getProduct} activeHojreh={activeHojreh} />
+      <DesktopFilter
+        setProductList={setProductList}
+        activeHojreh={activeHojreh}
+      />
       <div className={styles.product_list}>
         <div className={styles.product_title}>
           <span>محصولات</span>
@@ -78,8 +100,8 @@ export default function Desktop({
                   />
                 </td>
               </tr>
-            ) : productList.results && productList.results.length > 0 ? (
-              productList.results.map((value, index) => {
+            ) : productList && productList.length > 0 ? (
+              productList.map((value, index) => {
                 return (
                   <tr key={index}>
                     <td>
@@ -202,13 +224,13 @@ export default function Desktop({
               </tr>
             )}
           </tbody>
-          <tfoot>
+          {/* <tfoot>
             <DesktopFooter
               productList={productList}
               getProduct={getProduct}
               activeHojreh={activeHojreh}
             />
-          </tfoot>
+          </tfoot> */}
         </table>
       </div>
     </div>
