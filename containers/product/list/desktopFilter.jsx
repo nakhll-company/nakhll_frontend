@@ -28,14 +28,14 @@ const DesktopFilter = ({ getProduct, activeHojreh }) => {
         );
       }}
     >
-      <h3 className={styles.form_title}>فیلترها</h3>
-      <div className={styles.filds_wrapper}>
-        <label className={styles.filds_label}>
+      <h3 className="p-4 pb-2 text-gray-600 border-b">فیلترها</h3>
+      <div className="flex justify-around">
+        <label className="p-2 text-md">
           جستجو در نام محصول
           <br />
           <input
             name="search"
-            className={styles.filds_input}
+            className="h-12 pr-2 bg-gray-200 border rounded-lg"
             type="text"
             placeholder="نام محصول را وارد کنید"
           />
@@ -43,7 +43,10 @@ const DesktopFilter = ({ getProduct, activeHojreh }) => {
         <label className={styles.filds_label}>
           وضعیت محصول
           <br />
-          <select name="product_status" className={styles.filds_input}>
+          <select
+            name="product_status"
+            className="h-12 pr-2 bg-gray-200 border rounded-lg"
+          >
             {productStatus.map((value, index) => {
               return (
                 <option key={index} value={value.value}>
@@ -58,25 +61,25 @@ const DesktopFilter = ({ getProduct, activeHojreh }) => {
           <br />
           <input
             name="price_from"
-            className={`${styles.filds_input} ${styles.filds_input_half}`}
+            className="h-12 pr-2 bg-gray-200 border rounded-lg "
             type="text"
             placeholder="از   -   تومان"
           />
           &nbsp;
           <input
             name="price_to"
-            className={`${styles.filds_input} ${styles.filds_input_half}`}
+            className="h-12 pr-2 bg-gray-200 border rounded-lg "
             type="text"
             placeholder="تا   -   تومان"
           />
         </label>
       </div>
-      <div className={styles.filds_wrapper}>
-        <label className={styles.filds_label}>
+      <div className="flex justify-around">
+        <label className="">
           زمان آماده سازی
           <br />
           <input
-            className={`${styles.filds_input} ${styles.filds_input_half}`}
+            className="h-12 pr-2 bg-gray-200 border rounded-lg"
             type="text"
             placeholder="از   -   روز"
           />
