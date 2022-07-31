@@ -2,8 +2,11 @@ import React from "react";
 import { Fragment } from "react";
 import SwiperCore, { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
-// install Swiper's Controller component
 SwiperCore.use([Navigation]);
 
 const CustomSlider = ({
@@ -18,36 +21,6 @@ const CustomSlider = ({
   return (
     <Fragment>
       <div className="product_row">
-        <section className="product_row_item">
-          <div className="container">
-            {title && (
-              <div className="explore_components_header">
-                <div className="explore_components_header__content">
-                  <h2 className="explore_components_header__title">
-                    لوازم پزشکی
-                  </h2>
-                  <span className="explore_components_header__description">
-                    منتخب سردبیر
-                  </span>
-                </div>
-                <div>
-                  <a className="explore_components_header__morelink">
-                    مشاهده همه
-                    <i
-                      className="fas fa-arrow-left"
-                      style={{
-                        fontSize: "1rem",
-                        display: "inline-block",
-                        verticalAlign: "middle",
-                        marginRight: 10,
-                      }}
-                    ></i>
-                  </a>
-                </div>
-              </div>
-            )}
-          </div>
-        </section>
         <Swiper
           breakpoints={{
             320: {
