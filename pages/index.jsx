@@ -9,23 +9,22 @@ import HeroSlider from "../containers/nakhlPage/heroSlider";
 import ValuesPart from "../containers/nakhlPage/valuesPart";
 import SliderNakhl from "../containers/nakhlPage/sliderNakhl";
 import NakhlLinerProducts from "../containers/nakhlPage/LinerProducts";
-import LinerProductsBgLanding from "../containers/nakhlPage/LinerProductsBg";
+// import LinerProductsBgLanding from "../containers/nakhlPage/LinerProductsBg";
 // methods
 import { dataLanding } from "../utils/dataLanding";
 
 function Landing() {
-  const { linearsProduct, dataBlog, dataSliders, dataAmazingDiscounts } =
-    dataLanding;
+  const { linearsProduct, dataBlog, dataSliders } = dataLanding;
 
   return (
     <div>
       <HeroSlider />
       <ValuesPart />
       <Selers />
-      <LinerProductsBgLanding
+      {/* <LinerProductsBgLanding
         dataLinerProductsBg={dataAmazingDiscounts.products}
         urlLinerProductsBg={dataAmazingDiscounts.url}
-      />
+      /> */}
       <SliderNakhl dataSliders={dataSliders} />
       <NakhlLinerProducts
         dataLinerProducts={linearsProduct[0].products}

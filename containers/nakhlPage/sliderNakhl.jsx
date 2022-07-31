@@ -4,6 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import SwiperCore, { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 // style
 import s from "./sliderNakhl.module.scss";
@@ -12,7 +15,7 @@ SwiperCore.use([Pagination]);
 
 function SliderNakhl({ dataSliders }) {
   return (
-    <div className={`${s.container} container`}>
+    <div className={`${s.container} container pt-3`}>
       <Swiper pagination={true} spaceBetween={20} slidesPerView={1}>
         {dataSliders.map((slider, index) => {
           if (slider.image !== "") {
