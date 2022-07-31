@@ -16,14 +16,14 @@ const Footer = () => {
     {
       header: "نخل",
       data: [
-        { title: "وبلاگ", url: "https://nakhll.com/blog/" },
+        { title: "وبلاگ", url: "https://nakhll.com/mag/" },
         {
           title: "داستان نخل",
-          url: "https://nakhll.com/blog/%d9%86%d8%ae%d9%84%d8%8c-%d8%a8%d8%a7%d8%b2%d8%a7%d8%b1%db%8c-%d8%a7%d8%ac%d8%aa%d9%85%d8%a7%d8%b9%db%8c-%d9%88-%d8%a2%d9%86%d9%84%d8%a7%db%8c%d9%86/",
+          url: "https://nakhll.com/mag/%d9%86%d8%ae%d9%84%d8%8c-%d8%a8%d8%a7%d8%b2%d8%a7%d8%b1%db%8c-%d8%a7%d8%ac%d8%aa%d9%85%d8%a7%d8%b9%db%8c-%d9%88-%d8%a2%d9%86%d9%84%d8%a7%db%8c%d9%86/",
         },
         {
           title: "قوانین و شرایط استفاده",
-          url: "https://nakhll.com/blog/%d8%b4%d8%b1%d8%a7%db%8c%d8%b7-%d9%88-%d8%b6%d9%88%d8%a7%d8%a8%d8%b7/",
+          url: "https://nakhll.com/mag/%d8%b4%d8%b1%d8%a7%db%8c%d8%b7-%d9%88-%d8%b6%d9%88%d8%a7%d8%a8%d8%b7/",
         },
       ],
     },
@@ -34,7 +34,7 @@ const Footer = () => {
         { title: "پیگیری سفارشات", url: "/profile" },
         {
           title: "پاسخ به سوالات پرتکرار",
-          url: "https://nakhll.com/blog/%d8%b3%d9%88%d8%a7%d9%84%d8%a7%d8%aa-%d9%be%d8%b1-%d8%aa%da%a9%d8%b1%d8%a7%d8%b1/",
+          url: "https://nakhll.com/mag/%d8%b3%d9%88%d8%a7%d9%84%d8%a7%d8%aa-%d9%be%d8%b1-%d8%aa%da%a9%d8%b1%d8%a7%d8%b1/",
         },
       ],
     },
