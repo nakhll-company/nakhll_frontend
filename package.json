@@ -60,7 +60,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "sass": "^1.35.2",
-    "swiper": "^6.8.4",
+    "swiper": "^8.3.2",
     "uuid": "^8.3.2",
     "yup": "^0.32.9",
     "zaravand-assistent-number": "^1.1.0"
